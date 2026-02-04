@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -101,5 +101,77 @@ Recommendation ID: deb97441-d830-49f6-b9a5-9d04306abde9
 
 
 <!--deb97441-d830-49f6-b9a5-9d04306abde9_end-->
+
+<!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_begin-->
+
+#### Use Uptime SLA  
+  
+The cluster uses the Free tier and has more than 10 nodes. The Kubernetes Control Plane on the Free tier comes with limited resources and isn't intended for production use or any cluster with 10 or more nodes. To avoid performance issues, upgrade to the Standard tier.  
+  
+**Potential benefits**: High Availability for cluster  
+
+**Impact:** High
+  
+For more information, see [Azure Kubernetes Service (AKS) Free, Standard, and Premium pricing tiers for cluster management - Azure Kubernetes Service](/azure/aks/free-standard-pricing-tiers)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: e32c5e70-515f-45aa-90e7-94fb4fdb1b6c  
+
+
+<!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_end-->
+
+<!--c2f34a5d-2742-4c3d-9247-e0a8b85c3e51_begin-->
+
+#### Configure the Cluster Autoscaler  
+  
+The cluster autoscaler isn't configured in the cluster. The cluster can't automatically adapt to changing load conditions unless it's scaling another way.  
+  
+**Potential benefits**: Optimized scaling for cost and performance  
+
+**Impact:** Low
+  
+For more information, see [Use the cluster autoscaler in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/cluster-autoscaler)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: c2f34a5d-2742-4c3d-9247-e0a8b85c3e51  
+
+
+<!--c2f34a5d-2742-4c3d-9247-e0a8b85c3e51_end-->
+
+<!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_begin-->
+
+#### Use Ephemeral OS disk  
+  
+This cluster isn't using ephemeral OS disks which can provide lower read/write latency, along with faster node scaling and cluster upgrades  
+  
+**Potential benefits**: Faster scaling, upgrades & I/O  
+
+**Impact:** Low
+  
+For more information, see [Ephemeral OS disks - Azure Virtual Machines](/azure/virtual-machines/ephemeral-os-disks)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 79dd48e7-cd34-4f35-a8be-a7d483353c1c  
+
+
+<!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_end-->
+
+<!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_begin-->
+
+#### Enable container monitoring for Azure Kubernetes Service (AKS) clusters  
+  
+The Azure Kubernetes Service (AKS) cluster doesn't have container monitoring enabled. Enable monitoring to collect logs and Prometheus metrics in Azure Monitor for better visibility about pod health, performance, and cluster issues.  
+  
+**Potential benefits**: Improve visibility and performance insights  
+
+**Impact:** Medium
+  
+For more information, see [Kubernetes monitoring in Azure Monitor - Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-overview)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: d1e9f4a0-926e-4480-a4e4-3ea94877370c  
+
+
+<!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_end-->
 
 <!--articleBody-->

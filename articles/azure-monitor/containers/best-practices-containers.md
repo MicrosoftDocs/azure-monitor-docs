@@ -45,4 +45,5 @@ Performance efficiency is the ability of your workload to scale to meet the dema
 
 ## Next step
 
+* See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to enable Managed Prometheus and log collection on your cluster.
 * Learn more about [getting started with Azure Monitor](../fundamentals/getting-started.md).

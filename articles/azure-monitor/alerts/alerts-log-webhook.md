@@ -8,7 +8,7 @@ ms.reviewer: yalavi
 
 # Sample payloads for log search alerts using webhook actions
 
-You can use webhook actions in a log search alert rule to invoke a single HTTP POST request. In this article, we describe the properties that are available when you [configure action groups to use webhooks](./action-groups.md). The service that's called must support webhooks and know how to use the payload it receives.
+You can use webhook actions in a log search alert rule to invoke a single HTTP POST request. In this article, we describe the properties that are available when you [configure action groups to use webhooks](./action-groups.md#webhook). The service that's called must support webhooks and know how to use the payload it receives.
 
 We recommend that you use [common alert schema](../alerts/alerts-common-schema.md) for your webhook integrations. The common alert schema provides the advantage of having a single extensible and unified alert payload across all the alert services in Azure Monitor.
 
@@ -314,5 +314,5 @@ The following sample payload is for a custom webhook action for any log search a
 ## Next steps
 
 - Learn about [Azure Monitor alerts](./alerts-overview.md).
-- Create and manage [action groups in Azure](./action-groups.md).
+- Create and manage [action groups](./action-groups.md).
 - Learn more about [log queries](../logs/log-query-overview.md).

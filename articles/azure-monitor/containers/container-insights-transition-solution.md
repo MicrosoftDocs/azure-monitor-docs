@@ -2,13 +2,13 @@
 title: Transition from the Container Monitoring Solution to using Container Insights
 ms.date: 04/23/2025
 ms.topic: how-to
-description: "Learn how to migrate from using the legacy OMS solution to monitoring your containers using Container Insights"
+description: "Learn how to migrate from using the legacy solution to monitoring your containers using Container Insights"
 ms.reviewer: viviandiec
 ---
 
 # Transition from the Container Monitoring Solution (deprecated) to using Container Insights
 
-With both the underlying platform and agent deprecations, on August 31, 2024 the [Container Monitoring Solution](./containers.md) will be retired. If you use the Container Monitoring Solution to ingest data to your Log Analytics workspace, make sure to transition to using [Container Insights](./container-insights-overview.md) prior to that date.
+With both the underlying platform and agent deprecations, on August 31, 2024 the [Container Monitoring Solution](./containers.md) will be retired. If you use the Container Monitoring Solution to ingest data to your Log Analytics workspace, make sure to transition to using [Container Insights](./kubernetes-monitoring-overview.md) prior to that date.
 
 > [!WARNING]
 > The Container Monitoring Solution is no longer supported as of August 31, 2024.

@@ -3,7 +3,7 @@ title: Regional availability of Azure Chaos Studio
 description: Understand how Azure Chaos Studio makes chaos experiments and chaos targets available in Azure regions.
 author: prasha-microsoft 
 ms.reviewer: prashabora
-ms.topic: article
+ms.topic: concept-article
 ms.date: 4/27/2025
 ms.custom: template-concept, references_regions
 ---
@@ -24,6 +24,7 @@ A chaos experiment can target a resource in a different region than the experime
 | West US | Available  | Available |
 | North Central US | Available  | Available |
 | Central US | Available  | Available |
+| South Central US | Not Available | Available |
 | West US 2 | Not Available  | Available |
 | West US 3 | Not Available  | Available |
 | Canada Central | Not Available  | Available |

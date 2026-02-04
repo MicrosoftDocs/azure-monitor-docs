@@ -2,7 +2,7 @@
 title: 'Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Resource Manager templates)'
 description: Tutorial on how sending data to a Log Analytics workspace in Azure Monitor using the Logs ingestion API. Supporting components configured using Resource Manager templates.
 ms.topic: tutorial
-ms.date: 03/13/2024
+ms.date: 08/29/2025
 ---
 
 # Tutorial: Send data to Azure Monitor using Logs ingestion API (Resource Manager templates)
@@ -255,7 +255,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                 "kind": "Direct",
                 "properties": {
                     "streamDeclarations": {
-                        "Custom-MyTableRawData": {
+                        "Custom-MyTable": {
                             "columns": [
                                 {
                                     "name": "Time",
@@ -291,7 +291,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                     "dataFlows": [
                         {
                             "streams": [
-                                "Custom-MyTableRawData"
+                                "Custom-MyTable"
                             ],
                             "destinations": [
                                 "myworkspace"
@@ -361,7 +361,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                 "properties": {
                     "dataCollectionEndpointId": "[parameters('endpointResourceId')]",
                     "streamDeclarations": {
-                        "Custom-MyTableRawData": {
+                        "Custom-MyTable": {
                             "columns": [
                                 {
                                     "name": "Time",
@@ -397,7 +397,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
                     "dataFlows": [
                         {
                             "streams": [
-                                "Custom-MyTableRawData"
+                                "Custom-MyTable"
                             ],
                             "destinations": [
                                 "myworkspace"

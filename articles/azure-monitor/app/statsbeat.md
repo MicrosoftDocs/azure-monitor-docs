@@ -70,8 +70,6 @@ Statsbeat supports EU Data Boundary for Application Insights resources in the fo
 | Throttle Count         | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Status Code`    |
 | Exception Count        | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Exception Type` |
 
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
-
 ### Attach Statsbeat
 
 | Metric name | Unit  | Supported dimensions                                                                                                                                    |

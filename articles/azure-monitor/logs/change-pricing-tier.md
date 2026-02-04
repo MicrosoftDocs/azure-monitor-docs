@@ -3,7 +3,7 @@ title: Change pricing tier for Log Analytics workspace
 description: Details on how to change pricing tier for Log Analytics workspace in Azure Monitor.
 ms.topic: how-to
 ms.reviewer: Dale.Koetke
-ms.date: 05/02/2024
+ms.date: 08/29/2025
 ---
  
 # Change pricing tier for Log Analytics workspace

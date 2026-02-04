@@ -10,7 +10,7 @@ ms.date: 05/21/2025
 | Maximum number of facility names in Syslog | 20 |
 | Maximum number of XPath queries in Event Log | 100 |
 | Maximum number of data flows | 10 |
-| Maximum number of data streams | 10 |
+| Maximum number of data streams | 20 |
 | Maximum number of extensions | 10 |
 | Maximum size of extension settings | 32 Kb |
 | Maximum number of Log Analytics workspaces | 10 |

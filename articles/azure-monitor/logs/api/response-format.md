@@ -2,7 +2,7 @@
 title: Azure Monitor Log Analytics API response format
 description: The Azure Monitor Log Analytics API response is JSON that contains an array of table objects.
 ms.date: 08/12/2024
-ms.topic: article
+ms.topic: concept-article
 ---
 # Azure Monitor Log Analytics API response format
 
@@ -59,7 +59,7 @@ In the following example, we can see that the result contains two columns: `Cate
 
 ## Azure Monitor Log Analytics API errors
 
-If a fatal error occurs during query execution, an error status code is returned with a [OneAPI](https://github.com/Microsoft/api-guidelines/blob/vNext/Guidelines.md#errorresponse--object) error object that describes the error.
+If a fatal error occurs during query execution, an error status code is returned with a [OneAPI](https://github.com/microsoft/api-guidelines/blob/vNext/graph/articles/errorResponses.md) error object that describes the error.
 
 If a non-fatal error occurs during query execution, the response status code is `200 OK`. It contains the query results in the `tables` property as described. The response also contains an `error` property, which is a OneAPI error object with the code `PartialError`. Details of the error are included in the `details` property.
 

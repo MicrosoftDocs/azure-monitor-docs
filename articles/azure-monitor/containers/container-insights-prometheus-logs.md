@@ -2,12 +2,15 @@
 title: Collect Prometheus metrics with Container insights
 description: Describes different methods for configuring the Container insights agent to scrape Prometheus metrics from your Kubernetes cluster.
 ms.topic: how-to
-ms.date: 07/26/2024
+ms.date: 08/21/2025
 ms.reviewer: aul
 ---
 
 # Send Prometheus metrics to Log Analytics workspace with Container insights
 This article describes how to send Prometheus metrics from your Kubernetes cluster monitored by Container insights to a Log Analytics workspace. Before you perform this configuration, you should first ensure that you're [scraping Prometheus metrics from your cluster using Azure Monitor managed service for Prometheus](/azure/azure-monitor/containers/prometheus-metrics-scrape-configuration), which is the recommended method for monitoring your clusters. Use the configuration described in this article only if you also want to send this same data to a Log Analytics workspace where you can analyze it using [log queries](../logs/log-query-overview.md) and [log search alerts](../alerts/alerts-log-query.md).
+
+> [!IMPORTANT]
+> This article describes a legacy strategy to send Prometheus metrics from a Kubernetes cluster to a Log Analytics workspace. This strategy has been replaced with enabling Managed Prometheus for your Kubernetes cluster. See [Enable Azure Monitor features for Kubernetes clusters](./kubernetes-monitoring-enable.md).
 
 This configuration requires configuring the *monitoring addon* for the Azure Monitor agent, which is the same one used by Container insights to send data to a Log Analytics workspace. It requires exposing the Prometheus metrics endpoint through your exporters or pods and then configuring the monitoring addon for the Azure Monitor agent used by Container insights as shown the following diagram. 
 
@@ -17,7 +20,7 @@ This configuration requires configuring the *monitoring addon* for the Azure Mon
 
 ## Prometheus scraping settings (for metrics stored as logs)
 
-Active scraping of metrics from Prometheus is performed from one of two perspectives below and metrics are sent to configured log analytics workspace :
+Active scraping of metrics from Prometheus is performed from one of two perspectives below and metrics are sent to configured log analytics workspace:
 
 - **Cluster-wide**: Defined in the ConfigMap section *[Prometheus data_collection_settings.cluster]*.
 - **Node-wide**: Defined in the ConfigMap section *[Prometheus_data_collection_settings.node]*.

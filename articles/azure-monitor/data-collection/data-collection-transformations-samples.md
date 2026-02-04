@@ -2,7 +2,7 @@
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
 ms.topic: how-to
-ms.date: 12/04/2024
+ms.date: 01/20/2026
 ms.reviwer: nikeist
 ---
 

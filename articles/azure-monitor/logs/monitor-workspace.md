@@ -3,7 +3,7 @@ title: Monitor operational issues logged in your Azure Monitor Log Analytics wor
 description: The article describes how to monitor the health of your Log Analytics workspace by using data in the Operation table.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 07/02/2023
+ms.date: 08/29/2025
 
 ---
 
@@ -60,10 +60,10 @@ After your data collection reaches the set limit, it automatically stops for the
 
 Recommended actions:
 
-*	Check the `_LogOperation` table for collection stopped and collection resumed events:</br>
+*    Check the `_LogOperation` table for collection stopped and collection resumed events:</br>
 `_LogOperation | where TimeGenerated >= ago(7d) | where Category == "Ingestion" | where Detail has "Data collection"`
-*	[Create an alert](daily-cap.md#alert-when-daily-cap-is-reached) on the "Data collection stopped" Operation event. This alert notifies you when the collection limit is reached.
-*	Data collected after the daily collection limit is reached will be lost. Use the **Workspace insights** pane to review usage rates from each source. Or you can decide to [manage your maximum daily data volume](daily-cap.md) or [change the pricing tier](cost-logs.md#commitment-tiers) to one that suits your collection rates pattern.
+*    [Create an alert](daily-cap.md#alert-when-daily-cap-is-reached) on the "Data collection stopped" Operation event. This alert notifies you when the collection limit is reached.
+*    Data collected after the daily collection limit is reached will be lost. Use the **Workspace insights** pane to review usage rates from each source. Or you can decide to [manage your maximum daily data volume](daily-cap.md) or [change the pricing tier](cost-logs.md#commitment-tiers) to one that suits your collection rates pattern.
 * The data collection rate is calculated per day and resets at the start of the next day. You can also monitor a collection resume event by [creating an alert](./daily-cap.md#alert-when-daily-cap-is-reached) on the "Data collection resumed" Operation event.
 
 #### Operation: Ingestion rate
@@ -72,11 +72,11 @@ Recommended actions:
 
 Recommended actions:
 
-*	Check the  `_LogOperation` table for an ingestion rate event:</br>
+*    Check the  `_LogOperation` table for an ingestion rate event:</br>
 `_LogOperation | where TimeGenerated >= ago(7d) | where Category == "Ingestion" | where Operation has "Ingestion rate"`
       </br>An event is sent to the **Operation** table in the workspace every six hours while the threshold continues to be exceeded.
-*	[Create an alert](daily-cap.md#alert-when-daily-cap-is-reached) on the "Data collection stopped" Operation event. This alert notifies you when the limit is reached.
-*	Data collected while the ingestion rate reached 100 percent will be dropped and lost. Use the **Workspace insights** pane to review your usage patterns and try to reduce them.</br>
+*    [Create an alert](daily-cap.md#alert-when-daily-cap-is-reached) on the "Data collection stopped" Operation event. This alert notifies you when the limit is reached.
+*    Data collected while the ingestion rate reached 100 percent will be dropped and lost. Use the **Workspace insights** pane to review your usage patterns and try to reduce them.</br>
 For more information, see: </br>
     - [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate) </br>
     - [Analyze usage in Log Analytics workspace](analyze-usage.md)
@@ -97,9 +97,9 @@ Recommended actions:
 
 Check the source of the affected data type:
 
-*	If the data is being sent through the HTTP Data Collector API, you need to change your code\script to split the data before it's ingested.
-*	For custom logs, collected by a Log Analytics agent, change the logging settings of the application or tool.
-*	For any other data type, raise a support case. For more information, see [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate).
+*    If the data is being sent through the HTTP Data Collector API, you need to change your code\script to split the data before it's ingested.
+*    For custom logs, collected by a Log Analytics agent, change the logging settings of the application or tool.
+*    For any other data type, raise a support case. For more information, see [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate).
 
 ### Data collection
 
@@ -118,24 +118,6 @@ Recommended actions:
   * Follow the preceding step to disconnect the subscription.
   * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
 * [Create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
-
-### Agent
-
-The following section provides information on agents.
-
-#### Operation: Linux Agent
-
-"Two successive configuration applications from OMS Settings failed."
-
-Configuration settings on the portal have changed.
-
-Recommended action:
-This issue is raised in case there's an issue for the agent to retrieve the new config settings. To mitigate this issue, reinstall the agent.
-Check the `_LogOperation` table for the agent event:</br>
-
- `_LogOperation | where TimeGenerated >= ago(6h) | where Category == "Agent" | where Operation == "Linux Agent"  | distinct _ResourceId`
-
-The list shows the resource IDs where the agent has the wrong configuration. To mitigate the issue, reinstall the agents listed.
 
 ## Alert rules
 

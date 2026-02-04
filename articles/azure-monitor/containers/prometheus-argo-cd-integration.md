@@ -15,7 +15,7 @@ This article describes how to configure the Azure Monitor *managed service for P
 ## Prerequisites
 
 + Argo CD running on AKS or Azure Arc-enabled Kubernetes
-+ Managed service for Prometheus enabled on the cluster. For more information, see [Enable Prometheus and Grafana](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
++ Managed service for Prometheus enabled on the cluster. For more information, see [Enable Prometheus and Grafana](kubernetes-monitoring-enable.md).
 
 ## Deploy service monitors
 

@@ -1,7 +1,7 @@
 ---
 title: Deploy Service Health alert rules at scale using Azure Policy 
 description: This article details a process by which users can deploy Service Health alerts across subscriptions via Azure policy.
-ms.topic: conceptual
+ms.topic: how-to
 ms.date: 7/21/2025
 ---
 

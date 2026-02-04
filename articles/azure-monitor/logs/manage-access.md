@@ -3,7 +3,7 @@ title: Manage access to Log Analytics workspaces
 description: This article explains how you can manage access to data stored in a Log Analytics workspace in Azure Monitor by using resource, workspace, or table-level permissions.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 02/14/2025
+ms.date: 10/30/2025
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -180,6 +180,17 @@ Create assignments at the resource level (workspace) to assure accurate access c
 > [!NOTE]
 > To add and remove users to a user role, you must have `Microsoft.Authorization/*/Delete` and `Microsoft.Authorization/*/Write` permission.
 
+#### Log Analytics Data Reader
+
+Provide the bare minimum permissions needed to run queries and see metadata with the Log Analytics Data Reader role. It's an ideal role for granular RBAC which uses role assignment conditions to further control access to data at the **table** and **row** level. For more information, see [granular RBAC](granular-rbac-log-analytics.md#role-selection).
+
+| Type | Permission | Description |
+|------|------------|-------------|
+| Action | `Microsoft.OperationalInsights/workspaces/query/read` | Run queries over the data in a workspace |
+| Action | `Microsoft.OperationalInsights/workspaces/read` | Read existing workspaces |
+| DataActions | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Read data access to workspaces, or more fine-grained data entities, such as specific tables or rows when used with granular RBAC |
+
+
 #### Log Analytics Reader
 
 Members of the Log Analytics Reader role can view all monitoring data and monitoring settings, including the configuration of Azure diagnostics on all Azure resources. Allows members to view all data about resources within the assigned scope, including:
@@ -220,7 +231,7 @@ The Log Analytics Contributor role includes the following Azure actions:
 |------------|-------------|
 | `*/read` | Ability to view all Azure resources and resource configuration.<br><br>Includes viewing:<br>- Virtual machine extension status.<br>- Configuration of Azure diagnostics on resources.<br>- All properties and settings of all resources.<br><br>For workspaces, allows full unrestricted permissions to read the workspace settings and query data. See more granular options in the preceding list. |
 | `Microsoft.Automation/automationAccounts/*` | Ability to create and configure Azure Automation accounts, including adding and editing runbooks. |
-| `Microsoft.ClassicCompute/virtualMachines/extensions/*`<br>`Microsoft.Compute/virtualMachines/extensions/*` | Add, update, and remove virtual machine extensions, including the Microsoft Monitoring Agent extension and the OMS Agent for Linux extension. |
+| `Microsoft.ClassicCompute/virtualMachines/extensions/*`<br>`Microsoft.Compute/virtualMachines/extensions/*` | Add, update, and remove virtual machine extensions, including legacy agents. |
 | `Microsoft.ClassicStorage/storageAccounts/listKeys/action`<br>`Microsoft.Storage/storageAccounts/listKeys/action` | View the storage account key. Required to configure Log Analytics to read logs from Azure Storage accounts. |
 | `Microsoft.Insights/alertRules/*` | Add, update, and remove alert rules. |
 | `Microsoft.Insights/diagnosticSettings/*` | Add, update, and remove diagnostics settings on Azure resources. |

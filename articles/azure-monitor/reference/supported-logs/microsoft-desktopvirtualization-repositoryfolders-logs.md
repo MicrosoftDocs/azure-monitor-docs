@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.DesktopVirtualization/repositoryFolders
-description: Reference for Microsoft.DesktopVirtualization/repositoryFolders in Azure Monitor Logs.
+title: Supported log categories - Microsoft.DesktopVirtualization/repositoryfolders
+description: Reference for Microsoft.DesktopVirtualization/repositoryfolders in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.DesktopVirtualization/repositoryFolders, arm
+ms.date: 08/28/2025
+ms.custom: Microsoft.DesktopVirtualization/repositoryfolders, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,12 +12,12 @@ ms.custom: Microsoft.DesktopVirtualization/repositoryFolders, arm
 
 
 
-# Supported logs for Microsoft.DesktopVirtualization/repositoryFolders  
-The following table lists the types of logs available for the Microsoft.DesktopVirtualization/repositoryFolders resource type.
+# Supported logs for Microsoft.DesktopVirtualization/repositoryfolders  
+The following table lists the types of logs available for the Microsoft.DesktopVirtualization/repositoryfolders resource type.
   
 
   
-[!INCLUDE [Microsoft.DesktopVirtualization/repositoryFolders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-repositoryfolders-logs-include.md)]  
+[!INCLUDE [Microsoft.DesktopVirtualization/repositoryfolders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-repositoryfolders-logs-include.md)]  
   
 
 ## Next Steps

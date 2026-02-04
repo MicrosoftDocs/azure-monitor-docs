@@ -210,7 +210,6 @@ If you receive an error message with some part of the process, consider the foll
 * Check that you're emitting metrics to the correct Azure Monitor regional endpoint. For example, if your resource is deployed in West US, you must emit metrics to the West US regional endpoint.
 * Check that the timestamp is within the last 20 minutes.
 * Check that the timestamp is in ISO 8601 format.
-* Check that the metric name is valid. For example, it can't contain spaces.
 
 ## Next steps
 

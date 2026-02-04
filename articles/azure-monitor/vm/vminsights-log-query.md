@@ -248,5 +248,5 @@ let remoteMachines = remote | summarize by RemoteMachine;
 
 ## Next steps
 
-* Get started with writing log queries in Azure Monitor by reviewing [how to use Log Analytics](../logs/log-analytics-tutorial.md).
+* [Get started with log queries in Azure Monitor Logs](../logs/get-started-queries.md).
 * Learn more about [writing search queries](../logs/get-started-queries.md).

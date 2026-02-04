@@ -3,14 +3,14 @@ title: Troubleshoot log alerts in Azure Monitor | Microsoft Docs
 description: Common issues, errors, and resolutions for log alert rules in Azure.
 ms.topic: troubleshooting-general
 ms.date: 02/28/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Troubleshoot log search alerts in Azure Monitor  
 
 This article describes how to resolve common issues with log search alerts in Azure Monitor. It also provides solutions to common problems with the functionality and configuration of log alerts.
 
-You can use log alerts to evaluate resources logs every set frequency by using a [Log Analytics](../logs/log-analytics-tutorial.md) query, and fire an alert that's based on the results. Rules can trigger one or more actions using [Action Groups](./action-groups.md). To learn more about functionality and terminology of log search alerts, see [Log alerts in Azure Monitor](alerts-types.md#log-alerts).
+You can use log alerts to evaluate resources logs every set frequency by using a [Log Analytics](../logs/log-analytics-tutorial.md) query, and fire an alert that's based on the results. Rules can trigger one or more actions using [action groups](./action-groups.md). To learn more about functionality and terminology of log search alerts, see [Log alerts in Azure Monitor](alerts-types.md#log-alerts).
 
 > [!NOTE]
 > This article doesn't discuss cases where the alert rule was triggered, you can see it in the Azure portal, but the notification was not sent. See [troubleshooting alerts](alerts-troubleshoot.md) for cases like these.
@@ -176,13 +176,6 @@ This error message can be returned when creating or editing your alert rule quer
 - You're referencing a column that wasn't used in a prior project clause of the query.
 
 To mitigate this, you can either add the column to the previous project clause or use the [columnifexists](/azure/data-explorer/kusto/query/column-ifexists-function) operator.
-
-### ScheduledQueryRules API isn't supported for read only OMS Alerts
-
-This error message is returned when trying to update or delete rules created with the legacy API version by using the Azure portal.
-
-1. Edit or delete the rule programmatically using the Log Analytics [REST API](./api-alerts.md).
-2. Recommended: [Upgrade your alert rules to use Scheduled Query Rules API](./alerts-log-api-switch.md) (legacy API is on a deprecation path).
 
 ## Alert rule service limit was reached
 

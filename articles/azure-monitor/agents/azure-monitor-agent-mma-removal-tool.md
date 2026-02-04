@@ -1,5 +1,5 @@
 ---
-title: MMA Discovery and Removal Utility
+title: Microsoft Monitoring Agent Discovery and Removal Utility
 description: This article describes a PowerShell script to remove the legacy agent from systems that migrated to the Azure Monitor Agent.
 ms.topic: upgrade-and-migration-article
 ms.reviewer: jeffwo
@@ -7,47 +7,50 @@ ms.date: 11/14/2024
 ms.custom:
 # Customer intent: As an Azure account administrator, I want to use the available Azure Monitor tools to migrate from the Log Analytics Agent to the Azure Monitor Agent and track the status of the migration in my account.
 ---
-# MMA/OMS Discovery and Removal Utility 
+
+# Microsoft Monitoring Agent /OMS Discovery and Removal Utility
 
 After you migrate your machines to the Azure Monitor Agent (AMA), remove the legacy Log Analytics Agent depending on your operating systems, to avoid duplication of logs. The legacy Discovery and Removal Utility can remove the extensions from Azure Virtual Machines (VMs), Azure Virtual Machine Scale Sets (VMSSs), and Azure Arc servers from a single subscription.
 
 The utility works in two steps:
 
 1. *Discovery*: The utility creates an inventory of all machines that have a legacy agent installed in a simple CSV file. We recommend that you don't create any new VMs while the utility is running.
-
 2. *Removal*: The utility removes the legacy agent from machines listed in the CSV file. You should edit the list of machine in the CSV file to ensure that only machines you want the agent removed from are present.
 
 >[!NOTE]
-> The removal does not work on MMA agents that were installed using the MSI installer. It only works on the VM extensions.
->
+> The removal doesn't work on Microsoft Monitoring Agents that were installed using the Microsoft Software Installer (MSI) installer. It only works on the VM extensions.
 
-## Prerequisites  
+## Prerequisites
+
 Do all the setup steps on an Internet connected machine. You need:
 
 - Windows 10 or later, or Windows Server 2019 or later.
-- [PowerShell 7.0 or later.](/powershell/scripting/install/installing-powershell?view=powershell-7.4&preserve-view=true), which enables parallel execution that speeds the process up.
-- Azcli must be installed to communicate with the [Azure Graph API.](/cli/azure/install-azure-cli-windows?tabs=azure-cli). 
+- [PowerShell 7.0 or later.](/powershell/scripting/install/installing-powershell?view=powershell-7.4&preserve-view=true), which enables parallel execution that speeds up the process.
+- Azcli must be installed to communicate with the [Azure Graph API.](/cli/azure/install-azure-cli-windows?tabs=azure-cli).
 1. Open PowerShell as administrator:
 2. Run the command: `Invoke-WebRequest -Uri https://aka.ms/installazurecliwindows -OutFile AzureCLI.msi`.
 3. Run the command: `Start-Process msiexec.exe -Wait -ArgumentList '/I AzureCLI.msi /quiet'`.
-4. The latest version of Azure CLI will download and install.
+4. The latest version of Azure CLI downloads and installs.
 
+## Step 1 Sign in and set subscription
 
-## Step 1 Login and set subscription
-The tool works one subscription at a time. You must log in and set the subscription to do the removal. Open a PowerShell command prompt as administrator and login.
+The tool works one subscription at a time. You must sign in and set the subscription to do the removal. Open a PowerShell command prompt as administrator and sign in.
 
-``` PowerShell
+```powershell
 az login
-   ```
+```
+
 Next you must set your subscription.
 
-``` PowerShell
+```powershell
 Az account set --subscription {subscription_id or subscription_name}
-   ```
+```
+
 ## Step 2 Copy the script
 
 You use the following script for agent removal. Open a file in your local directory named LogAnalyticsAgentUninstallUtilityScript.ps1 and copy the script into the file.
-   ``` PowerShell
+
+```powershell
 # This is per subscription, the customer has to set the az subscription before running this.
 # az login
 # az account set --subscription <subscription_id/subscription_name>
@@ -374,25 +377,29 @@ switch ($args.Count)
         Invoke-Expression "& $funcname $funcargs"
     }
 }
-
-   ```
+```
 
 ## Step 3 Gets the inventory
-You collect a list of all legacy agents on all VM, VMSSs and Arc enabled server in the subscription. You run the script you downloaded an inventory of legacy agents in your subscription.
-   ``` PowerShell
-   .\LogAnalyticsAgentUninstallUtilityScript.ps1 GetInventory
-   ```
-The script reports the total VM, VMSSs, or Arc enables servers seen in the subscription. It takes several minutes to run. You see a progress bar in the console window. Once complete, you're able to see a CSV file called "LogAnalyticsAgentExtensionInventory.csv in the local directory with the following format.
+
+You collect a list of all legacy agents on all VM, VMSSs, and Arc enabled server in the subscription. You run the script you downloaded an inventory of legacy agents in your subscription.
+
+```PowerShell
+.\LogAnalyticsAgentUninstallUtilityScript.ps1 GetInventory
+```
+
+The script reports the total VM, VMSSs, or Arc enables servers seen in the subscription. It takes several minutes to run. You see a progress bar in the console window. Once complete, you're able to see a CSV file named LogAnalyticsAgentExtensionInventory.csv in the local directory with the following format.
 
 | Resource_ID | Name | Resource_Group | Resource_Type | Install_Type | Extension_Name | AMA_Extension_Installed |  
 |---|---|---|---|---|---|---|
-| 012cb5cf-e1a8-49ee-a484-d40673167c9c | Linux-ama-e2e-debian9  | Linux-AMA-E2E           | VM  | Extension | OmsAgentForLinux      | True  |
-| 8acae35a-454f-4869-bf4f-658189d98516 | test2012-r2-da         | test2012-r2-daAMA-ADMIN | VM  | Extension | MicrosoftMonitorAgent | False |
+| a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1 | Linux-ama-e2e-debian9  | Linux-AMA-E2E           | VM  | Extension | OmsAgentForLinux      | True  |
+| b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2 | test2012-r2-da         | test2012-r2-daAMA-ADMIN | VM  | Extension | MicrosoftMonitorAgent | False |
 
 ## Step 4 Uninstalls the inventory
-This script iterates through the list of VM, Virtual Machine Scale Sets, and Arc enabled servers and uninstalls the legacy agent. You can't remove the agent if it isn't running. 
-   ``` PowerShell
-   .\LogAnalyticsAgentUninstallUtilityScript.ps1 UninstallExtension
-   ```
-Once the script is complete you'll be able to see the removal status for your VM, Virtual Machine Scale Sets, and Arc enabled servers in the "LogAnalyticsAgentExtensionInventory.csv file.
 
+This script iterates through the list of VM, Virtual Machine Scale Sets, and Arc enabled servers and uninstalls the legacy agent. You can't remove the agent if it isn't running. 
+
+``` PowerShell
+.\LogAnalyticsAgentUninstallUtilityScript.ps1 UninstallExtension
+```
+
+Once the script completes, you can see the removal status for your VM, Virtual Machine Scale Sets, and Arc enabled servers in the LogAnalyticsAgentExtensionInventory.csv file.

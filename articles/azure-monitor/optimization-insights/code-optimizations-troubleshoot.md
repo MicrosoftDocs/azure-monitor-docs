@@ -19,7 +19,7 @@ This article provides troubleshooting steps and information to use Application I
 
 ### Step 1: View a video about Code Optimizations setup
 
-View the following demonstration video to learn how to set up Code Optimizations correctly.
+Start by verifying you've set up Code Optimizations properly. Watch the following demo on how to set up Code Optimizations.
 
 > [!VIDEO https://www.youtube-nocookie.com/embed/vbi9YQgIgC8]
 

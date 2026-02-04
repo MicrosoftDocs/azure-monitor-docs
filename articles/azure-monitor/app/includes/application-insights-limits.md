@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 08/06/2019
 ---
 
-There are some limits on the number of metrics and events per application, that is, per instrumentation key. Limits depend on the [pricing plan](https://azure.microsoft.com/pricing/details/application-insights/) that you choose.
+There are some limits on the number of metrics and events per application, that is, per connection string. Limits depend on the [pricing plan](https://azure.microsoft.com/pricing/details/application-insights/) that you choose.
 
 | Resource | Default limit | Maximum limit | Notes |
 |----------|---------------|---------------|-------|

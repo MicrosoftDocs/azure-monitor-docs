@@ -2,181 +2,27 @@
 title: Send Prometheus metrics to multiple Azure Monitor workspaces
 description: Describes data collection rules required to send Prometheus metrics from a cluster in Azure Monitor to multiple Azure Monitor workspaces.
 ms.topic: how-to
-ms.date: 2/28/2024
+ms.date: 08/25/2025
 ms.reviewer: aul
 ---
 
 # Send Prometheus metrics to multiple Azure Monitor workspaces
 
- Routing different metrics to more Azure Monitor workspaces can be done through the creation of additional data collection rules.
+When you enable collection of Prometheus metrics from your Kubernetes cluster, data is sent to an [Azure Monitor workspace](../essentials/azure-monitor-workspace-overview.md). There may be scenarios where you want to send different sets of metrics to different Azure Monitor workspaces. For example, you may have different teams responsible for different applications running in the same cluster, and each team requires their own Azure Monitor workspace. 
 
- You can create Data Collection Rules with corresponding Data Collection Endpoints for different metrics to be sent to additional Azure Monitor workspaces from the same Kubernetes cluster.
- Currently, this is only available through onboarding through Resource Manager templates. You can follow the [regular onboarding process](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) and then edit the same Resource Manager templates to add additional DCRs and DCEs for your additional Azure Monitor workspaces. You'll need to edit the template to add an additional parameters for every additional Azure Monitor workspace, add another DCR for every additional Azure Monitor workspace, add another DCE, add the Monitor Reader Role for the new Azure Monitor workspace and add an additional Azure Monitor workspace integration for Grafana.
+## Overview
+You can achieve this functionality using a combination of ConfigMap and data collection rules (DCRs) for the cluster. Create scrape configs in ConfigMap that define each set of metrics to be collected, and add a label to each config that uniquely identifies the set. Then create a DCR that accepts data for a particular label and routes that data to the appropriate Azure Monitor workspace. This strategy is illustrated in the following diagram and described in detail in the rest of the article.
 
-- Add the following parameters:
-  ```json
-  "parameters": {
-    "azureMonitorWorkspaceResourceId2": {
-      "type": "string"
-    },
-    "azureMonitorWorkspaceLocation2": {
-      "type": "string",
-      "defaultValue": "",
-      "allowedValues": [
-        "eastus2euap",
-        "centraluseuap",
-        "centralus",
-        "eastus",
-        "eastus2",
-        "northeurope",
-        "southcentralus",
-        "southeastasia",
-        "uksouth",
-        "westeurope",
-        "westus",
-        "westus2"
-      ]
-    },
-  ...
-  }
-  ```
+:::image type="content" source="media/prometheus-metrics-multiple-workspaces/overview.png" alt-text="Diagram showing the relation of ConfigMap and DCRs to send data to different workspaces." lightbox="media/prometheus-metrics-multiple-workspaces/overview.png"  border="false":::
 
-- Add an additional Data Collection Endpoint. You *must* replace `<dceName>`:
-  ```json
-    {
-      "type": "Microsoft.Insights/dataCollectionEndpoints",
-      "apiVersion": "2021-09-01-preview",
-      "name": "[variables('dceName')]",
-      "location": "[parameters('azureMonitorWorkspaceLocation2')]",
-      "kind": "Linux",
-      "properties": {}
-    }
-  ```
-- Add an additional DCR with the new Data Collection Endpoint. You *must* replace `<dcrName>`:
-  ```json
-  {
-    "type": "Microsoft.Insights/dataCollectionRules",
-    "apiVersion": "2021-09-01-preview",
-    "name": "<dcrName>",
-    "location": "[parameters('azureMonitorWorkspaceLocation2')]",
-    "kind": "Linux",
-    "properties": {
-      "dataCollectionEndpointId": "[resourceId('Microsoft.Insights/dataCollectionEndpoints/', variables('dceName'))]",
-      "dataFlows": [
-        {
-          "destinations": ["MonitoringAccount2"],
-          "streams": ["Microsoft-PrometheusMetrics"]
-        }
-      ],
-      "dataSources": {
-        "prometheusForwarder": [
-          {
-            "name": "PrometheusDataSource",
-            "streams": ["Microsoft-PrometheusMetrics"],
-            "labelIncludeFilter": 
-                    "microsoft_metrics_include_label": "MonitoringAccountLabel2"
-          }
-        ]
-      },
-      "description": "DCR for Azure Monitor Metrics Profile (Managed Prometheus)",
-      "destinations": {
-        "monitoringAccounts": [
-          {
-            "accountResourceId": "[parameters('azureMonitorWorkspaceResourceId2')]",
-            "name": "MonitoringAccount2"
-          }
-        ]
-      }
-    },
-    "dependsOn": [
-      "[resourceId('Microsoft.Insights/dataCollectionEndpoints/', variables('dceName'))]"
-    ]
-  }
-  ```
+> [!NOTE]
+> This article uses ARM templates to create the required Azure Monitor objects, but you can use any other valid methods such as CLI or PowerShell.
 
-- Add an additional Data Collection Rule Association (DCRA) with the relevant Data Collection Rule (DCR). This associates the DCR with the cluster. You must replace `<dcraName>`:
-     ```json
-    {
-      "type": "Microsoft.Resources/deployments",
-      "name": "<dcraName>",
-      "apiVersion": "2017-05-10",
-      "subscriptionId": "[variables('clusterSubscriptionId')]",
-      "resourceGroup": "[variables('clusterResourceGroup')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionEndpoints/', variables('dceName'))]",
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "template": {
-          "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
-          "contentVersion": "1.0.0.0",
-          "parameters": {},
-          "variables": {},
-          "resources": [
-            {
-              "type": "Microsoft.ContainerService/managedClusters/providers/dataCollectionRuleAssociations",
-              "name": "[concat(variables('clusterName'),'/microsoft.insights/', variables('dcraName'))]",
-              "apiVersion": "2021-09-01-preview",
-              "location": "[parameters('clusterLocation')]",
-              "properties": {
-                "description": "Association of data collection rule. Deleting this association will break the data collection for this AKS Cluster.",
-                "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
-              }
-            }
-          ]
-        },
-        "parameters": {}
-      }
-    }
-    ```
-- Add an additional Grafana integration:
-  ```json
-  {
-        "type": "Microsoft.Dashboard/grafana",
-        "apiVersion": "2022-08-01",
-        "name": "[split(parameters('grafanaResourceId'),'/')[8]]",
-        "sku": {
-          "name": "[parameters('grafanaSku')]"
-        },
-        "location": "[parameters('grafanaLocation')]",
-        "properties": {
-          "grafanaIntegrations": {
-            "azureMonitorWorkspaceIntegrations": [
-              // Existing azureMonitorWorkspaceIntegrations values (if any)
-              // {
-              //   "azureMonitorWorkspaceResourceId": "<value>"
-              // },
-              // {
-              //   "azureMonitorWorkspaceResourceId": "<value>"
-              // },
-              {
-                "azureMonitorWorkspaceResourceId": "[parameters('azureMonitorWorkspaceResourceId')]"
-              },
-              {
-                "azureMonitorWorkspaceResourceId": "[parameters('azureMonitorWorkspaceResourceId2')]"
-              }
-            ]
-          }
-        }
-      }
-  ```
-  - Assign `Monitoring Data Reader` role to read data from the new Azure Monitor Workspace:
+## Create scrape configs in ConfigMap
 
-  ```json
-  {
-    "type": "Microsoft.Authorization/roleAssignments",
-    "apiVersion": "2022-04-01",
-    "name": "[parameters('roleNameGuid')]",
-    "scope": "[parameters('azureMonitorWorkspaceResourceId2')]",
-    "properties": {
-        "roleDefinitionId": "[concat('/subscriptions/', variables('clusterSubscriptionId'), '/providers/Microsoft.Authorization/roleDefinitions/', 'b0d8363b-8ddd-447d-831f-62ca05bff136')]",
-        "principalId": "[reference(resourceId('Microsoft.Dashboard/grafana', split(parameters('grafanaResourceId'),'/')[8]), '2022-08-01', 'Full').identity.principalId]"
-    }
-  }
+Start by defining the different sets of metrics that you want to collect from the cluster. Use the ConfigMap template at [`ama-metrics-prometheus-config`](https://aka.ms/azureprometheus-addon-rs-configmap) and add a scrape config job for each set of metrics you want to collect. Add a `relabel_configs` section to each with the pre-defined label `microsoft_metrics_account` to each scrape config to give it a unique identifier. This value is used by each DCR to identify the data it's intended to route.
 
-
-Then configure which metrics are routed to which workspace, by adding an extra pre-defined label, `microsoft_metrics_account` to the metrics. The value should be the same as the corresponding `microsoft_metrics_include_label` in the DCR for that workspace. To add the label to the metrics, you can utilize `relabel_configs` in your scrape config. To send all metrics from one job to a certain workspace, add the following relabel config:
+ The following example shows a scrape config identified with the value `MonitoringAccountLabel2`.
 
 ```yaml
 relabel_configs:
@@ -185,33 +31,43 @@ relabel_configs:
   replacement: "MonitoringAccountLabel2"
 ```
 
-Not specifying `source_labels` or `regex` means that this relabel config will be applied to every metric. The target label will always be `microsoft_metrics_account` and its value should be replaced with the corresponding label value for the workspace.
 
 
+## Create DCRs
 
-### Example
+Once you have your ConfigMaps defined, you need a DCR for each scrape config. Each DCR will look for the label you defined in the ConfigMap and route the data to the appropriate Azure Monitor workspace. There are multiple methods to edit and create DCRs as described in [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md). You can start by editing the DCR created when you onboarded the cluster and then use that as a template for the others.
 
-If you want to configure three different jobs to send the metrics to three different workspaces, then include the following in each data collection rule:
-
-```json
-"labelIncludeFilter": {
-  "microsoft_metrics_include_label": "MonitoringAccountLabel1"
-}
-```
+To identify the data to be routed, use the `labelIncludeFilter` property in the `prometheusForwarder` section of the DCR. The following example shows a DCR that routes data with the label `MonitoringAccountLabel1`.
 
 ```json
-"labelIncludeFilter": {
-  "microsoft_metrics_include_label": "MonitoringAccountLabel2"
-}
+  "prometheusForwarder": [
+      {
+          "streams": [
+              "Microsoft-PrometheusMetrics"
+          ],
+          "labelIncludeFilter": {
+              "microsoft_metrics_include_label": "MonitoringAccountLabel1"
+          },
+          "name": "PrometheusDataSource"
+      }
+  ]
 ```
 
-```json
-"labelIncludeFilter": {
-  "microsoft_metrics_include_label": "MonitoringAccountLabel3"
-}
-```
+## Associate the DCRs with the cluster
+Once the new DCRs are created, they need to be associated with the cluster using any of the methods described in [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md)
 
-Then in your scrape config, include the same label value for each:
+
+
+
+
+## Example
+
+Consider a scenario where you want to separate the data for two different applications running in the same cluster. The applications are identified with "MonitoringAccountLabel1" and "MonitoringAccountLabel2".
+
+### Scrape config
+The following yaml defines the two different jobs that each collect metrics from a different application.
+The values in `source_labels` and `regex` identify the unique metrics that should be included in each job, and the value in `replacement` is the unique label that identifies the job to the DCRs.
+
 ```yaml
 scrape_configs:
 - job_name: prometheus_ref_app_1
@@ -234,20 +90,104 @@ scrape_configs:
     - target_label: microsoft_metrics_account
       action: replace
       replacement: "MonitoringAccountLabel2"
-- job_name: prometheus_ref_app_3
-  kubernetes_sd_configs:
-    - role: pod
-  relabel_configs:
-    - source_labels: [__meta_kubernetes_pod_label_app]
-      action: keep
-      regex: "prometheus-reference-app-3"
-    - target_label: microsoft_metrics_account
-      action: replace
-      replacement: "MonitoringAccountLabel3"
 ```
+
+
+### DCRs
+The first DCR is an edited version of the DCR created when the cluster was onboarded. The only change is to add the label filter for application 1. Since the Log Analytics workspaces are in the same region, separate data collection endpoints aren't required, and the same endpoint is used in both DCRs.
+
+
+**DCR 1**
+
+```json
+{
+  "properties": {
+      "dataCollectionEndpointId": "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-endpoint",
+      "dataSources": {
+          "prometheusForwarder": [
+              {
+                  "streams": [
+                      "Microsoft-PrometheusMetrics"
+                  ],
+                  "labelIncludeFilter": {
+                      "microsoft_metrics_include_label": "MonitoringAccountLabel1"
+                  },
+                  "name": "PrometheusDataSource"
+              }
+          ]
+      },
+      "destinations": {
+          "monitoringAccounts": [
+              {
+                  "accountResourceId": "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-workspace-01",
+                  "name": "MonitoringAccount"
+              }
+          ]
+      },
+      "dataFlows": [
+          {
+              "streams": [
+                  "Microsoft-PrometheusMetrics"
+              ],
+              "destinations": [
+                  "MonitoringAccount"
+              ]
+          }
+      ]
+  }
+}
+
+```
+The second DCR is a copy of the first with two changes. the label filter is updated to match application 2, and the destination workspace is changed to a different workspace.
+
+**DCR 2**
+
+```json
+**DCR 1**
+
+```json
+{
+  "properties": {
+      "dataCollectionEndpointId": "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-endpoint",
+      "dataSources": {
+          "prometheusForwarder": [
+              {
+                  "streams": [
+                      "Microsoft-PrometheusMetrics"
+                  ],
+                  "labelIncludeFilter": {
+                      "microsoft_metrics_include_label": "MonitoringAccountLabel2"
+                  },
+                  "name": "PrometheusDataSource"
+              }
+          ]
+      },
+      "destinations": {
+          "monitoringAccounts": [
+              {
+                  "accountResourceId": "/subscriptions/my-subscription/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-workspace-02",
+                  "name": "MonitoringAccount"
+              }
+          ]
+      },
+      "dataFlows": [
+          {
+              "streams": [
+                  "Microsoft-PrometheusMetrics"
+              ],
+              "destinations": [
+                  "MonitoringAccount"
+              ]
+          }
+      ]
+  }
+}
+```
+
+
 
 
 ## Next steps
 
 - [Learn more about Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md).
-- [Collect Prometheus metrics from AKS cluster](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana).
+- [Collect Prometheus metrics from AKS cluster](kubernetes-monitoring-enable.md).

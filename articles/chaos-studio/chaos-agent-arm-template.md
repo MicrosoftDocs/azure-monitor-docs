@@ -3,7 +3,7 @@ title: Resource Manager template samples for agents in Chaos Studio
 description: Sample Azure Resource Manager templates to deploy and configure virtual machine agents in Chaos Studio.
 services: chaos-studio
 author: nikhilkaul-msft
-ms.topic: article
+ms.topic: sample
 ms.date: 03/03/2025
 ms.author: nikhilkaul
 ms.reviewer: nikhilkaul

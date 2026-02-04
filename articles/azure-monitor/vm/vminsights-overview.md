@@ -43,10 +43,8 @@ VM insights supports the following machines:
 
 VM insights supports the following operating systems:
 
-- VM Insights supports all operating systems supported by the Azure Monitor Agent. See [Azure Monitor Agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md).
-- The Dependency Agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. 
-- For the Dependency Agent's Linux support, see [Dependency Agent Linux support](../vm/vminsights-dependency-agent-maintenance.md#dependency-agent-requirements) and [Linux considerations](./vminsights-dependency-agent-maintenance.md#linux-considerations).
-- The Dependency Agent only supports x64 architectures.
+- All operating systems supported by the Azure Monitor agent for guest performance. See [Azure Monitor agent supported operating systems](../agents/azure-monitor-agent-supported-operating-systems.md).
+- All operating systems supported by the Dependency agent for processes and dependencies. See [Dependency agent supported operating systems](../vm/vminsights-dependency-agent.md#supported-operating-systems).
 
 
 
@@ -54,6 +52,8 @@ VM insights supports the following operating systems:
 
 - VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
 - VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
+- VM insights doesn't support any sampling frequency other than every 60 seconds for performance counters in the Microsoft-InsightsMetrics stream.
+- For log based visualizations (Classic), data from VMs using Private Link is collected but will not surface in the VM Insights experience.
 
 ## Diagnostic and usage data
 

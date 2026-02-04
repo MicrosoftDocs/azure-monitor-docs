@@ -116,7 +116,6 @@ Configure the resource thresholds that cause a profile to be collected:
     
 1. Browse to the **Performance** -> **Profiler** section of the Application Insights instance.
 
-    :::image type="content" source="./media/java-standalone-profiler/performance-blade.png" alt-text="Screenshot of the link to open performance pane." lightbox="media/java-standalone-profiler/performance-blade.png":::
     :::image type="content" source="./media/java-standalone-profiler/profiler-button.png" alt-text="Screenshot of the Profiler button from the Performance pane." lightbox="media/java-standalone-profiler/profiler-button.png":::
 
 > [!WARNING]

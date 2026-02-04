@@ -76,7 +76,7 @@ Upgrade to the newest API version to get the best results in terms of model qual
 
 **Impact:** Medium
   
-For more information, see [Health Insights](/rest/api/cognitiveservices/healthinsights/operation-groups?view=rest-cognitiveservices-healthinsights-2023-03-01-preview)  
+For more information, see [Health Insights](/rest/api/health-insights/)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 1f1b5a94-3e2b-4f9c-8277-7f87e6c989a8  

@@ -3,7 +3,7 @@ title: Optimize log search alert queries | Microsoft Docs
 description: This article gives recommendations for writing efficient alert queries.
 ms.topic: how-to
 ms.date: 7/30/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Optimize log search alert queries
@@ -12,7 +12,7 @@ This article describes how to write and convert [log search alerts](alerts-types
 
 ## Start writing a log search alert query
 
-Alert queries start from [querying the log data in Log Analytics](alerts-log.md#create-a-new-log-alert-rule-in-the-azure-portal) that indicates the issue. To understand what you can discover, see [Using queries in Azure Monitor Log Analytics](../logs/queries.md). You can also [get started on writing your own query](../logs/log-analytics-tutorial.md).
+Alert queries start from [querying the log data in Log Analytics](alerts-log.md#create-a-new-log-alert-rule-in-the-azure-portal) that indicates the issue. To understand what you can discover, see [Using queries in Azure Monitor Log Analytics](../logs/queries.md). You can also [get started on writing your own query](../logs/get-started-queries.md).
 
 ### Make sure your query identifies the issue and not the alert itself
 

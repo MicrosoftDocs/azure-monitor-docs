@@ -2,7 +2,7 @@
 title: Best practices for data collection rule creation and management in Azure Monitor
 description: Details on the best practices to be followed to correctly create and maintain data collection rule in Azure Monitor.
 ms.topic: best-practice
-ms.date: 11/01/2024
+ms.date: 01/20/2026
 ms.reviewer: brunoga
 ---
 
@@ -18,7 +18,7 @@ When you create a DCR, there are some aspects that need to be considered such as
 
 Considering all these factors is critical for a good DCR organization. All the above points impact on DCR management effort as well on resource consumption for configuration transfer and processing.
 
-Given the native granularity, which allows a given DCR to be associated with more than one target virtual machine and vice versa, it's important to keep the DCRs as simple as possible using fewer data sources each. It's also important to keep the list of collected items in each data source lean and oriented to the observability scope.
+Given the native granularity, which allows a given DCR to be associated with more than one target virtual machine and a given virtual machine associated with up to 30 DCRs, it's important to keep the DCRs as simple as possible using fewer data sources each. It's also important to keep the list of collected items in each data source lean and oriented to the observability scope.
 
 :::image type="content" source="media/data-collection-rule-best-practices/data-collection-rules-to-vm-relationship.png" lightbox="media/data-collection-rule-best-practices/data-collection-rules-to-vm-relationship.png" alt-text="Screenshot of data collection rules to virtual machines relation.":::
 

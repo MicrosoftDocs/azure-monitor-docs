@@ -8,7 +8,7 @@ metadata:
   description: Azure Service Health is a suite of experiences that provide personalized guidance and support when issues in Azure services affect you. Azure Service Health can notify you, help you understand the effect of an issue, and keep you updated as the issue resolves. Azure Service Health also can help you prepare for planned maintenance and changes that could affect the availability of your resources.
   ms.service: azure-service-health
   ms.topic: landing-page
-  ms.date: 07/01/2025
+  ms.date: 09/18/2025
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -25,7 +25,7 @@ landingContent:
           - text: Azure status page 
             url: azure-status-overview.md
           - text: Service Health portal
-            url: service-health-overview.md
+            url: service-health-portal-update.md
           - text: Resource Health overview
             url: resource-health-overview.md
       - linkListType: video
@@ -68,6 +68,8 @@ landingContent:
             url: impacted-resources-planned-maintenance.md
           - text: The impact on resources from Azure security incidents
             url: impacted-resources-security.md
+          - text: Learn about the Azure Resource Graph (ARG) table and queries
+            url: azure-resource-graph-overview.md
 
   # Card 
   - title: Get notified

@@ -3,7 +3,7 @@ title: Convert ITSM actions that send events to ServiceNow to secure webhook act
 description: Learn how to convert ITSM actions that send events to ServiceNow to secure webhook actions.
 ms.topic: how-to
 ms.date: 01/30/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Convert ITSM actions that send events to ServiceNow to secure webhook actions

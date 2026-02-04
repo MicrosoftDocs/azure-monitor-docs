@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 03/23/2025
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
-ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to filter OpenTelemetry (OTel) data in Application Insights so that I can exclude unnecessary telemetry and protect sensitive information in my .NET, Java, Node.js, or Python applications.
 
@@ -36,8 +35,16 @@ Many instrumentation libraries provide a filter option. For guidance, see the co
 
 * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
-* [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter) <sup>1</sup>
+* [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter) <!--<sup>1</sup>-->
 
+> [!NOTE]
+> Currently, the Azure Monitor OpenTelemetry Distro includes a copy of the SqlClient instrumentation source code to ensure stability while the upstream OpenTelemetry SqlClient library remains experimental.
+>
+> Options such as `SetDbStatementForStoredProcedure` aren't usable in our distribution because the code is embedded and not referencing the external package.
+>
+> Once the SqlClient instrumentation reaches a stable release, Azure Monitor will switch to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will be available.
+
+<!--
 <sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
 
 `dotnet add package --prerelease OpenTelemetry.Instrumentation.SqlClient`
@@ -51,6 +58,8 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
     });
 });
 ```
+
+-->
 
 ### [.NET](#tab/net)
 
@@ -76,6 +85,8 @@ Suppressing autocollected telemetry isn't supported with Java native. To filter 
 
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
@@ -259,6 +270,8 @@ Sampling overrides and telemetry processors aren't supported with Java native. T
 * **Spring Boot** - [Spring Boot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/)
 * **Quarkus** - [Using OpenTelemetry tracing](https://quarkus.io/guides/opentelemetry-tracing)
 
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
+
 ### [Node.js](#tab/nodejs)
 
 You can use a custom span processor to exclude certain spans from being exported. To mark spans to not be exported, set `TraceFlag` to `DEFAULT`.
@@ -381,6 +394,8 @@ class SpanFilteringProcessor(SpanProcessor):
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
 * See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 

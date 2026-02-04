@@ -1,0 +1,34 @@
+### YamlMime:Landing
+
+title: Azure Operations Center documentation
+summary: Learn about Azure Operations Center, a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
+
+metadata:
+  title: Operations center documentation
+  description: Operations center, which is a unified operations management platform for monitoring, troubleshooting, and automation across cloud and hybrid environments.
+  ms.topic: landing-page
+  ms.date: 11/03/2025
+# linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
+
+landingContent:
+# Cards and links should be based on top customer tasks or top subjects
+# Start card title with a verb
+# Card 
+  - title: Operation center
+    linkLists:
+      - linkListType: overview
+        links:
+          - text: What is Operations Center?
+            url: ./overview.md
+      - linkListType: reference
+        links:
+          - text: Observability
+            url: ./observability.md
+          - text: Security
+            url: ./security.md
+          - text: Resiliency
+            url: ./resiliency.md
+          - text: Configuration
+            url: ./configuration-overview.md
+          - text: Optimization
+            url: ./optimization.md

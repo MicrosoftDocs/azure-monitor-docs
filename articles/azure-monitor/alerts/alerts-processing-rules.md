@@ -4,7 +4,7 @@ description: Understand Azure Monitor alert processing rules and how to configur
 ms.topic: how-to
 ms.custom: devx-track-azurepowershell
 ms.date: 7/30/2024
-ms.reviewer: nolavime
+ms.reviewer: 
 ---
 
 # Alert processing rules

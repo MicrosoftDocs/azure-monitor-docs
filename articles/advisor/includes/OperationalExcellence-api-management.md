@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/18/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence API Management
@@ -101,5 +101,24 @@ Recommendation ID: 580a50ee-8300-4678-9a16-a946c948778b
 
 
 <!--580a50ee-8300-4678-9a16-a946c948778b_end-->
+
+<!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_begin-->
+
+#### Disable trusted service connectivity in API Management  
+  
+Your API Management service may rely on trusted service connectivity to access other Azure services. To prevent service disruption following the retirement of this feature in March 2026, update your networking configuration and disable trusted connectivity in API Management.  
+  
+**Potential benefits**: Prevent runtime outage of APIs in API Management  
+
+**Impact:** High
+  
+For more information, see [Azure API Management - Trusted service connectivity retirement (March 2026)](https://aka.ms/apimdocs/change/trusted-service)  
+
+ResourceType: microsoft.apimanagement/service  
+Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3  
+
+
+<!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_end-->
+
 
 <!--articleBody-->

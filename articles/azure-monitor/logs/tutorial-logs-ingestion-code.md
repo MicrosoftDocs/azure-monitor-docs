@@ -2,7 +2,7 @@
 title: 'Sample code to send data to Azure Monitor using Logs ingestion API'
 description: Sample code using REST API and client libraries for Logs ingestion API in Azure Monitor.
 ms.topic: tutorial
-ms.date: 04/15/2024
+ms.date: 08/29/2025
 ---
 
 # Sample code to send data to Azure Monitor using Logs ingestion API
@@ -56,32 +56,32 @@ DateTime currentTime = DateTime.UtcNow;
 // Use BinaryData to serialize instances of an anonymous type into JSON
 BinaryData data = BinaryData.FromObjectAsJson(
    new[] {
-	new
-	{
-	   Time = currentTime,
-	   Computer = "Computer1",
-	   AdditionalContext = new
-	   {
-	 	InstanceName = "user1",
-		TimeZone = "Pacific Time",
-		Level = 4,
-		CounterName = "AppMetric1",
-		CounterValue = 15.3
-	   }
-	},
-	new
-	{
-	   Time = currentTime,
-	   Computer = "Computer2",
-	   AdditionalContext = new
-	   {
-		InstanceName = "user2",
-		TimeZone = "Central Time",
-		Level = 3,
-		CounterName = "AppMetric1",
-		CounterValue = 23.5
-	   }
-	},
+    new
+    {
+       Time = currentTime,
+       Computer = "Computer1",
+       AdditionalContext = new
+       {
+         InstanceName = "user1",
+        TimeZone = "Pacific Time",
+        Level = 4,
+        CounterName = "AppMetric1",
+        CounterValue = 15.3
+       }
+    },
+    new
+    {
+       Time = currentTime,
+       Computer = "Computer2",
+       AdditionalContext = new
+       {
+        InstanceName = "user2",
+        TimeZone = "Central Time",
+        Level = 3,
+        CounterName = "AppMetric1",
+        CounterValue = 23.5
+       }
+    },
    }
 );
 
@@ -95,17 +95,17 @@ try
 
    using (MemoryStream memoryStream = new MemoryStream())
    {
-	using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
-	{
-	   gzipStream.Write(dataBytes, 0, dataBytes.Length);
-	}
-	byte[] gzipBytes = memoryStream.ToArray();
+    using (GZipStream gzipStream = new GZipStream(memoryStream, CompressionMode.Compress))
+    {
+       gzipStream.Write(dataBytes, 0, dataBytes.Length);
+    }
+    byte[] gzipBytes = memoryStream.ToArray();
 
-	var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
-	if (response.IsError)
-	{
-	   throw new Exception(response.ToString());
-	}
+    var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(gzipBytes), contentEncoding).ConfigureAwait(false);
+    if (response.IsError)
+    {
+       throw new Exception(response.ToString());
+    }
    }
    // ===== End: code block to upload compressed data
  
@@ -113,14 +113,14 @@ try
    var response = await client.UploadAsync(ruleId, streamName, RequestContent.Create(data)).ConfigureAwait(false);
    if (response.IsError)
    {
-	throw new Exception(response.ToString());
+    throw new Exception(response.ToString());
    }
    //** ===== End: code block to upload uncompressed data.
 
 }
 catch (Exception ex)
 {
-	Console.WriteLine("Upload failed with Exception: " + ex.Message);
+    Console.WriteLine("Upload failed with Exception: " + ex.Message);
 }
 ```
 
@@ -397,9 +397,9 @@ The following PowerShell code sends data to the endpoint by using HTTP REST fund
     ### Step 0: Set variables required for the rest of the script.
     
     # information needed to authenticate to AAD and obtain a bearer token
-    $tenantId = "00000000-0000-0000-00000000000000000" #Tenant ID the data collection endpoint resides in
-    $appId = " 000000000-0000-0000-00000000000000000" #Application ID created and granted permissions
-    $appSecret = "0000000000000000000000000000000000000000" #Secret created for the application
+    $tenantId = "aaaabbbb-0000-cccc-1111-dddd2222eeee" #Tenant ID the data collection endpoint resides in
+    $appId = "00001111-aaaa-2222-bbbb-3333cccc4444" #Application ID created and granted permissions
+    $appSecret = "Aa1Bb~2Cc3.-Dd4Ee5Ff6Gg7Hh8Ii9_Jj0Kk1Ll2" #Secret created for the application
     
     # information needed to send data to the DCR endpoint
     $endpoint_uri = "https://my-url.monitor.azure.com" #Logs ingestion URI for the DCR
@@ -538,6 +538,7 @@ This section describes different error conditions you might receive and how to c
 |:---|---|
 | Error code 403  | Ensure that you have the correct permissions for your application to the DCR. You might also need to wait up to 30 minutes for permissions to propagate. |
 | Error code 413 or warning of `TimeoutExpired` with the message `ReadyBody_ClientConnectionAbort` in the response | The message is too large. The maximum message size is currently 1 MB per call. |
+| Error code `RecordsTimeRangeIsMoreThan30Minutes` | This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed. This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md). |
 | Error code 429 | API limits have been exceeded. The limits are currently set to 500 MB of data per minute for both compressed and uncompressed data and 300,000 requests per minute. Retry after the duration listed in the `Retry-After` header in the response. |
 | No data | The data might take some time to be ingested, especially the first time data is being sent to a particular table. It shouldn't take longer than 15 minutes. |
 | IntelliSense in Log Analytics doesn't recognize the new table. | The cache that drives IntelliSense might take up to 24 hours to update. |

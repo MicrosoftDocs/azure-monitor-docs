@@ -1,7 +1,7 @@
 ---
 title: Logs Ingestion API in Azure Monitor
 description: Send data to a Log Analytics workspace using REST API or client libraries.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 06/16/2025
 ---
 
@@ -120,7 +120,7 @@ In addition to making a REST API call, you can use the following client librarie
 
 ## REST API call
 
-To send data to Azure Monitor with a REST API call, make a POST call over HTTP. Details required for this call are described in this section.
+To send data to Azure Monitor with a REST API call, make a POST call over HTTPS. Details required for this call are described in this section.
 
 ### URI
 
@@ -172,6 +172,11 @@ For example:
 ```
 
 Ensure that the request body is properly encoded in UTF-8 to prevent any issues with data transmission.
+
+> [!WARNING]
+> When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
+>
+> This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
 
 ### Example
 
@@ -238,7 +243,7 @@ Data sent to the ingestion API can be sent to the following tables:
 * [WindowsServerAssessmentRecommendation](/azure/azure-monitor/reference/tables/windowsserverassessmentrecommendation)<br>
 
 > [!NOTE]
-> Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
+> Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
 
 ## Limits and restrictions
 

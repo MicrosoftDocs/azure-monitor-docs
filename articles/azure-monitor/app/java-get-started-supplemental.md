@@ -2,10 +2,9 @@
 title: Application Insights with containers
 description: This article shows you how to set up Application Insights.
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 09/26/2025
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
-ms.reviewer: mmcc
 ---
 
 # Get Started (Supplemental)
@@ -31,16 +30,16 @@ For more information, see [Use Application Insights Java In-Process Agent in Azu
 
 ### Docker entry point
 
-If you're using the *exec* form, add the parameter `-javaagent:"path/to/applicationinsights-agent-3.7.1.jar"` to the parameter list somewhere before the `"-jar"` parameter, for example:
+If you're using the *exec* form, add the parameter `-javaagent:"path/to/applicationinsights-agent-3.7.5.jar"` to the parameter list somewhere before the `"-jar"` parameter, for example:
 
 ```dockerfile
-ENTRYPOINT ["java", "-javaagent:path/to/applicationinsights-agent-3.7.1.jar", "-jar", "<myapp.jar>"]
+ENTRYPOINT ["java", "-javaagent:path/to/applicationinsights-agent-3.7.5.jar", "-jar", "<myapp.jar>"]
 ```
 
-If you're using the *shell* form, add the Java Virtual Machine (JVM) arg `-javaagent:"path/to/applicationinsights-agent-3.7.1.jar"` somewhere before `-jar`, for example:
+If you're using the *shell* form, add the Java Virtual Machine (JVM) arg `-javaagent:"path/to/applicationinsights-agent-3.7.5.jar"` somewhere before `-jar`, for example:
 
 ```dockerfile
-ENTRYPOINT java -javaagent:"path/to/applicationinsights-agent-3.7.1.jar" -jar <myapp.jar>
+ENTRYPOINT java -javaagent:"path/to/applicationinsights-agent-3.7.5.jar" -jar <myapp.jar>
 ```
 
 
@@ -53,16 +52,16 @@ FROM ...
 
 COPY target/*.jar app.jar
 
-COPY agent/applicationinsights-agent-3.7.1.jar applicationinsights-agent-3.7.1.jar 
+COPY agent/applicationinsights-agent-3.7.5.jar applicationinsights-agent-3.7.5.jar 
 
 COPY agent/applicationinsights.json applicationinsights.json
 
 ENV APPLICATIONINSIGHTS_CONNECTION_STRING="CONNECTION-STRING"
         
-ENTRYPOINT["java", "-javaagent:applicationinsights-agent-3.7.1.jar", "-jar", "app.jar"]
+ENTRYPOINT["java", "-javaagent:applicationinsights-agent-3.7.5.jar", "-jar", "app.jar"]
 ```
 
-In this example, you copy the `applicationinsights-agent-3.7.1.jar` and `applicationinsights.json` files from an `agent` folder (you can choose any folder of your machine). These two files have to be in the same folder in the Docker container.
+In this example, you copy the `applicationinsights-agent-3.7.5.jar` and `applicationinsights.json` files from an `agent` folder (you can choose any folder of your machine). These two files have to be in the same folder in the Docker container.
 
 ### Partner container images
 

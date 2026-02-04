@@ -3,7 +3,7 @@ title: Supported resource types and role assignments for Chaos Studio
 description: Understand the list of supported resource types and which role assignment is needed to enable an experiment to run a fault against that resource type.
 services: chaos-studio
 author: prasha-microsoft
-ms.topic: article
+ms.topic: reference
 ms.date: 10/14/2024
 ms.reviewer: prashabora
 ---

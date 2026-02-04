@@ -2,8 +2,8 @@
 title: Azure Monitor best practices - Analysis and visualizations
 description: Guidance and recommendations for customizing visualizations beyond standard analysis features in Azure Monitor.
 ms.topic: best-practice
-ms.date: 05/21/2025
-ms.reviewer: bwren
+ms.date: 08/22/2025
+ms.reviewer: IngridAtMicrosoft
 ---
 
 # Visualize data in Azure Monitor
@@ -18,24 +18,43 @@ This article compares the different options for visualizing collected data in Az
 
 Azure workbooks are ideal for Azure managed hybrid and edge environments, including hybrid environments with Azure Arc. They allow you to create custom reports based on data from insights and provide integrations with other Azure features for actions and automation.
 
-## Azure dashboards
-
-[Azure dashboards](/azure/azure-portal/azure-portal-dashboards) are useful in providing a single pane of glass for your Azure infrastructure and services. While a workbook provides richer functionality, a dashboard can combine Azure Monitor data with data from other Azure services. Learn how to create a dashboard from the following video:
-
-> [!VIDEO https://learn-video.azurefd.net/vod/player?id=14538555-8298-4e6e-8603-52db2ea447f1]
-
-
 ## Grafana
 
-[Grafana](https://grafana.com/) is an open platform that excels in operational dashboards. It allows you to leverage extensive flexibility for combining data queries, query results, and performing open-ended client-side data processing. Grafana has popular plug-ins and dashboard templates for application performance monitoring (APM) tools such as Dynatrace, New Relic, and AppDynamics and also has AWS CloudWatch and GCP BigQuery plug-ins for multicloud monitoring in a single pane of glass.
+[Grafana](https://grafana.com/) is an open platform that excels in operational dashboards. It allows you to combine data queries, query results, and perform open-ended client-side data processing. 
+
+You have two options for using Grafana with Azure, Dashboards with Grafana and Azure Managed Grafana.
+
+**Dashboards with Grafana (Preview)** is available in the Azure portal for no additional cost. This option supports Azure Monitor and Azure Managed Prometheus. It uses the current user authentication. Grafana OSS features are included. If you are only using data sources provided by Azure, this is your best and easiest option.
+
+To understand the workflow for Dashboards with Grafana, see [Use Azure Monitor Dashboards with Grafana (Preview)](visualize-use-grafana-dashboards.md).
+
+However, if you want to: 
+
+- use open-source or other external data sources
+- audit usage logs
+- use private networking
+- use managed identity authentication or service principal methods
+
+**Azure Managed Grafana** is the correct choice.
+
+For an overview of each choice, see [Visualize with Grafana](visualize-grafana-overview.md).
 
 [Azure Managed Grafana](/azure/managed-grafana/overview) optimizes this experience for Azure-native data stores such as Azure Monitor and Azure Data Explorer. You can easily connect to any resource in your subscription and view all resulting telemetry in a familiar Grafana dashboard. It integrates into the Azure Monitor portal and includes out-of-the-box dashboards for Azure resources and also supports pinning charts from Azure Monitor metrics and logs to Grafana dashboards. See [Visualize with Grafana](../visualize/visualize-grafana-overview.md) to get started.
+
+Grafana has plug-ins and dashboard templates for application performance monitoring (APM) tools such as Dynatrace, New Relic, and AppDynamics. It also has AWS CloudWatch and GCP BigQuery plug-ins for multicloud monitoring.
 
 All versions of Grafana include the [Azure Monitor datasource plug-in](../visualize/visualize-grafana-overview.md) to visualize your Azure Monitor metrics and logs. The [out-of-the-box Grafana Azure alerts dashboard](https://grafana.com/grafana/dashboards/15128-azure-alert-consumption/) allows you to view and consume Azure monitor alerts for Azure Monitor, your Azure datasources, and Azure Monitor managed service for Prometheus.
 
 :::image type="content" source="media/visualizations/grafana.png" lightbox="media/visualizations/grafana.png" alt-text="Screenshot that shows Grafana visualizations.":::
 
 Grafana is ideal for data visualizations and dashboards in cloud-native scenario such as Kubernetes as well as multicloud, open source software, and third-party integrations. It provides interoperability with open-source and third-party tools and allows you to share dashboards outside of the Azure portal.
+
+## Azure dashboards
+
+[Azure dashboards](/azure/azure-portal/azure-portal-dashboards) are useful in providing a single pane of glass for your Azure infrastructure and services. While a workbook provides richer functionality, a dashboard can combine Azure Monitor data with data from other Azure services. Learn how to create a dashboard from the following video:
+
+> [!VIDEO https://learn-video.azurefd.net/vod/player?id=14538555-8298-4e6e-8603-52db2ea447f1]
+
 
 ## Power BI
 

@@ -17,7 +17,7 @@ You can also query Prometheus metrics by using PromQL from the metrics explorer 
 To query Prometheus metrics from an Azure Monitor workspace:
 
 * You need an Azure Monitor workspace. For more information, see [Create an Azure Monitor workspace](azure-monitor-workspace-overview.md?tabs=azure-portal.md).
-* Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) from an Azure Kubernetes Service (AKS) cluster or from a virtual machine or virtual machine scale set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
+* Your Azure Monitor workspace must be [collecting Prometheus metrics](../containers/kubernetes-monitoring-enable.md) from an Azure Kubernetes Service (AKS) cluster or from a virtual machine or virtual machine scale set. For more information, see [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md).
 * The user must be assigned a role that can perform the `microsoft.monitor/accounts/read` operation on the Azure Monitor workspace.
 
 ## Prometheus explorer workbook
@@ -90,7 +90,7 @@ This section provides answers to common questions.
 
 ## Related content
 
-* [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
+* [Collect Prometheus metrics from an AKS cluster](../containers/kubernetes-monitoring-enable.md)
 * [Send Prometheus metrics from virtual machines, scale sets, or Kubernetes clusters to an Azure Monitor workspace](prometheus-remote-write-virtual-machines.md)
 * [Azure Monitor metrics explorer with PromQL (preview)](metrics-explorer.md)
 * [Azure Monitor workspace](azure-monitor-workspace-overview.md)

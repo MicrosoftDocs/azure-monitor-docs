@@ -4,7 +4,7 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
-ms.date: 07/22/2025
+ms.date: 12/04/2025
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -40,7 +40,7 @@ You can aggregate data from any table, regardless of whether the table has an [A
 - `_BinSize`: The aggregation interval.  
 - `_BinStartTime`: The aggregation start time.
 
-You can configure up to 30 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
+You can configure up to 100 active rules to aggregate data from multiple tables and send the aggregated data to separate destination tables or the same table. 
 
 You can export summarized data from a custom log table to a storage account or Event Hubs for further integrations by defining a [data export rule](logs-data-export.md).
 
@@ -80,12 +80,12 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 ## Implementation considerations
 
 - The maximum number of active rules in a workspace is 100.
-- THe API version labeled preview. A stable version, SDKs, and cmdlets are expected in September 2025.
 - Summary rules are currently only available in the public cloud.
 - The summary rule processes incoming data and can't be configured on a historical time range. 
 - When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
+- Using `union *` and `isfuzzy=true` in Summary rules query aren't supported.
 
 ## Pricing model
 
@@ -114,23 +114,23 @@ The operators you can use in summary rule your query depend on the plan of the s
  - Basic: Supports all KQL operators on a single table. You can join up to five Analytics tables using the [lookup](/azure/data-explorer/kusto/query/lookup-operator) operator.
  - Functions: User-defined functions aren't supported. System functions provided by Microsoft are supported. 
 
-Summary rules are most beneficial in term of cost and query experiences when results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
+Summary rules are most beneficial in term of cost and query experiences when the query in rule includes `summarize` operator and results count or volume are reduced significantly. For example, aiming for results volume 0.01% or less than source. Before you create a rule, experiment query in [Log Analytics](log-analytics-overview.md), and verify the followings:
 
 1. Check that the query produces the intended expected results and schema.
-1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces).
+1. The query doesn't reach or near the [query API limits](../service-limits.md#log-analytics-workspaces). If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
 1. A record size in results is less than 1MB.
 
-If the query is close to the query limits, consider using a smaller 'bin size' to process less data per bin. You can also modify the query to return fewer records or fields with higher volume. 
+> [!NOTE]
+> Do not use a time filter in a Summary rule query because the query already operates over the time range defined by the bin size. If you add a time filter, it will combine with the bin size, resulting in only the overlapping time period being used.
 
 When you update a query and there are fewer fields in summary results, Azure Monitor doesn't automatically remove the columns from the destination table, and you need to [delete columns from your table](create-custom-table.md#add-or-delete-a-custom-column) manually.
-
 
 ### [API](#tab/api)
 
 To create or update a summary rule, make this `PUT` API call:
 
 ```kusto
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 
 {
@@ -255,7 +255,7 @@ Use this template to create or update a summary rule. For more information about
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/summaryLogs",
-      "apiVersion": "2023-01-01-preview",
+      "apiVersion": "2025-07-01",
       //"name": "[format('{0}/{1}', parameters('workspaceName'), parameters('summaryRuleName'))]",
       "name": "[concat(parameters('workspaceName'), '/', parameters('summaryRuleName'))]",
       "properties": {
@@ -335,12 +335,8 @@ The short delay Azure Monitor adds accounts for ingestion latency - or the time 
 
 For example: 
 
-- You create a summary rule with a bin size of 30 minutes at 14:44. 
-
-  The rule creates the first aggregation shortly after 15:00 - for example, at 15:04 - for data logged between 14:30 and 15:00. 
-- You create a summary rule with a bin size of 720 minutes (12 hours) at 14:44. 
-
-  The rule creates the first aggregation at 16:12 - 72 minutes (10% of the 720 bin size) after 13:00 - for data logged between 03:00 and 15:00. 
+- You create a summary rule with a bin size of 30 minutes at 14:44. The first aggregation is generated at 15:04, which is the next whole hour plus 4 minutes delay.
+- You create a summary rule with a bin size of 720 minutes at 14:44. The first aggregation is generated at 16:12, which is the next whole hour plus 72 minutes (10% of the 720 bin size) delay. 
 
 Use the `binStartTime` and `binDelay` parameters to change the timing of the first aggregation and the delay Azure Monitor adds before each aggregation.
 
@@ -383,14 +379,14 @@ In this example, the summary rule is created at on 2023-06-07 at 14:44, and the 
 Use this `GET` API call to view the configuration for a specific summary rule:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 Use this `GET` API call to view the configuration to view the configuration of all summary rules in your Log Analytics workspace:
 
 ```kusto
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2023-01-01-preview
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -401,14 +397,14 @@ You can stop a rule for a period of time - for example, if you want to verify th
 To stop a rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2025-07-01
 Authorization: {credential}
 ```
 
 To restart the rule, use this `POST` API call:
 
 ```kusto
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2023-01-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -419,7 +415,7 @@ You can have up to 30 active summary rules in your Log Analytics workspace. If y
 To delete a rule, use this `DELETE` API call:
 
 ```kusto
-DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2023-01-01-preview
+DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 ```
 
@@ -499,6 +495,6 @@ When you remove a field in the query, the columns and data remain in the destina
 ## Related content
 
 - Learn more about [Azure Monitor Logs data plans](logs-table-plans.md).
-- Walk through a [tutorial on using KQL mode in Log Analytics](../logs/log-analytics-tutorial.md).
+- Walk through a [tutorial on using Log Analytics](../logs/log-analytics-tutorial.md).
 - Access the complete [reference documentation for KQL](/azure/kusto/query/).
 

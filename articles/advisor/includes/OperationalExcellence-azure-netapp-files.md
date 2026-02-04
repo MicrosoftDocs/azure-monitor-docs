@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 08/12/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure NetApp Files
@@ -83,5 +83,23 @@ Recommendation ID: db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0
 
 
 <!--db4ccef4-d6aa-40a8-8d3c-b42ffc20a9a0_end-->
+
+<!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_begin-->
+
+#### Avoid volume availability issues with Azure NetApp Files  
+  
+Avoid volume availability issues by specifying your preference for the volume. Contact your Account Representative with your desired volume's state.  
+  
+**Potential benefits**: Sustained Volume Availability  
+
+**Impact:** High
+  
+For more information, see [Service levels for Azure NetApp Files](/azure/azure-netapp-files/azure-netapp-files-service-levels)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd  
+
+
+<!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_end-->
 
 <!--articleBody-->

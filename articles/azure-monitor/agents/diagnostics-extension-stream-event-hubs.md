@@ -1,17 +1,17 @@
 ---
-title: Send data from Windows Azure diagnostics extension to Azure Event Hubs
-description: Configure diagnostics extension in Azure Monitor to send data to Azure Event Hub so you can forward it to locations outside of Azure.
+title: Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
+description: Configure diagnostics extension in Azure Monitor to send data to Azure Event Hubs so you can forward it to locations outside of Azure.
 ms.topic: how-to
 ms.date: 11/14/2024
-
 ---
 
-# Send data from Windows Azure diagnostics extension to Azure Event Hubs
-Azure diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure virtual machines and other compute resources. This article describes how to send data from the Windows Azure Diagnostic (WAD) extension to [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) so you can forward to locations outside of Azure.
+# Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
+
+Azure diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure virtual machines and other compute resources. This article describes how to send data from the Microsoft Azure Diagnostic (WAD) extension to [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) so you can forward to locations outside of Azure.
 
 ## Supported data
 
-The data collected from the guest operating system that can be sent to Event Hubs includes the following. Other data sources collected by WAD, including IIS Logs and crash dumps, cannot be sent to Event Hubs.
+The data collected from the guest operating system that can be sent to Event Hubs includes the following. Other data sources collected by WAD, including Internet Information Services (IIS) Logs and crash dumps, can't be sent to Event Hubs.
 
 * Event Tracing for Windows (ETW) events
 * Performance counters
@@ -22,22 +22,22 @@ The data collected from the guest operating system that can be sent to Event Hub
 
 * Windows diagnostics extension 1.6 or higher. See [Azure Diagnostics extension configuration schema versions and history](diagnostics-extension-versions.md) for a version history and [Azure Diagnostics extension overview](diagnostics-extension-overview.md) for supported resources.
 * Event Hubs namespace must always be provisioned. See [Get started with Event Hubs](/azure/event-hubs/event-hubs-dotnet-standard-getstarted-send) for details.
-* Event hub must be at least Standard tier. Basic tier is not supported.
-
+* Event hub must be at least Standard tier. Basic tier isn't supported.
 
 ## Configuration schema
-See [Install and configure Windows Azure diagnostics extension (WAD)](diagnostics-extension-windows-install.md) for different options for enabling and configuring the diagnostics extension and [Azure Diagnostics configuration schema](diagnostics-extension-schema-windows.md) for a reference of the configuration schema. The rest of this article will describe how to use this configuration to send data to an event hub. 
 
-Azure Diagnostics always sends logs and metrics to an Azure Storage account. You can configure one or more *data sinks* that send data to additional locations. Each sink is defined in the [SinksConfig element](diagnostics-extension-schema-windows.md#sinksconfig-element) of the public configuration with sensitive information in the private configuration. This configuration for event hubs uses the values in the following table.
+See [Install and configure Microsoft Azure diagnostics extension (WAD)](diagnostics-extension-windows-install.md) for different options for enabling and configuring the diagnostics extension. See [Azure Diagnostics configuration schema](diagnostics-extension-schema-windows.md) for a reference of the configuration schema. The rest of this article describes how to use this configuration to send data to an event hub. 
+
+Azure Diagnostics always sends logs and metrics to an Azure Storage account. You can configure one or more *data sinks* that send data to other locations. Each sink is defined in the [SinksConfig element](diagnostics-extension-schema-windows.md#sinksconfig-element) of the public configuration with sensitive information in the private configuration. This configuration for event hubs uses the values in the following table.
 
 | Property | Description |
 |:---|:---|
 | Name | Descriptive name for the sink. Used in the configuration to specify which data sources to send to the sink. |
-| Url  | Url of the event hub in the form \<event-hubs-namespace\>.servicebus.windows.net/\<event-hub-name\>.          |
+| Url  | Url of the event hub in the form `<event-hubs-namespace>.servicebus.windows.net/<event-hub-name>`. |
 | SharedAccessKeyName | Name of a shared access policy for the event hub that has at least **Send** authority. |
 | SharedAccessKey     | Primary or secondary key from the shared access policy for the event hub. |
 
-Example public and private configurations are shown below. This is a minimal configuration with a single performance counter and event log to illustrate how to configure and use the event hub data sink. See [Azure Diagnostics configuration schema](diagnostics-extension-schema-windows.md) for a more complex example.
+The following example shows public and private configurations. It's a minimal configuration with a single performance counter and event log to illustrate how to configure and use the event hub data sink. See [Azure Diagnostics configuration schema](diagnostics-extension-schema-windows.md) for a more complex example.
 
 ### Public configuration
 
@@ -82,7 +82,6 @@ Example public and private configurations are shown below. This is a minimal con
 }
 ```
 
-
 ### Private configuration
 
 ```JSON
@@ -98,10 +97,9 @@ Example public and private configurations are shown below. This is a minimal con
 }
 ```
 
-
-
 ## Configuration options
-To send data to a data sink, you specify the **sinks** attribute on the data source's node. Where you place the **sinks** attribute determines the scope of the assignment. In the following example, the **sinks** attribute is defined to the **PerformanceCounters** node which will cause all child performance counters to be sent to the event hub.
+
+To send data to a data sink, you specify the **sinks** attribute on the data source's node. Where you place the **sinks** attribute determines the scope of the assignment. In the following example, the **sinks** attribute is defined to the **PerformanceCounters** node. This causes all child performance counters to be sent to the event hub.
 
 ```JSON
 "PerformanceCounters": {
@@ -124,8 +122,7 @@ To send data to a data sink, you specify the **sinks** attribute on the data sou
 }
 ```
 
-
-In the following example, the **sinks** attribute is applied directly to three counters which will cause only those performance counters to be sent to the event hub. 
+In the following example, the **sinks** attribute is applied directly to three counters. It causes only those performance counters to be sent to the event hub. 
 
 ```JSON
 "PerformanceCounters": {
@@ -159,8 +156,8 @@ In the following example, the **sinks** attribute is applied directly to three c
 ```
 
 ## Validating configuration
-You can use a variety of methods to validate that data is being sent to the event hub. One straightforward method is to use Event Hubs capture as described in [Capture events through Azure Event Hubs in Azure Blob Storage or Azure Data Lake Storage](/azure/event-hubs/event-hubs-capture-overview). 
 
+You can use various methods to validate that data is being sent to the event hub. One straightforward method is to use Event Hubs capture as described in [Capture events through Azure Event Hubs in Azure Blob Storage or Azure Data Lake Storage](/azure/event-hubs/event-hubs-capture-overview). 
 
 ## Troubleshoot Event Hubs sinks
 
@@ -176,6 +173,3 @@ You can use a variety of methods to validate that data is being sent to the even
 
 <!-- Images. -->
 [0]: ../../event-hubs/media/event-hubs-streaming-azure-diags-data/dashboard.png
-
-
-

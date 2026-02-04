@@ -21,6 +21,8 @@ items:
             href: supported-metrics/microsoft-app-jobs-metrics.md
           - name: Microsoft.App/managedEnvironments
             href: supported-metrics/microsoft-app-managedenvironments-metrics.md
+          - name: Microsoft.App/sessionpools
+            href: supported-metrics/microsoft-app-sessionpools-metrics.md
           - name: Microsoft.AppConfiguration/configurationStores
             href: supported-metrics/microsoft-appconfiguration-configurationstores-metrics.md
           - name: Microsoft.AppPlatform/spring
@@ -81,8 +83,8 @@ items:
             href: supported-metrics/microsoft-codesigning-codesigningaccounts-metrics.md
           - name: Microsoft.CognitiveServices/accounts
             href: supported-metrics/microsoft-cognitiveservices-accounts-metrics.md
-          - name: Microsoft.Communication/CommunicationServices
-            href: supported-metrics/microsoft-communication-communicationservices-metrics.md
+          - name: Microsoft.CognitiveServices/accounts/projects
+            href: supported-metrics/microsoft-cognitiveservices-accounts-projects-metrics.md
           - name: Microsoft.Compute/cloudservices
             href: supported-metrics/microsoft-compute-cloudservices-metrics.md
           - name: Microsoft.Compute/cloudServices/roles
@@ -189,6 +191,8 @@ items:
             href: supported-metrics/microsoft-eventhub-clusters-metrics.md
           - name: Microsoft.EventHub/Namespaces
             href: supported-metrics/microsoft-eventhub-namespaces-metrics.md
+          - name: Microsoft.FileShares/fileShares
+            href: supported-metrics/microsoft-fileshares-fileshares-metrics.md
           - name: Microsoft.HDInsight/clusters
             href: supported-metrics/microsoft-hdinsight-clusters-metrics.md
           - name: Microsoft.HealthcareApis/services
@@ -199,6 +203,10 @@ items:
             href: supported-metrics/microsoft-healthcareapis-workspaces-fhirservices-metrics.md
           - name: Microsoft.HealthcareApis/workspaces/iotconnectors
             href: supported-metrics/microsoft-healthcareapis-workspaces-iotconnectors-metrics.md
+          - name: Microsoft.HealthcareInterop/fhirQueryEventBatchChannels
+            href: supported-metrics/microsoft-healthcareinterop-fhirqueryeventbatchchannels-metrics.md
+          - name: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
+            href: supported-metrics/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md
           - name: Microsoft.HealthModel/healthmodels
             href: supported-metrics/microsoft-healthmodel-healthmodels-metrics.md
           - name: Microsoft.HybridContainerService/provisionedClusters
@@ -243,14 +251,12 @@ items:
             href: supported-metrics/microsoft-managednetworkfabric-l3isolationdomains-metrics.md
           - name: Microsoft.ManagedNetworkFabric/networkDevices
             href: supported-metrics/microsoft-managednetworkfabric-networkdevices-metrics.md
+          - name: Microsoft.ManagedNetworkFabric/networkFabrics
+            href: supported-metrics/microsoft-managednetworkfabric-networkfabrics-metrics.md
           - name: Microsoft.Maps/accounts
             href: supported-metrics/microsoft-maps-accounts-metrics.md
           - name: Microsoft.MessagingConnectors/connectors
             href: supported-metrics/microsoft-messagingconnectors-connectors-metrics.md
-          - name: Microsoft.MixedReality/remoteRenderingAccounts
-            href: supported-metrics/microsoft-mixedreality-remoterenderingaccounts-metrics.md
-          - name: Microsoft.MixedReality/spatialAnchorsAccounts
-            href: supported-metrics/microsoft-mixedreality-spatialanchorsaccounts-metrics.md
           - name: Microsoft.MobileNetwork/mobilenetworks/sites
             href: supported-metrics/microsoft-mobilenetwork-mobilenetworks-sites-metrics.md
           - name: Microsoft.MobileNetwork/packetcorecontrolplanes
@@ -261,12 +267,22 @@ items:
             href: supported-metrics/microsoft-mobilenetwork-radioaccessnetworks-metrics.md
           - name: Microsoft.Monitor/accounts
             href: supported-metrics/microsoft-monitor-accounts-metrics.md
+          - name: Microsoft.NetApp/elasticAccounts/elasticCapacityPools
+            href: supported-metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-metrics.md
+          - name: Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes
+            href: supported-metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-elasticvolumes-metrics.md
           - name: Microsoft.NetApp/netAppAccounts
             href: supported-metrics/microsoft-netapp-netappaccounts-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/caches
+            href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-caches-metrics.md
           - name: Microsoft.NetApp/netAppAccounts/capacityPools/volumes
             href: supported-metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics.md
+          - name: Microsoft.NetApp/scaleAccounts/scaleCapacityPools
+            href: supported-metrics/microsoft-netapp-scaleaccounts-scalecapacitypools-metrics.md
+          - name: Microsoft.NetApp/scaleAccounts/scaleCapacityPools/scaleVolumes
+            href: supported-metrics/microsoft-netapp-scaleaccounts-scalecapacitypools-scalevolumes-metrics.md
           - name: Microsoft.Network/applicationgateways
             href: supported-metrics/microsoft-network-applicationgateways-metrics.md
           - name: Microsoft.Network/azureFirewalls
@@ -303,6 +319,10 @@ items:
             href: supported-metrics/microsoft-network-networkinterfaces-metrics.md
           - name: Microsoft.Network/networkManagers/ipamPools
             href: supported-metrics/microsoft-network-networkmanagers-ipampools-metrics.md
+          - name: Microsoft.Network/networkSecurityPerimeters
+            href: supported-metrics/microsoft-network-networksecurityperimeters-metrics.md
+          - name: Microsoft.Network/NetworkVirtualAppliances
+            href: supported-metrics/microsoft-network-networkvirtualappliances-metrics.md
           - name: Microsoft.Network/networkWatchers/connectionMonitors
             href: supported-metrics/microsoft-network-networkwatchers-connectionmonitors-metrics.md
           - name: microsoft.network/p2svpngateways
@@ -353,6 +373,8 @@ items:
             href: supported-metrics/microsoft-orbital-spacecrafts-metrics.md
           - name: Microsoft.Orbital/terminals
             href: supported-metrics/microsoft-orbital-terminals-metrics.md
+          - name: Microsoft.OrionDB/clusters
+            href: supported-metrics/microsoft-oriondb-clusters-metrics.md
           - name: Microsoft.Peering/peerings
             href: supported-metrics/microsoft-peering-peerings-metrics.md
           - name: Microsoft.Peering/peeringServices
@@ -461,8 +483,8 @@ items:
             href: supported-metrics/oracle-database-autonomousdatabases-metrics.md
           - name: Oracle.Database/cloudVmClusters
             href: supported-metrics/oracle-database-cloudvmclusters-metrics.md
-          - name: Oracle.Database/exadbVmClusters
-            href: supported-metrics/oracle-database-exadbvmclusters-metrics.md
+          - name: Oracle.Database/dbSystems
+            href: supported-metrics/oracle-database-dbsystems-metrics.md
           - name: Private.MessagingConnectors/connectors
             href: supported-metrics/private-messagingconnectors-connectors-metrics.md
           - name: Wandisco.Fusion/migrators
@@ -496,6 +518,7 @@ items:
             href: supported-logs/microsoft-apimanagement-service-logs.md
             displayName: Logs related to Developer Portal usage,Logs related to generative
               AI gateway,Logs related to ApiManagement Gateway,Logs related to
+              Model Context Protocol (MCP) servers usage,Logs related to
               Websocket Connections
           - name: Microsoft.ApiManagement/service/workspaces
             href: supported-logs/microsoft-apimanagement-service-workspaces-logs.md
@@ -508,6 +531,9 @@ items:
           - name: Microsoft.AppConfiguration/configurationStores
             href: supported-logs/microsoft-appconfiguration-configurationstores-logs.md
             displayName: Audit,HTTP Requests
+          - name: Microsoft.AppLink/applinks/applinkmembers
+            href: supported-logs/microsoft-applink-applinks-applinkmembers-logs.md
+            displayName: Istiod logs
           - name: Microsoft.AppPlatform/spring
             href: supported-logs/microsoft-appplatform-spring-logs.md
             displayName: Application Console,Build Logs,Container Event Logs,Ingress
@@ -539,7 +565,7 @@ items:
             displayName: Audit Logs,Device Events
           - name: Microsoft.Batch/batchaccounts
             href: supported-logs/microsoft-batch-batchaccounts-logs.md
-            displayName: Audit Logs,Service Logs,Service Logs (deprecated)
+            displayName: Audit Logs,Service Logs
           - name: microsoft.botservice/botservices
             href: supported-logs/microsoft-botservice-botservices-logs.md
             displayName: Requests from the channels to the bot
@@ -552,6 +578,9 @@ items:
           - name: Microsoft.Cdn/cdnwebapplicationfirewallpolicies
             href: supported-logs/microsoft-cdn-cdnwebapplicationfirewallpolicies-logs.md
             displayName: Web Appliation Firewall Logs
+          - name: Microsoft.Cdn/edgeactions
+            href: supported-logs/microsoft-cdn-edgeactions-logs.md
+            displayName: Service Logs,Console Logs
           - name: Microsoft.Cdn/profiles
             href: supported-logs/microsoft-cdn-profiles-logs.md
             displayName: Azure Cdn Access Log,FrontDoor Access Log,FrontDoor Health Probe
@@ -572,20 +601,9 @@ items:
             href: supported-logs/microsoft-cognitiveservices-accounts-logs.md
             displayName: Audit Logs,Azure OpenAI Request Usage,Request and Response
               Logs,Trace Logs
-          - name: Microsoft.Communication/CommunicationServices
-            href: supported-logs/microsoft-communication-communicationservices-logs.md
-            displayName: Advanced Messaging Logs,Operational Authentication Logs,Call
-              Automation Events Summary Logs,Operational Call Automation
-              Logs,Call Automation Media Streaming features usage information
-              Logs,Call Client Media Stats Time Series Logs,Call Client
-              Operations Logs,Service Side Request and Outcome Logs,Call Closed
-              Captions Logs,Call Diagnostics Logs,Call Diagnostics Logs with
-              versioning,Calling Metrics Logs,Operational Call Recording
-              Logs,Call Recording Summary Logs,Call Summary Logs,Call Summary
-              Logs with versioning,Call Survey Logs,Operational Chat Logs,Email
-              Service Send Mail Logs,Email Service Delivery Status Update
-              Logs,Email Service User Engagement Logs,Operational Job Router
-              Logs,Operational Rooms Logs,Operational SMS Logs,Usage Records
+          - name: Microsoft.CognitiveServices/accounts/projects
+            href: supported-logs/microsoft-cognitiveservices-accounts-projects-logs.md
+            displayName: Audit Logs,Trace Logs
           - name: microsoft.community/communityTrainings
             href: supported-logs/microsoft-community-communitytrainings-logs.md
             displayName: Application Data Plane Exceptions and Errors,Application Data Plane
@@ -593,6 +611,10 @@ items:
           - name: Microsoft.Compute/virtualMachines
             href: supported-logs/microsoft-compute-virtualmachines-logs.md
             displayName: SoftwareUpdateProfile,SoftwareUpdates
+          - name: Microsoft.ConfidentialLedger/Ledgers
+            href: supported-logs/microsoft-confidentialledger-ledgers-logs.md
+            displayName: Azure Confidential Ledger activity Logs with UserId,Azure
+              Confidential Ledger UDE/UDF logs
           - name: Microsoft.ConfidentialLedger/ManagedCCF
             href: supported-logs/microsoft-confidentialledger-managedccf-logs.md
             displayName: CCF Application Logs
@@ -626,15 +648,19 @@ items:
           - name: Microsoft.ContainerService/managedClusters
             href: supported-logs/microsoft-containerservice-managedclusters-logs.md
             displayName: Kubernetes Cloud Controller Manager,Kubernetes Cluster
-              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Kubernetes
-              API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
-              Controller Manager,Kubernetes Scheduler
+              Autoscaler,csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Node
+              Auto Provisioning,Kubernetes API Server,Kubernetes
+              Audit,Kubernetes Audit Admin Logs,Kubernetes Controller
+              Manager,Kubernetes Scheduler
           - name: Microsoft.CustomProviders/resourceproviders
             href: supported-logs/microsoft-customproviders-resourceproviders-logs.md
             displayName: Audit logs for MiniRP calls
           - name: Microsoft.D365CustomerInsights/instances
             href: supported-logs/microsoft-d365customerinsights-instances-logs.md
             displayName: Audit events,Operational events
+          - name: Microsoft.Dashboard/dashboards
+            href: supported-logs/microsoft-dashboard-dashboards-logs.md
+            displayName: Update Events
           - name: Microsoft.Dashboard/grafana
             href: supported-logs/microsoft-dashboard-grafana-logs.md
             displayName: Grafana Login Events,Grafana Usage Insights Events
@@ -728,9 +754,10 @@ items:
             href: supported-logs/microsoft-desktopvirtualization-hostpools-logs.md
             displayName: AgentHealthStatus,Autoscale logs for pooled host
               pools,Checkpoint,Connection,Connection Graphics Data Logs
-              Preview,Error,HostRegistration,Management,Network Data
-              Logs,Session Host Management Activity Logs
-          - name: Microsoft.DesktopVirtualization/repositoryFolders
+              Preview,Error,HostRegistration,Management,Network links logs for
+              AVD connections,Network Data Logs,Session Host Management Activity
+              Logs
+          - name: Microsoft.DesktopVirtualization/repositoryfolders
             href: supported-logs/microsoft-desktopvirtualization-repositoryfolders-logs.md
             displayName: Management
           - name: Microsoft.DesktopVirtualization/scalingplans
@@ -770,6 +797,9 @@ items:
           - name: Microsoft.DocumentDB/mongoClusters
             href: supported-logs/microsoft-documentdb-mongoclusters-logs.md
             displayName: vCoreMongoRequests
+          - name: Microsoft.DurableTask/schedulers
+            href: supported-logs/microsoft-durabletask-schedulers-logs.md
+            displayName: Durable Task Scheduler Logs
           - name: Microsoft.Edge/diagnostics
             href: supported-logs/microsoft-edge-diagnostics-logs.md
             displayName: Audit Logs,Diagnostic Logs
@@ -817,6 +847,12 @@ items:
           - name: Microsoft.HealthcareApis/workspaces/iotconnectors
             href: supported-logs/microsoft-healthcareapis-workspaces-iotconnectors-logs.md
             displayName: Diagnostic logs
+          - name: Microsoft.HealthcareInterop/fhirQueryEventBatchChannels
+            href: supported-logs/microsoft-healthcareinterop-fhirqueryeventbatchchannels-logs.md
+            displayName: Diagnostic logs
+          - name: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
+            href: supported-logs/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs.md
+            displayName: Diagnostic logs
           - name: Microsoft.HealthDataAIServices/deidServices
             href: supported-logs/microsoft-healthdataaiservices-deidservices-logs.md
             displayName: Audit Logs
@@ -827,7 +863,7 @@ items:
             href: supported-logs/microsoft-insights-components-logs.md
             displayName: Availability results,Browser
               timings,Dependencies,Events,Exceptions,Metrics,Page
-              views,Performance counters,Requests,System events,Traces
+              views,Performance counters,Requests,System events,Traces,Resources
           - name: Microsoft.Insights/datacollectionrules
             href: supported-logs/microsoft-insights-datacollectionrules-logs.md
             displayName: Log Errors
@@ -878,6 +914,9 @@ items:
           - name: Microsoft.NetApp/netAppAccounts/capacityPools
             href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-logs.md
             displayName: Capacity Pool Autoscaled
+          - name: Microsoft.NetApp/netAppAccounts/capacityPools/caches
+            href: supported-logs/microsoft-netapp-netappaccounts-capacitypools-caches-logs.md
+            displayName: ANF Cache Volumes File Access Logs
           - name: Microsoft.Network/applicationgateways
             href: supported-logs/microsoft-network-applicationgateways-logs.md
             displayName: Application Gateway Access Log,Application Gateway Firewall
@@ -885,16 +924,16 @@ items:
           - name: Microsoft.Network/azureFirewalls
             href: supported-logs/microsoft-network-azurefirewalls-logs.md
             displayName: Azure Firewall Application Rule,Azure Firewall Network Rule
-              Aggregation (Policy Analytics),Azure Firewall DNS query,Azure
-              Firewall Fat Flow Log,Azure Firewall Flow Trace Log,Azure Firewall
-              FQDN Resolution Failure,Azure Firewall IDPS Signature,Azure
-              Firewall Nat Rule,Azure Firewall Nat Rule Aggregation (Policy
-              Analytics),Azure Firewall Network Rule,Azure Firewall Application
-              Rule Aggregation (Policy Analytics),Azure Firewall Threat
-              Intelligence,Azure Firewall Application Rule (Legacy Azure
-              Diagnostics),Azure Firewall DNS Proxy (Legacy Azure
-              Diagnostics),Azure Firewall Network Rule (Legacy Azure
-              Diagnostics)
+              Aggregation (Policy Analytics),Azure Firewall DNS Flow Trace
+              Log,Azure Firewall DNS query,Azure Firewall Fat Flow Log,Azure
+              Firewall Flow Trace Log,Azure Firewall FQDN Resolution
+              Failure,Azure Firewall IDPS Signature,Azure Firewall Nat
+              Rule,Azure Firewall Nat Rule Aggregation (Policy Analytics),Azure
+              Firewall Network Rule,Azure Firewall Application Rule Aggregation
+              (Policy Analytics),Azure Firewall Threat Intelligence,Azure
+              Firewall Application Rule (Legacy Azure Diagnostics),Azure
+              Firewall DNS Proxy (Legacy Azure Diagnostics),Azure Firewall
+              Network Rule (Legacy Azure Diagnostics)
           - name: microsoft.network/bastionHosts
             href: supported-logs/microsoft-network-bastionhosts-logs.md
             displayName: Bastion Audit Logs
@@ -973,16 +1012,17 @@ items:
           - name: Microsoft.NetworkCloud/bareMetalMachines
             href: supported-logs/microsoft-networkcloud-baremetalmachines-logs.md
             displayName: Security - Defender,Security - Break Glass Audit,Security -
-              Critical,Security - Debug,Security - Error,Security -
-              Info,Security - Notice,Security - Warning,System - Critical,System
-              - Debug,System - Error,System - Info,System - Notice,System -
-              Warning
+              Audit,Security - Critical,Security - Debug,Security -
+              Error,Security - Info,Security - Notice,Security - Warning,System
+              - Critical,System - Debug,System - Error,System - Info,System -
+              Notice,System - Warning
           - name: Microsoft.NetworkCloud/clusterManagers
             href: supported-logs/microsoft-networkcloud-clustermanagers-logs.md
             displayName: Cluster Manager Deploy or Upgrade Logs
           - name: Microsoft.NetworkCloud/clusters
             href: supported-logs/microsoft-networkcloud-clusters-logs.md
-            displayName: Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
+            displayName: Kubernetes Logs,IDRAC Container Logs,Kubernetes API Audit
+              Logs,Platform Operation Logs,VM Orchestration Logs
           - name: Microsoft.NetworkCloud/kubernetesClusters
             href: supported-logs/microsoft-networkcloud-kubernetesclusters-logs.md
             displayName: Tenant Operation Logs
@@ -1000,23 +1040,28 @@ items:
           - name: Microsoft.NotificationHubs/namespaces/notificationHubs
             href: supported-logs/microsoft-notificationhubs-namespaces-notificationhubs-logs.md
             displayName: Operational Logs
+          - name: microsoft.onlineexperimentation/workspaces
+            href: supported-logs/microsoft-onlineexperimentation-workspaces-logs.md
+            displayName: Audit
           - name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
             href: supported-logs/microsoft-openenergyplatform-energyservices-logs.md
             displayName: Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS
-              Conversion Service Logs,Dataset Service Logs,Elastic Operator
-              Logs,Elasticsearch Logs,Entitlements Service Logs,File Service
-              Logs,Indexer Service Logs,Legal Service Logs,Notification Service
-              Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend
-              Service Logs,Register Service Logs,Reservoir DDMS Server
-              Logs,Schema Service Logs,Search Extensions Service Logs,Search
-              Service Logs,Storage Service Logs,Unit Service Logs,WellDelivery
-              Service Logs,Workflow Service Logs
+              Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,Elastic
+              Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File
+              Service Logs,Indexer Service Logs,Legal Service Logs,Notification
+              Service Logs,Partition Service Logs,PDSBackend Service
+              Logs,PDSFrontend Service Logs,Rafs DDMS Logs,Register Service
+              Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Schema
+              Service Logs,Search Extensions Service Logs,Search Service
+              Logs,EDS Secret Logs,Storage Service Logs,Unit Service
+              Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow
+              Service Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
           - name: Microsoft.OperationalInsights/workspaces
             href: supported-logs/microsoft-operationalinsights-workspaces-logs.md
-            displayName: Audit,Summary Logs
+            displayName: Audit,Jobs,Summary Logs
           - name: Microsoft.Orbital/geocatalogs
             href: supported-logs/microsoft-orbital-geocatalogs-logs.md
             displayName: Audit Logs,Ingestion Logs
@@ -1057,6 +1102,12 @@ items:
           - name: Microsoft.Relay/namespaces
             href: supported-logs/microsoft-relay-namespaces-logs.md
             displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines
+            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md
+            displayName: Diagnostic Logs
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
+            displayName: Diagnostic Logs
           - name: Microsoft.Search/searchServices
             href: supported-logs/microsoft-search-searchservices-logs.md
             displayName: Operation Logs
@@ -1151,12 +1202,7 @@ items:
               Link Event,Synapse RBAC Operations
           - name: Microsoft.Synapse/workspaces/bigDataPools
             href: supported-logs/microsoft-synapse-workspaces-bigdatapools-logs.md
-            displayName: Big Data Pool Applications Execution Metrics,Big Data Pool
-              Applications Ended,Big Data Pool Block Manager Events,Big Data
-              Pool Driver Logs,Big Data Pool Environment Events,Big Data Pool
-              Executor Events,Big Data Pool Executor Logs,Big Data Pool Job
-              Events,Big Data Pool Sql Execution Events,Big Data Pool Stage
-              Events,Big Data Pool Task Events
+            displayName: Big Data Pool Applications Ended
           - name: Microsoft.Synapse/workspaces/kustoPools
             href: supported-logs/microsoft-synapse-workspaces-kustopools-logs.md
             displayName: Command,Data operation,Failed ingestion,Ingestion
@@ -1178,6 +1224,9 @@ items:
           - name: Microsoft.Web/hostingEnvironments
             href: supported-logs/microsoft-web-hostingenvironments-logs.md
             displayName: App Service Environment Platform Logs
+          - name: Microsoft.Web/serverfarms
+            href: supported-logs/microsoft-web-serverfarms-logs.md
+            displayName: App Service Console Logs,App Service Platform logs
           - name: Microsoft.Web/sites
             href: supported-logs/microsoft-web-sites-logs.md
             displayName: Report Antivirus Audit Logs,App Service Application Logs,Access
@@ -1197,13 +1246,27 @@ items:
           - name: microsoft.workloads/sapvirtualinstances
             href: supported-logs/microsoft-workloads-sapvirtualinstances-logs.md
             displayName: Change Detection
+          - name: Microsoft.ZeroTrustSegmentation/segmentationManagers
+            href: supported-logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs.md
+            displayName: Segmentation Manager Request Log
           - name: NGINX.NGINXPLUS/nginxDeployments
             href: supported-logs/nginx-nginxplus-nginxdeployments-logs.md
             displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
+          - name: Oracle.Database/cloudExadataInfrastructures
+            href: supported-logs/oracle-database-cloudexadatainfrastructures-logs.md
+            displayName: Creation Events,Critical events,Delete Events,Information
+              Events,Maintenance Events,Update Events
           - name: Oracle.Database/cloudVmClusters
             href: supported-logs/oracle-database-cloudvmclusters-logs.md
-            displayName: Add Virtual Machine events,Creation Events,Delete Events,Terminate
-              Virtual Machine Events,Update Events
+            displayName: Add Virtual Machine Events,Database Backup Events,Creation
+              Events,Database Critical Events,Delete and Terminate Events,System
+              Health Events,Database Information Events,Database Restore
+              Events,Terminate Virtual Machine Events,Update Events
+          - name: Oracle.Database/dbSystems
+            href: supported-logs/oracle-database-dbsystems-logs.md
+            displayName: Database Backup Events,Creation Events,Database Critical
+              Events,Delete and Terminate Events,System Health Events,Database
+              Information Events,Database Restore Events,Update Events
   - name: Azure Monitor Log Analytics tables
     href: ./tables-index.md
     items:
@@ -1226,6 +1289,8 @@ items:
             href: tables/microsoft-app_managedenvironments.md
           - name: microsoft.appconfiguration/configurationstores
             href: tables/microsoft-appconfiguration_configurationstores.md
+          - name: microsoft.applink/applinks/applinksmembers
+            href: tables/microsoft-applink_applinks_applinksmembers.md
           - name: microsoft.appplatform/spring
             href: tables/microsoft-appplatform_spring.md
           - name: microsoft.attestation/attestationproviders
@@ -1238,6 +1303,8 @@ items:
             href: tables/microsoft-azureadgraph_tenants.md
           - name: microsoft.azuredatatransfer/connections
             href: tables/microsoft-azuredatatransfer_connections.md
+          - name: microsoft.azuremonitordiagnosticsagents/datacollection
+            href: tables/microsoft-azuremonitordiagnosticsagents_datacollection.md
           - name: microsoft.azureplaywrightservice/accounts
             href: tables/microsoft-azureplaywrightservice_accounts.md
           - name: microsoft.azuresphere/catalogs
@@ -1256,6 +1323,8 @@ items:
             href: tables/microsoft-cache_redis.md
           - name: microsoft.cache/redisenterprise
             href: tables/microsoft-cache_redisenterprise.md
+          - name: microsoft.cdn/edgeactions
+            href: tables/microsoft-cdn_edgeactions.md
           - name: microsoft.cdn/profiles
             href: tables/microsoft-cdn_profiles.md
           - name: microsoft.chaos/experiments
@@ -1270,6 +1339,8 @@ items:
             href: tables/microsoft-compute_virtualmachinescalesets.md
           - name: microsoft.conenctedvmwarevsphere/virtualmachines
             href: tables/microsoft-conenctedvmwarevsphere_virtualmachines.md
+          - name: microsoft.confidentialledger/ledgers
+            href: tables/microsoft-confidentialledger_ledgers.md
           - name: microsoft.confidentialledger/managedccfs
             href: tables/microsoft-confidentialledger_managedccfs.md
           - name: microsoft.connectedcache/cachenodes
@@ -1284,6 +1355,8 @@ items:
             href: tables/microsoft-containerservice_managedclusters.md
           - name: microsoft.d365customerinsights/instances
             href: tables/microsoft-d365customerinsights_instances.md
+          - name: microsoft.dashboard/dashboard
+            href: tables/microsoft-dashboard_dashboard.md
           - name: microsoft.dashboard/grafana
             href: tables/microsoft-dashboard_grafana.md
           - name: microsoft.databricks/workspaces
@@ -1334,6 +1407,8 @@ items:
             href: tables/microsoft-documentdb_databaseaccounts.md
           - name: microsoft.documentdb/mongoclusters
             href: tables/microsoft-documentdb_mongoclusters.md
+          - name: microsoft.durabletask/schedulers
+            href: tables/microsoft-durabletask_schedulers.md
           - name: microsoft.edge/diagnostics
             href: tables/microsoft-edge_diagnostics.md
           - name: microsoft.eventgrid/domains
@@ -1362,6 +1437,8 @@ items:
             href: tables/microsoft-healthcareapis_services.md
           - name: microsoft.healthcareapis/workspaces
             href: tables/microsoft-healthcareapis_workspaces.md
+          - name: microsoft.healthcareinterop/workspaces
+            href: tables/microsoft-healthcareinterop_workspaces.md
           - name: microsoft.healthdataaiservices/deidservices
             href: tables/microsoft-healthdataaiservices_deidservices.md
           - name: microsoft.hybridcontainerservice/provisionedclusters
@@ -1540,8 +1617,12 @@ items:
             href: tables/microsoft-web_sites.md
           - name: microsoft.workloadmonitor/monitors
             href: tables/microsoft-workloadmonitor_monitors.md
+          - name: microsoft.zerotrustsegmentation/segmentationmanagers
+            href: tables/microsoft-zerotrustsegmentation_segmentationmanagers.md
           - name: nginx.nginxplus/nginxdeployments
             href: tables/nginx-nginxplus_nginxdeployments.md
+          - name: oracle.database/cloudvmclusters
+            href: tables/oracle-database_cloudvmclusters.md
       - name: Log Analytics tables by table name
         expanded: false
         items:
@@ -1603,6 +1684,10 @@ items:
             href: tables/absbotrequests.md
           - name: ACICollaborationAudit
             href: tables/acicollaborationaudit.md
+          - name: ACLTransactionLogs
+            href: tables/acltransactionlogs.md
+          - name: ACLUserDefinedLogs
+            href: tables/acluserdefinedlogs.md
           - name: ACRConnectedClientList
             href: tables/acrconnectedclientlist.md
           - name: ACREntraAuthenticationAuditLog
@@ -1737,16 +1822,22 @@ items:
             href: tables/afsauditlogs.md
           - name: AGCAccessLogs
             href: tables/agcaccesslogs.md
+          - name: AGCFirewallLogs
+            href: tables/agcfirewalllogs.md
           - name: AGSGrafanaLoginEvents
             href: tables/agsgrafanaloginevents.md
           - name: AGSGrafanaUsageInsightsEvents
             href: tables/agsgrafanausageinsightsevents.md
+          - name: AGSUpdateEvents
+            href: tables/agsupdateevents.md
           - name: AGWAccessLogs
             href: tables/agwaccesslogs.md
           - name: AGWFirewallLogs
             href: tables/agwfirewalllogs.md
           - name: AGWPerformanceLogs
             href: tables/agwperformancelogs.md
+          - name: AHCIDiagnosticLogs
+            href: tables/ahcidiagnosticlogs.md
           - name: AHDSDeidAuditLogs
             href: tables/ahdsdeidauditlogs.md
           - name: AHDSDicomAuditLogs
@@ -1801,6 +1892,8 @@ items:
             href: tables/asrv2replicationpolicies.md
           - name: ASRv2ReplicationVaults
             href: tables/asrv2replicationvaults.md
+          - name: ASimAlertEventLogs
+            href: tables/asimalerteventlogs.md
           - name: ASimAuditEventLogs
             href: tables/asimauditeventlogs.md
           - name: ASimAuthenticationEventLogs
@@ -1847,12 +1940,18 @@ items:
             href: tables/avssyslog.md
           - name: AVSVcSyslog
             href: tables/avsvcsyslog.md
+          - name: AWSALBAccessLogs
+            href: tables/awsalbaccesslogs.md
           - name: AWSCloudTrail
             href: tables/awscloudtrail.md
           - name: AWSCloudWatch
             href: tables/awscloudwatch.md
+          - name: AWSELBFlowLogs
+            href: tables/awselbflowlogs.md
           - name: AWSGuardDuty
             href: tables/awsguardduty.md
+          - name: AWSNLBAccessLogs
+            href: tables/awsnlbaccesslogs.md
           - name: AWSNetworkFirewallAlert
             href: tables/awsnetworkfirewallalert.md
           - name: AWSNetworkFirewallFlow
@@ -1873,6 +1972,8 @@ items:
             href: tables/azfwapplicationrule.md
           - name: AZFWApplicationRuleAggregation
             href: tables/azfwapplicationruleaggregation.md
+          - name: AZFWDnsFlowTrace
+            href: tables/azfwdnsflowtrace.md
           - name: AZFWDnsQuery
             href: tables/azfwdnsquery.md
           - name: AZFWFatFlow
@@ -2011,6 +2112,8 @@ items:
             href: tables/apimanagementgatewayllmlog.md
           - name: ApiManagementGatewayLogs
             href: tables/apimanagementgatewaylogs.md
+          - name: ApiManagementGatewayMCPLog
+            href: tables/apimanagementgatewaymcplog.md
           - name: ApiManagementWebSocketConnectionLogs
             href: tables/apimanagementwebsocketconnectionlogs.md
           - name: AppAvailabilityResults
@@ -2185,6 +2288,8 @@ items:
             href: tables/containerlog.md
           - name: ContainerLogV2
             href: tables/containerlogv2.md
+          - name: ContainerNetworkLogs
+            href: tables/containernetworklogs.md
           - name: ContainerNodeInventory
             href: tables/containernodeinventory.md
           - name: ContainerRegistryLoginEvents
@@ -2193,6 +2298,8 @@ items:
             href: tables/containerregistryrepositoryevents.md
           - name: ContainerServiceLog
             href: tables/containerservicelog.md
+          - name: CopilotActivity
+            href: tables/copilotactivity.md
           - name: CrowdStrikeAlerts
             href: tables/crowdstrikealerts.md
           - name: CrowdStrikeDetections
@@ -2229,6 +2336,10 @@ items:
             href: tables/dsmdataclassificationlogs.md
           - name: DSMDataLabelingLogs
             href: tables/dsmdatalabelinglogs.md
+          - name: DataSetOutput
+            href: tables/datasetoutput.md
+          - name: DataSetRuns
+            href: tables/datasetruns.md
           - name: DataTransferOperations
             href: tables/datatransferoperations.md
           - name: DatabricksAccounts
@@ -2369,8 +2480,12 @@ items:
             href: tables/deviceconnectsession.md
           - name: DeviceCustomFileEvents
             href: tables/devicecustomfileevents.md
+          - name: DeviceCustomImageLoadEvents
+            href: tables/devicecustomimageloadevents.md
           - name: DeviceCustomNetworkEvents
             href: tables/devicecustomnetworkevents.md
+          - name: DeviceCustomProcessEvents
+            href: tables/devicecustomprocessevents.md
           - name: DeviceCustomScriptEvents
             href: tables/devicecustomscriptevents.md
           - name: DeviceEtw
@@ -2421,6 +2536,8 @@ items:
             href: tables/dnsevents.md
           - name: DnsInventory
             href: tables/dnsinventory.md
+          - name: DurableTaskSchedulerLogs
+            href: tables/durabletaskschedulerlogs.md
           - name: DynamicEventCollection
             href: tables/dynamiceventcollection.md
           - name: DynamicSummary
@@ -2443,6 +2560,8 @@ items:
             href: tables/egnsuccessfulmqttconnections.md
           - name: ETWEvent
             href: tables/etwevent.md
+          - name: EdgeActionConsoleLog
+            href: tables/edgeactionconsolelog.md
           - name: EmailAttachmentInfo
             href: tables/emailattachmentinfo.md
           - name: EmailEvents
@@ -2701,8 +2820,6 @@ items:
             href: tables/mdcdetectionprocessv2events.md
           - name: MDCFileIntegrityMonitoringEvents
             href: tables/mdcfileintegritymonitoringevents.md
-          - name: MDECustomCollectionDeviceFileEvents
-            href: tables/mdecustomcollectiondevicefileevents.md
           - name: MDPResourceLog
             href: tables/mdpresourcelog.md
           - name: MNFDeviceUpdates
@@ -2715,6 +2832,8 @@ items:
             href: tables/mpcingestionlogs.md
           - name: McasShadowItReporting
             href: tables/mcasshadowitreporting.md
+          - name: MeshControlPlane
+            href: tables/meshcontrolplane.md
           - name: MicrosoftAzureBastionAuditLogs
             href: tables/microsoftazurebastionauditlogs.md
           - name: MicrosoftDataShareReceivedSnapshotLog
@@ -2731,6 +2850,10 @@ items:
             href: tables/microsoftpurviewinformationprotection.md
           - name: MicrosoftServicePrincipalSignInLogs
             href: tables/microsoftserviceprincipalsigninlogs.md
+          - name: MySqlAuditLogs
+            href: tables/mysqlauditlogs.md
+          - name: MySqlSlowLogs
+            href: tables/mysqlslowlogs.md
           - name: NCBMBreakGlassAuditLogs
             href: tables/ncbmbreakglassauditlogs.md
           - name: NCBMSecurityDefenderLogs
@@ -2739,6 +2862,8 @@ items:
             href: tables/ncbmsecuritylogs.md
           - name: NCBMSystemLogs
             href: tables/ncbmsystemlogs.md
+          - name: NCCIDRACLogs
+            href: tables/nccidraclogs.md
           - name: NCCKubernetesLogs
             href: tables/ncckuberneteslogs.md
           - name: NCCPlatformOperationsLogs
@@ -2765,6 +2890,8 @@ items:
             href: tables/ntaipdetails.md
           - name: NTANetAnalytics
             href: tables/ntanetanalytics.md
+          - name: NTARuleRecommendation
+            href: tables/ntarulerecommendation.md
           - name: NTATopologyDetails
             href: tables/ntatopologydetails.md
           - name: NWConnectionMonitorDNSResult
@@ -2779,6 +2906,8 @@ items:
             href: tables/networkaccessalerts.md
           - name: NetworkAccessConnectionEvents
             href: tables/networkaccessconnectionevents.md
+          - name: NetworkAccessGenerativeAIInsights
+            href: tables/networkaccessgenerativeaiinsights.md
           - name: NetworkAccessTraffic
             href: tables/networkaccesstraffic.md
           - name: NetworkSessions
@@ -2809,16 +2938,52 @@ items:
             href: tables/olpsupplychainentityoperations.md
           - name: OLPSupplyChainEvents
             href: tables/olpsupplychainevents.md
+          - name: OTelEvents
+            href: tables/otelevents.md
+          - name: OTelLogs
+            href: tables/otellogs.md
+          - name: OTelResources
+            href: tables/otelresources.md
+          - name: OTelSpans
+            href: tables/otelspans.md
+          - name: OTelTraces
+            href: tables/oteltraces.md
+          - name: OTelTracesAgent
+            href: tables/oteltracesagent.md
           - name: OfficeActivity
             href: tables/officeactivity.md
           - name: OktaSystemLogs
             href: tables/oktasystemlogs.md
           - name: Operation
             href: tables/operation.md
+          - name: OracleCloudDatabase
+            href: tables/oracleclouddatabase.md
           - name: PFTitleAuditLogs
             href: tables/pftitleauditlogs.md
+          - name: PGSQLAutovacuumStats
+            href: tables/pgsqlautovacuumstats.md
+          - name: PGSQLDbTransactionsStats
+            href: tables/pgsqldbtransactionsstats.md
+          - name: PGSQLPgBouncer
+            href: tables/pgsqlpgbouncer.md
+          - name: PGSQLPgStatActivitySessions
+            href: tables/pgsqlpgstatactivitysessions.md
+          - name: PGSQLQueryStoreQueryText
+            href: tables/pgsqlquerystorequerytext.md
+          - name: PGSQLQueryStoreRuntime
+            href: tables/pgsqlquerystoreruntime.md
+          - name: PGSQLQueryStoreWaits
+            href: tables/pgsqlquerystorewaits.md
+          - name: PGSQLServerLogs
+            href: tables/pgsqlserverlogs.md
           - name: Perf
             href: tables/perf.md
+          - name: PerfInsightsFindings
+            href: tables/perfinsightsfindings.md
+          - name: PerfInsightsImpactedResources
+            href: tables/perfinsightsimpactedresources.md
+          - name: PerfInsightsRun
+            href: tables/perfinsightsrun.md
           - name: PowerAppsActivity
             href: tables/powerappsactivity.md
           - name: PowerAutomateActivity
@@ -2845,6 +3010,8 @@ items:
             href: tables/purviewscanstatuslogs.md
           - name: PurviewSecurityLogs
             href: tables/purviewsecuritylogs.md
+          - name: QualysKnowledgeBase
+            href: tables/qualysknowledgebase.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
           - name: RemoteNetworkHealthLogs
@@ -2897,6 +3064,10 @@ items:
             href: tables/securityregulatorycompliance.md
           - name: SentinelAudit
             href: tables/sentinelaudit.md
+          - name: SentinelBehaviorEntities
+            href: tables/sentinelbehaviorentities.md
+          - name: SentinelBehaviorInfo
+            href: tables/sentinelbehaviorinfo.md
           - name: SentinelHealth
             href: tables/sentinelhealth.md
           - name: ServiceFabricOperationalEvent
@@ -3105,6 +3276,8 @@ items:
             href: tables/wvdhostregistrations.md
           - name: WVDManagement
             href: tables/wvdmanagement.md
+          - name: WVDMultiLinkAdd
+            href: tables/wvdmultilinkadd.md
           - name: WVDSessionHostManagement
             href: tables/wvdsessionhostmanagement.md
           - name: WaaSDeploymentStatus
@@ -3137,6 +3310,8 @@ items:
             href: tables/workloaddiagnosticlogs.md
           - name: WorkloadMonitoringPerf
             href: tables/workloadmonitoringperf.md
+          - name: ZTSRequest
+            href: tables/ztsrequest.md
   - name: Log Analytics sample queries
     href: ./queries-by-table.md
     items:
@@ -3185,6 +3360,10 @@ items:
             href: queries/ABSBotRequests.md
           - name: ACICollaborationAudit
             href: queries/ACICollaborationAudit.md
+          - name: ACLTransactionLogs
+            href: queries/ACLTransactionLogs.md
+          - name: ACLUserDefinedLogs
+            href: queries/ACLUserDefinedLogs.md
           - name: ACRConnectedClientList
             href: queries/ACRConnectedClientList.md
           - name: ACREntraAuthenticationAuditLog
@@ -3269,6 +3448,10 @@ items:
             href: queries/AGCAccessLogs.md
           - name: AGSGrafanaLoginEvents
             href: queries/AGSGrafanaLoginEvents.md
+          - name: AGSUpdateEvents
+            href: queries/AGSUpdateEvents.md
+          - name: AHCIDiagnosticLogs
+            href: queries/AHCIDiagnosticLogs.md
           - name: AHDSDicomAuditLogs
             href: queries/AHDSDicomAuditLogs.md
           - name: AHDSDicomDiagnosticLogs
@@ -3471,6 +3654,8 @@ items:
             href: queries/ContainerLog.md
           - name: ContainerLogV2
             href: queries/ContainerLogV2.md
+          - name: ContainerNetworkLogs
+            href: queries/ContainerNetworkLogs.md
           - name: ContainerNodeInventory
             href: queries/ContainerNodeInventory.md
           - name: ContainerRegistryLoginEvents
@@ -3481,10 +3666,20 @@ items:
             href: queries/ContainerServiceLog.md
           - name: CoreAzureBackup
             href: queries/CoreAzureBackup.md
+          - name: CrowdStrikeAlerts
+            href: queries/CrowdStrikeAlerts.md
+          - name: CrowdStrikeDetections
+            href: queries/CrowdStrikeDetections.md
+          - name: CrowdStrikeIncidents
+            href: queries/CrowdStrikeIncidents.md
           - name: DCRLogErrors
             href: queries/DCRLogErrors.md
           - name: DNSQueryLogs
             href: queries/DNSQueryLogs.md
+          - name: DataSetOutput
+            href: queries/DataSetOutput.md
+          - name: DataSetRuns
+            href: queries/DataSetRuns.md
           - name: DataTransferOperations
             href: queries/DataTransferOperations.md
           - name: DatabricksBudgetPolicyCentral
@@ -3517,6 +3712,8 @@ items:
             href: queries/DeviceTvmSoftwareVulnerabilities.md
           - name: DnsEvents
             href: queries/DnsEvents.md
+          - name: DurableTaskSchedulerLogs
+            href: queries/DurableTaskSchedulerLogs.md
           - name: EGNFailedHttpDataPlaneOperations
             href: queries/EGNFailedHttpDataPlaneOperations.md
           - name: EGNFailedMqttConnections
@@ -3527,6 +3724,8 @@ items:
             href: queries/EGNSuccessfulHttpDataPlaneOperations.md
           - name: EGNSuccessfulMqttConnections
             href: queries/EGNSuccessfulMqttConnections.md
+          - name: EdgeActionConsoleLog
+            href: queries/EdgeActionConsoleLog.md
           - name: EmailAttachmentInfo
             href: queries/EmailAttachmentInfo.md
           - name: EmailEvents
@@ -3585,6 +3784,8 @@ items:
             href: queries/MNFSystemSessionHistoryUpdates.md
           - name: MNFSystemStateMessageUpdates
             href: queries/MNFSystemStateMessageUpdates.md
+          - name: MeshControlPlane
+            href: queries/MeshControlPlane.md
           - name: MicrosoftDataShareReceivedSnapshotLog
             href: queries/MicrosoftDataShareReceivedSnapshotLog.md
           - name: MicrosoftDataShareSentSnapshotLog
@@ -3593,10 +3794,16 @@ items:
             href: queries/MicrosoftGraphActivityLogs.md
           - name: MicrosoftPurviewInformationProtection
             href: queries/MicrosoftPurviewInformationProtection.md
+          - name: MySqlAuditLogs
+            href: queries/MySqlAuditLogs.md
+          - name: MySqlSlowLogs
+            href: queries/MySqlSlowLogs.md
           - name: NGXOperationLogs
             href: queries/NGXOperationLogs.md
           - name: NGXSecurityLogs
             href: queries/NGXSecurityLogs.md
+          - name: NTARuleRecommendation
+            href: queries/NTARuleRecommendation.md
           - name: NWConnectionMonitorPathResult
             href: queries/NWConnectionMonitorPathResult.md
           - name: NWConnectionMonitorTestResult
@@ -3617,12 +3824,34 @@ items:
             href: queries/OEWExperimentScorecards.md
           - name: OLPSupplyChainEntityOperations
             href: queries/OLPSupplyChainEntityOperations.md
+          - name: OTelEvents
+            href: queries/OTelEvents.md
+          - name: OTelLogs
+            href: queries/OTelLogs.md
+          - name: OTelSpans
+            href: queries/OTelSpans.md
           - name: OfficeActivity
             href: queries/OfficeActivity.md
           - name: OktaSystemLogs
             href: queries/OktaSystemLogs.md
+          - name: PGSQLAutovacuumStats
+            href: queries/PGSQLAutovacuumStats.md
+          - name: PGSQLDbTransactionsStats
+            href: queries/PGSQLDbTransactionsStats.md
+          - name: PGSQLPgBouncer
+            href: queries/PGSQLPgBouncer.md
+          - name: PGSQLPgStatActivitySessions
+            href: queries/PGSQLPgStatActivitySessions.md
+          - name: PGSQLQueryStoreRuntime
+            href: queries/PGSQLQueryStoreRuntime.md
+          - name: PGSQLQueryStoreWaits
+            href: queries/PGSQLQueryStoreWaits.md
+          - name: PGSQLServerLogs
+            href: queries/PGSQLServerLogs.md
           - name: Perf
             href: queries/Perf.md
+          - name: PerfInsightsImpactedResources
+            href: queries/PerfInsightsImpactedResources.md
           - name: PowerAppsActivity
             href: queries/PowerAppsActivity.md
           - name: PowerAutomateActivity
@@ -3641,6 +3870,8 @@ items:
             href: queries/ProtectionStatus.md
           - name: PurviewSecurityLogs
             href: queries/PurviewSecurityLogs.md
+          - name: QualysKnowledgeBase
+            href: queries/QualysKnowledgeBase.md
           - name: REDConnectionEvents
             href: queries/REDConnectionEvents.md
           - name: ResourceManagementPublicAccessLogs
@@ -3737,3 +3968,5 @@ items:
             href: queries/WireData.md
           - name: WorkloadDiagnosticLogs
             href: queries/WorkloadDiagnosticLogs.md
+          - name: ZTSRequest
+            href: queries/ZTSRequest.md

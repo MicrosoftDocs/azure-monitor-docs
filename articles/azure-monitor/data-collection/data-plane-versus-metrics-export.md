@@ -1,26 +1,26 @@
 ---
-title: Data plane API and metrics batch query versus metrics export 
+title: Metrics export feature comparison
 description: A comparison of Data plane API or metrics batch query and metrics export.
 ms.topic: concept-article
-ms.date: 09/15/2024
+ms.date: 01/20/2026
 
 # As an Azure administrator, I want to understand the differences between the Data Plane API or Metrics Batch query and Metrics export so that I can choose the right service for my scenario.
 
 ---
 
-# Data plane metrics batch API query versus metrics export
+# Metrics export feature comparison
 
-Azure Monitor provides two ways to access metrics data at scale: Data plane or Metrics Batch API, and Metrics Export. Although both work for collecting metrics data, they're more effective for different use cases. This article provides a scenario comparison for using these services, and recommendations on when to use which service.
+Azure Monitor provides two ways to access metrics data at scale: [Azure Monitor Metrics Data plane API](/rest/api/monitor/metrics-batch/batch) and [metrics export](./metrics-export-create.md). Although both collect metrics data, they're more effective for different use cases. This article provides a scenario comparison for using these features and recommendations on when to use each.
 
 ## Data plane metrics batch query
 
-The data plane API or Metrics Batch query allows you to query historical metrics data for up to 50 resources in a single API call. The query supports filtering based on subscription, metric, time and other dimensions, and provides aggregation such as sum, average, minimum, and maximum.
+The data plane API, or Metrics Batch query, allows you to query historical metrics data for up to 50 resources in a single API call. The query supports filtering based on subscription, metric, time and other dimensions, and provides aggregation such as sum, average, minimum, and maximum.
 
-The batch query can significantly improve query throughput and reduce the risk of throttling. For more information on how to use the data plane metrics batch API, see [Azure Monitor Metrics Data plane API](/rest/api/monitor/metrics-batch/batch). This service is ideal for scenarios where you want to query metrics data across time, and multiple resources in a single subscription and region.
+The batch query can significantly improve query throughput and reduce the risk of throttling. This feature is ideal for scenarios where you want to query metrics data across time, and multiple resources in a single subscription and region.
 
 ## Metrics export
 
-The Metrics Export uses data collection rules (DCRs) to stream platform metrics in near real-time to different Azure destinations such as Storage Accounts, Event Hubs, and Log Analytics Workspace for persistent storage. While you can filter which metrics are exported, there's no access to historical data. This service is ideal for scenarios where you want to continuously export metrics data in real time across subscriptions and resources. For more information on how to use the Metrics Export service, see [Export metrics using Data Collection Rules](data-collection-metrics.md).
+The metrics export uses [data collection rules (DCRs)](./data-collection-rule-overview.md) to stream platform metrics in near real-time to different Azure destinations such as Storage Accounts, Event Hubs, and Log Analytics Workspaces for persistent storage. While you can filter which metrics are exported, historical data is only available from the destination the metrics were sent to. This feature is ideal for scenarios where you want to continuously export metrics data in real time across subscriptions and resources.
 
 ## Comparison and recommendations 
 

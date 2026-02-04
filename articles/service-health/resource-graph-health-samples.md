@@ -1,0 +1,27 @@
+---
+title: Sample queries for Azure Resource Health
+description: Azure Resource Graph sample queries for Resource Health showing the use of resource types and tables to access Azure Resource Health related resources and properties.
+ms.date: 08/07/2025
+ms.topic: sample
+ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-azurecli
+---
+# Azure Resource Graph sample queries for Azure Resource Health
+
+
+This page is a collection of [Azure Resource Graph](/azure/governance/resource-graph/overview) sample queries for Azure Resource Health.
+>[!NOTE]
+>After each query, you should see the updated results within 5 minutes in general.
+
+## Overview
+This page helps you monitor and understand the health of your Azure services and resources using Kusto Query Language (KQL) through Azure Resource Graph. 
+
+It includes sample queries specifically for Azure Resource Health.
+
+## Resource Health sample queries
+
+[!INCLUDE [azure-resource-graph-samples-cat-resourcehealth](./includes/resource-health.md)]
+
+## Next steps
+
+- Learn more about the [query language](/azure/governance/resource-graph/concepts/query-language).
+- Learn more about how to [explore resources](/azure/governance/resource-graph/concepts/explore-resources).

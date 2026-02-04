@@ -1,7 +1,7 @@
 ---
 title: Roles, permissions, and security in Azure Monitor
 description: Learn how to use roles and permissions in Azure Monitor to restrict access to monitoring resources.
-ms.topic: article
+ms.topic: how-to
 ms.custom: devx-track-azurepowershell
 ms.date: 02/12/2025
 ms.reviewer: dalek
@@ -78,8 +78,6 @@ New-AzRoleDefinition -Role $role
 > Access to alerts, diagnostic settings, and metrics for a resource requires that the user has read access to the resource type and scope of that resource. Creating a diagnostic setting that sends data to a storage account or streams to event hubs requires the user to also have ListKeys permission on the target resource.
 
 ## Assign a role
-
-[!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 To assign a role, see [Assign Azure roles using Azure PowerShell](/azure/role-based-access-control/role-assignments-powershell).
 

@@ -16,6 +16,221 @@ This article includes samples of [Azure Resource Manager templates](/azure/azure
 > [!NOTE]
 > The combined size of all data in the log alert rule properties cannot exceed 64KB. This can be caused by too many dimensions, the query being too large, too many action groups, or a long description. When creating a large alert rule, remember to optimize these areas.
 
+## Template for dynamic threshold (from version 2025-01-01-preview)
+
+The following sample creates a rule that uses a dynamic threshold.
+
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('Name of the alert rule')
+@minLength(1)
+param alertRuleName string
+
+@description('Description of alert rule')
+param alertDescription string = ''
+
+@description('Severity of alert {0,1,2,3,4}')
+@allowed([
+  0
+  1
+  2
+  3
+  4
+])
+param alertSeverity int = 3
+
+@description('Specifies whether the alert is enabled')
+param isEnabled bool = true
+
+@description('Scope (full resource Id) on which the alert rule query will run. For example /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroups/ResourceGroupName/providers/Microsoft.compute/virtualMachines/VM_xyz')
+@minLength(1)
+param scope string
+
+@description('The ID of the action group that is triggered when the alert is activated or deactivated')
+param actionGroupId string = ''
+
+resource alertRule 'microsoft.insights/scheduledqueryrules@2025-01-01-preview' = {
+  name: alertRuleName
+  location: 'eastus'
+  kind: 'LogAlert'
+  properties: {
+    description: alertDescription
+    severity: alertSeverity
+    enabled: isEnabled
+    evaluationFrequency: 'PT5M'
+    scopes: [
+      scope
+    ]
+    windowSize: 'PT10M'
+    criteria: {
+      allOf: [
+        {
+          query: 'KubePodInventory | summarize restartCount = sum(PodRestartCount) by bin(TimeGenerated, 10m), ClusterName,Namespace, Name'
+          metricMeasureColumn: 'restartCount'
+          timeAggregation: 'Count'
+          dimensions: [
+            {
+              name: 'Name'
+              operator: 'Include'
+              values: [
+                '*'
+              ]
+            }
+          ]
+          operator: 'GreaterOrLessThan'
+          failingPeriods: {
+            numberOfEvaluationPeriods: 4
+            minFailingPeriodsToAlert: 4
+          }
+          alertSensitivity: 'Medium'
+          criterionType: 'DynamicThresholdCriterion'
+        }
+      ]
+    }
+    actions: {
+      actionGroups: [
+        actionGroupId
+      ]
+    }
+  }
+}
+```
+
+
+# [JSON](#tab/json)
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "alertRuleName": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Name of the alert rule"
+      }
+    },
+    "alertDescription": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Description of alert rule"
+      }
+    },
+    "alertSeverity": {
+      "type": "int",
+      "defaultValue": 3,
+      "allowedValues": [0, 1, 2, 3, 4],
+      "metadata": {
+        "description": "Severity of alert {0,1,2,3,4}"
+      }
+    },
+    "isEnabled": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "Specifies whether the alert is enabled"
+      }
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1,
+      "metadata": {
+        "description": "Scope (full resource Id) on which the alert rule query will run. For example /subscriptions/00000000-0000-0000-0000-0000-00000000/resourceGroups/ResourceGroupName/providers/Microsoft.compute/virtualMachines/VM_xyz"
+      }
+    },
+    "actionGroupId": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "The ID of the action group that is triggered when the alert is activated or deactivated"
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "microsoft.insights/scheduledqueryrules",
+      "apiVersion": "2025-01-01-preview",
+      "name": "[parameters('alertRuleName')]",
+      "location": "eastus",
+      "kind": "LogAlert",
+      "properties": {
+        "description": "[parameters('alertDescription')]",
+        "severity": "[parameters('alertSeverity')]",
+        "enabled": "[parameters('isEnabled')]",
+        "evaluationFrequency": "PT5M",
+        "scopes": [
+          "[parameters('scope')]"
+        ],
+        "windowSize": "PT10M",
+        "criteria": {
+          "allOf": [
+            {
+              "query": "KubePodInventory | summarize restartCount = sum(PodRestartCount) by bin(TimeGenerated, 10m), ClusterName,Namespace, Name",
+			  "metricMeasureColumn": "restartCount",
+              "timeAggregation": "Count",
+              "dimensions": [
+                {
+                  "name": "Name",
+                  "operator": "Include",
+                  "values": ["*"]
+                }
+              ],
+              "operator": "GreaterOrLessThan",
+              "failingPeriods": {
+                "numberOfEvaluationPeriods": 4,
+                "minFailingPeriodsToAlert": 4
+              },
+              "alertSensitivity": "Medium",
+              "criterionType": "DynamicThresholdCriterion"
+            }
+          ]
+        },
+        "actions": {
+          "actionGroups": [
+            "[parameters('actionGroupId')]"
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+---
+
+### Parameter file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "alertName": {
+      "value": "New Alert"
+    },
+    "alertDescription": {
+      "value": "New alert created via template"
+    },
+    "alertSeverity": {
+      "value":3
+    },
+    "isEnabled": {
+      "value": true
+    },
+    "scope": {
+      "value": "/subscriptions/replace-with-subscription-id/resourceGroups/replace-with-resourceGroup-name/providers/microsoft.operationalinsights/workspaces/replace-with-resource-name"
+    },
+    "actionGroupId": {
+      "value": "/subscriptions/replace-with-subscription-id/resourceGroups/resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group"
+    }
+  }
+}
+```
+
+
 ## Template for all resource types (from version 2021-08-01)
 
 The following sample creates a rule that can target any resource.
@@ -32,7 +247,7 @@ param alertName string
 param location string
 
 @description('Description of alert')
-param alertDescription string = 'This is a metric alert'
+param alertDescription string = 'This is a log alert'
 
 @description('Severity of alert {0,1,2,3,4}')
 @allowed([
@@ -57,7 +272,7 @@ param checkWorkspaceAlertsStorageConfigured bool = false
 @minLength(1)
 param resourceId string
 
-@description('Name of the metric used in the comparison to activate the alert.')
+@description('Log query that the alert rule will run.')
 @minLength(1)
 param query string
 
@@ -218,7 +433,7 @@ resource alert 'Microsoft.Insights/scheduledQueryRules@2021-08-01' = {
     },
     "alertDescription": {
       "type": "string",
-      "defaultValue": "This is a metric alert",
+      "defaultValue": "This is a log alert",
       "metadata": {
         "description": "Description of alert"
       }
@@ -269,7 +484,7 @@ resource alert 'Microsoft.Insights/scheduledQueryRules@2021-08-01' = {
       "type": "string",
       "minLength": 1,
       "metadata": {
-        "description": "Name of the metric used in the comparison to activate the alert."
+        "description": "Log query that the alert rule will run."
       }
     },
     "metricMeasureColumn": {

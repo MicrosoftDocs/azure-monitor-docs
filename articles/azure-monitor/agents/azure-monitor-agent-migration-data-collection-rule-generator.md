@@ -1,11 +1,9 @@
 ---
 title: Workspace configuration to DCR config generator
-description: Using the Workspace configuration to DCR config generator to help migrate from MMA to AMA agents
+description: Using the Workspace configuration to DCR config generator to help migrate from Microsoft Monitoring Agent (MMA) to Azure Monitor Agent (AMA)
 ms.topic: concept-article
 ms.date: 11/14/2024
-
 # Customer intent: As an azure administrator, I want to understand how to use the workspace configuration to DCR config generator.
-
 ---
 
 # Convert workspace configuration to DCR configurations
@@ -21,18 +19,16 @@ The workspace configuration to DCR config generator is a PowerShell that reads t
 
 ## Installation and execution
 
-Download the [PowerShell script](https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator) from Git Hub.
+Download the [PowerShell script](https://github.com/microsoft/AzureMonitorCommunity/tree/master/Azure%20Services/Azure%20Monitor/Agents/Migration%20Tools/DCR%20Config%20Generator) from GitHub.
 
+The script retrieves the configuration of the legacy agent configurations from the workspace and generates DCR ARM templates for each supported DCR type in the specified output folder. More than one template might get created, one for each DCR type.
 
-The script retrieves the configuration of the legacy agent configurations from the workspace and generates DCR ARM templates for each supported DCR type in the specified output folder. More than one template may be created, one for each DCR type.
-
-For multiple workspaces with data collections configured, you must run the script for each workspace. IIS logs the script also creates an additional data collection role as part of that configuration.
-
+For multiple workspaces with configured data collections, you must run the script for each workspace. Internet Information Services (IIS) logs the script also creates another data collection role as part of that configuration.
 
 When the script completes, it prompts you to test the deployment of the template in your environment. Choose to either let it deploy the template for you, or store the template specified output folder
 
 > [!NOTE]
-> The script does not associate the DCRs with the workspace. You must create your own data collection rule associations (DCRAs), to associate the DCRs with the relevant servers. This allows you to control the deployment of the DCRs to the servers and test the DCRs on a sample of servers before deploying at scale. 
+> The script doesn't associate the DCRs with the workspace. You must create your own data collection rule associations (DCRAs), to associate the DCRs with the relevant servers. It allows you to control the deployment of the DCRs to the servers and test the DCRs on a sample of servers before deploying at scale.
 
 
 To run script, copy the following command and replace the parameters with your values:
@@ -52,12 +48,11 @@ To run script, copy the following command and replace the parameters with your v
 | `DCRName`               | YES       | The base name used for each one the outputs DCRs                 |
 | `OutputFolder`          | NO        | The output folder path. If not provided, the working directory path is used   |
 
-
 ### Outputs:
  -  For each supported `DCR type`, the script produces a ready to be deployed DCR ARM template and a DCR payload, for users that don't need the ARM template.
 
  Currently supported DCR types:
- 
+
   - **Windows** contains `WindowsPerfCounters` and `WindowsEventLogs` data sources only
   - **Linux** contains `LinuxPerfCounters` and `Syslog` data sources only
   - **Custom Logs** contains `logFiles` data sources only

@@ -22,7 +22,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - A chaos experiment. [Create a chaos experiment by using the quickstart](chaos-studio-quickstart-azure-portal.md).
 - All resources targeted in the chaos experiment must be [added to Chaos Studio](chaos-studio-targets-capabilities.md).
 

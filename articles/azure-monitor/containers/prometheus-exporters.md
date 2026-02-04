@@ -1,7 +1,7 @@
 ---
 title: Integrate Common Workloads with Managed Service for Prometheus
 description: This article describes how to integrate AKS workloads with Azure Monitor managed service for Prometheus and lists workloads that are ready to be integrated.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 03/10/2025
 ms.reviewer: rashmy
 ---

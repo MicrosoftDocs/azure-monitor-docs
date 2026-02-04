@@ -1,14 +1,14 @@
 ---
 title: Transformations Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data.
-ms.topic: article
-ms.date: 12/06/2024
+ms.topic: concept-article
+ms.date: 01/20/2026
 ms.reviwer: nikeist
 ---
 
 # Transformations in Azure Monitor
 
-Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are performed in the cloud pipeline after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) that's applied individually to each entry in the incoming data.
+Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are run after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) that's applied individually to each entry in the incoming data.
 
 The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used. In this sample, only records where the `message` column contains the word `error` are collected.
 
@@ -41,28 +41,68 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 <sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
 
+## Azure Monitor pipeline transformations
+
+[Azure Monitor pipeline data transformations](./pipeline-transformations.md) provide similar functionality as data transformations in Azure Monitor. Both allow you to apply a KQL query to incoming data to filter or modify that data before it's sent to the next step in the data flow.
+
+Azure Monitor transformations are run after the data is received by Azure Monitor but before it's ingested in the Log Analytics workspace. Azure Monitor pipeline transformations are applied earlier in the data flow, allowing for data shaping and filtering before the data is sent to Azure Monitor. This makes pipeline transformations useful for reducing data volume and network bandwidth when sending data from edge or multicloud environments.
+
+The following table summarizes the key differences between Azure Monitor pipeline transformations and Azure Monitor transformations:
+
+| Feature | Azure Monitor Pipeline Transformations | Azure Monitor Transformations |
+|:---|:---|:---|
+| When applied | Before data is sent to Azure Monitor | After data is received by Azure Monitor.<br>Before it's stored in Log Analytics workspace |
+| Definition | Defined in data flows in Azure Monitor pipeline | Defined in Data Collection Rules (DCRs) in Azure Monitor |
+| Language | Kusto Query Language (KQL) | Kusto Query Language (KQL) |
+| Aggregations supported? | Yes | No |
+| Template supported? | Yes | No |
+
+The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network. The schema of the data output by the Azure Monitor transformation must match the schema of the destination table in the Log Analytics workspace.
+
+:::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
+
 ## Cost for transformations
 
-While transformations themselves don't incur direct costs, the following scenarios can result in additional charges:
+Processing logs (transforming and filtering) in the Azure Monitor cloud pipeline has different billing implications depending on the type of table into which data is being ingested in a Log Analytics workspace. 
+
+### Auxiliary Logs
+
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. Transformations can either increase of decrease the size of the data. 
+
+The following tables shows some examples: 
+
+|Incoming data size| Data dropped or added by transformation | Data ingested into a Log Analytics workspace as an Auxiliary Logs table| Data processing billable GBs |Data ingestion billable GBs |
+|:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
+| 20 GB                     | 12 GB dropped                         | 8 GB                                     | 20 GB                   | 8 GB             |
+| 20 GB                     | 8 GB dropped                           | 12 GB                                    | 20 GB                   | 12 GB            |
+| 20 GB                     | 4 GB added                           | 24 GB                                    | 20 GB                   | 24 GB            |
+
+See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for prices for log processing and log data ingestion.
+
+### Analytics or Basic Logs
+
+For Analytics or Basic Logs, transformations themselves don't usually incur any costs, but the following scenarios can result in additional charges:
 
 * If a transformation increases the size of the incoming data, such as by adding a calculated column, you're charged the standard ingestion rate for the extra data.
 * If a transformation reduces the ingested data by more than 50%, you're charged for the amount of filtered data above 50%.
 
-To calculate the data processing charge resulting from transformations, use the following formula:<br>[GB filtered out by transformations] - ([GB data ingested by pipeline] / 2). The following table shows examples.
+To calculate the data processing charge resulting from transformations, use the following formula:  
+<br>[GB data dropped by transformation] - ([GB incoming data size] / 2).   
+  
+The following table shows examples.
 
-| Data ingested by pipeline | Data dropped by transformation | Data ingested by Log Analytics workspace | Data processing charge | Ingestion charge |
+|Incoming data size| Data dropped or added by transformation | Data ingested into a Log Analytics workspace as an Analytics or Basic Logs table| Data processing billable GBs |Data ingestion billable GBs |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
-| 20 GB                     | 12 GB                          | 8 GB                                     | 2 GB <sup>1</sup>      | 8 GB             |
-| 20 GB                     | 8 GB                           | 12 GB                                    | 0 GB                   | 12 GB            |
-
-<sup>1</sup> This charge excludes the charge for data ingested by Log Analytics workspace.
+| 20 GB                     | 12 GB dropped                  | 8 GB                                     | 2 GB                   | 8 GB             |
+| 20 GB                     | 8 GB dropped                   | 12 GB                                    | 0 GB                   | 12 GB            |
+| 20 GB                     | 4 GB added                     | 24 GB                                    | 0 GB                   | 24 GB            |
 
 To avoid this charge, you should filter ingested data using alternative methods before applying transformations. By doing so, you can reduce the amount of data processed by transformations and, therefore, minimize any additional costs.
 
-See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for current charges for ingestion and retention of log data in Azure Monitor.
+See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing for log processing and log data ingestion.
 
 > [!IMPORTANT]
-> If Azure Sentinel is enabled for the Log Analytics workspace, there's no filtering ingestion charge regardless of how much data the transformation filters.
+> If Microsoft Sentinel is enabled for the Log Analytics workspace, there's no cost for transformation to Analytics tables regardless of how much data the transformation filters.
 
 ## Next steps
 

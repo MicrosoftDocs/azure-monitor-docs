@@ -3,7 +3,7 @@ title: Log Analytics Workspace Insights
 description: An overview of Log Analytics Workspace Insights usage, performance, health, agents, queries, and change log.
 ms.topic: how-to
 ms.reviewer: osalzberg
-ms.date: 12/28/2023
+ms.date: 08/29/2025
 
 ---
 

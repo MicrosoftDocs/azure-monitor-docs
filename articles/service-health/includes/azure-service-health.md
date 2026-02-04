@@ -2,7 +2,7 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 06/16/2025
+ms.date: 10/01/2025
 ---
 
 #### Active Service Health events by subscription 
@@ -12,7 +12,7 @@ This query shows all active Service Health events—such as service issues, plan
 An example would show each event type including a count showing how many subscriptions affected by it.
 
 >[!NOTE]
->This event subscription doesn't include emerging issues. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
+>Emerging issues aren't tied to subscription IDs and as a result can't be queried via ARG, which is subscription ID based. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
 
 
 ```kusto
@@ -75,22 +75,16 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 ---
 #### All upcoming service retirement events
 
-This query returns all upcoming Service Health events for Retirements across all your subscriptions.
+This query returns all upcoming Service Health events for retirements across all your subscriptions.
 
-```kusto
+```
 ServiceHealthResources
 | where type =~ 'Microsoft.ResourceHealth/events'
-| extend eventType = properties.EventType, status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = properties.ImpactStartTime, impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime))
-| where eventType == 'PlannedMaintenance' and impactMitigationTime > now()
-```
-
-```
-where type =~ 'Microsoft.ResourceHealth/events'
 | extend eventType = properties.EventType, eventSubType = properties.EventSubType
 | where eventType == "HealthAdvisory" and eventSubType == "Retirement"
-|extend status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = todatetime(tolong(properties.ImpactStartTime)), impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime)), impact = properties.Impact
+| extend status = properties.Status, description = properties.Title, trackingId = properties.TrackingId, summary = properties.Summary, priority = properties.Priority, impactStartTime = todatetime(tolong(properties.ImpactStartTime)), impactMitigationTime = todatetime(tolong(properties.ImpactMitigationTime)), impact = properties.Impact
 | where impactMitigationTime > datetime(now)
-|project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
+| project trackingId, subscriptionId, status, eventType, eventSubType, summary, description, priority, impactStartTime, impactMitigationTime, impact
 ```
 ---
 #### All active planned maintenance events

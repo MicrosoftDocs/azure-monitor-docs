@@ -1,8 +1,8 @@
 ---
 title: Smart Detection notification change - Azure Application Insights
 description: Change to the default notification recipients from Smart Detection. Smart Detection lets you monitor application traces with Azure Application Insights for unusual patterns in trace telemetry.
-ms.topic: article
-ms.date: 04/01/2024
+ms.topic: concept-article
+ms.date: 10/16/2025
 ms.reviewer: yagil
 ---
 

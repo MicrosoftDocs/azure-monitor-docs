@@ -170,7 +170,7 @@ These diagnostic tools help you inspect the telemetry from your app:
 
 * [Enable the .NET Profiler for Azure App Service apps](../profiler/profiler.md) 
 * [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
-* [Analytics](../logs/log-analytics-tutorial.md)
+* [Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md)
 * [Analytics smart diagnostics](../logs/log-query-overview.md)
 
 Smart detection is automatic. But maybe you'd like to set up some more alerts?

@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 07/22/2025
+ms.date: 01/27/2026
 ---
 
 # Reliability recommendations
@@ -30,6 +30,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-application-gateway.md](./includes/HighAvailability-application-gateway.md)]
 
+[!INCLUDE [HighAvailability-automation.md](./includes/HighAvailability-automation.md)]
+
 [!INCLUDE [HighAvailability-azure-ai-search.md](./includes/HighAvailability-azure-ai-search.md)]
 
 [!INCLUDE [HighAvailability-azure-arc-enabled-kubernetes-configuration.md](./includes/HighAvailability-azure-arc-enabled-kubernetes-configuration.md)]
@@ -50,11 +52,25 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-database-for-postgresql.md](./includes/HighAvailability-azure-database-for-postgresql.md)]
 
+[!INCLUDE [HighAvailability-azure-databricks.md](./includes/HighAvailability-azure-databricks.md)]
+
 [!INCLUDE [HighAvailability-azure-iot-hub.md](./includes/HighAvailability-azure-iot-hub.md)]
 
 [!INCLUDE [HighAvailability-azure-kubernetes-service-(aks).md](./includes/HighAvailability-azure-kubernetes-service-(aks).md)]
 
+[!INCLUDE [HighAvailability-azure-machine-learning.md](./includes/HighAvailability-azure-machine-learning.md)]
+
+[!INCLUDE [HighAvailability-azure-managed-workspace-for-grafana.md](./includes/HighAvailability-azure-managed-workspace-for-grafana.md)]
+
+[!INCLUDE [HighAvailability-azure-maps.md](./includes/HighAvailability-azure-maps.md)]
+
+[!INCLUDE [HighAvailability-azure-monitor-workspace.md](./includes/HighAvailability-azure-monitor-workspace.md)]
+
+[!INCLUDE [HighAvailability-azure-monitor.md](./includes/HighAvailability-azure-monitor.md)]
+
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
+
+[!INCLUDE [HighAvailability-azure-relay.md](./includes/HighAvailability-azure-relay.md)]
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
 
@@ -63,6 +79,10 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-sql-database.md](./includes/HighAvailability-azure-sql-database.md)]
 
 [!INCLUDE [HighAvailability-azure-stack-hci.md](./includes/HighAvailability-azure-stack-hci.md)]
+
+[!INCLUDE [HighAvailability-azure-synapse-analytics.md](./includes/HighAvailability-azure-synapse-analytics.md)]
+
+[!INCLUDE [HighAvailability-azure-vmware-solution.md](./includes/HighAvailability-azure-vmware-solution.md)]
 
 [!INCLUDE [HighAvailability-classic-deployment-model-storage.md](./includes/HighAvailability-classic-deployment-model-storage.md)]
 
@@ -76,15 +96,31 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-data-factory.md](./includes/HighAvailability-data-factory.md)]
 
+[!INCLUDE [HighAvailability-entra-domain-services.md](./includes/HighAvailability-entra-domain-services.md)]
+
+[!INCLUDE [HighAvailability-event-grid.md](./includes/HighAvailability-event-grid.md)]
+
 [!INCLUDE [HighAvailability-event-hubs.md](./includes/HighAvailability-event-hubs.md)]
 
 [!INCLUDE [HighAvailability-fluid-relay.md](./includes/HighAvailability-fluid-relay.md)]
 
 [!INCLUDE [HighAvailability-hdinsight.md](./includes/HighAvailability-hdinsight.md)]
 
+[!INCLUDE [HighAvailability-key-vault.md](./includes/HighAvailability-key-vault.md)]
+
 [!INCLUDE [HighAvailability-media-services.md](./includes/HighAvailability-media-services.md)]
 
+[!INCLUDE [HighAvailability-microsoft.bingsearch.md](./includes/HighAvailability-microsoft-bingsearch.md)]
+
+[!INCLUDE [HighAvailability-microsoft.iotsecurity.md](./includes/HighAvailability-microsoft-iotsecurity.md)]
+
+[!INCLUDE [HighAvailability-playwright-testing.md](./includes/HighAvailability-playwright-testing.md)]
+
+[!INCLUDE [HighAvailability-recommendationsservice.md](./includes/HighAvailability-recommendationsservice.md)]
+
 [!INCLUDE [HighAvailability-service-bus.md](./includes/HighAvailability-service-bus.md)]
+
+[!INCLUDE [HighAvailability-service-fabric.md](./includes/HighAvailability-service-fabric.md)]
 
 [!INCLUDE [HighAvailability-sql-server-on-azure-virtual-machines.md](./includes/HighAvailability-sql-server-on-azure-virtual-machines.md)]
 

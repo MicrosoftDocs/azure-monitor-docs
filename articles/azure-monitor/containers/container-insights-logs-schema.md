@@ -35,13 +35,13 @@ The following table highlights the key differences between using ContainerLogV2 
 
 >[!NOTE]
 > The `LogMessage` field is dynamic and supports ingesting both JSON and plaintext string formats. 
-[Log data export](../logs/logs-data-export.md) to Event Hub and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
+[Log data export](../logs/logs-data-export.md) to Event Hubs and Storage Account is supported if the incoming `LogMessage` is valid JSON or a valid plain string. 
 >
 > If the `LogMessage` is malformed JSON then those log messages will be ingested with escaping. By default, log messages larger than 16KB are truncated. With [multi-line logging](#multi-line-logging) enabled, log messages larger than 64KB are truncated.
 
 
 ## Enable the ContainerLogV2 schema
-Enable the **ContainerLogV2** schema for a cluster either using the cluster's [Data Collection Rule (DCR)](./container-insights-data-collection-configure.md#configure-data-collection-using-dcr) or [ConfigMap](./container-insights-data-collection-configure.md#configure-data-collection-using-configmap). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both the DCR and ConfigMap are explicitly set to off.
+Enable the **ContainerLogV2** schema for a cluster either using the cluster's [log profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) or [ConfigMap](./kubernetes-data-collection-configmap.md#configmap-settings). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both are explicitly set to off.
 
 Before you enable the **ContainerLogsV2** schema, you should assess whether you have any alert rules that rely on the **ContainerLog** table. Any such alerts need to be updated to use the new table. Run the following Azure Resource Graph query to scan for alert rules that reference the `ContainerLog` table.
 
@@ -72,7 +72,7 @@ Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with a
 - **Grafana dashboard for visualization**
     The Grafana dashboard provides a color-coded visualization of the **log level** and also provides insights into Log Volume, Log Rate, Log Records, Logs. You can get time-sensitive analysis, dynamic insights into log level trends over time, and crucial real-time monitoring. The dashboard also provides a detailed breakdown by computer, pod, and container, which empowers in-depth analysis and pinpointed troubleshooting. See below for details on installing the Grafana dashboard.
 - **Annotation based log filtering for workloads**
-    Efficient log filtering through pod annotations. This allows you to focus on relevant information without sifting through noise. Annotation-based filtering enables you to exclude log collection for certain pods and containers by annotating the pod, which would help reduce the log analytics cost significantly. See [Annotation-based log filtering](./container-insights-data-collection-filter.md#annotation-based-filtering-for-workloads) for details on configuring annotation based filtering.
+    Efficient log filtering through pod annotations. This allows you to focus on relevant information without sifting through noise. Annotation-based filtering enables you to exclude log collection for certain pods and containers by annotating the pod, which would help reduce the log analytics cost significantly. See [Annotation-based log filtering](./kubernetes-data-collection-configmap.md#annotation-based-filtering-for-workloads) for details on configuring annotation based filtering.
 - **ConfigMap based log filtering for platform logs (System Kubernetes Namespaces)**
     Platform logs are emitted by containers in the system (or similar restricted) namespaces. By default, all the container logs from the system namespace are excluded to minimize the cost of data in your Log Analytics workspace. In specific troubleshooting scenarios though, container logs of system container play a crucial role. One example is the `coredns` container in the `kube-system` namespace.
 
@@ -85,7 +85,7 @@ Kubernetes metadata and logs filtering extends the ContainerLogsV2 schema with a
 > Collection of Kubernetes metadata requires [managed identity authentication](./container-insights-authentication.md#migrate-to-managed-identity-authentication) and [ContainerLogsV2](./container-insights-logs-schema.md)
 
 
-Enable Kubernetes metadata using [ConfigMap](./container-insights-data-collection-configure.md#configure-data-collection-using-configmap) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
+Enable Kubernetes metadata using [ConfigMap](./kubernetes-data-collection-configmap.md#configmap-settings) with the following settings. All metadata fields are collected by default when the `metadata_collection` is enabled. Uncomment `include_fields` to specify individual fields to be collected.
 
 ```yaml
 [log_collection_settings.metadata_collection]
@@ -101,7 +101,7 @@ After a few minutes, the `KubernetesMetadata` column should be included with any
 ### Install Grafana dashboard
 
 > [!IMPORTANT]
-> If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md#enable-prometheus-and-grafana) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
+> If you enabled Grafana using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md) then your Grafana instance should already have access to your Azure Monitor workspace for Prometheus metrics. The Kubernetes Logs Metadata dashboard also requires access to your Log Analytics workspace which contains log data. See [How to modify access permissions to Azure Monitor](/azure/managed-grafana/how-to-permissions) for guidance on granting your Grafana instance the Monitoring Reader role for your Log Analytics workspace.
 
 Import the dashboard from the Grafana gallery at [ContainerLogV2 Dashboard](https://grafana.com/grafana/dashboards/20995-azure-insights-containers-containerlogv2/). You can then open the dashboard and select values for DataSource, Subscription, ResourceGroup, Cluster, Namespace, and Labels. 
 
@@ -119,7 +119,7 @@ With multiline logging enabled, previously split container logs are stitched tog
 ### Limitations
 
 - Multiline logging only stitches exception stack traces from the containers using Java, Python, .NET, and Go. Other multiline log entries, including custom exceptions and arbitrary log messages, are not stitched together.
-
+- Multiline logging isn't supported for Python exception stack traces with [fine-grained-error-locations-in-tracebacks](https://docs.python.org/3/whatsnew/3.11.html#pep-657-fine-grained-error-locations-in-tracebacks). For multiline logging to work, you need to opt-out of this feature as described in [Python documentation](https://peps.python.org/pep-0657/#opt-out-mechanism).
 - If the log line which larger than 16KB instead of truncated by container runtime by default and log line will be supported up to 64KB. 
 
 ### Examples

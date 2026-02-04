@@ -18,7 +18,7 @@ The following are known limitations in Chaos Studio.
 - **Resource Move not supported** - Azure Chaos Studio tracked resources (for example, Experiments) currently DON'T support Resource Move. Experiments can be easily copied (by copying Experiment JSON) for use in other subscriptions, resource groups, or regions. Experiments can also already target resources across regions. Extension resources (Targets and Capabilities) do support Resource Move. 
 - **VMs require network access to Chaos Studio** - For agent-based faults, the virtual machine must have outbound network access to the Chaos Studio agent service:
     - Regional endpoints to allowlist are listed in [Permissions and security in Azure Chaos Studio](chaos-studio-permissions-security.md#network-security).
-    - If you're sending telemetry data to Application Insights, its [telemetry endpoints](../azure-monitor/fundamentals/azure-monitor-network-access.md#outgoing-ports) are also required.
+    - If you're sending telemetry data to Application Insights, its [telemetry endpoints](../azure-monitor/fundamentals/azure-monitor-network-access.md#application-insights-ingestion) are also required.
 - **Network Disconnect Fault** - The agent-based "Network Disconnect" fault only affects new connections. Existing active connections continue to persist. You can restart the service or process to force connections to break.
 - **Version support** - Review the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page for more information on operating system, browser, and integration version compatibility.
 - **PowerShell modules** - Chaos Studio doesn't have dedicated PowerShell modules at this time. For PowerShell, use our REST API

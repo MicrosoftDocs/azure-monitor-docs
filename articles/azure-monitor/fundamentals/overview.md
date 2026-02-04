@@ -2,7 +2,8 @@
 title: Azure Monitor overview
 description: Overview of Microsoft services and functionalities that contribute to a complete monitoring strategy for your Azure services and applications.
 ms.topic: overview
-ms.date: 07/15/2024
+ms.date: 08/26/2025
+ai-usage: ai-assisted
 ---
 
 # Azure Monitor overview
@@ -149,7 +150,7 @@ The following table describes some of the larger insights:
 | Insight | Description |
 |---------|-------------|
 | [Application Insights](../app/app-insights-overview.md) | Application Insights monitors the availability, performance, and usage of your web applications. |
-| [Container Insights](../containers/container-insights-overview.md) | Container Insights gives you performance visibility into container workloads that are deployed to managed Kubernetes clusters hosted on Azure Kubernetes Service. Container Insights collects container logs and metrics from controllers, nodes, and containers that are available in Kubernetes through the Metrics API. After you enable monitoring from Kubernetes clusters, these metrics and logs are automatically collected for you through a containerized version of the Log Analytics agent for Linux. |
+| [Container Insights](../containers/kubernetes-monitoring-overview.md) | Container Insights gives you performance visibility into container workloads that are deployed to managed Kubernetes clusters hosted on Azure Kubernetes Service. Container Insights collects container logs and metrics from controllers, nodes, and containers that are available in Kubernetes through the Metrics API. After you enable monitoring from Kubernetes clusters, these metrics and logs are automatically collected for you through a containerized version of the Log Analytics agent for Linux. |
 | [VM insights](../vm/vminsights-overview.md) | VM insights monitors your Azure VMs. It analyzes the performance and health of your Windows and Linux VMs and identifies their different processes and interconnected dependencies on external processes. The solution includes support for monitoring performance and application dependencies for VMs hosted on-premises or another cloud provider. |
 | [Network Insights](/azure/network-watcher/network-insights-overview) | Network Insights provides a comprehensive and visual representation through topologies, of health and metrics for all deployed network resources, without requiring any configuration. It also provides access to network monitoring capabilities like Connection Monitor, flow logging for network security groups (NSGs), and Traffic Analytics and other diagnostic features. |
 
@@ -232,6 +233,10 @@ More integrations not shown in the diagram that may be of interest.
 
 > [!NOTE]
 > There are many more third party companies that integrate with Azure and Azure Monitor at various levels. Use your favorite search engine to locate them.
+
+## Azure Monitor and the adaptive cloud approach
+
+Azure Monitor is part of Microsoft’s [adaptive cloud](https://azure.microsoft.com/solutions/adaptive-cloud) approach. This approach helps organizations run and manage apps and systems across many environments, including Azure, other clouds, on-premises datacenters, and edge locations. Azure Monitor supports this approach by collecting and analyzing data from all these environments in one place. It helps you understand how your systems are working, find problems quickly, and improve performance and reliability everywhere your apps run.
 
 ## Frequently asked questions
 

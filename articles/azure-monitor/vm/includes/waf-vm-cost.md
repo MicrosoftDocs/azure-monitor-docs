@@ -6,7 +6,7 @@ ms.date: 05/21/2025
 ### Design checklist
 
 > [!div class="checklist"]
-> *8 Migrate from Log Analytics agent to Azure Monitor agent for granular data filtering.
+> * Migrate from Log Analytics agent to Azure Monitor agent for granular data filtering.
 > * Filter data that you don't require from agents.
 > * Determine whether you'll use VM insights and what data to collect.
 > * Reduce polling frequency of performance counters.

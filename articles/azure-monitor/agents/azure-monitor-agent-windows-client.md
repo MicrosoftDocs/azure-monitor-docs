@@ -38,12 +38,14 @@ Here's a comparison between using the client installer and using the virtual mac
 | Device type | Supported? | Installation method | Additional information |
 |:------------|:-----------|:--------------------|:-----------------------|
 | Windows 11, 10 desktops, workstations | Yes | Client installer | Installs the agent by using a Windows MSI installer. |
-| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent *isn't yet optimized* for battery or network consumption). |
+| Windows 11, 10 laptops | Yes | Client installer | Installs the agent by using a Windows MSI installer (the installation works on laptops, but the agent isn't yet optimized for battery, network consumption, or hibernation). |
 | VMs, scale sets | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) | Installs the agent by using the Azure extension framework. |
 | On-premises servers | No | [VM extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) (with Azure Arc agent) | Installs the agent by using the Azure extension framework, provided for on-premises by installing the Azure Arc agent. |
 
 > [!IMPORTANT] 
-> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data.
+> The Azure Monitor doesn't support hibernation. If the agent computer hibernates, you may lose monitoring data. This will typically result in an error message similar to the following.
+>
+> `Failed to post health report to https://global.handler.control.monitor.azure.com on first round of tries. No fallback will be attempted. Error: {"error":{"code":"TokenExpired","message":"IDX10223: Lifetime validation failed. The token is expired. ValidTo (UTC): '12/27/2024 4:41:52 PM', Current time (UTC): '12/30/2024 3:00:16 PM'."}}`
 
 ## Prerequisites
 
@@ -176,7 +178,7 @@ PUT https://management.azure.com/providers/microsoft.insights/providers/microsof
     "properties":
     {
         "roleDefinitionId":"/providers/Microsoft.Authorization/roleDefinitions/56be40e24db14ccf93c37e44c597135b",
-        "principalId":"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+        "principalId":"aaaaaaaa-bbbb-cccc-1111-222222222222"
     }
 }
 ```
@@ -313,7 +315,7 @@ GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
         "lastModifiedByType": "User",
         "lastModifiedAt": "2021-04-02T12:34:56.1234567Z"
       },
-      "etag": "070057da-0000-0000-0000-5ba70d6c0000"
+      "etag": "aaaaaaaa-bbbb-cccc-1111-222222222222"
     }
   ],
   "nextLink": null
@@ -376,14 +378,16 @@ Select-AzSubscription -SubscriptionId $SubscriptionID
 #Grant access to the user at root scope "/"
 $user = Get-AzADUser -SignedIn
 
-New-AzRoleAssignment -Scope '/' -RoleDefinitionName 'Owner' -ObjectId $user.Id
+if ($(Get-AzRoleAssignment | Where-Object {$_.ObjectId -eq $user.Id -and $_.scope -eq "/" -and $_.RoleDefinitionName -eq "Owner"}).Count -eq 0) {
+    New-AzRoleAssignment -Scope '/' -RoleDefinitionName 'Owner' -ObjectId $user.Id
+}
 
 #Create the auth token
 $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
     "Content-Type" = "application/json"
-    "Authorization" = "Bearer " + $auth.Token
+    "Authorization" = "Bearer " + $(ConvertFrom-SecureString $auth.Token -AsPlainText)
     }
 
 
@@ -481,7 +485,7 @@ $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
     "Content-Type" = "application/json"
-    "Authorization" = "Bearer " + $auth.Token
+    "Authorization" = "Bearer " + $(ConvertFrom-SecureString $auth.Token -AsPlainText)
 }
 
 #Get the monitored object

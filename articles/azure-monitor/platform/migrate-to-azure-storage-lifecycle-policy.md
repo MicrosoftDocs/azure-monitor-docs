@@ -1,6 +1,6 @@
 ---
-title: "Migrate diagnostic settings storage retention to Azure Storage lifecycle management"
-description: "How to Migrate from diagnostic settings storage retention to Azure Storage lifecycle management"
+title: Migrate from Diagnostic Settings Storage Retention to Azure Storage Lifecycle Management
+description: Learn how to migrate from diagnostic settings storage retention to Azure Storage lifecycle management.
 ms.topic: how-to
 ms.reviewer: lualderm
 ms.date: 11/07/2024
@@ -11,29 +11,30 @@ ms.date: 11/07/2024
 
 # Migrate from diagnostic settings storage retention to Azure Storage lifecycle management
 
-The Diagnostic Settings Storage Retention feature has being deprecated. You can no longer create new retention rules, although you can still see and modify any existing retention settings. All retention functionality for the Diagnostic Settings Storage Retention feature will be disabled across all environments on September 30, 2025.
+The *diagnostic settings storage retention* feature is deprecated. All retention functionality for this feature was disabled across all environments on September 30, 2025.
 
-This article walks through migrating from using Azure diagnostic settings storage retention to using [Azure Storage lifecycle management](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) for retention.
-For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information on Log Analytics workspace retention, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
+This article walks through migrating from using diagnostic settings storage retention to using [Azure Storage lifecycle management](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal) for retention.
 
+For logs sent to a Log Analytics workspace, retention is set for each table on the **Tables** page of your workspace. For more information, see [Manage data retention in a Log Analytics workspace](../logs/data-retention-configure.md).
 
 ## Prerequisites
 
-An existing diagnostic setting logging to a storage account.
+You need an existing diagnostic setting that's logging to a storage account.
 
 ## Migration procedures
 
 > [!NOTE]
-> * When you change your retention settings, the new settings only apply to new logs ingested after the change. Existing logs are subject to the previous retention settings.
 >
-> * Deleting a diagnostic setting doesn't delete the logs in the storage account. The retention settings will continue to apply to the logs created before the diagnostic settings were deleted.
+> * When you change your retention settings, the new settings apply only to new logs ingested after the change. Existing logs are subject to the previous retention settings.
+> * Deleting a diagnostic setting doesn't delete the logs in the storage account. The retention settings continue to apply to the logs created before the diagnostic settings were deleted.
 
-Use the following CLI command to check if a resource has a diagnostic setting:
+Use the following Azure CLI command to check if a resource has a diagnostic setting:
 
 ```azurecli
  az monitor diagnostic-settings list --resource <resource Id>
 ```
-The output shows whether the diagnostic setting sends the data to a storage account, for example:
+
+The output shows whether the diagnostic setting sends the data to a storage account. For example:
 
 ```json
 [
@@ -67,75 +68,23 @@ The output shows whether the diagnostic setting sends the data to a storage acco
 ]
 ```
 
-## [Azure portal](#tab/portal)
+### [CLI](#tab/cli)
 
-To migrate your diagnostics settings retention rules, follow the steps below:
-
-1. Go to the Diagnostic Settings page for your logging resource and locate the diagnostic setting you wish to migrate.
-
-1. Set the retention for your logged categories to *0*.
-
-1. Select **Save**
-
-    :::image type="content" source="media/retention-migration/diagnostics-setting.png" lightbox="media/retention-migration/diagnostics-setting.png" alt-text="A screenshot showing a diagnostics setting page.":::
-
-1. Navigate to the storage account you're logging to.
-
-1. Under **Data management**, select **Lifecycle Management** to view or change lifecycle management policies.
-
-1. Select List View, and select **Add a rule**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management.png" lightbox="media/retention-migration/lifecycle-management.png" alt-text="A screenshot showing the lifecycle management screen for a storage account.":::
-
-1. Enter a **Rule name**.
-
-1. Under **Rule Scope**, select **Limit blobs with filters**.
-
-1. Under **Blob Type**, select **Append Blobs** and **Base blobs** under **Blob subtype**.
-
-1. Select **Next**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-details.png" lightbox="media/retention-migration/lifecycle-management-add-rule-details.png" alt-text="A screenshot showing the details tab for adding a lifecycle rule.":::
-    
-1. Set your retention time, then select **Next**.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-base-blobs.png" lightbox="media/retention-migration/lifecycle-management-add-rule-base-blobs.png" alt-text="A screenshot showing the Base blobs tab for adding a lifecycle rule.":::
-
-1. On the **Filters** tab, under **Blob prefix** set path or prefix to the container or logs you want the retention rule to apply to. The path or prefix can be at any level within the container and will apply to all blobs under that path or prefix.
-
-    For example, for *all* insight activity logs, use the container *insights-activity-logs* to set the retention for all of the logs in that container.
-    To set the rule for a specific webapp app, use *insights-activity-logs/ResourceId=/SUBSCRIPTIONS/\<your subscription Id\>/RESOURCEGROUPS/\<your resource group\>/PROVIDERS/MICROSOFT.WEB/SITES/\<your webapp name\>*. 
-
-    Use the Storage browser to help you find the path or prefix.
-    The example below shows the prefix for a specific web app: **insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/rg-001/PROVIDERS/MICROSOFT.WEB/SITES/appfromdocker1*.
-    To set the rule for all resources in the resource group, use *insights-activity-logs/ResourceId=/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e7/RESOURCEGROUPS/rg-001*.
-
-    :::image type="content" source="media/retention-migration/blob-prefix.png" lightbox="media/retention-migration/blob-prefix.png" alt-text="A screenshot showing the Storage browser and resource path.":::
-
-1. Select **Add** to save the rule.
-
-    :::image type="content" source="media/retention-migration/lifecycle-management-add-rule-filter-set.png" lightbox="media/retention-migration/lifecycle-management-add-rule-filter-set.png" alt-text="A screenshot showing the filters tab for adding a lifecycle rule.":::
-
-
-## [CLI](#tab/cli)
-
-Use the [az storage account management-policy create](/cli/azure/storage/account/management-policy#az-storage-account-management-policy-create) command to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure portal.
-
-
+Use the [az storage account management-policy create](/cli/azure/storage/account/management-policy#az-storage-account-management-policy-create) command to create a lifecycle management policy. You must still set the retention in your diagnostic settings to **0**. For more information, see the migration procedures for the Azure portal.
 
 ```azurecli
 
 az storage account management-policy create --account-name <storage account name> --resource-group <resource group name> --policy @<policy definition file>
 ```
 
-The sample policy definition file below sets the retention for all blobs in the container *insights-activity-logs* for the given subscription ID. For more information, see [Lifecycle management policy definition](/azure/storage/blobs/lifecycle-management-overview#lifecycle-management-policy-definition).
+The following sample policy definition sets the retention for all blobs in the container `insights-activity-logs` for the subscription ID. For more information, see [Lifecycle management policy definition](/azure/storage/blobs/lifecycle-management-overview#lifecycle-management-policy-definition).
 
 ```json
 {
   "rules": [
     {
       "enabled": true,
-      "name": "Susbcription level lifecycle rule",
+      "name": "Subscription level lifecycle rule",
       "type": "Lifecycle",
       "definition": {
         "actions": {
@@ -159,9 +108,9 @@ The sample policy definition file below sets the retention for all blobs in the 
 }
 ```
 
-## [Templates](#tab/templates)
+### [Templates](#tab/templates)
 
-Apply the following template to create a lifecycle management policy. You must still set the retention in your diagnostic settings to *0*. For more information, see the migration procedures for the Azure portal.
+Apply the following template to create a lifecycle management policy. You must still set the retention in your diagnostic settings to **0**. For more information, see the migration procedures for the Azure portal.
 
 ```azurecli
 
@@ -169,7 +118,7 @@ az deployment group create --resource-group <resource group name> --template-fil
 
 ```
 
-The following template sets the retention for storage account *azmonstorageaccount001* for all blobs in the container *insights-activity-logs* for all resources for the subscription ID *aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e*.
+The following template sets the retention for storage account `azmonstorageaccount001` for all blobs in the container `insights-activity-logs` for all resources that have the subscription ID `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e`.
 
 ```json
 {
@@ -185,7 +134,7 @@ The following template sets the retention for storage account *azmonstorageaccou
                     "rules": [
                         {
                             "enabled": true,
-                            "name": "Susbcription level lifecycle rule",
+                            "name": "Subscription level lifecycle rule",
                             "type": "Lifecycle",
                             "definition": {
                                 "actions": {
@@ -215,6 +164,6 @@ The following template sets the retention for storage account *azmonstorageaccou
 
 ---
 
-## Next steps
+## Related content
 
-[Configure a lifecycle management policy](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal).
+* [Configure a lifecycle management policy](/azure/storage/blobs/lifecycle-management-policy-configure?tabs=azure-portal)

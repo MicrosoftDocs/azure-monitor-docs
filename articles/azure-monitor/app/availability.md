@@ -2,8 +2,7 @@
 title: Application Insights availability tests 
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
-ms.date: 04/01/2025
-ms.reviewer: cogoodson
+ms.date: 02/27/2026
 ---
 
 # Application Insights availability tests
@@ -27,14 +26,8 @@ There are four types of availability tests:
 
     [Learn how to create a custom TrackAvailability test](/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test).
 
-* **[(Deprecated) Multi-step web test](availability-multistep.md):** You can play back this recording of a sequence of web requests to test more complex scenarios. Multi-step web tests are created in Visual Studio Enterprise and uploaded to the portal, where you can run them.
-
-* **[(Deprecated) URL ping test](monitor-web-app-availability.md):** You can create this test through the Azure portal to validate whether an endpoint is responding and measure performance associated with that response. You can also set custom success criteria coupled with more advanced features, like parsing dependent requests and allowing for retries.
-
 > [!IMPORTANT]
-> There are two upcoming availability tests retirements:
-> - **Multi-step web tests:** Application Insights retires multi-step web tests on August 31, 2024. To maintain availability monitoring, switch to alternative availability tests before this date. After the retirement, the platform removes the underlying infrastructure, which causes remaining multi-step tests to fail.
-> - **URL ping tests:** On September 30, 2026, URL ping tests in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> - **URL ping tests are deprecated:** On September 30, 2026, [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
 
 ## Create an availability test
 
@@ -59,7 +52,7 @@ There are four types of availability tests:
    |---------|---------|-------------|
    | **Basic Information** | | |
    | | **URL** | The URL can be any webpage you want to test, but it must be visible from the public internet. The URL can include a query string. So, for example, you can exercise your database a little. If the URL resolves to a redirect, we follow it up to 10 redirects. |
-   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the time-out. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
+   | | **Parse dependent requests** | The test loads images, scripts, style files, and other resources from the webpage under test. It records the response time, including the time to retrieve these files. The test fails if it can't download all resources within the timeout. If you don't enable the option, the test only loads the file at the specified URL. Enabling it makes the check stricter, potentially failing in cases that manual browsing wouldn't catch. The test parses up to 15 dependent requests. |
    | | **Enable retries for availability test failures** | When the test fails, it retries after a short interval. A failure is reported only if three successive attempts fail. Subsequent tests are then performed at the usual test frequency. Retry is temporarily suspended until the next success. This rule is applied independently at each test location. *We recommend this option*. On average, about 80% of failures disappear on retry. |
    | | **Enable SSL certificate validity** | To confirm correct setup, verify the SSL certificate on your website. Make sure it's installed correctly, valid, trusted, and doesn't generate errors for users. The availability test only validates the SSL certificate on the *final redirected URL*. |
    | | **Proactive lifetime check** | This setting enables you to define a set time period before your SSL certificate expires. After it expires, your test will fail. |
@@ -375,7 +368,7 @@ Here you can:
 * Track the problem by logging an issue or work item in Git or Azure Boards. The bug contains a link to the event in the Azure portal.
 * Open the web test result in Visual Studio.
 
-To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics).
+To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./failures-performance-transactions.md#transaction-diagnostics-experience).
 
 Select the exception row to see the details of the server-side exception that caused the synthetic availability test to fail. You can also get the [debug snapshot](./snapshot-debugger.md) for richer code-level diagnostics.
 
@@ -395,15 +388,28 @@ You can use Log Analytics to view your availability results (`availabilityResult
 The following steps walk you through the process of creating [standard tests](#types-of-availability-tests) that replicate the functionality of your [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability). It allows you to more easily start using the advanced features of standard tests using your previously created URL ping tests.
 
 > [!IMPORTANT]
-> A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> - A cost is associated with running **[standard tests](#types-of-availability-tests)**. Once you create a standard test, you're charged for test executions. Refer to **[Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing)** before starting this process.
+> - You can discover all classic URL ping tests with [Azure Resource Graph Explorer](#discover-url-ping-tests).
 
 #### Prerequisites
 
 > [!div class="checklist"]
-> * Any [URL ping test](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) within Application Insights
+> * [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability)
 > * [Azure PowerShell](/powershell/azure/get-started-azureps) access
 
-#### Get started
+#### Discover URL ping tests
+
+Discover URL ping tests with the following query in [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).
+
+```kusto
+resources
+| where subscriptionId == "<subscriptionId>"
+| where ['type'] == "microsoft.insights/webtests"
+| extend testKind = tostring(properties.Kind)
+| where testKind == "ping"
+```
+
+#### Begin migration
 
 1. Connect to your subscription with Azure PowerShell (`Connect-AzAccount` + `Set-AzContext`).
 
@@ -512,7 +518,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
 > [!IMPORTANT]
-> TLS 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
+> Transport Layer Security (TLS) 1.3 is currently only available in the availability test regions NorthCentralUS, CentralUS, EastUS, SouthCentralUS, and WestUS
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements-deprecating.md)]
 
@@ -545,7 +551,7 @@ The overview page contains high-level information about your:
 * End-to-end outage instances
 * Application downtime
 
-Outage instances are determined from the moment a test begins to fail until it successfully passes again, according to your outage parameters. If a test starts failing at 8:00 AM and succeeds again at 10:00 AM, that entire period of data is considered the same outage. You can also investigate the longest outage that occurred over your reporting period.
+Outage instances are determined from the moment a test begins to fail until it successfully passes again, according to your outage parameters. If a test starts failing at 8:00 AM and succeeds again at 10:00 AM, that entire period of data is considered as the same outage. You can also investigate the longest outage that occurred over your reporting period.
 
 Some tests are linkable back to their Application Insights resource for further investigation. But that's only possible in the [workspace-based Application Insights resource](create-workspace-resource.md).
 
@@ -567,8 +573,7 @@ There are two more tabs next to the **Overview** page:
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
-* [Troubleshooting](troubleshoot-availability.md)
-* [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
-* [Web test REST API](/rest/api/application-insights/web-tests)
-
+* Review frequently asked questions (FAQ), see [Availability tests FAQ](application-insights-faq.yml#availability-tests) and [TLS support for availability tests FAQ](application-insights-faq.yml#tls-support-for-availability-tests)
+* [Troubleshoot](/troubleshoot/azure/azure-monitor/app-insights/availability/availability-monitoring-common-issues-faq) availability issues
+* Explore [Web tests Azure Resource Manager template](/azure/templates/microsoft.insights/webtests?tabs=json)
+* Learn about the [Web test REST API](/rest/api/application-insights/web-tests)

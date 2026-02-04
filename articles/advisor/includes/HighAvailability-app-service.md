@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -101,24 +101,6 @@ Recommendation ID: b30897cc-2c2e-4677-a2a1-107ae982ff49
 Subcategory: DisasterRecovery
 
 <!--b30897cc-2c2e-4677-a2a1-107ae982ff49_end-->
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_begin-->
-
-#### Fix the backup storage settings of your App Service resource  
-  
-When an application has invalid storage settings, its backups fail. For details, see your application's backup history on your app management page.  
-  
-**Potential benefits**: Ensure business continuity  
-
-**Impact:** High
-  
-  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: 80efd6cb-dcee-491b-83a4-7956e9e058d5  
-Subcategory: DisasterRecovery
-
-<!--80efd6cb-dcee-491b-83a4-7956e9e058d5_end-->
 
 <!--66d3137a-c4da-4c8a-b6b8-e03f5dfba66e_begin-->
 
@@ -330,10 +312,212 @@ Deploy App Service Plan with zoneRedundant set to true
   
 For more information, see [Azure App Service Plans - Azure App Service](https://aka.ms/WebServerFarms)  
 
-ResourceType: microsoft.web/sites  
+ResourceType: microsoft.web/serverfarms  
 Recommendation ID: fac3022a-eda5-44b9-b54d-cb500d1d01dd  
 Subcategory: HighAvailability
 
 <!--fac3022a-eda5-44b9-b54d-cb500d1d01dd_end-->
+
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_begin-->
+
+#### Action Required: App Service Managed Certificates Impacted by MPIC Compliance  
+  
+To meet updated compliance standards, DigiCert has adopted Multi-Perspective Issuance Corroboration (MPIC) for certificate validation. As a result, App Service Managed Certificates can no longer be issued or renewed for apps that aren't publicly accessible starting July 28, 2025.  
+  
+**Potential benefits**: Maintain SSL continuity and avoid renewal failures  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: bb557466-3ab7-44c3-87ac-d95759b9bfe3  
+Subcategory: undefined
+
+<!--bb557466-3ab7-44c3-87ac-d95759b9bfe3_end-->
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_begin-->
+
+#### App Service Managed Certificates: trafficmanager.net domains are no longer supported  
+  
+To meet updated compliance standards, DigiCert applies multi-perspective issuance corroboration for certificate validation. As a result, you cannot issue or renew App Service Managed Certificates for trafficmanager.net domains.  
+  
+**Potential benefits**: Maintain HTTPS support under new validation rules.  
+
+**Impact:** High
+  
+For more information, see [App Service Managed Certificate (ASMC) Changes – July 28, 2025 - Azure App Service](/azure/app-service/app-service-managed-certificate-changes-july-2025#scenario-3-site-relies-on-trafficmanagernet-domains-1)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 7ca9b77c-53ea-402a-a1c9-085efd569ef4  
+Subcategory: undefined
+
+<!--7ca9b77c-53ea-402a-a1c9-085efd569ef4_end-->
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_begin-->
+
+#### Upgrade PHP to a newer, supported version  
+  
+Extended support for PHP 8.1 is ending. Apps hosted on App Service continue to run. Future security updates aren't available. The platform no longer provides customer service for PHP 8.1.  
+  
+**Potential benefits**: Continued support for applications on Azure App Service  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=Php-81-extension)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 42702f7a-06af-4cca-80b6-6b058e22b12f  
+Subcategory: undefined
+
+<!--42702f7a-06af-4cca-80b6-6b058e22b12f_end-->
+
+<!--b5666e83-63e6-420d-acd2-c1924f1f060e_begin-->
+
+#### Store configuration as app settings for Web Sites  
+  
+Use app settings for configuration and define them in Resource Manager templates or via PowerShell to facilitate part of an automated deployment/update process for improved reliability.  
+  
+**Potential benefits**: Enhanced reliability via automation  
+
+**Impact:** Medium
+  
+For more information, see [Configure an App Service App - Azure App Service](/azure/app-service-web/web-sites-configure)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b5666e83-63e6-420d-acd2-c1924f1f060e  
+Subcategory: undefined
+
+<!--b5666e83-63e6-420d-acd2-c1924f1f060e_end-->
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_begin-->
+
+#### Migrate to Flex Consumption  
+  
+Migrate all workloads from Linux Consumption to Flex Consumption to maintain access to new features and avoid service disruptions.  
+  
+**Potential benefits**: Avoid service disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=499451)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 6f2c6ba6-3fd4-4786-af01-d10b127ee031  
+Subcategory: undefined
+
+<!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_begin-->
+
+#### App Service web apps don't allow linked databases to be part of App Service custom backups  
+  
+Azure App Service custom backup feature don't back up linked databases configured as part of the Azure App Service custom backup feature. Transition to native backup and restore tools available with the respective databases.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485047)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: c1b2b1b3-bc15-4ed6-84dd-bb14e215c761  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_end-->
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_begin-->
+
+#### Migrate away from Azure Static Web Apps database connection  
+  
+The database connections feature of Static Web Apps (currently in public preview), is getting deprecated. To avoid issues in deployments using the feature, refactor applications to a self-hosted instance of the Data API Builder and deploy it to Azure Container Apps.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.web/staticsites  
+Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
+Subcategory: undefined
+
+<!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
+
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
+
+#### Upgrade Node.js for Azure Functions apps to version 22 or later  
+  
+To avoid potential security vulnerabilities, reduce performance risks, and ensure Azure Functions apps take advantage of the newest features; upgrade Node.js to version 22 or later.  
+  
+**Potential benefits**: Avoid potential security vulnerabilities  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=502957)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 81c8903e-2d50-4e57-9c3b-7049b5a9d0e8  
+Subcategory: undefined
+
+<!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_end-->
+
+
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_begin-->
+
+#### Upgrade apps to Python 3.10  
+  
+Extended support for Python 3.9 is retiring. Apps that are hosted on App Service will continue to run, but security updates and customer support will no longer be available  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 14f2b661-8b62-4e1e-9020-6ae63ce9e354  
+Subcategory: undefined
+
+<!--14f2b661-8b62-4e1e-9020-6ae63ce9e354_end-->
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_begin-->
+
+#### Durable Functions support for Netherite is ending  
+  
+Opening new support cases that seek assistance for Netherite-enabled apps is blocked.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=489009)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 3d5765c2-e25e-47ca-988a-cf11535a592d  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_begin-->
+
+#### Upgrade Python 3.9 app to newer version  
+  
+Extended support for Python 3.9 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Python 3.9.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=python-39-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 2350ea91-8dc1-4f7b-b85f-84990e9bfb5a  
+Subcategory: undefined
+
+<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Container Apps
@@ -83,5 +83,77 @@ Recommendation ID: c692e862-953b-49fe-9c51-e5d2792c1cc1
 Subcategory: Other
 
 <!--c692e862-953b-49fe-9c51-e5d2792c1cc1_end-->
+
+<!--b7e00078-7703-4a0a-afac-1b403803ba62_begin-->
+
+#### Enable zone redundancy for the managed environment  
+  
+To maximize high availability, deploy application replicas across multiple zones within the region. Traffic is automatically distributed among these zones. For optimal resiliency, configure at least three application replicas and ensure the workload profile node count is at least three.  
+  
+**Potential benefits**: Protect apps & data from data center failures  
+
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.app/managedenvironments  
+Recommendation ID: b7e00078-7703-4a0a-afac-1b403803ba62  
+Subcategory: HighAvailability
+
+<!--b7e00078-7703-4a0a-afac-1b403803ba62_end-->
+
+<!--ce97546e-2d8f-4534-99dd-c5bbb584d568_begin-->
+
+#### Migrate away from Service Connector (preview) on Azure Container Apps  
+  
+Support for Service Connector (preview) on Azure Container Apps is ending. Creation of new service connections using Service Connector (preview) through any interface is blocked.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=501528)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: ce97546e-2d8f-4534-99dd-c5bbb584d568  
+Subcategory: undefined
+
+<!--ce97546e-2d8f-4534-99dd-c5bbb584d568_end-->
+
+<!--632a1d5b-bce5-46d7-a059-f4476b40f932_begin-->
+
+#### The public preview add-ons feature in Container Apps are being retired  
+  
+Container Apps running add-ons are going to be deleted along with associated application data. Transition to Azure-managed services, such as Azure Cache for Redis or Azure Database for PostgreSQL if you�re ready to use a production-level service.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: 632a1d5b-bce5-46d7-a059-f4476b40f932  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--632a1d5b-bce5-46d7-a059-f4476b40f932_end-->
+
+<!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_begin-->
+
+#### Transition to Azure managed services or open-source quick starts  
+  
+The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (e.g., Azure Cache for Redis, Azure Database for PostgreSQL) or use open source quickstarts for dev/test purposes.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485683)  
+
+ResourceType: microsoft.app/containerapps  
+Recommendation ID: ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31  
+Subcategory: undefined
+
+<!--ea0bf0e5-dc1b-446f-a1e8-eff1b913eb31_end-->
 
 <!--articleBody-->

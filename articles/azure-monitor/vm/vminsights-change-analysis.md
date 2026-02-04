@@ -1,7 +1,7 @@
 ---
 title: Change analysis in VM insights
 description: VM insights integration with Application Change Analysis integration allows you to view any changes made to a virtual machine that might have affected it performance.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 05/21/2025
 
 ---

@@ -1,13 +1,86 @@
 ---
-title: Create and edit data collection rules (DCRs) in Azure Monitor
-description: Details on creating and editing data collection rules (DCRs) in Azure Monitor.
-ms.topic: how-to
-ms.date: 09/15/2024
-ms.reviewer: nikeist
+title: Metrics export using data collection rules (Preview)
+description: Learn how to create data collection rules for metrics.
+ms.topic: concept-article
+ms.date: 01/20/2026
 ms.custom: references_regions
 ---
 
-# Create a data collection rule (DCR) for metrics export 
+# Metrics export using data collection rules (Preview)
+
+Platform metrics measure the performance of different aspects of your Azure resources. [Diagnostic settings](../platform/diagnostic-settings.md) are used to collect and export platform metrics from all Azure resources that support them. [Data collection rules (DCRs)](./data-collection-rule-overview.md) can also be used to collect and export platform metrics from [supported Azure resources](#supported-resources-and-regions). This article describes how to use DCRs to export metrics.
+
+> [!NOTE]
+> While you can use DCRs and diagnostic settings at the same time, you should disable any diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
+
+Using DCRs to export metrics provides the following advantages over diagnostic settings:
+
+* DCR configuration enables exporting metrics with dimensions.
+* DCR configuration enables filtering based on metric name so you can export only the metrics that you need.
+* DCRs are more flexible and scalable compared to diagnostic settings.
+* End to end latency for DCRs is within 3 minutes, while diagnostic settings export latency is 6-10 minutes.
+
+
+> [!NOTE]
+> Use metrics export with DCRs for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Data plane Metrics Batch API query versus Metrics export](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
+
+
+## Export destinations
+
+Metrics can be exported to the following destinations.
+
+| Destination type | Details |
+|:---|:---|
+| Log Analytics workspaces | Exporting to Log Analytics workspaces can be across regions. The Log Analytics workspace and the DCR must be in the same region but resources that are being monitored can be in any region. Metrics sent to a log analytics workspace are stored in the `AzureMetricsV2` table. |
+| Azure storage accounts |  The storage account, the DCR, and the resources being monitored must all be in the same region. |
+| Event Hubs | The Event Hubs, the DCR, and the resources being monitored must all be in the same region. |
+
+> [!NOTE]
+> Latency for exporting metrics is approximately 3 minutes. Allow up to 15 minutes for metrics to begin to appear in the destination after the initial setup.
+
+## Limitations
+
+DCRs for metrics export have the following limitations:
+
+* Only one destination type can be specified per DCR. To send to multiple destinations, create multiple DCRs.
+* A maximum of 5 DCRs can be associated with a single Azure resource.
+* Metrics export with DCR doesn't support the export of hourly grain metrics.
+
+## Supported resources and regions
+
+The following resources currently support metrics export using data collection rules:
+
+| Resource type | Stream specification |
+|---------------|----------------------|
+| Virtual Machine scale sets | Microsoft.compute/virtualmachinescalesets |
+| Virtual machines | Microsoft.compute/virtualmachines |
+| Redis cache | Microsoft.cache/redis |
+| IOT hubs | Microsoft.devices/iothubs |
+| Key vaults | Microsoft.keyvault/vaults |
+| Storage accounts | Microsoft.storage/storageaccounts<br>Microsoft.storage/Storageaccounts/blobservices<br>Microsoft.storage/storageaccounts/fileservices<br>Microsoft.storage/storageaccounts/queueservices<br>Microsoft.storage/storageaccounts/tableservices |
+| SQL Server | Microsoft.sql/servers<br>Microsoft.sql/servers/databases |
+|Operational Insights | Microsoft.operationalinsights/workspaces |
+| Data protection | Microsoft.dataprotection/backupvaults |
+| Azure Kubernetes Service| Microsoft.ContainerService/managedClusters |
+
+### Supported regions
+
+You can create a DCR for metrics export in any region, but the resources that you want to export metrics from must be in one of the following regions:
+
+* Australia East
+* Central US
+* CentralUsEuap
+* South Central US
+* East US
+* East US 2
+* Eastus2Euap
+* West US
+* West US 2
+* North Europe
+* West Europe
+* UK South
+
+## Create a data collection rule (DCR) for metrics export 
 
 This article describes how to create a [data collection rule (DCR)](data-collection-rule-overview.md) for metrics export using the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
 
@@ -16,17 +89,17 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 ### [Portal](#tab/portal)
 
-1. On the Monitor menu in the Azure portal, select **Data Collection Rules** then select **Create**.
+### Create a data collection rule using the Azure portal
 
-1. To create a DCR to collect platform metrics data, select the link on the top of the page.
+1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
+
+1. Select the link on the top of the page to use the new DCR creation experience.
 
     :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
 
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 
-1. Select **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hubs.
-
-1. Select **Next**.
+1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hubs.
 
     :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-basics.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
 
@@ -36,40 +109,28 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
     :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-resources.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
 
-1. Select **Add new dataflow**.
+1. Select **Add new datasource**.
 
-1. The resource type of the resource that chose in the previous step is automatically selected. Add more resource types if you want to use this rule to collect metrics from multiple resource types in the future.
-
-1. Select **Next Destinations** to move to the **Destinations** tab.
+1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect metrics from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the metrics collected for it. By default, all available metrics for the resource are collected.
 
     :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page."::: 
 
-1. To send metrics to a Log Analytics workspace, select *Azure Monitor Logs* from the **Destination type** dropdown.
+1. Select **Next Destinations** to move to the **Destinations** tab.
 
-    1. Select the **Subscription** and the Log Analytics workspace you want to send the metrics to.
-
-1. To send metrics to Event Hubs, select *Event Hub* from the **Destination type** dropdown.
-
-    1. Select the **Subscription**, the **Event Hub namespace**, and the **Event Hub instance name**.
-
-1. To send metrics to a Storage Account, select *Storage Account* from the **Destination type** dropdown.
-
-    1. Select the **Subscription**, the **Storage Account**, and the **Blob container** where you want to store the metrics.
+1. Select **Add destination** and then the **Destination type** that you want to add. The required fields change based on the destination type you select.
 
     > [!NOTE]
-    > To send metrics to a Storage Account or Event Hubs, the resource generating the metrics, the DCR, and the Storage Account or Event Hub, must all be in the same region.
-    >
-    > To send metrics to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the metrics can be in any region.
- 
-    To select Storage Account or Event Hubs as the destination, you must enable managed identity for the DCR on the Basics tab.
-
-1. Select **Save** , then select **Review + create**.
+    > To send metrics to a Storage Account or Event Hubs, the resource generating the metrics, the DCR, and the Storage Account or Event Hub, must all be in the same region. To send metrics to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the metrics can be in any region.
 
     :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
 
+1. Select **Save** , then select **Review + create**.
+
 ### [CLI](#tab/CLI)
 
-Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+### Create a data collection rule using Azure CLI
+
+Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
 > [!IMPORTANT] 
 > The rule file has the same format as used for PowerShell and the REST API, however the file must not contain `identity`, the `location`, or `kind`. These parameters are specified in the `az monitor data-collection rule create` command.
@@ -163,7 +224,9 @@ az monitor data-collection rule association create --name "keyValut-001" \
 
 ### [PowerShell](#tab/powershell)
 
-Create a JSON file containing the collection rule specification. For more information, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample JSON files, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+### Create a data collection rule using PowerShell
+
+Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
 Use the `New-AzDataCollectionRule` command to create a data collection rule for metrics using PowerShell. For more information, see [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule).
  
@@ -237,7 +300,7 @@ New-AzDataCollectionRuleAssociation
 
 ### [API](#tab/api)
 
-## Create a data collection rule using the REST API
+### Create a data collection rule using the REST API
 
 Creating a data collection rule for metrics requires the following steps:
 
@@ -261,7 +324,7 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
 https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-001?api-version=2023-03-11
 ```
 
-The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [DCR specifications](data-collection-metrics.md#dcr-specifications). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](data-collection-metrics.md#sample-metrics-export-json-objects).
+The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
 ### Grant write permissions to the managed entity
 
@@ -281,6 +344,8 @@ For more information, see [Assign Azure roles to a managed identity](/azure/role
 To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
 
 ## Create a data collection rule association
+
+### Create a data collection rule using an ARM template
 
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
 
@@ -318,6 +383,9 @@ https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 ```
 
 ### [ARM template](#tab/arm)
+
+### Create a data collection rule using ARM templates
+
 
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
 
@@ -469,7 +537,78 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 ---
 
-After creating the DCR and DCRA, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
+
+
+After creating the DCR, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
+
+## Exported data
+
+The following examples show the data exported to each destination.
+
+### Log analytics workspaces
+
+Data exported to a Log Analytics workspace is stored in the `AzureMetricsV2` table in the Log Analytics workspace in the following format:
+
+[!INCLUDE [Log Analytics data format](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuremetricsv2-include.md)]
+
+For example:
+
+:::image type="content" source="media/data-collection-metrics/export-to-workspace.png" lightbox="media/data-collection-metrics/export-to-workspace.png" alt-text="A screenshot of a log analytics query of the AzureMetricsV2 table.":::
+
+### Storage accounts
+
+The following example shows data exported to a storage account:
+
+```JSON
+{
+    "Average": "31.5",
+    "Count": "2",
+    "Maximum": "52",
+    "Minimum": "11",
+    "Total": "63",
+    "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+    "time": "2024-08-20T14:13:00.0000000Z",
+    "unit": "MilliSeconds",
+    "metricName": "ServiceApiLatency",
+    "timeGrain": "PT1M",
+    "dimension": {
+        "ActivityName": "vaultget",
+        "ActivityType": "vault",
+        "StatusCode": "200",
+        "StatusCodeClass": "2xx"
+    }
+}
+```
+
+### Event Hubs
+
+The following example shows a metric exported to Event Hubs.
+
+```json
+    {
+      "Average": "1",
+      "Count": "1",
+      "Maximum": "1",
+      "Minimum": "1",
+      "Total": "1",
+      "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+      "time": "2024-08-22T13:43:00.0000000Z",
+      "unit": "Count",
+      "metricName": "ServiceApiHit",
+      "timeGrain": "PT1M",
+      "dimension": {
+        "ActivityName": "keycreate",
+        "ActivityType": "key"
+      },
+      "EventProcessedUtcTime": "2024-08-22T13:49:17.1233030Z",
+      "PartitionId": 0,
+      "EventEnqueuedUtcTime": "2024-08-22T13:46:04.5570000Z"
+    }
+
+```
+
+
+
 
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 

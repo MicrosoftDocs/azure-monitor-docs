@@ -62,11 +62,19 @@ For an individual resource, select **Activity Logs Insights** from the **Workboo
 :::image type="content" source="media/activity-log/activity-log-resource-level.png" lightbox= "media/activity-log/activity-log-resource-level.png" alt-text="Screenshot that shows how to locate and open the Activity Logs Insights workbook on a resource level.":::
 
 ## Export activity log
-Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for the detailed steps to create a diagnostic setting.
+Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality. 
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
+In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for other details and other methods for creating diagnostic settings. Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+
+:::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
+
+
 The information below provides further details on the different destinations that resources logs can be sent to.
+
+> [!NOTE]
+> The legacy method of exporting the activity log is log profiles. See [Legacy collection methods](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
 
 ## [Log Analytics workspace](#tab/log-analytics)
 
@@ -77,7 +85,7 @@ Send the activity log to a [Log Analytics workspace](../logs/log-analytics-works
 - Access activity log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 - Retain activity log data for longer than 90 days.
 
-There are data ingestion or retention charges for activity logs for the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
+There is no data ingestion charges for activity logs. Retention charges for activity logs are only applied to the period extended past the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
 
 Activity log data in a Log Analytics workspace is stored in a table called [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md).
 
@@ -183,6 +191,24 @@ Each event is stored in the PT1H.json file with the following format. This forma
 { "time": "2020-06-12T13:07:46.766Z", "resourceId": "/SUBSCRIPTIONS/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/RESOURCEGROUPS/MY-RESOURCE-GROUP/PROVIDERS/MICROSOFT.COMPUTE/VIRTUALMACHINES/MV-VM-01", "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee", "operationName": "Microsoft.Resourcehealth/healthevent/Updated/action", "level": "Information", "resultType": "Updated", "category": "ResourceHealth", "properties": {"eventCategory":"ResourceHealth","eventProperties":{"title":"This virtual machine is starting as requested by an authorized user or process. It will be online shortly.","details":"VirtualMachineStartInitiatedByControlPlane","currentHealthStatus":"Unknown","previousHealthStatus":"Unknown","type":"Downtime","cause":"UserInitiated"}}}
 ```
 ---
+
+
+## Export management group logs
+When you create a [diagnostic setting log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it will export any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you will receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+
+The management group will also collect many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you will receive duplicate events.
+
+For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 will capture all activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. In this case, no diagnostic setting is need on MG2 since it would just collect duplicate events.
+
+If you have duplicate events, you can combine them using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
+
+```kusto
+AzureActivity
+| extend Hash = hash(dynamic_to_json(pack_all()))
+| summarize arg_max(TimeGenerated, *) by Hash
+```
+
+
 
 ## Export to CSV
 Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.

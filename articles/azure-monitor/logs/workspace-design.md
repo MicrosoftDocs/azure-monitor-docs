@@ -1,7 +1,7 @@
 ---
 title: Design a Log Analytics workspace architecture
 description: The article describes the considerations and recommendations for customers preparing to deploy a workspace in Azure Monitor.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/15/2024
 ---
 

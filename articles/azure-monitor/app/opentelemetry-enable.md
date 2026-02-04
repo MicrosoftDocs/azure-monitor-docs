@@ -2,11 +2,10 @@
 title: Enable OpenTelemetry in Application Insights
 description: Learn how to enable OpenTelemetry (OTel) data collection in Application Insights for .NET, Java, Node.js, and Python applications using the Azure Monitor OpenTelemetry Distro.
 ms.topic: how-to
-ms.date: 02/28/2025
+ms.date: 09/26/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, typescript, python
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
-ms.reviewer: mmcc
 
 #customer intent: As a developer or site reliability engineer, I want to enable OpenTelemetry (OTel) data collection in Application Insights so that I can automatically collect telemetry data from my .NET, Java, Node.js, or Python applications without extensive configuration.
 
@@ -23,7 +22,7 @@ This article describes how to enable and configure OpenTelemetry-based data coll
 
 For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
-To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\opentelemetry-help-support-feedback.md).
+To learn more about collecting data using OpenTelemetry, check out [Data Collection Basics](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\application-insights-faq.yml#opentelemetry-support-and-feedback).
 
 ### OpenTelemetry release status
 
@@ -34,7 +33,7 @@ OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applic
 
 ## Enable OpenTelemetry with Application Insights
 
-Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for langauge-specific instructions.
+Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for language-specific instructions.
 
 > [!NOTE]
 > .NET covers multiple scenarios, including classic ASP.NET, console apps, Windows Forms (WinForms), and more.
@@ -42,7 +41,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 ### Prerequisites
 
 > [!div class="checklist"]
-> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/free/)
+> * Azure subscription: [Create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 > * Application Insights resource: [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource)
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
@@ -116,7 +115,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 
 #### [Java](#tab/java)
 
-Download the latest [applicationinsights-agent-3.7.1.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.1/applicationinsights-agent-3.7.1.jar) file.
+Download the latest [applicationinsights-agent-3.7.4.jar](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.4/applicationinsights-agent-3.7.4.jar) file.
 
 > [!WARNING]
 >
@@ -138,6 +137,8 @@ For *Spring Boot* native applications:
 For *Quarkus* native applications:
 
 * Add the [Quarkus OpenTelemetry Exporter for Azure](https://mvnrepository.com/artifact/io.quarkiverse.opentelemetry.exporter/quarkus-opentelemetry-exporter-azure) dependency.
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
 
@@ -229,7 +230,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 Autoinstrumentation is enabled through configuration changes. *No code changes are required.*
 
-Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.1.jar"` to your application's JVM args.
+Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.5.jar"` to your application's JVM args.
 
 > [!NOTE]
 > Sampling is enabled by default at a rate of 5 requests per second, aiding in cost management. Telemetry data may be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
@@ -308,7 +309,7 @@ To paste your connection string, select from the following options:
 
 * **Set via configuration file** - *Java only*
     
-    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.1.jar` with the following content:
+    Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.5.jar` with the following content:
     
     ```json
     {
@@ -394,6 +395,8 @@ Azure Monitor OpenTelemetry sample applications are available for all supported 
 * Learn more features for Quarkus native applications in [Quarkus OpenTelemetry Exporter for Azure](https://quarkus.io/guides/opentelemetry).
 * Review the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
 * To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+
+[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 

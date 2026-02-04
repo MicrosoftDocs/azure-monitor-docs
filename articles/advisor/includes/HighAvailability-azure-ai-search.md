@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/27/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure AI Search
@@ -103,5 +103,23 @@ Subcategory: HighAvailability
 
 <!--98acf571-d0a4-4111-993c-829f91b8c71b_end-->
 
+
+<!--518eda63-f5a0-4e5e-9ac9-9d55a33c53c9_begin-->
+
+#### Migrate to Grounding with Bing Search  
+  
+Bing Search APIs will be retired and decommissioned. Customers should transition to Grounding with Bing Search as part of Azure AI Agents to incorporate real-time public web data in LLM responses.  
+  
+**Potential benefits**: Enable real-time web data  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=492574)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: 518eda63-f5a0-4e5e-9ac9-9d55a33c53c9  
+Subcategory: undefined
+
+<!--518eda63-f5a0-4e5e-9ac9-9d55a33c53c9_end-->
 
 <!--articleBody-->

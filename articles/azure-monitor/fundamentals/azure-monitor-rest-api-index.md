@@ -1,17 +1,22 @@
 ---
 title: Azure Monitor REST API index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
-ms.date: 05/21/2025
+ms.date: 12/11/2025
 ms.topic: reference
 ---
 
 # Azure Monitor REST API index
 
+> [!NOTE]
+> This page lists APIs for native Azure Monitor features, including *Managed Prometheus*. Other managed services, such as *Azure Managed Grafana* and *Azure Monitor SCOM Managed Instance*, use their own REST APIs and aren't included in this index.
+>
+> For more information, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
+
 Organized by subject area.
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Operations](/rest/api/monitor/alertsmanagement/operations) | Lists the available REST API operations for Azure Monitor. |
+| [Operations](/rest/api/monitor/) | Lists the available REST API operations for Azure Monitor. |
 | ***Activity Log*** |  |
 | [Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](../essentials/platform-logs-overview.md). |
 | [(Activity log) event categories](/rest/api/monitor/event-categories) | Lists the types of Activity Log Entries. |
@@ -20,16 +25,16 @@ Organized by subject area.
 | ***Alerts Management and Action Groups*** |  |
 | [Action groups](/rest/api/monitor/action-groups) | Manages and lists [action groups](../alerts/action-groups.md). |
 | [Activity log alerts](/rest/api/monitor/activity-log-alerts) | Manages and lists [activity log alert rules](../alerts/alerts-types.md#activity-log-alerts). |
-| [Alert management](/rest/api/monitor/alertsmanagement/alerts) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
-| [Alert processing rules](/rest/api/monitor/alertsmanagement/alert-processing-rules) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
+| [Alert management](/rest/api/alerts-management/alerts/alerts) | Lists and updates [fired alerts](../alerts/alerts-overview.md). |
+| [Alert processing rules](/rest/api/alerts-management/processing-rules/alert-processing-rules) | Manages and lists [alert processing rules](../alerts/alerts-processing-rules.md). |
 | [Metric alert baseline](/rest/api/monitor/baselines) | List the metric baselines used in alert rules with [dynamic thresholds](../alerts/alerts-dynamic-thresholds.md). |
 | [Metric alerts](/rest/api/monitor/metric-alerts) | Manages and lists [metric alert rules](../alerts/alerts-overview.md). |
 | [Metric alerts status](/rest/api/monitor/metric-alerts-status) | Lists the status of [metric alert rules](../alerts/alerts-overview.md). |
-| [Prometheus rule groups](/rest/api/monitor/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../essentials/prometheus-rule-groups.md) (alert rules and recording rules). |
+| [Prometheus rule groups](/rest/api/alerts-management/prometheus-rule-groups/prometheus-rule-groups) | Manages and lists [Prometheus rule groups](../essentials/prometheus-rule-groups.md) (alert rules and recording rules). |
 | [Scheduled query rules - 2023-03-15 (preview)](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2023-03-15-preview&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | [Scheduled query rules - 2018-04-16](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2018-04-16&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | [Scheduled query rules - 2021-08-01](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2021-08-01&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
-| [Smart Detector alert rules](/rest/api/monitor/smart-detector-alert-rules) | Manages and lists [smart detection alert rules](../alerts/alerts-types.md#smart-detection-alerts). |
+| Smart Detector alert rules | Manages and lists [smart detection alert rules](../alerts/alerts-types.md#smart-detection-alerts). |
 | ***Application Insights*** |  |
 | [Components](/rest/api/application-insights/components) | Enables you to manage components that contain Application Insights data. |
 | [Data Access](../logs/api/overview.md) | Query Application Insights data. |
@@ -64,10 +69,10 @@ Organized by subject area.
 | [Linked Services](/rest/api/loganalytics/linked-services) | Create or update linked services. |
 | [Linked Storage Accounts](/rest/api/loganalytics/linked-storage-accounts) | Manage a link relation between a workspace and storage accounts and retrieve all linked storage accounts associated with a workspace. |
 | [Management Groups](/rest/api/loganalytics/management-groups) | Retrieve all management groups connected to a Log Analytics workspace. |
-| [Metadata](/rest/api/loganalytics/metadata) | Retrieve the metadata information for a Log Analytics workspace. |
+| [Metadata](/azure/azure-monitor/logs/api/overview) | Retrieve the metadata information for a Log Analytics workspace. |
 | [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running azure asynchronous operation. |
 | [Operations](/rest/api/loganalytics/operations) | Retrieve all of the available OperationalInsights Rest API operations. |
-| [Query](/rest/api/loganalytics/query) | Query the full set of data collected by Azure Monitor logs using KQL. |
+| [Query](/azure/azure-monitor/logs/api/overview) | Query the full set of data collected by Azure Monitor logs using KQL. |
 | [Query pack queries](/rest/api/monitor/query-pack-queries) | Manage a query defined within a Log Analytics QueryPack and retrieve or search the list of queries defined within a Log Analytics QueryPack. |
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
 | [Saved Searches](/rest/api/loganalytics/saved-searches) | Create or update saved searches. |

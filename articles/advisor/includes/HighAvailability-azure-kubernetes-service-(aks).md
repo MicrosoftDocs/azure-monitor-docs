@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 01/27/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -45,17 +45,18 @@ Subcategory: DisasterRecovery
   
 To ensure your system pods are scheduled even during times of high load, enable autoscaling on your system node pool.  
   
-**Potential benefits**: Enabling Autoscaler for system node pool ensures system pods are scheduled and cluster can function.  
+**Potential benefits**: Autoscaler improves system pod uptime  
 
 **Impact:** High
   
-For more information, see [Use the cluster autoscaler in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/cluster-autoscaler?tabs=azure-cli#before-you-begin)  
+For more information, see [Use the cluster autoscaler in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/cluster-autoscaler?tabs=azure-cli#before-you-begin)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 70829b1a-272b-4728-b418-8f1a56432d33  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--70829b1a-272b-4728-b418-8f1a56432d33_end-->
+
 
 <!--a9228ae7-4386-41be-b527-acd59fad3c79_begin-->
 
@@ -67,13 +68,14 @@ Ensure your system node pools have at least 2 nodes for reliability of your syst
 
 **Impact:** High
   
-For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools)  
+For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/use-system-pools?tabs=azure-cli#system-and-user-node-pools)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: a9228ae7-4386-41be-b527-acd59fad3c79  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--a9228ae7-4386-41be-b527-acd59fad3c79_end-->
+
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_begin-->
 
@@ -81,17 +83,18 @@ Subcategory: HighAvailability
   
 A cluster without a dedicated system node pool is less reliable. We recommend you dedicate system node pools to only serve critical system pods, preventing resource starvation between system and competing user pods. Enforce this behavior with the CriticalAddonsOnly=true:NoSchedule taint on the pool.  
   
-**Potential benefits**: Ensures cluster reliability by preventing resource scarcity for core system pods  
+**Potential benefits**: Prevents resource scarcity for core system pods  
 
 **Impact:** High
   
-For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service ](/azure/aks/use-system-pools?tabs=azure-cli#before-you-begin)  
+For more information, see [Use system node pools in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](/azure/aks/use-system-pools?tabs=azure-cli#before-you-begin)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
+
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
 
@@ -128,5 +131,133 @@ Recommendation ID: 9f3263db-b9c0-43bb-8523-6800f9f50793
 Subcategory: HighAvailability
 
 <!--9f3263db-b9c0-43bb-8523-6800f9f50793_end-->
+
+<!--863d09bd-e767-472b-9980-f32709414ade_begin-->
+
+#### Ubuntu 20.04 on Azure Kubernetes Service is retiring  
+  
+To avoid service disruptions, scaling restrictions, and remain supported; upgrade to a supported Kubernetes version.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485172)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 863d09bd-e767-472b-9980-f32709414ade  
+Subcategory: undefined
+
+<!--863d09bd-e767-472b-9980-f32709414ade_end-->
+
+<!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_begin-->
+
+#### Migrate to Container insights managed identity authentication  
+  
+Migrate to Container insights managed identity authentication before the retirement date to maintain access and retain functionality.  
+  
+**Potential benefits**: Avoid service disruption and gain enhanced features  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500853)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: b005ecf0-23e2-4279-9ca2-718d1518c9fb  
+Subcategory: undefined
+
+<!--b005ecf0-23e2-4279-9ca2-718d1518c9fb_end-->
+
+<!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_begin-->
+
+#### Use Fleet Manager auto-upgrade profiles to regularly update clusters  
+  
+Use Azure Kubernetes Fleet Manager to safely update multiple clusters using update runs, auto-upgrade profiles and strategies.  
+  
+**Potential benefits**: Safe and predictable updates of multiple clusters  
+
+**Impact:** Medium
+  
+For more information, see [Automate upgrades of Kubernetes and node images across multiple clusters using Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/auto-upgrade)  
+
+ResourceType: microsoft.containerservice/fleets  
+Recommendation ID: 8aad9adb-cb6a-4ddc-b659-12d1c6ca186a  
+Subcategory: undefined
+
+<!--8aad9adb-cb6a-4ddc-b659-12d1c6ca186a_end-->
+
+<!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_begin-->
+
+#### Migrate from NPM for Windows on AKS  
+  
+Customers should explore alternative options for restricting traffic access on Windows clusters, such as:
+Network Security Groups (NSGs) at the node level or Open-source tools like Project Calico.
+Microsoft encourages identifying the best approach for your environment before the retirement date.  
+  
+**Potential benefits**: Ensure secure traffic control on Windows-based AKS clusters  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500273)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: ec938125-62ef-4dc5-b7b1-257eb8d006d9  
+Subcategory: undefined
+
+<!--ec938125-62ef-4dc5-b7b1-257eb8d006d9_end-->
+
+<!--0e15044d-e326-4281-bbe1-1e35b32308ec_begin-->
+
+#### Migrate to Cilium Network Policy  
+  
+Azure Network Policy Manager for Azure Kubernetes Service clusters running Linux nodes is retiring. Migrate to Cilium Network Policy using Azure Container Networking Interface powered by Cilium before the retirement date.  
+  
+**Potential benefits**: Avoid service disruptions and unsupported configurations  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500268)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 0e15044d-e326-4281-bbe1-1e35b32308ec  
+Subcategory: undefined
+
+<!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
+
+<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_begin-->
+
+#### Migrate to Azure Linux 3.0  
+  
+Transition to Azure Linux 3.0 before the retirement date to receive future kernel updates, receive future security improvements, and avoid scaling failures.  
+  
+**Potential benefits**: Avoid service disruptions and unsupported configurations  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500645)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: cc59372b-bd3d-415f-91c1-6c596b5de2fc  
+Subcategory: undefined
+
+<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_end-->
+
+<!--91594754-953c-4eda-ac71-7b8e2e9b0e74_begin-->
+
+#### Migrate to Azure Linux 3.0  
+  
+Transition to Azure Linux 3.0 before the retirement date to receive future kernel updates, receive future security improvements, and avoid scaling failures.  
+  
+**Potential benefits**: Avoid service disruptions and unsupported configurations  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500645)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 91594754-953c-4eda-ac71-7b8e2e9b0e74  
+Subcategory: undefined
+
+<!--91594754-953c-4eda-ac71-7b8e2e9b0e74_end-->
 
 <!--articleBody-->

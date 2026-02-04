@@ -63,7 +63,7 @@ A subset of the availability zones that support data resilience currently also s
 | Spain Central	| :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | Sweden Central	| :white_check_mark: | :white_check_mark: | |
 | Switzerland North	| | :white_check_mark: | |
-| UK South	| :white_check_mark: | :white_check_mark: | |
+| UK South	| :white_check_mark: | :white_check_mark: | :white_check_mark: |
 | West Europe	| | :white_check_mark: | |
 | **Middle East** | | | |
 | Israel Central | :white_check_mark: | :white_check_mark: | :white_check_mark: |

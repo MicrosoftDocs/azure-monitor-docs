@@ -15,7 +15,7 @@ This article describes how to configure the Azure Monitor *managed service for P
 ## Prerequisites
 
 + Kafka cluster running on AKS or Azure Arc-enabled Kubernetes - [Deploy Kafka cluster running on AKS](/azure/aks/kafka-infrastructure?pivots=azure-cli)
-+ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md#enable-prometheus-and-grafana)
++ Azure Managed prometheus enabled on the cluster - [Enable Azure Managed Prometheus on AKS](kubernetes-monitoring-enable.md)
 
 ## Install the Kafka Exporter
 
@@ -167,7 +167,7 @@ spec:
 
 ## Configure alerts by using Strimzi
 
-You can configure a rich set of alerts based on Strimzi metrics by referring to [these examples](https://github.com/strimzi/strimzi-kafka-operator/blob/main/examples/metrics/prometheus-install/prometheus-rules.yaml).
+You can configure a rich set of alerts based on Strimzi metrics by referring to [these examples](https://github.com/strimzi/strimzi-kafka-operator/tree/main/examples/metrics/prometheus-install/prometheus-rules).
 
 > [!NOTE]
 > If you're using any other way of exposing the JMX Exporter on your Kafka cluster, follow the [instructions for configuring the pod or service monitors](prometheus-metrics-scrape-crd.md) accordingly.
