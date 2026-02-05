@@ -20,7 +20,7 @@ If your dependency isn't on the list, you can still track it manually, see [Manu
 For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 > [!NOTE]
-> For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX calls as dependencies.
+> For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
 
 ### How does automatic dependency monitoring work?
 
@@ -68,14 +68,6 @@ Select a **Dependency Name** under **Overall**. After you select a dependency, i
 Select the **Samples** button at the bottom right. Then select a sample to see the end-to-end transaction details.
 
 :::image type="content" source="media/dependencies/end-to-end.png" lightbox="media/dependencies/end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
-
-<!-- Verify if .NET Profiler is available with OpenTelemetry
-
-### Profile your live site
-
-The [.NET Profiler](profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
-
--->
 
 ## Failed requests
 

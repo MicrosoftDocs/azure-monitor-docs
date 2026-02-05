@@ -11,7 +11,7 @@ Application Insights supports three different types of metrics: standard (preagg
 
 #### Standard metrics
 
-Application Insights collects and monitors standard metrics automatically. These predefined metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. You don't need to configure anything to start using them. During collection, the service preaggregates standard metrics and stores them as a time series in a specialized repository with only key dimensions. This design improves query performance. Because of their speed and structure, standard metrics work best for near real-time alerting and responsive [dashboards](./overview-dashboard.md).
+Application Insights collects and monitors standard metrics automatically. These predefined metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. You don't need to configure anything to start using them. During collection, the service preaggregates standard metrics and stores them as a time series in a specialized repository with only key dimensions. This design improves query performance. Because of their speed and structure, standard metrics work best for near real-time alerting and responsive [dashboards](overview-dashboard.md).
 
 #### Log-based metrics
 
@@ -28,7 +28,7 @@ Custom metrics in Application Insights allow you to define and track specific me
 For more information, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md).
 
 > [!NOTE]
-> Application Insights also provides a feature called [Live Metrics stream](./live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
+> Application Insights also provides a feature called [Live Metrics stream](live-stream.md), which allows for near real-time monitoring of your web applications and doesn't store any telemetry data.
 
 ## Metrics comparison
 
@@ -48,7 +48,7 @@ For more information, see [Custom metrics in Azure Monitor (preview)](../metrics
 
 ## Metrics preaggregation
 
-OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](./opentelemetry-add-modify.md#add-custom-metrics), which results in less data ingestion and lower cost.
+OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](opentelemetry-add-modify.md#add-custom-metrics), which results in less data ingestion and lower cost.
 
 The Application Insights JavaScript SDK (browser-based) doesn't implement preaggregation. Instead, the back end creates the new metrics by aggregating the events received through the telemetry channel. This doesn't reduce the volume of data sent from the browser. However, you can still use the preaggregated metrics the back end produces. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection. The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
@@ -79,15 +79,15 @@ With autoinstrumentation, the SDK is automatically added to your application cod
 
 **Footnotes**
 
-* <sup>1</sup> [ASP.NET Core autoinstrumentation on App Service](./azure-web-apps-net-core.md) emits standard metrics without dimensions. Manual instrumentation is required for all dimensions.<br>
-* <sup>2</sup> [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](./azure-vm-vmss-apps.md) and [on-premises](./application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. Manual instrumentation is required for all dimensions.
+* <sup>1</sup> [ASP.NET Core autoinstrumentation on App Service](azure-web-apps-net-core.md) emits standard metrics without dimensions. Manual instrumentation is required for all dimensions.<br>
+* <sup>2</sup> [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](azure-vm-vmss-apps.md) and [on-premises](application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. Manual instrumentation is required for all dimensions.
 * <sup>3</sup> The Java agent used with autoinstrumentation captures metrics emitted by popular libraries and sends them to Application Insights as custom metrics.
 
 ### Custom metrics dimensions and preaggregation
 
-All metrics that you send using [OpenTelemetry](./../app/opentelemetry-add-modify.md), [trackMetric](./../app/api-custom-events-metrics.md), or [GetMetric and TrackValue](./../app/api-custom-events-metrics.md#getmetric) API calls are automatically stored in both the metrics store and logs. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called *azure.applicationinsights*. Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
+All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md), [trackMetric](api-custom-events-metrics.md), or [GetMetric and TrackValue](api-custom-events-metrics.md#getmetric) API calls are automatically stored in both the metrics store and logs. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called *azure.applicationinsights*. Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
 
-:::image type="content" source="./media/metrics-overview/usage-and-costs.png" lightbox="./media/metrics-overview/usage-and-costs.png" alt-text="Screenshot that shows usage and estimated costs.":::
+:::image type="content" source="media/metrics-overview/usage-and-costs.png" lightbox="media/metrics-overview/usage-and-costs.png" alt-text="Screenshot that shows usage and estimated costs.":::
 
 ### Quotas
 
@@ -104,7 +104,7 @@ Application Insights turns off the collection of custom metric dimensions by def
 
 Use [Azure Monitor metrics explorer](../essentials/metrics-getting-started.md) to plot charts from preaggregated, log-based, and custom metrics, and to author dashboards with charts. After you select the Application Insights resource you want, use the namespace picker to switch between metrics.
 
-:::image type="content" source="./media/metrics-overview/metric-namespace.png" lightbox="./media/metrics-overview/metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
+:::image type="content" source="media/metrics-overview/metric-namespace.png" lightbox="media/metrics-overview/metric-namespace.png" alt-text="Screenshot that shows Metric namespace.":::
 
 ## Pricing models for Application Insights metrics
 
@@ -147,7 +147,7 @@ When you plot the same metric in [metrics explorer](./../essentials/analyze-metr
 
 ### Availability metrics
 
-Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](../app/availability-overview.md) to start using any metrics from this category.
+Metrics in the Availability category enable you to see the health of your web application as observed from points around the world. [Configure the availability tests](availability.md) to start using any metrics from this category.
 
 ### [Standard](#tab/standard)
 
@@ -324,7 +324,7 @@ availabilityResults
 The Application Insights JavaScript SDK collects browser metrics from real end-user browsers. These metrics give you valuable insights into your users' experience with your web app. The SDK typically doesn't sample browser metrics, so they offer higher precision in usage numbers. In contrast, server-side metrics often use sampling, which can skew results.
 
 > [!NOTE]
-> To collect browser metrics, your application must be instrumented with the [Application Insights JavaScript SDK](../app/javascript.md).
+> To collect browser metrics, your application must be instrumented with the [Application Insights JavaScript SDK](javascript-sdk.md).
 
 ### [Standard](#tab/standard)
 
@@ -534,7 +534,7 @@ The number of failed dependency calls.
 
 #### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
+Each time when you log an exception to Application Insights, there's a call to the [trackException() method](api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -576,7 +576,7 @@ Each time when you log an exception to Application Insights, there's a call to t
 
 #### Failed requests (requests/failed)
 
-The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx (except for 401) as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#request-telemetry).
+The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx (except for 401) as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#request-telemetry).
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -701,7 +701,7 @@ dependencies
 
 #### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, there's a call to the [trackException() method](../app/api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
+Each time when you log an exception to Application Insights, there's a call to the [trackException() method](api-custom-events-metrics.md#trackexception) of the SDK. The Exceptions metric shows the number of logged exceptions.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -715,7 +715,7 @@ exceptions
 
 #### Failed requests (requests/failed)
 
-The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](../app/api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. You can customize this logic by modifying *success* property of request telemetry item in a [custom telemetry initializer](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -747,9 +747,9 @@ exceptions
 
 ### Performance counters
 
-[Application Insights](./app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance issues and support built-in experiences.
+[Application Insights](app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance issues and support built-in experiences.
 
-The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
+The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
 #### Counter names and descriptions
 
@@ -769,8 +769,8 @@ The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports thes
 
 #### Experiences enhanced by performance counters
 
-* [**Performance view**](./failures-performance-transactions.md?tabs=performance-view): Available Memory, Process CPU %, Process I/O Rate.
-* [**Failures view**](./failures-performance-transactions.md?tabs=failures-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Performance view**](failures-performance-transactions.md?tabs=performance-view): Available Memory, Process CPU %, Process I/O Rate.
+* [**Failures view**](failures-performance-transactions.md?tabs=failures-view): Available Memory, Process CPU %, Process I/O Rate.
 * [**Smart Detection and Smart Alerts**](../alerts/proactive-diagnostics.md): Process Private Bytes.
 * [**Request count charts**](../visualize/workbooks-chart-visualizations.md): Charts display counts from the `requests` table.
 
@@ -778,7 +778,7 @@ The [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) exports thes
 
 For a complete list of available performance counters, which varies depending on language-specific runtime and configuration:
 
-1. Open your [Application Insights resource](./create-workspace-resource.md) in the Azure portal.
+1. Open your [Application Insights resource](create-workspace-resource.md) in the Azure portal.
 1. Under **Monitoring**, select **Logs**.
 1. From **Select a table** menu, choose `performanceCounters` and then **Run**.
 
@@ -1550,4 +1550,4 @@ output
 
 * [Metrics - Get - REST API](/rest/api/application-insights/metrics/get)
 * [Application Insights API for custom events and metrics](api-custom-events-metrics.md)
-* [GetMetric and TrackValue](./api-custom-events-metrics.md#getmetric)
+* [GetMetric and TrackValue](api-custom-events-metrics.md#getmetric)
