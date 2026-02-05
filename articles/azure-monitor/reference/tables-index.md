@@ -227,7 +227,7 @@ Microsoft.Blockchain/blockchainMembers
 - [BlockchainApplicationLog](./tables/blockchainapplicationlog.md)
 - [BlockchainProxyLog](./tables/blockchainproxylog.md)
 
-### Azure Cache for Redis  
+### Azure Managed Redis  
 
 microsoft.cache/redis  
 
@@ -236,7 +236,7 @@ microsoft.cache/redis
 - [AzureActivity](./tables/azureactivity.md)
 - [AzureMetrics](./tables/azuremetrics.md)
 
-### Azure Cache for Redis Enterprise  
+### Azure Managed Redis Enterprise  
 
 Microsoft.Cache/redisEnterprise  
 
