@@ -3179,7 +3179,7 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 * [Live metrics](#live-metrics)
 * [Distributed tracing](#distributed-tracing)
-* [Depencencies](#dependencies)
+* [Dependencies](#dependencies)
 * [Extended metrics](#extended-metrics)
 * [TelemetryClient API](#telemetryclient-api)
 
