@@ -31,11 +31,11 @@ With live metrics, you can:
 
 1. Enable live metrics with Azure Monitor OpenTelemetry by following language-specific guidelines:
 
-* [ASP.NET](opentelemetry-enable.md?tabs=net): *Not supported*.
-* [ASP.NET Core](opentelemetry-enable.md?tabs=aspnetcore): Enabled by default.
-* [Java](opentelemetry-enable.md?tabs=java): Enabled by default.
-* [Node.js](opentelemetry-enable.md?tabs=nodejs): Enabled by default.
-* [Python](opentelemetry-enable.md?tabs=python): Pass `enable_live_metrics=True` into `configure_azure_monitor`. See the [Azure Monitor OpenTelemetry Distro](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry#usage) documentation for more information.
+    * [ASP.NET](opentelemetry-enable.md?tabs=net): *Not supported*.
+    * [ASP.NET Core](opentelemetry-enable.md?tabs=aspnetcore): Enabled by default.
+    * [Java](opentelemetry-enable.md?tabs=java): Enabled by default.
+    * [Node.js](opentelemetry-enable.md?tabs=nodejs): Enabled by default.
+    * [Python](opentelemetry-enable.md?tabs=python): Pass `enable_live_metrics=True` into `configure_azure_monitor`. See the [Azure Monitor OpenTelemetry Distro](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry#usage) documentation for more information.
 
 1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
 
