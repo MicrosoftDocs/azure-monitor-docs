@@ -25,6 +25,9 @@ Azure Network Watcher provides a suite of tools to monitor the network health of
 
 Application Insights is a feature of Azure Monitor that delivers deep visibility into the performance, reliability, and usage of your applications across cloud and hybrid environments. It automatically collects telemetry such as requests, dependencies, exceptions, and traces to help you quickly diagnose issues and understand user behavior. With native support for OpenTelemetry, Application Insights enables you to instrument applications using open standards while unifying data across languages and platforms. It provides powerful analytics and integration with other Azure Monitor tools to help teams proactively detect anomalies, optimize performance, and improve application resilience.
 
+## Monitor your agents
+Application insights also provides a unified experience for monitoring AI agents across multiple sources including Azure AI Foundry, Copilot Studio, and third-party agents. This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
+
 ## Data platform
 At the core of Azure Monitor is a highly scalable data platform that supports all of its features and provides powerful query languages for analysis and alerting. 
 
