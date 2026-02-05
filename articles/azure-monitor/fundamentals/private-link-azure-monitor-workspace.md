@@ -10,7 +10,7 @@ ms.date: 08/28/2025
 Use [private endpoints](/azure/private-link/private-endpoint-overview) for Managed Prometheus and your Azure Monitor workspace to allow clients on a virtual network (VNet) to securely query data over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses a separate IP address within the VNet address space of your Azure Monitor workspace resource. Network traffic between the clients on the VNet and the workspace resource traverses the VNet and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
 
 > [!NOTE]
-> If you' a're using Azure Managed Grafana to query your data, configure a [Managed Private Endpoint](https://aka.ms/ags/mpe) to ensure the queries from Managed Grafana into your Azure Monitor workspace use the Microsoft backbone network without going through the internet.
+> If you're using Azure Managed Grafana to query your data, configure a [Managed Private Endpoint](https://aka.ms/ags/mpe) to ensure the queries from Managed Grafana into your Azure Monitor workspace use the Microsoft backbone network without going through the internet.
 
 Using private endpoints for your workspace enables you to:
 

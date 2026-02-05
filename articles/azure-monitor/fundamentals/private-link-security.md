@@ -21,7 +21,7 @@ Benefits of using Private Link with Azure Monitor include the following. See [Ke
 
 Azure Monitor private links are structured differently from private links to other services. Instead of creating a private link for each resource the virtual network connects to, Azure Monitor uses a single private link connection using a private endpoint from the virtual network to an Azure Monitor Private Link Scope (AMPLS). The AMPLS is a set of Azure Monitor resources that define the boundaries of your monitoring network.
 
-:::image type="content" source="media/private-link-security/private-link-basic-topology.png" lightbox="media/private-link-security/private-link-basic-topology.png" alt-text="Diagram that shows basic resource topology.":::
+:::image type="content" source="media/private-link-security/private-link-basic-topology.png" lightbox="media/private-link-security/private-link-basic-topology.png" alt-text="Diagram that shows basic resource topology." border="false":::
 
 Notable aspects of the AMPLS include the following:
 
