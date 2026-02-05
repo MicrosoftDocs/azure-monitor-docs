@@ -33,7 +33,7 @@ To report an impact, follow these steps.
 
 :::image type="content" source="media/report-issue/report-an-impact-main.png" alt-text="Screenshot of the screen to report an impact." lightbox="media/report-issue/report-an-impact-main.png":::
 
-2. Select **Specific resource issue**.
+2. Select **Single resource**.
 
 *Choose this if the problem seems to be isolated to one resource*
 
@@ -63,7 +63,7 @@ If you get this error, it means you don’t have permission.
 
 The steps to report an impact about Multiple resources is the same a reporting a single resource impact. The difference is that you don’t need the same permission.
 
-1. Select **Potential service-level issue**.
+1. Select **Multiple resources / entire service**.
 
 *Choose this option if several resources or your overall app experience is affected and you believe Azure could be the cause.*
 
@@ -73,7 +73,7 @@ The steps to report an impact about Multiple resources is the same a reporting a
 1. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success-resource.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-resource.png":::
 
 ## What to expect after you submit an impact
 We review your report, and if an outage is confirmed, it appears on the Service Issues page in Azure Service Health.
