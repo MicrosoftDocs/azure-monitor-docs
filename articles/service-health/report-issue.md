@@ -61,7 +61,7 @@ If you get this error, it means you don’t have permission.
 
 ## How to report service impacts
 
-The steps to report an impact about Multiple resources are the same as reporting a single resource impact. The difference is that you don’t need the same permission.
+The steps to report about service impacts are the same as reporting a single resource impact. The difference is that you don’t need the same permission.
 
 1. Select **Multiple resources / entire service**.
 
