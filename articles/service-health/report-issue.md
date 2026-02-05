@@ -9,7 +9,7 @@ ms.date: 02/04/2026
 
 Even if there are no active issues shown in the Service Health portal, you can now report a service-level or resource-level impact. This tool allows you to notify Microsoft about an impact even when it isn't identified as part of a broader outage.<br>
 
-When you submit an impact, our team reviews the submitted report, and if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
+When you submit an impact, if an outage is identified you see it on the Azure Service Health portal. For more information, see [Azure Impact Reporting](/azure/azure-impact-reporting).
 
 ## Access permission
 
@@ -59,7 +59,7 @@ If you get this error, it means you don’t have permission.
 
 :::image type="content" source="media/report-issue/report-an-issue-error.png" alt-text="Screenshot of the message you don't have access." lightbox="media/report-issue/report-an-issue-error.png":::
 
-## How to report multiple resource impacts
+## How to report service impacts
 
 The steps to report an impact about Multiple resources are the same as reporting a single resource impact. The difference is that you don’t need the same permission.
 
