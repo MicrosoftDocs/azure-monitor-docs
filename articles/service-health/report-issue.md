@@ -35,7 +35,7 @@ To report an impact, follow these steps.
 
 2. Select **Single resource**.
 
-*Choose this if the problem seems to be isolated to one resource*
+*Choose this option if the problem seems to be isolated to one resource*
 
 :::image type="content" source="media/report-issue/report-an-impact-specific.png" alt-text="Screenshot of the screen to select single resource." lightbox="media/report-issue/report-an-impact-specific.png":::
 
@@ -51,7 +51,7 @@ To report an impact, follow these steps.
 4. Select **Submit**.
 
 When your impact is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success.png" alt-text="Screenshot of the message your report on a resource impact is a success." lightbox="media/report-issue/report-an-issue-success.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success-resource.png" alt-text="Screenshot of the message your report on a resource impact is a success." lightbox="media/report-issue/report-an-issue-success-resource.png":::
 
 If an outage is found, you see it on the portal.
 
@@ -59,9 +59,9 @@ If you get this error, it means you don’t have permission.
 
 :::image type="content" source="media/report-issue/report-an-issue-error.png" alt-text="Screenshot of the message you don't have access." lightbox="media/report-issue/report-an-issue-error.png":::
 
-## How to report service-level impacts
+## How to report multiple resource impacts
 
-The steps to report an impact about Multiple resources is the same a reporting a single resource impact. The difference is that you don’t need the same permission.
+The steps to report an impact about Multiple resources is the same as reporting a single resource impact. The difference is that you don’t need the same permission.
 
 1. Select **Multiple resources / entire service**.
 
@@ -73,7 +73,7 @@ The steps to report an impact about Multiple resources is the same a reporting a
 1. Select **Submit**.
 
 When your issue is reported, you should see this message. 
-:::image type="content" source="media/report-issue/report-an-issue-success-resource.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-resource.png":::
+:::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
 ## What to expect after you submit an impact
 We review your report, and if an outage is confirmed, it appears on the Service Issues page in Azure Service Health.
