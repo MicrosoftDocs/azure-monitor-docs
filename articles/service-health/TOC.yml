@@ -38,7 +38,7 @@
       href: Service-health-advisories.md
     - name: Security advisories overview
       href: security-advisories-elevated-access.md
-    - name: In-Portal Billing communications
+    - name: Billing updates overview
       href: billing-elevated-access.md
     - name: How to report an impact
       href: report-issue.md
