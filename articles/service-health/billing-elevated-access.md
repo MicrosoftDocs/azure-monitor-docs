@@ -1,11 +1,11 @@
 ---
-title: In-portal Billing Communications
+title: Billing communications overview
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 10/15/2025
+ms.date: 02/05/2026
 ---
 
-# In-portal Billing Communications
+# Billing communications
 
 ## Overview
 
