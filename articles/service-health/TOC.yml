@@ -40,9 +40,7 @@
       href: security-advisories-elevated-access.md
     - name: In-Portal Billing communications
       href: billing-elevated-access.md
-    - name: Health history overview
-      href: health-history-overview.md
-    - name: How to report an issue
+    - name: How to report an impact
       href: report-issue.md
     - name: Configure subscriptions for Security advisories
       href: security-advisories-add-subscription.md
