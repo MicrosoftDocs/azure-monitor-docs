@@ -3,7 +3,7 @@ title: "Live Metrics: Real-Time Monitoring in Application Insights"
 description: Monitor your web app in real time with Azure Application Insights. Diagnose issues instantly using live metrics, custom filters, and failure traces.
 #customer intent: As a developer, I want to monitor my web application's performance in real time so that I can quickly identify and resolve issues.
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 03/06/2026
 author: AarDavMax
 ms.author: aaronmax
 ms.reviewer: aaronmax
