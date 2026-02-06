@@ -101,20 +101,17 @@ The automated certificate management includes:
 - **Trust Bundles**: Automatically distributed CA certificates for validation
 - **Zero-Downtime Rotation**: Certificates are renewed seamlessly without service interruption
 
-### Certificate Lifecycle
+### Certificate lifecycle
 
-The certificate lifecycles automatically:
+Following are the details of the lifecycle for server and client certificates:
 
-**Server Leaf Certificates:**
+**Server leaf Certificates:**
+
 - Duration: 48 hours (2 days)
 - Automatic renewal 24 hours before expiration
 - Managed automatically by the pipeline operator
 
 **Client Certificates:**
-
-> [!NOTE]
->
-> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Setup Gateway for Azure Monitor Pipeline](#setup-gateway-for-azure-monitor-pipeline)).
 
 Client certificate lifetimes are controlled by clients, but must meet zero-downtime rotation constraints. The certificate must renew within 2 days.
 
@@ -123,6 +120,8 @@ Recommended configurations:
 - `duration: 72h` and `renewBefore: 25h` 
 - `duration: 24h` and `renewBefore: 12h`
 
+> [!NOTE]
+> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Setup Gateway for Azure Monitor Pipeline](#setup-gateway-for-azure-monitor-pipeline)).
 
 > [!WARNING]
 > Client certificates that don't renew within 2 days may become invalid when the CA rotates. Always set `renewBefore` to ensure renewal happens before the CA enters its next incubation period.
@@ -133,7 +132,7 @@ When you deploy a pipeline group with default settings, the operator automatical
 
 - Creates unique TLS certificates for each collector service
 - Configures collectors to use managed server certificates
-- Distributes trust bundles containing server or client CA certificates to labeled namespaces (It is the responsibility of the user to label the client namespace so the server CA certificate configmap is available in the client namespace)
+- Distributes trust bundles containing server or client CA certificates to labeled namespaces. It's the responsibility of the user to label the client namespace so the server CA certificate configmap is available in the client namespace.
 - Enables mTLS with automatic certificate rotation
 
 #### Step 1: Deploy pipeline group
@@ -289,8 +288,9 @@ Apply the YAML to your cluster using the following command.
 kubectl apply -f external-pki-issuer.yaml
 ```
 
-Create Certificate Resource
-Save the following YAML to a file named azmonpipeline-server-cert.yaml.
+### Create certificate resource
+
+Save the following YAML to a file named `azmonpipeline-server-cert.yaml`.
 
 ```yml
 apiVersion: cert-manager.io/v1
@@ -316,10 +316,8 @@ kubectl apply -f azmonpipeline-server-cert.yaml
 
 When bringing your own server certificate:
 
-- **Certificate and Private Key**: Both must be provided together
-- **DNS Subject Alternative Names (SANs)**: The certificate must include appropriate SANs matching the service endpoints
-
-**Required DNS SANs:**
+- **Certificate and Private Key**: Both must be provided together.
+- **DNS Subject Alternative Names (SANs)**: The certificate must include appropriate SANs matching the service endpoints.
 
 The server certificate must include the service FQDN at minimum:
 
@@ -580,13 +578,13 @@ The following section provide different configurations to include in the `tlsCer
 ```
 
 
-## Setup Gateway for Azure Monitor Pipeline
+## Setup gateway for Azure Monitor Pipeline
 
-Azure Monitor Pipeline extension deploys OpenTelemetry collectors with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to external clients, you need to deploy a Gateway solution.
+Azure Monitor Pipeline extension deploys OpenTelemetry collectors with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to external clients, you need to deploy a gateway solution.
 
 ### Gateway Architecture Options
 
-There are multiple gateway solutions available which are based on Kubernetes' [Gateway API](https://gateway-api.sigs.k8s.io/).
+There are multiple gateway solutions available that are based on Kubernetes' [Gateway API](https://gateway-api.sigs.k8s.io/).
 This guide provides an example using Traefik Gateway with the **Insecure Frontend + mTLS Backend** architecture, which provides:
 
 - Simple client connectivity (no client-side TLS configuration)
@@ -605,11 +603,11 @@ Before deploying the gateway, ensure:
 Bash
 kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
 
-### Step 1: Deploy the Pipeline
+### Step 1: Deploy the pipeline
 
 Create a syslog pipeline with default mTLS settings:
 
-JSON
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -746,6 +744,7 @@ JSON
         }
     ]
 }
+```
 
 TLS is enabled by default with mutualTls mode. No tlsConfigurations needed for default behavior.
 
@@ -753,7 +752,7 @@ TLS is enabled by default with mutualTls mode. No tlsConfigurations needed for d
 
 The gateway needs a client certificate to authenticate to the pipeline. Create a certificate issued by the managed client CA:
 
-yml
+```yml
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -773,12 +772,14 @@ spec:
   privateKey:
     algorithm: ECDSA
     size: 256
+```
 
 Apply the certificate:
 
-Bash
+```bash
 kubectl apply -f certificates.yaml
 kubectl wait --for=condition=ready certificate gateway-client-cert -n test --timeout=120s
+```
 
 ### Step 3: Install Traefik Gateway
 
@@ -790,7 +791,7 @@ Deploy Traefik in the **same namespace** as the pipeline. This simplifies config
 
 Create Helm values for Traefik:
 
-yml
+```yml
 # traefik-values.yaml
 deployment:
   replicas: 1
@@ -824,22 +825,21 @@ service:
 logs:
   general:
     level: INFO
-
+```
 
 Install Traefik in the same namespace as the pipeline:
 
-Bash
+```bash
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
 helm install traefik traefik/traefik -n test -f traefik-values.yaml
-
+```
 
 ### Step 4: Configure Traefik Routing with mTLS Backend
 
 Create the ServersTransportTCP and IngressRouteTCP. Since Traefik is deployed in the same namespace as the pipeline, it can directly access the trust bundle ConfigMap and client certificate Secret.
 
-yml
----
+```yml
 # ServersTransportTCP - Defines mTLS settings for backend connection
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransportTCP
@@ -877,62 +877,67 @@ spec:
           # CRITICAL: This flag ENABLES TLS when dialing the backend
           tls: true
           serversTransport: syslog-pipeline-mtls-transport
-
+```
 
 Apply the routing configuration:
 
-Bash
+```bash
 kubectl apply -f routing.yaml
-
+```
 
 ### Step 5: Test the Gateway
 
 Get the gateway's external IP:
 
-Bash
+```bash
 GATEWAY_IP=$(kubectl get svc traefik -n test -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo "Gateway IP: $GATEWAY_IP"
+```
 
 Clients can use this IP and port 514 to send syslog messages over TCP to the syslog pipeline.
 
 ### Certificate Management
 
-1. **Gateway Client Certificate**: Issued by `arc-amp-client-root-ca-cluster-issuer`, auto-renewed by cert-manager
-2. **Pipeline Server Certificate**: Automatically managed by the operator with zero-downtime rotation
-3. **Trust Bundles**: Automatically distributed to labeled namespaces
+- **Gateway Client Certificate**: Issued by `arc-amp-client-root-ca-cluster-issuer`, auto-renewed by cert-manager
+- **Pipeline Server Certificate**: Automatically managed by the operator with zero-downtime rotation
+- **Trust Bundles**: Automatically distributed to labeled namespaces
 
 ### Gateway Troubleshooting
 
 **Check certificate status**
 
-Bash
+```bash
 kubectl get certificate -n test
 kubectl describe certificate gateway-client-cert -n test
+```
 
 **Check Traefik routing**
 
-Bash
+```bash
 kubectl get ingressroutetcp -n test
 kubectl get serverstransporttcp -n test -o yaml
+```
 
 **Check Traefik logs for TLS errors**
 
-Bash
+```bash
 kubectl logs -n test -l app.kubernetes.io/name=traefik --tail=50 | grep -i "tls\|error\|certificate"
+```
 
 **Check pipeline logs**
 
-Bash
+```bash
 kubectl logs -n test -l app.kubernetes.io/name=syslog-pipeline -c collector --tail=50
+```
 
 **Common Issues**
 
 | Issue | Cause | Solution |
 |------ |------ |--------- |
-| `tls: bad certificate` | Gateway cert not trusted by pipeline | Verify cert is issued by `arc-amp-client-root-ca-cluster-issuer` |
-| `certificate signed by unknown authority` | Trust bundle not found or wrong key | Verify `arc-amp-trust-bundle` ConfigMap exists and has `ca.crt` key |
-| Connection refused | `tls: true` missing on service | Add `tls: true` to IngressRouteTCP service |
-| Deprecation warning for `rootCAsSecrets` | Using old Traefik API | Use `rootCAs` with `secret:` or `configMap:` format |
+| `tls: bad certificate` | Gateway cert not trusted by pipeline | Verify cert is issued by `arc-amp-client-root-ca-cluster-issuer`. |
+| `certificate signed by unknown authority` | Trust bundle not found or wrong key | Verify `arc-amp-trust-bundle` ConfigMap exists and has `ca.crt` key. |
+| Connection refused | `tls: true` missing on service | Add `tls: true` to IngressRouteTCP service. |
+| Deprecation warning for `rootCAsSecrets` | Using old Traefik API | Use `rootCAs` with `secret:` or `configMap:` format. |
 
-Next steps
-Read more about data collection rules (DCRs) in Azure Monitor.
+## Next steps
+- Read more about [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor.
