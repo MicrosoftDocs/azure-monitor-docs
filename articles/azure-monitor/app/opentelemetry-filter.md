@@ -17,7 +17,7 @@ Use this guide to filter OpenTelemetry (OTel) data in [Azure Monitor Application
 Reasons to filter out telemetry include:
 
 * Filtering out health check telemetry to reduce noise.
-* Ensuring PII and credentials aren't collected.
+* Ensuring personal data and credentials aren't collected.
 * Filtering out low-value telemetry to optimize performance.
 
 To learn more about OpenTelemetry concepts, review the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
@@ -42,7 +42,7 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 >
 > Options such as `SetDbStatementForStoredProcedure` aren't usable in our distribution because the code is embedded and not referencing the external package.
 >
-> Once the SqlClient instrumentation reaches a stable release, Azure Monitor will switch to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will be available.
+> Once the SqlClient instrumentation reaches a stable release, Azure Monitor switches to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will be available.
 
 <!--
 <sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
@@ -77,7 +77,7 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 Starting with Java agent version 3.0.3, specific autocollected telemetry can be suppressed. For more information, review [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
-> There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
+> There's no need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
 
 ### [Java native](#tab/java-native)
 
