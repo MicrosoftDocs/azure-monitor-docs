@@ -12,26 +12,26 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 
 # Filter Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications
 
-This guide provides instructions on filtering OpenTelemetry (OTel) data within [Azure Monitor Application Insights](app-insights-overview.md). Implementing filters allows developers to exclude unnecessary telemetry and prevent the collection of sensitive information, ensuring optimized performance and compliance.
+Use this guide to filter OpenTelemetry (OTel) data in [Azure Monitor Application Insights](app-insights-overview.md). Filtering helps you exclude unnecessary telemetry and prevent collection of sensitive data to optimize performance and support compliance.
 
-Reasons why you might want to filter out telemetry include:
+Reasons to filter out telemetry include:
 
 * Filtering out health check telemetry to reduce noise.
 * Ensuring PII and credentials aren't collected.
 * Filtering out low-value telemetry to optimize performance.
 
-To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
+To learn more about OpenTelemetry concepts, review the [OpenTelemetry overview](opentelemetry-overview.md) or [OpenTelemetry FAQ](opentelemetry-help-support-feedback.md).
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
 ## Filter OpenTelemetry using instrumentation libraries
 
-For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
+For a list of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, review [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-add-modify.md#included-instrumentation-libraries).
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
+Many instrumentation libraries provide a filter option. For guidance, review the corresponding readme files:
 
 * [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter)
@@ -63,18 +63,18 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor().WithTracing(builder =>
 
 ### [.NET](#tab/net)
 
-Many instrumentation libraries provide a filter option. For guidance, see the corresponding readme files:
+Many instrumentation libraries provide a filter option. For guidance, review the corresponding readme files:
 
 * [ASP.NET](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/Instrumentation.AspNet-1.0.0-rc9.8/src/OpenTelemetry.Instrumentation.AspNet/README.md#filter)
 * [HttpClient](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.Http/README.md#filter-httpclient-api)
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter)
 
 > [!NOTE]
-> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, see [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
+> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, review [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be suppressed. For more information, see [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+Starting with Java agent version 3.0.3, specific autocollected telemetry can be suppressed. For more information, review [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for PII reasons since all literal values are automatically scrubbed.
@@ -257,7 +257,7 @@ If a particular source isn't explicitly added by using `AddSource("ActivitySourc
 
 ### [Java](#tab/java)
 
-To filter telemetry from Java applications, you can use sampling overrides (recommended) or telemetry processors. For more information, see the following documentation:
+To filter telemetry from Java applications, you can use sampling overrides (recommended) or telemetry processors. For more information, review the following documentation:
 
 * [Sampling overrides](./java-standalone-sampling-overrides.md)
 * [Telemetry processors (preview)](./java-standalone-telemetry-processors.md)
@@ -356,66 +356,323 @@ class SpanFilteringProcessor(SpanProcessor):
 
 ---
 
+## Filter telemetry at ingestion using data collection rules
+
+Use ingestion-time transformations in a data collection rule (DCR) to filter or modify telemetry after Azure Monitor receives it and before Azure Monitor stores it in a Log Analytics workspace.
+
+Transformations use a Kusto Query Language (KQL) statement that runs on each ingested record.
+
+Use a workspace transformation DCR for Application Insights tables. A Log Analytics workspace supports one workspace transformation DCR. Put all transformations for that workspace in the same DCR.
+
+Activation can take up to 60 minutes after an update.
+
+Use these resources to learn more:
+
+* Review [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md).
+* Review [transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
+* Review the workspace transformation tutorial for the [Azure portal](../logs/tutorial-workspace-transformations-portal.md).
+* Review the workspace transformation tutorial for [Resource Manager templates](../logs/tutorial-workspace-transformations-api.md).
+* Review [Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md).
+* Review [supported KQL features in transformations](../data-collection/data-collection-transformations-kql.md).
+* Review the [Application Insights tables that support ingestion-time transformations](../reference/supported-logs/microsoft-insights-components-logs.md).
+
+### Map OpenTelemetry signals to Log Analytics tables
+
+Application Insights stores common OpenTelemetry (OTel) signals in these tables:
+
+* `AppTraces` (logs)
+* `AppRequests` (incoming requests)
+* `AppDependencies` (outgoing dependencies)
+* `AppExceptions` (exceptions)
+* `AppMetrics` (metrics)
+
+In a workspace transformation DCR, use the stream name format `Microsoft-Table-<TableName>` for each table. For example, use `Microsoft-Table-AppRequests` for the `AppRequests` table.
+
+> [!NOTE]
+> A workspace transformation DCR applies to all data ingested into the selected tables in that Log Analytics workspace. If multiple applications share the same workspace, scope each transformation by using a filter such as `AppRoleName` or `ResourceGUID`.
+
+### Use workspace transformation DCR samples
+
+The following samples show workspace transformation DCR JSON. Use `dataFlows` to define one transformation per table. Keep `transformKql` on one line in the DCR definition.
+
+<details>
+<summary><b>Create a workspace transformation DCR template</b></summary>
+
+Use this template to create a workspace transformation DCR. Replace `<workspace-location>` and `<workspace-resource-id>` with values from your Log Analytics workspace.
+
+```json
+{
+  "kind": "WorkspaceTransforms",
+  "location": "<workspace-location>",
+  "properties": {
+    "dataSources": {},
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "<workspace-resource-id>",
+          "name": "laDest"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": ["Microsoft-Table-AppRequests"],
+        "destinations": ["laDest"],
+        "transformKql": "source"
+      }
+    ]
+  }
+}
+```
+</details>
+
+<details>
+<summary><b>Drop a telemetry type by dropping a table</b></summary>
+
+Use this sample to block an entire telemetry type, such as all traces or all requests.
+
+Add one data flow per table that you want to drop.
+
+```json
+[
+  {
+    "streams": ["Microsoft-Table-AppTraces"],
+    "destinations": ["laDest"],
+    "transformKql": "source | where 1 == 0"
+  },
+  {
+    "streams": ["Microsoft-Table-AppRequests"],
+    "destinations": ["laDest"],
+    "transformKql": "source | where 1 == 0"
+  },
+  {
+    "streams": ["Microsoft-Table-AppDependencies"],
+    "destinations": ["laDest"],
+    "transformKql": "source | where 1 == 0"
+  },
+  {
+    "streams": ["Microsoft-Table-AppExceptions"],
+    "destinations": ["laDest"],
+    "transformKql": "source | where 1 == 0"
+  },
+  {
+    "streams": ["Microsoft-Table-AppMetrics"],
+    "destinations": ["laDest"],
+    "transformKql": "source | where 1 == 0"
+  }
+]
+```
+</details>
+
+<details>
+<summary><b>Drop health check requests</b></summary>
+
+Use this sample to drop common health, readiness, and liveness endpoints.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppRequests"],
+  "destinations": ["laDest"],
+  "transformKql": "source | extend url = tolower(tostring(Url)) | where not(url contains '/health' or url contains '/healthz' or url contains '/ready' or url contains '/readyz' or url contains '/live' or url contains '/livez') | project-away url"
+}
+```
+</details>
+
+<details>
+<summary><b>Keep only failing health check requests</b></summary>
+
+Use this sample to keep failing health checks and drop successful health checks.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppRequests"],
+  "destinations": ["laDest"],
+  "transformKql": "source | extend url = tolower(tostring(Url)) | where not((url contains '/health' or url contains '/healthz' or url contains '/ready' or url contains '/readyz' or url contains '/live' or url contains '/livez') and Success == true) | project-away url"
+}
+```
+</details>
+
+<details>
+<summary><b>Keep only failed or slow requests</b></summary>
+
+Use this sample to keep requests that fail or exceed a latency threshold.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppRequests"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where Success == false or DurationMs >= 1000"
+}
+```
+</details>
+
+<details>
+<summary><b>Keep only Warning and higher traces</b></summary>
+
+Use this sample to keep trace records with `SeverityLevel` of `Warning` (2), `Error` (3), or `Critical` (4).
+
+```json
+{
+  "streams": ["Microsoft-Table-AppTraces"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where SeverityLevel >= 2"
+}
+```
+</details>
+
+<details>
+<summary><b>Keep only failed or slow dependencies</b></summary>
+
+Use this sample to keep dependency calls that fail or exceed a latency threshold.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppDependencies"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where Success == false or DurationMs >= 500"
+}
+```
+</details>
+
+<details>
+<summary><b>Remove SQL statements from dependency data</b></summary>
+
+Use this sample to remove SQL statements stored in the `Data` column while keeping dependency timing and success information.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppDependencies"],
+  "destinations": ["laDest"],
+  "transformKql": "source | extend dependencyType = tolower(tostring(DependencyType)) | extend Data = iff(dependencyType == 'sql', '', Data) | project-away dependencyType"
+}
+```
+</details>
+
+<details>
+<summary><b>Drop synthetic traffic</b></summary>
+
+Use this sample to drop records that include a `SyntheticSource` value.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppRequests"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where isempty(SyntheticSource)"
+}
+```
+</details>
+
+<details>
+<summary><b>Drop cancellation exceptions</b></summary>
+
+Use this sample to drop common cancellation exception types.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppExceptions"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where not(ExceptionType contains 'OperationCanceledException' or ExceptionType contains 'TaskCanceledException')"
+}
+```
+</details>
+
+<details>
+<summary><b>Remove client IP addresses and query strings</b></summary>
+
+Use this sample to remove client IP addresses and to store URLs without query strings.
+
+```json
+[
+  {
+    "streams": ["Microsoft-Table-AppRequests"],
+    "destinations": ["laDest"],
+    "transformKql": "source | extend Url = tostring(split(tostring(Url), '?')[0]) | project-away ClientIP"
+  },
+  {
+    "streams": ["Microsoft-Table-AppDependencies"],
+    "destinations": ["laDest"],
+    "transformKql": "source | extend Data = tostring(split(tostring(Data), '?')[0]) | project-away ClientIP"
+  }
+]
+```
+</details>
+
+<details>
+<summary><b>Scope a transformation to a single service</b></summary>
+
+Use this sample to scope a transformation to a single service when multiple applications share a workspace.
+
+```json
+{
+  "streams": ["Microsoft-Table-AppRequests"],
+  "destinations": ["laDest"],
+  "transformKql": "source | where AppRoleName == '<app-role-name>' | where Success == false or DurationMs >= 1000"
+}
+```
+</details>
+
+---
+
 ## Next steps
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
-* To further configure the OpenTelemetry distro, see [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md).
-* To review the source code, see the [Azure Monitor AspNetCore GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore).
-* To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor AspNetCore NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) page.
-* To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
+* To further configure the OpenTelemetry distro, review [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md).
+* To review the source code, review the [Azure Monitor AspNetCore GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore).
+* To install the NuGet package, check for updates, or view release notes, use the [Azure Monitor AspNetCore NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) page.
+* To become more familiar with Azure Monitor and OpenTelemetry, review the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [.NET](#tab/net)
 
-* To further configure the OpenTelemetry distro, see [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md)
-* To review the source code, see the [Azure Monitor Exporter GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter).
-* To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor Exporter NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) page.
-* To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
+* To further configure the OpenTelemetry distro, review [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md)
+* To review the source code, review the [Azure Monitor Exporter GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter).
+* To install the NuGet package, check for updates, or view release notes, use the [Azure Monitor Exporter NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) page.
+* To become more familiar with Azure Monitor and OpenTelemetry, review the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java](#tab/java)
 
 * Review [Java autoinstrumentation configuration options](java-standalone-config.md).
-* To review the source code, see the [Azure Monitor Java autoinstrumentation GitHub repository](https://github.com/Microsoft/ApplicationInsights-Java).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* To enable usage experiences, see [Enable web or browser user monitoring](javascript.md).
-* See the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* To review the source code, review the [Azure Monitor Java autoinstrumentation GitHub repository](https://github.com/Microsoft/ApplicationInsights-Java).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
+* To enable usage experiences, review [Enable web or browser user monitoring](javascript.md).
+* Review the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Java native](#tab/java-native)
 
-* For details on adding and modifying Azure Monitor OpenTelemetry, see [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
-* To review the source code, see [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* See the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* For details on adding and modifying Azure Monitor OpenTelemetry, review [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
+* To review the source code, review [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
+* Review the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 ### [Node.js](#tab/nodejs)
 
-* To review the source code, see the [Azure Monitor OpenTelemetry GitHub repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry).
-* To install the npm package and check for updates, see the [`@azure/monitor-opentelemetry` npm Package](https://www.npmjs.com/package/@azure/monitor-opentelemetry) page.
-* To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
+* To review the source code, review the [Azure Monitor OpenTelemetry GitHub repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry).
+* To install the npm package and check for updates, use the [`@azure/monitor-opentelemetry` npm Package](https://www.npmjs.com/package/@azure/monitor-opentelemetry) page.
+* To become more familiar with Azure Monitor Application Insights and OpenTelemetry, review the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ### [Python](#tab/python)
 
-* To review the source code and extra documentation, see the [Azure Monitor Distro GitHub repository](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md).
-* To see extra samples and use cases, see [Azure Monitor Distro samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples).
-* See the [release notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
-* To install the PyPI package, check for updates, or view release notes, see the [Azure Monitor Distro PyPI Package](https://pypi.org/project/azure-monitor-opentelemetry/) page.
-* To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-python).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
-* To see available OpenTelemetry instrumentations and components, see the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
+* To review the source code and extra documentation, review the [Azure Monitor Distro GitHub repository](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md).
+* To review extra samples and use cases, review [Azure Monitor Distro samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples).
+* Review the [release notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
+* To install the PyPI package, check for updates, or view release notes, use the [Azure Monitor Distro PyPI Package](https://pypi.org/project/azure-monitor-opentelemetry/) page.
+* To become more familiar with Azure Monitor Application Insights and OpenTelemetry, review the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-python).
+* To learn more about OpenTelemetry and its community, review the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
+* To review available OpenTelemetry instrumentations and components, review the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
 * To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, review [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ---
