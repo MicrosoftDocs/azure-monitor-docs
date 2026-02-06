@@ -1,6 +1,6 @@
 ---
 ms.topic: include
-ms.date: 07/01/2025
+ms.date: 02/06/2026
 ---
 
 #### Grant access to data in the workspace based on need
@@ -33,7 +33,7 @@ To avoid potential service disruptions, confirm that your resources interacting 
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
     
-##### [List VMs no TLS 1.2](#tab/vms-os)
+##### [Identify VMs that lack TLS 1.2+](#tab/vms-os)
 
 List VMs with operating systems that lack TLS 1.2 support:
 
@@ -66,7 +66,7 @@ or (osName has 'Windows Server 2008' and osVersion !contains 'R2')  // special c
 
 For general questions around the legacy TLS problem or how to test supported cipher suites, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
-##### [List VMs to verify TLS 1.2](#tab/vms-verified)
+##### [Identify VMs that might support TSL 1.2+](#tab/vms-verified)
 
 List VMs that support TLS 1.2 but should be verified:
 
