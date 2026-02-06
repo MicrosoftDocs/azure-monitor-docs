@@ -584,8 +584,7 @@ Azure Monitor Pipeline extension deploys OpenTelemetry collectors with ClusterIP
 
 ### Gateway Architecture Options
 
-There are multiple gateway solutions available that are based on Kubernetes' [Gateway API](https://gateway-api.sigs.k8s.io/).
-This guide provides an example using Traefik Gateway with the **Insecure Frontend + mTLS Backend** architecture, which provides:
+This guide provides an example using Traefik with the **Insecure Frontend + mTLS Backend** architecture, which provides:
 
 - Simple client connectivity (no client-side TLS configuration)
 - Strong security between gateway and pipeline (mutual TLS)
@@ -749,7 +748,7 @@ Create a syslog pipeline with default mTLS settings:
 
 TLS is enabled by default with mutualTls mode. No tlsConfigurations needed for default behavior.
 
-### Step 2: Create Gateway Client Certificate
+### Step 2: Create gateway client certificate
 
 The gateway needs a client certificate to authenticate to the pipeline. Create a certificate issued by the managed client CA:
 
@@ -782,63 +781,18 @@ kubectl apply -f certificates.yaml
 kubectl wait --for=condition=ready certificate gateway-client-cert -n test --timeout=120s
 ```
 
-### Step 3: Install Traefik Gateway
-
-Deploy Traefik in the **same namespace** as the pipeline. This simplifies configuration because:
-
-- The `arc-amp-trust-bundle` ConfigMap (server CA) is already in this namespace
-- The `gateway-client-tls` Secret (client cert) is created here by cert-manager
-- No cross-namespace access configuration required
-
-Create Helm values for Traefik:
-
-```yml
-# traefik-values.yaml
-deployment:
-  replicas: 1
-
-providers:
-  kubernetesIngress:
-    enabled: false
-  kubernetesGateway:
-    enabled: false
-  kubernetesCRD:
-    enabled: true
-
-ports:
-  web:
-    expose:
-      default: false
-  websecure:
-    expose:
-      default: false
-  # TCP syslog port - plain TCP frontend
-  tcp-syslog:
-    port: 514
-    expose:
-      default: true
-    exposedPort: 514
-    protocol: TCP
-
-service:
-  type: LoadBalancer
-
-logs:
-  general:
-    level: INFO
-```
-
-Install Traefik in the same namespace as the pipeline:
+### Step 3: Install CRDs
 
 ```bash
-helm repo add traefik https://traefik.github.io/charts
-helm repo update
-helm install traefik traefik/traefik -n test -f traefik-values.yaml
+helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
+helm repo update traefik
+helm show crds traefik/traefik | kubectl apply -f
 ```
 
-### Step 4: Configure Traefik Routing with mTLS Backend
 
-Create the ServersTransportTCP and IngressRouteTCP. Since Traefik is deployed in the same namespace as the pipeline, it can directly access the trust bundle ConfigMap and client certificate Secret.
+### Step 4: Configure Traefik routing with mTLS Backend
+
+Create the `ServersTransportTCP` and `IngressRouteTCP`. Since Traefik is deployed in the same namespace as the pipeline, it can directly access the trust bundle ConfigMap and client certificate Secret.
 
 ```yml
 # ServersTransportTCP - Defines mTLS settings for backend connection
@@ -886,7 +840,35 @@ Apply the routing configuration:
 kubectl apply -f routing.yaml
 ```
 
-### Step 5: Test the Gateway
+### Step 5: Install Traefik
+
+Deploy Traefik in the **same namespace** as the pipeline. This simplifies configuration because:
+
+- The `arc-amp-trust-bundle` ConfigMap (server CA) is already in this namespace
+- The `gateway-client-tls` Secret (client cert) is created here by cert-manager
+- No cross-namespace access configuration required
+
+Install Traefik in the same namespace as the pipeline:
+
+```bash
+helm repo add traefik https://traefik.github.io/charts
+helm repo update
+helm install traefik traefik/traefik \
+    --namespace test \
+    --set deployment.replicas=1 \
+    --set providers.kubernetesIngress.enabled=false \
+    --set providers.kubernetesCRD.enabled=true \
+    --set ports.tcp-syslog.port=514 \
+    --set ports.tcp-syslog.expose.default=true \
+    --set ports.tcp-syslog.exposedPort=514 \
+    --set ports.tcp-syslog.protocol=TCP \
+    --set service.type=LoadBalancer \
+    --wait
+
+```
+
+
+### Step 6: Test the gateway
 
 Get the gateway's external IP:
 
