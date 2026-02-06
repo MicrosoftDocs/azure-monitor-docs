@@ -40,6 +40,8 @@
       href: security-advisories-elevated-access.md
     - name: Billing updates overview
       href: billing-elevated-access.md
+    - name: Service Health history overview
+      href: health-history-overview.md
     - name: How to report an impact
       href: report-issue.md
     - name: Configure subscriptions for Security advisories
