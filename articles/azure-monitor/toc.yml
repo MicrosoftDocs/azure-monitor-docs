@@ -877,6 +877,10 @@ items:
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
+      - name: Pod placement
+        href: data-collection/pipeline-pod-placement.md
+      - name: Configure TLS
+        href: data-collection/pipeline-transformations.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
