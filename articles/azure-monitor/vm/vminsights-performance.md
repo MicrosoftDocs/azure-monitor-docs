@@ -27,6 +27,10 @@ Limitations in performance collection with VM insights:
 * Metrics are only available for data disks on Linux virtual machines that use XFS filesystem or EXT filesystem family (EXT2, EXT3, EXT4).
 * Collecting performance metrics from network shared drives is unsupported.
 
+## Permissions required
+
+You must have the Monitoring reader permissions on the virtual machine(s) and on the VM Insights Data Collection Rule (DCR).
+
 ## Multi-VM perspective from Azure Monitor
 
 From Azure Monitor, the Performance feature provides a view of all monitored VMs deployed across work groups in your subscriptions or in your environment.
