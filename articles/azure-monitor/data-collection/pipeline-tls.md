@@ -600,8 +600,9 @@ Before deploying the gateway, ensure:
 - **Traefik** Helm chart is available (we'll install it)
 - **Namespace labeled** for trust bundle distribution:
 
-Bash
+```bash
 kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
+```
 
 ### Step 1: Deploy the pipeline
 
