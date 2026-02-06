@@ -33,8 +33,7 @@ To avoid potential service disruptions, confirm that your resources interacting 
 <details>
 <summary>Click here for recommended actions you can take to audit VMs.</summary>
 <br>
-<details>
- <summary><b>List VMs with operating systems that lack TLS 1.2 support</b></summary>
+#### [List VMs with operating systems that lack TLS 1.2 support](#tab/vms-os)
 
 1. Use an Azure Resource Graph query to audit the operating system versions of your VMs.  
 2. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**. The following query finds all VMs in the given scope that have an operating system that doesn't support TLS 1.2. This query only lists the OS version for VMs that are started.
@@ -62,10 +61,8 @@ or (osName has 'Windows Server 2008' and osVersion !contains 'R2')  // special c
 </pre>
 
 3. Prioritize updating these VMs to an OS version that supports TLS 1.2, or migrate the workload to a VM that does.
-</details>
-<br>
-<details>
-<summary><b>List VMs that support TLS 1.2 but should be verified</b></summary>
+
+#### [List VMs that support TLS 1.2 but should be verified](#tab/vms-verified)
 
 1. Use an Azure Resource Graph query to audit the operating system versions of your VMs. 
 2. From the Azure portal, go to **Resource Manager** and select **Resource graph explorer**. The following query finds all VMs in the given scope that have an [operating system that supports TLS 1.2](/security/engineering/solving-tls1-problem#supported-versions-of-tls-in-windows). Some of these operating systems don't support TLS 1.2 by default, or might have TLS 1.2 disabled. This query only lists the OS version for VMs that are started.
@@ -104,7 +101,7 @@ Resources
 </pre>
 
 3. Disable TLS 1.0 and 1.1 and enable TLS 1.2. For more information, see [Configure TLS 1.2 for the agent](/previous-versions/azure/azure-monitor/agents/agent-windows#configure-agent-to-use-tls-12).
-</details>
+---
 
 Practically any Windows version older than the latest releases still has TLS 1.0 or 1.1 available. Windows 7 and later can enable TLS 1.2, but they do not automatically disable TLS 1.0 and 1.1. Only upcoming Windows releases plan to turn these off by default. Identify systems with no ability to support TLS 1.2 and systems that require an update or registry change to support TLS 1.2.
 
