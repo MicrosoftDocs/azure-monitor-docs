@@ -488,7 +488,7 @@ The following table represents the currently supported custom telemetry types:
 |-------------------------------------------|---------------|----------------|--------------|------------|------------|----------|--------|
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
-| &nbsp;&nbsp;&nbsp;`ILogger` API           |               |                |              |            |            |          | Yes    |
+| &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;AI Classic API          |               |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
@@ -520,7 +520,7 @@ The following table shows the recommended [aggregation types](../essentials/metr
 |------------------------------------------------------|------------------------------------------------------------|
 | Counter                                              | Sum                                                        |
 | Asynchronous Counter                                 | Sum                                                        |
-| Histogram                                            | Min, Max, Average, Sum, and Count                           |
+| Histogram                                            | Min, Max, Average, Sum, and Count                          |
 | Asynchronous Gauge                                   | Average                                                    |
 | UpDownCounter                                        | Sum                                                        |
 | Asynchronous UpDownCounter                           | Sum                                                        |
@@ -697,7 +697,7 @@ export class HistogramSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -725,9 +725,9 @@ from opentelemetry import metrics
 import os
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -920,7 +920,7 @@ export class CounterSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -951,9 +951,9 @@ from opentelemetry import metrics
 import os
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -1152,7 +1152,7 @@ export class GaugeSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1183,9 +1183,9 @@ from opentelemetry import metrics
 from opentelemetry.metrics import CallbackOptions, Observation
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -1372,7 +1372,7 @@ export class CustomExceptionSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1404,9 +1404,9 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import trace
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Get a tracer for the current module.
@@ -1641,7 +1641,7 @@ export class CustomTraceSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1723,10 +1723,7 @@ If you want to automate the collection of client-side interaction events, you ca
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
-Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.AspNetCore` 1.3.0-beta.3.
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+Custom events use `Azure.Monitor.OpenTelemetry.AspNetCore`.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1751,10 +1748,7 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 #### [.NET](#tab/net)
 
-Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.Exporter` 1.4.0-beta.3.
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+Custom events use `Azure.Monitor.OpenTelemetry.Exporter`.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1781,9 +1775,10 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
 
-Depending on whether the application insights java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
+Depending on whether the Application Insights Java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
 
-For the application insights java agent: 
+For the Application Insights Java agent:
+
 ```java
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.logs.Logger;
@@ -1800,8 +1795,8 @@ logger.logRecordBuilder()
       .emit();
 ```
 
-
 For autoconfigure SDK:
+
 ```java 
 import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigure;
 import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigureOptions;
@@ -1811,10 +1806,11 @@ import io.opentelemetry.api.logs.Logger;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdkBuilder;
 ```
+
 ```java
 AutoConfiguredOpenTelemetrySdkBuilder sdkBuilder = AutoConfiguredOpenTelemetrySdk.builder();
 AzureMonitorAutoConfigureOptions options = new AzureMonitorAutoConfigureOptions();
-options.connectionString("<your connection string>");
+options.connectionString("<YOUR-CONNECTION-STRING>");
      
 AzureMonitorAutoConfigure.customize(sdkBuilder, options);
 OpenTelemetry openTelemetry = sdkBuilder.build().getOpenTelemetrySdk();
@@ -2109,9 +2105,9 @@ from opentelemetry import trace
 span_enrich_processor = SpanEnrichingProcessor()
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
     # Configure the custom span processors to include span enrich processor.
     span_processors=[span_enrich_processor],
 )
