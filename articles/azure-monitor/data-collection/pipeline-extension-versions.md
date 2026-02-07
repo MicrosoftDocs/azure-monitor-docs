@@ -7,7 +7,7 @@ ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Azure Monitor pipeline extension versions
-This article describes the version details for the Azure Monitor pipeline Arc-enabled Kubernetes extension. This extension deploys the pipeline on Arc-enabled Kubernetes clusters in your on premise, edge, hybrid or multicloud environments.
+This article describes the version details for the Azure Monitor pipeline Arc-enabled Kubernetes extension. This extension deploys the pipeline on Arc-enabled Kubernetes clusters in your on-premise, edge, hybrid or multicloud environments.
 
 - Pipeline versions release once each month.
 - The latest version deploys over a fortnight, and you might see it in some regions before others.
