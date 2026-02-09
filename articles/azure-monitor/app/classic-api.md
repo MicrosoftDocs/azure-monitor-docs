@@ -964,6 +964,34 @@ Because the SDK batches data for submission, there might be a delay before items
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
 
+#### Get started
+
+1. Enable live metrics with Application Insights SDKs by following language-specific guidelines:
+
+    * ASP.NET: Enabled by default but can also be enabled manually using code.
+    * ASP.NET Core: Enabled by default but can also be enabled manually using code.
+    * .NET/.NET Core Console/Worker: Enabled by default.
+
+1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
+
+1. [Secure the control channel](live-stream.md#secure-the-control-channel) by enabling [Microsoft Entra authentication](azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
+
+##### Supported features
+
+| Language | Basic metrics | Performance metrics | Custom filtering | Sample telemetry | CPU split by process |
+|----------|:--------------|:--------------------|:-----------------|:-----------------|:---------------------|
+| .NET Framework | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Framework) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Core) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported* | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | **Not supported** |
+
+Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
+
+PerfCounters support varies slightly across versions of .NET Core that don't target the .NET Framework:
+
+* PerfCounters metrics are supported when running in Azure App Service for Windows (ASP.NET Core SDK version 2.4.1 or higher).
+* PerfCounters are supported when the app is running on *any* Windows machine for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+* PerfCounters are supported when the app is running *anywhere* (such as Linux, Windows, app service for Linux, or containers) in the latest versions, but only for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+
 #### Enable live metrics by using code for any .NET application
 
 ##### ASP.NET
@@ -1543,6 +1571,14 @@ Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies
 If the dependency isn't autocollected, you can track it manually with a [track dependency call](#trackdependency).
 
 For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
+
+#### How does automatic dependency monitoring work?
+
+* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
+
+* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
+
+* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
 
 #### Set up automatic dependency tracking in console apps
 
@@ -3143,12 +3179,32 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 * [Live metrics](#live-metrics)
 * [Distributed tracing](#distributed-tracing)
+* [Dependencies](#dependencies)
 * [Extended metrics](#extended-metrics)
 * [TelemetryClient API](#telemetryclient-api)
 
 ### Live metrics
 
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+[Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
+
+#### Enable live metrics
+
+1. To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`.
+
+1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
+
+1. [Secure the control channel](/azure/azure-monitor/app/live-stream#secure-the-control-channel) by enabling [Microsoft Entra authentication](/azure/azure-monitor/app/azure-ad-authentication#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
+
+    > [!NOTE]
+    > Currently, filtering of live metrics in the portal isn't supported.
+
+##### Supported features
+
+| Basic metrics | Performance metrics | Custom filtering | Sample telemetry | CPU split by process |
+|:--------------|:--------------------|:-----------------|:-----------------|:---------------------|
+| Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | **Not supported** |
+
+Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
 
 [!INCLUDE [Distributed tracing](includes/application-insights-distributed-trace-data.md)]
 
@@ -3165,6 +3221,24 @@ appInsights
   .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
   .start()
 ```
+
+### Dependencies
+
+#### Automatically tracked dependencies
+
+A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
+
+#### How does automatic dependency monitoring work?
+
+* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
+
+* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
+
+* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
+
+#### Manually track dependencies
+
+For instructions, see [Track your dependencies](#track-your-dependencies).
 
 ### Extended metrics
 
