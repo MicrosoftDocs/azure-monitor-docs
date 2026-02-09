@@ -82,7 +82,7 @@
         href: resource-health-alert-powershell-template.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources from outages
+      - name: Impacted Resources from Service issues
         href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
