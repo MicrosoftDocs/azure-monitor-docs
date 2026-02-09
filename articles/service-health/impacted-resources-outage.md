@@ -1,8 +1,8 @@
 ---
-title: Impacted Resources from Outages
-description: This article details where to find information from Azure Service Health about how Azure outages might affect your resources.
+title: Impacted Resources from Service issues
+description: This article details where to find information from Azure Service Health about how Service issues might affect your resources.
 ms.topic: concept-article
-ms.date: 10/09/2025
+ms.date: 02/09/2026
 ---
 
 # Impacted Resources from outages
@@ -20,7 +20,7 @@ This article explains what Service Health communicates and where to find informa
 
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Service Issues** displays resources that are or might be impacted by an outage. Service Health provides this information to users when an outage impacts their resources:
 
-|Column  |Description |
+|Column|Description|
 |---------|---------|
 |**Resource Name**|Name of the resource. The name is a clickable link that goes to the Resource Health page to show the resource. If no Resource Health signal is available for the resource, this name is text only.|
 |**Status**|Health status of the resource: <br><br>**Available**: Your resource is healthy, but a service event might impact it at a some point in time. <br>**Degraded** or **Unavailable**: A customer-initiated action or a platform-initiated action might cause this status. It means your resource was impacted but might now be healthy, pending a status update. <br>**Unknown**:  This status means that the system doesn't any health information from the resource for more than 10 minutes. However, this isn't always indicative of a resource malfunction; it could be a result of incomplete monitoring signals or status updates from the provider. <br>:::image type="content" source="./media/impacted-resource-outage/rh-cropped.PNG" alt-text="Screenshot of health statuses for a resource.":::|
@@ -64,7 +64,7 @@ You can get information about outage-impacted resources programmatically by usin
 |Question|Answer|
 |--------|------|
 |Are the Impacted resources only available for 'Active' service health events?|Yes, the Azure portal shows Impacted resources only for Active events in Service Issues.|
-|Is there a retention period for impacted resources? |The retention period is 90 days in Azure Resource Graph.|
+|Is there a retention period for impacted resources?|The retention period is 90 days in Azure Resource Graph.|
 
 
 
