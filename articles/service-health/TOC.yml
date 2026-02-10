@@ -82,8 +82,8 @@
       href: service-health-alert-deploy-policy.md
     - name: How to report an impact
       href: report-issue.md
-  - name: How to send alerts
-    items:
+    - name: How to send alerts
+      items:
     - name: Send alerts to outside systems via webhook
       href: service-health-alert-webhook-guide.md
     - name: Send alerts with ServiceNow
