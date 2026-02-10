@@ -1200,20 +1200,22 @@ items:
           href: visualize/workbooks-multi-value.md
       - name: Workbook result limits
         href: visualize/workbooks-limits.md
-    - name: Access Troubleshooting guides
-      href: visualize/workbooks-access-troubleshooting-guide.md
     - name: Workbook Samples
       href: visualize/workbooks-samples.md
-    - name: Troubleshoot insights
-      href: visualize/troubleshoot-workbooks.md
-    - name: Dashboard Preview
-      href: visualize/workbooks-dashboard-preview.md
-    - name: Copilot for Workbooks (preview)
+    - name: Previews
       items:
+      - name: Dashboard preview
+        href: visualize/workbooks-dashboard-preview.md
       - name: Use Copilot with Workbooks
         href: visualize/workbooks-copilot-overview.md
       - name: Troubleshoot Copilot for Workbooks
         href: visualize/workbooks-copilot-troubleshoot.md
+    - name: Troubleshooting
+      items:
+      - name: Access troubleshooting guides
+        href: visualize/workbooks-access-troubleshooting-guide.md
+      - name: Troubleshoot insights
+        href: visualize/troubleshoot-workbooks.md
   - name: Azure Monitor Dashboards
     items:
     - name: Dashboard using log data

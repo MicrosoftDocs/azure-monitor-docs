@@ -17,9 +17,8 @@ Copilot in Azure can help you create, inspect, and modify Azure Workbooks using 
 ## Prerequisites
 
 - Access to [Copilot in Azure](/azure/copilot/overview). Copilot in Azure must be enabled for your tenant.
-- [Azure Workbooks Preview](workbooks-preview.md) or **Dashboards** experience. Copilot isn't available in the legacy Azure Workbooks experience.
+- [Dashboards preview](workbooks-dashboard-preview.md) experience. Copilot isn't available in the legacy Azure Workbooks experience.
 - To create, modify, or remove workbook items, the workbook must be in edit mode.
-- To browse and open workbooks, you can use Copilot directly from the **Workbooks** gallery without opening a workbook first.
 
 ## What you can do with Copilot in Azure Workbooks
 
@@ -27,7 +26,6 @@ Copilot supports the following scenarios:
 
 | Scenario                        | Description                                                                                                       |
 | ------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Browse and open workbooks       | From the Workbooks gallery, ask Copilot to list your recent workbooks and open one. No workbook needs to be open. |
 | Describe the workbook canvas    | Ask Copilot to summarize all items in a workbook, including queries, charts, parameters, and text blocks.         |
 | Analyze a chart for anomalies   | Ask Copilot to analyze a specific chart and identify patterns, spikes, or anomalies in the data.                  |
 | Create a new workbook           | Ask Copilot to generate a workbook with specific visualizations, queries, and parameters.                         |
@@ -50,15 +48,7 @@ Copilot can create and modify the following workbook step types:
 
 ## Get started
 
-You can start using Copilot from the Workbooks gallery or from within an open workbook.
-
-**From the gallery:**
-
-1. In the Azure portal, go to **Monitor** > **Workbooks (preview)**.
-1. Open the Copilot sidecar by selecting the **Copilot** button.
-1. Ask Copilot to list your recent workbooks or open a specific one. For example, _"Show me my recent workbooks"_ or _"Open the VM performance workbook."_
-
-**From an open workbook:**
+To get started, open a workbook in the [Dashboards preview](workbooks-dashboard-preview.md) experience.
 
 1. Open a workbook and select **Edit** in the toolbar to enter edit mode.
 1. Open the Copilot sidecar by selecting the **Copilot** button.
@@ -90,7 +80,7 @@ Ask Copilot to summarize the workbook canvas or analyze a specific chart.
 
 Ask Copilot to scaffold a new workbook with the visualizations and queries you need.
 
-1. Open a new or existing workbook in edit mode, or ask Copilot from the gallery to create one.
+1. Open a new or existing workbook in edit mode.
 1. Open the Copilot sidecar.
 1. Describe the workbook you want to create. For example:
    - _"Create a workbook to monitor my VM performance."_
