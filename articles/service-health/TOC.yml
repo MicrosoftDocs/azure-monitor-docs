@@ -8,7 +8,6 @@
     href: azure-status-overview.md
   - name: Resource Health overview
     href: resource-health-overview.md
-
   - name: What's new
     href: whats-new.md
 - name: Getting Started in Service Health
@@ -30,24 +29,23 @@
     items:
     - name: Security issues
       items:
-      - name: Security notifications overview
-        href: stay-informed-security.md 
       - name: Security advisories overview
         href: security-advisories-elevated-access.md
+      - name: Security notifications overview
+        href: stay-informed-security.md   
       - name: Configure subscriptions for Security advisories
         href: security-advisories-add-subscription.md
     - name: Service health
       items:
       - name: Service Health notifications overview
         href: service-health-notifications-properties.md
-      - name: View Service Health notifications
-        href: service-notifications.md
+      - name: Service Health event tags
+        href: service-health-event-tags.md
       - name: Filter Service Health notifications by event level
         href: metadata-filter.md
       - name: Service Health data transitions
         href: service-health-notification-transitions.md
-      - name: Service Health event tags
-        href: service-health-event-tags.md
+      
   - name: Impacted Resources
     items:
     - name: Impacted Resources from Service issues
