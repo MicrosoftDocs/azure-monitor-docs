@@ -1,12 +1,12 @@
 ---
-title: Migrate Application Insights Software Development Kits (SDKs) to Azure Monitor OpenTelemetry
+title: Migrate Application Insights Classic API Software Development Kits (SDKs) to Azure Monitor OpenTelemetry
 description: This article provides guidance on how to migrate .NET, Java, Node.js, and Python applications from the Application Insights Classic API SDKs to Azure Monitor OpenTelemetry.
 ms.topic: how-to
 ms.date: 03/06/2026
 ms.custom: devx-track-dotnet, devx-track-java, devx-track-extended-java, devx-track-js, devx-track-python
 ---
 
-# Migrate from Application Insights SDKs to Azure Monitor OpenTelemetry
+# Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry
 
 This guide provides step-by-step instructions to migrate applications from using Application Insights SDKs (Classic API) to Azure Monitor OpenTelemetry.
 
