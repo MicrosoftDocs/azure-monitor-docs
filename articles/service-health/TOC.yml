@@ -79,8 +79,8 @@
         href: alerts-activity-log-service-notifications-arm.md
       - name: Deploy Service Health alert rules at scale using Azure Policy 
         href: service-health-alert-deploy-policy.md
-    - name: How to report an impact
-      href: report-issue.md
+      - name: How to report an impact
+        href: report-issue.md
     - name: How to send alerts
       items:
       - name: Send alerts to outside systems via webhook
