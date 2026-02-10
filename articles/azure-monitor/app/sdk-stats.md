@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 02/10/2026
 ---
 
-# Use SDK stats in Application Insights
+# SDK stats in Azure Monitor Application Insights
 
 [Application Insights](app-insights-overview.md) offers SDK stats [custom metrics](metrics-overview.md) that help you monitor and troubleshoot missing or unexpected telemetry behaviors. When telemetry doesn't reach the [ingestion endpoint](app-insights-overview.md#logic-model), SDK stats help you identify what happened and what to do next.
 
@@ -19,7 +19,7 @@ Instrument an application with [OpenTelemetry](opentelemetry-enable.md) using on
 
 > [!div class="checklist"]
 > - .NET / .NET Core: `Azure.Monitor.OpenTelemetry.Exporter` version `1.6.0` or later.
-> - .NET Application Insights SDK 2.x
+> - .NET Application Insights SDK 3.x or later.
 > - Python: OpenTelemetry Distro version `1.8.6` or later and `azure-monitor-opentelemetry-exporter` version `1.0.0b47` or later.
 > - Node.js: OpenTelemetry Distro version `1.15.1` or later and `@azure/monitor-opentelemetry-exporter` version `1.0.0-beta.38` or later.
 > - Node.js: Application Insights SDK version `3.13.0` or later.
