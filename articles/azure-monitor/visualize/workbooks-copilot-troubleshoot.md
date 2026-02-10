@@ -15,15 +15,15 @@ This article helps you diagnose and resolve common issues when using Copilot wit
 
 ### "No workbook is open or visible"
 
-**Cause:** Copilot can't detect an active workbook context, and gallery integration isn't available.
+**Cause:** Copilot can't detect an active workbook context.
 
-**Resolution:** Open a workbook in edit mode, or navigate to **Monitor** > **Workbooks** to use Copilot from the gallery. From the gallery, you can ask Copilot to list your recent workbooks and open one.
+**Resolution:** Open a workbook in the [Dashboards preview](workbooks-dashboard-preview.md) experience and switch to edit mode.
 
 ### "There are no items in this canvas"
 
 **Cause:** The workbook canvas is empty.
 
-**Resolution:** This message is informational. If you're in the workbook gallery, Copilot lists your recent workbooks and offers to open one. If a workbook is open but empty, Copilot suggests creating new items. Ask Copilot to create a workbook or add items to get started.
+**Resolution:** This message is informational. If a workbook is open but empty, Copilot suggests creating new items. Ask Copilot to create a workbook or add items to get started.
 
 ### "No items created"
 
@@ -51,9 +51,9 @@ This article helps you diagnose and resolve common issues when using Copilot wit
 
 ### "Failed to open workbook"
 
-**Cause:** Copilot tried to open a workbook from the gallery, but the workbook doesn't exist or you don't have access.
+**Cause:** Copilot tried to open a workbook, but the workbook doesn't exist or you don't have access.
 
-**Resolution:** Verify that the workbook exists and that you have read permissions on the resource. Try opening the workbook manually from the gallery.
+**Resolution:** Verify that the workbook exists and that you have read permissions on the resource. Try opening the workbook manually from the [Dashboards preview](workbooks-dashboard-preview.md) experience.
 
 ### Schema validation errors
 
@@ -83,8 +83,8 @@ This article helps you diagnose and resolve common issues when using Copilot wit
 
 | Limitation                          | Details                                                                                                                                                           | Workaround                                                                                     |
 | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Not available in legacy Workbooks   | Copilot is only available in [Azure Workbooks Preview](workbooks-preview.md) and Dashboards experiences. The legacy Workbooks experience doesn't support Copilot. | Switch to the Workbooks Preview or Dashboards experience.                                      |
-| Edit mode required for changes      | Copilot can't create, modify, or remove workbook items in read-only mode. Browsing and opening workbooks from the gallery doesn't require edit mode.              | Open the workbook in edit mode to make changes.                                                |
+| Not available in legacy Workbooks   | Copilot is only available in the [Dashboards preview](workbooks-dashboard-preview.md) experience in Azure Workbooks. Legacy Workbooks doesn't support Copilot.    | Switch to the Dashboards preview experience.                                                   |
+| Edit mode required for changes      | Copilot can't create, modify, or remove workbook items in read-only mode.                                                                                         | Open the workbook in edit mode to make changes.                                                |
 | Large workbooks might be truncated  | Workbooks with more than approximately 50 items might not be fully analyzed.                                                                                      | Ask Copilot to focus on a specific section or set of items.                                    |
 | No cross-workbook operations        | Copilot can't copy items between different workbooks.                                                                                                             | Manually copy and paste items between workbooks.                                               |
 | English-primary analysis            | Non-English workbook content might produce lower quality analysis.                                                                                                | Use English for key terms in queries and titles.                                               |
