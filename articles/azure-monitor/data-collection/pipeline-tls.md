@@ -31,61 +31,8 @@ The Azure Monitor pipeline supports three TLS modes:
 
 ## Prerequisites
 
-- Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed.
+- Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed as described in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - `kubectl` and `az access` to the Arc‑enabled cluster context.
-
-## Install cert-manager for Arc-enabled Kubernetes
-
-This section describes how to install cert-manager as an Azure Arc extension. Installing cert-manager is required for both Default TLS and BYOC certificate management.
-
-> [!NOTE]
->
-> Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
->
-> - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11
-> - SUSE Rancher K3s v1.33.3+k3s1
-> - AKS Arc v1.32.7
-
-Installing cert-manager as a cluster managed extension (CME) will register the `cert-manager` and `trust-manager` services on your cluster.
-
-Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version.
-
-> [!WARNING]
-> Between uninstalling the open source version and installing the Arc extension, certificate rotation won't occur, and trust bundles won't be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
-
-The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
-
-`helm list -A | grep -E 'trust-manager|cert-manager'`
-
-If you have an existing cert-manager extension installed, uninstall it using the following commands:
-
-```azurecli
-export RESOURCE_GROUP="<resource-group-name>"
-export CLUSTER_NAME="<arc-enabled-cluster-name>"
-export LOCATION="<arc-enabled-cluster-location"
-
-NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP} --cluster-name ${CLUSTER_NAME})
-az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
-  --resource-group ${RESOURCE_GROUP} --cluster-type connectedClusters
-```
-
-Use the following command to connect your cluster to Arc if it wasn't already connected.
-
-```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --location ${LOCATION}
-```
-
-Install the cert‑manager extension using the following command:
-
-```azurecli
-az k8s-extension create \
-  --resource-group ${RESOURCE_GROUP} \
-  --cluster-name ${CLUSTER_NAME} \
-  --cluster-type connectedClusters \
-  --name "azure-cert-management" \
-  --extension-type "microsoft.certmanagement" \
-  --release-train stable
-```
 
 ## Option 1: Default TLS (automated certificate management)
 
@@ -897,7 +844,7 @@ kubectl describe certificate gateway-client-cert -n test
 **Check Traefik routing**
 
 ```bash
-kubectl get ingressroutetcp -n test
+kubectl get ingressroutetcp -n test -o yaml
 kubectl get serverstransporttcp -n test -o yaml
 ```
 
@@ -910,17 +857,8 @@ kubectl logs -n test -l app.kubernetes.io/name=traefik --tail=50 | grep -i "tls\
 **Check pipeline logs**
 
 ```bash
-kubectl logs -n test -l app.kubernetes.io/name=syslog-pipeline -c collector --tail=50
+kubectl logs -n test -l pipeline=syslog-pipeline
 ```
-
-**Common Issues**
-
-| Issue | Cause | Solution |
-|------ |------ |--------- |
-| `tls: bad certificate` | Gateway cert not trusted by pipeline | Verify cert is issued by `arc-amp-client-root-ca-cluster-issuer`. |
-| `certificate signed by unknown authority` | Trust bundle not found or wrong key | Verify `arc-amp-trust-bundle` ConfigMap exists and has `ca.crt` key. |
-| Connection refused | `tls: true` missing on service | Add `tls: true` to IngressRouteTCP service. |
-| Deprecation warning for `rootCAsSecrets` | Using old Traefik API | Use `rootCAs` with `secret:` or `configMap:` format. |
 
 ## Next steps
 - Read more about [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) in Azure Monitor.
