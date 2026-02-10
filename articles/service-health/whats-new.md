@@ -23,3 +23,12 @@ You can now report an impact even if there are no active issues shown in the Ser
 ### Service Health event tags
 Learn the difference between Event Level, Event subtypes, and Event tags in Azure Service Health.<br>
 For more information, see [Service Health event tags](service-health-event-tags.md).
+
+
+### New pages for Service Health panes
+Get more detailed information about:
+
+* [Service issues overview](service-issues-blade.md)
+* [Planned maintenance overview](service-health-planned-maintenance.md)
+* [Health advisories overview](service-health-advisories.md)
+* [Security advisories overview](security-advisories-elevated-access.md)
