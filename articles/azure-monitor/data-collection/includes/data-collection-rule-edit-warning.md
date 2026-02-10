@@ -1,14 +1,7 @@
 ---
 ms.topic: include
-ms.date: 02/09/2026
+ms.date: 05/21/2025
 ---
 
-## Prerequisites
-
-* [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your own environment with an external IP address. See [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster) for details on enabling Arc for a cluster.
-* Enable custom locations features on your cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-* Log Analytics workspace in Azure Monitor to receive the data from the pipeline. See [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md) for details on creating a workspace.
-* Register the following resources in your Azure subscription. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-    * Microsoft.Insights
-    * Microsoft.Monitor 
-
+> [!WARNING]
+> If you edit an existing data collection rule (DCR) [using the Azure portal](/azure/azure-monitor/data-collection/data-collection-rule-create-edit#create-or-edit-a-dcr-using-the-azure-portal), it will overwrite any changes that were made by [editing the JSON of the DCR](/azure/azure-monitor/data-collection/data-collection-rule-create-edit#create-or-edit-a-dcr-using-json) directly if those features aren't supported in the portal. For example, if you add a [transformation](/azure/azure-monitor/data-collection/data-collection-transformations) to a DCR for a data source that doesn't allow a transformation to be created in the portal, then that transformation will be removed if you subsequently edit the DCR in the portal. In this case, you must continue to make any changes to the DCR by editing the JSON directly. 

@@ -56,7 +56,7 @@ If you specify a transformation, click **Check KQL syntax** to validate the synt
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
-For `Syslog` and `CommonSecurityLog` tables, all appropriate columns will be available for the transformation. For custom tables, only `TimeGenerated`, `SeverityText`, `Body` columns are available. For other columns, you need to use an ARM template for the pipeline configuration. See [Pipeline configuration](./pipeline-configure.md#pipeline-configuration) for details.
+For `Syslog` and `CommonSecurityLog` tables, all appropriate columns will be available for the transformation. For custom tables, only `TimeGenerated`, `SeverityText`, `Body` columns are available. For other columns, you need to use an ARM template for the pipeline configuration. See [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
  
 > [!NOTE]
 > See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on creating transformations.
