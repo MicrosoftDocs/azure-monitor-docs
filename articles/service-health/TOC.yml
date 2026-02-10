@@ -66,10 +66,8 @@
     href: resource-health-vm-annotation.md
 - name: How-to Guides
   items:
-  - name: How to report an impact
-    href: report-issue.md  
-  - name: How to create alerts
-    items:
+    - name: How to create alerts
+      items:
     - name: Create Service Health alerts
       href: ./alerts-activity-log-service-notifications-portal.md
     - name: Create Resource Health alerts
@@ -82,6 +80,8 @@
       href: alerts-activity-log-service-notifications-arm.md
     - name: Deploy Service Health alert rules at scale using Azure Policy 
       href: service-health-alert-deploy-policy.md
+    - name: How to report an impact
+      href: report-issue.md
   - name: How to send alerts
     items:
     - name: Send alerts to outside systems via webhook
