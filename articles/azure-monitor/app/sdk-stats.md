@@ -15,7 +15,7 @@ Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbo
 
 ## Meet prerequisites
 
-Instrument an application with [OpenTelemetry](opentelemetry-enable.md) and use one of the following SDKs or agents:
+Instrument an application with [OpenTelemetry](opentelemetry-enable.md) using one of the following SDKs or agents:
 
 > [!div class="checklist"]
 > - .NET / .NET Core: `Azure.Monitor.OpenTelemetry.Exporter` version `1.6.0` or later.
@@ -59,7 +59,7 @@ Each metric row represents an aggregated count for the export interval. Total at
 
 ## Configure SDK stats
 
-SDK stats are enabled by default in supported SDK versions. Use environment variables to disable SDK stats or to configure the export interval. Restart the application after you change an environment variable.
+SDK stats are enabled by default. Use environment variables to disable SDK stats or to configure the export interval. Restart the application after you change an environment variable.
 
 ### Disable SDK stats
 
