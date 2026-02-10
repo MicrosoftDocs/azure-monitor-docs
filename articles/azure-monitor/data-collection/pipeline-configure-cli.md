@@ -1287,43 +1287,7 @@ Once the volume is created in the appropriate namespace, configure it using para
 > [!CAUTION]
 > Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
 
-## Troubleshooting
 
-<details>
-<summary><b>Operator pod in CrashLoopBackOff - Certificate Manager extension Not Found</b></summary>
-
-If you see the operator pod continuously restarting with `CrashLoopBackOff` status as in the following example:
-
-```bash
-kubectl get pods -n mon
-NAME                                                              READY   STATUS             RESTARTS       AGE
-edge-pipeline-pipeline-operator-controller-manager-6f847d4njwcn   1/2     CrashLoopBackOff   11 (24s ago)   31m
-```
-Check the logs with the following command:
-
-```bash
-kubectl logs <operator-pod-name> -n mon
-```
-
-You may see an error similar to the following:
-
-```
-AttemptTlsBootstrap returned an error:  failed to apply resource: the server could not find the requested resource (patch clusterissuers.meta.k8s.io arc-amp-selfsigned-cluster-issuer)
-Please ensure Azure Arc Cert Manager Extension is installed on the cluster.
-panic: failed to apply resource: the server could not find the requested resource (patch clusterissuers.meta.k8s.io arc-amp-selfsigned-cluster-issuer)
-```
-
-**Cause:** The pipeline operator depends on the Azure Arc Certificate Manager extension, which provides the certificate infrastructure (`ClusterIssuer` resources). The operator cannot start without it.
-
-**Solution:** Install the Certificate Manager extension first, then the pipeline operator will start successfully. See [Install cert-manager for Arc-enabled Kubernetes](./pipeline-configure.md#install-cert-manager-for-arc-enabled-kubernetes) for installation instructions.
-
-Verify the Certificate Manager extension is installed:
-
-```bash
-az k8s-extension list --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "[?extensionType=='microsoft.certmanagement'].{Name:name, State:provisioningState}" -o table
-```
-
-The extension should show a `Succeeded` provisioning state.
 
 
 ## Next steps
