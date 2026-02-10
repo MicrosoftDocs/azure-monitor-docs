@@ -10,7 +10,7 @@
     href: resource-health-overview.md
   - name: What's new
     href: whats-new.md
-- name: Getting Started in Service Health
+- name: Get started in Service Health
   items:
   - name: Azure Service Health Portal
     href: service-health-portal-update.md
@@ -35,7 +35,7 @@
         href: stay-informed-security.md   
       - name: Configure subscriptions for Security advisories
         href: security-advisories-add-subscription.md
-    - name: Service health
+    - name: Service health issues
       items:
       - name: Service Health notifications overview
         href: service-health-notifications-properties.md
@@ -55,7 +55,7 @@
       href: impacted-resources-security.md
     - name: Impacted Resources from Azure retirements
       href: impacted-resources-retirements.md
-- name: Getting Started in Resource Health
+- name: Get started in Resource Health
   items: 
   - name: Resource health alerts overview
     href: resource-health-alert-monitor-guide.md
