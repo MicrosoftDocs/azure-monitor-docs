@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -191,5 +191,23 @@ Recommendation ID: 8523d119-bfd8-4f91-b17d-13d6b34338c4
 Subcategory: undefined
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_end-->
+
+<!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_begin-->
+
+#### Migrate Computer Vision workloads to Computer Vision 3.2 API  
+  
+Computer Vision v1.0, v2.0, v2.1, v3.0, and v3.1 APIs are retiring.  You need to migrate your Azure Computer Vision workloads to Computer Vision 3.2 API.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/computer-vision-api-retirements-13-9-2026/)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577  
+Subcategory: undefined
+
+<!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_end-->
 
 <!--articleBody-->
