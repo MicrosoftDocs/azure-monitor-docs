@@ -14,13 +14,13 @@ SDK stats metrics include counts for item success, drops, and retries. SDK stats
 Visualization is provided in the [SDK stats workbook](#open-the-sdk-stats-workbook).
 
 ## Meet prerequisites
-
+An application [instrumented](opentelemetry-enable.md) with:
 > [!div class="checklist"]
-> - Instrument an application by using [OpenTelemetry](opentelemetry-enable.md) with one of the following:
->   - .NET: `Azure.Monitor.OpenTelemetry.Exporter` version `1.6.0` or later.
->   - Python: OpenTelemetry Distro version `1.8.6` or later and `azure-monitor-opentelemetry-exporter` version `1.0.0b47` or later.
->   - Node.js: OpenTelemetry Distro version `1.15.1` or later and `@azure/monitor-opentelemetry-exporter` version `1.0.0-beta.38` or later.
->   - Node.js: Application Insights classic SDK version `3.13.0` or later.
+> - .NET / .NET Core: `Azure.Monitor.OpenTelemetry.AspNetCore` version `1.4.0-beta.1` or later.
+> - .NET / .NET Core (exporter only): `Azure.Monitor.OpenTelemetry.Exporter` version `1.5.0-beta.1` or later.
+> - Python OpenTelemetry Distro 1.8.0+ and azure-monitor-opentelemetry-exporter 1.0.0b42+
+> - Node.js OpenTelemetry Distro 1.13.0+ and @azure/monitor-opentelemetry-exporter 1.0.0-beta.34+
+> - Node.js Application Insights Classic API SDK 3.10.0+
 
 ## SDK stats overview
 
@@ -39,16 +39,16 @@ The SDK publishes three metrics:
 
 These metrics include dimensions in `customDimensions` and standard Application Insights dimensions for slicing:
 
-| Dimension                              | Description                                                                                                                                                                                                                                                |
-|----------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `telemetry_type`                       | Telemetry type associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.                                                                         |
-| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either a Hypertext Transfer Protocol (HTTP) status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                                                           |
-| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either a Hypertext Transfer Protocol (HTTP) status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                                                                         |
-| `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                                                                                                   |
-| `language`, `version`                  | SDK or agent language and version.                                                                                                                                                                                                                         |
-| `compute.type`                         | Compute environment, such as Azure Kubernetes Service (AKS) (`aks`), Azure App Service (`appsvc`), Azure Functions (`functions`), Azure Spring Apps (`springcloud`), virtual machine (VM) (`vm`), or `unknown`.                                            |
-| `sdkVersion`                           | SDK version string also available in tags.                                                                                                                                                                                                                 |
-| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance.                                                                                                                                                                                          |
+| Dimension                              | Description                                                                                                                                                                                                     |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `telemetry_type`                       | Type of telemetry associated with the count. Values align with Application Insights tables such as `REQUEST`, `DEPENDENCY`, `EXCEPTION`, `TRACE`, `CUSTOM_EVENT`, and `AVAILABILITY`.                           |
+| `drop.code`, `drop.reason`             | Code and short reason for dropped items. The code is either a Hypertext Transfer Protocol (HTTP) status from the ingestion endpoint or a client code such as `CLIENT_EXCEPTION`.                                |
+| `retry.code`, `retry.reason`           | Code and short reason for scheduled retries. The code is either a Hypertext Transfer Protocol (HTTP) status from the ingestion endpoint or a client code such as `CLIENT_TIMEOUT`.                              |
+| `telemetry_success`                    | For `REQUEST` and `DEPENDENCY`, the telemetry item's `success` value at export time (`true` or `false`).                                                                                                        |
+| `language`, `version`                  | SDK or agent language and version.                                                                                                                                                                              |
+| `compute.type`                         | Compute environment, such as Azure Kubernetes Service (AKS) (`aks`), Azure App Service (`appsvc`), Azure Functions (`functions`), Azure Spring Apps (`springcloud`), virtual machine (VM) (`vm`), or `unknown`. |
+| `sdkVersion`                           | SDK version string also available in tags.                                                                                                                                                                      |
+| `cloud_RoleName`, `cloud_RoleInstance` | Resource dimensions you can use to slice by service and instance.                                                                                                                                               |
 
 Each metric row represents an **aggregated count** for the export interval. Total **attempted** in a time slice equals `Item_Success_Count + Item_Dropped_Count` for that slice.
 
