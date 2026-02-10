@@ -22,4 +22,5 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 - Improved Syslog normalization by correctly mapping Syslog `SeverityText` into the expected Log Analytics schema
 - Fixed collector crash scenarios when multiple OTLP receivers were configured
 - Moved pipeline images to Azure Linux Core 3.0 as Mariner 2.0 reached deprecation
-- Fixed all Critical security and compliance fixes
+- Added support for [new regions](./pipeline-overview#supported-configurations)
+- Fixed all known security and compliance issues
