@@ -56,16 +56,16 @@ In this article, you:
 
     # [OpenTelemetry Profiler](#tab/otel)
     
-       ```console
-       dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore --prerelease
-       dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
-       ```
+    ```console
+    dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore --prerelease
+    dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
+    ```
     
     # [Application Insights SDK (legacy)](#tab/sdk)
     
-       ```console
-       dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
-       ```
+    ```console
+    dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
+    ```
     
     ---
 
