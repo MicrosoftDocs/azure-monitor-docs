@@ -107,7 +107,8 @@ For more information on configuring your own DNS server to support private endpo
 
 Keep in mind the following known issues about private endpoints for Azure Monitor workspace.
 
-### Workspace query access constraints for clients in VNets with private endpoints
+<details>
+<summary><b>Workspace query access constraints for clients in VNets with private endpoints</b></summary>
 
 Clients in VNets with existing private endpoints face constraints when accessing other Azure Monitor workspaces that have private endpoints. For example, suppose a VNet N1 has a private endpoint for a workspace A1. If workspace A2 has a private endpoint in a VNet N2, then clients in VNet N1 must also query workspace data in account A2 using a private endpoint. If workspace A2 doesn't have any private endpoints configured, then clients in VNet N1 can query data from that workspace without a private endpoint.
 

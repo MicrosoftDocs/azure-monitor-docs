@@ -25,6 +25,8 @@ From the **Monitor** menu in the Azure portal, select **Private Link Scopes** an
 
 :::image type="content" source="media/private-link-security/ampls-create.png" lightbox="media/private-link-security/ampls-create.png" alt-text="Screenshot showing option to create and Azure Monitor Private Link Scope.":::
 
+#### Basics tab
+
 The table below describes the properties you need to set when creating your AMPLS. Select **Next: Review + create** create your AMPLS.
 
 :::image type="content" source="media/private-link-security/ampls-create-1d.png" lightbox="media/private-link-security/ampls-create-1d.png" alt-text="Screenshot that shows creating an Azure Monitor Private Link Scope.":::
@@ -41,7 +43,13 @@ The table below describes the properties you need to set when creating your AMPL
 Use `az resource create` to create a new AMPLS. The following example creates a new AMPLS named `my-scope` with the query access mode set to `Open` and the ingestion access modes set to `PrivateOnly`.
 
 ```
-az resource create -g "my-resource-group" --name "my-scope" -l global --api-version "2021-07-01-preview" --resource-type Microsoft.Insights/privateLinkScopes --properties "{\"accessModeSettings\":{\"queryAccessMode\":\"Open\", \"ingestionAccessMode\":\"PrivateOnly\"}}"
+az resource create \
+    --resource-group "my-resource-group"
+    --name "my-scope"
+    -location global
+    --api-version "2021-07-01-preview" 
+    --resource-type Microsoft.Insights/privateLinkScopes 
+    --properties "{\"accessModeSettings\":{\"queryAccessMode\":\"Open\", \"ingestionAccessMode\":\"PrivateOnly\"}}"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -49,7 +57,13 @@ az resource create -g "my-resource-group" --name "my-scope" -l global --api-vers
 Use `New-Resource` to create a new AMPLS. The following example creates a new AMPLS named `my-scope` with the query access mode set to `Open` and the ingestion access modes set to `PrivateOnly`.
 
 ```PowerShell
-$scope = New-AzResource -Location Global -ResourceGroupName my-resource-group -ResourceType Microsoft.Insights/privateLinkScopes -ResourceName my-scope -ApiVersion 2021-07-01-preview -Properties @{ accessModeSettings = @{ queryAccessMode = 'Open'; ingestionAccessMode = 'PrivateOnly' } } -Force
+$scope = New-AzResource `
+    -Location Global `
+    -ResourceGroupName my-resource-group `
+    -ResourceType Microsoft.Insights/privateLinkScopes `
+    -ResourceName my-scope -ApiVersion 2021-07-01-preview `
+    -Properties @{ accessModeSettings = @{ queryAccessMode = 'Open'; ingestionAccessMode = 'PrivateOnly' }} `
+    -Force
 ```
 
 ---
@@ -82,6 +96,8 @@ az monitor private-link-scope scoped-resource create \
 
 ### [PowerShell](#tab/powershell)
 
+Use `New-AzInsightsPrivateLinkScopedResource` to add a resource to the AMPLS. The following example adds a Log Analytics workspace to the AMPLS.
+
 ```powershell
 New-AzInsightsPrivateLinkScopedResource `
     -ResourceGroupName "my-resource-group" `
@@ -95,6 +111,9 @@ New-AzInsightsPrivateLinkScopedResource `
 ## Connect AMPLS to a private endpoint
 
 ### [Azure portal](#tab/portal)
+
+> [!NOTE]
+> For further details about private endpoints, see [Create a private endpoint using Azure portal](/azure/private-link/create-private-endpoint-portal#create-a-private-endpoint).
 
 The private endpoint connects your VNet to the AMPLS. From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
 
@@ -150,8 +169,10 @@ Whether or not you choose to integrate with private DNS zone, and you're using y
 :::image type="content" source="media/private-link-configure/create-private-endpoint-dns.png" lightbox="media/private-link-configure/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
 
 #### [CLI](#tab/cli)
+[Create a private endpoint using Azure CLI](/azure/private-link/create-private-endpoint-cli#create-a-private-endpoint)
 
 #### [PowerShell](#tab/powershell)
+[Create a private endpoint using Azure PowerShell](/azure/private-link/create-private-endpoint-powershell#create-a-private-endpoint)
 
 ---
 

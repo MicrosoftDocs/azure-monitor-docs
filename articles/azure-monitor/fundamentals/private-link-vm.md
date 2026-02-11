@@ -1,14 +1,13 @@
 ---
-title: Network Isolation for Azure Monitor Agent via Private Link
-description: Learn how to enable network isolation for Azure Monitor Agent by using Azure Private Link.
+title: Enable private link for virtual machine monitoring in Azure Monitor
+description: Learn how to enable network isolation for Avirtual machines by using Azure Private Link.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 02/10/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
-# customer intent: As a security-conscious Azure user, I want to ensure that my Azure Monitor Agent communicates securely within my private network using Azure Private Link, so that I can protect sensitive monitoring data from exposure to the public internet.
 ---
 
-# Enable network isolation for Azure Monitor Agent by using Azure Private Link
+# Enable private link for virtual machine monitoring in Azure Monitor
 
 By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. This article describes how to enable network isolation for your agents by using [Azure Private Link](/azure/private-link/private-link-overview).
 
