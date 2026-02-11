@@ -4,12 +4,12 @@
   items:
   - name: Azure Service Health overview
     href: overview.md
+  - name: Resource Health overview
+    href: resource-health-overview.md
   - name: Azure Status page overview
     href: azure-status-overview.md
   - name: Azure Service Health Portal
     href: service-health-portal-update.md
-  - name: Resource Health overview
-    href: resource-health-overview.md
   - name: What's new
     href: whats-new.md
 - name: Get started in Service Health
