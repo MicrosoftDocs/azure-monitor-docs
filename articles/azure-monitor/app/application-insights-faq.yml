@@ -1732,7 +1732,7 @@ sections:
           * It's vendor-neutral and provides consistent APIs/SDKs across languages.
           * Over time, we believe OpenTelemetry will enable Azure Monitor customers to observe applications written in languages beyond our [supported languages](../app/app-insights-overview.md#supported-languages).
           * It expands the types of data you can collect through a rich set of [instrumentation libraries](https://opentelemetry.io/docs/concepts/components/#instrumentation-libraries).
-          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights SDKs.
+          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights Classic API SDKs.
           * OpenTelemetry aligns with Microsoft's strategy to [embrace open source](https://opensource.microsoft.com/).
 
       - question: What's the status of OpenTelemetry?
@@ -1771,24 +1771,18 @@ sections:
 
           For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
-      - question: How can I test out the Azure Monitor OpenTelemetry Distro?
-        answer: |
-          Check out our enablement docs for [.NET, Java, JavaScript (Node.js), and Python](../app/opentelemetry-enable.md).
-
-      - question: Should I use OpenTelemetry or the Application Insights SDK?
+      - question: Should I use OpenTelemetry or the Application Insights Classic API SDK?
         answer: |
           We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
           
-          OpenTelemetry also provides advantages over the Application Insights SDKs, including:
+          OpenTelemetry provides advantages over the Application Insights Classic API SDKs, including:
 
           - Better standardization across platforms
           - A wider ecosystem of instrumentation libraries
           - Greater flexibility in data collection and processing
           - Improved vendor neutrality, though Azure Monitor OpenTelemetry Distro is still optimized for Azure.
 
-           OpenTelemetry will eventually replace the Application Insights SDK and is close to feature parity. 
-           However, in some cases you may still require the Application Insights SDK if its [capabilities](#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) align with your monitoring needs.
-
+           If you're using .NET or Node.js Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](.\migrate-to-opentelemetry.md).
           
       - question: When should I use the Azure Monitor OpenTelemetry exporter?
         answer: |
@@ -1800,32 +1794,9 @@ sections:
 
       - question: What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
         answer: |
-          The following chart breaks out OpenTelemetry feature support for each language.
-
-          | Feature                                                                                                              | .NET               | Node.js            | Python             | Java               |
-          |----------------------------------------------------------------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|
-          | [Distributed tracing](../app/distributed-trace-data.md)                                                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Custom metrics](../app/opentelemetry-add-modify.md#add-custom-metrics)                                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Standard metrics](../app/standard-metrics.md)                                                                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Fixed-rate sampling](../app/sampling.md)                                                                            | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Offline storage and automatic retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Exception reporting](../app/asp-net-exceptions.md)                                                                  | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Logs collection](../app/asp-net-trace-logs.md)                                                                      | :white_check_mark: | :warning:          | :white_check_mark: | :white_check_mark: |
-          | [Custom Events](../app/usage.md#track-user-interactions-with-custom-events)                                          | :warning:          | :warning:          | :warning:          | :white_check_mark: |
-          | [Microsoft Entra authentication](../app/azure-ad-authentication.md)                                                  | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Live metrics](../app/live-stream.md)                                                                                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Live Metrics Filtering](../app/live-stream.md#select-and-filter-your-metrics)                                       | :white_check_mark: | :x:                | :x:                | :x:                |
-          | Availability Testing Events generated using the Track Availability API                                               | :x:                | :x:                | :x:                | :white_check_mark: |
-          | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
-          | [Rate-limited sampling](../app/sampling.md#adaptive-sampling)                                                        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :warning:          | :x:                | :x:                | :warning:          |
-          | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
-
-          **Key**
-          * :white_check_mark: This feature is available to all customers with formal support.
-          * :warning: This feature is available as a public preview. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-          * :x: This feature isn't available or isn't applicable.
+          The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights Classic API SDKs.
+          
+          For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger]](../snapshot-debugger/snapshot-debugger.md).
 
       - question: Can OpenTelemetry be used for web browsers?
         answer: |       
@@ -1847,17 +1818,9 @@ sections:
         answer: |
           We don't recommend it. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-      - question: What's the difference between manual and automatic instrumentation?
-        answer: |
-          See the [OpenTelemetry Overview](../app/opentelemetry-overview.md).
-
       - question: Can I use the OpenTelemetry Collector?
         answer: |
           Some customers use the OpenTelemetry Collector as an agent alternative, even though Microsoft doesn't officially support an agent-based approach for application monitoring yet. In the meantime, the open-source community contributed an [OpenTelemetry Collector Azure Monitor Exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/azuremonitorexporter) that some customers are using to send data to Azure Monitor Application Insights. **This is not supported by Microsoft.**
-
-      - question: What's the difference between OpenCensus and OpenTelemetry?
-        answer: |
-          [OpenCensus](https://opencensus.io/) is the precursor to [OpenTelemetry](https://opentelemetry.io/). Microsoft helped bring together [OpenTracing](https://opentracing.io/) and OpenCensus to create OpenTelemetry, a single observability standard for the world. The current [production-recommended Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) for Azure Monitor is based on OpenCensus. Microsoft is committed to making Azure Monitor based on OpenTelemetry.
 
       - question: In Grafana, why do I see "Status 500. Can't visualize trace events using the trace visualizer"?
         answer: |
@@ -1870,9 +1833,6 @@ sections:
       - question: How should I instrument Blazor Apps?
         answer: |
           To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
-
-      - question: Where can I get more information about OpenTelemetry support and feedback? 
-        answer: For more information, see [OpenTelemetry Support and Feedback for Application Insights](../app/opentelemetry-help-support-feedback.md).      
           
   - name: Overview dashboard
     questions:
