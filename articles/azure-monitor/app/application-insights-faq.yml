@@ -1765,10 +1765,6 @@ sections:
 
           Because the Distro provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), the Distro supports anything supported by OpenTelemetry. For example, you can add more telemetry processors, exporters, or instrumentation libraries, if OpenTelemetry supports them.
 
-          > [!NOTE]
-          > The Distro sets the sampler to a custom, fixed-rate sampler for Application Insights. You can change this to a different sampler, but doing so might disable some of the Distro's included capabilities.
-          > For more information about the supported sampler, see the [Enable Sampling](../app/opentelemetry-configuration.md#enable-sampling) section of [Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md).
-
           For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
       - question: Should I use OpenTelemetry or the Application Insights Classic API SDK?
@@ -1796,7 +1792,7 @@ sections:
         answer: |
           The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights Classic API SDKs.
           
-          For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger]](../snapshot-debugger/snapshot-debugger.md).
+          For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
       - question: Can OpenTelemetry be used for web browsers?
         answer: |       
