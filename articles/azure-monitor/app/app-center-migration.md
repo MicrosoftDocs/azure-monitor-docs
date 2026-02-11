@@ -18,7 +18,7 @@ OTel is a vendor-neutral, open-source standard for collecting and exporting tele
 > - Analyze telemetry in Azure Monitor and [Application Insights](app-insights-overview.md).
 
 > [!IMPORTANT]
-> Microsoft supports Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn’t provide product support through Azure support requests for community OpenTelemetry mobile SDKs or for configuring, operating, or troubleshooting the OpenTelemetry Collector. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
+> Microsoft supports Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn’t provide product support for community OpenTelemetry mobile SDKs or for configuring, operating, or troubleshooting an OpenTelemetry gateway. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
 
 ## App Center retirement timeline
 
@@ -49,9 +49,6 @@ For this migration, you typically use:
 > [!NOTE]
 > If you already have a workspace-based Application Insights resource and a linked Log Analytics workspace, reuse those resources for this migration.
 
-> [!IMPORTANT]
-> If you plan to ingest OpenTelemetry Protocol (OTLP) signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), follow the setup requirements in that guidance. The destination setup can include OTLP endpoint URLs and a Data Collection Rule (DCR), and it can differ from the workspace-based Application Insights and connection string approach previously described. For details, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
-
 #### Learn Azure Monitor
 
 Use these resources to become familiar with Azure Monitor concepts and terminology:
@@ -64,6 +61,9 @@ Use these resources to become familiar with Azure Monitor concepts and terminolo
 - [Managed workspaces in Application Insights](/azure/azure-monitor/app/managed-workspaces)
 
 #### Create and configure the destination resources
+
+> [!IMPORTANT]
+> If you plan to ingest OpenTelemetry Protocol (OTLP) signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), follow the setup requirements in [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion). This setup can differ from the workspace-based Application Insights and connection string approach, and can include OTLP endpoint URLs and a Data Collection Rule (DCR), along with the related endpoint URL patterns and authentication requirements.
 
 Use this checklist to set up the Azure Monitor side of the migration:
 
@@ -97,18 +97,14 @@ Choose one of these gateway options:
 **Key points**
 
 - Mobile apps export OTLP telemetry to a gateway endpoint.
-- Choose one gateway you manage (OpenTelemetry Collector or API Management). The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
-- Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
-- Use an Azure API Management (APIM) proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
+- Choose one gateway you manage. The gateway holds credentials and forwards telemetry to Azure Monitor ingestion endpoints.
+  - Use an OpenTelemetry Collector gateway when you need telemetry-pipeline capabilities such as batching, retries/queueing, sampling, enrichment, filtering/redaction, or routing.
+  - Use an Azure API Management (APIM) proxy when you want a simpler operational model and centralized policy enforcement (for example, routing, throttling, header injection), with more limited telemetry-specific processing.
 - After ingestion, use Azure Monitor experiences such as Logs, Application Insights, Workbooks, and Alerts to analyze and act on telemetry.
-
-For configuration details about Azure Monitor native OTLP ingestion endpoints (Limited Preview), review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 ### Configure the gateway to export telemetry to Azure Monitor
 
 Configure an authenticated export from the gateway to Azure Monitor.
-
-For Azure Monitor native OTLP ingestion endpoints (Limited Preview), including endpoint URL patterns and authentication requirements, review [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion).
 
 If you use an OpenTelemetry Collector gateway, you can start with these community resources:
 
