@@ -44,7 +44,7 @@ Use `az resource create` to create a new AMPLS. The following example creates a 
 az resource create -g "my-resource-group" --name "my-scope" -l global --api-version "2021-07-01-preview" --resource-type Microsoft.Insights/privateLinkScopes --properties "{\"accessModeSettings\":{\"queryAccessMode\":\"Open\", \"ingestionAccessMode\":\"PrivateOnly\"}}"
 ```
 
-### [PowerShell](#tab/cli)
+### [PowerShell](#tab/powershell)
 
 Use `New-Resource` to create a new AMPLS. The following example creates a new AMPLS named `my-scope` with the query access mode set to `Open` and the ingestion access modes set to `PrivateOnly`.
 
@@ -80,7 +80,7 @@ az monitor private-link-scope scoped-resource create \
   --linked-resource /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace
 ```
 
-### [PowerShell](#tab/cli)
+### [PowerShell](#tab/powershell)
 
 ```powershell
 New-AzInsightsPrivateLinkScopedResource `
@@ -151,7 +151,7 @@ Whether or not you choose to integrate with private DNS zone, and you're using y
 
 #### [CLI](#tab/cli)
 
-#### [PowerShell](#tab/cli)
+#### [PowerShell](#tab/powershell)
 
 ---
 
