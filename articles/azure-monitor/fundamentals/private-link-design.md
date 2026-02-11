@@ -6,7 +6,7 @@ ms.topic: concept-article
 ms.date: 10/23/2024
 ---
 
-# Design Azure Monitor Private Link configuration
+# Design Azure Monitor private link configuration
 
 When you create an [Azure Monitor Private Link Scope (AMPLS)](./private-link-security.md), you limit access to Azure Monitor resources to only the networks connected to the private endpoint. This article provides guidance on how to design your Azure Monitor private link configuration and other considerations you should take into account before you actually implement it using the guidance at [Configure private link for Azure Monitor](./private-link-configure.md).
 
@@ -43,9 +43,33 @@ With network peering, networks can share each other's IP addresses and most like
 If your networks aren't peered, you must also separate their DNS to use private links. You can then create a separate private endpoint for each network, and a separate AMPLS object. Your AMPLS objects can link to the same workspaces/components or to different ones.
 
 
+## Access modes
+Private link access modes let you to control how private links affect your network traffic. Which you select is critical to ensuring continuous, uninterrupted network traffic. 
 
+Access modes can apply to all networks connected to your AMPLS or to specific networks connected. Data ingestion and queries each have their own setting. For example, you can set the **Private Only** mode for ingestion and the **Open** mode for queries.
 
+> [!IMPORTANT]
+> Log Analytics ingestion uses resource-specific endpoints so it doesn't adhere to AMPLS access modes. To assure Log Analytics ingestion requests can't access workspaces out of the AMPLS, set the network firewall to block traffic to public endpoints, regardless of the AMPLS access modes.
 
+### Private Only access mode
+**Private Only** mode allows the virtual network to reach only private link resources in the AMPLS. This is the most secure option and prevents data exfiltration by blocking traffic out of the AMPLS to Azure Monitor resources.
+
+:::image type="content" source="./media/private-link-security/ampls-private-only-access-mode.png" lightbox="./media/private-link-security/ampls-private-only-access-mode.png" alt-text="Diagram that shows the AMPLS Private Only access mode." border="false":::
+
+### Open access mode
+**Open** mode allows the virtual network to reach both private link resources and resources not in the AMPLS (if they [accept traffic from public networks](#control-network-access-to-ampls-resources)). The Open access mode doesn't prevent data exfiltration, but it still offers the other benefits of private links. Traffic to private link resources is sent through private endpoints before it's validated and then sent over the Microsoft backbone. The Open mode is useful for mixed mode where some resources are accessed publicly and others accessed over a private link. It can also be useful during a gradual onboarding process.
+ 
+:::image type="content" source="./media/private-link-security/ampls-open-access-mode.png" lightbox="./media/private-link-security/ampls-open-access-mode.png" alt-text="Diagram that shows the AMPLS Open access mode." border="false":::
+
+> [!IMPORTANT]
+> Apply caution when you select the access mode. Using Private Only will block traffic to resources not in the AMPLS across all networks that share the same DNS regardless of subscription or tenant. If you can't add all Azure Monitor resources to the AMPLS, start by adding select resources and applying themode. Switch to the Private Only mode for maximum security only after you've added all Azure Monitor resources to your AMPLS.
+
+### Set access modes for specific networks
+The access modes set on the AMPLS resource affect all networks, but you can override these settings for specific networks.
+
+In the following diagram, VNet1 uses the Open mode and VNet2 uses the Private Only mode. Requests from VNet1 can reach Workspace 1 and Component 2 over a private link. Requests can reach Component 3 only if it [accepts traffic from public networks](#control-network-access-to-ampls-resources). VNet2 requests can't reach Component 3.
+
+:::image type="content" source="./media/private-link-security/ampls-mixed-access-modes.png" lightbox="./media/private-link-security/ampls-mixed-access-modes.png" alt-text="Diagram that shows mixed access modes." border="false":::
 
 ## Control network access to AMPLS resources
 
