@@ -19,7 +19,7 @@ Configuring an instance of Azure Private Link requires the following steps. Each
 
 ## Create Azure Monitor Private Link Scope (AMPLS)
 
-### [Azure portal](#portal)
+### [Azure portal](#tab/portal)
 
 From the **Monitor** menu in the Azure portal, select **Private Link Scopes** and then **Create**.
 
@@ -36,7 +36,7 @@ The table below describes the properties you need to set when creating your AMPL
 | **Name** | Enter a name for the AMPLS. The name must be unique within the selected resource group. |
 | **Query access mode**<br>**Ingestion access mode** | Select the [access mode](./private-link-security.md#access-modes) for the AMPLS. `Open` to allow queries from public networks not connected through a Private Link Scope, or `PrivateOnly` to allow queries only from connected private networks. You can change this setting later either for the AMPLS itself or for different private endpoints connected to it.   |
 
-### [CLI](#cli)
+### [CLI](#tab/cli)
 
 Use `az resource create` to create a new AMPLS. The following example creates a new AMPLS named `my-scope` with the query access mode set to `Open` and the ingestion access modes set to `PrivateOnly`.
 
@@ -44,7 +44,7 @@ Use `az resource create` to create a new AMPLS. The following example creates a 
 az resource create -g "my-resource-group" --name "my-scope" -l global --api-version "2021-07-01-preview" --resource-type Microsoft.Insights/privateLinkScopes --properties "{\"accessModeSettings\":{\"queryAccessMode\":\"Open\", \"ingestionAccessMode\":\"PrivateOnly\"}}"
 ```
 
-### [PowerShell](#powershell)
+### [PowerShell](#tab/cli)
 
 Use `New-Resource` to create a new AMPLS. The following example creates a new AMPLS named `my-scope` with the query access mode set to `Open` and the ingestion access modes set to `PrivateOnly`.
 
@@ -65,7 +65,7 @@ From the menu for your AMPLS, select **Azure Monitor Resources** and then **Add*
 > Deleting Azure Monitor resources requires that you first disconnect them from any AMPLS objects they're connected to. It's not possible to delete resources connected to an AMPLS.
 
 
-### [CLI](#cli)
+### [CLI](#tab/cli)
 
 Use `az monitor private-link-scope scoped-resource create` to add a resource to the AMPLS. The following example adds a Log Analytics workspace to the AMPLS.
 
@@ -77,7 +77,7 @@ az monitor private-link-scope scoped-resource create \
   --linked-resource /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourcegroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace
 ```
 
-### [PowerShell](#powershell)
+### [PowerShell](#tab/cli)
 
 ```powershell
 New-AzInsightsPrivateLinkScopedResource `
@@ -120,7 +120,7 @@ You have the option of selecting the resource from the text boxes, or select **C
 
 :::image type="content" source="media/private-link-configure/create-private-endpoint-resource.png" lightbox="media/private-link-configure/create-private-endpoint-resource.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Resource tab selected.":::
 
-**Virtual Network tab**
+#### Virtual Network tab
 
 | Property | Description |
 |:---|:---|
@@ -131,7 +131,7 @@ You have the option of selecting the resource from the text boxes, or select **C
 
 :::image type="content" source="media/private-link-configure/create-private-endpoint-virtual-network.png" lightbox="media/private-link-configure/create-private-endpoint-virtual-network.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Virtual Network tab selected.":::
 
-**DNS tab**
+#### DNS tab
 
 | Property | Description |
 |:---|:---|
