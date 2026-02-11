@@ -92,11 +92,8 @@ For more information about instrumenting applications to enable Application Insi
 
 #### Application Insights SDK (Classic API)
 
-> [!NOTE]
-> Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
-
-* [.NET](classic-api.md?tabs=dotnet)
-* [Node.js](classic-api.md?tabs=nodejs)
+> [!IMPORTANT]
+> If you're still using Application Insights Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
 
 ### Automatic instrumentation (enable without code changes)
 
