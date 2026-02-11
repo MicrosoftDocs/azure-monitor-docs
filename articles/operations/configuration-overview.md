@@ -1,6 +1,6 @@
 ---
 title: Configuration in operations center (preview)
-description: Describes the Configuration pillar in operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
+description: Describes the Configuration menu in operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
 ms.topic: concept-article
 ms.date: 11/14/2025
 ---
@@ -10,11 +10,11 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-The **Configuration** pillar of [operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. It provides a streamlined onboarding experience to automatically enroll your machines for different Azure management and monitoring services. You can then use different pages in the pillar to manage the configuration of your machines and updates to their client operating systems.
+The **Configuration** menu of [operations center](./overview.md) helps you manage the configuration of your Azure VMs and Arc-enabled servers. It provides a streamlined onboarding experience to automatically enroll your machines for different Azure management and monitoring services. You can then use different pages in the menu to manage the configuration of your machines and updates to their client operating systems.
 
  Manage the policies that define their configuration and track changes and operating system updates. 
 
-The Configuration pillar uses the following Azure services:
+The Configuration menu uses the following Azure services:
 
 - [Azure Policy](/azure/governance/policy/overview)
 - [Azure Update Manager](/azure/update-manager/overview)
@@ -24,7 +24,7 @@ The Configuration pillar uses the following Azure services:
 
 
 ## Menu items
-The Configuration pillar includes the following menu items:
+The Configuration menu includes the following menu items:
 
 | Menu | Description |
 |:---|:---|
@@ -37,9 +37,9 @@ The Configuration pillar includes the following menu items:
 | Recommendations | Azure Advisor recommendations related to configuration. See [Azure Advisor portal basics](/azure/advisor/advisor-get-started) for details. |
 
 ## Configuration overview
-The **Configuration** overview page provides a single-pane snapshot of policy compliance and update requirements across your Azure resources. Drill down on any of the tiles to open other pages in the Configuration pillar for more details.
+The **Configuration** overview page provides a single-pane snapshot of policy compliance and update requirements across your Azure resources. Drill down on any of the tiles to open other pages in the Configuration menu for more details.
 
-:::image type="content" source="./media/configuration/configuration-pillar.png" lightbox="./media/configuration/configuration-pillar.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
+:::image type="content" source="./media/configuration/configuration-menu.png" lightbox="./media/configuration/configuration-menu.png" alt-text="Screenshot of Configuration menu in the Azure portal":::
 
 The **Configuration** overview page includes the following sections. Modify the scope of tiles by selecting the **Subscription** filter at the top of the page.
 

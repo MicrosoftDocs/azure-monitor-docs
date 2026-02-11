@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence API Management
@@ -40,13 +40,14 @@ At least one deployed self-hosted gateway instance was identified that uses a ga
 
 **Impact:** High
   
-  
+For more information, see [Self-Hosted Gateway Overview](/azure/api-management/self-hosted-gateway-overview)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: b677ed4b-1eed-45c7-b268-4280be5839f8  
 
 
 <!--b677ed4b-1eed-45c7-b268-4280be5839f8_end-->
+
 
 <!--b226053d-8d25-4de4-9e26-fa30df1a4379_begin-->
 
@@ -58,13 +59,14 @@ You can use Azure AD-based authentication, instead of gateway tokens, which allo
 
 **Impact:** Medium
   
-For more information, see [Azure API Management self-hosted gateway - Microsoft Entra authentication](https://aka.ms/apim/shgw/how-to/use-ad-auth)  
+For more information, see [Azure API Management Self-Hosted Gateway - Microsoft Entra Authentication](https://aka.ms/apim/shgw/how-to/use-ad-auth)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: b226053d-8d25-4de4-9e26-fa30df1a4379  
 
 
 <!--b226053d-8d25-4de4-9e26-fa30df1a4379_end-->
+
 
 <!--6c154595-3c5c-49d3-ac57-f122a8e1adb9_begin-->
 

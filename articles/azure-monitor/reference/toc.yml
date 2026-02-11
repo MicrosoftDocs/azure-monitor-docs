@@ -319,6 +319,8 @@ items:
             href: supported-metrics/microsoft-network-networkinterfaces-metrics.md
           - name: Microsoft.Network/networkManagers/ipamPools
             href: supported-metrics/microsoft-network-networkmanagers-ipampools-metrics.md
+          - name: Microsoft.Network/networkSecurityPerimeters
+            href: supported-metrics/microsoft-network-networksecurityperimeters-metrics.md
           - name: Microsoft.Network/NetworkVirtualAppliances
             href: supported-metrics/microsoft-network-networkvirtualappliances-metrics.md
           - name: Microsoft.Network/networkWatchers/connectionMonitors
@@ -1551,6 +1553,8 @@ items:
             href: tables/microsoft-security_defenderforstoragesettings.md
           - name: microsoft.security/security
             href: tables/microsoft-security_security.md
+          - name: microsoft.securityinsights/alerteventnormalized
+            href: tables/microsoft-securityinsights_alerteventnormalized.md
           - name: microsoft.securityinsights/asimtables
             href: tables/microsoft-securityinsights_asimtables.md
           - name: microsoft.securityinsights/auditeventnormalized
@@ -1944,6 +1948,8 @@ items:
             href: tables/awscloudtrail.md
           - name: AWSCloudWatch
             href: tables/awscloudwatch.md
+          - name: AWSEKSLogs
+            href: tables/awsekslogs.md
           - name: AWSELBFlowLogs
             href: tables/awselbflowlogs.md
           - name: AWSGuardDuty
@@ -2300,6 +2306,8 @@ items:
             href: tables/copilotactivity.md
           - name: CrowdStrikeAlerts
             href: tables/crowdstrikealerts.md
+          - name: CrowdStrikeCases
+            href: tables/crowdstrikecases.md
           - name: CrowdStrikeDetections
             href: tables/crowdstrikedetections.md
           - name: CrowdStrikeHosts
@@ -2560,6 +2568,8 @@ items:
             href: tables/etwevent.md
           - name: EdgeActionConsoleLog
             href: tables/edgeactionconsolelog.md
+          - name: EdgeActionServiceLog
+            href: tables/edgeactionservicelog.md
           - name: EmailAttachmentInfo
             href: tables/emailattachmentinfo.md
           - name: EmailEvents
@@ -3484,6 +3494,8 @@ items:
             href: queries/ASRJobs.md
           - name: ASRReplicatedItems
             href: queries/ASRReplicatedItems.md
+          - name: ASimAlertEventLogs
+            href: queries/ASimAlertEventLogs.md
           - name: ASimDnsActivityLogs
             href: queries/ASimDnsActivityLogs.md
           - name: ATCExpressRouteCircuitIpfix
@@ -3662,10 +3674,14 @@ items:
             href: queries/ContainerRegistryRepositoryEvents.md
           - name: ContainerServiceLog
             href: queries/ContainerServiceLog.md
+          - name: CopilotActivity
+            href: queries/CopilotActivity.md
           - name: CoreAzureBackup
             href: queries/CoreAzureBackup.md
           - name: CrowdStrikeAlerts
             href: queries/CrowdStrikeAlerts.md
+          - name: CrowdStrikeCases
+            href: queries/CrowdStrikeCases.md
           - name: CrowdStrikeDetections
             href: queries/CrowdStrikeDetections.md
           - name: CrowdStrikeIncidents

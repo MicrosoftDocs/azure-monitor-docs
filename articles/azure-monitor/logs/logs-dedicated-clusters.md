@@ -601,7 +601,7 @@ N/A
 
 After you create your cluster resource and it's fully provisioned, you can edit cluster properties using CLI, PowerShell or REST API. Properties you can set after the cluster is provisioned include:
 
-- **keyVaultProperties** - Contains the key in Azure Key Vault with the following parameters: *KeyVaultUri*, *KeyName*, *KeyVersion*. See [Update cluster with Key identifier details](../logs/customer-managed-keys.md#update-cluster-with-key-identifier-details).
+- **keyVaultProperties** - Contains the key in Azure Key Vault with the following parameters: *KeyVaultUri*, *KeyName*, *KeyVersion*. See [Update dedicated cluster with Key identifier details](../logs/customer-managed-keys.md#update-dedicated-cluster-with-key-identifier-details).
 - **Identity** - The identity used to authenticate to your Key Vault. This can be System-assigned or User-assigned.
 - **billingType** - Billing attribution for the cluster resource and its data. Includes on the following values:
   - **Cluster (default)** - The costs for your cluster are attributed to the cluster resource.
@@ -1104,8 +1104,8 @@ The identity type can be changed after the cluster is created with no interrupti
 - Updating UserAssigned to SystemAssigned - Since System-assigned managed identity created after updating cluster identity type with SystemAssigned, the following steps must be followed:
   1. Update cluster to remove the key - set keyVaultUri, keyName, and keyVersion to value ""
   1. Update cluster identity type to SystemAssigned
-  1. Update Key Vault and [grant permissions](./customer-managed-keys.md#grant-key-vault-permissions) to the identity
-  1. [Update key in cluster](./customer-managed-keys.md#update-cluster-with-key-identifier-details)
+  1. Update Key Vault and [grant permissions](./customer-managed-keys.md#grant-key-vault-permissions-to-the-managed-identity) to the identity
+  1. [Update key in dedicated cluster](./customer-managed-keys.md#update-dedicated-cluster-with-key-identifier-details)
 
 
 ## Limits and constraints
@@ -1162,8 +1162,8 @@ The identity type can be changed after the cluster is created with no interrupti
 ### Cluster Update
 
 -  400--Cluster is in deleting state. Async operation is in progress. Cluster must complete its operation before any update operation is performed.
--  400--KeyVaultProperties isn't empty but has a bad format. See [key identifier update](../logs/customer-managed-keys.md#update-cluster-with-key-identifier-details).
--  400--Failed to validate key in Key Vault. Could be due to lack of permissions or when key doesn't exist. Verify that you [set key and access policy](../logs/customer-managed-keys.md#grant-key-vault-permissions) in Key Vault.
+-  400--KeyVaultProperties isn't empty but has a bad format. See [key identifier update](../logs/customer-managed-keys.md#update-dedicated-cluster-with-key-identifier-details).
+-  400--Failed to validate key in Key Vault. Could be due to lack of permissions or when key doesn't exist. Verify that you [set key and access policy](../logs/customer-managed-keys.md#grant-key-vault-permissions-to-the-managed-identity) in Key Vault.
 -  400--Key isn't recoverable. Key Vault must be set to Soft-delete and Purge-protection. See [Key Vault documentation](/azure/key-vault/general/soft-delete-overview)
 -  400--Operation can't be executed now. Wait for the Async operation to complete and try again.
 -  400--Cluster is in deleting state. Wait for the Async operation to complete and try again.

@@ -131,7 +131,7 @@ items:
       - name: Live metric stream
         displayName: live, quickpulse, quick pulse, live metrics
         href: app/live-stream.md
-      - name: SDK Stats (Preview)
+      - name: SDK Stats
         href: app/sdk-stats.md
       - name: Usage (user behavior analytics)
         href: app/usage.md
@@ -857,7 +857,21 @@ items:
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
-    href: data-collection/edge-pipeline-configure.md
+    items:
+      - name: Overview
+        href: data-collection/pipeline-overview.md
+      - name: Configure
+        items:
+        - name: Azure portal
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure-portal.md
+        - name: CLI and templates
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure.md
+      - name: Configure clients
+        href: data-collection/pipeline-configure-clients.md
+      - name: Transformations
+        href: data-collection/pipeline-transformations.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST

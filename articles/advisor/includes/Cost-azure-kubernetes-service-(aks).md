@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Azure Kubernetes Service (AKS)
@@ -83,5 +83,23 @@ Recommendation ID: 17f6ab99-c9b6-4800-bebd-7466699cec31
 
 
 <!--17f6ab99-c9b6-4800-bebd-7466699cec31_end-->
+
+<!--706d4bdc-7ee0-4d2f-a9ac-3c1f124545d1_begin-->
+
+#### Switch to Prometheus-based Container Insights  
+  
+Instead of log‑based metrics in Log Analytics, which isn’t optimized for metrics, Azure Managed Prometheus offers a fully managed metrics service that can be up to 80% cheaper with native visualizations. Use the Logs and Events cost preset to avoid duplicate collection and reduce costs.  
+  
+**Potential benefits**: Save costs by switching to Prometheus-based metrics  
+
+**Impact:** Medium
+  
+For more information, see [Cost optimization in Azure Monitor - Azure Monitor](/azure/azure-monitor/fundamentals/best-practices-cost#design-checklist)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 706d4bdc-7ee0-4d2f-a9ac-3c1f124545d1  
+
+
+<!--706d4bdc-7ee0-4d2f-a9ac-3c1f124545d1_end-->
 
 <!--articleBody-->
