@@ -57,6 +57,9 @@ $scope = New-AzResource -Location Global -ResourceGroupName my-resource-group -R
 
 ## Connect resources to the AMPLS
 
+
+#### [Azure portal](#tab/portal))
+
 From the menu for your AMPLS, select **Azure Monitor Resources** and then **Add**. Select the component and select **Apply** to add it to your scope. Only Azure Monitor resources including Log Analytics workspaces and data collection endpoints (DCEs) are available.
 
 :::image type="content" source="media/private-link-configure/add-azure-monitor-resources.png" lightbox="media/private-link-configure/add-azure-monitor-resources.png" alt-text="Screenshot that shows adding Azure Monitor resources to an AMPLS.":::
@@ -89,6 +92,8 @@ New-AzInsightsPrivateLinkScopedResource `
 
 
 ## Connect AMPLS to a private endpoint
+
+### [Azure portal](#tab/portal)
 
 The private endpoint connects your VNet to the AMPLS. From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
 
@@ -143,6 +148,11 @@ Whether or not you choose to integrate with private DNS zone, and you're using y
 
 :::image type="content" source="media/private-link-configure/create-private-endpoint-dns.png" lightbox="media/private-link-configure/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
 
+#### [CLI](#tab/cli)
+
+#### [PowerShell](#tab/cli)
+
+---
 
 ## Configure access mode for the private endpoint
 If you want the private link to use a different [access mode](./private-link-security.md#access-modes) than the default for the AMPLS, configure it from the **Access modes** menu for the AMPLS. In the **Exclusions** section, select the private endpoint and an access mode for ingestion and query.
