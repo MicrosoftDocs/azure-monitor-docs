@@ -30,11 +30,10 @@ The private endpoint uses a separate IP address within the VNet address space al
 ## Shared global and regional endpoints
 When you create an AMPLS, your DNS zones map Azure Monitor endpoints to private IPs to send traffic through the private link. Some Azure Monitor resources use resource-specific endpoints while others use shared endpoints. A resource may also use resource-specific endpoint for one function but shared endpoints for another function. You need to understand the difference between each and how each Azure Monitor resource uses them to properly configure your private link and the resources in your AMPLS.
 
-
 | Endpoint type | Description | Resources | 
 |:---|:---|:---|
-| Resource-specific endpoints | Endpoints that are unique to a specific resource and must be configured individually. Adding a resource-specific endpoint to the AMPLS only allows private link access to that specific resource. | - Log Analytics workspace ingestion<br>- Data collection endpoints |
-| Shared endpoints | Endpoints that are shared across multiple resources of the same type. Adding a single resource to the AMPLS uses shared endpoints will change the DNS configuration that affects traffic to all resources that uses shared endpoints. | - Log Analytics workspace queries<br>- Application insights ingestion |
+| Resource-specific endpoints |- Log Analytics workspace ingestion<br>- Data collection endpoints | Endpoints that are unique to a specific resource and must be configured individually. Adding a resource-specific endpoint to the AMPLS only allows private link access to that specific resource. | 
+| Shared endpoints |- Log Analytics workspace queries<br>- Application insights ingestion | Endpoints that are shared across multiple resources of the same type. Adding a single resource to the AMPLS uses shared endpoints will change the DNS configuration that affects traffic to all resources that uses shared endpoints. | 
 
 For example, Log Analytics workspaces use shared endpoints for log queries. When you add a single Log Analytics workspace to an AMPLS, the DNS for that VNet is updated to access that shared endpoint over private link. Since all Log Analytics workspaces share that endpoint, queries to all Log Analytics workspaces from that VNet will use the private IPs. 
 

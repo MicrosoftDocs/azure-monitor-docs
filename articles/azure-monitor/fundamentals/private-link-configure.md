@@ -58,7 +58,7 @@ $scope = New-AzResource -Location Global -ResourceGroupName my-resource-group -R
 ## Connect resources to the AMPLS
 
 
-#### [Azure portal](#tab/portal))
+#### [Azure portal](#tab/portal)
 
 From the menu for your AMPLS, select **Azure Monitor Resources** and then **Add**. Select the component and select **Apply** to add it to your scope. Only Azure Monitor resources including Log Analytics workspaces and data collection endpoints (DCEs) are available.
 
@@ -90,6 +90,7 @@ New-AzInsightsPrivateLinkScopedResource `
     -LinkedResourceId "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
 ```
 
+---
 
 ## Connect AMPLS to a private endpoint
 
