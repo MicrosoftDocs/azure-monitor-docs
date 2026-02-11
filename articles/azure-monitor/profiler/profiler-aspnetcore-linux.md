@@ -54,20 +54,20 @@ In this article, you:
 
 1. Add the NuGet packages to collect the Profiler traces:
 
-# [OpenTelemetry Profiler](#tab/otel)
-
-   ```console
-   dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore --prerelease
-   dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
-   ```
-
-# [Application Insights SDK (legacy)](#tab/sdk)
-
-   ```console
-   dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
-   ```
-
----
+    # [OpenTelemetry Profiler](#tab/otel)
+    
+       ```console
+       dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore --prerelease
+       dotnet add package Azure.Monitor.OpenTelemetry.Profiler --prerelease
+       ```
+    
+    # [Application Insights SDK (legacy)](#tab/sdk)
+    
+       ```console
+       dotnet add package Microsoft.ApplicationInsights.Profiler.AspNetCore
+       ```
+    
+    ---
 
 ## Enable the .NET Profiler
 
@@ -97,11 +97,20 @@ In this article, you:
         .AddAzureMonitorProfiler(); // Add Azure Monitor Profiler    
     ```
 
+1. Save and commit your changes to the local repository:
+
+    ```console
+    git init
+    git add .
+    git commit -m "first commit"
+    ```
+
 # [Application Insights SDK (legacy)](#tab/sdk)
 
 1. In your preferred code editor, enable Application Insights and the .NET Profiler in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
-   For `WebAPI`:
+   <details>
+   <summary><b>For WebAPI</b></summary>
 
     ```csharp
     // Add services to the container.
@@ -109,7 +118,10 @@ In this article, you:
     builder.Services.AddServiceProfiler();
     ```
 
-   For `Worker`:
+   </details>
+
+   <details>
+   <summary><b>For Worker</b></summary>
 
     ```csharp
     IHost host = Host.CreateDefaultBuilder(args)
@@ -126,7 +138,7 @@ In this article, you:
     await host.RunAsync();
     ```
 
----
+   </details>
 
 1. Save and commit your changes to the local repository:
 
@@ -135,6 +147,8 @@ In this article, you:
     git add .
     git commit -m "first commit"
     ```
+
+---
 
 ## Create the Linux web app to host your project
 
