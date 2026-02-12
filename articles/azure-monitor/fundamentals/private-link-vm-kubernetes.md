@@ -41,8 +41,8 @@ Both the VM and cluster require [data collection endpoints (DCEs)](../data-colle
 
 If you're using an Azure Monitor workspace for metrics, then you can use the DCE created automatically for the workspace. If you're not using an Azure Monitor workspace or if your VM or cluster is in a different region than your Azure Monitor workspace, then you need to create a new DCE in the same region as your VM or cluster. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in the same region as your VM or cluster if needed.
 
-### Associate vm or cluster with DCE
-Create an association between the vm or cluster and a DCE for the vm/cluster to retrieve its configuration from Azure Monitor using the DCE. Each vm or cluster can only have an association with a single DCE, so if you create another association, the existing one will be replaced. 
+### Associate VM or cluster with DCE
+Create an association between the VM or cluster and a DCE for the VM/cluster to retrieve its configuration from Azure Monitor using the DCE. Each VM or cluster can only have an association with a single DCE, so if you create another association, the existing one will be replaced. 
 
 ### [Azure portal](#tab/portal)
 
@@ -57,7 +57,7 @@ From the **Monitor** menu in the Azure portal, select **Data Collection Endpoint
 
 ### [CLI](#tab/cli)
 
-Create association between the vm or cluster and the DCE using the following command:
+Create association between the VM or cluster and the DCE using the following command:
 
 ```azurecli
 az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id <dce-resource-id> --resource-uri <vm-resource-id/cluster-resource-id>
@@ -71,7 +71,7 @@ az monitor data-collection rule association create --association-name configurat
 
 ### [PowerShell](#tab/powershell)
 
-Create association between the vm or cluster and the DCE using the following command:
+Create association between the VM or cluster and the DCE using the following command:
 
 ```powershell
 New-AzDataCollectionRuleAssociation -associationname configurationAccessEndpoint -DataCollectionEndpointId <dce-resource-id> -resourceuri <vm-resource-id/cluster-resource-id>  
@@ -193,6 +193,22 @@ Add a Log Analytics workspace to the AMPLS using the following command:
 
 ---
 
+## Enable query for Azure Monitor workspace
+An additional private endpoint is required to support queries to the Azure Monitor workspace over private link. This is similar to the private endpoint created for the AMPLS, but this private endpoint is specifically for the Azure Monitor workspace to support queries over private link.
+
+> [!NOTE]
+> For more details about the private endpoint create by the Azure Monitor workspace and the DNS records created for it, see [Use private endpoints for Managed Prometheus and Azure Monitor workspace](./private-link-azure-monitor-workspace.md).
+
+From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
+
+:::image type="content" source="media/private-link-configure/create-private-endpoint.png" lightbox="media/private-link-configure/create-private-endpoint.png" alt-text="Screenshot that shows creating a private endpoint connection.":::
+
+| Property | Description |
+|:---|:---|
+| Subscription that contains your AMPLS. |
+| Resource type | Microsoft.Monitor/accounts |
+| Resource | Name for the link |
+| Target sub-resource | prometheusMetrics |
 
 ## Ingestion from a private AKS cluster
 

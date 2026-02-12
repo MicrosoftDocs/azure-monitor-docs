@@ -109,7 +109,7 @@ New-AzInsightsPrivateLinkScopedResource `
 ---
 
 ## Connect AMPLS to a private endpoint
-A private endpoint is needed to connect the AMPLS to your VNet. Once this private endpoint is created, any resources connected to the AMPLS will be accessible from the VNet through the private endpoint. 
+A private endpoint is needed to connect the AMPLS to your VNet. A private endpoint is a special network interface for an Azure service in your VNet. The private endpoint is assigned an IP address from the IP address range of your VNet. Once this private endpoint is created, any resources connected to the AMPLS will be accessible from the VNet through the private endpoint. 
 
 ### [Azure portal](#tab/portal)
 
