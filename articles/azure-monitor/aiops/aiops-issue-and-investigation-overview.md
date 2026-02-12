@@ -28,9 +28,9 @@ Issues provide persistence and context for troubleshooting efforts. When you sav
 - Related alerts and affected resources.
 - Configurable properties such as severity, status, and impact time.
 
-:::image type="content" source="media/aiops-issue-and-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/aiops-issue-and-investigation-overview/issue-details.png":::
+:::image type="content" source="media/aiops-issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/aiops-issue-investigation-overview/issue-details.png":::
 
-## Example of initial workflow for an issue and investigation
+## Initial workflow example for an issue and investigation
 
 1. An alert triggers in Azure Monitor. You can access the alert from an alert notification, such as an email, or directly from the Azure portal.
 1. You select **Investigate** to open a chat-based troubleshooting session with the observability agent.
