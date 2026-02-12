@@ -12,8 +12,8 @@ ms.date: 11/14/2025
 
 The **Resiliency** menu in [Operations center](./overview.md) provides an aggregated view of resiliency across virtual machines, containers, data, storage, and networking resources. It helps you with the following tasks::
 
-- Assign zonal resiliency goals for critical applications.
-- View summaries of zonal resiliency configuration across your resource and application estate.
+- Assign zone resiliency goals for critical applications.
+- View summaries of zone resiliency configuration across your resource and application estate.
 - Receive recommendations to improve your resiliency posture and align with Azure best practices to minimize downtime and risk.
 
 

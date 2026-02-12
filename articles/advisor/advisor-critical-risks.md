@@ -17,9 +17,9 @@ Azure Advisor supports the concept of Critical Risks. Critical Risks are associa
 
 Currently, you see two risks that are foundational to application availability: 
 
-*   Zonal Resiliency for Networking Services
+*   Zone Resiliency for Networking Services
 
-*   Zonal Resiliency for Operational Data Storage
+*   Zone Resiliency for Operational Data Storage
 
 The services underpin mission-critical workloads. If the services fail, the impact can cascade across your entire application stack. 
 
@@ -61,11 +61,11 @@ By enabling zone redundancy or deploying zonal resources across multiple zones, 
 
 ## Why these two risks are prioritized
 
-### Zonal Resiliency for Networking Services
+### Zone Resiliency for Networking Services
 
 Networking components are the backbone of connectivity and security for your workloads. Workloads tend to share networking services, so improving resiliency simultaneously strengthens multiple workloads. 
 
-The following resource types are in-scope for **Zonal Resiliency for Networking Services**. 
+The following resource types are in-scope for **Zone Resiliency for Networking Services**. 
 
 *   Azure ExpressRoute Gateway
 
@@ -83,11 +83,11 @@ Why the risk is important.
 
 Deploying the resources across multiple zones ensures uninterrupted connectivity and security, even during a zone outage.
 
-### Zonal Resiliency for Operational Data Storage
+### Zone Resiliency for Operational Data Storage
 
 Operational data storage systems are the foundation of your applications. The data stores often contain valuable information used by multiple workloads, so improving resiliency simultaneously benefits many workloads.
 
-The following resource types are in-scope for **Zonal Resiliency for Operational Data Storage**.
+The following resource types are in-scope for **Zone Resiliency for Operational Data Storage**.
 
 *   Azure SQL Database
 
@@ -113,7 +113,7 @@ Why the risk is important.
 
 *   Review your Azure Advisor dashboard for Critical Risks. To review, see [Azure Advisor](https://aka.ms/azureadvisordashboard).
 
-*   Implement the recommended actions for **Zonal Resiliency for Networking Services** and **Zonal Resiliency for Operational Data Storage**.
+*   Implement the recommended actions for **Zone Resiliency for Networking Services** and **Zone Resiliency for Operational Data Storage**.
 
 *   For more information on best practices, see [Enable zone resiliency for Azure workloads](/azure/reliability/availability-zones-enable-zone-resiliency "Enable zone resiliency for Azure workloads | Azure reliability | Microsoft Learn").
 
@@ -134,11 +134,11 @@ Contact your account manager to designate resources that are critical to your bu
 
 If a zone outage occurs and your resources aren't zone-resilient, your applications potentially experience prolonged downtime. Prolonged downtime affects business continuity.
 
-### How do I enable Zonal Resiliency for Networking Services?
+### How do I enable Zone Resiliency for Networking Services?
 
 Deploy ExpressRoute Gateways, Application Gateways, and Azure Firewalls across multiple zones. For details, see [Enable zone resiliency for Azure workloads](/azure/reliability/availability-zones-enable-zone-resiliency "Enable zone resiliency for Azure workloads | Azure reliability | Microsoft Learn").
 
-### How do I enable Zonal Resiliency for Operational Data Storage?
+### How do I enable Zone Resiliency for Operational Data Storage?
 
 Use zone-redundant configurations for databases and storage accounts or deploy across multiple zones using supported services. For details, see [Enable zone resiliency for Azure workloads](/azure/reliability/availability-zones-enable-zone-resiliency "Enable zone resiliency for Azure workloads | Azure reliability | Microsoft Learn").
 
