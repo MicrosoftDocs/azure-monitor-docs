@@ -7,7 +7,10 @@ ai-usage: ai-assisted
 ---
 
 # Azure Monitor overview
-Azure Monitor is Microsoft’s unified observability platform for collecting, analyzing, and acting on telemetry from cloud and hybrid environments. It enables you to understand the health, performance, and reliability of your Azure applications and infrastructure resources by bringing together metrics, logs, traces, and events into a single, scalable observability experience.
+Azure Monitor is Microsoft’s unified observability service for collecting, analyzing, and acting on telemetry from cloud and hybrid environments. It enables you to understand the health, performance, and reliability of your Azure applications and infrastructure resources by bringing together metrics, logs, traces, and events into a single, scalable observability experience.
+
+Azure Monitor includes a data platform that provides storage and retrieval for large data volumes supporting observability workloads and other services such as Defender for Cloud and Microsoft Sentinel. In addition to supporting Azure Monitor features, the Azure Monitor data platform also provides supports other services such as Defender for Cloud, Microsoft Sentinel, and Update Manager. This simplifies your management infrastructure and allows you to leverage your investment in query languages and analysis tools.
+
 
 ## Monitor your cloud resources
 
@@ -29,13 +32,12 @@ Application Insights is a feature of Azure Monitor that delivers deep visibility
 Application insights also provides a unified experience for monitoring AI agents across multiple sources including Azure AI Foundry, Copilot Studio, and third-party agents. This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
 
 ## Data platform
-At the core of Azure Monitor is a highly scalable data platform that supports all of its features and provides powerful query languages for analysis and alerting. 
+The Azure Monitor data platform is highly scalable and supports all of its features with powerful query languages for analysis and alerting. 
 
 Log Analytics workspaces collect log and trace data which can then be analyzed with Kusto Query Language (KQL) queries. Optimize your costs by configuring tables in Log Analytics workspace for different pricing tiers based on your required functionality. Azure Monitor workspaces collect Promethus and OpenTelemetry metrics, which can then be analyzed using PromQL.
 
 Log Analytics and Azure Monitor workspaces can be created in different regions allowing you to geolocate your data according to your requirements. Replicate data between workspaces to ensure high availability and disaster recovery. 
 
-In addition to supporting Azure Monitor features, the Azure Monitor data platform also provides supports other services such as Defender for Cloud, Microsoft Sentinel, and Update Manager. This simplifies your management infrastructure and allows you to leverage your investment in query languages and analysis tools.
 
 ## Data collection
 Azure Monitor is highly scalable, collecting data from even the largest of environments. Data collection rules can be centrally configured, providing a scalable method for defining and maintaining different data collection scenarios. 
