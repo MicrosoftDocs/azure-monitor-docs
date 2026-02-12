@@ -1,67 +1,83 @@
 ---
 title: Azure Copilot observability agent (preview)
-description: This article explains what Azure Copilot observability agent is and how it investigates issues within Azure Monitor to provide automated troubleshooting insights.
-ms.topic: how-to
+description: Learn how Azure Copilot observability agent provides AI-powered, chat-first troubleshooting for Azure Monitor alerts and resources.
+ms.topic: concept
 ms.service: azure-monitor
 ms.reviewer: yalavi
-ms.date: 10/28/2025
+ms.date: 02/12/2026
 ms.custom: references_regions
 ---
 
 # Azure Copilot observability agent (preview)
 
-Azure Copilot observability agent is an AI-powered system that automatically investigates issues within Azure Monitor. When problems occur with your applications and Azure resources, the observability agent analyzes telemetry data, identifies anomalies, and produces findings to help you understand and resolve issues faster.
+Azure Copilot observability agent is an AI-powered system that helps you troubleshoot problems detected by Azure Monitor. When issues occur with your applications and Azure resources, the observability agent analyzes telemetry data, identifies anomalies, and produces insights. These insights help you understand and resolve problems faster.
+
+The observability agent provides a chat-first troubleshooting experience, so you can explore problems, ask questions, and run structured analysis as part of your natural workflow.
 
 ## What does the observability agent do?
 
-When an issue is created (typically from an alert or invoked during troubleshooting in Azure Copilot), the observability agent investigates it by:
+When you initiate troubleshooting (typically from an alert or during a session in Azure Copilot), the observability agent:
 
-- **Analyzes telemetry data** from the affected resources and related systems
-- **Detects anomalies** in metrics, logs, and other observability signals
-- **Correlates data** across multiple data sources to understand the scope of problems
-- **Generates findings** with explanations of what happened and potential next steps
-- **Persists results** in the issue for review and action
+- Analyzes telemetry data from the affected resources and related systems
+- Detects anomalies in metrics, logs, and other observability signals
+- Correlates data across multiple data sources to understand the scope of the problem
+- Generates analysis with explanations of what happened and recommended next steps
 
-## Investigation capabilities overview
+As part of the troubleshooting experience, the observability agent can run an investigation to perform structured analysis of your telemetry data.
 
-The investigation provides comprehensive analysis capabilities including:
+## Investigation capabilities
 
-- **Metric anomaly analysis** - Examines metric data to identify unusual patterns with explanations
-- **Application log analysis** - Scans logs to identify top failure events with detailed breakdowns
-- **Diagnostic insights** - Provides actionable solutions based on Azure support best practices  
-- **Smart scoping** - Automatically expands investigation scope by identifying related resources
+During an investigation, the agent applies a set of analysis capabilities to help identify issues:
 
-For detailed information about each capability and the supporting data types they produce, see [Supporting data types for findings](aiops-issue-and-investigation-overview.md#supporting-data-types-for-findings).
+- **Metric anomaly analysis** - Examines metric data to identify unusual patterns and provides explanations.
+- **Application log analysis** - Scans logs to identify top failure events with detailed breakdowns.
+- **Diagnostic insights** - Provides actionable recommendations based on Azure support best practices.
+- **Smart scoping** - Automatically expands the investigation scope by identifying related resources.
 
-## How it works with issues
+## Investigation results
 
-The observability agent operates within the context of Azure Monitor issues:
+Investigation results describe anomalous behavior identified during the investigation. Results include summaries of what happened, possible explanations, and suggested next steps.
 
-- **Issue creation** - When you create an issue, it triggers the observability agent
-- **Investigation execution** - The agent analyzes telemetry from the issue impact time (see [technical details](aiops-issue-and-investigation-overview.md#what-is-an-investigation) for scope and timing)
-- **Finding generation** - Results are organized into findings that explain what happened, possible causes, and next steps
-- **Supporting data correlation** - Supporting data is attached to each finding for validation and deeper analysis
+Investigation results are available for a limited period of time (up to 48 hours) unless you save them to an issue. Each investigation result includes:
 
-## Integration with Azure Monitor workflow
+- **Analysis summary** - A summary of identified problems with explanations 
+- **Supporting data** - Evidence such as metric anomalies, logs, diagnostics insights, and related alerts that justify the analysis
 
-The observability agent is seamlessly integrated into the standard Azure Monitor troubleshooting workflow:
+## Retaining investigation results with issues
 
-- **Alert-driven** - Accessible from alert email notifications via the "Investigate" button
-- **Portal integration** - Available from the Azure portal alerts interface
-- **Copilot integration** - Can be invoked during troubleshooting workflows in Azure Copilot
-- **Collaboration ready** - Results are persisted in issues for team collaboration and tracking
-- **Actionable guidance** - Findings include specific next steps for problem resolution
+After an investigation completes, you can choose whether to persist its results by creating an issue:
 
-For a complete workflow example, see [Issue and investigation initial workflow](aiops-issue-and-investigation-overview.md#issue-and-investigation-initial-workflow-example).
+- **When you create an issue**, you save the investigation results and supporting data in a persistent context. You can track the problem, review results over time, and collaborate with your team.
+- **When you don't create an issue**, the investigation remains available as a standalone investigation for up to 48 hours. After that period, the results are automatically deleted.
 
-## Technical requirements
+For more information about Azure Monitor issues and capabilities, see [Azure Monitor issues](aiops-issue-and-investigation-overview.md).
 
-- Subscription must be associated with an Azure Monitor Workspace (AMW)
-- Appropriate permissions (Contributor, Monitoring Contributor, or Issue Contributor role on the AMW)
-- Supported in specific Azure regions (see [complete regional availability list](aiops-issue-and-investigation-overview.md#regions))
+## Integration with Azure Monitor workflows
+
+The observability agent is integrated into standard Azure Monitor troubleshooting workflows, allowing you to investigate problems directly from familiar entry points:
+
+- **Alert-driven access (portal and notifications)** - The observability agent can be launched from Azure Monitor alerts, either from alert notifications (for example, email) or from the alert details page in the Azure portal, using the **Investigate** button.
+- **Azure Copilot integration** - Can be invoked during troubleshooting workflows in Azure Copilot.
+
+## Data privacy
+
+The observability agent processes conversation data and investigation context to provide troubleshooting insights. Consider the following:
+
+- Customer Managed Keys (CMK) aren't supported for observability agent conversation data at this time. The data is encrypted by using Microsoft-managed encryption keys. Support for other encryption options, including CMK, might be considered in the future.
+- For operational, quality, and future product improvement purposes, Microsoft might retain investigation data internally for up to 30 days after an investigation is completed.
+
+## Requirements
+
+- Subscription must be associated with an Azure Monitor Workspace (AMW) if you want to save investigations to issues.
+- Have appropriate permissions on the AMW, such as Contributor, Monitoring Contributor, or Issue Contributor role.
+- If you run investigations without creating an issue, you don't need an Azure Monitor Workspace.
+
+## Supported regions
+
+The observability agent is supported in selected Azure regions. For details, see [Regions](aiops-issue-and-investigation-overview.md#regions).
 
 ## Related content
 
-- [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation
-- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md) - Step-by-step usage guide
-- [Best practices for Azure Monitor investigations](observability-agent-best-practices.md) - Optimization guidance
+- [Azure Monitor issues](aiops-issue-and-investigation-overview.md)
+- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
+- [Best practices for Azure Monitor investigations](observability-agent-best-practices.md)
