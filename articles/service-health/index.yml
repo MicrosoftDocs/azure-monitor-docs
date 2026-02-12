@@ -52,6 +52,8 @@ landingContent:
             url: subscription-vs-tenant.md
           - text: Learn how to report an impact
             url: report-issue.md
+          - text: Service health frequently asked questions
+            url: service-health-faq.yml
       - linkListType: video
         links:
           - text: Video introduction on how to create Service Health alerts
@@ -72,7 +74,7 @@ landingContent:
             url: ./resource-graph-health-samples.md
           - text: Learn about Resource health REST API
             url: /rest/api/resourcehealth/
-          - text: Resource health Frequently asked questions
+          - text: Resource health frequently asked questions
             url: resource-health-faq.yml
 
   # Card 
