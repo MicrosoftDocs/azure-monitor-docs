@@ -79,5 +79,5 @@ For pricing details, see [Azure Private Link pricing](https://azure.microsoft.co
 
 * [Design your Azure Private Link setup](private-link-design.md).
 * Learn how to [configure your private link](private-link-configure.md).
-* Learn about [private storage](private-storage.md) for custom logs and customer-managed keys.
+* Learn about [private storage](../logs/private-storage.md) for custom logs and customer-managed keys.
 <h3><a id="connect-to-a-private-endpoint"></a></h3>

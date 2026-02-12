@@ -24,7 +24,7 @@ Some networks are composed of multiple virtual networks or other connected netwo
 
 In the following diagram, virtual network 10.0.1.x connects to AMPLS1, which creates DNS entries that map Azure Monitor endpoints to IPs from range 10.0.1.x. Later, virtual network 10.0.2.x connects to AMPLS2, which overrides the same DNS entries by mapping *the same global/regional endpoints* to IPs from the range 10.0.2.x. Because these virtual networks aren't peered, the first virtual network now fails to reach these endpoints. To avoid this conflict, create only a single AMPLS object per DNS.
 
-:::image type="content" source="./media/private-link-design/dns-overrides-multiple-vnets.png" lightbox="./media/private-link-design/dns-overrides-multiple-vnets.png" alt-text="Diagram that shows DNS overrides in multiple virtual networks." border="false":::
+:::image type="content" source="./media/private-link-design/dns-overrides-multiple-networks.png" lightbox="./media/private-link-design/dns-overrides-multiple-networks.png" alt-text="Diagram that shows DNS overrides in multiple virtual networks." border="false":::
 
 ### Hub-and-spoke networks
 
@@ -116,7 +116,7 @@ Following are exceptions to this network access:
 * Private Link ingestion settings are made using AMPLS and settings on the Data Collection Endpoints (DCEs) that reference the Azure Monitor workspace used to store Prometheus metrics.
 * Private Link query settings are made directly on the Azure Monitor workspace used to store Prometheus metrics and aren't handled with AMPLS.
 
-To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../fundamentals/private-link-kubernetes.md).
+To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../fundamentals/private-link-vm-kubernetes.md).
 
 ## Next steps
 

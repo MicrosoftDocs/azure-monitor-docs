@@ -179,7 +179,7 @@ Whether or not you choose to integrate with private DNS zone, and you're using y
 ## Configure access mode for the private endpoint
 If you want the private link to use a different [access mode](./private-link-security.md#access-modes) than the default for the AMPLS, configure it from the **Access modes** menu for the AMPLS. In the **Exclusions** section, select the private endpoint and an access mode for ingestion and query.
 
-:::image type="content" source="media/private-link-configure/ampls-network-isolation.png" lightbox="media/private-link-configure/ampls-network-isolation.png" alt-text="Screenshot that shows Network Isolation.":::
+:::image type="content" source="media/private-link-configure/azure-monitor-private-link-scope-network-isolation.png" lightbox="media/private-link-configure/azure-monitor-private-link-scope-network-isolation.png" alt-text="Screenshot that shows Network Isolation.":::
 
 <details>
 <summary><b>Expand for ARM template</b></summary>

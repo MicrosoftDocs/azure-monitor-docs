@@ -64,7 +64,7 @@ There are two methods for network isolation that VM insights supports as describ
 
 | Method | Description |
 |:---|:---|
-| Private link | By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To have it connect with private link, associate your VM Insights DCR to a data collection endpoint (DCE) linked to an Azure Monitor Private Link Scope as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/azure-monitor-agent-private-link.md). |
+| Private link | By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To have it connect with private link, associate your VM Insights DCR to a data collection endpoint (DCE) linked to an Azure Monitor Private Link Scope as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). |
 | Network security perimeter | If your Log Analytics workspace is associated with a network security perimeter, using the guidance at [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 ## Enable VM insights
