@@ -28,7 +28,7 @@ Issues provide persistence and context for troubleshooting efforts. When you sav
 - Related alerts and affected resources.
 - Configurable properties such as severity, status, and impact time.
 
-:::image type="content" source="media/aiops-issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/aiops-issue-investigation-overview/issue-details.png":::
+:::image type="content" source="media/issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/issue-investigation-overview/issue-details.png":::
 
 ## Initial workflow example for an issue and investigation
 
