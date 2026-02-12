@@ -76,7 +76,7 @@ The workspace DCE can be used for any vms and clusters in the same region as the
 
 Identify the DCE created by the Azure Monitor workspace from its **Overview** page in the Azure portal.
 
-:::image type="content" source="media/private-link-vm-kubernetes/amw-data-collection-endpoint.png" lightbox="media/private-link-vm-kubernetes/amw-data-collection-endpoint.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
+:::image type="content" source="media/private-link-vm-kubernetes/azure-monitor-workspace-data-collection-endpoint.png" lightbox="media/private-link-vm-kubernetes/azure-monitor-workspace-data-collection-endpoint.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
 
 From the **Monitor** menu in the Azure portal, select **Data Collection Endpoints**. Select the DCE and then 
 the **Resources** tab. Click **Add** and select the cluster to create the association.

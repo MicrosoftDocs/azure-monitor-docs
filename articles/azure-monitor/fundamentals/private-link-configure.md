@@ -23,13 +23,13 @@ Configuring an instance of Azure Private Link requires the following steps. Each
 
 From the **Monitor** menu in the Azure portal, select **Private Link Scopes** and then **Create**.
 
-:::image type="content" source="media/private-link-security/ampls-create.png" lightbox="media/private-link-security/ampls-create.png" alt-text="Screenshot showing option to create and Azure Monitor Private Link Scope.":::
+:::image type="content" source="media/private-link-configure/azure-monitor-private-link-scope-create.png" lightbox="media/private-link-configure/azure-monitor-private-link-scope-create.png" alt-text="Screenshot showing option to create and Azure Monitor Private Link Scope.":::
 
 #### Basics tab
 
 The table below describes the properties you need to set when creating your AMPLS. Select **Next: Review + create** create your AMPLS.
 
-:::image type="content" source="media/private-link-security/ampls-create-1d.png" lightbox="media/private-link-security/ampls-create-1d.png" alt-text="Screenshot that shows creating an Azure Monitor Private Link Scope.":::
+:::image type="content" source="media/private-link-configure/azure-monitor-private-link-scope-create-basics.png" lightbox="media/private-link-configure/azure-monitor-private-link-scope-create-basics.png" alt-text="Screenshot that shows creating an Azure Monitor Private Link Scope.":::
 
 | Property | Description |
 |:---|:---|
@@ -179,7 +179,7 @@ Whether or not you choose to integrate with private DNS zone, and you're using y
 ## Configure access mode for the private endpoint
 If you want the private link to use a different [access mode](./private-link-security.md#access-modes) than the default for the AMPLS, configure it from the **Access modes** menu for the AMPLS. In the **Exclusions** section, select the private endpoint and an access mode for ingestion and query.
 
-:::image type="content" source="media/private-link-security/ampls-network-isolation.png" lightbox="media/private-link-security/ampls-network-isolation.png" alt-text="Screenshot that shows Network Isolation.":::
+:::image type="content" source="media/private-link-configure/ampls-network-isolation.png" lightbox="media/private-link-configure/ampls-network-isolation.png" alt-text="Screenshot that shows Network Isolation.":::
 
 <details>
 <summary><b>Expand for ARM template</b></summary>
@@ -280,7 +280,7 @@ This zone also covers the resource-specific endpoints for the following DCEs:
 * `<unique-dce-identifier>.<regionname>.handler.control`: Private configuration endpoint, part of a DCE resource.
 * `<unique-dce-identifier>.<regionname>.ingest`: Private ingestion endpoint, part of a DCE resource.
 
-    :::image type="content" source="media/private-link-security/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" lightbox="media/private-link-security/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" alt-text="Screenshot that shows Private DNS zone monitor-azure-com." border="false":::
+    :::image type="content" source="media/private-link-configure/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" lightbox="media/private-link-configure/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" alt-text="Screenshot that shows Private DNS zone monitor-azure-com." border="false":::
 
 **Log Analytics endpoints**
 
@@ -293,7 +293,7 @@ Log Analytics uses the following four DNS zones:
 
 The following screenshot shows endpoints mapped for an AMPLS with two workspaces in East US and one workspace in West Europe. Notice the East US workspaces share the IP addresses. The West Europe workspace endpoint is mapped to a different IP address. The blob endpoint is configured although it doesn't appear in this image.
 
-:::image type="content" source="media/private-link-security/dns-zone-privatelink-compressed-endpoints.png" lightbox="media/private-link-security/dns-zone-privatelink-compressed-endpoints.png" alt-text="Screenshot that shows private link compressed endpoints.":::
+:::image type="content" source="media/private-link-configure/dns-zone-privatelink-compressed-endpoints.png" lightbox="media/private-link-configure/dns-zone-privatelink-compressed-endpoints.png" alt-text="Screenshot that shows private link compressed endpoints.":::
 
 ### Validate communication over AMPLS
 
