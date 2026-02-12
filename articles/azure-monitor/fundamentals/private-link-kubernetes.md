@@ -1,5 +1,5 @@
 ---
-title: Enable private link for Kubernetes monitoring in Azure Monitor
+title: Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor
 description: Learn how to enable private link on an Azure Kubernetes Service (AKS) cluster.
 ms.topic: how-to
 ms.date: 08/25/2025
@@ -7,41 +7,70 @@ ms.custom: devx-track-azurecli
 ms.reviewer: aul
 ---
 
-# Enable private link for Kubernetes monitoring in Azure Monitor
+# Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor
 
-[Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../fundamentals/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. This article describes how to connect your Kubernetes cluster to an existing Azure Monitor Private Link Scope (AMPLS).
+[Azure Private Link](/azure/private-link/private-link-overview) enables you to access Azure platform as a service (PaaS) resources to your virtual network by using private endpoints. An [Azure Monitor Private Link Scope (AMPLS)](../fundamentals/private-link-security.md) connects a private endpoint to a set of Azure Monitor resources to define the boundaries of your monitoring network. 
+
+This article describes how to configure monitoring of your virtual machines (VMs) and Kubernetes clusters with an existing Azure Monitor Private Link Scope (AMPLS).
 
 ## Prerequisites
 
-- Configure monitoring of Prometheus metrics and container logs for your AKS cluster by following the steps in [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
+- Enable monitoring of your cluster using the guidance in  [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
+- Enable monitoring of your VM using the guidance in [Enable VM Insights](../vm/vminsights-enable.md) or [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
 - Create a private endpoint to support querying data from your Azure Monitor workspace by following the steps in [Enable query from Azure Monitor workspace using private link](./private-link-azure-monitor-workspace.md).
 
 ## Conceptual overview
-Kubernetes clusters send Prometheus metrics to an Azure Monitor workspace and logs to a Log Analytics workspace. When using private link, separate data collection endpoints (DCE) are required for clusters to retrieve configuration from the workspaces and to send data. 
+VMs and Kubernetes clusters monitored by Azure Monitor both use the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) so they're configuration for private link is similar. Depending on their configuration, each will send metrics to an Azure Monitor workspace and/or logs to a Log Analytics workspace. 
 
-Full configuration of private link for monitoring of your Kubernetes clusters requires configuration of existing DCEs and creation of new DCEs to support clusters in different regions. The sections below detail the steps required to configure private link for both the Azure Monitor workspace and the Log Analytics workspace.
+> [!NOTE]
+> VMs only send metrics to an Azure Monitor workspace if they've been migrated to OpenTelemetry metrics as described in [Migrate to VM insights OpenTelemetry (preview)](../vm/vminsights-opentelemetry.md). If not, they store metrics in Log Analytics workspaces. The same guidance in this article applies to a VM that hasn't been migrated to OpenTelemetry metrics, but only the Log Analytics workspace needs to be configured.
+
+The Azure Monitor agent running on the VM or cluster needs to have connectivity for the following operations:
+
+- Retrieve [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) associated with the agent that define what log and metric data to collect and where to send it.
+- Send data to Azure Monitor workspace and Log Analytics workspace.
+- Query data from Azure Monitor workspace and Log Analytics workspace.
+
+
+## Data collection endpoints (DCEs)
+
+Both the cluster and VM require [data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) in the AMPLS to retrieve their configuration and send metric data to a Azure Monitor workspace. No DCE is require to send log data to the Log Analytics workspace since the Log Analytics workspace is added to the AMPLS directly.
+
+Only a single DCE is required for the VM or cluster to retrieve its configuration. It will use this DCE to retrieve DCRs for both logs and metrics if both are enabled for the cluster. The DCE must be in the same region as the VM or cluster.
+
+- If an Azure Monitor workspace is being used (Prometheus for a cluster, OpenTelemetry for a VM), and the cluster is in the same region as the Azure Monitor workspace, then use the DCE created by the Azure Monitor workspace. 
+- If an Azure Monitor workspace isn't being used, or if the VM or cluster is in a different region than the Azure Monitor workspace, then create a new DCE in the same region as the VM or cluster.
+
 
 
 ## Configure Azure Monitor workspace
-Instead of adding the Azure Monitor workspace directly to the AMPLS, Data Collection Endpoints (DCEs) are added to the AMPLS that are able to access the workspace. Two separate DCEs are required to support configuration retrieval and data ingestion.
+Azure Monitor workspaces aren't added to the AMPLS but instead use data collection endpoints (DCEs) in the AMPLS as described in [AMPLS resources](./private-link-security.md#ampls-resources). Two DCEs are required to support a VM or cluster.
 
-**Configuration DCE**<br>
-- A DCE is automatically created for each Azure Monitor workspace. Use this DCE for all clusters in the same region as the workspace.
-- Create a new DCE for each region where clusters are located.
-- Associate each cluster with the DCE in the same region.
+**Workspace DCE**<br>
+A DCE is automatically created for each Azure Monitor workspace that can be used for VMs and clusters to retrieve their configuration.
+
+- Use the existing DCE for all VMs and clusters in the same region as the workspace.
+- Create a new DCE for each region where VMs or clusters are located outside of the workspace's region.
+- Associate each VM and cluster with the DCE in the same region.
 - Add the DCE for each region to the AMPLS.
 
- **Ingestion DCE**<br>
-- A DCE is created automatically for each cluster when enable Prometheus metrics.
+**Cluster DCE**<br>
+A DCE is created automatically for each cluster when Prometheus metrics is enabled. The cluster DCE is used for ingestion from the cluster.
+
 - Add the DCE for each cluster to the AMPLS.
 
+**VM DCE**<br>
+No DCE is created automatically for each VM, but a DCE is required for ingestion from the VM.
 
-### Create configuration DCEs for clusters in different regions
-A DCE is automatically created for each Azure Monitor workspace with the same name as the workspace. This DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create a new DCE for each region. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
+- Create a DCE for each VM.
+- Add the DCE for each VM to the AMPLS.
 
-### Associate cluster with configuration DCE
-For the cluster to use the DCE in its region to retrieve configuration, you need to create an association between the cluster and the DCE.
+### Associate cluster with DCE
+Create an association between a cluster and a DCE for that cluster to retrieve its configuration from Azure Monitor using the DCE. The cluster can only have an association with a single DCE, so if you create another association, the existing one will be replaced. 
+
+The workspace DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create a new DCE for each region. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
+
 
 ### [Azure portal](#tab/portal)
 
@@ -118,7 +147,7 @@ Add a DCE to the AMPLS using the following command:
 
 
 ## Configure Log Analytics workspace
-Clusters only require a DCE to retrieve configuration from the Log Analytics workspace. The workspace itself is added to the AMPLS to support data ingestion. No DCEs are created by default for Log Analytics workspaces, so you need to create a new DCE for each region where clusters are located. These DCEs are then associated with the clusters in the same region and added to the AMPLS.
+Add a Log Analytics workspace to the AMPLS to support data ingestion from clusters and VMs in the connected VNet. A DCE is required for both to retrieve configuration from Azure Monitor. If the cluster or VM is sending metrics to an Azure Monitor workspace, then it will use the same DCE used to collect metrics. If 
 
 
 ### Add Log Analytics workspace to AMPLS
