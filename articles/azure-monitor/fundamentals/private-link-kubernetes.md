@@ -47,7 +47,7 @@ Only a single DCE is required for the VM or cluster to retrieve its configuratio
 ## Configure Azure Monitor workspace
 Azure Monitor workspaces aren't added to the AMPLS but instead use data collection endpoints (DCEs) in the AMPLS as described in [AMPLS resources](./private-link-security.md#ampls-resources). Two DCEs are required to support a VM or cluster.
 
-**Workspace DCE**<br>
+### Workspace DCE
 A DCE is automatically created for each Azure Monitor workspace that can be used for VMs and clusters to retrieve their configuration.
 
 - Use the existing DCE for all VMs and clusters in the same region as the workspace.
@@ -55,21 +55,21 @@ A DCE is automatically created for each Azure Monitor workspace that can be used
 - Associate each VM and cluster with the DCE in the same region.
 - Add the DCE for each region to the AMPLS.
 
-**Cluster DCE**<br>
+### Cluster DCE
 A DCE is created automatically for each cluster when Prometheus metrics is enabled. The cluster DCE is used for ingestion from the cluster.
 
 - Add the DCE for each cluster to the AMPLS.
 
-**VM DCE**<br>
+### VM DCE
 No DCE is created automatically for each VM, but a DCE is required for ingestion from the VM.
 
 - Create a DCE for each VM.
 - Add the DCE for each VM to the AMPLS.
 
-### Associate cluster with DCE
-Create an association between a cluster and a DCE for that cluster to retrieve its configuration from Azure Monitor using the DCE. The cluster can only have an association with a single DCE, so if you create another association, the existing one will be replaced. 
+### Associate vm or cluster with DCE
+Create an association between the vm or cluster and a DCE for the vm/cluster to retrieve its configuration from Azure Monitor using the DCE. Each vm or cluster can only have an association with a single DCE, so if you create another association, the existing one will be replaced. 
 
-The workspace DCE can be used for any clusters in the same region as the workspace to retrieve their configuration. If you have clusters in regions different from your workspace, then you need to create a new DCE for each region. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where you have clusters.
+The workspace DCE can be used for any vms and clusters in the same region as the workspace to retrieve their configuration. If you have vms or clusters in regions different from your workspace, then you need to create a new DCE for each region. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in each region where required.
 
 
 ### [Azure portal](#tab/portal)
@@ -86,24 +86,32 @@ the **Resources** tab. Click **Add** and select the cluster to create the associ
 
 ### [CLI](#tab/cli)
 
-Create association between the cluster and the DCE using the following command:
+Create association between the vm or cluster and the DCE using the following command:
 
 ```azurecli
-az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id <dce-resource-id> --resource-uri <cluster-resource-id>
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id <dce-resource-id> --resource-uri <vm-resource-id/cluster-resource-id>
 
-#Example
-az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/Microsoft.ContainerService/managedClusters/aks06
+# Example VM
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/my-vm
+
+
+# Example AKS
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ContainerService/managedClusters/my-cluster
 ```
 
 ### [PowerShell](#tab/powershell)
 
-Create association between the cluster and the DCE using the following command:
+Create association between the vm or cluster and the DCE using the following command:
 
 ```powershell
-New-AzDataCollectionRuleAssociation -associationname configurationAccessEndpoint -DataCollectionEndpointId <dce-resource-id> -resourceuri <cluster-resource-id>  
+New-AzDataCollectionRuleAssociation -associationname configurationAccessEndpoint -DataCollectionEndpointId <dce-resource-id> -resourceuri <vm-resource-id/cluster-resource-id>  
 
-# Example
-New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
+# Example VM
+New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
+
+
+# Example AKS
+New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
 ```
 
 ---
@@ -125,9 +133,8 @@ Add a DCE to the AMPLS using the following command:
 ```azurecli
 az monitor private-link-scope scoped-resource create --resource-group <resource-group> --scope-name <ampls-name> --name <dce-name> --linked-resource <dce-resource-id>
 
-#Example
-az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name aks-amw  --linked-resource /subscriptions/71b36fb6-
-4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+# Example
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name my-cluster  --linked-resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -138,8 +145,7 @@ Add a DCE to the AMPLS using the following command:
  New-AzInsightsPrivateLinkScopedResource -ResourceGroupName <resource-group> -ScopeName <ampls-name> -Name <dce-name> -LinkedResourceId <dce-resource-id>
 
 # Example
- New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name aks-amw-LinkedResourceId /subscriptions/71b36fb6-
-4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-cluster-LinkedResourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
 ```
 
 ---
@@ -166,9 +172,11 @@ Add a Log Analytics workspace to the AMPLS using the following command:
 ```azurecli
 az monitor private-link-scope scoped-resource create --resource-group <resource-group> --scope-name <ampls-name> --name <workspace-name> --linked-resource <workspace-resource-id>
 
-#Example
-az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name aks-amw  --linked-resource /subscriptions/71b36fb6-
-4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+# Example VM
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name my-cluster  --linked-resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
+
+# Example AKS
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name my-cluster  --linked-resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -178,8 +186,11 @@ Add a Log Analytics workspace to the AMPLS using the following command:
 ```powershell
  New-AzInsightsPrivateLinkScopedResource -ResourceGroupName <resource-group> -ScopeName <ampls-name> -Name <workspace-name> -LinkedResourceId <workspace-resource-id>
 
-# Example
- New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-workspace -LinkedResourceId /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourcegroups/aks/providers/microsoft.operationalinsights/workspaces/my-workspace
+# Example VM
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-workspace -LinkedResourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace
+
+# Example AKS
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-workspace -LinkedResourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.operationalinsights/workspaces/my-workspace
 ```
 
 ---
@@ -208,8 +219,11 @@ Create association between the cluster and the DCE using the following command:
 ```azurecli
 az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id <dce-resource-id> --resource-uri <cluster-resource-id>
 
-#Example
-az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/aks/providers/Microsoft.ContainerService/managedClusters/aks06
+# Example VM
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ContainerService/managedClusters/my-cluster
+
+# Example AKS
+az monitor data-collection rule association create --association-name configurationAccessEndpoint --data-collection-endpoint-id /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce --resource-uri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ContainerService/managedClusters/my-cluster
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -219,8 +233,11 @@ Create association between the cluster and the DCE using the following command:
 ```powershell
 New-AzDataCollectionRuleAssociation -associationname configurationAccessEndpoint -DataCollectionEndpointId <dce-resource-id> -resourceuri <cluster-resource-id>  
 
-# Example
-New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
+# Example VM
+New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
+
+# Example AKS
+New-AzDataCollectionRuleAssociation   -resourceuri /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/vm/providers/Microsoft.Compute/virtualMachines/win03 -associationname configurationAccessEndpoint -DataCollectionEndpointId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/bwlab/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce
 ```
 
 ---
@@ -242,9 +259,11 @@ Add a DCE to the AMPLS using the following command:
 ```azurecli
 az monitor private-link-scope scoped-resource create --resource-group <resource-group> --scope-name <ampls-name> --name <dce-name> --linked-resource <dce-resource-id>
 
-#Example
-az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name aks-amw  --linked-resource /subscriptions/71b36fb6-
-4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+# Example VM
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name my-cluster  --linked-resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
+
+# Example AKS
+az monitor private-link-scope scoped-resource create --resource-group my-resource-group --scope-name my-ampls --name my-cluster  --linked-resource /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -254,9 +273,11 @@ Add a DCE to the AMPLS using the following command:
 ```powershell
  New-AzInsightsPrivateLinkScopedResource -ResourceGroupName <resource-group> -ScopeName <ampls-name> -Name <dce-name> -LinkedResourceId <dce-resource-id>
 
-# Example
- New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name aks-amw-LinkedResourceId /subscriptions/71b36fb6-
-4fe4-4664-9a7b-245dc62f2930/resourceGroups/MA_aks-amw_eastus_managed/providers/Microsoft.Insights/dataCollectionEndpoints/aks-amw
+# Example VM
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-cluster-LinkedResourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
+
+# Example AKS
+ New-AzInsightsPrivateLinkScopedResource -ResourceGroupName my-resource-group -ScopeName my-ampls -Name my-cluster-LinkedResourceId /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-groups/providers/Microsoft.Insights/dataCollectionEndpoints/my-cluster
 ```
 
 ---
