@@ -70,7 +70,7 @@ $scope = New-AzResource `
 
 
 ## Connect resources to the AMPLS
-
+Once the AMPLS has been created, you can add Azure Monitor resources to it. These resources will be available to any resources on the connected VNet. See [AMPLS](./private-link-security.md#ampls-resources) for a description of the resources that are may be added to an AMPLS.
 
 #### [Azure portal](#tab/portal)
 
@@ -109,17 +109,19 @@ New-AzInsightsPrivateLinkScopedResource `
 ---
 
 ## Connect AMPLS to a private endpoint
+A private endpoint is needed to connect the AMPLS to your VNet. Once this private endpoint is created, any resources connected to the AMPLS will be accessible from the VNet through the private endpoint. 
 
 ### [Azure portal](#tab/portal)
 
 > [!NOTE]
 > For further details about private endpoints, see [Create a private endpoint using Azure portal](/azure/private-link/create-private-endpoint-portal#create-a-private-endpoint).
 
-The private endpoint connects your VNet to the AMPLS. From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
+From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
 
 :::image type="content" source="media/private-link-configure/create-private-endpoint.png" lightbox="media/private-link-configure/create-private-endpoint.png" alt-text="Screenshot that shows creating a private endpoint connection.":::
 
 #### Basics tab
+The **Basics** tab has general information for the private endpoint including a unique name for it.
 
 :::image type="content" source="media/private-link-configure/create-private-endpoint-basics.png" lightbox="media/private-link-configure/create-private-endpoint-basics.png" alt-text="A screenshot showing the create private endpoint basics tab.":::
 
@@ -136,6 +138,8 @@ The private endpoint connects your VNet to the AMPLS. From the menu for your AMP
 
 You have the option of selecting the resource from the text boxes, or select **Connect to an Azure resource by resource ID or alias.** and paste in the resource ID of the AMPLS.
 
+:::image type="content" source="media/private-link-configure/create-private-endpoint-resource.png" lightbox="media/private-link-configure/create-private-endpoint-resource.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Resource tab selected.":::
+
 | Property | Description |
 |:---|:---|
 | Subscription that contains your AMPLS. |
@@ -143,9 +147,11 @@ You have the option of selecting the resource from the text boxes, or select **C
 | Resource | Name of your AMPLS |
 | Target sub-resource | azuremonitor |
 
-:::image type="content" source="media/private-link-configure/create-private-endpoint-resource.png" lightbox="media/private-link-configure/create-private-endpoint-resource.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Resource tab selected.":::
 
 #### Virtual Network tab
+The **Virtual Network** tab lets you select the VNet and subnet to connect your private endpoint to. 
+
+:::image type="content" source="media/private-link-configure/create-private-endpoint-virtual-network.png" lightbox="media/private-link-configure/create-private-endpoint-virtual-network.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Virtual Network tab selected.":::
 
 | Property | Description |
 |:---|:---|
@@ -154,9 +160,11 @@ You have the option of selecting the resource from the text boxes, or select **C
 | Private IP configuration | By default, **Dynamically allocate IP address** is selected. If you want to assign a static IP address, select **Statically allocate IP address**, then enter a name and private IP. |
 | Application security group | Optionally create application security groups to group virtual machines and define network security policies based on those groups. |
 
-:::image type="content" source="media/private-link-configure/create-private-endpoint-virtual-network.png" lightbox="media/private-link-configure/create-private-endpoint-virtual-network.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the Virtual Network tab selected.":::
 
 #### DNS tab
+The **DNS** tab lets you select whether to automatically create a private DNS zone for your private endpoint. This private DNS zone will have the necessary DNS records to route traffic from your VNet to Azure Monitor over the private link. 
+
+:::image type="content" source="media/private-link-configure/create-private-endpoint-dns.png" lightbox="media/private-link-configure/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
 
 | Property | Description |
 |:---|:---|
@@ -166,7 +174,6 @@ If you prefer to manage DNS records manually, first finish setting up your priva
 
 Whether or not you choose to integrate with private DNS zone, and you're using your own custom DNS servers, you need to set up conditional forwarders for the Public DNS zone forwarders mentioned in [Azure private endpoint DNS configuration](/azure/private-link/private-endpoint-dns). The conditional forwarders need to forward the DNS queries to [Azure DNS](/azure/virtual-network/what-is-ip-address-168-63-129-16).
 
-:::image type="content" source="media/private-link-configure/create-private-endpoint-dns.png" lightbox="media/private-link-configure/create-private-endpoint-dns.png" alt-text="Screenshot that shows the Create a private endpoint page in the Azure portal with the DNS tab selected.":::
 
 #### [CLI](#tab/cli)
 [Create a private endpoint using Azure CLI](/azure/private-link/create-private-endpoint-cli#create-a-private-endpoint)
@@ -264,7 +271,7 @@ The private endpoint created in this article should have the following five DNS 
 
 Each of these zones maps specific Azure Monitor endpoints to private IPs from the virtual network's pool of IPs. The IP addresses shown in the images below are only examples. Your configuration should instead show private IPs from your own network.
 
-**`privatelink-monitor-azure-com`**
+#### `privatelink-monitor-azure-com` zone
 
 This zone covers the global endpoints used by Azure Monitor, which means endpoints serve requests globally/regionally and not resource-specific requests. This zone should have endpoints mapped for the following:
 
@@ -282,7 +289,7 @@ This zone also covers the resource-specific endpoints for the following DCEs:
 
     :::image type="content" source="media/private-link-configure/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" lightbox="media/private-link-configure/dns-zone-privatelink-monitor-azure-com-with-endpoint.png" alt-text="Screenshot that shows Private DNS zone monitor-azure-com." border="false":::
 
-**Log Analytics endpoints**
+#### Log Analytics endpoints
 
 Log Analytics uses the following four DNS zones:
 
@@ -370,42 +377,3 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
 To create and manage Private Link Scopes, use the [REST API](/rest/api/monitor/privatelinkscopes(preview)/private%20link%20scoped%20resources%20(preview)) or the [Azure CLI (az monitor private-link-scope)](/cli/azure/monitor/private-link-scope).
 
 
-
-## Kubernetes cluster
-
-AKS and Arc-enabled clusters may connect to Azure Monitor workspace for Prometheus metrics collection and Log Analytics workspace for log collection. 
-
-### Prometheus metrics collection
-
-- Only need to create an additional DCE if the cluster is in a different region than the workspace.
-    - If not, use the existing DCE created by the workspace.
-- Create association between cluster and Prom DCR.
-- Create association between cluster and DCE.
-- Add DCE to AMPLS.
-- Create private endpoint for Microsoft.Monitor/accounts to support queries.
- 
-
-### Log collection
-
-- DCE
-    - If also enabling Prometheus metrics collection, use the same DCE.
-    - If not, create a new DCE in the same region as the cluster (if one doesn't already exist).
-- Create association between cluster and Logs DCR.
-- Create association between cluster and DCE. 
-
-
-## VM / VM insights
-
-### Log and perf data collection
-
-- Create new DCE in the same region as the VM (if one doesn't already exist).
-- Create association between VM and Logs DCR.
-- Create association between VM and DCE. 
-- Add Log Analytics workspace to AMPLS. 
-
-### OTel collection
-
-- Create new DCE in the same region as the VM (if one doesn't already exist).
-- Create association between VM and OTel DCR.
-- Create association between VM and DCE. 
-- Add DCE to AMPLS.
