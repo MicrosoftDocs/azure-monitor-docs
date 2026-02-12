@@ -33,8 +33,6 @@ The investigation provides comprehensive analysis capabilities including:
 
 For detailed information about each capability and the supporting data types they produce, see [Supporting data types for findings](aiops-issue-and-investigation-overview.md#supporting-data-types-for-findings).
 
-:::image type="content" source="media/smart-scoping.png" alt-text="Screenshot showing smart scoping automatically expanding investigation scope to include related resources." lightbox="media/smart-scoping.png":::
-
 ## How it works with issues
 
 The observability agent operates within the context of Azure Monitor issues:
@@ -44,13 +42,9 @@ The observability agent operates within the context of Azure Monitor issues:
 - **Finding generation** - Results are organized into findings that explain what happened, possible causes, and next steps
 - **Supporting data correlation** - Supporting data is attached to each finding for validation and deeper analysis
 
-:::image type="content" source="media/issue-frame.png" alt-text="Screenshot of an Azure Monitor issue showing investigation findings and supporting data." lightbox="media/issue-frame.png":::
-
 ## Integration with Azure Monitor workflow
 
 The observability agent is seamlessly integrated into the standard Azure Monitor troubleshooting workflow:
-
-:::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot showing the investigate button in Azure Monitor alert email notification." lightbox="media/investigate-an-alert.png":::
 
 - **Alert-driven** - Accessible from alert email notifications via the "Investigate" button
 - **Portal integration** - Available from the Azure portal alerts interface
