@@ -40,7 +40,7 @@ When you create a private endpoint, make the following selections from the dropd
 - **Resource**: Your Azure Monitor workspace
 - **Target sub-resource**: `prometheusMetrics`
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" lightbox="media/kubernetes-monitoring-private-link/ampls-private-ingestion-private-endpoint-config.png" alt-text="A screenshot show the private endpoint config":::
+:::image type="content" source="media/private-link-azure-monitor-workspace/azure-monitor-private-link-scope-private-endpoint.png" lightbox="media/private-link-azure-monitor-workspace/azure-monitor-private-link-scope-private-endpoint.png" alt-text="A screenshot show the private endpoint config":::
 
 Create a private endpoint using the following articles:
 

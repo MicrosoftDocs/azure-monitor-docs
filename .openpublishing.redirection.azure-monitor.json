@@ -8853,6 +8853,11 @@
    "source_path": "articles/azure-monitor/containers/kubernetes-monitoring-private-link.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-kubernetes",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/metrics/azure-monitor-workspace-private-endpoint.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-azure-monitor-workspace",
+   "redirect_document_id": false
   }
  ]
 }

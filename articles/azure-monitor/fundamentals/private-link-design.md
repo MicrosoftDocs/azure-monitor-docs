@@ -24,7 +24,7 @@ Some networks are composed of multiple virtual networks or other connected netwo
 
 In the following diagram, virtual network 10.0.1.x connects to AMPLS1, which creates DNS entries that map Azure Monitor endpoints to IPs from range 10.0.1.x. Later, virtual network 10.0.2.x connects to AMPLS2, which overrides the same DNS entries by mapping *the same global/regional endpoints* to IPs from the range 10.0.2.x. Because these virtual networks aren't peered, the first virtual network now fails to reach these endpoints. To avoid this conflict, create only a single AMPLS object per DNS.
 
-:::image type="content" source="./media/private-link-security/dns-overrides-multiple-vnets.png" lightbox="./media/private-link-security/dns-overrides-multiple-vnets.png" alt-text="Diagram that shows DNS overrides in multiple virtual networks." border="false":::
+:::image type="content" source="./media/private-link-design/dns-overrides-multiple-vnets.png" lightbox="./media/private-link-design/dns-overrides-multiple-vnets.png" alt-text="Diagram that shows DNS overrides in multiple virtual networks." border="false":::
 
 ### Hub-and-spoke networks
 
@@ -32,7 +32,7 @@ Hub-and-spoke networks should use a single private link connection set on the hu
 
 You might prefer to create separate private links for your spoke virtual networks to allow each virtual network to access a limited set of monitoring resources. In this case, you can create a dedicated private endpoint and AMPLS for each virtual network. You must also verify they don't share the same DNS zones to avoid DNS overrides.
 
-:::image type="content" source="./media/private-link-security/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" lightbox="./media/private-link-security/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" alt-text="Diagram that shows a hub-and-spoke single private link." border="false":::
+:::image type="content" source="./media/private-link-design/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" lightbox="./media/private-link-design/hub-and-spoke-with-single-private-endpoint-with-data-collection-endpoint.png" alt-text="Diagram that shows a hub-and-spoke single private link." border="false":::
 
 ### Peered networks
 
@@ -54,12 +54,12 @@ Access modes can apply to all networks connected to your AMPLS or to specific ne
 ### Private Only access mode
 **Private Only** mode allows the virtual network to reach only private link resources in the AMPLS. This is the most secure option and prevents data exfiltration by blocking traffic out of the AMPLS to Azure Monitor resources.
 
-:::image type="content" source="./media/private-link-security/ampls-private-only-access-mode.png" lightbox="./media/private-link-security/ampls-private-only-access-mode.png" alt-text="Diagram that shows the AMPLS Private Only access mode." border="false":::
+:::image type="content" source="./media/private-link-design/azure-monitor-private-link-scope-private-only-access-mode.png" lightbox="./media/private-link-design/azure-monitor-private-link-scope-private-only-access-mode.png" alt-text="Diagram that shows the AMPLS Private Only access mode." border="false":::
 
 ### Open access mode
 **Open** mode allows the virtual network to reach both private link resources and resources not in the AMPLS (if they [accept traffic from public networks](#control-network-access-to-ampls-resources)). The Open access mode doesn't prevent data exfiltration, but it still offers the other benefits of private links. Traffic to private link resources is sent through private endpoints before it's validated and then sent over the Microsoft backbone. The Open mode is useful for mixed mode where some resources are accessed publicly and others accessed over a private link. It can also be useful during a gradual onboarding process.
  
-:::image type="content" source="./media/private-link-security/ampls-open-access-mode.png" lightbox="./media/private-link-security/ampls-open-access-mode.png" alt-text="Diagram that shows the AMPLS Open access mode." border="false":::
+:::image type="content" source="./media/private-link-design/azure-monitor-private-link-scope-open-access-mode.png" lightbox="./media/private-link-design/azure-monitor-private-link-scope-open-access-mode.png" alt-text="Diagram that shows the AMPLS Open access mode." border="false":::
 
 > [!IMPORTANT]
 > Apply caution when you select the access mode. Using Private Only will block traffic to resources not in the AMPLS across all networks that share the same DNS regardless of subscription or tenant. If you can't add all Azure Monitor resources to the AMPLS, start by adding select resources and applying themode. Switch to the Private Only mode for maximum security only after you've added all Azure Monitor resources to your AMPLS.
@@ -69,7 +69,7 @@ The access modes set on the AMPLS resource affect all networks, but you can over
 
 In the following diagram, VNet1 uses the Open mode and VNet2 uses the Private Only mode. Requests from VNet1 can reach Workspace 1 and Component 2 over a private link. Requests can reach Component 3 only if it [accepts traffic from public networks](#control-network-access-to-ampls-resources). VNet2 requests can't reach Component 3.
 
-:::image type="content" source="./media/private-link-security/ampls-mixed-access-modes.png" lightbox="./media/private-link-security/ampls-mixed-access-modes.png" alt-text="Diagram that shows mixed access modes." border="false":::
+:::image type="content" source="./media/private-link-design/azure-monitor-private-link-scope-mixed-access-modes.png" lightbox="./media/private-link-design/azure-monitor-private-link-scope-mixed-access-modes.png" alt-text="Diagram that shows mixed access modes." border="false":::
 
 ## Control network access to AMPLS resources
 
