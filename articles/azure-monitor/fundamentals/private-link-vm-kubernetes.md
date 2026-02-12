@@ -19,7 +19,7 @@ This article describes how to configure monitoring of your virtual machines (VMs
     - Enable monitoring of your Kubernetes cluster using the guidance in [Enable Prometheus metrics and container logging](../containers/kubernetes-monitoring-enable.md).
     - Enable monitoring of your VM using the guidance in [Enable VM Insights](../vm/vminsights-enable.md) or [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md).
 - Create an AMPLS and connect it to your VNet using the process described in [Configure private link for Azure Monitor](./private-link-configure.md).
-- Create a private endpoint to support querying data from your Azure Monitor workspace by following the steps in [Enable query from Azure Monitor workspace using private link](./private-link-azure-monitor-workspace.md).
+
 
 ## Conceptual overview
 VMs and Kubernetes clusters monitored by Azure Monitor both use the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) for monitoring so their configuration for private link is similar. Depending on their configuration, each will send metrics to an Azure Monitor workspace and/or logs to a Log Analytics workspace. 
