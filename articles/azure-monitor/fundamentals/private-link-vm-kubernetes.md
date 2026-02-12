@@ -37,7 +37,7 @@ The Azure Monitor agent running on the VM or cluster needs to have connectivity 
 
 ## Enable agent configuration
 
-Both the VM and cluster require [data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) in the AMPLS to retrieve their configuration from Azure Monitor over private link. Only a single DCE is required for the VM or cluster to retrieve its configuration. It will use this DCE to retrieve DCRs for both logs and metrics if both are enabled for the cluster. Any DCE in the same region as the VM or cluster can be used, but it's typically best to use an existing DCE if it's available.
+Both the VM and cluster require [data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) in the AMPLS to retrieve their configuration from Azure Monitor over private link. Only a single DCE is required for the VM or cluster to retrieve its configuration. It will use this DCE to retrieve DCRs for both logs and metrics if both are enabled. Any DCE in the same region as the VM or cluster can be used, but it's typically best to use an existing DCE if it's available.
 
 If you're using an Azure Monitor workspace for metrics, then you can use the DCE created automatically for the workspace. If you're not using an Azure Monitor workspace or if your VM or cluster is in a different region than your Azure Monitor workspace, then you need to create a new DCE in the same region as your VM or cluster. Follow the guidance at [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md?tabs=portal#create-a-data-collection-endpoint) to create a new DCE in the same region as your VM or cluster if needed.
 
@@ -194,18 +194,15 @@ Add a Log Analytics workspace to the AMPLS using the following command:
 ---
 
 ## Enable query for Azure Monitor workspace
-An additional private endpoint is required to support queries to the Azure Monitor workspace over private link. This is similar to the private endpoint created for the AMPLS, but this private endpoint is specifically for the Azure Monitor workspace to support queries over private link.
+An additional private endpoint is required to support queries to the Azure Monitor workspace over private link. This is similar to the private endpoint created for the AMPLS, but this private endpoint is specifically for the Azure Monitor workspace to support queries over private link. For more details about this private endpoint and the DNS records created for it, see [Use private endpoints for Managed Prometheus and Azure Monitor workspace](./private-link-azure-monitor-workspace.md).
 
-> [!NOTE]
-> For more details about the private endpoint create by the Azure Monitor workspace and the DNS records created for it, see [Use private endpoints for Managed Prometheus and Azure Monitor workspace](./private-link-azure-monitor-workspace.md).
+Follow the same guidance at [Connect AMPLS to a private endpoint](./private-link-configure.md#connect-ampls-to-a-private-endpoint) to create a new private endpoint connection, but use the following settings for the resource to connect to:
 
-From the menu for your AMPLS, select **Private Endpoint connections** and then **Private Endpoint**. You can also approve connections that were started in the [Private Link Center](https://portal.azure.com/#blade/Microsoft_Azure_Network/PrivateLinkCenterBlade/privateendpoints) here by selecting them and selecting **Approve**.
-
-:::image type="content" source="media/private-link-configure/create-private-endpoint.png" lightbox="media/private-link-configure/create-private-endpoint.png" alt-text="Screenshot that shows creating a private endpoint connection.":::
+:::image type="content" source="media/private-link-vm-kubernetes/azure-monitor-private-link-scope-private-endpoint.png" lightbox="media/private-link-vm-kubernetes/azure-monitor-private-link-scope-private-endpoint.png" alt-text="Screenshot that shows creating a private endpoint connection.":::
 
 | Property | Description |
 |:---|:---|
-| Subscription that contains your AMPLS. |
+| Subscription | Subscription that contains your AMPLS. |
 | Resource type | Microsoft.Monitor/accounts |
 | Resource | Name for the link |
 | Target sub-resource | prometheusMetrics |

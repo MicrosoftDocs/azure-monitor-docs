@@ -100,9 +100,7 @@ Following are exceptions to this network access:
 > * Log Analytics **Workspace Summary (deprecated)** pane (that shows the solutions dashboard)
 > * Metrics pane in Application Insights (log-based metrics charting)
 
-## Special considerations
-
-### Application Insights
+## Application Insights
 
 * Add resources hosting the monitored workloads to a private link. For example, see [Using private endpoints for Azure Web App](/azure/app-service/networking/private-endpoint).
 * Non-portal consumption experiences must also run on the private-linked virtual network that includes the monitored workloads.
@@ -111,12 +109,6 @@ Following are exceptions to this network access:
 > [!NOTE]
 > To fully secure workspace-based Application Insights, lock down access to the Application Insights resource and the underlying Log Analytics workspace.
 
-### Managed Prometheus
-
-* Private Link ingestion settings are made using AMPLS and settings on the Data Collection Endpoints (DCEs) that reference the Azure Monitor workspace used to store Prometheus metrics.
-* Private Link query settings are made directly on the Azure Monitor workspace used to store Prometheus metrics and aren't handled with AMPLS.
-
-To set up ingestion of Managed Prometheus metrics using AMPLS, see [Enable ingestion of metrics from AKS with AMPLS](../fundamentals/private-link-vm-kubernetes.md).
 
 ## Next steps
 

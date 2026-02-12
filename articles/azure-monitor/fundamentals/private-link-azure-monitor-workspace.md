@@ -10,7 +10,7 @@ ms.date: 08/28/2025
 Use [private endpoints](/azure/private-link/private-endpoint-overview) for Managed Prometheus and your Azure Monitor workspace to allow clients on a virtual network (VNet) to securely query data over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses a separate IP address within the VNet address space of your Azure Monitor workspace resource. Network traffic between the clients on the VNet and the workspace resource traverses the VNet and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
 
 > [!NOTE]
-> To add a private endpoint to your Azure Monitor private link scope (AMPLS) to support queries from your Azure Monitor workspace for VM and Kubernetes monitoring, see [](./private-link-vm-kubernetes.md#enable-query-for-azure-monitor-workspace). This article provides additional details about this endpoint and the DNS records that it creates.
+> To add a private endpoint to your Azure Monitor private link scope (AMPLS) to support queries from your Azure Monitor workspace for VM and Kubernetes monitoring, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](./private-link-vm-kubernetes.md#enable-query-for-azure-monitor-workspace). This article provides additional details about this endpoint and the DNS records that it creates.
 
 Using private endpoints for your workspace enables you to:
 
