@@ -8,52 +8,65 @@
     href: resource-health-overview.md
   - name: Azure Status page overview
     href: azure-status-overview.md
-  - name: Azure Service Health Portal
-    href: service-health-portal-update.md
   - name: What's new
     href: whats-new.md
 - name: Get started in Service Health
   items:
-    - name: Service issues overview
-      href: service-issues-blade.md
-    - name: Planned maintenance overview
-      href: service-health-planned-maintenance.md
-    - name: Health advisories overview
-      href: Service-health-advisories.md  
-    - name: Billing updates overview
-      href: billing-elevated-access.md
-    - name: Service Health history overview
-      href: health-history-overview.md
-    - name: Notifications
-      items:
-      - name: Security issues
-        items:
-        - name: Security advisories overview
-          href: security-advisories-elevated-access.md
-        - name: Security notifications overview
-          href: stay-informed-security.md   
-        - name: Configure subscriptions for Security advisories
-          href: security-advisories-add-subscription.md
-      - name: Service health issues
-        items:
+    - name: Azure Service Health Portal
+      href: service-health-portal-update.md
+      items: 
         - name: Service Health notifications overview
           href: service-health-notifications-properties.md
+        - name: Tenant Roles with Admin access
+          href: admin-access-reference.md
+        - name: Subscription and Tenant access
+          href: subscription-vs-tenant.md  
+        
+    - name: Service issues overview
+      href: service-issues-blade.md
+      items:
+        - name: Impacted Resources from Service issues
+          href: impacted-resources-outage.md
+        - name: Create Service Health alerts
+          href: ./alerts-activity-log-service-notifications-portal.md
         - name: Service Health event tags
           href: service-health-event-tags.md
         - name: Filter Service Health notifications by event level
           href: metadata-filter.md
         - name: Service Health data transitions
-          href: service-health-notification-transitions.md  
-    - name: Impacted Resources
+          href: service-health-notification-transitions.md
+        - name: Send alerts to outside systems via webhook
+          href: service-health-alert-webhook-guide.md
+        - name: Send alerts with ServiceNow
+          href: service-health-alert-webhook-servicenow.md
+        - name: Send alerts with PagerDuty
+          href: service-health-alert-webhook-pagerduty.md
+        - name: Send alerts using OpsGenie
+          href: service-health-alert-webhook-opsgenie.md
+    - name: Planned maintenance overview
+      href: service-health-planned-maintenance.md
       items:
-      - name: Impacted Resources from Service issues
-        href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md
-      - name: Impacted Resources from Azure security advisories
-        href: impacted-resources-security.md
       - name: Impacted Resources from Azure retirements
         href: impacted-resources-retirements.md
+    - name: Health advisories overview
+      href: Service-health-advisories.md 
+    - name: Security advisories overview
+      href: security-advisories-elevated-access.md
+      items:
+        - name: Security notifications overview
+          href: stay-informed-security.md   
+        - name: Configure subscriptions for Security advisories
+          href: security-advisories-add-subscription.md
+        - name: Impacted Resources from Azure security advisories
+          href: impacted-resources-security.md
+    - name: Billing updates overview
+      href: billing-elevated-access.md
+      items:
+    - name: Service Health history overview
+      href: health-history-overview.md
+
 - name: Get started in Resource Health
   items: 
   - name: Resource health alerts overview
@@ -62,34 +75,21 @@
     href: resource-health-checks-resource-types.md
   - name: Resource Health status for Virtual Machines
     href: resource-health-vm-annotation.md
-- name: How-to Guides
+- name: How to create alerts
   items:
-    - name: How to create alerts
-      items:
-      - name: Create Service Health alerts
-        href: ./alerts-activity-log-service-notifications-portal.md
-      - name: Create Resource Health alerts
-        href: resource-health-alert-arm-template-guide.md
-      - name: Create Resource Health alerts with PowerShell and ARM templates
-        href: resource-health-alert-powershell-template.md
-      - name: Create activity log alerts using Bicep
-        href: alerts-activity-log-service-notifications-bicep.md
-      - name: Create activity log alerts using ARM template
-        href: alerts-activity-log-service-notifications-arm.md
-      - name: Deploy Service Health alert rules at scale using Azure Policy 
-        href: service-health-alert-deploy-policy.md
-      - name: How to report an impact
-        href: report-issue.md
-    - name: How to send alerts
-      items:
-      - name: Send alerts to outside systems via webhook
-        href: service-health-alert-webhook-guide.md
-      - name: Send alerts with ServiceNow
-        href: service-health-alert-webhook-servicenow.md
-      - name: Send alerts with PagerDuty
-        href: service-health-alert-webhook-pagerduty.md
-      - name: Send alerts using OpsGenie
-        href: service-health-alert-webhook-opsgenie.md
+    - name: Create Resource Health alerts
+      href: resource-health-alert-arm-template-guide.md
+    - name: Create Resource Health alerts with PowerShell and ARM templates
+      href: resource-health-alert-powershell-template.md
+    - name: Create activity log alerts using Bicep
+      href: alerts-activity-log-service-notifications-bicep.md
+    - name: Create activity log alerts using ARM template
+      href: alerts-activity-log-service-notifications-arm.md
+    - name: Deploy Service Health alert rules at scale using Azure Policy 
+      href: service-health-alert-deploy-policy.md
+    - name: How to report an impact
+      href: report-issue.md
+        
     - name: How to use Resource Graph queries
       items:
       - name: Sample queries for Service Health
@@ -100,6 +100,7 @@
         href: ./resource-graph-impacted-samples.md
       - name: Resource Graph tables overview
         href: azure-resource-graph-overview.md
+   
     - name: How to use REST API
       items:   
       - name: How to access Security advisories through API endpoint
@@ -112,12 +113,7 @@
         href: /rest/api/resourcehealth/emerging-issues/
       - name: Resource Health REST API
         href: /rest/api/resourcehealth/availability-statuses/
-- name: Access and permissions
-  items:
-  - name: Tenant Roles with Admin access
-    href: admin-access-reference.md
-  - name: Subscription and Tenant access
-    href: subscription-vs-tenant.md    
+   
 - name: Frequently asked questions
   items:
     - name: Resource Health FAQ
