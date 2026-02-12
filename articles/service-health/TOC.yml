@@ -29,6 +29,8 @@
           href: impacted-resources-outage.md
         - name: Create Service Health alerts
           href: ./alerts-activity-log-service-notifications-portal.md
+        - name: How to report an impact
+          href: report-issue.md
         - name: Service Health event tags
           href: service-health-event-tags.md
         - name: Filter Service Health notifications by event level
@@ -91,8 +93,7 @@
       href: alerts-activity-log-service-notifications-arm.md
     - name: Deploy Service Health alert rules at scale using Azure Policy 
       href: service-health-alert-deploy-policy.md
-    - name: How to report an impact
-      href: report-issue.md
+   
         
     - name: How to use Resource Graph queries
       items:
