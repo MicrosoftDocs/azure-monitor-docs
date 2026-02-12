@@ -306,10 +306,10 @@ The following screenshot shows endpoints mapped for an AMPLS with two workspaces
 
 * To validate that your requests are now sent through the private endpoint, review them with your browser or a network tracking tool. For example, when you attempt to query your workspace or application, make sure the request is sent to the private IP mapped to the API endpoint. In this example, it's *172.17.0.9*.
 
-    > [!NOTE]
-    > Some browsers might use other DNS settings. For more information, see [Browser DNS settings](#browser-dns-settings). Make sure your DNS settings apply.
+> [!NOTE]
+> Some browsers might use other DNS settings. For more information, see [Browser DNS settings](#browser-dns-settings). Make sure your DNS settings apply.
 
-* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access to your resources](#configure-access-to-ampls-resources).
+* To make sure your workspaces or components aren't receiving requests from public networks (not connected through AMPLS), set the resource's public ingestion and query flags to **No** as explained in [Configure access mode for the private endpoint](#configure-access-mode-for-the-private-endpoint).
 
 * From a client on your protected network, use `nslookup` to any of the endpoints listed in your DNS zones. It should be resolved by your DNS server to the mapped private IPs instead of the public IPs used by default.
 
