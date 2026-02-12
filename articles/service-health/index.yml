@@ -8,7 +8,7 @@ metadata:
   description: Azure Service Health is a suite of experiences that provide personalized guidance and support when issues in Azure services affect you. Azure Service Health can notify you, help you understand the effect of an issue, and keep you updated as the issue resolves. Azure Service Health also can help you prepare for planned maintenance and changes that could affect the availability of your resources.
   ms.service: azure-service-health
   ms.topic: landing-page
-  ms.date: 09/18/2025
+  ms.date: 02/12/2026
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -50,6 +50,8 @@ landingContent:
             url: security-advisories-elevated-access.md
           - text: Learn about subscription and tenant accounts
             url: subscription-vs-tenant.md
+          - text: Learn how to report an impact
+            url: report-issue.md
       - linkListType: video
         links:
           - text: Video introduction on how to create Service Health alerts
