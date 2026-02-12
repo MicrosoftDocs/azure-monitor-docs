@@ -1099,7 +1099,7 @@ items:
         href: fundamentals/private-link-configure.md
       - name: VMs and Kubernetes clusters
         displayName: Private link
-        href: fundamentals/private-link-kubernetes.md
+        href: fundamentals/private-link-vm-kubernetes.md
       - name: Azure Monitor workspace
         displayName: Private Link
         href: fundamentals/private-link-azure-monitor-workspace.md

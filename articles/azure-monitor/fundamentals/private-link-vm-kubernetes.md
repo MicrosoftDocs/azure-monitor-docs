@@ -76,7 +76,7 @@ The workspace DCE can be used for any vms and clusters in the same region as the
 
 Identify the DCE created by the Azure Monitor workspace from its **Overview** page in the Azure portal.
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/amw-dce.png" lightbox="media/kubernetes-monitoring-private-link/amw-dce.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
+:::image type="content" source="media/kubernetes-monitoring-private-link/amw-data-collection-endpoint.png" lightbox="media/kubernetes-monitoring-private-link/amw-data-collection-endpoint.png" alt-text="Screenshot showing the DCE for an Azure Monitor workspace.":::
 
 From the **Monitor** menu in the Azure portal, select **Data Collection Endpoints**. Select the DCE and then 
 the **Resources** tab. Click **Add** and select the cluster to create the association.
@@ -124,7 +124,7 @@ Each of the DCEs created for configuration access need to be added to the AMPLS.
 
 From the **Monitor** menu in the Azure portal, select **Azure Monitor Private Link Scopes**. Select your AMPLS and then the **Azure Monitor Resources** tab. Click **Add** and select the DCE to add it to the AMPLS.
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" lightbox="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" alt-text="Screenshot showing how to add a DCE to an AMPLS.":::
+:::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-data-collection-endpoint.png" lightbox="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-data-collection-endpoint.png" alt-text="Screenshot showing how to add a DCE to an AMPLS.":::
 
 ### [CLI](#tab/cli)
 
@@ -163,7 +163,7 @@ Add the Log Analytics workspace to the AMPLS to enable ingestion from all cluste
 
 From the **Monitor** menu in the Azure portal, select **Azure Monitor Private Link Scopes**. Select your AMPLS and then the **Azure Monitor Resources** tab. Click **Add** and select the workspace to add it to the AMPLS.
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-resources-workspace.png" lightbox="media/kubernetes-monitoring-private-link/ampls-resources-workspace.png" alt-text="Screenshot showing how to add a Log Analytics workspace to an AMPLS.":::
+:::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-workspace.png" lightbox="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-workspace.png" alt-text="Screenshot showing how to add a Log Analytics workspace to an AMPLS.":::
 
 ### [CLI](#tab/cli)
 
@@ -250,7 +250,7 @@ Each of the DCEs created for configuration access need to be added to the AMPLS.
 
 From the **Monitor** menu in the Azure portal, select **Azure Monitor Private Link Scopes**. Select your AMPLS and then the **Azure Monitor Resources** tab. Click **Add** and select the DCE to add it to the AMPLS.
 
-:::image type="content" source="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" lightbox="media/kubernetes-monitoring-private-link/ampls-resources-dce.png" alt-text="Screenshot showing how to add a DCE to an AMPLS.":::
+:::image type="content" source="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-data-collection-endpoint.png" lightbox="media/kubernetes-monitoring-private-link/azure-monitor-=private-link-scope-resources-data-collection-endpoint.png" alt-text="Screenshot showing how to add a DCE to an AMPLS.":::
 
 ### [CLI](#tab/cli)
 
