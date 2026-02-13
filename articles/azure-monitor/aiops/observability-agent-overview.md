@@ -4,7 +4,7 @@ description: This article explains what Azure Copilot observability agent is and
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
-ms.reviewer: yalavi
+ms.reviewer: yalavi, ronitauber
 ms.date: 02/12/2026
 ms.custom: references_regions
 # Customer intent: As an Azure Monitor user, I want to understand what the Azure Copilot observability agent is, how it works, and how to use it for troubleshooting issues detected by Azure Monitor alerts.

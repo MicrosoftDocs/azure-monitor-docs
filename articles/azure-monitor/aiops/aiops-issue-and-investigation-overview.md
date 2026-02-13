@@ -4,7 +4,7 @@ description: Learn how Azure Monitor issues provide persistent context for troub
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
-ms.reviewer: enauerman
+ms.reviewer: enauerman, ronitauber
 ms.date: 02/12/2026
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
