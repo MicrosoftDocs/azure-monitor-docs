@@ -47,6 +47,7 @@ The common schema includes information about the affected resource and the cause
     "essentials": {
       "alertId": "/subscriptions/<subscription ID>/providers/Microsoft.AlertsManagement/alerts/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
       "alertRule": "WCUS-R2-Gen2",
+      "alertRuleId": "/subscriptions/<subscription ID>/resourceGroups/<resource-group>/providers/microsoft.insights/metricAlerts/WCUS-R2-Gen2",
       "severity": "Sev3",
       "signalType": "Metric",
       "monitorCondition": "Resolved",
@@ -94,6 +95,9 @@ The common schema includes information about the affected resource and the cause
   }
 }
 ```
+
+> [!NOTE]
+> The `alertRuleId` field may not appear in all alert payloads. It’s included only in certain alert types or API versions that support returning the alert rule’s full resource ID.
 
 For sample alerts that use the common schema, see [Sample alert payloads](alerts-payload-samples.md).
 
