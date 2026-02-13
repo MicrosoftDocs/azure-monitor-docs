@@ -865,7 +865,7 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Configure
+      - name: Install and configure
         items:
         - name: Azure portal
           displayName: Azure Monitor pipeline
@@ -873,6 +873,9 @@ items:
         - name: CLI and templates
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure.md
+        - name: Extension versions
+          displayName: Azure Monitor pipeline extension versions
+          href: data-collection/pipeline-extension-versions.md
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
