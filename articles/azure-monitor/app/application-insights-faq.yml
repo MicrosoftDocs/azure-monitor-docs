@@ -1753,7 +1753,6 @@ sections:
              * Sampling compatible with classic Application Insights SDKs
              * [Microsoft Entra authentication](../app/azure-ad-authentication.md)
              * [Offline Storage and Automatic Retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries)
-             * [Statsbeat](../app/statsbeat.md)
              * [Application Insights Standard Metrics](../app/standard-metrics.md)
              * Detect resource metadata to autopopulate [Cloud Role Name](../app/java-standalone-config.md#cloud-role-name) and [Cloud Role Instance](../app/java-standalone-config.md#cloud-role-instance) on various Azure environments
              * [Live Metrics](../app/live-stream.md)
@@ -2118,20 +2117,20 @@ sections:
 
       - question: Which languages are supported?
         answer: |
-          | Metrics                                     | .NET | Java | JavaScript | Node.js | Python |
-          |---------------------------------------------|------|------|------------|---------|--------|
-          | **Essential metrics**                       |      |      |            |         |        |
-          | [Network](#network-statsbeat)               | ❌   | ✅  | ❌         | ✅     | ✅     |
-          | [Attach](#attach-statsbeat)                 | ✔️\* | ✅  | ❌         | ✅     | ✅     |
-          | [Feature](#feature-statsbeat)               | ❌   | ✅  | ❌         | ✅     | ✅     |
-          | **Non-essential metrics**                   |      |      |            |         |        |
-          | [Disk I/O failure](#nonessential-statsbeat) | ❌   | ✅  | ❌         | ❌     | ❌     |
+          | Metrics                   | .NET | Java | JavaScript | Node.js | Python |
+          |---------------------------|------|------|------------|---------|--------|
+          | **Essential metrics**     |      |      |            |         |        |
+          | Network                   | ❌   | ✅  | ❌         | ✅     | ✅     |
+          | Attach                    | ✔️\* | ✅  | ❌         | ✅     | ✅     |
+          | Feature                   | ❌   | ✅  | ❌         | ✅     | ✅     |
+          | **Non-essential metrics** |      |      |            |         |        |
+          | Disk I/O failure          | ❌   | ✅  | ❌         | ❌     | ❌     |
 
           \* Not supported with Classic API or autoinstrumentation (*OTel only*)
 
       - question: Which EU regions are supported?
         answer: |
-          Statsbeat supports EU Data Boundary for Application Insights resources in the following regions:
+          Usage data collection supports EU Data Boundary for Application Insights resources in the following regions:
 
           | Geo name       | Region name          |
           |----------------|----------------------|
