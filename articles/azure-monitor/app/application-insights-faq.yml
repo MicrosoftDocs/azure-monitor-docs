@@ -134,7 +134,7 @@ sections:
 
   - name: Data collection, retention, storage, and privacy
     questions:
-      - question: How does Application Insights handle Data collection, retention, storage, and privacy?
+      - question: How does Application Insights handle data collection, retention, storage, and privacy?
         answer: |
           #### Context
           Application Insights collects telemetry from your app and stores it in a Log Analytics workspace. It works for apps hosted anywhere, not only in Azure.
