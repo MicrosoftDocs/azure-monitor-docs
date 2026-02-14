@@ -221,9 +221,6 @@ sections:
             handler = AzureLogHandler(connection_string='<YOUR-CONNECTION-STRING>',
                                       storage_path='/var/tmp/ai-cache')
             ```
-          #### Archived Information
-
-          For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
 
       - question: What usage data does Microsoft collect?
         answer: |
@@ -349,6 +346,10 @@ sections:
           **Python**
 
           Usage data collection is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED_ALL` to `true`.
+
+          #### Archived Information
+
+          For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
 
   - name: Application Insights API for custom events and metrics
     questions:
