@@ -1,6 +1,6 @@
 ---
 title: Filtering OpenTelemetry in Application Insights
-description: Learn how to filter OpenTelemetry (OTel) data in Application Insights for .NET, Java, Node.js, and Python applications to exclude unwanted telemetry and protect sensitive information.
+description: Learn how to filter OpenTelemetry (OTel) data in Application Insights for .NET, Java, Node.js, and Python applications. Exclude unwanted telemetry and protect sensitive information.
 ms.topic: how-to
 ms.date: 03/23/2025
 # ms.devlang: csharp, javascript, typescript, python
@@ -42,7 +42,7 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 >
 > Options such as `SetDbStatementForStoredProcedure` aren't usable in our distribution because the code is embedded and not referencing the external package.
 >
-> Once the SqlClient instrumentation reaches a stable release, Azure Monitor switches to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` will be available.
+> Once the SqlClient instrumentation reaches a stable release, Azure Monitor switches to referencing the official package and customization via `builder.AddSqlClientInstrumentation(options => { ... })` is available.
 
 <!--
 <sup>1</sup> We include the [SqlClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.SqlClient) instrumentation in our package while it's still in beta. When it reaches a stable release, we include it as a standard package reference. Until then, to customize the SQLClient instrumentation, add the `OpenTelemetry.Instrumentation.SqlClient` package reference to your project and use its public API.
@@ -70,11 +70,11 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 * [SqlClient](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/blob/main/src/OpenTelemetry.Instrumentation.SqlClient/README.md#filter)
 
 > [!NOTE]
-> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure SDKs](https://github.com/Azure/azure-sdk). For more information, review [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
+> The Azure Monitor Exporter doesn't include any instrumentation libraries. You can collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk). For more information, review [Add, modify, and filter OpenTelemetry](/azure/azure-monitor/app/opentelemetry-add-modify?tabs=net#included-instrumentation-libraries).
 
 ### [Java](#tab/java)
 
-Starting with Java agent version 3.0.3, specific autocollected telemetry can be suppressed. For more information, review [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+With Java agent version 3.0.3+, specific autocollected telemetry can be suppressed. For more information, review [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
 
 > [!NOTE]
 > There's no need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
@@ -358,7 +358,7 @@ class SpanFilteringProcessor(SpanProcessor):
 
 ## Filter telemetry at ingestion using data collection rules
 
-Use ingestion-time transformations in a data collection rule (DCR) to filter or modify telemetry after Azure Monitor receives it and before Azure Monitor stores it in a Log Analytics workspace.
+Reduce noise or standardize telemetry before Azure Monitor stores it in a Log Analytics workspace. To achieve that goal, use ingestion-time transformations in a data collection rule (DCR) to filter or modify telemetry after Azure Monitor receives it.
 
 Transformations use a Kusto Query Language (KQL) statement that runs on each ingested record.
 
@@ -394,6 +394,7 @@ In a workspace transformation DCR, use the stream name format `Microsoft-Table-<
 ### Use workspace transformation DCR samples
 
 The following samples show workspace transformation DCR JSON. Use `dataFlows` to define one transformation per table. Keep `transformKql` on one line in the DCR definition.
+
 
 <details>
 <summary><b>Create a workspace transformation DCR template</b></summary>
