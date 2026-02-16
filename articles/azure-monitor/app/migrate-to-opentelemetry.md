@@ -18,10 +18,6 @@ Use Application Insights .NET software development kit (SDK) 3.x to upgrade from
 
 Most classic `Track*` calls continue to work after the upgrade, but they are routed through an internal mapping layer that emits OpenTelemetry signals.
 
-> [!IMPORTANT]
-> If you rely on third-party logging sinks that integrate with the classic SDK (for example, `Serilog.Sinks.ApplicationInsights`), read [Serilog and third-party logging sinks](#serilog-and-third-party-logging-sinks) before upgrading. Many sinks depend on classic SDK types and extensibility points removed in 3.x.
-
-
 If you build a new application or you already use the Azure Monitor OpenTelemetry Distro, use the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md?tabs=aspnetcore) instead. Don't use Application Insights .NET SDK 3.x and the Azure Monitor OpenTelemetry Distro in the same application.
 
 ## Application Insights .NET SDK 3.x overview
@@ -60,8 +56,7 @@ Remove these packages because they aren't compatible with SDK 3.x:
 SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead.
 
 > [!NOTE]
-> This list includes only Microsoft packages. You might also have third-party packages that pin `Microsoft.ApplicationInsights` 2.x (for example, `Serilog.Sinks.ApplicationInsights`). Those packages must be removed or replaced before upgrading to SDK 3.x. See [Serilog and third-party logging sinks](#serilog-and-third-party-logging-sinks).
-
+> This list includes only Microsoft packages. If you use third-party packages that depend on `Microsoft.ApplicationInsights` 2.x (for example, `Serilog.Sinks.ApplicationInsights`), verify those packages support SDK 3.x before upgrading. Follow guidance from the package maintainers.
 
 ### Step 2: Upgrade package versions to 3.x
 
@@ -100,81 +95,6 @@ SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these 
 | `Operation`        | `Name`                                   |
 | `Location`         | `Ip`                                     |
 | `GlobalProperties` | (dictionary)                             |
-
-## Serilog and third-party logging sinks
-
-SDK 3.x is OpenTelemetry-based. This changes how logging integrations work compared to SDK 2.x.
-
-Serilog and OpenTelemetry both implement “pipeline” concepts, but they integrate at different layers:
-
-- **Serilog** is a logging framework. It produces `LogEvent` instances and writes them to **sinks**, after enrichment/filtering/formatting. For context on the sink ecosystem, see [Provided Sinks](https://github.com/serilog/serilog/wiki/Provided-Sinks).
-- **OpenTelemetry** is an observability framework. For logs, it processes **log records** through processors and **exporters**.
-
-When you upgrade to SDK 3.x (or use the Azure Monitor OpenTelemetry Distro), log export to Application Insights happens via an OpenTelemetry pipeline. A classic Serilog sink that previously called `TelemetryClient.Track*` can't be ported 1:1.
-
-### Avoid “two pipelines” surprises
-
-It is possible to run Serilog and OpenTelemetry side-by-side, but be deliberate:
-
-- If Serilog is exporting to Application Insights and OpenTelemetry is also exporting to Application Insights, you can get **duplicate logs**.
-- Filtering/enrichment may happen in different places (Serilog vs OpenTelemetry processors), which can lead to inconsistent results.
-
-Decide which component is authoritative for **cloud export**, and treat the other as local-only or as a bridge.
-
-### Why classic sinks break
-
-In SDK 2.x, third-party sinks commonly did the following:
-
-- Receive a logging-framework event (for example, a Serilog `LogEvent`).
-- Map it to classic Application Insights telemetry (for example, `TraceTelemetry` or `ExceptionTelemetry`).
-- Send it directly via `TelemetryClient` (often relying on `ITelemetryChannel` for configuration and local/unit test validation).
-
-SDK 3.x removes the classic channel and other Application Insights-specific extensibility points, and logs are emitted via OpenTelemetry **log records** and exported through the OpenTelemetry pipeline. OpenTelemetry doesn't have a direct equivalent to Serilog's “sink” concept, so classic sinks need a new integration approach.
-
-### Recommended integration options
-
-1. **Recommended for most apps: export logs via OpenTelemetry (`ILogger`) and keep Serilog for local sinks (optional)**
-
-   The most straightforward and fully supported approach is to export logs to Application Insights through OpenTelemetry by using the `Microsoft.Extensions.Logging` pipeline.
-
-   - If you're starting fresh or can do a clean install, the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md?tabs=aspnetcore) is the simplest way to enable log export.
-   - Don't use the Distro and Application Insights .NET SDK 3.x in the same application.
-   - If you keep Serilog in the same application, configure it for local sinks (console/file/etc.). Avoid also sending Serilog events to Application Insights to prevent duplicate ingestion.
-
-2. **Recommended for unified Serilog configuration: bridge Serilog events into OpenTelemetry LogRecords (Log Bridge API)**
-
-   OpenTelemetry defines a Log Bridge API intended for logging library authors to implement appenders/bridges from existing logging frameworks into OpenTelemetry.
-
-   A bridge-based sink/appender can implement the pipeline:
-
-   `Serilog LogEvent` → `OpenTelemetry LogRecord` → OpenTelemetry processors/exporters → Azure Monitor exporter → Application Insights
-
-   This is the long-term, clean replacement for a classic “Serilog sink that directly calls `TelemetryClient`.” Availability and stability depend on the OpenTelemetry .NET SDK version you target.
-
-3. **Use OTLP + OpenTelemetry Collector (most portable) or Azure Monitor OTLP ingestion (when enabled)**
-
-   If your goal is maximum portability (and minimal vendor-specific SDK surface area), use OTLP for export.
-
-   - Export OTLP from Serilog by using [Serilog.Sinks.OpenTelemetry](https://www.nuget.org/packages/Serilog.Sinks.OpenTelemetry/).
-   - Send OTLP to an OpenTelemetry Collector and use the Azure Monitor exporter there, or
-   - If your environment has Azure Monitor OTLP ingestion enabled (preview/limited preview scenarios), target an Azure OTLP endpoint directly. For more information, see [Troubleshoot with OTLP signals in Azure Monitor (Limited Public Preview)](https://techcommunity.microsoft.com/blog/azureobservabilityblog/troubleshoot-with-otlp-signals-in-azure-monitor-limited-public-preview/4469668).
-
-### Short-term workaround (if you can’t wait)
-
-If you need a solution immediately and want Serilog-managed configuration, Microsoft has shared a reference implementation via an `ILoggerProvider`-style bridge in `opentelemetry-dotnet-contrib` (see [PR #2670](https://github.com/open-telemetry/opentelemetry-dotnet-contrib/pull/2670)).
-
-This approach keeps Serilog enrichment/filtering/formatting, but routes events into OpenTelemetry so they can be exported to Application Insights.
-
-> [!NOTE]
-> The PR is a proof-of-concept and is not an official Serilog sink release. Treat it as reference code until a supported bridge/sink is available.
-
-### If you can’t migrate the sink yet
-
-> [!TIP]
-> If Application Insights log export is your only blocker and you must preserve the “single Serilog configuration” model, it can be reasonable to pin to a stable 2.x baseline (for example 2.23.x) while waiting for a Log Bridge-based sink/bridge to mature.
-> If you take this approach, verify that your pinned 2.x baseline remains compatible with your target .NET runtime and other dependencies.
->
-> Some sink maintainers may also set dependency ranges to prevent restoring in an incompatible state (for example restricting `Microsoft.ApplicationInsights` to `< 3.0.0`). If you hit restore/version conflicts during upgrade, it often indicates you're attempting an unsupported mixed-mode upgrade (for example, classic sink + SDK 3.x/Distro), and you should either remove/replace the sink or postpone the upgrade.
 
 ## Configure sampling
 
