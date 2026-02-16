@@ -24,7 +24,8 @@
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-enable.md",
    "redirect_url": "/azure/governance/resource-graph/changes/view-resource-changes",
    "redirect_document_id": false
-  },{
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis.md",
    "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
    "redirect_document_id": false
@@ -8754,6 +8755,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/data-collection/edge-pipeline-configure.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-configure",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
    "redirect_url": "/azure/azure-monitor/reference/tables-index",
    "redirect_document_id": false
@@ -8786,6 +8792,36 @@
   {
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-fileshares-fileshares-logs.md",
    "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/queries/llmactivity.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/llmactivity.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+      "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-nodejs-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-python-opencensus-migrate.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
+   "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
    "redirect_document_id": false
   }
  ]

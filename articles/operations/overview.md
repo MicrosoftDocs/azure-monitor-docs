@@ -23,18 +23,18 @@ Operations center provides a unified portal to manage and monitor your Azure and
 Operations center enhances the portal experience by leveraging Azure Copilot agents to proactively surface issues and guide you through resolution steps. This helps you quickly identify and remediate issues to optimize your environment without needing to search for solutions or navigate complex documentation.
 
 
-## Operations pillars
-Operations center is organized into management pillars, each consolidating related Azure services to provide a focused experience for managing specific aspects of your environment. 
+## Operations menus
+Operations center is organized into management menus, each consolidating related Azure services to provide a focused experience for managing specific aspects of your environment. 
 
-:::image type="content" source="./media/overview/pillars.png" lightbox="./media/overview/pillars.png" alt-text="Diagram showing the Operations Center management pillars." border="false":::
+:::image type="content" source="./media/overview/menus.png" lightbox="./media/overview/menus.png" alt-text="Diagram showing the Operations Center management menus." border="false":::
 
-Each pillar includes the following in the operations center portal: 
+Each menu includes the following in the operations center portal: 
 
-- Overview page that summarizes key information and identifies any critical actions. Drilling down on any of the tiles opens the relevant page in the pillar for more details.
-- Menu items that provide access to the different Azure services related to the pillar. Many of these menu items correspond directly to existing Azure services, while others provide consolidated views across multiple services.
-- Recommendations page that consolidates relevant Azure Advisor recommendations for the pillar. 
+- Overview page that summarizes key information and identifies any critical actions. Drilling down on any of the tiles opens the relevant page in the menu for more details.
+- Menu items that provide access to the different Azure services related to that aspect of management. Many of these menu items correspond directly to existing Azure services, while others provide consolidated views across multiple services.
+- Recommendations page that consolidates relevant Azure Advisor recommendations for the menu. 
 
-The following table describes each pillar and the Azure services it uses. All pillars also use [Azure Advisor](/azure/advisor/advisor-overview) to provide recommendations for improving your configuration. See the documentation for each pillar for more details.
+The following table describes each menu and the Azure services it uses. All menus also use [Azure Advisor](/azure/advisor/advisor-overview) to provide recommendations for improving your configuration. See the documentation for each menu for more details.
 
 | Area |Description | Services |
 |:---|:---|:---|
@@ -47,13 +47,13 @@ The following table describes each pillar and the Azure services it uses. All pi
 
 
 ## Overview page
-In addition to an overview for each pillar, operations center includes a top-level **Overview** page that provides a consolidated view across all five pillars. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific pillars for more details. The overview page includes a summary from each of the five pillars and an **Actions** tile that helps you quickly identify the actions being recommended across all pillars.
+In addition to an overview for each menu, operations center includes a top-level **Overview** page that provides a consolidated view across all five menus. Use this page as a starting point to quickly identify any critical issues or actions that require your attention before drilling down into specific menus for more details. The overview page includes a summary from each of the five menus and an **Actions** tile that helps you quickly identify the actions being recommended across all menus.
 
-:::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five pillars":::
+:::image type="content" source="./media/overview/operations-center.png" lightbox="./media/overview/operations-center.png" alt-text="Screenshot of operations center showing the five menus":::
 
 
 ## Virtual machine onboarding
-While many of the experiences in operations center are available in other areas of the Azure portal, one experience that's unique to operations center is a streamlined virtual machine onboarding process. The [Configuration](./configuration-enrollment.md) pillar includes a machine enrollment feature that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration-enrollment.md) for details. 
+While many of the experiences in operations center are available in other areas of the Azure portal, one experience that's unique to operations center is a streamlined virtual machine onboarding process. The [Configuration](./configuration-enrollment.md) menu includes a machine enrollment feature that helps you configure your subscription to automatically onboard virtual machines and Arc-enabled servers to the Azure management services used by operations center. This streamlines the process of ensuring that your machines are constantly configured for monitoring, security, and management. See [Machine enrollment](./configuration-enrollment.md) for details. 
 
 ## Next steps
 - Learn more about [Observability](./observability.md)

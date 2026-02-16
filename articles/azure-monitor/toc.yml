@@ -55,12 +55,10 @@ items:
           href: app/opentelemetry-add-modify.md
         - name: Filter OpenTelemetry
           href: app/opentelemetry-filter.md
+        - name: Migrate to OpenTelemetry
+          href: app/migrate-to-opentelemetry.md
         - name: Help, support, and feedback
           href: app/opentelemetry-help-support-feedback.md
-        - name: .NET (supplemental)
-          items:
-          - name: Migrate from Application Insights .NET SDKs to OpenTelemetry
-            href: app/opentelemetry-dotnet-migrate.md
         - name: Java (supplemental)
           items:
           - name: Spring Boot
@@ -83,16 +81,6 @@ items:
                 href: app/java-standalone-telemetry-processors.md
               - name: Examples
                 href: app/java-standalone-telemetry-processors-examples.md
-          - name: Upgrade from 2.x
-            href: app/java-standalone-upgrade-from-2x.md
-        - name: Node.js (supplemental)
-          items:
-          - name: Upgrade from SDK 2.X
-            href: app/opentelemetry-nodejs-migrate.md
-        - name: Python (supplemental)
-          items:
-          - name: Migrate from Opencensus
-            href: app/opentelemetry-python-opencensus-migrate.md
       - name: Client-side JavaScript SDK
         items:
         - name: Get Started with JavaScript SDK
@@ -143,7 +131,7 @@ items:
       - name: Live metric stream
         displayName: live, quickpulse, quick pulse, live metrics
         href: app/live-stream.md
-      - name: SDK Stats (Preview)
+      - name: SDK Stats
         href: app/sdk-stats.md
       - name: Usage (user behavior analytics)
         href: app/usage.md
@@ -874,7 +862,24 @@ items:
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
-    href: data-collection/edge-pipeline-configure.md
+    items:
+      - name: Overview
+        href: data-collection/pipeline-overview.md
+      - name: Install and configure
+        items:
+        - name: Azure portal
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure-portal.md
+        - name: CLI and templates
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure.md
+        - name: Extension versions
+          displayName: Azure Monitor pipeline extension versions
+          href: data-collection/pipeline-extension-versions.md
+      - name: Configure clients
+        href: data-collection/pipeline-configure-clients.md
+      - name: Transformations
+        href: data-collection/pipeline-transformations.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -147,5 +147,23 @@ Recommendation ID: 8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7_end-->
+
+<!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_begin-->
+
+#### Fsv2-series hardware configuration is being retired  
+  
+We recommend transitioning to the Hyperscale premium-series or General-purpose standard-series (Gen5) service tier to maintain comparable performance levels.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485030)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: 78a8bb04-6f10-4112-8b1e-ac0fd88c67a2  
+Subcategory: undefined
+
+<!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_end-->
 
 <!--articleBody-->

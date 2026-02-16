@@ -2,12 +2,30 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 01/31/2026
+ms.date: 02/09/2026
 ---
 
 # What's new in Azure Monitor documentation
 
 This article lists significant changes to Azure Monitor documentation.
+
+## 2026
+
+### January 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[OpenTelemetry sampling guidance](../app/opentelemetry-sampling.md#general-sampling-guidance)|Added practical starting-point guidance and clarified default sampling behavior.|
+|Application-Insights|[Live Metrics supported features](../app/live-stream.md?tabs=otel#supported-features-table)|Updated the supported-features table to reflect Python support for performance metrics, custom filtering, and sampled telemetry, and Node.js support for custom filtering.|
+|Application-Insights|[Offline storage and retries](../app/opentelemetry-configuration.md?tabs=aspnetcore#offline-storage-and-automatic-retries)|Updated offline storage guidance with the latest local storage paths for Node.js and Python.|
+|Application-Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md)|Published consolidated guidance for migrating from Classic API SDKs to OpenTelemetry.|
+|Application-Insights|[SDK Stats (preview)](../app/sdk-stats.md)|Updated SDK Stats (preview) documentation to include .NET support.|
+|Data Collection|[Metrics export](../data-collection/metrics-export-create.md)|Refreshed metrics export documentation to align with the latest Azure portal experience.|
+|Data Collection|[Azure Monitor pipeline transformations (preview)](../data-collection/pipeline-transformations.md)|Published public preview documentation for pipeline transformations with expanded onboarding guidance for multiple deployment methods and ingestion to standard tables.|
+|Logs|[Private Link browser settings](../logs/private-link-configure.md#browser-local-network-access-settings)|Added guidance for enabling local network access in Chromium-based browsers so Azure portal experiences can reach Azure Monitor private endpoints over AMPLS.|
+|Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Improved content and structure to enhance discoverability and AI retrievability.|
+|Logs|[Prefer header options](../logs/api/prefer-options.md)|Improved content and structure to enhance discoverability and AI retrievability.|
+|Logs|[Azure resource queries](../logs/api/azure-resource-queries.md)|Improved content and structure to enhance discoverability and AI retrievability.|
 
 ## 2025
 
@@ -472,7 +490,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Elasticsearch](../containers/prometheus-elasticsearch-integration.md)|Elastic search Prometheus integration|
 |Containers|[Apache Kafka](../containers/prometheus-kafka-integration.md)|Kafka Prometheus integration|
 |Essentials|[Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md)|Rewritten for consistency with new Azure Monitor pipeline content.|
-|Essentials|[Configuration of Azure Monitor edge pipeline](../data-collection/edge-pipeline-configure.md)|New article for edge pipeline.|
+|Essentials|[Configuration of Azure Monitor edge pipeline](../data-collection/pipeline-configure.md)|New article for edge pipeline.|
 |Essentials|[Overview of Azure Monitor pipeline](../data-collection/data-collection-rule-overview.md)|New article to introduce Azure Monitor pipeline, which includes edge pipeline and cloud pipeline.|
 |Essentials|[Azure Monitor metrics explorer with PromQL (Preview)](../metrics/metrics-explorer.md)|New metrics explorer with PromQL support for Azure Monitor workspaces.|
 |Essentials|[Send Prometheus metrics from Virtual Machines to an Azure Monitor workspace](../metrics/prometheus-remote-write-virtual-machines.md)|How to send prometheus metrics from a Virtual machine or Virtual Machine Scale Set.|
