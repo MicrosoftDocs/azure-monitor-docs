@@ -7,44 +7,35 @@ ai-usage: ai-assisted
 ---
 
 # Azure Monitor overview
-Azure Monitor is Microsoft’s unified observability service for collecting, analyzing, and acting on telemetry from cloud and hybrid environments. It enables you to understand the health, performance, and reliability of your Azure applications and infrastructure resources by bringing together metrics, logs, traces, and events into a single, scalable observability experience.
+Azure Monitor is Microsoft's unified observability service for collecting, analyzing, and acting on telemetry from cloud and hybrid environments. It enables you to understand the health, performance, and reliability of your Azure applications and infrastructure resources by bringing together metrics, logs, traces, and events into a single, scalable observability experience.
 
 Azure Monitor includes a data platform that provides storage and retrieval for large data volumes supporting observability workloads and other services such as Defender for Cloud and Microsoft Sentinel. In addition to supporting Azure Monitor features, the Azure Monitor data platform also provides supports other services such as Defender for Cloud, Microsoft Sentinel, and Update Manager. This simplifies your management infrastructure and allows you to leverage your investment in query languages and analysis tools.
 
 
 ## Monitor your cloud resources
 
-Azure Monitor collects logs and metrics from all the resources across the different Azure services that you use. Activity logs and platform metrics are collected automatically. Create a diagnostic setting to collect resource logs which describe detailed operations conducted by each Azure resource.
-
-Most Azure services integrate Azure Monitor into their portal experience. The Overview page will include a Monitoring tab with prebuilt performance charts for common measurements. A Monitor section in each menu provides access to valuable insights based on more detailed analysis of the metrics and logs collected for the resource. Some services also provide dedicated monitoring experiences called Azure Monitor Insights that deliver deep visibility into the performance and operation of your cloud resources.
+Azure Monitor collects logs and metrics from all the resources across the different Azure services that you use. A Monitor section in each menu provides access to valuable insights based on more detailed analysis of the metrics and logs collected for the resource. Some services also provide dedicated monitoring experiences called Azure Monitor Insights that deliver deep visibility into the performance and operation of your cloud resources.
 
 
 ## Monitor your Infrastructure
-Azure Monitor provides complete monitoring of your virtual machines and Kubernetes clusters that make up the infrastructure of many environments.  Install the Azure Monitor agent on your machines and clusters to collect logs and metrics from their client operating systems and internal workloads. Built in portal experiences allow you to drill down on different components to view their configuration, operation, and performance details. 
+Azure Monitor provides complete monitoring of your virtual machines and Kubernetes clusters that make up the infrastructure of many environments. Built in portal experiences allow you to drill down on different components to view their configuration, operation, and performance details. 
 
 Azure Network Watcher provides a suite of tools to monitor the network health of your infrastructure resources. This tool is built on the Azure Monitor data platform giving you a consistent monitoring experience across your infrastructure.
 
 ## Monitor your Applications
 
-Application Insights is a feature of Azure Monitor that delivers deep visibility into the performance, reliability, and usage of your applications across cloud and hybrid environments. It automatically collects telemetry such as requests, dependencies, exceptions, and traces to help you quickly diagnose issues and understand user behavior. With native support for OpenTelemetry, Application Insights enables you to instrument applications using open standards while unifying data across languages and platforms. It provides powerful analytics and integration with other Azure Monitor tools to help teams proactively detect anomalies, optimize performance, and improve application resilience.
+Application Insights in of Azure Monitor that delivers deep visibility into the performance, reliability, and usage of your applications across cloud and hybrid environments. It automatically collects telemetry such as requests, dependencies, exceptions, and traces to help you quickly diagnose issues and understand user behavior. With native support for OpenTelemetry, Application Insights enables you to instrument applications using open standards while unifying data across languages and platforms. It provides powerful analytics and integration with other Azure Monitor tools to help teams proactively detect anomalies, optimize performance, and improve application resilience.
 
 ## Monitor your agents
-Application insights also provides a unified experience for monitoring AI agents across multiple sources including Azure AI Foundry, Copilot Studio, and third-party agents. This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
+Application insights provides a unified experience for monitoring AI agents across multiple sources including Azure AI Foundry, Copilot Studio, and third-party agents. This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
 
 ## Data platform
-The Azure Monitor data platform is highly scalable and supports all of its features with powerful query languages for analysis and alerting. 
-
-Log Analytics workspaces collect log and trace data which can then be analyzed with Kusto Query Language (KQL) queries. Optimize your costs by configuring tables in Log Analytics workspace for different pricing tiers based on your required functionality. Azure Monitor workspaces collect Promethus and OpenTelemetry metrics, which can then be analyzed using PromQL.
-
-Log Analytics and Azure Monitor workspaces can be created in different regions allowing you to geolocate your data according to your requirements. Replicate data between workspaces to ensure high availability and disaster recovery. 
-
+Log Analytics workspaces in Azure Monitor collect log and trace data which can then be analyzed with Kusto Query Language (KQL) queries. Optimize your costs by configuring tables in Log Analytics workspace for different pricing tiers based on your required functionality. Azure Monitor workspaces collect Promethus and OpenTelemetry metrics, which can then be analyzed using PromQL.
 
 ## Data collection
-Azure Monitor is highly scalable, collecting data from even the largest of environments. Data collection rules can be centrally configured, providing a scalable method for defining and maintaining different data collection scenarios. 
+Azure Monitor provides a variety of methods to onboard resources and customize data collection, whether using the Azure portal, a command line, or automating through policy. [Data collection rules](../data-collection/data-collection-rule-overview.md) define different scenarios including what should be collected and where it should be sent. Refine data collection for your unique requirements using advanced features such as [transformations](../data-collection/data-collection-transformations.md) that allow you preprocess your data to optimize your costs or fine tune your queries.
 
-Azure Monitor provides a variety of methods to onboard resources and customize data collection, whether using the Azure portal, a command line, or automating through policy. Refine data collection for your unique requirements using advanced features such as transformations that allow you preprocess your data to optimize your costs or fine tune your queries.
-
-For particularly large data volumes and to support environments with intermittent connectivity, deploy the Azure Monitor pipeline. This feature extends the data collection capabilities of Azure Monitor into your own data center. Data is processed and potentially cached and filtered locally before being sent to the Azure cloud.
+For particularly large data volumes and to support environments with intermittent connectivity, deploy the [Azure Monitor pipeline](../data-collection/pip). This feature extends the data collection capabilities of Azure Monitor into your own data center. Data is processed and potentially cached and filtered locally before being sent to the Azure cloud.
 
 ## Standards
 Azure Monitor embraces open source standards allowing you to leverage your investment in different technologies and skills sets and also to integrate Azure Monitor into your existing hybrid environments. 
@@ -57,7 +48,7 @@ Azure Monitor embraces open source standards allowing you to leverage your inves
 
 ## Hybrid environments
 
-Azure Monitor isn’t only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to connect your resources in other clouds and on-premises to monitor them alongside your Azure resources.  Or send data to the Azure Monitor data platform from custom applications using log and metric APIs. For particularly large environments, Azure Monitor pipeline can assist in data collection from particularly large or disconnected environments.
+Azure Monitor isn't only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to connect your resources in other clouds and on-premises to monitor them alongside your Azure resources.  Or send data to the Azure Monitor data platform from custom applications using log and metric APIs. For particularly large environments, Azure Monitor pipeline can assist in data collection from particularly large or disconnected environments.
 
 You can also choose to centralize your monitoring on another platform and rely on Azure Monitor to provide telemetry for your Azure resources and applications. Use Azure Event Hubs to stream your data outside of Azure Monitor or integrate with observability partners such as Datadog and Dynatrace.
 
