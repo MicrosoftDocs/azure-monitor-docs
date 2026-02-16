@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Integration Architecture">
+    <mxGraphModel dx="1434" dy="790" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="600">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="monitor" value="Azure Monitor" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=13;fontStyle=1;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.management_governance.monitor;" vertex="1" parent="1">
+          <mxGeometry x="391" y="230" width="68" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="ms-group" value="Microsoft Services" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#0078D4;dashed=1;strokeWidth=2;verticalAlign=top;fontStyle=1;fontSize=13;fontColor=#0078D4;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="130" y="20" width="590" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="sentinel" value="Sentinel" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.security.azure_sentinel;" vertex="1" parent="1">
+          <mxGeometry x="221" y="60" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="defender" value="Defender for Cloud" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.security.microsoft_defender_for_cloud;" vertex="1" parent="1">
+          <mxGeometry x="401" y="60" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="logic" value="Logic Apps" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.integration.logic_apps;" vertex="1" parent="1">
+          <mxGeometry x="581" y="60" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="ext-group" value="External Tools" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#D6A200;dashed=1;strokeWidth=2;verticalAlign=top;fontStyle=1;fontSize=13;fontColor=#D6A200;spacingTop=5;" vertex="1" parent="1">
+          <mxGeometry x="130" y="380" width="590" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="grafana" value="Grafana" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.other.azure_managed_grafana;" vertex="1" parent="1">
+          <mxGeometry x="221" y="420" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="eventhubs" value="Event Hubs" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.iot.event_hubs;" vertex="1" parent="1">
+          <mxGeometry x="401" y="420" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="storage" value="Storage" style="outlineConnect=0;fontColor=#232323;gradientColor=none;fillColor=#0078D4;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=11;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.azure2.storage.storage_accounts;" vertex="1" parent="1">
+          <mxGeometry x="581" y="420" width="48" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0078D4;endArrow=classic;endFill=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="sentinel" target="monitor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0078D4;endArrow=classic;endFill=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="defender" target="monitor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#0078D4;endArrow=classic;endFill=1;startArrow=classic;startFill=1;" edge="1" parent="1" source="logic" target="monitor">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D6A200;endArrow=classic;endFill=1;" edge="1" parent="1" source="monitor" target="grafana">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D6A200;endArrow=classic;endFill=1;" edge="1" parent="1" source="monitor" target="eventhubs">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" style="rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#D6A200;endArrow=classic;endFill=1;" edge="1" parent="1" source="monitor" target="storage">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
