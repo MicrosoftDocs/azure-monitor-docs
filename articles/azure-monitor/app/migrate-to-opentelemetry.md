@@ -16,6 +16,8 @@ Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as 
 
 Use Application Insights .NET software development kit (SDK) 3.x to upgrade from Application Insights .NET SDK 2.x to an OpenTelemetry (OTel)-based implementation. The 3.x SDK keeps most `TelemetryClient` and `TelemetryConfiguration` application programming interfaces (APIs) and uses the Azure Monitor OpenTelemetry Exporter to send telemetry to Application Insights.
 
+Most classic `Track*` calls continue to work after the upgrade, but they are routed through an internal mapping layer that emits OpenTelemetry signals.
+
 If you build a new application or you already use the Azure Monitor OpenTelemetry Distro, use the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md?tabs=aspnetcore) instead. Don't use Application Insights .NET SDK 3.x and the Azure Monitor OpenTelemetry Distro in the same application.
 
 ## Application Insights .NET SDK 3.x overview
@@ -52,6 +54,9 @@ Remove these packages because they aren't compatible with SDK 3.x:
 - `Microsoft.ApplicationInsights.EventSourceListener`
 
 SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead.
+
+> [!NOTE]
+> This list includes only Microsoft packages. If you use third-party packages that depend on `Microsoft.ApplicationInsights` 2.x (for example, `Serilog.Sinks.ApplicationInsights`), verify those packages support SDK 3.x before upgrading. Follow guidance from the package maintainers.
 
 ### Step 2: Upgrade package versions to 3.x
 
@@ -110,6 +115,7 @@ Use these steps to validate telemetry during an upgrade to SDK 3.x:
 
 - Collect Application Insights self-diagnostics logs to identify configuration errors and exporter failures.
 - Add the OpenTelemetry console exporter to verify that traces, metrics, and logs emit as expected before you rely on Azure Monitor ingestion.
+- If you previously unit tested telemetry by mocking `ITelemetryChannel`, switch to OpenTelemetry-friendly validation (for example: in-memory exporters or an additional test exporter in non-production environments).
 - Confirm that sampling settings behave as expected by validating parent-child trace decisions.
 - Validate resource attributes such as service name, role name, and environment to ensure correct attribution in Application Insights.
 
