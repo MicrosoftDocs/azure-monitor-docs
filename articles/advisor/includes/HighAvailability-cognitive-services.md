@@ -72,7 +72,7 @@ Subcategory: undefined
   
 Migrate service to a region that supports availability zones for increased resiliency.  
   
-**Potential benefits**: Ensures high availability during zonal outages  
+**Potential benefits**: Ensures high availability during zone outages  
 
 **Impact:** High
   

@@ -407,7 +407,7 @@ Subcategory: HighAvailability
   
 Implement zone-redundant Virtual Network Gateway in Azure Availability Zones. This brings resiliency, scalability, and higher availability to your Virtual Network Gateways.  
   
-**Potential benefits**: Provides zonal resiliency and redundancy for ExpressRoute  
+**Potential benefits**: Provides zone resiliency and redundancy for ExpressRoute  
 
 **Impact:** High
   
