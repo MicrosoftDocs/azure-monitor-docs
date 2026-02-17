@@ -13,65 +13,68 @@
 - name: Get started in Service Health
   items:
     - name: Azure Service Health Portal
-      href: service-health-portal-update.md
-      items: 
-        - name: Service Health notifications overview
-          href: service-health-notifications-properties.md
-        - name: Tenant Roles with Admin access
-          href: admin-access-reference.md
-        - name: Subscription and Tenant access
-          href: subscription-vs-tenant.md  
+      href: service-health-portal-update.md 
+    - name: Service Health notifications overview
+      href: service-health-notifications-properties.md
+    - name: Tenant Roles with Admin access
+      href: admin-access-reference.md
+    - name: Subscription and Tenant access
+      href: subscription-vs-tenant.md  
         
     - name: Service issues overview
-      href: service-issues-blade.md
       items:
-        - name: Impacted Resources from Service issues
-          href: impacted-resources-outage.md
-       
-        
-        - name: Service Health event tags
-          href: service-health-event-tags.md
-        - name: Filter Service Health notifications by event level
-          href: metadata-filter.md
-        - name: Service Health data transitions
-          href: service-health-notification-transitions.md 
-        - name: How to create alerts
-          items:
-           - name: Create Service Health alerts
-             href: ./alerts-activity-log-service-notifications-portal.md
-           - name: How to report an impact
-             href: report-issue.md
-        - name: How to send alerts
-          items:
-          - name: Send alerts to outside systems via webhook
-            href: service-health-alert-webhook-guide.md
-          - name: Send alerts with ServiceNow
-            href: service-health-alert-webhook-servicenow.md
-          - name: Send alerts with PagerDuty
-            href: service-health-alert-webhook-pagerduty.md
-          - name: Send alerts using OpsGenie
-            href: service-health-alert-webhook-opsgenie.md
-    - name: Planned maintenance overview
-      href: service-health-planned-maintenance.md
+       - name: Service issues overview
+         href: service-issues-blade.md
+       - name: Impacted Resources from Service issues
+         href: impacted-resources-outage.md
+       - name: Service Health event tags
+         href: service-health-event-tags.md
+       - name: Filter Service Health notifications by event level
+         href: metadata-filter.md
+       - name: Service Health data transitions
+         href: service-health-notification-transitions.md 
+    - name: How to create alerts
       items:
-      - name: Impacted Resources from planned maintenance events
-        href: impacted-resources-planned-maintenance.md
+        - name: Create Service Health alerts
+          href: ./alerts-activity-log-service-notifications-portal.md
+        - name: How to report an impact
+          href: report-issue.md
+    - name: How to send alerts
+      items:
+      - name: Send alerts to outside systems via webhook
+        href: service-health-alert-webhook-guide.md
+      - name: Send alerts with ServiceNow
+        href: service-health-alert-webhook-servicenow.md
+      - name: Send alerts with PagerDuty
+        href: service-health-alert-webhook-pagerduty.md
+      - name: Send alerts using OpsGenie
+        href: service-health-alert-webhook-opsgenie.md
+    
+    - name: Planned maintenance
+      items:
+       - name: Planned maintenance overview
+         href: service-health-planned-maintenance.md
+       - name: Impacted Resources from planned maintenance events
+         href: impacted-resources-planned-maintenance.md
      
-    - name: Health advisories overview
-      href: Service-health-advisories.md
+    - name: Health advisories
       items:
+       - name: Health advisories overview
+         href: Service-health-advisories.md
        - name: Impacted Resources from Azure retirements
          href: impacted-resources-retirements.md 
     
-    - name: Security advisories overview
-      href: security-advisories-elevated-access.md
+    - name: Security advisories
       items:
-        - name: Security notifications overview
-          href: stay-informed-security.md   
-        - name: Configure subscriptions for Security advisories
-          href: security-advisories-add-subscription.md
-        - name: Impacted Resources from Azure security advisories
-          href: impacted-resources-security.md
+       - name: Security advisories overview
+         href: security-advisories-elevated-access.md
+       - name: Security notifications overview
+         href: stay-informed-security.md   
+       - name: Configure subscriptions for Security advisories
+         href: security-advisories-add-subscription.md
+       - name: Impacted Resources from Azure security advisories
+         href: impacted-resources-security.md
+
     - name: Billing updates overview
       href: billing-elevated-access.md
       
@@ -86,7 +89,7 @@
     href: resource-health-checks-resource-types.md
   - name: Resource Health status for Virtual Machines
     href: resource-health-vm-annotation.md
-  - name: How to create alerts
+  - name: How to create Resource health alerts
     items:
     - name: Create Resource Health alerts
       href: resource-health-alert-arm-template-guide.md
