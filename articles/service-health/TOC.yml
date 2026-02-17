@@ -21,7 +21,7 @@
     - name: Subscription and Tenant access
       href: subscription-vs-tenant.md  
         
-    - name: Service issues overview
+    - name: Service issues
       items:
        - name: Service issues overview
          href: service-issues-blade.md
