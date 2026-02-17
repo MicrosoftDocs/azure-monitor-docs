@@ -3,7 +3,7 @@ title: Enable VM Insights
 description: Describes different methods for enabling VM Insights on virtual machines and virtual machine scale sets.
 ms.topic: how-to
 ms.reviewer: xpathak
-ms.date: 10/03/2024
+ms.date: 02/17/2026
 ms.custom: references_regions
 
 ---
@@ -78,31 +78,24 @@ Use the following procedure to enable VM insights on an unmonitored virtual mach
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
 
-1. From the **Monitor** menu in the Azure portal, select **Virtual Machines** > **Not Monitored**. This tab includes all machines that don't have VM insights enabled. Any machines have Azure Monitor agent installed. If a virtual machine has the Log Analytics agent installed but not the Dependency agent, it will be listed as not monitored. 
+From the **Monitor** menu in the Azure portal, select **Virtual Machines** > **Not Monitored**. This tab includes all machines that don't have VM insights enabled. Any machines have Azure Monitor agent installed. Select **Enable** next to any machine that you want to enable. If a machine is currently not running, you must start it to enable it.
+
+:::image type="content" source="media/vminsights-enable-portal/enable-unmonitored.png" lightbox="media/vminsights-enable-portal/enable-unmonitored.png" alt-text="Screenshot with unmonitored machines in VM insights.":::
+
+> [!NOTE]
+> You can also enable VM insights from **Insights** in the portal for the virtual machine.
+>
+> :::image type="content" source="media/vminsights-enable-portal/enable-unmonitored-virtual-machine.png" lightbox="media/vminsights-enable-portal/enable-unmonitored-virtual-machine.png" alt-text="Screenshot showing VM insights onboarding option in virtual machine portal.":::
+
+On the **Configure monitor** page, select whether you want to enable classic log-based metrics or preview OpenTemetry metrics. See [When to enable OTel metrics](./vminsights-opentelemetry.md#when-to-enable-otel-metrics) for guidance on which type of metrics to enable.
+
+Default Azure Monitor workspace and Log Analytics workspace are automatically selected. Select **Customize infrastructure monitoring** to select alternate workspaces or create new ones. See [Customize metric collection](./vminsights-opentelemetry.md#customize-metric-collection) for guidance on customizing the metrics collection that are collected by OpenTelemetry. You can't modify the metrics collected for log-based metrics.
+
+:::image type="content" source="media/vminsights-enable-portal/monitoring-configuration.png" lightbox="media/vminsights-enable-portal/monitoring-configuration.png" alt-text="Screenshot of the VM insights configuration page.":::
+
+When you save the configuration, it takes several minutes to install the agent and start collecting data.
  
-1. Select **Enable** next to any machine that you want to enable. If a machine is currently not running, you must start it to enable it.
-
-    :::image type="content" source="media/vminsights-enable-portal/enable-unmonitored.png" lightbox="media/vminsights-enable-portal/enable-unmonitored.png" alt-text="Screenshot with unmonitored machines in V M insights.":::
-
-1. On the **Insights Onboarding** page, select **Enable**. 
- 
-2. On the **Monitoring configuration** page, select **Azure Monitor agent** and select a [DCR](#vm-insights-dcr) from the **Data collection rule** dropdown. Only DCRs configured for VM insights are listed.
- 
-     :::image type="content" source="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" lightbox="media/vminsights-enable-portal/enable-monitored-configure-azure-monitor-agent.png" alt-text="Screenshot of VM Insights Monitoring Configuration Page.":::
- 
- 1. If a DCR hasn't already been created for VM insights, Azure Monitor offers to create one with a default Log Analytics workspace and the following settings. You can either accept these defaults or click **Create New** to create a new DCR with different settings. This lets you select a workspace and specify whether to collect processes and dependencies using the [VM insights Map feature](vminsights-maps.md).
-
-    - **Guest performance** enabled.
-    - **Processes and dependencies** disabled.
-
-    :::image type="content" source="media/vminsights-enable-portal/create-data-collection-rule.png" lightbox="media/vminsights-enable-portal/create-data-collection-rule.png" alt-text="Screenshot showing screen for creating new data collection rule.":::
-
-    > [!NOTE]
-    > If you select a DCR with Map enabled and your virtual machine is not [supported by the Dependency Agent](../vm/vminsights-dependency-agent-maintenance.md), Dependency Agent will be installed and  will run in degraded mode.
-
-3. Select **Configure** to start the configuration process. It takes several minutes to install the agent and start collecting data. You'll receive status messages as the configuration is performed.
- 
-4. If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
+If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
 
 ## [ARM Template](#tab/arm)
 
