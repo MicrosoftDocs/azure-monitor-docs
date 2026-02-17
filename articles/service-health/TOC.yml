@@ -33,22 +33,22 @@
          href: metadata-filter.md
        - name: Service Health data transitions
          href: service-health-notification-transitions.md 
-    - name: How to create alerts
-      items:
-        - name: Create Service Health alerts
-          href: ./alerts-activity-log-service-notifications-portal.md
-        - name: How to report an impact
-          href: report-issue.md
-    - name: How to send alerts
-      items:
-      - name: Send alerts to outside systems via webhook
-        href: service-health-alert-webhook-guide.md
-      - name: Send alerts with ServiceNow
-        href: service-health-alert-webhook-servicenow.md
-      - name: Send alerts with PagerDuty
-        href: service-health-alert-webhook-pagerduty.md
-      - name: Send alerts using OpsGenie
-        href: service-health-alert-webhook-opsgenie.md
+       - name: How to create alerts
+         items:
+          - name: Create Service Health alerts
+            href: ./alerts-activity-log-service-notifications-portal.md
+          - name: How to report an impact
+            href: report-issue.md
+       - name: How to send alerts
+         items:
+         - name: Send alerts to outside systems via webhook
+           href: service-health-alert-webhook-guide.md
+         - name: Send alerts with ServiceNow
+           href: service-health-alert-webhook-servicenow.md
+         - name: Send alerts with PagerDuty
+           href: service-health-alert-webhook-pagerduty.md
+         - name: Send alerts using OpsGenie
+           href: service-health-alert-webhook-opsgenie.md
     
     - name: Planned maintenance
       items:
