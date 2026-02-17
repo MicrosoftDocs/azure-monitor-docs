@@ -1,6 +1,6 @@
 ---
 title: Troubleshoot machine enrollment in operations center (preview)
-description: Describes how to troubleshoot machine enrollment in the Configuration pillar of operations center to automatically configure management for VMs in your subscription.
+description: Describes how to troubleshoot machine enrollment in the Configuration menu of operations center to automatically configure management for VMs in your subscription.
 ms.topic: troubleshooting-general
 ms.date: 11/14/2025
 ---
@@ -10,7 +10,7 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-This article provides troubleshooting steps for issues that may occur when [enabling machine enrollment](./configuration-enrollment.md) in the **Configuration** pillar of [operations center](./overview.md). If you receive an error during enrollment, then there should be a specific resolution. If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the sections below to validate the different steps of the enrollment process to identify where any issues may have occurred.
+This article provides troubleshooting steps for issues that may occur when [enabling machine enrollment](./configuration-enrollment.md) in the **Configuration** menu of [operations center](./overview.md). If you receive an error during enrollment, then there should be a specific resolution. If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the sections below to validate the different steps of the enrollment process to identify where any issues may have occurred.
 
 
 ## Errors during enrollment

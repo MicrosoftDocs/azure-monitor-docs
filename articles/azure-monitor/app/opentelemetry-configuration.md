@@ -344,30 +344,111 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 > * **Metrics** are never sampled.
-> * **Logs** aren't sampled by default. You can opt in to *trace‑based sampling for logs* so that logs that belong to unsampled traces are dropped. For more details, [Configure trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 ### Configure sampling using environment variables
 
-Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
+
+Use standard OpenTelemetry environment variables to select the sampler and provide its argument. For more information about OpenTelemetry sampler types, see [OTEL_TRACES_SAMPLER](https://opentelemetry.io/docs/languages/sdk-configuration/general/#otel_traces_sampler).
+
+#### [ASP.NET Core](#tab/aspnetcore)
 
 * **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed.percentage` — sample a fraction of traces.
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
     * `microsoft.rate_limited` — cap traces per second.
 
 * **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
+#### [.NET](#tab/net)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
+#### [Java](#tab/java)
+
+For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+
+#### [Java native](#tab/java-native)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+#### [Node](#tab/nodejs)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+#### [Python](#tab/python)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+---
 
 The following examples show how to configure sampling using environment variables.
 
 **Fixed-percentage sampling (~10%)**
 
 ```console
-export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
+export OTEL_TRACES_SAMPLER="microsoft.fixed_percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
 ```
 
@@ -381,7 +462,7 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 ### Configure sampling in code
 
 > [!NOTE]
-> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language, see the following tabs.
+> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -447,6 +528,8 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 # [Node.js](#tab/nodejs)
 
+Starting from 1.16.0, **rate‑limited sampling is the default**.
+
 #### Fixed percentage sampling
 
 ```typescript
@@ -474,9 +557,11 @@ const monitor = useAzureMonitor({
 ```
 
 > [!NOTE]
-> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **RateLimitedSampler** by default.
 
 # [Python](#tab/python)
+
+Starting from 1.8.6, **rate‑limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -501,7 +586,7 @@ configure_azure_monitor(
 ```
 
 > [!NOTE]
-> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **RateLimitedSampler** by default.
 
 ---
 
@@ -515,9 +600,9 @@ When enabled, log records that belong to **unsampled traces** are dropped so tha
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **disabled by default**. Enablement is language, see the following tabs.
+* The feature is **enabled by default**.
 
-Use the following setting in your configuration to enable trace-based log sampling:
+Use the following settings to configure trace-based log sampling:
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -818,7 +903,7 @@ By default, the AzureMonitorExporter uses one of the following locations for off
   - %TMPDIR%/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/opentelemetry-nodejs-`<your-instrumentation-key>`
   - /var/tmp/Microsoft/Microsoft-AzureMonitor-`<unique-identifier>`/opentelemetry-nodejs-`<your-instrumentation-key>`
 
-The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
+The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. A unique directory for each user context ensures every user gets their own storage location with proper access permissions.
 
 To override the default directory, you should set `storageDirectory`.
 
@@ -850,7 +935,7 @@ By default, Azure Monitor exporters use the following path:
 
 `<tempfile.gettempdir()>/Microsoft-AzureMonitor-<unique-identifier>/opentelemetry-python-<your-instrumentation-key>`
 
-The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. By generating a unique directory for each user context, every user gets their own storage location with proper access permissions.
+The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. A unique directory for each user context ensures every user gets their own storage location with proper access permissions.
 
 To override the default directory, you should set `storage_directory` to the directory you want.
 

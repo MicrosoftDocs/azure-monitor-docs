@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure AI Search
@@ -121,5 +121,23 @@ Recommendation ID: 518eda63-f5a0-4e5e-9ac9-9d55a33c53c9
 Subcategory: undefined
 
 <!--518eda63-f5a0-4e5e-9ac9-9d55a33c53c9_end-->
+
+<!--bc416431-6245-4337-97b5-de1761692866_begin-->
+
+#### Bing Search APIs are retiring  
+  
+Bing Search APIs are retiring. Existing instances of Bing Search APIs are decommissioned. Bing Search APIs are no longer available to existing or new customers.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** High
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=492574)  
+
+ResourceType: microsoft.search/searchservices  
+Recommendation ID: bc416431-6245-4337-97b5-de1761692866  
+Subcategory: undefined
+
+<!--bc416431-6245-4337-97b5-de1761692866_end-->
 
 <!--articleBody-->

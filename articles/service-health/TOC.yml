@@ -38,17 +38,17 @@
       href: Service-health-advisories.md
     - name: Security advisories overview
       href: security-advisories-elevated-access.md
-    - name: In-Portal Billing communications
+    - name: Billing updates overview
       href: billing-elevated-access.md
-    - name: Health history overview
+    - name: Service Health history overview
       href: health-history-overview.md
-    - name: How to report an issue
+    - name: How to report an impact
       href: report-issue.md
     - name: Configure subscriptions for Security advisories
       href: security-advisories-add-subscription.md
     - name: How to create alerts
       items:
-      - name: Configure alerts for service health events in the Azure portal
+      - name: Create Service Health alerts
         href: ./alerts-activity-log-service-notifications-portal.md
       - name: Create activity log alerts using Bicep
         href: alerts-activity-log-service-notifications-bicep.md
@@ -76,13 +76,13 @@
       items:
       - name: Resource health alerts overview
         href: resource-health-alert-monitor-guide.md
-      - name: Create Resource Health alerts in the Service Health portal
+      - name: Create Resource Health alerts
         href: resource-health-alert-arm-template-guide.md
       - name: Create Resource Health alerts with PowerShell and ARM templates
         href: resource-health-alert-powershell-template.md
     - name: Impacted Resources
       items:
-      - name: Impacted Resources from outages
+      - name: Impacted Resources from Service issues
         href: impacted-resources-outage.md
       - name: Impacted Resources from planned maintenance events
         href: impacted-resources-planned-maintenance.md

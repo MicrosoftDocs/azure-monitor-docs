@@ -1,6 +1,6 @@
 ---
 title: Machine enrollment in operations center (preview)
-description: Describes how to enable machine enrollment in the Configuration pillar of operations center to automatically configure management for VMs in your subscription.
+description: Describes how to enable machine enrollment in the Configuration menu of operations center to automatically configure management for VMs in your subscription.
 ms.topic: how-to
 ms.date: 11/14/2025
 ---
@@ -10,7 +10,7 @@ ms.date: 11/14/2025
 
 [!INCLUDE [Preview-register](./includes/preview-register.md)]
 
-**Machine enrollment** in the [Configuration](./configuration-overview.md) pillar of [operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
+**Machine enrollment** in the [Configuration](./configuration-overview.md) menu of [operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
 
 ## Prerequisites
 
@@ -72,7 +72,7 @@ The following security features are available as part of machine enrollment. You
 
 
 ## Enable a subscription
- To enable machine management for a subscription, select **Machine enrollment** from the **Configuration** pillar, and click **Enable**.
+ To enable machine management for a subscription, select **Machine enrollment** from the **Configuration** menu, and click **Enable**.
 
 > [!NOTE]
 > During gated preview, the Azure portal is the only supported method for enabling machine management. 
