@@ -6,7 +6,7 @@ ms.date: 11/08/2023
 
 ---
 
-## Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
+# Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
 
 Although certain application scenarios can result in low utilization by design, you can often save money by managing the size and number of your virtual machines or virtual machine scale sets.
 
