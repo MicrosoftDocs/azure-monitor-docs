@@ -6,16 +6,6 @@ ms.date: 11/08/2023
 
 ---
 
-# Reduce service costs by using Azure Advisor
-
-Azure Advisor helps you optimize and reduce your overall Azure spend by identifying idle and underutilized resources. You can get cost recommendations from the **Cost** tab on the Advisor dashboard.
-
-1. Sign in to the [**Azure portal**](https://portal.azure.com).
-
-1. Search for and select [**Advisor**](https://aka.ms/azureadvisordashboard) from any page.
-
-1. On the **Advisor** dashboard, select the **Cost** tab.
-
 ## Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
 
 Although certain application scenarios can result in low utilization by design, you can often save money by managing the size and number of your virtual machines or virtual machine scale sets.
