@@ -81,7 +81,7 @@ There are two ways to start an observability agent investigation on an alert:
 1.	In the Create issue box:
     1. Keep or replace the **Issue name**.
     1. Select or keep the **Issue severity**.
-    1. Select or keep the Impact time.
+    1. Select or keep the **Impact time**.
     1. Optionally, change the **Azure Monitor Workspace** name where the issue data gets stored. If you have more than one workspace associated with the subscription, select the workspace that you want to use for this issue.
     1. Select the **I understand** box, then select **Create**.  
         :::image type="content" source="media/issue-investigation-how-to/create-issue-box.png" alt-text="Screenshot of create issue box with issue name, severity, impact time, and workspace selection options." lightbox="media/issue-investigation-how-to/create-issue-box.png" :::
