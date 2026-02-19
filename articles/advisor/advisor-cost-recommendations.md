@@ -2,7 +2,7 @@
 title: Reduce service costs using Azure Advisor
 description: Use Azure Advisor to optimize the cost of your Azure deployments.
 ms.topic: how-to
-ms.date: 11/08/2023
+ms.date: 2/18/2026
 
 ---
 
@@ -12,7 +12,7 @@ Although certain application scenarios can result in low utilization by design, 
 
 Advisor uses machine-learning algorithms to identify low utilization and to identify the ideal recommendation to ensure optimal usage of virtual machines and virtual machine scale sets. The recommended actions are shut down or resize, specific to the resource being evaluated.
 
-### Shutdown recommendations
+## Shutdown recommendations
 
 Advisor identifies resources that weren't used at all over the last seven days and makes a recommendation to shut them down.
 
