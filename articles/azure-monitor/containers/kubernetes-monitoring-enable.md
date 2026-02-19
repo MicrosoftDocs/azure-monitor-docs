@@ -461,11 +461,7 @@ Configuration options are the same for both new and existing clusters. The only 
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of monitoring configuration for AKS cluster.":::
 
-
-3. Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you.
-4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Logging profiles and Classic profiles** setting allows you to modify the default collection details to reduce your monitoring costs. See [Enable cost optimization settings in Container insights](./container-insights-cost-config.md) for details.
-5. Select **Configure**.
-
+Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you. Select **Advanced settings** if you want to select alternate workspaces or create new ones. 
 
 For container logs, you must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
 
