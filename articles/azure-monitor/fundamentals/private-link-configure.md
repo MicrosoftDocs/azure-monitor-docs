@@ -373,7 +373,3 @@ If these requests are blocked, some Azure Monitor experiences in the portal (for
 
 * Learn about [private storage](../logs/private-storage.md) for custom logs and customer-managed keys.
 * Learn about the new [data collection endpoints](../data-collection/data-collection-endpoint-overview.md).
-
-To create and manage Private Link Scopes, use the [REST API](/rest/api/monitor/privatelinkscopes(preview)/private%20link%20scoped%20resources%20(preview)) or the [Azure CLI (az monitor private-link-scope)](/cli/azure/monitor/private-link-scope).
-
-
