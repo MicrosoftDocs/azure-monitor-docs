@@ -1,13 +1,4 @@
-{
- "redirections": [
-  {
-   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-troubleshoot.md",
-   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
-   "redirect_document_id": false
-  },
-  {
-   "source_path_from_root": "/articles/azure-monitor/change/change-analysis-migration.md",
-   "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
+": "/azure/governance/resource-graph/changes/resource-graph-changes",
    "redirect_document_id": false
   },
   {
@@ -8825,6 +8816,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/statsbeat.md",
+   "redirect_url": "/azure/azure-monitor/app/application-insights-faq",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/logs/private-link-configure.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-configure",
    "redirect_document_id": false
@@ -8858,6 +8854,6 @@
    "source_path": "articles/azure-monitor/metrics/azure-monitor-workspace-private-endpoint.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-azure-monitor-workspace",
    "redirect_document_id": false
-  }
+  }  
  ]
 }

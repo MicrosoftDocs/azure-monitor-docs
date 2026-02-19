@@ -85,6 +85,18 @@ To configure ingestion sampling:
 1. Select **Data Sampling**.
 1. Choose the percentage of data to retain.
 
+## Validate sampling is enabled
+
+Use a [Log Analytics query](../logs/log-query-overview.md) to find the sampling rate.
+
+```kusto
+union requests,dependencies,pageViews,browserTimings,exceptions,traces
+| where timestamp > ago(1d)
+| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType
+```
+
+If you see that `RetainedPercentage` for any type is less than 100, then that type of telemetry is being sampled.
+
 ## Set a daily cap
 
 Set a daily cap to prevent unexpected costs. This limit stops telemetry ingestion when it reaches the threshold.
