@@ -2,7 +2,7 @@
 ms.topic: include
 title: Query Based Metric Alerts
 description: "This template shows an example Bicep template for creating a query-based metric alert rule in Azure Monitor using PromQL."
-ms.date: 01/26/2026
+ms.date: 03/19/2026
 ---
 
 ```bicep

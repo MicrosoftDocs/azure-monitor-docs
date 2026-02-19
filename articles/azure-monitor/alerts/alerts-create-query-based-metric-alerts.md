@@ -2,8 +2,8 @@
 title: Create Query-Based Metric Alerts
 description: "This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal."
 ms.topic: how-to
-ms.date: 10/11/2025
-ms.reviewer: eliotgra
+ms.date: 03/19/2026
+ms.custom: references_regions
 ---
 
 # Create query-based metric alerts (preview)
@@ -66,10 +66,12 @@ From the *Create an alert rule* page:
 1. Select **Next: Condition** or the **Condition** tab.
 
 1. From the **Signal** dropdown list, either:
+
     * See all signals to use a previously created PromQL query, then select the query you want to use. The PromQL field appears populated with the query. Then, continue to edit the query in the editor field.
     * Custom PromQL query to create a new one. The PromQL field appears empty and ready for your query editing. Enter the PromQL query in the field.
 
 1. Select the Alerting options:
+
     1. From the **Check every** dropdown list, select the checking interval.
     1. From the **Wait for** dropdown list, select the delay time for the alert. Default is no delay.
 
@@ -193,7 +195,7 @@ To create a query-based rule condition, `odata.type` should be set to `Microsoft
 
 The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired. 
 
-> [!Note] 
+> [!NOTE]
 > The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
 
 ## Resource-centric and workspace-centric rule scope types
@@ -269,7 +271,7 @@ You can deploy a metric alert template using the CLI.
     * Change the active subscription using the subscription name.
         `az account set --subscription "My Demos"`
 
-      * Change the active subscription using the subscription ID.
+    * Change the active subscription using the subscription ID.
         `az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
 
 1.	[Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
