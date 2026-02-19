@@ -1,228 +1,64 @@
 ---
-title: Migrate to VM insights OpenTelemetry
-description: Learn how to migrate to VM insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
+title: Overview of VM insights
+description: Overview of VM insights, which monitors the health and performance of Azure VMs and automatically discovers and maps application components and their dependencies. 
 ms.topic: concept-article
-ms.date: 01/06/2026
+ms.date: 02/16/2026
 ---
 
-# Migrate to VM insights OpenTelemetry (preview)
+# Overview of VM insights
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently stores performance data collected from the client in a Log Analytics workspace and uses this data to populate visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. 
 
-OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
+VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time. You can view this data in a single VM from the virtual machine directly, or you can use Azure Monitor to deliver an aggregated view of multiple VMs.
 
-
-## Benefits of OpenTelemetry for VM insights
-
-Benefits of the new OTel-based collection pipeline include the following:
-
-| Benefit| Description |
-|:---|:---|
-| Unified data model | Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards |
-| Richer, simplified counters | More system and process metrics, including per‑process CPU, memory, disk I/O, and consolidation of legacy counters into clearer OTel metrics.
-| Easy onboarding | Collect OTel metrics with minimal setup. |
-| Flexible visualization | Use the Azure portal, Metrics Explorer, or Azure Monitor Dashboards with Grafana. |
-| Cost‑efficient performance | Store metrics in Azure Monitor Workspace instead of Log Analytics ingestion for lower cost and faster queries. |
+:::image type="content" source="media/vminsights-overview/vminsights-performance-view.png" lightbox="media/vminsights-overview/vminsights-performance-view.png" alt-text="Screenshot tof the Performance view in VM insights.":::
 
 
+## Pricing
 
-## When to enable OTel metrics
-Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OTel‑based guest OS metrics is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
+There's no direct cost for VM insights, but you're charged for its activity in the Log Analytics workspace. Based on the pricing that's published on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/), VM insights is billed for:
 
-Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
+- Data ingested from agents and stored in the workspace.
+- Alert rules based on log data.
+- Notifications sent from alert rules.
 
-| Log Analytics workspace | OTel-based metrics (Preview) |
-|:---|:---|
-| Custom performance counters or extended retention | Standards‑based, unified schema across platforms |
-| Advanced KQL analytics and log‑metric correlation | Easier onboarding and broader system and process coverage |
-| Mature, fully supported pipeline for operational analytics | Cost‑efficient metric storage with improved query performance |
+The log size varies by the string lengths of performance counters. It can increase with the number of logical disks and network adapters allocated to the VM. If you're already using Service Map, the only change you'll see is the extra performance data that's sent to the Azure Monitor `InsightsMetrics` data type.​
 
+## Supported machines and operating systems
 
-## Prerequisites
+VM insights supports the following machines:
 
-- Azure VM or Arc-enabled server running an [operating system supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
-- See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md) for prerequisites related to Azure Monitor agent.
-- See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
-
-
-## Enable OpenTelemetry for VM insights
-
-> [!NOTE]
-> Onboarding to VM insights in the Azure portal automatically creates a new data collection rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from a virtual machine by using Azure Monitor](./data-collection-performance.md).
-
-1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
-
-2. If your VM is already onboarded to VM insights, you'll see a prompt to enable OpenTelemetry.
-
-    :::image type="content" source="media/vminsights-opentelemetry/upgrade.png" lightbox="media/vminsights-opentelemetry/upgrade.png" alt-text="Screenshot that shows option to upgrade VM insights to OpenTelemetry experience in the Azure portal.":::
-
-    If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
-
-    :::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal.":::
-
-3. For a VM that hasn't been onboarded yet, you can choose whether to enable the classic log-based metrics, the new OpenTelemetry metrics, or both. For a VM that has already been onboarded, you can only add OpenTelemetry metrics. The option to disable classic log-based metrics isn't currently available. See [Disable classic log-based metrics](#disable-classic-log-based-metrics) to disable the classic experience.
-
-4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**. If a workspace doesn't already exist, a default workspace will be created for you. You can also choose to create your own new workspace.
-
-    :::image type="content" source="media/vminsights-opentelemetry/customize-configuration.png" lightbox="media/vminsights-opentelemetry/customize-configuration.png" alt-text="Screenshot that shows screen for customizing metric collection in the Azure portal.":::
-
-    > [!NOTE]
-    > This screen displays the metrics that will be collected, although you can't modify them here. See [Customize metric collection](#customize-metric-collection).
-
-## Visualize OpenTelemetry metrics
-When you enable OTel metrics, the VM insights dashboards are updated to use these metrics instead of those stored in Log Analytics workspace. You can do custom analysis of these metrics select the **Metrics** option from the Azure Monitor workspace to open metrics explorer. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md).
-
-:::image type="content" source="media/vminsights-opentelemetry/metrics-explorer.png" lightbox="media/vminsights-opentelemetry/metrics-explorer.png" alt-text="Screenshot that shows metrics explorer with PromQL in the Azure portal.":::
-
-## Disable classic log-based metrics
-If your VM is currently using the classic log-based VM insights experience, then you can choose to stop sending metrics to the Log Analytics workspace to save on ingestion and retention costs. See [Disable monitoring of your VMs in VM insights](./vminsights-optout.md) for this process.
-
-## Customize metric collection
-By default, VM insights collects a core set of metrics at no cost. If you need additional visibility such as per-process performance, logical disk usage, filesystem utilization, or workload-specific metrics, you can extend the collection by updating the [Data Collection Rule (DCR)](../data-collection/data-collection-rule-overview.md) that gets deployed when VM insights with OTel metrics is enabled.
-
-To identify the DCR associated with the VM, open **Data Collection Rules** from the **Monitor** menu in the Azure portal. Select the **Resources** tab and locate your VM.
-
-:::image type="content" source="media/vminsights-opentelemetry/resources.png" lightbox="media/vminsights-opentelemetry/resources.png" alt-text="Screenshot of Resources tab of Data Collection Rules menu item.":::
-
-Click the number in the **Data collection rules** column to list the DCRs associated with the VM. The OTel DCR will have a name in the form `MSVMOtel-<region>-<name>`.
-
-:::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
-
-See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md) for guidance on how to modify a DCR. The default configuration is shown below. Add any of the metrics listed in [Additional metrics](#additional-metrics) to the `counterSpecifiers` section of the DCR.
-
-```json
-{
-    "properties": {
-        "dataSources": {
-            "performanceCountersOTel": [
-                {
-                    "streams": [
-                        "Microsoft-OtelPerfMetrics"
-                    ],
-                    "samplingFrequencyInSeconds": 60,
-                    "counterSpecifiers": [
-                        "system.filesystem.usage",
-                        "system.disk.io",
-                        "system.disk.operation_time",
-                        "system.disk.operations",
-                        "system.memory.usage",
-                        "system.network.io",
-                        "system.cpu.time",
-                        "system.uptime",
-                        "system.network.dropped",
-                        "system.network.errors"
-                    ],
-                    "name": "OtelDataSource"
-                }
-            ]
-        },
-        "destinations": {
-            "monitoringAccounts": [
-                {
-                    "accountResourceId": "/subscriptions/my-subscription/resourcegroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace",
-                    "name": "MonitoringAccountDestination"
-                }
-            ]
-        },
-        "dataFlows": [
-            {
-                "streams": [
-                    "Microsoft-OtelPerfMetrics"
-                ],
-                "destinations": [
-                    "MonitoringAccountDestination"
-                ]
-            }
-        ]
-    }
-}
-```
+- Azure virtual machines
+- Azure Virtual Machine Scale Sets
+- Hybrid virtual machines connected with Azure Arc
+  - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
+- On-premises virtual machines.
+- Virtual machines hosted in another cloud environment.
 
 
-## Troubleshooting
+VM insights supports the following operating systems:
 
-**The charts are stuck in a loading state**<br>
-This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
-
-**Unable to access Data Collection Rule (DCR)**<br>
-This error occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
-
-**Data configuration error**<br>
-This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
-
-**Access denied**<br>
-This error occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
-
-**An unknown error occurred**<br>
-If this error message persists, then contact support to open up a ticket.
+- All operating systems supported by the Azure Monitor agent for guest performance. See [Azure Monitor agent supported operating systems](../agents/azure-monitor-agent-supported-operating-systems.md).
+- All operating systems supported by the Dependency agent for processes and dependencies. See [Dependency agent supported operating systems](../vm/vminsights-dependency-agent.md#supported-operating-systems).
 
 
-## Metrics reference
-The following tables list the metrics collected by VM insights OpenTelemetry.
 
-### Default metrics
-The metrics in the following table are collected by default and at no additional cost.
+## Limitations
 
-| Metric Name                        | Description                                      |
-|------------------------------------|--------------------------------------------------|
-| system.uptime                     | Time since last reboot (in seconds)               |
-| system.cpu.time                   | Total CPU time consumed (user + system + idle), in seconds |
-| system.memory.usage               | Memory in use (bytes)                            |
-| system.network.io                 | Bytes transmitted/received                       |
-| system.network.dropped            | Dropped packets                                  |
-| system.network.errors             | Network errors                                   |
-| system.disk.io                    | Disk I/O (bytes read/written)                    |
-| system.disk.operations            | Disk operations (read/write counts)              |
-| system.filesystem.usage           | Filesystem usage in bytes                        |
-| system.disk.operation_time        | Average disk operation time                      |
+- VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
+- VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
 
-### Additional metrics
-The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There's an additional cost to collect these metrics. 
+## Diagnostic and usage data
 
-| Metric Name                        | Description                                      |
-|------------------------------------|--------------------------------------------------|
-| system.cpu.utilization            | CPU usage %                                      |
-| system.cpu.logical.count          | Number of logical processors                     |
-| system.cpu.physical.count         | Number of physical CPUs                          |
-| system.cpu.frequency              | CPU frequency                                    |
-| system.cpu.load_average.1m        | System load average (1 min)                      |
-| system.cpu.load_average.5m        | System load average (5 min)                      |
-| system.cpu.load_average.15m       | System load average (15 min)                     |
-| system.memory.utilization         | % memory used                                    |
-| system.memory.limit               | Total memory limit                               |
-| system.memory.page_size           | Page size (bytes)                                |
-| system.linux.memory.available     | Available memory                                 |
-| system.linux.memory.dirty         | Dirty memory pages                               |
-| system.paging.faults              | Page faults                                      |
-| system.paging.operations          | Paging operations (reads/writes)                 |
-| system.paging.usage               | Paging/swap usage (bytes)                        |
-| system.paging.utilization         | % paging/swap used                               |
-| system.disk.io_time               | Time spent doing I/O                             |
-| system.disk.merged                | Number of merged operations                      |
-| system.disk.pending_operations    | Pending I/O operations                           |
-| system.disk.weighted_io_time      | Weighted I/O time (accounts for queue depth)     |
-| system.filesystem.utilization     | Filesystem usage %                               |
-| system.filesystem.inodes.usage    | Inodes usage                                     |
-| system.network.packets            | Packets transmitted/received                     |
-| system.network.connections        | Active network connections                       |
-| system.network.conntrack.count    | Current conntrack table entries                  |
-| system.network.conntrack.max      | Maximum conntrack table size                     |
-| process.uptime                    | Process uptime                                   |
-| process.cpu.time                  | CPU time consumed by process                     |
-| process.cpu.utilization           | CPU usage % per process                          |
-| process.memory.usage              | Memory usage (RSS)                               |
-| process.memory.virtual            | Virtual memory usage                             |
-| process.memory.utilization        | Memory % usage                                   |
-| process.disk.io                   | Disk I/O (bytes per process)                     |
-| process.disk.operations           | Disk operations per process                      |
-| process.paging.faults             | Process page faults                              |
-| process.open_file_descriptors     | Open file descriptors                            |
-| process.threads                   | Number of threads                                |
-| process.handles                   | Handles in use (Windows)                         |
-| process.context_switches          | Context switches                                 |
-| process.signals_pending           | Pending signals                                  |
-| system.processes.count            | Total number of processes                        |
-| system.processes.created          | Processes created                                |
+Microsoft automatically collects usage and performance data through your use of Azure Monitor. Microsoft uses this data to improve the quality, security, and integrity of the service.
 
-## Learn More
-- [Azure Monitor metrics](../metrics/data-platform-metrics.md)
+To provide accurate and efficient troubleshooting capabilities, the Map feature includes data about the configuration of your software. The data provides information such as the operating system and version, IP address, DNS name, and workstation name. Microsoft doesn't collect names, addresses, or other contact information.
+
+For more information about data collection and usage, see the [Microsoft Online Services Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=512132).
+
+[!INCLUDE [GDPR-related guidance](~/reusable-content/ce-skilling/azure/includes/gdpr-dsr-and-stp-note.md)]
+
+## Next steps
+
+- [Enable and configure VM insights](./vminsights-enable-overview.md).
+

@@ -2,24 +2,16 @@
 title: Overview of VM insights
 description: Overview of VM insights, which monitors the health and performance of Azure VMs and automatically discovers and maps application components and their dependencies. 
 ms.topic: concept-article
-ms.date: 01/15/2025
+ms.date: 02/16/2026
 ---
 
 # Overview of VM insights
 
-VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. It also monitors the performance of your virtual machines and virtual machine scale sets by collecting data on their running processes and dependencies on other resources. 
-
-VM insights supports Windows and Linux operating systems on:
-
-- Azure virtual machines.
-- Azure virtual machine scale sets.
-- Hybrid virtual machines connected with Azure Arc.
-- On-premises virtual machines.
-- Virtual machines hosted in another cloud environment.
+VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. 
 
 VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time. You can view this data in a single VM from the virtual machine directly, or you can use Azure Monitor to deliver an aggregated view of multiple VMs.
 
-:::image type="content" source="media/vminsights-overview/vminsights-azmon-directvm.png" lightbox="media/vminsights-overview/vminsights-azmon-directvm.png" alt-text="Screenshot that shows the VM insights perspective in the Azure portal.":::
+:::image type="content" source="media/vminsights-overview/vminsights-performance-view.png" lightbox="media/vminsights-overview/vminsights-performance-view.png" alt-text="Screenshot tof the Performance view in VM insights.":::
 
 
 ## Pricing
@@ -40,6 +32,9 @@ VM insights supports the following machines:
 - Azure Virtual Machine Scale Sets
 - Hybrid virtual machines connected with Azure Arc
   - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
+- On-premises virtual machines.
+- Virtual machines hosted in another cloud environment.
+
 
 VM insights supports the following operating systems:
 
@@ -52,8 +47,6 @@ VM insights supports the following operating systems:
 
 - VM insights collects a predefined set of metrics from the VM client and doesn't collect any event data. You can use the Azure portal to [create data collection rules](../vm/data-collection.md) to collect events and additional performance counters using the same Azure Monitor agent used by VM insights.
 - VM insights doesn't support sending data to multiple Log Analytics workspaces (multi-homing).
-- VM insights doesn't support any sampling frequency other than every 60 seconds for performance counters in the Microsoft-InsightsMetrics stream.
-- For log based visualizations (Classic), data from VMs using Private Link is collected but will not surface in the VM Insights experience.
 
 ## Diagnostic and usage data
 
