@@ -27,7 +27,7 @@ Advisor identifies resources that weren't used at all over the last seven days a
   * P100 of average CPU in last 3 days (sum over all cores) <= 2%
   * Outbound Network utilization is less than 2% over a seven-day period
 
-### Resize SKU recommendations
+## Resize SKU recommendations
 
 Advisor recommends resizing virtual machines when it's possible to fit the current load on a more appropriate SKU, which is less expensive (based on retail rates). On virtual machine scale sets, Advisor recommends resizing when it's possible to fit the current load on a more appropriate cheaper SKU, or a lower number of instances of the same SKU.
 
@@ -55,7 +55,7 @@ Advisor recommends resizing virtual machines when it's possible to fit the curre
 
 * For virtual machine scale set resources, Advisor prioritizes instance count recommendations over SKU change recommendations because instance count changes are easily actionable, resulting in faster savings.
 
-### Burstable recommendations
+## Burstable recommendations
 
 We evaluate if workloads are eligible to run on specialized SKUs called **Burstable SKUs** that support variable workload performance requirements and are less expensive than general purpose SKUs. Learn more about burstable SKUs here: [B-series burstable - Azure Virtual Machines](/azure/virtual-machines/sizes-b-series-burstable).
 
@@ -85,7 +85,7 @@ In some cases recommendations can't be adopted or might not be applicable, such 
 
 In such cases, simply use the Dismiss/Postpone options associated with the recommendation.
 
-### Limitations
+## Limitations
 
 * The savings associated with the recommendations are based on retail rates and don't take into account any temporary or long-term discounts that might apply to your account. As a result, the listed savings might be higher than actually possible.  
 
