@@ -4,6 +4,7 @@ description: Sample Azure Resource Manager templates to deploy Azure Monitor res
 ms.topic: sample
 ms.custom: devx-track-arm-template
 ms.reviewer: yagil
+ms.custom: references_regions
 ms.date: 04/01/2024
 ---
 
