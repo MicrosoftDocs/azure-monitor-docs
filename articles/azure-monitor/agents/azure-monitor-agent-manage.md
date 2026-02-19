@@ -21,6 +21,9 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
 
 > [!IMPORTANT]
+> If the agent is going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
+
+> [!IMPORTANT]
 > Installing, upgrading, or uninstalling the Azure Monitor Agent doesn't require a machine restart.
 
 ## Installation options

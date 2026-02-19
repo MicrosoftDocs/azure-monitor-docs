@@ -21,7 +21,8 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 - You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster for onboarding.
 - You require [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
 
-
+> [!IMPORTANT]
+> If your clusters are going to connect to the Azure Monitor workspace or Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 
 
 ## Create workspaces

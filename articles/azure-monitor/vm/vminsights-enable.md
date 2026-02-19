@@ -24,6 +24,9 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 - See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent and for network requirements for the Dependency agent.
 
+> [!IMPORTANT]
+> If your virtual machines are going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
+
 ## Agents
 
 When you enable VM Insights for a machine, the following agents are installed. 
