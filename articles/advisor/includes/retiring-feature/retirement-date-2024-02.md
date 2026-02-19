@@ -5,9 +5,9 @@ ms.date: 11/11/2025
 
 ---
 
-##### August 31, 2024
+##### February 10, 2024
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Resource | Azure classic administrator roles - Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | HDInsight cluster | Outdated HDInsight images | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

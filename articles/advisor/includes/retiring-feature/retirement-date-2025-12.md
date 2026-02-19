@@ -10,4 +10,6 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
+> | App service | Support for PHP 8.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure AI - Health Insights | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Resource | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
