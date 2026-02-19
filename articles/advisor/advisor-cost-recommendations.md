@@ -1,6 +1,6 @@
 ---
-title: Use Azure Advisor to reduce service costs by scaling active hardware and VM depolyments
-description: Use Azure Advisor to optimize the cost of your Azure deployments.
+title: Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
+description: Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances.
 ms.topic: how-to
 ms.date: 2/18/2026
 
