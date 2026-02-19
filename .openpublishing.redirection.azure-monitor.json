@@ -8823,6 +8823,11 @@
    "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
    "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/statsbeat.md",
+   "redirect_url": "/azure/azure-monitor/app/application-insights-faq",
+   "redirect_document_id": false
   }
  ]
 }
