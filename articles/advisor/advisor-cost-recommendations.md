@@ -1,5 +1,5 @@
 ---
-title: Reduce service costs using Azure Advisor
+title: Use Azure Advisor to reduce service costs by scaling active hardware and VM depolyments
 description: Use Azure Advisor to optimize the cost of your Azure deployments.
 ms.topic: how-to
 ms.date: 2/18/2026
