@@ -32,7 +32,9 @@
        - name: Filter Service Health notifications by event level
          href: metadata-filter.md
        - name: Service Health data transitions
-         href: service-health-notification-transitions.md 
+         href: service-health-notification-transitions.md
+       - name: Service Health notification data properties
+         href: service-health-event-propeties.md
        - name: How to create alerts
          items:
           - name: Create Service Health alerts
