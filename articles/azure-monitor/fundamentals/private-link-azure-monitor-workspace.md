@@ -1,7 +1,7 @@
 ---
 title: Use private endpoints for Managed Prometheus and Azure Monitor workspaces
 description: Overview of private endpoints for secure query access to Azure Monitor workspace from virtual networks.
-ms.topic: how-to
+ms.topic: article
 ms.date: 08/28/2025
 ---
 
@@ -10,7 +10,7 @@ ms.date: 08/28/2025
 Use [private endpoints](/azure/private-link/private-endpoint-overview) for Managed Prometheus and your Azure Monitor workspace to allow clients on a virtual network (VNet) to securely query data over a [Private Link](/azure/private-link/private-link-overview). The private endpoint uses a separate IP address within the VNet address space of your Azure Monitor workspace resource. Network traffic between the clients on the VNet and the workspace resource traverses the VNet and a private link on the Microsoft backbone network, eliminating exposure from the public internet.
 
 > [!NOTE]
-> If you are using Azure Managed Grafana to query your data, configure a [Managed Private Endpoint](https://aka.ms/ags/mpe) to ensure the queries from Managed Grafana into your Azure Monitor workspace use the Microsoft backbone network without going through the internet.
+> To add a private endpoint to your Azure Monitor private link scope (AMPLS) to support queries from your Azure Monitor workspace for VM and Kubernetes monitoring, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](./private-link-vm-kubernetes.md#enable-query-for-azure-monitor-workspace). This article provides additional details about this endpoint and the DNS records that it creates.
 
 Using private endpoints for your workspace enables you to:
 
@@ -18,9 +18,12 @@ Using private endpoints for your workspace enables you to:
 * Increase security for the VNet, by enabling you to block exfiltration of data from the VNet.
 * Securely connect to workspaces from on-premises networks that connect to the VNet using [VPN](/azure/vpn-gateway/vpn-gateway-about-vpngateways) or [ExpressRoutes](/azure/expressroute/expressroute-locations) with private-peering.
 
+> [!NOTE]
+> If you are using Azure Managed Grafana to query your data, configure a [Managed Private Endpoint](https://aka.ms/ags/mpe) to ensure the queries from Managed Grafana into your Azure Monitor workspace use the Microsoft backbone network without going through the internet.
+
 ## Conceptual overview
 
-:::image type="content" source="media/azure-monitor-workspace-private-endpoint/azure-monitor-workspace-private-endpoints-overview.png" lightbox="media/azure-monitor-workspace-private-endpoint/azure-monitor-workspace-private-endpoints-overview.png" alt-text="A diagram showing an overview of private endpoints for Azure Monitor workspace.":::
+:::image type="content" source="media/private-link-azure-monitor-workspace/azure-monitor-workspace-private-endpoints-overview.png" lightbox="media/private-link-azure-monitor-workspace/azure-monitor-workspace-private-endpoints-overview.png" alt-text="A diagram showing an overview of private endpoints for Azure Monitor workspace.":::
 
 A private endpoint is a special network interface for an Azure service in your [Virtual Network](/azure/virtual-network/virtual-networks-overview) (VNet). When you create a private endpoint for your workspace, it provides secure connectivity between clients on your VNet and your workspace. The private endpoint is assigned an IP address from the IP address range of your VNet. The connection between the private endpoint and the workspace uses a secure private link.
 
@@ -69,7 +72,7 @@ When you resolve the query endpoint URL from outside the VNet with the private e
 
 For the example below we're using `k8s02-workspace` located in the East US region. The resource name isn't guaranteed to be unique, which requires us to add a few characters after the name to make the URL path unique; for example, `k8s02-workspace-<key>`. This unique query endpoint is shown on the Azure Monitor workspace Overview page.
 
-:::image type="content" source="media/azure-monitor-workspace-private-endpoint/azure-monitor-workspace-overview.png" lightbox="media/azure-monitor-workspace-private-endpoint/azure-monitor-workspace-overview.png" alt-text="A screenshot showing an Azure Monitor workspace overview page.":::
+:::image type="content" source="media/private-link-azure-monitor-workspace/azure-monitor-workspace-overview.png" lightbox="media/private-link-azure-monitor-workspace/azure-monitor-workspace-overview.png" alt-text="A screenshot showing an Azure Monitor workspace overview page.":::
 
 The DNS resource records for the Azure Monitor workspace when resolved from outside the VNet hosting the private endpoint, are:
 

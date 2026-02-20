@@ -263,7 +263,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
 |Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
 |Logs|[Configure Azure Monitor with Network Security Perimeter (Preview)](../fundamentals/network-security-perimeter.md)|New article for configuring Azure Monitor for Network Security Perimeter.|
-|Logs|[Configure private link for Azure Monitor](../logs/private-link-configure.md)|Rewritten for clarity.|
+|Logs|[Configure private link for Azure Monitor](../fundamentals/private-link-configure.md)|Rewritten for clarity.|
 |Logs|[Design Azure Monitor Private Link configuration](../logs/private-link-design.md)|Rewritten for clarity.|
 |Virtual-Machines|[Enable VM Insights](../vm/resource-manager-vminsights.md)|Consolidated onboarding content into single article for clarity.|
 |Virtual-Machines|[Disable monitoring of your VMs in VM insights](../vm/vminsights-optout.md)|Rewritten for clarity.|

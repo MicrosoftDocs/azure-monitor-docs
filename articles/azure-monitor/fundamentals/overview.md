@@ -263,3 +263,5 @@ No. Azure Monitor is a scalable cloud service that processes and stores large am
 * [Getting started with Azure Monitor](getting-started.md)
 * [Sources of monitoring data for Azure Monitor](data-sources.md)
 * [Data collection in Azure Monitor](../essentials/data-collection.md)
+* [Cost optimization in Azure Monitor](./best-practices-cost.md)
+* [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
