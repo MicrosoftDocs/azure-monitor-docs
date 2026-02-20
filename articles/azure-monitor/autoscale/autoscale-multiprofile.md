@@ -1,10 +1,10 @@
 ---
 title: Autoscale with multiple profiles
 description: "Using multiple and recurring profiles in autoscale"
-ms.custom: devx-track-azurecli, devx-track-azurepowershell
+ms.custom: devx-track-azurecli, devx-track-azurepowershell, references_regions
 ms.topic: how-to
-ms.date: 11/01/2024
 ms.reviewer: akkumari
+ms.date: 11/01/2024
 
 # Customer intent: As a user or dev ops administrator, I want to understand how set up autoscale with more than one profile so I can scale my resources with more flexibility.
 ---
@@ -40,6 +40,7 @@ The following example shows an autoscale setting with a default profile and recu
 In the example above, on Monday after 3 AM, the recurring profile will cease to be used. If the instance count is less than 3, autoscale scales to the new minimum of three. Autoscale continues to use this profile and scales based on CPU% until Monday at 8 PM. At all other times scaling is done according to the default profile, based on the number of requests. After 8 PM on Monday, autoscale switches to the default profile. If for example, the number of instances at the time is 12, autoscale scales in to 10, which the maximum allowed for the default profile.
 
 ## Multiple contiguous profiles
+
 Autoscale transitions between profiles based on their start times. The end time for a given profile is determined by the start time of the following profile.
 
 In the portal, the end time field becomes the next start time for the default profile. You can't specify the same time for the end of one profile and the start of the next. The portal forces the end time to be one minute before the start time of the following profile. During this minute, the default profile becomes active. If you don't want the default profile to become active between recurring profiles, leave the end time field empty.
@@ -52,22 +53,25 @@ In the portal, the end time field becomes the next start time for the default pr
 
 When creating multiple profiles using templates, the CLI, and PowerShell, follow the guidelines below.
 
-## [ARM templates](#tab/templates)
+## [ARM & Bicep templates](#tab/templates)
 
 See the autoscale section of the [ARM template resource definition](/azure/templates/microsoft.insights/autoscalesettings) for a full template reference.
 
 There's no specification in the template for end time. A profile will remain active until the next profile's start time.  
-
 
 ## Add a recurring profile using ARM templates
 
 The following example shows how to create two recurring profiles. One profile for weekends from 00:01 on Saturday morning and a second Weekday profile starting on Mondays at 04:00. That means that the weekend profile starts on Saturday morning at one minute passed midnight and end on Monday morning at 04:00. The Weekday profile will start at 4am on Monday and end just after midnight on Saturday morning.
 
 Use the following command to deploy the template:
-`az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.json`
-where *VMSS1-autoscale.json* is the file containing the following JSON object.
 
-``` JSON
+* ARM (JSON): `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.json` where *VMSS1-autoscale.json* is the file containing the following JSON object.
+
+* Bicep: `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.bicep` where *VMSS1-autoscale.json* is the file containing the following Bicep object.
+
+**ARM (JSON)**
+
+```JSON
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -184,6 +188,115 @@ where *VMSS1-autoscale.json* is the file containing the following JSON object.
 }    
 ```
 
+**Bicep**
+
+```bicep
+resource VMSS1_Autoscale_607 'Microsoft.Insights/autoscaleSettings@2015-04-01' = {
+  name: 'VMSS1-Autoscale-607'
+  location: 'eastus'
+  properties: {
+    name: 'VMSS1-Autoscale-607'
+    enabled: true
+    targetResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+    profiles: [
+      {
+        name: 'Weekday profile'
+        capacity: {
+          minimum: '3'
+          maximum: '20'
+          default: '3'
+        }
+        rules: [
+          {
+            scaleAction: {
+              direction: 'Increase'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+            metricTrigger: {
+              metricName: 'Inbound Flows'
+              metricNamespace: 'microsoft.compute/virtualmachinescalesets'
+              metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+              operator: 'GreaterThan'
+              statistic: 'Average'
+              threshold: 100
+              timeAggregation: 'Average'
+              timeGrain: 'PT1M'
+              timeWindow: 'PT10M'
+              dimensions: []
+              dividePerInstance: true
+            }
+          }
+          {
+            scaleAction: {
+              direction: 'Decrease'
+              type: 'ChangeCount'
+              value: '1'
+              cooldown: 'PT5M'
+            }
+            metricTrigger: {
+              metricName: 'Inbound Flows'
+              metricNamespace: 'microsoft.compute/virtualmachinescalesets'
+              metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+              operator: 'LessThan'
+              statistic: 'Average'
+              threshold: 60
+              timeAggregation: 'Average'
+              timeGrain: 'PT1M'
+              timeWindow: 'PT10M'
+              dimensions: []
+              dividePerInstance: true
+            }
+          }
+        ]
+        recurrence: {
+          frequency: 'Week'
+          schedule: {
+            timeZone: 'E. Europe Standard Time'
+            days: [
+              'Monday'
+            ]
+            hours: [
+              4
+            ]
+            minutes: [
+              0
+            ]
+          }
+        }
+      }
+      {
+        name: 'Weekend profile'
+        capacity: {
+          minimum: '1'
+          maximum: '3'
+          default: '1'
+        }
+        rules: []
+        recurrence: {
+          frequency: 'Week'
+          schedule: {
+            timeZone: 'E. Europe Standard Time'
+            days: [
+              'Saturday'
+            ]
+            hours: [
+              0
+            ]
+            minutes: [
+              1
+            ]
+          }
+        }
+      }
+    ]
+    notifications: []
+    targetResourceLocation: 'eastus'
+  }
+}
+```
+
 ## [CLI](#tab/cli)
 
 The CLI can be used to create multiple profiles in your autoscale settings.
@@ -200,7 +313,7 @@ The following steps show how to create a recurring autoscale profile using the C
 
 The following example shows how to add a recurring autoscale profile, recurring on Thursdays between 06:00 and 22:50.
 
-``` azurecli
+```azurecli
 
 az account set --subscription 0000aaaa-11bb-cccc-dd22-eeeeee333333
 export autoscaleName=vmss-autoscalesetting-002
@@ -237,8 +350,7 @@ az monitor autoscale rule create \
 
 az monitor autoscale profile list \
 --autoscale-name $autoscaleName \
---resource-group $resourceGroupName
-                                  
+--resource-group $resourceGroupName                               
 ```
 
 > [!NOTE]  
@@ -388,7 +500,6 @@ Update-AzAutoscaleSetting  `
 -Enabled $true `
 -TargetResourceUri $TargetResourceId `
 -Profile $DefaultProfile, $RecurringProfile, $DefaultProfile2
-
 ```
 
 > [!NOTE] 
