@@ -5,16 +5,16 @@ ms.date: 11/11/2025
 
 ---
 
-##### April 23, 2025
+##### June 17, 2025
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Kubernetes service | Ubuntu 20.04 LTS support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Kubernetes service | Support for Ubuntu 18.04 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
-##### April 30, 2025
+##### June 30, 2025
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | App service | Node 18 LTS | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Cognitive Service | Video Retrieval | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
