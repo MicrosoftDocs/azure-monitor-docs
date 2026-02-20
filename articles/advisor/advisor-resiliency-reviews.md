@@ -23,6 +23,14 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 |:--- |:--- |
 | Manage recommendation lifecycle | To mark a recommendation as: `Mark as completed`, `Postponed`, `Dismissed`, or `Resolved`.|
 
+## Changes to recommendation triage process
+
+The triage process has been deprecated and replaced with a new process.
+
+- `Pending` and `Accepted` are now combined into only `Active`
+- `Rejected` is now `Dismissed`
+- `Completed` and `Postponed` are available
+
 ## How it works
 
 After you request a review, Microsoft Cloud Solution Architect engineers perform extensive analysis, curate the list of prioritized recommendations, and publish a resiliency review.
