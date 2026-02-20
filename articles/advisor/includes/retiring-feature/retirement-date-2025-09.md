@@ -25,7 +25,6 @@ ms.date: 11/11/2025
 > | Microsoft App Container App | Add-ons | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Microsoft App Container App | Azure Container Apps - Add-ons (public preview) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Public IP address | Basic SKU | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Resource | Microsoft Defender for Cloud - Microsoft Actions and Compliance Offerings | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Solution | Entire Service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | NCv3 VM Family Support | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Virtual machine | Standard_NC6s_v3, Standard_NC12s_v3, and Standard_NC24s_v3 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

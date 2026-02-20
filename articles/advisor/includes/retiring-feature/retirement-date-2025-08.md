@@ -27,6 +27,5 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | Application gateway | Support for TLS 1.0 and 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cosmos DB account | Support for TLS 1.0 and 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Resource | Support for TLS 1.0/1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | SQL managed instance | Support for TLS 1.0 and 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | SQL server | Support for TLS 1.0 and 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
