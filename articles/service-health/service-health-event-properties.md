@@ -1,12 +1,12 @@
 ---
-title: Azure Service Health notifications overview
-description: An overview of Service Health notifications
+title: Azure Service Health notifications data overview
+description: An overview of Service Health notifications data properties
 ms.topic: concept-article
 ms.date: 02/20/2026
 
 ---
 
-# Service Health notifications
+# Service Health notifications properties
 
 
 Azure Service Health notifications include different data properties depending on the **event type** (such as Service Issue, Planned Maintenance, Security Advisory, or Health Advisory) and its **incident type** (the specific scenario within that event). 
