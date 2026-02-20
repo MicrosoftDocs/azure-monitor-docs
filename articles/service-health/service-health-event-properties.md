@@ -1,6 +1,6 @@
 ---
 title: Azure Service Health data properties overview
-description: An overview of Service Health notification event types
+description: An overview of Service Health notification data property types
 ms.topic: concept-article
 ms.date: 02/20/2026
 
@@ -21,7 +21,7 @@ In other words, the event type tells you *why* Azure is contacting you. The inci
 
 
 
-## Event type properties
+## Event type
 Service Health **event** properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
 
 For information about event tags, see [Service Health event tags](service-health-event-tags.md) to see how they're used in Service Health.
