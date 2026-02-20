@@ -34,7 +34,7 @@
        - name: Service Health data transitions
          href: service-health-notification-transitions.md
        - name: Service Health notification data properties
-         href: service-health-event-propeties.md
+         href: service-health-event-properties.md
        - name: How to create alerts
          items:
           - name: Create Service Health alerts
