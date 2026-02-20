@@ -63,13 +63,9 @@ There's no specification in the template for end time. A profile will remain act
 
 The following example shows how to create two recurring profiles. One profile for weekends from 00:01 on Saturday morning and a second Weekday profile starting on Mondays at 04:00. That means that the weekend profile starts on Saturday morning at one minute passed midnight and end on Monday morning at 04:00. The Weekday profile will start at 4am on Monday and end just after midnight on Saturday morning.
 
-Use the following command to deploy the template:
-
-* ARM (JSON): `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.json` where *VMSS1-autoscale.json* is the file containing the following JSON object.
-
-* Bicep: `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.bicep` where *VMSS1-autoscale.json* is the file containing the following Bicep object.
-
 **ARM (JSON)**
+
+Use the following command to deploy the template: `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.json` where *VMSS1-autoscale.json* is the file containing the following JSON object.
 
 ```JSON
 {
@@ -190,110 +186,112 @@ Use the following command to deploy the template:
 
 **Bicep**
 
+Use the following command to deploy the template: `az deployment group create --name VMSS1-Autoscale-607 --resource-group rg-vmss1 --template-file VMSS1-autoscale.bicep` where *VMSS1-autoscale.bicep* is the file containing the following Bicep object.
+
 ```bicep
 resource VMSS1_Autoscale_607 'Microsoft.Insights/autoscaleSettings@2015-04-01' = {
-  name: 'VMSS1-Autoscale-607'
-  location: 'eastus'
-  properties: {
     name: 'VMSS1-Autoscale-607'
-    enabled: true
-    targetResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
-    profiles: [
-      {
-        name: 'Weekday profile'
-        capacity: {
-          minimum: '3'
-          maximum: '20'
-          default: '3'
-        }
-        rules: [
-          {
-            scaleAction: {
-              direction: 'Increase'
-              type: 'ChangeCount'
-              value: '1'
-              cooldown: 'PT5M'
+    location: 'eastus'
+    properties: {
+        name: 'VMSS1-Autoscale-607'
+        enabled: true
+        targetResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+        profiles: [
+            {
+                name: 'Weekday profile'
+                capacity: {
+                    minimum: '3'
+                    maximum: '20'
+                    default: '3'
+                }
+                rules: [
+                    {
+                        scaleAction: {
+                            direction: 'Increase'
+                            type: 'ChangeCount'
+                            value: '1'
+                            cooldown: 'PT5M'
+                        }
+                        metricTrigger: {
+                            metricName: 'Inbound Flows'
+                            metricNamespace: 'microsoft.compute/virtualmachinescalesets'
+                            metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+                            operator: 'GreaterThan'
+                            statistic: 'Average'
+                            threshold: 100
+                            timeAggregation: 'Average'
+                            timeGrain: 'PT1M'
+                            timeWindow: 'PT10M'
+                            dimensions: []
+                            dividePerInstance: true
+                        }
+                    }
+                    {
+                        scaleAction: {
+                            direction: 'Decrease'
+                            type: 'ChangeCount'
+                            value: '1'
+                            cooldown: 'PT5M'
+                        }
+                        metricTrigger: {
+                            metricName: 'Inbound Flows'
+                            metricNamespace: 'microsoft.compute/virtualmachinescalesets'
+                            metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
+                            operator: 'LessThan'
+                            statistic: 'Average'
+                            threshold: 60
+                            timeAggregation: 'Average'
+                            timeGrain: 'PT1M'
+                            timeWindow: 'PT10M'
+                            dimensions: []
+                            dividePerInstance: true
+                        }
+                    }
+                ]
+                recurrence: {
+                    frequency: 'Week'
+                    schedule: {
+                        timeZone: 'E. Europe Standard Time'
+                        days: [
+                            'Monday'
+                        ]
+                        hours: [
+                            4
+                        ]
+                        minutes: [
+                            0
+                        ]
+                    }    
+                }
             }
-            metricTrigger: {
-              metricName: 'Inbound Flows'
-              metricNamespace: 'microsoft.compute/virtualmachinescalesets'
-              metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
-              operator: 'GreaterThan'
-              statistic: 'Average'
-              threshold: 100
-              timeAggregation: 'Average'
-              timeGrain: 'PT1M'
-              timeWindow: 'PT10M'
-              dimensions: []
-              dividePerInstance: true
+            {
+                name: 'Weekend profile'
+                capacity: {
+                    minimum: '1'
+                    maximum: '3'
+                    default: '1'
+                }
+                rules: []
+                recurrence: {
+                    frequency: 'Week'
+                    schedule: {
+                        timeZone: 'E. Europe Standard Time'
+                        days: [
+                            'Saturday'
+                        ]
+                        hours: [
+                            0
+                        ]
+                        minutes: [
+                            1
+                        ]
+                    }
+                }
             }
-          }
-          {
-            scaleAction: {
-              direction: 'Decrease'
-              type: 'ChangeCount'
-              value: '1'
-              cooldown: 'PT5M'
-            }
-            metricTrigger: {
-              metricName: 'Inbound Flows'
-              metricNamespace: 'microsoft.compute/virtualmachinescalesets'
-              metricResourceUri: '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-vmss1/providers/Microsoft.Compute/virtualMachineScaleSets/VMSS1'
-              operator: 'LessThan'
-              statistic: 'Average'
-              threshold: 60
-              timeAggregation: 'Average'
-              timeGrain: 'PT1M'
-              timeWindow: 'PT10M'
-              dimensions: []
-              dividePerInstance: true
-            }
-          }
         ]
-        recurrence: {
-          frequency: 'Week'
-          schedule: {
-            timeZone: 'E. Europe Standard Time'
-            days: [
-              'Monday'
-            ]
-            hours: [
-              4
-            ]
-            minutes: [
-              0
-            ]
-          }
-        }
-      }
-      {
-        name: 'Weekend profile'
-        capacity: {
-          minimum: '1'
-          maximum: '3'
-          default: '1'
-        }
-        rules: []
-        recurrence: {
-          frequency: 'Week'
-          schedule: {
-            timeZone: 'E. Europe Standard Time'
-            days: [
-              'Saturday'
-            ]
-            hours: [
-              0
-            ]
-            minutes: [
-              1
-            ]
-          }
-        }
-      }
-    ]
-    notifications: []
-    targetResourceLocation: 'eastus'
-  }
+        notifications: []
+        targetResourceLocation: 'eastus'
+    }
 }
 ```
 
