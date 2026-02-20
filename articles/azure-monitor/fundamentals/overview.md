@@ -38,12 +38,6 @@ Azure Monitor has a centralized data platform to support collection of data from
 
 See [Azure Monitor data platform](./data-platform.md).
 
-## Data collection
-Use a variety of onboarding scenarios 
-Data collection rules in Azure Monitor define different scenarios including what should be collected and where it should be sent. Refine data collection for your unique requirements using advanced features such as [transformations](../data-collection/data-collection-transformations.md) that allow you preprocess your data to optimize your costs or fine tune your queries.
-
-See [Data collection rules](../data-collection/data-collection-rule-overview.md) and .
-
 ## Analyze and visualize data
 In addition to integrating monitoring data into the Azure portal experience for different services, Azure Monitor provides multiple options to visualize your monitoring data or perform ad-hoc analysis. Use prebuilt dashboards and workbooks in the Azure portal or create your own custom dashboards. For ad-hoc analysis and investigation, use Azure Monitor tools write KQL and PromQL queries.
 
@@ -56,23 +50,22 @@ See [Azure Monitor alerts](../alerts/alerts-overview.md) and [Smart alerts](../a
 
 
 ## Troubleshooting and diagnostics
-Use the 
-Use the [Azure Copilot observability agent](../aiops/observability-agent-overview.md) to leverage AI in the investigation of issues by automatically analyzing related telemetry and suggesting potential root causes.
+Use analysis tools in Azure Monitor to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. The observability agent provides an agentic troubleshooting experience to help analyze telemetry, detect anomalies, and correlate signals across data sources.
+
+See [Azure Copilot observability agent](../aiops/observability-agent-overview.md).
 
 ## Hybrid environments
 Azure Monitor isn't only designed to monitor Azure environments but can act as a centralized monitoring solution for your hybrid environments. Use Azure Arc to connect your resources in other clouds and on-premises to monitor them alongside your Azure resources. For particularly large data volumes and to support environments with intermittent connectivity, deploy the Azure Monitor pipeline which extends the data collection capabilities of Azure Monitor into your own data center. 
 
-See [Multicloud monitoring](./best-practices-multicloud.md and [Azure Monitor pipeline](../data-collection/pipeline-overview.md).
+See [Multicloud monitoring](./best-practices-multicloud.md) and [Azure Monitor pipeline](../data-collection/pipeline-overview.md).
 
+## Onboarding 
+Onboard resources to Azure Monitor using a variety of methods including the Azure portal, command line, or infrastructure as code (IaC) templates. Use data collection rules to customize and filter the data that should be collected from different sources. 
 
-
-- **Grafana** is an open‑source visualization and analytics platform commonly used for observability dashboards. [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) allow you to work with any Grafana dashboards  with Azure Monitor data in the Azure portal. Use Azure Managed Grafana to access other data sources and integrate with your existing environment.
-- **Kusto Query Language (KQL)** is the primary query language used across Azure Monitor, Microsoft Sentinel, Azure Resource Graph, and other Azure services. While not an open standard, KQL provides a consistent and powerful query experience across Microsoft observability and security services.
-
+See [Azure Monitor data sources and data collection methods](./data-sources.md).
 
 
 ## Next steps
 
-* [Getting started with Azure Monitor](getting-started.md)
+* [Cost optimization in Azure Monitor](./best-practices-cost.md)
 * [Sources of monitoring data for Azure Monitor](data-sources.md)
-* [Data collection in Azure Monitor](../essentials/data-collection.md)
