@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: yalavi, ronitauber
-ms.date: 02/12/2026
+ms.date: 02/20/2026
 ms.custom: references_regions
 # Customer intent: As an Azure Monitor user, I want to understand what the Azure Copilot observability agent is, how it works, and how to use it for troubleshooting issues detected by Azure Monitor alerts.
 ---
@@ -66,7 +66,7 @@ For more information about Azure Monitor issues and capabilities, see [Azure Mon
 
 The observability agent integrates into standard Azure Monitor troubleshooting workflows, so you can investigate problems directly from familiar entry points.
 
-Alert‑driven access (portal and notifications) – You can launch the observability agent from Azure Monitor alerts. Use the Investigate action in alert notifications, such as email, or from the alert details page in the Azure portal.
+Alert‑driven access (portal and notifications) – You can launch the observability agent from Azure Monitor alerts. Use the **Investigate** action in alert notifications, such as email, or from the alert details page in the Azure portal.
 
 Azure Copilot integration – You can invoke the agent during troubleshooting workflows in Azure Copilot.
 
@@ -155,6 +155,6 @@ The observability agent is currently available in the following Azure regions:
 
 ## Related content
 
-- [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation
-- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md) - Step-by-step usage guide
-- [Best practices for Azure Monitor investigations](observability-agent-best-practices.md) - Optimization guidance
+- [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation.
+- [Use Azure Monitor issues and investigations](aiops-issue-and-investation-how-to.md) - Step-by-step usage guide.
+- [Best practices for Azure Monitor investigations](observability-agent-best-practices.md) - Optimization guidance.

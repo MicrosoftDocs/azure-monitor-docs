@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
-ms.date: 02/12/2026
+ms.date: 02/20/2026
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
 
@@ -18,6 +18,30 @@ Azure Monitor issue is an AIOps capability that helps you analyze and troublesho
 The observability agent provides two main concepts for analyzing and retaining troubleshooting insights: investigations and issues.
 
 An issue provides a persistent context for investigation results and related troubleshooting data. Use issues to retain investigation results, supporting data, and related alerts over time.
+
+### Investigation findings saved in an issue
+
+When you create an issue, the observability agent saves the findings (investigation data). The findings appear in the issue's Investigation tab. This data includes:
+
+#### What happened
+
+The **What happened** section is a summary that states when the incident occurred, the primary symptom (errors, latency, or failures), and the affected component with headline counts or severity. A compact chart under Supporting data shows the primary signal. The chart has a caption describing what the chart shows.
+
+#### Analysis
+
+The **Analysis** section summarizes the investigation findings with concise bullet points that link observed telemetry to likely causes, showing patterns (spikes, correlated dependency failures, exception types) and counts. It also notes important negatives (what was checked and found normal) and might include a focused visual to illustrate correlation or distribution.
+
+#### What can be done next
+
+The **What can be done next** area lists concise, prioritized, and actionable steps (investigations, mitigations, or alerts) that engineers should take to validate, remediate, or monitor the issue.
+
+#### Summary
+
+The **Summary** section provides a concise conclusion consisting of the confirmed root cause or the primary finding, the affected scope, and the key supporting evidence (timestamps, counts, exception types). It ends with immediate, prioritized next steps or mitigations for you to consider. It might also include a short statement of remaining unknowns if any.
+
+#### Supporting data
+
+The **Supporting data** section presents raw telemetry excerpts, exact Kusto queries, counts, and representative `operation_Id` samples. Occasionally, it might also show targeted charts that substantiate the analysis.
 
 ## Issue capabilities
 
