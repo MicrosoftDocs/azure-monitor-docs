@@ -92,7 +92,7 @@ You can also view alerts fired for a specific resource. On the resource  menu in
 
 ### View alert rule details in the Azure portal
 
-You can view query-based metric alert rules in the Azure portal together with all other alert rules.  filter for only Query-based metric rules,set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
+You can view query-based metric alert rules in the Azure portal together with all other alert rules. Filter for only query-based metric rules, and set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
 
 ## Edit a rule in the Azure portal
 
@@ -105,7 +105,7 @@ To edit a query-based metric alert rule in the Azure portal:
 1. Select **Edit**. The alert editing screen appears. 
 1. Continue as you would while creating a new alert rule.
 
-## [ARM template](#tab/arm)
+## [ARM & Bicep templates](#tab/arm)
 
 You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
 
@@ -240,7 +240,7 @@ For workspace scope, include the Workspace Azure Resource Manager ID in the Scop
 
 The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 
-### ARM template example
+### ARM & Bicep template examples
 
 The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
 
