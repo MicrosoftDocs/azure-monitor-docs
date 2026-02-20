@@ -1,6 +1,6 @@
 ---
-title: Azure Service Health data properties overview
-description: An overview of Service Health notifications data properties
+title: Azure Service Health notifications overview
+description: An overview of Service Health notifications
 ms.topic: concept-article
 ms.date: 02/20/2026
 
