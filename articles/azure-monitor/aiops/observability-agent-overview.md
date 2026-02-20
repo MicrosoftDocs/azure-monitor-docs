@@ -156,5 +156,5 @@ The observability agent is currently available in the following Azure regions:
 ## Related content
 
 - [Azure Monitor issues and investigations overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation.
-- [Use Azure Monitor issues and investigations](aiops-issue-and-investation-how-to.md) - Step-by-step usage guide.
+- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md) - Step-by-step usage guide.
 - [Best practices for Azure Monitor investigations](observability-agent-best-practices.md) - Optimization guidance.
