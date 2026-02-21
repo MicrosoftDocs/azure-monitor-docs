@@ -48,10 +48,10 @@ Use interactive analysis tools such as metrics explorer and Log Analytics to inv
 
 See [Azure Copilot observability agent](../aiops/observability-agent-overview.md).
 
-## Alerting
-Alerts in Azure Monitor proactively notify you when issues are identified in collected data so that you can proactively respond to them before they affect your customers.  AIOps capabilities such as dynamic alert thresholds and smart alerts use machine learning to assist in alert configuration and response. 
+## Respond to issues
+Alerts in Azure Monitor proactively notify you when issues are identified in collected data so that you can proactively respond to them before they affect your customers.  AIOps capabilities such as dynamic alert thresholds and smart alerts use machine learning to assist in alert configuration and response. Autoscale is an Azure Monitor feature that automatically adds and removes resources according to the load on your application.
 
-See [Azure Monitor alerts](../alerts/alerts-overview.md) and [Smart alerts](../alerts/proactive-diagnostics.md).
+See [Azure Monitor alerts](../alerts/alerts-overview.md), [Smart alerts](../alerts/proactive-diagnostics.md), [Autoscale](../autoscale/autoscale-overview.md).
 
 
 ## Hybrid environments
