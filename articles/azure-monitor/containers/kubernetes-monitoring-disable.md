@@ -2,9 +2,10 @@
 title: Disable monitoring of your Kubernetes cluster
 description: Describes how to disable scraping of Prometheus metrics and collection of logs from your Kubernetes cluster.
 ms.topic: how-to
-ms.date: 08/25/2025
 ms.devlang: azurecli
 ms.reviewer: aul
+ms.custom: references_regions
+ms.date: 08/25/2025
 ---
 
 # Disable monitoring of your Kubernetes cluster
@@ -13,8 +14,7 @@ Use the following methods to disable collection of [Prometheus metrics](#disable
 
 ## Required permissions
 
-- You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster.
-
+* You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster.
 
 ## Disable Prometheus metrics
 
@@ -26,7 +26,8 @@ Use the following `az aks update` Azure CLI command with the `--disable-azure-mo
 az aks update --disable-azure-monitor-metrics -n <cluster-name> -g <cluster-resource-group>
 ```
 
-### Azure Arc-enabled Cluster:
+### Azure Arc-enabled Cluster
+
 ```
 az k8s-extension delete --name azuremonitor-metrics --cluster-name <cluster-name> --resource-group <cluster-resource-group> --cluster-type connectedClusters 
 ```
@@ -49,55 +50,83 @@ Use the [az aks disable-addons](/cli/azure/aks#az-aks-disable-addons) CLI comman
 az aks disable-addons -a monitoring -n MyExistingManagedCluster -g MyExistingManagedClusterRG
 ```
 
-Alternatively, you can use the following ARM template below to remove the agent. 
+Alternatively, you can use the following ARM or Bicep template below to remove the agent. 
 
-  ```json
+# [ARM (JSON)](#tab/arm)
+
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "aksResourceId": {
-            "type": "string",
-            "metadata": {
-                "description": "AKS Cluster Resource ID"
+              "type": "string",
+              "metadata": {
+                  "description": "AKS Cluster Resource ID"
               }
-          },
+        },
         "aksResourceLocation": {
             "type": "string",
             "metadata": {
                 "description": "Location of the AKS resource e.g. \"East US\""
-              }
-          },
+            }
+        },
         "aksResourceTagValues": {
             "type": "object",
             "metadata": {
-               "description": "Existing all tags on AKS Cluster Resource"
-              }
+                "description": "Existing all tags on AKS Cluster Resource"
+            }
         }
     },
     "resources": [
-    {
-      "name": "[split(parameters('aksResourceId'),'/')[8]]",
-      "type": "Microsoft.ContainerService/managedClusters",
-      "location": "[parameters('aksResourceLocation')]",
-      "tags": "[parameters('aksResourceTagValues')]",
-      "apiVersion": "2018-03-31",
-      "properties": {
-        "mode": "Incremental",
-        "id": "[parameters('aksResourceId')]",
-        "addonProfiles": {
-          "omsagent": {
-            "enabled": false,
-            "config": null
-          }
-          }
+        {
+            "name": "[last(split(parameters('aksResourceId'), '/'))]",
+            "type": "Microsoft.ContainerService/managedClusters",
+            "apiVersion": "2025-10-02-preview",
+            "location": "[parameters('aksResourceLocation')]",
+            "tags": "[parameters('aksResourceTagValues')]",
+            "properties": {
+                "addonProfiles": {
+                    "omsagent": {
+                        "enabled": false
+                    }
+                }
+            }
         }
-      }
     ]
-  }
-  ```
+}
+```
+
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('AKS Cluster Resource ID')
+param aksResourceId string
+
+@description('Location of the AKS resource e.g. "East US"')
+param aksResourceLocation string
+
+@description('Existing all tags on AKS Cluster Resource')
+param aksResourceTagValues object
+
+resource aksResourceId_resource 'Microsoft.ContainerService/managedClusters@2025-10-02-preview' = {
+    name: last(split(aksResourceId, '/'))
+    location: aksResourceLocation
+    tags: aksResourceTagValues
+    properties: {
+        addonProfiles: {
+            omsagent: {
+                enabled: false
+            }
+        }
+    }
+}
+```
+
+---
 
 ### Arc-enabled Kubernetes cluster
+
 Use the following CLI command to delete the `azuremonitor-containers` extension and all the Kubernetes resources related to the extension.
 
 ```azurecli
@@ -108,8 +137,8 @@ az k8s-extension delete --name azuremonitor-containers --cluster-name <cluster-n
 
 The following steps apply to the following environments:
 
-- AKS Engine on Azure and Azure Stack
-- OpenShift version 4 and higher
+* AKS Engine on Azure and Azure Stack
+* OpenShift version 4 and higher
 
 1. Run the following helm command to identify the containers helm chart release installed on your cluster
 
@@ -126,7 +155,7 @@ The following steps apply to the following environments:
 
     *azmon-containers-release-1* represents the helm chart release for Container insights.
 
-2. To delete the chart release, run the following helm command.
+1. To delete the chart release, run the following helm command.
 
     `helm delete <releaseName>`
 
@@ -141,10 +170,6 @@ The following steps apply to the following environments:
     ```
 
 The configuration change can take a few minutes to complete. Because Helm tracks your releases even after you've deleted them, you can audit a cluster's history, and even undelete a release with `helm rollback`.
-
-
-
-
 
 ## Next steps
 
