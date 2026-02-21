@@ -97,7 +97,7 @@ Alternatively, you can use the following ARM or Bicep template below to remove t
 }
 ```
 
-# [Bicep)](#tab/bicep)
+# [Bicep](#tab/bicep)
 
 ```bicep
 @description('AKS Cluster Resource ID')
