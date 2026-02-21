@@ -90,9 +90,11 @@ FilePath="my-dcr.json"
 az rest --method put --url $ResourceId"?api-version=2022-06-01" --body @$FilePath
 ```
 
-### [ARM template](#tab/arm)
+### [ARM & Bicep templates](#tab/arm)
 
-Use the following template to create a DCR, replacing `<dcr-properties>` with the properties for your DCR. You can use this template to create a new DCR or update an existing one.
+Use the following templates to create a DCR, replacing `<dcr-properties>` with the properties for your DCR. You can use this template to create a new DCR or update an existing one.
+
+**ARM (JSON)**
 
 ```json
 {
@@ -117,14 +119,31 @@ Use the following template to create a DCR, replacing `<dcr-properties>` with th
             "type": "Microsoft.Insights/dataCollectionRules",
             "name": "[parameters('dataCollectionRuleName')]",
             "location": "[parameters('location')]",
-            "apiVersion": "2021-09-01-preview",
+            "apiVersion": "2024-03-11",
             "properties": {
                 "<dcr-properties>"
             }
         }
     ]
 }
+```
 
+**Bicep**
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
+    name: dataCollectionRuleName
+    location: location
+    properties: {
+        <dcr-properties>
+    }
+}
 ```
 
 ---
