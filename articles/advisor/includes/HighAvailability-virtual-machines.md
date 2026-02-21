@@ -37,7 +37,7 @@ Subcategory: HighAvailability
   
 Azure Disks with ZRS provide synchronous replication of data across three Availability Zones in a region, making the disk tolerant to zonal failures without disruptions to applications. For higher resiliency and availability, migrate disks from LRS to ZRS.  
   
-**Potential benefits**: By designing your applications to use ZRS Disks, your data is replicated across 3 Availability Zones, making your disk resilient to a zonal outage  
+**Potential benefits**: By designing your applications to use ZRS Disks, your data is replicated across 3 Availability Zones, making your disk resilient to a zone outage  
 
 **Impact:** High
   
@@ -164,7 +164,7 @@ Subcategory: Other
   
 Availability Zones (AZ) in Azure help protect your applications and data from datacenter failures. Each AZ is made up of one or more datacenters equipped with independent power, cooling, and networking. By designing solutions to use zonal VMs, you can isolate your VMs from failure in any other zone.  
   
-**Potential benefits**: Usage of zonal VMs protect your apps from zonal outage in any other zones.  
+**Potential benefits**: Usage of zonal VMs protect your apps from zone outage in any other zones.  
 
 **Impact:** High
   

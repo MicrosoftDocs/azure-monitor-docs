@@ -19,9 +19,9 @@ Azure Advisor now supports the concept of Critical Risks. Critical Risks are ass
 
 Advisor flags the following risks as foundational to application availability: 
 
-* Zonal Resiliency for Networking Services 
+* Zone Resiliency for Networking Services 
 
-* Zonal Resiliency for Operational Data Storage 
+* Zone Resiliency for Operational Data Storage 
 
 The services above underpin mission-critical workloads. If the services fail, the impact can cascade across your entire application stack. 
 
@@ -37,9 +37,9 @@ To learn more, see [Evaluate cost implications of recommendations](advisor-how-t
 
 ## May 2025
 
-### New Recommendations for Zonal Resiliency
+### New Recommendations for Zone Resiliency
 
-Azure Advisor now includes new recommendations that help improve zonal resiliency for several Azure services. These recommendations guide you in configuring deployments to use Availability Zones for improved fault tolerance and availability.
+Azure Advisor now includes new recommendations that help improve zone resiliency for several Azure services. These recommendations guide you in configuring deployments to use Availability Zones for improved fault tolerance and availability.
 
 #### Supported resource types
 

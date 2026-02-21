@@ -67,5 +67,7 @@ See [Azure Monitor data sources and data collection methods](./data-sources.md).
 
 ## Next steps
 
+* [Data collection in Azure Monitor](../essentials/data-collection.md)
 * [Cost optimization in Azure Monitor](./best-practices-cost.md)
-* [Sources of monitoring data for Azure Monitor](data-sources.md)
+* [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
+

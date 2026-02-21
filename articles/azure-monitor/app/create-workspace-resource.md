@@ -16,7 +16,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 Enhanced capabilities include:
 
 * **[Customer-managed keys](../logs/customer-managed-keys.md) -** Encrypt your data at rest with keys only accessible to you.
-* **[Azure Private Link](../logs/private-link-security.md) -** Securely connect Azure PaaS services to your virtual network using private endpoints.
+* **[Azure Private Link](../fundamentals/private-link-security.md) -** Securely connect Azure PaaS services to your virtual network using private endpoints.
 * **[Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) -** Manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
 * **[Commitment tiers](../logs/cost-logs.md#commitment-tiers) -** Save up to 30% over pay-as-you-go pricing.
 
