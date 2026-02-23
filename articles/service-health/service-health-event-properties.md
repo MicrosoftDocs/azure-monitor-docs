@@ -23,8 +23,10 @@ In other words, the event type tells you *why* Azure is contacting you. The inci
 
 
 
-## ServiceHealthResources table in Azure Resource Graph
-Service Health **event** properties are metadata fields in Azure Service Health notifications that describe the nature, severity, and lifecycle of an event. 
+## Azure Resource Graph
+
+In the `ServiceHealthResources` table, Service Health **event** properties are metadata fields that explain what happened, how severe the issue is, and the event’s current status.
+
 For information about event tags, see [Service Health event tags](service-health-event-tags.md) to see how they're used in Service Health.
 
 Key properties include
@@ -51,7 +53,7 @@ Key properties include
 - **Timestamps** such as *properties.impactStartTime* and *properties.impactMitigationTime*
 
 Start by checking **properties.incidentType** to understand what kind of issue and detail is involved, then check the *level* for the severity.
-To learn how to use Azure Activity logs, see [Azure Activity log event schema](azure/azure-monitor/platform/activity-log-schema#service-health-category).
+To learn how to use Azure Activity logs, see [Azure Activity log event schema](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
 
 | Property name                     | Description                                                            |
 | --------------------------------- | ---------------------------------------------------------------------- |
