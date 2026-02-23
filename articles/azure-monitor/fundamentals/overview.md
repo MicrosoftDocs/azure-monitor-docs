@@ -60,9 +60,9 @@ Azure Monitor isn't only designed to monitor Azure environments but can act as a
 See [Multicloud monitoring](./best-practices-multicloud.md) and [Azure Monitor pipeline](../data-collection/pipeline-overview.md).
 
 ## Onboarding 
-Onboard resources to Azure Monitor using a variety of methods including the Azure portal, command line, or infrastructure as code (IaC) templates. Use data collection rules to customize and filter the data that should be collected from different sources. 
+Onboard resources to Azure Monitor using a variety of methods including the Azure portal, command line, or infrastructure as code (IaC) templates to deploy at scale. Use data collection rules to customize and filter the data that should be collected from different sources. 
 
-See [Azure Monitor data sources and data collection methods](./data-sources.md).
+See [Azure Monitor data sources and data collection methods](./data-sources.md) and [Resource Manager template samples](./resource-manager-samples.md).
 
 
 ## Next steps
