@@ -51,7 +51,7 @@ Key properties include
 - **Timestamps** such as *properties.impactStartTime* and *properties.impactMitigationTime*
 
 Start by checking **properties.incidentType** to understand what kind of issue and detail is involved, then check the *level* for the severity.
-To learn how to use Azure Activity logs, see [Azure Activity log event schema](azure/azure-monitor/platform/activity-log-schema#service-health-category
+To learn how to use Azure Activity logs, see [Azure Activity log event schema](azure/azure-monitor/platform/activity-log-schema#service-health-category).
 
 | Property name                     | Description                                                            |
 | --------------------------------- | ---------------------------------------------------------------------- |
