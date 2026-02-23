@@ -20,7 +20,8 @@
       href: admin-access-reference.md
     - name: Subscription and Tenant access
       href: subscription-vs-tenant.md  
-        
+    - name: Service Health notifications data properties
+      href: service-health-event-properties.md
     - name: Service issues
       items:
        - name: Service issues overview
@@ -33,8 +34,7 @@
          href: metadata-filter.md
        - name: Service Health data transitions
          href: service-health-notification-transitions.md
-       - name: Service Health notifications data properties
-         href: service-health-event-properties.md
+       
        - name: How to create alerts
          items:
           - name: Create Service Health alerts
