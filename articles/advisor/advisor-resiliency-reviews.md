@@ -21,12 +21,19 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 
 | Term or phrase | Detail |
 |:--- |:--- |
-| Triage recommendation | To accept or reject a recommendation. |
-| Manage recommendation lifecycle | To mark a recommendation as `completed`, `postponed or dismissed`, `in progress`, or `not started`. You only manage a recommendation is in the **Accepted** state. |
+| Manage recommendation lifecycle | To mark a recommendation as: `Mark as completed`, `Postponed`, `Dismissed`, or `Resolved`.|
+
+## Changes to recommendation triage process
+
+The triage process has been deprecated and replaced with a new process.
+
+- `Pending` and `Accepted` are now combined into only `Active`
+- `Rejected` is now `Dismissed`
+- `Completed` and `Postponed` are available
 
 ## How it works
 
-After you request a review, Microsoft Cloud Solution Architect engineers perform extensive analysis, curate the list of prioritized recommendations, and publish a resiliency review. You triage the recommendations and implement each one. Your Microsoft account team works with you to facilitate the process.
+After you request a review, Microsoft Cloud Solution Architect engineers perform extensive analysis, curate the list of prioritized recommendations, and publish a resiliency review.
 
 The following table defines the responsible parties for Advisor actions.
 
@@ -34,9 +41,8 @@ The following table defines the responsible parties for Advisor actions.
 |:--- |:--- |
 | Request a resiliency review | Customer using your Customer Success Account Manager or aligned Cloud Solution Architect. |
 | Analyze workload configuration, perform the review using the Well Architected Reliability Assessment and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
-| Triage recommendations to accept or reject the recommendations | Customer. Triage is done by team members who have authority to make decisions about workload optimization priorities. |
-| Manage the lifecycle of each recommendation | Customer. Setting the status of accepted recommendation as `completed`, `postponed or dismissed`, `in progress`, or `not started`. |
-| Implement recommendations that were accepted | Customer. Implementation is done by engineers who are responsible for managing resources and the configuration. |
+| Manage the lifecycle of each recommendation | Customer. Setting the status of recommendation as: `Mark as completed`, `Postponed`, `Dismissed`, or `Resolved`. |
+| Implement recommendations | Customer. Implementation is done by engineers who are responsible for managing resources and the configuration. |
 | Facilitate implementation | Microsoft account team using your support contract. |
 
 ## Enable reviews
@@ -81,7 +87,7 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-The triage process includes reviewing recommendations and making decisions on which to implement. Use **Accept** and **Reject** actions to capture your decision. Accepted recommendations are available to engineers on your team on **Reliability** pane.
+There are four lifecycle management steps for recommendations: `new`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-preview.png" source="./media/advisor-reliability-highlight-reliability.png" type="content":::
 
