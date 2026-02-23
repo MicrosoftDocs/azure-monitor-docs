@@ -34,14 +34,14 @@ Application Insights provides a unified experience for monitoring AI agents acro
 See [Monitor AI agents](../app/agents-view.md) and [Observability in generative AI](/azure/ai-foundry/concepts/observability).
 
 ## Azure Monitor data platform
-Azure Monitor has a centralized data platform to support collection of telemetry from a variety of sources and support the different features for analysis and troubleshooting. Log Analytics workspaces collect log and trace data which can be analyzed with Kusto Query Language (KQL). Azure Monitor workspaces collect Prometheus and OpenTelemetry metrics, which can be analyzed using Prometheus Query Language (PromQL).
+Azure Monitor has a centralized data platform to support collection of telemetry from a variety of sources and the different features for analysis and troubleshooting. Log Analytics workspaces collect log and trace data which can be analyzed with Kusto Query Language (KQL). Azure Monitor workspaces collect Prometheus and OpenTelemetry metrics, which can be analyzed using Prometheus Query Language (PromQL).
 
 See [Azure Monitor data platform](./data-platform.md).
 
 ## Analyze and visualize data
-In addition to integrating monitoring data into the Azure portal experience for different services, Azure Monitor provides multiple options to visualize your monitoring data or perform ad-hoc analysis. Use prebuilt workbooks and Grafana dashboards in the Azure portal or create your own custom dashboards. 
+In addition to integrating monitoring data into the Azure portal experience for different services, Azure Monitor provides multiple options to visualize your monitoring data or perform ad-hoc analysis. Use prebuilt workbooks and Grafana dashboards in the Azure portal or create your own custom dashboards. For ad-hoc analysis, use metrics explorer to analyze metrics using PromQL and Log Analytics to analyze log and trace data using KQL.
 
-See [Visualize data](../visualize/best-practices-visualize.md).
+See [Visualize data](../visualize/best-practices-visualize.md), [metrics explorer](../metrics/metrics-explorer.md), [Log Analytics](../logs/log-analytics-overview.md).
 
 ## Troubleshooting and diagnostics
 Use interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubletooting experience, use the observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
@@ -67,7 +67,6 @@ See [Azure Monitor data sources and data collection methods](./data-sources.md).
 
 ## Next steps
 
-* [Data collection in Azure Monitor](../essentials/data-collection.md)
-* [Cost optimization in Azure Monitor](./best-practices-cost.md)
 * [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
-
+* [Cost optimization in Azure Monitor](./best-practices-cost.md)
+* [Data collection in Azure Monitor](../essentials/data-collection.md)
