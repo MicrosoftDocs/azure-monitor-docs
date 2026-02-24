@@ -247,8 +247,7 @@
         "articles/azure-monitor/profiler/**/*": "profiler",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
-        "articles/azure-monitor/vm/**/*": "virtual-machines",
-        "articles/operations/**/*": "operations"
+        "articles/azure-monitor/vm/**/*": "virtual-machines"
       },
       "searchScope": {
         "articles/advisor/**/*.md": [
