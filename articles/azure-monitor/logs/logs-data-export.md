@@ -668,6 +668,7 @@ The template option doesn't apply.
 | Alert | Partial support. Data ingestion for Zabbix alerts isn't supported. |
 | AlertHistory |  |
 | AzureActivity | Partial support. Data arriving from the Log Analytics agent or Azure Monitor Agent is fully supported in export. Data arriving via the Diagnostics extension agent is collected through storage. This path isn't supported in export. |
+| AzureDiagnostics | |
 | ConfigurationChange | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
 | ConfigurationData | Partial support. Some of the data is ingested through internal services that aren't supported in export. Currently, this portion is missing in export. |
 | DatabricksDatabricksSQL |  |

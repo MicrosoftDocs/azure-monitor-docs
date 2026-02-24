@@ -393,8 +393,6 @@ items:
         href: containers/kubernetes-monitoring-enable.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
-      - name: Enable private link
-        href: containers/kubernetes-monitoring-private-link.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
     - name: Analyze data
@@ -708,9 +706,6 @@ items:
         href: agents/azure-monitor-agent-policy.md
       - name: Log Analytics gateway
         href: agents/gateway.md
-      - name: Private link
-        displayName: Azure Monitor agent, AMA
-        href: agents/azure-monitor-agent-private-link.md
     - name: Agent data sources
       items:
       - name: Windows events
@@ -1098,13 +1093,19 @@ items:
       items:
       - name: Overview
         displayName: Private Link
-        href: logs/private-link-security.md
+        href: fundamentals/private-link-security.md
       - name: Design
         displayName: Private Link
-        href: logs/private-link-design.md
+        href: fundamentals/private-link-design.md
       - name: Configuration
         displayName: Private Link
-        href: logs/private-link-configure.md
+        href: fundamentals/private-link-configure.md
+      - name: VMs and Kubernetes clusters
+        displayName: Private link
+        href: fundamentals/private-link-vm-kubernetes.md
+      - name: Azure Monitor workspace
+        displayName: Private Link
+        href: fundamentals/private-link-azure-monitor-workspace.md
     - name: Network security perimeter
       items:
       - name: Configuration
