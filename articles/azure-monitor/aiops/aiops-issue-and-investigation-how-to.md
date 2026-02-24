@@ -122,8 +122,6 @@ The observability agent presents findings based on the data it analyzed. To revi
 1. Read the **What can be done next** section to see recommended next steps, such as mitigations, further investigations, or alerts to set up for monitoring.
 1. Read the **Summary** section for a concise summary of the findings, including the likely cause, affected scope, key evidence, and recommended next steps.
 
-For more information about issue findings, see [Investigation findings saved in an issue](aiops-issue-and-investigation-overview.md#investigation-findings-saved-in-an-issue).
-
 ## Scope the investigation
 
 To adjust the scope of the investigation, use the information in the following sections.
