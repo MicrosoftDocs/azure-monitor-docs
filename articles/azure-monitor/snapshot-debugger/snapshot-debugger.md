@@ -120,6 +120,10 @@ There is **no additional cost** for storing data captured by Snapshot Debugger.
 
 [See example scenarios in which you may experience Snapshot Debugger overhead.](./snapshot-debugger-troubleshoot.md#snapshot-debugger-overhead-scenarios)
 
+## Code Optimizations
+
+If you're receiving Snapshot Debugger snapshots for your app, you can view their insights as **Exceptions** in the [Code Optimizations consolidated overview](../optimization-insights/view-code-optimizations.md#exceptions). 
+
 ## Limitations
 
 This section discusses limitations for the Snapshot Debugger.

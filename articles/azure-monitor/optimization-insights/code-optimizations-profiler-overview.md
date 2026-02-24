@@ -37,15 +37,15 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 #### Identify
 
-Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Code Optimization insights are gathered from data collected by the .NET Profiler, and can also be pulled from Snapshot Debugger snapshots if enabled. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
 
 #### Analyze
 
-Once your environment's data is collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data is collected from the .NET Profiler traces (and Snapshot Debugger snapshots, if enabled), Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
-After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](code-optimizations-vs-extension.md) and [Visual Studio Code](code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix grounded in Code Optimizations insights. 
+After identifying and analyzing the Code Optimization results, you can use GitHub Copilot to resolve these issues in your code with fix suggestions grounded in Code Optimizations insights.
 
 You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimization insights.
 
