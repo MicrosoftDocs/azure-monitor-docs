@@ -44,7 +44,7 @@ In addition to integrating monitoring data into the Azure portal experience for 
 See [Visualize data](../visualize/best-practices-visualize.md), [metrics explorer](../metrics/metrics-explorer.md), [Log Analytics](../logs/log-analytics-overview.md).
 
 ## Troubleshooting and diagnostics
-Use interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubletooting experience, use the observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
+Use interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubleshooting experience, use the observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
 
 See [Azure Copilot observability agent](../aiops/observability-agent-overview.md).
 
