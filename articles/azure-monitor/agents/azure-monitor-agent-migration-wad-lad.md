@@ -32,13 +32,16 @@ Use the following phased approach to migrate from WAD/LAD to AMA with DCRs.
 1. Inventory machines running WAD/LAD
    
    1. For per-VM view in Azure portal, navigate to **Extensions + applications** tab.
-   2. For per-VM you can use Azure CLI: ```az vm extension list  --resource-group <RESOURCE_GROUP>  --vm-name <VM_NAME> --output table```
-   3. For fleet view, use Azure Resource Graph query from the [WAD/LAD overview article](./diagnostics-extension-overview.md) to find extensions by publisher == `Microsoft.Azure.Diagnostics`.
+   1. For per-VM you can use Azure CLI:     
+   ```azurecli
+   az vm extension list  --resource-group <RESOURCE_GROUP>  --vm-name <VM_NAME> --output table
+   ```
+   1. For fleet view, use Azure Resource Graph query from the [WAD/LAD overview article](./diagnostics-extension-overview.md) to find extensions by publisher == `Microsoft.Azure.Diagnostics`.
 
 2. Extract current diagnostics config - Gather WAD public config XML (Windows) and LAD JSON (Linux) to list counters, events, syslog facilities/severities, file paths, transfer schedules, and destinations. 
 
     ```azurecli
-   az vm extension show --resource-group <RESOURCE_GROUP> --vm-name <VM_NAME> --name Microsoft.Insights.VMDiagnosticsSettings  --query "settings" --output json
+   az vm extension show --resource-group <RESOURCE_GROUP> --vm-name <VM_NAME> --name <EXTENSION_NAME>  --query "settings" --output json
     ```
 
 3. Prioritize what to keep or drop - Use this moment to reduce noise and unused data types, if any. By using DCR transformations, you can additionally [filter to essential signals](../data-collection/data-collection-rule-overview.md#transformations).
