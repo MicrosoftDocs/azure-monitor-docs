@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2026
+ms.date: 02/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -334,19 +334,20 @@ Subcategory: BusinessContinuity
 
 #### Upgrade to Standard SSD OS disk  
   
-Upgrade the operating system (OS) disk from Standard HDD to Standard SSD for increased uptime of single-instance virtual machine and improved input/output operations and throughput.  
+HDD operating system (OS) disks are being retired in September 2028. Upgrade the OS disk from Standard HDD to Standard SSD for increased uptime of single-instance virtual machine and improved input/output operations and throughput.  
   
 **Potential benefits**: Boost single-instance VM uptime from 95% to 99.5%.  
 
 **Impact:** Medium
   
-For more information, see [Azure Disks Standard SSD billable transaction cap blog](https://aka.ms/billedcapsblog)  
+For more information, see [Migrate Standard HDD OS disks by September 08, 2028 - Azure Virtual Machines](https://aka.ms/standard-hdd-os-disk-retirement)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
 
 
 
@@ -520,23 +521,7 @@ Subcategory: Other
 
 <!--42d6dc9f-3e08-4a56-959d-0fd86310035f_end-->
 
-<!--89496618-9e41-49e3-9db1-d08d61d9e820_begin-->
 
-#### Standard_NC24rs_v3 virtual machine (VM) size in NCv3-series is being retired.  
-  
-To avoid any disruption to your service, we recommend that you change the VM sizing for your workloads from the current Standard_NC24rs_v3 to the newer VM series in the same NC product line.  
-  
-**Potential benefits**: Avoid potential disruptions and use new capabilities  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=standardnc24rsv3-virtual-machines-will-be-retired-on-march-31st-2025)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 89496618-9e41-49e3-9db1-d08d61d9e820  
-Subcategory: undefined
-
-<!--89496618-9e41-49e3-9db1-d08d61d9e820_end-->
 
 <!--71c69a25-0953-41d6-bf3a-1db323cd70b0_begin-->
 
@@ -646,23 +631,7 @@ Subcategory: undefined
 
 <!--cfeba225-ca14-48fe-83ba-50d24f60f84e_end-->
 
-<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_begin-->
 
-#### Contoso recommendation - R3  
-  
-Test recommendation for Contoso  
-  
-**Potential benefits**: Test potential benefits  
-
-**Impact:** Medium
-  
-For more information, see [nohello](https://aka.ms/nohello)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: da4fe6f8-35f4-4ea0-8704-1732ee88f695  
-Subcategory: undefined
-
-<!--da4fe6f8-35f4-4ea0-8704-1732ee88f695_end-->
 
 <!--d7d26cea-dca8-4033-9e7f-d8e8a7a08cf1_begin-->
 
@@ -773,5 +742,23 @@ Recommendation ID: 6885dc91-c4d1-4695-be6f-f64be575769f
 Subcategory: undefined
 
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_end-->
+
+<!--f49d7356-7251-4e15-a577-a3398527f3fd_begin-->
+
+#### Migrate from Dependency Agent and VM Insights Map  
+  
+Dependency Agent and VM Insights Map is retiring. We recommend considering a replacement solution from the Azure Marketplace to continue collecting data about processes running on virtual machines and external process dependencies.  
+  
+**Potential benefits**: Avoid Service Disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=491629)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
+Subcategory: undefined
+
+<!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
 
 <!--articleBody-->
