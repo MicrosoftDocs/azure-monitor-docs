@@ -8,8 +8,6 @@ ms.date: 02/24/2026
 
 # Troubleshoot machine enrollment in (preview)
 
-[!INCLUDE [Preview-register](./includes/preview-register.md)]
-
 This article provides troubleshooting steps for issues that may occur when [enabling machine enrollment](./configuration-enrollment.md). If you receive an error during enrollment, then there should be a specific resolution. If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the sections below to validate the different steps of the enrollment process to identify where any issues may have occurred.
 
 
