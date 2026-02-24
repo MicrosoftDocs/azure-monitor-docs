@@ -85,7 +85,6 @@
       items:
        - name: Service Health alerts overview
          href: service-health-alert-overview.md
-
 - name: Get started in Resource Health
   items: 
   - name: Resource health alerts overview
