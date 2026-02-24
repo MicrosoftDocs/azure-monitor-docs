@@ -8,7 +8,6 @@ ms.date: 02/24/2026
 
 # Service Health notifications data properties
 
-
 Azure Service Health notifications include different data properties depending on the **event type** (such as Service Issue, Planned Maintenance, Security Advisory, or Health Advisory) and its **incident type** (the specific scenario within that event). There are two ways to check the metadata of Service Health:
 - The Activity Log
 - Azure Resource Graph
