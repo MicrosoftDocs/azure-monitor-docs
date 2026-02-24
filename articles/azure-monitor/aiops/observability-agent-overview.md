@@ -14,7 +14,7 @@ ms.custom: references_regions
 
 The Azure Copilot observability agent is an AI-powered system designed to help you find the root cause of issues in complex, full-stack applications.
 
-By analyzing telemetry across metrics, logs, and related Azure resources, the agent helps you understand what changed, where the problem originated, and how different components are connected across your environment.
+The agent analyzes telemetry across metrics, logs, and related Azure resources. It helps you understand what changed, where the problem originated, and how different components are connected across your environment.
 
 The observability agent provides a chat-first investigation experience, designed to support troubleshooting workflows while focusing on structured, data-driven investigations.
 
@@ -27,7 +27,7 @@ When you initiate an investigation (for example, from an alert), the observabili
 - Correlating data across multiple data sources to understand the scope of the problem
 - Generating analysis with explanations of what happened and recommended next steps
 
-The agent surfaces its reasoning throughout the investigation, explaining how signals are correlated and why specific insights are generated, so you can follow and understand the investigation logic.
+The agent surfaces its reasoning throughout the investigation, explaining how signals are correlated and why specific insights are generated. This transparency lets you follow and understand the investigation logic.
 
 ## Run an investigation with the observability agent
 
@@ -36,11 +36,11 @@ As part of the troubleshooting experience, the observability agent can run an in
 
 The agent performs deep analysis and applies relevant analysis paths based on the signals it identifies, allowing the investigation to adapt to the specific characteristics of the issue.
 
-Depending on the scenario, the agent may analyze and correlate signals from multiple sources, including logs and tracing data, metrics, alerts and alert context, resource health signals, and signals related to recent releases or system changes, when available.
+Depending on the scenario, the agent might analyze and correlate signals from multiple sources. These sources can include logs and tracing data, metrics, and alerts and alert context. The agent can also use resource health signals and signals related to recent releases or system changes, when available.
 
-By correlating these signals, the agent generates analysis that explains what happened, highlights abnormal behavior, and surfaces relevant insights. Investigations are interactive and conversational.
+The agent correlates the signals and generates analysis that explains what happened, highlights abnormal behavior, and surfaces relevant insights. Investigations are interactive and conversational.
 
-You can ask follow-up questions, refine the scope, or create additional investigations to explore different aspects or hypotheses related to the same problem.
+You can ask follow-up questions, refine the scope, or create other investigations to explore different aspects or hypotheses related to the same problem.
 
 :::image type="content" source="media/observability-agent-overview/investigation-start.png" alt-text="Screenshot of Azure portal displaying API-RequestFailures investigation with latency metrics and request code breakdown." lightbox="media/observability-agent-overview/investigation-start.png":::
 
@@ -64,13 +64,13 @@ Investigation results are available temporarily. To persist investigation result
 
 When you create an Azure Monitor issue, the full investigation context is preserved, not just the final results.
 
-This includes:
+The issue includes:
 
 - Investigation results and supporting data
 - The interactive conversation with the agent
 - The reasoning and explanations presented to the user during the investigation
 
-By saving an issue, you can return to the investigation at any time, resume the conversation, ask additional questions, and continue exploring the problem with full visibility into previous findings and reasoning.
+By saving an issue, you can return to the investigation at any time, resume the conversation, ask other questions, and continue exploring the problem with full visibility into previous findings and reasoning.
 
 :::image type="content" source="media/observability-agent-overview/create-issue.png" alt-text="Screenshot of Azure Monitor investigation workflow, highlighting the Create Issue form with input fields and a Create Issue option." lightbox="media/observability-agent-overview/create-issue.png":::
 
@@ -107,7 +107,7 @@ If you run investigations without creating an issue, you don't need an Azure Mon
 
 ## Regions
 
-The observability agent is currently available in the following Azure regions. Some parts of the processing are geographically-based rather than regional.
+The observability agent is currently available in the following Azure regions. Some parts of the processing are geographically based rather than regional.
 
 :::row:::
     :::column:::

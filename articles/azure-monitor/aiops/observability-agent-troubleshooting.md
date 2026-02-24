@@ -4,7 +4,7 @@ description: This article provides troubleshooting guidance for Azure Copilot ob
 ms.topic: troubleshooting-general
 ms.servce: azure-monitor
 ms.reviewer: ronitauber
-ms.date: 02/19/2026
+ms.date: 02/24/2026
 ---
 
 # Troubleshooting guide: Azure Copilot observability agent (preview)

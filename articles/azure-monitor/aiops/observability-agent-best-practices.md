@@ -5,7 +5,7 @@ ms.topic: best-practice
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 # Customer intent: As an Azure Monitor user, I want to follow best practices for configuring Application Insights and OpenTelemetry so that observability agent investigations are accurate, correctly scoped, and actionable.
 ---
 

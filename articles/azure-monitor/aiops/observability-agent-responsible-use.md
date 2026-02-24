@@ -4,7 +4,7 @@ description: This article explains the responsible use of Azure Copilot observab
 ms.topic: faq
 ms.service: azure-monitor
 ms.reviewer: enauerman, ronitauber
-ms.date: 02/19/2026
+ms.date: 02/24/2026
 ---
 
 # Responsible AI FAQ for Azure Copilot observability agent (preview)

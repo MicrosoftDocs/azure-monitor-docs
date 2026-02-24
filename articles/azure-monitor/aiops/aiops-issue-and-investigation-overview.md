@@ -31,7 +31,7 @@ You can view a list of issues in the following locations:
 
 Azure Monitor Workspaces act as the container for issues.
 
-You can configure an AMW as the default container for all issues in a subscription. When a default AMW is set, issues created while investigating alerts fired on resources in that subscription are saved in the same workspace. This helps ensure that all related issues are stored and managed in a consistent location.
+You can configure an AMW as the default container for all issues in a subscription. When a default AMW is set, issues created while investigating alerts fired on resources in that subscription are saved in the same workspace. Saving them in the same workspace helps ensure that all related issues are stored and managed in a consistent location.
 
 :::image type="content" source="media/issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/issue-investigation-overview/issue-details.png":::
 

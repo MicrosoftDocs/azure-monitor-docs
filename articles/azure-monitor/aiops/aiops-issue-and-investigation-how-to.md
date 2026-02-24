@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, yalavi
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 ---
 
 # Use Azure Monitor issues and investigations (preview)
