@@ -15,7 +15,9 @@ Using Application Insights Profiler for .NET, you can track how much time is spe
 
 In this article, you:
 > [!div class="checklist"]
-> - Set up and deploy an ASP.NET Core web application hosted on Linux.
+> - Set up an ASP.NET Core web application hosted on Linux on your local computer.
+> - Create an App Service using the Azure portal.
+> - Deploy your local ASP.NET Core project to Azure using local Git.
 > - Add the Profiler to the ASP.NET Core web application.
 
 [!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
@@ -173,6 +175,8 @@ In this article, you:
    For more deployment options, see the [App Service documentation](/azure/app-service/deploy-best-practices).
 
 ## Deploy your project
+
+While you can deploy code to Azure App Service a variety of ways, the simplest way is deploy via local Git. [Learn more about how to deploy from a Git repository to Azure.](azure/app-service/deploy-local-git)
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
