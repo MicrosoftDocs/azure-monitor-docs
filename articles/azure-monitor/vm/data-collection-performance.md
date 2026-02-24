@@ -46,6 +46,7 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 
 > [!NOTE] 
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
+
 ---
 
 ## Add destinations
