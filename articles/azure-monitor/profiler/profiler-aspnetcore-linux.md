@@ -11,7 +11,7 @@ ms.reviewer: charles.weininger
 
 # Enable the .NET Profiler for Azure App Service apps in Linux
 
-Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Linux, Windows, and Mac development environments.
+Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Windows and Mac development environments.
 
 In this article, you:
 > [!div class="checklist"]
@@ -73,9 +73,9 @@ In this article, you:
 
 # [OpenTelemetry Profiler](#tab/otel)
 
-1. In your preferred code editor, enable the Azure Monitor OpenTelemetry Profiler for .NET in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
+1. In your preferred code editor, verify the two packages for the Azure Monitor OpenTelemetry Profiler for .NET were added to `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
 
-   In your project's `.csproj` file:
+   In your project's `.csproj` file, verify the following lines have been added:
 
     ```csharp
     <ItemGroup>
@@ -84,7 +84,7 @@ In this article, you:
     </ItemGroup>
     ```
 
-   In your `Program.cs` file:
+   In your `Program.cs` file, verify the following lines have been added:
 
     ```csharp
     using Azure.Monitor.OpenTelemetry.AspNetCore;
@@ -107,7 +107,7 @@ In this article, you:
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 
-1. In your preferred code editor, enable Application Insights and the .NET Profiler in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+1. In your preferred code editor, verify Application Insights and the .NET Profiler have been added using the SDK in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
    <details>
    <summary><b>For WebAPI</b></summary>
@@ -190,6 +190,8 @@ In this article, you:
     ```
 
 ## Add Application Insights to monitor your web app
+
+You can enable Application Insights while creating an App Service, which sets the connection string automatically. 
 
 # [OpenTelemetry Profiler](#tab/otel)
 
