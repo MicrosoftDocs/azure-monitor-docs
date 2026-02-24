@@ -27,6 +27,8 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 ## Metrics selection
 When you enable VM insights, you need to determine which metrics experience to enable. Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OpenTelemetry guest OS metrics is currently in preview and is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
 
+## Agents
+
 Benefits of the new OTel-based collection pipeline include the following:
 
 - Unified data model. Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards.
@@ -134,6 +136,7 @@ There are two methods for network isolation that VM insights supports as describ
 |:---|:---|
 | Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
 | Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
+
 
 
 

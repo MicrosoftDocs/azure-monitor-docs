@@ -26,7 +26,7 @@ Run cross-service queries using any client tools that support Kusto Query Langua
 
 Cross-service queries aren't supported in the following scenarios:
 - Government clouds
-- Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../logs/private-link-security.md) (private endpoints)
+- Data Explorer clusters configured with [IP restrictions](/azure/data-explorer/security-network-restrict-public-access) or [Private Link](../fundamentals/private-link-security.md) (private endpoints)
 
 ### General cross-service considerations
 

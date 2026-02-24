@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2026
+ms.date: 02/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Azure Kubernetes Service (AKS)
@@ -94,12 +94,13 @@ Instead of log‑based metrics in Log Analytics, which isn’t optimized for met
 
 **Impact:** Medium
   
-For more information, see [Cost optimization in Azure Monitor - Azure Monitor](/azure/azure-monitor/fundamentals/best-practices-cost#design-checklist)  
+For more information, see [Cost optimization in Azure Monitor - Azure Monitor](/azure/azure-monitor/fundamentals/best-practices-cost#containers)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 706d4bdc-7ee0-4d2f-a9ac-3c1f124545d1  
 
 
 <!--706d4bdc-7ee0-4d2f-a9ac-3c1f124545d1_end-->
+
 
 <!--articleBody-->

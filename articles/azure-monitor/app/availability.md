@@ -512,7 +512,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 ### Disconnected or no ingress scenarios
 
-1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../logs/private-link-security.md).
+1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../fundamentals/private-link-security.md).
 
 1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
 

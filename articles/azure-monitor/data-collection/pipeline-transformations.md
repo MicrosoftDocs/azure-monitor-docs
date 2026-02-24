@@ -106,7 +106,7 @@ source
 
 ### Aggregation notes
 
-- When using the `summarize` operator for aggregation, an automatic latency of up to 5 minutes may be introduced due to batching in the UI.
+- When using the `summarize` operator for aggregation, an automatic latency of up to 5 minutes may be introduced due to batching in the pipeline for the UI experience.
 - A [batch processor](./pipeline-configure.md#pipeline-configuration) is always required to perform aggregations. Modify the batch processor to change the aggregation interval. Avoid using batch processor to send data with minimum latency. 
 - If an aggregation includes bin(), you may receive multiple records for the same time interval. This occurs because of batching and the streaming nature of data ingestion.
 - Transformations are performed on fully formed Syslog or CEF data. If the transformation alters the schema, then you should send the data to a custom table. When creating the transformation using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
