@@ -314,14 +314,6 @@ items:
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
-        - name: Dependency agent
-          items:
-          - name: Manage
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent.md
-          - name: Uninstall
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent-uninstall.md
       - name: Migrate
         items:
         - name: Migrate to Azure Monitor agent
@@ -332,16 +324,27 @@ items:
         items:
         - name: Monitor performance
           href: vm/vminsights-performance.md
-        - name: Map dependencies
-          href: vm/vminsights-maps.md
-        - name: Query map data
-          href: vm/vminsights-log-query.md
-        - name: Map Retirement guidance
-          href: vm/vminsights-maps-retirement.md
         - name: Monitor changes
           href: vm/vminsights-change-analysis.md
         - name: Visualize data with workbooks
           href: vm/vminsights-workbooks.md
+      - name: Map feature
+        items:
+        - name: Retirement guidance
+          displayName: processes and dependencies, map, vminsights, dependency agent
+          href: vm/vminsights-maps-retirement.md
+        - name: Dependency agent
+          items:
+          - name: Manage
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent.md
+          - name: Uninstall
+            displayName: dependency agent, vminsights
+            href: vm/vminsights-dependency-agent-uninstall.md
+        - name: Map dependencies
+          href: vm/vminsights-maps.md
+        - name: Query map data
+          href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview

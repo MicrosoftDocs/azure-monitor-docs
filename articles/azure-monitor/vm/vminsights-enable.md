@@ -24,62 +24,26 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 
-## Agents
+## Metrics selection
+When you enable VM insights, you need to determine which metrics experience to enable. Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OpenTelemetry guest OS metrics is currently in preview and is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
 
-When you enable VM Insights, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed on the machine. The agent is responsible for collecting data from the guest operating system and delivering it to Azure Monitor.
+Benefits of the new OTel-based collection pipeline include the following:
 
-> [!NOTE]
-> See []() for details about the Dependency agent which has been deprecated.
+- Unified data model. Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards.
+- Richer, simplified counters. More system and process metrics, including per‑process CPU, memory, disk I/O, and consolidation of legacy counters into clearer OTel metrics.
+- Cost‑efficient performance. Otel metrics are stored in an Azure Monitor workspace instead of Log Analytics ingestion for lower cost and faster queries using PromQL.
+- Customize metrics collected. Both types of metrics initially collect a default set of metrics. You can modify OTel 
 
-## VM insights DCR
+Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
 
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. The DCRs that get created depend on the 
-
-
-
-
-When you enable VM Insights, you create a DCR specifically for VM insights and associate it with the Azure Monitor agent on any machines to monitor.
-
-The only configuration in a VM insights DCR is the Log Analytics workspace and whether or not to collect processes and dependencies data. Instead of creating a separate DCR for each machine, you should use a single DCR for each Log Analytics workspace you use for VM insights and associate that DCR with multiple machines. You may want to create separate DCRs if you want to collect processes and dependencies from some machines but not from others. 
-
-
-> [!NOTE]
-> You shouldn't modify the VM insights DCR. If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
+| Feature | Log Analytics workspace | OTel-based metrics (Preview) |
+|:---|:---|:---|
+| Stored | Log Analytics workspace | Azure Monitor workspace |
+| Query language | KQL | PromQL |
+| Customization | Can't modify collected metrics | Add custom OpenTelemetry metrics and dimensions |
 
 
-
-> [!NOTE]
-> See []() for details on the DCR for the map feature.
-
-
-### Create a VM insights DCR
-There are two methods to create a VM insights DCR. Regardless of the method you choose, the DCR is identical and can be used with any process to enable VM insights on other machines. While not required, you should name the DCR `MSVMI-{WorkspaceName}` to match the naming convention used by the Azure portal.
-
-- Create a VM insights DCR as part of the onboarding process using the Azure portal with the [process detailed below](#enable-vm-insights-using-the-azure-portal). 
-- Download and install the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
-
-   | Folder | File | Description |
-   |:---|:---|:---|
-   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. |
-   | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
-
-
-
-## Enable network isolation
-
-There are two methods for network isolation that VM insights supports as described in the following table.
-
-| Method | Description |
-|:---|:---|
-| Private link | By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To have it connect with private link, associate your VM Insights DCR to a data collection endpoint (DCE) linked to an Azure Monitor Private Link Scope as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
-| Network security perimeter | If your Log Analytics workspace is associated with a network security perimeter, using the guidance at [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
-
-## Enable VM insights
-
-## [Portal](#tab/portal)
-
-### Enable VM insights using the Azure portal
-
+## Enable VM insights with the Azure portal
 Use the following procedure to enable VM insights on an unmonitored virtual machine or Virtual Machine Scale Set. This process doesn't require you to deploy agents or create a VM insights DCR first since these tasks are performed by the portal.
 
 > [!NOTE]
@@ -94,7 +58,7 @@ From the **Monitor** menu in the Azure portal, select **Virtual Machines** > **N
 >
 > :::image type="content" source="media/vminsights-enable-portal/enable-unmonitored-virtual-machine.png" lightbox="media/vminsights-enable-portal/enable-unmonitored-virtual-machine.png" alt-text="Screenshot showing VM insights onboarding option in virtual machine portal.":::
 
-On the **Configure monitor** page, select whether you want to enable classic log-based metrics or preview OpenTemetry metrics. See [When to enable OTel metrics](./vminsights-opentelemetry.md#when-to-enable-otel-metrics) for guidance on which type of metrics to enable.
+On the **Configure monitor** page, select whether you want to enable classic log-based metrics or preview OpenTemetry metrics. See [Metrics selection](#metrics-selection) for guidance on which type of metrics to enable.
 
 Default Azure Monitor workspace and Log Analytics workspace are automatically selected. Select **Customize infrastructure monitoring** to select alternate workspaces or create new ones. See [Customize metric collection](./vminsights-opentelemetry.md#customize-metric-collection) for guidance on customizing the metrics collection that are collected by OpenTelemetry. You can't modify the metrics collected for log-based metrics.
 
@@ -104,23 +68,85 @@ When you save the configuration, it takes several minutes to install the agent a
  
 If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade the instances to complete the setup. You can start the upgrades from the **Instances** page, in the **Settings** section.
 
+
+> [!NOTE]
+> See []() for details about the Dependency agent which has been deprecated.
+
+## VM insights DCR
+
+
+> [!NOTE]
+> If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
+
+
+
+> [!NOTE]
+> See []() for details on the DCR for the map feature.
+
+## Enable at scale
+Rather than enable each machine individually and have a separate DCR created for each, you can have a single DCR that is associated with multiple machines. This is especially useful if you have a large number of machines to enable that share the same configuration.
+
+1. Create a VM insights DCR
+1. Install the agent on each machine
+1. Associate the DCR with the agent on each machine
+
+
+### Create a VM insights DCR
+Create a VM insights DCR by enabling monitoring for a single machine. This DCR can be used with any other machines in the same region. If you have machines in different regions, create a DCR for each region.
+
+When you enable VM insights, [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are created and associated with the VM. DCRs are used by the Azure Monitor agent to specify which data to collect and how it should be processed. The DCRs that get created depend on the metrics that you enable. 
+
+| Metrics | DCR Name | Description |
+|:---|:---|:---|
+| OpenTelemetry metrics (preview) | `MSVMOtel-<region>-<machine-name>` | Modify to collect additional OTel metrics as described in [](). |
+| Log-based metrics | `MSVMI-<region>-<WorkspaceName>` | Don't modify this DCR. Create a separate DCR if you want to collect additional metrics as described in [](). |
+
+> [!NOTE]
+> Processes and dependencies DCR 
+
+> [!NOTE]
+> If you're only using log-based metrics, you can also download and install the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
+>
+>   | Folder | File | Description |
+>   |:---|:---|:---|
+>   | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
+>   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. This feature has been deprecated. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md). |
+
+
+
+### Deploy agents
+When you enable VM Insights, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed on the machine. The agent is responsible for collecting data from the guest operating system and delivering it to Azure Monitor.
+Install the required agents on your machines using guidance in the following articles. 
+
+- [Azure Monitor Agent for Linux or Windows](../agents/resource-manager-agent.md#azure-monitor-agent).
+ 
+  
+> [!NOTE]
+> If your virtual machines scale sets have an upgrade policy set to manual, VM insights will not be enabled for instances by default after installing the template. You must manually upgrade the instances.
+
+
+
+## Enable network isolation
+
+There are two methods for network isolation that VM insights supports as described in the following table.
+
+| Method | Description |
+|:---|:---|
+| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
+| Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
+
+
+
+
+
 ## [ARM Template](#tab/arm)
 
 ### Enable VM insights using ARM templates
 
 There are three steps to enabling VM insights using ARM templates. Each of these steps is described in detail in the following sections. 
 
-### Deploy agents
-Install the required agents on your machines using guidance in the following articles. Dependency agent is only required if you want to enable the Map feature.
 
-- [Azure Monitor Agent for Linux or Windows](../agents/resource-manager-agent.md#azure-monitor-agent).
-- [Dependency agent for Linux](/azure/virtual-machines/extensions/agent-dependency-linux) or [Dependency agent or Windows](/azure/virtual-machines/extensions/agent-dependency-windows) if you want to enable the Map feature. 
-  
-> [!NOTE]
-> If your virtual machines scale sets have an upgrade policy set to manual, VM insights will not be enabled for instances by default after installing the template. You must manually upgrade the instances.
 
-###  Create data collection rule (DCR)
-If you don't already have a DCR for VM insights, create one using the details above in [VM insights DCR](#vm-insights-dcr).
 
 
 ### Associate DCR with agents
@@ -212,7 +238,7 @@ This section describes how to enable [VM insights](./vminsights-overview.md) usi
 
 Before you use this script, you must create a VM insights DCR using the details above in [VM insights DCR](#vm-insights-dcr).
 
-### PowerShell script
+## PowerShell script
 
 Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) to enable VM insights for multiple VMs or virtual machine scale sets. This script iterates through the machines according to the parameters that you specify. The script can be used to enable VM insights for the following. Each of these parameters accepts wildcards.
 
