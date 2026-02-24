@@ -5,52 +5,33 @@ ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
-ms.date: 02/20/2026
+ms.date: 02/24/2026
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
 
 # Azure Monitor issues (preview)
 
-Azure Monitor issue is an AIOps capability that helps you analyze and troubleshoot problems detected by Azure Monitor alerts. This article describes the capabilities available in issues, and how you use them to analyze and retain troubleshooting insights.
+An issue helps your team manage and resolve operational problems by bringing together all relevant observability data into a single, structured workflow. It organizes the troubleshooting process, emphasizes the most important signals, and enables more focused investigation and action.
 
-## Issues and investigations concepts
+Issues combine AI-powered investigations from the Azure Copilot observability agent, correlated alerts, and enriched observability data to ensure clarity and alignment throughout the resolution process.
 
-The observability agent provides two main concepts for analyzing and retaining troubleshooting insights: investigations and issues.
+## Create issues
 
-An issue provides a persistent context for investigation results and related troubleshooting data. Use issues to retain investigation results, supporting data, and related alerts over time.
+Issues are created when you choose to persist the results of an investigation. Each issue is saved under an Azure Monitor Workspace (AMW).
+Creating an issue requires the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the Azure Monitor Workspace. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
-### Investigation findings saved in an issue
+## View issues
 
-When you create an issue, the observability agent saves the findings (investigation data). The findings appear in the issue's Investigation tab. This data includes:
+You can view a list of issues in the following locations:
 
-#### What happened
+- **Azure Monitor** - Shows issues across all AMWs under the selected subscriptions.
+- **Azure Monitor Workspace** - Shows issues that are stored within a specific AMW.
 
-The **What happened** section is a summary that states when the incident occurred, the primary symptom (errors, latency, or failures), and the affected component with headline counts or severity. A compact chart under Supporting data shows the primary signal. The chart has a caption describing what the chart shows.
+## Azure Monitor Workspace as an issue container
 
-#### Analysis
+Azure Monitor Workspaces act as the container for issues.
 
-The **Analysis** section summarizes the investigation findings with concise bullet points that link observed telemetry to likely causes, showing patterns (spikes, correlated dependency failures, exception types) and counts. It also notes important negatives (what was checked and found normal) and might include a focused visual to illustrate correlation or distribution.
-
-#### What can be done next
-
-The **What can be done next** area lists concise, prioritized, and actionable steps (investigations, mitigations, or alerts) that engineers should take to validate, remediate, or monitor the issue.
-
-#### Summary
-
-The **Summary** section provides a concise conclusion consisting of the confirmed root cause or the primary finding, the affected scope, and the key supporting evidence (timestamps, counts, exception types). It ends with immediate, prioritized next steps or mitigations for you to consider. It might also include a short statement of remaining unknowns if any.
-
-#### Supporting data
-
-The **Supporting data** section presents raw telemetry excerpts, exact Kusto queries, counts, and representative `operation_Id` samples. Occasionally, it might also show targeted charts that substantiate the analysis.
-
-## Issue capabilities
-
-Issues provide persistence and context for troubleshooting efforts. When you save investigation results as an issue, the issue includes:
-
-- An overview that summarizes the latest investigation results.
-- Persisted investigations and supporting data.
-- Related alerts and affected resources.
-- Configurable properties such as severity, status, and impact time.
+You can configure an AMW as the default container for all issues in a subscription. When a default AMW is set, issues created while investigating alerts fired on resources in that subscription are saved in the same workspace. This helps ensure that all related issues are stored and managed in a consistent location.
 
 :::image type="content" source="media/issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/issue-investigation-overview/issue-details.png":::
 
