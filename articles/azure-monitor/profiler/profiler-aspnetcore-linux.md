@@ -176,7 +176,7 @@ In this article, you:
 
 ## Deploy your project
 
-While you can deploy code to Azure App Service a variety of ways, the simplest way is deploy via local Git. [Learn more about how to deploy from a Git repository to Azure.](azure/app-service/deploy-local-git)
+While you can deploy code to Azure App Service a variety of ways, the simplest way is deploy via local Git. [Learn more about how to deploy from a Git repository to Azure.](/azure/app-service/deploy-local-git)
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
