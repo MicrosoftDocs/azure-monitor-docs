@@ -17,23 +17,28 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 
 ## Prerequisites
 
-- You must have a [Log Analytics workspace](../logs/quick-create-workspace.md) to store data collected by VM insights. You can create a new workspace if you enable using the Azure portal.
-- You require permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../essentials/data-collection-rule-create-edit.md#permissions) for details.
+- [Azure Monitor workspace](../logs/quick-create-workspace.md) if you enable OpenTelemetry metrics (preview). You can create a new workspace if you enable using the Azure portal.
+- [Log Analytics workspace](../logs/quick-create-workspace.md) if you enable log-based metrics. You can create a new workspace if you enable using the Azure portal.
+- Permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../essentials/data-collection-rule-create-edit.md#permissions).
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. 
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
-- See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent and for network requirements for the Dependency agent.
 
 ## Agents
 
-When you enable VM Insights for a machine, the following agents are installed. 
+When you enable VM Insights, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed on the machine. The agent is responsible for collecting data from the guest operating system and delivering it to Azure Monitor.
 
-- [Azure Monitor agent](../agents/azure-monitor-agent-overview.md): Collects data from the machine and delivers it to a Log Analytics workspace.
-- [Dependency agent](./vminsights-dependency-agent.md): Collects discovered data about processes running on the virtual machine and external process dependencies to support the [Map feature in VM Insights](../vm/vminsights-maps.md). This agent is not required for other VM insights functionality, so you don't need to install the dependency agent if you're not going to use the Map feature.
+> [!NOTE]
+> See []() for details about the Dependency agent which has been deprecated.
 
 ## VM insights DCR
 
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. When you enable VM Insights, you create a DCR specifically for VM insights and associate it with the Azure Monitor agent on any machines to monitor.
+[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) are used by the Azure Monitor agent to specify which data to collect and how it should be processed. The DCRs that get created depend on the 
+
+
+
+
+When you enable VM Insights, you create a DCR specifically for VM insights and associate it with the Azure Monitor agent on any machines to monitor.
 
 The only configuration in a VM insights DCR is the Log Analytics workspace and whether or not to collect processes and dependencies data. Instead of creating a separate DCR for each machine, you should use a single DCR for each Log Analytics workspace you use for VM insights and associate that DCR with multiple machines. You may want to create separate DCRs if you want to collect processes and dependencies from some machines but not from others. 
 
@@ -42,7 +47,9 @@ The only configuration in a VM insights DCR is the Log Analytics workspace and w
 > You shouldn't modify the VM insights DCR. If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 
-:::image type="content" source="media/vminsights-enable-portal/vminsights-dcr.png" lightbox="media/vminsights-enable-portal/vminsights-dcr.png" alt-text="Diagram showing the operation of VM insights DCR compared to other DCRs associated with the same agents.":::
+
+> [!NOTE]
+> See []() for details on the DCR for the map feature.
 
 
 ### Create a VM insights DCR
