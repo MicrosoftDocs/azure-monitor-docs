@@ -127,7 +127,7 @@ The response time degradation notification tells you:
 
 ## Dependency Duration Degradation
 
-Modern applications often adopt a micro services design approach, which in many cases rely heavily on external services. For example, if your application relies on some data platform, or on a critical services provider such as Azure AI services.   
+Modern applications often adopt a micro services design approach, which in many cases rely heavily on external services. For example, if your application relies on some data platform, or on a critical services provider such as Foundry Tools.   
 
 Example of dependency degradation notification:
 

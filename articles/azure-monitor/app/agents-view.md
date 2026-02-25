@@ -7,7 +7,7 @@ ms.date: 11/11/2025
 
 # Monitor AI agents with Application Insights
 
-The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
+The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
 
 This feature consolidates telemetry and diagnostics, enabling customers to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
 
@@ -28,7 +28,7 @@ Getting started looks different depending on how and where you're building your 
 
 **Managed hosting**
 
-* **Azure AI Foundry:** You can collect telemetry from your agentic application using the Azure Monitor OpenTelemetry Distro and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
+* **Foundry:** You can collect telemetry from your agentic application using the Azure Monitor OpenTelemetry Distro and the [Microsoft Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
 
 * **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
@@ -36,7 +36,7 @@ Getting started looks different depending on how and where you're building your 
 
 * **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
 
-* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. These agents can also be registered in Azure AI Foundry.
+* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. These agents can also be registered in Foundry.
 
     For more information, see:
 
@@ -50,7 +50,7 @@ If you choose to collect full prompt information (for example, using the `Enable
 > * If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
 
 > [!NOTE]
-> To see your Agents in AI Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
+> To see your Agents in Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
 
 ### Set up evaluations
 
@@ -59,8 +59,8 @@ To set up evaluations, there are several approaches.
 **Batch evaluations:**
 
 * **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
-* **Cloud evaluations with Azure AI Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
-* **Azure Foundry Portal-based evaluations:** [Use the Azure AI Foundry Portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
+* **Cloud evaluations with Microsoft Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
+* **Foundry portal-based evaluations:** [Use the Foundry portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
 
 **Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
 
@@ -76,7 +76,7 @@ Once telemetry is flowing to Application Insights:
     :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="A screenshot showing how to get to the Agent details experience.":::
 
 > [!NOTE]
-> You can also get to the Agent details view from AI Foundry. From your agent, go to the **Monitoring** tab, then select **View in Azure Monitor**.
+> You can also get to the Agent details view from Foundry. From your agent, go to the **Monitoring** tab, then select **View in Azure Monitor**.
 
 ### Investigate traces
 
@@ -106,7 +106,7 @@ To drill into specific agent runs:
 
 The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion, including the invoked agent, underlying LLM, executed tools, and more.
 
-Simple view allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
+Simple view allows you to quickly find the relevant telemetry and transition to Foundry or other tools to make the necessary changes.
 
 > [!NOTE]
 > To return to the traditional view, select **Leave simple view** in the top action bar.
@@ -123,7 +123,7 @@ Azure Monitor includes pre-built Grafana dashboards specifically designed for Ge
 
 * **Agent Framework -** Monitor agent execution and performance
 * **Agent Framework workflow -** Track agent workflow patterns and dependencies
-* **AI Foundry -** Visualize AI Foundry-specific metrics and telemetry
+* **Foundry -** Visualize Foundry-specific metrics and telemetry
 
 :::image type="content" source="media/agents-view/grafana-monitoring-agents.png" lightbox="media/agents-view/grafana-monitoring-agents.png" alt-text="A screenshot showing Grafana dashboard when monitoring AI agents.":::
 

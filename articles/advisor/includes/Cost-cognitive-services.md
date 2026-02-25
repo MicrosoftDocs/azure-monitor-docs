@@ -76,7 +76,7 @@ We observed that your Language Service resource has had enough usage in the past
 
 **Impact:** Medium
   
-For more information, see [Pricing - Azure AI Language ](https://azure.microsoft.com/pricing/details/cognitive-services/language-service)  
+For more information, see [Pricing - Azure Language in Foundry Tools ](https://azure.microsoft.com/pricing/details/cognitive-services/language-service)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: c1c98b41-ddf6-4b27-988c-0e8e6359a42a  
@@ -94,7 +94,7 @@ We observed that your Form Recognizer resource has had enough usage in the past 
 
 **Impact:** Medium
   
-For more information, see [Pricing - Azure AI Document Intelligence ](https://azure.microsoft.com/pricing/details/form-recognizer)  
+For more information, see [Pricing - Azure Document Intelligence in Foundry Tools ](https://azure.microsoft.com/pricing/details/form-recognizer)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: da48cdd1-0c3f-4050-b037-89ecdb2be69a  
@@ -112,7 +112,7 @@ We observed that your Speech Service resource has had enough usage in the past 3
 
 **Impact:** Medium
   
-For more information, see [Pricing - Azure AI Document Intelligence ](https://azure.microsoft.com/pricing/details/form-recognizer)  
+For more information, see [Pricing - Document Intelligence ](https://azure.microsoft.com/pricing/details/form-recognizer)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: e4429ab9-f27e-4750-89a7-30bce345f7fa  

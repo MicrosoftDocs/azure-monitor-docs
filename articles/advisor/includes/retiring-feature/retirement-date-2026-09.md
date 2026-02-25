@@ -10,11 +10,11 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure AI Vision | Computer Vision API v1.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure AI Vision | Computer Vision API v2.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure AI Vision | Computer Vision API v2.1  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure AI Vision | Computer Vision API v3.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure AI Vision | Computer Vision API v3.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Vision in Foundry Tools | Computer Vision API v1.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Vision in Foundry Tools | Computer Vision API v2.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Vision in Foundry Tools | Computer Vision API v2.1  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Vision in Foundry Tools | Computer Vision API v3.0 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Vision in Foundry Tools | Computer Vision API v3.1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### September 14 2026
 
