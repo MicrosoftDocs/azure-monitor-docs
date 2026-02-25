@@ -68,7 +68,7 @@ Recommended configurations:
 - `duration: 24h` and `renewBefore: 12h`
 
 > [!NOTE]
-> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#setup-gateway-for-azure-monitor-pipeline)).
+> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
 
 > [!WARNING]
 > Client certificates that don't renew within 2 days may become invalid when the CA rotates. Always set `renewBefore` to ensure renewal happens before the CA enters its next incubation period.
@@ -113,7 +113,7 @@ For mutual TLS authentication, intra-cluster clients need their own certificates
 
 > [!NOTE]
 >
-> The `arc-amp-client-root-ca-cluster-issuer` ClusterIssuer should only be used to issue client certificates for intra-cluster clients. Do NOT use certificates issued by this ClusterIssuer for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#setup-gateway-for-azure-monitor-pipeline)).
+> The `arc-amp-client-root-ca-cluster-issuer` ClusterIssuer should only be used to issue client certificates for intra-cluster clients. Do NOT use certificates issued by this ClusterIssuer for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
 
 Create a certificate resource in your namespace with values that meet zero-downtime rotation constraints:
 
