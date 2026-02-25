@@ -24,29 +24,10 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 
-## Metrics selection
-When you enable VM insights, you need to determine which metrics experience to enable. Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OpenTelemetry guest OS metrics is currently in preview and is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
-
-## Agents
-
-Benefits of the new OTel-based collection pipeline include the following:
-
-- Unified data model. Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards.
-- Richer, simplified counters. More system and process metrics, including per‑process CPU, memory, disk I/O, and consolidation of legacy counters into clearer OTel metrics.
-- Cost‑efficient performance. Otel metrics are stored in an Azure Monitor workspace instead of Log Analytics ingestion for lower cost and faster queries using PromQL.
-- Customize metrics collected. Both types of metrics initially collect a default set of metrics. You can modify OTel 
-
-Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
-
-| Feature | Log Analytics workspace | OTel-based metrics (Preview) |
-|:---|:---|:---|
-| Stored | Log Analytics workspace | Azure Monitor workspace |
-| Query language | KQL | PromQL |
-| Customization | Can't modify collected metrics | Add custom OpenTelemetry metrics and dimensions |
 
 
 ## Enable VM insights with the Azure portal
-Use the following procedure to enable VM insights on an unmonitored virtual machine or Virtual Machine Scale Set. This process doesn't require you to deploy agents or create a VM insights DCR first since these tasks are performed by the portal.
+Use the following procedure to enable VM insights on a single virtual machine or Virtual Machine Scale Set. This process doesn't require you to have any knowledge of individual components that enable VM insights, but you can only enable a single machine at a time.
 
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
