@@ -8245,7 +8245,7 @@
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-extensions.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-extensions",
+    "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
    "redirect_document_id": false
   },
   {
@@ -8260,12 +8260,12 @@
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-vscode-extension.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-vscode-extension",
+    "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-vs-extension.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-vs-extension",
+    "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
    "redirect_document_id": false
   },
   {
