@@ -16,6 +16,8 @@ ms.date: 08/26/2024
 
 Performance data from the guest OS of Azure virtual machines (VMs) isn't collected automatically like other [platform metrics](../platform/monitor-azure-resource.md#metrics). Install the Azure Monitor [Diagnostics extension](diagnostics-extension-overview.md) to collect guest OS metrics into the metrics database so that it can be used with all features of Azure Monitor Metrics. These features include near real time alerting, charting, routing, and access from a REST API. This article describes the process for sending guest OS performance metrics for a Windows VM to the metrics database by using an Azure Resource Manager template (ARM template).
 
+[!INCLUDE diagnostics-extension-deprecation]
+
 > [!NOTE]
 > For details on configuring the diagnostics extension to collect guest OS metrics by using the Azure portal, see [Install and configure the Windows Azure Diagnostics (WAD) extension](diagnostics-extension-windows-install.md).
 
