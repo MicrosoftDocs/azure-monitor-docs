@@ -93,273 +93,12 @@ When you enable VM insights, [Data collection rules (DCRs)](../essentials/data-c
 >   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. This feature has been deprecated. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md). |
 
 
-### [CLI](#tab/cli)
-
-#### Windows VM
-
-```bash
-az vm extension set \
-  --resource-group <resource-group-name> \
-  --vm-name <vm-name> \
-  --name AzureMonitorWindowsAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --enable-auto-upgrade true
-```
-
-#### Linux VM
-
-```bash
-az vm extension set \
-  --resource-group <resource-group-name> \
-  --vm-name <vm-name> \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --enable-auto-upgrade true
-```
-
-#### Windows VMSS
-
-```bash
-az vmss extension set \
-  --resource-group <resource-group-name> \
-  --vmss-name <vmss-name> \
-  --name AzureMonitorWindowsAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --enable-auto-upgrade true
-```
-
-#### Linux VMSS
-
-```bash
-az vmss extension set \
-  --resource-group <resource-group-name> \
-  --vmss-name <vmss-name> \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --enable-auto-upgrade true
-```
-
-#### Windows Arc-enabled server
-```bash
-az connectedmachine extension create \
-  --name AzureMonitorWindowsAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --type AzureMonitorWindowsAgent \
-  --machine-name <arc-server-name> \
-  --resource-group <resource-group-name> \
-  --location <arc-server-location> \
-  --enable-auto-upgrade true
-```
-
-#### Linux Arc-enabled server
-```bash
-az connectedmachine extension create \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --type AzureMonitorLinuxAgent \
-  --machine-name <arc-server-name> \
-  --resource-group <resource-group-name> \
-  --location <arc-server-location> \
-  --enable-auto-upgrade true
-```
-
-### [PowerShell](#tab/powershell)
-
-#### Windows VM
-
-```powershell
-Set-AzVMExtension \
-  -Name AzureMonitorWindowsAgent \
-  -ExtensionType AzureMonitorWindowsAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -ResourceGroupName <resource-group-name> \
-  -VMName <vm-name> \
-  -Location <location> \
-  -EnableAutomaticUpgrade $true
-```
-
-#### Linux VM
-
-```powershell
-Set-AzVMExtension \
-  -Name AzureMonitorLinuxAgent \
-  -ExtensionType AzureMonitorLinuxAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -ResourceGroupName <resource-group-name> \
-  -VMName <vm-name> \
-  -Location <location> \
-  -EnableAutomaticUpgrade $true
-```
-
-```powershell
-$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
-
-Add-AzVmssExtension \
-  -VirtualMachineScaleSet $vmss \
-  -Name AzureMonitorWindowsAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -Type AzureMonitorWindowsAgent \
-  -AutoUpgradeMinorVersion $true \
-  -EnableAutomaticUpgrade $true
-
-Update-AzVmss -ResourceGroupName <resource-group-name> -Name <vmss-name> -VirtualMachineScaleSet $vmss
-```
-(`Add-AzVmssExtension` adds an extension to a VMSS model; `Update-AzVmss` applies the change.) citeturn3search39
-
-#### Linux VMSS
-```powershell
-$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
-
-Add-AzVmssExtension \
-  -VirtualMachineScaleSet $vmss \
-  -Name AzureMonitorLinuxAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -Type AzureMonitorLinuxAgent \
-  -AutoUpgradeMinorVersion $true \
-  -EnableAutomaticUpgrade $true
-
-Update-AzVmss -ResourceGroupName <resource-group-name> -Name <vmss-name> -VirtualMachineScaleSet $vmss
-```
-
-#### Windows Arc-enabled server
-```powershell
-New-AzConnectedMachineExtension \
-  -Name AMAWindows \
-  -ExtensionType AzureMonitorWindowsAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -ResourceGroupName <resource-group-name> \
-  -MachineName <arc-server-name> \
-  -Location <arc-server-location>
-```
-(Install AMA on Arc-enabled servers using `New-AzConnectedMachineExtension`.) citeturn3search24
-
-#### Linux Arc-enabled server
-```powershell
-New-AzConnectedMachineExtension \
-  -Name AMALinux \
-  -ExtensionType AzureMonitorLinuxAgent \
-  -Publisher Microsoft.Azure.Monitor \
-  -ResourceGroupName <resource-group-name> \
-  -MachineName <arc-server-name> \
-  -Location <arc-server-location>
-```
-
----
-
 ### Deploy agents
 The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is responsible for collecting data from the guest operating system and delivering it to Azure Monitor. There are multiple methods to install the agent on your machines as described in [Installation options](../agents/azure-monitor-agent-manage.md#installation-options).
 
-- [Azure Monitor Agent for Linux or Windows](../agents/resource-manager-agent.md#azure-monitor-agent).
- 
   
-> [!NOTE]
-> If your virtual machines scale sets have an upgrade policy set to manual, VM insights will not be enabled for instances by default after installing the template. You must manually upgrade the instances.
-
-
-
-## Enable network isolation
-
-There are two methods for network isolation that VM insights supports as described in the following table.
-
-| Method | Description |
-|:---|:---|
-| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
-| Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
-
-
-
-
-
-
-## [ARM Template](#tab/arm)
-
-### Enable VM insights using ARM templates
-
-There are three steps to enabling VM insights using ARM templates. Each of these steps is described in detail in the following sections. 
-
-
-
-
-
 ### Associate DCR with agents
 The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#create-new-association). To enable on multiple machines, you need to create an association using this template for each one. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
-
-> [!NOTE]
-> If you associate a DCR with the Map feature enabled to a machine on which Dependency Agent isn't installed, the Map view won't be available. To enable the Map view, set `enableAMA property = true` in the Dependency Agent extension when you [install Dependency Agent](./vminsights-dependency-agent-maintenance.md).
-
-**ARM template**
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vmName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the virtual machine."
-      }
-    },
-    "associationName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the association."
-      }
-    },
-    "dataCollectionRuleId": {
-      "type": "string",
-      "metadata": {
-        "description": "Resource ID of the data collection rule."
-      }
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
-      "apiVersion": "2021-09-01-preview",
-      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-      "name": "[parameters('associationName')]",
-      "properties": {
-        "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
-        "dataCollectionRuleId": "[parameters('dataCollectionRuleId')]"
-      }
-    }
-  ]
-}
-```
-
-**Parameter file**
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vmName": {
-      "value": "my-azure-vm"
-    },
-    "associationName": {
-      "value": "my-windows-vm-my-dcr"
-    },
-    "dataCollectionRuleId": {
-      "value": "/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
-    }
-   }
-}
-```
-### Deploy ARM templates
-
-The ARM templates described in this section can be deployed using any method to install an [ARM template](/azure/azure-resource-manager/templates/overview). See  [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/resource-manager-quickstart-create-templates-use-the-portal) for details on deploying a template from the Azure portal.
-
-The following examples show how to deploy the templates from command line using common methods.
-
-```PowerShell
-New-AzResourceGroupDeployment -Name EnableVMinsights -ResourceGroupName <ResourceGroupName> -TemplateFile <Template.json> -TemplateParameterFile <Parameters.json>
-```
-
-```azurecli
-az deployment group create --resource-group <ResourceGroupName> --template-file <Template.json> --parameters <Parameters.json>
-```
 
 
 ## [PowerShell script](#tab/powershell)
@@ -371,6 +110,7 @@ This section describes how to enable [VM insights](./vminsights-overview.md) usi
 Before you use this script, you must create a VM insights DCR using the details above in [VM insights DCR](#vm-insights-dcr).
 
 ## PowerShell script
+A PowerShell script is available to enable VM insights for multiple virtual machines or virtual machine scale sets. This script only enables log-based metrics. If you want to enable OpenTelemetry-based metrics, you can use the Azure portal or ARM template methods described above.
 
 Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) to enable VM insights for multiple VMs or virtual machine scale sets. This script iterates through the machines according to the parameters that you specify. The script can be used to enable VM insights for the following. Each of these parameters accepts wildcards.
 
@@ -440,6 +180,16 @@ az vm extension list --resource-group <resource group> --vm-name <VM name>  -o t
 
 ## Edit VM insights configuration
 To edit the VM insights configuration for a virtual machine after it's been onboarded, click on **Enabled** next to the VM on the VM insights **Overview** page. This will display the current configuration. Click **Edit** to open the configuration page as described in the previous section. You can select another DCR for the VM or create a new one. You can't modify the existing DCR from this page.
+
+## Enable network isolation
+
+There are two methods for network isolation that VM insights supports as described in the following table.
+
+| Method | Description |
+|:---|:---|
+| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
+| Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
+
 
 ## Next steps
 
