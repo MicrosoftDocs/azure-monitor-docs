@@ -24,7 +24,8 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 
-
+> [!NOTE]
+> The Maps feature of AM insights has been deprecated. This feature was enabled by 
 
 ## Enable VM insights with the Azure portal
 Use the following procedure to enable VM insights on a single virtual machine or Virtual Machine Scale Set. This process doesn't require you to have any knowledge of individual components that enable VM insights, but you can only enable a single machine at a time.
@@ -55,11 +56,7 @@ If you use a manual upgrade model for your Virtual Machine Scale Set, upgrade th
 > [!NOTE]
 > See []() for details about the Dependency agent which has been deprecated.
 
-## VM insights DCR
 
-
-> [!NOTE]
-> If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
 
 
 
@@ -96,10 +93,161 @@ When you enable VM insights, [Data collection rules (DCRs)](../essentials/data-c
 >   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. This feature has been deprecated. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md). |
 
 
+### [CLI](#tab/cli)
+
+#### Windows VM
+
+```bash
+az vm extension set \
+  --resource-group <resource-group-name> \
+  --vm-name <vm-name> \
+  --name AzureMonitorWindowsAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --enable-auto-upgrade true
+```
+
+#### Linux VM
+
+```bash
+az vm extension set \
+  --resource-group <resource-group-name> \
+  --vm-name <vm-name> \
+  --name AzureMonitorLinuxAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --enable-auto-upgrade true
+```
+
+#### Windows VMSS
+
+```bash
+az vmss extension set \
+  --resource-group <resource-group-name> \
+  --vmss-name <vmss-name> \
+  --name AzureMonitorWindowsAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --enable-auto-upgrade true
+```
+
+#### Linux VMSS
+
+```bash
+az vmss extension set \
+  --resource-group <resource-group-name> \
+  --vmss-name <vmss-name> \
+  --name AzureMonitorLinuxAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --enable-auto-upgrade true
+```
+
+#### Windows Arc-enabled server
+```bash
+az connectedmachine extension create \
+  --name AzureMonitorWindowsAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --type AzureMonitorWindowsAgent \
+  --machine-name <arc-server-name> \
+  --resource-group <resource-group-name> \
+  --location <arc-server-location> \
+  --enable-auto-upgrade true
+```
+
+#### Linux Arc-enabled server
+```bash
+az connectedmachine extension create \
+  --name AzureMonitorLinuxAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --type AzureMonitorLinuxAgent \
+  --machine-name <arc-server-name> \
+  --resource-group <resource-group-name> \
+  --location <arc-server-location> \
+  --enable-auto-upgrade true
+```
+
+### [PowerShell](#tab/powershell)
+
+#### Windows VM
+
+```powershell
+Set-AzVMExtension \
+  -Name AzureMonitorWindowsAgent \
+  -ExtensionType AzureMonitorWindowsAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -ResourceGroupName <resource-group-name> \
+  -VMName <vm-name> \
+  -Location <location> \
+  -EnableAutomaticUpgrade $true
+```
+
+#### Linux VM
+
+```powershell
+Set-AzVMExtension \
+  -Name AzureMonitorLinuxAgent \
+  -ExtensionType AzureMonitorLinuxAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -ResourceGroupName <resource-group-name> \
+  -VMName <vm-name> \
+  -Location <location> \
+  -EnableAutomaticUpgrade $true
+```
+
+```powershell
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+Add-AzVmssExtension \
+  -VirtualMachineScaleSet $vmss \
+  -Name AzureMonitorWindowsAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -Type AzureMonitorWindowsAgent \
+  -AutoUpgradeMinorVersion $true \
+  -EnableAutomaticUpgrade $true
+
+Update-AzVmss -ResourceGroupName <resource-group-name> -Name <vmss-name> -VirtualMachineScaleSet $vmss
+```
+(`Add-AzVmssExtension` adds an extension to a VMSS model; `Update-AzVmss` applies the change.) citeturn3search39
+
+#### Linux VMSS
+```powershell
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+Add-AzVmssExtension \
+  -VirtualMachineScaleSet $vmss \
+  -Name AzureMonitorLinuxAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -Type AzureMonitorLinuxAgent \
+  -AutoUpgradeMinorVersion $true \
+  -EnableAutomaticUpgrade $true
+
+Update-AzVmss -ResourceGroupName <resource-group-name> -Name <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+#### Windows Arc-enabled server
+```powershell
+New-AzConnectedMachineExtension \
+  -Name AMAWindows \
+  -ExtensionType AzureMonitorWindowsAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -ResourceGroupName <resource-group-name> \
+  -MachineName <arc-server-name> \
+  -Location <arc-server-location>
+```
+(Install AMA on Arc-enabled servers using `New-AzConnectedMachineExtension`.) citeturn3search24
+
+#### Linux Arc-enabled server
+```powershell
+New-AzConnectedMachineExtension \
+  -Name AMALinux \
+  -ExtensionType AzureMonitorLinuxAgent \
+  -Publisher Microsoft.Azure.Monitor \
+  -ResourceGroupName <resource-group-name> \
+  -MachineName <arc-server-name> \
+  -Location <arc-server-location>
+```
+
+---
 
 ### Deploy agents
-When you enable VM Insights, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed on the machine. The agent is responsible for collecting data from the guest operating system and delivering it to Azure Monitor.
-Install the required agents on your machines using guidance in the following articles. 
+The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is responsible for collecting data from the guest operating system and delivering it to Azure Monitor. There are multiple methods to install the agent on your machines as described in [Installation options](../agents/azure-monitor-agent-manage.md#installation-options).
 
 - [Azure Monitor Agent for Linux or Windows](../agents/resource-manager-agent.md#azure-monitor-agent).
  

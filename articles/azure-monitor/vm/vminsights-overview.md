@@ -53,6 +53,10 @@ Evaluate your requirements to determine which configuration best fits your needs
 | Query language | KQL | PromQL |
 | Customization | Can't modify collected metrics | Add custom OpenTelemetry metrics and dimensions |
 
+
+> [!NOTE]
+> If you need to collect additional data from the monitored machines, such as event logs and security logs, create additional DCRs and associate them with the same machines. You can get guidance for creating these DCRs from [Collect data with Azure Monitor Agent](../vm/data-collection.md).
+
 ## Data collected
 
 ### OpenTelemetry metrics
