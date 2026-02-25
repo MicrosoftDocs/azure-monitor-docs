@@ -8,7 +8,7 @@ ms.reviewer: priyamishra
 
 # Custom metrics in Azure Monitor (preview)
 
-Azure makes some metrics available to you out of the box. These metrics are called [standard or platform](../reference/supported-metrics/metrics-index.md). Custom metrics are performance indicators or business-specific metrics. You can collect them through your application's telemetry. You can also use the Azure Monitor Agent, a diagnostics extension on your Azure resources, or an external monitoring system. Once custom metrics are published to Azure Monitor, you can browse, query, and alert on them along side the standard Azure metrics.
+Azure makes some metrics available to you out of the box. These metrics are called [standard or platform](../reference/supported-metrics/metrics-index.md). Custom metrics are performance indicators or business-specific metrics. You can collect them through your application's telemetry. You can also use the Azure Monitor Agent or an external monitoring system. Once custom metrics are published to Azure Monitor, you can browse, query, and alert on them along side the standard Azure metrics.
 
 > [!NOTE]
 > Azure Monitor custom metrics are currently in public preview. This feature will not be made Generally Available, as we are now offering an improved GA feature that achieves the same functionality and more: [Custom Metrics in Azure Monitor Workspaces](../app/opentelemetry.md). In addition to custom metrics, [OpenTelemetry performance counters](../metrics/metrics-opentelemetry-guest.md) from the Guest OS of VMs are supported as well.
@@ -19,7 +19,6 @@ Custom metrics can be sent to Azure Monitor via several methods:
 
 * Use Azure Application Insights SDK to instrument your application by sending custom telemetry to Azure Monitor.
 * Install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) on your Windows or Linux Azure virtual machine or virtual machine scale set and use a [data collection rule](../vm/data-collection.md) to send performance counters to Azure Monitor metrics.
-* Install the Azure Diagnostics extension on your [Azure Virtual Machine (VM)](../agents/collect-custom-metrics-guestos-resource-manager-vm.md), [Virtual Machine Scale Set](../agents/collect-custom-metrics-guestos-resource-manager-vmss.md), [classic VM](../agents/collect-custom-metrics-guestos-vm-classic.md), or [classic cloud service](../agents/collect-custom-metrics-guestos-vm-cloud-service-classic.md). Then send performance counters to Azure Monitor.
 * Install the [InfluxData Telegraf agent](../agents/collect-custom-metrics-linux-telegraf.md) on your Azure Linux VM. Send metrics by using the Azure Monitor output plug-in.
 * Send custom metrics [directly to the Azure Monitor REST API](metrics-store-custom-rest-api.md).
 
@@ -37,7 +36,7 @@ Custom metrics are retained for the [same amount of time as platform metrics](da
 Each metric data point published contains a namespace, name, and dimension information. The first time a custom metric is emitted to Azure Monitor, a metric definition is automatically created. This new metric definition is then discoverable on any resource that the metric is emitted from via the metric definitions. You don't need to predefine a custom metric in Azure Monitor before you emit it.
 
 > [!NOTE]
-> Application Insights, the diagnostics extension, and the InfluxData Telegraf agent are already configured to emit metric values against the correct regional endpoint and carry all the preceding properties in each emission.
+> Application Insights and the InfluxData Telegraf agent are already configured to emit metric values against the correct regional endpoint and carry all the preceding properties in each emission.
 
 ## Using custom metrics
 
