@@ -2,7 +2,7 @@
 title: Resiliency in Operations center (preview)
 description: Describes the Resiliency menu in Operations center, which provides an aggregated view of resiliency across computers, containers, data, storage, and networking resources.
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 

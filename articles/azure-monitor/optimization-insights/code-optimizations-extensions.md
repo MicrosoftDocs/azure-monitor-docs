@@ -24,7 +24,7 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 ## Prerequisites
 
 - Install the Code Optimizations extensions via Marketplace:
-   - [Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace)
+   - [Visual Studio Code](https://marketplace.visualstudio.com/vscode)
    - [Visual Studio](https://aka.ms/CodeOptimizations/VS/Marketplace)
 - Set up a [GitHub Copilot subscription](https://docs.github.com/copilot/about-github-copilot/subscription-plans-for-github-copilot) 
 - Enable the [GitHub Copilot coding agent](https://aka.ms/codeoptimizations/GitHubCopilot-coding-agent) to assign issues from Code Optimizations to GitHub Copilot
