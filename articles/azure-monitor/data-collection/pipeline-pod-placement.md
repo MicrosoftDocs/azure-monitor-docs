@@ -14,7 +14,7 @@ As Azure Monitor pipeline scales, default scheduling behavior in your Kubernetes
 
 Consider using pod placement configuration for the following capabilities:
 
-- **Ensure performance isolation** in multi-tenant clusters where multiple teams share infrastructure.
+- **Ensure performance isolation** in multitenant clusters where multiple teams share infrastructure.
 - **Target high-capacity nodes** for resource-intensive telemetry workloads.
 - **Prevent port exhaustion** by limiting the number of instances per node.
 - **Enforce compliance requirements** such as data residency or security zones.
@@ -109,7 +109,6 @@ Target nodes dedicated to your observability team to avoid noisy neighbor issues
 ### Zone-based placement 
 
 Ensure your pipeline runs only in specific availability zones, which helps meet data residency or compliance requirements. In the following example, only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
-- 
 
 ```json
 {

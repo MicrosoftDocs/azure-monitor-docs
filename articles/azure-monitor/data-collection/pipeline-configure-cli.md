@@ -181,10 +181,9 @@ The DCR is stored in Azure Monitor and defines how the data will be processed wh
 
 
 ### Create DCR
-DCRs are formatted as JSON with the sections described in the following table. The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created.
+The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created.
 
-Replace the properties in the sample template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for further details on the structure of a DCR.
-
+DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
 
 | Parameter | Description |
 |:----------|:------------|
@@ -196,6 +195,7 @@ Replace the properties in the sample template and save them in a json file befor
 | `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
 
 ### [CLI](#tab/cli)
+Replace the properties in the sample template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for further details on the structure of a DCR.
 
 ```azurecli
 az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
@@ -207,9 +207,101 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 ### [ARM](#tab/arm)
 
 ```json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "dataCollectionRuleName": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the name of the Data Collection Rule to create."
+            }
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the location in which to create the Data Collection Rule."
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Insights/dataCollectionRules",
+            "name": "[parameters('dataCollectionRuleName')]",
+            "location": "[parameters('location')]",
+            "apiVersion": "2024-03-11",
+            "properties": {
+                "dataCollectionEndpointId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionEndpoints/my-dce",
+                "streamDeclarations": {
+                    "Custom-OTLP": {
+                        "columns": [
+                            {
+                                "name": "Body",
+                                "type": "string"
+                            },
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "SeverityText",
+                                "type": "string"
+                            }
+                        ]
+                    },
+                    "Custom-Syslog": {
+                        "columns": [
+                            {
+                                "name": "Body",
+                                "type": "string"
+                            },
+                            {
+                                "name": "TimeGenerated",
+                                "type": "datetime"
+                            },
+                            {
+                                "name": "SeverityText",
+                                "type": "string"
+                            }
+                        ]
+                    }
+                },
+                "dataSources": {},
+                "destinations": {
+                    "logAnalytics": [
+                        {
+                            "name": "LogAnayticsWorkspace01",
+                            "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace",
+                        }
+                    ]
+                },
+                "dataFlows": [
+                    {
+                        "streams": [
+                            "Custom-OTLP"
+                        ],
+                        "destinations": [
+                            "LogAnayticsWorkspace01"
+                        ],
+                        "transformKql": "source",
+                        "outputStream": "Custom-OTelLogs_CL"
+                    },
+                    {
+                        "streams": [
+                            "Custom-Syslog"
+                        ],
+                        "destinations": [
+                            "LogAnayticsWorkspace01"
+                        ],
+                        "transformKql": "source",
+                        "outputStream": "Custom-Syslog_CL"
+                    }
+                ]
+            }
+        }
+    ]
+}
 ```
-
-
 
 ---
 
