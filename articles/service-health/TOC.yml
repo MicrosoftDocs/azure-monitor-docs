@@ -20,7 +20,8 @@
       href: admin-access-reference.md
     - name: Subscription and Tenant access
       href: subscription-vs-tenant.md  
-        
+    - name: Service Health notifications data properties
+      href: service-health-event-properties.md
     - name: Service issues
       items:
        - name: Service issues overview
@@ -32,23 +33,7 @@
        - name: Filter Service Health notifications by event level
          href: metadata-filter.md
        - name: Service Health data transitions
-         href: service-health-notification-transitions.md 
-       - name: How to create alerts
-         items:
-          - name: Create Service Health alerts
-            href: ./alerts-activity-log-service-notifications-portal.md
-          - name: How to report an impact
-            href: report-issue.md
-       - name: How to send alerts
-         items:
-         - name: Send alerts to outside systems via webhook
-           href: service-health-alert-webhook-guide.md
-         - name: Send alerts with ServiceNow
-           href: service-health-alert-webhook-servicenow.md
-         - name: Send alerts with PagerDuty
-           href: service-health-alert-webhook-pagerduty.md
-         - name: Send alerts using OpsGenie
-           href: service-health-alert-webhook-opsgenie.md
+         href: service-health-notification-transitions.md
     
     - name: Planned maintenance
       items:
@@ -80,7 +65,11 @@
       
     - name: Service Health history overview
       href: health-history-overview.md
-
+  
+    - name: Health alerts
+      items:
+       - name: Service Health alerts overview
+         href: service-health-alert-overview.md
 - name: Get started in Resource Health
   items: 
   - name: Resource health alerts overview
@@ -89,20 +78,37 @@
     href: resource-health-checks-resource-types.md
   - name: Resource Health status for Virtual Machines
     href: resource-health-vm-annotation.md
-  - name: How to create Resource health alerts
-    items:
-    - name: Create Resource Health alerts
-      href: resource-health-alert-arm-template-guide.md
-    - name: Create Resource Health alerts with PowerShell and ARM templates
-      href: resource-health-alert-powershell-template.md
-    - name: Create activity log alerts using Bicep
-      href: alerts-activity-log-service-notifications-bicep.md
-    - name: Create activity log alerts using ARM template
-      href: alerts-activity-log-service-notifications-arm.md
-    - name: Deploy Service Health alert rules at scale using Azure Policy 
-      href: service-health-alert-deploy-policy.md
-   
-        
+  
+- name: How-to Guides
+  items:
+    - name: How to create Service health alerts
+      href: ./alerts-activity-log-service-notifications-portal.md
+    - name: How to report an impact
+      href: report-issue.md
+    - name: How to send Service health alerts
+      items:
+        - name: Send alerts to outside systems via webhook
+          href: service-health-alert-webhook-guide.md
+        - name: Send alerts with ServiceNow
+          href: service-health-alert-webhook-servicenow.md
+        - name: Send alerts with PagerDuty
+          href: service-health-alert-webhook-pagerduty.md
+        - name: Send alerts using OpsGenie
+          href: service-health-alert-webhook-opsgenie.md
+    
+    - name: How to create Resource health alerts
+      items:
+       - name: Create Resource Health alerts
+         href: resource-health-alert-arm-template-guide.md
+       - name: Create Resource Health alerts with PowerShell and ARM templates
+         href: resource-health-alert-powershell-template.md
+       - name: Create activity log alerts using Bicep
+         href: alerts-activity-log-service-notifications-bicep.md
+       - name: Create activity log alerts using ARM template
+         href: alerts-activity-log-service-notifications-arm.md
+       - name: Deploy Service Health alert rules at scale using Azure Policy 
+         href: service-health-alert-deploy-policy.md
+       
     - name: How to use Resource Graph queries
       items:
       - name: Sample queries for Service Health
