@@ -862,12 +862,15 @@ items:
         href: data-collection/pipeline-overview.md
       - name: Install and configure
         items:
+        - name: Configuration overview
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure.md
         - name: Azure portal
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure-portal.md
         - name: CLI and templates
           displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
+          href: data-collection/pipeline-configure-cli.md
         - name: Extension versions
           displayName: Azure Monitor pipeline extension versions
           href: data-collection/pipeline-extension-versions.md
@@ -875,6 +878,10 @@ items:
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
+      - name: Pod placement
+        href: data-collection/pipeline-pod-placement.md
+      - name: Configure TLS
+        href: data-collection/pipeline-tls.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
