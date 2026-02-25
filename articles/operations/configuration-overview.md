@@ -2,7 +2,7 @@
 title: Configuration in operations center (preview)
 description: Describes the Configuration menu in operations center which helps you manage the configuration of your Azure VMs and Arc-enabled servers.
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 
