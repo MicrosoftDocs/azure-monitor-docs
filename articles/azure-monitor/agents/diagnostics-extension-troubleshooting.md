@@ -10,7 +10,7 @@ ms.reviewer: JeffWo
 
 This article describes troubleshooting information that's relevant to using Azure Diagnostics. For more information about Diagnostics, see [Azure Diagnostics overview](diagnostics-extension-overview.md).
 
-[!INCLUDE diagnostics-extension-deprecation]
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Logical components
 
