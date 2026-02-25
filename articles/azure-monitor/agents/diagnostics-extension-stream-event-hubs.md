@@ -9,7 +9,7 @@ ms.date: 11/14/2024
 
 Azure diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure virtual machines and other compute resources. This article describes how to send data from the Microsoft Azure Diagnostic (WAD) extension to [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) so you can forward to locations outside of Azure.
 
-[!INCLUDE diagnostics-extension-deprecation]
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data
 
