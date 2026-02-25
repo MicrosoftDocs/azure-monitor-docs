@@ -27,7 +27,7 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 > [!NOTE]
 > The Maps feature of AM insights has been deprecated. This feature was enabled by 
 
-## Enable VM insights with the Azure portal
+## Enable with the Azure portal
 Use the following procedure to enable VM insights on a single virtual machine or Virtual Machine Scale Set. This process doesn't require you to have any knowledge of individual components that enable VM insights, but you can only enable a single machine at a time.
 
 > [!NOTE]
@@ -87,10 +87,10 @@ When you enable VM insights, [Data collection rules (DCRs)](../essentials/data-c
 > [!NOTE]
 > If you're only using log-based metrics, you can also download and install the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
 >
->   | Folder | File | Description |
->   |:---|:---|:---|
->   | DeployDcr\\<br>PerfOnlyDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable only Performance experience of VM Insights. |
->   | DeployDcr\\<br>PerfAndMapDcr | DeployDcrTemplate<br>DeployDcrParameters | Enable both Performance and Map experience of VM Insights. This feature has been deprecated. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md). |
+>   | Folder  | Description |
+>   |:---|:---|
+>   | DeployDcr\\<br>PerfOnlyDcr | Enable only Performance experience of VM Insights. |
+>   | DeployDcr\\<br>PerfAndMapDcr | Enable both Performance and Map experience of VM Insights. This feature has been deprecated. See [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md). |
 
 
 ### Deploy agents
@@ -100,8 +100,6 @@ The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is responsi
 ### Associate DCR with agents
 The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#create-new-association). To enable on multiple machines, you need to create an association using this template for each one. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
 
-
-## [PowerShell script](#tab/powershell)
 
 ### Enable VM insights for multiple VMs using PowerShell script
 
