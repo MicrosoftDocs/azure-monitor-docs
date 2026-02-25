@@ -7,9 +7,10 @@ ms.date: 02/16/2026
 
 # Overview of VM insights
 
-VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. 
+VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time. You can view this data in a single VM from the virtual machine directly, or you can use Azure Monitor to deliver an aggregated view of multiple VMs.
 
-VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time. You can view this data in a single VM from the virtual machine directly, or you can use Azure Monitor to deliver an aggregated view of multiple VMs.
+> [!IMPORTANT]
+> VM insights now supports two types of metrics collection. OpenTelemetry-based metrics collection is currently in preview in addition to the classic log-based metrics. Review the [Metrics selection](#metrics-selection) section to understand the differences between these two types of metrics and determine which one is right for you. The documentation will identify where the VM insights experience varies based on which type of metrics you choose to collect.
 
 :::image type="content" source="media/vminsights-overview/vminsights-performance-view.png" lightbox="media/vminsights-overview/vminsights-performance-view.png" alt-text="Screenshot tof the Performance view in VM insights.":::
 
@@ -19,21 +20,20 @@ VM insights provides a set of predefined workbooks that allow you to view trendi
 There's no direct cost for VM insights, but you're charged for its activity in the Log Analytics workspace. Based on the pricing that's published on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Supported machines and operating systems
-
-VM insights supports the following machines:
+VM insights supports all operating systems supported by the [Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md) on the following machines:
 
 - Azure virtual machines
 - Azure Virtual Machine Scale Sets
-- Hybrid virtual machines connected with Azure Arc
-  - VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
-- On-premises virtual machines.
-- Virtual machines hosted in another cloud environment.
+- Hybrid virtual machines connected with Azure Arc <sup>1</sup>
+- On-premises virtual machines
+- Virtual machines hosted in another cloud environment
+
+<sup>1</sup> VM Insights is available for Azure Arc-enabled servers in regions where the Arc extension service is available. You must be running version 0.9 or above of the Azure Arc agent.
+
+## Portal experiences
+VM insights is integrated into the portal experience for virtual machines. 
 
 
-VM insights supports the following operating systems:
-
-- All operating systems supported by the Azure Monitor agent for guest performance. See [Azure Monitor agent supported operating systems](../agents/azure-monitor-agent-supported-operating-systems.md).
-- All operating systems supported by the Dependency agent for processes and dependencies. See [Dependency agent supported operating systems](../vm/vminsights-dependency-agent.md#supported-operating-systems).
 
 ## Metrics selection
 When you enable VM insights, you need to determine which metrics experience to enable. Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OpenTelemetry guest OS metrics is currently in preview and is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
