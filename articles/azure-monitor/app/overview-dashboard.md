@@ -3,7 +3,7 @@ title: Application Insights Dashboard Setup and Customization
 description: Monitor your application's health and performance with the Application Insights Overview dashboard. Learn how to customize tiles and create actionable insights.
 #customer intent: As a developer, I want to understand the Application Insights Overview dashboard so that I can monitor my application's health and performance at a glance.
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 03/06/2026
 author: AarDavMax
 ms.author: aaronmax
 ms.reviewer: aaronmax

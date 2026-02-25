@@ -2,7 +2,7 @@
 title: Application map in Azure Application Insights
 description: Discover how to monitor distributed systems with Application map in Azure Application Insights. Gain insights into dependencies, failures, and performance.
 ms.topic: how-to
-ms.date: 02/19/2026
+ms.date: 03/06/2026
 author: AarDavMax
 ms.author: aaronmax
 ms.reviewer: aaronmax

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Automation
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Automation
   
 ## Automation  
   
-<!--75e93efa-454c-4173-bd06-e303de8c94d5_begin-->
+<!--d63e646e-752a-40c0-aa76-b744a6b6949a_begin-->
 
-#### Support for TLS 1.0 and TLS 1.1 in Hybrid Workers and Webhook calls is ending  
+#### Best Practices (Azure Automanage) are being retired  
   
-Upgrade TLS to latest version. Support for TLS 1.0 and TLS 1.1 in Hybrid Workers and Webhook calls is ending.  
+Best Practices (Azure Automanage) are being retired.  
   
 **Potential benefits**: Avoid potential disruptions  
 
-**Impact:** High
+**Impact:** Medium
   
-For more information, see [Azure Automation data security](/azure/automation/automation-managing-data?WT.mc_id=Portal-AppInsightsExtension#upgrade-tls-protocol-for-hybrid-workers-and-webhook-calls)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/v2/Azure-Automanage-Best-Practices-Retirement-Migrate-to-Azure-Policy)  
 
 ResourceType: microsoft.automation/automationaccounts  
-Recommendation ID: 75e93efa-454c-4173-bd06-e303de8c94d5  
+Recommendation ID: d63e646e-752a-40c0-aa76-b744a6b6949a  
 Subcategory: undefined
 
-<!--75e93efa-454c-4173-bd06-e303de8c94d5_end-->
+<!--d63e646e-752a-40c0-aa76-b744a6b6949a_end-->
 
 <!--articleBody-->

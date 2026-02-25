@@ -5,8 +5,9 @@ metadata:
   author: 
   ms.author: 
   ms.service: azure-monitor
-  ms.topic: faq 
-  ms.date: 09/25/2025
+  ms.topic: faq
+  ms.custom: references_regions
+  ms.date: 03/19/2026
 
 title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
@@ -103,6 +104,37 @@ sections:
         answer: |
            Most Application Insights data has a latency of under 5 minutes. Some data can take longer, which is typical for larger log files. See the [Application Insights service-level agreement](https://azure.microsoft.com/support/legal/sla/application-insights/v1_2/).    
 
+      - question: What is the Application Insights pricing model?
+        answer: |
+          Application Insights is billed through the Log Analytics workspace into which its log data ingested. The default Pay-as-you-go Log Analytics pricing tier includes 5 GB per month of free data allowance per billing account. Learn more about [Azure Monitor logs pricing options](https://azure.microsoft.com/pricing/details/monitor/).
+
+      - question: Are there data transfer charges between an Azure web app and Application Insights?
+        answer: |
+          * If your Azure web app is hosted in a datacenter where there's an Application Insights collection endpoint, there's no charge.
+          * If there's no collection endpoint in your host datacenter, your app's telemetry incurs [Azure outgoing charges](https://azure.microsoft.com/pricing/details/bandwidth/).
+          
+          This answer depends on the distribution of our endpoints, *not* on where your Application Insights resource is hosted.   
+
+      - question: Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
+        answer: |
+          Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
+
+          If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
+
+      - question: What TLS versions are supported?
+        answer: |
+          Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3.
+
+          > [!IMPORTANT]
+          >  On 1 March 2025, Azure will retire legacy versions of TLS across all services. At that time, Application Insights no longer supports TLS 1.0, TLS 1.1, and the listed legacy TLS 1.2/1.3 cipher suites and elliptic curves.
+
+          For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
+
+      - question: Where can I get more information about Application Insights? 
+        answer: For more information, see [Introduction to Application Insights](../app/app-insights-overview.md).     
+
+  - name: Data collection, retention, storage, and privacy
+    questions:
       - question: How does Application Insights handle data collection, retention, storage, and privacy?
         answer: |
           #### Context
@@ -190,37 +222,135 @@ sections:
             handler = AzureLogHandler(connection_string='<YOUR-CONNECTION-STRING>',
                                       storage_path='/var/tmp/ai-cache')
             ```
+
+      - question: What usage data does Microsoft collect?
+        answer: |
+          In many instances, Application Insights automatically collects data about product usage for Microsoft. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Application Insights collects essential and nonessential metrics about:
+ 
+          * [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
+          * [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
+          * Application Insights SDKs (Classic API)
+
+          The three main purposes of this data collection are:
+
+          * **Service health and reliability** - Monitoring the connectivity to the ingestion endpoint from an external perspective to ensure the service is functioning correctly.
+          * **Support diagnostics** - Offering self-help insights and assisting customer support with diagnosing and resolving issues.
+          * **Product improvement** - Gathering insights for Microsoft to optimize product design and enhance the overall user experience.
+
+          > [!NOTE]
+          > Usage data collection doesn't support [Azure Private Link](/azure/automation/how-to/private-link-security).
+
+          #### Supported languages
+
+          | Metrics                   | .NET | Java | JavaScript | Node.js | Python |
+          |---------------------------|------|------|------------|---------|--------|
+          | **Essential metrics**     |      |      |            |         |        |
+          | Network                   | ❌   | ✅  | ❌         | ✅     | ✅     |
+          | Attach                    | ✔️\* | ✅  | ❌         | ✅     | ✅     |
+          | Feature                   | ❌   | ✅  | ❌         | ✅     | ✅     |
+          | **Non-essential metrics** |      |      |            |         |        |
+          | Disk I/O failure          | ❌   | ✅  | ❌         | ❌     | ❌     |
+
+          \* Not supported with Classic API or autoinstrumentation (*OTel only*)
+
+          #### Supported EU regions
+
+          Usage data collection supports EU Data Boundary for Application Insights resources in the following regions:
+
+          | Geo name       | Region name          |
+          |----------------|----------------------|
+          | Europe         | North Europe         |
+          | Europe         | West Europe          |
+          | France         | France Central       |
+          | France         | France South         |
+          | Germany        | Germany West Central |
+          | Norway         | Norway East          |
+          | Norway         | Norway West          |
+          | Sweden         | Sweden Central       |
+          | Switzerland    | Switzerland North    |
+          | Switzerland    | Switzerland West     |
+          | United Kingdom | United Kingdom South |
+          | United Kingdom | United Kingdom West  |
+
+          #### Collected usage data
+
+          **Network metrics**
+
+          | Metric name | Unit | Supported dimensions |
+          |------------|-------|----------------------|
+          | Request Success Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host` |
+          | Requests Failure Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Status Code` |
+          | Request Duration | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host` |
+          | Retry Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Status Code` |
+          | Throttle Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Status Code` |
+          | Exception Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version`, `Endpoint`, `Host`, `Exception Type` |
+
+          **Attach metrics**
+
+          | Metric name | Unit | Supported dimensions |
+          |-------------|------|----------------------|
+          | Attach | Count | `Resource Provider`, `Resource Provider Identifier`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version` |
+
+          **Feature metrics**
+
+          | Metric name | Unit | Supported dimensions |
+          |-------------|------|----------------------|
+          | Feature | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Feature`, `Type`, `Operating System`, `Language`, `Version` |
+
+          **Nonessential metrics**
+
+          Track the Disk I/O failure when you use disk persistence for reliable telemetry.
+
+          | Metric name | Unit | Supported dimensions |
+          |--------------------|-------|--------------|
+          | Read Failure Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version` |
+          | Write Failure Count | Count | `Resource Provider`, `Attach Type`, `Instrumentation Key`, `Runtime Version`, `Operating System`, `Language`, `Version` |
+
+          #### Firewall configuration
+
+          Metrics are sent to the following locations, to which outgoing connections must be opened in firewalls:
+
+          | Location          | URL                                             |
+          |-------------------|-------------------------------------------------|
+          | Europe            | `westeurope-5.in.applicationinsights.azure.com` |
+          | Outside of Europe | `westus-0.in.applicationinsights.azure.com`     |
+
+          #### Disable usage data collection
+
+          **.NET**
+
+          Usage data collection is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`.
+
+          **Java**
+
+          > [!NOTE]
+          > Only nonessential metrics can be disabled in Java.
+
+          To disable nonessential metrics, add the following configuration to your config file:
+
+          ```json
+          {
+            "preview": {
+              "statsbeat": {
+                  "disabled": "true"
+              }
+            }
+          }
+          ```
+
+          You can also disable this feature by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` to `true`. This setting then takes precedence over `disabled`, which is specified in the JSON configuration.
+
+          **Node.js**
+
+          Usage data collection is enabled by default. It can be disabled by setting the environment variable `APPLICATION_INSIGHTS_NO_STATSBEAT` to `true`.
+
+          **Python**
+
+          Usage data collection is enabled by default. It can be disabled by setting the environment variable `APPLICATIONINSIGHTS_STATSBEAT_DISABLED_ALL` to `true`.
+
           #### Archived Information
 
           For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
-      - question: What is the Application Insights pricing model?
-        answer: |
-          Application Insights is billed through the Log Analytics workspace into which its log data ingested. The default Pay-as-you-go Log Analytics pricing tier includes 5 GB per month of free data allowance per billing account. Learn more about [Azure Monitor logs pricing options](https://azure.microsoft.com/pricing/details/monitor/).
-
-      - question: Are there data transfer charges between an Azure web app and Application Insights?
-        answer: |
-          * If your Azure web app is hosted in a datacenter where there's an Application Insights collection endpoint, there's no charge.
-          * If there's no collection endpoint in your host datacenter, your app's telemetry incurs [Azure outgoing charges](https://azure.microsoft.com/pricing/details/bandwidth/).
-          
-          This answer depends on the distribution of our endpoints, *not* on where your Application Insights resource is hosted.   
-
-      - question: Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
-        answer: |
-          Yes, you can incur more network costs, which vary depending on the region the telemetry is coming from and where it's going. Refer to [Azure bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/) for details.
-
-          If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
-
-      - question: What TLS versions are supported?
-        answer: |
-          Application Insights uses Transport Layer Security (TLS) 1.2 and 1.3.
-
-          > [!IMPORTANT]
-          >  On 1 March 2025, Azure will retire legacy versions of TLS across all services. At that time, Application Insights no longer supports TLS 1.0, TLS 1.1, and the listed legacy TLS 1.2/1.3 cipher suites and elliptic curves.
-
-          For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
-
-      - question: Where can I get more information about Application Insights? 
-        answer: For more information, see [Introduction to Application Insights](../app/app-insights-overview.md).     
 
   - name: Application Insights API for custom events and metrics
     questions:
@@ -1732,7 +1862,7 @@ sections:
           * It's vendor-neutral and provides consistent APIs/SDKs across languages.
           * Over time, we believe OpenTelemetry will enable Azure Monitor customers to observe applications written in languages beyond our [supported languages](../app/app-insights-overview.md#supported-languages).
           * It expands the types of data you can collect through a rich set of [instrumentation libraries](https://opentelemetry.io/docs/concepts/components/#instrumentation-libraries).
-          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights SDKs.
+          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights Classic API SDKs.
           * OpenTelemetry aligns with Microsoft's strategy to [embrace open source](https://opensource.microsoft.com/).
 
       - question: What's the status of OpenTelemetry?
@@ -1753,7 +1883,6 @@ sections:
              * Sampling compatible with classic Application Insights SDKs
              * [Microsoft Entra authentication](../app/azure-ad-authentication.md)
              * [Offline Storage and Automatic Retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries)
-             * [Statsbeat](../app/statsbeat.md)
              * [Application Insights Standard Metrics](../app/standard-metrics.md)
              * Detect resource metadata to autopopulate [Cloud Role Name](../app/java-standalone-config.md#cloud-role-name) and [Cloud Role Instance](../app/java-standalone-config.md#cloud-role-instance) on various Azure environments
              * [Live Metrics](../app/live-stream.md)
@@ -1765,30 +1894,20 @@ sections:
 
           Because the Distro provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), the Distro supports anything supported by OpenTelemetry. For example, you can add more telemetry processors, exporters, or instrumentation libraries, if OpenTelemetry supports them.
 
-          > [!NOTE]
-          > The Distro sets the sampler to a custom, fixed-rate sampler for Application Insights. You can change this to a different sampler, but doing so might disable some of the Distro's included capabilities.
-          > For more information about the supported sampler, see the [Enable Sampling](../app/opentelemetry-configuration.md#enable-sampling) section of [Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md).
-
           For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
-      - question: How can I test out the Azure Monitor OpenTelemetry Distro?
-        answer: |
-          Check out our enablement docs for [.NET, Java, JavaScript (Node.js), and Python](../app/opentelemetry-enable.md).
-
-      - question: Should I use OpenTelemetry or the Application Insights SDK?
+      - question: Should I use OpenTelemetry or the Application Insights Classic API SDK?
         answer: |
           We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
           
-          OpenTelemetry also provides advantages over the Application Insights SDKs, including:
+          OpenTelemetry provides advantages over the Application Insights Classic API SDKs, including:
 
           - Better standardization across platforms
           - A wider ecosystem of instrumentation libraries
           - Greater flexibility in data collection and processing
           - Improved vendor neutrality, though Azure Monitor OpenTelemetry Distro is still optimized for Azure.
 
-           OpenTelemetry will eventually replace the Application Insights SDK and is close to feature parity. 
-           However, in some cases you may still require the Application Insights SDK if its [capabilities](#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro) align with your monitoring needs.
-
+           If you're using .NET or Node.js Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](.\migrate-to-opentelemetry.md).
           
       - question: When should I use the Azure Monitor OpenTelemetry exporter?
         answer: |
@@ -1800,32 +1919,9 @@ sections:
 
       - question: What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
         answer: |
-          The following chart breaks out OpenTelemetry feature support for each language.
-
-          | Feature                                                                                                              | .NET               | Node.js            | Python             | Java               |
-          |----------------------------------------------------------------------------------------------------------------------|--------------------|--------------------|--------------------|--------------------|
-          | [Distributed tracing](../app/distributed-trace-data.md)                                                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Custom metrics](../app/opentelemetry-add-modify.md#add-custom-metrics)                                              | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Standard metrics](../app/standard-metrics.md)                                                                       | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Fixed-rate sampling](../app/sampling.md)                                                                            | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Offline storage and automatic retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries) | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Exception reporting](../app/asp-net-exceptions.md)                                                                  | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Logs collection](../app/asp-net-trace-logs.md)                                                                      | :white_check_mark: | :warning:          | :white_check_mark: | :white_check_mark: |
-          | [Custom Events](../app/usage.md#track-user-interactions-with-custom-events)                                          | :warning:          | :warning:          | :warning:          | :white_check_mark: |
-          | [Microsoft Entra authentication](../app/azure-ad-authentication.md)                                                  | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Live metrics](../app/live-stream.md)                                                                                | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [Live Metrics Filtering](../app/live-stream.md#select-and-filter-your-metrics)                                       | :white_check_mark: | :x:                | :x:                | :x:                |
-          | Availability Testing Events generated using the Track Availability API                                               | :x:                | :x:                | :x:                | :white_check_mark: |
-          | Filter requests, dependencies, logs, and exceptions by anonymous user ID and synthetic source                        | :x:                | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | Filter dependencies, logs, and exceptions by operation name                                                          | :x:                | :x:                | :x:                | :white_check_mark: |
-          | [Rate-limited sampling](../app/sampling.md#adaptive-sampling)                                                        | :white_check_mark: | :white_check_mark: | :white_check_mark: | :white_check_mark: |
-          | [.NET Profiler](../profiler/profiler-overview.md)                                                                    | :warning:          | :x:                | :x:                | :warning:          |
-          | [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)                                                       | :x:                | :x:                | :x:                | :x:                |
-
-          **Key**
-          * :white_check_mark: This feature is available to all customers with formal support.
-          * :warning: This feature is available as a public preview. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-          * :x: This feature isn't available or isn't applicable.
+          The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights Classic API SDKs.
+          
+          For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
       - question: Can OpenTelemetry be used for web browsers?
         answer: |       
@@ -1847,17 +1943,9 @@ sections:
         answer: |
           We don't recommend it. See [Supplemental terms of use for Microsoft Azure previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-      - question: What's the difference between manual and automatic instrumentation?
-        answer: |
-          See the [OpenTelemetry Overview](../app/opentelemetry-overview.md).
-
       - question: Can I use the OpenTelemetry Collector?
         answer: |
           Some customers use the OpenTelemetry Collector as an agent alternative, even though Microsoft doesn't officially support an agent-based approach for application monitoring yet. In the meantime, the open-source community contributed an [OpenTelemetry Collector Azure Monitor Exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/azuremonitorexporter) that some customers are using to send data to Azure Monitor Application Insights. **This is not supported by Microsoft.**
-
-      - question: What's the difference between OpenCensus and OpenTelemetry?
-        answer: |
-          [OpenCensus](https://opencensus.io/) is the precursor to [OpenTelemetry](https://opentelemetry.io/). Microsoft helped bring together [OpenTracing](https://opentracing.io/) and OpenCensus to create OpenTelemetry, a single observability standard for the world. The current [production-recommended Python SDK](/previous-versions/azure/azure-monitor/app/opencensus-python) for Azure Monitor is based on OpenCensus. Microsoft is committed to making Azure Monitor based on OpenTelemetry.
 
       - question: In Grafana, why do I see "Status 500. Can't visualize trace events using the trace visualizer"?
         answer: |
@@ -1870,9 +1958,6 @@ sections:
       - question: How should I instrument Blazor Apps?
         answer: |
           To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
-
-      - question: Where can I get more information about OpenTelemetry support and feedback? 
-        answer: For more information, see [OpenTelemetry Support and Feedback for Application Insights](../app/opentelemetry-help-support-feedback.md).      
           
   - name: Overview dashboard
     questions:

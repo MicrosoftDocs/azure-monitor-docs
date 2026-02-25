@@ -2,7 +2,7 @@
 title: Dependency Tracking in Application Insights | Microsoft Docs
 description: Monitor dependency calls from your on-premises or Azure web application with Application Insights.
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/06/2026
 ms.devlang: csharp
 ms.custom: devx-track-csharp, build-2023
 ---
@@ -17,30 +17,14 @@ This section links to lists of dependency calls that are automatically detected 
 
 If your dependency isn't on the list, you can still track it manually, see [Manually track dependencies](#manually-track-dependencies).
 
-# [OpenTelemetry](#tab/otel)
-
 For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
-# [Classic API](#tab/classic)
-
-The following resources provide language-specific information for automatically tracked dependencies.
-
-| Language/Framework | Resource |
-|--------------------|----------|
-| **.NET** | For a list of all autocollected dependencies, see [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#automatically-tracked-dependencies). |
-| **Node.js** | A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers). |
-| **JavaScript (Browser)** | The JavaScript SDK autocollects dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest). |
-
 > [!NOTE]
-> For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX calls as dependencies.
-
----
+> For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
 
 ### How does automatic dependency monitoring work?
 
 Dependencies are automatically collected using one of the following techniques, depending on the telemetry collection method.
-
-# [OpenTelemetry](#tab/otel)
 
 * [OpenTelemetry instrumentation libraries](opentelemetry-add-modify.md#included-instrumentation-libraries) are used to automatically collect dependencies such as HTTP, SQL, and Azure SDK calls. These libraries hook into supported frameworks and client libraries using `DiagnosticSource` or equivalent mechanisms.
 
@@ -48,38 +32,14 @@ Dependencies are automatically collected using one of the following techniques, 
 
 * In other environments, developers can manually configure instrumentation using the *Azure.Monitor.OpenTelemetry.\** packages and OpenTelemetry APIs to control which dependencies are tracked and how they're enriched or filtered.
 
-# [Classic API](#tab/classic)
-
-* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
-
-* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
-
-* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
-
----
-
 ## Manually track dependencies
 
 You can manually track dependencies when automatic collection doesn't meet your needs.
 
-> [!TIP]
-> For new projects, we recommend using OpenTelemetry for better flexibility and future compatibility.
-
-# [OpenTelemetry](#tab/otel)
-
 To learn how to manually track dependencies, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
 
-# [Classic API](#tab/classic)
-
-This approach applies to legacy scenarios where you're using the Classic API instead of OpenTelemetry. The following resources provide language-specific guidance for implementing manual dependency tracking.
-
-| Language/Framework | Resource |
-|--------------------|----------|
-| **ASP.NET** | [Application Insights for ASP.NET and ASP.NET Core applications](asp-net.md#manually-tracking-dependencies) |
-| **Node.js** | [Monitor your Node.js services and apps with Application Insights](nodejs.md#track-your-dependencies) |
-| **JavaScript (Browser)** | [Enable Azure Monitor Application Insights Real User Monitoring](javascript-sdk.md) |
-
----
+> [!NOTE]
+> For webpages, you can enable [Real User Monitoring](javascript-sdk.md) with the Application Insights JavaScript SDK.
 
 ## Where to find dependency data
 
@@ -108,10 +68,6 @@ Select a **Dependency Name** under **Overall**. After you select a dependency, i
 Select the **Samples** button at the bottom right. Then select a sample to see the end-to-end transaction details.
 
 :::image type="content" source="media/dependencies/end-to-end.png" lightbox="media/dependencies/end-to-end.png" alt-text="Screenshot that shows selecting a sample to see the end-to-end transaction details.":::
-
-### Profile your live site
-
-The [.NET Profiler](profiler.md) traces HTTP calls to your live site and shows you the functions in your code that took the longest time.
 
 ## Failed requests
 

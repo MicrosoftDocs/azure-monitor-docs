@@ -81,7 +81,7 @@ The following sample DCR performs the following actions:
 
 DCRs for Syslog events use the `syslog` data source with the incoming `Microsoft-Syslog` stream. The schema of this stream is known, so it doesn't need to be defined in the `dataSources` section. The events to collect are specified in the `facilityNames` and `logLevels` properties. See [Collect Syslog events with Azure Monitor Agent](../agents/data-collection-syslog.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](data-collection-rule-view.md#view-dcr-definition).
 
-You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency at to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for additional functionality and to further filter data, but you should use `facilityNames` and `logLevels` for filtering as much as possible for efficiency to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
@@ -164,7 +164,7 @@ DCRs for performance data use the `performanceCounters` data source with the inc
  
 The performance counters to collect are specified in the `counterSpecifiers` property. See [Collect performance counters with Azure Monitor Agent](../agents/data-collection-performance.md) for further details. To get started, you can use the guidance in that article to create a DCR using the Azure portal and then inspect the JSON using the guidance at [DCR definition](data-collection-rule-view.md#view-dcr-definition).
 
-You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency at to avoid potential ingestion charges.
+You can add a transformation to the `dataFlows` property for `Microsoft-Perf` for additional functionality and to further filter data, but you should select only the counters you require in `counterSpecifiers` for efficiency to avoid potential ingestion charges.
 
 The following sample DCR performs the following actions:
 
@@ -400,114 +400,6 @@ The following sample DCR performs the following actions:
                 "transformKql": "source",
                 "outputStream": "Custom-MyTable_CL"
             }
-        ]
-    }
-}
-```
-
-### Send data to Event Hubs or Storage
-
-DCRs sending data to event hubs or storage accounts use the same data sources as other DCRs that collect data with Azure Monitor agent (AMA), but have one or more of the following destinations. See [Send data to Event Hubs and Storage (Preview)](../agents/azure-monitor-agent-send-data-to-event-hubs-and-storage.md) for more details.
-
-* `eventHubsDirect`
-* `storageBlobsDirect`
-* `storageTablesDirect`
-
-> [!NOTE]
-> DCRs sending data to event hubs or storage accounts must have `"kind": "AgentDirectToStore"`
-
-The following sample DCR performs the following actions:
-
-* Collects performance counters and Windows events from Windows machines with Azure Monitor agent (AMA).
-* Sends the data to event hub, blob storage, and table storage.
-
-```json
-{
-    "location": "eastus",
-    "kind": "AgentDirectToStore",
-    "properties": {
-        "dataSources": {
-            "performanceCounters": [
-                {
-                "streams": [
-                    "Microsoft-Perf"
-                ],
-                "samplingFrequencyInSeconds": 10,
-                "counterSpecifiers": [
-                    "\\Process(_Total)\\Working Set - Private",
-                    "\\Memory\\% Committed Bytes In Use",
-                    "\\LogicalDisk(_Total)\\% Free Space",
-                    "\\Network Interface(*)\\Bytes Total/sec"
-                ],
-                "name": "perfCounterDataSource"
-                }
-            ],
-            "windowsEventLogs": [
-                {
-                "streams": [
-                    "Microsoft-Event"
-                ],
-                "xPathQueries": [
-                    "Application!*[System[(Level=2)]]",
-                    "System!*[System[(Level=2)]]"
-                ],
-                "name": "eventLogsDataSource"
-                }
-            ]
-        },
-        "destinations": {
-            "eventHubsDirect": [
-                {
-                "eventHubResourceId": "/subscriptions/71b36fb6-4fe4-4664-9a7b-245dc62f2930/resourceGroups/my-resource-group/providers/Microsoft.EventHub/namespaces/my-eventhub-namespace/eventhubs/my-eventhub",
-                "name": "myEh"
-                }
-            ],
-            "storageBlobsDirect": [
-                {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
-                "containerName": "myperfblob",
-                "name": "PerfBlob"
-                },
-                {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
-                "containerName": "myeventblob",
-                "name": "EventBlob"
-                }
-            ],
-            "storageTablesDirect": [
-                {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
-                "containerName": "myperftable",
-                "name": "PerfTable"
-                },
-                {
-                "storageAccountResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/Microsoft.Storage/storageAccounts/mystorageaccount",
-                "containerName": "mymyeventtable",
-                "name": "EventTable"
-                }
-            ]
-        },
-        "dataFlows": [
-            {
-                "streams": [
-                "Microsoft-Perf"
-                ],
-                "destinations": [
-                "myEh",
-                "PerfBlob",
-                "PerfTable"
-                ]
-            },
-            {
-                "streams": [
-                "Microsoft-Event"
-                ],
-                "destinations": [
-                "myEh",
-                "EventBlob",
-                "EventTable"
-                ]
-            },
         ]
     }
 }

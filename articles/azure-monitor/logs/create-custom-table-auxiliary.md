@@ -4,7 +4,7 @@ description: Create a custom table with the Auxiliary table plan in your Log Ana
 ms.reviewer: adi.biran
 ms.custom: references_regions
 ms.topic: how-to 
-ms.date: 06/16/2025
+ms.date: 01/23/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -36,7 +36,7 @@ To create a custom table and collect log data, you need:
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
 ```http
-PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table name_CL}?api-version={api-version}
+PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{tablename_CL}?api-version={api-version}
 ```
 
 Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
@@ -72,7 +72,7 @@ Provide this payload as the body of your request. Update the table name and adju
 ```
 
 > [!NOTE]
-> * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (nanoseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
+> * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (microseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
 > * Tables with the Auxiliary plan don't support columns with dynamic data.
 
 ## Send data to a table with the Auxiliary plan
@@ -128,7 +128,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                     "kind": "Direct",
                     "properties": {
                         "streamDeclarations": {
-                            "Custom-tablename_CL": {
+                            "Custom-tablename": {
                                 "columns": [
                                     {"name": "TimeGenerated",
                                      "type": "datetime"},
@@ -155,10 +155,10 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                         },
                         "dataFlows": [
                             {
-                                "streams": ["Custom-table_name"],
+                                "streams": ["Custom-tablename"],
                                 "transformKql": "source",
                                 "destinations": ["myworkspace"],
-                                "outputStream": "Custom-tablename-CL"
+                                "outputStream": "Custom-tablename_CL"
                             }]
                     }
                 }],

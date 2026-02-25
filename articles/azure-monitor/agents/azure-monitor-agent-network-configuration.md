@@ -53,7 +53,7 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 >
 > * The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 >
-> * When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
+> * When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls).
 
 ## Proxy configuration
 
@@ -373,4 +373,4 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 ## Related content
 
-* Learn how to [add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-ampls-to-a-private-endpoint).
+* Learn how to [add an endpoint to an Azure Monitor Private Link Scope resource](../fundamentals/private-link-configure.md#connect-ampls-to-a-private-endpoint).

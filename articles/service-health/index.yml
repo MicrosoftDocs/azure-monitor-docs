@@ -8,7 +8,7 @@ metadata:
   description: Azure Service Health is a suite of experiences that provide personalized guidance and support when issues in Azure services affect you. Azure Service Health can notify you, help you understand the effect of an issue, and keep you updated as the issue resolves. Azure Service Health also can help you prepare for planned maintenance and changes that could affect the availability of your resources.
   ms.service: azure-service-health
   ms.topic: landing-page
-  ms.date: 09/18/2025
+  ms.date: 02/12/2026
 
 # linkListType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | video | whats-new
 
@@ -38,16 +38,22 @@ landingContent:
     linkLists:
       - linkListType: get-started 
         links:
-          - text: View and manage Service Health notifications
-            url: service-notifications.md
-          - text: View and manage Security Advisories
+          - text: Learn how to create Service health alerts
+            url: alerts-activity-log-service-notifications-portal.md
+          - text: Learn about Service issues
+            url: service-issues-blade.md
+          - text: Learn about Planned maintenance
+            url: service-health-planned-maintenance.md
+          - text: Learn how to configure subscription access to view security advisories
+            url: security-advisories-add-subscription.md
+          - text: Read an overview about Security advisories
             url: security-advisories-elevated-access.md
-          - text: View Service Health notifications by event level
-            url: metadata-filter.md
-          - text: Configure alerts for service health alerts
-            url: ./alerts-activity-log-service-notifications-portal.md
           - text: Learn about subscription and tenant accounts
             url: subscription-vs-tenant.md
+          - text: Learn how to report an impact
+            url: report-issue.md
+          - text: Service health frequently asked questions
+            url: service-health-faq.yml
       - linkListType: video
         links:
           - text: Video introduction on how to create Service Health alerts
@@ -58,18 +64,18 @@ landingContent:
     linkLists:
       - linkListType: get-started 
         links:
-          - text: Resource Health types
-            url: resource-health-checks-resource-types.md
-          - text: How to configure Resource Health alerts
-            url: resource-health-alert-monitor-guide.md
-          - text: The impact on resources due to Outages
-            url: impacted-resources-outage.md
-          - text: The impact on resources from planned maintenance events
-            url: impacted-resources-planned-maintenance.md
-          - text: The impact on resources from Azure security incidents
-            url: impacted-resources-security.md
-          - text: Learn about the Azure Resource Graph (ARG) table and queries
+          - text: See how to create Resource health alerts
+            url: resource-health-alert-arm-template-guide.md
+          - text: Learn how to use API endpoint to view security advisories
+            url: access-service-advisories-api.md
+          - text: Resource Graph tables overview
             url: azure-resource-graph-overview.md
+          - text: See sample queries to use for Resource health
+            url: ./resource-graph-health-samples.md
+          - text: Learn about Resource health REST API
+            url: /rest/api/resourcehealth/
+          - text: Resource health frequently asked questions
+            url: resource-health-faq.yml
 
   # Card 
   - title: Get notified

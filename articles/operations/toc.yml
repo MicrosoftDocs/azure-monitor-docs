@@ -3,7 +3,7 @@ items:
   href: index.yml
 - name: What is operations center?
   href: overview.md
-- name: Operations pillars
+- name: Operations menus
   items:
   - name: Observability
     href: observability.md

@@ -98,7 +98,7 @@ These region groups and regions are currently supported:
 | South America | Brazil South <br> Brazil Southeast | Brazil South <br> Brazil Southeast |
 | Europe | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK | France Central <br> Germany West Central <br> North Europe <br> South UK <br> West Europe <br> West UK |
 | Middle East | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North |
-| India | Central India <br> Jio India Central <br> Jio India West <br> South India | Central India <br> Jio India West <br> South India |
+| India | Central India <br> Jio India Central <br> Jio India West <br> South India | Central India <br> Jio India Central <br> Jio India West <br> South India |
 | Asia Pacific | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Southeast Asia |
 | Oceania | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast | Australia Central <br> Australia East <br> Australia Southeast |
 | Africa | South Africa North <br> South Africa West | South Africa North <br> South Africa West |
@@ -120,7 +120,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 ## Pricing model
 
-When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
+When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace, except data with [_IsBillable](log-standard-columns.md#_isbillable) = false. 
 
 > [!IMPORTANT]
 > If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.

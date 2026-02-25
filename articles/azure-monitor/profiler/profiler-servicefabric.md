@@ -73,5 +73,3 @@ After you enable Application Insights, redeploy your application.
 
 > [!div class="nextstepaction"]
 > [Generate load and view the .NET Profiler traces](./profiler-data.md)
-
-[!INCLUDE [azure-monitor-log-analytics-rebrand](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
