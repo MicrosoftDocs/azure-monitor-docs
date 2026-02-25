@@ -11,7 +11,7 @@ ms.custom: sfi-guid-flagged
 
 Azure Diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure compute resources. This article details the schema used for configuration of the diagnostics extension on Windows virtual machines and other compute resources.
 
-[!INCLUDE diagnostics-extension-deprecation]
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 > [!NOTE]
 > The schema in this article is valid for versions 1.3 and newer (Azure SDK 2.4 and newer). Newer configuration sections are commented to show in what version they were added. Version 1.0 and 1.2 of the schema were archived and are no longer available.
