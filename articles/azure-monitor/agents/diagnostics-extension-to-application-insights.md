@@ -12,7 +12,7 @@ Cloud services, Virtual Machines, Virtual Machine Scale Sets and Service Fabric 
 
 This article describes how to send data from the Azure Diagnostics extension to Application Insights.
 
-[!INCLUDE diagnostics-extension-deprecation]
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Diagnostics configuration explained
 
