@@ -185,7 +185,7 @@ N/A
 
 # [Azure CLI](#tab/azure-cli)
 
-When you enter a `''` value for ```key-version```, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
+When you enter an empty string `''` value for `key-version`, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
 
 ```azurecli
 az account set --subscription cluster-subscription-id
@@ -197,7 +197,7 @@ az resource wait --created --ids $clusterResourceId --include-response-body true
 ```
 # [PowerShell](#tab/powershell)
 
-When you enter a `''` value for ```keyVersion```, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
+When you enter an empty string `''` value for `key-version`, the cluster always uses the last key version in Key Vault and there's no need to update the cluster post key rotation. 
 
 ```powershell
 Select-AzSubscription "cluster-subscription-id"
