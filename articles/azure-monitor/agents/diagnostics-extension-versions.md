@@ -12,6 +12,8 @@ ms.custom:
 
 This article provides the version history of the [Azure Diagnostics extension for Windows (WAD)](diagnostics-extension-overview.md) schema versions shipped as part of the Microsoft Azure SDK.
 
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
+
 ## Azure SDK and diagnostics versions shipping chart
 
 |Azure SDK version | Diagnostics extension version | Model|

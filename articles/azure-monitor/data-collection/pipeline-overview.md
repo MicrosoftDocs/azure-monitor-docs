@@ -24,13 +24,13 @@ Specific use cases for Azure Monitor pipeline include the following:
 
 ## Implementation
 
-The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) located in your local data center or another cloud provider. It leverages OpenTelemetry Collector as a foundation and consists of multiple components that work together to collect, process, and transmit telemetry data to Azure Monitor in the cloud. Configuration in the pipeline determines the data collected from the local clients and how it's processed before being sent to Azure Monitor. Configuration in Azure Monitor understands the data being delivered from the pipeline and how it's processed and stored in a Log Analytics workspace.
+The Azure Monitor pipeline is a containerized solution that is deployed on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) located in your local data center or another cloud provider. It is built on open‑source technologies from the OpenTelemetry ecosystem optimized for performance and scale, whilst ensuring portability and interoperability. It consists of multiple components that work together to collect, process, and transmit telemetry data to Azure Monitor in the cloud. Configuration in the pipeline determines the data collected from the local clients and how it's processed before being sent to Azure Monitor. Configuration in Azure Monitor understands the data being delivered from the pipeline and how it's processed and stored in a Log Analytics workspace.
 
 ## Supported configurations
 
 | Supported distros | Supported locations |
 |:---|:---|
-| - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
+| - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
 
 For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
 

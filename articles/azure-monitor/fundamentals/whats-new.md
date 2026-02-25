@@ -2,12 +2,30 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 01/31/2026
+ms.date: 02/09/2026
 ---
 
 # What's new in Azure Monitor documentation
 
 This article lists significant changes to Azure Monitor documentation.
+
+## 2026
+
+### January 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application-Insights|[OpenTelemetry sampling guidance](../app/opentelemetry-sampling.md#general-sampling-guidance)|Added practical starting-point guidance and clarified default sampling behavior.|
+|Application-Insights|[Live Metrics supported features](../app/live-stream.md?tabs=otel#supported-features-table)|Updated the supported-features table to reflect Python support for performance metrics, custom filtering, and sampled telemetry, and Node.js support for custom filtering.|
+|Application-Insights|[Offline storage and retries](../app/opentelemetry-configuration.md?tabs=aspnetcore#offline-storage-and-automatic-retries)|Updated offline storage guidance with the latest local storage paths for Node.js and Python.|
+|Application-Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md)|Published consolidated guidance for migrating from Classic API SDKs to OpenTelemetry.|
+|Application-Insights|[SDK Stats (preview)](../app/sdk-stats.md)|Updated SDK Stats (preview) documentation to include .NET support.|
+|Data Collection|[Metrics export](../data-collection/metrics-export-create.md)|Refreshed metrics export documentation to align with the latest Azure portal experience.|
+|Data Collection|[Azure Monitor pipeline transformations (preview)](../data-collection/pipeline-transformations.md)|Published public preview documentation for pipeline transformations with expanded onboarding guidance for multiple deployment methods and ingestion to standard tables.|
+|Logs|[Private Link browser settings](../logs/private-link-configure.md#browser-local-network-access-settings)|Added guidance for enabling local network access in Chromium-based browsers so Azure portal experiences can reach Azure Monitor private endpoints over AMPLS.|
+|Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Improved content and structure to enhance discoverability and AI retrievability.|
+|Logs|[Prefer header options](../logs/api/prefer-options.md)|Improved content and structure to enhance discoverability and AI retrievability.|
+|Logs|[Azure resource queries](../logs/api/azure-resource-queries.md)|Improved content and structure to enhance discoverability and AI retrievability.|
 
 ## 2025
 
@@ -245,7 +263,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
 |Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
 |Logs|[Configure Azure Monitor with Network Security Perimeter (Preview)](../fundamentals/network-security-perimeter.md)|New article for configuring Azure Monitor for Network Security Perimeter.|
-|Logs|[Configure private link for Azure Monitor](../logs/private-link-configure.md)|Rewritten for clarity.|
+|Logs|[Configure private link for Azure Monitor](../fundamentals/private-link-configure.md)|Rewritten for clarity.|
 |Logs|[Design Azure Monitor Private Link configuration](../logs/private-link-design.md)|Rewritten for clarity.|
 |Virtual-Machines|[Enable VM Insights](../vm/resource-manager-vminsights.md)|Consolidated onboarding content into single article for clarity.|
 |Virtual-Machines|[Disable monitoring of your VMs in VM insights](../vm/vminsights-optout.md)|Rewritten for clarity.|
