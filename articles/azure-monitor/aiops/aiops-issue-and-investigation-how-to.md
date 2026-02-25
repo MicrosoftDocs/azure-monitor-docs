@@ -1,5 +1,5 @@
 ---
-title:  Use Azure Monitor issues and investigations (preview)
+title: Use Azure Monitor issues and investigations (preview)
 description: This article guides you through getting started with Azure Monitor issues and investigations. It shows how to trigger the observability agent to investigate issues and identify resource problems. It also explains why an alert fired and provides next steps to mitigate and resolve problems with Azure resources.
 ms.topic: how-to
 ms.service: azure-monitor

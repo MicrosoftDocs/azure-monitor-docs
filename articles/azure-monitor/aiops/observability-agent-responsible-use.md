@@ -3,6 +3,7 @@ title: Responsible AI FAQ for Azure Copilot observability agent (preview)
 description: This article explains the responsible use of Azure Copilot observability agent and investigation capabilities.
 ms.topic: faq
 ms.service: azure-monitor
+ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
 ms.date: 02/24/2026
 ---
