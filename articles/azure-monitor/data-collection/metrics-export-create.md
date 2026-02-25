@@ -538,7 +538,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
 }
 ```
 
-### [Bicep)](#tab/arm)
+### [Bicep)](#tab/bicep)
 
 ### Create a data collection rule using Bicep templates
 
