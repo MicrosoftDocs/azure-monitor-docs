@@ -68,7 +68,7 @@ Recommended configurations:
 - `duration: 24h` and `renewBefore: 12h`
 
 > [!NOTE]
-> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
+> Client certificates generated using this option should only be used for intra-cluster communication with the pipeline—that is, by clients running within the same Kubernetes cluster. Do NOT use these certificates for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
 
 > [!WARNING]
 > Client certificates that don't renew within 2 days may become invalid when the CA rotates. Always set `renewBefore` to ensure renewal happens before the CA enters its next incubation period.
@@ -113,7 +113,7 @@ For mutual TLS authentication, intra-cluster clients need their own certificates
 
 > [!NOTE]
 >
-> The `arc-amp-client-root-ca-cluster-issuer` ClusterIssuer should only be used to issue client certificates for intra-cluster clients. Do NOT use certificates issued by this ClusterIssuer for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor Pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
+> The `arc-amp-client-root-ca-cluster-issuer` ClusterIssuer should only be used to issue client certificates for intra-cluster clients. Do NOT use certificates issued by this ClusterIssuer for clients connecting from outside the cluster. External clients should instead connect through a gateway (see [Set up Gateway for Azure Monitor pipeline](#set-up-gateway-for-azure-monitor-pipeline)).
 
 Create a certificate resource in your namespace with values that meet zero-downtime rotation constraints:
 
@@ -423,10 +423,16 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 ```
 ---
 
+## Option 3: Disable TLS and mTLS 
+While it's not recommended from a security standpoint, you may choose to disable TLS and mTLS when using the pipeline. Follow the guidance below to safely do so:
+1. Disable the config [following the example configuration](#disable-tls-disable-tls-secure-encryption)
+2. You must have the CME extension installed, even for non-TLS ingestion from your resources
+
+
 ## Example configurations
 The following section provides different configurations to include in the `tlsCertificate` section of the pipeline configuration shown above. Plug in the appropriate JSON snippet based on your desired configuration before applying to the configuration to the pipeline.
 
-**Default TLS**
+### **Default TLS**: Enable TLS secure encryption using automated certificate management
 
 ```json
 {			
@@ -435,7 +441,41 @@ The following section provides different configurations to include in the `tlsCe
 }	
 ```
 
-**BYOC mTLS**
+### **BYOC TLS**: Enable TLS secure encryption using customer-managed certificates
+
+```json
+{
+  "name": "byoc-server-tls",
+  "mode": "serverOnly",
+  "tlsCertificate": {
+    "certificate": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.crt"
+    },
+    "privateKey": {
+      "type": "kubernetesSecret",
+      "location": "collector-server-tls",
+      "subLocation": "tls.key"
+    }
+  }
+}
+```
+
+### **Default TLS + BYOC mTLS**: Enable TLS secure encryption using automated certificate management, and mTLS client authentication using customer-managed certificates
+
+```json
+{
+  "name": "default-server-byoc-client",
+  "clientCA": {
+    "type": "kubernetesSecret",
+    "location": "custom-client-root-ca",
+    "subLocation": "ca.crt"
+  }
+}
+```
+
+### **BYOC (TLS + mTLS)**: Enable TLS secure encryption and mTLS client authentication, both using customer-managed certificates
 
 ```json
 {
@@ -461,61 +501,7 @@ The following section provides different configurations to include in the `tlsCe
 }
 ```
 
-**BYOC TLS**
-
-```json
-{
-  "name": "byoc-server-tls",
-  "mode": "serverOnly",
-  "tlsCertificate": {
-    "certificate": {
-      "type": "kubernetesSecret",
-      "location": "collector-server-tls",
-      "subLocation": "tls.crt"
-    },
-    "privateKey": {
-      "type": "kubernetesSecret",
-      "location": "collector-server-tls",
-      "subLocation": "tls.key"
-    }
-  }
-}
-```
-
-**Server: Default, Client: BYOC**
-
-```json
-{
-  "name": "default-server-byoc-client",
-  "clientCA": {
-    "type": "kubernetesSecret",
-    "location": "custom-client-root-ca",
-    "subLocation": "ca.crt"
-  }
-}
-```
-
-**Server: BYOC, Client: default**
-
-```json
-{
-  "name": "byoc-server-default-client",
-  "tlsCertificate": {
-    "certificate": {
-      "type": "kubernetesSecret",
-      "location": "collector-server-tls",
-      "subLocation": "tls.crt"
-    },
-    "privateKey": {
-      "type": "kubernetesSecret",
-      "location": "collector-server-tls",
-      "subLocation": "tls.key"
-    }
-  }
-}
-```
-
-**Disable TLS**
+### **Disable TLS**: Disable TLS secure encryption 
 
 ```json
 {
@@ -525,9 +511,9 @@ The following section provides different configurations to include in the `tlsCe
 ```
 
 
-## Set up gateway for Azure Monitor Pipeline
+## Set up gateway for Azure Monitor pipeline
 
-Azure Monitor Pipeline extension deploys OpenTelemetry collectors with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to external clients, you need to deploy a gateway solution.
+Azure Monitor pipeline extension deploys OpenTelemetry collectors with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to external clients, you need to deploy a gateway solution.
 
 ### Gateway Architecture Options
 
@@ -541,7 +527,7 @@ This guide provides an example using Traefik with the **Insecure Frontend + mTLS
 
 Before deploying the gateway, ensure:
 
-- **Azure Monitor Pipeline Operator** is installed and running
+- **Azure Monitor pipeline operator** is installed and running
 - **cert-manager** extension is installed (required for certificate management)
 - **Traefik** Helm chart is available (we'll install it)
 - **Namespace labeled** for trust bundle distribution:
