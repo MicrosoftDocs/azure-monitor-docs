@@ -105,7 +105,7 @@ OpenTelemetry doesn't populate resource context by default. Configure [resource 
 
 For applications running on Azure Kubernetes Service (AKS), capture cluster-level metadata.
 
-Use [AKS autoinstrumentation (preview)](../app/kubernetes-codeless.md) for supported Java and Node.js workloads to enrich telemetry with cluster, namespace, pod, and node information.
+Use [AKS autoinstrumentation (preview)](../containers/kubernetes-codeless.md) for supported Java and Node.js workloads to enrich telemetry with cluster, namespace, pod, and node information.
 
 For other runtimes, add Kubernetes metadata by using SDK extensions, telemetry initializers, or the [Application Insights for Kubernetes library](https://github.com/microsoft/ApplicationInsights-Kubernetes).
 

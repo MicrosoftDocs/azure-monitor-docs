@@ -17,7 +17,7 @@ For more information, see [Application monitoring for Azure App Service and Java
 
 ## Azure Functions
 
-For more information, see [Monitoring Azure Functions with Azure Monitor Application Insights](./monitor-functions.md#distributed-tracing-for-java-applications).
+For more information, see [Monitoring Azure Functions with Azure Monitor Application Insights](/azure/azure-functions/opentelemetry-howto#distributed-tracing-for-java-applications).
 
 ## Azure Spring Apps
 

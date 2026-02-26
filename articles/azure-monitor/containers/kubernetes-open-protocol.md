@@ -3,7 +3,6 @@ title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Prev
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
 ms.date: 11/11/2025
-ms.reviewer: kaprince
 ROBOTS: NOINDEX
 ---
 
@@ -118,7 +117,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
    - **Autoconfiguration** for applications already instrumented with OpenTelemetry SDKs.  
 
     > [!NOTE]
-    > - Note that the UI only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options in - Learn how codeless instrumentation works for Kubernetes and how to onboard deployments](kubernetes-codeless.md#onboard-deployments).
+    > - Note that the UI only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options in - Learn how codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
 
 4. Select the **Application language** that applies to the namespace.
 5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
@@ -159,7 +158,7 @@ Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. Full instructions are available [here](./kubernetes-codeless.md).
+Use the Kubernetes custom resources when you need more control. Full instructions are available [here](kubernetes-codeless.md).
 
 ### Autoinstrumentation (Java, Node.js)
 
@@ -211,7 +210,7 @@ metadata:
 
 ## Next steps
 
-- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](./kubernetes-codeless.md#onboard-deployments).
+- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
 - Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor.
 - Learn to configure application monitoring with Azure Monitor and OTLP for [other environments](https://aka.ms/otelignitedoc) with the Azure Monitor Agent or the open-source OpenTelemetry Collector.
 

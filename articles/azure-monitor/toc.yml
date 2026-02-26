@@ -104,11 +104,6 @@ items:
           href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
-        - name: Azure Functions
-          displayName: functions, monitor functions, automation
-          href: app/monitor-functions.md
-        - name: Azure Kubernetes Service
-          href: app/kubernetes-codeless.md
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
@@ -395,6 +390,18 @@ items:
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
+      - name: Public previews
+        items:
+        - name: Autoinstrumentation for Azure Kubernetes Service (Preview)
+          href: containers/kubernetes-codeless.md
+      - name: Limited previews
+        items:
+        - name: Collect and analyze OpenTelemetry data with Azure Monitor
+          href: containers/collect-use-observability-data.md
+        - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
+          href: containers/opentelemetry-protocol-ingestion.md
+        - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
+          href: containers/kubernetes-open-protocol.md
     - name: Analyze data
       items:
       - name: Interactive views
@@ -1653,14 +1660,6 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
-  - name: Limited previews
-    items:
-    - name: Collect and analyze OpenTelemetry data with Azure Monitor
-      href: fundamentals/collect-use-observability-data.md
-    - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
-      href: fundamentals/opentelemetry-protocol-ingestion.md
-    - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
-      href: app/kubernetes-open-protocol.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
