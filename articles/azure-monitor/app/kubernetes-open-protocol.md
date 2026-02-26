@@ -3,7 +3,6 @@ title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Prev
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
 ms.date: 11/11/2025
-ms.reviewer: kaprince
 ROBOTS: NOINDEX
 ---
 
@@ -118,7 +117,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
    - **Autoconfiguration** for applications already instrumented with OpenTelemetry SDKs.  
 
     > [!NOTE]
-    > - Note that the UI only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options in - Learn how codeless instrumentation works for Kubernetes and how to onboard deployments](kubernetes-codeless.md#onboard-deployments).
+    > - Note that the UI only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options in - Learn how codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
 
 4. Select the **Application language** that applies to the namespace.
 5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
