@@ -107,8 +107,6 @@ items:
         - name: Azure Functions
           displayName: functions, monitor functions, automation
           href: app/monitor-functions.md
-        - name: Azure Kubernetes Service
-          href: app/kubernetes-codeless.md
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
@@ -391,6 +389,8 @@ items:
       items:
       - name: AKS clusters
         href: containers/kubernetes-monitoring-enable.md
+      - name: Autoinstrumentation for Azure Kubernetes Service (Preview)
+        href: containers/kubernetes-codeless.md
       - name: Arc-enabled clusters
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
