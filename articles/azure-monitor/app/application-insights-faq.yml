@@ -960,7 +960,7 @@ sections:
           For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. is applicable to this feature.
 
       - question: Where can I get more information about autoinstrumentation for AKS? 
-        answer: For more information, see [Autoinstrumentation for AKS](../app/kubernetes-codeless.md).
+        answer: For more information, see [Autoinstrumentation for AKS](../containers/kubernetes-codeless.md).
 
   - name: Connection strings 
     questions:

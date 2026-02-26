@@ -37,7 +37,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Agents|[AMA overview updates](../agents/azure-monitor-agent-overview.md)|Updated the Agents overview and related guidance to remove Microsoft Monitoring Agent (MMA) content, reflecting the August 2024 deprecation and the move to AMA. Additional cleanup for the Log Analytics Agent and OMS Agent is forthcoming.|
 |Alerts|[Action group test-notification troubleshooting](../alerts/test-action-group-errors.md)|Strengthened the action group test-notification troubleshooting guide with clearer, step-by-step remediation for common delivery failures across key action types, including guidance on schema, authentication, and network access constraints (for example, Private Link and firewall rules).|
 |Application-Insights|[Agent details view](../app/agents-view.md)|Published documentation for the Agent details view, providing a unified monitoring experience for AI agents across Azure AI Foundry, Copilot Studio, and third-party agent frameworks, with extensibility through Grafana dashboards.|
-|Application-Insights|[AKS autoinstrumentation guidance](../app/kubernetes-codeless.md?tabs=portal)|Published updated AKS autoinstrumentation guidance and portal workflow to enable OpenTelemetry-based monitoring with a guided portal experience, plus an equivalent Azure CLI path for at-scale rollout.|
+|Application-Insights|[AKS autoinstrumentation guidance](../containers/kubernetes-codeless.md?tabs=portal)|Published updated AKS autoinstrumentation guidance and portal workflow to enable OpenTelemetry-based monitoring with a guided portal experience, plus an equivalent Azure CLI path for at-scale rollout.|
 |Application-Insights|[Availability docs cleanup](../app/availability.md?tabs=standard#types-of-availability-tests)|Removed deprecated and retired experiences from the Availability documentation.|
 |Application-Insights|[Classic API consolidated](../app/classic-api.md?tabs=dotnet)|Further consolidated Classic API SDK documentation (superseded by OpenTelemetry) to reduce duplication and improve discoverability.|
 |Application-Insights|[Connection strings guidance](../app/connection-strings.md)|Updated multiple articles to use connection strings and remove outdated instrumentation key references.|
@@ -160,7 +160,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Application Insights FAQ – Frequently Asked Questions](../app/application-insights-faq.yml)|All Application Insights FAQ information has been consolidated into a single YAML pattern article to enhance SEO and AI discoverability.|
 |Application-Insights|[Usage analysis with Application Insights](../app/usage.md)|We fully revamped usage feature documentation for OpenTelemetry.|
 |Application-Insights|[Investigate failures, performance, and transactions with Application Insights](../app/failures-and-performance-views.md)|We combined multiple investigative experiences into a single article to help clearly define the functionality and workflow of each.|
-|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|More information has been provided on how to verify the installed Azure CLI version meets the AKS automatic instrumentation requirements.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../containers/kubernetes-codeless.md)|More information has been provided on how to verify the installed Azure CLI version meets the AKS automatic instrumentation requirements.|
 |Containers|[Cost effective alerting strategies for AKS](../containers/cost-effective-alerting.md)|New article describing cost effective strategies in Container insights that support alerting.|
 |Containers|[Multitenant managed logging in Container insights (Preview)](../containers/container-insights-multitenant.md)|New article describing preview feature for analyzing Prometheus metrics in Azure Monitor workspace.|
 |Essentials|[Metrics usage insights (Preview)](../metrics/metrics-usage-insights.md)|Azure Monitor metrics usage insights|
@@ -184,7 +184,7 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|Prerequisites for AKS autoinstrumentation have been updated.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../containers/kubernetes-codeless.md)|Prerequisites for AKS autoinstrumentation have been updated.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|New information is available on how both Java and Java native handle offline storage.|
 |Application-Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md)|Configuration of IP masking has been documented across all modalities.|
 |Application-Insights|[Failures and performance views](../app/failures-and-performance-views.md)|We revamped our Failures and Performance Views documentation with extensive new information, updated screenshots, and a better comparison of functionality between tabs.|
@@ -215,7 +215,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Agents|[Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md)|Update for new JSON data source UI.|
 |Application-Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md)|We unified our resource documentation to provide comprehensive guidance for both portal and at-scale deployment scenarios, significantly increasing accessibility for our largest customers. At-scale support now includes all modalities—Azure CLI, PowerShell, REST API, Bicep, and ARM.|
-|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../app/kubernetes-codeless.md)|Public Preview of Autoinstrumentation for Azure Kubernetes Service (AKS) is now live. This solution enables seamless application telemetry collection across entire clusters.|
+|Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../containers/kubernetes-codeless.md)|Public Preview of Autoinstrumentation for Azure Kubernetes Service (AKS) is now live. This solution enables seamless application telemetry collection across entire clusters.|
 |Essentials|[Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md)|Added sample for normalization in Sentinel.|
 |Logs|[Analyze data using Log Analytics Simple mode](../logs/log-analytics-simple-mode.md)|Log Analytics simple mode is now generally available.|
 

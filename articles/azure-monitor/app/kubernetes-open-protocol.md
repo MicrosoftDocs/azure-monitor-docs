@@ -159,7 +159,7 @@ Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. Full instructions are available [here](./kubernetes-codeless.md).
+Use the Kubernetes custom resources when you need more control. Full instructions are available [here](../containers/kubernetes-codeless.md).
 
 ### Autoinstrumentation (Java, Node.js)
 
@@ -211,7 +211,7 @@ metadata:
 
 ## Next steps
 
-- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](./kubernetes-codeless.md#onboard-deployments).
+- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
 - Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor.
 - Learn to configure application monitoring with Azure Monitor and OTLP for [other environments](https://aka.ms/otelignitedoc) with the Azure Monitor Agent or the open-source OpenTelemetry Collector.
 
