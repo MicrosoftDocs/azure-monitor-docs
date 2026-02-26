@@ -340,9 +340,9 @@ az aks create --resource-group={resource_group} --name={cluster_name} --enable-a
 
 ### Does Azure Kubernetes Service (AKS) autoinstrumentation support custom metrics?
 
-If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
+If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md)
 
-Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
+Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](../app/opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
 
 ---
 
@@ -375,9 +375,9 @@ The OpenTelemetry Distro can become vulnerable on deployments that aren't change
 
 This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods.
 
-For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary.
+For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](../app/opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary.
 
-For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code-based configuration steps related to manual instrumentation. However, everything else in our distro documentation such as default settings and environment variable configurations is applicable to this feature.
+For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](../app/opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code-based configuration steps related to manual instrumentation. However, everything else in our distro documentation such as default settings and environment variable configurations is applicable to this feature.
 
 ### Where can I get more information about autoinstrumentation for AKS?
 
