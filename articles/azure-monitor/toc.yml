@@ -104,9 +104,6 @@ items:
           href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
-        - name: Azure Functions
-          displayName: functions, monitor functions, automation
-          href: app/monitor-functions.md
         - name: ASP.NET on-premises agent
           href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)

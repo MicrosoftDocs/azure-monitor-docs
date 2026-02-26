@@ -8875,6 +8875,11 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/azure-monitor/app/monitor-functions.md",
+      "redirect_url": "/azure/azure-functions/opentelemetry-howto",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/fundamentals/opentelemetry-protocol-ingestion.md",
       "redirect_url": "../containers/opentelemetry-protocol-ingestion",
       "redirect_document_id": false
