@@ -8695,6 +8695,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/kubernetes-codeless.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-codeless",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/metrics/prometheus-remote-write-virtual-machines.md",
    "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
    "redirect_document_id": false

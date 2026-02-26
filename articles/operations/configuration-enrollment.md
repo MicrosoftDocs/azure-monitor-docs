@@ -1,16 +1,14 @@
 ---
-title: Machine enrollment in operations center (preview)
-description: Describes how to enable machine enrollment in the Configuration menu of operations center to automatically configure management for VMs in your subscription.
+title: Machine enrollment (preview)
+description: Describes how to enable machine enrollment to automatically configure management for VMs in your subscription.
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 
-# Machine enrollment in operations center (preview)
+# Machine enrollment (preview)
 
-[!INCLUDE [Preview-register](./includes/preview-register.md)]
-
-**Machine enrollment** in the [Configuration](./configuration-overview.md) menu of [operations center](./overview.md) simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
+**Machine enrollment** simplifies the onboarding and configuration of management for Azure virtual machines (VMs) and arc-enabled servers. When you enable a subscription for machine enrollment, all VMs and arc-enabled servers in that subscription are automatically enrolled and configured with a curated set of management features. This ensures that your machines are consistently configured for monitoring, security, and management.
 
 ## Prerequisites
 
@@ -47,7 +45,7 @@ If you're using a Log Analytics workspace or Azure Monitor workspace in a differ
 Machine enrollment enables a standard set of features and allows you to optionally enable additional security features.
 
 > [!NOTE]
-> During gated preview, the essential tier core services are available at no additional cost. Customers will still pay for the log ingestion rates from Change Tracking and Inventory. 
+> During public preview, the essential tier core services are available at no additional cost. Customers will still pay for the log ingestion rates from Change Tracking and Inventory. 
 
 ### Essentials tier
 
@@ -75,7 +73,7 @@ The following security features are available as part of machine enrollment. You
  To enable machine management for a subscription, select **Machine enrollment** from the **Configuration** menu, and click **Enable**.
 
 > [!NOTE]
-> During gated preview, the Azure portal is the only supported method for enabling machine management. 
+> During public preview, the Azure portal is the only supported method for enabling machine management. 
 
 
 
@@ -131,10 +129,10 @@ The **Security** tab allows you to select additional security services for the m
 Machine enrollment is enabled for each subscription to automatically onboard all Azure VMs and arc-enabled servers in that subscription. Once enabled, any VMs added to the subscription are enrolled and configured with the selected features. The following behavior applies to existing VMs in the subscription when machine enrollment is enabled.
 
 - Existing services will retain their configuration. For example, if a VM is already using Update Management with a maintenance schedule, it will still follow that maintenance schedule.
-- After the subscription is enabled, operations center will create [remediation tasks](/azure/governance/policy/how-to/remediate-resources) to enable the selected service for all existing VMs in the subscription.
+- After the subscription is enabled, [remediation tasks](/azure/governance/policy/how-to/remediate-resources) are created to enable the selected service for all existing VMs in the subscription.
 
 > [!WARNING]
-> Use caution with the gated preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. If you would like to use the ManagedOps DCR, please remove the existing DCR.
+> Use caution with the public preview if you have existing VMs with Change Tracking enabled. In this case, an additional Change Tracking DCR will be created and associated with the VM. Since Change Tracking supports only a single DCR though, either DCR could be assigned. If you would like to use the ManagedOps DCR, please remove the existing DCR.
 
 ## Excluding VMs
 
@@ -150,7 +148,7 @@ Disable a subscription by selecting it and then clicking **Offboard**. When you 
 
 
 ## Troubleshooting
-See [Troubleshoot machine enrollment in operations center (preview)](./configuration-enrollment-troubleshoot.md) for help resolving common issues with machine enrollment. This article also identifies the objects created during enrollment and how to verify their creation.
+See [Troubleshoot machine enrollment (preview)](./configuration-enrollment-troubleshoot.md) for help resolving common issues with machine enrollment. This article also identifies the objects created during enrollment and how to verify their creation.
 
 
 ## Detailed configuration

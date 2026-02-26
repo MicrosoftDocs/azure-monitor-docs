@@ -12,7 +12,7 @@ ms.reviewer: jan.kalis
 
 # Code Optimizations extensions for Visual Studio Code (preview)
 
-With the [Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps.
+With the [Code Optimizations extension for Visual Studio Code](https://marketplace.visualstudio.com/search?term=Code%20Optimizations&target=VSCode&category=All%20categories&sortBy=Relevance), you can generate a code fix proposal for performance issues identified by Code Optimizations in your running. NET apps.
 
 The Code Optimizations extension integrates with [GitHub Copilot for Azure in Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azure-github-copilot), so you can interact with it indirectly via `@Azure` in the "Ask" mode. If you haven't already installed the Application Insights Code Optimizations (Preview) extension, you'll be prompted to install it.
 
@@ -29,7 +29,7 @@ This article guides you through using the extension with GitHub Copilot in Visua
 
 ## Install the Code Optimizations extension (preview)
 
-Install [the Code Optimizations extension for Visual Studio Code](https://aka.ms/CodeOptimizations/VSCode/Marketplace).
+Install [the Code Optimizations extension for Visual Studio Code](https://marketplace.visualstudio.com/search?term=Code%20Optimizations&target=VSCode&category=All%20categories&sortBy=Relevance).
 
 When you run the extension for the first time, you might see two dialogue prompts asking you to sign into Azure and connect with your GitHub Copilot account.
 

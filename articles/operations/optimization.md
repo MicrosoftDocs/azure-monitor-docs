@@ -2,7 +2,7 @@
 title: Optimization in operations center (preview)
 description: Describes the Optimization menu in operations center, which includes cost and carbon optimization features and the Optimize agent.
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 

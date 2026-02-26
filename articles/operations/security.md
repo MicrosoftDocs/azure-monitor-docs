@@ -2,7 +2,7 @@
 title: Security in operations center (preview)
 description: Describes the Security menu in operations center, which helps you manage the security of your your Azure resources and any non-Azure resources you've connected.
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 

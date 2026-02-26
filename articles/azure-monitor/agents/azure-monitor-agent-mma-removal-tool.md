@@ -4,7 +4,6 @@ description: This article describes a PowerShell script to remove the legacy age
 ms.topic: upgrade-and-migration-article
 ms.reviewer: jeffwo
 ms.date: 11/14/2024
-ms.custom:
 # Customer intent: As an Azure account administrator, I want to use the available Azure Monitor tools to migrate from the Log Analytics Agent to the Azure Monitor Agent and track the status of the migration in my account.
 ---
 

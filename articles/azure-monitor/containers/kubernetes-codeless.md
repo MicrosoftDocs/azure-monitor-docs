@@ -13,13 +13,13 @@ ms.date: 04/03/2025
 
 This guide walks through enabling Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code.
 
-We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](codeless-overview.md).
+We cover [installing the aks-preview Azure CLI extension](#install-the-aks-preview-azure-cli-extension), [registering the AzureMonitorAppMonitoringPreview feature flag](#register-the-azuremonitorappmonitoringpreview-feature-flag), [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps result in autoinstrumentation injecting the Azure Monitor OpenTelemetry Distro in application pods to generate telemetry. For more on autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md).
 
 
 ## Prerequisites
 
 * An [AKS cluster](/azure/aks/learn/quick-kubernetes-deploy-portal) running a [kubernetes deployment](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/) using Java or Node.js in the Azure public cloud
-* [A workspace-based Application Insights resource](create-workspace-resource.md#create-and-configure-application-insights-resources).
+* [A workspace-based Application Insights resource](../app/create-workspace-resource.md#create-and-configure-application-insights-resources).
 * Azure CLI 2.60.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
@@ -115,7 +115,7 @@ Use the Azure portal for namespace-wide deployment onboarding.
 :::image type="content" source="media/kubernetes-codeless/deployment-2.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, including options to select an Application Insights resource, choose language settings, and review unconfigured deployments." lightbox="media/kubernetes-codeless/deployment-2.png":::
 
 3. Select the languages to be instrumented.
-4. Leave the **Perform rollout restart of all deployments** box unchecked. It's recommended to manually [restart deployments](#restart-deployment) later.
+4. Leave the **Perform rollout restart of all deployments** box unchecked. You should manually [restart deployments](#restart-deployment) later.
 5. Select **Configure**.
 
 :::image type="content" source="media/kubernetes-codeless/deployment-3.png" alt-text="Azure portal view showing configuration of application monitoring for the namespace, where both Node.js and Java are selected for autoinstrumentation." lightbox="media/kubernetes-codeless/deployment-3.png":::
@@ -236,7 +236,7 @@ Run the following command after all custom resources are created and deployments
 kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
-This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You're able to use all Application Insights Experiences except Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](app-insights-overview.md#application-insights-experiences).
+This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You're able to use all Application Insights Experiences except Live Metrics and Application Insights Code Analysis features. Learn more about the available Application Insights experiences [here](../app/app-insights-overview.md#application-insights-experiences).
 
 ## Remove Autoinstrumentation for AKS
 
@@ -334,8 +334,55 @@ AKS Clusters can be prepared for this feature during cluster creation. Run the f
 az aks create --resource-group={resource_group} --name={cluster_name} --enable-azure-monitor-app-monitoring --generate-ssh-keys
 ```
 
+## Frequently asked questions
+
+## Autoinstrumentation for Azure Kubernetes Service
+
+### Does Azure Kubernetes Service (AKS) autoinstrumentation support custom metrics?
+
+If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md)
+
+Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](../app/opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
+
+---
+
+### Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
+
+AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OSS OpenTelemetry SDK.
+
+### Can AKS autoinstrumentation coexist with manual instrumentation?
+
+AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
+
+It always prevents duplicate data and ensures custom metrics work.
+
+Refer to this chart to determine when autoinstrumentation or manual instrumentation takes precedence.
+
+| Language | Precedence             |
+|----------|------------------------|
+| Node.js  | Manual instrumentation |
+| Java     | Autoinstrumentation    |
+
+### How do I ensure I'm using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
+
+Vulnerabilities detected in the Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version.
+
+AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted.
+
+The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
+
+### How do I learn more about the Azure Monitor OpenTelemetry Distro?
+
+This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods.
+
+For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](../app/opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary.
+
+For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](../app/opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code-based configuration steps related to manual instrumentation. However, everything else in our distro documentation such as default settings and environment variable configurations is applicable to this feature.
+
+### Where can I get more information about autoinstrumentation for AKS?
+
+For more information, see [Autoinstrumentation for AKS](../containers/kubernetes-codeless.md).
+
 ## Next steps
-- To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
 - To review our dedicated troubleshooting guide, see [Troubleshooting autoinstrumentation for Azure Kubernetes Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation).
-- Learn more about [Azure Monitor](../overview.md) and [Application Insights](./app-insights-overview.md).
-- See what [Application Map](./app-map.md?tabs=net) can do for your business.
+- Learn more about [Azure Monitor](../overview.md) and [Application Insights](../app/app-insights-overview.md).

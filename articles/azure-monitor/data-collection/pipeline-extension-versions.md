@@ -15,6 +15,11 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ## Version details
 
+### Version v0.157.0 - Feb 2026
+- Added **support for TLS and mutual TLS (mTLS)** for TCP‑based ingestion endpoints, improving security and compliance. [Learn more](./pipeline-tls.md)
+- Fixed an issue where `RemoteIP` and `RemotePort` fields were incorrectly swapped during Common Event Format (CEF) log processing.
+- Updated the underlying Azure Linux base image to the latest compliant version
+
 ### Version v0.155.0 - Jan 2026
 - Added support for pre-ingestion, KQL‑based data transformations in preview, letting you **filter, reshape, and aggregate logs** (via portal or ARM templates) with built‑in syntax/schema validation to optimize costs and ensure clean, standardized data. [Learn more](./pipeline-transformations.md)
 - Added support for sending **Syslog to Log Analytics standard tables**, using built-in schematization for raw syslog events

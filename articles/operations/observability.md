@@ -2,7 +2,7 @@
 title: Observability in operations center (preview)
 description: Describes the Observability menu in operations center, which helps you monitor the health and performance of your cloud applications and resources.
 ms.topic: concept-article
-ms.date: 11/14/2025
+ms.date: 02/24/2026
 ---
 
 

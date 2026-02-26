@@ -22,6 +22,8 @@
       href: subscription-vs-tenant.md  
     - name: Service Health notifications data properties
       href: service-health-event-properties.md
+    - name: Service Health data transitions
+      href: service-health-notification-transitions.md
     - name: Service issues
       items:
        - name: Service issues overview
@@ -32,8 +34,7 @@
          href: service-health-event-tags.md
        - name: Filter Service Health notifications by event level
          href: metadata-filter.md
-       - name: Service Health data transitions
-         href: service-health-notification-transitions.md
+      
     
     - name: Planned maintenance
       items:
