@@ -384,6 +384,5 @@ For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor 
 For more information, see [Autoinstrumentation for AKS](../containers/kubernetes-codeless.md).
 
 ## Next steps
-- To review frequently asked questions (FAQ), see [Autoinstrumentation for Azure Kubernetes Service FAQ](../app/application-insights-faq.yml#autoinstrumentation-for-azure-kubernetes-service)
 - To review our dedicated troubleshooting guide, see [Troubleshooting autoinstrumentation for Azure Kubernetes Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation).
 - Learn more about [Azure Monitor](../overview.md) and [Application Insights](../app/app-insights-overview.md).
