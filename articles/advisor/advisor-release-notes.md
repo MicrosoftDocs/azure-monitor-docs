@@ -150,14 +150,14 @@ List of the newly added services:
 | Azure API for FHIR | Azure API for FHIR |
 | Azure Health Data Services | SMART on FHIR proxy |
 | Azure Database for MariaDB | Entire service |
-| Azure Cache for Redis | Support for TLS 1.0 and 1.1 |
+| Azure Cache for Redis (deprecated) | Support for TLS 1.0 and 1.1 |
 
 List of the removed services:
 
 | Service | Retiring feature |
 |-----------------|-------------------|
 | Azure Virtual Machines | Classic IaaS |
-| Azure Cache for Redis | Version 4.x |
+| Azure Cache for Redis (deprecated) | Version 4.x |
 | Virtual Machines | NV and NV_Promo series |
 | Virtual Machines | NC-series |
 | Virtual Machines | NC V2 series |

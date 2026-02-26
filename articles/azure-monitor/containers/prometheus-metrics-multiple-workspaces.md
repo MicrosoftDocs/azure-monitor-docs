@@ -31,8 +31,6 @@ relabel_configs:
   replacement: "MonitoringAccountLabel2"
 ```
 
-
-
 ## Create DCRs
 
 Once you have your ConfigMaps defined, you need a DCR for each scrape config. Each DCR will look for the label you defined in the ConfigMap and route the data to the appropriate Azure Monitor workspace. There are multiple methods to edit and create DCRs as described in [Create data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-create-edit.md). You can start by editing the DCR created when you onboarded the cluster and then use that as a template for the others.
@@ -54,11 +52,8 @@ To identify the data to be routed, use the `labelIncludeFilter` property in the 
 ```
 
 ## Associate the DCRs with the cluster
+
 Once the new DCRs are created, they need to be associated with the cluster using any of the methods described in [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md)
-
-
-
-
 
 ## Example
 
@@ -92,10 +87,9 @@ scrape_configs:
       replacement: "MonitoringAccountLabel2"
 ```
 
-
 ### DCRs
-The first DCR is an edited version of the DCR created when the cluster was onboarded. The only change is to add the label filter for application 1. Since the Log Analytics workspaces are in the same region, separate data collection endpoints aren't required, and the same endpoint is used in both DCRs.
 
+The first DCR is an edited version of the DCR created when the cluster was onboarded. The only change is to add the label filter for application 1. Since the Log Analytics workspaces are in the same region, separate data collection endpoints aren't required, and the same endpoint is used in both DCRs.
 
 **DCR 1**
 
@@ -136,14 +130,11 @@ The first DCR is an edited version of the DCR created when the cluster was onboa
       ]
   }
 }
-
 ```
+
 The second DCR is a copy of the first with two changes. the label filter is updated to match application 2, and the destination workspace is changed to a different workspace.
 
 **DCR 2**
-
-```json
-**DCR 1**
 
 ```json
 {
@@ -183,8 +174,6 @@ The second DCR is a copy of the first with two changes. the label filter is upda
   }
 }
 ```
-
-
 
 
 ## Next steps
