@@ -3,6 +3,7 @@ title: Manage data retention in a Log Analytics workspace
 description: Configure retention settings for a table in a Log Analytics workspace in Azure Monitor.
 ms.reviewer: adi.biran
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 9/09/2025
 # Customer intent: As an Azure account administrator, I want to manage data retention for each table in my Log Analytics workspace based on my account's data usage and retention needs.
 ---
@@ -29,7 +30,6 @@ To retain data in the same table beyond the default retention period, extend the
 
 :::image type="content" source="media/data-retention-configure/interactive-auxiliary-retention-log-analytics-workspace.png" lightbox="media/data-retention-configure/interactive-auxiliary-retention-log-analytics-workspace.png" alt-text="Diagram that shows analytics and long-term retention in Azure Monitor Logs.":::
 
-
 ## How retention modifications work
 
 When you shorten a table's total retention, Azure Monitor Logs waits 30 days before removing the data, so you can revert the change and avoid data loss if you made an error in configuration. 
@@ -38,12 +38,11 @@ When you increase total retention, the new retention period applies to all data 
 
 When you change the long-term retention settings of a table with existing data, the change takes effect immediately. 
 
-***Example***: 
+**Example:**
 
-- You have an existing Analytics table with 180 days of analytics retention and no long-term retention. 
-- You change the analytics retention to 90 days without changing the total retention period of 180 days. 
-- Azure Monitor automatically treats the remaining 90 days of total retention as low-cost, long-term retention, so that data that's 90-180 days old isn't lost.
-
+* You have an existing Analytics table with 180 days of analytics retention and no long-term retention. 
+* You change the analytics retention to 90 days without changing the total retention period of 180 days. 
+* Azure Monitor automatically treats the remaining 90 days of total retention as low-cost, long-term retention, so that data that's 90-180 days old isn't lost.
 
 ## Permissions required
 
@@ -61,19 +60,21 @@ Changing the default workspace-level data retention setting automatically affect
 > [!IMPORTANT]
 > Workspaces with 30-day retention might keep data for 31 days. If you need to retain data for 30 days only to comply with a privacy policy, configure the default workspace retention to 30 days using the API and update the `immediatePurgeDataOn30Days` workspace property to `true`. This operation is currently only supported using the [Workspaces - Update API](/rest/api/loganalytics/workspaces/update).
 
-# [Portal](#tab/portal-3)
+# [Portal](#tab/portal)
 
 To set the default analytics retention period of Analytics tables within a Log Analytics workspace:
 
 1. From the **Log Analytics workspaces** menu in the Azure portal, select your workspace.
+
 1. In the **Settings** section, select **Usage and estimated costs** in the left pane.
+
 1. Select **Data Retention** at the top of the page.
     
     :::image type="content" source="media/manage-cost-storage/manage-cost-change-retention-01.png" lightbox="media/manage-cost-storage/manage-cost-change-retention-01.png" alt-text="Screenshot that shows changing the workspace data retention setting.":::
 
 1. Move the slider to increase or decrease the number of days, and then select **OK**.
 
-# [API](#tab/api-3)
+# [API](#tab/api)
 
 To set the default analytics retention period of Analytics tables within a Log Analytics workspace, call the [Workspaces - Create Or Update API](/rest/api/loganalytics/workspaces/create-or-update):
 
@@ -85,12 +86,11 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups
 
 The request body includes the values in the following table.
 
-|Name | Type | Description |
-| --- | --- | --- |
-|`properties.retentionInDays` | integer  | The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for details. |
-|`location`|string| The geo-location of the resource.|
-|`immediatePurgeDataOn30Days`|boolean|Flag that indicates whether data is immediately removed after 30 days and is nonrecoverable. Applicable only when workspace retention is set to 30 days.|
-
+| Name | Type | Description |
+|------|------|-------------|
+| `properties.retentionInDays` | integer | The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for details. |
+| `location` | string | The geo-location of the resource. |
+| `immediatePurgeDataOn30Days` | boolean | Flag that indicates whether data is immediately removed after 30 days and is nonrecoverable. Applicable only when workspace retention is set to 30 days. |
 
 **Example**
 
@@ -102,11 +102,11 @@ This example sets the workspace's retention to the workspace default of 30 days 
 PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version=2023-09-01
 
 {
-  "properties": {
-    "retentionInDays": 30,
-    "features": {"immediatePurgeDataOn30Days": true}
+    "properties": {
+        "retentionInDays": 30,
+        "features": {"immediatePurgeDataOn30Days": true}
     },
-"location": "australiasoutheast"
+    "location": "australiasoutheast"
 }
 
 **Response**
@@ -115,21 +115,21 @@ Status code: 200
 
 ```http
 {
-  "properties": {
-    ...
-    "retentionInDays": 30,
-    "features": {
-      "legacy": 0,
-      "searchVersion": 1,
-      "immediatePurgeDataOn30Days": true,
-      ...}
+    "properties": {
+        ...
+        "retentionInDays": 30,
+        "features": {
+            "legacy": 0,
+            "searchVersion": 1,
+            "immediatePurgeDataOn30Days": true,
+            ...
+        }
     },
     ...
 }
 ```
 
-
-# [CLI](#tab/cli-3)
+# [CLI](#tab/cli)
 
 To set the default analytics retention period of Analytics tables within a Log Analytics workspace, run the [az monitor log-analytics workspace update](/cli/azure/monitor/log-analytics/workspace/#az-monitor-log-analytics-workspace-update) command and pass the `--retention-time` parameter.
 
@@ -139,13 +139,14 @@ This example sets the table's analytics retention to 30 days:
 az monitor log-analytics workspace update --resource-group myresourcegroup --retention-time 30 --workspace-name myworkspace
 ```
 
-# [PowerShell](#tab/PowerShell-3)
+# [PowerShell](#tab/powershell)
 
 Use the [Set-AzOperationalInsightsWorkspace](/powershell/module/az.operationalinsights/Set-AzOperationalInsightsWorkspace) cmdlet to set the default analytics retention period of Analytics tables within a Log Analytics workspace. This example sets the default analytics retention period to 30 days:
 
 ```powershell
 Set-AzOperationalInsightsWorkspace -ResourceGroupName "myResourceGroup" -Name "MyWorkspace" -RetentionInDays 30
 ```
+
 ---
 
 ## Configure table-level retention
@@ -183,17 +184,17 @@ PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups
 
 You can use either PUT or PATCH, with the following difference:
 
-- The **PUT** API sets `retentionInDays` and `totalRetentionInDays` to the default value if you don't set non-null values.
-- The **PATCH** API doesn't change the `retentionInDays` or `totalRetentionInDays` values if you don't specify values.
+* The **PUT** API sets `retentionInDays` and `totalRetentionInDays` to the default value if you don't set non-null values.
+* The **PATCH** API doesn't change the `retentionInDays` or `totalRetentionInDays` values if you don't specify values.
 
 **Request body**
 
 The request body includes the values in the following table.
 
-|Name | Type | Description |
-| --- | --- | --- |
-|properties.retentionInDays | integer  | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic and Auxiliary Logs table, the value is always 30. |
-|properties.totalRetentionInDays | integer  | The table's total data retention including long-term retention. This value can be between 4 and 730; or 1095, 1460, 1826, 2191, 2556, 2922, 3288, 3653, 4018, or 4383. Set this property to null if you don't want long-term retention.  |
+| Name | Type | Description |
+|------|------|-------------|
+| properties.retentionInDays | integer | The table's data retention in days. This value can be between 4 and 730. <br/>Setting this property to null applies the workspace retention period. For a Basic and Auxiliary Logs table, the value is always 30. |
+| properties.totalRetentionInDays | integer | The table's total data retention including long-term retention. This value can be between 4 and 730; or 1095, 1460, 1826, 2191, 2556, 2922, 3288, 3653, 4018, or 4383. Set this property to null if you don't want long-term retention. |
 
 **Example**
 
@@ -228,7 +229,7 @@ Status code: 200
         "archiveRetentionInDays": 700,
         ...        
     },
-   ...
+    ...
 }
 ```
 
@@ -250,7 +251,7 @@ For example:
 az monitor log-analytics workspace table update --subscription ContosoSID --resource-group ContosoRG --workspace-name ContosoWorkspace --name Syslog --retention-time -1 --total-retention-time -1
 ```
 
-# [PowerShell](#tab/PowerShell-1)
+# [PowerShell](#tab/powershell-1)
 
 Use the [Update-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/Update-AzOperationalInsightsTable) cmdlet to modify a table's retention settings. This example sets the table's analytics retention to 30 days, and the total retention to two years, which means that the long-term retention period is 23 months:
 
@@ -265,58 +266,58 @@ For example:
 ```powershell
 Update-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName ContosoWorkspace -TableName Syslog -RetentionInDays -1 -TotalRetentionInDays -1
 ```
-# [Resource Manager template](#tab/azure-resource-manager-1)
+# [ARM (JSON)](#tab/arm-1)
 
-Use this sample ARM template and parameter file to update the retention period for a specific table.
+Use this sample ARM (JSON) template and parameter file to update the retention period for a specific table.
 
 ### Template file
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workspaceName": {
-      "type": "string",
-      "defaultValue": "sampleWorkspace",
-      "metadata": {
-        "description": "The number of days to retain the data."
-      }
-    },
-    "tableName": {
-      "type": "string",
-      "defaultValue": "sampleTable",
-      "metadata": {
-        "description": "The name of the Log Analytics table to modify."
-      }
-    },
-    "retentionInDays": {
-      "type": "int",
-      "defaultValue": 30,
-      "metadata": {
-        "description": "The number of days to retain the data."
-      }
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.OperationalInsights/workspaces",
-      "apiVersion": "2025-02-01",
-      "name": "[parameters('workspaceName')]",
-      "location": "[resourceGroup().location]",
-      "resources": [
-        {
-          "type": "Microsoft.OperationalInsights/workspaces/tables",
-          "apiVersion": "2025-02-01",
-          "name": "[concat(parameters('workspaceName'), '/', parameters('tableName'))]",
-          "properties": {
-            "retentionInDays": "[parameters('retentionInDays')]"
-          },
-          "dependsOn": [ "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]" ]
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "type": "string",
+            "defaultValue": "sampleWorkspace",
+            "metadata": {
+                "description": "The number of days to retain the data."
+            }
+        },
+        "tableName": {
+            "type": "string",
+            "defaultValue": "sampleTable",
+            "metadata": {
+                "description": "The name of the Log Analytics table to modify."
+            }
+        },
+        "retentionInDays": {
+            "type": "int",
+            "defaultValue": 30,
+            "metadata": {
+                "description": "The number of days to retain the data."
+            }
         }
-      ]
-    }
-  ]
+    },
+    "resources": [
+        {
+            "type": "Microsoft.OperationalInsights/workspaces",
+            "apiVersion": "2025-02-01",
+            "name": "[parameters('workspaceName')]",
+            "location": "[resourceGroup().location]",
+            "resources": [
+                {
+                    "type": "Microsoft.OperationalInsights/workspaces/tables",
+                    "apiVersion": "2025-02-01",
+                    "name": "[concat(parameters('workspaceName'), '/', parameters('tableName'))]",
+                    "properties": {
+                        "retentionInDays": "[parameters('retentionInDays')]"
+                    },
+                    "dependsOn": [ "[resourceId('Microsoft.OperationalInsights/workspaces/', parameters('workspaceName'))]" ]
+                }
+            ]
+        }
+    ]
 }
 ```
 
@@ -324,26 +325,67 @@ Use this sample ARM template and parameter file to update the retention period f
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workspaceName": {
-      "value": "MyWorkspace"
-    },
-    "tableName": {
-      "value": "AppRequests"
-    },
-    "retentionInDays": {
-      "value": 120
+    "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "workspaceName": {
+            "value": "MyWorkspace"
+        },
+        "tableName": {
+            "value": "AppRequests"
+        },
+        "retentionInDays": {
+            "value": 120
+        }
     }
-  }
 }
 ```
+
+# [Bicep](#tab/bicep-1)
+
+Use this sample Bicep template and parameter file to update the retention period for a specific table.
+
+### Template file
+
+```bicep
+@description('The number of days to retain the data.')
+param workspaceName string = 'sampleWorkspace'
+
+@description('The name of the Log Analytics table to modify.')
+param tableName string = 'sampleTable'
+
+@description('The number of days to retain the data.')
+param retentionInDays int = 30
+
+resource workspace 'Microsoft.OperationalInsights/workspaces@2025-02-01' = {
+    name: workspaceName
+    location: resourceGroup().location
+}
+
+resource workspaceName_table 'Microsoft.OperationalInsights/workspaces/tables@2025-02-01' = {
+    parent: workspace
+    name: '${tableName}'
+    properties: {
+        retentionInDays: retentionInDays
+    }
+}
+```
+
+### Parameter file
+
+```bicep
+using './<template-name>.bicep'
+
+param workspaceName string = 'MyWorkspace'
+param tableName string = 'AppRequests'
+param retentionInDays int = 120
+```
+
 ---
 
 ## Get retention settings by table
 
-# [Portal](#tab/portal-2)
+# [Portal](#tab/portal)
 
 To view a table's retention settings in the Azure portal, from the **Log Analytics workspaces** menu, select **Tables**.
 
@@ -351,9 +393,7 @@ The **Tables** screen shows the analytics retention and total retention periods 
 
 :::image type="content" source="media/data-retention-configure/log-analytics-view-table-retention-auxiliary.png" lightbox="media/data-retention-configure/log-analytics-view-table-retention-auxiliary.png" alt-text="Screenshot that shows the Manage table button for one of the tables in a workspace.":::
 
-
-
-# [API](#tab/api-2)
+# [API](#tab/api)
 
 To get the retention setting of a particular table (in this example, `SecurityEvent`), call the **Tables - Get** API:
 
@@ -369,7 +409,7 @@ For example:
 GET /subscriptions/00000000-0000-0000-0000-00000000000/resourceGroups/MyResourceGroupName/providers/Microsoft.OperationalInsights/workspaces/MyWorkspaceName/Tables?api-version=2022-10-01
 ```
 
-# [CLI](#tab/cli-2)
+# [CLI](#tab/cli)
 
 To get the retention setting of a particular table, run the [az monitor log-analytics workspace table show](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-show) command.
 
@@ -379,7 +419,7 @@ For example:
 az monitor log-analytics workspace table show --subscription ContosoSID --resource-group ContosoRG --workspace-name ContosoWorkspace --name SecurityEvent
 ``` 
 
-# [PowerShell](#tab/PowerShell-2)
+# [PowerShell](#tab/powershell)
 
 To get the retention setting of a particular table, run the [Get-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) cmdlet.
 
@@ -391,17 +431,16 @@ Get-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName Conto
 
 ---
 
-
 ## What happens to data when you delete a table in a Log Analytics workspace?
 
 A Log Analytics workspace can contain several [types of tables](../logs/manage-logs-tables.md#table-type-and-schema). What happens when you delete the table is different for each:
 
-|Table type|Data retention|Recommendations|Recovery|
-|-|-|-|-|
-|Azure table |An Azure table holds logs from an Azure resource, or solution. When you stop sending data from your resource, or solution, data remains in the workspace until the end of the retention period defined for the table, and charged accordingly. |To reduce charges, [set table-level retention](#configure-table-level-retention) to four days, which is the minimum supported period. If the table being deleted is associated with a solution that should be removed (for example, Sentinel), remove the solution after the four-day retention period has passed.|Enable the solution. Data recovery is subjected to table retention.|
-|[Custom log table](./create-custom-table.md#create-a-custom-table) (`table_CL`)|Custom log table holds logs from [logs ingestion API](./logs-ingestion-api-overview.md), or HTTP data collector API (deprecated).<br> When you delete a table, the table name remains reserved for fifteen days. Deleting a table in **Analytics** or **Basic** plans doesn't delete data. Table retention is set to workspace retention after fifteen days where retention charges adheres to the retention in table.<br>Deleting a table in **Auxiliary** plan, deletes data permanently after fifteen days.|To minimize charges, set [table-level retention](#configure-table-level-retention) to four days, and delete the table after four days when data is trimmed.|**Analytics** or **Basic** plans: Create the table with the same name and schema. Data recovery is subjected to table retention.<br>**Auxiliary** plan: Create the table with the same name and schema during the soft delete period.|
-|[Search results table](./search-jobs.md) (`table_SRCH`)| Deletes the table and data immediately and permanently.||
-|[Restored table](./restore.md) `(table_RST`)| Deletes the hot cache provisioned for the restore, but source table data isn't deleted.||
+| Table type | Data retention | Recommendations | Recovery |
+|------------|----------------|-----------------|----------|
+| Azure table |An Azure table holds logs from an Azure resource, or solution. When you stop sending data from your resource, or solution, data remains in the workspace until the end of the retention period defined for the table, and charged accordingly. | To reduce charges, [set table-level retention](#configure-table-level-retention) to four days, which is the minimum supported period. If the table being deleted is associated with a solution that should be removed (for example, Sentinel), remove the solution after the four-day retention period has passed. | Enable the solution. Data recovery is subjected to table retention. |
+| [Custom log table](./create-custom-table.md#create-a-custom-table) (`table_CL`) | Custom log table holds logs from [logs ingestion API](./logs-ingestion-api-overview.md), or HTTP data collector API (deprecated).<br> When you delete a table, the table name remains reserved for fifteen days. Deleting a table in **Analytics** or **Basic** plans doesn't delete data. Table retention is set to workspace retention after fifteen days where retention charges adheres to the retention in table.<br>Deleting a table in **Auxiliary** plan, deletes data permanently after fifteen days.|To minimize charges, set [table-level retention](#configure-table-level-retention) to four days, and delete the table after four days when data is trimmed. | **Analytics** or **Basic** plans: Create the table with the same name and schema. Data recovery is subjected to table retention.<br>**Auxiliary** plan: Create the table with the same name and schema during the soft delete period. |
+| [Search results table](./search-jobs.md) (`table_SRCH`) | Deletes the table and data immediately and permanently. | |
+| [Restored table](./restore.md) `(table_RST)` | Deletes the hot cache provisioned for the restore, but source table data isn't deleted. | |
 
 ## Log tables with 90-day default retention
 
@@ -409,30 +448,31 @@ By default, the `Usage` and `AzureActivity` tables keep data for at least 90 day
 
 Tables related to Application Insights resources also keep data for 90 days at no charge. You can adjust the retention of each of these tables individually:
 
-- `AppAvailabilityResults`
-- `AppBrowserTimings`
-- `AppDependencies`
-- `AppExceptions`
-- `AppEvents`
-- `AppMetrics`
-- `AppPageViews`
-- `AppPerformanceCounters`
-- `AppRequests`
-- `AppSystemEvents`
-- `AppTraces`
+* `AppAvailabilityResults`
+* `AppBrowserTimings`
+* `AppDependencies`
+* `AppExceptions`
+* `AppEvents`
+* `AppMetrics`
+* `AppPageViews`
+* `AppPerformanceCounters`
+* `AppRequests`
+* `AppSystemEvents`
+* `AppTraces`
 
 ## Pricing model
 
 Analytics and long-term retention is calculated based on the GB volume of data and the number of days data is retained. Billing for data retention happens daily (based on days in the UTC time zone). Log data that has `_IsBillable == false` isn't subject to ingestion or retention charges. 
 
 For more information, see the following articles:
-- [Retention billing](./cost-logs.md#log-data-retention). 
-- [Azure Monitor retention pricing](https://azure.microsoft.com/pricing/details/monitor/).
+
+* [Retention billing](./cost-logs.md#log-data-retention). 
+* [Azure Monitor retention pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Related content
 
 Learn more about:
 
-- [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
-- [Creating a search job to retrieve data matching particular criteria](search-jobs.md)
-- [Restore data for a specific time range](restore.md)
+* [Managing personal data in Azure Monitor Logs](../logs/personal-data-mgmt.md)
+* [Creating a search job to retrieve data matching particular criteria](search-jobs.md)
+* [Restore data for a specific time range](restore.md)
