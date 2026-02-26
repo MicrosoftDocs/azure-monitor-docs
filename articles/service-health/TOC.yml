@@ -24,14 +24,14 @@
       href: service-health-event-properties.md
     - name: Service Health data transitions
       href: service-health-notification-transitions.md
+    - name: Service Health event tags
+      href: service-health-event-tags.md
     - name: Service issues
       items:
        - name: Service issues overview
          href: service-issues-blade.md
        - name: Impacted Resources from Service issues
          href: impacted-resources-outage.md
-       - name: Service Health event tags
-         href: service-health-event-tags.md
        - name: Filter Service Health notifications by event level
          href: metadata-filter.md
       
