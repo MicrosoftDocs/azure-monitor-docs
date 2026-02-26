@@ -308,7 +308,7 @@ Key rotation has two modes:
 - Autorotation - update `"keyVaultProperties"` in cluster and omit `"keyVersion"` property, or set it to `''`. Storage automatically uses the latest key version.
 - Explicit key version update - update `"keyVaultProperties"` properties and update the key version in `"keyVersion"` property. Key rotation requires explicit update of `"keyVersion"` property in cluster. For more information, see [Update cluster with Key identifier details](#update-dedicated-cluster-with-key-identifier-details). If you generate a new key version in Key Vault but don't update the key in the cluster, the cluster storage keeps using your previous key. If you disable or delete the old key before updating a new one in the cluster, you enter [key revocation](#key-revocation) state.
 
-All your data remains accessible during and after the key rotation operation. Data is always encrypted with the Account Encryption Key (AEK), which is encrypted with your new Key Encryption Key (KEK) version in Key Vault.
+All your data remains accessible during and after the key rotation operation. The cluster always encrypts data with the Account Encryption Key (AEK), which is encrypted with your new Key Encryption Key (KEK) version in Key Vault.
 
 ### Customer-managed key for saved queries and log search alerts
 
@@ -327,7 +327,7 @@ When you link your Storage Account for saved queries, the service stores saved q
 * Saved queries and functions in the linked Storage Account are service artifacts and their format might change.
 * Query **history** and **pin to dashboard** aren't supported when linking Storage Account for saved queries.
 * You can link a single or separate Storage Account for saved queries and log search alert queries.
-* To keep queries and functions encrypted with your key, configure the linked Storage Account by using a customer-managed key. You can perform this operation when you create the Storage Account or later.
+* To keep queries and functions encrypted with your key, configure the linked Storage Account by using a customer-managed key. Perform this operation when you create the Storage Account or later.
 
 #### Configure linked Storage Account for saved queries
 
@@ -395,9 +395,9 @@ Select **Save content to an Azure Storage Account** in the Workbook **Save** ope
 
 
 #### Considerations before setting customer-managed key for saved log alert queries
-* Alert queries are saved as blobs in the Storage Account.
+* The cluster saves alert queries as blobs in the Storage Account.
 * Triggered log search alerts don't contain search results or the alert query. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to get context for the fired alerts.
-* To keep queries and functions encrypted by using your key, configure the linked Storage Account with customer-managed key. You can perform this operation when you create the Storage Account or later.
+* To keep queries and functions encrypted by using your key, configure the linked Storage Account with a customer-managed key. Perform this operation when you create the Storage Account or later.
 
 ### Configure linked Storage Account for log search alert queries
 
@@ -471,7 +471,7 @@ To learn more, see [Customer Lockbox for Microsoft Azure](/azure/security/fundam
 - [Double encryption](/azure/storage/common/storage-service-encryption#doubly-encrypt-data-with-infrastructure-encryption) is configured automatically for clusters created from October 2020 in supported regions. You can verify if your cluster is configured for double encryption by sending a `GET` request on the cluster and observing that the `isDoubleEncryptionEnabled` value is `true` for clusters with double encryption enabled. 
 - If you create a cluster and get the error, "`region-name` doesn't support double encryption for clusters", you can still create the cluster without double encryption by adding `"properties": {"isDoubleEncryptionEnabled": false}` in the REST request body.
 - You can't change double encryption settings after the cluster is created.
-- Deleting a linked workspace is permitted while linked to cluster. If you decide to [recover](./delete-workspace.md#recover-a-workspace-in-a-soft-delete-state) the workspace during the [soft-delete](./delete-workspace.md#delete-a-workspace-into-a-soft-delete-state) period, it returns to previous state and remains linked to cluster.
+- The [recover](./delete-workspace.md#recover-a-workspace-in-a-soft-delete-state) operation is allowed for a deleted workspace that was still linked to the cluster. It's only possible during the [soft-delete](./delete-workspace.md#delete-a-workspace-into-a-soft-delete-state) period. The recovery returns the workspace to its previous state and remains linked to the cluster.
 - Customer-managed key encryption applies to newly ingested data after the configuration time. Data that was ingested before the configuration remains encrypted with Microsoft keys. You can query data ingested before and after the customer-managed key configuration seamlessly.
 - You must configure the Azure Key Vault as recoverable. These properties aren't enabled by default and you should configure them by using CLI or PowerShell:<br>
   - [Soft Delete](/azure/key-vault/general/soft-delete-overview).
