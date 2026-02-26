@@ -37,7 +37,7 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 #### Identify
 
-Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Code Optimization insights are gathered from data collected by the .NET Profiler, and can also be pulled from Snapshot Debugger snapshots if enabled. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimizations across your Azure subscriptions and Application Insights resources in the Azure portal. Insights are gathered from data collected by the .NET Profiler, and can also be pulled from Snapshot Debugger snapshots if enabled. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
 
 #### Analyze
 
@@ -45,9 +45,9 @@ Once your environment's data is collected from the .NET Profiler traces (and Sna
 
 #### Resolve
 
-After identifying and analyzing the Code Optimization results, you can use GitHub Copilot to resolve these issues in your code with fix suggestions grounded in Code Optimizations insights.
+After identifying and analyzing Code Optimizations, you can use the GitHub Copilot "Copy details" button in the portal to manually bring all the insight context to your favorite tool. 
 
-You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimization insights.
+You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimizations.
 
 #### Demo video
 

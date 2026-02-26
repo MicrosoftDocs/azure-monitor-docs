@@ -122,7 +122,7 @@ There is **no additional cost** for storing data captured by Snapshot Debugger.
 
 ## Code Optimizations
 
-If you're receiving Snapshot Debugger snapshots for your app, you can view their insights as **Exceptions** in the [Code Optimizations consolidated overview](../optimization-insights/view-code-optimizations.md#exceptions). 
+If snapshots are being collected from your app, there might be related exception insights in the [Code Optimizations consolidated overview](../optimization-insights/view-code-optimizations.md#exceptions). 
 
 ## Limitations
 
