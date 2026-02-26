@@ -8771,7 +8771,7 @@
   },
   {
    "source_path": "articles/azure-monitor/data-collection/data-collection-metrics.md",
-   "redirect_url": "/azure/azure-monitor/data-collection/metrics-export-create.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/metrics-export-create",
    "redirect_document_id": false
   },
   {
