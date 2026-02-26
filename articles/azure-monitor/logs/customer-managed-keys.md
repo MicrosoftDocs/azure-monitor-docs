@@ -31,7 +31,7 @@ Data ingested in the last 14 days, or recently used in queries, is kept in hot-c
 
 Azure Monitor uses managed identity to grant access to your key in Azure Key Vault. The identity of the Log Analytics clusters is supported at the cluster level. To provide customer-managed keys on multiple workspaces, a Log Analytics dedicated cluster resource serves as an intermediate identity connection between your Key Vault and your Log Analytics workspaces. The cluster's storage uses the managed identity associated with the cluster to authenticate to your Azure Key Vault through Microsoft Entra ID.
 
-Clusters support two [managed identity types](/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types): system-assigned and user-assigned, while a single identity can be defined in a cluster depending on your scenario. 
+Clusters support two [managed identity types](/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types): system-assigned and user-assigned. 
 
 - System-assigned managed identity is simpler and generated automatically with the cluster when you set `identity` `type` to `SystemAssigned`. Use this identity to grant cluster storage access to your Key Vault for data encryption and decryption.
 - User-assigned managed identity lets you configure customer-managed keys at cluster creation, when you set `identity` `type` to `UserAssigned`, and grant it permissions in your Key Vault before cluster creation.
@@ -283,7 +283,7 @@ Verify the provisioning state by using CLI, PowerShell, or REST API as detailed 
 
 To link a workspace, see [Create and manage a dedicated cluster](./logs-dedicated-clusters.md#link-a-workspace-to-a-cluster).
 
-## Manage customer-managed key related operations
+## Manage operations related to customer-managed keys
 
 - [Key revocation](#key-revocation)
 - [Key rotation](#key-rotation)
@@ -299,7 +299,7 @@ To link a workspace, see [Create and manage a dedicated cluster](./logs-dedicate
 > - To revoke access to your data, disable your key or delete the Access Policy in your Key Vault.
 > - Setting the cluster's `identity` `type` to `None` also revokes access to your data, but don't use this approach since you can't revert it without contacting support.
 
-The cluster's storage always respects changes in key permissions and becomes unavailable within an hour or sooner if the key is disabled or access policy is deleted. New data ingested to linked workspaces is dropped and unrecoverable. Data is inaccessible on these workspaces and queries fail. Previously ingested data remains as long as your cluster and your workspaces aren't deleted. The data-retention policy governs inaccessible data and purges it when the retention period is reached. Data ingested in the last 14 days and data recently used in queries is also kept in hot-cache (SSD-backed) for query efficiency. The data on SSD gets deleted on the key revocation operation and becomes inaccessible. The cluster storage attempts to reach Key Vault for `wrap` and `unwrap` operations periodically. Once the key is enabled and `unwrap` succeeds, SSD data is reloaded from the dedicated cluster storage. Data ingestion and query functionality are resumed within 30 minutes.
+The cluster's storage always respects changes in key permissions and becomes unavailable within an hour or sooner if the key is disabled or access policy is deleted. New data ingested to linked workspaces is dropped and unrecoverable. Data is inaccessible on these workspaces and queries fail. Previously ingested data remains as long as your cluster and your workspaces aren't deleted. The data-retention policy governs inaccessible data and purges it when the retention period is reached. Data ingested in the last 14 days and data recently used in queries is also kept in hot-cache (SSD-backed) for query efficiency. The data on SSD gets deleted on the key revocation operation and becomes inaccessible. The cluster storage attempts to reach Key Vault for `wrap` and `unwrap` operations periodically. Once the key is enabled and `unwrap` succeeds, SSD data is reloaded from the dedicated cluster storage. Data ingestion and query functionality resume within 30 minutes.
 
 ### Key rotation
 
@@ -314,30 +314,24 @@ All your data remains accessible during and after the key rotation operation. Da
 
 The query language used in Log Analytics is expressive and can contain sensitive information in query syntax or comments. Organizations with strict regulatory and compliance requirements must keep such information encrypted by using a customer-managed key. When you link a [Storage Account](./private-storage.md) to your workspace, Azure Monitor enables you to store saved queries, functions, and log search alerts encrypted with your key.
 
-### Customer-managed key for Workbooks
-
-By using the considerations mentioned in [Customer-managed key for saved queries and log search alerts](#customer-managed-key-for-saved-queries-and-log-search-alerts), Azure Monitor enables you to store Workbook queries encrypted with your key in your own Storage Account when you select **Save content to an Azure Storage Account** in the Workbook **Save** operation.
-<!-- convertborder later -->
-:::image type="content" source="media/customer-managed-keys/cmk-workbook.png" lightbox="media/customer-managed-keys/cmk-workbook.png" alt-text="Screenshot of Workbook save." border="false":::
-
 > [!NOTE]
 > Queries remain encrypted with Microsoft key (MMK) in the following scenarios regardless of customer-managed key configuration: Azure dashboards, Azure Logic App, Azure Notebooks, and Automation Runbooks.
 
 When you link your Storage Account for saved queries, the service stores saved queries and log search alert queries in your Storage Account. By having control on your Storage Account [encryption-at-rest policy](/azure/storage/common/customer-managed-keys-overview), you can protect saved queries and log search alerts by using a customer-managed key. You're responsible for the costs associated with that Storage Account. 
 
-**Considerations before setting customer-managed key for saved queries**
+#### Considerations before setting customer-managed key for saved queries
 * You need **write** permissions on your workspace and Storage Account.
 * The Storage Account must be StorageV2 and in the same region as your Log Analytics workspace.
-* When [linking a Storage Account](./private-storage.md) for saved queries, existing saved queries and functions are removed from your workspace for privacy. If you need these queries, copy existing saved queries and functions before the configuration. You can view saved queries by using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch), or when you **Export template** under **Automation** in your workspace.
+* When [linking a Storage Account](./private-storage.md) for saved queries, the service removes existing saved queries and functions from your workspace for privacy. If you need these queries, copy existing saved queries and functions before the configuration. You can view saved queries by using [PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch), or when you **Export template** under **Automation** in your workspace.
 * Queries saved in a [query pack](./query-packs.md) aren't stored on a linked Storage Account and can't be encrypted by using a customer-managed key. It's recommended to **Save as Legacy query** to protect queries by using a customer-managed key.
 * Saved queries and functions in the linked Storage Account are service artifacts and their format might change.
 * Query **history** and **pin to dashboard** aren't supported when linking Storage Account for saved queries.
 * You can link a single or separate Storage Account for saved queries and log search alert queries.
 * To keep queries and functions encrypted with your key, configure the linked Storage Account by using a customer-managed key. You can perform this operation when you create the Storage Account or later.
 
-**Configure linked Storage Account for saved queries**
+#### Configure linked Storage Account for saved queries
 
-Link a Storage Account for saved queries and functions to keep the saved queries in your Storage Account. 
+Link a Storage Account to keep saved queries and functions in your Storage Account. 
 
 > [!NOTE]
 > The operation removes saved queries and functions from your workspace to a table in your Storage Account. You can unlink the Storage Account for saved queries to move saved queries and functions back to your workspace. Refresh the browser if saved queries or functions don't show up in the Azure portal after the operation.
@@ -391,14 +385,21 @@ Content-type: application/json
 
 ---
 
-After the configuration, any new *saved search* query is saved in your storage.
+#### Customer-managed key for Workbooks
 
-**Configure linked Storage Account for log search alert queries**
+Azure Monitor enables you to store Workbook queries encrypted with your key in your own Storage Account as well. Keep in mind the same consideration described in in [Customer-managed key for saved queries and log search alerts](#customer-managed-key-for-saved-queries-and-log-search-alerts).
 
-**Considerations before setting customer-managed key for saved log alert queries**
+Select **Save content to an Azure Storage Account** in the Workbook **Save** operation.
+<!-- convertborder later -->
+:::image type="content" source="media/customer-managed-keys/cmk-workbook.png" lightbox="media/customer-managed-keys/cmk-workbook.png" alt-text="Screenshot of Workbook save." border="false":::
+
+
+#### Considerations before setting customer-managed key for saved log alert queries
 * Alert queries are saved as blobs in the Storage Account.
 * Triggered log search alerts don't contain search results or the alert query. Use [alert dimensions](../alerts/alerts-types.md#monitor-the-same-condition-on-multiple-resources-using-splitting-by-dimensions) to get context for the fired alerts.
 * To keep queries and functions encrypted by using your key, configure the linked Storage Account with customer-managed key. You can perform this operation when you create the Storage Account or later.
+
+### Configure linked Storage Account for log search alert queries
 
 Link a Storage Account for *Alerts* to keep *log search alert* queries in your Storage Account. 
 
@@ -448,8 +449,6 @@ Content-type: application/json
 }
 ```
 ---
-
-After the configuration, any new alert query is saved in your storage.
 
 ### Customer Lockbox
 
