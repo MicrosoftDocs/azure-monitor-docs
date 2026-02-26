@@ -8863,6 +8863,21 @@
    "source_path": "articles/azure-monitor/metrics/azure-monitor-workspace-private-endpoint.md",
    "redirect_url": "/azure/azure-monitor/fundamentals/private-link-azure-monitor-workspace",
    "redirect_document_id": false
-  }  
+  },
+    {
+      "source_path": "articles/azure-monitor/app/kubernetes-open-protocol.md",
+      "redirect_url": "../containers/kubernetes-open-protocol",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/fundamentals/collect-use-observability-data.md",
+      "redirect_url": "../containers/collect-use-observability-data",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/fundamentals/opentelemetry-protocol-ingestion.md",
+      "redirect_url": "../containers/opentelemetry-protocol-ingestion",
+      "redirect_document_id": false
+    }
  ]
 }

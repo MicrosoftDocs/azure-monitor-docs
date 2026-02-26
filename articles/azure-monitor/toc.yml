@@ -400,11 +400,11 @@ items:
       - name: Limited previews
         items:
         - name: Collect and analyze OpenTelemetry data with Azure Monitor
-          href: fundamentals/collect-use-observability-data.md
+          href: containers/collect-use-observability-data.md
         - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
-          href: fundamentals/opentelemetry-protocol-ingestion.md
+          href: containers/opentelemetry-protocol-ingestion.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
-          href: app/kubernetes-open-protocol.md
+          href: containers/kubernetes-open-protocol.md
     - name: Analyze data
       items:
       - name: Interactive views
