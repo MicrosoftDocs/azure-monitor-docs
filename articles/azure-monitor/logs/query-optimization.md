@@ -23,7 +23,7 @@ Optimized queries:
 - Run faster and reduce the overall duration of the query execution.
 - Are less likely to be throttled or rejected.
 
-Pay particular attention to queries that are used for recurrent and simultaneous usage, such as dashboards, alerts, Azure Logic Apps, and Power BI. The impact of an ineffective query in these cases is substantial.
+Pay particular attention to queries that are used for recurrent and simultaneous usage, such as dashboards, alerts, Azure Logic Apps, and Power BI. The impact of an ineffective query in these cases is substantial. In these scenarios, consider [summary rules](../summary-rules.md) to create and manage summary tables in your Log Analytics workspace. Summary rules re-ingest summarized data of large datasets after a certain delay, creating summary tables. Summary tables are queried more efficiently than the original raw data.
 
 Here's a detailed video walkthrough on optimizing queries.
 

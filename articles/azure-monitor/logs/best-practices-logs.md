@@ -44,7 +44,7 @@ This article provides architectural best practices for Azure Monitor Logs. The g
 
 ## Performance efficiency
 
-[Performance efficiency](/azure/well-architected/scalability/overview) is the ability of your workload to scale to meet the demands placed on it by users in an efficient manner. Use the following information to ensure that your Log Analytics workspaces and log queries are configured for maximum performance.
+[Performance efficiency](/azure/well-architected/performance-efficiency/principles) is about effective use of workload resources. Use the following information to ensure that your Log Analytics workspaces and log queries are configured for maximum performance.
 
 [!INCLUDE [waf-logs-performance](includes/waf-logs-performance.md)]
 
