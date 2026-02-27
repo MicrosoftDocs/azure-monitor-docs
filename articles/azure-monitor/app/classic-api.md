@@ -1048,7 +1048,7 @@ Review the preceding instructions when you write your installation scripts.
 
 The Application Insights SDK needs to send your app's telemetry to Microsoft. We recommend that you configure proxy settings for your app in your web.config file. For more information, see [How do I achieve proxy passthrough?](application-insights-faq.yml#how-do-i-achieve-proxy-passthrough).
 
-###### Enable monitoring
+##### Enable monitoring
 
 Use the `Enable-ApplicationInsightsMonitoring` command to enable monitoring.
 
