@@ -6,7 +6,7 @@ ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor pipeline TLS configuration - Using your own certificate management (Customer managed or BYOC)
+# TLS configuration - Using your own certificate management (Customer managed or BYOC)
 
 The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
 
