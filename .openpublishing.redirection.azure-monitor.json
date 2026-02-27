@@ -8270,6 +8270,21 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-extensions.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-vscode-extension.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-vs-extension.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/insights/set-up-code-optimizations.md",
    "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
    "redirect_document_id": false
