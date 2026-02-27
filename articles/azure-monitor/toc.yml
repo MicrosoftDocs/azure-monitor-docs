@@ -297,6 +297,25 @@ items:
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
+      - name: Analyze data
+        items:
+        - name: Interactive views
+          href: vm/vminsights-performance.md
+        - name: Monitor changes
+          href: vm/vminsights-change-analysis.md
+        - name: Visualize data with workbooks
+          href: vm/vminsights-workbooks.md
+      - name: Migrate
+        items:
+        - name: Migrate to Azure Monitor agent
+          href: vm/vminsights-migrate-agent.md
+        - name: Migrate from deprecated policies
+          href: vm/vminsights-migrate-deprecated-policies.md
+      - name: Map feature
+        items:
+        - name: Retirement guidance
+          displayName: processes and dependencies, map, vminsights, dependency agent
+          href: vm/vminsights-maps-retirement.md
         - name: Dependency agent
           items:
           - name: Manage
@@ -305,26 +324,10 @@ items:
           - name: Uninstall
             displayName: dependency agent, vminsights
             href: vm/vminsights-dependency-agent-uninstall.md
-      - name: Migrate
-        items:
-        - name: Migrate to Azure Monitor agent
-          href: vm/vminsights-migrate-agent.md
-        - name: Migrate from deprecated policies
-          href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Use VM insights
-        items:
-        - name: Monitor performance
-          href: vm/vminsights-performance.md
         - name: Map dependencies
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
-        - name: Map Retirement guidance
-          href: vm/vminsights-maps-retirement.md
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
     - name: Performance diagnostics
       items:
       - name: Overview
