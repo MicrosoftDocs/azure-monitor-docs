@@ -17,6 +17,9 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ### Version v0.157.0 - Feb 2026
 - Added **support for TLS and mutual TLS (mTLS)** for TCP‑based ingestion endpoints, improving security and compliance. [Learn more](./pipeline-tls.md)
+> [!WARNING]
+> If updating from an existing installation, this is a **breaking change** as it now requires the installation of cert-manager extension and gateway. Without these components, the update/deployment will fail.
+> See the [updated prerequisites](./pipeline-configure.md#prerequisites) for how to install the additional components. You can also [disable the default TLS, mTLS configuration](./pipeline-tls.md#option-3-disable-tls-and-mtls).
 - Fixed an issue where `RemoteIP` and `RemotePort` fields were incorrectly swapped during Common Event Format (CEF) log processing.
 - Updated the underlying Azure Linux base image to the latest compliant version
 
