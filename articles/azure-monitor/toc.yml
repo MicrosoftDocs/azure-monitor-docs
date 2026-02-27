@@ -104,8 +104,6 @@ items:
           href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
-        - name: ASP.NET on-premises agent
-          href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
         displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
         href: app/classic-api.md
@@ -172,16 +170,6 @@ items:
           - name: View .NET Profiler data
             displayName: profiling, debugging, code performance, perf
             href: profiler/profiler-data.md
-        - name: Fix with GitHub Copilot (preview)
-          items:
-          - name: Overview
-            href: optimization-insights/code-optimizations-extensions.md
-          - name: Visual Studio
-            href: optimization-insights/code-optimizations-vs-extension.md
-          - name: Visual Studio Code
-            href: optimization-insights/code-optimizations-vscode-extension.md
-          - name: Assign to GitHub Copilot
-            href: optimization-insights/code-optimizations-github-copilot.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
@@ -309,6 +297,25 @@ items:
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
+      - name: Analyze data
+        items:
+        - name: Interactive views
+          href: vm/vminsights-performance.md
+        - name: Monitor changes
+          href: vm/vminsights-change-analysis.md
+        - name: Visualize data with workbooks
+          href: vm/vminsights-workbooks.md
+      - name: Migrate
+        items:
+        - name: Migrate to Azure Monitor agent
+          href: vm/vminsights-migrate-agent.md
+        - name: Migrate from deprecated policies
+          href: vm/vminsights-migrate-deprecated-policies.md
+      - name: Map feature
+        items:
+        - name: Retirement guidance
+          displayName: processes and dependencies, map, vminsights, dependency agent
+          href: vm/vminsights-maps-retirement.md
         - name: Dependency agent
           items:
           - name: Manage
@@ -317,26 +324,10 @@ items:
           - name: Uninstall
             displayName: dependency agent, vminsights
             href: vm/vminsights-dependency-agent-uninstall.md
-      - name: Migrate
-        items:
-        - name: Migrate to Azure Monitor agent
-          href: vm/vminsights-migrate-agent.md
-        - name: Migrate from deprecated policies
-          href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Use VM insights
-        items:
-        - name: Monitor performance
-          href: vm/vminsights-performance.md
         - name: Map dependencies
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
-        - name: Map Retirement guidance
-          href: vm/vminsights-maps-retirement.md
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
     - name: Performance diagnostics
       items:
       - name: Overview
