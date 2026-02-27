@@ -34,7 +34,7 @@ In addition, Azure Monitor OpenTelemetry Distro-based automatic instrumentation 
 - [Migrating Azure Monitor Application Insights Python from OpenCensus to OpenTelemetry](./opentelemetry-python-opencensus-migrate.md)
 - [Monitor Azure app services performance Python (Preview)](./azure-web-apps-python.md)
 - [Monitor Azure app services performance Java](./azure-web-apps-java.md)
-- [Monitor applications running on Azure Functions with Application Insights](./monitor-functions.md)
+- [Monitor applications running on Azure Functions with Application Insights](/azure/azure-functions/opentelemetry-howto)
 
 **Azure SDKs** are instrumented with OpenTelemetry APIs to power end-to-end observability. All supported languages are instrumented to emit OpenTelemetry HTTP and/or Messaging Tracing Semantics; .NET and Java are being instrumented to emit OpenTelemetry HTTP Metrics Semantics.
 

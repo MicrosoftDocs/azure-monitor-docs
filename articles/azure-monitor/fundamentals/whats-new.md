@@ -283,9 +283,6 @@ This article lists significant changes to Azure Monitor documentation.
 |Logs|[Structure of transformation in Azure Monitor](../data-collection/data-collection-transformations-kql.md)|Added `parse` operator limitations and information about ingestion latency introduced by transformations.|
 |Logs|[Enhance resilience by replicating your Log Analytics workspace across regions (Preview)](../logs/workspace-replication.md)|Added information about how Azure Monitor protects in-transit data during a regional when you enable workspace replication.|
 |Logs|[Functions in Azure Monitor log queries](../logs/functions.md)|Added ARM template example of how to create a function in Azure Monitor Logs. |
-|Optimization-Insights|[Code Optimizations extensions for Visual Studio and Visual Studio Code (preview)](../insights/code-optimizations-extensions.md)|Public preview announcement of the Visual Studio and Visual Studio Code extensions for Code Optimizations|
-|Optimization-Insights|[Code Optimizations extensions for Visual Studio (preview)](../insights/code-optimizations-vs-extension.md)|Instructions for using the Code Optimizations extension for Visual Studio|
-|Optimization-Insights|[Code Optimizations extensions for Visual Studio Code (preview)](../insights/code-optimizations-vscode-extension.md)|Instructions for using the Code Optimizations extension for Visual Studio Code|
 |Profiler|[Enable Profiler for ASP.NET Core web apps hosted in Linux](../profiler/profiler-aspnetcore-linux.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Enable the .NET Profiler for Azure Functions apps](../profiler/profiler-azure-functions.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
 |Profiler|[Configure BYOS for Application Insights Profiler for .NET and Snapshot Debugger](../profiler/profiler-bring-your-own-storage.md)|Update "Profiler" name to variations of ".NET Profiler" to differentiate from the Java Profiler. |
@@ -396,7 +393,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](../app/opentelemetry-dotnet-migrate.md)|Migrate .NET applications from the SDK Classic API to OpenTelemetry using our new step-by-step guide.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|The .NET example under Set the Cloud Role Name and the Cloud Role Instance now shows how to configure all signals.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|Node.js guidance is available for using each of the credential classes.|
-|Application-Insights|[Monitor Azure Functions with Azure Monitor Application Insights](../app/monitor-functions.md)|New configuration guidance added for Functions both on and off a consumption plan.|
+|Application-Insights|[Monitor Azure Functions with Azure Monitor Application Insights](/azure/azure-functions/opentelemetry-howto)|New configuration guidance added for Functions both on and off a consumption plan.|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|Updated instructions and code sample for using Microsoft Entra with Python.|
 |Containers|[Monitor Kubernetes clusters using Azure services and cloud native tools](../containers/monitor-kubernetes.md)|Updated for Prometheus experience for Container insights.|
 |Essentials|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Get an API token using Python, JavaScript C# and Azure CLI.|
@@ -841,7 +838,7 @@ Alerts|[Create a new alert rule](../alerts/alerts-create-new-alert-rule.md)|Adde
 Alerts|[Manage your alert instances](../alerts/alerts-manage-alert-instances.md)|Removed option for managing alert instances by using the Azure CLI.|
 Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Added the continuous export deprecation notice to this article for more visibility. We recommend migrating to workspace-based Application Insights resources as soon as possible to take advantage of new features.|
 Application-Insights|[Application Insights API for custom events and metrics](../app/api-custom-events-metrics.md)|Consolidated client-side JavaScript SDK extensions into two new articles called *Framework extensions* and *Feature extensions*. We've also created new standalone *Upgrade* and *Troubleshooting* articles.|
-Application-Insights|[Monitor Azure Functions with Azure Monitor Application Insights](../app/monitor-functions.md)|Overhauled the documentation on Azure Functions integration with Application Insights.|
+Application-Insights|[Monitor Azure Functions with Azure Monitor Application Insights](/azure/azure-functions/opentelemetry-howto)|Overhauled the documentation on Azure Functions integration with Application Insights.|
 Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications](../app/opentelemetry-enable.md)|Updated Java OpenTelemetry examples.|
 Application-Insights|[Application monitoring for Azure App Service and Java](../app/azure-web-apps-java.md)|Updated and separated out the instructions to manually deploy the latest Application Insights Java version.|
 Containers|[Enable Container insights for Azure Kubernetes Service (AKS) clusters](../containers/container-insights-enable-aks.md)|Added a section for enabling a private link without managed identity authentication.|
@@ -1047,7 +1044,7 @@ Visualizations|[Azure Workbooks](../visualize/workbooks-overview.md)|New video t
 |[Java Profiler for Azure Monitor Application Insights](../app/java-standalone-profiler.md)|Announced the new Java Profiler at Ignite. Read all about it.|
 |[Release notes for Azure Web App extension for Application Insights](../app/web-app-extension-release-notes.md)|Added release notes for 2.8.44 and 2.8.43.|
 |[Resource Manager template samples for creating Application Insights resources](../app/create-workspace-resource.md)|Fixed inaccurate tagging of workspace-based resources as still in preview.|
-|[Unified cross-component transaction diagnostics](../app/failures-performance-transactions.md#transaction-diagnostics-experience)|Added a FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
+|[Unified cross-component transaction diagnostics](../app/failures-performance-transactions.md#transaction-diagnostics-experience)|Added an FAQ section to help troubleshoot Azure portal errors like "error retrieving data."|
 |[Upgrading from Application Insights Java 2.x SDK](../app/java-standalone-upgrade-from-2x.md)|Added more upgrade guidance. Java 2.x is deprecated.|
 |[Using Azure Monitor Application Insights with Spring Boot](../app/java-spring-boot.md)|Updated configuration options.|
 
