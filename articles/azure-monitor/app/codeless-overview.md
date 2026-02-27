@@ -6,7 +6,7 @@ ms.custom: devx-track-js
 ms.date: 03/28/2026
 ---
 
-# What is autoinstrumentation for Azure Monitor Application Insights?
+# Autoinstrumentation for Azure Monitor Application Insights
 
 Autoinstrumentation automatically collects telemetry and sends it to your [Application Insights](app-insights-overview.md) resource, enabling portal experiences like the [application dashboard](overview-dashboard.md) and [application map](app-map.md).
 
