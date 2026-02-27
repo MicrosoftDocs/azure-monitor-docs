@@ -21,17 +21,11 @@ With these options, you can:
 
 This article describes how to secure the connection between your pipeline and clients using TLS. You can use the default automated certificate management or use your existing PKI to issue and manage certificates to automate certificate issuance and renewal.
 
-## TLS Modes
-
-The Azure Monitor pipeline supports three TLS modes:
-
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication
-- **serverOnly**: TLS encryption without client certificate validation
-- **disabled**: Plain text communication
-
 ## Prerequisites
 
-- Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed as described in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline.  
+Additionally, add the following to your cluster:
+
 - `kubectl` and `az access` to the Arc‑enabled cluster context.
 
 ## Option 1: Default TLS (automated certificate management)
