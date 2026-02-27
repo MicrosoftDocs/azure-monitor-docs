@@ -43,7 +43,7 @@ To enable .NET Profiler on Linux, see [Enable the .NET Profiler for Azure App Se
 You can enable Profiler either when:
 
 - [Your Application Insights resource and App Service resource are in the same subscription](#for-application-insights-and-app-service-in-the-same-subscription)
-- [Your Application Insights resource and App Service resource are in separate subscriptions.](#for-application-insights-and-app-service-in-different-subscriptions)
+- [Your Application Insights resource and App Service resource are in separate subscriptions](#for-application-insights-and-app-service-in-different-subscriptions).
 
 ### For Application Insights and App Service in the same subscription
 
@@ -75,7 +75,7 @@ If your Application Insights resource is in a different subscription from your i
 
 |App setting    | Value    |
 |---------------|----------|
-|APPLICATIONINSIGHTS_CONNECTION_STRING | Get this value from the **Overview** page for your App Insights resource. |
+|APPLICATIONINSIGHTS_CONNECTION_STRING | Get this value from the **Overview** page for your Application Insights resource. |
 |APPINSIGHTS_PROFILERFEATURE_VERSION | 1.0.0 |
 |DiagnosticServices_EXTENSION_VERSION | ~3 |
 
