@@ -273,7 +273,7 @@ The Azure Monitor pipeline supports three TLS modes:
 - **disabled**: Plain text communication
 
 
-### **BYOC TLS**: Enable TLS secure encryption using customer-managed certificates
+**BYOC TLS**: Enable TLS secure encryption using customer-managed certificates
 
 ```json
 {
@@ -294,7 +294,7 @@ The Azure Monitor pipeline supports three TLS modes:
 }
 ```
 
-### **Default TLS + BYOC mTLS**: Enable TLS secure encryption using automated certificate management, and mTLS client authentication using customer-managed certificates
+**Default TLS + BYOC mTLS**: Enable TLS secure encryption using automated certificate management, and mTLS client authentication using customer-managed certificates
 
 ```json
 {
@@ -307,7 +307,7 @@ The Azure Monitor pipeline supports three TLS modes:
 }
 ```
 
-### **BYOC (TLS + mTLS)**: Enable TLS secure encryption and mTLS client authentication, both using customer-managed certificates
+**BYOC (TLS + mTLS)**: Enable TLS secure encryption and mTLS client authentication, both using customer-managed certificates
 
 ```json
 {
