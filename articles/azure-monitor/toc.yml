@@ -890,9 +890,10 @@ items:
         href: data-collection/pipeline-transformations.md
       - name: Pod placement
         href: data-collection/pipeline-pod-placement.md
-      - name: Configure TLS
-        href: data-collection/pipeline-tls.md
+      - name: Secure encryption (TLS)
         items:
+        - name: Configure TLS
+          href: data-collection/pipeline-tls.md
         - name: Automated certificate management (Default TLS)
           href: data-collection/pipeline-tls-automated.md
         - name: Customer-managed certificates (BYOC)
