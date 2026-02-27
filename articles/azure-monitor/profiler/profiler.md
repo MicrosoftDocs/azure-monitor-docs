@@ -107,9 +107,9 @@ To enable Microsoft Entra ID for profile ingestion:
 
 1. Create and add the managed identity to authenticate against your Application Insights resource to your App Service:
 
-   -  [System-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity)
+   - [System-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity)
 
-   -  [User-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-user-assigned-identity)
+   - [User-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-user-assigned-identity)
 
 1. [Configure and enable Microsoft Entra ID](../app/azure-ad-authentication.md?tabs=net#configure-and-enable-azure-ad-based-authentication) in your Application Insights resource.
 
