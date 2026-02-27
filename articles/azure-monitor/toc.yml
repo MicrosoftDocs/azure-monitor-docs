@@ -107,8 +107,6 @@ items:
         - name: Azure Functions
           displayName: functions, monitor functions, automation
           href: app/monitor-functions.md
-        - name: ASP.NET on-premises agent
-          href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
         displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
         href: app/classic-api.md

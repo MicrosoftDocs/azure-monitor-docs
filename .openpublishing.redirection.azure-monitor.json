@@ -8878,6 +8878,11 @@
       "source_path": "articles/azure-monitor/fundamentals/opentelemetry-protocol-ingestion.md",
       "redirect_url": "../containers/opentelemetry-protocol-ingestion",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/app/application-insights-asp-net-agent.md",
+      "redirect_url": "../app/classic-api",
+      "redirect_document_id": false
     }
  ]
 }
