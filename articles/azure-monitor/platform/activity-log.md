@@ -264,6 +264,12 @@ while ($currentStart -lt $endTime) {
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
 
+## Resource creation
+One of the common uses of the activity log is to determine when a resource was created and who created it. The activity log is the only location where the creator of a resource is persisted. Since the activity log is retained for 90 days, you can only find the creator of a resource if it was created within the last 90 days.
+
+As described above, export the activity log to a Log Analytics workspace for longer retention. In this case, you can find the creator of a resource by querying the `AzureActivity` table, and the data is retained as long as you specified the [retention period for this table](../logs/data-retention-configure.md).
+
+
 ## Next steps
 
 Learn more about:
