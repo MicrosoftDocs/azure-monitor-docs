@@ -69,14 +69,14 @@ You can use the TelemetryClient API to manually instrument and monitor more aspe
 
 * [Prerequisites](#prerequisites)
 * [Instrument your application with the Application Insights SDK](#instrument-your-application-with-the-application-insights-sdk)
-* [Deploy the Application Insights Agent](#deploy-the-application-insights-agent)
+* [Deploy the Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers)
 
 ### Prerequisites
 
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
+> * A functioning application.
 
 ### Instrument your application with the Application Insights SDK
 
@@ -770,7 +770,7 @@ This console application also uses the same default `TelemetryConfiguration`. It
 
 * [Get started](#get-started) - To get started with concise code samples.
 * [Detailed instructions](#detailed-instructions) - For a deep dive on how to get started.
-* [API references](#api-references) - For PowerShell API reference.
+* [API references](#api-reference) - For PowerShell API reference.
 
 Application Insights Agent is a PowerShell module published to the [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
 It replaces Status Monitor. Telemetry is sent to the Azure portal, where you can [monitor](./app-insights-overview.md) your app.
@@ -1052,7 +1052,7 @@ The Application Insights SDK needs to send your app's telemetry to Microsoft. We
 
 Use the `Enable-ApplicationInsightsMonitoring` command to enable monitoring.
 
-See the [API reference](#enable-applicationinsightsmonitoring) for a detailed description of how to use this cmdlet.
+See the [API reference](#api-reference) for a detailed description of how to use this cmdlet.
 
 #### API reference
 
@@ -1594,7 +1594,7 @@ Tracing will timeout in 5 minutes. Press CTRL+C to cancel.
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
+> * A functioning application.
 
 ### Set up the Node.js client library
 
@@ -2438,7 +2438,7 @@ To have exceptions reported from your server-side application, consider the foll
 
 * Add the [Application Insights Extension](codeless-app-service.md) for Azure web apps.
 * Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
-* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
+* [Add the Application Insights SDK](#add-application-insights) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
 ##### Client-side
 
@@ -2498,7 +2498,7 @@ To see these events, on the left menu, open [Search](failures-performance-transa
 
 Request details don't include the data sent to your app in a POST call. To have this data reported:
 
-* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code.
+* [Add the Application Insights SDK](#add-application-insights) to your app code.
 * Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
