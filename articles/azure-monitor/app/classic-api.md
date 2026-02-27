@@ -2,6 +2,7 @@
 title: Monitor .NET and Node.js Applications with Application Insights (Classic API) | Microsoft Docs
 description: Monitor .NET and Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 11/11/2025
 ---
 
@@ -1587,6 +1588,195 @@ Tracing will timeout in 5 minutes. Press CTRL+C to cancel.
 
 </details>
 
+### Deploy the Application Insights Agent for virtual machines (VMs) and virtual machine scale sets
+
+##### In this section
+
+* [Enable monitoring for virtual machines](#enable-monitoring-for-virtual-machines)
+* [Enable monitoring for virtual machine scale sets](#enable-monitoring-for-virtual-machine-scale-sets)
+
+Enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through [autoinstrumentation](codeless-overview.md) for Internet Information Server (IIS)-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/).
+
+Deploy the Application Insights Agent with a virtual machine extension. The agent [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net). Use PowerShell to automate large-scale deployments.
+
+> [!NOTE]
+> * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
+> * Node.js and Python applications running on Azure VMs and Azure Virtual Machine Scale Sets don't support autoinstrumentation. Use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) instead.
+> * To monitor VM guests in addition to the applications hosted on them, see [VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data).
+
+For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+
+#### Enable monitoring for virtual machines
+
+You can use the Azure portal or PowerShell to enable monitoring for VMs.
+
+##### Option 1: Azure portal
+
+1. In the Azure portal, go to your Application Insights resource. Copy your connection string to the clipboard.
+
+    :::image type="content"source="media/classic-api/connect-string.png" alt-text="Screenshot that shows the connection string." lightbox="media/classic-api/connect-string.png":::
+
+1. Go to your virtual machine. Under the **Settings** section in the menu on the left side, select **Extensions + applications** > **Add**.
+
+    :::image type="content"source="media/classic-api/add-extension.png" alt-text="Screenshot that shows the Extensions + applications pane with the Add button." lightbox="media/classic-api/add-extension.png":::
+
+1. Select **Application Insights Agent** > **Next**.
+
+    :::image type="content"source="media/classic-api/select-extension.png" alt-text="Screenshot that shows the Install an Extension pane with the Next button." lightbox="media/classic-api/select-extension.png":::
+
+1. Paste the connection string you copied in step 1 and select **Review + create**.
+
+    :::image type="content"source="media/classic-api/install-extension.png" alt-text="Screenshot that shows the Create tab with the Review + create button." lightbox="media/classic-api/install-extension.png":::
+
+##### Option 2: PowerShell
+
+> [!NOTE]
+> New to PowerShell? Check out the [Get started guide](/powershell/azure/get-started-azureps).
+
+Install or update the Application Insights Agent as an extension for Azure virtual machines:
+
+```powershell
+# define variables to match your environment before running
+$ResourceGroup = "<myVmResourceGroup>"
+$VMName = "<myVmName>"
+$Location = "<myVmLocation>"
+$ConnectionString = "<myAppInsightsResourceConnectionString>"
+
+$publicCfgJsonString = @"
+{
+    "redfieldConfiguration": {
+        "instrumentationKeyMap": {
+        "filters": [
+            {
+            "appFilter": ".*",
+            "machineFilter": ".*",
+            "virtualPathFilter": ".*",
+            "instrumentationSettings" : {
+                "connectionString": "$ConnectionString"
+            }
+            }
+        ]
+        }
+    }
+    }
+"@
+
+$privateCfgJsonString = '{}'
+    
+Set-AzVMExtension -ResourceGroupName $ResourceGroup -VMName $VMName -Location $Location -Name "ApplicationMonitoringWindows" -Publisher "Microsoft.Azure.Diagnostics" -Type "ApplicationMonitoringWindows" -Version "2.8" -SettingString $publicCfgJsonString -ProtectedSettingString $privateCfgJsonString
+```
+
+> [!NOTE]
+> For more complicated at-scale deployments, you can use a PowerShell loop to install or update the Application Insights Agent extension across multiple VMs.
+
+Query the Application Insights Agent extension status for Azure virtual machines:
+
+```powershell
+Get-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName>" -Name ApplicationMonitoringWindows -Status
+```
+
+Get a list of installed extensions for Azure virtual machines:
+
+```powershell
+Get-AzResource -ResourceId "/subscriptions/<mySubscriptionId>/resourceGroups/<myVmResourceGroup>/providers/Microsoft.Compute/virtualMachines/<myVmName>/extensions"
+```
+
+Uninstall the Application Insights Agent extension from Azure virtual machines:
+
+```powershell
+Remove-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName>" -Name "ApplicationMonitoring"
+```
+
+> [!NOTE]
+> Verify installation by selecting **Live Metrics Stream** within the Application Insights resource associated with the connection string you used to deploy the Application Insights Agent extension. If you're sending data from multiple virtual machines, select the target Azure virtual machines under **Server Name**. It might take up to a minute for data to begin flowing.
+
+##### instrumentationKeyMap (extension settings)
+
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
+
+**Where it goes for the VM and Virtual Machine Scale Sets extension**
+
+Place the map under `redfieldConfiguration.instrumentationKeyMap.filters` in the extension's public settings (`-SettingString` for VMs, `-Setting` for Virtual Machine Scale Sets). Property names are lower camel case. Set the target resource per rule with `instrumentationSettings.connectionString`.
+
+```json
+{
+  "redfieldConfiguration": {
+    "instrumentationKeyMap": {
+      "filters": [
+        {
+          "machineFilter": ".*",
+          "appFilter": ".*",
+          "instrumentationSettings": {
+            "connectionString": "<your-APPLICATIONINSIGHTS_CONNECTION_STRING>"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Enable monitoring for virtual machine scale sets
+
+You can use the Azure portal or PowerShell to enable monitoring for virtual machine scale sets.
+
+##### Option 1: Azure portal
+
+Follow the prior steps for VMs, but go to your virtual machine scale sets instead of your VM.
+
+##### Option 2: PowerShell
+
+Install or update Application Insights Agent as an extension for virtual machine scale sets:
+
+```powershell
+# Set resource group, vmss name, and connection string to reflect your environment
+$ResourceGroup = "<myVmResourceGroup>"
+$VMSSName = "<myVmName>"
+$ConnectionString = "<myAppInsightsResourceConnectionString>"
+$publicCfgHashtable =
+@{
+  "redfieldConfiguration"= @{
+    "instrumentationKeyMap"= @{
+      "filters"= @(
+        @{
+          "appFilter"= ".*";
+          "machineFilter"= ".*";
+          "virtualPathFilter"= ".*";
+          "instrumentationSettings" = @{
+            "connectionString"= "$ConnectionString"
+          }
+        }
+      )
+    }
+  }
+};
+$privateCfgHashtable = @{};
+$vmss = Get-AzVmss -ResourceGroupName $ResourceGroup -VMScaleSetName $VMSSName
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name "ApplicationMonitoringWindows" -Publisher "Microsoft.Azure.Diagnostics" -Type "ApplicationMonitoringWindows" -TypeHandlerVersion "2.8" -Setting $publicCfgHashtable -ProtectedSetting $privateCfgHashtable
+Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss
+# Note: Depending on your update policy, you might need to run Update-AzVmssInstance for each instance
+```
+
+Get a list of installed extensions for virtual machine scale sets:
+
+```powershell
+Get-AzResource -ResourceId "/subscriptions/<mySubscriptionId>/resourceGroups/<myResourceGroup>/providers/Microsoft.Compute/virtualMachineScaleSets/<myVmssName>/extensions"
+```
+
+Uninstall the application monitoring extension from virtual machine scale sets:
+
+```powershell
+# set resource group and vmss name to reflect your environment
+$vmss = Get-AzVmss -ResourceGroupName "<myResourceGroup>" -VMScaleSetName "<myVmssName>"
+Remove-AzVmssExtension -VirtualMachineScaleSet $vmss -Name "ApplicationMonitoringWindows"
+Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -VirtualMachineScaleSet $vmss
+# Note: Depending on your update policy, you might need to run Update-AzVmssInstance for each instance
+```
+
+#### Troubleshooting
+
+For dedicated troubleshooting steps, see [Trouble deploying the Application Insights Monitoring Agent extension for VMs and virtual machine scale sets](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#trouble-deploying-the-application-insights-monitoring-agent-extension-for-vms-and-virtual-machine-scale-sets).
+
 # [Node.js](#tab/nodejs)
 
 ### Prerequisites
@@ -2437,7 +2627,7 @@ You can set up Application Insights to report exceptions that occur in either th
 To have exceptions reported from your server-side application, consider the following scenarios:
 
 * Add the [Application Insights Extension](codeless-app-service.md) for Azure web apps.
-* Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
+* Add the [Application Monitoring Extension](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
 * [Add the Application Insights SDK](#add-application-insights) to your app code, run [Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
 ##### Client-side
@@ -4826,7 +5016,7 @@ The configuration file is named `ApplicationInsights.config` or `ApplicationInsi
 By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](#deploy-the-application-insights-agent-for-on-premises-servers).
 
 > [!IMPORTANT]
-> The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and Azure virtual machine scale sets](azure-vm-vmss-apps.md) is used.
+> The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and Azure virtual machine scale sets](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets) is used.
 
 There isn't an equivalent file to control the [SDK in a webpage](javascript-sdk.md).
 
@@ -5037,7 +5227,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | Area | Description |
 |------|-------------|
 | **Request tracking** | Collects request telemetry (response time, result code) for incoming web requests.<br><br>**Module:** `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
-| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
+| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Performance counters** | Collects Windows Performance Counters (CPU, memory, network load from IIS installs). Specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>**NuGet:**[Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Event counters** | Collects [.NET EventCounters](#event-counters). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |
