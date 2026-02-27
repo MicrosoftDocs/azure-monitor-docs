@@ -45,7 +45,7 @@ Once your environment's data is collected from the .NET Profiler traces (and Sna
 
 #### Resolve
 
-After identifying and analyzing Code Optimizations, you can use the GitHub Copilot "Copy details" button in the portal to manually bring all the insight context to your favorite tool. 
+After identifying and analyzing Code Optimizations, you can use the "Copy details" button in the portal to manually bring all the insight context to your favorite tool, like [GitHub Copilot](/azure/developer/github-copilot-azure/get-started). 
 
 You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimizations.
 
