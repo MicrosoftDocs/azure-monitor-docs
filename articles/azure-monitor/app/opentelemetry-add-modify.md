@@ -32,8 +32,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 **Requests**
 
-* [ASP.NET
-  Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md) ¹²
+* [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md) ¹²
 
 **Dependencies**
 
@@ -279,7 +278,6 @@ export class BunyanInstrumentationSample {
 }
 ```
 
-
 #### [Python](#tab/python)
 
 **Requests**
@@ -439,7 +437,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 ### Supported environments
 
 | Environment | How detection works | Notes |
-|---|---|---|
+|-------------|---------------------|-------|
 | Azure App Service | The language SDK or Azure Monitor distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
 | Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
 | Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
@@ -448,8 +446,8 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 ### Manual and automatic instrumentation
 
-- Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
-- For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
+* Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
+* For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
 
     ```bash
     # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
@@ -466,8 +464,8 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 ### OTLP ingestion considerations
 
-- Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
-- `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
+* Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
+* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
 
 ## Collect custom telemetry
 
@@ -489,16 +487,16 @@ The following table represents the currently supported custom telemetry types:
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
-| &nbsp;&nbsp;&nbsp;AI Classic API          |               |                |              |            |            |          |        |
+| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
+| &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Logback, `Log4j`, JUL   |               |                |              | Yes        |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Micrometer Metrics      |               | Yes            |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
 |                                           |               |                |              |            |            |          |        |
 | **Node.js**                               |               |                |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
+| &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 |                                           |               |                |              |            |            |          |        |
 | **Python**                                |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
@@ -714,7 +712,6 @@ export class HistogramSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 ```python
@@ -863,6 +860,7 @@ public class Program {
     }
 }
 ```
+
 ##### [Java native](#tab/java-native)
 
 1. Inject `OpenTelemetry`:
@@ -939,7 +937,6 @@ export class CounterSample {
   }
 }
 ```
-
 
 ##### [Python](#tab/python)
 
@@ -1100,6 +1097,7 @@ public class Program {
     }
 }
 ```
+
 ##### [Java native](#tab/java-native)
 
 1. Inject `OpenTelemetry`:
@@ -1169,7 +1167,6 @@ export class GaugeSample {
   }
 }
 ```
-
 
 ##### [Python](#tab/python)
 
@@ -1360,7 +1357,6 @@ span.recordException(e);
 
 The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
 
-
 ```typescript
 export class CustomExceptionSample {
   static async run() {
@@ -1392,7 +1388,6 @@ export class CustomExceptionSample {
   }
 }
 ```
-
 
 #### [Python](#tab/python)
 
@@ -1666,7 +1661,6 @@ export class CustomTraceSample {
 }
 ```
 
-
 #### [Python](#tab/python)
 
 The OpenTelemetry API can be used to add your own spans, which appear in the `requests` and `dependencies` tables in Application Insights.
@@ -1868,7 +1862,6 @@ export class CustomEventSample {
   }
 }
 ```
-
 
 #### [Python](#tab/python)
   
@@ -2090,7 +2083,6 @@ export class SpanAttributeEnrichmentSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 Use a custom processor:
@@ -2197,7 +2189,6 @@ export class SetUserIpSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code in `SpanEnrichingProcessor.py`:
@@ -2299,7 +2290,6 @@ export class SetUserIdSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
@@ -2359,7 +2349,6 @@ export class BunyanLogAttributesSample {
 }
 ```
 
-
 #### [Python](#tab/python)
   
 The Python [logging](https://docs.python.org/3/howto/logging.html) library is [autoinstrumented](#included-instrumentation-libraries). You can attach custom dimensions to your logs by passing a dictionary into the `extra` argument of your logs:
@@ -2373,8 +2362,6 @@ logger.warning("WARNING: Warning log with properties", extra={"key1": "value1"})
 ```
 
 ---
-
-
 
 ## Get the trace ID or span ID
     
@@ -2463,7 +2450,6 @@ export class GetTraceAndSpanIdSample {
   }
 }
 ```
-
 
 ### [Python](#tab/python)
 

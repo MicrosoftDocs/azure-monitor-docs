@@ -1,5 +1,5 @@
 ---
-title: Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
+title: Send data from Azure Diagnostics extension to Azure Monitor Logs
 description: Azure Monitor can read the logs for Azure services that write diagnostics to Azure Table Storage or IIS logs written to Azure Blob Storage.
 ms.topic: how-to
 ms.date: 11/14/2024

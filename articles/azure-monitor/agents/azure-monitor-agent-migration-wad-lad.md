@@ -2,7 +2,8 @@
 title: Migrate to Azure Monitor Agent from Azure Diagnostic extensions (WAD/LAD)
 description: Guidance for migrating to Azure Monitor Agent from WAD/LAD agents
 ms.topic: concept-article
-ms.date: 11/11/2025
+ms.date: 02/25/2026
+ms.reviewer: miguelparada, jeffwo
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the WAD/LAD agents agent to the AMA agent.
 ---
 
@@ -30,12 +31,21 @@ Use the following phased approach to migrate from WAD/LAD to AMA with DCRs.
 ### Phase 1: Discover and assess
 
 1. Inventory machines running WAD/LAD
+   
    1. For per-VM view in Azure portal, navigate to **Extensions + applications** tab.
+   1. For per-VM you can use Azure CLI:     
+   ```azurecli
+   az vm extension list  --resource-group <RESOURCE_GROUP>  --vm-name <VM_NAME> --output table
+   ```
    1. For fleet view, use Azure Resource Graph query from the [WAD/LAD overview article](./diagnostics-extension-overview.md) to find extensions by publisher == `Microsoft.Azure.Diagnostics`.
 
-3. Extract current diagnostics config - Gather WAD public config XML (Windows) and LAD JSON (Linux) to list counters, events, syslog facilities/severities, file paths, transfer schedules, and destinations. 
+2. Extract current diagnostics config - Gather WAD public config XML (Windows) and LAD JSON (Linux) to list counters, events, syslog facilities/severities, file paths, transfer schedules, and destinations. 
 
-4. Prioritize what to keep or drop - Use this moment to reduce noise and unused data types, if any. By using DCR transformations, you can additionally [filter to essential signals](../data-collection/data-collection-rule-overview.md#transformations).
+    ```azurecli
+   az vm extension show --resource-group <RESOURCE_GROUP> --vm-name <VM_NAME> --name <EXTENSION_NAME>  --query "settings" --output json
+    ```
+
+3. Prioritize what to keep or drop - Use this moment to reduce noise and unused data types, if any. By using DCR transformations, you can additionally [filter to essential signals](../data-collection/data-collection-rule-overview.md#transformations).
 
 ### Phase 2: Design DCRs
 
