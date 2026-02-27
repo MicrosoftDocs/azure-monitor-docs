@@ -22,6 +22,8 @@ Snapshots might include sensitive information. You can only view snapshots if yo
 
 After an exception has occurred in your application and a snapshot is created, you can view snapshots in the Azure portal within 5 to 10 minutes. 
 
+### From the Failures pane
+
 1. In your Application Insights resource, select **Investigate** > **Failures** from the left-side menu.
 
 1. In the **Failures** pane, select either:
@@ -41,6 +43,18 @@ After an exception has occurred in your application and a snapshot is created, y
 1. In the **Debug Snapshot** page, you see a call stack with a local variables pane. Select a call stack frame to view local variables and parameters for that function call in the variables pane.
 
    :::image type="content" source="./media/snapshot-debugger/open-snapshot-portal.png" alt-text="Screenshot showing the Open debug snapshot highlighted in the Azure portal.":::
+
+### From the Code Optimizations consolidated overview
+
+You can also view insights on your exception snapshots via the [Code Optimizations consolidated overview page](../optimization-insights/view-code-optimizations.md#exceptions). 
+
+1. In the Azure portal, search for **Code Optimizations**.
+
+1. Use the filters to narrow down results to your specific Azure subscription and resource. 
+
+1. Under the **Insight type** column in the results window, look for **Exceptions**.
+
+   :::image type="content" source="./media/snapshot-debugger/view-exceptions-in-code-optimizations.png" alt-text="Screenshot showing the Exception snapshot on the Code Optimizations consolidated overview in the Azure portal.":::
 
 ## Download snapshots to view in Visual Studio
 

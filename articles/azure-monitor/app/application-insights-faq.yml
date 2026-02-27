@@ -32,7 +32,7 @@ sections:
           * [Dependencies](./asp-net-dependencies.md). Calls to SQL databases, HTTP calls to external services, Azure Cosmos DB, Azure Table Storage, Azure Blob Storage, and Azure Queue Storage.
           * [Exceptions](./asp-net-exceptions.md) and stack traces.
           * [Performance counters](./asp-net-counters.md): Performance counters are available when using:
-             * [Azure Monitor Application Insights agent](application-insights-asp-net-agent.md)
+             * [Azure Monitor Application Insights agent](classic-api.md#deploy-the-application-insights-agent-for-on-premises-servers)
              * [Azure monitoring for VMs or virtual machine scale sets](./azure-vm-vmss-apps.md)
              * [Application Insights `collectd` writer](/previous-versions/azure/azure-monitor/app/deprecated-java-2x#collectd-linux-performance-metrics-in-application-insights-deprecated).
           * [Custom events and metrics](./api-custom-events-metrics.md) that you code.
@@ -402,7 +402,7 @@ sections:
           * If your computer has internet access, you can onboard to the PowerShell Gallery by using `-Proxy` parameters.
           * You can also manually download the module and either install it on your computer or use it directly.
 
-          Each of these options is described in the [detailed instructions](application-insights-asp-net-agent.md?tabs=detailed-instructions#instructions).  
+          Each of these options is described in the [detailed instructions](classic-api.md?tabs=dotnet#detailed-instructions).  
 
       - question: Does Application Insights Agent support ASP.NET Core applications?
         answer: |
@@ -410,7 +410,7 @@ sections:
 
       - question: How do I verify that the enablement succeeded?
         answer: |
-          * You can use the [Get-ApplicationInsightsMonitoringStatus](application-insights-asp-net-agent.md?tabs=api-reference#get-applicationinsightsmonitoringstatus) cmdlet to verify that enablement succeeded.
+          * You can use the [Get-ApplicationInsightsMonitoringStatus](classic-api.md?tabs=dotnet#api-reference) cmdlet to verify that enablement succeeded.
           * Use [Live Metrics](./live-stream.md) to quickly determine if your app is sending telemetry.
           * You can also use [Log Analytics](../logs/log-analytics-tutorial.md) to list all the cloud roles currently sending telemetry:
 
@@ -433,7 +433,7 @@ sections:
           ```
 
       - question: Where can I get more information about deploying Application Insights Agent for on-premises servers? 
-        answer: For more information, see [Deploy Application Insights Agent for on-premises servers](../app/application-insights-asp-net-agent.md).
+        answer: For more information, see [Deploy Application Insights Agent for on-premises servers](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers).
 
   - name: TLS support 
     questions: 
@@ -917,50 +917,6 @@ sections:
 
       - question: Where can I get more information about autoinstrumentation? 
         answer: For more information, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md).
-
-  - name: Autoinstrumentation for Azure Kubernetes Service    
-    questions:
-      - question: Does Azure Kubernetes Service (AKS) autoinstrumentation support custom metrics?
-        answer:  |
-          If you want custom metrics in Node.js, manually instrument applications with the [Azure Monitor OpenTelemetry Distro.](opentelemetry-enable.md)
-
-          Java allows custom metrics with autoinstrumentation. You can [collect custom metrics](opentelemetry-add-modify.md?tabs=java#add-custom-metrics) by updating your code and enabling this feature. If your code already has custom metrics, then they flow through when autoinstrumentation is enabled.
-
-      - question: Does AKS autoinstrumentation work with applications instrumented with an Open Source Software (OSS) OpenTelemetry SDK?
-        answer: |
-          AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OSS OpenTelemetry SDK.
-
-      - question: Can AKS autoinstrumentation coexist with manual instrumentation?
-        answer: |
-          AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
-
-          It always prevents duplicate data and ensures custom metrics work.
-
-          Refer to this chart to determine when autoinstrumentation or manual instrumentation takes precedence.
-
-          | Language | Precedence             |
-          |----------|------------------------|
-          | Node.js  | Manual instrumentation |
-          | Java     | Autoinstrumentation    |
-
-      - question: How do I ensure I'm using the latest and most secure versions of Azure Monitor OpenTelemetry Distro?
-        answer: |
-          Vulnerabilities detected in the Azure Monitor OpenTelemetry Distro are prioritized, fixed, and released in the next version.
-
-          AKS autoinstrumentation injects the latest version of the Azure Monitor OpenTelemetry Distro into your application pods every time your deployment is changed or restarted.
-
-          The OpenTelemetry Distro can become vulnerable on deployments that aren't changed or restarted for extended periods of time. For this reason, we suggest updating or restarting deployments weekly to ensure a recent version of the Distro is being used.
-
-      - question: How do I learn more about the Azure Monitor OpenTelemetry Distro?
-        answer: |
-          This feature achieves autoinstrumentation by injecting Azure Monitor OpenTelemetry Distro into application pods. 
-
-          For Java, this feature integrates the standalone Azure Monitor OpenTelemetry Distro for Java. See our [Java distro documentation](opentelemetry-enable.md?tabs=java) to learn more about the Java instrumentation binary. 
-
-          For Node.js, we inject an autoinstrumentation binary based on our Azure Monitor OpenTelemetry Distro for Node.js. For more information, see [Node.js distro documentation](opentelemetry-enable.md?tabs=nodejs). Keep in mind that we don't have a standalone autoinstrumentation for Node.js so our distro documentation is geared towards manual instrumentation. You can ignore code based configurations steps related to manual instrumentation. However, everything else in our distro documentation such as default settings, environment variable configurations, etc. is applicable to this feature.
-
-      - question: Where can I get more information about autoinstrumentation for AKS? 
-        answer: For more information, see [Autoinstrumentation for AKS](../app/kubernetes-codeless.md).
 
   - name: Connection strings 
     questions:
@@ -2152,7 +2108,7 @@ sections:
 
       - question: Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
         answer: |
-          No. [Azure Monitor Application Insights Agent](./application-insights-asp-net-agent.md) currently supports [.NET](/dotnet/fundamentals/) only.
+          No. [Azure Monitor Application Insights Agent](classic-api.md?tabs=dotnet) currently supports [.NET](/dotnet/fundamentals/) only.
 
       - question: Are all features supported if I run my application in Linux?
         answer: |
