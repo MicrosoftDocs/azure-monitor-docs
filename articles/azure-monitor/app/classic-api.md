@@ -2438,7 +2438,7 @@ To have exceptions reported from your server-side application, consider the foll
 
 * Add the [Application Insights Extension](codeless-app-service.md) for Azure web apps.
 * Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
-* [Add the Application Insights SDK](#add-application-insights) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
+* [Add the Application Insights SDK](#add-application-insights) to your app code, run [Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
 ##### Client-side
 
@@ -2922,7 +2922,7 @@ namespace WcfService4
 
 #### Exception performance counters
 
-If you [installed the Azure Monitor Application Insights Agent](application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
+If you [installed the Azure Monitor Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
 
 Open a metrics explorer tab and add a new chart. Under **Performance Counters**, select **Exception rate**.
 
@@ -4823,7 +4823,7 @@ The Application Insights .NET SDK consists of many NuGet packages. The [core pac
 
 The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK](app-insights-overview.md).
 
-By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md).
+By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](#deploy-the-application-insights-agent-for-on-premises-servers).
 
 > [!IMPORTANT]
 > The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and Azure virtual machine scale sets](azure-vm-vmss-apps.md) is used.
@@ -5037,7 +5037,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | Area | Description |
 |------|-------------|
 | **Request tracking** | Collects request telemetry (response time, result code) for incoming web requests.<br><br>**Module:** `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
-| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
+| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Performance counters** | Collects Windows Performance Counters (CPU, memory, network load from IIS installs). Specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>**NuGet:**[Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Event counters** | Collects [.NET EventCounters](#event-counters). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |

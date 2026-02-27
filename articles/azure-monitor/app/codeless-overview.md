@@ -47,7 +47,7 @@ Links are provided to more information for each supported scenario.
 |Azure Spring Apps | :x: | :x: | [ :white_check_mark: :link: ](/azure/spring-apps/enterprise/how-to-application-insights) | :x: | :x: |
 |Azure Kubernetes Service (AKS) | :x: | :x: | [ :white_check_mark: :link: ](../containers/kubernetes-codeless.md)² | [ :white_check_mark: :link: ](../containers/kubernetes-codeless.md)² | :x: |
 |Azure VMs Windows | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](azure-vm-vmss-apps.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
-|On-premises VMs Windows | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ³ | [ :white_check_mark: :link: ](application-insights-asp-net-agent.md) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
+|On-premises VMs Windows | [ :white_check_mark: :link: ](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers) ³ | [ :white_check_mark: :link: ](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers) ² ³ | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 |Standalone agent - any environment | :x: | :x: | [ :white_check_mark: :link: ](opentelemetry-enable.md?tabs=java) | :x: | :x: |
 
 **Footnotes**
