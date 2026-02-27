@@ -50,9 +50,10 @@ This section provides an overview of each pane in the Service Health portal.
 
 Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that could be affected from an outage, based on your subscription or tenant admin access.<br> For more information, see [Service issues overview](service-issues-blade.md).
 
-For information on how to report an impact see [How to report an impact (preview)](report-issue.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
+
+For information on how to report an impact see [How to report an impact (preview)](report-issue.md).
 
 ## See Planned maintenance events
 
