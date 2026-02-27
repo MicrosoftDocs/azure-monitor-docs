@@ -3,7 +3,7 @@ title: Log data ingestion time in Azure Monitor | Microsoft Docs
 description: This article explains the different factors that affect latency in collecting log data in Azure Monitor.
 ms.topic: concept-article
 ms.reviewer: ivkhrul
-ms.date: 10/15/2025
+ms.date: 02/27/2026
 
 ---
 
@@ -13,7 +13,7 @@ Azure Monitor is a high-scale data service for thousands of customers that send 
 
 ## Average latency
 
-Latency refers to the time that data is created on the monitored system and the time that it becomes available for analysis in Azure Monitor. The average latency to ingest log data is *between 20 seconds and 3 minutes*. The specific latency for any particular data will vary depending on several factors that are explained in this article.
+Latency refers to the time that data is created on the monitored system and the time that it becomes available for analysis in Azure Monitor. The average latency to ingest log data is *less than 10 seconds*. The specific latency for any particular data will vary depending on several factors that are explained in this article.
 
 ## Factors affecting latency
 
@@ -21,7 +21,6 @@ The total ingestion time for a particular set of data can be broken down into th
 
 * **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, this process is handled by an agent. More latency might be introduced by the network.
 * **Pipeline time**: The time for the ingestion pipeline to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information.
-* **Indexing time**: The time spent to ingest a log record into an Azure Monitor big data store.
 
 Details on the different latency introduced in this process are described in the following sections.
 
@@ -74,13 +73,13 @@ To determine a solution's collection frequency, see the [documentation for each 
 
 ### Pipeline-process time
 
-**30 to 60 seconds**
+**Less than 10 seconds**
 
-After the data is available at the data collection endpoint, it takes another 30 to 60 seconds to be available for querying.
+After the data is available at the data collection endpoint, it takes less than 10 seconds to be available for querying.
 
 After log records are ingested into the Azure Monitor pipeline (as identified in the [_TimeReceived](log-standard-columns.md#_timereceived) property), they're written to temporary storage to ensure tenant isolation and to make sure that data isn't lost. This process typically adds 5 to 15 seconds.
 
-Some solutions implement heavier algorithms to aggregate data and derive insights as data is streaming in. For example, Application Insights calculates application map data; Azure Network Performance Monitoring aggregates incoming data over 3-minute intervals, which effectively adds 3-minute latency.
+Some solutions implement heavier algorithms to aggregate data and derive insights as data is streaming in. For example, Application Insights calculates application map data; Azure Network Performance Monitoring aggregates incoming data over 3-minute intervals, which effectively adds 3-minute latency in this case.
 
 If the data collection includes an [ingestion-time transformation](../data-collection/data-collection-transformations.md), then this will add some latency to the pipeline. Use the metric [Logs Transformation Duration per Min](../data-collection/data-collection-monitor.md) to monitor the efficiency of the transformation query.
 
@@ -94,15 +93,7 @@ When a new type of custom data is created from a [custom log](../agents/data-sou
 
 **Typically less than 1 minute, but can be more**
 
-The top priority of Azure Monitor is to ensure that no customer data is lost, so the system has built-in protection for data surges. This protection includes buffers to ensure that even under immense load, the system will keep functioning. Under normal load, these controls add less than a minute. In extreme conditions and failures, they could add significant time while ensuring data is safe.
-
-### Indexing time
-
-**5 minutes or less**
-
-There's a built-in balance for every big data platform between providing analytics and advanced search capabilities as opposed to providing immediate access to the data. With Azure Monitor, you can run powerful queries on billions of records and get results within a few seconds. This performance is made possible because the infrastructure transforms the data dramatically during its ingestion and stores it in unique compact structures. The system buffers the data until enough of it's available to create these structures. This process must be completed before the log record appears in search results.
-
-This process currently takes about 5 minutes when there's a low volume of data, but it can take less time at higher data rates. This behavior seems counterintuitive, but this process allows optimization of latency for high-volume production workloads.
+The top priority of Azure Monitor is to ensure that no customer data is lost, so the system has built-in protection for data surges. This protection includes buffers to ensure that even under immense load, the system will keep functioning. Under normal load, these controls add no latency. Only in extreme conditions or failures do they add significant time, while ensuring data is safe.
 
 ## Check ingestion time
 
@@ -215,3 +206,4 @@ Heartbeat
 ## Next steps
 
 Read the [service-level agreement](https://azure.microsoft.com/support/legal/sla/monitor/v1_3/) for Azure Monitor.
+
