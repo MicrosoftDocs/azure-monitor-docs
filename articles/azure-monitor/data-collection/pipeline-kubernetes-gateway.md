@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor pipeline - Gateway for Kubernetes deployment
-description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS.
+description: Secure the connection from your remote clients to Azure Monitor pipeline using a gateway.
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
