@@ -1,12 +1,12 @@
 ---
-title: Azure Monitor pipeline TLS configuration (BYOC)
-description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS.
+title: Azure Monitor pipeline TLS configuration (Customer managed)
+description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS (Customer managed).
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor pipeline TLS configuration - Using your own certificate management (BYOC)
+# Azure Monitor pipeline TLS configuration - Using your own certificate management (Customer managed or BYOC)
 
 The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
 
