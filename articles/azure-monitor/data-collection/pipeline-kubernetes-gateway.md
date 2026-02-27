@@ -12,7 +12,7 @@ This guide shows how to expose an Azure Monitor Pipeline receiver to external cl
 
 ## Prerequisites
 
-See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline. 
+See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline. 
 Before deploying the Traefik gateway, here are additional prerequisites:
 
 - **Traefik** Helm chart is available 
