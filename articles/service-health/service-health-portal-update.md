@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 01/15/2026
+ms.date: 02/27/2026
 ---
 
 # Azure Service Health portal
@@ -49,6 +49,8 @@ This section provides an overview of each pane in the Service Health portal.
 ## See issues that might affect your services
 
 Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that could be affected from an outage, based on your subscription or tenant admin access.<br> For more information, see [Service issues overview](service-issues-blade.md).
+
+For information on how to report an impact see [How to report an impact (preview)](report-issue.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
 
