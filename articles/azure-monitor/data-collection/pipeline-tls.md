@@ -40,7 +40,7 @@ The Azure Monitor pipeline supports three TLS modes:
 
 The Certificate Manager extension provides automated certificate lifecycle management with zero-downtime rotation. This means certificates are automatically renewed and rotated without any service interruption or manual intervention.
 
-See [Azure Monitor pipeline TLS configuration - Using automated certificate management](./pipeline-tls-automated.md) for more information on how to set this up.
+See [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md) for more information on how to set this up.
 
 ## Option 2: BYOC (Bring Your Own Certificates)
 
@@ -50,7 +50,7 @@ Customers can provide their own certificates to meet compliance, security, and c
 - Provide your own CA for client certificate validation
 - Integrate with Azure Key Vault for certificate storage
 
-See [Azure Monitor pipeline TLS configuration - Using your own certificate management](./pipeline-tls-custom.md) for more information on how this works and how to set this up.
+See [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md) for more information on how this works and how to set this up.
 
 ## Option 3: Disable TLS and mTLS 
 While it's not recommended from a security standpoint, you may choose to disable TLS and mTLS when using the pipeline. Follow the guidance below to safely do so:
