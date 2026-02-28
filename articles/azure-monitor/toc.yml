@@ -100,8 +100,6 @@ items:
         items:
         - name: Autoinstrumentation supported scenarios
           href: app/codeless-overview.md
-        - name: Azure VM and Virtual Machine Scale Sets
-          href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
       - name: Application Insights SDK (Classic API)
