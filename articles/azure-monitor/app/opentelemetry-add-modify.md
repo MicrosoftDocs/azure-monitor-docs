@@ -32,8 +32,7 @@ The distros automatically collect data by bundling OpenTelemetry instrumentation
 
 **Requests**
 
-* [ASP.NET
-  Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md) ¹²
+* [ASP.NET Core](https://github.com/open-telemetry/opentelemetry-dotnet/blob/1.0.0-rc9.14/src/OpenTelemetry.Instrumentation.AspNetCore/README.md) ¹²
 
 **Dependencies**
 
@@ -279,7 +278,6 @@ export class BunyanInstrumentationSample {
 }
 ```
 
-
 #### [Python](#tab/python)
 
 **Requests**
@@ -439,7 +437,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 ### Supported environments
 
 | Environment | How detection works | Notes |
-|---|---|---|
+|-------------|---------------------|-------|
 | Azure App Service | The language SDK or Azure Monitor distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
 | Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
 | Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
@@ -448,8 +446,8 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 ### Manual and automatic instrumentation
 
-- Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
-- For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
+* Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
+* For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
 
     ```bash
     # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
@@ -466,8 +464,8 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 ### OTLP ingestion considerations
 
-- Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
-- `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
+* Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
+* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
 
 ## Collect custom telemetry
 
@@ -488,17 +486,17 @@ The following table represents the currently supported custom telemetry types:
 |-------------------------------------------|---------------|----------------|--------------|------------|------------|----------|--------|
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
-| &nbsp;&nbsp;&nbsp;`ILogger` API           |               |                |              |            |            |          | Yes    |
-| &nbsp;&nbsp;&nbsp;AI Classic API          |               |                |              |            |            |          |        |
+| &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
+| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
+| &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Logback, `Log4j`, JUL   |               |                |              | Yes        |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Micrometer Metrics      |               | Yes            |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
 |                                           |               |                |              |            |            |          |        |
 | **Node.js**                               |               |                |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
+| &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 |                                           |               |                |              |            |            |          |        |
 | **Python**                                |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
@@ -520,7 +518,7 @@ The following table shows the recommended [aggregation types](../essentials/metr
 |------------------------------------------------------|------------------------------------------------------------|
 | Counter                                              | Sum                                                        |
 | Asynchronous Counter                                 | Sum                                                        |
-| Histogram                                            | Min, Max, Average, Sum, and Count                           |
+| Histogram                                            | Min, Max, Average, Sum, and Count                          |
 | Asynchronous Gauge                                   | Average                                                    |
 | UpDownCounter                                        | Sum                                                        |
 | Asynchronous UpDownCounter                           | Sum                                                        |
@@ -697,7 +695,7 @@ export class HistogramSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -714,7 +712,6 @@ export class HistogramSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 ```python
@@ -725,9 +722,9 @@ from opentelemetry import metrics
 import os
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -863,6 +860,7 @@ public class Program {
     }
 }
 ```
+
 ##### [Java native](#tab/java-native)
 
 1. Inject `OpenTelemetry`:
@@ -920,7 +918,7 @@ export class CounterSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -940,7 +938,6 @@ export class CounterSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 ```python
@@ -951,9 +948,9 @@ from opentelemetry import metrics
 import os
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -1100,6 +1097,7 @@ public class Program {
     }
 }
 ```
+
 ##### [Java native](#tab/java-native)
 
 1. Inject `OpenTelemetry`:
@@ -1152,7 +1150,7 @@ export class GaugeSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1170,7 +1168,6 @@ export class GaugeSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 ```python
@@ -1183,9 +1180,9 @@ from opentelemetry import metrics
 from opentelemetry.metrics import CallbackOptions, Observation
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Opt in to allow grouping of your metrics via a custom metrics namespace in app insights metrics explorer.
@@ -1360,7 +1357,6 @@ span.recordException(e);
 
 The Node.js SDK exports manually recorded span-based exceptions to Application Insights as exceptions only when recorded on a top-level span or a child of a remote or internal span.
 
-
 ```typescript
 export class CustomExceptionSample {
   static async run() {
@@ -1372,7 +1368,7 @@ export class CustomExceptionSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1393,7 +1389,6 @@ export class CustomExceptionSample {
 }
 ```
 
-
 #### [Python](#tab/python)
 
 The OpenTelemetry Python SDK is implemented in such a way that exceptions thrown are automatically captured and recorded. See the following code sample for an example of this behavior:
@@ -1404,9 +1399,9 @@ from azure.monitor.opentelemetry import configure_azure_monitor
 from opentelemetry import trace
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
 )
 
 # Get a tracer for the current module.
@@ -1641,7 +1636,7 @@ export class CustomTraceSample {
     const monitor = useAzureMonitor({
       azureMonitorExporterOptions: {
         connectionString:
-          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<your-connection-string>",
+          process.env.APPLICATIONINSIGHTS_CONNECTION_STRING || "<YOUR-CONNECTION-STRING>",
       },
     });
 
@@ -1665,7 +1660,6 @@ export class CustomTraceSample {
   }
 }
 ```
-
 
 #### [Python](#tab/python)
 
@@ -1723,10 +1717,7 @@ If you want to automate the collection of client-side interaction events, you ca
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
-Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.AspNetCore` 1.3.0-beta.3.
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+Custom events use `Azure.Monitor.OpenTelemetry.AspNetCore`.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1751,10 +1742,7 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 #### [.NET](#tab/net)
 
-Custom events are in Public Preview and use `Azure.Monitor.OpenTelemetry.Exporter` 1.4.0-beta.3.
-
-> [!IMPORTANT]
-> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+Custom events use `Azure.Monitor.OpenTelemetry.Exporter`.
 
 To send a `CustomEvent` using `ILogger`, set the `"microsoft.custom_event.name"` attribute in the message template.
 
@@ -1781,9 +1769,10 @@ logger.LogInformation("{microsoft.custom_event.name} {additional_attrs}", "test-
 
 To send a `customEvent` with the Java agent, set the `"microsoft.custom_event.name"` attribute on the OpenTelemetry log record.
 
-Depending on whether the application insights java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
+Depending on whether the Application Insights Java agent is in use, or the automatic configuration SDK, the manner of fetching the OpenTelemetry logger is slightly different. This detail is explained further in the following examples.
 
-For the application insights java agent: 
+For the Application Insights Java agent:
+
 ```java
 import io.opentelemetry.api.GlobalOpenTelemetry;
 import io.opentelemetry.api.logs.Logger;
@@ -1800,8 +1789,8 @@ logger.logRecordBuilder()
       .emit();
 ```
 
-
 For autoconfigure SDK:
+
 ```java 
 import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigure;
 import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigureOptions;
@@ -1811,10 +1800,11 @@ import io.opentelemetry.api.logs.Logger;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
 import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdkBuilder;
 ```
+
 ```java
 AutoConfiguredOpenTelemetrySdkBuilder sdkBuilder = AutoConfiguredOpenTelemetrySdk.builder();
 AzureMonitorAutoConfigureOptions options = new AzureMonitorAutoConfigureOptions();
-options.connectionString("<your connection string>");
+options.connectionString("<YOUR-CONNECTION-STRING>");
      
 AzureMonitorAutoConfigure.customize(sdkBuilder, options);
 OpenTelemetry openTelemetry = sdkBuilder.build().getOpenTelemetrySdk();
@@ -1872,7 +1862,6 @@ export class CustomEventSample {
   }
 }
 ```
-
 
 #### [Python](#tab/python)
   
@@ -2094,7 +2083,6 @@ export class SpanAttributeEnrichmentSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 Use a custom processor:
@@ -2109,9 +2097,9 @@ from opentelemetry import trace
 span_enrich_processor = SpanEnrichingProcessor()
 
 # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
-# Replace `<your-connection-string>` with the connection string to your Azure Monitor Application Insights resource.
+# Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
 configure_azure_monitor(
-    connection_string="<your-connection-string>",
+    connection_string="<YOUR-CONNECTION-STRING>",
     # Configure the custom span processors to include span enrich processor.
     span_processors=[span_enrich_processor],
 )
@@ -2200,7 +2188,6 @@ export class SetUserIpSample {
   }
 }
 ```
-
 
 ##### [Python](#tab/python)
 
@@ -2303,7 +2290,6 @@ export class SetUserIdSample {
 }
 ```
 
-
 ##### [Python](#tab/python)
 
 Use the [custom property example](#add-a-custom-property-to-a-span), but replace the following lines of code:
@@ -2363,7 +2349,6 @@ export class BunyanLogAttributesSample {
 }
 ```
 
-
 #### [Python](#tab/python)
   
 The Python [logging](https://docs.python.org/3/howto/logging.html) library is [autoinstrumented](#included-instrumentation-libraries). You can attach custom dimensions to your logs by passing a dictionary into the `extra` argument of your logs:
@@ -2377,8 +2362,6 @@ logger.warning("WARNING: Warning log with properties", extra={"key1": "value1"})
 ```
 
 ---
-
-
 
 ## Get the trace ID or span ID
     
@@ -2467,7 +2450,6 @@ export class GetTraceAndSpanIdSample {
   }
 }
 ```
-
 
 ### [Python](#tab/python)
 

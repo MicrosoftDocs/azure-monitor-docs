@@ -100,8 +100,6 @@ items:
         items:
         - name: Autoinstrumentation supported scenarios
           href: app/codeless-overview.md
-        - name: Azure VM and Virtual Machine Scale Sets
-          href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
       - name: Application Insights SDK (Classic API)
@@ -827,6 +825,27 @@ items:
         - name: Log Analytics Linux agent
           displayName: troubleshoot, troubleshooting
           href: agents/agent-linux-troubleshoot.md
+  - name: Prometheus metrics
+    items:
+    - name: Overview
+      displayName: Prometheus
+      href: metrics/prometheus-metrics-overview.md
+    - name: Technical details
+      displayName: Prometheus
+      href: metrics/prometheus-metrics-details.md
+    - name: Connect Grafana
+      displayName: Prometheus Grafana
+      href: metrics/prometheus-grafana.md
+    - name: Rule groups
+      displayName: Prometheus
+      href: metrics/prometheus-rule-groups.md
+    - name: Self-hosted Prometheus
+      items:
+      - name: Integrate
+        href: metrics/prometheus-remote-write.md
+      - name: Migrate
+        displayName: remote write, Prometheus
+        href: metrics/prometheus-migrate.md
   - name: Logs ingestion API
     items:
     - name: Overview
@@ -919,27 +938,6 @@ items:
         - name: Monitor metrics ingestion errors
           displayName: Azure Monitor workspace
           href: metrics/azure-monitor-workspace-monitor-health.md
-    - name: Prometheus metrics
-      items:
-      - name: Overview
-        displayName: Prometheus
-        href: metrics/prometheus-metrics-overview.md
-      - name: Technical details
-        displayName: Prometheus
-        href: metrics/prometheus-metrics-details.md
-      - name: Connect Grafana
-        displayName: Prometheus Grafana
-        href: metrics/prometheus-grafana.md
-      - name: Rule groups
-        displayName: Prometheus
-        href: metrics/prometheus-rule-groups.md
-      - name: Self-hosted Prometheus
-        items:
-        - name: Integrate
-          href: metrics/prometheus-remote-write.md
-        - name: Migrate
-          displayName: remote write, Prometheus
-          href: metrics/prometheus-migrate.md
     - name: Query Azure Monitor workspace metrics
       items:
       - name: Resource-scoped queries
