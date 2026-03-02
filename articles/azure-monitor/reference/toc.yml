@@ -730,10 +730,11 @@ items:
             displayName: MySQL Audit Logs,MySQL Server Logs
           - name: Microsoft.DBforPostgreSQL/flexibleServers
             href: supported-logs/microsoft-dbforpostgresql-flexibleservers-logs.md
-            displayName: PostgreSQL remaining transactions,PostgreSQL Query Store
-              Runtime,PostgreSQL Query Store Wait Statistics,PostgreSQL Sessions
-              data,PostgreSQL Autovacuum and schema statistics,PostgreSQL Server
-              Logs
+            displayName: PostgreSQL remaining transactions,PostgreSQL PgBouncer
+              Logs,PostgreSQL Query Store Runtime,PostgreSQL Query Store Wait
+              Statistics,PostgreSQL Sessions data,PostgreSQL Autovacuum and
+              schema statistics,PostgreSQL Server Logs,PostgreSQL Query Store
+              SQL Text
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-logs/microsoft-dbforpostgresql-servergroupsv2-logs.md
             displayName: PostgreSQL Server Logs
@@ -923,13 +924,13 @@ items:
               Log,Application Gateway Performance Log
           - name: Microsoft.Network/azureFirewalls
             href: supported-logs/microsoft-network-azurefirewalls-logs.md
-            displayName: Azure Firewall Application Rule,Azure Firewall Network Rule
+            displayName: Azure Firewall Application Rule,Azure Firewall Application Rule
               Aggregation (Policy Analytics),Azure Firewall DNS Flow Trace
               Log,Azure Firewall DNS query,Azure Firewall Fat Flow Log,Azure
               Firewall Flow Trace Log,Azure Firewall FQDN Resolution
               Failure,Azure Firewall IDPS Signature,Azure Firewall Nat
               Rule,Azure Firewall Nat Rule Aggregation (Policy Analytics),Azure
-              Firewall Network Rule,Azure Firewall Application Rule Aggregation
+              Firewall Network Rule,Azure Firewall Network Rule Aggregation
               (Policy Analytics),Azure Firewall Threat Intelligence,Azure
               Firewall Application Rule (Legacy Azure Diagnostics),Azure
               Firewall DNS Proxy (Legacy Azure Diagnostics),Azure Firewall
@@ -1050,12 +1051,12 @@ items:
               Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File
               Service Logs,Indexer Service Logs,Legal Service Logs,Notification
               Service Logs,Partition Service Logs,PDSBackend Service
-              Logs,PDSFrontend Service Logs,Rafs DDMS Logs,Register Service
-              Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Schema
-              Service Logs,Search Extensions Service Logs,Search Service
-              Logs,EDS Secret Logs,Storage Service Logs,Unit Service
-              Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow
-              Service Logs
+              Logs,PDSFrontend Service Logs,Rock and Fluid Samples DDMS
+              Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir
+              DDMS Server Logs,Schema Service Logs,Search Extensions Service
+              Logs,Search Service Logs,EDS Secret Logs,Storage Service Logs,Unit
+              Service Logs,Wellbore Service Logs,WellDelivery Service
+              Logs,Workflow Service Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
@@ -1102,12 +1103,6 @@ items:
           - name: Microsoft.Relay/namespaces
             href: supported-logs/microsoft-relay-namespaces-logs.md
             displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
-          - name: Microsoft.ResourceBuilder/workspaces/pipelines
-            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md
-            displayName: Diagnostic Logs
-          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
-            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
-            displayName: Diagnostic Logs
           - name: Microsoft.Search/searchServices
             href: supported-logs/microsoft-search-searchservices-logs.md
             displayName: Operation Logs
