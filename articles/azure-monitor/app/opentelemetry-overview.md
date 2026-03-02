@@ -62,6 +62,8 @@ For supported languages in a production environment, follow the OpenTelemetry Di
 
 Getting started looks different depending on how and where you're building your agents.
 
+After you've completed setting up data collection, you're ready to explore the Application Insights [agent details view](agents-view.md#monitor-ai-agents-with-application-insights).
+
 **Managed hosting**
 
 * **Azure AI Foundry:** You can collect telemetry from your agentic application using the Azure Monitor OpenTelemetry Distro and the [Azure AI Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
