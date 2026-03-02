@@ -154,7 +154,7 @@ In this article, you:
 
 ## Create the Linux web app to host your project
 
-1. In [the Azure portal](portal.azure.com), search for and select *App Services*, then select **Create** > **Web App**.
+1. In [the Azure portal](https://portal.azure.com), search for and select *App Services*, then select **Create** > **Web App**.
 1. Create a web app environment by using App Service on Linux.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/create-web-app.png" alt-text="Screenshot that shows creating the Linux web app.":::
