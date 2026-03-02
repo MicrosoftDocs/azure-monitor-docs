@@ -7,9 +7,13 @@ ms.date: 03/02/2026
 
 # AI generated summary and timeline (preview) 
 
-When an Azure service outage occurs, customers often struggle to quickly find essential information. Details like which services and regions are affected, when the issue began, what actions users should take, and how mitigation is progressing are often spread across multiple technical update pages.
+When an Azure service outage occurs, customers often struggle to quickly find essential information such as details like which services and regions are affected. 
 
-This broad information can make it challenging to gauge severity, plan internal communication, and respond effectively.
+Also they need to learn when the issue began, what actions users should take, and how mitigation is progressing. 
+
+This information is often spread across multiple technical update pages.
+
+This broad information can make it challenging to gauge the severity, plan internal communications, and respond effectively.
 
 
 
