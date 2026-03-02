@@ -1,10 +1,11 @@
 ---
 title: Enable Application Insights Profiler for .NET for Azure Functions apps
-description: Enable Application Insights Profiler for .NET for Azure Functions app.
+description: Learn how to view app settings for your Azure Functions app, enable the .NET Profiler, and navigate to the Profiler page  to view data.
 ms.contributor: charles.weininger
 ms.topic: how-to
-ms.date: 03/21/2025
+ms.date: 03/03/2026
 ms.reviewer: ryankahng
+#customer intent: As a .NET developer working with Azure Functions, I want to understand how to view and update app settings in the Azure portal.
 ---
 
 # Enable the .NET Profiler for Azure Functions apps
@@ -23,7 +24,7 @@ In this article, you use the Azure portal to:
      
   :::image type="content" source="./media/profiler-azure-functions/choose-plan.png" alt-text="Screenshot of where to select App Service plan from drop-down in Functions app creation.":::
 
-- Linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
+- Your app must be linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
 
 ## App settings for enabling the .NET Profiler
 
@@ -35,9 +36,9 @@ In this article, you use the Azure portal to:
 
 ## Add app settings to your Azure Functions app
 
-From your Functions app overview page in the Azure portal:
+In [the Azure portal](https://portal.azure.com), open your Function app **Overview** page:
 
-1. Under **Settings**, select **Environment variables**, verify the `APPLICATIONINSIGHTS_CONNECTION_STRING` setting is included in the settings list.
+1. Under **Settings**, select **Environment variables**. Verify that the `APPLICATIONINSIGHTS_CONNECTION_STRING` setting is included in the settings list.
 
    :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights connection string setting in the list.":::
 
@@ -45,7 +46,7 @@ From your Functions app overview page in the Azure portal:
 
    :::image type="content" source="./media/profiler-azure-functions/new-setting-button.png" alt-text="Screenshot outlining the Add button for application settings.":::
 
-1. Copy the **Name** and its **Value** from the [preceding table](#app-settings-for-enabling-the-net-profiler) and paste into the corresponding fields.
+1. Copy the setting and its **Value** from the [preceding table](#app-settings-for-enabling-the-net-profiler) into the corresponding fields.
 
    :::image type="content" source="./media/profiler-azure-functions/app-setting-1.png" alt-text="Screenshot adding the app insights profiler feature version setting.":::
 
@@ -65,13 +66,12 @@ The app settings now show up in the table:
 
 :::image type="content" source="./media/profiler-azure-functions/app-settings-table.png" alt-text="Screenshot showing the two new app settings in the table on the configuration pane.":::
 
-
 > [!NOTE]
 > You can also enable the .NET Profiler using:  
+>
 > - [Azure Resource Manager Templates](../app/azure-web-apps-net-core.md#app-service-application-settings-with-azure-resource-manager)
 > - [Azure PowerShell](/powershell/module/az.websites/set-azwebapp)
 > - [Azure CLI](/cli/azure/webapp/config/appsettings)
-
 
 ## Next step
 
