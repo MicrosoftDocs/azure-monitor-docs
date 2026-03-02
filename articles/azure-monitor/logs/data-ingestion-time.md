@@ -17,13 +17,12 @@ Latency refers to the time that data is created on the monitored system and the 
 
 ## Factors affecting latency
 
-The total ingestion time for a particular set of data can be broken down into the following high-level areas:
+The total ingestion time for a particular set of data is the time at these sources: the Azure Monitor Agent (client) and the Azure Monitor service.
+
+:::image type="content" source="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" lightbox="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" alt-text="Architecture diagram showing the Azure Monitor ingestion process.":::
 
 * **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, this process is handled by an agent. More latency might be introduced by the network. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the agent time.
-* **Pipeline time**: The time for the ingestion pipeline to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
-
-> [!NOTE]
-> 
+* **Azure Monitor time**: After the agent hands off to Azure Monitor, the time for ingestion to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
 
 Details on the different latency introduced in this process are described in the following sections.
 
@@ -76,19 +75,19 @@ Some solutions don't collect their data from an agent and might use a collection
 
 To determine a solution's collection frequency, see the [documentation for each solution](/previous-versions/azure/azure-monitor/insights/solutions).
 
-### Pipeline-process time
+### Azure Monitor process time
 
 **Less than 10 seconds**
 
 After the data is available at the data collection endpoint, it takes less than 10 seconds to be available for querying.
 
-After log records are ingested into the Azure Monitor pipeline (as identified in the [_TimeReceived](log-standard-columns.md#_timereceived) property), they're written to temporary storage to ensure tenant isolation and to make sure that data isn't lost. This process typically adds 5 to 15 seconds.
+After log records are ingested into Azure Monitor (as identified in the [_TimeReceived](log-standard-columns.md#_timereceived) property), they're written to temporary storage to ensure tenant isolation and to make sure that data isn't lost. This process typically adds 5 to 15 seconds.
 
 Some solutions implement heavier algorithms to aggregate data and derive insights as data is streaming in. For example, Application Insights calculates application map data; Azure Network Performance Monitoring aggregates incoming data over 3-minute intervals, which effectively adds 3-minute latency in this case.
 
-If the data collection includes an [ingestion-time transformation](../data-collection/data-collection-transformations.md), then this will add some latency to the pipeline. Use the metric [Logs Transformation Duration per Min](../data-collection/data-collection-monitor.md) to monitor the efficiency of the transformation query.
+If the data collection includes an [ingestion-time transformation](../data-collection/data-collection-transformations.md), then this will add some latency to the Azure Monitor process time. Use the metric [Logs Transformation Duration per Min](../data-collection/data-collection-monitor.md) to monitor the efficiency of the transformation query.
 
-Another process that adds latency is the process that handles custom logs. In some cases, this process might add a few minutes of latency to logs that are collected from files by the agent.
+Another process that adds latency is the process that handles custom logs. In some cases, this process might add a few minutes of latency to logs that are collected from files by an agent.
 
 ### New custom data types provisioning
 
@@ -96,7 +95,7 @@ When a new type of custom data is created from a [custom log](../agents/data-sou
 
 ## Check ingestion time
 
-Ingestion time might vary for different resources under different circumstances. Use log queries to identify specific behavior of your environment. The following table specifies how you can determine the different times for a record as it's created and sent to Azure Monitor. For more information about log queries, see [Overview of Log Analytics](log-analytics-overview.md).
+Ingestion time might vary for different resources under different circumstances. Use log queries to identify specific behavior of your environment. The following table specifies how you determine the different times for a record as it's created and sent to Azure Monitor. For more information about log queries, see [Overview of Log Analytics](log-analytics-overview.md).
 
 > [!WARNING]
 > When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
@@ -111,7 +110,7 @@ Ingestion time might vary for different resources under different circumstances.
 
 ### Ingestion latency delays
 
-You can measure the latency of a specific record by comparing the result of the [ingestion_time()](/azure/kusto/query/ingestiontimefunction) function to the `TimeGenerated` property. This data can be used with various aggregations to discover how ingestion latency behaves. Examine some percentile of the ingestion time to get insights for large amounts of data.
+Measure the latency of a specific record when you compare the result of the [ingestion_time()](/azure/kusto/query/ingestiontimefunction) function to the `TimeGenerated` property. Discover how ingestion latency behaves when you use various aggregations of this data. Examine some percentile of the ingestion time to get insights for large amounts of data.
 
 For example, the following query will show you which computers had the highest ingestion time over the prior 8 hours:
 
