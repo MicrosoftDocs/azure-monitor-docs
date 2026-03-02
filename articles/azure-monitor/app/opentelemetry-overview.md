@@ -12,8 +12,7 @@ ms.date: 03/02/2026
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
-> [!NOTE]
-> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+### [Web apps](#tab/aspnetcore)
 
 ## Getting started
 
@@ -35,6 +34,35 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 > [!TIP]
 > Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the OpenTelemetry Distro if you want more configuration options.
+
+---
+
+### [JavaScript apps](#tab/aspnetcore)
+
+The following steps walk through code-based instrumentation.
+
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [JavaScript SDK](javascript-sdk.md) to your app.
+1. Configure the [connection string](javascript-sdk.md#paste-the-connection-string-in-your-environment)).
+
+After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
+
+---
+
+### [Azure Functions](#tab/aspnetcore)
+
+To get started with Azure Functions OpenTelemetry, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
+
+---
+
+### [Kubernetes](#tab/aspnetcore)
+
+For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](/azure-monitor/app/opentelemetry-overview?tabs=web-apps).
+
+[Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) clusters is in public preview.
+
+---
 
 ## Continue with the next steps
 
