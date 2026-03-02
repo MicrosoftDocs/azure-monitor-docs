@@ -12,7 +12,7 @@ ms.date: 03/02/2026
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
-### [Web apps](#tab/aspnetcore)
+### [Web apps](#tab/webapps)
 
 ## Getting started
 
@@ -37,7 +37,7 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 ---
 
-### [JavaScript apps](#tab/aspnetcore)
+### [JavaScript apps](#tab/js)
 
 The following steps walk through code-based instrumentation.
 
@@ -50,13 +50,13 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 ---
 
-### [Azure Functions](#tab/aspnetcore)
+### [Azure Functions](#tab/functions)
 
 To get started with Azure Functions OpenTelemetry, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
 
 ---
 
-### [Kubernetes](#tab/aspnetcore)
+### [Kubernetes](#tab/aks)
 
 For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](/azure-monitor/app/opentelemetry-overview?tabs=web-apps).
 
