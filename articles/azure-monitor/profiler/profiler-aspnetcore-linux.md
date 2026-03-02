@@ -158,13 +158,13 @@ In this article, you:
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/create-web-app.png" alt-text="Screenshot that shows creating the Linux web app.":::
 
-1. Go to your new web app resource and select **Deployment Center** > **FTPS credentials** to create the deployment credentials. Make a note of your credentials to use later.
+1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center** > **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::    
 
 1. Select **Save**.
 1. Select the **Settings** tab.
-1. In the dropdown, select **Local Git** to set up a local Git repository in the web app.
+1. For **Source**, select **Local Git** to set up a local Git repository in the web app.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::    
 
@@ -176,7 +176,7 @@ In this article, you:
 
 ## Deploy your project
 
-While you can deploy code to Azure App Service a variety of ways, the simplest way is deploy via local Git. [Learn more about how to deploy from a Git repository to Azure.](/azure/app-service/deploy-local-git)
+While you can deploy code to Azure App Service various ways, the simplest way is deploy via local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
@@ -213,7 +213,7 @@ You have three options to add Application Insights to your web app. Expand the o
 <details>
 <summary><b>Application Insights pane</b></summary>
 
-1. In your web app on the Azure portal, select **Application Insights** on the left pane. 
+1. In your web app on the Azure portal, In the left menu, select **Monitoring** > **Application Insights**. 
 1. Select **Turn on Application Insights**.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights.":::    
@@ -286,11 +286,11 @@ You have three options to add Application Insights to your web app. Expand the o
 
 # [OpenTelemetry Profiler](#tab/otel)
 
-If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
+If you can't find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 
-If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+If you can't find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
 ---
 
