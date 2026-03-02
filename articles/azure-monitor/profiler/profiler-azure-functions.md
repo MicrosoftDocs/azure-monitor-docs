@@ -9,7 +9,7 @@ ms.reviewer: ryankahng
 
 # Enable the .NET Profiler for Azure Functions apps
 
-In this article, you'll use the Azure portal to:
+In this article, you use the Azure portal to:
 - View the current app settings for your Functions app. 
 - Add two new app settings to enable the .NET Profiler on the Functions app. 
 - Navigate to the Profiler page for your Functions app to view data.
@@ -41,11 +41,11 @@ From your Functions app overview page in the Azure portal:
 
    :::image type="content" source="./media/profiler-azure-functions/app-insights-key.png" alt-text="Screenshot showing the App Insights connection string setting in the list.":::
 
-1. Select **New application setting**.
+1. Select **Add**.
 
-   :::image type="content" source="./media/profiler-azure-functions/new-setting-button.png" alt-text="Screenshot outlining the new application setting button.":::
+   :::image type="content" source="./media/profiler-azure-functions/new-setting-button.png" alt-text="Screenshot outlining the Add button for application settings.":::
 
-1. Copy the **App Setting** and its **Value** from the [table above](#app-settings-for-enabling-the-net-profiler) and paste into the corresponding fields.
+1. Copy the **Name** and its **Value** from the [preceding table](#app-settings-for-enabling-the-net-profiler) and paste into the corresponding fields.
 
    :::image type="content" source="./media/profiler-azure-functions/app-setting-1.png" alt-text="Screenshot adding the app insights profiler feature version setting.":::
 
@@ -53,9 +53,9 @@ From your Functions app overview page in the Azure portal:
 
    Leave the **Deployment slot setting** blank for now.
 
-1. Click **OK**.
+1. Select **Apply** for each value.
 
-1. Click **Save** in the top menu, then **Continue**.
+1. In the **Environment variables**, select **Apply**, then **Confirm**.
 
    :::image type="content" source="./media/profiler-azure-functions/save-button.png" alt-text="Screenshot outlining the save button in the top menu of the configuration pane.":::
 
@@ -73,7 +73,8 @@ The app settings now show up in the table:
 > - [Azure CLI](/cli/azure/webapp/config/appsettings)
 
 
-## Next Steps
+## Next step
+
 Learn how to...
 > [!div class="nextstepaction"]
 > [Generate load and view the .NET Profiler traces](./profiler-data.md)
