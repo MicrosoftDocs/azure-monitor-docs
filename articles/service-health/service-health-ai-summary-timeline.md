@@ -43,6 +43,7 @@ The AI-generated timeline shows each major stage of the outage that includes:<br
 - Detection
 - Investigation
 - Mitigation
+- Resolution
 - Post-incident review
 
 
