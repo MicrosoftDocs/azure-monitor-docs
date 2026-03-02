@@ -17,25 +17,36 @@ This article covers getting started with [Application Insights](app-insights-ove
 
 ## Getting started
 
+The following steps walk through code-based instrumentation.
+
 1. [Create an Application Insights resource](create-workspace-resource.md) and link it to a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md).
-2. Get the resource's [connection string](connection-strings.md) used to set the Azure Monitor OpenTelemetry Distro telemetry destination.
-3. Add the [OpenTelemetry Distro]((opentelemetry-enable.md)) and the [connection string](opentelemetry-configuration.md#connection-string) to your application.
-4. Review telemetry in [Application Insights Experiences](app-insights-overview.md#application-insights-experiences).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [OpenTelemetry Distro]((opentelemetry-enable.md)) to your app.
+1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
+
+After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
 ## Advantages of the Azure Monitor OpenTelemetry Distro
 
-- Enable [Application Insights Experiences](app-insights-overview.md#application-insights-experiences) with [one line of code](opentelemetry-enable.md).
+- Enable [Application Insights experiences](app-insights-overview.md#application-insights-experiences) with [one line of code](opentelemetry-enable.md).
 - Control costs with advanced [sampling](opentelemetry-configuration.md#enable-sampling) and [filtering](opentelemetry-filter.md) options.
 - Extend the telemetry pipeline with OpenTelemetry [processors and instrumentation libraries](opentelemetry-add-modify.md).
 
+> [!TIP]
+> Some platforms provide a basic and less configurable experience through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights).
+
 ## Continue with the next steps
 
-- Create an Application Insights resource and linked workspace: [Create and configure Application Insights resources](create-workspace-resource.md)
-- Learn how connection strings work: [Connection strings in Application Insights](connection-strings.md)
-- Enable the Azure Monitor OpenTelemetry Distro: [Enable OpenTelemetry in Application Insights](opentelemetry-enable.md)
-- Configure sampling, authentication, storage, and Live Metrics: [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md)
-- Add processors and extra instrumentation: [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md)
-- Filter or transform telemetry: [Filter OpenTelemetry in Application Insights](opentelemetry-filter.md?tabs=aspnetcore#use-workspace-transformation-dcr-samples)
-- Collect browser telemetry: [Use the JavaScript SDK](javascript.md)
-- Migrate an existing Classic API SDK app: [Migrate from Application Insights Classic API to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md)
-- Query stored telemetry in Logs: [Use Log Analytics in Azure Monitor](../logs/log-analytics-tutorial.md)
+Review the following resources to get more familiar with Application Insights concepts.
+
+> [!div class="nextstepaction"]
+> [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights)
+
+> [!div class="nextstepaction"]
+> [Dependency tracking in Application Insights](dependencies.md#dependency-tracking-in-application-insights)
+
+> [!div class="nextstepaction"]
+> [Metrics in Application Insights](metrics-overview.md#metrics-in-application-insights)
+
+> [!div class="nextstepaction"]
+> [Application Insights telemetry data model](data-model-complete.md#application-insights-telemetry-data-model)
