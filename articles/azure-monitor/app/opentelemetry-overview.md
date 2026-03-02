@@ -12,7 +12,7 @@ ms.date: 03/02/2026
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
-### [Server-side web apps](#tab/webapps)
+### [Web apps](#tab/webapps)
 
 ## Getting started
 
@@ -33,9 +33,9 @@ After performing these steps, you're ready to explore [Application Insights expe
 > - Extend the telemetry pipeline with OpenTelemetry [processors and instrumentation libraries](opentelemetry-add-modify.md).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the OpenTelemetry Distro if you want more configuration options.
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the OpenTelemetry Distro if you want more configuration and extensibility options.
 
-### [Client-side JavaScript](#tab/js)
+### [JavaScript](#tab/js)
 
 The following steps walk through code-based instrumentation.
 
@@ -79,7 +79,7 @@ Getting started looks different depending on how and where you're building your 
     * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
     * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
 
-If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag in Agent Framework), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
+If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag in Agent Framework), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](agents-view.md#end-to-end-transaction-details-view) view.
 
 > [!TIP]
 > * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
