@@ -9,7 +9,7 @@ ms.date: 02/27/2026
 
 # Log data ingestion time in Azure Monitor
 
-Azure Monitor is a high-scale data service for thousands of customers that send terabytes of data each month and continues to grow. Understanding the time it takes for log data to become available after it's collected, and the factors that affect this latency is a concept this article explains.
+Azure Monitor is a high-scale data service that sends terabytes of data each month and continues to grow. Under normal service operations, the time it takes for log data to become available after it's collected is predictable and consistent. This article explains the factors that affect this latency.
 
 ## Average latency
 
@@ -19,8 +19,11 @@ Latency refers to the time that data is created on the monitored system and the 
 
 The total ingestion time for a particular set of data can be broken down into the following high-level areas:
 
-* **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, this process is handled by an agent. More latency might be introduced by the network.
-* **Pipeline time**: The time for the ingestion pipeline to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information.
+* **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, this process is handled by an agent. More latency might be introduced by the network. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the agent time.
+* **Pipeline time**: The time for the ingestion pipeline to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
+
+> [!NOTE]
+> 
 
 Details on the different latency introduced in this process are described in the following sections.
 
@@ -37,6 +40,8 @@ Agents and management solutions use different strategies to collect data from a 
 | IIS logs and text logs | Collected after their timestamp changes | For IIS logs, this schedule is influenced by the [rollover schedule configured on IIS](../agents/data-sources-iis-logs.md). |
 | Active Directory Replication solution | Assessment every five days | The agent collects the logs only when assessment is complete. |
 | Active Directory Assessment solution | Weekly assessment of your Active Directory infrastructure | The agent collects the logs only when assessment is complete. |
+
+For more information about agent performance, see [Azure Monitor Agent performance](../agents/azure-monitor-agent-performance.md).
 
 ### Agent upload frequency
 
@@ -87,13 +92,7 @@ Another process that adds latency is the process that handles custom logs. In so
 
 ### New custom data types provisioning
 
-When a new type of custom data is created from a [custom log](../agents/data-sources-custom-logs.md) or the [Data Collector API](data-collector-api.md), the system creates a dedicated storage container. This one-time overhead occurs only on the first appearance of this data type.
-
-### Surge protection
-
-**Typically less than 1 minute, but can be more**
-
-The top priority of Azure Monitor is to ensure that no customer data is lost, so the system has built-in protection for data surges. This protection includes buffers to ensure that even under immense load, the system will keep functioning. Under normal load, these controls add no latency. Only in extreme conditions or failures do they add significant time, while ensuring data is safe.
+When a new type of custom data is created from a [custom log](../agents/data-sources-custom-logs.md) or the [Logs ingestion API](log-ingestion-api.md), the system creates a dedicated storage container. This one-time overhead occurs only on the first appearance of this data type.
 
 ## Check ingestion time
 
@@ -205,5 +204,5 @@ Heartbeat
 
 ## Next steps
 
-Read the [service-level agreement](https://azure.microsoft.com/support/legal/sla/monitor/v1_3/) for Azure Monitor.
+Read the [service-level agreement](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services) for Azure Monitor.
 
