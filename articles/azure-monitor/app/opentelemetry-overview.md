@@ -12,7 +12,7 @@ ms.date: 03/02/2026
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
-### [Web Apps](#tab/webapps)
+### [Server-side web apps](#tab/webapps)
 
 ## Getting started
 
@@ -35,9 +35,7 @@ After performing these steps, you're ready to explore [Application Insights expe
 > [!TIP]
 > Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the OpenTelemetry Distro if you want more configuration options.
 
----
-
-### [JavaScript](#tab/js)
+### [Client-side JavaScript](#tab/js)
 
 The following steps walk through code-based instrumentation.
 
@@ -48,13 +46,9 @@ The following steps walk through code-based instrumentation.
 
 After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
----
-
-### [Functions](#tab/functions)
+### [Azure Functions](#tab/functions)
 
 To get started with Azure Functions OpenTelemetry, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
-
----
 
 ### [Kubernetes](#tab/aks)
 
@@ -64,7 +58,7 @@ For supported languages in a production environment, follow the OpenTelemetry Di
 
 ---
 
-## Continue with the next steps
+## Next steps
 
 Review the following resources to get more familiar with Application Insights concepts.
 
