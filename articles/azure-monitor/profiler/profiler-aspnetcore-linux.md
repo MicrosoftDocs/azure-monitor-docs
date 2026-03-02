@@ -4,14 +4,14 @@ description: Learn how to enable the Profiler on your ASP.NET Core web applicati
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, linux-related-content
-ms.date: 01/30/2026
+ms.date: 03/03/2026
 ms.reviewer: charles.weininger
 # Customer Intent: As a .NET developer, I'd like to enable Application Insights Profiler for my .NET web application hosted in Linux
 ---
 
 # Enable the .NET Profiler for Azure App Service apps in Linux
 
-Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps that are hosted in Linux on Azure App Service. This article focuses on web apps hosted in Linux. You can also experiment by using Windows and Mac development environments.
+Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps. This article focuses on web apps hosted in Linux. You can also experiment by using Windows and Mac development environments.
 
 In this article, you:
 > [!div class="checklist"]
@@ -44,7 +44,7 @@ In this article, you:
 
 ## Set up the project locally
 
-1. Open a command prompt window on your machine.
+1. Open a command prompt window on your computer.
 
 1. Create an ASP.NET Core MVC web application:
 
@@ -154,17 +154,18 @@ In this article, you:
 
 ## Create the Linux web app to host your project
 
-1. In the Azure portal, create a web app environment by using App Service on Linux.
+1. In [the Azure portal](portal.azure.com), search for and select *App Services*, then select **Create** > **Web App**.
+1. Create a web app environment by using App Service on Linux.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/create-web-app.png" alt-text="Screenshot that shows creating the Linux web app.":::
 
-1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center** > **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
+1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center**. then select **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::    
 
 1. Select **Save**.
 1. Select the **Settings** tab.
-1. For **Source**, select **Local Git** to set up a local Git repository in the web app.
+1. To set up a local Git repository in the web app, select **Source**, then **Local Git** 
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::    
 
@@ -176,7 +177,7 @@ In this article, you:
 
 ## Deploy your project
 
-While you can deploy code to Azure App Service various ways, the simplest way is deploy via local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
+While you can deploy code to Azure App Service various ways, the simplest way is deploy by using local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
@@ -184,8 +185,7 @@ While you can deploy code to Azure App Service various ways, the simplest way is
     git remote add azure https://<username>@<app_name>.scm.azurewebsites.net:443/<app_name>.git
     ```
 
-    - Use the **username** that you used to create the deployment credentials.
-    - Use the **app name** that you used to create the web app by using App Service on Linux.
+    For this value, go to the **Overview** page for your web app. Copy **Git clone url**.
 
 1. Deploy the project by pushing the changes to Azure:
 
@@ -195,7 +195,7 @@ While you can deploy code to Azure App Service various ways, the simplest way is
 
 ## Add Application Insights to monitor your web app
 
-You can enable Application Insights while creating an App Service, which sets the connection string automatically. 
+You can enable Application Insights while creating an App Service, which sets the connection string automatically.
 
 # [OpenTelemetry Profiler](#tab/otel)
 
@@ -213,7 +213,7 @@ You have three options to add Application Insights to your web app. Expand the o
 <details>
 <summary><b>Application Insights pane</b></summary>
 
-1. In your web app on the Azure portal, In the left menu, select **Monitoring** > **Application Insights**. 
+1. Open your web app in the Azure portal. In the left menu, select **Monitoring** > **Application Insights**. 
 1. Select **Turn on Application Insights**.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights.":::    
@@ -222,11 +222,11 @@ You have three options to add Application Insights to your web app. Expand the o
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights.":::    
 
-1. Under **Link to an Application Insights resource**, either create a new resource or select an existing resource. For this example, we create a new resource.
+1. Under **Link to an Application Insights resource**, either create a new resource or select an existing resource. For this example, create a new resource.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/link-app-insights.png" alt-text="Screenshot that shows linking Application Insights to a new or existing resource.":::    
 
-1. Select **Apply** > **Yes** to apply and confirm.
+1. Select **Apply**, then **Yes** to apply and confirm.
 
 </details>
 
@@ -238,7 +238,8 @@ You have three options to add Application Insights to your web app. Expand the o
 1. [Create an Application Insights resource](../app/create-workspace-resource.md) in the same Azure subscription as your App Service instance.
 1. Go to the Application Insights resource.
 1. Copy the **Connection String**.
-1. In your web app in the Azure portal, select **Environment variables** on the left pane, then **Add**.
+1. Open your web app in the Azure portal.
+1. In the left menu, select **Settings** > **Environment variables**. Then select **Add**.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/new-setting-configuration.png" alt-text="Screenshot that shows adding a new application setting in the Environment variables pane.":::    
 
@@ -294,7 +295,7 @@ If you can't find traces from your app, consider following the steps in this [tr
 
 ---
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Generate load and view the .NET Profiler traces](./profiler-data.md)
