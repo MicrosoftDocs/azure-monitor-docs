@@ -107,7 +107,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Request** - HTTP requests to your server application, including API calls, web pages, and assets. These events are used to create the request and response overview charts.
 
-* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#included-instrumentation-libraries).
+* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries).
 
 If you want to restore the filters later, select **Reset** from the top navigation bar.
 

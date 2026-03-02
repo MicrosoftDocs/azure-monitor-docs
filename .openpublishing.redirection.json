@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/vm/vminsights-migrate-from-service-map.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/vm/vminsights-migrate-from-service-map",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/scom-manage-instance/configure-log-analytics-for-scom-managed-instance.md",
       "redirect_url": "/previous-versions/azure/azure-monitor/scom-manage-instance/configure-log-analytics-for-scom-managed-instance",
       "redirect_document_id": false

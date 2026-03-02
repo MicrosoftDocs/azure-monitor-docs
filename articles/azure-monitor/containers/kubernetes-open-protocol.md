@@ -158,7 +158,7 @@ Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. Full instructions are available [here](../containers/kubernetes-codeless.md).
+Use the Kubernetes custom resources when you need more control. Full instructions are available [here](kubernetes-codeless.md).
 
 ### Autoinstrumentation (Java, Node.js)
 

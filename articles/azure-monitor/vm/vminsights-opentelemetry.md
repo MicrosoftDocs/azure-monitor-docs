@@ -12,39 +12,6 @@ ms.date: 01/06/2026
 OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
 
-## Benefits of OpenTelemetry for VM insights
-
-Benefits of the new OTel-based collection pipeline include the following:
-
-| Benefit| Description |
-|:---|:---|
-| Unified data model | Consistent metric names and schema across Windows and Linux for easier, reusable queries and dashboards |
-| Richer, simplified counters | More system and process metrics, including per‑process CPU, memory, disk I/O, and consolidation of legacy counters into clearer OTel metrics.
-| Easy onboarding | Collect OTel metrics with minimal setup. |
-| Flexible visualization | Use the Azure portal, Metrics Explorer, or Azure Monitor Dashboards with Grafana. |
-| Cost‑efficient performance | Store metrics in Azure Monitor Workspace instead of Log Analytics ingestion for lower cost and faster queries. |
-
-
-
-## When to enable OTel metrics
-Azure Monitor continues to support collection of guest OS metrics in a Log Analytics workspace. OTel‑based guest OS metrics is an additional option that offers richer insights, faster query performance, and lower cost. It's the right solution when you want a modern, standards‑based pipeline with deeper system visibility.
-
-Evaluate your requirements to determine which configuration best fits your needs. Log Analytics workspace-based metrics remain the foundation for customers who need advanced analytics and correlation, while OTel-based metrics open new possibilities for modern VM observability.
-
-| Log Analytics workspace | OTel-based metrics (Preview) |
-|:---|:---|
-| Custom performance counters or extended retention | Standards‑based, unified schema across platforms |
-| Advanced KQL analytics and log‑metric correlation | Easier onboarding and broader system and process coverage |
-| Mature, fully supported pipeline for operational analytics | Cost‑efficient metric storage with improved query performance |
-
-
-## Prerequisites
-
-- Azure VM or Arc-enabled server running an [operating system supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
-- See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md) for prerequisites related to Azure Monitor agent.
-- See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
-
-
 ## Enable OpenTelemetry for VM insights
 
 > [!NOTE]

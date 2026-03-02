@@ -80,7 +80,7 @@ With autoinstrumentation, the SDK is automatically added to your application cod
 **Footnotes**
 
 * <sup>1</sup> [ASP.NET Core autoinstrumentation on App Service](azure-web-apps-net-core.md) emits standard metrics without dimensions. Manual instrumentation is required for all dimensions.<br>
-* <sup>2</sup> [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](azure-vm-vmss-apps.md) and [on-premises](application-insights-asp-net-agent.md) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. Manual instrumentation is required for all dimensions.
+* <sup>2</sup> [ASP.NET autoinstrumentation on virtual machines/virtual machine scale sets](azure-vm-vmss-apps.md) and [on-premises](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers) emits standard metrics without dimensions. The same is true for Azure App Service, but the collection level must be set to recommended. Manual instrumentation is required for all dimensions.
 * <sup>3</sup> The Java agent used with autoinstrumentation captures metrics emitted by popular libraries and sends them to Application Insights as custom metrics.
 
 ### Custom metrics dimensions and preaggregation

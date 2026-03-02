@@ -51,6 +51,8 @@ items:
           href: app/opentelemetry-enable.md
         - name: Configure OpenTelemetry
           href: app/opentelemetry-configuration.md
+        - name: Autocollect OpenTelemetry
+          href: app/opentelemetry-collect-detect.md
         - name: Add and modify OpenTelemetry
           href: app/opentelemetry-add-modify.md
         - name: Filter OpenTelemetry
@@ -100,15 +102,8 @@ items:
         items:
         - name: Autoinstrumentation supported scenarios
           href: app/codeless-overview.md
-        - name: Azure VM and Virtual Machine Scale Sets
-          href: app/azure-vm-vmss-apps.md
         - name: Azure App Service
           href: app/codeless-app-service.md
-        - name: Azure Functions
-          displayName: functions, monitor functions, automation
-          href: app/monitor-functions.md
-        - name: ASP.NET on-premises agent
-          href: app/application-insights-asp-net-agent.md
       - name: Application Insights SDK (Classic API)
         displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
         href: app/classic-api.md
@@ -175,16 +170,6 @@ items:
           - name: View .NET Profiler data
             displayName: profiling, debugging, code performance, perf
             href: profiler/profiler-data.md
-        - name: Fix with GitHub Copilot (preview)
-          items:
-          - name: Overview
-            href: optimization-insights/code-optimizations-extensions.md
-          - name: Visual Studio
-            href: optimization-insights/code-optimizations-vs-extension.md
-          - name: Visual Studio Code
-            href: optimization-insights/code-optimizations-vscode-extension.md
-          - name: Assign to GitHub Copilot
-            href: optimization-insights/code-optimizations-github-copilot.md
         - name: Troubleshooting
           items:
           - name: Code Optimizations
@@ -312,6 +297,25 @@ items:
           href: vm/vminsights-optout.md
         - name: Troubleshoot
           href: vm/vminsights-troubleshoot.md
+      - name: Analyze data
+        items:
+        - name: Interactive views
+          href: vm/vminsights-performance.md
+        - name: Monitor changes
+          href: vm/vminsights-change-analysis.md
+        - name: Visualize data with workbooks
+          href: vm/vminsights-workbooks.md
+      - name: Migrate
+        items:
+        - name: Migrate to Azure Monitor agent
+          href: vm/vminsights-migrate-agent.md
+        - name: Migrate from deprecated policies
+          href: vm/vminsights-migrate-deprecated-policies.md
+      - name: Map feature
+        items:
+        - name: Retirement guidance
+          displayName: processes and dependencies, map, vminsights, dependency agent
+          href: vm/vminsights-maps-retirement.md
         - name: Dependency agent
           items:
           - name: Manage
@@ -320,26 +324,10 @@ items:
           - name: Uninstall
             displayName: dependency agent, vminsights
             href: vm/vminsights-dependency-agent-uninstall.md
-      - name: Migrate
-        items:
-        - name: Migrate to Azure Monitor agent
-          href: vm/vminsights-migrate-agent.md
-        - name: Migrate from deprecated policies
-          href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Use VM insights
-        items:
-        - name: Monitor performance
-          href: vm/vminsights-performance.md
         - name: Map dependencies
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
-        - name: Map Retirement guidance
-          href: vm/vminsights-maps-retirement.md
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
     - name: Performance diagnostics
       items:
       - name: Overview
@@ -400,11 +388,11 @@ items:
       - name: Limited previews
         items:
         - name: Collect and analyze OpenTelemetry data with Azure Monitor
-          href: fundamentals/collect-use-observability-data.md
+          href: containers/collect-use-observability-data.md
         - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
-          href: fundamentals/opentelemetry-protocol-ingestion.md
+          href: containers/opentelemetry-protocol-ingestion.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
-          href: app/kubernetes-open-protocol.md
+          href: containers/kubernetes-open-protocol.md
     - name: Analyze data
       items:
       - name: Interactive views
@@ -839,6 +827,27 @@ items:
         - name: Log Analytics Linux agent
           displayName: troubleshoot, troubleshooting
           href: agents/agent-linux-troubleshoot.md
+  - name: Prometheus metrics
+    items:
+    - name: Overview
+      displayName: Prometheus
+      href: metrics/prometheus-metrics-overview.md
+    - name: Technical details
+      displayName: Prometheus
+      href: metrics/prometheus-metrics-details.md
+    - name: Connect Grafana
+      displayName: Prometheus Grafana
+      href: metrics/prometheus-grafana.md
+    - name: Rule groups
+      displayName: Prometheus
+      href: metrics/prometheus-rule-groups.md
+    - name: Self-hosted Prometheus
+      items:
+      - name: Integrate
+        href: metrics/prometheus-remote-write.md
+      - name: Migrate
+        displayName: remote write, Prometheus
+        href: metrics/prometheus-migrate.md
   - name: Logs ingestion API
     items:
     - name: Overview
@@ -931,27 +940,6 @@ items:
         - name: Monitor metrics ingestion errors
           displayName: Azure Monitor workspace
           href: metrics/azure-monitor-workspace-monitor-health.md
-    - name: Prometheus metrics
-      items:
-      - name: Overview
-        displayName: Prometheus
-        href: metrics/prometheus-metrics-overview.md
-      - name: Technical details
-        displayName: Prometheus
-        href: metrics/prometheus-metrics-details.md
-      - name: Connect Grafana
-        displayName: Prometheus Grafana
-        href: metrics/prometheus-grafana.md
-      - name: Rule groups
-        displayName: Prometheus
-        href: metrics/prometheus-rule-groups.md
-      - name: Self-hosted Prometheus
-        items:
-        - name: Integrate
-          href: metrics/prometheus-remote-write.md
-        - name: Migrate
-          displayName: remote write, Prometheus
-          href: metrics/prometheus-migrate.md
     - name: Query Azure Monitor workspace metrics
       items:
       - name: Resource-scoped queries

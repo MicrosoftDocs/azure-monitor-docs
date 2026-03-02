@@ -510,7 +510,7 @@ The OpenCensus SDK provides integrations to collect telemetry and exporters to s
 
 OpenTelemetry Python instrumentations and exporters cover the OpenCensus set and add more libraries. OpenTelemetry provides a direct upgrade in library coverage and functionality.
 
-The Azure Monitor OpenTelemetry Distro includes several popular OpenTelemetry Python [instrumentations](.\opentelemetry-add-modify.md?tabs=python#included-instrumentation-libraries). Use these instrumentations without adding code. Microsoft supports these instrumentations.
+The Azure Monitor OpenTelemetry Distro includes several popular OpenTelemetry Python [instrumentations](.\opentelemetry-collect-detect.md?tabs=python#included-instrumentation-libraries). Use these instrumentations without adding code. Microsoft supports these instrumentations.
 
 As for the other OpenTelemetry Python [instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation) that aren't included in this list, users can still manually instrument with them. However, it's important to note that stability and behavior aren't guaranteed or supported in those cases. Therefore, use them at your own discretion.
 

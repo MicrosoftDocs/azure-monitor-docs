@@ -1,12 +1,12 @@
 ---
-title: Chart performance with VM insights
+title: Analyze the health and status of your virtual machine with Azure Monitor
 description: This article discusses the VM insights Performance feature that discovers application components on Windows and Linux systems and maps the communication between services.
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 10/29/2024
 ---
 
-# Chart performance with VM insights
+# Analyze the health and status of your virtual machine with Azure Monitor
 
 VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. You can use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
 
