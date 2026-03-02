@@ -9,11 +9,11 @@ ms.date: 02/27/2026
 
 # Log data ingestion time in Azure Monitor
 
-Azure Monitor is a high-scale data service that sends terabytes of data each month and continues to grow. Under normal service operations, the time it takes for log data to become available after it's collected is predictable and consistent. This article explains the factors that affect this latency.
+Azure Monitor is a high-scale data service that sends terabytes of data each month and continues to grow. Under normal service operations, the time it takes for log data to become available after collection is predictable and consistent. This article explains the factors that affect this latency.
 
 ## Average latency
 
-Latency refers to the time that data is created on the monitored system and the time that it becomes available for analysis in Azure Monitor. The average latency to ingest log data is *less than 10 seconds*. The specific latency for any particular data will vary depending on several factors that are explained in this article.
+Latency refers to the time between when data is created on the monitored system and when it becomes available for analysis in Azure Monitor. The average latency to ingest log data is *less than 10 seconds*. The specific latency for any particular data varies depending on several factors that are explained in this article.
 
 ## Factors affecting latency
 
@@ -21,10 +21,10 @@ The total ingestion time for a particular set of data is the time at these sourc
 
 :::image type="content" source="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" lightbox="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" alt-text="Architecture diagram showing the Azure Monitor ingestion process.":::
 
-* **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, this process is handled by an agent. More latency might be introduced by the network. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the agent time.
+* **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, an agent handles this process. The network might introduce more latency. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the agent time.
 * **Azure Monitor time**: After the agent hands off to Azure Monitor, the time for ingestion to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
 
-Details on the different latency introduced in this process are described in the following sections.
+The following sections describe the different latency introduced in this process.
 
 ### Agent collection latency
 
@@ -46,7 +46,7 @@ For more information about agent performance, see [Azure Monitor Agent performan
 
 **Under 1 minute**
 
-To ensure the Log Analytics agent is lightweight, the agent buffers logs and periodically uploads them to Azure Monitor. Upload frequency varies between 30 seconds and 2 minutes depending on the type of data. Most data is uploaded in under 1 minute.
+To keep the Azure Monitor Agent lightweight, it buffers logs and periodically uploads them to Azure Monitor. Upload frequency varies between 30 seconds and 2 minutes depending on the type of data. Most data is uploaded in under 1 minute.
 
 ### Network
 
@@ -60,17 +60,17 @@ Network conditions might negatively affect the latency of this data to reach a d
 
 Azure data adds more time to become available at a data collection endpoint for processing:
 
-* **Azure platform metrics** are available in under a minute in the metrics database, but they take another 3 minutes to be exported to the data collection endpoint.
-* **Resource logs** are usually available within 3 to 10 minutes end-to-end, depending on the complexity of the service and the Azure services involved. For example, Azure SQL Database and Azure Virtual Network currently provide their logs every 5 minutes. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
+* **Azure platform metrics** are available in under a minute in the metrics database, but they take another three minutes to be exported to the data collection endpoint.
+* **Resource logs** are usually available within 3 to 10 minutes end-to-end, depending on the complexity of the service and the Azure services involved. For example, Azure SQL Database and Azure Virtual Network currently provide their logs every five minutes. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
 * **Activity logs** are available for analysis and alerting in 3 to 20 minutes.
 
 ### Management solutions collection
 
 **Varies**
 
-Some solutions don't collect their data from an agent and might use a collection method that introduces more latency. Some solutions collect data at regular intervals without attempting near real time collection. Specific examples include:
+Some solutions don't collect their data from an agent and might use a collection method that introduces more latency. Some solutions collect data at regular intervals without attempting near real-time collection. Specific examples include:
 
-* Microsoft 365 solution polls activity logs by using the Management Activity API, which currently doesn't provide any near real time latency guarantees.
+* Microsoft 365 solution polls activity logs by using the Management Activity API, which currently doesn't provide any near real-time latency guarantees.
 * Windows Analytics solutions (Update Compliance, for example) data is collected by the solution at a daily frequency.
 
 To determine a solution's collection frequency, see the [documentation for each solution](/previous-versions/azure/azure-monitor/insights/solutions).
@@ -79,15 +79,15 @@ To determine a solution's collection frequency, see the [documentation for each 
 
 **Less than 10 seconds**
 
-After the data is available at the data collection endpoint, it takes less than 10 seconds to be available for querying.
+After the data reaches the data collection endpoint, it takes less than 10 seconds before you can query it.
 
-After log records are ingested into Azure Monitor (as identified in the [_TimeReceived](log-standard-columns.md#_timereceived) property), they're written to temporary storage to ensure tenant isolation and to make sure that data isn't lost. This process typically adds 5 to 15 seconds.
+When Azure Monitor ingests log records (as the [_TimeReceived](log-standard-columns.md#_timereceived) property shows), it writes them to temporary storage. This step ensures tenant isolation and prevents data loss. This step usually adds 5 to 15 seconds.
 
-Some solutions implement heavier algorithms to aggregate data and derive insights as data is streaming in. For example, Application Insights calculates application map data; Azure Network Performance Monitoring aggregates incoming data over 3-minute intervals, which effectively adds 3-minute latency in this case.
+Some solutions use more complex algorithms to aggregate data and derive insights while data streams in. For example, Application Insights calculates application map data. Azure Network Performance Monitoring aggregates incoming data over three-minute intervals, which effectively adds three minutes of latency in this case.
 
-If the data collection includes an [ingestion-time transformation](../data-collection/data-collection-transformations.md), then this will add some latency to the Azure Monitor process time. Use the metric [Logs Transformation Duration per Min](../data-collection/data-collection-monitor.md) to monitor the efficiency of the transformation query.
+If the data collection includes an [ingestion-time transformation](../data-collection/data-collection-transformations.md), this transformation adds some latency to the Azure Monitor process time. Use the metric [Logs Transformation Duration per Min](../data-collection/data-collection-monitor.md) to monitor the efficiency of the transformation query.
 
-Another process that adds latency is the process that handles custom logs. In some cases, this process might add a few minutes of latency to logs that are collected from files by an agent.
+Another process that adds latency is the process that handles custom logs. In some cases, this process might add a few minutes of latency to logs that an agent collects from files.
 
 ### New custom data types provisioning
 
@@ -100,19 +100,19 @@ Ingestion time might vary for different resources under different circumstances.
 > [!WARNING]
 > When ingesting logs into the Auxiliary tier of Azure Monitor, avoid submitting a single payload that contains TimeGenerated timestamps that span more than 30 minutes in one API call. This API call might lead to the following ingestion error code `RecordsTimeRangeIsMoreThan30Minutes`. This is a [known limitation](../fundamentals/service-limits.md#logs-ingestion-api) that's getting removed.
 >
-> This restriction does not apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
+> This restriction doesn't apply to Auxiliary logs that use [transformations](../data-collection/data-collection-transformations.md).
 
 | Step | Property or function | Comments |
 |:-----|:---------------------|:---------|
 | Record created at data source | [TimeGenerated](log-standard-columns.md#timegenerated) | The TimeGenerated value can't be more than two days before the received time or more than a day in the future. Otherwise, Azure Monitor Logs replaces the TimeGenerated value with the actual received time.<br>If the data source doesn't set this value, Azure Monitor Logs sets the value to the same time as _TimeReceived. |
-| Record received by the data collection endpoint | [_TimeReceived](log-standard-columns.md#_timereceived) | This field isn't optimized for mass processing and shouldn't be used to filter large datasets. |
-| Record stored in workspace and available for queries | [ingestion_time()](/azure/kusto/query/ingestiontimefunction) | We recommend using `ingestion_time()` if there's a need to filter only records that were ingested in a certain time window. In such cases, we recommend also adding a `TimeGenerated` filter with a larger range. |
+| Record received by the data collection endpoint | [_TimeReceived](log-standard-columns.md#_timereceived) | Don't use this field to filter large datasets. It's not optimized for mass processing. |
+| Record stored in workspace and available for queries | [ingestion_time()](/azure/kusto/query/ingestiontimefunction) | Use `ingestion_time()` if you need to filter only records that were ingested in a certain time window. In such cases, also add a `TimeGenerated` filter with a larger range. |
 
 ### Ingestion latency delays
 
 Measure the latency of a specific record when you compare the result of the [ingestion_time()](/azure/kusto/query/ingestiontimefunction) function to the `TimeGenerated` property. Discover how ingestion latency behaves when you use various aggregations of this data. Examine some percentile of the ingestion time to get insights for large amounts of data.
 
-For example, the following query will show you which computers had the highest ingestion time over the prior 8 hours:
+For example, the following query shows which computers had the highest ingestion time over the prior eight hours:
 
 ``` Kusto
 Heartbeat
@@ -186,13 +186,13 @@ AppRequests
 | sort by EndtoEndTime desc
 ```
 
-The two queries above can be paired with any other Application Insights table other than "requests".
+These two queries can be paired with any other Application Insights table other than "requests".
 
 ### Resources that stop responding
 
-In some cases, a resource could stop sending data. To understand if a resource is sending data or not, look at its most recent record, which can be identified by the standard `TimeGenerated` field.
+In some cases, a resource stops sending data. To understand if a resource is sending data, check its most recent record, which the standard `TimeGenerated` field identifies.
 
-Use the `Heartbeat` table to check the availability of a VM because a heartbeat is sent once a minute by the agent. Use the following query to list the active computers that haven't reported heartbeat recently:
+Use the `Heartbeat` table to check the availability of a VM because the agent sends a heartbeat once a minute. Use the following query to list the active computers that didn't report a heartbeat recently:
 
 ``` Kusto
 Heartbeat
