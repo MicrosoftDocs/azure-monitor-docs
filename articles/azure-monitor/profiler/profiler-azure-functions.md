@@ -58,8 +58,6 @@ In [the Azure portal](https://portal.azure.com), open your Function app **Overvi
 
 1. In the **Environment variables**, select **Apply**, then **Confirm**.
 
-   :::image type="content" source="./media/profiler-azure-functions/save-button.png" alt-text="Screenshot outlining the save button in the top menu of the configuration pane.":::
-
    :::image type="content" source="./media/profiler-azure-functions/continue-button.png" alt-text="Screenshot outlining the continue button in the dialog after saving.":::
 
 The app settings now show up in the table:
@@ -75,6 +73,5 @@ The app settings now show up in the table:
 
 ## Next step
 
-Learn how to...
 > [!div class="nextstepaction"]
 > [Generate load and view the .NET Profiler traces](./profiler-data.md)
