@@ -8,7 +8,7 @@ ms.reviewer: charles.weininger
 
 # View Application Insights Profiler for .NET data
 
-Let's say you're running a web performance test. You'll need traces to understand how your web app is running under load. For the .NET Profiler to upload traces, your service must be actively handling requests. In this article, you'll:
+Suppose you're running a web performance test. You need traces to understand how your web app is running under load. For the .NET Profiler to upload traces, your service must be actively handling requests. In this article, you'll:
 
 > [!div class="checklist"]
 > - Generate traffic to your web app by starting a web performance test or starting a Profiler on-demand session.
@@ -17,7 +17,7 @@ Let's say you're running a web performance test. You'll need traces to understan
 
 ## Generate traffic to your Azure service
 
-If you've newly enabled the Profiler for .NET, run a short [load test with Azure Load Testing](/azure/load-testing/quickstart-create-and-run-load-test). 
+If you just enabled the Profiler for .NET, run a short [load test with Azure Load Testing](/azure/load-testing/quickstart-create-and-run-load-test). 
 
 If your Azure service already has incoming traffic or if you just want to manually generate traffic, skip the load test and start a **Profiler on-demand session**:
 
@@ -90,7 +90,7 @@ Lock contention usually occurs when thread _A_ acquires a lock and thread _B_ tr
 
 ### Loading code ([COLD])
 
-If the .NET Framework runtime is executing [unoptimized code](/cpp/build/profile-guided-optimizations) for the first time, the method name will contain **[COLD]**:
+If the .NET Framework runtime is executing [unoptimized code](/cpp/build/profile-guided-optimizations) for the first time, the method name contains **[COLD]**:
 
 `mscorlib.ni![COLD]System.Reflection.CustomAttribute.IsDefined`
 
@@ -129,7 +129,7 @@ You can uncheck the **Framework dependencies** checkbox at the top of the page t
 
 ### Unmanaged Async
 
-In order for async calls to be tracked across threads, .NET Framework emits ETW events and passes activity IDs between threads. Since unmanaged (native) code and some older styles of asynchronous code lack these events and activity IDs, the .NET Profiler can't track the thread and functions running on the thread. This item is labeled **Unmanaged Async** in the call stack. Download the ETW file to use [PerfView](https://github.com/Microsoft/perfview/blob/master/documentation/Downloading.md) for more insight.
+In order for async calls to be tracked across threads, .NET Framework emits Event Tracing for Windows (ETW) events and passes activity IDs between threads. Since unmanaged (native) code and some older styles of asynchronous code lack these events and activity IDs, the .NET Profiler can't track the thread and functions running on the thread. This item is labeled **Unmanaged Async** in the call stack. Download the ETW file to use [PerfView](https://github.com/Microsoft/perfview/blob/master/documentation/Downloading.md) for more insight.
 
 ### CPU time
 
@@ -151,8 +151,8 @@ The **When** column is a visualization of the variety of _inclusive_ samples col
 
 For these metrics, you can get a value of greater than 100% by consuming multiple resources. For example, if you use two CPUs during an interval on average, you get 200%.
 
-## Next steps
-Learn how to...
+## Next step
+
 > [!div class="nextstepaction"]
 > [Configure the .NET Profiler settings](./profiler-settings.md)
 
