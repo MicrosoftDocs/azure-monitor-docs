@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 12/08/2025
+ms.date: 03/03/2026
 
 ---
 
