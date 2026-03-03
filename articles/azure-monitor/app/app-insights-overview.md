@@ -71,9 +71,7 @@ The logic model diagram visualizes components of Application Insights and how th
 
 This section outlines supported scenarios.
 
-For more information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
-
-### Manual instrumentation
+For more information about enabling Application Insights experiences, see [data collection basics](opentelemetry-overview.md).
 
 #### OpenTelemetry Distro
 
@@ -82,6 +80,9 @@ For more information about instrumenting applications to enable Application Insi
 * [Java](opentelemetry-enable.md?tabs=java)
 * [Node.js](opentelemetry-enable.md?tabs=nodejs)
 * [Python](opentelemetry-enable.md?tabs=python)
+
+> [!TIP]
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
 #### Client-side JavaScript SDK
 
@@ -94,10 +95,6 @@ For more information about instrumenting applications to enable Application Insi
 
 > [!IMPORTANT]
 > If you're still using Application Insights Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
-
-### Automatic instrumentation (enable without code changes)
-
-For supported environments and languages, see our [autoinstrumentation overview](codeless-overview.md#supported-environments-languages-and-resource-providers).
 
 ### Supported platforms
 

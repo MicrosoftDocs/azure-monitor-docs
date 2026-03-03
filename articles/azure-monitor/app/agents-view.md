@@ -17,9 +17,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 ## Prerequisites
 
 > [!div class="checklist"]
-> * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-> * **Application Insights resource:** [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource) to collect and store your agent telemetry.
-> * **Choose your monitoring approach:** [Implement AI agent data collection](opentelemetry-overview.md#&tabs=agents).
+> * **Choose your monitoring approach:** [Implement AI agent data collection](opentelemetry-overview.md&tabs=agents).
 
 ## Monitor your AI agents
 

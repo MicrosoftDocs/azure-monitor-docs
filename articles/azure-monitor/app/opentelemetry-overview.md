@@ -33,7 +33,7 @@ After performing these steps, you're ready to explore [Application Insights expe
 > - Extend the telemetry pipeline with OpenTelemetry [processors and instrumentation libraries](opentelemetry-add-modify.md).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the OpenTelemetry Distro if you want more configuration and extensibility options.
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
 ### [JavaScript](#tab/js)
 
