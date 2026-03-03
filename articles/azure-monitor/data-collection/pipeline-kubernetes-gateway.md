@@ -7,7 +7,7 @@ ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Azure Monitor pipeline - Sample gateway setup using Traefik
-Azure Monitor pipeline extension deploys pipelines with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to remote clients external to the cluster (e.g. network switches, firewall devices), you need to deploy a gateway solution.  
+Azure Monitor pipeline extension gets deployed with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to remote clients external to the cluster (e.g. network switches, firewall devices), you need to deploy a gateway solution.  
 This guide shows how to expose an Azure Monitor Pipeline receiver to external clients using a Traefik gateway. 
 
 > [!NOTE]
@@ -25,7 +25,8 @@ Before deploying the Traefik gateway, here are additional prerequisites:
 kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
 ```
 
-## Deploy gateway for TLS secure encrypted ingestion 
+## (Option 1) Deploy gateway for TLS secure encrypted ingestion 
+The following example will demonstrate a use case where remote clients can connect to the gateway with an insecure connection, while the gateway will have an mTLS connection with the pipeline.
 
 ### Step 1: Create gateway client certificate
 
@@ -78,12 +79,12 @@ Create the `ServersTransportTCP` and `IngressRouteTCP`. Since Traefik is deploye
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransportTCP
 metadata:
-  name: syslog-pipeline-mtls-transport
+  name: <pipeline-name>-mtls-transport
   namespace: test
 spec:
   tls:
     # Server name for SNI and certificate validation
-    serverName: "syslog-pipeline-service.test.svc.cluster.local"
+    serverName: "<pipeline-name>-service.test.svc.cluster.local"
     # Root CA to verify the pipeline's server certificate
     # Uses the trust bundle ConfigMap distributed by the operator
     rootCAs:
@@ -106,11 +107,11 @@ spec:
   routes:
     - match: HostSNI(`*`)
       services:
-        - name: syslog-pipeline-service
+        - name: <pipeline-name>-service
           port: 514
           # CRITICAL: This flag ENABLES TLS when dialing the backend
           tls: true
-          serversTransport: syslog-pipeline-mtls-transport
+          serversTransport: <pipeline-name>-mtls-transport
 ```
 
 Apply the routing configuration:
@@ -145,7 +146,6 @@ helm install traefik traefik/traefik \
     --wait
 
 ```
-
 
 ### Step 6: Test the gateway
 
@@ -189,11 +189,11 @@ kubectl logs -n test -l app.kubernetes.io/name=traefik --tail=50 | grep -i "tls\
 **Check pipeline logs**
 
 ```bash
-kubectl logs -n test -l pipeline=syslog-pipeline
+kubectl logs -n test -l pipeline=<pipeline-name>
 ```
 
 
-## Deploy gateway for ingestion with TLS disabled
+## (Option 2) Deploy gateway for ingestion with TLS disabled
 
 ### Step 1: Install Traefik CRDs
 
