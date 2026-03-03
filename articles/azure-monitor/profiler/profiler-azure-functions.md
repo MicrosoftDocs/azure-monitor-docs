@@ -1,6 +1,6 @@
 ---
 title: Enable Application Insights Profiler for .NET for Azure Functions apps
-description: Learn how to view app settings for your Azure Functions app, enable the .NET Profiler, and navigate to the Profiler page  to view data.
+description: Learn how to view app settings for your Azure Functions app, enable the .NET Profiler, and navigate to the Profiler page to view data.
 ms.contributor: charles.weininger
 ms.topic: how-to
 ms.date: 03/03/2026
