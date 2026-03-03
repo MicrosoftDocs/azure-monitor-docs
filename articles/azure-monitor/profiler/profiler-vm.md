@@ -110,7 +110,7 @@ You can enable Profiler by any of three ways:
 The following PowerShell commands are an approach for existing VMs that touch only the Azure Diagnostics extension.
 
 > [!NOTE]
-> If you deploy the VM again, the sink will be lost. You need to update the config you use when you deploy the VM to preserve this setting.
+> If you deploy the VM again, the sink is lost. You need to update the config you use when you deploy the VM to preserve this setting.
 
 ### Install Application Insights via the Azure Diagnostics config
 
@@ -177,7 +177,7 @@ If the intended application is running through [IIS](https://www.microsoft.com/w
 Because the Azure portal doesn't provide a way to set the Application Insights Profiler for .NET sink, you can use [Azure Resource Explorer](https://resources.azure.com) to set the sink.
 
 > [!NOTE]
-> If you deploy the VM again, the sink will be lost. You need to update the config you use when you deploy the VM to preserve this setting.
+> If you deploy the VM again, the sink is lost. You need to update the config you use when you deploy the VM to preserve this setting.
 
 1. Verify that the Microsoft Azure Diagnostics extension is installed by viewing the extensions installed for your virtual machine.
 
@@ -211,7 +211,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
        }        
        ```
 
-1. After you've finished editing the config, select **PUT**.
+1. After you finish editing the config, select **PUT**.
 
 1. If the `put` is successful, a green check mark appears in the middle of the screen.
 
@@ -219,7 +219,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
 
 ---
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Generate load and view .NET Profiler traces](./profiler-data.md)
