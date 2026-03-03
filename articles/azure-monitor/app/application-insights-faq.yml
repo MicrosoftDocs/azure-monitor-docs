@@ -2135,4 +2135,3 @@ sections:
 
       - question: Where can I get more information about Worker Service applications? 
         answer: For more information, see [Application Insights for Worker Service applications (non-HTTP applications)](../app/worker-service.md).
-        
