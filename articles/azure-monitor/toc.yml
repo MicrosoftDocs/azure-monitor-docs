@@ -890,7 +890,7 @@ items:
         href: data-collection/pipeline-transformations.md
       - name: Pod placement
         href: data-collection/pipeline-pod-placement.md
-      - name: Secure encryption (TLS)
+      - name: Transport Security (TLS)
         items:
         - name: Configure TLS
           href: data-collection/pipeline-tls.md
