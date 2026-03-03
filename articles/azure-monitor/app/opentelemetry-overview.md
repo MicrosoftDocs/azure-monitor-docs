@@ -1,8 +1,8 @@
 ---
-title: Collect OpenTelemetry (OTel) in Application Insights
+title: Collect OpenTelemetry (OTel) for Application Insights experiences
 description: Learn the basic data collection flow for Application Insights. Start new server-side applications with Azure Monitor OpenTelemetry and store telemetry in a linked Log Analytics workspace.
 ms.topic: how-to
-ms.date: 03/02/2026
+ms.date: 03/03/2026
 
 #customer intent: "As a developer or site reliability engineer who is new to Azure Monitor and Application Insights, I want to understand the basic Application Insights data collection flow and start with the recommended OpenTelemetry instrumentation."
 
@@ -56,7 +56,7 @@ For supported languages in a production environment, follow the OpenTelemetry Di
 
 [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) clusters is in public preview.
 
-### [AI Agents](#tab/agents)
+### [AI Agents](#tab/aiagents)
 
 ## Choose your monitoring approach
 

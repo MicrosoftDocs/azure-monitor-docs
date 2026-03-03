@@ -17,7 +17,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 ## Prerequisites
 
 > [!div class="checklist"]
-> * **Choose your monitoring approach:** [Implement AI agent data collection](opentelemetry-overview.md&tabs=agents).
+> * **Choose your monitoring approach:** [Implement AI agent data collection](opentelemetry-overview.md&tabs=aiagents).
 
 ## Monitor your AI agents
 

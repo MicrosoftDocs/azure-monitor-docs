@@ -541,3 +541,20 @@ The OpenCensus Python Azure Monitor exporter automatically collected system and 
 To review troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
 
 ---
+
+## OpenTelemetry Terminology
+
+For terminology, see the [glossary](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/glossary.md) in the OpenTelemetry specifications.
+
+The following table highlights legacy terms used in Application Insights and their OpenTelemetry replacements.
+
+| Application Insights      | OpenTelemetry                             |
+| ------------------------- | ----------------------------------------- |
+| Autocollectors            | Instrumentation libraries                 |
+| Channel                   | Exporter                                  |
+| Codeless / Agent-based    | Autoinstrumentation                       |
+| Traces                    | Logs                                      |
+| Requests                  | Server Spans                              |
+| Dependencies              | Other Span Types (Client, Internal, etc.) |
+| Operation ID              | Trace ID                                  |
+| ID or Operation Parent ID | Span ID                                   |

@@ -71,7 +71,7 @@ The logic model diagram visualizes components of Application Insights and how th
 
 This section outlines supported scenarios.
 
-For more information about enabling Application Insights experiences, see [data collection basics](opentelemetry-overview.md).
+For more information about enabling Application Insights experiences, see [Collect OpenTelemetry (OTel) for Application Insights experiences](opentelemetry-overview.md).
 
 #### OpenTelemetry Distro
 
