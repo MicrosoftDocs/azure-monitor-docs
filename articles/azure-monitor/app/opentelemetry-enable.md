@@ -15,10 +15,10 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 
 This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md). The Azure Monitor OpenTelemetry Distro:
 
-* Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution) which includes support for features specific to Azure Monitor.
+* Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), which includes support for features specific to Azure Monitor.
 * Enables [automatic](opentelemetry-collect-detect.md#automatic-data-collection) telemetry by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
 * Allows collecting [custom](opentelemetry-add-modify.md#collect-custom-telemetry) telemetry.
-* Supports [Live Metrics](live-stream.md) to monitor and collect more telemetry from live, in-production web applications.
+* Supports [Live Metrics](live-stream.md) to monitor and collect telemetry from live, in-production web applications.
 
 For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
@@ -78,9 +78,9 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * Application using an officially [supported version](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments) of Node.js runtime:<br>• [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes)<br>• [Azure Monitor OpenTelemetry Exporter supported runtimes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments)
 
 > [!NOTE]
-> If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* will be your easiest path forward once out of beta.
+> If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* is your easiest path forward once out of beta.
 >
-> If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro. We'll provide a migration guide soon.
+> If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro.
 
 > [!Tip]
 > If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-nodejs-migrate.md).
@@ -119,7 +119,7 @@ Download the latest [applicationinsights-agent-3.7.4.jar](https://github.com/mic
 
 > [!WARNING]
 >
-> If you are upgrading from an earlier 3.x version, you may be impacted by changing defaults or slight differences in the data we collect. For more information, see the migration section in the release notes.
+> If you're upgrading from an earlier 3.x version, you could be impacted by changing defaults or slight differences in the data we collect. For more information, see the migration section in the release notes.
 > [3.5.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.5.0),
 > [3.4.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.4.0),
 > [3.3.0](https://github.com/microsoft/ApplicationInsights-Java/releases/tag/3.3.0),
@@ -142,7 +142,7 @@ For *Quarkus* native applications:
 
 #### [Node.js](#tab/nodejs)
 
-Install the latest [@azure/monitor-opentelemetry](https://www.npmjs.com/package/@azure/monitor-opentelemetry) package:
+Install the latest [`@azure/monitor-opentelemetry`](https://www.npmjs.com/package/@azure/monitor-opentelemetry) package:
 
 ```sh
 npm install @azure/monitor-opentelemetry
@@ -233,7 +233,7 @@ Autoinstrumentation is enabled through configuration changes. *No code changes a
 Point the Java virtual machine (JVM) to the jar file by adding `-javaagent:"path/to/applicationinsights-agent-3.7.5.jar"` to your application's JVM args.
 
 > [!NOTE]
-> Sampling is enabled by default at a rate of 5 requests per second, aiding in cost management. Telemetry data may be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
+> Sampling is enabled by default at a rate of five requests per second, aiding in cost management. Telemetry data could be missing in scenarios exceeding this rate. For more information on modifying sampling configuration, see [sampling overrides](./java-standalone-sampling-overrides.md).
 > If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
 > [!TIP]
@@ -324,7 +324,7 @@ To paste your connection string, select from the following options:
     See [connection string configuration](opentelemetry-configuration.md#connection-string) for an example of setting connection string via code.
 
 > [!NOTE]
-> If you set the connection string in multiple places, the environment variable will be prioritized in the following order:
+> If you set the connection string in multiple places, the environment variable is prioritized in the following order:
 > 1. Code
 > 2. Environment variable
 > 3. Configuration file

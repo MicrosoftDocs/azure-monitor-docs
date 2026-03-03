@@ -62,7 +62,7 @@ For supported languages in a production environment, follow the OpenTelemetry Di
 
 Getting started looks different depending on how and where you're building your agents.
 
-After you've completed setting up data collection, you're ready to explore the Application Insights [agent details view](agents-view.md#monitor-ai-agents-with-application-insights).
+After you set up data collection, you're ready to explore the Application Insights [agent details view](agents-view.md#monitor-ai-agents-with-application-insights).
 
 **Managed hosting**
 

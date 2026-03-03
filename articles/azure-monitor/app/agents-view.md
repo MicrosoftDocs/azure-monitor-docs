@@ -16,8 +16,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ## Prerequisites
 
-> [!div class="checklist"]
-> * **Choose your monitoring approach:** [Implement AI agent data collection](opentelemetry-overview.md&tabs=aiagents).
+Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md).
 
 ## Monitor your AI agents
 
@@ -37,7 +36,7 @@ Once telemetry is flowing to Application Insights:
 
 To drill into specific agent runs:
 
-1. Select one of the following from the Agent details view:
+1. Select one from the Agent details view:
 
    * **View Traces with Agent Runs** - See all agent executions
    * **View Traces with Gen AI Errors** - Focus on failed or problematic runs
@@ -59,7 +58,7 @@ To drill into specific agent runs:
 
 ### End-to-end transaction details view
 
-The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion, including the invoked agent, underlying LLM, executed tools, and more.
+The end-to-end transaction details now offer a **simple view**. This view shows agent steps in a clear, story-like fashion, including the invoked agent, underlying large language model (LLM), executed tools, and more.
 
 Simple view allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
 
@@ -74,7 +73,7 @@ In our example, we were researching high token use. Transaction details allow yo
 
 The Agent details view in Application Insights provides an opinionated, out-of-the-box experience for monitoring your AI agents. For more advanced customization and visualization needs, you can select **Explore in Grafana** from the top navigation bar on the Agent details view.
 
-Azure Monitor includes pre-built Grafana dashboards specifically designed for Gen AI monitoring to help you get started:
+Azure Monitor includes prebuilt Grafana dashboards designed for Gen AI monitoring to help you get started:
 
 * **Agent Framework -** Monitor agent execution and performance
 * **Agent Framework workflow -** Track agent workflow patterns and dependencies
