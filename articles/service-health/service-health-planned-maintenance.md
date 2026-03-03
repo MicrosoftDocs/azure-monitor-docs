@@ -153,7 +153,7 @@ For more information on event retention, see [Service Health notification transi
 
 ## Next steps
 
-- Read [How to report an imapact (Preview)](report-issue.md)
+- Read [How to report an impact (Preview)](report-issue.md)
 - Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
 - Read [Service Health Frequently asked questions](service-health-faq.yml)
 - Read [Resource impact from Azure outages](impacted-resources-outage.md)
