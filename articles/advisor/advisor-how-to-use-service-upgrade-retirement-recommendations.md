@@ -270,6 +270,10 @@ Based on your need, use any of the listed ways to get the required information.
 
 [!INCLUDE [Table for retiring March 2028](./includes/retiring-feature/retirement-date-2028-03.md)]
 
+#### Retiring May 2028
+
+[!INCLUDE [Table for retiring May 2028](./includes/retiring-feature/retirement-date-2028-05.md)]
+
 #### Retiring June 2028
 
 [!INCLUDE [Table for retiring June 2028](./includes/retiring-feature/retirement-date-2028-06.md)]
