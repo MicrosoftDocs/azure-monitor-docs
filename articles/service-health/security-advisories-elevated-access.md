@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: concept-article
-ms.date: 0/13/2026
+ms.date: 03/03/2026
 ---
 
 
