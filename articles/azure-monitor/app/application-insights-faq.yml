@@ -18,7 +18,7 @@ sections:
     questions:
       - question: How do I instrument an application?
         answer: |
-          For detailed information about instrumenting applications to enable Application Insights, see [Collect OpenTelemetry (OTel) for Application Insights experiences](opentelemetry-overview.md).
+          For detailed information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
 
       - question: How do I use Application Insights?
         answer: |
