@@ -8,7 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline TLS configuration (preview)
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. Azure Monitor pipeline supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
 
 - **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
 - **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
@@ -19,7 +19,7 @@ With these options, you can:
 - Provide your own keys and certificates that the Azure Monitor receiver TLS endpoint should use
 - Configure TLS with your own CA cert and PKI that Azure Monitor should provision certs from for its receiver TLS endpoint
 
-This article describes how to secure the connection between your pipeline and clients using TLS. You can use the default automated certificate management or use your existing PKI to issue and manage certificates to automate certificate issuance and renewal.
+This article explains how to secure data ingestion into Azure Monitor pipeline using TLS encryption, and additional secure intra-cluster traffic using mTLS client authentication. Using the options below, you can choose fully automated certificate management or integrate with your existing PKI to control certificate issuance, renewal, and trust.
 
 ## Prerequisites
 
