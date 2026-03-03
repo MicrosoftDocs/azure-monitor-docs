@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 02/06/2026
+ms.date: 03/03/2026
 ---
 
 # Health advisories 
@@ -89,6 +89,7 @@ The Issue Updates section in the Health advisories pane provides detailed, time-
 
 ### More information
 
+- [How to report an impact (Preview)](report-issue.md)
 - [Resource Health overview](resource-health-overview.md)
 - [Service Health FAQs](service-health-faq.yml)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
