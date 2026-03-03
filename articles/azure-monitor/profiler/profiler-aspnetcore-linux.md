@@ -159,13 +159,13 @@ In this article, you:
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/create-web-app.png" alt-text="Screenshot that shows creating the Linux web app.":::
 
-1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center**. then select **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
+1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center**, then select **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::    
 
 1. Select **Save**.
 1. Select the **Settings** tab.
-1. To set up a local Git repository in the web app, select **Source**, then **Local Git** 
+1. To set up a local Git repository in the web app, select **Source**, then **Local Git**.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::    
 
