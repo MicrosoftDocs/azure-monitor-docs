@@ -97,9 +97,10 @@ Timestamp | Time when the profile was captured.
 CPU % | Percentage of CPU used while the Profiler was running.
 Memory % | Percentage of memory used while the Profiler was running.
 
-## Next steps
+## Next step
 
-[Enable the .NET Profiler and view traces](profiler.md?toc=/azure/azure-monitor/toc.json)
+> [!div class="nextstepaction"]
+> [Enable the .NET Profiler and view traces](profiler.md?toc=/azure/azure-monitor/toc.json)
 
 [profiler-on-demand]: ./media/profiler-settings/profiler-on-demand.png
 [performance-blade]: ./media/profiler-settings/performance-blade.png
