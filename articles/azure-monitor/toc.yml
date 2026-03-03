@@ -884,6 +884,9 @@ items:
         - name: Configuration overview
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure.md
+        - name: Sample gateway setup 
+          displayName: Sample gateway setup
+          href: data-collection/pipeline-kubernetes-gateway.md          
         - name: Azure portal
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure-portal.md
@@ -899,8 +902,14 @@ items:
         href: data-collection/pipeline-transformations.md
       - name: Pod placement
         href: data-collection/pipeline-pod-placement.md
-      - name: Configure TLS
-        href: data-collection/pipeline-tls.md
+      - name: Transport Layer Security (TLS)
+        items:
+        - name: Configure TLS
+          href: data-collection/pipeline-tls.md
+        - name: Automated certificate management (Default TLS)
+          href: data-collection/pipeline-tls-automated.md
+        - name: Customer-managed certificates (BYOC)
+          href: data-collection/pipeline-tls-custom.md        
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
