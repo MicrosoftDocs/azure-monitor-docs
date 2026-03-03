@@ -56,7 +56,7 @@ See [TLS configuration - Using your own certificate management](./pipeline-tls-c
 While it's not recommended from a security standpoint, you may choose to disable TLS and mTLS when using the pipeline. Follow the guidance below to safely do so:
 
 1. Disable the config using the configuration shown below
-2. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources
+2. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
 
 **Disable TLS**
 
