@@ -47,7 +47,7 @@ Application workloads running on your Kubernetes cluster are monitored with the 
 
 | Service | Description |
 |:---|:---|
-| [Application insights](../app/app-insights-overview.md) |  Feature of Azure Monitor that provides application performance monitoring (APM) to monitor applications running on your Kubernetes cluster from development, through test, and into production. Quickly identify and mitigate latency and reliability issues using distributed traces. Supports [OpenTelemetry](../app/opentelemetry-overview.md#opentelemetry) for vendor-neutral instrumentation. |
+| [Application insights](../app/app-insights-overview.md) |  Feature of Azure Monitor that provides application performance monitoring (APM) to monitor applications running on your Kubernetes cluster from development, through test, and into production. Quickly identify and mitigate latency and reliability issues using distributed traces. Supports [OpenTelemetry](https://opentelemetry.io/) for vendor-neutral instrumentation. |
 
 ## Analysis
 Azure Monitor provides multiple tools to analyze the data collected by other features. Start with a summary of all clusters in your environment and then drill down into interactive views for a single cluster. You can also take advantage of a variety of available Grafana dashboards that combine different sets of Kubernetes telemetry. For proactive notification, enable a set of common alert rules based on Prometheus metrics.

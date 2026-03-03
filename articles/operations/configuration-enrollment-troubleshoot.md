@@ -12,6 +12,7 @@ This article provides troubleshooting steps for issues that may occur when [enab
 
 
 ## Errors during enrollment
+
 Following are common errors that may occur when enabling machine enrollment for a subscription.
 
 **Could not validate resource existence.**<br>
@@ -84,8 +85,4 @@ In the details of the remediation task, click on **Related Events** or **View De
 :::image type="content" source="./media/configuration-enrollment-troubleshoot/remediation-task.png" lightbox="./media/configuration-enrollment-troubleshoot/remediation-task.png" alt-text="Screenshot showing details of a remediation task.":::
 
 ## Contact Microsoft
-If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).
-
-
-
-
+If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at [machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).

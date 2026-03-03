@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 12/08/2025
+ms.date: 03/03/2026
 
 ---
 
@@ -117,6 +117,7 @@ For more information about Impacted resources, see:
 
 ### For more information
 
+- [How to report an impact(Preview)](report-issue.md)
 - [Service Health Frequently asked questions](service-health-faq.yml)
 - [Service Health Portal](service-health-portal-update.md)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
