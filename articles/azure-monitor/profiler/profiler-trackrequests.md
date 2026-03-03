@@ -81,6 +81,7 @@ To manually track requests:
    }
    ```
 
-## Next steps
+## Next step
 
-Troubleshoot the [Application Insights Profiler for .NET](./profiler-troubleshooting.md).
+> [!div class="nextstepaction"]
+> Troubleshoot the [Troubleshoot Application Insights Profiler for .NET](./profiler-troubleshooting.md).
