@@ -38,6 +38,8 @@ In this article, you learn about the various ways that you can:
 1. Go to the Container App example:
 
    ```bash
+   cd ApplicationInsights-Profiler-AspNetCore
+
    cd examples/EnableServiceProfilerForContainerAppNet6
    ```
 
@@ -125,7 +127,7 @@ In this article, you learn about the various ways that you can:
 
 ## Add your Application Insights key
 
-1. Via your Application Insights resource in the Azure portal, take note of your Application Insights connection string.
+1. In the Azure portal, open your Application Insights resource. In the **Overview** page, take note of your Application Insights connection string.
 
    :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal.":::
 
@@ -186,12 +188,12 @@ Service Profiler session finished.              # A profiling session is complet
 
 ## Troubleshooting
 
-If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+If you're unable to find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
 ## View the .NET Profiler traces
 
 1. Wait for 2 to 5 minutes so that the events can be aggregated to Application Insights.
-1. Open the **Performance** pane in your Application Insights resource.
+1. In the Azure portal, open your Application Insights resource. From the left menu, select **Investigate** > **Performance**.
 1. After the trace process is finished, the **Profiler Traces** button appears.
 
       :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane.":::
