@@ -67,7 +67,7 @@ After you enable Application Insights, redeploy your application.
 
 1. Launch an [availability test](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) to generate traffic to your application.
 1. Wait 10 to 15 minutes for traces to be sent to the Application Insights instance.
-1. View the [Profiler traces](./profiler-overview.md) via the Application Insights instance in the Azure portal.
+1. View the [Profiler traces](./profiler-overview.md) by using the Application Insights instance in the Azure portal.
 
 ## Next steps
 
