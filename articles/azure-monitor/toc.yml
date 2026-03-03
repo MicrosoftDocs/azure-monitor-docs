@@ -279,6 +279,31 @@ items:
         maintainContext: true
       - name: Send data to Fabric and Azure Data Explorer
         href: vm/send-fabric-destination.md
+      - name: Agent data sources
+        items:
+        - name: Windows events
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-windows-events.md
+        - name: Syslog events
+          href: vm/data-collection-syslog.md
+        - name: IIS logs
+          displayName: data collection rule,Azure Monitor Agent,IIS logs
+          href: vm/data-collection-iis.md
+        - name: Performance data
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-performance.md
+        - name: Text logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: vm/data-collection-log-text.md
+        - name: JSON logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: vm/data-collection-log-json.md
+        - name: SNMP traps
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-snmp-data.md
+        - name: Windows Firewall logs
+          displayName: data collection rule,Azure Monitor Agent,firewall logs
+          href: vm/data-collection-firewall-logs.md
     - name: VM insights
       items:
       - name: Overview
@@ -704,31 +729,6 @@ items:
         href: agents/azure-monitor-agent-policy.md
       - name: Log Analytics gateway
         href: agents/gateway.md
-    - name: Agent data sources
-      items:
-      - name: Windows events
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-windows-events.md
-      - name: Syslog events
-        href: vm/data-collection-syslog.md
-      - name: IIS logs
-        displayName: data collection rule,Azure Monitor Agent,IIS logs
-        href: vm/data-collection-iis.md
-      - name: Performance data
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-performance.md
-      - name: Text logs
-        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-        href: vm/data-collection-log-text.md
-      - name: JSON logs
-        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-        href: vm/data-collection-log-json.md
-      - name: SNMP traps
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-snmp-data.md
-      - name: Windows Firewall logs
-        displayName: data collection rule,Azure Monitor Agent,firewall logs
-        href: vm/data-collection-firewall-logs.md
     - name: Monitor
       href: agents/azure-monitor-agent-health.md
     - name: Performance
