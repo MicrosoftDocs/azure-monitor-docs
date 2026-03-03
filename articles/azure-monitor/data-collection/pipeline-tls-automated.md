@@ -13,7 +13,7 @@ The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutua
 - **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
 - **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
 
-This article provides detailed guidance for the **Default TLS** option. [Click here](./pipeline-tls-custom.md) for the **BYOC** option. 
+This article provides detailed guidance for the **Default TLS** option. See [Using your own certificate management (Customer managed or BYOC)](./pipeline-tls-custom.md) for the **BYOC** option. 
 
 ## Prerequisites
 

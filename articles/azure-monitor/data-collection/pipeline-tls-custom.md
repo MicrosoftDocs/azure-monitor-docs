@@ -6,14 +6,14 @@ ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# TLS configuration - Using your own certificate management (Customer managed or BYOC)
+# TLS configuration - Using your own certificate management (customer managed or BYOC)
 
 The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
 
 - **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
 - **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
 
-This article provides detailed guidance for the **BYOC** option. [Click here](./pipeline-tls-automated.md) for the **Default TLS** option. 
+This article provides detailed guidance for the **BYOC** option. See [Using automated certificate management](./pipeline-tls-automated.md) for the **Default TLS** option. 
 
 You can provide your own certificates to meet compliance, security, and custom PKI requirements. With BYOC, you can:
 
@@ -169,7 +169,7 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
   - `disabled`: TLS is not required and all TLS material is cleared
 
 
-### [ARM](#tab/arm)
+### [ARM template](#tab/arm)
 
 ```json
 {
