@@ -117,6 +117,7 @@ For more information about Impacted resources, see:
 
 ### For more information
 
+- [How to report an imapact(Preview)](report.issue.md)
 - [Service Health Frequently asked questions](service-health-faq.yml)
 - [Service Health Portal](service-health-portal-update.md)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)
