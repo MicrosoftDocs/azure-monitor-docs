@@ -12,9 +12,18 @@ ms.date: 03/03/2026
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
+Entry points include:
+
+> [!div class="checklist"]
+> - Server-side web apps
+> - Server-side web apps hosted on VM
+> - Client-side JavaScript apps
+> - Azure Functions
+> - AI Agents
+
 ### [Web apps](#tab/webapps)
 
-## Getting started
+## Getting started with server-side web apps
 
 The following steps walk through code-based instrumentation.
 
@@ -35,9 +44,9 @@ After performing these steps, you're ready to explore [Application Insights expe
 > [!TIP]
 > Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
-### [VM/VMSS](#tab/webapps)
+### [VM](#tab/vm)
 
-## Getting started
+## Getting started with web apps hosted on virtual machines or virtual machine scale sets
 
 The following steps walk through code-based instrumentation.
 
@@ -60,9 +69,9 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 ### [JavaScript](#tab/js)
 
-## Getting started
+## Getting started with the client-side JavaScript SDK
 
-The following steps walk through code-based instrumentation.
+The following steps walk through code-based instrumentation with the client-side JavaScript SDK.
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
@@ -73,21 +82,25 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 ### [Functions](#tab/functions)
 
-## Getting started
+## Getting started with Azure Functions
 
 To get started with Azure Functions OpenTelemetry, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
 
+After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
+
 ### [Kubernetes](#tab/aks)
 
-## Getting started
+## Getting started with containerized apps
 
 For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](opentelemetry-overview.md).
 
 [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) clusters is in public preview.
 
-### [AI Agents](#tab/aiagents)
+After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
-## Getting started
+### [Agents](#tab/agents)
+
+## Getting started with AI Agents
 
 Getting started looks different depending on how and where you're building your agents.
 
