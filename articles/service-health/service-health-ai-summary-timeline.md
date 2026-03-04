@@ -66,9 +66,9 @@ With this information you can easily see the progress in resolving the issue, wh
 The timeline appears as a visual stage progression, showing:
 - Each outage stage (Detect through PIR)
 - Timestamps
-- Brief AI generated descriptions from communication updates sent for the specific Service Issue event
+- Brief AI-generated descriptions from communication updates sent for the specific Service issue event
 
-The timeline updates are based on the latest available information from the communications. Each stage can be selected and expanded to show key event details, which allows you to understand what Azure Service Health has addressed so far, and what actions are planned next.
+The timeline updates are based on the latest available information from the communications. Each stage can be selected and expanded to show key event details, which helps you understand what Azure Service Health has addressed so far, and what actions are planned next.
 
 >[!Note]
 >The AI Summary is a single summary for one event. Multiple summaries will be available in corresponding releases.
