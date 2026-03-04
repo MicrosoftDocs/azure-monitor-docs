@@ -34,10 +34,14 @@ Now you can select **Generate summary** at the top of the service issue page. Th
 
 This summary tells you what’s going on, without requiring you to read multiple detailed updates.
 
->[!TIP]
->Select the *copy* icon shown here to make a copy of the AI-generated summary you can share with your stakeholders.
+**Copy the summary**<br>
+Select the *copy* icon shown here to make a copy of the AI-generated summary you can share with your stakeholders.
 
 :::image type="content"source="./media/summary-timeline/api-copy-option.png" alt-text= "A screenshot of the option to copy the AI-generated summary." Lightbox= "./media/summary-timeline/api-copy-option.png":::
+
+**Provide feedback**<br>
+You can also use the thumbs up/down buttons below the summary to provide feedback on the quality of the AI-generated content.
+:::image type="content"source="./media/summary-timeline/summary-feedback-option.png" alt-text= "A screenshot of the option to give feedback to the AI-generated summary." Lightbox= "./media/summary-timeline/summary-feedback-option.png":::
 
 ## AI-generated mitigation timeline
 
