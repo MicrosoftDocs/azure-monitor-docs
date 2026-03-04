@@ -91,7 +91,7 @@ Another process that adds latency is the process that handles custom logs. In so
 
 ### New custom data types provisioning
 
-When a new type of custom data is created from a [custom log](../agents/data-sources-custom-logs.md) or the [Logs ingestion API](log-ingestion-api.md), the system creates a dedicated storage container. This one-time overhead occurs only on the first appearance of this data type.
+When a new type of custom data is created from a [custom log](../agents/data-sources-custom-logs.md) or the [Logs ingestion API](logs-ingestion-api-overview.md), the system creates a dedicated storage container. This one-time overhead occurs only on the first appearance of this data type.
 
 ## Check ingestion time
 
