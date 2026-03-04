@@ -44,7 +44,7 @@ The following diagram illustrates a sample architecture of the Azure Monitor pip
 - The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor. 
 - Once data is collected from the pipeline, it's available to any Azure Monitor features accessing that data.
 
-:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png":::
+:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
 ## Next steps
 
