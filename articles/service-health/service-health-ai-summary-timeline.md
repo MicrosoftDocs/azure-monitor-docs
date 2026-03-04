@@ -2,19 +2,16 @@
 title: Service Health Alerts AI generated summary (preview)
 description: Service health AI generated summary and timeline overview
 ms.topic: concept-article
-ms.date: 03/02/2026
+ms.date: 03/04/2026
 ---
 
 # AI generated summary and timeline (preview) 
 
-When an Azure service outage occurs, customers often struggle to quickly find essential information such as details like which services and regions are affected. 
+When an Azure service outage happens, it can be tough to quickly find the information you actually need. 
 
-Also they need to learn when the issue began, what actions users should take, and how mitigation is progressing. 
+You might be trying to figure out which services or regions are affected, when the issue started, what actions you’re supposed to take, or how the mitigation is progressing. But that information is often scattered across multiple technical update pages, which can make the whole situation even more frustrating.
 
-This information is often spread across multiple technical update pages.
-
-This broad information can make it challenging to gauge the severity, plan internal communications, and respond effectively.
-
+Because of this, it becomes harder to understand how serious the outage is, communicate with your team, and respond in a timely, effective way.
 
 
 
@@ -34,7 +31,13 @@ Now you can select **Generate summary** at the top of the service issue page. Th
 
 :::image type="content"source="./media/summary-timeline/summary-overview.png" alt-text= "A screenshot of the generated summary for the Service event." Lightbox= "./media/summary-timeline/summary-overview.png":::
 
-This summary tells you, *What’s going on* without requiring you to read multiple detailed updates.
+
+This summary tells you what’s going on, without requiring you to read multiple detailed updates.
+
+>[!TIP]
+>Select the *copy* icon shown here to make a copy of the AI-generated summary you can share with your stakeholders.
+
+:::image type="content"source="./media/summary-timeline/api-copy-option.png" alt-text= "A screenshot of the option to copy the AI-generated summary." Lightbox= "./media/summary-timeline/api-copy-option.png":::
 
 ## AI-generated mitigation timeline
 
@@ -61,7 +64,7 @@ The timeline appears as a visual stage progression, showing:
 - Timestamps
 - Brief AI generated descriptions from communication updates sent for the specific Service Issue event
 
-The timeline updates dynamically based on the latest available information. Each stage can be selected and expands to show key event details so you can understand what Azure Service Health has done so far and what comes next.
+The timeline updates are based on the latest available information from the communications. Each stage can be selected and expanded to show key event details, which allows you to understand what Azure Service Health has addressed so far, and what actions are planned next.
 
 >[!Note]
 >The AI Summary is a single summary for one event. Multiple summaries will be available in corresponding releases.
