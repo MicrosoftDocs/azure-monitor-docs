@@ -11,8 +11,6 @@ ms.custom: references_regions, devx-track-azurecli
 
 The Azure Monitor pipeline extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It enables at-scale collection, transformation, and routing of telemetry data before it's sent to the Azure Monitor in the cloud. The pipeline can cache data locally and sync with the cloud when connectivity is restored and route telemetry to Azure Monitor in cases where clients can't send data directly to the cloud.
 
-:::image type="content" source="./media/pipeline-overview/overview.png" lightbox="./media/pipeline-overview/overview.png" alt-text="Diagram that shows the data flow for Azure Monitor pipeline." border="false":::
-
 ## Use cases
 
 Specific use cases for Azure Monitor pipeline include the following:
@@ -34,7 +32,19 @@ The Azure Monitor pipeline is a containerized solution that is deployed on an [A
 
 For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table)
 
+## Sample architecture
 
+The following diagram illustrates a sample architecture of the Azure Monitor pipeline. This diagram illustrates the following concepts.
+
+- The pipeline id deployed in third party clouds, and any physical locations with devices and applications to collect data from.
+- The pipeline is deployed on an Arc-enabled Kubernetes cluster at each location and in each third-party cloud provider.
+- Data sources include the following:
+    -  Syslog being collected from sources such as network devices and agents running on local servers. Collected by default on TCP port 514.
+    -  OpenTelemetry (OTLP) being collected from applications. Collected by default on TCP port 4317.
+- The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor. 
+- Once data is collected from the pipeline, it's available to any Azure Monitor features accessing that data.
+
+:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png":::
 
 ## Next steps
 
