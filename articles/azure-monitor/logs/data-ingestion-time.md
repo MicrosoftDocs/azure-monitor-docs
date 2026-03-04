@@ -17,12 +17,14 @@ Latency refers to the time between when data is created on the monitored system 
 
 ## Factors affecting latency
 
-The total ingestion time for a particular set of data is the time at these sources: the Azure Monitor Agent (client) and the Azure Monitor service.
+The total ingestion time for a particular set of data is the cumulative time at these sources:
+- Clients like the Azure Monitor Agent (AMA), other agents, or custom applications using the Logs ingestion API
+- Azure Monitor service
 
 :::image type="content" source="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" lightbox="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" alt-text="Architecture diagram showing the Azure Monitor ingestion process.":::
 
-* **Agent time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, an agent handles this process. The network might introduce more latency. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the agent time.
-* **Azure Monitor time**: After the agent hands off to Azure Monitor, the time for ingestion to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
+* **Client time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, an agent like the Azure Monitor Agent handles this process. The network might introduce more latency. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the AMA client time.
+* **Azure Monitor time**: After the client hands off to Azure Monitor, the time for ingestion to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
 
 The following sections describe the different latency introduced in this process.
 
