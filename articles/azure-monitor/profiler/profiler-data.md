@@ -66,7 +66,7 @@ The .NET Profiler uses a combination of sampling methods and instrumentation to 
   - Task Parallel Library (TPL) events
   - Thread pool events
 
-The call stack displayed in the timeline view is the result of the sampling and instrumentation. Each sample captures the complete call stack of the thread. It includes code from Microsoft .NET Framework, and any other frameworks that you reference.
+The call stack displayed in the timeline view is the result of the sampling and instrumentation. Each sample captures the complete call stack of the thread. It includes code from the Microsoft .NET Framework and any other frameworks that you reference.
 
 ### Object allocation (clr!JIT\_New or clr!JIT\_Newarr1)
 
