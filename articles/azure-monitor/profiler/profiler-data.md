@@ -104,7 +104,7 @@ If the .NET Framework runtime is running [unoptimized code](/cpp/build/profile-g
 
 For each method, it should be displayed once during the process, at most.
 
-If loading code takes a substantial amount of time for a request, it's the request's initiate execute of the unoptimized portion of the method. Consider using a warmup process that runs that portion of the code before your users access it.
+If loading code takes a substantial amount of time for a request, it's the request's initial execution of the unoptimized portion of the method. Consider using a warmup process that runs that portion of the code before your users access it.
 
 ### Send HTTP request
 
@@ -128,7 +128,7 @@ If the **AWAIT_TIME** appears to be in framework code instead of your code, the 
 - The framework code used to run the **AWAIT** 
 - Code used for recording telemetry about the **AWAIT** 
 
-To show only your code and make it easier to see where the **AWAIT** originates, at the top of the page, unselect  **Framework dependencies**.
+To show only your code and make it easier to see where the **AWAIT** originates, at the top of the page, unselect **Framework dependencies**.
 
 ### Blocked time
 
