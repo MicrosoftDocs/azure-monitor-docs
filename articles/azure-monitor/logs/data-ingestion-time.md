@@ -17,48 +17,44 @@ Latency refers to the time between when data is created on the monitored system 
 
 ## Factors affecting latency
 
-The total ingestion time for a particular set of data is the cumulative time at these sources:
-- Clients like the Azure Monitor Agent (AMA), other agents, or custom applications using the Logs ingestion API
-- Azure Monitor service
+The total ingestion time for a particular set of data is the cumulative time from the client to the Azure Monitor service.
 
 :::image type="content" source="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" lightbox="../data-collection/media/data-collection-rule-overview/azure-monitor-pipeline-simple.png" alt-text="Architecture diagram showing the Azure Monitor ingestion process.":::
 
-* **Client time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, an agent like the Azure Monitor Agent handles this process. The network might introduce more latency. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the AMA client time.
+* **Client time**: The time to discover an event, collect it, and then send it to a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md) as a log record. In most cases, an agent like the Azure Monitor Agent (AMA) handles this process. Custom applications that use the Logs ingestion API aren't part of this article's calculations, but they might have their own latency characteristics that are similar to the AMA client time.
 * **Azure Monitor time**: After the client hands off to Azure Monitor, the time for ingestion to process the log record. This time period includes parsing the properties of the event and potentially adding calculated information. 
 
 The following sections describe the different latency introduced in this process.
 
 ### Agent collection latency
 
-**Time varies**
+**Latency: Time varies**
 
-Agents and management solutions use different strategies to collect data from a virtual machine, which might affect the latency. Some specific examples are listed in the following table.
+Agents use different strategies to collect data, which might affect the latency. Some specific examples are listed in the following table.
 
 | Type of data  | Collection frequency  | Notes |
 |:--------------|:----------------------|:------|
 | Windows events, Syslog events, and performance metrics | Collected immediately| |
 | Linux performance counters | Polled at 30-second intervals| |
 | IIS logs and text logs | Collected after their timestamp changes | For IIS logs, this schedule is influenced by the [rollover schedule configured on IIS](../agents/data-sources-iis-logs.md). |
-| Active Directory Replication solution | Assessment every five days | The agent collects the logs only when assessment is complete. |
-| Active Directory Assessment solution | Weekly assessment of your Active Directory infrastructure | The agent collects the logs only when assessment is complete. |
 
 For more information about agent performance, see [Azure Monitor Agent performance](../agents/azure-monitor-agent-performance.md).
 
 ### Agent upload frequency
 
-**Under 1 minute**
+**Latency: Under 1 minute**
 
 To keep the Azure Monitor Agent lightweight, it buffers logs and periodically uploads them to Azure Monitor. Upload frequency varies between 30 seconds and 2 minutes depending on the type of data. Most data is uploaded in under 1 minute.
 
 ### Network
 
-**Varies**
+**Latency: Varies**
 
 Network conditions might negatively affect the latency of this data to reach a data collection endpoint.
 
-### Azure metrics, resource logs, activity log
+### Azure metrics, resource logs, activity logs
 
-**30 seconds to 20 minutes**
+**Latency: 30 seconds to 20 minutes**
 
 Azure data adds more time to become available at a data collection endpoint for processing:
 
@@ -66,20 +62,9 @@ Azure data adds more time to become available at a data collection endpoint for 
 * **Resource logs** are usually available within 3 to 10 minutes end-to-end, depending on the complexity of the service and the Azure services involved. For example, Azure SQL Database and Azure Virtual Network currently provide their logs every five minutes. To examine this latency in your environment, see the [query that follows](#check-ingestion-time).
 * **Activity logs** are available for analysis and alerting in 3 to 20 minutes.
 
-### Management solutions collection
-
-**Varies**
-
-Some solutions don't collect their data from an agent and might use a collection method that introduces more latency. Some solutions collect data at regular intervals without attempting near real-time collection. Specific examples include:
-
-* Microsoft 365 solution polls activity logs by using the Management Activity API, which currently doesn't provide any near real-time latency guarantees.
-* Windows Analytics solutions (Update Compliance, for example) data is collected by the solution at a daily frequency.
-
-To determine a solution's collection frequency, see the [documentation for each solution](/previous-versions/azure/azure-monitor/insights/solutions).
-
 ### Azure Monitor process time
 
-**Less than 10 seconds**
+**Latency: Less than 10 seconds**
 
 After the data reaches the data collection endpoint, it takes less than 10 seconds before you can query it.
 
