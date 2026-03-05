@@ -120,7 +120,7 @@ For the .NET Profiler to work properly, make sure:
 
 - Your web app has [Application Insights enabled](./profiler.md) with the [right settings](./profiler.md#for-application-insights-and-app-service-in-different-subscriptions).
 
-- The [**ApplicationInsightsProfiler3** WebJob](./profiler.md#enable-application-insights-and-the-net-profiler) is running. To check the webjob:
+- The [**ApplicationInsightsProfiler3** WebJob](./profiler.md#enable-application-insights-and-the-net-profiler) is running. To check the WebJob:
 
   1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
 
@@ -175,7 +175,7 @@ When you configure the .NET Profiler, updates are made to the web app's settings
 #### Too many active profiling sessions
 
 In Azure App Service, there's a limit of only **one profiling session at a time**. This limit is enforced at the virtual machine level across all applications and deployment slots running in an App Service Plan. 
-This limit applies equally to profiling sessions started by using *Diagnose and solve problems*, Kudu, and Application Insights Profiler for .NET.
+This limit applies equally to profiling sessions started by using **Diagnose and solve problems**, Kudu, and Application Insights Profiler for .NET.
 
 If the .NET Profiler tries to start a session when another is already running, an error is logged in the Application Log and also the continuous WebJob log for `ApplicationInsightsProfiler3`.
 
