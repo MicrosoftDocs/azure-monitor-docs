@@ -81,7 +81,7 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 ### [Kubernetes](#tab/aks)
 
-**Getting started with containerized apps**
+**Getting started with containerized apps hosted on Azure Kubernetes Service (AKS)**
 
 For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](opentelemetry-overview.md).
 
