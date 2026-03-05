@@ -1,9 +1,10 @@
 ---
 title: Troubleshoot Application Insights Profiler for .NET
-description: Walk through troubleshooting steps and information to enable and use Application Insights Profiler for .NET.
+description: Learn about troubleshooting steps and information to enable and use Application Insights Profiler for .NET.
 ms.topic: troubleshooting-general
-ms.date: 03/25/2025
+ms.date: 03/06/2026
 ms.reviewer: charles.weininger
+#customer intent: As an application developer using Application Insights Profiler for .NET, I need to diagnose any problems that might occur in using Profiler.
 ---
 
 # Troubleshoot Application Insights Profiler for .NET
@@ -12,7 +13,7 @@ This article presents troubleshooting steps and information to enable you to use
 
 ## Are you using the appropriate .NET Profiler endpoint?
 
-Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide).
+Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide#application-insights).
 
 |App setting    | US Government Cloud | China Cloud |
 |---------------|---------------------|-------------|
@@ -30,7 +31,7 @@ If your web app is an ASP.NET Core application, it must be running on the [lates
 Profiler for .NET isn't currently supported on free or shared app service plans. Upgrade to one of the basic plans for Profiler to start working.
 
 > [!NOTE]
-> The Azure Functions consumption plan isn't supported. See [Profile live Azure Functions app with Application Insights](./profiler-azure-functions.md).
+> The Azure Functions consumption plan isn't supported. See [Enable the .NET Profiler for Azure Functions apps](./profiler-azure-functions.md).
 
 ## Are you searching for .NET Profiler data within the right time frame?
 
@@ -70,31 +71,36 @@ Search for trace messages and custom events sent by the .NET Profiler to your Ap
 
    - If the application isn't receiving requests while Profiler is running, the message explains that the upload was canceled because of no activity.
 
-   - Profiler started and sent custom events when it detected requests that happened while Profiler was running. If the `ServiceProfilerSample` custom event is displayed, it means that a profile was captured and is available in the **Application Insights Performance** pane.
+   - Profiler started and sent custom events when it detected requests that happened while Profiler was running. If the `ServiceProfilerSample` custom event is displayed, it means that a profile was captured and is available in the Application Insights **Performance** page.
 
    If no records are displayed, Profiler isn't running or took too long to respond. Make sure [Profiler is enabled on your Azure service](./profiler.md).
 
 ## The .NET Profiler is on, but no traces captured
 
-Even when the Profiler is enabled, it may not capture or upload traces, especially in these situations:
+Even when the Profiler is enabled, it might not capture or upload traces, especially in these situations:
 
-1. **No incoming requests to your application:**   
-     You can manually invoke your application or create an [availability test](../app/availability.md), or a [load test](/azure/load-testing/overview-what-is-azure-load-testing). 
+1. **No incoming requests to your application:**
 
-1. **No incoming telemetry acknowledged by Application Insights:**  
-    - If there is traffic coming to your application: validate that there are incoming requests showing in Application Insights [Live Metrics](../app/live-stream.md). 
-    - If the `Incoming Requests` charts are empty (no data or showing zero): [troubleshoot Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/asp-net-troubleshoot-no-data). 
-    - If you are hosting your .NET application on Azure App Service: [try the App Service .NET troubleshooting steps](../app/azure-web-apps-net.md#troubleshooting).
+   You can manually invoke your application or create an [availability test](../app/availability.md), or a [load test](/azure/load-testing/overview-what-is-azure-load-testing). 
 
-1. **Profiler setting for Sampling is turned off:**   
-    If still no profiler traces are available, check the Profiler Sampling setting.   
-      1. Open **Application Insights** > **Performance** blade. 
-      1. Click on **Profiler**.
-      1. Click on the **Triggers** button. 
-      1. In the Trigger Settings, ensure the **Sampling** toggle is on.
+1. **No incoming telemetry acknowledged by Application Insights:**
 
-1. **Still no traces uploaded?**  
-    [Create a support request](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview?DMC=troubleshoot), or ask [Azure community support](/answers/products/azure?product=all). You can also submit product feedback to [Azure feedback community](https://feedback.azure.com/d365community).
+   - If traffic is coming to your application: validate that there are incoming requests showing in Application Insights [Live Metrics](../app/live-stream.md). 
+   - If the `Incoming Requests` charts are empty (no data or showing zero): [troubleshoot Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/asp-net-troubleshoot-no-data). 
+   - If you host your .NET application on Azure App Service, see [Troubleshoot Application Insights integration with Azure App Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues).
+
+1. **Profiler setting for Sampling is turned off:**
+
+   If still no profiler traces are available, check the Profiler Sampling setting.
+
+   1. Open **Application Insights** > **Performance**. 
+   1. Select **Profiler**.
+   1. Select the **Triggers** button. 
+   1. In the Trigger Settings, ensure **Sampling** is on.
+
+1. **Still no traces uploaded?**
+
+   [Create a support request](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview?DMC=troubleshoot), or ask [Azure community support](/answers/products/azure?product=all). You can also submit product feedback to [Azure feedback community](https://feedback.azure.com/d365community).
 
 ## Double counting in parallel threads
 
@@ -114,27 +120,28 @@ For the .NET Profiler to work properly, make sure:
 
 - Your web app has [Application Insights enabled](./profiler.md) with the [right settings](./profiler.md#for-application-insights-and-app-service-in-different-subscriptions).
 
-- The [**ApplicationInsightsProfiler3** WebJob]() is running. To check the webjob:
-   1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
-      1. In your App Service instance, select **Advanced Tools** on the left pane.
-      1. Select **Go**.
-   1. On the top menu, select **Tools** > **WebJobs dashboard**.
-      The **WebJobs** pane opens.
+- The [**ApplicationInsightsProfiler3** WebJob](profiler#enable-application-insights-and-the-net-profiler) is running. To check the webjob:
 
-      If **ApplicationInsightsProfiler3** doesn't show up, restart your App Service application.
+  1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
 
-      :::image type="content" source="./media/profiler-troubleshooting/profiler-web-job.png" lightbox="./media/profiler-troubleshooting/profiler-web-job.png" alt-text="Screenshot that shows the WebJobs pane, which displays the name, status, and last runtime of jobs.":::
+     1. In your App Service instance, select **Advanced Tools** on the left pane.
+     1. Select **Go**.
 
-   1. To view the details of the WebJob, including the log, select the **ApplicationInsightsProfiler3** link.
-     The **Continuous WebJob Details** pane opens.
+  1. On the top menu, select **Tools** > **WebJobs dashboard**. The **WebJobs** pane opens.
 
-      :::image type="content" source="./media/profiler-troubleshooting/profiler-web-job-log.png" lightbox="./media/profiler-troubleshooting/profiler-web-job-log.png" alt-text="Screenshot that shows the Continuous WebJob Details pane.":::
+     If **ApplicationInsightsProfiler3** doesn't show up, restart your App Service application.
+
+     :::image type="content" source="./media/profiler-troubleshooting/profiler-web-job.png" lightbox="./media/profiler-troubleshooting/profiler-web-job.png" alt-text="Screenshot that shows the WebJobs pane, which displays the name, status, and last runtime of jobs.":::
+
+  1. To view the details of the WebJob, including the log, select the **ApplicationInsightsProfiler3** link. The **Continuous WebJob Details** pane opens.
+
+     :::image type="content" source="./media/profiler-troubleshooting/profiler-web-job-log.png" lightbox="./media/profiler-troubleshooting/profiler-web-job-log.png" alt-text="Screenshot that shows the Continuous WebJob Details pane.":::
 
 If the .NET Profiler still isn't working for you, download the log and [submit an Azure support ticket](https://azure.microsoft.com/support/).
 
 #### Check the Diagnostic Services site extension status page
 
-If you enabled the .NET Profiler through the [Application Insights pane](profiler.md) in the portal, it's managed by the Diagnostic Services site extension. You can check the status page of this extension by going to
+If you enabled the .NET Profiler through the [Application Insights page](profiler.md) in the Azure portal, the Diagnostic Services site extension manages it. You can check the status page of this extension by going to
 `https://{site-name}.scm.azurewebsites.net/DiagnosticServices`.
 
 > [!NOTE]
@@ -148,6 +155,7 @@ You can use the Kudu management site for App Service to get the base URL of this
 1. Select **Advanced Tools**.
 1. Select **Go**.
 1. On the Kudu management site:
+
    1. Append `/DiagnosticServices` to the URL.
    1. Select Enter.
 
@@ -166,12 +174,12 @@ When you configure the .NET Profiler, updates are made to the web app's settings
 
 #### Too many active profiling sessions
 
-In Azure App Service, there's a limit of only **one profiling session at a time**. This limit is enforced at the VM level across all applications and deployment slots running in an App Service Plan. 
-This limit applies equally to profiling sessions started via *Diagnose and solve problems*, Kudu, and Application Insights Profiler for .NET.
+In Azure App Service, there's a limit of only **one profiling session at a time**. This limit is enforced at the virtual machine level across all applications and deployment slots running in an App Service Plan. 
+This limit applies equally to profiling sessions started by using *Diagnose and solve problems*, Kudu, and Application Insights Profiler for .NET.
 
 If the .NET Profiler tries to start a session when another is already running, an error is logged in the Application Log and also the continuous WebJob log for `ApplicationInsightsProfiler3`.
 
-You may see one of the following messages in the logs:
+You might see one of the following messages in the logs:
 
 - `Microsoft.ServiceProfiler.Exceptions.TooManyETWSessionException`
 - `Error: StartProfiler failed. Details: System.Runtime.InteropServices.COMException (0xE111005E): Exception from HRESULT: 0xE111005E`
@@ -210,24 +218,23 @@ To see whether the .NET Profiler is configured correctly by Azure Diagnostics:
 
 To check the settings that were used to configure Azure Diagnostics:
 
-1. Sign in to the virtual machine (VM).
+1. Sign in to the virtual machine.
 
 1. Open the log file at this location. The plug-in version might be newer on your machine.
 
-    ```
-    c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
-    ```
+   ```cmd
+   c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
+   ```
 
-
-1. In the file, search for the string `WadCfg` to find the settings that were passed to the VM to configure Azure Diagnostics.
+1. In the file, search for the string `WadCfg` to find the settings that were passed to the virtual machine to configure Azure Diagnostics.
 
 1. Check to see whether the iKey used by the .NET Profiler sink is correct.
 
 1. Check the command line that starts Profiler. The command line arguments are in the following file (the drive could be `c:` or `d:` and the directory might be hidden):
 
-    ```
-    C:\ProgramData\ApplicationInsightsProfiler\config.json
-    ```
+   ```cmd
+   C:\ProgramData\ApplicationInsightsProfiler\config.json
+   ```
 
 1. Make sure that the iKey on the Profiler command line is correct.
 
@@ -236,11 +243,11 @@ To check the settings that were used to configure Azure Diagnostics:
    - The debug information that indicates the settings that Profiler is using.
    - Status and error messages from Profiler.
 
-    You can find the file:
+   You can find the file:
 
-    ```
-    C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\1.17.0.6\ApplicationInsightsProfiler
-    ```
+   ```cmd
+   C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Diagnostics.IaaSDiagnostics\1.17.0.6\ApplicationInsightsProfiler
+   ```
 
 1. If the .NET Profiler is running while your application is receiving requests, the following message appears: "Activity detected from iKey."
 
@@ -248,12 +255,12 @@ To check the settings that were used to configure Azure Diagnostics:
 
 ### Edit network proxy or firewall rules
 
-If your application connects to the internet via a proxy or a firewall, you might need to update the rules to communicate with the .NET Profiler.
+If your application connects to the internet by using a proxy or a firewall, you might need to update the rules to communicate with the .NET Profiler.
 
-The IPs used by Application Insights Profiler for .NET are included in the Azure Monitor service tag. For more information, see [Service tags documentation](/azure/virtual-network/service-tags-overview).
+The IP addresses used by Application Insights Profiler for .NET are included in the Azure Monitor service tag. For more information, see [Azure service tags overview](/azure/virtual-network/service-tags-overview).
 
 [!INCLUDE [bring-your-own-storage-troubleshooting](./includes/bring-your-own-storage-troubleshooting.md)]
 
 ## Support
 
-If you still need help, submit a support ticket by clicking the question mark icon in the Azure portal. Include the correlation ID from the error message.
+If you still need help, submit a support ticket by selecting the question mark icon in the Azure portal. Include the correlation ID from the error message.
