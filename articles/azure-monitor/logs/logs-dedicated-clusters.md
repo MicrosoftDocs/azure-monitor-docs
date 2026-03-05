@@ -996,7 +996,7 @@ You can unlink a workspace from a cluster at any time. Here's what happens when 
 
 > [!NOTE] 
 > - To prevent data distribution across clusters, you can perform only two link operations for a specific workspace within a month. Contact support if you reach the limit.
-> - Unlinked workspaces move to a Pay-As-You-Go pricing tier.
+> - Unlinked workspaces move to a pay-as-you-go pricing tier.
 
 Use the following commands to unlink a workspace from cluster:
 
