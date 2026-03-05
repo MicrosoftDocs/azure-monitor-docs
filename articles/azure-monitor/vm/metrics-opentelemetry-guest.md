@@ -7,10 +7,10 @@ ms.reviewer: tylerkight
 ---
 
 # OpenTelemetry Guest OS Metrics (preview)
+When you enable enhanced monitoring for a virtual machine in Azure Monitor, you can choose between two experiences for collecting and visualizing performance data from the VM guest operating system: OpenTelemetry-based metrics (preview) and log-based metrics (classic). This article describes the differences between these two experiences and how to migrate from the logs-based experience OpenTelemetry-based metrics.
 
-At Microsoft, we embrace Open Standards through adoption and support of OpenTelemetry metrics stored in Azure Monitor Workspaces(AMW), with Prometheus Query Language(PromQl) our foundational metrics query language across all AMW metrics. 
-
-Before reading this article, users are recommended to first understand the difference between [Host OS vs Guest OS performance counters on virtual machines](/azure/virtual-machines/monitor-vm). 
+> [!NOTE]
+> OpenTelemetry Guest OS Performance Counters are currently in public preview.
 
 This article is about Guest OS performance counters that users must opt-in to collecting, either via Azure Monitor Agent with DCR, VM Insights with DCR, or user-collected with the OTelCollector as part of OTel instrumentation libraries. Users are recommended to store all metrics in the metrics-optimized Azure Monitor Workspace, where they are cheaper and faster to query than in Log Analytics Workspaces. 
  
@@ -21,47 +21,40 @@ This article provides users with the following information:
 * [Comparison of OpenTelemetry naming convention to traditional performance counters](#performance-counter-names)
 * [Resource Attributes](#resource-attributes)
 
-OpenTelemetry Guest OS Performance Counters are currently in public preview.
-
 ## Performance Counters
+Both Windows and Linux provide OS-level metrics such as CPU usage, memory consumption, disk I/O, and networking to help diagnose performance issues. The total number of available OS performance counters is dynamic, with Windows providing [~1846 OS performance counters](/troubleshoot/windows-server/performance/rebuild-performance-counter-library-values) by default and several more available based on the local machine available hardware, software, and tracepoint events.
 
-Both Windows and Linux provide users with OS-level metrics related to CPU usage, memory consumption, disk I/O, networking and more to help diagnose performance issues. You can easily see an example on your local machine right now by using [Performance Monitor(perfmon)](/windows/win32/perfctrs/performance-counters-portal) on Windows or by using the [*perf* command](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/7/html/developer_guide/perf) on Linux. 
-
-The total number of available OS performance counters is dynamic, with Windows providing [~1846 OS performance counters](/troubleshoot/windows-server/performance/rebuild-performance-counter-library-values) by default and several more available based on the local machine available hardware, software, and tracepoint events.
-
-A subset of OpenTelemetry Metrics are known as [system metrics](https://opentelemetry.io/docs/specs/semconv/system/system-metrics/). System metrics are essentially another name for performance counters; they are an Open Source Standard for consistent naming and formatting of performance counters and do not add any net-new OS performance counters.  
+A subset of OpenTelemetry Metrics are known as [system metrics](https://opentelemetry.io/docs/specs/semconv/system/system-metrics/). System metrics are essentially another name for performance counters; they are an Open Source Standard for consistent naming and formatting of performance counters and do not add any net-new OS performance counters.
 
 ## Benefits of OpenTelemetry
 
 **Cross-OS observability**
-The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for users to manage their virtual machines / nodes across their fleet with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (ARM/Bicep templates, Terraform, etc.) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
+The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for you to manage all virtual machines with a single set of queries used for either Windows or Linux OS images. The same configuration-as-code (including ARM/Bicep templates and Terraform) using the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
 
 **More performance counters**
-The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for collection via DCR with Log Analytics workspace as a destination. For example, users can now monitor per-process CPU utilization, disk I/O, memory usage and more.
+The OpenTelemetry Collector Host Metrics Receiver collects many more performance counters than Azure Monitor currently makes available for logs-based collection. For example, you can monitor per-process CPU utilization, disk I/O, and memory usage.
 
-**Fewer performance counters**
-In many scenarios, existing performance counters have been simplified into a single OTel system metric with metric dimensions [(Resource Attributes)](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#timeseries-model) simplifying the user experience.
+**Simplified counters**
+In many scenarios, existing performance counters have been simplified into a single OTel system metric with metric dimensions [(Resource Attributes)](https://opentelemetry.io/docs/specs/otel/metrics/data-model/#timeseries-model), simplifying the user experience.
 
-For example, the CPU time in different states can surface as the following three performance counters in Windows:
-* \Processor Information(_Total )\% Processor Time
-* \Processor Information(_Total)\% Privileged Time
-* \Processor Information(_Total)\% User Time
-or as the following seven performance counters in Linux:
-* Cpu/usage_user
-* Cpu/usage_system
-* Cpu/usage_idle
-* Cpu/usage_active
-* Cpu/usage_nice
-* Cpu/usage_iowait
-* Cpu/usage_irq
 
-In OpenTelemetry, all of these counters become a single performance counter: system.cpu.time, and the time spent in each state (such as user, system, idle) can now be found by simply filtering on the dimension *State*.
+| Collection | Windows | Linux |
+|:---|:---|:---|
+| Otel | `system.cpu.time` (Filter on the dimension *State* for time in each state such as user, system, idle.) |
+| Logs | * \Processor Information(_Total )\% Processor Time<br>* \Processor Information(_Total)\% Privileged Time<br>* \Processor Information(_Total)\% User Time | * Cpu/usage_user<br>* Cpu/usage_system<br>* Cpu/usage_idle<br>* Cpu/usage_active<br>* Cpu/usage_nice<br>* Cpu/usage_iowait<br>* Cpu/usage_irq |
+
 
 ## Benefits of Azure Monitor Workspace
 
-Metrics stored in Azure Monitor workspaces are cheaper and faster to query than when stored in Log Analytics workspaces, due to the different data models backing these different data stores. 
+Metrics stored in Azure Monitor workspaces are cheaper and faster to query than the same data stored in Log Analytics workspaces because they're optimized for retrieval from a time series database. 
 
-In addition to those general benefits, users no longer experience mismatches in schemas between the Perf and Insights tables. VM Insights (v2) sending to AMW uses a subset of the OpenTelemetry system metrics we make available to users, providing seamless compatibility across user cohorts. Large enterprises with application teams that use a mix of VM Insights and non-VM Insights Guest OS performance counter monitoring can use the same PromQl queries, dashboards, and alerts for the same OTel metrics.
+Using OTel metrics in AMW also avoids the current multiple schemas in logs-based collection. Metrics collected by VM insights are stored in the `InsightsMetrics` table while additional metrics that you enable are collected in the `Perf` table which uses a different schema.
+
+Enhanced monitoring with OpenTelemetry uses a subset of the system metrics available to users, providing seamless compatibility across user cohorts. Large enterprises with different application teams can use the same PromQl queries, dashboards, and alerts for the same sets of OTel metrics.
+
+## Current limitations
+There currently isn't a method to perform a single query across data in a Log Analytics workspace and Azure Monitor workspace. Using logs-based collection, logs and metrics for your VMs are stored together in a Log Analytics workspace, allowing you to correlate between them in a single KQL query. With OpenTelemetry-based collection, metrics are stored in an Azure Monitor workspace and logs are stored in a Log Analytics workspace, requiring separate queries for each.
+
 
 ## Performance Counter Names 
 

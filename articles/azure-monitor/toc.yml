@@ -259,52 +259,23 @@ items:
       href: vm/best-practices-vm.md
     - name: Tutorials
       items:
+      - name: Enable enhanced monitoring
+        href: vm/tutorial-monitor-vm-enable-insights.md
       - name: Enable recommended alerts
         displayName: virtual machines, vm, vms
         href: vm/tutorial-monitor-vm-alert-recommended.md
       - name: Create an availability alert
         displayName: virtual machines, vm, vms
         href: vm/tutorial-monitor-vm-alert-availability.md
-      - name: Enable VM insights
-        href: vm/tutorial-monitor-vm-enable-insights.md
       - name: Collect VM guest logs and metrics
         href: vm/tutorial-monitor-vm-guest.md
-    - name: Collect client data
+    - name: OpenTelemetry experience
       items:
-      - name: Create data collection rule
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection.md
-      - name: Configure a syslog forwarder
-        href: /azure/sentinel/forward-syslog-monitor-agent
-        maintainContext: true
-      - name: Send data to Fabric and Azure Data Explorer
-        href: vm/send-fabric-destination.md
-      - name: Agent data sources
-        items:
-        - name: Windows events
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-windows-events.md
-        - name: Syslog events
-          href: vm/data-collection-syslog.md
-        - name: IIS logs
-          displayName: data collection rule,Azure Monitor Agent,IIS logs
-          href: vm/data-collection-iis.md
-        - name: Performance data
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-performance.md
-        - name: Text logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-text.md
-        - name: JSON logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-json.md
-        - name: SNMP traps
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-snmp-data.md
-        - name: Windows Firewall logs
-          displayName: data collection rule,Azure Monitor Agent,firewall logs
-          href: vm/data-collection-firewall-logs.md
-    - name: VM insights
+      - name: Overview
+        href: vm/metrics-opentelemetry-guest.md
+      - name: Enable OpenTelemetry metrics (Preview)
+        href: vm/metrics-opentelemetry-guest-reference.md
+    - name: Logs-based experience (classic)
       items:
       - name: Overview
         href: vm/vminsights-overview.md
@@ -338,6 +309,8 @@ items:
           href: vm/vminsights-migrate-deprecated-policies.md
       - name: Map feature
         items:
+        - name: Overview
+          href: vm/vminsights-maps.md
         - name: Retirement guidance
           displayName: processes and dependencies, map, vminsights, dependency agent
           href: vm/vminsights-maps-retirement.md
@@ -353,6 +326,41 @@ items:
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
+    - name: Collect client data
+      items:
+      - name: Create data collection rule
+        displayName: Azure Monitor agent, AMA
+        href: vm/data-collection.md
+      - name: Agent data sources
+        items:
+        - name: Windows events
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-windows-events.md
+        - name: Syslog events
+          href: vm/data-collection-syslog.md
+        - name: IIS logs
+          displayName: data collection rule,Azure Monitor Agent,IIS logs
+          href: vm/data-collection-iis.md
+        - name: Performance data
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-performance.md
+        - name: Text logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: vm/data-collection-log-text.md
+        - name: JSON logs
+          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+          href: vm/data-collection-log-json.md
+        - name: SNMP traps
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-snmp-data.md
+        - name: Windows Firewall logs
+          displayName: data collection rule,Azure Monitor Agent,firewall logs
+          href: vm/data-collection-firewall-logs.md
+      - name: Configure a syslog forwarder
+        href: /azure/sentinel/forward-syslog-monitor-agent
+        maintainContext: true
+      - name: Send data to Fabric and Azure Data Explorer
+        href: vm/send-fabric-destination.md
     - name: Performance diagnostics
       items:
       - name: Overview

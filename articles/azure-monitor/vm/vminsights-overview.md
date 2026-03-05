@@ -7,6 +7,11 @@ ms.date: 01/15/2025
 
 # Overview of VM insights
 
+This article describes the classic logs-based experience for VM monitoring in Azure Monitor.
+
+
+
+
 VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. It also monitors the performance of your virtual machines and virtual machine scale sets by collecting data on their running processes and dependencies on other resources. 
 
 VM insights supports Windows and Linux operating systems on:
@@ -55,15 +60,7 @@ VM insights supports the following operating systems:
 - VM insights doesn't support any sampling frequency other than every 60 seconds for performance counters in the Microsoft-InsightsMetrics stream.
 - For log based visualizations (Classic), data from VMs using Private Link is collected but will not surface in the VM Insights experience.
 
-## Diagnostic and usage data
 
-Microsoft automatically collects usage and performance data through your use of Azure Monitor. Microsoft uses this data to improve the quality, security, and integrity of the service.
-
-To provide accurate and efficient troubleshooting capabilities, the Map feature includes data about the configuration of your software. The data provides information such as the operating system and version, IP address, DNS name, and workstation name. Microsoft doesn't collect names, addresses, or other contact information.
-
-For more information about data collection and usage, see the [Microsoft Online Services Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=512132).
-
-[!INCLUDE [GDPR-related guidance](~/reusable-content/ce-skilling/azure/includes/gdpr-dsr-and-stp-note.md)]
 
 ## Next steps
 
