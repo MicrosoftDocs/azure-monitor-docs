@@ -47,6 +47,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Amazon Linux 2023                                           | ✓ |
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
+| Debian 13                                                   | ✓ |
 | Debian 12                                                   | ✓ |
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |
