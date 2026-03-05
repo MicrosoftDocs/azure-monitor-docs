@@ -120,7 +120,7 @@ For the .NET Profiler to work properly, make sure:
 
 - Your web app has [Application Insights enabled](./profiler.md) with the [right settings](./profiler.md#for-application-insights-and-app-service-in-different-subscriptions).
 
-- The [**ApplicationInsightsProfiler3** WebJob](profiler#enable-application-insights-and-the-net-profiler) is running. To check the webjob:
+- The [**ApplicationInsightsProfiler3** WebJob](./profiler.md#enable-application-insights-and-the-net-profiler) is running. To check the webjob:
 
   1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
 
