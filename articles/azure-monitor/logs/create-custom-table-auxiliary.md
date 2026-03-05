@@ -4,7 +4,7 @@ description: Create a custom table with the Auxiliary table plan in your Log Ana
 ms.reviewer: adi.biran
 ms.custom: references_regions
 ms.topic: how-to 
-ms.date: 01/23/2026
+ms.date: 03/05/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -32,6 +32,22 @@ To create a custom table and collect log data, you need:
 > Auxiliary logs are generally available (GA) for all public cloud regions except for Qatar Central, and not available for Azure Government or China clouds.
 
 ## Create a custom table with the Auxiliary plan
+
+# [Portal](#tab/azure-portal-1)
+
+To create a custom table with the Auxiliary / Lake plan in the Azure portal:
+
+1. From the **Log Analytics workspaces** menu, select **Tables**.
+
+1. Select **Create** and then **New custom log (DCR-based)**.
+
+1. On the **Basics** tab, specify a name and, optionally, a description for the table. The portal automatically adds the *_CL* suffix to the table name.
+
+1. Under **Table plan**, select **Auxiliary / Lake**.
+
+1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
+
+# [API](#tab/api-1)
 
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
@@ -74,6 +90,8 @@ Provide this payload as the body of your request. Update the table name and adju
 > [!NOTE]
 > * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (microseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
 > * Tables with the Auxiliary plan don't support columns with dynamic data.
+
+---
 
 ## Send data to a table with the Auxiliary plan
 
