@@ -9,9 +9,9 @@ ms.date: 03/04/2026
 
 When an Azure service outage happens, it can be tough to quickly find the information you actually need. 
 
-You might be trying to figure out which services or regions are affected, when the issue started, what actions you’re supposed to take, or how the mitigation is progressing. But that information is often scattered across multiple technical update pages, which can make the whole situation even more frustrating.
+You could be trying to determine which services or regions are affected and when the issue began. You also need to know what actions to take and how the mitigation effort is progressing. That information is often scattered across multiple technical update pages, which can make the whole situation even more frustrating.
 
-Because of this, it becomes harder to understand how serious the outage is, communicate with your team, and respond in a timely, effective way.
+Because of this large amount of information, it can be harder to understand how serious the outage is, communicate with your team, and respond in a timely, effective way.
 
 
 
@@ -25,7 +25,7 @@ Now you can select **Generate summary** at the top of the service issue page. Th
 - Impacted resources
 - Affected services and regions
 - Start time and expected resolution time
-- Nature and severity of impact
+- Nature and severity of the impact
 - Causes
 - Workarounds and recommended next steps (non prescriptive)
 
@@ -51,10 +51,10 @@ The AI-generated timeline shows each major stage of the outage that includes:<br
 - Investigation
 - Mitigation
 - Resolution
-- Post-incident review
+- Post-incident Review (PIR)
 
 
-:::image type="content"source="./media/summary-timeline/summary-mitigated-timeline.png" alt-text= "A screenshot of the mitigated timeline of the the Service event." Lightbox= "./media/summary-timeline/summary-mitigated-timeline.png":::
+:::image type="content"source="./media/summary-timeline/summary-mitigated-timeline.png" alt-text= "A screenshot of the mitigated timeline of the Service event." Lightbox= "./media/summary-timeline/summary-mitigated-timeline.png":::
 
 With this information you can easily see the progress in resolving the issue, which can help you:
 
@@ -64,11 +64,13 @@ With this information you can easily see the progress in resolving the issue, wh
 - **Build trust and confidence** through greater transparency
 
 The timeline appears as a visual stage progression, showing:
-- Each outage stage (Detect through PIR)
+- Each outage stage (Detected through PIR)
 - Timestamps
 - Brief AI-generated descriptions from communication updates sent for the specific Service issue event
 
-The timeline updates are based on the latest available information from the communications. Each stage can be selected and expanded to show key event details, which helps you understand what Azure Service Health has addressed so far, and what actions are planned next.
+The timeline updates are based on the latest available information from the communications. 
+
+Each stage can be selected and expanded to show key event details that help you understand what Azure Service Health has addressed up to this point. You can also see what actions are planned next.
 
 >[!Note]
 >The AI Summary is a single summary for one event. Multiple summaries will be available in corresponding releases.
@@ -77,5 +79,5 @@ The timeline updates are based on the latest available information from the comm
 AI-generated content may be incorrect.
 
 
-For more information on Service Health alerts see [Service Issues](service-issues-blade.md).
+For more information on Service Health alerts, see [Service Issues](service-issues-blade.md).
 
