@@ -50,7 +50,7 @@ To keep the Azure Monitor Agent lightweight, it buffers logs and periodically up
 
 **Latency: Varies**
 
-The network between a client and the Azure Monitor data collection endpoint might add unexpected delays.
+The network between a client and the Azure Monitor data collection endpoint might add unexpected delays. When you measure the ingestion latency, this network latency is included as part of the `AgentLatency` calculation in the sample queries in the [measure ingestion latency](#measure-ingestion-latency) section.
 
 ### Azure metrics, resource logs, activity logs
 
@@ -95,7 +95,7 @@ Ingestion time might vary for different resources under different circumstances.
 | Record received by the data collection endpoint | [_TimeReceived](log-standard-columns.md#_timereceived) | Don't use this field to filter large datasets. It's not optimized for mass processing. |
 | Record stored in workspace and available for queries | [ingestion_time()](/azure/kusto/query/ingestiontimefunction) | Use `ingestion_time()` if you need to filter only records that were ingested in a certain time window. In such cases, also add a `TimeGenerated` filter with a larger range. |
 
-### Ingestion latency delays
+### Measure ingestion latency
 
 Measure the latency of a specific record when you compare the result of the [ingestion_time()](/azure/kusto/query/ingestiontimefunction) function to the `TimeGenerated` property. Discover how ingestion latency behaves when you use various aggregations of this data. Examine some percentile of the ingestion time to get insights for large amounts of data.
 
@@ -143,26 +143,13 @@ AzureDiagnostics
 | summarize percentiles(E2EIngestionLatency,50,95), percentiles(AgentLatency,50,95) by ResourceProvider
 ```
 
-Use the same query logic to diagnose latency conditions for Application Insights data:
-
-```kusto
-// Classic Application Insights schema
-let start=datetime("2023-08-21 05:00:00");
-let end=datetime("2023-08-23 05:00:00");
-requests
-| where timestamp > start and timestamp < end
-| extend TimeEventOccurred = timestamp
-| extend TimeRequiredtoGettoAzure = _TimeReceived - timestamp
-| extend TimeRequiredtoIngest = ingestion_time() - _TimeReceived
-| extend EndtoEndTime = ingestion_time() - timestamp
-| project timestamp, TimeEventOccurred, _TimeReceived, TimeRequiredtoGettoAzure , ingestion_time(), TimeRequiredtoIngest, EndtoEndTime
-| sort by EndtoEndTime desc
-```
+Use the same query logic to diagnose latency conditions for Application Insights log-based metrics:
 
 ```kusto
 // Workspace-based Application Insights schema
-let start=datetime("2023-08-21 05:00:00");
-let end=datetime("2023-08-23 05:00:00");
+// This query can be paired with any other Application Insights table other than "requests"
+let start=datetime("2026-01-21 05:00:00");
+let end=datetime("2026-01-23 05:00:00");
 AppRequests
 | where TimeGenerated > start and TimeGenerated < end
 | extend TimeEventOccurred = TimeGenerated
@@ -172,8 +159,6 @@ AppRequests
 | project TimeGenerated, TimeEventOccurred, _TimeReceived, TimeRequiredtoGettoAzure , ingestion_time(), TimeRequiredtoIngest, EndtoEndTime
 | sort by EndtoEndTime desc
 ```
-
-These two queries can be paired with any other Application Insights table other than "requests".
 
 ### Resources that stop responding
 
