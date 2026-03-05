@@ -3,7 +3,8 @@ title: Use Azure Monitor Dashboards with Grafana
 description: Explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 11/03/2025
+ms.date: 03/04/2026
+ai-usage: ai-assisted
 ---
 
 # Use Azure Monitor dashboards with Grafana
@@ -138,6 +139,12 @@ Dashboards that you import or create require RBAC access configuration to share 
     > 'Microsoft.Dashboard/dashboard/read' and 'Microsoft.Dashboard/dashboard/write' can also be used to assign permissions with more fine-grained control.
 1. Copy the link to the dashboard to your clipboard.
 1. Paste the link into your preferred communication method to share it.
+
+## Copy a dashboard to Azure Managed Grafana
+
+From any user-saved dashboard, you can select **Copy to Managed Grafana** in the toolbar to copy the dashboard to an Azure Managed Grafana instance. You can copy to an existing workspace or create a new one during the process.
+
+For detailed steps, see [Copy a dashboard to Azure Managed Grafana](visualize-copy-to-managed-grafana.md).
 
 ## Tag a dashboard
 

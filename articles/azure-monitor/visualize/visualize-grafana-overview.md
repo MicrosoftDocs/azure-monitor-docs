@@ -3,7 +3,8 @@ title: Visualize Azure Monitor data with Grafana
 description: This article explains how to use Grafana with Azure Monitor. It covers free Azure dashboards for integrated data and Managed Grafana for advanced features.
 ms.topic: concept-article
 ms.reviewer: kayodeprinceMS
-ms.date: 10/29/2025
+ms.date: 03/04/2026
+ai-usage: ai-assisted
 ---
 
 # Visualize Azure Monitor data with Grafana
@@ -25,6 +26,7 @@ Azure Monitor dashboards with Grafana enables the following capabilities:
 - Import thousands of publicly available [Grafana community dashboards](https://grafana.com/grafana/dashboards/?dataSource=prometheus) for supported resources.
 - Create your own dashboards in the Azure portal and apply a wide range of Grafana [visualizations](https://grafana.com/docs/grafana/latest/panels-visualizations/visualizations/) and client-side [transformations](https://grafana.com/docs/grafana/latest/panels-visualizations/query-transform-data/transform-data/) to Azure monitoring data.
 - Manage Grafana dashboards as native Azure resources, including using [Azure RBAC](/azure/role-based-access-control/overview) and automation via ARM template and Bicep templates. 
+- [Copy dashboards to Azure Managed Grafana](visualize-copy-to-managed-grafana.md) to use them with an Azure Managed Grafana instance.
 
 
 
