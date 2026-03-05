@@ -1,6 +1,6 @@
 ---
 title: Metrics usage insights in Azure Monitor (Preview)
-description: Describes the 
+description: Describes the metrics usage insights feature in Azure Monitor, which provides analysis of time‑series and event usage, throttling limits, trends, and cost‑optimization opportunities by sending usage data to a Log Analytics workspace.
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 04/11/2025
