@@ -1,7 +1,7 @@
 ---
 title: Data collection endpoints in Azure Monitor 
 description: Overview of how data collection endpoints work and how to create and set them up based on your deployment.
-ms.topic: article
+ms.topic: how-to
 ms.date: 05/21/2025
 ms.custom: references_region
 ms.reviwer: nikeist
@@ -20,10 +20,10 @@ A DCE isn't always required for data collection since the data source may use a 
 
 ### Azure Monitor agent (AMA) 
 
-[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../logs/private-link-security.md). 
+[AMA](../agents/azure-monitor-agent-overview.md) will use a public endpoint by default to retrieve its configuration from Azure Monitor. A DCE is only required if you're using [private link](../fundamentals/private-link-security.md). 
 
 > [!IMPORTANT]
-> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../logs/private-link-security.md).
+> Since Azure Monitor Private Link Scope (AMPLS) is dependent on DNS private link zones, any AMA installation connected to a network that shares DNS with AMPLS resources will require a DCE. Get more details at [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-security.md).
 
 You can view the agents associated with a DCE from its **Resources** page. Click **Add** to add additional agents. To remove them, select one or more agents and click **Disassociate** .
 
@@ -105,9 +105,15 @@ This table describes the components of a data collection endpoint, related regio
 
 1. Select **Review + create** to review the details of the DCE. Select **Create** to create it.
 
+# [CLI](#tab/cli)
+
+Create DCEs by using the [DCE commands](/cli/azure/monitor/data-collection/endpoint).
+
+Create associations between endpoints to your target machines or resources by using [az monitor data-collection rule association create](/cli/azure/monitor/data-collection/rule/association#az-monitor-data-collection-rule-association-create).
+
 # [REST API](#tab/restapi)
 
-Create DCEs by using the [DCE REST APIs](/cli/azure/monitor/data-collection/endpoint).
+Create DCEs by using the [DCE REST APIs](/rest/api/monitor/data-collection-endpoints).
 
 Create associations between endpoints to your target machines or resources by using the [DCRA REST APIs](/rest/api/monitor/datacollectionruleassociations/create#examples).
 
@@ -159,4 +165,4 @@ Data collection endpoints only support Log Analytics workspaces and Azure Monito
 
 ## Next steps
 
-* [Add an endpoint to an Azure Monitor Private Link Scope resource](../logs/private-link-configure.md#connect-resources-to-the-ampls)
+* [Add an endpoint to an Azure Monitor Private Link Scope resource](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls)

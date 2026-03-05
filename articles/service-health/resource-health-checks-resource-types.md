@@ -1,7 +1,7 @@
 ---
 title: Supported Resource Types through Azure Resource Health | Microsoft Docs
 description: Supported Resource Types through Azure Resource health
-ms.topic: article
+ms.topic: reference
 ms.date: 08/12/2025
 ---
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -67,5 +67,41 @@ Recommendation ID: 15a7e73b-943e-4cf5-847d-f54ed39c33f1
 Subcategory: DisasterRecovery
 
 <!--15a7e73b-943e-4cf5-847d-f54ed39c33f1_end-->
+
+<!--d45d2fe8-866c-43d6-8045-a5997dd61e05_begin-->
+
+#### Migrate the Azure Service Bus SDK to the latest version  
+  
+Migrate to latest version of Azure Service Bus SDK. The WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus, and com.microsoft.azure.servicebus libraries in Azure Service Bus SDK are retiring.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-update-your-azure-service-bus-sdk-libraries-by-30-september-2026)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: d45d2fe8-866c-43d6-8045-a5997dd61e05  
+Subcategory: undefined
+
+<!--d45d2fe8-866c-43d6-8045-a5997dd61e05_end-->
+
+<!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_begin-->
+
+#### Migrate to latest Azure SDK libraries  
+  
+Older Azure Service Bus SDK libraries (WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus, com.microsoft.azure.servicebus) will be retired. Move to the latest Azure SDK libraries for security updates and improved capabilities.  
+  
+**Potential benefits**: Maintain security & performance  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-update-your-azure-service-bus-sdk-libraries-by-30-september-2026)  
+
+ResourceType: microsoft.servicebus/namespaces  
+Recommendation ID: 55bd2c8e-da67-4e38-9af7-eb2123b0ca5e  
+Subcategory: undefined
+
+<!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_end-->
 
 <!--articleBody-->

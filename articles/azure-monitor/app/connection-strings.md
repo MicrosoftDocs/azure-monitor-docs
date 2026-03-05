@@ -1,8 +1,12 @@
 ---
 title: Connection strings in Application Insights
-description: This article explains the components of connection strings and how to use them.
+description: Learn how to configure connection strings in Application Insights to send telemetry data reliably and securely. Discover key-value pairs, schema, and examples.
+#customer intent: As a developer, I want to understand how to configure connection strings in Application Insights so that I can send telemetry data to the correct resource.
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 03/06/2026
+author: AarDavMax
+ms.author: aaronmax
+ms.reviewer: aaronmax
 ---
 
 # Connection strings in Application Insights
@@ -10,7 +14,7 @@ ms.date: 10/10/2024
 Connection strings specify to which Application Insights resource your instrumented application should send telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
-> The connection string contains an ikey and an ApplicationId.
+> The connection string contains an instrumentation key (ikey) and an ApplicationId.
 > 
 >The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
 >Connection strings are enhanced by adding the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
@@ -145,6 +149,19 @@ You can set a connection string in code, by using an environment variable, or a 
 
 Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
 
+## Authenticated browser telemetry using connection strings
+
+When organizations disable local authentication on Application Insights to enforce Microsoft Entra ID, browser-based telemetry sent by the JavaScript SDK can no longer authenticate directly and may stop flowing.
+
+A practical pattern is to route browser telemetry through Azure API Management (APIM), which:
+
+* Authenticates to Application Insights using a managed identity, and
+* Forwards requests to the regional ingestion endpoint on your behalf.
+
+With this setup, your connection string continues to identify the destination Application Insights resource, but the IngestionEndpoint points to your APIM proxy URL.
+
+For end-to-end guidance, including CORS and APIM policies, see: [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
+
 ### Code samples
 
 | Language | Classic API | OpenTelemetry |
@@ -165,11 +182,11 @@ To review frequently asked questions (FAQ):
 Get started at runtime with:
 
 * [Azure Virtual Machine (VM) and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
-* [Internet Information Server (IIS) server](./application-insights-asp-net-agent.md)
+* [Internet Information Server (IIS) server](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers)
 * [Web Apps feature of Azure App Service](./azure-web-apps.md)
 
 Get started at development time with:
 
-* [.NET](/azure/azure-monitor/app/classic-api&tabs=dotnet)
+* [.NET](/azure/azure-monitor/app/classic-api?tabs=dotnet)
 * [Java](./opentelemetry-enable.md?tabs=java)
-* [Node.js](/azure/azure-monitor/app/classic-api&tabs=nodejs)
+* [Node.js](/azure/azure-monitor/app/classic-api?tabs=nodejs)

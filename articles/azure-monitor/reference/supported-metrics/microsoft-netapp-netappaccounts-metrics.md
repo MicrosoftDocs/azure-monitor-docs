@@ -2,8 +2,8 @@
 title: Supported metrics - Microsoft.NetApp/netAppAccounts
 description: Reference for Microsoft.NetApp/netAppAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 06/03/2025
-ms.custom: Microsoft.NetApp/netAppAccounts, arm
+ms.date: 01/20/2026
+ms.custom: Microsoft.NetApp/netAppAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 

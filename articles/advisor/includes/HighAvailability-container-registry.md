@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/24/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Container Registry
@@ -38,16 +38,17 @@ Subcategory: HighAvailability
   
 Geo-replication enables workloads to use a single image, tag and registry name across regions, provides network-close registry access, reduced data transfer costs and regional Registry resilience if a regional outage occurs. This feature is only available in the Premium service tier.  
   
-**Potential benefits**: Improved resilience and pull performance, simplified registry management and reduced data transfer costs  
+**Potential benefits**: Optimized resiliency, accelerated pulls, lower bandwidth  
 
 **Impact:** High
   
-For more information, see [Geo-replicate Azure Container Registry to Multiple Regions - Azure Container Registry ](https://aka.ms/AAqwx90)  
+For more information, see [Geo-replicate Azure Container Registry to Multiple Regions - Azure Container Registry](https://aka.ms/AAqwx90)  
 
 ResourceType: microsoft.containerregistry/registries  
 Recommendation ID: dcfa2602-227e-4b6c-a60d-7b1f6514e690  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--dcfa2602-227e-4b6c-a60d-7b1f6514e690_end-->
+
 
 <!--articleBody-->

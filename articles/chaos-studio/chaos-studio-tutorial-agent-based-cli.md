@@ -257,6 +257,7 @@ After you've successfully deployed your VM, now you can create your experiment. 
     Each experiment creates a corresponding system-assigned managed identity. Note the principal ID for this identity in the response for the next step.
 
 ## Give the experiment permission to your virtual machine
+
 When you create a chaos experiment, Chaos Studio creates a system-assigned managed identity that executes faults against your target resources. This identity must be given [appropriate permissions](chaos-studio-fault-providers.md) to the target resource for the experiment to run successfully. The Reader role is required for agent-based faults. Other roles that don't have */Read permission, such as Virtual Machine Contributor, won't grant appropriate permission for agent-based faults.
 
 Give the experiment access to your VM or virtual machine scale set by using the following command. Replace `$EXPERIMENT_PRINCIPAL_ID` with the principal ID from the previous step. Replace `$RESOURCE_ID` with the resource ID of the target VM or virtual machine scale set. Be sure to use the resource ID of the VM, not the resource ID of the chaos agent used in the experiment definition. Run this command for each VM or virtual machine scale set targeted in your experiment.
@@ -266,6 +267,7 @@ az role assignment create --role "Reader" --assignee-principal-type "ServicePrin
 ```
 
 ## Run your experiment
+
 You're now ready to run your experiment. To see the effect, we recommend that you open [an Azure Monitor metrics chart](../azure-monitor/essentials/tutorial-metrics.md) with your VM's CPU pressure in a separate browser tab.
 
 1. Start the experiment by using the Azure CLI. Replace `$SUBSCRIPTION_ID`, `$RESOURCE_GROUP`, and `$EXPERIMENT_NAME` with the properties for your experiment.
@@ -277,6 +279,8 @@ You're now ready to run your experiment. To see the effect, we recommend that yo
 1. The response includes a status URL that you can use to query experiment status as the experiment runs.
 
 ## Next steps
+
 Now that you've run an agent-based experiment, you're ready to:
+
 - [Create an experiment that uses service-direct faults](chaos-studio-tutorial-service-direct-portal.md)
 - [Manage your experiment](chaos-studio-run-experiment.md)

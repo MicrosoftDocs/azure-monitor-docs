@@ -1,8 +1,8 @@
 ---
 title: Data collection rules in Azure Monitor
 description: Overview of data collection rules (DCRs) in Azure Monitor including their contents and structure and how you can create and work with them.
-ms.topic: article
-ms.date: 11/19/2024
+ms.topic: concept-article
+ms.date: 01/20/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
@@ -35,7 +35,7 @@ The DCR collection process has either replaced or is in the process of replacing
 | Legacy method | DCR method | Description |
 |:--------------|:-----------|:------------|
 | [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor virtual machines (VMs) and Kubernetes clusters supporting [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md). |
-| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](data-collection-metrics.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
+| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
 | [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It replaces the Data Collector API which was less secure and less functional. |
 
 ## Data collection process
@@ -87,7 +87,7 @@ Platform metrics are automatically collected from Azure resources and sent to [A
 
 When the DCR is created, it specifies the workspace and table where the data should be sent. The DCR also includes a transformation that ensures the data is in the correct format for the target table. The DCR is then associated with the resource from which the platform metrics are collected.
 
-See [Metrics export through data collection rules](./data-collection-metrics.md) for details.
+See [Metrics export using data collection rules](./metrics-export-create.md) for details.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-platform-metrics.png" lightbox="media/data-collection-rule-overview/data-collection-platform-metrics.png" alt-text="Diagram that shows basic operation for DCR collecting platform metrics." border="false":::
 
@@ -110,18 +110,6 @@ See [Workspace transformation DCR](../data-collection/data-collection-transforma
 [Transformations](data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) included in a DCR that run against each record received. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination. You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information.
 
 :::image type="content" source="media/data-collection-rule-overview/transformations.png" lightbox="media/data-collection-rule-overview/transformations.png" alt-text="Diagram that shows the basic concept of a transformation." border="false":::
-
-## Azure Monitor pipeline
-
-The [Azure Monitor pipeline](edge-pipeline-configure.md) extends the data collection process to your own data center. It enables at-scale collection and routing of telemetry data before it's delivered to the cloud.
-
-Specific use cases for Azure Monitor pipeline are:
-
-* **Scalability**. The pipeline can handle large volumes of data from monitored resources that may be limited by other collection methods such as Azure Monitor agent.
-* **Periodic connectivity**. Some environments may have unreliable connectivity to the cloud, or may have long unexpected periods without connection. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
-* **Layered network**. In some environments, the network is segmented and data can't be sent directly to the cloud. The pipeline can be used to collect data from monitored resources without cloud access and manage the connection to Azure Monitor in the cloud.
-
-:::image type="content" source="media/data-collection-rule-overview/azure-monitor-pipeline-edge.png" lightbox="media/data-collection-rule-overview/azure-monitor-pipeline-edge.png" alt-text="Diagram that shows the data flow for Azure Monitor edge pipeline." border="false":::
 
 ## DCR regions
 

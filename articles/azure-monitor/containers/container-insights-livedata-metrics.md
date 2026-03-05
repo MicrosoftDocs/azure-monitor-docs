@@ -1,7 +1,7 @@
 ---
 title: View metrics in real time with Container insights
 description: This article describes the real-time view of metrics without using kubectl with Container insights.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/25/2025
 ms.custom: references_regions
 ms.reviewer: aul

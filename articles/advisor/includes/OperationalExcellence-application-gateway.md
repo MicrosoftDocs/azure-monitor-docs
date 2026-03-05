@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 12/22/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -276,7 +276,7 @@ Recommendation ID: 6f087e7e-afdf-4a3d-a1de-41d70404b9cb
   
 Connection Monitor is part of Azure Monitor logs. The extension also lets you monitor network connectivity for your private and Microsoft peering connections. When you configure Connection Monitor for ExpressRoute, you can detect network issues to identify and eliminate.  
   
-**Potential benefits**: Provides monitoring of your ExpressRoute gateway for latency, point in time issues, and performance.  
+**Potential benefits**: Identify and resolve network issues  
 
 **Impact:** Medium
   
@@ -287,6 +287,7 @@ Recommendation ID: dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d
 
 
 <!--dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d_end-->
+
 
 <!--f8d4da72-3b27-4dd7-839c-bd69b9b95111_begin-->
 

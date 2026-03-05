@@ -2,6 +2,7 @@
 title: Monitor .NET and Node.js Applications with Application Insights (Classic API) | Microsoft Docs
 description: Monitor .NET and Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 11/11/2025
 ---
 
@@ -36,7 +37,6 @@ This article explains how to enable and configure [Application Insights](app-ins
 | **Web server** | Internet Information Services (IIS) | Internet Information Server (IIS) or Kestrel | Not applicable (no web server; designed for non-HTTP workloads such as messaging, background tasks, and console apps) |
 | **Hosting platform** | Azure App Service (Windows), Azure Virtual Machines, or on-premises servers | The Web Apps feature of Azure App Service, Azure Virtual Machines, Docker, and Azure Kubernetes Service (AKS) | Azure Virtual Machines, Azure Kubernetes Service (AKS), containers, or any environment where .NET Core is supported |
 | **.NET version** | .NET Framework 4.6.1 and later | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview | All officially [supported .NET versions](https://dotnet.microsoft.com/download/dotnet) that aren't in preview |
-| **IDE** | Visual Studio | Visual Studio, Visual Studio Code, or command line | Visual Studio, Visual Studio Code, or command line |
 
 The Worker Service SDK doesn't do any telemetry collection by itself. Instead, it brings in other well-known Application Insights auto collectors like [DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.DependencyCollector/), [PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector/), and [ApplicationInsightsLoggingProvider](https://www.nuget.org/packages/Microsoft.Extensions.Logging.ApplicationInsights). This SDK exposes extension methods on `IServiceCollection` to enable and configure telemetry collection.
 
@@ -53,7 +53,6 @@ The Worker Service SDK doesn't do any telemetry collection by itself. Instead, i
 | **Web server** | Built-in HTTP module or web frameworks (Express, Fastify, etc.) or not applicable for non-HTTP workloads |
 | **Hosting platform** | Azure App Service, Azure Virtual Machines, Azure Kubernetes Service (AKS), Docker, on-premises, or any environment where Node.js is supported |
 | **Node.js version** | All officially supported Node.js LTS versions (currently 18.19.0+ or 20.6.0+ for SDK 3.X) |
-| **IDE** | Visual Studio Code, Visual Studio, or command line |
 
 The Node.js client library can automatically monitor incoming and outgoing HTTP requests, exceptions, and some system metrics. Beginning in version 0.20, the client library also can monitor some common [third-party packages](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers#currently-supported-modules), like MongoDB, MySQL, and Redis.
 
@@ -67,90 +66,26 @@ You can use the TelemetryClient API to manually instrument and monitor more aspe
 
 # [.NET](#tab/dotnet)
 
+##### In this section
+
+* [Prerequisites](#prerequisites)
+* [Instrument your application with the Application Insights SDK](#instrument-your-application-with-the-application-insights-sdk)
+* [Deploy the Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers)
+
 ### Prerequisites
 
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
-> * The latest version of [Visual Studio](https://www.visualstudio.com/downloads/) with the following workloads:
->     * ASP.NET and web development
->     * Azure development
+> * A functioning application.
 
-### Create a basic web application
+### Instrument your application with the Application Insights SDK
 
-If you don't have a functioning web application yet, you can use the following guidance to create one.
+This section guides you through adding Application Insights to a template-based web app.
 
 #### ASP.NET
 
-1. Open Visual Studio.
-1. Select **Create a new project**.
-1. Choose **ASP.NET Web Application (.NET Framework)** with **C#** and select **Next**.
-1. Enter a **Project name**, then select **Create**.
-1. Choose **MVC**, then select **Create**.
-
-#### ASP.NET Core
-
-1. Open Visual Studio.
-1. Select **Create a new project**.
-1. Choose **ASP.NET Core Web App (Razor Pages)** with **C#** and select **Next**.
-1. Enter a **Project name**, then select **Create**.
-1. Choose a **Framework** (LTS or STS), then select **Create**.
-
-### Add Application Insights automatically (Visual Studio)
-
-This section guides you through automatically adding Application Insights to a template-based web app.
-
-#### ASP.NET
-
-> [!NOTE]
-> There's a known issue in Visual Studio 2019: storing the instrumentation key or connection string in a user secret is broken for .NET Framework-based apps. The key ultimately has to be hardcoded into the *Applicationinsights.config* file to work around this bug.
-
-From within your ASP.NET web app project in Visual Studio:
-
-1. Select **Project** > **Add Application Insights Telemetry** > **Application Insights Sdk (local)** > **Next** > **Finish** > **Close**.
-
-1. Open the *ApplicationInsights.config* file.
-
-1. Before the closing `</ApplicationInsights>` tag, add a line that contains the connection string for your Application Insights resource. Find your connection string on the overview pane of the newly created Application Insights resource.
-
-    ```xml
-    <ConnectionString>Copy connection string from Application Insights Resource Overview</ConnectionString>
-    ```
-
-1. Select **Project** > **Manage NuGet Packages** > **Updates**. Then update each `Microsoft.ApplicationInsights` NuGet package to the latest stable release.
-
-1. Run your application by selecting **IIS Express**. A basic ASP.NET app opens. As you browse through the pages on the site, telemetry is sent to Application Insights.
-
-#### ASP.NET Core
-
-> [!NOTE]
-> If you want to use the standalone ILogger provider for your ASP.NET application, use [Microsoft.Extensions.Logging.ApplicationInsight](ilogger.md).
-
-> [!IMPORTANT]
-> For Visual Studio for macOS, use the [manual guidance](#add-application-insights-manually-no-visual-studio). Only the Windows version of Visual Studio supports this procedure.
-
-From within your ASP.NET web app project in Visual Studio:
-
-1. Go to **Project** > **Add Application Insights Telemetry**.
-
-1. Select **Azure Application Insights** > **Next**.
-
-1. Choose your subscription and Application Insights instance. Or you can create a new instance with **Create new**. Select **Next**.
-
-1. Add or confirm your Application Insights connection string. It should be prepopulated based on your selection in the previous step. Select **Finish**.
-
-1. After you add Application Insights to your project, check to confirm that you're using the latest stable release of the SDK. Go to **Project** > **Manage NuGet Packages** > **Microsoft.ApplicationInsights.AspNetCore**. If you need to, select **Update**.
-
-    :::image type="content" source="media/classic-api/update-nuget-package.png" alt-text="Screenshot that shows where to select the Application Insights package for update.":::
-
-### Add Application Insights manually (no Visual Studio)
-
-This section guides you through manually adding Application Insights to a template-based web app.
-
-#### ASP.NET
-
-1. Add the following NuGet packages and their dependencies to your project: 
+1. Add the following NuGet packages and their dependencies to your project:
 
     * [`Microsoft.ApplicationInsights.WindowsServer`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer)
     * [`Microsoft.ApplicationInsights.Web`](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web)
@@ -519,7 +454,7 @@ At this point, you successfully configured server-side application monitoring. I
             },
             "AllowedHosts": "*",
             "ApplicationInsights": {
-                "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000"
+                "ConnectionString": "<YOUR-CONNECTION-STRING>"
             }
         }
         ```
@@ -530,7 +465,7 @@ At this point, you successfully configured server-side application monitoring. I
         
         * `SET ApplicationInsights:ConnectionString = <Copy connection string from Application Insights Resource Overview>`
         * `SET APPLICATIONINSIGHTS_CONNECTION_STRING = <Copy connection string from Application Insights Resource Overview>`
-        * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in [Web Apps](azure-web-apps.md?tabs=net). It can also be used in all places where this SDK is supported.
+        * Typically, `APPLICATIONINSIGHTS_CONNECTION_STRING` is used in web apps. It can also be used in all places where this SDK is supported.
         
         > [!NOTE]
         > A connection string specified in code wins over the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`, which wins over other options.
@@ -646,7 +581,7 @@ The full example is shared at the [NuGet website](https://github.com/microsoft/A
         {
             "ApplicationInsights":
             {
-                "ConnectionString" : "InstrumentationKey=00000000-0000-0000-0000-000000000000;"
+                "ConnectionString" : "<YOUR-CONNECTION-STRING>"
             },
             "Logging":
             {
@@ -782,9 +717,9 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
                     IServiceCollection services = new ServiceCollection();
     
                     // Being a regular console app, there is no appsettings.json or configuration providers enabled by default.
-                    // Hence instrumentation key/ connection string and any changes to default logging level must be specified here.
+                    // Hence connection string and any changes to default logging level must be specified here.
                     services.AddLogging(loggingBuilder => loggingBuilder.AddFilter<Microsoft.Extensions.Logging.ApplicationInsights.ApplicationInsightsLoggerProvider>("Category", LogLevel.Information));
-                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "InstrumentationKey=<instrumentation key here>");
+                    services.AddApplicationInsightsTelemetryWorkerService((ApplicationInsightsServiceOptions options) => options.ConnectionString = "<YOUR-CONNECTION-STRING>");
     
                     // To pass a connection string
                     // - aiserviceoptions must be created
@@ -830,6 +765,1018 @@ The full example is shared at this [GitHub page](https://github.com/microsoft/Ap
 
 This console application also uses the same default `TelemetryConfiguration`. It can be customized in the same way as the examples in earlier sections.
 
+### Deploy the Application Insights Agent for on-premises servers
+
+##### In this section
+
+* [Get started](#get-started) - To get started with concise code samples.
+* [Detailed instructions](#detailed-instructions) - For a deep dive on how to get started.
+* [API references](#api-reference) - For PowerShell API reference.
+
+Application Insights Agent is a PowerShell module published to the [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
+It replaces Status Monitor. Telemetry is sent to the Azure portal, where you can [monitor](./app-insights-overview.md) your app.
+
+For a complete list of supported [autoinstrumentation](codeless-overview.md) scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+
+> [!NOTE]
+> The module currently supports codeless instrumentation of ASP.NET and ASP.NET Core web apps hosted with Internet Information Server (IIS). Use an SDK to instrument Java and Node.js applications.
+
+> [!NOTE]
+> Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable client-side monitoring, define an environment variable in the server with the following information:
+> * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
+> * **Value:** `false`
+
+#### Getting started
+
+This section contains the quickstart commands that are expected to work for most environments. The instructions depend on PowerShell Gallery to distribute updates. These commands support the PowerShell `-Proxy` parameter.
+
+For an explanation of these commands, customization instructions, and information about troubleshooting, see the [detailed instructions](#detailed-instructions).
+
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+
+##### Option 1: Download and install Application Insights Agent via PowerShell Gallery
+
+> [!NOTE]
+> For prerequisites that you might need, see [PowerShell Gallery Transport Layer Security (TLS) support](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support).
+
+1. Install the module (run as admin):
+
+    ```powershell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+    Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+    Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+    Install-Module -Name PowerShellGet -Force
+    ```
+
+1. Install Application Insights Agent (run as admin):
+
+    ```powershell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+    Install-Module -Name Az.ApplicationMonitor -AllowPrerelease -AcceptLicense
+    ```
+
+    > [!NOTE]
+    > The `AllowPrerelease` switch in the `Install-Module` cmdlet allows installation of the beta release.
+    >
+    > For more information, see [Install-Module](/powershell/module/powershellget/install-module#parameters).
+
+1.  Enable monitoring:
+
+    ```powershell
+    Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process -Force
+    Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/'
+    ```
+
+##### Option 2: Download and install the Application Insights agent manually (offline option)
+
+1. Manually download the latest version of the module from [PowerShell Gallery](https://www.powershellgallery.com/packages/Az.ApplicationMonitor).
+
+1. Unzip and install Application Insights Agent:
+
+    ```powershell
+    $pathToNupkg = "C:\Users\t\Desktop\Az.ApplicationMonitor.0.3.0-alpha.nupkg"
+    $pathToZip = ([io.path]::ChangeExtension($pathToNupkg, "zip"))
+    $pathToNupkg | rename-item -newname $pathToZip
+    $pathInstalledModule = "$Env:ProgramFiles\WindowsPowerShell\Modules\Az.ApplicationMonitor"
+    Expand-Archive -LiteralPath $pathToZip -DestinationPath $pathInstalledModule
+    ```
+
+1. Enable monitoring:
+
+    ```powershell
+    Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/'
+    ```
+
+#### Detailed instructions
+
+This section describes how to onboard to the PowerShell Gallery and download the ApplicationMonitor module. Included are the most common parameters that you need to get started. We also provide manual download instructions in case you don't have internet access.
+
+##### Run PowerShell as Admin with an elevated execution policy
+
+> [!IMPORTANT]
+> PowerShell needs Administrator-level permissions to make changes to your computer.
+
+**Execution policy**
+
+* Description: By default, running PowerShell scripts is disabled. We recommend allowing RemoteSigned scripts for only the Current scope.
+* Reference: [About Execution Policies](/powershell/module/microsoft.powershell.core/about/about_execution_policies) and [Set-ExecutionPolicy](/powershell/module/microsoft.powershell.security/set-executionpolicy).
+* Command: `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope Process`.
+* Optional parameter:
+    * `-Force`. Bypasses the confirmation prompt.
+
+**Example errors**
+
+```output
+Install-Module : The 'Install-Module' command was found in the module 'PowerShellGet', but the module could not be
+loaded. For more information, run 'Import-Module PowerShellGet'.
+
+Import-Module : File C:\Program Files\WindowsPowerShell\Modules\PackageManagement\1.3.1\PackageManagement.psm1 cannot
+be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https://go.microsoft.com/fwlink/?LinkID=135170.
+```
+
+##### Prerequisites for PowerShell
+
+Audit your instance of PowerShell by running the `$PSVersionTable` command.
+This command produces the following output:
+
+```output
+Name                           Value
+----                           -----
+PSVersion                      5.1.17763.316
+PSEdition                      Desktop
+PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+BuildVersion                   10.0.17763.316
+CLRVersion                     4.0.30319.42000
+WSManStackVersion              3.0
+PSRemotingProtocolVersion      2.3
+SerializationVersion           1.1.0.1
+```
+
+These instructions were written and tested on a computer running Windows 10 and the following versions.
+
+##### Prerequisites for PowerShell Gallery
+
+These steps prepare your server to download modules from PowerShell Gallery.
+
+> [!NOTE]
+> PowerShell Gallery is supported on Windows 10, Windows Server 2016, and PowerShell 6+.
+> For information about earlier versions, see [Installing PowerShellGet](/powershell/gallery/powershellget/install-powershellget).
+
+1. Run PowerShell as Admin with an elevated execution policy.
+
+1. Install the NuGet package provider.
+
+    * Description: You need this provider to interact with NuGet-based repositories like PowerShell Gallery.
+    * Reference: [Install-PackageProvider](/powershell/module/packagemanagement/install-packageprovider).
+    * Command: `Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201`.
+    * Optional parameters:
+        * `-Proxy`. Specifies a proxy server for the request.
+        * `-Force`. Bypasses the confirmation prompt.
+
+    You receive this prompt if NuGet isn't set up:
+
+    ```output
+    NuGet provider is required to continue
+    PowerShellGet requires NuGet provider version '2.8.5.201' or newer to interact with NuGet-based repositories.
+    The NuGet provider must be available in 'C:\Program Files\PackageManagement\ProviderAssemblies' or
+    'C:\Users\t\AppData\Local\PackageManagement\ProviderAssemblies'. You can also install the NuGet provider by running
+    'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'. Do you want PowerShellGet to install and import
+    the NuGet provider now?
+    [Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"):
+    ```
+
+1. Configure PowerShell Gallery as a trusted repository.
+
+    * Description: By default, PowerShell Gallery is an untrusted repository.
+    * Reference: [Set-PSRepository](/powershell/module/powershellget/set-psrepository).
+    * Command: `Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted`.
+    * Optional parameter:
+        * `-Proxy`. Specifies a proxy server for the request.
+
+    You receive this prompt if PowerShell Gallery isn't trusted:
+
+    ```output
+    Untrusted repository
+    You are installing the modules from an untrusted repository.
+    If you trust this repository, change its InstallationPolicy value
+    by running the Set-PSRepository cmdlet. Are you sure you want to
+    install the modules from 'PSGallery'?
+    [Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"):
+    ```
+
+    You can confirm this change and audit all `PSRepositories` by running the `Get-PSRepository` command.
+
+1. Install the newest version of PowerShellGet.
+
+    * Description: This module contains the tooling used to get other modules from PowerShell Gallery. Version 1.0.0.1 ships with Windows 10 and Windows Server. Version 1.6.0 or higher is required. To determine which version is installed, run the `Get-Command -Module PowerShellGet` command.
+    * Reference: [Installing PowerShellGet](/powershell/gallery/powershellget/install-powershellget).
+    * Command: `Install-Module -Name PowerShellGet`.
+    * Optional parameters:
+        * `-Proxy`. Specifies a proxy server for the request.
+        * `-Force`. Bypasses the "already installed" warning and installs the latest version.
+
+    You receive this error if you're not using the newest version of PowerShellGet:
+
+    ```output
+    Install-Module : A parameter cannot be found that matches parameter name 'AllowPrerelease'.
+    At line:1 char:20
+    Install-Module abc -AllowPrerelease
+                   ~~~~~~~~~~~~~~~~
+    CategoryInfo          : InvalidArgument: (:) [Install-Module], ParameterBindingException
+    FullyQualifiedErrorId : NamedParameterNotFound,Install-Module
+    ```
+
+1. Restart PowerShell. You can't load the new version in the current session. New PowerShell sessions load the latest version of PowerShellGet.
+
+##### Option 1: Download and install the module via PowerShell Gallery
+
+These steps download the Az.ApplicationMonitor module from PowerShell Gallery.
+
+1. Ensure that all prerequisites for PowerShell Gallery are met.
+1. Run PowerShell as Admin with an elevated execution policy.
+1. Install the Az.ApplicationMonitor module.
+    * Reference: [Install-Module](/powershell/module/powershellget/install-module).
+    * Command: `Install-Module -Name Az.ApplicationMonitor`.
+    * Optional parameters:
+        * `-Proxy`. Specifies a proxy server for the request.
+        * `-AllowPrerelease`. Allows installation of alpha and beta releases.
+        * `-AcceptLicense`. Bypasses the "Accept License" prompt
+        * `-Force`. Bypasses the "Untrusted Repository" warning.
+
+##### Option 2: Download and install the module manually (offline option)
+
+If for any reason you can't connect to the PowerShell module, you can manually download and install the Az.ApplicationMonitor module.
+
+###### Manually download the latest nupkg file
+
+1. Go to https://www.powershellgallery.com/packages/Az.ApplicationMonitor.
+1. Select the latest version of the file in the **Version History** table.
+1. Under **Installation Options**, select **Manual Download**.
+
+###### Option 2.1: Install into a PowerShell modules directory
+
+Install the manually downloaded PowerShell module into a PowerShell directory so it's discoverable by PowerShell sessions.
+For more information, see [Installing a PowerShell Module](/powershell/scripting/developer/module/installing-a-powershell-module).
+
+**Unzip nupkg as a zip file by using Expand-Archive (v1.0.1.0)**
+
+* Description: The base version of Microsoft.PowerShell.Archive (v1.0.1.0) can't unzip nupkg files. Rename the file with the .zip extension.
+* Reference: [Expand-Archive](/powershell/module/microsoft.powershell.archive/expand-archive).
+* Command:
+
+    ```console
+    $pathToNupkg = "C:\az.applicationmonitor.0.3.0-alpha.nupkg"
+    $pathToZip = ([io.path]::ChangeExtension($pathToNupkg, "zip"))
+    $pathToNupkg | rename-item -newname $pathToZip
+    $pathInstalledModule = "$Env:ProgramFiles\WindowsPowerShell\Modules\az.applicationmonitor"
+    Expand-Archive -LiteralPath $pathToZip -DestinationPath $pathInstalledModule
+    ```
+
+**Unzip nupkg by using Expand-Archive (v1.1.0.0)**
+
+* Description: Use a current version of Expand-Archive to unzip nupkg files without changing the extension.
+* Reference: [Expand-Archive](/powershell/module/microsoft.powershell.archive/expand-archive) and [Microsoft.PowerShell.Archive](https://www.powershellgallery.com/packages/Microsoft.PowerShell.Archive/1.1.0.0).
+* Command:
+
+    ```console
+    $pathToNupkg = "C:\az.applicationmonitor.0.2.1-alpha.nupkg"
+    $pathInstalledModule = "$Env:ProgramFiles\WindowsPowerShell\Modules\az.applicationmonitor"
+    Expand-Archive -LiteralPath $pathToNupkg -DestinationPath $pathInstalledModule
+    ```
+
+###### Option 2.2: Unzip and import nupkg manually
+
+Install the manually downloaded PowerShell module into a PowerShell directory so it's discoverable by PowerShell sessions.
+For more information, see [Installing a PowerShell Module](/powershell/scripting/developer/module/installing-a-powershell-module).
+
+If you're installing the module into any other directory, manually import the module by using [Import-Module](/powershell/module/microsoft.powershell.core/import-module).
+
+> [!IMPORTANT]
+> Dynamic link libraries (DLLs) install via relative paths.
+> Store the contents of the package in your intended runtime directory and confirm that access permissions allow read but not write.
+
+1. Change the extension to ".zip" and extract the contents of the package into your intended installation directory.
+1. Find the file path of Az.ApplicationMonitor.psd1.
+1. Run PowerShell as Admin with an elevated execution policy.
+1. Load the module by using the `Import-Module Az.ApplicationMonitor.psd1` command.
+
+##### Route traffic through a proxy
+
+When you monitor a computer on your private intranet, you need to route HTTP traffic through a proxy.
+
+The PowerShell commands to download and install Az.ApplicationMonitor from the PowerShell Gallery support a `-Proxy` parameter.
+Review the preceding instructions when you write your installation scripts.
+
+The Application Insights SDK needs to send your app's telemetry to Microsoft. We recommend that you configure proxy settings for your app in your web.config file. For more information, see [How do I achieve proxy passthrough?](application-insights-faq.yml#how-do-i-achieve-proxy-passthrough).
+
+##### Enable monitoring
+
+Use the `Enable-ApplicationInsightsMonitoring` command to enable monitoring.
+
+See the [API reference](#api-reference) for a detailed description of how to use this cmdlet.
+
+#### API reference
+
+> [!IMPORTANT]
+> * The following cmdlets require a PowerShell session with Admin permissions and an elevated execution policy. For more information, see [Run PowerShell as administrator with an elevated execution policy](#run-powershell-as-admin-with-an-elevated-execution-policy).
+> * The following cmdlets require that you review and accept our license and privacy statement.
+> * The instrumentation engine adds more overhead and is off by default.
+
+This section describes the following cmdlets, which are members of the [Az.ApplicationMonitor PowerShell module](https://www.powershellgallery.com/packages/Az.ApplicationMonitor/):
+
+> [!NOTE]
+> Expand any of the sections below for more information, including examples, parameters, and output.
+
+<details>
+<summary><b>Enable-InstrumentationEngine</b></summary>
+
+Enables the instrumentation engine by setting some registry keys.
+Restart IIS for the changes to take effect.
+
+The instrumentation engine can supplement data collected by the .NET Software Development Kits (SDKs).
+It collects events and messages that describe the execution of a managed process. These events and messages include dependency result codes, HTTP verbs, and [SQL command text](asp-net-dependencies.md#advanced-sql-tracking-to-get-full-sql-query).
+
+Enable the instrumentation engine if:
+* You already enabled monitoring with the `Enable` cmdlet but didn't enable the instrumentation engine.
+* You manually instrumented your app with the .NET SDKs and want to collect extra telemetry.
+
+##### Examples
+
+```powershell
+Enable-InstrumentationEngine
+```
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -AcceptLicense | **Optional.** Use this switch to accept the license and privacy statement in headless installations. |
+| -Verbose | **Common parameter.** Use this switch to output detailed logs. |
+
+##### Output
+
+Example output from successfully enabling the instrumentation engine:
+
+```
+Configuring IIS Environment for instrumentation engine...
+Configuring registry for instrumentation engine...
+```
+
+</details>
+
+<details>
+<summary><b>Enable-ApplicationInsightsMonitoring</b></summary>
+
+Enables codeless attach monitoring of IIS apps on a target computer.
+
+This cmdlet modifies the IIS applicationHost.config and sets some registry keys.
+It creates an applicationinsights.ikey.config file, which defines the instrumentation key used by each app.
+IIS loads the RedfieldModule on startup, which injects the Application Insights SDK into applications as the applications start.
+Restart IIS for your changes to take effect.
+
+After you enable monitoring, we recommend that you use [Live Metrics](live-stream.md) to quickly check if your app is sending us telemetry.
+
+##### Examples
+
+###### Example with a single connection string
+
+In this example, all apps on the current computer are provided with a single connection string.
+
+```powershell
+Enable-ApplicationInsightsMonitoring -ConnectionString 'InstrumentationKey=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx;IngestionEndpoint=https://xxxx.applicationinsights.azure.com/'
+```
+
+###### Example with a single instrumentation key
+
+In this example, all apps on the current computer are provided with a single instrumentation key.
+
+```powershell
+Enable-ApplicationInsightsMonitoring -InstrumentationKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+
+###### Example with an instrumentation key map
+
+In this example:
+* `MachineFilter` matches the current computer by using the `'.*'` wildcard.
+* `AppFilter='WebAppExclude'` provides a `null` instrumentation key. The specified app isn't instrumented.
+* `AppFilter='WebAppOne'` assigns the specified app a unique instrumentation key.
+* `AppFilter='WebAppTwo'` assigns the specified app a unique instrumentation key.
+* `AppFilter` uses the `'.*'` wildcard to match any web apps it doesn't already match and assigns a default instrumentation key.
+* Spaces are added for readability.
+
+```powershell
+Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
+    ` @(@{MachineFilter='.*';AppFilter='WebAppExclude'},
+        ` @{MachineFilter='.*';AppFilter='WebAppOne';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx1'}},
+        ` @{MachineFilter='.*';AppFilter='WebAppTwo';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx2'}},
+        ` @{MachineFilter='.*';AppFilter='.*';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxdefault'}})
+```
+
+* **MachineFilter** is a required C# regex of the computer or virtual machine (VM) name.
+    * '.*' matches all
+    * 'ComputerName' matches only computers with the exact name specified.
+* **AppFilter** is a required C# regex of the IIS Site Name. You can get a list of sites on your server by running the command [get-iissite](/powershell/module/iisadministration/get-iissite).
+    * '.*' matches all
+    * 'SiteName' matches only the IIS Site with the exact name specified.
+* **InstrumentationKey** is required to enable monitoring of apps that match the preceding two filters.
+    * Leave this value null if you want to define rules to exclude monitoring.
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -EnableInstrumentationEngine | **Optional.** Use this switch to enable the instrumentation engine to collect events and messages about what's happening during the execution of a managed process. These events and messages include dependency result codes, HTTP verbs, and SQL command text.<br><br>The instrumentation engine adds overhead and is off by default. |
+| -AcceptLicense | **Optional.** Use this switch to accept the license and privacy statement in headless installations. |
+| -IgnoreSharedConfig | When you have a cluster of web servers, you might be using a [shared configuration](/iis/web-hosting/configuring-servers-in-the-windows-web-platform/shared-configuration_211). The HttpModule can't be injected into this shared configuration. This script fails with the message that extra installation steps are required. Use this switch to ignore this check and continue installing prerequisites.<br><br>For more information, see [known conflict-with-iis-shared-configuration](status-monitor-v2-troubleshoot.md#conflict-with-iis-shared-configuration) |
+| -Verbose | **Common parameter.** Use this switch to display detailed logs. |
+| -WhatIf | **Common parameter.** Use this switch to test and validate your input parameters without actually enabling monitoring. |
+
+##### Output
+
+###### Example output from a successful enablement
+
+```powershell
+Initiating Disable Process
+Applying transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config'
+'C:\Windows\System32\inetsrv\config\applicationHost.config' backed up to 'C:\Windows\System32\inetsrv\config\applicationHost.config.backup-2019-03-26_08-59-52z'
+in :1,237
+No element in the source document matches '/configuration/location[@path='']/system.webServer/modules/add[@name='ManagedHttpModuleHelper']'
+Not executing RemoveAll (transform line 1, 546)
+Transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config' was successfully applied. Operation: 'disable'
+GAC Module will not be removed, since this operation might cause IIS instabilities
+Configuring IIS Environment for codeless attach...
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\IISADMIN[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WAS[Environment]
+Configuring IIS Environment for instrumentation engine...
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\IISADMIN[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WAS[Environment]
+Configuring registry for instrumentation engine...
+Successfully disabled Application Insights Agent
+Installing GAC module 'C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\0.2.0\content\Runtime\Microsoft.AppInsights.IIS.ManagedHttpModuleHelper.dll'
+Applying transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config'
+Found GAC module Microsoft.AppInsights.IIS.ManagedHttpModuleHelper.ManagedHttpModuleHelper, Microsoft.AppInsights.IIS.ManagedHttpModuleHelper, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+'C:\Windows\System32\inetsrv\config\applicationHost.config' backed up to 'C:\Windows\System32\inetsrv\config\applicationHost.config.backup-2019-03-26_08-59-52z_1'
+Transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config' was successfully applied. Operation: 'enable'
+Configuring IIS Environment for codeless attach...
+Configuring IIS Environment for instrumentation engine...
+Configuring registry for instrumentation engine...
+Updating app pool permissions...
+Successfully enabled Application Insights Agent
+```
+
+</details>
+
+<details>
+<summary><b>Disable-InstrumentationEngine</b></summary>
+
+Disables the instrumentation engine by removing some registry keys. Restart IIS for the changes to take effect.
+
+##### Examples
+
+```powershell
+Disable-InstrumentationEngine
+```
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -Verbose | **Common parameter.** Use this switch to output detailed logs. |
+
+##### Output
+
+###### Example output from successfully disabling the instrumentation engine
+
+```powershell
+Configuring IIS Environment for instrumentation engine...
+Registry: removing 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\IISADMIN[Environment]'
+Registry: removing 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC[Environment]'
+Registry: removing 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WAS[Environment]'
+Configuring registry for instrumentation engine...
+```
+
+</details>
+
+<details>
+<summary><b>Disable-ApplicationInsightsMonitoring</b></summary>
+
+Disables monitoring on the target computer. This cmdlet removes edits to the IIS applicationHost.config and remove registry keys.
+
+##### Examples
+
+```powershell
+Disable-ApplicationInsightsMonitoring
+```
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -Verbose | **Common parameter.** Use this switch to display detailed logs. |
+
+##### Output
+
+###### Example output from successfully disabling monitoring
+
+```powershell
+Initiating Disable Process
+Applying transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config'
+'C:\Windows\System32\inetsrv\config\applicationHost.config' backed up to 'C:\Windows\System32\inetsrv\config\applicationHost.config.backup-2019-03-26_08-59-00z'
+in :1,237
+No element in the source document matches '/configuration/location[@path='']/system.webServer/modules/add[@name='ManagedHttpModuleHelper']'
+Not executing RemoveAll (transform line 1, 546)
+Transformation to 'C:\Windows\System32\inetsrv\config\applicationHost.config' was successfully applied. Operation: 'disable'
+GAC Module will not be removed, since this operation might cause IIS instabilities
+Configuring IIS Environment for codeless attach...
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\IISADMIN[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WAS[Environment]
+Configuring IIS Environment for instrumentation engine...
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\IISADMIN[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W3SVC[Environment]
+Registry: skipping non-existent 'HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\WAS[Environment]
+Configuring registry for instrumentation engine...
+Successfully disabled Application Insights Agent
+```
+
+</details>
+
+<details>
+<summary><b>Get-ApplicationInsightsMonitoringConfig</b></summary>
+
+Gets the config file and prints the values to the console.
+
+##### Examples
+
+```powershell
+Get-ApplicationInsightsMonitoringConfig
+```
+
+##### Parameters
+
+No parameters required.
+
+##### Output
+
+###### Example output from reading the config file
+
+```
+RedfieldConfiguration:
+Filters:
+0)InstrumentationKey: AppFilter: WebAppExclude MachineFilter: .*
+1)InstrumentationKey: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx2 AppFilter: WebAppTwo MachineFilter: .*
+2)InstrumentationKey: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxdefault AppFilter: .* MachineFilter: .*
+```
+
+</details>
+
+<details>
+<summary><b>Get-ApplicationInsightsMonitoringStatus</b></summary>
+
+This cmdlet provides troubleshooting information about Application Insights Agent. Use this cmdlet to investigate the monitoring status, version of the PowerShell Module, and to inspect the running process. This cmdlet reports version information and information about key files required for monitoring.
+
+##### Examples
+
+###### Example: Application status
+
+Run the command `Get-ApplicationInsightsMonitoringStatus` to display the monitoring status of web sites.
+
+```powershell
+Get-ApplicationInsightsMonitoringStatus
+
+IIS Websites:
+
+SiteName               : Default Web Site
+ApplicationPoolName    : DefaultAppPool
+SiteId                 : 1
+SiteState              : Stopped
+
+SiteName               : DemoWebApp111
+ApplicationPoolName    : DemoWebApp111
+SiteId                 : 2
+SiteState              : Started
+ProcessId              : not found
+
+SiteName               : DemoWebApp222
+ApplicationPoolName    : DemoWebApp222
+SiteId                 : 3
+SiteState              : Started
+ProcessId              : 2024
+Instrumented           : true
+InstrumentationKey     : xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx123
+
+SiteName               : DemoWebApp333
+ApplicationPoolName    : DemoWebApp333
+SiteId                 : 4
+SiteState              : Started
+ProcessId              : 5184
+AppAlreadyInstrumented : true
+```
+
+In this example:
+
+* **Machine Identifier** is an anonymous ID used to uniquely identify your server. If you create a support request, we need this ID to find logs for your server.
+* **Default Web Site** is Stopped in IIS
+* IIS shows **DemoWebApp111** as started, but the app doesn't receive any requests. The report shows no running process (ProcessId: not found).
+* **DemoWebApp222** is running and is being monitored (Instrumented: true). Based on the user configuration, Instrumentation Key xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxx123 was matched for this site.
+* **DemoWebApp333** is manually instrumented using the Application Insights SDK. Application Insights Agent detects the SDK and doesn't monitor this site.
+
+* The presence of `AppAlreadyInstrumented : true` signifies that the Application Insights agent identified a [conflicting dll](/troubleshoot/azure/azure-monitor/app-insights/agent/status-monitor-v2-troubleshoot) loaded in the web application, assumed that the web app is manually instrumented, and the agent has backed-off and isn't instrumenting this process.
+
+* `Instrumented : true` indicates that the Application Insights agent successfully instrumented the web app running in the specified w3wp.exe process.
+
+###### Example: PowerShell module information
+
+Run the command `Get-ApplicationInsightsMonitoringStatus -PowerShellModule` to display information about the current module:
+
+```powershell
+Get-ApplicationInsightsMonitoringStatus -PowerShellModule
+
+PowerShell Module version:
+0.4.0-alpha
+
+Application Insights SDK version:
+2.9.0.3872
+
+Executing PowerShell Module Assembly:
+Microsoft.ApplicationInsights.Redfield.Configurator.PowerShell, Version=2.8.14.11432, Culture=neutral, PublicKeyToken=31bf3856ad364e35
+
+PowerShell Module Directory:
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\0.2.2\content\PowerShell
+
+Runtime Paths:
+ParentDirectory (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content
+
+ConfigurationPath (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\applicationInsights.ikey.config
+
+ManagedHttpModuleHelperPath (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AppInsights.IIS.ManagedHttpModuleHelper.dll
+
+RedfieldIISModulePath (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll
+
+InstrumentationEngine86Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation32\MicrosoftInstrumentationEngine_x86.dll
+
+InstrumentationEngine64Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\MicrosoftInstrumentationEngine_x64.dll
+
+InstrumentationEngineExtensionHost86Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation32\Microsoft.ApplicationInsights.ExtensionsHost_x86.dll
+
+InstrumentationEngineExtensionHost64Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\Microsoft.ApplicationInsights.ExtensionsHost_x64.dll
+
+InstrumentationEngineExtensionConfig86Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation32\Microsoft.InstrumentationEngine.Extensions.config
+
+InstrumentationEngineExtensionConfig64Path (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\Microsoft.InstrumentationEngine.Extensions.config
+
+ApplicationInsightsSdkPath (Exists: True)
+C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.dll
+```
+
+###### Example: Runtime status
+
+You can inspect the process on the instrumented computer to see if all DLLs are loaded. If monitoring is working, at least 12 DLLs should be loaded.
+
+Run the command `Get-ApplicationInsightsMonitoringStatus -InspectProcess`:
+
+```
+Get-ApplicationInsightsMonitoringStatus -InspectProcess
+
+iisreset.exe /status
+Status for IIS Admin Service ( IISADMIN ) : Running
+Status for Windows Process Activation Service ( WAS ) : Running
+Status for Net.Msmq Listener Adapter ( NetMsmqActivator ) : Running
+Status for Net.Pipe Listener Adapter ( NetPipeActivator ) : Running
+Status for Net.Tcp Listener Adapter ( NetTcpActivator ) : Running
+Status for World Wide Web Publishing Service ( W3SVC ) : Running
+
+handle64.exe -accepteula -p w3wp
+BF0: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.ServerTelemetryChannel.dll
+C58: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.AzureAppServices.dll
+C68: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.DependencyCollector.dll
+C78: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.WindowsServer.dll
+C98: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.Web.dll
+CBC: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.PerfCounterCollector.dll
+DB0: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.AI.Agent.Intercept.dll
+B98: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll
+BB4: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.Contracts.dll
+BCC: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.Redfield.Lightup.dll
+BE0: File  (R-D)   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.dll
+
+listdlls64.exe -accepteula w3wp
+0x0000000019ac0000  0x127000  C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\MicrosoftInstrumentationEngine_x64.dll
+0x00000000198b0000  0x4f000   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\Microsoft.ApplicationInsights.ExtensionsHost_x64.dll
+0x000000000c460000  0xb2000   C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Instrumentation64\Microsoft.ApplicationInsights.Extensions.Base_x64.dll
+0x000000000ad60000  0x108000  C:\Windows\TEMP\2.4.0.0.Microsoft.ApplicationInsights.Extensions.Intercept_x64.dll
+```
+
+##### Parameters
+
+By default, this cmdlet reports the monitoring status of web applications. Use this option to review if your application was successfully instrumented. You can also review which Instrumentation Key was matched to your site.
+
+| Parameter | Description |
+|-----------|-------------|
+| -PowerShellModule | **Optional**. Use this switch to report the version numbers and paths of DLLs required for monitoring. Use this option if you need to identify the version of any DLL, including the Application Insights SDK. |
+| -InspectProcess | **Optional**. Use this switch to report whether IIS is running. It downloads external tools to determine if the necessary DLLs are loaded into the IIS runtime. If this process fails for any reason, you can run these commands manually:<br><br>* ```iisreset.exe /status```<br>* ```\[handle64.exe\](/sysinternals/downloads/handle) -p w3wp \| findstr /I "InstrumentationEngine AI. ApplicationInsights"```<br>* ```\[listdlls64.exe\](/sysinternals/downloads/listdlls) w3wp \| findstr /I "InstrumentationEngine AI ApplicationInsights"``` |
+| -Force | **Optional**. Used only with InspectProcess. Use this switch to skip the user prompt that appears before more tools are downloaded. |
+
+</details>
+
+<details>
+<summary><b>Set-ApplicationInsightsMonitoringConfig</b></summary>
+
+Sets the config file without doing a full reinstallation. Restart IIS for your changes to take effect.
+
+> [!IMPORTANT]
+> This cmdlet requires a PowerShell session with Admin permissions.
+
+##### Examples
+
+###### Example with a single instrumentation key
+
+In this example, all apps on the current computer are provided with a single instrumentation key.
+
+```powershell
+Enable-ApplicationInsightsMonitoring -InstrumentationKey xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+```
+
+###### Example with an instrumentation key map
+
+In this example:
+
+* `MachineFilter` matches the current computer by using the `'.*'` wildcard.
+* `AppFilter='WebAppExclude'` provides a `null` instrumentation key. The specified app isn't instrumented.
+* `AppFilter='WebAppOne'` assigns the specified app a unique instrumentation key.
+* `AppFilter='WebAppTwo'` assigns the specified app a unique instrumentation key.
+* `AppFilter` uses the `'.*'` wildcard to match web apps it doesn't already match and assigns a default instrumentation key.
+* Spaces are added for readability.
+
+```powershell
+Enable-ApplicationInsightsMonitoring -InstrumentationKeyMap `
+    ` @(@{MachineFilter='.*';AppFilter='WebAppExclude'},
+      ` @{MachineFilter='.*';AppFilter='WebAppOne';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx1'}},
+      ` @{MachineFilter='.*';AppFilter='WebAppTwo';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxx2'}},
+      ` @{MachineFilter='.*';AppFilter='.*';InstrumentationSettings=@{InstrumentationKey='xxxxxxxx-xxxx-xxxx-xxxx-xxxxxdefault'}})
+```
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -InstrumentationKey | **Required.** Use this parameter to supply a single instrumentation key for use by all apps on the target computer. |
+| -InstrumentationKeyMap | **Required.** Use this parameter to supply multiple instrumentation keys and a mapping of the instrumentation keys used by each app. |
+
+You can create a single installation script for several computers by setting `MachineFilter`.
+
+> [!IMPORTANT]
+> Apps match rules in the order you provide them. Specify the most specific rules first and the most generic rules last.
+
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
+
+**This cmdlet's map shape**
+
+* Supply `-InstrumentationKeyMap` as a PowerShell array of hashtables.
+* For this cmdlet, set the target resource per rule with `InstrumentationSettings=@{ InstrumentationKey = '<ikey>' }`.
+* If you want a single resource for all apps on the machine, use `-ConnectionString` or `-InstrumentationKey` instead.
+
+</details>
+
+<details>
+<summary><b>Start-ApplicationInsightsMonitoringTrace</b></summary>
+
+Collects [Event Tracing for Windows (ETW) events](/windows/win32/etw/event-tracing-portal) that the codeless attach runtime emits. Use this cmdlet as a simpler alternative to running [PerfView](https://github.com/microsoft/perfview).
+
+Events are printed to the console in real time and also written to an `.etl` file. You can open the `.etl` file with PerfView for deeper analysis.
+
+This cmdlet runs until it reaches the timeout, the default is 5 minutes, or until you stop it manually with `Ctrl + C`.
+
+##### Examples
+
+###### How to collect events
+
+Use this flow when you need to investigate why an IIS app isn't being instrumented.
+
+The codeless attach runtime emits ETW events when IIS starts and when your app starts.
+
+1. In an administrative command prompt, run `iisreset /stop` to stop IIS and all web apps.  
+2. Begin tracing by running this cmdlet.
+3. In an administrative command prompt, run `iisreset /start` to start IIS.  
+4. Trigger startup by browsing to your app.
+5. After the app finishes loading, press `Ctrl + C` to stop, or allow the timeout to end the session.
+
+###### What events to collect
+
+You can choose which event sources to include:
+
+1. `-CollectSdkEvents` collects events from the Application Insights SDK.  
+2. `-CollectRedfieldEvents` collects events from Application Insights Agent and the Redfield runtime, which is useful for IIS and app startup diagnostics.  
+3. Collect both sets by specifying both switches.
+4. If you don't specify a switch, both sets are collected by default.
+
+##### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| -MaxDurationInMinutes | Optional. Sets how long to collect before timing out. The default is 5 minutes. |
+| -LogDirectory | Optional. Directory where the `.etl` file should be written. By default, the file is created under the module PowerShell directory. The full path is shown when the session starts. |
+| -CollectSdkEvents | Optional. Include Application Insights SDK events. |
+| -CollectRedfieldEvents | Optional. Include events from Application Insights Agent and the Redfield runtime. |
+| -Verbose | Common parameter. Outputs detailed logs. |
+
+#### Output
+
+##### Example of application startup logs
+
+```powershell
+Start-ApplicationInsightsMonitoringTrace -CollectRedfieldEvents
+Starting...
+Log File: C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\logs\20190627_144217_ApplicationInsights_ETW_Trace.etl
+Tracing enabled, waiting for events.
+Tracing will timeout in 5 minutes. Press CTRL+C to cancel.
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftAppInsights_ManagedHttpModulePath='C:\Program Files\WindowsPowerShell\Modules\Az.ApplicationMonitor\content\Runtime\Microsoft.ApplicationInsights.RedfieldIISModule.dll', MicrosoftAppInsights_ManagedHttpModuleType='Microsoft.ApplicationInsights.RedfieldIISModule.RedfieldIISModule'
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Resolved variables to: MicrosoftDiagnosticServices_ManagedHttpModulePath2='', MicrosoftDiagnosticServices_ManagedHttpModuleType2=''
+2:42:31 PM EVENT: Microsoft-ApplicationInsights-IIS-ManagedHttpModuleHelper Trace Environment variable 'MicrosoftDiagnosticServices_ManagedHttpModulePath2' or 'MicrosoftDiagnosticServices_ManagedHttpModuleType2' is null, skipping managed dll loading
+```
+
+</details>
+
+### Deploy the Application Insights Agent for virtual machines (VMs) and virtual machine scale sets
+
+##### In this section
+
+* [Enable monitoring for virtual machines](#enable-monitoring-for-virtual-machines)
+* [Enable monitoring for virtual machine scale sets](#enable-monitoring-for-virtual-machine-scale-sets)
+
+Enable [Azure Monitor](../fundamentals/overview.md) [Application Insights](./app-insights-overview.md) monitoring through [autoinstrumentation](codeless-overview.md) for Internet Information Server (IIS)-hosted ASP.NET and ASP.NET Core applications on [Azure Virtual Machines](https://azure.microsoft.com/services/virtual-machines/) and [Azure Virtual Machine Scale Sets](/azure/virtual-machine-scale-sets/).
+
+Deploy the Application Insights Agent with a virtual machine extension. The agent [autocollects the same dependency signals as the SDK](./auto-collect-dependencies.md#net). Use PowerShell to automate large-scale deployments.
+
+> [!NOTE]
+> * For Java applications, use the [Application Insights Java 3.0 agent](./opentelemetry-enable.md?tabs=java), which [autocollects](./java-in-process-agent.md#autocollected-requests) the most popular libraries, frameworks, logs, and dependencies, along with many [other configurations](./java-standalone-config.md).
+> * Node.js and Python applications running on Azure VMs and Azure Virtual Machine Scale Sets don't support autoinstrumentation. Use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md) instead.
+> * To monitor VM guests in addition to the applications hosted on them, see [VM guest data](/azure/virtual-machines/monitor-vm#vm-guest-data).
+
+For a complete list of supported autoinstrumentation scenarios, see [Supported environments, languages, and resource providers](codeless-overview.md#supported-environments-languages-and-resource-providers).
+
+#### Enable monitoring for virtual machines
+
+You can use the Azure portal or PowerShell to enable monitoring for VMs.
+
+##### Option 1: Azure portal
+
+1. In the Azure portal, go to your Application Insights resource. Copy your connection string to the clipboard.
+
+    :::image type="content"source="media/classic-api/connect-string.png" alt-text="Screenshot that shows the connection string." lightbox="media/classic-api/connect-string.png":::
+
+1. Go to your virtual machine. Under the **Settings** section in the menu on the left side, select **Extensions + applications** > **Add**.
+
+    :::image type="content"source="media/classic-api/add-extension.png" alt-text="Screenshot that shows the Extensions + applications pane with the Add button." lightbox="media/classic-api/add-extension.png":::
+
+1. Select **Application Insights Agent** > **Next**.
+
+    :::image type="content"source="media/classic-api/select-extension.png" alt-text="Screenshot that shows the Install an Extension pane with the Next button." lightbox="media/classic-api/select-extension.png":::
+
+1. Paste the connection string you copied in step 1 and select **Review + create**.
+
+    :::image type="content"source="media/classic-api/install-extension.png" alt-text="Screenshot that shows the Create tab with the Review + create button." lightbox="media/classic-api/install-extension.png":::
+
+##### Option 2: PowerShell
+
+> [!NOTE]
+> New to PowerShell? Check out the [Get started guide](/powershell/azure/get-started-azureps).
+
+Install or update the Application Insights Agent as an extension for Azure virtual machines:
+
+```powershell
+# define variables to match your environment before running
+$ResourceGroup = "<myVmResourceGroup>"
+$VMName = "<myVmName>"
+$Location = "<myVmLocation>"
+$ConnectionString = "<myAppInsightsResourceConnectionString>"
+
+$publicCfgJsonString = @"
+{
+    "redfieldConfiguration": {
+        "instrumentationKeyMap": {
+        "filters": [
+            {
+            "appFilter": ".*",
+            "machineFilter": ".*",
+            "virtualPathFilter": ".*",
+            "instrumentationSettings" : {
+                "connectionString": "$ConnectionString"
+            }
+            }
+        ]
+        }
+    }
+    }
+"@
+
+$privateCfgJsonString = '{}'
+    
+Set-AzVMExtension -ResourceGroupName $ResourceGroup -VMName $VMName -Location $Location -Name "ApplicationMonitoringWindows" -Publisher "Microsoft.Azure.Diagnostics" -Type "ApplicationMonitoringWindows" -Version "2.8" -SettingString $publicCfgJsonString -ProtectedSettingString $privateCfgJsonString
+```
+
+> [!NOTE]
+> For more complicated at-scale deployments, you can use a PowerShell loop to install or update the Application Insights Agent extension across multiple VMs.
+
+Query the Application Insights Agent extension status for Azure virtual machines:
+
+```powershell
+Get-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName>" -Name ApplicationMonitoringWindows -Status
+```
+
+Get a list of installed extensions for Azure virtual machines:
+
+```powershell
+Get-AzResource -ResourceId "/subscriptions/<mySubscriptionId>/resourceGroups/<myVmResourceGroup>/providers/Microsoft.Compute/virtualMachines/<myVmName>/extensions"
+```
+
+Uninstall the Application Insights Agent extension from Azure virtual machines:
+
+```powershell
+Remove-AzVMExtension -ResourceGroupName "<myVmResourceGroup>" -VMName "<myVmName>" -Name "ApplicationMonitoring"
+```
+
+> [!NOTE]
+> Verify installation by selecting **Live Metrics Stream** within the Application Insights resource associated with the connection string you used to deploy the Application Insights Agent extension. If you're sending data from multiple virtual machines, select the target Azure virtual machines under **Server Name**. It might take up to a minute for data to begin flowing.
+
+##### instrumentationKeyMap (extension settings)
+
+[!INCLUDE [instrumentationkeymap](includes/instrumentation-key-map.md)]
+
+**Where it goes for the VM and Virtual Machine Scale Sets extension**
+
+Place the map under `redfieldConfiguration.instrumentationKeyMap.filters` in the extension's public settings (`-SettingString` for VMs, `-Setting` for Virtual Machine Scale Sets). Property names are lower camel case. Set the target resource per rule with `instrumentationSettings.connectionString`.
+
+```json
+{
+  "redfieldConfiguration": {
+    "instrumentationKeyMap": {
+      "filters": [
+        {
+          "machineFilter": ".*",
+          "appFilter": ".*",
+          "instrumentationSettings": {
+            "connectionString": "<your-APPLICATIONINSIGHTS_CONNECTION_STRING>"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+#### Enable monitoring for virtual machine scale sets
+
+You can use the Azure portal or PowerShell to enable monitoring for virtual machine scale sets.
+
+##### Option 1: Azure portal
+
+Follow the prior steps for VMs, but go to your virtual machine scale sets instead of your VM.
+
+##### Option 2: PowerShell
+
+Install or update Application Insights Agent as an extension for virtual machine scale sets:
+
+```powershell
+# Set resource group, vmss name, and connection string to reflect your environment
+$ResourceGroup = "<myVmResourceGroup>"
+$VMSSName = "<myVmName>"
+$ConnectionString = "<myAppInsightsResourceConnectionString>"
+$publicCfgHashtable =
+@{
+  "redfieldConfiguration"= @{
+    "instrumentationKeyMap"= @{
+      "filters"= @(
+        @{
+          "appFilter"= ".*";
+          "machineFilter"= ".*";
+          "virtualPathFilter"= ".*";
+          "instrumentationSettings" = @{
+            "connectionString"= "$ConnectionString"
+          }
+        }
+      )
+    }
+  }
+};
+$privateCfgHashtable = @{};
+$vmss = Get-AzVmss -ResourceGroupName $ResourceGroup -VMScaleSetName $VMSSName
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name "ApplicationMonitoringWindows" -Publisher "Microsoft.Azure.Diagnostics" -Type "ApplicationMonitoringWindows" -TypeHandlerVersion "2.8" -Setting $publicCfgHashtable -ProtectedSetting $privateCfgHashtable
+Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss
+# Note: Depending on your update policy, you might need to run Update-AzVmssInstance for each instance
+```
+
+Get a list of installed extensions for virtual machine scale sets:
+
+```powershell
+Get-AzResource -ResourceId "/subscriptions/<mySubscriptionId>/resourceGroups/<myResourceGroup>/providers/Microsoft.Compute/virtualMachineScaleSets/<myVmssName>/extensions"
+```
+
+Uninstall the application monitoring extension from virtual machine scale sets:
+
+```powershell
+# set resource group and vmss name to reflect your environment
+$vmss = Get-AzVmss -ResourceGroupName "<myResourceGroup>" -VMScaleSetName "<myVmssName>"
+Remove-AzVmssExtension -VirtualMachineScaleSet $vmss -Name "ApplicationMonitoringWindows"
+Update-AzVmss -ResourceGroupName $vmss.ResourceGroupName -Name $vmss.Name -VirtualMachineScaleSet $vmss
+# Note: Depending on your update policy, you might need to run Update-AzVmssInstance for each instance
+```
+
+#### Troubleshooting
+
+For dedicated troubleshooting steps, see [Trouble deploying the Application Insights Monitoring Agent extension for VMs and virtual machine scale sets](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot#trouble-deploying-the-application-insights-monitoring-agent-extension-for-vms-and-virtual-machine-scale-sets).
+
 # [Node.js](#tab/nodejs)
 
 ### Prerequisites
@@ -837,7 +1784,7 @@ This console application also uses the same default `TelemetryConfiguration`. It
 > [!div class="checklist"]
 > * An Azure subscription. If you don't have one already, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * An [Application Insights workspace-based resource](create-workspace-resource.md).
-> * A functioning application. If you don't have one already, see [Create a basic web application](#create-a-basic-web-application).
+> * A functioning application.
 
 ### Set up the Node.js client library
 
@@ -936,7 +1883,7 @@ Because the SDK batches data for submission, there might be a delay before items
 * Continue to use the application. Take more actions to generate more telemetry.
 * Select **Refresh** in the portal resource view. Charts periodically refresh on their own, but manually refreshing forces them to refresh immediately.
 * Verify that [required outgoing ports](../fundamentals/azure-monitor-network-access.md) are open.
-* Use [Search](./transaction-search-and-diagnostics.md?tabs=transaction-search) to look for specific events.
+* Use [Search](./failures-performance-transactions.md?tabs=search-view) to look for specific events.
 * Check the [FAQ](application-insights-faq.yml#node-js).
 
 ---
@@ -964,6 +1911,34 @@ Because the SDK batches data for submission, there might be a delay before items
 > [!NOTE]
 > Live metrics are enabled by default when you onboard it by using the recommended instructions for .NET applications.
 
+#### Get started
+
+1. Enable live metrics with Application Insights SDKs by following language-specific guidelines:
+
+    * ASP.NET: Enabled by default but can also be enabled manually using code.
+    * ASP.NET Core: Enabled by default but can also be enabled manually using code.
+    * .NET/.NET Core Console/Worker: Enabled by default.
+
+1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
+
+1. [Secure the control channel](live-stream.md#secure-the-control-channel) by enabling [Microsoft Entra authentication](azure-ad-authentication.md#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
+
+##### Supported features
+
+| Language | Basic metrics | Performance metrics | Custom filtering | Sample telemetry | CPU split by process |
+|----------|:--------------|:--------------------|:-----------------|:-----------------|:---------------------|
+| .NET Framework | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Framework) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) |
+| .NET Core (target=.NET Core) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported* | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | Supported ([LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core)) | **Not supported** |
+
+Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
+
+PerfCounters support varies slightly across versions of .NET Core that don't target the .NET Framework:
+
+* PerfCounters metrics are supported when running in Azure App Service for Windows (ASP.NET Core SDK version 2.4.1 or higher).
+* PerfCounters are supported when the app is running on *any* Windows machine for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+* PerfCounters are supported when the app is running *anywhere* (such as Linux, Windows, app service for Linux, or containers) in the latest versions, but only for apps that target .NET Core [LTS](https://dotnet.microsoft.com/platform/support/policy/dotnet-core) or higher.
+
 #### Enable live metrics by using code for any .NET application
 
 ##### ASP.NET
@@ -989,7 +1964,7 @@ namespace LiveMetricsDemo
         {
             // Create a TelemetryConfiguration instance.
             TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-            config.InstrumentationKey = "INSTRUMENTATION-KEY-HERE";
+            config.ConnectionString = "<YOUR-CONNECTION-STRING>";
             QuickPulseTelemetryProcessor quickPulseProcessor = null;
             config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
                 .Use((next) =>
@@ -1003,7 +1978,7 @@ namespace LiveMetricsDemo
 
             // Secure the control channel.
             // This is optional, but recommended.
-            quickPulseModule.AuthenticationApiKey = "YOUR-API-KEY-HERE";
+            quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
             quickPulseModule.Initialize(config);
             quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -1045,7 +2020,7 @@ using Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.QuickPuls
 
 // Create a TelemetryConfiguration instance.
 TelemetryConfiguration config = TelemetryConfiguration.CreateDefault();
-config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 QuickPulseTelemetryProcessor quickPulseProcessor = null;
 config.DefaultTelemetrySink.TelemetryProcessorChainBuilder
     .Use((next) =>
@@ -1059,7 +2034,7 @@ var quickPulseModule = new QuickPulseTelemetryModule();
 
 // Secure the control channel.
 // This is optional, but recommended.
-quickPulseModule.AuthenticationApiKey = "YOUR-API-KEY-HERE";
+quickPulseModule.AuthenticationApiKey = "<YOUR-API-KEY>";
 quickPulseModule.Initialize(config);
 quickPulseModule.RegisterTelemetryProcessor(quickPulseProcessor);
 
@@ -1404,7 +2379,7 @@ telemetryClient.TrackTrace("Slow database response",
                             new Dictionary<string, string> { { "database", "db.ID" } });
 ```
 
-Now you can easily filter out in **Transaction Search** all the messages of a particular severity level that relate to a particular database.
+Now you can easily filter out in **Search** all the messages of a particular severity level that relate to a particular database.
 
 #### Console application
 
@@ -1482,9 +2457,9 @@ using (_logger.BeginScope("hello scope"))
 
 Run your app in debug mode or deploy it live.
 
-##### Explore in Transaction Search
+##### Explore in Search
 
-In your app's overview pane in the Application Insights portal, select **Transaction Search** where you can:
+In your app's overview pane in the Application Insights portal, select **Search** where you can:
 
 * Filter on log traces or on items with specific properties.
 * Inspect a specific item in detail.
@@ -1543,6 +2518,14 @@ Currently, `DependencyTrackingTelemetryModule` tracks the following dependencies
 If the dependency isn't autocollected, you can track it manually with a [track dependency call](#trackdependency).
 
 For more information about how dependency tracking works, see [Dependency tracking in Application Insights](dependencies.md#how-does-automatic-dependency-monitoring-work).
+
+#### How does automatic dependency monitoring work?
+
+* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
+
+* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
+
+* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
 
 #### Set up automatic dependency tracking in console apps
 
@@ -1607,7 +2590,7 @@ For ASP.NET applications, the full SQL query text is collected with the help of 
 | Platform | Steps needed to get full SQL query |
 |----------|------------------------------------|
 | Web Apps in Azure App Service | In your web app control panel, [open the Application Insights pane](codeless-app-service.md) and enable SQL Commands under .NET. |
-| IIS Server (Azure Virtual Machines, on-premises, and so on) | Either use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package or use the Application Insights Agent PowerShell Module to [install the instrumentation engine](application-insights-asp-net-agent.md?tabs=api-reference#enable-instrumentationengine) and restart IIS. |
+| IIS Server (Azure Virtual Machines, on-premises, and so on) | Either use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package or use the Application Insights Agent PowerShell Module to [install the instrumentation engine](#api-reference) and restart IIS. |
 | Azure Cloud Services | Add a [startup task to install StatusMonitor](codeless-app-service.md).<br>Your app should be onboarded to the ApplicationInsights SDK at build time by installing NuGet packages for ASP.NET or ASP.NET Core applications. |
 | IIS Express | Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
 | WebJobs in Azure App Service| Use the [Microsoft.Data.SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient) NuGet package. |
@@ -1644,8 +2627,8 @@ You can set up Application Insights to report exceptions that occur in either th
 To have exceptions reported from your server-side application, consider the following scenarios:
 
 * Add the [Application Insights Extension](codeless-app-service.md) for Azure web apps.
-* Add the [Application Monitoring Extension](azure-vm-vmss-apps.md) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
-* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code, run [Application Insights Agent](application-insights-asp-net-agent.md) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
+* Add the [Application Monitoring Extension](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets) for Azure VMs and Azure virtual machine scale sets IIS-hosted apps.
+* [Add the Application Insights SDK](#add-application-insights) to your app code, run [Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers) for IIS web servers, or enable the [Java agent](opentelemetry-enable.md?tabs=java) for Java web apps.
 
 ##### Client-side
 
@@ -1690,11 +2673,11 @@ To get diagnostic data specific to your app, you can insert code to send your ow
 
 Using the <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient?displayProperty=fullName>, you have several APIs available:
 
-* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](failures-performance-transactions.md?tabs=transaction-search).
+* <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackEvent%2A?displayProperty=nameWithType> is typically used for monitoring usage patterns, but the data it sends also appears under **Custom Events** in diagnostic search. Events are named and can carry string properties and numeric metrics on which you can [filter your diagnostic searches](failures-performance-transactions.md?tabs=search-view).
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackTrace%2A?displayProperty=nameWithType> lets you send longer data such as POST information.
 * <xref:Microsoft.VisualStudio.ApplicationInsights.TelemetryClient.TrackException%2A?displayProperty=nameWithType> sends exception details, such as stack traces to Application Insights.
 
-To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=transaction-searchh). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
+To see these events, on the left menu, open [Search](failures-performance-transactions.md?tabs=search-view). Select the dropdown menu **Event types**, and then choose **Custom Event**, **Trace**, or **Exception**.
 
 :::image type="content" source="media/classic-api/custom-events.png" lightbox="media/classic-api/custom-events.png" alt-text="Screenshot that shows the Search screen.":::
 
@@ -1705,7 +2688,7 @@ To see these events, on the left menu, open [Search](failures-performance-transa
 
 Request details don't include the data sent to your app in a POST call. To have this data reported:
 
-* [Add the Application Insights SDK](#add-application-insights-automatically-visual-studio) to your app code.
+* [Add the Application Insights SDK](#add-application-insights) to your app code.
 * Insert code in your application to call [Microsoft.ApplicationInsights.TrackTrace()](#tracktrace). Send the POST data in the message parameter. There's a limit to the permitted size, so you should try to send only the essential data.
 * When you investigate a failed request, find the associated traces.
 
@@ -1765,7 +2748,7 @@ catch (ex)
 }
 ```
 
-The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=transaction-search) extra information. For example, if you have an app that can run several games, you could find the exception reports related to a particular game. You can add as many items as you want to each dictionary.
+The properties and measurements parameters are optional, but they're useful for [filtering and adding](failures-performance-transactions.md?tabs=search-view) extra information. For example, if you have an app that can run several games, you could find the exception reports related to a particular game. You can add as many items as you want to each dictionary.
 
 #### Browser exceptions
 
@@ -2129,7 +3112,7 @@ namespace WcfService4
 
 #### Exception performance counters
 
-If you [installed the Azure Monitor Application Insights Agent](application-insights-asp-net-agent.md) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
+If you [installed the Azure Monitor Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers) on your server, you can get a chart of the exceptions rate measured by .NET. Both handled and unhandled .NET exceptions are included.
 
 Open a metrics explorer tab and add a new chart. Under **Performance Counters**, select **Exception rate**.
 
@@ -2708,7 +3691,7 @@ When you instrument message deletion, make sure you set the operation (correlati
 
 ##### Dependency types
 
-Application Insights uses dependency type to customize UI experiences. For queues, it recognizes the following types of `DependencyTelemetry` that improve [Transaction diagnostics experience](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics):
+Application Insights uses dependency type to customize UI experiences. For queues, it recognizes the following types of `DependencyTelemetry` that improve [Transaction diagnostics experience](./failures-performance-transactions.md#transaction-diagnostics-experience):
 
 * `Azure queue` for Azure Storage queues
 * `Azure Event Hubs` for Azure Event Hubs
@@ -2999,7 +3982,7 @@ Or you can do the same thing with custom metrics that you created:
 
 Both ASP.NET and ASP.NET Core applications deployed to Azure Web Apps run in a special sandbox environment. Applications deployed to Azure App Service can utilize a [Windows container](/azure/app-service/quickstart-custom-container?pivots=container-windows&tabs=dotnet) or be hosted in a sandbox environment. If the application is deployed in a Windows container, all standard performance counters are available in the container image.
 
-The sandbox environment doesn't allow direct access to system performance counters. However, a limited subset of counters is exposed as environment variables as described in [Perf Counters exposed as environment variables](https://github.com/projectkudu/kudu/wiki/Perf-Counters-exposed-as-environment-variables). Only a subset of counters is available in this environment. For the full list, see [Perf Counters exposed as environment variables](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/WEB/Src/PerformanceCollector/PerformanceCollector/Implementation/WebAppPerformanceCollector/CounterFactory.cs).
+The sandbox environment doesn't allow direct access to system performance counters. However, a limited subset of counters is exposed as environment variables as described in [Perf Counters exposed as environment variables](https://github.com/projectkudu/kudu/wiki/Perf-Counters-exposed-as-environment-variables). Only a subset of counters is available in this environment.
 
 The Application Insights SDK for [ASP.NET](https://nuget.org/packages/Microsoft.ApplicationInsights.Web) and [ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) detects if code is deployed to a web app or a non-Windows container. The detection determines whether it collects performance counters in a sandbox environment or utilizes the standard collection mechanism when hosted on a Windows container or virtual machine.
 
@@ -3143,12 +4126,32 @@ To learn how to configure snapshot collection for ASP.NET and ASP.NET Core appli
 
 * [Live metrics](#live-metrics)
 * [Distributed tracing](#distributed-tracing)
+* [Dependencies](#dependencies)
 * [Extended metrics](#extended-metrics)
 * [TelemetryClient API](#telemetryclient-api)
 
 ### Live metrics
 
-To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`. Currently, filtering of live metrics in the portal isn't supported.
+[Live metrics](live-stream.md) can be used to quickly verify if application monitoring with Application Insights is configured correctly. Telemetry can take a few minutes to appear in the Azure portal, but the live metrics pane shows CPU usage of the running process in near real time. It can also show other telemetry like requests, dependencies, and traces.
+
+#### Enable live metrics
+
+1. To enable sending live metrics from your app to Azure, use `setSendLiveMetrics(true)`.
+
+1. Open the Application Insights resource for your application in the [Azure portal](https://portal.azure.com). Select **Live metrics**, which is listed under **Investigate** in the left hand menu.
+
+1. [Secure the control channel](/azure/azure-monitor/app/live-stream#secure-the-control-channel) by enabling [Microsoft Entra authentication](/azure/azure-monitor/app/azure-ad-authentication#configure-and-enable-azure-ad-based-authentication) if you use custom filters.
+
+    > [!NOTE]
+    > Currently, filtering of live metrics in the portal isn't supported.
+
+##### Supported features
+
+| Basic metrics | Performance metrics | Custom filtering | Sample telemetry | CPU split by process |
+|:--------------|:--------------------|:-----------------|:-----------------|:---------------------|
+| Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | Supported (V1.3.0+) | **Not supported** |
+
+Basic metrics include request, dependency, and exception rate. Performance metrics (performance counters) include memory and CPU. Sample telemetry shows a stream of detailed information for failed requests and dependencies, exceptions, events, and traces.
 
 [!INCLUDE [Distributed tracing](includes/application-insights-distributed-trace-data.md)]
 
@@ -3165,6 +4168,24 @@ appInsights
   .setDistributedTracingMode(appInsights.DistributedTracingModes.AI_AND_W3C)
   .start()
 ```
+
+### Dependencies
+
+#### Automatically tracked dependencies
+
+A list of the latest currently supported modules is maintained in [Diagnostic Channel Publishers](https://github.com/microsoft/node-diagnostic-channel/tree/master/src/diagnostic-channel-publishers).
+
+#### How does automatic dependency monitoring work?
+
+* Bytecode instrumentation is applied around selected methods using `InstrumentationEngine`, enabled via `StatusMonitor` or the Application Insights extension for Azure App Service.
+
+* `EventSource` callbacks are used to capture telemetry from .NET libraries that emit structured events.
+
+* `DiagnosticSource` callbacks are used in newer .NET and .NET Core SDKs to collect telemetry from libraries that support distributed tracing.
+
+#### Manually track dependencies
+
+For instructions, see [Track your dependencies](#track-your-dependencies).
 
 ### Extended metrics
 
@@ -3992,10 +5013,10 @@ The Application Insights .NET SDK consists of many NuGet packages. The [core pac
 
 The configuration file is named `ApplicationInsights.config` or `ApplicationInsights.xml`. The name depends on the type of your application. It's automatically added to your project when you [install most versions of the SDK](app-insights-overview.md).
 
-By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](application-insights-asp-net-agent.md).
+By default, when you use the automated experience from the Visual Studio template projects that support **Add** > **Application Insights Telemetry**, the `ApplicationInsights.config` file is created in the project root folder. After compiling, it gets copied to the bin folder. It's also added to a web app by [Application Insights Agent on an IIS server](#deploy-the-application-insights-agent-for-on-premises-servers).
 
 > [!IMPORTANT]
-> The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and Azure virtual machine scale sets](azure-vm-vmss-apps.md) is used.
+> The configuration file is ignored if the [extension for Azure websites](codeless-app-service.md) or the [extension for Azure VMs and Azure virtual machine scale sets](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets) is used.
 
 There isn't an equivalent file to control the [SDK in a webpage](javascript-sdk.md).
 
@@ -4166,7 +5187,7 @@ By default, a maximum of 10 `Transmission` instances can be sent in parallel. If
 
 For the full list of configurable settings for each channel, see:
 
-* [InMemoryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/Test/Microsoft.ApplicationInsights.Test/Microsoft.ApplicationInsights.Tests/Channel/InMemoryChannelTest.cs)
+* InMemoryChannel
 * [ServerTelemetryChannel](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/BASE/src/ServerTelemetryChannel/ServerTelemetryChannel.cs)
 
 Here are the most commonly used settings for `ServerTelemetryChannel`:
@@ -4206,13 +5227,13 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | Area | Description |
 |------|-------------|
 | **Request tracking** | Collects request telemetry (response time, result code) for incoming web requests.<br><br>**Module:** `Microsoft.ApplicationInsights.Web.RequestTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
-| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](application-insights-asp-net-agent.md). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](azure-vm-vmss-apps.md).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
+| **Dependency tracking** | Collects telemetry about outgoing dependencies (HTTP calls, SQL calls). To work in IIS, [install Application Insights Agent](#deploy-the-application-insights-agent-for-on-premises-servers). You can also write custom dependency tracking using [TrackDependency API](#trackdependency). Supports autoinstrumentation with [App Service](codeless-app-service.md) and [VMs and virtual machine scale sets monitoring](#deploy-the-application-insights-agent-for-virtual-machines-vms-and-virtual-machine-scale-sets).<br><br>**Module:** `Microsoft.ApplicationInsights.DependencyCollector.DependencyTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.DependencyCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Performance counters** | Collects Windows Performance Counters (CPU, memory, network load from IIS installs). Specify which counters (including custom ones). For more information, see [Collects system performance counters](asp-net-counters.md).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.PerfCounterCollector.PerformanceCollectorModule`<br>**NuGet:**[Microsoft.ApplicationInsights.PerfCounterCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.PerfCounterCollector) |
 | **Event counters** | Collects [.NET EventCounters](#event-counters). Recommended for ASP.NET Core and cross‑platform in place of Windows perf counters.<br><br>**Module:** `EventCounterCollectionModule` (SDK ≥ 2.8.0) |
 | **Live Metrics (QuickPulse)** | Collects telemetry for Live Metrics pane.<br><br>**Module:** `QuickPulseTelemetryModule` |
 | **Heartbeats (App Service)** | Sends heartbeats and custom metrics for App Service environment.<br><br>**Module:** `AppServicesHeartbeatTelemetryModule` |
 | **Heartbeats (VMs and virtual machine scale sets)** | Sends heartbeats and custom metrics for Azure VM environment.<br><br>**Module:** `AzureInstanceMetadataTelemetryModule` |
-| **Diagnostics telemetry** | Reports errors in Application Insights instrumentation code (for example, missing counters, `ITelemetryInitializer` exceptions). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br><br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
+| **Diagnostics telemetry** | Reports errors in Application Insights instrumentation code (for example, missing counters, `ITelemetryInitializer` exceptions). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=search-view).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights)<br><br>**Note:** If you only install this package, the *ApplicationInsights.config* file isn't automatically created. |
 | **Developer mode (debugger attached)** | Forces `TelemetryChannel` to send items immediately when debugger is attached. Reduces latency but increases CPU/network overhead.<br><br>**Module:** `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>**NuGet:** [Application Insights Windows Server](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **Exception tracking (Web)** | Tracks unhandled exceptions in web apps. See [Failures and exceptions](#exceptions).<br><br>**Module:** `Microsoft.ApplicationInsights.Web.ExceptionTrackingTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.Web](https://www.nuget.org/packages/Microsoft.ApplicationInsights.Web) |
 | **Exception tracking (Unobserved/Unhandled)** | Tracks unobserved task exceptions and unhandled exceptions for worker roles, Windows services, and console apps.<br><br>**Modules:**<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnobservedExceptionTelemetryModule`<br>&nbsp;• `Microsoft.ApplicationInsights.WindowsServer.UnhandledExceptionTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
@@ -4231,7 +5252,7 @@ Each telemetry module collects a specific type of data and uses the core API to 
 | **Live Metrics (QuickPulse)** | Live Metrics enabled in ASP.NET Core Application Insights integration.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Heartbeats collector (App Service)** | Sends heartbeats (as custom metrics) with details about the App Service environment. Built-in via base SDK when hosted in App Service.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Heartbeats collector (VMs and virtual machine scale sets)** | Sends heartbeats (as custom metrics) with details about the Azure VM environment. Built-in via base SDK when hosted on Azure VMs and Azure virtual machine scale sets.<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
-| **Diagnostics telemetry** | Reports errors in the Application Insights instrumentation code itself (for example, can't access performance counters, `ITelemetryInitializer` throws an exception). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
+| **Diagnostics telemetry** | Reports errors in the Application Insights instrumentation code itself (for example, can't access performance counters, `ITelemetryInitializer` throws an exception). Trace telemetry appears in [Diagnostic Search](failures-performance-transactions.md?tabs=search-view).<br><br>**Module:** `Microsoft.ApplicationInsights.Extensibility.Implementation.Tracing.DiagnosticsTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights](https://www.nuget.org/packages/Microsoft.ApplicationInsights) |
 | **Developer mode (debugger attached)** | Same behavior available; class is part of Windows Server package.<br><br>**Module:** `Microsoft.ApplicationInsights.WindowsServer.DeveloperModeWithDebuggerAttachedTelemetryModule`<br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
 | **Exception tracking (Web)** | Automatic exception tracking in ASP.NET Core Application Insights integration<br><br>**Module:** *No separate module class.*<br>**NuGet:** [Microsoft.ApplicationInsights.AspNetCore](https://www.nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) |
 | **Exception tracking (Unobserved/Unhandled)** | Similar behavior via ASP.NET Core runtime/integration; class names are Windows Server–specific.<br><br>**NuGet:** [Microsoft.ApplicationInsights.WindowsServer](https://www.nuget.org/packages/Microsoft.ApplicationInsights.WindowsServer/) |
@@ -4364,7 +5385,7 @@ In Microsoft.ApplicationInsights.AspNetCore SDK version [2.15.0](https://www.nug
 ```json
 {
     "ApplicationInsights": {
-    "ConnectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+    "ConnectionString": "<YOUR-CONNECTION-STRING>",
     "EnableAdaptiveSampling": false,
     "EnablePerformanceCounterCollectionModule": false
     }
@@ -4401,7 +5422,7 @@ To configure any default telemetry module, use the extension method `ConfigureTe
             // Similarly, any other default modules can be configured.
             services.ConfigureTelemetryModule<QuickPulseTelemetryModule>((module, o) =>
             {
-                module.AuthenticationApiKey = "keyhere";
+                module.AuthenticationApiKey = "<YOUR-API-KEY-HERE>";
             });
 
             // The following removes PerformanceCollectorModule to disable perf-counter collection.
@@ -4507,7 +5528,7 @@ using Microsoft.ApplicationInsights;
     protected void Application_Start()
     {
         TelemetryConfiguration configuration = TelemetryConfiguration.CreateDefault();
-        configuration.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+        configuration.ConnectionString = "<YOUR-CONNECTION-STRING>";
         var telemetryClient = new TelemetryClient(configuration);
 
 ```
@@ -4517,7 +5538,7 @@ If you want to send a specific set of events to a different resource, you can se
 ```csharp
 
     var tc = new TelemetryClient();
-    tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+    tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
     tc.TrackEvent("myEvent");
     // ...
 
@@ -4542,7 +5563,7 @@ var app = builder.Build();
 
 // Resolve TelemetryConfiguration from DI and set the connection string
 var config = app.Services.GetRequiredService<TelemetryConfiguration>();
-config.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+config.ConnectionString = "<YOUR-CONNECTION-STRING>";
 
 app.Run();
 ```
@@ -4553,7 +5574,7 @@ If you want to send a specific set of events to a different resource, you can cr
 using Microsoft.ApplicationInsights;
 
 var tc = new TelemetryClient();
-tc.Context.ConnectionString = "InstrumentationKey=00000000-0000-0000-0000-000000000000";
+tc.Context.ConnectionString = "<YOUR-CONNECTION-STRING>";
 tc.TrackEvent("myEvent");
 // ...
 ```
@@ -4572,7 +5593,7 @@ This functionality is available by setting `TelemetryConfiguration.ApplicationId
 ```csharp
 public interface IApplicationIdProvider
 {
-    bool TryGetApplicationId(string instrumentationKey, out string applicationId);
+    bool TryGetApplicationId(string connectionString, out string applicationId);
 }
 ```
 
@@ -4584,7 +5605,7 @@ This wrapper is for our Profile API. It throttles requests and cache results. Th
 
 The class exposes an optional property called `ProfileQueryEndpoint`. By default, it's set to `https://dc.services.visualstudio.com/api/profiles/{0}/appId`.
 
-If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the instrumentation key for each request.
+If you need to configure a proxy, we recommend proxying the base address and ensuring the path includes `/api/profiles/{0}/appId`. At runtime, `{0}` is replaced with the connection string for each request.
 
 ##### ASP.NET
 
@@ -4634,9 +5655,9 @@ app.Run();
 
 #### DictionaryApplicationIdProvider
 
-This static provider relies on your configured instrumentation key/application ID pairs.
+This static provider relies on your configured connection string/application ID pairs.
 
-This class has the `Defined` property, which is a `Dictionary<string,string>` of instrumentation key/application ID pairs.
+This class has the `Defined` property, which is a `Dictionary<string,string>` of connection string/application ID pairs.
 
 This class has the optional property `Next`, which can be used to configure another provider to use when a connection string is requested that doesn't exist in your configuration.
 
@@ -4649,8 +5670,8 @@ This class has the optional property `Next`, which can be used to configure anot
     ...
     <ApplicationIdProvider Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.DictionaryApplicationIdProvider, Microsoft.ApplicationInsights">
         <Defined>
-            <Type key="InstrumentationKey_1" value="ApplicationId_1"/>
-            <Type key="InstrumentationKey_2" value="ApplicationId_2"/>
+            <Type key="ConnectionString_1" value="ApplicationId_1"/>
+            <Type key="ConnectionString_2" value="ApplicationId_2"/>
         </Defined>
         <Next Type="Microsoft.ApplicationInsights.Extensibility.Implementation.ApplicationId.ApplicationInsightsApplicationIdProvider, Microsoft.ApplicationInsights" />
     </ApplicationIdProvider>
@@ -4664,8 +5685,8 @@ This class has the optional property `Next`, which can be used to configure anot
 TelemetryConfiguration.Active.ApplicationIdProvider = new DictionaryApplicationIdProvider{
  Defined = new Dictionary<string, string>
     {
-        {"InstrumentationKey_1", "ApplicationId_1"},
-        {"InstrumentationKey_2", "ApplicationId_2"}
+        {"ConnectionString_1", "ApplicationId_1"},
+        {"ConnectionString_2", "ApplicationId_2"}
     }
 };
 ```
@@ -4685,8 +5706,8 @@ builder.Services.AddSingleton<IApplicationIdProvider>(sp =>
     {
         Defined = new Dictionary<string, string>
         {
-            { "InstrumentationKey_1", "ApplicationId_1" },
-            { "InstrumentationKey_2", "ApplicationId_2" }
+            { "ConnectionString_1", "ApplicationId_1" },
+            { "ConnectionString_2", "ApplicationId_2" }
         },
         Next = new ApplicationInsightsApplicationIdProvider() // optional fallback
     });
@@ -4847,8 +5868,6 @@ If your project doesn't include *_Layout.cshtml*, you can still add [client-side
 
 Automatic web Instrumentation can be enabled for node server via JavaScript (Web) SDK Loader Script injection by configuration.
 
-<!-- This feature enables web instrumentation for node server. It automatically injects the [Browser SDK Loader Script](javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String. -->
-
 ```javascript
 let appInsights = require("applicationinsights");
 appInsights.setup("<connection_string>")
@@ -4958,7 +5977,7 @@ You can use `new applicationInsights.TelemetryClient(instrumentationKey?)` to cr
 
 ### TrackEvent
 
-In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../metrics/analyze-metrics.md) as an aggregated count and in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search) as individual occurrences. (It isn't related to MVC or other framework "events.")
+In Application Insights, a *custom event* is a data point that you can display in [Metrics Explorer](../metrics/analyze-metrics.md) as an aggregated count and in [Search](failures-performance-transactions.md?tabs=search-view) as individual occurrences. (It isn't related to MVC or other framework "events.")
 
 Insert `TrackEvent` calls in your code to count various events. For example, you might want to track how often users choose a particular feature. Or you might want to know how often they achieve certain goals or make specific types of mistakes.
 
@@ -5099,9 +6118,7 @@ The recommended way to send request telemetry is where the request acts as an <a
 
 ### Operation context
 
-You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does it for exceptions and other events that are sent while an HTTP request is being processed. In [Search](failures-performance-transactions.md?tabs=transaction-search) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
-
-
+You can correlate telemetry items together by associating them with operation context. The standard request-tracking module does it for exceptions and other events that are sent while an HTTP request is being processed. In [Search](failures-performance-transactions.md?tabs=search-view) and [Analytics](../logs/log-query-overview.md), you can easily find any events associated with the request by using its operation ID.
 
 When you track telemetry manually, the easiest way to ensure telemetry correlation is by using this pattern:
 
@@ -5176,7 +6193,7 @@ requests
 Send exceptions to Application Insights:
 
 * To [count them](../metrics/analyze-metrics.md), as an indication of the frequency of a problem.
-* To [examine individual occurrences](failures-performance-transactions.md?tabs=transaction-search).
+* To [examine individual occurrences](failures-performance-transactions.md?tabs=search-view).
 
 The reports include the stack traces.
 
@@ -5237,7 +6254,7 @@ exceptions
 
 ### TrackTrace
 
-Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Diagnostic Search](failures-performance-transactions.md?tabs=transaction-search).
+Use `TrackTrace` to help diagnose problems by sending a "breadcrumb trail" to Application Insights. You can send chunks of diagnostic data and inspect them in [Search](failures-performance-transactions.md?tabs=search-view).
 
 # [.NET](#tab/dotnet)
 
@@ -5288,7 +6305,7 @@ Not applicable.
 
 ---
 
-In [Search](failures-performance-transactions.md?tabs=transaction-search), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
+In [Search](failures-performance-transactions.md?tabs=search-view), you can then easily filter out all the messages of a particular severity level that relate to a particular database.
 
 #### Traces in Log Analytics
 
@@ -5421,7 +6438,7 @@ If your app groups users into accounts, you can also pass an identifier for the 
 
 In [Metrics Explorer](../metrics/analyze-metrics.md), you can create a chart that counts **Users, Authenticated**, and **User accounts**.
 
-You can also [search](failures-performance-transactions.md?tabs=transaction-search) for client data points with specific user names and accounts.
+You can also [search](failures-performance-transactions.md?tabs=search-view) for client data points with specific user names and accounts.
 
 > [!NOTE]
 > The [EnableAuthenticationTrackingJavaScript property in the ApplicationInsightsServiceOptions class](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/NETCORE/src/Shared/Extensions/ApplicationInsightsServiceOptions.cs) in the .NET Core SDK simplifies the JavaScript configuration needed to inject the user name as the Auth ID for each trace sent by the Application Insights JavaScript SDK.

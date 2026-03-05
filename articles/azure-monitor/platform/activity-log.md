@@ -192,6 +192,24 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ```
 ---
 
+
+## Export management group logs
+When you create a [diagnostic setting log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it will export any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you will receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+
+The management group will also collect many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you will receive duplicate events.
+
+For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 will capture all activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. In this case, no diagnostic setting is need on MG2 since it would just collect duplicate events.
+
+If you have duplicate events, you can combine them using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
+
+```kusto
+AzureActivity
+| extend Hash = hash(dynamic_to_json(pack_all()))
+| summarize arg_max(TimeGenerated, *) by Hash
+```
+
+
+
 ## Export to CSV
 Select **Download as CSV** to export the activity log to a CSV file using the Azure portal.
 
@@ -245,6 +263,13 @@ while ($currentStart -lt $endTime) {
  
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
+
+## Identify resource creation
+
+One of the common uses of the activity log is to determine when a resource was created and who created it. The activity log is the only location where the creator of a resource is persisted. Since the activity log is retained for 90 days, you can only find the creator of a resource if it was created within the last 90 days.
+
+As described above, export the activity log to a Log Analytics workspace for longer retention. In this case, you can find the creator of a resource by querying the `AzureActivity` table, and the data is retained as long as you specified the [retention period for this table](../logs/data-retention-configure.md).
+
 
 ## Next steps
 

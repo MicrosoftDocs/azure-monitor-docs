@@ -1,7 +1,7 @@
 ---
 title: Scrape Prometheus metrics at scale in Azure Monitor
 description: Guidance on performance that can be expected when collection metrics at high scale for Azure Monitor managed service for Prometheus.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 5/25/2025
 ms.reviewer: viviandiec
 ---

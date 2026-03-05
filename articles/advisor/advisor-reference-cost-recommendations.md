@@ -4,7 +4,7 @@ description: Full list of available cost recommendations in Advisor.
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 06/24/2025
+ms.date: 02/10/2026
 ---
 
 # Cost recommendations

@@ -11,10 +11,47 @@ ROBOTS: NOINDEX
 
 [Collect data from virtual machine client with Azure Monitor](./data-collection.md) describes how to collect data from virtual machines (VMs) with Azure Monitor. This article describes how to send that data described to Azure Storage and Event Hubs. This feature is currently in public preview.
 
-> [!TIP]
-> As an alternative to storage, you should create a table with the [Auxiliary plan](../logs/data-platform-logs.md#table-plans) in your Log Analytics workspace for cost-effective logging.
+> [!IMPORTANT]
+> ## Feature Retirement
+> You can no longer create new data collection rules using this feature. **This preview feature will be retired on July 31, 2026**. After this date, existing configurations using this capability will stop sending data and Microsoft will no longer support the same.
+>
+> To ensure continued support, you will need to update to alternatives below to continue using AMA or other Azure solutions that provide a more reliable, scalable and performant solution to send data to respective destinations.
+>
+> ## Identify impacted resources
+> Run the following queries in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal) to:
+>
+> **List data collection rules using this feature**
+> 
+> ``` kql
+> resources
+> | where type == "microsoft.insights/datacollectionrules"
+> | where kind == "AgentDirectToStore"
+> ```
+>
+> **List VMs associated with the data collection rules using this feature**
+>
+>  ``` kql
+> resources
+> | where type == "microsoft.insights/datacollectionrules"
+> | where kind == "AgentDirectToStore"
+> | project dcrId = id, dcrName = name, dcrLocation = location
+> | join kind=inner (
+>     insightsresources
+>     | where type == "microsoft.insights/datacollectionruleassociations"
+>     | extend dcrId = tostring(properties.dataCollectionRuleId)
+>     | extend parentResourceId = tolower(tostring(split(id, "/providers/microsoft.insights/datacollectionruleassociations")[0]))
+>     | project dcraId = id, dcraName = name, dcrId, parentResourceId,
+>               description = tostring(properties.description)
+> ) on dcrId
+> | project dcraId, dcraName, dcrId, dcrName, dcrLocation, parentResourceId, description
+> ```
+>
+> ## Update to alternatives
+> | Destination | Alternatives |   
+> |-------------|----------------------------------------------------------------------|
+> | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and/or lower costs, update existing configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics. | 
+> | Azure Event Hubs | If you're using AMA to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, update existing configurations to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP > compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> | 
 
-The following table lists the data sources that are supported by this feature.
 
 ## Supported data types
 
@@ -31,7 +68,7 @@ The data types in the following table are supported by this feature. Each has a 
 The following logs are not supported:
 
 - ETW Logs. This is planned for later release.
-- Windows Crash Dumps. The Azure Monitoring Agent is meant for telemetry logs and not large file types.
+- Windows Crash Dumps. The Azure Monitor Agent is meant for telemetry logs and not large file types.
 - Application Logs. These are collected by Application insights, which doesn't use DCRs.
 - .NET event source logs
 
@@ -657,16 +694,6 @@ Use the process above or any other valid method to deploy this template. It incl
 ```
 ---
    
-
-
-## Migration from Azure Diagnostic Extensions for Linux and Windows (LAD/WAD)
-
-[Azure Diagnostics extension](../agents/diagnostics-extension-overview.md) currently sends data to Event Hubs and storage but will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension.  Only security patches are being provided. Azure Monitor Agent (AMA) provides a more efficient and flexible way to collect client data from VMs.
-
-- To check which extensions are installed on your VM, select **Extensions + applications** under **Settings** on your VM.
-- Remove LAD or WAD after you set up Azure Monitor Agent to collect the same data to Event Hubs or Azure Storage to avoid duplicate data. 
-
-
 ## Troubleshoot
 
 If data isn't being sent to Event Hubs or storage, check the following:

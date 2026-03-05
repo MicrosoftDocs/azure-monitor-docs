@@ -2,7 +2,7 @@
 title: How to configure JMX metrics - Azure Monitor application insights for Java
 description: Configure extra Java Management Extensions (JMX) metrics collection for Azure Monitor Application Insights Java agent.
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/06/2026
 ms.devlang: java
 ms.custom: devx-track-java, devx-track-extended-java
 ---
@@ -85,6 +85,6 @@ Other configuration examples for Java 17:
 
 ## Where do I find the JMX Metrics in application insights?
 
-You can view the JMX metrics collected while your application is running by navigating to your application insights resource in the Azure portal. Under Metrics tab, select the dropdown as shown to view the metrics.
+You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
-> :::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of metrics in portal":::
+:::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of the Metrics pane in the Azure portal.":::

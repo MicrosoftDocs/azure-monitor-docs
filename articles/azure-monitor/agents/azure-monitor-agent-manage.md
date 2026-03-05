@@ -21,6 +21,9 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
 
 > [!IMPORTANT]
+> If the agent is going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
+
+> [!IMPORTANT]
 > Installing, upgrading, or uninstalling the Azure Monitor Agent doesn't require a machine restart.
 
 ## Installation options
@@ -280,7 +283,7 @@ Not applicable.
 
 #### [Azure portal](#tab/azure-portal)
 
-To do a one-time update of the agent, you must first uninstall the existing agent version. Then install the new version as described.
+To do a one-time update of the agent, go to your virtual machine or scale set. Select the **Extensions** tab, then check the agent and click **Update**.
 
 We recommend that you enable automatic update of the agent by enabling [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). Go to your virtual machine or scale set, select the **Extensions** tab, and then select **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent**. In the dialog that opens, select **Enable automatic upgrade**.
 
@@ -506,6 +509,11 @@ Currently not supported.
       ]
     }
     ```
+
+    > [!NOTE]
+    > If you are associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
+    >
+    > "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
 
     Parameter file:
 

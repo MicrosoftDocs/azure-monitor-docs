@@ -1,7 +1,7 @@
 ---
 title: Reliability workbook
 description: Use Azure Advisor to evaluate the reliability posture of your business-critical applications, assess risks and plan improvements.
-ms.topic: article
+ms.topic: how-to
 ms.date: 10/28/2024
 
 ---
@@ -58,7 +58,7 @@ Use **SLA** and **Help** controls to show additional information:
 The workbook offers best practices for Azure services including:
 *    **Compute**: Virtual Machines, Virtual Machine Scale Sets
 *    **Containers**: Azure Kubernetes service
-*    **Databases**: SQL Database, Synapse SQL Pool, Cosmos DB, Azure Database for MySQL, PostgreSQL, Azure Cache for Redis
+*    **Databases**: SQL Database, Synapse SQL Pool, Cosmos DB, Azure Database for MySQL, PostgreSQL, Azure Cache for Redis (deprecated)
 *    **Integration**: Azure API Management
 *    **Networking**: Azure Firewall, Azure Front Door & CDN, Application Gateway, Load Balancer, Public IP, VPN & Express Route Gateway
 *    **Storage**: Storage Account

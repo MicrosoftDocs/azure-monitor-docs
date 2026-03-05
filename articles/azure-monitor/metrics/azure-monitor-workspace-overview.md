@@ -78,7 +78,7 @@ Data stored in the Azure Monitor workspace is handled in accordance with all sta
 * Data is encrypted at rest using a Microsoft-managed key
 * Data is retained for 18 months
 
-For details about the Azure Monitor managed service for Prometheus' support of PII/EUII data, see [Azure Monitor and Prometheus](prometheus-metrics-overview.md).
+The use of Azure Monitor to manage and host Prometheus is intended for storing information about the service health of customer machines and applications. It's not intended for storing any personal data. Ensure that you don't send any sensitive information, PII/EUII, such as usernames and credit card numbers, into Azure Monitor-hosted Prometheus fields like metric names, label names, or label values.
 
 ## Regional availability
 
@@ -91,17 +91,22 @@ When you create a new Azure Monitor workspace, you provide a region which sets t
 | Australia     | Australia Central, Australia East, Australia Southeast, Australia Central 2                      |
 | Brazil        | Brazil South, Brazil Southeast                                                                   |
 | Canada        | Canada Central, Canada East                                                                      |
+| Chile         | Chile Central                                                                                    |
 | China         | China North 3 (Preview)<sup>1</sup>, China East 3 (Preview)<sup>1</sup>                          |
 | Europe        | North Europe, West Europe                                                                        |
 | France        | France Central, France South                                                                     |
 | Germany       | Germany West Central                                                                             |
 | India         | Central India, South India                                                                       |
+| Indonesia     | Indonesia Central                                                                                |
 | Israel        | Israel Central                                                                                   |
 | Italy         | Italy North                                                                                      |
 | Japan         | Japan East, Japan West                                                                           |
 | Korea         | Korea Central, Korea South                                                                       |
+| Malaysia      | Malaysia West                                                                                    |
 | Mexico        | Mexico Central                                                                                   |
+| New Zealand   | New Zealand North                                                                                |
 | Norway        | Norway East, Norway West                                                                         |
+| Poland        | Poland Central                                                                                   |
 | Spain         | Spain Central                                                                                    |
 | Sweden        | Sweden South, Sweden Central                                                                     |
 | Switzerland   | Switzerland North, Switzerland West                                                              |

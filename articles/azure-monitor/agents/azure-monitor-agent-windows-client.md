@@ -315,7 +315,7 @@ GET https://management.azure.com/providers/Microsoft.Insights/monitoredObjects/{
         "lastModifiedByType": "User",
         "lastModifiedAt": "2021-04-02T12:34:56.1234567Z"
       },
-      "etag": "070057da-0000-0000-0000-5ba70d6c0000"
+      "etag": "aaaaaaaa-bbbb-cccc-1111-222222222222"
     }
   ],
   "nextLink": null
@@ -485,7 +485,7 @@ $auth = Get-AzAccessToken
 
 $AuthenticationHeader = @{
     "Content-Type" = "application/json"
-    "Authorization" = "Bearer " + $auth.Token
+    "Authorization" = "Bearer " + $(ConvertFrom-SecureString $auth.Token -AsPlainText)
 }
 
 #Get the monitored object

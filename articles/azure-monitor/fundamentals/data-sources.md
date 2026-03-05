@@ -78,7 +78,7 @@ Azure Kubernetes Service (AKS) clusters create the same activity logs and platfo
 
 ## Custom sources
 
-For any monitoring data that you can't collect with the other methods described in this article, you can methods in the following table to send data to Azure Monitor. 
+Custom data sources, especially those outside of Azure, require custom data collection methods. Refer to the following table to understand the options.
 
 | Data type | Description | Data collection method |
 |:----------|:------------|:-----------------------|

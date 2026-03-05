@@ -2,7 +2,7 @@
 title: Create data collection rules (DCRs) in Azure Monitor
 description: Details on creating data collection rules (DCRs) in Azure Monitor.
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 01/20/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
@@ -43,6 +43,8 @@ The Azure portal provides a simplified experience for creating a DCR for particu
 ## Create or edit a DCR using JSON
 
 In addition to editing an existing DCR, you can create a new one using one of the [sample DCRs](data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
+
+[!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
 
 Once you have the definition of your DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
 
@@ -88,9 +90,11 @@ FilePath="my-dcr.json"
 az rest --method put --url $ResourceId"?api-version=2022-06-01" --body @$FilePath
 ```
 
-### [ARM template](#tab/arm)
+### [ARM & Bicep templates](#tab/arm)
 
-Use the following template to create a DCR, replacing `<dcr-properties>` with the properties for your DCR. You can use this template to create a new DCR or update an existing one.
+Use the following templates to create a DCR, replacing `<dcr-properties>` with the properties for your DCR. You can use this template to create a new DCR or update an existing one.
+
+**ARM (JSON)**
 
 ```json
 {
@@ -115,14 +119,31 @@ Use the following template to create a DCR, replacing `<dcr-properties>` with th
             "type": "Microsoft.Insights/dataCollectionRules",
             "name": "[parameters('dataCollectionRuleName')]",
             "location": "[parameters('location')]",
-            "apiVersion": "2021-09-01-preview",
+            "apiVersion": "2024-03-11",
             "properties": {
                 "<dcr-properties>"
             }
         }
     ]
 }
+```
 
+**Bicep**
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
+    name: dataCollectionRuleName
+    location: location
+    properties: {
+        <dcr-properties>
+    }
+}
 ```
 
 ---

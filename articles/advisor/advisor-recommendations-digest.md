@@ -1,7 +1,7 @@
 ---
 title: Recommendation digest for Azure Advisor
 description: Get periodic summary for your active recommendations
-ms.topic: article
+ms.topic: how-to
 ms.date: 03/18/2025
 
 ---

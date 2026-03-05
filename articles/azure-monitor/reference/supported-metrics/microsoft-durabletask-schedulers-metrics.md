@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DurableTask/schedulers
 description: Reference for Microsoft.DurableTask/schedulers metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 06/03/2025
+ms.date: 01/20/2026
 ms.custom: Microsoft.DurableTask/schedulers, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
@@ -16,6 +16,10 @@ The following table lists the metrics available for the Microsoft.DurableTask/sc
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
+  
+  
+  
+For a list of supported logs, see [Supported log categories - Microsoft.DurableTask/schedulers](../supported-logs/microsoft-durabletask-schedulers-logs.md)  
   
  
 

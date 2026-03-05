@@ -1,7 +1,7 @@
 ---
 title: Filter AKS control plane logs using workspace transformations in Azure Monitor
 description: Step by step guide to filter AKS control plane logs using workspace transformations in Azure Monitor.
-ms.topic: article
+ms.topic: how-to
 ms.date: 05/14/2025
 ms.reviewer: aul
 ---

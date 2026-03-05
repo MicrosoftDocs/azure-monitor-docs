@@ -168,7 +168,7 @@ For straightforward queries on a single table, Log Analytics displays the table 
  
     The maximum number of results that you can retrieve in the Log Analytics portal experience, in both simple mode and KQL mode, is 500,000. However, when you [share a Log Analytics query](./log-analytics-overview.md#more-tools) with an integrated tool, or use the query in a [search job](search-jobs.md), the query limit is set based on the tools you choose.
 
-    Select **Max. limit** to return the maximum number of results provided by any of the tools available on the **Share** window or using a search job.
+    Select **Max. limit** to return the maximum number of results provided by any of the tools available on the **Share** window or using a search job. When using a search job, this can return up to 100,000,000 results per result set.
 
     :::image type="content" source="media/log-analytics-explorer/log-analytics-share-query.png" alt-text="Screenshot that shows the Share window in Log Analytics." lightbox="media/log-analytics-explorer/log-analytics-share-query.png":::
 
@@ -178,7 +178,7 @@ For straightforward queries on a single table, Log Analytics displays the table 
 |------|-------------|------------|
 | Log Analytics | Queries you run in the Azure portal. | 500,000 |
 | [Excel](../logs/log-excel.md), [Power BI](../logs/log-powerbi.md), [Log Analytics Query API](../logs/api/overview.md) | Queries you use in Excel and Power BI, which are integrated with Log Analytics, and queries you run using the API. |500,000 |
-| [Search job](search-jobs.md) | Azure Monitor reingests the results of a query your run in search job mode into a new table in your Log Analytics. |1,000,000 |
+| [Search job](search-jobs.md) | Azure Monitor reingests the results of a query your run in search job mode into a new table in your Log Analytics. |100,000,000 per result set |
 
 ## Next steps
 

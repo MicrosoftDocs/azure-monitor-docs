@@ -1,7 +1,7 @@
 ---
 title: Migrate from Self-Hosted Prometheus to Azure Monitor Managed Service for Prometheus
 description: Guidance for organizations that are planning to migrate from self-managed Prometheus to Azure Monitor managed service for Prometheus.
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 06/13/2025
 ---
 
@@ -29,8 +29,7 @@ Prometheus metrics are stored in an [Azure Monitor workspace](azure-monitor-work
 
 [Azure Managed Grafana](/azure/managed-grafana/overview) is a data visualization platform built on top of the Grafana software by Grafana Labs. Microsoft operates and supports this fully managed Azure service. Whether you're using Azure Managed Grafana or self-hosted Grafana, you can query metrics from an Azure Monitor workspace. When you enable Managed Prometheus for your AKS or Azure Arc-enabled Kubernetes, out-of-the-box dashboards are provided that are the same as the ones used by open-source [Prometheus Operator](https://github.com/prometheus-operator/kube-prometheus).
 
-> [!NOTE]
-> [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) is now in public preview. This version of Grafana is hosted in Azure and requires no configuration to connect to Azure Monitor managed service for Prometheus. 
+In addition, [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) is also available and natively integrated with Azure Monitor. This version of Grafana is hosted in Azure and requires no configuration to connect to Azure Monitor managed service for Prometheus. 
 
 ### Cost
 
@@ -71,9 +70,9 @@ Review the following configurations for your self-hosted Prometheus setup. This 
 
 ## Configure Azure Managed Prometheus
 
-Enable Azure Managed Prometheus by [creating an Azure Monitor workspace](azure-monitor-workspace-manage.md) as the remote endpoint to send metrics from your Prometheus setup by using remote write.
+1. Enable Azure Managed Prometheus by [creating an Azure Monitor workspace](azure-monitor-workspace-manage.md) as the remote endpoint to send metrics from your Prometheus setup by using remote write.
 
-Once Managed Prometheus is enabled, you can either [enable the managed Prometheus add-on for your AKS and Arc-enabled clusters](../containers/kubernetes-monitoring-enable.md), or you can configure [remote write](./prometheus-remote-write.md) to send data from your self-hosted Prometheus environment to Azure Managed Prometheus without directly onboarding your existing clusters. You may choose to keep your self-hosted Prometheus environment long term or just keep remote write enabled as a temporary solution while you migrate to the managed add-on.
+2. Once Azure Monitor Workspace is created, you can either [**enable the managed Prometheus add-on for your AKS and Arc-enabled clusters**](../containers/kubernetes-monitoring-enable.md), or you can configure [**Promethues remote write**](./prometheus-remote-write.md) to send data from your self-hosted Prometheus environment to Azure Managed Prometheus without directly onboarding your existing clusters. You may choose to keep your self-hosted Prometheus environment long term or just keep remote write enabled as a temporary solution while you migrate to the managed add-on.
 
 
 ## Configure metrics collection and exporters

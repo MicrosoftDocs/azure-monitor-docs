@@ -29,6 +29,9 @@ Data can be sent to Event Hubs by using the following methods in Azure Monitor:
 
     Data collection rules are used to stream logs and metrics to Event Hubs, Log analytics workspaces and Azure Storage. For information on how to set up data collection rules, see [Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md) and [Create and edit data collection rules](../data-collection/data-collection-rule-create-edit.md).
 
+    > [!NOTE]
+    > The preview capability to send VM client data collected by Azure Monitor Agent directly to Event Hubs or Storage using `"kind": "AgentDirectToStore"` is being retired. See [Send data to Event Hubs and Storage (Preview)](../vm/send-event-hubs-storage.md) for details and alternatives.
+
 * **Diagnostic settings**
 
     Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create a diagnostic setting](diagnostic-settings.md#create-a-diagnostic-setting).
@@ -156,6 +159,6 @@ Routing your monitoring data to an event hub with Azure Monitor enables you to e
 
 * [Azure Monitor data sources and data collection methods](/azure/azure-monitor/data-sources)
 * [Azure Monitor data collection rules](../data-collection/data-collection-rule-overview.md)
-* [Metrics export using data collection rules](../data-collection/data-collection-metrics.md)
+* [Metrics export using data collection rules](../data-collection/metrics-export-create.md)
 * [Azure Monitor diagnostic settings](create-diagnostic-settings.md)
 * [Set up an alert based on an activity log event](../alerts/alerts-log-webhook.md)
