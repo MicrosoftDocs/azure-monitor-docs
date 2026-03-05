@@ -9,14 +9,14 @@ ms.date: 03/04/2026
 
 When an Azure service outage happens, it can be tough to quickly find the information you actually need. 
 
-You could be trying to determine which services or regions are affected and when the issue began. You also need to know what actions to take and how the mitigation effort is progressing. That information is often scattered across multiple technical update pages, which can make the whole situation even more frustrating.
+You need to know which services or regions are affected and when the issue began. You also need to know what actions to take, and how the mitigation effort is progressing. That information is often scattered across multiple technical update pages, which can make the whole situation even more frustrating.
 
 Because of this large amount of information, it can be harder to understand how serious the outage is, communicate with your team, and respond in a timely, effective way.
 
 
 
 ## AI-generated outage summary
-Now you can select **Generate summary** at the top of the service issue page. This generates a summary where you can view all critical outage details.
+Now you can select **Generate summary**, which creates a summary where you can view all critical outage details.
 
 :::image type="content"source="./media/summary-timeline/summary-generate.png" alt-text= "A screenshot of the option to create a summary of Service health event." Lightbox= "./media/summary-timeline/summary-generate.png":::
 
