@@ -4,7 +4,7 @@ description: Create a table with a custom schema to collect logs from any data s
 ms.reviewer: adi.biran
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to 
-ms.date: 08/29/2025
+ms.date: 03/05/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able create a table with a custom schema to store logs from an Azure or non-Azure data source.
 ---
 
@@ -49,7 +49,7 @@ To ingest data to the table, you might need the following:
 
 ## Create a custom table
 
-Azure tables have predefined schemas. To store log data in a different schema, use data collection rules to define how to collect, transform, and send the data to a custom table in your Log Analytics workspace. To create a custom table with the Auxiliary plan, see [Set up a table with the Auxiliary plan](create-custom-table-auxiliary.md).
+Azure tables have predefined schemas. To store log data in a different schema, use data collection rules to define how to collect, transform, and send the data to a custom table in your Log Analytics workspace. To create a custom table with the Auxiliary / Lake plan, see [Set up a table with the Auxiliary plan](create-custom-table-auxiliary.md).
 
 > [!IMPORTANT]
 > Custom tables have a suffix of **_CL**; for example, *tablename_CL*. The Azure portal adds the **_CL** suffix to the table name automatically. When you create a custom table using a different method, you need to add the **_CL** suffix yourself. The *tablename_CL* in the [DataFlows Streams](../data-collection/data-collection-rule-structure.md#data-flows) properties in your data collection rules must match the *tablename_CL* name in the Log Analytics workspace.
@@ -70,6 +70,8 @@ To create a custom table using the Azure portal:
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-custom-log.png" lightbox="media/tutorial-logs-ingestion-portal/new-custom-log.png" alt-text="Screenshot showing new DCR-based custom log.":::
 
 1. Specify a name and, optionally, a description for the table. You don't need to add the *_CL* suffix to the custom table's name - this is added automatically to the name you specify in the portal.
+
+1. Under **Table plan**, select **Analytics** (default), **Basic**, or **Auxiliary / Lake**. To create a table with the Auxiliary / Lake plan, see [Set up a table with the Auxiliary plan](create-custom-table-auxiliary.md).
 
 1. Select an existing data collection rule from the **Data collection rule** dropdown, or select **Create a new data collection rule** and specify the **Subscription**, **Resource group**, and **Name** for the new data collection rule. 
 
