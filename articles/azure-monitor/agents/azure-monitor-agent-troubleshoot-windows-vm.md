@@ -13,7 +13,7 @@ ms.reviewer: jeffwo
 
 ## Basic troubleshooting steps (installation, agent not running, configuration issues)
 
-Follow the steps below to troubleshoot the latest version of the Azure Monitor agent running on your Windows virtual machine:
+Use the following steps to troubleshoot the latest version of the Azure Monitor agent running on your Windows virtual machine:
 
 1. **Carefully review the [prerequisites here](./azure-monitor-agent-manage.md#prerequisites).**
 
@@ -21,7 +21,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
     1. Open Azure portal > select your virtual machine > Open **Settings** : **Extensions + applications** from the pane on the left > 'AzureMonitorWindowsAgent'should show up with Status: 'Provisioning succeeded'
 
-    1. If not, check if machine can reach Azure and find the extension to install using the command below:
+    1. If not, check if machine can reach Azure and find the extension to install using the following command:
 
         ```azurecli
         az vm extension image list-versions --location <machine-region> --name AzureMonitorWindowsAgent --publisher Microsoft.Azure.Monitor
@@ -33,7 +33,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 1. **Verify that the agent is running**:
 
-    1. Check if the agent is emitting heartbeat logs to Log Analytics workspace using the query below. Skip if 'Custom Metrics' is the only destination in the DCR:
+    1. Check if the agent is emitting heartbeat logs to Log Analytics workspace using the following query. Skip if 'Custom Metrics' is the only destination in the data collection rule (DCR):
 
         ```Kusto
         Heartbeat | where Category == "Azure Monitor Agent" and Computer == "<computer-name>" | take 10
@@ -49,14 +49,14 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
     1. On your virtual machine, verify the existence of the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.latest.xml`. If this file doesn't exist:
 
-        * The virtual machine may not be associated with a DCR. See step 3
-        * The virtual machine may not have Managed Identity enabled. [See here](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm#enable-system-assigned-managed-identity-during-creation-of-a-vm) on how to enable. 
-        * IMDS service isn't running/accessible from the virtual machine. [Check if you can access IMDS from the machine](/azure/virtual-machines/windows/instance-metadata-service?tabs=windows). 
+        * The virtual machine might not be associated with a DCR. See step 3
+        * Managed Identity might not be enabled on the virtual machine. [See here](/azure/active-directory/managed-identities-azure-resources/qs-configure-portal-windows-vm#enable-system-assigned-managed-identity-during-creation-of-a-vm) on how to enable. 
+        * The Azure Instance Metadata Service (IMDS) service isn't running/accessible from the virtual machine. [Check if you can access IMDS from the machine](/azure/virtual-machines/windows/instance-metadata-service?tabs=windows). 
         * AMA can't access IMDS. Check if you see IMDS errors in `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\Tables\MAEventTable.tsf` file.
 
     1. Open Azure portal > select your data collection rule > Open **Configuration** : **Resources** from the pane on the left > You should see the virtual machine listed here
 
-    1. If not listed, click 'Add' and select your virtual machine from the resource picker. Repeat across all DCRs.
+    1. If not listed, select **Add** and select your virtual machine from the resource picker. Repeat across all DCRs.
 
 1. **Verify that agent was able to download the associated DCR(s) from AMCS service:**
 
@@ -64,11 +64,11 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 ## Issues collecting Performance counters
 
-1. Check that your DCR JSON contains a section for 'performanceCounters'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for `performanceCounters`. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 
 1. Check that the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.lkg.xml` exists.
 
-1. Open the file and check if it contains `CounterSet` nodes as shown in the example below:
+1. Open the file and check if it contains `CounterSet` nodes as shown in the following example:
 
     ```xml
     <CounterSet storeType="Local" duration="PT1M" 
@@ -100,7 +100,7 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
     ```powershell
     Get-WmiObject Win32_Process -Filter "name = 'MetricsExtension.Native.exe'" | select Name,ExecutablePath,CommandLine | Format-List
     ```
-    Verify that the *CommandLine* parameter in the output contains the argument "-TokenSource MSI"
+    Verify that the *CommandLine* parameter in the output contains the argument `-TokenSource MSI`
 
 1. Verify `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\AuthToken-MSI.json` file is present.
 
@@ -108,16 +108,16 @@ Follow the steps below to troubleshoot the latest version of the Azure Monitor a
 
 1. Collect logs by running the command `C:\Packages\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent\<version-number>\Monitoring\Agent\table2csv.exe C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\Tables\MaMetricsExtensionEtw.tsf`
 
-    1. The command will generate the file 'MaMetricsExtensionEtw.csv'
+    1. The command generates the file 'MaMetricsExtensionEtw.csv'
     1. Open it and look for any Level 2 errors and try to fix them.
 
 ## Issues collecting Windows event logs
 
-1. Check that your DCR JSON contains a section for 'windowsEventLogs'. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
+1. Check that your DCR JSON contains a section for `windowsEventLogs`. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 
 1. Check that the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.lkg.xml` exists.
 
-1. Open the file and check if it contains `Subscription` nodes as shown in the example below:
+1. Open the file and check if it contains `Subscription` nodes as shown in the following example:
 
     ```xml
     <Subscription eventName="c9302257006473204344_14882095577508259570" 

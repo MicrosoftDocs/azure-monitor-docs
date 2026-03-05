@@ -96,7 +96,7 @@ Global requests from clients can be processed by action group services in any re
     | Action type | Details |
     |-------------|---------|
     | Automation Runbook | Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#automation-limits). |
-    | Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. |
+    | Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. *Event hub supports cross-tenant support up to api version _2023-09-01-preview_ |
     | Functions | Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br><br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br><br>Your endpoint must support the HTTP POST method.<br><br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br><br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account). |
     | ITSM | An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
     | Logic apps |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications. |
@@ -138,6 +138,35 @@ When you create or update an action group in the Azure portal, you can test the 
     You can use the information in the **Error details** section to understand the issue. Then you can edit, save changes, and test the action group again.
     
     When you run a test and select a notification type, you get a message with "Test" in the subject. The tests provide a way to check that your action group works as expected before you enable it in a production environment. All the details and links in test email notifications are from a sample reference set.
+
+### Use Managed Identity with Azure Action Groups (preview)
+
+Azure Action Groups now support [Managed Identities](/azure/active-directory/managed-identities-azure-resources/overview) for secure, credential-free authentication when invoking downstream services. This feature is available now available in preview.
+
+Perform the following steps to use existing managed identities in an action group:
+
+1. Configure the action group to use the preferred identity for each action within the action group.
+2. Ensure required roles are assigned to the selected identity.
+3. Grant a managed identities access to a resource (action type) for the call to authenticate See [Use Azure portal to grant a managed identity access to a resource](/entra/identity/managed-identities-azure-resources/grant-managed-identity-resource-access-azure-portal).
+
+:::image type="content" source="./media/action-groups/action-group-managed-identity.png" lightbox="./media/action-groups/action-group-managed-identity.png" alt-text="Screenshot showing the identity setting for an action in an action group.":::
+
+#### Supported Action Types
+
+The following table lists the action types that are supported with managed identity:
+
+Action Type        | Managed Identity Support  | Role Assignment Name         | Role ID
+-------------------|---------------------------|------------------------------|-------------------------------------
+Automation Runbook |  Yes                      | Automation Contributor       | f353d9bd-d4a6-484e-a77a-8050b599b867
+Azure Function     |  No                       |                              |
+Event Hub          |  Yes                      | Azure Event Hubs Data Sender | 2b629674-e913-4c01-ae53-ef4638d8f975
+ITSM               |  No                       |                              |
+Logic App          |  Yes                      | Logic App Contributor        | 87a39d53-fc1b-424a-814c-f7e04687dc9e
+Secure Webhook     |  No                       |                              |
+Webhook            |  No                       |                              |
+
+> [!NOTE]
+> If you configure managed identity using the Azure portal, role assignments will automatically be added to your identity. For PowerShell, CLI, or SDK configurations you must manually assign the roles. 
 
 ### Role requirements for test action groups
 

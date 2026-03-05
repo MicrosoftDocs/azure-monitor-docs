@@ -177,13 +177,6 @@ This error message can be returned when creating or editing your alert rule quer
 
 To mitigate this, you can either add the column to the previous project clause or use the [columnifexists](/azure/data-explorer/kusto/query/column-ifexists-function) operator.
 
-### ScheduledQueryRules API isn't supported for read only OMS Alerts
-
-This error message is returned when trying to update or delete rules created with the legacy API version by using the Azure portal.
-
-1. Edit or delete the rule programmatically using the Log Analytics [REST API](./api-alerts.md).
-2. Recommended: [Upgrade your alert rules to use Scheduled Query Rules API](./alerts-log-api-switch.md) (legacy API is on a deprecation path).
-
 ## Alert rule service limit was reached
 
 For details about the number of log search alert rules per subscription and maximum limits of resources, see [Azure Monitor service limits](../service-limits.md).

@@ -2,27 +2,14 @@
 title: Migrate to VM insights OpenTelemetry
 description: Learn how to migrate to VM insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
 ms.topic: concept-article
-ms.date: 01/15/2025
+ms.date: 01/06/2026
 ---
 
 # Migrate to VM insights OpenTelemetry (preview)
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently uses a Log Analytics workspace to collect client performance data from your virtual machines and to power visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+[VM insights](./vminsights-overview.md) in Azure Monitor currently stores performance data collected from the client in a Log Analytics workspace and uses this data to populate visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
 
-## Benefits of OpenTelemetry for VM insights
-
-Benefits of the new OTel-based collection pipeline include the following:
-
-- Standard system-level metrics such as CPU, memory, disk I/O, and network errors.
-- Per-process metrics such as process uptime, memory, and open file descriptors that weren't previously available in Azure Monitor.
-- Extensibility to non-OS workloads such as MongoDB, Cassandra, and Oracle.
-- Cross-platform consistency with a unified schema across Linux and Windows.
-
-## Prerequisites
-
-- Azure VM or Arc-enabled server running an [operating system supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
-- See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md) for prerequisites related to Azure Monitor agent.
-- See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
+OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
 
 ## Enable OpenTelemetry for VM insights
@@ -157,7 +144,7 @@ The metrics in the following table are collected by default and at no additional
 | system.disk.operation_time        | Average disk operation time                      |
 
 ### Additional metrics
-The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There is an additional cost to collect these metrics. 
+The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There's an additional cost to collect these metrics. 
 
 | Metric Name                        | Description                                      |
 |------------------------------------|--------------------------------------------------|

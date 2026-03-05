@@ -22,7 +22,6 @@ When you work with the Agent Settings DCR:
 
 * Currently, an Azure Resource Manager template is the only way to create Agent Settings.
 * Agent Settings is a standalone DCR with no other collection sources.
-* The virtual machine and the Agent Settings DCR must be in the same region.
 * The most recent Agent Settings DCR applied to the VM overrides all other Agent Settings DCRs.
 
 ### Supported parameters

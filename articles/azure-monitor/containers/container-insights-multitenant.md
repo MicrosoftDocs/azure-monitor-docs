@@ -1,7 +1,7 @@
 ---
 title: Multitenant managed logging in Container insights
 description: Concepts and onboarding steps for multitenant logging in Container insights.
-ms.topic: article
+ms.topic: how-to
 ms.custom: references_regions
 ms.date: 08/14/2025
 ms.reviewer: viviandiec

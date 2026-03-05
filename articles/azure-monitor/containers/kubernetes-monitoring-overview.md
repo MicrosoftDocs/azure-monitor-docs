@@ -1,7 +1,7 @@
 ---
 title: Kubernetes monitoring in Azure Monitor
 description: Describes Container Insights and Managed Prometheus in Azure Monitor, which work together to monitor your Kubernetes clusters.
-ms.topic: article
+ms.topic: concept-article
 ms.custom: references_regions
 ms.date: 08/26/2025
 ms.reviewer: viviandiec
@@ -47,7 +47,7 @@ Application workloads running on your Kubernetes cluster are monitored with the 
 
 | Service | Description |
 |:---|:---|
-| [Application insights](../app/app-insights-overview.md) |  Feature of Azure Monitor that provides application performance monitoring (APM) to monitor applications running on your Kubernetes cluster from development, through test, and into production. Quickly identify and mitigate latency and reliability issues using distributed traces. Supports [OpenTelemetry](../app/opentelemetry-overview.md#opentelemetry) for vendor-neutral instrumentation. |
+| [Application insights](../app/app-insights-overview.md) |  Feature of Azure Monitor that provides application performance monitoring (APM) to monitor applications running on your Kubernetes cluster from development, through test, and into production. Quickly identify and mitigate latency and reliability issues using distributed traces. Supports [OpenTelemetry](https://opentelemetry.io/) for vendor-neutral instrumentation. |
 
 ## Analysis
 Azure Monitor provides multiple tools to analyze the data collected by other features. Start with a summary of all clusters in your environment and then drill down into interactive views for a single cluster. You can also take advantage of a variety of available Grafana dashboards that combine different sets of Kubernetes telemetry. For proactive notification, enable a set of common alert rules based on Prometheus metrics.
@@ -56,7 +56,7 @@ Azure Monitor provides multiple tools to analyze the data collected by other fea
 |:---|:---|
 | [Unified monitoring dashboard](./container-insights-analyze.md) | The unified monitoring dashboard in the Azure portal consolidates data gathered by the different services for interactive analysis in a single screen. Get a high level status of your different clusters and then drill down into the details of individual clusters and their components.  |
 | [Azure Managed Grafana](/azure/managed-grafana/overview) | Fully managed implementation of [Grafana](https://grafana.com/), which is an open-source data visualization platform commonly used to present Prometheus and other data. Multiple predefined Grafana dashboards are available for monitoring Kubernetes and full-stack troubleshooting.|
-| [Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-grafana-overview.md) | Present Grafana dashboards in the Azure portal with no configuration requirements and no cost. Use this feature instead of Managed Grafana if you don't require dashboards across multiple data sources. |
+| [Azure Monitor dashboards with Grafana](../visualize/visualize-grafana-overview.md) | Present Grafana dashboards in the Azure portal with no configuration requirements and no cost. Use this feature instead of Managed Grafana if you don't require dashboards across multiple data sources. |
 
 :::image type="content" source="media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="Screenshots of Container insights single and multiple cluster views." border="false":::
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 02/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence API Management
@@ -40,13 +40,14 @@ At least one deployed self-hosted gateway instance was identified that uses a ga
 
 **Impact:** High
   
-  
+For more information, see [Self-Hosted Gateway Overview](/azure/api-management/self-hosted-gateway-overview)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: b677ed4b-1eed-45c7-b268-4280be5839f8  
 
 
 <!--b677ed4b-1eed-45c7-b268-4280be5839f8_end-->
+
 
 <!--b226053d-8d25-4de4-9e26-fa30df1a4379_begin-->
 
@@ -58,13 +59,14 @@ You can use Azure AD-based authentication, instead of gateway tokens, which allo
 
 **Impact:** Medium
   
-For more information, see [Azure API Management self-hosted gateway - Microsoft Entra authentication](https://aka.ms/apim/shgw/how-to/use-ad-auth)  
+For more information, see [Azure API Management Self-Hosted Gateway - Microsoft Entra Authentication](https://aka.ms/apim/shgw/how-to/use-ad-auth)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: b226053d-8d25-4de4-9e26-fa30df1a4379  
 
 
 <!--b226053d-8d25-4de4-9e26-fa30df1a4379_end-->
+
 
 <!--6c154595-3c5c-49d3-ac57-f122a8e1adb9_begin-->
 
@@ -104,20 +106,21 @@ Recommendation ID: 580a50ee-8300-4678-9a16-a946c948778b
 
 <!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_begin-->
 
-#### Use private networking options for requests to Azure API Management endpoints for Azure backend APIs  
+#### Disable trusted service connectivity in API Management  
   
-The Azure API Management service sends requests over a public network to one or more backends hosted on Azure. The platform recommends using a virtual network or Private Link to improve the security of Azure backend APIs.  
+Your API Management service may rely on trusted service connectivity to access other Azure services. To prevent service disruption following the retirement of this feature in March 2026, update your networking configuration and disable trusted connectivity in API Management.  
   
-**Potential benefits**: Improve service stability and network security  
+**Potential benefits**: Prevent runtime outage of APIs in API Management  
 
-**Impact:** Medium
+**Impact:** High
   
-For more information, see [Azure API Management with an Azure virtual network](/azure/api-management/virtual-network-concepts)  
+For more information, see [Azure API Management - Trusted service connectivity retirement (March 2026)](https://aka.ms/apimdocs/change/trusted-service)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: d6c54614-97fe-4f55-85cf-adb49ca7ccd3  
 
 
 <!--d6c54614-97fe-4f55-85cf-adb49ca7ccd3_end-->
+
 
 <!--articleBody-->

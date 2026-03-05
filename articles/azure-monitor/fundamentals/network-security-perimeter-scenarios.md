@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor with Network Security Perimeter scenarios
 description: Scenarios for configuration of network security perimeters with Azure Monitor.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 5/28/2025
 ---
 

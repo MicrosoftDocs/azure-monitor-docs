@@ -1,7 +1,7 @@
 ---
 title: Create and configure a health model resource in Azure Monitor (Preview)
 description: Learn now to create a new Azure Monitor health model.
-ms.topic: conceptual
+ms.topic: how-to
 author: bwren
 ms.author: bwren
 ms.date: 06/27/2025

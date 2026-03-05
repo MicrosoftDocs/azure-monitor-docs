@@ -1,7 +1,7 @@
 ---
 title: Recommended alert rules for Kubernetes clusters
 description: Describes how to enable recommended metric alerts rules for a Kubernetes cluster in Azure Monitor.
-ms.topic: article
+ms.topic: how-to
 ms.date: 08/25/2025
 ms.reviewer: vdiec
 ---

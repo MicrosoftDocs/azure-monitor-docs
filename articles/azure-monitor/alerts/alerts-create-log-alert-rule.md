@@ -92,7 +92,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     |-------|-------------|
     | **Measure** | Log search alerts can measure two things that you can use for various monitoring scenarios:<br> **Table rows**: You can use the number of returned rows to work with events such as Windows event logs, Syslog, and application exceptions.<br>**Calculation of a numeric column**: You can use calculations based on any numeric column to include any number of resources. An example is CPU percentage. |
     | **Aggregation type** | The calculation performed on multiple records to aggregate them to one numeric value by using the aggregation granularity. Examples are **Total**, **Average**, **Minimum**, and **Maximum**. |
-    | **Aggregation granularity** | The interval for aggregating multiple records to one numeric value. |
+    | **Aggregation granularity** (Window size) | The interval for aggregating multiple records to one numeric value. |
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-log-measurements.png" alt-text="Screenshot that shows the measurement options during the creation of a new log search alert rule.":::
 
@@ -193,12 +193,24 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     * A managed identity is required if you're sending a query to Azure Data Explorer or Resource Graph.
     * Use a managed identity if you want to be able to view or edit the permissions associated with the alert rule.
-    * If you don't use a managed identity, the alert rule permissions are based on the permissions of the last user to edit the rule, at the time that the rule was last edited.
+    * If you don't use a managed identity, the alert rule will inherit the permissions of the last user or service principal who edited it, based on their permissions at the time of that edit.
     * Use a managed identity to help you avoid a case where the rule doesn't work as expected because the user who last edited the rule didn't have permissions for all the resources added to the scope of the rule.
 
     The identity associated with the rule must have these roles:
 
-    * If the query is accessing a Log Analytics workspace, the identity must be assigned a *reader* role for all workspaces that the query accesses. If you're creating resource-centric log search alerts, the alert rule might access multiple workspaces, and the identity must have a reader role on all of them.
+    * If the query is accessing a Log Analytics workspace, the identity must be assigned a *reader* role for all workspaces that the query accesses. If you're creating resource-centric log search alerts (scoped to a subscription or resource group), if the alert rule is scoped to a subscription for example, the identity must have reader access to all Log Analytics workspaces containing data for any resource within that subscription, even if those workspaces are in different subscriptions. This requirement also applies when a managed identity is not used and the alert is relying on the permissions of the user or service principal that last edited it.
+      
+        **Example:**
+        
+        Suppose you have a subscription called *Subscription-A*. Within *Subscription-A*, there are resources (such as virtual machines) that send their logs to different Log Analytics workspaces:
+        
+        * Workspace-1 (located in Subscription-A)
+        * Workspace-2 (located in Subscription-B)
+        * Workspace-3 (located in Subscription-C)
+        
+        You create a resource-centric log search alert rule scoped to *Subscription-A* that is designed to monitor all resources within that subscription. The identity assigned to the alert must have Reader access to *Workspace-1*, *Workspace-2*, and *Workspace-3*, even though *Workspace-2* and *Workspace-3* are in different subscriptions. This is because the alert may need to query logs for any resource in Subscription-A, and those logs could be stored in any of these workspaces.
+        
+        If the identity doesn't have Reader access to any one of these workspaces, the alert may not be able to query logs for the corresponding resources, and as a result, the alert may not fire as expected.
     * If you're querying an Azure Data Explorer or Resource Graph cluster, you must add the *reader* role for all data sources that the query accesses. For example, if the query is resource centric, it needs a reader role on that resource.
     * If the query is [accessing a remote Azure Data Explorer cluster](../logs/azure-monitor-data-explorer-proxy.md), the identity must be assigned:
         * A *reader* role for all data sources that the query accesses. For example, if the query is calling a remote Azure Data Explorer cluster by using the `adx()` function, it needs a reader role on that Azure Data Explorer cluster.

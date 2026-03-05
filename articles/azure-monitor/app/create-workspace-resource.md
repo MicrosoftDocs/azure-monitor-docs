@@ -2,7 +2,7 @@
 title: Create and configure Application Insights resources
 description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
 ms.topic: how-to
-ms.date: 02/25/2025
+ms.date: 02/27/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ---
 
@@ -16,7 +16,7 @@ ms.custom: devx-track-azurepowershell, devx-track-azurecli
 Enhanced capabilities include:
 
 * **[Customer-managed keys](../logs/customer-managed-keys.md) -** Encrypt your data at rest with keys only accessible to you.
-* **[Azure Private Link](../logs/private-link-security.md) -** Securely connect Azure PaaS services to your virtual network using private endpoints.
+* **[Azure Private Link](../fundamentals/private-link-security.md) -** Securely connect Azure PaaS services to your virtual network using private endpoints.
 * **[Bring your own storage (BYOS)](./profiler-bring-your-own-storage.md) -** Manage data from [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) with policies on encryption, lifetime, and network access.
 * **[Commitment tiers](../logs/cost-logs.md#commitment-tiers) -** Save up to 30% over pay-as-you-go pricing.
 
@@ -1411,7 +1411,7 @@ Live Metrics can't split data by role name.
 
 ### Version and release tracking
 
-When you publish a new version of your application, you want to be able to separate the telemetry from different builds. You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/transaction-search-and-diagnostics.md?tabs=transaction-search) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
+When you publish a new version of your application, you want to be able to separate the telemetry from different builds. You can set the **Application Version** property so you can filter [search](../../azure-monitor/app/failures-performance-transactions.md?tabs=search-view) and [metric explorer](../../azure-monitor/essentials/metrics-charts.md) results.
 
 There are several different methods of setting the **Application Version** property.
 

@@ -1,7 +1,7 @@
 ---
 title: Kubernetes workbooks in Azure Monitor
 description: This article describes workbooks in Azure Monitor available to analyze monitoring data for Kubernetes clusters.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/21/2025
 ms.reviewer: aul
 ---

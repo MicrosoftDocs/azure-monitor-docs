@@ -10,14 +10,17 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Price Sheet | Download by Billing Account APIs prior to version 2023-09-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Microsoft Entra Domain Service | Azure Price Sheet - Download by Billing Account APIs prior to version 2023-09-01 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### June 30, 2026
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Machine Learning | V1 SDK | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Entra Domain Services | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Entra Domain Services | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Virtual Machines | DCsv2-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | SQL server | Microsoft.SQL 2014-04-01 stable APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Virtual machine | DCsv2-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Workspace | Azure Machine Learning - SDK V1 - Dependent Libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | V1 SDK | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+

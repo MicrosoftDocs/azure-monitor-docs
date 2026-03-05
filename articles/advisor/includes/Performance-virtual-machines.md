@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Virtual Machines
@@ -50,7 +50,7 @@ Recommendation ID: 06c03895-e210-4153-a4a0-a5e5c8e8eb83
 
 <!--36c3633b-daac-4e01-af95-11b8c2f4fe20_begin-->
 
-#### Use Managed disks to prevent disk I/O throttling  
+#### Use Managed Disks to prevent disk I/O throttling  
   
 Your virtual machine disks belong to a storage account that reached its scalability target, and is susceptible to I/O throttling. To protect your virtual machine from performance degradation and to simplify storage management, use Managed Disks.  
   
@@ -58,13 +58,14 @@ Your virtual machine disks belong to a storage account that reached its scalabil
 
 **Impact:** High
   
-  
+For more information, see [Overview of Azure Disk Storage - Azure Virtual Machines](https://aka.ms/manageddiskintroduction)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 36c3633b-daac-4e01-af95-11b8c2f4fe20  
 
 
 <!--36c3633b-daac-4e01-af95-11b8c2f4fe20_end-->
+
 
 <!--5e305558-6944-40bb-9d69-eb161b42fcec_begin-->
 

@@ -1,7 +1,7 @@
 ---
 title: Roles and permissions 
 description: Learn about Advisor permissions, how to manage access to Advisor recommendations and reviews.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 08/22/2024
 ---
 

@@ -3,7 +3,7 @@ title: Collect Windows scale set metrics in Azure Monitor with template
 description: Send guest OS metrics to the Azure Monitor metric store by using a Resource Manager template for a Windows virtual machine scale set
 ms.reviewer: shijain
 ms.topic: how-to
-ms.custom: devx-track-arm-template
+ms.custom: devx-track-arm-template, sfi-guid-flagged
 ms.date: 08/26/2024
 ---
 
@@ -15,6 +15,8 @@ ms.date: 08/26/2024
 > We recommend using the Azure Monitor Agent to collect logs and metrics from Virtual Machine Scale Sets. For more information, see [Azure Monitor Agent overview](azure-monitor-agent-overview.md).
 
 By using the Azure Monitor [Azure Diagnostics extension for Windows (WAD)](diagnostics-extension-overview.md), you can collect metrics and logs from the guest operating system (guest OS) that runs as part of a virtual machine, cloud service, or Azure Service Fabric cluster. The extension can send telemetry to many different locations listed in the previously linked article.
+
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 This article describes the process to send guest OS performance metrics for a Windows virtual machine scale set to the Azure Monitor data store. Starting with Microsoft Azure Diagnostics version 1.11, you can write metrics directly to the Azure Monitor metrics store, where standard platform metrics are already collected. By storing them in this location, you can access the same actions that are available for platform metrics. Actions include near real-time alerting, charting, routing, access from the REST API, and more. In the past, the Microsoft Azure Diagnostics extension wrote to Azure Storage but not the Azure Monitor data store.
 

@@ -119,24 +119,6 @@ Recommended actions:
   * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
 * [Create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
 
-### Agent
-
-The following section provides information on agents.
-
-#### Operation: Linux Agent
-
-"Two successive configuration applications from OMS Settings failed."
-
-Configuration settings on the portal have changed.
-
-Recommended action:
-This issue is raised in case there's an issue for the agent to retrieve the new config settings. To mitigate this issue, reinstall the agent.
-Check the `_LogOperation` table for the agent event:</br>
-
- `_LogOperation | where TimeGenerated >= ago(6h) | where Category == "Agent" | where Operation == "Linux Agent"  | distinct _ResourceId`
-
-The list shows the resource IDs where the agent has the wrong configuration. To mitigate the issue, reinstall the agents listed.
-
 ## Alert rules
 
 Use [log search alerts](../alerts/alerts-log-query.md) in Azure Monitor to be proactively notified when an issue is detected in your Log Analytics workspace. Use a strategy that allows you to respond in a timely manner to issues while minimizing your costs. Your subscription will be charged for each alert rule as listed in [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/#platform-logs).

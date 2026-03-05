@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Relay

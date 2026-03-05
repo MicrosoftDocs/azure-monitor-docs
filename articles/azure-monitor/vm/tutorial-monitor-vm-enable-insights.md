@@ -8,21 +8,17 @@ ms.reviewer: Xema Pathak
 ---
 
 # Tutorial: Enable monitoring with VM insights for an Azure virtual machine
-VM insights is a feature of Azure Monitor that quickly gets you started monitoring your virtual machines. You can view trends of performance data, running processes on individual machines, and dependencies between machines. VM insights installs [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md). It's required to collect the guest operating system and prepares you to configure more monitoring from your VMs according to your requirements.
+VM insights is a feature of Azure Monitor that quickly gets you started monitoring your virtual machines. VM insights installs [Azure Monitor agent](../agents/azure-monitor-agent-overview.md), which is required to collect the guest operating system and prepares you to configure more monitoring from your VMs according to your requirements.
 
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Enable VM insights for a virtual machine, which installs Azure Monitor Agent and begins data collection.
-> * Enable optional collection of detailed process and telemetry to enable the Map feature of VM insights.
+> * Understand the differences between OpenTelemetry-based metrics and Log Analytics workspace-based metrics.
 > * Inspect graphs analyzing performance data collected from the virtual machine.
-> * Inspect a map showing processes running on the virtual machine and dependencies with other systems.
 
 ## Prerequisites
 To complete this tutorial, you need an Azure virtual machine to monitor.
-
-> [!NOTE]
-> If you selected the option to **Enable virtual machine insights** when you created your virtual machine, VM insights is already enabled. If the machine was previously enabled for VM insights by using the Log Analytics agent, see [Enable VM insights in the Azure portal](vminsights-enable-portal.md) for upgrading to Azure Monitor Agent.
 
 ## Enable VM insights
 Select **Insights** from your virtual machine's menu in the Azure portal. If VM insights isn't enabled, you see a short description of it and an option to enable it. Select **Enable** to open the **Monitoring configuration** pane. Leave the default option of **Azure Monitor agent**.

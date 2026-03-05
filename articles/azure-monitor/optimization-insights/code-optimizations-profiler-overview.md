@@ -1,7 +1,7 @@
 ---
 title: Monitor and analyze runtime behavior with Code Optimizations
 description: Identify and remove CPU and memory bottlenecks using Azure Monitor's Code Optimizations feature
-ms.topic: article
+ms.topic: concept-article
 ms.service: azure-monitor
 ms.subservice: optimization-insights
 author: hhunter-ms
@@ -14,9 +14,9 @@ ms.update-cycle: 180-days
 
 # Monitor and analyze runtime behavior with Code Optimizations
 
-Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application could be caused by infrastructure, framework, or application code handling the request in the pipeline. 
+Diagnosing your application's performance issues can be difficult, especially when running on a production environment in the dynamic cloud. Slow responses in your application may be caused by infrastructure, framework, or application code handling the request in the pipeline. 
 
-Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET to detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. 
+Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET. Together, they detect CPU and memory usage performance issues at a code level and provide recommendations on how to fix them. 
 
 Make informed decisions and optimize your code using real-time performance data and insights gathered from your production environment.
 
@@ -37,17 +37,17 @@ The .NET Profiler and Code Optimizations work together to provide a holistic app
 
 #### Identify
 
-Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimization recommendations across your Azure subscriptions and Application Insights resources in the Azure portal. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
+Using the [Code Optimizations consolidated overview page](view-code-optimizations.md#via-the-code-optimizations-consolidated-overview-page-preview), you can see all Code Optimizations across your Azure subscriptions and Application Insights resources in the Azure portal. Insights are gathered from data collected by the .NET Profiler, and can also be pulled from Snapshot Debugger snapshots if enabled. Identify bottlenecks in your code and review code-level recommendations for dev, test, pre-production, and production environments. 
 
 #### Analyze
 
-Once your environment's data has been collected, Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
+Once your environment's data is collected from the .NET Profiler traces (and Snapshot Debugger snapshots, if enabled), Code Optimizations provides code-level recommendations on an hourly basis. By default, the aggregated data view shows a rolling 24-hour window of recently identified issues, with a 30-day history for you to review and analyze past events.
 
 #### Resolve
 
-After identifying and analyzing the Code Optimization results, you can resolve these issues in your code using the Code Optimizations [Visual Studio](code-optimizations-vs-extension.md) and [Visual Studio Code](code-optimizations-vscode-extension.md) extensions. With these extensions, interact with GitHub Copilot to receive a code fix grounded in Code Optimizations insights. 
+After identifying and analyzing Code Optimizations, you can use the "Copy details" button in the portal to manually bring all the insight context to your favorite tool, like [GitHub Copilot](/azure/developer/github-copilot-azure/get-started). 
 
-You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimization insights.
+You can also create a GitHub issue from the Code Optimizations page in the Azure portal and [assign it to the GitHub Copilot coding agent](./code-optimizations-github-copilot.md). From there, GitHub Copilot opens a pull request and pushes code change commits based on Code Optimizations.
 
 #### Demo video
 
@@ -86,7 +86,7 @@ As frameworks and Azure services evolve, you can enable .NET Profiler for your .
 |---------------|---------------|---------|
 | Most Azure services | Code change in your application<br>(most universal) | If your .NET app runs on variants of Azure PaaS services or Containers, you can choose between two options for enabling .NET Profiler:<br>- [Application Insights Profiler for ASP.NET Core](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore) that uses the [Application Insights SDK](../app/asp-net-core.md), or<br>- ***New*** [Azure Monitor OpenTelemetry Profiler for NET (Preview)](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net) that uses [Azure Monitor OpenTelemetry Distro](../app/application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro) |
 | Azure App Service | No code change for your application | Since the Profiler is pre-installed, you can enable Profiler for .NET in the portal for:<br>- [Azure App Service - .NET app on Windows](../profiler/profiler.md)<br>- [Azure Functions - App Service plan](../profiler/profiler-azure-functions.md) |
-| Virtual Machines | No code change for your application | Once you've enabled the Application Insights SDK in your application code, you can enable the Profiler for .NET in your ARM template.<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md) | 
+| Virtual Machines | No code change for your application | Once the Application Insights SDK is enabled in your application code, you can enable the Profiler for .NET in your ARM template.<br>- [Azure Virtual Machines and Virtual Machine Scale Sets for Windows](../profiler/profiler-vm.md)<br>- [Azure Service Fabric](../profiler/profiler-servicefabric.md) | 
 
 
 ### Details and examples for enabling Profiler for .NET
@@ -116,16 +116,22 @@ You can set an explicit region using connection strings. [Learn more about conne
 
 ## Limitations
 
-**Profiling web apps**:
+### Profiler 
 
-* Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
-* You can attach only one profiler to each web app.
+- **Profiling web apps:**
+  - Although you can use the .NET Profiler at no extra cost, your web app must be hosted in the basic tier of the Web Apps feature of Azure App Service, at minimum.
+  - You can attach only one profiler to each web app.
+
+### Code Optimizations
+
+- **Storage requirements:**
+  - Currently, Code Optimizations only works with the default Profiler/Application Insights storage; it's not compatible with Bring-Your-Own-Storage (BYOS). 
 
 ## Troubleshooting
 
 - **Profiler**
 
-    If you've enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](../profiler/profiler-troubleshooting.md).
+    If you enabled the Profiler for .NET but aren't seeing traces, see the [Troubleshooting guide](../profiler/profiler-troubleshooting.md).
 
 - **Code Optimizations**
  

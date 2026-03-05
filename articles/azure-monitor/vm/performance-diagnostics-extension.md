@@ -2,7 +2,7 @@
 title: Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
 description: Introduces Azure Performance Diagnostics VM Extension for Windows.
 ms.topic: troubleshooting
-ms.date: 02/18/2025
+ms.date: 11/19/2025
 ---
 # Azure Performance Diagnostics (PerfInsights) VM extension for Windows
 

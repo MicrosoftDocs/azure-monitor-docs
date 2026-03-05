@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 11/25/2025
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -155,5 +155,23 @@ Recommendation ID: 79dd48e7-cd34-4f35-a8be-a7d483353c1c
 
 
 <!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_end-->
+
+<!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_begin-->
+
+#### Enable container monitoring for Azure Kubernetes Service (AKS) clusters  
+  
+The Azure Kubernetes Service (AKS) cluster doesn't have container monitoring enabled. Enable monitoring to collect logs and Prometheus metrics in Azure Monitor for better visibility about pod health, performance, and cluster issues.  
+  
+**Potential benefits**: Improve visibility and performance insights  
+
+**Impact:** Medium
+  
+For more information, see [Kubernetes monitoring in Azure Monitor - Azure Monitor](/azure/azure-monitor/containers/kubernetes-monitoring-overview)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: d1e9f4a0-926e-4480-a4e4-3ea94877370c  
+
+
+<!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_end-->
 
 <!--articleBody-->

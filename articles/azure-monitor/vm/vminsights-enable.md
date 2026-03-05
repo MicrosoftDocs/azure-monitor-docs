@@ -24,6 +24,9 @@ This article provides details on enabling [VM Insights](./vminsights-overview.md
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
 - See [Dependency Agent requirements](./vminsights-dependency-agent-maintenance.md) to verify that your operating system is supported by Dependency agent and for network requirements for the Dependency agent.
 
+> [!IMPORTANT]
+> If your virtual machines are going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
+
 ## Agents
 
 When you enable VM Insights for a machine, the following agents are installed. 
@@ -64,7 +67,7 @@ There are two methods for network isolation that VM insights supports as describ
 
 | Method | Description |
 |:---|:---|
-| Private link | By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To have it connect with private link, associate your VM Insights DCR to a data collection endpoint (DCE) linked to an Azure Monitor Private Link Scope as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
+| Private link | By default, Azure Monitor Agent connects to a public endpoint to connect to your Azure Monitor environment. To have it connect with private link, associate your VM Insights DCR to a data collection endpoint (DCE) linked to an Azure Monitor Private Link Scope as described in [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). |
 | Network security perimeter | If your Log Analytics workspace is associated with a network security perimeter, using the guidance at [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 ## Enable VM insights

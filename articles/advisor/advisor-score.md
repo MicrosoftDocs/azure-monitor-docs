@@ -1,7 +1,7 @@
 ---
 title: Advisor score
 description: Use Azure Advisor score to measure optimization progress.
-ms.topic: article
+ms.topic: concept-article
 ms.date: 03/04/2025
 
 ---

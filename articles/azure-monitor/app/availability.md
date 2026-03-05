@@ -2,7 +2,7 @@
 title: Application Insights availability tests 
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
-ms.date: 04/01/2025
+ms.date: 02/27/2026
 ---
 
 # Application Insights availability tests
@@ -368,7 +368,7 @@ Here you can:
 * Track the problem by logging an issue or work item in Git or Azure Boards. The bug contains a link to the event in the Azure portal.
 * Open the web test result in Visual Studio.
 
-To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./transaction-search-and-diagnostics.md?tabs=transaction-diagnostics).
+To learn more about the end-to-end transaction diagnostics experience, see the [transaction diagnostics documentation](./failures-performance-transactions.md#transaction-diagnostics-experience).
 
 Select the exception row to see the details of the server-side exception that caused the synthetic availability test to fail. You can also get the [debug snapshot](./snapshot-debugger.md) for richer code-level diagnostics.
 
@@ -512,7 +512,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 ### Disconnected or no ingress scenarios
 
-1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../logs/private-link-security.md).
+1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../fundamentals/private-link-security.md).
 
 1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
 
