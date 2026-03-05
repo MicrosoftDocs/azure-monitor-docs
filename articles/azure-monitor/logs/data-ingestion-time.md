@@ -50,7 +50,7 @@ To keep the Azure Monitor Agent lightweight, it buffers logs and periodically up
 
 **Latency: Varies**
 
-Network conditions might negatively affect the latency of this data to reach a data collection endpoint.
+The network between a client and the Azure Monitor data collection endpoint might add unexpected delays.
 
 ### Azure metrics, resource logs, activity logs
 
