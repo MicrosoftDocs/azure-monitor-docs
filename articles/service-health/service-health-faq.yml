@@ -22,7 +22,7 @@ sections:
         answer: |
           Azure Service Health provides notifications about events, and guidance about issues affecting Azure services and regions, such as outages or planned maintenance.<br> 
           
-          Azure Resource Health focuses on the health of individual resources like VMs or databases, helping you diagnose whether a specific issue is due to Azure or your own configuration. 
+          Azure Resource Health focuses on the health of individual resources like Virtual Machines (VMs) or databases, helping you diagnose whether a specific issue is due to Azure or your own configuration. 
           Overall, Service Health is broader with service-level information and Resource Health is granular and resource-specific.
       - question: |
           What types of events does Azure Service Health report?
@@ -34,7 +34,7 @@ sections:
           - Security advisories
           - Billing updates<br>
           These events are personalized to your Azure subscriptions and regions, helping you stay informed about issues that might impact your resources.<br>
-          For more information read [Service Health Portal](service-health-portal-update.md).
+          For more information, read [Service Health Portal](service-health-portal-update.md).
           
       - question: |
           Who can access Service Health information on the Azure portal?
@@ -78,7 +78,7 @@ sections:
       - question: |
             What should I do if my resource is marked as healthy but I'm experiencing issues?
         answer: |
-          If your resource is marked as healthy but you're still experiencing issues, it could be due to problems outside the scope of what Azure Resource Health monitors—such as application errors, misconfigurations, or network issues. In such cases, review your application logs and configuration, and consider opening a support ticket if the issue persists.
+          If your resource is marked as healthy but you're still experiencing issues, it could be due to problems outside the scope of what Azure Resource Health monitors, such as application errors, misconfigurations, or network issues. In such cases, review your application logs and configuration, and consider opening a support ticket if the issue persists.
       - question: |
             When should I open a support ticket versus relying on Service Health updates?
         answer: |
