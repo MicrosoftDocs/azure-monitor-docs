@@ -16,53 +16,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ## Prerequisites
 
-> [!div class="checklist"]
-> * **Azure subscription:** If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
-> * **Application Insights resource:** [Create an Application Insights resource](create-workspace-resource.md#create-an-application-insights-resource) to collect and store your agent telemetry.
-
-## Get started
-
-### Choose your monitoring approach
-
-Getting started looks different depending on how and where you're building your agents.
-
-**Managed hosting**
-
-* **Foundry:** You can collect telemetry from your agentic application using the Azure Monitor OpenTelemetry Distro and the [Microsoft Foundry SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk).
-
-* **Copilot Studio:** You can use built-in configuration to emit your telemetry to Azure Monitor, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
-
-**Self-hosting**
-
-* **Microsoft Agent Framework:** If you're building an agent from scratch and are self-hosting, you can use the [Microsoft Agent Framework](/agent-framework/user-guide/agents/agent-observability#enable-observability) to orchestrate your agent and emit telemetry to Azure Monitor.
-
-* **Third-party agents:** If you built an agent elsewhere, you can emit your telemetry to Azure Monitor using the Azure AI OpenTelemetry Tracer. These agents can also be registered in Foundry.
-
-    For more information, see:
-
-    * [Enable tracing for Agents built on LangChain & LangGraph](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-langchain--langgraph).
-    * [Enable tracing for Agents built on OpenAI Agents SDK](/azure/ai-foundry/how-to/develop/trace-agents-sdk#enable-tracing-for-agents-built-on-openai-agents-sdk)
-
-If you choose to collect full prompt information (for example, using the `EnableSensitiveData` flag in Agent Framework), you're able to search through prompts in the **Search** view and read back conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](#end-to-end-transaction-details-view) view.
-
-> [!TIP]
-> * Make sure to give each of your agents a name, so you tell them apart from each other in the Agent details view.
-> * If your agentic components are part of a larger application, it may make sense to send them to an existing Application Insights resource.
-
-> [!NOTE]
-> To see your Agents in Foundry (in addition to Azure Monitor), you need to [connect an Application Insights resource to your Foundry Project](/azure/ai-foundry/how-to/develop/trace-application#enable-tracing-in-your-project).
-
-### Set up evaluations
-
-To set up evaluations, there are several approaches.
-
-**Batch evaluations:**
-
-* **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/ai-foundry/how-to/develop/evaluate-sdk)
-* **Cloud evaluations with Microsoft Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/ai-foundry/how-to/develop/cloud-evaluation)
-* **Foundry portal-based evaluations:** [Use the Foundry portal for no-code evaluation workflows.](/azure/ai-foundry/how-to/evaluate-generative-ai-app)
-
-**Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/ai-foundry/how-to/continuous-evaluation-agents) to detect quality regressions.
+Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md).
 
 ## Monitor your AI agents
 
@@ -82,7 +36,7 @@ Once telemetry is flowing to Application Insights:
 
 To drill into specific agent runs:
 
-1. Select one of the following from the Agent details view:
+1. Select one from the Agent details view:
 
    * **View Traces with Agent Runs** - See all agent executions
    * **View Traces with Gen AI Errors** - Focus on failed or problematic runs
@@ -104,7 +58,7 @@ To drill into specific agent runs:
 
 ### End-to-end transaction details view
 
-The end-to-end transaction details now offer a *simple view*, which shows agent steps in a clear, story-like fashion, including the invoked agent, underlying LLM, executed tools, and more.
+The end-to-end transaction details now offer a **simple view**. This view shows agent steps in a clear, story-like fashion, including the invoked agent, underlying large language model (LLM), executed tools, and more.
 
 Simple view allows you to quickly find the relevant telemetry and transition to Foundry or other tools to make the necessary changes.
 
@@ -119,7 +73,7 @@ In our example, we were researching high token use. Transaction details allow yo
 
 The Agent details view in Application Insights provides an opinionated, out-of-the-box experience for monitoring your AI agents. For more advanced customization and visualization needs, you can select **Explore in Grafana** from the top navigation bar on the Agent details view.
 
-Azure Monitor includes pre-built Grafana dashboards specifically designed for Gen AI monitoring to help you get started:
+Azure Monitor includes prebuilt Grafana dashboards designed for Gen AI monitoring to help you get started:
 
 * **Agent Framework -** Monitor agent execution and performance
 * **Agent Framework workflow -** Track agent workflow patterns and dependencies
