@@ -16,7 +16,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ## Prerequisites
 
-Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md).
+Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md?tabs=agents).
 
 ## Monitor your AI agents
 

@@ -8,7 +8,7 @@ ms.date: 03/03/2026
 
 ---
 
-# Collect OpenTelemetry (OTel) in Application Insights
+# Collect OpenTelemetry (OTel) for Application Insights experiences
 
 This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
@@ -79,6 +79,9 @@ The following steps walk through code-based instrumentation with the client-side
 1. Configure the [connection string](javascript-sdk.md#paste-the-connection-string-in-your-environment).
 
 After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
+
+> [!NOTE]
+> The Application Insights JavaScript SDK doesn't use OpenTelemetry. For more information, see [Can OpenTelemetry be used for web browsers?](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers)
 
 ### [Functions](#tab/functions)
 
