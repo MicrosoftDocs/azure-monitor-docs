@@ -182,7 +182,6 @@ resource MyDiagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-p
 using './<template-file-name>.bicep'
 
 param am_workspace_name = '<azure-monitor-workspace-name>'
-
 ```
 
 ---
@@ -209,7 +208,7 @@ Use the following template and parameter file to enable metrics usage insights f
 
 #### Template File
 
-```JSON
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -258,7 +257,7 @@ Use the following template and parameter file to enable metrics usage insights f
 
 #### Parameters File
 
-```JSON
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
