@@ -75,7 +75,7 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 **Getting started with Azure Functions**
 
-To get started with Azure Functions OpenTelemetry, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
+To get started with Azure Functions, see [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto?tabs=otlp-export).
 
 After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
@@ -85,9 +85,10 @@ After performing these steps, you're ready to explore [Application Insights expe
 
 For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](opentelemetry-overview.md).
 
-[Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) clusters is in public preview.
-
 After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
+
+> [!NOTE]
+> [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) is available as a public preview.
 
 ### [Agents](#tab/agents)
 
