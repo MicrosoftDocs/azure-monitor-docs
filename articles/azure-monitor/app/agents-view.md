@@ -2,7 +2,7 @@
 title: Monitor AI Agents with Application Insights
 description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 11/11/2025
+ms.date: 03/05/2026
 ---
 
 # Monitor AI agents with Application Insights
