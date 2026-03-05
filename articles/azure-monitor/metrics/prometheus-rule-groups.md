@@ -88,7 +88,7 @@ Open the **All rules** view described about and select **+ Create**
 
 **Rules**
 
-Select **Add recording rule** or **Add alert rule** to add rules to the group. Each tpe of rule has different settings as described below.
+Select **Add recording rule** or **Add alert rule** to add rules to the group. Each type of rule has different settings as described below.
 
 **Recording rules**
 
@@ -260,7 +260,7 @@ The `rules` section contains the following properties for alerting rules.
 | `rules.resolveConfigurations.timeToResolve` | False | string | Alert autoresolution timeout. Default = `PT5M`. |
 | `rules.action[].actionGroupId` | false | string | One or more action group resource IDs. Each is activated when an alert is fired. |
 
-### [Bicep)](#tab/bicep)
+### [Bicep](#tab/bicep)
 
 The following sample template creates a Prometheus rule group, including one recording rule and one alert rule. This template creates a resource of type `Microsoft.AlertsManagement/prometheusRuleGroups`. The scope of this group is limited to a single AKS cluster. The rules run in the order in which they appear within a group.
 
