@@ -1,6 +1,6 @@
 ---
-title: OpenTelemetry Guest OS Metrics (preview)
-description: Learn about OpenTelemetry System Metrics (Guest OS Performances Counters) in Azure Monitor and how they're modeled.
+title: OpenTelemetry Guest OS Metrics reference (preview)
+description: List of OpenTelemetry metrics collected by default from Windows and Linux virtual machines by Azure Monitor Agent.
 ms.topic: concept-article
 ms.date: 09/27/2025
 ms.reviewer: tylerkight

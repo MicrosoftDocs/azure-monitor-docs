@@ -350,7 +350,6 @@ items:
           href: vm/data-collection-firewall-logs.md
       - name: Configure a syslog forwarder
         href: /azure/sentinel/forward-syslog-monitor-agent
-        maintainContext: true
       - name: Send data to Fabric and Azure Data Explorer
         href: vm/send-fabric-destination.md
     - name: Performance diagnostics
@@ -782,10 +781,8 @@ items:
               href: agents/diagnostics-extension-windows-install.md
             - name: PowerShell
               href: /azure/virtual-machines/extensions/diagnostics-windows
-              maintainContext: true
             - name: Resource Manager template
               href: /azure/virtual-machines/extensions/diagnostics-template
-              maintainContext: true
           - name: Send to Azure Monitor Metrics
             items:
             - name: Virtual Machine
@@ -811,10 +808,8 @@ items:
           items:
           - name: Version 4.0
             href: /azure/virtual-machines/extensions/diagnostics-linux
-            maintainContext: true
           - name: Version 3.0
             href: /azure/virtual-machines/extensions/diagnostics-linux-v3
-            maintainContext: true
           - name: Collect metrics with Telegraf
             href: agents/collect-custom-metrics-linux-telegraf.md
       - name: Troubleshoot
@@ -1003,7 +998,6 @@ items:
             href: logs/move-workspace.md
           - name: Move a workspace across regions
             href: /azure/operational-excellence/relocation-log-analytics
-            maintainContext: true
           - name: Delete and recover a workspace
             href: logs/delete-workspace.md
         - name: Replicate workspace across regions
@@ -1074,10 +1068,8 @@ items:
       items:
       - name: Azure Monitor Logs connector
         href: /azure/connectors/connectors-azure-monitor-logs
-        maintainContext: true
       - name: Application Insights connector
         href: /azure/connectors/connectors-azure-application-insights
-        maintainContext: true
     - name: Data export
       items:
       - name: Workspace data export
@@ -1537,7 +1529,6 @@ items:
       href: autoscale/autoscale-using-powershell.md
     - name: Scale Virtual Machine Scale Sets using CLI
       href: /azure/virtual-machine-scale-sets/tutorial-autoscale-cli
-      maintainContext: true
     - name: Use webhooks and email notifications
       href: autoscale/autoscale-webhook-email.md
     - name: Autoscale diagnostics

@@ -20,7 +20,7 @@ This article provides details on enabling monitoring for a virtual machine in Az
 
 - [Azure Monitor workspace](../logs/quick-create-workspace.md) if you enable OpenTelemetry metrics (preview). 
 - [Log Analytics workspace](../logs/quick-create-workspace.md) if you enable log-based metrics. 
-- Permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../essentials/data-collection-rule-create-edit.md#permissions).
+- Permissions to create a data collection rule (DCR) and associate it with the Azure Monitor agent. See [Data Collection Rule permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
 - See [Azure Monitor agent supported operating systems and environments](../agents/azure-monitor-agent-supported-operating-systems.md) to verify that your operating system is supported by Azure Monitor agent. 
 - See [Manage the Azure Monitor agent](../agents/azure-monitor-agent-manage.md#prerequisites) for prerequisites related to Azure Monitor agent.
 - See [Azure Monitor agent network configuration](../agents/azure-monitor-agent-network-configuration.md) for network requirements for the Azure Monitor agent.
@@ -48,7 +48,7 @@ The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is responsi
 
 
 > [!NOTE]
-> If you're only using log-based metrics, you can also download and install the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
+> If you're only using log-based metrics, you can also download and install the [VM insights data collection rule templates](https://github.com/Azure/AzureMonitorForVMs-ArmTemplates/releases/download/vmi_ama_ga/DeployDcr.zip). The following table describes the templates available.
 >
 >   | Folder  | Description |
 >   |:---|:---|
@@ -178,14 +178,14 @@ The [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is responsi
 
   
 ## Associate DCR with agents
-The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Manage data collection rule associations in Azure Monitor](../essentials/data-collection-rule-associations.md#create-new-association). To enable on multiple machines, you need to create an association using this template for each one. See [Deploy templates](#deploy-arm-templates) if you aren't familiar with methods to deploy ARM templates.
+The final step in enabling VM insights is to associate the DCR with the Azure Monitor agent. Use the template below which comes from [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md). To enable on multiple machines, you need to create an association using this template for each one.
 
 
 ### Enable VM insights for multiple VMs using PowerShell script
 
 This section describes how to enable [VM insights](./vminsights-overview.md) using a PowerShell script that can enable multiple VMs. This process uses a script that installs VM extensions for Azure Monitoring agent (AMA) and, if necessary, the Dependency Agent to enable VM Insights. 
 
-Before you use this script, you must create a VM insights DCR using the details above in [VM insights DCR](#vm-insights-dcr).
+Before you use this script, you must create a VM insights DCR using the details above in [Create data collection rules (DCRs)](#create-data-collection-rules-dcrs).
 
 ## PowerShell script
 A PowerShell script is available to enable VM insights for multiple virtual machines or virtual machine scale sets. This script only enables log-based metrics. If you want to enable OpenTelemetry-based metrics, you can use the Azure portal or ARM template methods described above.
@@ -196,7 +196,7 @@ Use the PowerShell script [Install-VMInsights.ps1](https://www.powershellgallery
 - The scoped resource groups specified by `-ResourceGroup`.
 - A VM or virtual machine scale set specified by `-Name`.
 
-Verify that you're using Az PowerShell module version 1.0.0 or later with `Enable-AzureRM` compatibility aliases enabled. Run `Get-Module -ListAvailable Az` to find the version. To upgrade, see [Install Azure PowerShell module](/powershell/azure/install-azure-powershell). If you're running PowerShell locally, run `Connect-AzAccount` to create a connection with Azure.
+Verify that you're using Az PowerShell module version 1.0.0 or later with `Enable-AzureRM` compatibility aliases enabled. Run `Get-Module -ListAvailable Az` to find the version. If you're running PowerShell locally, run `Connect-AzAccount` to create a connection with Azure.
 
 For a list of the script's argument details and example usage, run `Get-Help`.
 
@@ -234,7 +234,7 @@ Optional Arguments:
 + `-Confirm [<SwitchParameter>]` Confirm each action in the script. 
 + `-Approve [<SwitchParameter>]` Provide the approval for the installation to start with no confirmation prompt for the listed VM's/Virtual Machine Scale Sets. 
  
-The script supports wildcards for `-Name` and `-ResourceGroup`. For example, `-Name vm*` enables VM insights for all VMs and Virtual Machine Scale Sets that start with "vm". For more information, see [Wildcards in Windows PowerShell](/powershell/module/microsoft.powershell.core/about/about_wildcards). 
+The script supports wildcards for `-Name` and `-ResourceGroup`. For example, `-Name vm*` enables VM insights for all VMs and Virtual Machine Scale Sets that start with "vm". 
 
 Example:
 
@@ -262,7 +262,7 @@ There are two methods for network isolation that VM insights supports as describ
 
 | Method | Description |
 |:---|:---|
-| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md). |
+| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). |
 | Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 
