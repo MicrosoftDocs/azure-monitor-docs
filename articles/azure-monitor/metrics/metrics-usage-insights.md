@@ -1,7 +1,8 @@
 ---
 title: Metrics usage insights in Azure Monitor (Preview)
-description: Describes the 
+description: Describes the metrics usage insights feature in Azure Monitor, which provides analysis of time‑series and event usage, throttling limits, trends, and cost‑optimization opportunities by sending usage data to a Log Analytics workspace.
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 04/11/2025
 ---
 
@@ -18,30 +19,28 @@ Metrics usage insights sends usage data to a Log analytics workspace for analysi
 
 During public preview, metrics usage insights is available only in the following regions:
 
-| Geo           | Regions                                                                 |
-| ------------- | ----------------------------------------------------------------------- |
-| Africa        | South Africa North                                                      |
-| Asia Pacific  | East Asia, Southeast Asia                                               |
-| Australia     | Australia East, Australia Southeast                                     |
-| Brazil        | Brazil South                                                            |
-| Canada        | Canada Central, Canada East                                             |
-| Europe        | North Europe, West Europe                                               |
-| France        | France Central, France South                                            |
-| Germany       | Germany West Central                                                    |
-| India         | Central India, South India                                              |
-| Israel        | Israel Central                                                          |
-| Italy         | Italy North                                                             |
-| Japan         | Japan East, Japan West                                                  |
-| Korea         | Korea Central                                                           |
-| Norway        | Norway East                                                             |
-| Spain         | Spain Central                                                           |
-| Sweden        | Sweden South, Sweden Central                                            |
-| Switzerland   | Switzerland North                                                       |
-| UAE           | UAE North                                                               |
-| UK            | UK South, UK West                                                       |
-| US            | Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3 |
-
-
+| Geo          | Regions                                                                                          |
+|--------------|--------------------------------------------------------------------------------------------------|
+| Africa       | South Africa North                                                                               |
+| Asia Pacific | East Asia, Southeast Asia                                                                        |
+| Australia    | Australia East, Australia Southeast                                                              |
+| Brazil       | Brazil South                                                                                     |
+| Canada       | Canada Central, Canada East                                                                      |
+| Europe       | North Europe, West Europe                                                                        |
+| France       | France Central, France South                                                                     |
+| Germany      | Germany West Central                                                                             |
+| India        | Central India, South India                                                                       |
+| Israel       | Israel Central                                                                                   |
+| Italy        | Italy North                                                                                      |
+| Japan        | Japan East, Japan West                                                                           |
+| Korea        | Korea Central                                                                                    |
+| Norway       | Norway East                                                                                      |
+| Spain        | Spain Central                                                                                    |
+| Sweden       | Sweden South, Sweden Central                                                                     |
+| Switzerland  | Switzerland North                                                                                |
+| UAE          | UAE North                                                                                        |
+| UK           | UK South, UK West                                                                                |
+| US           | Central US, East US, East US 2, South Central US, West Central US, West US, West US 2, West US 3 |
 
 ## Enable metrics usage insights
 
@@ -55,8 +54,7 @@ When you create a new Azure Monitor workspace, select **Enable insights** on the
 
 :::image type="content" source="./media/metrics-usage-insights/enable-insights.png" lightbox="./media/metrics-usage-insights/enable-insights.png"  alt-text="A screenshot showing the monitoring tab of the Create Azure Monitor workspace page.":::
 
-
-### [ARM template](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 Use the following template and parameter file to create a new Azure Monitor workspace with metrics usage insights enabled.
 
@@ -87,7 +85,7 @@ Use the following template and parameter file to create a new Azure Monitor work
             "scope": "[format('microsoft.monitor/accounts/{0}', parameters('am_workspace_name'))]",
             "name": "MyDiagnosticSetting",
             "properties": {
-                "workspaceId": "/subscriptions/<subscriPtion ID>/resourcegroups/<resource group name>/providers/microsoft.operationalinsights/workspaces/<workspace name>",
+                "workspaceId": "/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>",
                 "metrics": [
                     {
                         "category": "AllMetrics",
@@ -117,25 +115,78 @@ Use the following template and parameter file to create a new Azure Monitor work
         }
     ]
 }
+```
 
-#### Parameter file
+#### Parameters file
 
 ```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#","contentVersion": "1.0.0.0",
     "parameters": {
         "am_workspace_name": {
-            "value": "<Azure Monitor workspace name>"
+            "value": "<azure-monitor-workspace-name>"
         }
     }
 }
 ```
 
+### [Bicep](#tab/bicep)
+
+Use the following template and parameter file to create a new Azure Monitor workspace with metrics usage insights enabled.
+
+### Template file
+
+```bicep
+param am_workspace_name string = 'MyAMWorkspace'
+
+resource am_workspace_name_resource 'microsoft.monitor/accounts@2025-10-03-preview' = {
+    name: am_workspace_name
+    location: '<location>'
+    properties: {}
+}
+
+resource MyDiagnosticSetting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+    scope: am_workspace_name_resource
+    name: 'MyDiagnosticSetting'
+    properties: {
+        workspaceId: '/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>'
+        metrics: [
+            {
+                category: 'AllMetrics'
+                enabled: false
+                retentionPolicy: {
+                    enabled: false
+                    days: 0
+                }
+            }
+        ]
+        logs: [
+            {
+                category: 'MetricsUsageDetails'
+                categoryGroup: null
+                enabled: true
+                retentionPolicy: {
+                    enabled: false
+                    days: 0
+                }
+            }
+        ]
+        logAnalyticsDestinationType: null
+    }
+}
+```
+
+#### Parameters file
+
+```bicep
+using './<template-file-name>.bicep'
+
+param am_workspace_name = '<azure-monitor-workspace-name>'
+```
+
 ---
 
-
-
-### Enable for an existing workspace
+### Enable for an existing workspac
 
 ### [Portal](#tab/portal)
 
@@ -151,13 +202,13 @@ Perform the following configurations on the diagnostic setting page and select *
 
     :::image type="content" source="./media/metrics-usage-insights/configure-diagnostic-settings.png" lightbox="./media/metrics-usage-insights/configure-diagnostic-settings.png" alt-text="A screenshot showing the add diagnostic setting page.":::
 
-### [ARM template](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 Use the following template and parameter file to enable metrics usage insights for an existing Azure Monitor workspace.
 
-Template File:
+#### Template File
 
-```JSON
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
@@ -175,7 +226,7 @@ Template File:
             "scope": "[format('microsoft.monitor/accounts/{0}', parameters('am_workspace_name'))]",
             "name": "MyDiagnosticSetting",
             "properties": {
-                "workspaceId": "/subscriptions/<subscription ID>/resourcegroups/<resourcegroup name>/providers/microsoft.operationalinsights/workspaces/<workspace name>",
+                "workspaceId": "/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.operationalinsights/workspaces/<workspace-name>",
                 "metrics": [
                     {
                         "category": "AllMetrics",
@@ -202,30 +253,82 @@ Template File:
         }
     ]
 }
-
 ```
 
-Parameter File:
+#### Parameters File
 
-```JSON
+```json
 {
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "am_workspace_name": {
-            "value": "<Azure Monitor workspace name>"
+            "value": "<azure-monitor-workspace-name>"
         }
     }
 }
 ```
+
+### [Bicep](#tab/bicep)
+
+Use the following template and parameter file to enable metrics usage insights for an existing Azure Monitor workspace.
+
+#### Template File
+
+```bicep
+@description('Azure Monitor account name')
+param am_workspace_name string = 'MyAMWorkspace'
+
+resource amAccount 'Microsoft.Monitor/accounts@2023-04-03' existing = {
+    name: am_workspace_name
+}
+
+resource myDiag 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
+    name: 'MyDiagnosticSetting'
+    scope: amAccount
+    properties: {
+        workspaceId: '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>'
+        metrics: [
+            {
+                category: 'AllMetrics'
+                enabled: false
+                retentionPolicy: {
+                    enabled: false
+                    days: 0
+                }
+            }
+        ]
+        logs: [
+            {
+                category: 'MetricsUsageDetails'
+                categoryGroup: null
+                enabled: true
+                retentionPolicy: {
+                  enabled: false
+                  days: 0
+                }
+            }
+        ]
+        logAnalyticsDestinationType: null
+    }
+}
+```
+
+#### Parameters File
+
+```bicep
+using './<template-file-name>.bicep'
+
+param am_workspace_name = '<azure-monitor-workspace-name>'
+```
+
 ---
 
 > [!NOTE]
->
-> You will need to wait approximately 24 hours to allow data to flow into LAW.
->Once you have created the Diagnostic Settings and waited for 24 hours, verify that the "Active Time Series (Max)" value is not zero. A value of zero indicates that no data is being ingested into AMW, resulting in no available insights.
+> You need to wait approximately 24 hours to allow data to flow into LAW. Once you have created the Diagnostic Settings and waited for 24 hours, verify that the "Active Time Series (Max)" value is not zero. A value of zero indicates that no data is being ingested into AMW, resulting in no available insights.
 
 ## Open metrics usage insights
+
 You can open metrics usage insights either for a single Azure Monitor workspace or for all Azure Monitor workspaces in your subscription.
 
 For a single Azure Monitor workspace, select **Insights (preview)** under **Monitoring** or **Metrics usage insights** from the **Overview page**.
@@ -238,19 +341,19 @@ To view a summary of all Azure Monitor workspaces in your subscription, select *
 
 The summary table of your Azure Monitor workspaces includes a table with the following columns:
 
-| Column | Description |
-|:---|:---|
-| Time series limit | The maximum number of time series you can ingest per minute. |
-| Active time series | The number of time series ingested per minute. |
-| Active time series timeline | A chart showing the active time series over time. |
-| Time series utilization (%) | The active time series as a percentage of the limit. |
-| Event limit | The maximum number of events you can ingest per minute. |
-| Events per minute ingested | The number of individual metric values ingested per minute. |
-| Events per minute ingested timeline | A chart showing the number of metric samples events ingested per minute over time. |
-| Events per minute utilization (%)| The number of metric samples events ingested per minute as a percentage of the limit. |
-
+| Column                              | Description                                                                           |
+|:------------------------------------|:--------------------------------------------------------------------------------------|
+| Time series limit                   | The maximum number of time series you can ingest per minute.                          |
+| Active time series                  | The number of time series ingested per minute.                                        |
+| Active time series timeline         | A chart showing the active time series over time.                                     |
+| Time series utilization (%)         | The active time series as a percentage of the limit.                                  |
+| Event limit                         | The maximum number of events you can ingest per minute.                               |
+| Events per minute ingested          | The number of individual metric values ingested per minute.                           |
+| Events per minute ingested timeline | A chart showing the number of metric samples events ingested per minute over time.    |
+| Events per minute utilization (%)   | The number of metric samples events ingested per minute as a percentage of the limit. |
 
 ## Dashboards
+
 Metrics usage insights includes the dashboards described in the following sections.
 
 ### Limits & usage
@@ -269,33 +372,32 @@ Metrics usage insights includes the dashboards described in the following sectio
 :::image type="content" source="./media/metrics-usage-insights/workspace-exploration.png" lightbox="./media/metrics-usage-insights/workspace-exploration.png" alt-text="A screenshot showing the workspace exploration page.":::
 
 **Metric summary table**
+
 The table on this page provides a high-level overview of the metrics ingested into the workspace. It has the following columns:
  
-| Column Name | Description|
-|:---|:---|
-| Namespace |Namespace in the Azure Monitor the metric belongs to.|
-| Metric | The name of the metric that the insights are generated for|
-| Dimensions | The set of labels/dimensions being described. `*` indicates All Dimensions are included |
-| Daily Time series | The daily time series count associated with the labels/dimensions for the metric |
+| Column Name | Description |
+|:------------|:------------|
+| Namespace | Namespace in the Azure Monitor the metric belongs to. |
+| Metric | The name of the metric that the insights are generated for. |
+| Dimensions | The set of labels/dimensions being described. `*` indicates All Dimensions are included. |
+| Daily Time series | The daily time series count associated with the labels/dimensions for the metric. |
 | Incoming Events | The number of events received for the metric as of the "Insights as of" date on the report, sorted in descending order. Note: Events showing zero indicate the incoming events are very low. |
-| Last Queried (days ago) | The number of days from "Insights as of" date on the report when the a query was last run on the metric.
-| Number of Queries | The number of queries run on the metric as of the "Insights as of" date on the report.
+| Last Queried (days ago) | The number of days from "Insights as of" date on the report when the a query was last run on the metric. |
+| Number of Queries | The number of queries run on the metric as of the "Insights as of" date on the report. |
 
+**Top 10 metrics by recent growth view**
 
-**Top 10 metrics by recent growth view**<br>
 The bar chart gives insight into the disproportionate growth of a metric relative to other metrics. If you receive throttling alerts or want to check the growth of your workspace, use this chart to see which metrics are growing disproportionate to others and then check sampling and scraping frequencies. Unexpected negative growth may indicate a problem in the collection pipeline.
 
+**Daily time series trend by baseline period view**
 
-**Daily time series trend by baseline period view**<br>
 The daily time series trend line for each metric can be used to identify sudden spikes or dips over a baseline period. A 28-day time range is used to establish a baseline for the number of daily time series for a metric and is compared to the average over 7 days.
-
 
 ### Unused Metrics
 
 **Unused Metrics** shows the metrics that haven't been used in a query for the duration specified in **Not Used In days**. The longer a metric remains unused, the more confident you can be that it can be removed from the ingest processes to reduce ingestion and storage costs. Multiplying the ingested samples count that are unused by the meter rate gives an indication of potential saving after deleting the unused metrics. Adjust the scrape job settings in your Prometheus settings to stop collecting unused data. For details on metrics relabeling, see [Configure custom Prometheus scrape jobs](../containers/prometheus-metrics-scrape-configuration.md).
 
 :::image type="content" source="./media/metrics-usage-insights/unused-metrics.png" lightbox="./media/metrics-usage-insights/unused-metrics.png" alt-text="A screenshot showing the unused metrics page.":::
-
 
 ## Advanced Analytics
 
@@ -305,6 +407,4 @@ If you want to personalize the insights pages, you can modify the underlying que
 
 You can query historical data beyond the data range of the insights pages by accessing the Log Analytics workspace directly. The data is stored in the `AMWMetricsUsageDetails` table. See [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md) if you aren't familiar with Log Analytics and [Log queries in Azure Monitor](../logs/log-query-overview.md) for guidance on writing queries.
 
-
 :::image type="content" source="./media/metrics-usage-insights/log-query.png" lightbox="./media/metrics-usage-insights/log-query.png" alt-text="A screenshot showing Azure Monitor workspace historical data.":::
-

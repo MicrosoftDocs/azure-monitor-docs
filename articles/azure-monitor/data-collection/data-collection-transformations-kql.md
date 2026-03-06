@@ -3,7 +3,7 @@ title: Supported KQL features in Azure Monitor transformations
 description: Supported KQL features in Azure Monitor transformations
 ms.topic: reference
 ms.date: 01/20/2026
-ms.reviwer: nikeist
+ms.reviewer: nikeist
 
 ---
 
@@ -158,7 +158,7 @@ The only supported data sources for the KQL statement in a transformation are as
 
 * The following [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators) are supported.
 
-    * `=
+    * `==`
     * `!=`
     * `=~`
     * `!~`
