@@ -1,16 +1,17 @@
 ---
 title: Enable Application Insights Profiler for .NET for web apps on an Azure virtual machine
-description: Profile web apps running on an Azure virtual machine or a virtual machine scale set by using Application Insights Profiler
+description: Profile web apps running on an Azure virtual machine or a virtual machine scale set by using Application Insights Profiler.
 ms.topic: how-to
-ms.date: 03/25/2025
+ms.date: 03/06/2026
 ms.reviewer: charles.weininger
+#customer intent: As an application developer, I need to know how to run Application Insights Profiler for .NET for an app on an Azure virtual machine.
 ---
 
 # Enable the .NET Profiler for web apps on an Azure virtual machine
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-In this article, you learn how to run Application Insights Profiler for .NET on your Azure virtual machine (VM) or Azure virtual machine scale set via three different methods:
+In this article, you learn how to run Application Insights Profiler for .NET on your Azure virtual machine (VM) or Azure virtual machine scale set by using three different methods:
 
 - Visual Studio and Azure Resource Manager
 - PowerShell
@@ -23,7 +24,7 @@ In this guide, you learn how to:
 > - Configure the Azure Diagnostics extension to run the .NET Profiler.
 > - Install the Application Insights SDK on a VM.
 > - Deploy your application.
-> - View Profiler traces via the Application Insights instance in the Azure portal.
+> - View Profiler traces by using the Application Insights instance in the Azure portal.
 
 > [!NOTE]
 > Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
@@ -42,16 +43,16 @@ In this guide, you learn how to:
 
 1. Select **Project** > **Add Application Insights Telemetry**.
 
-1. Select **Azure Application Insights** > **Next**.
+1. Select **Azure Application Insights**. Then select **Next**.
 
-1. Select the subscription where your Application Insights resource lives and select **Next**.
+1. Select the subscription where your Application Insights resource lives, then **Next**.
 
-1. Select where to save the connection string and select **Next**.
+1. Select where to save the connection string, then **Next**.
 
 1. Select **Finish**.
 
 > [!NOTE]
-> For full instructions, including how to enable Application Insights on your ASP.NET Core application without Visual Studio, see the [Application Insights for ASP.NET Core applications](../app/asp-net-core.md).
+> For full instructions, including how to enable Application Insights on your ASP.NET Core application without Visual Studio, see [Monitor .NET and Node.js applications](../app/asp-net-core.md).
 
 ## Confirm the latest stable release of the Application Insights SDK
 
@@ -59,7 +60,7 @@ In this guide, you learn how to:
 
 1. Select **Microsoft.ApplicationInsights.AspNetCore**.
 
-1. On the side pane, select the latest version of the SDK from the dropdown.
+1. On the side pane, select the latest version of the SDK from the dropdown list.
 
 1. Select **Update**.
 
@@ -70,7 +71,7 @@ In this guide, you learn how to:
 You can enable Profiler by any of three ways:
 
 - Within your ASP.NET Core application by using an Azure Resource Manager template and Visual Studio. **Recommended.**
-- By using a PowerShell command via the Azure CLI.
+- By using a PowerShell command.
 - By using Azure Resource Explorer.
 
 # [Visual Studio and ARM template](#tab/vs-arm)
@@ -110,17 +111,17 @@ You can enable Profiler by any of three ways:
 The following PowerShell commands are an approach for existing VMs that touch only the Azure Diagnostics extension.
 
 > [!NOTE]
-> If you deploy the VM again, the sink is lost. You need to update the config you use when you deploy the VM to preserve this setting.
+> If you deploy the VM again, the sink is lost. You need to update the configuration you use when you deploy the VM to preserve this setting.
 
-### Install Application Insights via the Azure Diagnostics config
+### Install Application Insights using the Azure Diagnostics configuration
 
-1. Export the currently deployed Azure Diagnostics config to a file:
+1. Export the currently deployed Azure Diagnostics configuration to a file:
 
    ```powershell
    $ConfigFilePath = [IO.Path]::GetTempFileName()
    ```
 
-1. Add the Application Insights Profiler sink to the config returned by the following command:
+1. Add the Application Insights Profiler sink to the configuration returned by the following command:
 
    ```powershell
    (Get-AzVMDiagnosticsExtension -ResourceGroupName "YOUR_RESOURCE_GROUP" -VMName "YOUR_VM").PublicSettings | Out-File -Verbose $ConfigFilePath
@@ -141,14 +142,14 @@ The following PowerShell commands are an approach for existing VMs that touch on
    }        
    ```
    
-1. Run the following command to pass the updated config to the `Set-AzVMDiagnosticsExtension` command.
+1. Run the following command to pass the updated configuration to the `Set-AzVMDiagnosticsExtension` command.
 
    ```powershell
    Set-AzVMDiagnosticsExtension -ResourceGroupName "YOUR_RESOURCE_GROUP" -VMName "YOUR_VM" -DiagnosticsConfigurationPath $ConfigFilePath
    ```
 
    > [!NOTE]
-   > `Set-AzVMDiagnosticsExtension` might require the `-StorageAccountName` argument. If your original diagnostics configuration had the `storageAccountName` property in the `protectedSettings` section (which isn't downloadable), be sure to pass the same original value you had in this cmdlet call.
+   > `Set-AzVMDiagnosticsExtension` might require the `-StorageAccountName` argument. If your original diagnostics configuration had the `storageAccountName` property in the `protectedSettings` section, which isn't downloadable, be sure to pass the same original value you had in this cmdlet call.
 
 ### IIS Http Tracing feature
 
@@ -177,18 +178,19 @@ If the intended application is running through [IIS](https://www.microsoft.com/w
 Because the Azure portal doesn't provide a way to set the Application Insights Profiler for .NET sink, you can use [Azure Resource Explorer](https://resources.azure.com) to set the sink.
 
 > [!NOTE]
-> If you deploy the VM again, the sink is lost. You need to update the config you use when you deploy the VM to preserve this setting.
+> If you deploy the VM again, the sink is lost. You need to update the configuration you use when you deploy the VM to preserve this setting.
 
 1. Verify that the Microsoft Azure Diagnostics extension is installed by viewing the extensions installed for your virtual machine.
 
    :::image type="content" source="./media/profiler-vm/wad-extension.png" alt-text="Screenshot that shows checking if the WAD extension is installed.":::
 
 1. Find the VM Diagnostics extension for your VM:
-    1. Go to [Azure Resource Explorer](https://resources.azure.com).
-    1. Expand **subscriptions** and find the subscription that holds the resource group with your VM.
-    1. Drill down to your VM extensions by selecting your resource group. Then select **Microsoft.Compute** > **virtualMachines** > **[your virtual machine]** > **extensions**.
 
-       :::image type="content" source="./media/profiler-vm/azure-resource-explorer.png" alt-text="Screenshot that shows going to WAD config in Azure Resource Explorer.":::
+   1. Go to [Azure Resource Explorer](https://resources.azure.com).
+   1. Expand **subscriptions** and find the subscription that holds the resource group with your VM.
+   1. Drill down to your VM extensions by selecting your resource group. Then select **Microsoft.Compute** > **virtualMachines** > **[your virtual machine]** > **extensions**.
+
+      :::image type="content" source="./media/profiler-vm/azure-resource-explorer.png" alt-text="Screenshot that shows going to WAD configuration in Azure Resource Explorer.":::
 
 1. Add the Application Insights Profiler for .NET sink to the `SinksConfig` node under `WadCfg`. If you don't already have a `SinksConfig` section, you might need to add one. To add the sink:
 
