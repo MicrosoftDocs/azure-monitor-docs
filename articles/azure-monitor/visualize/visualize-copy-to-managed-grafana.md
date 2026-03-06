@@ -24,7 +24,11 @@ Migrate your dashboards to Azure Managed Grafana when you need capabilities that
 
 - Review [known limitations](#known-behaviors-and-limitations) before starting.
 - A user-saved dashboard in Azure Monitor dashboards with Grafana.
-- The **Grafana Editor** or **Grafana Admin** role on the target Azure Managed Grafana instance. For more information, see [Azure RBAC](/azure/role-based-access-control/overview).
+- The **Grafana Editor** or **Grafana Admin** role on the target Azure Managed Grafana instance.
+    - When copying to an existing instance, the user must already have the **Grafana Editor** or **Grafana Admin** role on that instance.
+    - When copying to a new instance, the **Grafana Admin** role is automatically assigned to the current user.
+
+   For more information, see [Azure RBAC](/azure/role-based-access-control/overview).
 
 ## Copy to an existing Azure Managed Grafana instance
 
@@ -33,7 +37,7 @@ Migrate your dashboards to Azure Managed Grafana when you need capabilities that
 
     :::image type="content" source="./media/visualizations-grafana/copy-to-managed-grafana-side-pane.png" alt-text="Screenshot of the Copy to Managed Grafana side pane.":::
 
-1. In the side pane, select an existing Azure Managed Grafana workspace from the **Azure Managed Grafana** dropdown list. The current user must have the **Grafana Editor** or **Grafana Admin** role on the selected instance.
+1. In the side pane, select an existing Azure Managed Grafana workspace from the **Azure Managed Grafana** dropdown list.
 1. Select **Copy**.
 1. The deployment starts. Track progress in the Azure portal **Notifications**.
 1. When the deployment is complete, select the link in the notification to open the copied dashboard in the Grafana instance.
