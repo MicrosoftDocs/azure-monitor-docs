@@ -277,8 +277,6 @@ items:
         href: vm/vminsights-overview.md
       - name: Enable and configure
         items:
-        - name: Enable VM insights
-          href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
         - name: Windows client machines
