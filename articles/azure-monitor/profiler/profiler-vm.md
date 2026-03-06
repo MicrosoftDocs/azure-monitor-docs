@@ -21,10 +21,9 @@ Select your preferred method tab to:
 
 In this guide, you learn how to:
 > [!div class="checklist"]
-> - Configure the Azure Diagnostics extension to run the .NET Profiler.
-> - Install the Application Insights SDK on a VM.
-> - Deploy your application.
-> - View Profiler traces by using the Application Insights instance in the Azure portal.
+> - Add the Application Insights SDK to your application
+> - Confirm the latest stable release of the Application Insights SDK
+> - Enable the .NET Profiler
 
 > [!NOTE]
 > Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
@@ -34,6 +33,7 @@ In this guide, you learn how to:
 - A functioning [ASP.NET Core application](/aspnet/core/getting-started).
 - An [Application Insights resource](../app/create-workspace-resource.md).
 - To review the Azure Resource Manager templates (ARM templates) for the Azure Diagnostics extension:
+
   - [VM](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachine.json)
   - [Virtual machine scale set](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachineScaleSet.json)
 
@@ -68,7 +68,7 @@ In this guide, you learn how to:
 
 ## Enable the .NET Profiler
 
-You can enable Profiler by any of three ways:
+You can enable Profiler in these ways:
 
 - Within your ASP.NET Core application by using an Azure Resource Manager template and Visual Studio. **Recommended.**
 - By using a PowerShell command.
@@ -79,6 +79,7 @@ You can enable Profiler by any of three ways:
 ### Install the Azure Diagnostics extension
 
 1. Choose which ARM template to use:
+
    - [VM](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachine.json)
    - [Virtual machine scale set](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/WindowsVirtualMachineScaleSet.json)
 
@@ -89,20 +90,19 @@ You can enable Profiler by any of three ways:
 1. Add the resource type `extension` from the template to the `arm.json` file to set up a VM or virtual machine scale set with Azure Diagnostics.
 
 1. Within the `WadCfg` tag, add your Application Insights connection string to `MyApplicationInsightsProfilerSink`.
-
         
-      ```json
-      "WadCfg": {
-        "SinksConfig": {
-          "Sink": [
-            {
-              "name": "MyApplicationInsightsProfilerSink",
-              "ApplicationInsightsProfiler": "YOUR_APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
-            }
-          ]
-        }
-      }        
-      ```
+   ```json
+   "WadCfg": {
+     "SinksConfig": {
+       "Sink": [
+         {
+           "name": "MyApplicationInsightsProfilerSink",
+           "ApplicationInsightsProfiler": "YOUR_APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+         }
+       ]
+     }
+   }        
+   ```
 
 1. Deploy your application.
 
@@ -157,7 +157,7 @@ If the intended application is running through [IIS](https://www.microsoft.com/w
 
 1. Establish remote access to the environment.
 
-1. Use the [Add Windows features](/iis/configuration/system.webserver/tracing/) window, or run the following command in PowerShell (as administrator):
+1. Use the [Add Windows features](/iis/configuration/system.webserver/tracing/) window, or run the following command in PowerShell, as administrator:
 
     ```powershell
     Enable-WindowsOptionalFeature -FeatureName IIS-HttpTracing -Online -All
@@ -200,18 +200,18 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
 
      :::image type="content" source="./media/profiler-vm/resource-explorer-sinks-config.png" alt-text="Screenshot that shows adding the Application Insights Profiler sink.":::
 
-       ```json
-       "WadCfg": {
-         "SinksConfig": {
-           "Sink": [
-             {
-               "name": "MyApplicationInsightsProfilerSink",
-               "ApplicationInsightsProfiler": "YOUR_APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
-             }
-           ]
-         }
-       }        
-       ```
+     ```json
+     "WadCfg": {
+       "SinksConfig": {
+         "Sink": [
+           {
+             "name": "MyApplicationInsightsProfilerSink",
+             "ApplicationInsightsProfiler": "YOUR_APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+           }
+         ]
+       }
+     }        
+     ```
 
 1. After you finish editing the config, select **PUT**.
 
