@@ -213,7 +213,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
      }        
      ```
 
-1. After you finish editing the config, select **PUT**.
+1. After you finish editing the configuration, select **PUT**.
 
 1. If the `put` is successful, a green check mark appears in the middle of the screen.
 
