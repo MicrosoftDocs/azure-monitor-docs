@@ -1620,10 +1620,6 @@ items:
     href: agents/diagnostics-extension-schema-windows.md
   - name: Azure Monitor Agent extension versions
     href: agents/azure-monitor-agent-extension-versions.md
-  - name: Application Insights
-    items:
-    - name: Statsbeat
-      href: app/statsbeat.md
   - name: Azure PowerShell
     items:
     - name: Azure Monitor
