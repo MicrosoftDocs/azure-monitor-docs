@@ -4,7 +4,7 @@ description: Learn how to configure Bring Your Own Storage (BYOS) for Applicatio
 ms.reviewer: charles.weininger
 reviewer: cweining
 ms.topic: how-to
-ms.date: 03/04/2026
+ms.date: 03/06/2026
 ms.custom: devdivchpfy22, devx-track-azurepowershell, engagement
 ai-usage: ai-assisted
 #customer intent: As an app developer, I want to configure my Azure Storage to work with Profiler or Snapshot debugger.
@@ -411,7 +411,7 @@ If the deployment fails, check that:
 
 Now that your storage account is linked, enable the diagnostic tools:
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your application resource (for example, App Service).
+1. In the [Azure portal](https://portal.azure.com), navigate to your application resource, for example, App Service.
 
 1. In the left menu, select **Monitoring** > **Application Insights**.
 
