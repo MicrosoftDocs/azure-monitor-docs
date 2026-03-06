@@ -21,9 +21,9 @@ Select your preferred method tab to:
 
 In this guide, you learn how to:
 > [!div class="checklist"]
-> - Add the Application Insights SDK to your application
-> - Confirm the latest stable release of the Application Insights SDK
-> - Enable the .NET Profiler
+> - Add the Application Insights SDK to your application.
+> - Confirm the latest stable release of the Application Insights SDK.
+> - Enable the .NET Profiler.
 
 > [!NOTE]
 > Currently, Application Insights Profiler for .NET isn't supported for on-premises servers.
@@ -43,11 +43,11 @@ In this guide, you learn how to:
 
 1. Select **Project** > **Add Application Insights Telemetry**.
 
-1. Select **Azure Application Insights**. Then select **Next**.
+1. Select **Azure Application Insights**, then select **Next**.
 
-1. Select the subscription where your Application Insights resource lives, then **Next**.
+1. Select the subscription where your Application Insights resource lives, then select **Next**.
 
-1. Select where to save the connection string, then **Next**.
+1. Select where to save the connection string, then select **Next**.
 
 1. Select **Finish**.
 
