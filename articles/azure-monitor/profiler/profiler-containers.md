@@ -2,14 +2,14 @@
 title: Profile Azure containers with Application Insights Profiler for .NET
 description: Learn how to enable the Application Insights Profiler for your ASP.NET Core application running in Azure containers.
 ms.topic: how-to
-ms.date: 03/24/2025
+ms.date: 03/09/2026
 ms.reviewer: charles.weininger
 # Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
 
 # Enable the .NET Profiler on Azure containers
 
-You can enable the Application Insights Profiler for .NET on applications running in your container almost without code. To enable the .NET Profiler on your container instance, you need to:
+You can enable the Application Insights Profiler for .NET on applications that run in your container almost without code. To enable the .NET Profiler on your container instance, you need to:
 
 - Add the reference to the `Microsoft.ApplicationInsights.Profiler.AspNetCore` NuGet package.
 - Update the code to enable the Profiler for .NET.
@@ -18,7 +18,7 @@ You can enable the Application Insights Profiler for .NET on applications runnin
 In this article, you learn about the various ways that you can:
 > [!div class="checklist"]
 > - Install the NuGet package in the project.
-> - Set the environment variable via the orchestrator (like Kubernetes).
+> - Set the environment variable by using an orchestrator, like Kubernetes.
 > - Learn security considerations around production deployment, like protecting your Application Insights connection string.
 
 ## Prerequisites
@@ -31,9 +31,9 @@ In this article, you learn about the various ways that you can:
 
 1. Clone and use the following [sample project](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/tree/main/examples/EnableServiceProfilerForContainerAppNet6):
       
-      ```bash
-      git clone https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore.git
-      ```
+   ```bash
+   git clone https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore.git
+   ```
 
 1. Go to the Container App example:
 
@@ -49,7 +49,7 @@ In this article, you learn about the various ways that you can:
    dotnet new mvc -n EnableServiceProfilerForContainerApp
    ```
 
-   A delay is in the `Controllers/WeatherForecastController.cs` project to simulate the bottleneck.
+   There's a delay is in the `Controllers/WeatherForecastController.cs` project to simulate the bottleneck.
 
    ```csharp
    [HttpGet(Name = "GetWeatherForecast")]
@@ -127,7 +127,7 @@ In this article, you learn about the various ways that you can:
 
 ## Add your Application Insights key
 
-1. In the Azure portal, open your Application Insights resource. In the **Overview** page, take note of your Application Insights connection string.
+1. In the [Azure portal](https://portal.azure.com), open your Application Insights resource. In the **Overview** page, take note of your Application Insights connection string.
 
    :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal.":::
 
@@ -196,7 +196,7 @@ If you're unable to find traces from your app, consider following the steps in t
 1. In the Azure portal, open your Application Insights resource. From the left menu, select **Investigate** > **Performance**.
 1. After the trace process is finished, the **Profiler Traces** button appears.
 
-      :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane.":::
+   :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane.":::
 
 ## Clean up resources
 
@@ -206,7 +206,7 @@ Run the following command to stop the example project:
 docker rm -f testapp
 ```
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Generate load and view .NET Profiler traces](./profiler-data.md)
