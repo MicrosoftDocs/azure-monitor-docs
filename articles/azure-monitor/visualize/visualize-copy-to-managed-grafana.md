@@ -1,5 +1,5 @@
 ﻿---
-title: Copy a dashboard to Azure Managed Grafana
+title: Copy an Azure Monitor dashboard to Azure Managed Grafana
 description: Learn how to copy a saved dashboard from Azure Monitor dashboards with Grafana to an existing or new Azure Managed Grafana instance.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
@@ -7,16 +7,24 @@ ms.date: 03/04/2026
 ai-usage: ai-assisted
 ---
 
-# Copy a dashboard to Azure Managed Grafana
+# Copy an Azure Monitor dashboard to Azure Managed Grafana
 
-This article explains how to copy a saved dashboard from Azure Monitor dashboards with Grafana to an Azure Managed Grafana instance. The copy process preserves your dashboard panels, queries, and layout, so you can move to Azure Managed Grafana without recreating your dashboards. You can copy to an existing Azure Managed Grafana workspace or create a new one during the process.
+In this article, you learn how to copy a saved Azure Monitor dashboard with Grafana to either a new or existing Azure Managed Grafana workspace. By following this copy process, your dashboard panels, queries, and layout are preserved, so you can move to Azure Managed Grafana without recreating them.
 
-Use this feature when you need Grafana capabilities that Azure Monitor dashboards with Grafana doesn't support, such as alerts, scheduled reports, external data sources, or private networking. For a full list, see [Limitations](visualize-grafana-overview.md#limitations).
+Migrate your dashboards to Azure Managed Grafana when you need capabilities that Azure Monitor dashboards with Grafana doesn't support, such as alerts, scheduled reports, external data sources, or private networking. For a full list, see [Limitations](visualize-grafana-overview.md#limitations).
+
+> [!NOTE]
+> This guide applies to user-saved dashboards. Azure-managed template dashboards can't be copied directly. To copy a template dashboard:  
+> 1. Save it so it becomes a user-saved dashboard.
+> 1. Copy the saved version. 
+> 
+> For more information, see [Save a copy of a dashboard](visualize-use-grafana-dashboards.md#save-a-copy-of-a-dashboard).
 
 ## Prerequisites
 
-- A user-saved dashboard in Azure Monitor dashboards with Grafana. Azure managed template dashboards can't be copied directly. To copy a template dashboard, save it first so it becomes a user-saved dashboard, and then copy the saved version. For more information, see [Save a copy of a dashboard](visualize-use-grafana-dashboards.md#save-a-copy-of-a-dashboard).
-- To copy to an existing Azure Managed Grafana instance, the current user must have the **Grafana Editor** or **Grafana Admin** role on that instance. For more information, see [Azure RBAC](/azure/role-based-access-control/overview).
+- Review [known limitations](#known-behaviors-and-limitations) before starting.
+- A user-saved dashboard in Azure Monitor dashboards with Grafana.
+- The **Grafana Editor** or **Grafana Admin** role on the target Azure Managed Grafana instance. For more information, see [Azure RBAC](/azure/role-based-access-control/overview).
 
 ## Copy to an existing Azure Managed Grafana instance
 
@@ -34,17 +42,17 @@ Use this feature when you need Grafana capabilities that Azure Monitor dashboard
 
 1. Open a user-saved dashboard in **Dashboards with Grafana**.
 1. Select **Copy to Managed Grafana** in the toolbar. A side pane opens.
-1. In the side pane, select **Create new** to open the creation interface as a flyout.
+1. In the side pane, select **Create new** to open the creation pane.
 
-    :::image type="content" source="./media/visualizations-grafana/copy-to-managed-grafana-create-new-flyout.png" alt-text="Screenshot of the Create new Azure Managed Grafana flyout.":::
+    :::image type="content" source="./media/visualizations-grafana/copy-to-managed-grafana-create-new-workspace.png" alt-text="Screenshot of the Create new Azure Managed Grafana workspace pane.":::
 
 1. Configure the required details for the new Azure Managed Grafana workspace:
     - **Workspace name** - Enter a name for the new workspace.
     - **Region** - Select the Azure region for the workspace.
-1. Select **Create**. The flyout closes and the new workspace name is populated in the **Azure Managed Grafana** field on the side pane.
+1. Select **Create**. The creation pane closes and the new workspace name is populated in the **Azure Managed Grafana** field on the side pane.
 
     > [!NOTE]
-    > Selecting **Create** in the flyout saves the configuration but doesn't provision the new Azure Managed Grafana workspace yet. Provisioning begins when you select **Copy** in the next step.
+    > Selecting **Create** in the creation pane saves the configuration but doesn't provision the new Azure Managed Grafana workspace yet. Provisioning begins when you select **Copy** in the next step.
 
 1. Select **Copy** on the side pane. The deployment starts. Two deployment tasks appear in the Azure portal **Notifications**:
     - **Azure Managed Grafana workspace provisioning** - Includes a link to the new Azure Managed Grafana resource after completion.
@@ -75,3 +83,8 @@ The copied dashboard is placed in the root folder of the Grafana instance. If a 
 
 > [!CAUTION]
 > If the target instance already contains a dashboard with the same identity, the copy operation overwrites it without prompting for confirmation. Verify that no dashboard you want to keep uses the same identity before you start the copy.
+
+## Next steps
+
+- [Use Azure Managed Grafana](visualize-use-managed-grafana-how-to.md)
+- [How to manage data sources in Azure Managed Grafana](/azure/managed-grafana/how-to-data-source-plugins-managed-identity)
