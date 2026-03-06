@@ -2,6 +2,7 @@
 title: Enable Application Insights Profiler for .NET for Azure Service Fabric applications
 description: Profile live Azure Service Fabric apps with Application Insights. Learn how to update your Azure Resource Manager template and deploy your cluster.
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 03/09/2026
 #customer intent: As an application developer, I want to install the Azure Diagnostics extension for an Azure Service Fabric cluster.
 ---
@@ -11,11 +12,12 @@ ms.date: 03/09/2026
 Application Insights Profiler for .NET is included with Azure Diagnostics. You can install the Azure Diagnostics extension by using an Azure Resource Manager template (ARM template) for your Azure Service Fabric cluster. Get a [template that installs Azure Diagnostics on a Service Fabric cluster](https://github.com/Azure/azure-docs-json-samples/blob/master/application-insights/ServiceFabricCluster.json).
 
 In this guide, you learn how to:
+
 > [!div class="checklist"]
-> - Add the Application Insights Profiler for .NET property to your ARM template.
-> - Deploy your Service Fabric cluster with the Application Insights Profiler for .NET connection string.
-> - Enable Application Insights on your Service Fabric application.
-> - Redeploy your Service Fabric cluster to enable the .NET Profiler.
+> * Add the Application Insights Profiler for .NET property to your ARM template.
+> * Deploy your Service Fabric cluster with the Application Insights Profiler for .NET connection string.
+> * Enable Application Insights on your Service Fabric application.
+> * Redeploy your Service Fabric cluster to enable the .NET Profiler.
 
 ## Prerequisites
 

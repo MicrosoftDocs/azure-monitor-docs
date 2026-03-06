@@ -2,7 +2,7 @@
 title: Health history overview
 description: Overview of the features and information found on the Health history pane.
 ms.topic: concept-article
-ms.date: 02/26/2026
+ms.date: 03/04/2026
 ---
 
 # Health history
@@ -75,6 +75,7 @@ The Health history pane can help you manage your resources more effectively by p
 
 ## More information
 
+- [How to report an impact](report-issue.md)
 - [Azure Service Health portal](service-health-portal-update.md)
 - [Resource Health FAQs](resource-health-faq.yml)
 - [Service Health FAQs](service-health-faq.yml)

@@ -2,7 +2,7 @@
 title: Monitor AI Agents with Application Insights
 description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 11/11/2025
+ms.date: 03/05/2026
 ---
 
 # Monitor AI agents with Application Insights
@@ -16,7 +16,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ## Prerequisites
 
-Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md).
+Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md?tabs=agents).
 
 ## Monitor your AI agents
 
