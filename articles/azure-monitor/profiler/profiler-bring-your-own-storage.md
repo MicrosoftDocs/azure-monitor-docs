@@ -61,7 +61,7 @@ To verify your storage account is in the correct location:
 
 1. Open the [Azure portal](https://portal.azure.com).
 1. Navigate to your storage account.
-1. In the **Overview** page, check value for **Location**.
+1. In the **Overview** page, check the value for **Location**.
 1. Navigate to your Application Insights resource.
 1. In the **Overview** page, check that the same value appears for **Location**.
 
@@ -488,5 +488,5 @@ Yes. You're responsible for all costs related to storage and networking for your
 ## Related content
 
 - Troubleshoot BYOS for [.NET Profiler](./profiler-troubleshooting.md#troubleshoot-bring-your-own-storage-byos) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger-troubleshoot.md#troubleshoot-bring-your-own-storage-byos)
-- [Monitor and analyze runtime behavior with Code Optimizations](./profiler-overview.md)
+- [Monitor and analyze runtime behavior with Code Optimizations](../optimization-insights/code-optimizations-profiler-overview.md)
 - [Debug exceptions using Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md)
