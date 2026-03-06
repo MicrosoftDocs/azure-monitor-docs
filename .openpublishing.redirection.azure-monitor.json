@@ -8918,6 +8918,31 @@
    "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-availability.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-enable-insights.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-guest.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-collect-logs",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable.md",
+   "redirect_url": "/azure/azure-monitor/vm/vm-enable-monitoring",
+   "redirect_document_id": false
   }
  ]
 }

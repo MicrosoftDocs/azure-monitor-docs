@@ -1,15 +1,24 @@
 ---
 title: Quickstart monitoring a Kubernetes cluster in Azure Monitor
 description: Quickly enable monitoring and for your Kubernetes cluster with Azure Monitor using the Azure portal.
-ms.topic: quickstart
+ms.topic: tutorial
 ms.custom: references_regions
 ms.date: 08/26/2025
 ms.reviewer: viviandiec
 ---
 
-# Quickstart monitoring a Kubernetes cluster in Azure Monitor
-Whether you create a new AKS cluster in your Azure subscription, or add an Arc-enabled cluster, Azure Monitor provides a set of features to help you understand the performance and health of your cluster along with its nodes and workloads. This quickstart walks you through the default monitoring experience provided by Azure Monitor and how to quickly enable additional features to enhance your monitoring experience. 
+# Tutorial: Enable monitoring for a Kubernetes cluster in Azure Monitor
+Whether you create a new AKS cluster in your Azure subscription, or add an Arc-enabled cluster, Azure Monitor provides a set of features to help you understand the performance and health of your cluster along with its nodes and workloads. 
 
+This tutorial walks you through the default cluster monitoring experience provided by Azure Monitor and how to quickly enable additional features to enhance your monitoring experience. It also guides you through enabling recommended alerts based on the performance data collected from the virtual machine. 
+
+In this tutorial, you learn how to:
+
+> [!div class="checklist"]
+> * Enable monitoring for a Kubernetes, which installs Azure Monitor Agent and begins data collection.
+> * Create different workspaces to support collection of logs and Prometheus metrics.
+> * Inspect dashboards analyzing data collected from the virtual cluster.
+> * Enable recommended alerts based on the performance data collected from the cluster.
 
 ## View default monitoring data
 Go to one of your Kubernetes clusters in the Azure portal and select the **Monitor** option to get an overview of various telemetry indicating the health and performance of the cluster's nodes, workloads, and containers. Scroll through this screen and inspect the different tiles that provide information about the cluster. Several of the tiles may be disabled since the feature supporting them has not yet been enabled for the cluster. The ones that are populated with data are accessing platform metrics which are automatically collected for the cluster. If the tiles aren't disabled then you may have enabled monitoring when you created the cluster.
@@ -41,7 +50,7 @@ When you have the options you want, click **Configure**. This will deploy the [A
 :::image type="content" source="media/kubernetes-monitoring-quickstart/nodes-tab-enabled.png" lightbox="media/kubernetes-monitoring-quickstart/nodes-tab-enabled.png" alt-text="Screenshot of enabled Nodes tab in Container insights.":::
 
 ## View dashboards
-Now that your cluster is being monitored, have a look at the built-in Grafana dashboards that visualize this data. Select **Dashboards with Grafana (preview)** for a list of dashboards. 
+Now that your cluster is being monitored, have a look at the built-in Grafana dashboards that visualize this data. Select **Dashboards with Grafana** for a list of dashboards. 
 
 :::image type="content" source="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" lightbox="media/kubernetes-monitoring-quickstart/grafana-dashboards.png" alt-text="Screenshot of built-in Grafana dashboards.":::
 

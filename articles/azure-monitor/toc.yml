@@ -259,21 +259,17 @@ items:
       href: vm/best-practices-vm.md
     - name: Tutorials
       items:
-      - name: Enable enhanced monitoring
-        href: vm/tutorial-monitor-vm-enable-insights.md
-      - name: Enable recommended alerts
-        displayName: virtual machines, vm, vms
-        href: vm/tutorial-monitor-vm-alert-recommended.md
-      - name: Create an availability alert
-        displayName: virtual machines, vm, vms
-        href: vm/tutorial-monitor-vm-alert-availability.md
-      - name: Collect VM guest logs and metrics
-        href: vm/tutorial-monitor-vm-guest.md
+      - name: Enable monitoring
+        href: vm/tutorial-vm-enable-monitoring.md
+      - name: Collect guest logs
+        href: vm/tutorial-vm-collect-logs.md
     - name: OpenTelemetry experience
       items:
+      - name: Enable OpenTelemetry metrics (Preview)
+        href: vm/vminsights-opentelemetry.md
       - name: Overview
         href: vm/metrics-opentelemetry-guest.md
-      - name: Enable OpenTelemetry metrics (Preview)
+      - name: Reference
         href: vm/metrics-opentelemetry-guest-reference.md
     - name: Logs-based experience (classic)
       items:
@@ -285,8 +281,6 @@ items:
           href: vm/vminsights-enable.md
         - name: Enable with Azure Policy
           href: vm/vminsights-enable-policy.md
-        - name: Enable OpenTelemetry metrics (Preview)
-          href: vm/vminsights-opentelemetry.md
         - name: Windows client machines
           href: vm/vminsights-enable-client.md
         - name: Disable monitoring
@@ -401,8 +395,10 @@ items:
     - name: Deployment guidance
       displayName: containers
       href: containers/monitor-kubernetes.md
-    - name: Quickstart
-      href: containers/kubernetes-monitoring-quickstart.md
+    - name: Tutorials
+      items:
+      - name: Enable monitoring for a cluster
+        href: containers/kubernetes-monitoring-tutorial.md
     - name: Best practices
       displayName: containers, kubernetes
       href: containers/best-practices-containers.md
