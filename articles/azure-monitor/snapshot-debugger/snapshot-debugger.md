@@ -16,8 +16,6 @@ When enabled, Snapshot Debugger automatically collects a debug snapshot of the s
 - Collects snapshots on your top-throwing exceptions.
 - Provides information you need to diagnose issues in production.
 
-[Learn more about the Snapshot Debugger and Snapshot Uploader processes.](#how-snapshot-debugger-works)
-
 ## Supported applications and environments
 
 ### Applications
@@ -111,14 +109,14 @@ Manually adding an Application Insights site extension to keep Snapshot Debugger
 
 The Snapshot Debugger is designed for use in production environments. The default settings include rate limits to minimize the impact on your applications. 
 
-However, you may experience small CPU, memory, and I/O overhead associated with the Snapshot Debugger, such as:
+However, you might experience small CPU, memory, and I/O overhead associated with the Snapshot Debugger, such as:
 - When an exception is thrown in your application
 - If the exception handler decides to create a snapshot
 - When `TrackException` is called
 
-There is **no additional cost** for storing data captured by Snapshot Debugger.
+There's **no additional cost** for storing data captured by Snapshot Debugger.
 
-[See example scenarios in which you may experience Snapshot Debugger overhead.](./snapshot-debugger-troubleshoot.md#snapshot-debugger-overhead-scenarios)
+[See example scenarios in which you might experience Snapshot Debugger overhead.](./snapshot-debugger-troubleshoot.md#snapshot-debugger-overhead-scenarios)
 
 ## Code Optimizations
 
