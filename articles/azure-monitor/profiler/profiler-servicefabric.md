@@ -1,8 +1,9 @@
 ---
 title: Enable Application Insights Profiler for .NET for Azure Service Fabric applications
-description: Profile live Azure Service Fabric apps with Application Insights.
+description: Profile live Azure Service Fabric apps with Application Insights. Learn how to update your Azure Resource Manager template and deploy your cluster.
 ms.topic: how-to
-ms.date: 03/25/2025
+ms.date: 03/09/2026
+#customer intent: As an application developer, I want to install the Azure Diagnostics extension for an Azure Service Fabric cluster.
 ---
 
 # Enable the .NET Profiler for Azure Service Fabric applications
@@ -19,8 +20,10 @@ In this guide, you learn how to:
 ## Prerequisites
 
 - The Profiler supports .NET Framework and .NET applications.
+
   - Verify you're using [.NET Framework 4.6.2](/dotnet/framework/migration-guide/how-to-determine-which-versions-are-installed) or later. 
   - Confirm that the deployed OS is `Windows Server 2012 R2` or later. 
+
 - [An Azure Service Fabric managed cluster](/azure/service-fabric/quickstart-managed-cluster-portal).
 
 ## Create a deployment template
@@ -46,7 +49,7 @@ In this guide, you learn how to:
       }  
       ```
 
-  For information about how to add the Diagnostics extension to your deployment template, see [Use monitoring and diagnostics with a Windows VM and Azure Resource Manager templates](/azure/virtual-machines/extensions/diagnostics-template).
+  For information about how to add the Diagnostics extension to your deployment template, see [Use monitoring and diagnostics with a Windows VM](/azure/virtual-machines/extensions/diagnostics-template).
 
 ## Deploy your Service Fabric cluster
 
@@ -58,8 +61,8 @@ Application Insights Profiler for .NET is installed and enabled when the Azure D
 
 For the .NET Profiler to collect profiles for your requests, your application must be tracking operations with Application Insights.
 
-- **For stateless APIs**: See the instructions for [tracking requests for profiling](./profiler-trackrequests.md).
-- **For tracking custom operations in other kinds of apps**: See [Track custom operations with Application Insights .NET SDK](../app/custom-operations-tracking.md).
+- **For stateless APIs**: See [Write code to track requests with Application Insights Profiler](./profiler-trackrequests.md).
+- **For tracking custom operations in other kinds of apps**: See [Monitor .NET and Node.js applications](../app/custom-operations-tracking.md).
 
 After you enable Application Insights, redeploy your application.
 
@@ -69,7 +72,7 @@ After you enable Application Insights, redeploy your application.
 1. Wait 10 to 15 minutes for traces to be sent to the Application Insights instance.
 1. View the [Profiler traces](./profiler-overview.md) by using the Application Insights instance in the Azure portal.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Generate load and view the .NET Profiler traces](./profiler-data.md)
