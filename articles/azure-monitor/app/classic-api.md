@@ -1818,7 +1818,7 @@ Include the SDK in your app so that it can gather data.
 1. Start automatically collecting and sending data by calling `appInsights.start();`.
 
 > [!NOTE]
-> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable nonessential data collection. [Learn more](./statsbeat.md).
+> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. You have the option to disable nonessential data collection. [Learn more in the Application Insights FAQ](application-insights-faq.yml).
 
 ### Basic usage
 
