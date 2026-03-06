@@ -2,7 +2,7 @@
 title: Security notifications overview
 description: This article shows where you can receive Azure security notifications and three steps you can follow to ensure security alerts reach the right people in your organization.
 ms.topic: concept-article
-ms.date: 12/10/2025
+ms.date: 03/04/2026
 ---
 
 # Security notifications
@@ -76,5 +76,6 @@ However, when Microsoft identifies a security event that is both impactful and d
 
 
 ### More information
-For Azure Service Health notifications, see [Azure service health notifications](service-health-notifications-properties.md).<br>
-For Service Health alerts at scale, see [Deploy Service Health alert rules at scale using Azure Policy](service-health-alert-deploy-policy.md).
+- For more information on how to report an impact, see [How to report an impact](report-issue.md)
+- For Azure Service Health notifications, see [Azure service health notifications](service-health-notifications-properties.md).<br>
+- For Service Health alerts at scale, see [Deploy Service Health alert rules at scale using Azure Policy](service-health-alert-deploy-policy.md).

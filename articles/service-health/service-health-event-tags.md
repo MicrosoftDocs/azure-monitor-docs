@@ -2,7 +2,7 @@
 title: Service Health event tags
 description: Learn how to understand and use the event tags in Azure Service Health
 ms.topic: overview
-ms.date: 10/16/2025
+ms.date: 03/03/2026
 ---
 
 # Service Health event tags
@@ -52,9 +52,9 @@ A Billing update might have an FX Rate Change (subtype) indicating adjustments i
 :::image type="content"source="./media/event-tags/event-tags-sub-type-2.png"alt-text="Screenshot of Billing updates pane with subtype event tags." lightbox="media/event-tags/event-tags-sub-type-2.png":::
 
 
-|Event panes         |Event subtypes                                                                         |
+|Event panes         |Event subtypes                                                                           |
 |--------------------|-----------------------------------------------------------------------------------------|
-|Health Advisories   | Retirement                                                           |
+|Health Advisories   | Retirement                                                                              |
 |Billing Updates     | Tax Change, Foreign Exchange (FX) Rate Change, MeterID Change, Underbilling, Overbilling|
 <!--|Service Issues      | Outage, Latency, Degradation                                                        |
 |Planned Maintenance | Emergency Maintenance, Standard Maintenance                                             |
