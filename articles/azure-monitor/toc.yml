@@ -263,13 +263,25 @@ items:
         href: vm/tutorial-vm-enable-monitoring.md
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
+    - name: Enable monitoring
+      items:
+      - name: Enable monitoring
+        href: vm/vm-enable-monitoring.md 
+      - name: Enable with Azure Policy
+        href: vm/vminsights-enable-policy.md
+      - name: Windows client machines
+        href: vm/vminsights-enable-client.md
+      - name: Disable monitoring
+        href: vm/vminsights-optout.md
+      - name: Troubleshoot
+        href: vm/vminsights-troubleshoot.md
     - name: OpenTelemetry experience
       items:
       - name: Enable OpenTelemetry metrics (Preview)
         href: vm/vminsights-opentelemetry.md
       - name: Overview
         href: vm/metrics-opentelemetry-guest.md
-      - name: Reference
+      - name: Metric reference
         href: vm/metrics-opentelemetry-guest-reference.md
     - name: Logs-based experience (classic)
       items:
@@ -277,14 +289,6 @@ items:
         href: vm/vminsights-overview.md
       - name: Enable and configure
         items:
-        - name: Enable with Azure Policy
-          href: vm/vminsights-enable-policy.md
-        - name: Windows client machines
-          href: vm/vminsights-enable-client.md
-        - name: Disable monitoring
-          href: vm/vminsights-optout.md
-        - name: Troubleshoot
-          href: vm/vminsights-troubleshoot.md
       - name: Analyze data
         items:
         - name: Interactive views

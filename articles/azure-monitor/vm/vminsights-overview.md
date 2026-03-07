@@ -7,22 +7,11 @@ ms.date: 01/15/2025
 
 # Overview of VM insights
 
-This article describes the classic logs-based experience for VM monitoring in Azure Monitor.
+This article describes VM insights which is the classic logs-based experience for VM monitoring in Azure Monitor. VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. 
 
+The logs-based experience of VM insights is being transitioned to the OpenTelemetry experience (preview), which provides various advantages described in [Benefits of OpenTelemetry](./metrics-opentelemetry-guest.md#benefits-of-opentelemetry). See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for guidance on selecting the right experience for your needs.
 
-
-
-VM insights provides a quick and easy method for getting started monitoring the client workloads on your virtual machines and virtual machine scale sets. It displays an inventory of your existing VMs and provides a guided experience to enable base monitoring for them. It also monitors the performance of your virtual machines and virtual machine scale sets by collecting data on their running processes and dependencies on other resources. 
-
-VM insights supports Windows and Linux operating systems on:
-
-- Azure virtual machines.
-- Azure virtual machine scale sets.
-- Hybrid virtual machines connected with Azure Arc.
-- On-premises virtual machines.
-- Virtual machines hosted in another cloud environment.
-
-VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time. You can view this data in a single VM from the virtual machine directly, or you can use Azure Monitor to deliver an aggregated view of multiple VMs.
+VM insights provides a set of predefined workbooks that allow you to view trending of collected performance data over time for multiple VMs. It also populates required data for the logs-based experience in the Azure portal for the VM.
 
 :::image type="content" source="media/vminsights-overview/vminsights-azmon-directvm.png" lightbox="media/vminsights-overview/vminsights-azmon-directvm.png" alt-text="Screenshot that shows the VM insights perspective in the Azure portal.":::
 
@@ -36,6 +25,7 @@ There's no direct cost for VM insights, but you're charged for its activity in t
 - Notifications sent from alert rules.
 
 The log size varies by the string lengths of performance counters. It can increase with the number of logical disks and network adapters allocated to the VM. If you're already using Service Map, the only change you'll see is the extra performance data that's sent to the Azure Monitor `InsightsMetrics` data type.​
+
 
 ## Supported machines and operating systems
 

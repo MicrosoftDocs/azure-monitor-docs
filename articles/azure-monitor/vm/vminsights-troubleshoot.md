@@ -10,6 +10,7 @@ ms.custom: references_regions
 
 This article provides troubleshooting information to help you with problems that you might experience when you try to enable or use VM Insights in Azure Monitor.
 
+
 ## Issues enabling VM insights
 
 When you enable VM insights from the Azure portal, the following actions are performed. Each of these steps is verified as it's completed with a notification status appearing in the portal.
@@ -41,6 +42,24 @@ In the Azure portal, on the **Extensions** pane for your virtual machine, verify
 If you don't see both extensions in the list of installed extensions, then attempt the onboarding process again. If the extensions are listed but their status doesn't appear as **Provisioning succeeded**, remove the extensions and reinstall them.
 
 :::image type="content" source="media/vminsights-troubleshoot/extensions.png" lightbox="media/vminsights-troubleshoot/extensions.png" alt-text="Screenshot of VM insights required extensions for a virtual machine.":::
+
+## OTel experience
+
+
+**The charts are stuck in a loading state**<br>
+This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
+
+**Unable to access Data Collection Rule (DCR)**<br>
+This error occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+
+**Data configuration error**<br>
+This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+
+**Access denied**<br>
+This error occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
+
+**An unknown error occurred**<br>
+If this error message persists, then contact support to open up a ticket.
 
 ## Performance view has no data
 
