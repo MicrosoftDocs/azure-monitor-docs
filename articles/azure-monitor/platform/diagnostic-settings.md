@@ -33,6 +33,9 @@ Diagnostic settings can collect data from the sources in the following table. Fo
 | [Activity log](./activity-log.md) | Automatically collected without configuration. Use a diagnostic setting to send activity log entries to other destinations. |
 | [Resource logs](./resource-logs.md) | Aren't collected by default. Create a diagnostic setting to collect resource logs. |
 
+> [!NOTE]
+> After a diagnostic setting is configured, the time for each data source to become available for analysis varies. For expected latency for platform metrics, resource logs, and activity logs, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
+
 ## Destinations
 
 Diagnostic settings send data to the destinations in the following table. To help ensure the security of data in transit, all destination endpoints are configured to support TLS 1.2.
@@ -258,6 +261,8 @@ Diagnostic settings don't support resource IDs with non-ASCII characters (for ex
 When a resource is inactive and exporting zero-value metrics, the diagnostic settings' export mechanism backs off incrementally to avoid unnecessary costs of exporting and storing zero values. This back-off might lead to a delay in the export of the next nonzero value. This behavior applies only to exported metrics and doesn't affect metrics-based alerts or autoscale.
 
 When a resource is inactive for one hour, the export mechanism backs off to 15 minutes. This situation means that there's a potential latency of up to 15 minutes for the next nonzero value to be exported. The resource reaches maximum backoff time of two hours after seven days of inactivity. After the resource starts exporting nonzero values, the export mechanism reverts to the original export latency of three minutes.
+
+For expected latency under normal operating conditions for all source types, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
 ## Related content
 
