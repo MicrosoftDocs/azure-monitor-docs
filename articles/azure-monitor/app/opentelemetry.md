@@ -3,6 +3,7 @@ title: OpenTelemetry on Azure
 description: This article links to Application Insights and other Azure OpenTelemetry documentation.
 ms.topic: overview
 ms.date: 03/06/2026
+ROBOTS: NOINDEX
 ---
 
 # OpenTelemetry on Azure
@@ -19,7 +20,7 @@ This article links to product-specific guidance for Application Insights and oth
 
 Use [Collect OpenTelemetry for Application Insights experiences](opentelemetry-overview.md) for Application Insights data collection by scenario:
 
-- [Web apps](opentelemetry-overview.md?tabs=#web-apps)
+- [Web apps](opentelemetry-overview.md?tabs=?tabs=web-apps)
 - [Virtual machines](opentelemetry-overview.md?tabs=vm)
 - [Azure Functions](opentelemetry-overview.md?tabs=functions)
 - [Azure Kubernetes Service (AKS)](opentelemetry-overview.md?tabs=kubernetes)
@@ -40,7 +41,7 @@ Use the following resources for Azure services, software development kits (SDKs)
 - [Java tracing in the Azure SDK](/azure/developer/java/sdk/tracing)
 - [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability)
 - [.NET observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel)
-- [Azure Monitor pipeline at edge and multicloud configuration](.essentials/edge-pipeline-configure.md)
+- [Azure Monitor pipeline at edge and multicloud configuration](..essentials/edge-pipeline-configure.md)
 - [OpenTelemetry ingestion into Azure Data Explorer, Azure Synapse Data Explorer, and Real-Time Intelligence](/azure/data-explorer/open-telemetry-connector)
 - [Azure Container Apps OpenTelemetry agent](/azure/container-apps/opentelemetry-agents)
 - [Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
