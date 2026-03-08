@@ -147,6 +147,12 @@ Once cross-region replication is enabled, proceed to enable replication for one 
 
 To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To enable cluster replication, use this `PUT` command: 
 
 ```http
@@ -166,6 +172,8 @@ body:
 }
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your cluster
@@ -176,6 +184,12 @@ Where:
 
 ### Check cluster provisioning state
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To check the provisioning state of your cluster, run this `GET` command:
 
 ```http
@@ -184,18 +198,26 @@ GET
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your cluster
 * `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource
 * `<cluster_name>`: The name of your Log Analytics cluster
  
-Use the `GET` command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+Use the command verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
 > When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
 
 ### Enable workspace replication
+
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
 
 To enable replication on your Log Analytics workspace, use this `PUT` command:
 
@@ -216,6 +238,8 @@ body:
 }
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace
@@ -226,12 +250,18 @@ Where:
 
 For the supported `location` values, see [Supported regions](#supported-regions).
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The enable workspace replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
 
 ### Check workspace provisioning state
+
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
 
 To check the provisioning state of your workspace, run this `GET` command:
 
@@ -241,13 +271,15 @@ GET
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace.
 * `<resourcegroup_name>`: The resource group that contains your Log Analytics workspace resource.
 * `<workspace_name>`: The name of your Log Analytics workspace.
  
-Use the `GET` command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+Use the command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
@@ -303,6 +335,12 @@ To replicate data you collect using data collection rules, associate your data c
 
 ### Disable workspace replication
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To disable replication for a workspace, use this `PUT` command:
 
 ```http
@@ -321,6 +359,8 @@ body:
 }
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace.
@@ -328,7 +368,7 @@ Where:
 * `<workspace_name>`: The name of your workspace.
 * `<primary_region>`: The primary region for your workspace.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The disable replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
@@ -336,6 +376,13 @@ The `PUT` command is a long running operation that can take some time to complet
 ### Disable cluster replication
 
 Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
+
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To disable replication for a workspace, use this `PUT` command:
 
 ```http
@@ -354,6 +401,8 @@ body:
 }
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your cluster.
@@ -361,7 +410,7 @@ Where:
 * `<workspace_name>`: The name of your cluster.
 * `<primary_region>`: The primary region for your cluster.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!NOTE]
 > Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and are unable to access again. Their original copy on your primary location isn't changed in this process.
@@ -425,12 +474,19 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To switch over to your secondary workspace, use this `POST` command:
 
 ```http
 POST 
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2025-02-01
 ```
+---
 
 Where:
 
@@ -439,7 +495,7 @@ Where:
 * `<secondary_region>`: The region to switch to during switchover.
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ### What to check if switchover (failover) fails
 
@@ -479,6 +535,12 @@ Before you switch back, confirm the [Primary workspace health](#primary-workspac
 
 The switchback process updates your DNS records. After the DNS records update, it can take time for all clients to receive the updated DNS settings and resume routing to the primary workspace.
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To switch back to your primary workspace, use this `POST` command:
 
 ```http
@@ -487,13 +549,15 @@ POST
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace.
 * `<resourcegroup_name>` : The resource group that contains your workspace resource.
 * `<workspace_name>`: The name of the workspace to switch to during switchback.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ## Audit the inactive workspace
 
@@ -505,6 +569,12 @@ It's useful to query the inactive region before you switch between regions to ve
 
 ### Query inactive region
 
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
+
 To query log data in the inactive region, use this GET command:
 
 ```http
@@ -513,13 +583,23 @@ GET
 api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=<timespan-in-ISO8601-format>&overrideWorkspaceRegion=<primary|secondary>
 ```
 
+---
+
 For example, to run a short query like `Perf | count` for the past day in your secondary region, use:
+
+# [Azure CLI](#tab/azure-cli)
+
+TODO
+
+# [REST API](#tab/rest-api)
 
 ```http
 GET
 
 api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=Perf%20|%20count&timespan=P1D&overrideWorkspaceRegion=secondary
 ```
+
+---
 
 You can confirm that Azure Monitor runs your query in the intended region by checking these fields in the `LAQueryLogs` table, which is created when you [enable query auditing in your Log Analytics workspace](query-audit.md):
 
