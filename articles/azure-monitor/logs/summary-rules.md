@@ -452,6 +452,10 @@ $response = Invoke-RestMethod `
 
 $response
 ```
+
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+Not supported.
 ---
 
 ## View all summary rules
@@ -492,6 +496,9 @@ $response = Invoke-RestMethod `
 
 $response
 ```
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+Not supported.
 ---
 
 ## Stop a summary rule
@@ -532,6 +539,10 @@ Invoke-RestMethod `
     -Uri $uri `
     -Headers $headers
 ```
+
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+Not supported.
 ---
 
 ## Start a summary rule
@@ -571,6 +582,10 @@ Invoke-RestMethod `
     -Uri $uri `
     -Headers $headers
 ```
+
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+Not supported.
 ---
 
 ## Delete a summary rule
@@ -589,7 +604,7 @@ Content-Type: application/json
 
 ### [PowerShell](#tab/powershell)
 
-Use this `script to delete a rule:
+Use this script to delete a rule:
 
 ```powershell
 $subscriptionId = "<subscriptionId>"
@@ -611,6 +626,10 @@ Invoke-RestMethod `
     -Uri $uri `
     -Headers $headers
 ```
+
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+Not supported.
 ---
 
 ## Retry bin
@@ -664,6 +683,60 @@ Invoke-RestMethod `
     -Uri $uri `
     -Headers $headers `
     -Body $body
+```
+
+### [Azure Resource Manager template](#tab/azure-resource-manager)
+
+#### Template file
+
+Use this template and parameters to retry a bin:
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "type": "string"
+    },
+    "ruleName": {
+      "type": "string"
+    },
+    "retryBinStartTime": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/summarylogs",
+      "apiVersion": "2025-07-01",
+      "name": "[format('{0}/{1}', parameters('workspaceName'), parameters('ruleName'))]",
+      "properties": {
+        "retryBinStartTime": "[parameters('retryBinStartTime')]"
+      }
+    }
+  ]
+}
+```
+
+#### Parameter file
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspaceName": {
+      "value": "my-law-workspace"
+    },
+    "ruleName": {
+      "value": "my-summary-rule"
+    },
+    "retryBinStartTime": {
+      "value": "<YYYY-MM-DDTHH:mm:ssZ>"
+    }
+  }
+}
 ```
 ---
 
