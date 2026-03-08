@@ -692,9 +692,9 @@ Invoke-RestMethod `
 
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
-#### Template file
-
 Use this template and parameters to retry a bin:
+
+#### Template file
 
 ```json
 {
