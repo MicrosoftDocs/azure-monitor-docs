@@ -456,6 +456,7 @@ $response
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
 Not supported.
+
 ---
 
 ## View all summary rules
@@ -499,6 +500,7 @@ $response
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
 Not supported.
+
 ---
 
 ## Stop a summary rule
@@ -543,6 +545,7 @@ Invoke-RestMethod `
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
 Not supported.
+
 ---
 
 ## Start a summary rule
@@ -586,6 +589,7 @@ Invoke-RestMethod `
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
 Not supported.
+
 ---
 
 ## Delete a summary rule
@@ -630,6 +634,7 @@ Invoke-RestMethod `
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
 
 Not supported.
+
 ---
 
 ## Retry bin
