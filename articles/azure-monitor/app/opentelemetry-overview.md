@@ -16,7 +16,7 @@ Entry points include:
 
 > [!div class="checklist"]
 > - Server-side web apps
-> - Server-side web apps hosted on VM
+> - Server-side web apps hosted on VMs
 > - Client-side JavaScript apps
 > - Azure Functions
 > - AI Agents
@@ -48,8 +48,6 @@ Use this path when your app runs on a virtual machine or virtual machine scale s
 1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
-After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
-
 > [!TIP]
 > Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
@@ -61,8 +59,6 @@ Use this path for browser telemetry such as page views and user interactions. Br
 1. Get the resource's [connection string](connection-strings.md).
 1. Add the [JavaScript SDK](javascript-sdk.md) to your app.
 1. Configure the [connection string](javascript-sdk.md#paste-the-connection-string-in-your-environment).
-
-After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
 > [!NOTE]
 > The Application Insights JavaScript SDK doesn't use OpenTelemetry. For more information, see [Can OpenTelemetry be used for web browsers?](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers)
@@ -77,14 +73,14 @@ Use this path for Azure Functions. Start with the function app settings, and the
 
 OpenTelemetry isn't currently supported for [C# in-process apps](/azure/azure-functions/functions-dotnet-class-library).
 
-After performing these steps, you're ready to explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
-
 ### [Kubernetes](#tab/aks)
 
 Use this path for apps running on Azure Kubernetes Service (AKS).
 
-- For code-based instrumentation in supported languages and production environments, follow the [Web apps](#tab/webapps) steps.
-- For no-code setup on AKS, [automatic instrumentation](../containers/kubernetes-codeless.md) is available as a public preview for Java and Node.js workloads.
+For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](opentelemetry-overview.md).
+
+> [!NOTE]
+> [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) is available as a public preview.
 
 ### [Agents](#tab/agents)
 
