@@ -473,7 +473,7 @@ Content-Type: application/json
 
 ### [PowerShell](#tab/powershell)
 
-Use this script to view the configuration for all all summary rules in your Log Analytics workspace:
+Use this script to view the configuration for all summary rules in your Log Analytics workspace:
 
 ```powershell
 $subscriptionId = "<subscriptionId>"
