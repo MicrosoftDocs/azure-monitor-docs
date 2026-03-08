@@ -16,7 +16,7 @@ Entry points include:
 
 > [!div class="checklist"]
 > - Server-side web apps
-> - Server-side web apps hosted on VMs
+> - Server-side web apps hosted on a Virtual Machine (VM)
 > - Client-side JavaScript apps
 > - Azure Functions
 > - AI Agents
@@ -71,13 +71,17 @@ Use this path for Azure Functions. Start with the function app settings, and the
 1. Add the `APPLICATIONINSIGHTS_CONNECTION_STRING` [application setting](/azure/azure-functions/functions-app-settings) by using your Application Insights [connection string](connection-strings.md).
 1. Complete the language-specific instrumentation and any required worker settings in [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto).
 
-OpenTelemetry isn't currently supported for [C# in-process apps](/azure/azure-functions/functions-dotnet-class-library).
+> [!NOTE]
+> OpenTelemetry isn't currently supported for [C# in-process apps](/azure/azure-functions/functions-dotnet-class-library).
 
 ### [Kubernetes](#tab/aks)
 
-Use this path for apps running on Azure Kubernetes Service (AKS).
+Use this path for apps running on Azure Kubernetes Service (AKS). The code-based flow is the same as for other server-side apps.
 
-For supported languages in a production environment, follow the OpenTelemetry Distro steps for [web apps](opentelemetry-overview.md).
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!NOTE]
 > [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) is available as a public preview.
