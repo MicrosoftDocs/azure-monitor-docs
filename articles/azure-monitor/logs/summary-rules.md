@@ -4,7 +4,7 @@ description: Aggregate data in Log Analytics workspace with summary rules featur
 ms.subservice: logs
 ms.topic: how-to
 ms.reviewer: yossi-y
-ms.date: 12/04/2025
+ms.date: 03/08/2026
 
 # Customer intent: As a Log Analytics workspace administrator or developer, I want to optimize my query performance, cost-effectiveness, security, and analysis capabilities by using summary rules to aggregate data I ingest to specific tables.
 ---
@@ -82,7 +82,6 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 - The maximum number of active rules in a workspace is 100.
 - Summary rules are currently only available in the public cloud.
 - The summary rule processes incoming data and can't be configured on a historical time range. 
-- When bin execution retries are exhausted, the bin is skipped and can't be re-executed.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 - Using `union *` and `isfuzzy=true` in Summary rules query aren't supported.
@@ -129,9 +128,10 @@ When you update a query and there are fewer fields in summary results, Azure Mon
 
 To create or update a summary rule, make this `PUT` API call:
 
-```kusto
+```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 
 {
   "properties": {
@@ -144,6 +144,44 @@ Authorization: {credential}
       }
   }
 }
+```
+
+### [PowerShell](#tab/powershell)
+
+To create or update a summary rule, make this Script:
+
+```powershell
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+$body = @{
+    properties = @{
+        ruleType    = "User"
+        description = "My test rule"
+        ruleDefinition = @{
+            query            = "StorageBlobLogs | summarize count() by AccountName"
+            binSize          = 30
+            destinationTable = "MySummaryLogs_CL"
+        }
+    }
+} | ConvertTo-Json -Depth 10
+
+Invoke-RestMethod `
+    -Method Put `
+    -Uri $uri `
+    -Headers $headers `
+    -Body $body
 ```
 
 ### [Azure Resource Manager template](#tab/azure-resource-manager)
@@ -321,8 +359,9 @@ This table describes the summary rule parameters:
 | `description` | String | Describes the rule and its function. This parameter is helpful when you have several rules and can help with rule management. |
 | `binSize` |`20`, `30`, `60`, `120`, `180`, `360`, `720`, or `1440` (minutes) | Defines the aggregation interval and lookback time range. For example, if you set `"binSize": 120`, you might get entries for `02:00 to 04:00` and `04:00 to 06:00`.|
 | `query` | [Kusto Query Language (KQL) query](get-started-queries.md) | Defines the query to execute in the rule. You don't need to specify a time range because the `binSize` parameter determines the aggregation interval - for example, `02:00 to 03:00` if `"binSize": 60`. If you add a time filter in the query, the time rage used in the query is the intersection between the filter and the bin size. |
-| `destinationTable` | `tablename_CL` | Specifies the name of the destination custom log table. The name value must have the suffix `_CL`. Azure Monitor creates the table in the workspace, if it doesn't already exist, based on the query you set in the rule. If the table already exists in the workspace, Azure Monitor adds any new columns introduced in the query. <br><br> If the summary results include a reserved column name - such as `TimeGenerated`, `_IsBillable`, `_ResourceId`, `TenantId`, or `Type` - Azure Monitor appends the `_Original` prefix to the original fields to preserve their original values.|
+| `destinationTable` | tablename_CL | Specifies the name of the destination custom log table. The name value must have the suffix `_CL`. Azure Monitor creates the table in the workspace, if it doesn't already exist, based on the query you set in the rule. If the table already exists in the workspace, Azure Monitor adds any new columns introduced in the query. <br><br> If the summary results include a reserved column name - such as `TimeGenerated`, `_IsBillable`, `_ResourceId`, `TenantId`, or `Type` - Azure Monitor appends the `_Original` prefix to the original fields to preserve their original values.|
 | `binDelay` (optional) | Integer (minutes) | Sets a time to wait before bin execution, typically useful when executed on late arriving data, also known as [ingestion latency](data-ingestion-time.md), and allows most data to arrive. The default delay is from three and a half minutes to 10% of the `binSize` value. <br><br> If you know that the data you query is typically ingested with delay, set the `binDelay` parameter with the known delay value or greater, up to 1440 minutes. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br>In some cases, Azure Monitor might begin bin execution slightly after the set bin delay to ensure service reliability and query success.|
+| `binRetry` | `binStartTime` in<br>`%Y-%n-%eT%H:%M %Z` format | Rerun a bin by provided `binStartTime`. The rest of the rule’s definitions remain per last update. The chosen `binStartTime` value must be after `RuleLastModifiedTime` and fit within the divisions of `binSize`. For example, if the rule's `binSize` is 20 minutes, you could set `binStartTime` to "2026-02-16T10:00:00Z", "2026-02-16T10:20:00Z", or "2026-02-16T10:40:00Z".|
 | `binStartTime` (optional) | Datetime in<br>`%Y-%n-%eT%H:%M %Z` format | Specifies the date and time for the initial bin execution. The value can start at rule creation datetime minus the `binSize` value, or later and in whole hours. For example, if the datetime is `2023-12-03T12:13Z` and `binSize` is 1,440, the earliest valid `binStartTime` value is `2023-12-02T13:00Z`, and the aggregation includes data logged between 02T13:00 and 03T13:00. In this scenario, the rules start aggregating a 03T13:00 plus the default or specified delay. <br><br> The `binStartTime` parameter is useful in daily summary scenarios. Suppose you're in the UTC-8 time zone and you create a daily rule at `2023-12-03T12:13Z`. You want the rule to complete before you start your day at 8:00 (00:00 UTC). Set the `binStartTime` parameter to `2023-12-02T22:00Z`. The first aggregation includes all data logged between 02T:06:00 and 03T:06:00 local time, and the rule runs at the same time daily. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br><br> When you update rules, you can either: <br> - Use the existing `binStartTime` value or remove the `binStartTime` parameter, in which case execution continues based on the initial definition.<br> - Update the rule with a new `binStartTime` value to set a new datetime value. |
 | `displayName` (optional) | String | Specifies the rule display name in Azure portal experiences. |
 | `timeSelector` (optional) | `TimeGenerated` | Defines the timestamp field that Azure Monitor uses to aggregate data. For example, if you set `"binSize": 120`, you might get entries with a `TimeGenerated` value between `02:00` and `04:00`. |
@@ -376,48 +415,256 @@ In this example, the summary rule is created at on 2023-06-07 at 14:44, and the 
 
 ## View summary rules
 
+### [API](#tab/api)
+
 Use this `GET` API call to view the configuration for a specific summary rule:
 
-```kusto
+```http 
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 ```
 
-Use this `GET` API call to view the configuration to view the configuration of all summary rules in your Log Analytics workspace:
+### [PowerShell](#tab/powershell)
 
-```kusto
+Use this script to view the configuration for a specific summary rule:
+
+```powershell
+# Variables
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName1>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=$2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+$response = Invoke-RestMethod `
+    -Method Get `
+    -Uri $uri `
+    -Headers $headers
+
+$response
+```
+---
+
+### [API](#tab/api)
+
+Use this `GET` API call to view the configuration of all summary rules in your Log Analytics workspace:
+
+```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 ```
 
-## Stop and restart a summary rule
+### [PowerShell](#tab/powershell)
 
-You can stop a rule for a period of time - for example, if you want to verify that data is ingested to a table and you don't want to affect the summarized table and reports. When you restart the rule, Azure Monitor starts processing data from the next whole hour or based on the defined `binStartTime` (optional) parameter.
+Use this script to view the configuration for all all summary rules in your Log Analytics workspace:
 
-To stop a rule, use this `POST` API call:
+```powershell
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName1>"
 
-```kusto
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+$response = Invoke-RestMethod `
+    -Method Get `
+    -Uri $uri `
+    -Headers $headers
+
+$response
+```
+---
+
+## Stop a summary rule
+
+You can stop a rule for a period of time - for example, if you want to verify that data is ingested to a table and you don't want to affect the summarized table and reports.
+
+### [API](#tab/api)
+
+Use this `POST` API call to stop a rule:
+
+```http
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 ```
 
-To restart the rule, use this `POST` API call:
+### [PowerShell](#tab/powershell)
 
-```kusto
+Use this script to stop a rule:
+
+```powershell
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName/stop?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+Invoke-RestMethod `
+    -Method Post `
+    -Uri $uri `
+    -Headers $headers
+```
+---
+
+## Start a summary rule
+
+### [API](#tab/api)
+
+When you restart the rule, Azure Monitor starts processing data from the next whole hour or based on the defined `binStartTime` (optional) parameter.
+
+### [API](#tab/api)
+
+```http
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 ```
+
+### [PowerShell](#tab/powershell)
+
+Use this script to start a rule:
+
+```powershell
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName/start?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+Invoke-RestMethod `
+    -Method Post `
+    -Uri $uri `
+    -Headers $headers
+```
+---
 
 ## Delete a summary rule
 
 You can have up to 30 active summary rules in your Log Analytics workspace. If you want to create a new rule, but you already have 30 active rules, you must stop or delete an active summary rule. 
 
-To delete a rule, use this `DELETE` API call:
+### [API](#tab/api)
 
-```kusto
+Use this `DELETE` API call to delete a rule:
+
+```http
 DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
+Content-Type: application/json
 ```
+
+### [PowerShell](#tab/powershell)
+
+Use this `script to delete a rule:
+
+```powershell
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+Invoke-RestMethod `
+    -Method Delete `
+    -Uri $uri `
+    -Headers $headers
+```
+---
+
+## Retry bin
+
+Summary rules are designed for scale, and include a retry mechanism to overcome transient service or query failures related to query limits. When service retry exhausted and fail, bins can be retried. 
+
+### [API](#tab/api)
+
+Use this `PUT` API call to retry specific bin:
+```http
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
+Authorization: {credential}
+Content-Type: application/json
+
+{
+  "properties": {
+    "retryBinStartTime": "2026-02-16T10:00:00Z"
+  }
+}
+```
+
+### [PowerShell](#tab/powershell)
+
+Use this script to retry a bin:
+
+```powershell
+# Variables
+$subscriptionId = "<subscriptionId>"
+$resourceGroup  = "<resourcegroup>"
+$workspace      = "<workspace>"
+$ruleName       = "<ruleName>"
+$binStartTime   = "<YYYY-MM-DDTHH:mm:ssZ>"
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=2025-07-01"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$headers = @{
+    "Authorization" = "Bearer $token"
+    "Content-Type"  = "application/json"
+}
+
+$body = @{
+    properties = @{
+        retryBinStartTime = $binStartTime 
+    }
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod `
+    -Method Put `
+    -Uri $uri `
+    -Headers $headers `
+    -Body $body
+```
+---
 
 ## Monitor summary rules
 
@@ -439,9 +686,9 @@ LASummaryLogs | where QueryDurationMs > 0.9 * 600000
 
 ### Verify data completeness
 
-Summary rules are designed for scale, and include a retry mechanism to overcome transient service or query failures related to [query limits](../service-limits.md#log-analytics-workspaces), for example. The retry mechanism makes 10 attempts to aggregate a failed bin within eight hours, and skips a bin, if exhausted. The rule is set to `isActive: false` and put on hold after eight consecutive bin retries. If you enable [monitor summary rules](#monitor-summary-rules), Azure Monitor logs an event in the `LASummaryLogs` table in your workspace.
+Summary rules are designed for scale, and include a retry mechanism to overcome transient service or query failures related to [query limits](../service-limits.md#log-analytics-workspaces), for example. The retry mechanism makes 10 attempts to aggregate a failed bin within eight hours and skips a bin if exhausted. The rule is set to `isActive: false` and put on hold after eight consecutive bin retries.
 
-You can't rerun a failed bin run, but you can use the following query to view failed runs: 
+If you enable [monitor summary rules](#monitor-summary-rules), Azure Monitor logs an event in the `LASummaryLogs` table in your workspace, letting you view failed runs and retry them using [retry bin operation](#retry-bin):
 
 ```kusto
 let startTime = datetime("2024-02-16");
