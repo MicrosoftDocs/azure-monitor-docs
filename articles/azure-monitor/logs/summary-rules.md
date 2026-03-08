@@ -128,7 +128,7 @@ When you update a query and there are fewer fields in summary results, Azure Mon
 
 To create or update a summary rule, make this `PUT` API call:
 
-```http
+```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -413,13 +413,13 @@ In this example, the summary rule is created at on 2023-06-07 at 14:44, and the 
 |   30 | 2023-06-08 07:38 | 2023-06-08 07:00 - 2023-06-08 07:30 | 2023-06-08 07:30 - 2023-06-08 08:00 |
 |   20 | 2023-06-08 07:28 | 2023-06-08 07:00 - 2023-06-08 07:20 | 2023-06-08 07:20 - 2023-06-08 07:40 |
 
-## View summary rules
+## View a summary rule
 
 ### [API](#tab/api)
 
 Use this `GET` API call to view the configuration for a specific summary rule:
 
-```http 
+```rest 
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName1}?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -454,11 +454,13 @@ $response
 ```
 ---
 
+## View all summary rules
+
 ### [API](#tab/api)
 
 Use this `GET` API call to view the configuration of all summary rules in your Log Analytics workspace:
 
-```http
+```rest
 GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -500,7 +502,7 @@ You can stop a rule for a period of time - for example, if you want to verify th
 
 Use this `POST` API call to stop a rule:
 
-```http
+```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/stop?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -534,13 +536,12 @@ Invoke-RestMethod `
 
 ## Start a summary rule
 
-### [API](#tab/api)
-
 When you restart the rule, Azure Monitor starts processing data from the next whole hour or based on the defined `binStartTime` (optional) parameter.
 
 ### [API](#tab/api)
 
-```http
+Use this `POST` call to start a rule:
+```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}/start?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -580,7 +581,7 @@ You can have up to 30 active summary rules in your Log Analytics workspace. If y
 
 Use this `DELETE` API call to delete a rule:
 
-```http
+```rest
 DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
@@ -619,7 +620,7 @@ Summary rules are designed for scale, and include a retry mechanism to overcome 
 ### [API](#tab/api)
 
 Use this `PUT` API call to retry specific bin:
-```http
+```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourcegroup}/providers/Microsoft.OperationalInsights/workspaces/{workspace}/summarylogs/{ruleName}?api-version=2025-07-01
 Authorization: {credential}
 Content-Type: application/json
