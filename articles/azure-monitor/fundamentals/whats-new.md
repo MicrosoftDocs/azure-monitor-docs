@@ -11,6 +11,22 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
 
+### February 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Agents|[Azure Copilot observability agent (preview)](../aiops/observability-agent-overview.md)|Major rewrite of six Azure Copilot observability agent articles: [overview](../aiops/observability-agent-overview.md), [troubleshooting](../aiops/observability-agent-troubleshooting.md), [responsible use](../aiops/observability-agent-responsible-use.md), [best practices](../aiops/observability-agent-best-practices.md), [issues and investigations overview](../aiops/aiops-issue-and-investigation-overview.md), and [issues and investigations how-to](../aiops/aiops-issue-and-investigation-how-to.md). Added guidance on investigation results, data security, and issue workflows, and reorganized best practices content.|
+|Application-Insights|[Filter telemetry at ingestion using data collection rules](../app/opentelemetry-filter.md?tabs=aspnetcore#filter-telemetry-at-ingestion-using-data-collection-rules)|Expanded OpenTelemetry filtering guidance with DCR-based ingestion filtering and ready-to-use KQL/JSON examples for common cost-reduction and data-redaction scenarios.|
+|Application-Insights|[SDK Stats](../app/sdk-stats.md)|SDK Stats reached general availability (GA) for .NET/.NET Core, Python, and Node.js, with new code samples and migration guidance for preview users.|
+|Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|Documented default-on sampling for most languages and updated [configuration guidance](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling) accordingly.|
+|Application-Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Published .NET SDK 3.x migration guidance for upgrading applications from the Classic API SDK to OpenTelemetry.|
+|Application-Insights|[Connection strings](../app/connection-strings.md#authenticated-browser-telemetry-using-connection-strings)|Added guidance for preserving JavaScript browser telemetry with Microsoft Entra ID-only authentication by proxying ingestion through Azure API Management.|
+|Application-Insights|[OpenTelemetry or the Application Insights Classic API SDK?](../app/application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-classic-api-sdk)|Updated FAQ guidance to recommend starting with OpenTelemetry now that the Azure Monitor OpenTelemetry Distro has reached feature parity with the Classic API SDK.|
+|Application-Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md?tabs=aspnetcore)|Published guidance on what OpenTelemetry collects automatically and how to enrich telemetry with resource detectors.|
+|Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published substantial updates to Azure Monitor pipeline guidance, including transformations, TLS, pod placement, and a new architecture diagram.|
+|Fundamentals|[Azure Monitor overview](overview.md)|Published a simplified Azure Monitor overview organized around core user scenarios and updated it to highlight the observability agent.|
+|Fundamentals|[Use Azure Private Link to connect networks to Azure Monitor](private-link-security.md)|Rewrote and consolidated Azure Monitor private link guidance into a single article covering AMPLS concepts, endpoints, resources, and access modes.|
+
 ### January 2026
 
 |Subservice | Article | Description |
