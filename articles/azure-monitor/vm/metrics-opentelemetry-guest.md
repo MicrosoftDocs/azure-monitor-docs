@@ -55,178 +55,36 @@ Enhanced monitoring with OpenTelemetry uses a subset of the system metrics avail
 ## Current limitations
 There currently isn't a method to perform a single query across data in a Log Analytics workspace and Azure Monitor workspace. Using logs-based collection, logs and metrics for your VMs are stored together in a Log Analytics workspace, allowing you to correlate between them in a single KQL query. With OpenTelemetry-based collection, metrics are stored in an Azure Monitor workspace and logs are stored in a Log Analytics workspace, requiring separate queries for each.
 
+## Compare OpenTelemetry and logs-based experiences
 
-## Performance Counter Names 
+| Feature | OpenTelemetry-based (preview) | Logs-based (classic) |
+|:---|:---|:---|
+| **Data storage** | Azure Monitor workspace (metrics) | Log Analytics workspace (logs) |
+| **Applies to** | Azure VMs | Azure VMs and VM Scale Sets |
+| **Data model** | OpenTelemetry system metrics with consistent cross-platform naming | Platform-specific performance counters (Windows and Linux have different counter names) |
+| **Query language** | PromQL (Prometheus Query Language) | KQL (Kusto Query Language) |
+| **Latency** | Near real-time with low latency | Typically 1-3 minutes |
+| **Cost** | Optimized for metrics storage and retrieval | Standard Log Analytics ingestion and retention costs |
+| **Multi-VM views** | Currently limited | Full VM insights multi-VM dashboards and workbooks |
+| **Correlation with logs** | Requires separate queries (metrics in Azure Monitor workspace, logs in Log Analytics) | Single workspace for metrics and logs enables correlation in one query |
 
-The following performance counters are collected by the Azure Monitor Agent for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but this frequency can be changed when creating or updating the data collection rule.
+### When to choose each experience
+You can enable either or both experiences on a VM. For step-by-step guidance, see [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md).
 
-### [OpenTelemetry](#tab/OpenTelemetry)
+**Choose OpenTelemetry-based (preview) if:**
+- You're monitoring individual VMs and want the fastest, most cost-effective metrics solution
+- You're building new monitoring solutions and want to use open standards
+- You need cross-platform consistency with the same metric names for Windows and Linux
+- You need per-process metrics for deep performance analysis
 
-| OTel Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
-|--------------------------|------|-------------|-----------|------|------------|-------|
-| system.cpu.utilization | Gauge | 1 | N/A | FALSE | **cpu**: Logical CPU number starting at 0 (values: Any Str)<br>**state**: Breakdown of CPU usage by type (values: idle, interrupt, nice, softirq, steal, system, user, wait) | Difference in system.cpu.time since the last measurement per logical CPU, divided by the elapsed time (0–1).|
-| system.cpu.time | Sum | s | Cumulative | TRUE | **cpu**: Logical CPU number starting at 0 (values: Any Str)<br>**state**: Breakdown of CPU usage by type (values: idle, interrupt, nice, softirq, steal, system, user, wait) | Total seconds each logical CPU spent on each mode. |
-| system.cpu.physical.count | Sum | {cpu} | Cumulative | FALSE | *(none)* | Number of available physical CPUs. |
-| system.cpu.logical.count | Sum | {cpu} | Cumulative | FALSE | **cpu**: Logical CPU number starting at 0 (values: Any Str) | Number of available logical CPUs. |
-| system.cpu.load_average.5m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 5 minutes. |
-| system.cpu.load_average.1m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 1 minute. |
-| system.cpu.load_average.15m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 15 minutes. |
-| system.cpu.frequency | Gauge | Hz | N/A | FALSE | *(none)* | Current frequency of the CPU core in Hz. |
-| process.uptime | Gauge | s | N/A | FALSE | *(none)* | Time the process has been running. |
-| process.threads | Sum | {threads} | Cumulative | FALSE | *(none)* | Process threads count. |
-| process.signals_pending | Sum | {signals} | Cumulative | FALSE | *(none)* | Number of pending signals for the process (Linux only). |
-| process.paging.faults | Sum | {faults} | Cumulative | TRUE | **type**: Type of fault (values: major, minor) | Number of page faults the process has made (Linux only). |
-| process.open_file_descriptors | Sum | {count} | Cumulative | FALSE | *(none)* | Number of file descriptors in use by the process. |
-| process.memory.virtual | Sum | By | Cumulative | FALSE | *(none)* | Virtual memory size. |
-| process.memory.utilization | Gauge | 1 | N/A | FALSE | *(none)* | Percentage of total physical memory used by the process. |
-| process.memory.usage | Sum | By | Cumulative | FALSE | *(none)* | Amount of physical memory in use. |
-| system.disk.weighted_io_time | Sum | s | Cumulative | FALSE | **device**: Name of the disk (values: Any Str) | Time disk spent activated multiplied by queue length. |
-| system.disk.pending_operations | Sum | {operations} | Cumulative | FALSE | **device**: Name of the disk (values: Any Str) | Queue size of pending I/O operations. |
-| system.disk.operations | Sum | {operations} | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk operations count. |
-| system.disk.operation_time | Sum | s | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Time spent in disk operations. |
-| system.disk.merged | Sum | {operations} | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk reads/writes merged into single physical operations. |
-| system.disk.io_time | Sum | s | Cumulative | TRUE | **device**: Name of the disk (values: Any Str) | Time disk spent activated. |
-| system.disk.io | Sum | By | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
-| process.handles | Sum | {count} | Cumulative | FALSE | *(none)* | Number of open handles (Windows only). |
-| process.disk.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk operations performed by the process. |
-| process.disk.io | Sum | By | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
-| process.cpu.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of CPU usage (values: system, user, wait) | Percentage of total CPU time used by the process since last scrape (0–1). |
-| process.cpu.time | Sum | s | Cumulative | TRUE | **state**: Breakdown of CPU usage (values: system, user, wait) | Total CPU seconds broken down by states. |
-| process.context_switches | Sum | {count} | Cumulative | TRUE | **type**: Type of context switch (values: Any Str) | Number of times the process has been context switched (Linux only). |
-| system.memory.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of memory usage (values: buffered, cached, inactive, free, slab_reclaimable, slab_unreclaimable, used) | Percentage of memory bytes in use. |
-| system.memory.usage | Sum | By | Cumulative | FALSE | **state**: Breakdown of memory usage (values: buffered, cached, inactive, free, slab_reclaimable, slab_unreclaimable, used) | Bytes of memory in use. |
-| system.memory.page_size | Gauge | By | N/A | FALSE | *(none)* | System's configured page size. |
-| system.memory.limit | Sum | By | Cumulative | FALSE | *(none)* | Total bytes of memory available. |
-| system.linux.memory.dirty | Sum | By | Cumulative | FALSE | *(none)* | Amount of dirty memory (/proc/meminfo). |
-| system.linux.memory.available | Sum | By | Cumulative | FALSE | *(none)* | Estimate of available memory (Linux only). |
-| system.network.packets | Sum | {packets} | Cumulative | TRUE | **device**: Network interface name (values: Any Str)<br>**direction**: Direction of flow (values: receive, transmit) | Number of packets transferred. |
-| system.network.io | Sum | By | Cumulative | TRUE | *(none)* | Bytes transmitted and received. |
-| system.network.errors | Sum | {errors} | Cumulative | FALSE | **device**: Network interface name (values: Any Str)<br>**direction**: Direction of flow (values: receive, transmit) | Number of errors encountered. |
-| system.network.dropped | Sum | {packets} | Cumulative | TRUE | **device**: Network interface name (values: Any Str)<br>**direction**: Direction of flow (values: receive, transmit) | Number of packets dropped. |
-| system.network.conntrack.max | Sum | {entries} | Cumulative | FALSE | *(none)* | Limit for entries in conntrack table. |
-| system.network.conntrack.count | Sum | {entries} | Cumulative | FALSE | *(none)* | Count of entries in conntrack table. |
-| system.network.connections | Sum | {connections} | Cumulative | FALSE | **protocol**: Network protocol (values: tcp)<br>**state**: Connection state (values: Any Str) | Number of connections. |
-| system.uptime | Gauge | s | N/A | FALSE | *(none)* | Time the system has been running. |
-| system.processes.created | Sum | {processes} | Cumulative | TRUE | *(none)* | Total number of created processes. |
-| system.processes.count | Sum | {processes} | Cumulative | FALSE | **status**: Process status (values: blocked, daemon, detached, idle, locked, orphan, paging, running, sleeping, stopped, system, unknown, zombies) | Total number of processes in each state. |
-| system.paging.utilization | Gauge | 1 | N/A | FALSE | **device**: Page file name (values: Any Str)<br>**state**: Paging usage type (values: cached, free, used) | Swap (Unix) or pagefile (Windows) utilization. |
-| system.paging.usage | Sum | By | Cumulative | FALSE | **device**: Page file name (values: Any Str)<br>**state**: Paging usage type (values: cached, free, used) | Swap (Unix) or pagefile (Windows) usage. |
-| system.paging.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Page flow (values: page_in, page_out)<br>**type**: Fault type (values: major, minor) | Paging operations. |
-| system.paging.faults | Sum | {faults} | *(none)* | TRUE | **type**: Fault type (values: major, minor) | Number of page faults. |
-| system.filesystem.utilization | Gauge | 1 | N/A | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode (values: ro, rw)<br>**mountpoint**: Path<br>**type**: Filesystem type (values: ext4, tmpfs, etc.) | Fraction of filesystem bytes used. |
-| system.filesystem.usage | Sum | By | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem bytes used. |
-| system.filesystem.inodes.usage | Sum | {inodes} | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem inodes used. |
-
-### [Windows](#tab/windows)
-
-###   Windows performance counters
-
-| Performance Counter | Category |
-|---------|----------|
-| \\Processor Information(_Total)\\% Processor Time | CPU |
-| \\Processor Information(_Total)\\% Privileged Time | CPU |
-| \\Processor Information(_Total)\\% User Time | CPU |
-| \\Processor Information(_Total)\\Processor Frequency | CPU |
-| \\System\\Processes | CPU |
-| \\Process(_Total)\\Thread Count | CPU |
-| \\Process(_Total)\\Handle Count | CPU |
-| \\System\\System Up Time | CPU |
-| \\System\\Context Switches/sec | CPU |
-| \\System\\Processor Queue Length | CPU |
-| \\Memory\\% Committed Bytes In Use | Memory |
-| \\Memory\\Available Bytes | Memory |
-| \\Memory\\Committed Bytes | Memory |
-| \\Memory\\Cache Bytes | Memory |
-| \\Memory\\Pool Paged Bytes | Memory |
-| \\Memory\\Pool Nonpaged Bytes | Memory |
-| \\Memory\\Pages/sec | Memory |
-| \\Memory\\Page Faults/sec | Memory |
-| \\Process(_Total)\\Working Set | Memory |
-| \\Process(_Total)\\Working Set - Private | Memory |
-| \\LogicalDisk(_Total)\\% Disk Time | Disk |
-| \\LogicalDisk(_Total)\\% Disk Read Time | Disk |
-| \\LogicalDisk(_Total)\\% Disk Write Time | Disk |
-| \\LogicalDisk(_Total)\\% Idle Time | Disk |
-| \\LogicalDisk(_Total)\\Disk Bytes/sec | Disk |
-| \\LogicalDisk(_Total)\\Disk Read Bytes/sec | Disk |
-| \\LogicalDisk(_Total)\\Disk Write Bytes/sec | Disk |
-| \\LogicalDisk(_Total)\\Disk Transfers/sec | Disk |
-| \\LogicalDisk(_Total)\\Disk Reads/sec | Disk |
-| \\LogicalDisk(_Total)\\Disk Writes/sec | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk sec/Transfer | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk sec/Read | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk sec/Write | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk Queue Length | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk Read Queue Length | Disk |
-| \\LogicalDisk(_Total)\\Avg. Disk Write Queue Length | Disk |
-| \\LogicalDisk(_Total)\\% Free Space | Disk |
-| \\LogicalDisk(_Total)\\Free Megabytes  | Disk  |
-| \\Network Interface(*) \\Bytes Total/sec  | Network  |
-| \\Network Interface(*) \\Bytes Sent/sec  | Network  |
-| \\Network Interface(*) \\Bytes Received/sec  | Network  |
-| \\Network Interface(*) \\Packets/sec  | Network  |
-| \\Network Interface(*) \\Packets Sent/sec  | Network  |
-| \\Network Interface(*) \\Packets Received/sec  | Network  |
-| \\Network Interface(*) \\Packets Outbound Errors  | Network  |
-| \\Network Interface(*) \\Packets Received Errors  | Network  |
+**Choose logs-based (classic) if:**
+- You need to monitor VM Scale Sets
+- You want multi-VM dashboards and trending views across your entire VM fleet
+- You need dependency mapping to understand application component relationships
+- You want to correlate metrics and logs in a single query
+- You have existing queries, dashboards, and alerts that use the `InsightsMetrics` table
 
 
-### [Linux](#tab/linux)
-
-### Linux performance counters
-
-| Performance counter | Category |
-|---------------------|----------|
-| Processor(*)\\% Processor Time | CPU |
-| Processor(*)\\% Idle Time | CPU |
-| Processor(*)\\% User Time | CPU |
-| Processor(*)\\% Nice Time | CPU |
-| Processor(*)\\% Privileged Time | CPU |
-| Processor(*)\\% IO Wait Time | CPU |
-| Processor(*)\\% Interrupt Time | CPU |
-| Memory(*)\\Available MBytes Memory | Memory |
-| Memory(*)\\% Available Memory | Memory |
-| Memory(*)\\Used Memory MBytes | Memory |
-| Memory(*)\\% Used Memory | Memory |
-| Memory(*)\\Pages/sec | Memory |
-| Memory(*)\\Page Reads/sec | Memory |
-| Memory(*)\\Page Writes/sec | Memory |
-| Memory(*)\\Available MBytes Swap | Memory |
-| Memory(*)\\% Available Swap Space | Memory |
-| Memory(*)\\Used MBytes Swap Space | Memory |
-| Memory(*)\\% Used Swap Space | Memory |
-| Process(*)\\Pct User Time | Memory |
-| Process(*)\\Pct Privileged Time | Memory |
-| Process(*)\\Used Memory | Memory |
-| Process(*)\\Virtual Shared Memory | Memory |
-| Logical Disk(*)\\% Free Inodes | Disk |
-| Logical Disk(*)\\% Used Inodes | Disk |
-| Logical Disk(*)\\Free Megabytes | Disk |
-| Logical Disk(*)\\% Free Space | Disk |
-| Logical Disk(*)\\% Used Space | Disk |
-| Logical Disk(*)\\Logical Disk Bytes/sec | Disk |
-| Logical Disk(*)\\Disk Read Bytes/sec | Disk |
-| Logical Disk(*)\\Disk Write Bytes/sec | Disk |
-| Logical Disk(*)\\Disk Transfers/sec | Disk |
-| Logical Disk(*)\\Disk Reads/sec | Disk |
-| Logical Disk(*)\\Disk Writes/sec | Disk |
-| Network(*)\\Total Bytes Transmitted | Network |
-| Network(*)\\Total Bytes Received | Network |
-| Network(*)\\Total Bytes | Network |
-| Network(*)\\Total Packets Transmitted | Network |
-| Network(*)\\Total Packets Received | Network |
-| Network(*)\\Total Rx Errors | Network |
-| Network(*)\\Total Tx Errors | Network |
-| Network(*)\\Total Collisions | Network |
-| System(*)\\Uptime | System |
-| System(*)\\Load1 | System |
-| System(*)\\Load5 | System |
-| System(*)\\Load15 | System |
-| System(*)\\Users | System |
-| System(*)\\Unique Users | System |
-| System(*)\\CPUs | System |
-
----
 
 > [!TIP]
 > Feel free to share your feedback on new performance counters or functionality you would like to see by posting to our [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).
