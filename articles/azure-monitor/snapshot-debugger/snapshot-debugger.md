@@ -62,7 +62,7 @@ The Snapshot Debugger is implemented as an [Application Insights telemetry proce
 
 The Snapshot Debugger process starts and ends with the `TrackException` method. A process snapshot is a suspended clone of the running process. Your users experience little to no interruption. In a typical scenario:
 
-1. Your application throws the [`TrackException`](../app/asp-net-exceptions.md#exceptions).
+1. An exception is thrown in your application and reported to Application Insights by calling the [`TrackException`](../app/asp-net-exceptions.md#exceptions) method.
 
 1. The Snapshot Debugger monitors exceptions as they're thrown by subscribing to the [`AppDomain.CurrentDomain.FirstChanceException`](/dotnet/api/system.appdomain.firstchanceexception) event. 
 
@@ -95,7 +95,7 @@ While the Snapshot Debugger process continues to run and serve traffic to users 
 
 1. Creates a minidump.
 
-1. Uploads the  minidump to Application Insights, along with any relevant symbol (*.pdb*) files.
+1. Uploads the minidump to Application Insights, along with any relevant symbol (*.pdb*) files.
 
 > [!NOTE]
 > No more than 50 snapshots per day can be uploaded.
@@ -141,7 +141,7 @@ This section discusses limitations for the Snapshot Debugger.
   - Decode variables
   - Provide a debugging experience in Visual Studio
 
-  By default, Visual Studio 2017 versions 15.2+ publishes symbols for release builds when it publishes to App Service. 
+  By default, Visual Studio 2017 version 15.2 or later publishes symbols for release builds when it publishes to App Service. 
 
   In prior versions, you must add the following line to your publish profile `.pubxml` file so that symbols are published in release mode:
 
