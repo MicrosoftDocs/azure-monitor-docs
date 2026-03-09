@@ -206,7 +206,7 @@ To check the provisioning state of your cluster, use the [az monitor log-analyti
 az monitor log-analytics cluster show \
   --resource-group <resourcegroup_name> \
   --cluster-name <cluster_name> \
-  --query "properties.replication.provisioningState"
+  --query "replication.provisioningState"
 ```
 
 # [REST API](#tab/rest-api)
@@ -236,7 +236,7 @@ Use the command verify that the cluster provisioning state changes from `Updatin
 
 # [Azure CLI](#tab/azure-cli)
 
-To enable cluster replication, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+To enable replication on your Log Analytics workspace, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
 
 ```azurecli
 az rest --method put \
@@ -294,13 +294,13 @@ The enable workspace replication command is a long running operation that can ta
 
 # [Azure CLI](#tab/azure-cli)
 
-To check the provisioning state of your cluster, use the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) Azure CLI command:
+To check the provisioning state of your workspace, use the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) Azure CLI command:
 
 ```azurecli
 az monitor log-analytics workspace show \
   --resource-group <resourcegroup_name> \
-  --cluster-name <cluster_name> \
-  --query "properties.replication.provisioningState"
+  --workspace-name <workspace_name> \
+  --query "replication.provisioningState"
 ```
 
 # [REST API](#tab/rest-api)
