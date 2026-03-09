@@ -200,7 +200,7 @@ Where:
 
 # [Azure CLI](#tab/azure-cli)
 
-To check the provisioning state of your cluster, use the [az monitor log-analytics cluster show](/cli/azure/monitor/log-analytics/clusteraz-monitor-log-analytics-cluster-show) Azure CLI command:
+To check the provisioning state of your cluster, use the [az monitor log-analytics cluster show](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-show) Azure CLI command:
 
 ```azurecli
 az monitor log-analytics cluster show \
@@ -600,7 +600,7 @@ The switchback process updates your DNS records. After the DNS records update, i
 
 # [Azure CLI](#tab/azure-cli)
 
-To switch back to your primary workspace, use the [az monitor log-analytics workspace failback](/cli/azure/monitor/log-analytics/workspaceaz-monitor-log-analytics-workspace-failback) Azure CLI command:
+To switch back to your primary workspace, use the [az monitor log-analytics workspace failback](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failback) Azure CLI command:
 
 ```azurecli
 az monitor log-analytics workspace failback \
