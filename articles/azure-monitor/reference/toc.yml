@@ -2867,6 +2867,8 @@ items:
             href: tables/ncbmsystemlogs.md
           - name: NCCIDRACLogs
             href: tables/nccidraclogs.md
+          - name: NCCKubernetesAPIAuditLogs
+            href: tables/ncckubernetesapiauditlogs.md
           - name: NCCKubernetesLogs
             href: tables/ncckuberneteslogs.md
           - name: NCCPlatformOperationsLogs
@@ -3017,6 +3019,10 @@ items:
             href: tables/qualysknowledgebase.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
+          - name: Rapid7InsightVMCloudAssets
+            href: tables/rapid7insightvmcloudassets.md
+          - name: Rapid7InsightVMCloudVulnerabilities
+            href: tables/rapid7insightvmcloudvulnerabilities.md
           - name: RemoteNetworkHealthLogs
             href: tables/remotenetworkhealthlogs.md
           - name: ResourceManagementPublicAccessLogs
@@ -3735,6 +3741,8 @@ items:
             href: queries/EGNSuccessfulMqttConnections.md
           - name: EdgeActionConsoleLog
             href: queries/EdgeActionConsoleLog.md
+          - name: EdgeActionServiceLog
+            href: queries/EdgeActionServiceLog.md
           - name: EmailAttachmentInfo
             href: queries/EmailAttachmentInfo.md
           - name: EmailEvents
@@ -3917,6 +3925,8 @@ items:
             href: queries/StorageCacheWarningEvents.md
           - name: StorageMalwareScanningResults
             href: queries/StorageMalwareScanningResults.md
+          - name: StorageMoverCopyLogsTransferred
+            href: queries/StorageMoverCopyLogsTransferred.md
           - name: SucceededIngestion
             href: queries/SucceededIngestion.md
           - name: SynapseLinkEvent
