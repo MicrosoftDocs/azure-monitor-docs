@@ -5,12 +5,15 @@ ms.topic: how-to
 ms.reviewer: xpathak
 ms.date: 03/08/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
+zone_pivot_groups: azure-monitor-vm-deployment
 
 ---
 
 # Enable VM monitoring at scale
 
 This article describes how to enable monitoring for Azure virtual machines and virtual machine scale sets at scale using infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
+
+Select your preferred deployment method at the top of this article to see relevant commands and examples.
 
 > [!NOTE]
 > To quickly enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
@@ -25,11 +28,11 @@ Enabling VM monitoring at scale involves three fundamental steps that can be aut
 
 This article covers the following methods for automating these steps:
 
-- [Azure CLI](#enable-monitoring-using-azure-cli) - Scriptable command-line interface
-- [Azure PowerShell](#enable-monitoring-using-powershell) - PowerShell-based automation
-- [ARM templates](#enable-monitoring-using-arm-templates) - JSON-based infrastructure as code
-- [Bicep](#enable-monitoring-using-bicep) - Azure-native domain-specific language
-- [Azure Policy](#enable-monitoring-using-azure-policy) - Governance-based automated compliance
+- **Azure CLI** - Scriptable command-line interface
+- **Azure PowerShell** - PowerShell-based automation
+- **ARM templates** - JSON-based infrastructure as code
+- **Bicep** - Azure-native domain-specific language
+- **Azure Policy** - Governance-based automated compliance
 
 Each method can enable both OpenTelemetry-based metrics (preview) and logs-based metrics (classic). You can also create additional DCRs to collect events, logs, and custom performance counters beyond the default metrics.
 
@@ -82,11 +85,11 @@ Development VMs in West US 2 →  dcr-otel-westus2-dev       →  amw-developmen
                               →  dcr-logs-westus2-dev      →  law-development-westus2
 ```
 
-## Enable monitoring using Azure CLI
+## Step 1: Install Azure Monitor agent
 
-Azure CLI provides a scriptable way to enable VM monitoring. The following examples show how to install the Azure Monitor agent, create DCRs, and associate them with VMs.
+The first step is to install the Azure Monitor agent extension on your virtual machines.
 
-### Install Azure Monitor agent
+::: zone pivot="azure-cli"
 
 Install the Azure Monitor agent extension on a VM:
 
@@ -104,11 +107,7 @@ az vm extension set \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
-```
 
-For virtual machine scale sets:
-
-```azurecli-interactive
 # For Linux VMSS
 az vmss extension set \
   --name AzureMonitorLinuxAgent \
@@ -124,9 +123,103 @@ az vmss extension set \
   --resource-group <resource-group>
 ```
 
-### Create DCR for OpenTelemetry metrics
+::: zone-end
 
-Create a DCR for OpenTelemetry metrics (save as `dcr-otel.json`):
+::: zone pivot="azure-powershell"
+
+Install the Azure Monitor agent using PowerShell:
+
+```powershell
+# For Windows VM
+Set-AzVMExtension `
+  -Name AzureMonitorWindowsAgent `
+  -ExtensionType AzureMonitorWindowsAgent `
+  -Publisher Microsoft.Azure.Monitor `
+  -ResourceGroupName <resource-group> `
+  -VMName <vm-name> `
+  -Location <location> `
+  -TypeHandlerVersion 1.0
+
+# For Linux VM
+Set-AzVMExtension `
+  -Name AzureMonitorLinuxAgent `
+  -ExtensionType AzureMonitorLinuxAgent `
+  -Publisher Microsoft.Azure.Monitor `
+  -ResourceGroupName <resource-group> `
+  -VMName <vm-name> `
+  -Location <location> `
+  -TypeHandlerVersion 1.0
+
+# For VMSS (Windows)
+Add-AzVmssExtension `
+  -VirtualMachineScaleSet (Get-AzVmss -ResourceGroupName <resource-group> -VMScaleSetName <vmss-name>) `
+  -Name AzureMonitorWindowsAgent `
+  -Publisher Microsoft.Azure.Monitor `
+  -Type AzureMonitorWindowsAgent `
+  -TypeHandlerVersion 1.0
+```
+
+::: zone-end
+
+::: zone pivot="azure-resource-manager"
+
+Add the agent extension to your ARM template:
+
+```json
+{
+  "type": "Microsoft.Compute/virtualMachines/extensions",
+  "apiVersion": "2023-03-01",
+  "name": "[concat(parameters('vmName'), '/AzureMonitorWindowsAgent')]",
+  "location": "[parameters('location')]",
+  "properties": {
+    "publisher": "Microsoft.Azure.Monitor",
+    "type": "AzureMonitorWindowsAgent",
+    "typeHandlerVersion": "1.0",
+    "autoUpgradeMinorVersion": true
+  }
+}
+```
+
+For Linux, change the type to `AzureMonitorLinuxAgent` and the name accordingly.
+
+::: zone-end
+
+::: zone pivot="bicep"
+
+Add the agent extension to your Bicep template:
+
+```bicep
+resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
+  name: '${vmName}/AzureMonitorWindowsAgent'
+  location: location
+  properties: {
+    publisher: 'Microsoft.Azure.Monitor'
+    type: 'AzureMonitorWindowsAgent'
+    typeHandlerVersion: '1.0'
+    autoUpgradeMinorVersion: true
+  }
+}
+```
+
+For Linux, change the type to `AzureMonitorLinuxAgent` in both the name and properties.
+
+::: zone-end
+
+::: zone pivot="azure-policy"
+
+Azure Policy automatically installs the Azure Monitor agent when you assign a VM insights policy initiative. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy) to configure policy-based deployment.
+
+::: zone-end
+
+## Step 2: Create data collection rules
+
+Create DCRs to specify what data to collect. You can create different DCRs for different monitoring scenarios.
+
+### OpenTelemetry metrics (preview)
+
+::: zone pivot="azure-cli"
+
+Create a DCR JSON file (`dcr-otel.json`):
 
 ```json
 {
@@ -144,12 +237,8 @@ Create a DCR for OpenTelemetry metrics (save as `dcr-otel.json`):
             "system.memory.utilization",
             "system.disk.io",
             "system.disk.operations",
-            "system.disk.operation_time",
             "system.network.io",
-            "system.network.errors",
-            "system.network.dropped",
-            "system.filesystem.usage",
-            "system.uptime"
+            "system.filesystem.usage"
           ],
           "name": "OtelPerfCounters"
         }
@@ -183,9 +272,163 @@ az monitor data-collection rule create \
   --rule-file dcr-otel.json
 ```
 
-### Create DCR for VM insights (logs-based metrics)
+::: zone-end
 
-Create a DCR for VM insights (save as `dcr-vminsights.json`):
+::: zone pivot="azure-powershell"
+
+Create a DCR using PowerShell:
+
+```powershell
+$dcrProperties = @{
+    location = "westus2"
+    properties = @{
+        dataSources = @{
+            performanceCountersOTel = @(
+                @{
+                    streams = @("Microsoft-OtelPerfMetrics")
+                    samplingFrequencyInSeconds = 60
+                    counterSpecifiers = @(
+                        "system.cpu.time",
+                        "system.cpu.utilization",
+                        "system.memory.usage",
+                        "system.disk.io",
+                        "system.network.io",
+                        "system.filesystem.usage"
+                    )
+                    name = "OtelPerfCounters"
+                }
+            )
+        }
+        destinations = @{
+            monitoringAccounts = @(
+                @{
+                    accountResourceId = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Monitor/accounts/<workspace-name>"
+                    name = "MonitoringAccount"
+                }
+            )
+        }
+        dataFlows = @(
+            @{
+                streams = @("Microsoft-OtelPerfMetrics")
+                destinations = @("MonitoringAccount")
+            }
+        )
+    }
+}
+
+New-AzDataCollectionRule `
+  -Name "dcr-otel-westus2" `
+  -ResourceGroupName <resource-group> `
+  -JsonString ($dcrProperties | ConvertTo-Json -Depth 10)
+```
+
+::: zone-end
+
+::: zone pivot="azure-resource-manager"
+
+Add the DCR resource to your ARM template:
+
+```json
+{
+  "type": "Microsoft.Insights/dataCollectionRules",
+  "apiVersion": "2022-06-01",
+  "name": "dcr-otel-westus2",
+  "location": "westus2",
+  "properties": {
+    "dataSources": {
+      "performanceCountersOTel": [
+        {
+          "streams": ["Microsoft-OtelPerfMetrics"],
+          "samplingFrequencyInSeconds": 60,
+          "counterSpecifiers": [
+            "system.cpu.time",
+            "system.cpu.utilization",
+            "system.memory.usage",
+            "system.disk.io",
+            "system.network.io",
+            "system.filesystem.usage"
+          ],
+          "name": "OtelPerfCounters"
+        }
+      ]
+    },
+    "destinations": {
+      "monitoringAccounts": [
+        {
+          "accountResourceId": "[parameters('monitoringAccountId')]",
+          "name": "MonitoringAccount"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": ["Microsoft-OtelPerfMetrics"],
+        "destinations": ["MonitoringAccount"]
+      }
+    ]
+  }
+}
+```
+
+::: zone-end
+
+::: zone pivot="bicep"
+
+Add the DCR resource to your Bicep template:
+
+```bicep
+resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
+  name: 'dcr-otel-westus2'
+  location: 'westus2'
+  properties: {
+    dataSources: {
+      performanceCountersOTel: [
+        {
+          streams: ['Microsoft-OtelPerfMetrics']
+          samplingFrequencyInSeconds: 60
+          counterSpecifiers: [
+            'system.cpu.time'
+            'system.cpu.utilization'
+            'system.memory.usage'
+            'system.disk.io'
+            'system.network.io'
+            'system.filesystem.usage'
+          ]
+          name: 'OtelPerfCounters'
+        }
+      ]
+    }
+    destinations: {
+      monitoringAccounts: [
+        {
+          accountResourceId: monitoringAccountId
+          name: 'MonitoringAccount'
+        }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: ['Microsoft-OtelPerfMetrics']
+        destinations: ['MonitoringAccount']
+      }
+    ]
+  }
+}
+```
+
+::: zone-end
+
+::: zone pivot="azure-policy"
+
+Azure Policy automatically creates DCRs when you configure the policy initiative. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy).
+
+::: zone-end
+
+### VM insights (logs-based metrics)
+
+::: zone pivot="azure-cli"
+
+Create a DCR JSON file (`dcr-vminsights.json`):
 
 ```json
 {
@@ -196,7 +439,6 @@ Create a DCR for VM insights (save as `dcr-vminsights.json`):
         {
           "name": "VMInsightsPerfCounters",
           "streams": ["Microsoft-InsightsMetrics"],
-          "scheduledTransferPeriod": "PT1M",
           "samplingFrequencyInSeconds": 60,
           "counterSpecifiers": ["\\VmInsights\\DetailedMetrics"]
         }
@@ -230,236 +472,192 @@ az monitor data-collection rule create \
   --rule-file dcr-vminsights.json
 ```
 
-### Create DCR for Windows events
+::: zone-end
 
-Create a DCR to collect Windows event logs (save as `dcr-windows-events.json`):
+::: zone pivot="azure-powershell"
 
-```json
-{
-  "location": "westus2",
-  "properties": {
-    "dataSources": {
-      "windowsEventLogs": [
-        {
-          "name": "WindowsEvents",
-          "streams": ["Microsoft-Event"],
-          "xPathQueries": [
-            "System!*[System[(Level=1 or Level=2 or Level=3)]]",
-            "Application!*[System[(Level=1 or Level=2 or Level=3)]]"
-          ]
-        }
-      ]
-    },
-    "destinations": {
-      "logAnalytics": [
-        {
-          "workspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>",
-          "name": "LogAnalyticsDestination"
-        }
-      ]
-    },
-    "dataFlows": [
-      {
-        "streams": ["Microsoft-Event"],
-        "destinations": ["LogAnalyticsDestination"]
-      }
-    ]
-  }
-}
-```
-
-Deploy the DCR:
-
-```azurecli-interactive
-az monitor data-collection rule create \
-  --name "dcr-windows-events-westus2" \
-  --resource-group <resource-group> \
-  --location westus2 \
-  --rule-file dcr-windows-events.json
-```
-
-### Create DCR for Syslog (Linux)
-
-Create a DCR to collect Linux Syslog events (save as `dcr-syslog.json`):
-
-```json
-{
-  "location": "westus2",
-  "properties": {
-    "dataSources": {
-      "syslog": [
-        {
-          "name": "SyslogEvents",
-          "streams": ["Microsoft-Syslog"],
-          "facilityNames": ["auth", "authpriv", "cron", "daemon", "kern", "syslog"],
-          "logLevels": ["Alert", "Critical", "Emergency", "Error", "Warning"]
-        }
-      ]
-    },
-    "destinations": {
-      "logAnalytics": [
-        {
-          "workspaceResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>",
-          "name": "LogAnalyticsDestination"
-        }
-      ]
-    },
-    "dataFlows": [
-      {
-        "streams": ["Microsoft-Syslog"],
-        "destinations": ["LogAnalyticsDestination"]
-      }
-    ]
-  }
-}
-```
-
-Deploy the DCR:
-
-```azurecli-interactive
-az monitor data-collection rule create \
-  --name "dcr-syslog-westus2" \
-  --resource-group <resource-group> \
-  --location westus2 \
-  --rule-file dcr-syslog.json
-```
-
-### Associate DCR with VMs
-
-Associate a DCR with one or more VMs:
-
-```azurecli-interactive
-# Get DCR resource ID
-DCR_ID=$(az monitor data-collection rule show \
-  --name "dcr-otel-westus2" \
-  --resource-group <resource-group> \
-  --query id -o tsv)
-
-# Associate DCR with a VM
-az monitor data-collection rule association create \
-  --name "dcr-association" \
-  --rule-id $DCR_ID \
-  --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
-```
-
-### Bulk enable monitoring for multiple VMs
-
-Use a loop to enable monitoring for multiple VMs:
-
-```azurecli-interactive
-# Get DCR resource ID
-DCR_ID=$(az monitor data-collection rule show \
-  --name "dcr-otel-westus2" \
-  --resource-group <dcr-resource-group> \
-  --query id -o tsv)
-
-# Get list of VMs in a resource group
-VM_LIST=$(az vm list \
-  --resource-group <vm-resource-group> \
-  --query "[].id" -o tsv)
-
-# Install agent and associate DCR with each VM
-for VM_ID in $VM_LIST; do
-  # Extract VM name from resource ID
-  VM_NAME=$(echo $VM_ID | awk -F'/' '{print $NF}')
-  
-  echo "Processing VM: $VM_NAME"
-  
-  # Install Azure Monitor agent (adjust publisher name for Windows/Linux)
-  az vm extension set \
-    --ids $VM_ID \
-    --name AzureMonitorLinuxAgent \
-    --publisher Microsoft.Azure.Monitor
-  
-  # Associate DCR
-  az monitor data-collection rule association create \
-    --name "dcr-assoc-$VM_NAME" \
-    --rule-id $DCR_ID \
-    --resource $VM_ID
-done
-```
-
-
-## Enable monitoring using PowerShell
-
-Azure PowerShell provides automation capabilities for enabling VM monitoring. The following examples show how to use PowerShell to deploy agents, create DCRs, and manage associations.
-
-### Install Azure Monitor agent
-
-Install the Azure Monitor agent using PowerShell:
-
-```powershell
-# For Windows VM
-Set-AzVMExtension `
-  -Name AzureMonitorWindowsAgent `
-  -ExtensionType AzureMonitorWindowsAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -VMName <vm-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-
-# For Linux VM
-Set-AzVMExtension `
-  -Name AzureMonitorLinuxAgent `
-  -ExtensionType AzureMonitorLinuxAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -VMName <vm-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-```
-
-### Create DCR using PowerShell
-
-Create a DCR for OpenTelemetry metrics:
+Create a DCR using PowerShell:
 
 ```powershell
 $dcrProperties = @{
     location = "westus2"
     properties = @{
         dataSources = @{
-            performanceCountersOTel = @(
+            performanceCounters = @(
                 @{
-                    streams = @("Microsoft-OtelPerfMetrics")
+                    name = "VMInsightsPerfCounters"
+                    streams = @("Microsoft-InsightsMetrics")
                     samplingFrequencyInSeconds = 60
-                    counterSpecifiers = @(
-                        "system.cpu.time",
-                        "system.memory.usage",
-                        "system.disk.io",
-                        "system.network.io",
-                        "system.filesystem.usage",
-                        "system.uptime"
-                    )
-                    name = "OtelPerfCounters"
+                    counterSpecifiers = @("\\VmInsights\\DetailedMetrics")
                 }
             )
         }
         destinations = @{
-            monitoringAccounts = @(
+            logAnalytics = @(
                 @{
-                    accountResourceId = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Monitor/accounts/<workspace-name>"
-                    name = "MonitoringAccount"
+                    workspaceResourceId = "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.OperationalInsights/workspaces/<workspace-name>"
+                    name = "VMInsightsDestination"
                 }
             )
         }
         dataFlows = @(
             @{
-                streams = @("Microsoft-OtelPerfMetrics")
-                destinations = @("MonitoringAccount")
+                streams = @("Microsoft-InsightsMetrics")
+                destinations = @("VMInsightsDestination")
             }
         )
     }
 }
 
-# Deploy DCR
 New-AzDataCollectionRule `
-  -Name "dcr-otel-westus2" `
+  -Name "dcr-vminsights-westus2" `
   -ResourceGroupName <resource-group> `
   -JsonString ($dcrProperties | ConvertTo-Json -Depth 10)
 ```
 
-### Associate DCR with VM
+::: zone-end
+
+::: zone pivot="azure-resource-manager"
+
+Add the DCR resource to your ARM template:
+
+```json
+{
+  "type": "Microsoft.Insights/dataCollectionRules",
+  "apiVersion": "2022-06-01",
+  "name": "dcr-vminsights-westus2",
+  "location": "westus2",
+  "properties": {
+    "dataSources": {
+      "performanceCounters": [
+        {
+          "name": "VMInsightsPerfCounters",
+          "streams": ["Microsoft-InsightsMetrics"],
+          "samplingFrequencyInSeconds": 60,
+          "counterSpecifiers": ["\\VmInsights\\DetailedMetrics"]
+        }
+      ]
+    },
+    "destinations": {
+      "logAnalytics": [
+        {
+          "workspaceResourceId": "[parameters('workspaceResourceId')]",
+          "name": "VMInsightsDestination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": ["Microsoft-InsightsMetrics"],
+        "destinations": ["VMInsightsDestination"]
+      }
+    ]
+  }
+}
+```
+
+::: zone-end
+
+::: zone pivot="bicep"
+
+Add the DCR resource to your Bicep template:
+
+```bicep
+resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
+  name: 'dcr-vminsights-westus2'
+  location: 'westus2'
+  properties: {
+    dataSources: {
+      performanceCounters: [
+        {
+          name: 'VMInsightsPerfCounters'
+          streams: ['Microsoft-InsightsMetrics']
+          samplingFrequencyInSeconds: 60
+          counterSpecifiers: ['\\VmInsights\\DetailedMetrics']
+        }
+      ]
+    }
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: workspaceResourceId
+          name: 'VMInsightsDestination'
+        }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: ['Microsoft-InsightsMetrics']
+        destinations: ['VMInsightsDestination']
+      }
+    ]
+  }
+}
+```
+
+::: zone-end
+
+### Additional data collection
+
+You can create additional DCRs to collect Windows events, Syslog, or custom performance counters. See [Data collection rule structure](../data-collection/data-collection-rule-structure.md) for complete syntax reference.
+
+**Windows events example** (critical and error events from System and Application logs):
+
+```json
+"dataSources": {
+  "windowsEventLogs": [
+    {
+      "name": "WindowsEvents",
+      "streams": ["Microsoft-Event"],
+      "xPathQueries": [
+        "System!*[System[(Level=1 or Level=2 or Level=3)]]",
+        "Application!*[System[(Level=1 or Level=2 or Level=3)]]"
+      ]
+    }
+  ]
+}
+```
+
+**Syslog example** (auth, cron, daemon logs at error level and above):
+
+```json
+"dataSources": {
+  "syslog": [
+    {
+      "name": "SyslogEvents",
+      "streams": ["Microsoft-Syslog"],
+      "facilityNames": ["auth", "authpriv", "cron", "daemon", "kern"],
+      "logLevels": ["Alert", "Critical", "Emergency", "Error"]
+    }
+  ]
+}
+```
+
+## Step 3: Associate DCRs with VMs
+
+The final step is to create associations between your DCRs and your VMs to activate data collection.
+
+::: zone pivot="azure-cli"
+
+Associate a DCR with a VM:
+
+```azurecli-interactive
+# Get DCR resource ID
+DCR_ID=$(az monitor data-collection rule show \
+  --name "dcr-otel-westus2" \
+  --resource-group <resource-group> \
+  --query id -o tsv)
+
+# Create association
+az monitor data-collection rule association create \
+  --name "dcr-association" \
+  --rule-id $DCR_ID \
+  --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
+```
+
+::: zone-end
+
+::: zone pivot="azure-powershell"
 
 Create an association between a DCR and a VM:
 
@@ -476,9 +674,123 @@ New-AzDataCollectionRuleAssociation `
   -DataCollectionRuleId $dcrId
 ```
 
-### Bulk enable monitoring using PowerShell
+::: zone-end
 
-Enable monitoring for multiple VMs in a resource group:
+::: zone pivot="azure-resource-manager"
+
+Add the association resource to your ARM template:
+
+```json
+{
+  "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+  "apiVersion": "2022-06-01",
+  "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
+  "name": "dcr-association",
+  "dependsOn": [
+    "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]",
+    "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName'), 'AzureMonitorWindowsAgent')]"
+  ],
+  "properties": {
+    "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
+  }
+}
+```
+
+::: zone-end
+
+::: zone pivot="bicep"
+
+Add the association resource to your Bicep template:
+
+```bicep
+resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-06-01' = {
+  scope: resourceId('Microsoft.Compute/virtualMachines', vmName)
+  name: 'dcr-association'
+  properties: {
+    dataCollectionRuleId: dcr.id
+  }
+  dependsOn: [
+    amaExtension
+  ]
+}
+```
+
+::: zone-end
+
+::: zone pivot="azure-policy"
+
+Azure Policy automatically creates associations when remediating policy assignments. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy).
+
+::: zone-end
+
+## Complete deployment examples
+
+The following examples show complete automation scripts that perform all three steps for multiple VMs.
+
+### Bulk deployment script
+
+::: zone pivot="azure-cli"
+
+Shell script to enable monitoring for all VMs in a resource group:
+
+```bash
+#!/bin/bash
+
+# Configuration
+RESOURCE_GROUP="<vm-resource-group>"
+DCR_RESOURCE_GROUP="<dcr-resource-group>"
+DCR_NAME="dcr-otel-westus2"
+LOCATION="westus2"
+
+# Get DCR resource ID
+DCR_ID=$(az monitor data-collection rule show \
+  --name "$DCR_NAME" \
+  --resource-group "$DCR_RESOURCE_GROUP" \
+  --query id -o tsv)
+
+# Get list of VMs
+VM_LIST=$(az vm list \
+  --resource-group "$RESOURCE_GROUP" \
+  --query "[].{name:name, id:id, os:storageProfile.osDisk.osType}" -o json)
+
+# Process each VM
+echo "$VM_LIST" | jq -c '.[]' | while read vm; do
+  VM_NAME=$(echo $vm | jq -r '.name')
+  VM_ID=$(echo $vm | jq -r '.id')
+  OS_TYPE=$(echo $vm | jq -r '.os')
+  
+  echo "Processing VM: $VM_NAME (OS: $OS_TYPE)"
+  
+  # Determine agent name based on OS
+  if [ "$OS_TYPE" == "Windows" ]; then
+    AGENT_NAME="AzureMonitorWindowsAgent"
+  else
+    AGENT_NAME="AzureMonitorLinuxAgent"
+  fi
+  
+  # Install Azure Monitor agent
+  az vm extension set \
+    --ids "$VM_ID" \
+    --name "$AGENT_NAME" \
+    --publisher Microsoft.Azure.Monitor \
+    --no-wait
+  
+  # Associate DCR (after agent installation completes)
+  az monitor data-collection rule association create \
+    --name "dcr-assoc-$VM_NAME" \
+    --rule-id "$DCR_ID" \
+    --resource "$VM_ID" \
+    --no-wait
+done
+
+echo "Deployment initiated for all VMs in resource group $RESOURCE_GROUP"
+```
+
+::: zone-end
+
+::: zone pivot="azure-powershell"
+
+PowerShell script to enable monitoring for all VMs in a resource group:
 
 ```powershell
 # Configuration
@@ -492,11 +804,15 @@ $dcrId = (Get-AzDataCollectionRule `
   -ResourceGroupName $dcrResourceGroup `
   -Name $dcrName).Id
 
+Write-Host "Using DCR: $dcrId"
+
 # Get all VMs in resource group
 $vms = Get-AzVM -ResourceGroupName $resourceGroup
 
+Write-Host "Found $($vms.Count) VMs to process"
+
 foreach ($vm in $vms) {
-    Write-Host "Processing VM: $($vm.Name)"
+    Write-Host "`nProcessing VM: $($vm.Name)"
     
     # Determine OS type and agent name
     if ($vm.StorageProfile.OsDisk.OsType -eq "Windows") {
@@ -509,6 +825,7 @@ foreach ($vm in $vms) {
     
     # Install Azure Monitor agent
     try {
+        Write-Host "  Installing $agentName..."
         Set-AzVMExtension `
           -Name $agentName `
           -ExtensionType $extensionType `
@@ -517,87 +834,37 @@ foreach ($vm in $vms) {
           -VMName $vm.Name `
           -Location $location `
           -TypeHandlerVersion 1.0 `
-          -ErrorAction Stop
+          -ErrorAction Stop | Out-Null
         
-        Write-Host "Agent installed successfully on $($vm.Name)"
+        Write-Host "  Agent installed successfully"
     } catch {
-        Write-Warning "Failed to install agent on $($vm.Name): $_"
+        Write-Warning "  Failed to install agent: $_"
         continue
     }
     
     # Create DCR association
     try {
+        Write-Host "  Creating DCR association..."
         New-AzDataCollectionRuleAssociation `
           -AssociationName "dcr-assoc-$($vm.Name)" `
           -ResourceUri $vm.Id `
           -DataCollectionRuleId $dcrId `
-          -ErrorAction Stop
+          -ErrorAction Stop | Out-Null
         
-        Write-Host "DCR associated successfully with $($vm.Name)"
+        Write-Host "  DCR associated successfully"
     } catch {
-        Write-Warning "Failed to associate DCR with $($vm.Name): $_"
+        Write-Warning "  Failed to associate DCR: $_"
     }
 }
 
-Write-Host "Completed processing $($vms.Count) VMs"
+Write-Host "`nCompleted processing $($vms.Count) VMs"
 ```
 
-### Using the Install-VMInsights.ps1 script
+::: zone-end
 
-For VM insights specifically, Microsoft provides a PowerShell script that automates the deployment process. This script only supports logs-based metrics.
+::: zone pivot="azure-resource-manager"
 
-Download and use the [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) script:
-
-```powershell
-# View script help
-Get-Help Install-VMInsights.ps1 -Detailed
-
-# Enable VM insights for specific VMs
-Install-VMInsights.ps1 `
-  -SubscriptionId <subscription-id> `
-  -ResourceGroup <resource-group> `
-  -Name <vm-name> `
-  -DcrResourceId <dcr-resource-id> `
-  -UserAssignedManagedIdentityName <identity-name> `
-  -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
-
-# Enable for all VMs in a subscription
-Install-VMInsights.ps1 `
-  -SubscriptionId <subscription-id> `
-  -DcrResourceId <dcr-resource-id> `
-  -UserAssignedManagedIdentityName <identity-name> `
-  -UserAssignedManagedIdentityResourceGroup <identity-resource-group> `
-  -Approve
-
-# Enable with wildcard matching
-Install-VMInsights.ps1 `
-  -SubscriptionId <subscription-id> `
-  -ResourceGroup "rg-production-*" `
-  -Name "vm-web-*" `
-  -DcrResourceId <dcr-resource-id> `
-  -UserAssignedManagedIdentityName <identity-name> `
-  -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
-```
-
-Script parameters:
-
-- `-SubscriptionId`: Required. Azure subscription ID
-- `-DcrResourceId`: Required. Data collection rule resource ID
-- `-UserAssignedManagedIdentityName`: Required. Name of user-assigned managed identity
-- `-UserAssignedManagedIdentityResourceGroup`: Required. Resource group containing the identity
-- `-ResourceGroup`: Optional. Target specific resource group(s); supports wildcards
-- `-Name`: Optional. Target specific VM(s); supports wildcards
-- `-ProcessAndDependencies`: Optional. Install Dependency agent (being retired)
-- `-TriggerVmssManualVMUpdate`: Optional. Update VMSS instances with manual upgrade policy
-- `-Approve`: Optional. Skip confirmation prompts
-
-## Enable monitoring using ARM templates
-
-Azure Resource Manager (ARM) templates provide declarative infrastructure as code for deploying VM monitoring at scale. The following examples show complete ARM templates for various monitoring scenarios.
-
-### ARM template: OpenTelemetry metrics
-
-This template deploys a VM with Azure Monitor agent and associates it with an OpenTelemetry DCR:
+Complete ARM template deploying a VM with monitoring:
 
 ```json
 {
@@ -609,130 +876,6 @@ This template deploys a VM with Azure Monitor agent and associates it with an Op
       "metadata": {
         "description": "Name of the virtual machine"
       }
-    },
-    "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for all resources"
-      }
-    },
-    "monitoringAccountId": {
-      "type": "string",
-      "metadata": {
-        "description": "Resource ID of the Azure Monitor workspace"
-      }
-    }
-  },
-  "variables": {
-    "dcrName": "[concat('dcr-otel-', parameters('location'))]",
-    "vmResourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Insights/dataCollectionRules",
-      "apiVersion": "2022-06-01",
-      "name": "[variables('dcrName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "dataSources": {
-          "performanceCountersOTel": [
-            {
-              "streams": ["Microsoft-OtelPerfMetrics"],
-              "samplingFrequencyInSeconds": 60,
-              "counterSpecifiers": [
-                "system.cpu.time",
-                "system.cpu.utilization",
-                "system.memory.usage",
-                "system.memory.utilization",
-                "system.disk.io",
-                "system.disk.operations",
-                "system.disk.operation_time",
-                "system.network.io",
-                "system.network.errors",
-                "system.network.dropped",
-                "system.filesystem.usage",
-                "system.uptime"
-              ],
-              "name": "OtelPerfCounters"
-            }
-          ]
-        },
-        "destinations": {
-          "monitoringAccounts": [
-            {
-              "accountResourceId": "[parameters('monitoringAccountId')]",
-              "name": "MonitoringAccount"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": ["Microsoft-OtelPerfMetrics"],
-            "destinations": ["MonitoringAccount"]
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "apiVersion": "2023-03-01",
-      "name": "[concat(parameters('vmName'), '/AzureMonitorLinuxAgent')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
-      ],
-      "properties": {
-        "publisher": "Microsoft.Azure.Monitor",
-        "type": "AzureMonitorLinuxAgent",
-        "typeHandlerVersion": "1.0",
-        "autoUpgradeMinorVersion": true
-      }
-    },
-    {
-      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
-      "apiVersion": "2022-06-01",
-      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-      "name": "dcr-association",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]",
-        "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName'), 'AzureMonitorLinuxAgent')]"
-      ],
-      "properties": {
-        "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
-      }
-    }
-  ],
-  "outputs": {
-    "dcrResourceId": {
-      "type": "string",
-      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
-    }
-  }
-}
-```
-
-Deploy the template:
-
-```azurecli-interactive
-az deployment group create \
-  --resource-group <resource-group> \
-  --template-file otel-monitoring.json \
-  --parameters vmName=<vm-name> \
-               monitoringAccountId=<monitoring-account-resource-id>
-```
-
-### ARM template: VM insights (logs-based metrics)
-
-This template deploys VM insights with logs-based metrics:
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vmName": {
-      "type": "string"
     },
     "location": {
       "type": "string",
@@ -755,13 +898,11 @@ This template deploys VM insights with logs-based metrics:
       "name": "[variables('dcrName')]",
       "location": "[parameters('location')]",
       "properties": {
-        "description": "Data collection rule for VM Insights",
         "dataSources": {
           "performanceCounters": [
             {
               "name": "VMInsightsPerfCounters",
               "streams": ["Microsoft-InsightsMetrics"],
-              "scheduledTransferPeriod": "PT1M",
               "samplingFrequencyInSeconds": 60,
               "counterSpecifiers": ["\\VmInsights\\DetailedMetrics"]
             }
@@ -811,321 +952,31 @@ This template deploys VM insights with logs-based metrics:
         "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
       }
     }
-  ]
-}
-```
-
-### ARM template: Multiple DCRs (comprehensive monitoring)
-
-This template deploys both metrics and logs collection:
-
-```json
-{
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "vmName": {
-      "type": "string"
-    },
-    "location": {
+  ],
+  "outputs": {
+    "dcrResourceId": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]"
-    },
-    "workspaceResourceId": {
-      "type": "string"
+      "value": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
     }
-  },
-  "variables": {
-    "dcrMetricsName": "[concat('dcr-vminsights-', parameters('location'))]",
-    "dcrLogsName": "[concat('dcr-logs-', parameters('location'))]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Insights/dataCollectionRules",
-      "apiVersion": "2022-06-01",
-      "name": "[variables('dcrMetricsName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "dataSources": {
-          "performanceCounters": [
-            {
-              "name": "VMInsightsPerfCounters",
-              "streams": ["Microsoft-InsightsMetrics"],
-              "samplingFrequencyInSeconds": 60,
-              "counterSpecifiers": ["\\VmInsights\\DetailedMetrics"]
-            }
-          ]
-        },
-        "destinations": {
-          "logAnalytics": [
-            {
-              "workspaceResourceId": "[parameters('workspaceResourceId')]",
-              "name": "LAWorkspace"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": ["Microsoft-InsightsMetrics"],
-            "destinations": ["LAWorkspace"]
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Insights/dataCollectionRules",
-      "apiVersion": "2022-06-01",
-      "name": "[variables('dcrLogsName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "dataSources": {
-          "windowsEventLogs": [
-            {
-              "name": "WindowsEvents",
-              "streams": ["Microsoft-Event"],
-              "xPathQueries": [
-                "System!*[System[(Level=1 or Level=2 or Level=3)]]",
-                "Application!*[System[(Level=1 or Level=2 or Level=3)]]"
-              ]
-            }
-          ]
-        },
-        "destinations": {
-          "logAnalytics": [
-            {
-              "workspaceResourceId": "[parameters('workspaceResourceId')]",
-              "name": "LAWorkspace"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": ["Microsoft-Event"],
-            "destinations": ["LAWorkspace"]
-          }
-        ]
-      }
-    },
-    {
-      "type": "Microsoft.Compute/virtualMachines/extensions",
-      "apiVersion": "2023-03-01",
-      "name": "[concat(parameters('vmName'), '/AzureMonitorWindowsAgent')]",
-      "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrMetricsName'))]",
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrLogsName'))]"
-      ],
-      "properties": {
-        "publisher": "Microsoft.Azure.Monitor",
-        "type": "AzureMonitorWindowsAgent",
-        "typeHandlerVersion": "1.0",
-        "autoUpgradeMinorVersion": true
-      }
-    },
-    {
-      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
-      "apiVersion": "2022-06-01",
-      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-      "name": "dcr-metrics-association",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrMetricsName'))]",
-        "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName'), 'AzureMonitorWindowsAgent')]"
-      ],
-      "properties": {
-        "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrMetricsName'))]"
-      }
-    },
-    {
-      "type": "Microsoft.Insights/dataCollectionRuleAssociations",
-      "apiVersion": "2022-06-01",
-      "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-      "name": "dcr-logs-association",
-      "dependsOn": [
-        "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrLogsName'))]",
-        "[resourceId('Microsoft.Compute/virtualMachines/extensions', parameters('vmName'), 'AzureMonitorWindowsAgent')]"
-      ],
-      "properties": {
-        "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrLogsName'))]"
-      }
-    }
-  ]
+  }
 }
 ```
 
-## Enable monitoring using Bicep
+Deploy the template:
 
-Bicep provides a cleaner, more readable syntax for Azure infrastructure as code. The following examples show Bicep templates for deploying VM monitoring.
-
-### Bicep template: OpenTelemetry metrics
-
-```bicep
-@description('Name of the virtual machine')
-param vmName string
-
-@description('Location for all resources')
-param location string = resourceGroup().location
-
-@description('Resource ID of the Azure Monitor workspace')
-param monitoringAccountId string
-
-var dcrName = 'dcr-otel-${location}'
-
-// Data Collection Rule for OpenTelemetry metrics
-resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
-  name: dcrName
-  location: location
-  properties: {
-    dataSources: {
-      performanceCountersOTel: [
-        {
-          streams: ['Microsoft-OtelPerfMetrics']
-          samplingFrequencyInSeconds: 60
-          counterSpecifiers: [
-            'system.cpu.time'
-            'system.cpu.utilization'
-            'system.memory.usage'
-            'system.memory.utilization'
-            'system.disk.io'
-            'system.disk.operations'
-            'system.disk.operation_time'
-            'system.network.io'
-            'system.network.errors'
-            'system.network.dropped'
-            'system.filesystem.usage'
-            'system.uptime'
-          ]
-          name: 'OtelPerfCounters'
-        }
-      ]
-    }
-    destinations: {
-      monitoringAccounts: [
-        {
-          accountResourceId: monitoringAccountId
-          name: 'MonitoringAccount'
-        }
-      ]
-    }
-    dataFlows: [
-      {
-        streams: ['Microsoft-OtelPerfMetrics']
-        destinations: ['MonitoringAccount']
-      }
-    ]
-  }
-}
-
-// Azure Monitor agent extension
-resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
-  name: '${vmName}/AzureMonitorLinuxAgent'
-  location: location
-  properties: {
-    publisher: 'Microsoft.Azure.Monitor'
-    type: 'AzureMonitorLinuxAgent'
-    typeHandlerVersion: '1.0'
-    autoUpgradeMinorVersion: true
-  }
-  dependsOn: [
-    dcr
-  ]
-}
-
-// Associate DCR with VM
-resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-06-01' = {
-  scope: resourceId('Microsoft.Compute/virtualMachines', vmName)
-  name: 'dcr-association'
-  properties: {
-    dataCollectionRuleId: dcr.id
-  }
-  dependsOn: [
-    amaExtension
-  ]
-}
-
-output dcrResourceId string = dcr.id
+```azurecli-interactive
+az deployment group create \
+  --resource-group <resource-group> \
+  --template-file vm-monitoring.json \
+  --parameters vmName=<vm-name> \
+               workspaceResourceId=<workspace-resource-id>
 ```
 
-### Bicep template: VM insights (logs-based metrics)
+::: zone-end
 
-```bicep
-@description('Name of the virtual machine')
-param vmName string
+::: zone pivot="bicep"
 
-@description('Location for all resources')
-param location string = resourceGroup().location
-
-@description('Resource ID of the Log Analytics workspace')
-param workspaceResourceId string
-
-var dcrName = 'dcr-vminsights-${location}'
-
-// Data Collection Rule for VM Insights
-resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
-  name: dcrName
-  location: location
-  properties: {
-    description: 'Data collection rule for VM Insights'
-    dataSources: {
-      performanceCounters: [
-        {
-          name: 'VMInsightsPerfCounters'
-          streams: ['Microsoft-InsightsMetrics']
-          scheduledTransferPeriod: 'PT1M'
-          samplingFrequencyInSeconds: 60
-          counterSpecifiers: ['\\VmInsights\\DetailedMetrics']
-        }
-      ]
-    }
-    destinations: {
-      logAnalytics: [
-        {
-          workspaceResourceId: workspaceResourceId
-          name: 'VMInsightsDestination'
-        }
-      ]
-    }
-    dataFlows: [
-      {
-        streams: ['Microsoft-InsightsMetrics']
-        destinations: ['VMInsightsDestination']
-      }
-    ]
-  }
-}
-
-// Azure Monitor agent extension for Windows
-resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
-  name: '${vmName}/AzureMonitorWindowsAgent'
-  location: location
-  properties: {
-    publisher: 'Microsoft.Azure.Monitor'
-    type: 'AzureMonitorWindowsAgent'
-    typeHandlerVersion: '1.0'
-    autoUpgradeMinorVersion: true
-  }
-  dependsOn: [
-    dcr
-  ]
-}
-
-// Associate DCR with VM
-resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-06-01' = {
-  scope: resourceId('Microsoft.Compute/virtualMachines', vmName)
-  name: 'dcr-association'
-  properties: {
-    dataCollectionRuleId: dcr.id
-  }
-  dependsOn: [
-    amaExtension
-  ]
-}
-
-output dcrResourceId string = dcr.id
-```
-
-### Bicep template: Comprehensive monitoring
-
-This template creates separate DCRs for metrics and logs:
+Complete Bicep template deploying a VM with comprehensive monitoring:
 
 ```bicep
 @description('Name of the virtual machine')
@@ -1267,31 +1118,69 @@ output dcrMetricsId string = dcrMetrics.id
 output dcrLogsId string = dcrLogs.id
 ```
 
-Deploy Bicep templates:
+Deploy the template:
 
 ```azurecli-interactive
-# Deploy OpenTelemetry monitoring
 az deployment group create \
   --resource-group <resource-group> \
-  --template-file otel-monitoring.bicep \
+  --template-file vm-monitoring.bicep \
   --parameters vmName=<vm-name> \
-               monitoringAccountId=<monitoring-account-id>
-
-# Deploy VM insights monitoring  
-az deployment group create \
-  --resource-group <resource-group> \
-  --template-file vminsights-monitoring.bicep \
-  --parameters vmName=<vm-name> \
-               workspaceResourceId=<workspace-id>
-
-# Deploy comprehensive monitoring
-az deployment group create \
-  --resource-group <resource-group> \
-  --template-file comprehensive-monitoring.bicep \
-  --parameters vmName=<vm-name> \
-               workspaceResourceId=<workspace-id> \
+               workspaceResourceId=<workspace-resource-id> \
                osType=Windows
 ```
+
+::: zone-end
+
+::: zone pivot="azure-policy"
+
+Azure Policy-based deployment doesn't require custom scripts. All three steps (agent installation, DCR creation, and association) are handled automatically through policy initiatives and remediation tasks. See [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy) for details.
+
+::: zone-end
+
+### Using the Install-VMInsights.ps1 script
+
+::: zone pivot="azure-powershell"
+
+For VM insights specifically, Microsoft provides a PowerShell Gallery script that automates all three steps. This script supports logs-based metrics only.
+
+```powershell
+# Install the script from PowerShell Gallery
+Install-Script -Name Install-VMInsights
+
+# Enable VM insights for specific VMs
+Install-VMInsights.ps1 `
+  -SubscriptionId <subscription-id> `
+  -ResourceGroup <resource-group> `
+  -Name <vm-name> `
+  -DcrResourceId <dcr-resource-id> `
+  -UserAssignedManagedIdentityName <identity-name> `
+  -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
+
+# Enable for all VMs in a subscription
+Install-VMInsights.ps1 `
+  -SubscriptionId <subscription-id> `
+  -DcrResourceId <dcr-resource-id> `
+  -UserAssignedManagedIdentityName <identity-name> `
+  -UserAssignedManagedIdentityResourceGroup <identity-resource-group> `
+  -Approve
+
+# Enable with wildcard matching
+Install-VMInsights.ps1 `
+  -SubscriptionId <subscription-id> `
+  -ResourceGroup "rg-production-*" `
+  -Name "vm-web-*" `
+  -DcrResourceId <dcr-resource-id> `
+  -UserAssignedManagedIdentityName <identity-name> `
+  -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
+```
+
+::: zone-end
+
+::: zone pivot="azure-cli,azure-resource-manager,bicep,azure-policy"
+
+This script is only available for PowerShell-based deployments.
+
+::: zone-end
 
 ## Enable monitoring using Azure Policy
 
