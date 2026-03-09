@@ -145,11 +145,25 @@ Once cross-region replication is enabled, proceed to enable replication for one 
 > [!IMPORTANT]
 > Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
 
-To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
+To enable replication on your dedicated cluster, use the following command. Enabling replication on the cluster is a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To enable cluster replication, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+
+```azurecli
+az rest --method put \
+  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01" \
+  --body '{
+    "properties": {
+      "replication": {
+        "enabled": true,
+        "location": "<secondary_region>"
+      }
+    },
+    "location": "<primary_region>"
+  }'
+```
 
 # [REST API](#tab/rest-api)
 
@@ -162,13 +176,13 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": true,
-            "location": "<secondary_region>"
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<secondary_region>"
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
 
@@ -186,7 +200,14 @@ Where:
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To check the provisioning state of your cluster, use the [az monitor log-analytics cluster show](/cli/azure/monitor/log-analytics/clusteraz-monitor-log-analytics-cluster-show) Azure CLI command:
+
+```azurecli
+az monitor log-analytics cluster show \
+  --resource-group <resourcegroup_name> \
+  --cluster-name <cluster_name> \
+  --query "properties.replication.provisioningState"
+```
 
 # [REST API](#tab/rest-api)
 
@@ -215,7 +236,21 @@ Use the command verify that the cluster provisioning state changes from `Updatin
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To enable cluster replication, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+
+```azurecli
+az rest --method put \
+  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01" \
+  --body '{
+    "properties": {
+      "replication": {
+        "enabled": true,
+        "location": "<secondary_region>"
+      }
+    },
+    "location": "<primary_region>"
+  }'
+```
 
 # [REST API](#tab/rest-api)
 
@@ -228,13 +263,13 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": true,
-            "location": "<secondary_region>"
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<secondary_region>"
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
 
@@ -248,7 +283,7 @@ Where:
 * `<primary_region>`: The primary region for your Log Analytics workspace
 * `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace
 
-For the supported `location` values, see [Supported regions](#supported-regions).
+For the supported region values, see [Supported regions](#supported-regions).
 
 The enable workspace replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
@@ -259,7 +294,14 @@ The enable workspace replication command is a long running operation that can ta
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To check the provisioning state of your cluster, use the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace show \
+  --resource-group <resourcegroup_name> \
+  --cluster-name <cluster_name> \
+  --query "properties.replication.provisioningState"
+```
 
 # [REST API](#tab/rest-api)
 
@@ -337,7 +379,14 @@ To replicate data you collect using data collection rules, associate your data c
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To disable replication for a workspace, use the [az monitor log-analytics workspace update](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace update \
+  -g <resourcegroup_name> \
+  -n <workspace_name> \
+  --replication-enabled false
+```
 
 # [REST API](#tab/rest-api)
 
@@ -350,12 +399,12 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": false
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": false
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
 
@@ -379,11 +428,18 @@ Disabling cluster replication can be done only after disabling replication for a
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To disable replication for a cluster, use the [az monitor log-analytics cluster update](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-update) Azure CLI command:
+
+```azurecli
+az monitor log-analytics cluster update \
+  --resource-group <resourcegroup_name> \
+  --cluster-name <cluster_name> \
+  --replication-enabled false
+```
 
 # [REST API](#tab/rest-api)
 
-To disable replication for a workspace, use this `PUT` command:
+To disable replication for a cluster, use this `PUT` command:
 
 ```http
 PUT 
@@ -476,7 +532,14 @@ Before you switch over, [confirm that the workspace replication operation comple
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To switch over to your secondary workspace, use the [az monitor log-analytics workspace failover](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failover) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace failover \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name> \
+  --location <secondary_region>
+```
 
 # [REST API](#tab/rest-api)
 
@@ -537,7 +600,13 @@ The switchback process updates your DNS records. After the DNS records update, i
 
 # [Azure CLI](#tab/azure-cli)
 
-TODO
+To switch back to your primary workspace, use the [az monitor log-analytics workspace failback](/cli/azure/monitor/log-analytics/workspaceaz-monitor-log-analytics-workspace-failback) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace failback \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name>
+```
 
 # [REST API](#tab/rest-api)
 
@@ -567,13 +636,9 @@ When you trigger failover, this switches – the secondary region is activated, 
 
 It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
 
+To interact with the inactive region, you need to use the Azure Monitor Log Analyics API. For more information, including how to authenticate, see [Access the Azure Monitor Log Analytics API](./api/access-api.md).
+
 ### Query inactive region
-
-# [Azure CLI](#tab/azure-cli)
-
-TODO
-
-# [REST API](#tab/rest-api)
 
 To query log data in the inactive region, use this GET command:
 
@@ -583,23 +648,13 @@ GET
 api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=<query>&timespan=<timespan-in-ISO8601-format>&overrideWorkspaceRegion=<primary|secondary>
 ```
 
----
-
 For example, to run a short query like `Perf | count` for the past day in your secondary region, use:
-
-# [Azure CLI](#tab/azure-cli)
-
-TODO
-
-# [REST API](#tab/rest-api)
 
 ```http
 GET
 
 api.loganalytics.azure.com/v1/workspaces/<workspace id>/query?query=Perf%20|%20count&timespan=P1D&overrideWorkspaceRegion=secondary
 ```
-
----
 
 You can confirm that Azure Monitor runs your query in the intended region by checking these fields in the `LAQueryLogs` table, which is created when you [enable query auditing in your Log Analytics workspace](query-audit.md):
 
