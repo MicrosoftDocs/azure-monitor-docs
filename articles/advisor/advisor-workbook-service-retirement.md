@@ -42,7 +42,7 @@ The workbook shows a list and a map view of service retirements that impact your
 
 *   Use the export feature to share the report with your team to help plan your migration.
 
-:::image alt-text="Screenshot of the Azure Advisor service retirement workbook template." lightbox="./media/advisor-service-retirement-workbook-overview.png" source="./media/advisor-service-retirement-workbook-overview-preview.png" type="content":::
+:::image alt-text="Screenshot of the Azure Advisor service retirement workbook template." lightbox="./media/advisor-service-retirement-workbook-overview-2.png" source="./media/advisor-service-retirement-workbook-overview-preview.png" type="content":::
 
 :::image alt-text="Screenshot of the Azure Advisor service retirement workbook template, detailed view." lightbox="./media/advisor-service-retirement-workbook-details.png" source="./media/advisor-service-retirement-workbook-details-preview.png" type="content":::
 
