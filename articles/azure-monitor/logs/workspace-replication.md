@@ -383,8 +383,8 @@ To disable replication for a workspace, use the [az monitor log-analytics worksp
 
 ```azurecli
 az monitor log-analytics workspace update \
-  -g <resourcegroup_name> \
-  -n <workspace_name> \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name> \
   --replication-enabled false
 ```
 
