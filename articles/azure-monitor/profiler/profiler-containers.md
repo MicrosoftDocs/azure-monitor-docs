@@ -18,7 +18,7 @@ You can enable the Application Insights Profiler for .NET on applications that r
 In this article, you learn about the various ways that you can:
 > [!div class="checklist"]
 > - Install the NuGet package in the project.
-> - Set the environment variable by using an orchestrator, like Kubernetes.
+> - Set the environment variable.
 > - Learn security considerations around production deployment, like protecting your Application Insights connection string.
 
 ## Prerequisites
@@ -88,7 +88,7 @@ In this article, you learn about the various ways that you can:
    var app = builder.Build();
    ```   
 
-   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+   For custom settings, see [Customize Application Insights Profiler](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
    ### [ASP.NET Core 5 and earlier](#tab/net-core-old)
    
@@ -103,7 +103,7 @@ In this article, you learn about the various ways that you can:
    }
    ```
 
-   You can also [add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+   For custom settings, see [Customize Application Insights Profiler](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
    
    ---
 
