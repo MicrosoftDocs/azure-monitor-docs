@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.reviewer: xpathak
 ms.date: 03/08/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
-zone_pivot_groups: azure-monitor-vm-deployment
 
 ---
 
@@ -91,7 +90,7 @@ Development VMs in West US 2 →  dcr-otel-westus2-dev       →  amw-developmen
 
 The first step is to install the Azure Monitor agent extension on your virtual machines.
 
-::: zone pivot="azure-cli"
+# [Azure CLI](#tab/azure-cli)
 
 Install the Azure Monitor agent extension on a VM:
 
@@ -125,9 +124,7 @@ az vmss extension set \
   --resource-group <resource-group>
 ```
 
-::: zone-end
-
-::: zone pivot="azure-powershell"
+# [PowerShell](#tab/azure-powershell)
 
 Install the Azure Monitor agent using PowerShell:
 
@@ -161,9 +158,7 @@ Add-AzVmssExtension `
   -TypeHandlerVersion 1.0
 ```
 
-::: zone-end
-
-::: zone pivot="azure-resource-manager"
+# [ARM template](#tab/azure-resource-manager)
 
 Add the agent extension to your ARM template:
 
@@ -184,9 +179,7 @@ Add the agent extension to your ARM template:
 
 For Linux, change the type to `AzureMonitorLinuxAgent` and the name accordingly.
 
-::: zone-end
-
-::: zone pivot="bicep"
+# [Bicep](#tab/bicep)
 
 Add the agent extension to your Bicep template:
 
@@ -205,7 +198,7 @@ resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' 
 
 For Linux, change the type to `AzureMonitorLinuxAgent` in both the name and properties.
 
-::: zone-end
+---
 
 ## Step 2: Create data collection rules
 
@@ -213,7 +206,7 @@ Create DCRs to specify what data to collect. You can create different DCRs for d
 
 ### OpenTelemetry metrics (preview)
 
-::: zone pivot="azure-cli"
+# [Azure CLI](#tab/azure-cli)
 
 Create a DCR JSON file (`dcr-otel.json`):
 
@@ -268,9 +261,7 @@ az monitor data-collection rule create \
   --rule-file dcr-otel.json
 ```
 
-::: zone-end
-
-::: zone pivot="azure-powershell"
+# [PowerShell](#tab/azure-powershell)
 
 Create a DCR using PowerShell:
 
@@ -318,9 +309,7 @@ New-AzDataCollectionRule `
   -JsonString ($dcrProperties | ConvertTo-Json -Depth 10)
 ```
 
-::: zone-end
-
-::: zone pivot="azure-resource-manager"
+# [ARM template](#tab/azure-resource-manager)
 
 Add the DCR resource to your ARM template:
 
@@ -366,9 +355,7 @@ Add the DCR resource to your ARM template:
 }
 ```
 
-::: zone-end
-
-::: zone pivot="bicep"
+# [Bicep](#tab/bicep)
 
 Add the DCR resource to your Bicep template:
 
@@ -412,11 +399,11 @@ resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
 }
 ```
 
-::: zone-end
+---
 
 ### VM insights (logs-based metrics)
 
-::: zone pivot="azure-cli"
+# [Azure CLI](#tab/azure-cli)
 
 Create a DCR JSON file (`dcr-vminsights.json`):
 
@@ -462,9 +449,7 @@ az monitor data-collection rule create \
   --rule-file dcr-vminsights.json
 ```
 
-::: zone-end
-
-::: zone pivot="azure-powershell"
+# [PowerShell](#tab/azure-powershell)
 
 Create a DCR using PowerShell:
 
@@ -505,9 +490,7 @@ New-AzDataCollectionRule `
   -JsonString ($dcrProperties | ConvertTo-Json -Depth 10)
 ```
 
-::: zone-end
-
-::: zone pivot="azure-resource-manager"
+# [ARM template](#tab/azure-resource-manager)
 
 Add the DCR resource to your ARM template:
 
@@ -546,9 +529,7 @@ Add the DCR resource to your ARM template:
 }
 ```
 
-::: zone-end
-
-::: zone pivot="bicep"
+# [Bicep](#tab/bicep)
 
 Add the DCR resource to your Bicep template:
 
@@ -585,7 +566,7 @@ resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
 }
 ```
 
-::: zone-end
+---
 
 ### Additional data collection
 
@@ -627,7 +608,7 @@ You can create additional DCRs to collect Windows events, Syslog, or custom perf
 
 The final step is to create associations between your DCRs and your VMs to activate data collection.
 
-::: zone pivot="azure-cli"
+# [Azure CLI](#tab/azure-cli)
 
 Associate a DCR with a VM:
 
@@ -645,9 +626,7 @@ az monitor data-collection rule association create \
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
 ```
 
-::: zone-end
-
-::: zone pivot="azure-powershell"
+# [PowerShell](#tab/azure-powershell)
 
 Create an association between a DCR and a VM:
 
@@ -664,9 +643,7 @@ New-AzDataCollectionRuleAssociation `
   -DataCollectionRuleId $dcrId
 ```
 
-::: zone-end
-
-::: zone pivot="azure-resource-manager"
+# [ARM template](#tab/azure-resource-manager)
 
 Add the association resource to your ARM template:
 
@@ -686,9 +663,7 @@ Add the association resource to your ARM template:
 }
 ```
 
-::: zone-end
-
-::: zone pivot="bicep"
+# [Bicep](#tab/bicep)
 
 Add the association resource to your Bicep template:
 
@@ -705,7 +680,7 @@ resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-
 }
 ```
 
-::: zone-end
+---
 
 ## Complete deployment examples
 
@@ -713,7 +688,7 @@ The following examples show complete automation scripts that perform all three s
 
 ### Bulk deployment script
 
-::: zone pivot="azure-cli"
+# [Azure CLI](#tab/azure-cli)
 
 Shell script to enable monitoring for all VMs in a resource group:
 
@@ -770,9 +745,9 @@ done
 echo "Deployment initiated for all VMs in resource group $RESOURCE_GROUP"
 ```
 
-::: zone-end
+---
 
-::: zone pivot="azure-powershell"
+# [PowerShell](#tab/azure-powershell)
 
 PowerShell script to enable monitoring for all VMs in a resource group:
 
@@ -844,9 +819,9 @@ foreach ($vm in $vms) {
 Write-Host "`nCompleted processing $($vms.Count) VMs"
 ```
 
-::: zone-end
+---
 
-::: zone pivot="azure-resource-manager"
+# [ARM template](#tab/azure-resource-manager)
 
 Complete ARM template deploying a VM with monitoring:
 
@@ -956,9 +931,9 @@ az deployment group create \
                workspaceResourceId=<workspace-resource-id>
 ```
 
-::: zone-end
+---
 
-::: zone pivot="bicep"
+# [Bicep](#tab/bicep)
 
 Complete Bicep template deploying a VM with comprehensive monitoring:
 
@@ -1113,11 +1088,17 @@ az deployment group create \
                osType=Windows
 ```
 
-::: zone-end
+---
 
 ### Using the Install-VMInsights.ps1 script
 
-::: zone pivot="azure-powershell"
+# [Azure CLI](#tab/azure-cli)
+
+This script is only available for PowerShell-based deployments.
+
+---
+
+# [PowerShell](#tab/azure-powershell)
 
 For VM insights specifically, Microsoft provides a PowerShell Gallery script that automates all three steps. This script supports logs-based metrics only.
 
@@ -1152,13 +1133,19 @@ Install-VMInsights.ps1 `
   -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
 ```
 
-::: zone-end
+---
 
-::: zone pivot="azure-cli,azure-resource-manager,bicep"
+# [ARM template](#tab/azure-resource-manager)
 
 This script is only available for PowerShell-based deployments.
 
-::: zone-end
+---
+
+# [Bicep](#tab/bicep)
+
+This script is only available for PowerShell-based deployments.
+
+---
 
 ## Using the Install-VMInsights.ps1 script (classic experience only)
 
