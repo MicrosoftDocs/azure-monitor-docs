@@ -49,7 +49,7 @@ In this article, you learn about the various ways that you can:
    dotnet new mvc -n EnableServiceProfilerForContainerApp
    ```
 
-   There's a delay is in the `Controllers/WeatherForecastController.cs` project to simulate the bottleneck.
+   There's a delay in the `Controllers/WeatherForecastController.cs` file to simulate the bottleneck.
 
    ```csharp
    [HttpGet(Name = "GetWeatherForecast")]
