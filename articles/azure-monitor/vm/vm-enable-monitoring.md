@@ -1,6 +1,6 @@
 ---
 title: Enable VM monitoring at scale
-description: Learn how to enable monitoring for virtual machines and virtual machine scale sets at scale using Azure CLI, PowerShell, ARM templates, Bicep, and Azure Policy.
+description: Learn how to enable monitoring for virtual machines and virtual machine scale sets at scale using Azure CLI, PowerShell, ARM templates, and Bicep.
 ms.topic: how-to
 ms.reviewer: xpathak
 ms.date: 03/08/2026
@@ -32,9 +32,11 @@ This article covers the following methods for automating these steps:
 - **Azure PowerShell** - PowerShell-based automation
 - **ARM templates** - JSON-based infrastructure as code
 - **Bicep** - Azure-native domain-specific language
-- **Azure Policy** - Governance-based automated compliance
 
 Each method can enable both OpenTelemetry-based metrics (preview) and logs-based metrics (classic). You can also create additional DCRs to collect events, logs, and custom performance counters beyond the default metrics.
+
+> [!NOTE]
+> To enable monitoring at scale using Azure Policy, see [Enable VM insights using Azure Policy](vminsights-enable-policy.md).
 
 
 ## Prerequisites
@@ -202,12 +204,6 @@ resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' 
 ```
 
 For Linux, change the type to `AzureMonitorLinuxAgent` in both the name and properties.
-
-::: zone-end
-
-::: zone pivot="azure-policy"
-
-Azure Policy automatically installs the Azure Monitor agent when you assign a VM insights policy initiative. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy) to configure policy-based deployment.
 
 ::: zone-end
 
@@ -415,12 +411,6 @@ resource dcr 'Microsoft.Insights/dataCollectionRules@2022-06-01' = {
   }
 }
 ```
-
-::: zone-end
-
-::: zone pivot="azure-policy"
-
-Azure Policy automatically creates DCRs when you configure the policy initiative. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy).
 
 ::: zone-end
 
@@ -714,12 +704,6 @@ resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-
   ]
 }
 ```
-
-::: zone-end
-
-::: zone pivot="azure-policy"
-
-Azure Policy automatically creates associations when remediating policy assignments. Skip to [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy).
 
 ::: zone-end
 
@@ -1131,12 +1115,6 @@ az deployment group create \
 
 ::: zone-end
 
-::: zone pivot="azure-policy"
-
-Azure Policy-based deployment doesn't require custom scripts. All three steps (agent installation, DCR creation, and association) are handled automatically through policy initiatives and remediation tasks. See [Enable monitoring using Azure Policy](#enable-monitoring-using-azure-policy) for details.
-
-::: zone-end
-
 ### Using the Install-VMInsights.ps1 script
 
 ::: zone pivot="azure-powershell"
@@ -1176,122 +1154,59 @@ Install-VMInsights.ps1 `
 
 ::: zone-end
 
-::: zone pivot="azure-cli,azure-resource-manager,bicep,azure-policy"
+::: zone pivot="azure-cli,azure-resource-manager,bicep"
 
 This script is only available for PowerShell-based deployments.
 
 ::: zone-end
 
-## Enable monitoring using Azure Policy
+## Using the Install-VMInsights.ps1 script (classic experience only)
 
-Azure Policy allows you to enforce consistent monitoring across all VMs in a scope (management group, subscription, or resource group) by automatically deploying agents and associating DCRs to new and existing resources.
-
-### Azure Policy initiatives
-
-VM insights policy initiatives are predefined sets of policies that install the Azure Monitor agent and configure data collection. The following initiatives are available:
-
-- **Enable Azure Monitor for VMs with Azure Monitoring Agent (AMA)** - For Azure virtual machines
-- **Enable Azure Monitor for VMSS with Azure Monitoring Agent (AMA)** - For virtual machine scale sets
-- **Enable Azure Monitor for Hybrid VMs with AMA** - For Arc-enabled servers
+The Install-VMInsights.ps1 PowerShell script provides an alternative method for enabling VM insights at scale. This script is designed for the **classic logs-based monitoring experience only** and doesn't support OpenTelemetry metrics.
 
 > [!IMPORTANT]
-> The Dependency Agent and the Map experience in VM Insights will be retired on 30 June 2028. See the [retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. Set the **Enable Processes and Dependencies** parameter to false when assigning policy initiatives.
+> This script installs the Log Analytics agent (legacy) or Azure Monitor agent with VM insights logs-based configuration. It does not support OpenTelemetry-based metrics. For new deployments, use the methods described earlier in this article.
 
-### Assign a policy initiative
+### Download and run the script
 
-Before you begin, ensure you have a DCR created for the monitoring configuration you want to apply. You'll need the DCR resource ID when assigning the policy.
+The script is available from the PowerShell Gallery:
 
-To assign a VM insights policy initiative:
+```powershell
+# Install the script from PowerShell Gallery
+Install-Script -Name Install-VMInsights
 
-1. In the Azure portal, navigate to **Policy** > **Assignments** > **Assign initiative**.
+# Enable monitoring for a single VM
+Install-VMInsights.ps1 -WorkspaceId <workspace-id> -WorkspaceKey <workspace-key> -SubscriptionId <subscription-id> -ResourceGroup <resource-group> -Name <vm-name>
 
-2. Configure the **Basics** tab:
-   - **Scope**: Select the management group, subscription, or resource group where the initiative will apply.
-   - **Exclusions**: (Optional) Exclude specific resources from the initiative.
-   - **Initiative definition**: Select one of the [VM insights initiatives](#azure-policy-initiatives).
-   - **Assignment name**: Provide a descriptive name for the assignment.
-   - **Policy enforcement**: Specify whether to enforce the policies or only evaluate compliance.
+# Enable monitoring for all VMs in a resource group
+Install-VMInsights.ps1 -WorkspaceId <workspace-id> -WorkspaceKey <workspace-key> -SubscriptionId <subscription-id> -ResourceGroup <resource-group>
 
-3. Configure the **Parameters** tab:
-   - **Enable Processes and Dependencies**: Set to false (the Map feature is being retired).
-   - **Bring Your Own User-Assigned Managed Identity**: 
-     - When enabled, specify an existing managed identity for the agent to use.
-     - When disabled, a managed identity is automatically created per region.
-   - **User-Assigned Managed Identity settings**: If bringing your own identity, provide:
-     - **Restrict Bring Your Own User-Assigned Identity to Subscription**: Enable if the identity is in the same subscription as the VMs.
-     - **User-Assigned Managed Identity Resource ID**: Full resource ID (if not restricted to subscription).
-     - **User-Assigned Managed Identity Name**: Identity name (if restricted to subscription).
-     - **User-Assigned Managed Identity Resource Group**: Identity resource group (if restricted to subscription).
-   - **VMI Data Collection Rule Resource Id**: Enter the resource ID of your DCR.
-   - **Effect for all constituent policies**: Set to `DeployIfNotExists` to enable policy enforcement.
-   - **Scope Policy to supported Operating Systems**: Enable to apply only to VMs with supported OS.
+# Enable monitoring for all VMs in a subscription
+Install-VMInsights.ps1 -WorkspaceId <workspace-id> -WorkspaceKey <workspace-key> -SubscriptionId <subscription-id>
+```
 
-4. Configure the **Managed identity** tab:
-   - Specify the managed identity that the policy engine will use to deploy resources. This is different from the agent's managed identity.
+### Script parameters
 
-5. Review and create the assignment.
+| Parameter | Description | Required |
+|:---|:---|:---|
+| WorkspaceId | Log Analytics workspace ID | Yes |
+| WorkspaceKey | Log Analytics workspace primary key | Yes |
+| SubscriptionId | Azure subscription ID | Yes |
+| ResourceGroup | Target resource group (omit to target entire subscription) | No |
+| Name | Target VM name (omit to target all VMs in scope) | No |
+| PolicyAssignmentName | Name of a policy assignment to validate against | No |
+| ReInstall | Reinstall extensions even if already present | No |
+| TriggerVmssManualVMUpdate | Trigger manual update for VMSS VMs | No |
 
-### Monitor policy compliance
+### Get workspace ID and key
 
-After assigning an initiative, monitor compliance:
+To get your Log Analytics workspace ID and key:
 
-1. Navigate to **Monitor** > **Insights** > **Virtual machines** > **Overview** > **Other onboarding options**.
+1. In the Azure portal, navigate to your Log Analytics workspace.
+2. Select **Agents** under **Settings**.
+3. Copy the **Workspace ID** and **Primary key**.
 
-2. Under **Enable using policy**, select **Enable** to view the **Azure Monitor for VMs Policy Coverage** page.
-
-   This page shows:
-   - **Total VMs**: Number of VMs in the scope
-   - **Assignment Coverage**: Percentage of VMs covered by the initiative
-   - **Compliant VMs**: Number of VMs with agents installed and DCRs associated
-   - **Compliance State**: Overall compliance status
-
-3. Select the ellipsis (**...**) > **View Compliance** to see detailed compliance information.
-
-4. Select an assignment to view the **Initiative compliance** page, which lists each policy definition and its compliance state.
-
-Policy definitions are considered noncompliant if:
-- Azure Monitor Agent isn't deployed on a VM
-- VM operating system isn't supported or recognized
-- DCR isn't associated with the VM
-
-### Create a remediation task
-
-For existing VMs that were present before the policy assignment, create remediation tasks to bring them into compliance:
-
-1. On the **Initiative compliance** page, select a noncompliant policy definition.
-
-2. Select **Create Remediation Task**.
-
-3. Review **Remediation settings**:
-   - **Scope**: Verify the scope for remediation (defaults to policy assignment scope)
-   - **Policy definition**: The individual policy being remediated
-   - **Resources to remediate**: Optional filters to target specific resources
-
-4. Select **Remediate** to create the task.
-
-5. Track remediation progress on the **Policy** > **Remediation** > **Remediation tasks** tab.
-
-> [!NOTE]
-> Remediation tasks must be created separately for each policy definition in the initiative. You cannot create a single remediation task for the entire initiative.
-
-### Policy best practices for scale
-
-When using Azure Policy for at-scale VM monitoring:
-
-- **Use management groups**: Assign policies at the management group level for organization-wide enforcement
-- **Share DCRs**: Reference the same DCR across multiple policy assignments for consistency
-- **Plan for regional DCRs**: Create region-specific DCRs if your VMs span multiple regions (DCRs must be in the same region as the destination workspace)
-- **Leverage exclusions**: Use exclusions for special-purpose VMs that require custom monitoring configurations
-- **Monitor remediation**: Check remediation task status regularly to ensure compliance
-- **Use resource selectors**: Target specific VM types or resource groups within a broader scope
-
-Example policy assignment scenario for a multi-region deployment:
-
-1. Create DCRs in each region (East US, West Europe) with the same configuration
-2. Assign the VM insights initiative at the management group level
-3. Use resource selectors to target VMs in each region with the appropriate regional DCR
-4. Create remediation tasks after assignment to enable existing VMs
-5. Monitor compliance and investigate non-compliant resources
+For more information about this script, see [Install-VMInsights.ps1](https://www.powershellgallery.com/packages/Install-VMInsights) on the PowerShell Gallery.
 
 ## Enable network isolation
 
