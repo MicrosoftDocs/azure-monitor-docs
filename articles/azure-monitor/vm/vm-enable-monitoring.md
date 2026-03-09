@@ -745,8 +745,6 @@ done
 echo "Deployment initiated for all VMs in resource group $RESOURCE_GROUP"
 ```
 
----
-
 # [PowerShell](#tab/azure-powershell)
 
 PowerShell script to enable monitoring for all VMs in a resource group:
@@ -818,8 +816,6 @@ foreach ($vm in $vms) {
 
 Write-Host "`nCompleted processing $($vms.Count) VMs"
 ```
-
----
 
 # [ARM template](#tab/azure-resource-manager)
 
@@ -930,8 +926,6 @@ az deployment group create \
   --parameters vmName=<vm-name> \
                workspaceResourceId=<workspace-resource-id>
 ```
-
----
 
 # [Bicep](#tab/bicep)
 
@@ -1092,14 +1086,6 @@ az deployment group create \
 
 ### Using the Install-VMInsights.ps1 script
 
-# [Azure CLI](#tab/azure-cli)
-
-This script is only available for PowerShell-based deployments.
-
----
-
-# [PowerShell](#tab/azure-powershell)
-
 For VM insights specifically, Microsoft provides a PowerShell Gallery script that automates all three steps. This script supports logs-based metrics only.
 
 ```powershell
@@ -1133,19 +1119,6 @@ Install-VMInsights.ps1 `
   -UserAssignedManagedIdentityResourceGroup <identity-resource-group>
 ```
 
----
-
-# [ARM template](#tab/azure-resource-manager)
-
-This script is only available for PowerShell-based deployments.
-
----
-
-# [Bicep](#tab/bicep)
-
-This script is only available for PowerShell-based deployments.
-
----
 
 ## Using the Install-VMInsights.ps1 script (classic experience only)
 
