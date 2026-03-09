@@ -22,7 +22,7 @@ On **Advisor** | **Workbooks** | **Gallery**.
 
 1.  Select **All** or **Public Templates**.
 
-1.  Under **Azure Advisor**, select **Service Retirement (Preview)**.
+1.  Under **Azure Advisor**, select **Service Retirement**.
 
 To directly access the Service Retirement workbook, see [Service Retirement workbook](https://portal.azure.com/#blade/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/WorkbookTemplateName/Service%20Retirement%20(Preview) "Service Retirement workbook | Advisor | Microsoft Azure").
 
@@ -77,9 +77,10 @@ The **Retiring Azure services** table provides data in the column under the foll
 
 *   **Retirement Date**
 
-*   **\# Resources**
-
 *   **Actions**
+  
+*    **\# Resources**
+
 
 If you select the check box next to one or more service names in the **Retiring Azure services** table, the resources associated with the service names are shown in the **... resources affected by the selected service retirement...** table.
 
@@ -158,13 +159,7 @@ The view named **All Services** provides details for all of the services that ar
 
 ### Is an API available to automate the pull of the workbook data rather than running and exporting the workbook results?
 
-The data in the **Retiring Azure services....** table is currently maintained in a JSON format. The retirement JSON data isn't directly consumable.
-
-Direct access isn't available using an API to pull data provided in Retirement workbook. Use [Azure Resource Graph](https://portal.azure.com/#view/HubsExtension/ArgQueryBlade "Azure Resource Graph Explorer | Microsoft Azure") query in Service Retirement workbook and access data using supported Azure Resource Graph APIs, PowerShell, and so on.
-
-### Is a data source available for direct consumption?
-
-The data is currently maintained in a JSON format. Direct access to the JSON retirement data isn't available.
+Yes, Advisor APIs provide a way to setup a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/en-us/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
 
 ### How do you modify the workbook template to build a personalized view?
 
