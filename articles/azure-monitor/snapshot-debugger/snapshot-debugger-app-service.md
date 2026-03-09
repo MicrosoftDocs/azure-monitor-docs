@@ -27,7 +27,7 @@ Although Snapshot Debugger is preinstalled as part of the App Services runtime, 
 
 You can enable Snapshot Debugger in the Azure portal after deploying your .NET App Services web app.
 
-1. Navigate to your App Services web app in the [Azure portal](https:portal.azure.com).
+1. Navigate to your App Services web app in the [Azure portal](https://portal.azure.com).
 
 1. In the left menu, select **Monitoring** > **Application Insights**.
 
@@ -143,7 +143,7 @@ Snapshot Debugger supports Microsoft Entra authentication for snapshot ingestion
 
 ## Unsupported scenarios
 
-The following scenario demonstrate where Snapshot Collector isn't supported.
+The following scenario demonstrates where Snapshot Collector isn't supported.
 
 | Scenario | Side Effects | Recommendation |
 |----------|--------------|----------------|
