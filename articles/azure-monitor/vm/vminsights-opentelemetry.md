@@ -16,6 +16,7 @@ OTel guest OS metrics are system and process‑level performance counters collec
 
 > [!NOTE]
 > Onboarding to VM insights in the Azure portal automatically creates a new data collection rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from a virtual machine by using Azure Monitor](./data-collection-performance.md).
+> OpenTelemetry for VM insights does not currently support Private Link. VMs deployed in private or restricted network environments may not be able to collect or send metrics. 
 
 1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
 
