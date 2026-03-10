@@ -34,18 +34,18 @@ After an exception occurs in your application and a snapshot is created, you can
 
 1. Select the **[x] Samples** in the center column of the page to generate a list of sample operations or exceptions to the right.
 
-   :::image type="content" source="./media/snapshot-debugger/failures-page.png" alt-text="Screenshot showing the Failures Page in Azure portal.":::
+   :::image type="content" source="./media/snapshot-debugger/failures-page.png" alt-text="Screenshot showing the Failures Page in Azure portal." lightbox="./media/snapshot-debugger/failures-page.png":::
 
 1. From the list of samples, select an operation or exception to open the **End-to-End Transaction Details** page. From here, select the exception event you'd like to investigate.
 
    - If a snapshot is available for the given exception, select **Open debug snapshot** in the right pane to view the **Debug Snapshot** page. 
    - If you don't see this option, there might be no snapshot available. See the [troubleshooting guide](./snapshot-debugger-troubleshoot.md#use-the-snapshot-health-check).
 
-   :::image type="content" source="./media/snapshot-debugger/e2e-transaction-page.png" alt-text="Screenshot showing the Open Debug Snapshot button on exception.":::
+   :::image type="content" source="./media/snapshot-debugger/e2e-transaction-page.png" alt-text="Screenshot showing the Open Debug Snapshot button on exception." lightbox="./media/snapshot-debugger/e2e-transaction-page.png":::
 
 1. In the **Debug Snapshot** page, you see a call stack with a local variables pane. Select a call stack frame to view local variables and parameters for that function call in the variables pane.
 
-   :::image type="content" source="./media/snapshot-debugger/open-snapshot-portal.png" alt-text="Screenshot showing the Open debug snapshot highlighted in the Azure portal.":::
+   :::image type="content" source="./media/snapshot-debugger/open-snapshot-portal.png" alt-text="Screenshot showing the Open debug snapshot highlighted in the Azure portal." lightbox="./media/snapshot-debugger/open-snapshot-portal.png":::
 
 ### From the Code Optimizations consolidated overview
 
@@ -57,7 +57,7 @@ You can also view insights on your exception snapshots by using the [Code Optimi
 
 1. Under the **Insight type** column in the results window, look for **Exceptions**.
 
-   :::image type="content" source="./media/snapshot-debugger/view-exceptions-in-code-optimizations.png" alt-text="Screenshot showing the Exception snapshot on the Code Optimizations consolidated overview in the Azure portal.":::
+   :::image type="content" source="./media/snapshot-debugger/view-exceptions-in-code-optimizations.png" alt-text="Screenshot showing the Exception snapshot on the Code Optimizations consolidated overview in the Azure portal." lightbox="./media/snapshot-debugger/view-exceptions-in-code-optimizations.png":::
 
 ## Download snapshots to view in Visual Studio
 
@@ -74,7 +74,7 @@ To view snapshots in Visual Studio 2017 Enterprise or greater:
 
 1. Select **Debug Managed Code** to start debugging the snapshot. The snapshot opens to the line of code where the exception was thrown.
 
-   :::image type="content" source="./media/snapshot-debugger/open-snapshot-visual-studio.png" alt-text="Screenshot showing the debug snapshot in Visual Studio.":::
+   :::image type="content" source="./media/snapshot-debugger/open-snapshot-visual-studio.png" alt-text="Screenshot showing the debug snapshot in Visual Studio." lightbox:::
 
 > [!NOTE]
 > The downloaded snapshot includes any symbol files found on your web application server. These symbol files are required to associate snapshot data with source code. For App Service apps, make sure to enable symbol deployment when you publish your web apps.
