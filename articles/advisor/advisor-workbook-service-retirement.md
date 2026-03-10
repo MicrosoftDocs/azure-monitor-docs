@@ -101,7 +101,7 @@ The view named **All Services** provides details for all of the services that ar
 
 ### Is an API available to automate the pull of the workbook data rather than running and exporting the workbook results?
 
-Yes, Advisor APIs provide a way to setup a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
+Yes, Advisor APIs provide a way to set up a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
 
 ### How do you modify the workbook template to build a personalized view?
 
