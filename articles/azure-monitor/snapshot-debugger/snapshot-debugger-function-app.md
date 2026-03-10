@@ -6,12 +6,12 @@ reviewer: cweining
 ms.topic: how-to
 ms.date: 03/11/2026
 ms.custom: devdivchpfy22, devx-track-dotnet
-#customer intent: As an application developer, I want to enable Snapshot Debugger for my  ASP.NET and ASP.NET Core apps that are run on Azure Functions on Windows service plans.
+#customer intent: As an application developer, I want to enable Snapshot Debugger for my ASP.NET and ASP.NET Core apps that run on Azure Functions on Windows service plans.
 ---
 
 # Enable Snapshot Debugger for .NET and .NET Core apps in Azure Functions
 
-Snapshot Debugger currently works for ASP.NET and ASP.NET Core apps that are running on Azure Functions on Windows service plans.
+Snapshot Debugger currently works for ASP.NET and ASP.NET Core apps that run on Azure Functions on Windows service plans.
 
 We recommend that you run your application on the Basic or higher service tiers when you use Snapshot Debugger. For most applications:
 
