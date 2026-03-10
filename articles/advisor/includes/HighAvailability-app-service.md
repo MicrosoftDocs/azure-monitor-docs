@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -506,5 +506,23 @@ Recommendation ID: 271b07b4-c9f6-450a-ac0b-68124c0faa63
 Subcategory: undefined
 
 <!--271b07b4-c9f6-450a-ac0b-68124c0faa63_end-->
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_begin-->
+
+#### Upgrade Azure Functions apps to Python 3.13  
+  
+In alignment with the end of community support, support for Python 3.10 in Azure Functions will end. Apps that are hosted on Functions will continue to run, but security updates and performance optimizations will no longer be available and we'll no longer provide customer service for Python 3.10.  
+  
+**Potential benefits**: Avoid service interruption  
+
+**Impact:** Medium
+  
+  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027  
+Subcategory: undefined
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
 
 <!--articleBody-->
