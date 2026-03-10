@@ -13,7 +13,7 @@ ms.date: 05/21/2025
 
 Azure managed service for Prometheus stores its data in an Azure Monitor workspace, which uses a public endpoint by default. Microsoft secures connections to public endpoints with end-to-end encryption. If you require a private endpoint, use [Azure private link](../../logs/private-link-security.md) to allow your cluster to connect to the workspace through authorized private networks. You can also use private link to force workspace data ingestion through ExpressRoute or a VPN.
 
-**Instructions**: See [Enable private link for Kubernetes monitoring in Azure Monitor](../kubernetes-monitoring-private-link.md) for details on configuring your cluster for private link. See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../../essentials/azure-monitor-workspace-private-endpoint.md) for details on querying your data by using private link.
+**Instructions**: See [Enable private link for Kubernetes monitoring in Azure Monitor](../kubernetes-monitoring-private-link.md) for details on configuring your cluster for private link. See [Use private endpoints for Managed Prometheus and Azure Monitor workspace](../../metrics/azure-monitor-workspace-private-endpoint.md) for details on querying your data by using private link.
 
 #### Monitor network traffic to and from clusters by using traffic analytics 
 
