@@ -71,7 +71,7 @@ While it's not recommended from a security standpoint, you may choose to disable
     {
         "type": "Syslog",
         "name": "receiverSyslog",
-        "tlsConfiguration": "no-tls",
+        "tlsConfiguration": "tls-disabled",
           ....
     }
 ]
