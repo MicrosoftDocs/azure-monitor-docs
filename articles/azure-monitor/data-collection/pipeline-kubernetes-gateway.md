@@ -244,7 +244,7 @@ Apply:
 kubectl apply -f routing.yaml
 ```
 
-### Step 3: Install Traefik
+### Step 2: Install Traefik
 
 Deploy Traefik in the **same namespace** as the pipeline:
 
@@ -265,7 +265,7 @@ helm install traefik traefik/traefik \
     --wait
 ```
 
-### Step 4: Get the Gateway's external IP
+### Step 3: Get the Gateway's external IP
 
 ```bash
 GATEWAY_IP=$(kubectl get svc traefik -n <pipeline-namespace> \
