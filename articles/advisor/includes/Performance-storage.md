@@ -34,7 +34,7 @@ Recommendation ID: c6b94711-f1f5-4e7e-9c89-c17ed4190969
 
 #### No Snapshots Detected  
   
-We observed that there are no snapshots of your file shares. This means you aren't protected from accidental file deletion or file corruption scenarios. Enable snapshots to protect your data. To enable snapshots, you can use Azure Portal or Azure Backup or 3rd party solutions.  
+We observed that there are no snapshots of your file shares. This means you aren't protected from accidental file deletion or file corruption scenarios. Enable snapshots to protect your data. To enable snapshots, you can use Azure portal or Azure Backup or 3rd party solutions.  
   
 **Potential benefits**: Schedule snapshots of your file shares to protect yourself from accidental file deletion or data corruption like ransomware.  
 

@@ -29,7 +29,7 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 * [Availability view](availability-overview.md): Proactively monitor and test the availability and responsiveness of application endpoints.
 * [Failures view](failures-performance-transactions.md?tabs=failures-view): Identify and analyze failures in your application to minimize downtime.
 * [Performance view](failures-performance-transactions.md?tabs=performance-view): Review application performance metrics and potential bottlenecks.
-* [Agents details](agents-view.md): A unified view for monitoring AI agents across Azure AI Foundry, Copilot Studio, and third-party agents.
+* [Agents details](agents-view.md): A unified view for monitoring AI agents across Microsoft Foundry, Copilot Studio, and third-party agents.
 
 ### Monitoring
 

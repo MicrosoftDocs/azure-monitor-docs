@@ -40,7 +40,7 @@ If the quota for your resource is exceeded your resource becomes blocked. You ca
 
 **Impact:** Medium
   
-For more information, see [Plan and manage costs for Azure AI Foundry - Azure AI Foundry ](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
+For more information, see [Plan and manage costs for Microsoft Foundry - Foundry ](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 3f83aee8-222d-445c-9a46-2af5fe5b4777  
@@ -52,7 +52,7 @@ Subcategory: Scalability
 
 #### Migrate to named entity recognition  
   
-Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entity and doesn't provide a link to a public page.  
+Entity linking in Azure Language in Foundry Tools is retiring. Consider a replacement solution such as named entity recognition in Language that supports entity and doesn't provide a link to a public page.  
   
 **Potential benefits**: Maintain entity identification capabilities  
 
@@ -104,9 +104,9 @@ Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_begin-->
 
-#### Migrate away from Azure AI Vision - Image Analysis API  
+#### Migrate away from Azure Vision in Foundry Tools - Image Analysis API  
   
-The Azure AI Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
+The Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
   
 **Potential benefits**: Avoid service disruptions  
 
@@ -142,7 +142,7 @@ Subcategory: undefined
 
 #### Migrate to conversational language understanding  
   
-Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure AI Service for Language.  
+Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure Language in Foundry Tools.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -158,9 +158,9 @@ Subcategory: undefined
 
 <!--d0f31a4b-60c1-4e61-b095-2d14504a9675_begin-->
 
-#### Support for Video Retrieval in Azure AI Content Understanding is ending  
+#### Support for Video Retrieval in Azure Content Understanding in Foundry Tools is ending  
   
-Support for Video Retrieval in Azure AI Content Understanding is ending  
+Support for Video Retrieval in Content Understanding is ending  
   
 **Potential benefits**: Avoid potential disruptions  
 
