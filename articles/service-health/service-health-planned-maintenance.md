@@ -156,30 +156,30 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 #### Summary 
 **Service Health experience for Planned maintenance**
 
-This is what you can expect from the Service Health dashboard during planned maintenance events, and why functionality may vary across different events.
+This is what you can expect from the Service health dashboard during planned maintenance events, and why functionality may vary across different events.
 
 **Service health dashboard capabilities**<br>
 Service health is the central place for you to view maintenance events, understand potential impact, and take action when supported.
-For some planned maintenance events, you will see the full Service health experience, which includes:
-  - **Autmatically impacted resources on each page refresh**<br>
-    On each page refresh, a live, automatically updated list of impacted resources as maintenance progresses and completes is displayed.
+For some planned maintenance events, you'll see the full Service health experience, which includes:
+  - **Autmatically impacted resources**<br>
+    Every time the page is refreshed the dashboard displays a live list of impacted resources that updates as maintenance progresses and completes.
   - **Live status updates**<br>
-    Resource status reflects the current maintenance phase without requiring manual page refresh.
+    The resource status reflects the current maintenance phase without requiring a manual page refresh.
   - **Customer actionability (where supported)**<br>
-    Links are provided to redirect you from Service Health to the right location in Azure Portal, so you can to take proactive actions on individual resources directly.<br>
+    Links are provided to redirect you from Service health to the right location in Azure Portal, where you can to take proactive actions on the individual resources directly.<br>
   Together, these features represent the full functionality of the Service health dashboard for planned maintenance.
 
 **Limited functionality for some maintenance events**<br>
 For other planned maintenance events, you might experience a more limited version of the Service Health experience. In these cases:
-  - Impacted resources could be shown as a **static list** or could **be unavailable**, based on the information provided to Service health for that event.
-  - Resource status **might not update dynamically** as the maintenance progresses or completes.
+  - Impacted resources may appear as a static list, or may not be shown at all, depending on the data available for that event.
+  - Resource status might not update dynamically as the maintenance progresses or completes.
   - Resource-level customer actions links **might not be supported**.<br>
   In these scenarios, Service health continues to provide maintenance visibility and notifications, but without the full set of dynamic and actionable capabilities described above.
 
 **Service health commitment**<br>
 Service Health continues to meet its **availability** and **notification commitments** for all planned maintenance events. 
 
-Feature-level capabilities can vary by event and delivery mechanism (Portal UX vs API). We are actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
+Feature-level capabilities can vary by event and delivery mechanism (Portal UX or API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
 
 
 
