@@ -2,7 +2,7 @@
 title: Service Health Alerts AI generated summary (Preview)
 description: Service health AI generated summary and timeline overview
 ms.topic: concept-article
-ms.date: 03/10/2026
+ms.date: 03/11/2026
 ---
 
 # AI generated summary and timeline (Preview) 
