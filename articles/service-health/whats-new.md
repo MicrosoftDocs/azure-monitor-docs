@@ -2,7 +2,7 @@
 title: What's New in Azure Service Health
 description: Learn about what's new in Azure Service Health.
 ms.topic: whats-new
-ms.date: 02/10/2026
+ms.date: 03/10/2026
 ---
 
 # What's new in Azure Service Health
