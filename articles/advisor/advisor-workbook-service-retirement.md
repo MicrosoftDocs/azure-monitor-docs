@@ -22,7 +22,7 @@ On **Advisor** | **Workbooks** | **Gallery**.
 
 1.  Select **All** or **Public Templates**.
 
-1.  Under **Azure Advisor**, select **Service Retirement (Preview)**.
+1.  Under **Azure Advisor**, select **Service Retirement**.
 
 To directly access the Service Retirement workbook, see [Service Retirement workbook](https://portal.azure.com/#blade/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/WorkbookTemplateName/Service%20Retirement%20(Preview) "Service Retirement workbook | Advisor | Microsoft Azure").
 
