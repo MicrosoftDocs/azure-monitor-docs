@@ -179,7 +179,7 @@ For other planned maintenance events, you might experience a more limited versio
 **Service health commitment**<br>
 Service Health continues to meet its **availability** and **notification commitments** for all planned maintenance events. 
 
-Feature-level capabilities can vary by event and delivery mechanism (Portal UX or API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
+Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface or programmatic access (API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
 
 
 
