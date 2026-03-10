@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Application Gateway
@@ -22,13 +22,14 @@ We recommend having at least two origins for resiliency. However, if only a sing
 
 **Impact:** Low
   
-For more information, see [Azure Front Door - Best practices ](https://aka.ms/afd-disable-health-probes)  
+For more information, see [Best Practices - Azure Front Door](https://aka.ms/afd-disable-health-probes)  
 
 ResourceType: microsoft.network/frontdoors  
 Recommendation ID: 1c7fc5ab-f776-4aee-8236-ab478519f68f  
 
 
 <!--1c7fc5ab-f776-4aee-8236-ab478519f68f_end-->
+
 
 <!--e6744163-0be2-4c17-83da-179a0af9d14f_begin-->
 

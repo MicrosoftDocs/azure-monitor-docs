@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -110,7 +110,7 @@ Recommendation ID: ea000e01-b053-4076-a61b-e4cc58e9db07
 
 #### Upgrade to the latest DRS rule set in Application Gateway WAF  
   
-WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version will provide enhanced engine performance, better protection, and a reduction in false positives. It's recommended to use the latest DRS rule set version.  
+WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version provides enhanced engine performance, improved protection, and reduced false positives. CRS rule sets are legacy versions, older than DRS; it's recommended to use the latest DRS version (DRS 2.2).  
   
 **Potential benefits**: Ensure increased efficiency and better protection  
 
@@ -123,6 +123,7 @@ Recommendation ID: 7aaefe5a-5b88-4790-9a3d-5106722f7c34
 
 
 <!--7aaefe5a-5b88-4790-9a3d-5106722f7c34_end-->
+
 
 <!--aa60b18a-feab-4857-8d9a-e4f6a8d3ef0e_begin-->
 
