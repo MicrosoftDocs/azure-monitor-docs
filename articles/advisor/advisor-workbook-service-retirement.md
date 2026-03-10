@@ -112,7 +112,7 @@ Direct access isn't available using an API to pull data provided in Retirement w
 ### Is a data source available for direct consumption?
 
 The data is currently maintained in a JSON format. Direct access to the JSON retirement data isn't available.
-Yes, Advisor APIs provide a way to setup a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/en-us/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
+Yes, Advisor APIs provide a way to setup a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
 
 ### How do you modify the workbook template to build a personalized view?
 
