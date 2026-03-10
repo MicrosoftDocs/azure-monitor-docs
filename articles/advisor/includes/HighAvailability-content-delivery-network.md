@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/12/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -22,13 +22,14 @@ When customer certificates for Azure Front Door Standard and Premium profiles ex
 
 **Impact:** High
   
-For more information, see [Configure HTTPS for your custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#use-your-own-certificate)  
+For more information, see [Configure HTTPS for your custom domain - Azure Front Door](/azure/frontdoor/standard-premium/how-to-configure-https-custom-domain#use-your-own-certificate)  
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 4e1c2077-7c73-4ace-b4aa-f11b36c28290  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--4e1c2077-7c73-4ace-b4aa-f11b36c28290_end-->
+
 
 <!--bfe85fd2-ee53-4c35-8781-7790da2107e1_begin-->
 
@@ -77,13 +78,14 @@ Validate domain ownership by adding the DNS TXT record to your DNS provider. Val
 
 **Impact:** High
   
-For more information, see [How to add a custom domain - Azure Front Door ](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
+  
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00  
-Subcategory: BusinessContinuity
+Subcategory: undefined
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
+
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->
 

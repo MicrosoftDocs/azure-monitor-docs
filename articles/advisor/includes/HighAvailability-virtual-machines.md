@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -33,21 +33,22 @@ Subcategory: HighAvailability
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_begin-->
 
-#### Use Azure Disks with Zone Redundant Storage (ZRS) for higher resiliency and availability  
+#### Ensure Azure Disks are in the same zone as your VM for higher resiliency and availability  
   
-Azure Disks with ZRS provide synchronous replication of data across three Availability Zones in a region, making the disk tolerant to zonal failures without disruptions to applications. For higher resiliency and availability, migrate disks from LRS to ZRS.  
+Azure VMs can be regional or zonal. For higher resilience, use a zonal VM with the disk in the same zone to be isolated from zonal failures without disruptions to applications. For higher even resiliency and availability, migrate disks from LRS to ZRS.  
   
-**Potential benefits**: By designing your applications to use ZRS Disks, your data is replicated across 3 Availability Zones, making your disk resilient to a zone outage  
+**Potential benefits**: Improved availability and reliability.  
 
 **Impact:** High
   
-For more information, see [Convert a disk from LRS to ZRS - Azure Virtual Machines ](https://aka.ms/migratedisksfromLRStoZRS)  
+  
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: d4102c0f-ebe3-4b22-8fe0-e488866a87af  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
+
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_begin-->
 
@@ -340,13 +341,14 @@ HDD operating system (OS) disks are being retired in September 2028. Upgrade the
 
 **Impact:** Medium
   
-For more information, see [Migrate Standard HDD OS disks by September 08, 2028 - Azure Virtual Machines](https://aka.ms/standard-hdd-os-disk-retirement)  
+  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd  
 Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
 
 
 
@@ -753,12 +755,13 @@ Dependency Agent and VM Insights Map is retiring. We recommend considering a rep
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=491629)  
+  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
 Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
+
 
 <!--articleBody-->
