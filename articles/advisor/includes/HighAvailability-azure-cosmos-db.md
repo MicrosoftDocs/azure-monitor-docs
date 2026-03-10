@@ -251,7 +251,7 @@ Subcategory: Other
 
 #### Enable HA for your Production workload  
   
-Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure Portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
+Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
   
 **Potential benefits**: Activate HA to avoid database downtime in case of an unexpected node failure  
 
