@@ -44,10 +44,24 @@ A default Azure Monitor workspace and Log Analytics workspace are selected for y
 
 Select **Review + Enable** and then **Enable** After a few minutes, the Azure Monitor agent is installed on the virtual machine, and you start seeing all performance charts populate with data from the virtual machine.
 
-## Inspect performance data
+## View performance data
+It will take a few minutes after the agent is installed for enough data to be collected to populate the portal. When both experiences are enabled for a VM, you get a selector at the top to choose the experience you want to view. Select each experience to compare the different charts and insights that are available.
+
+The OpenTelemetry-based metrics (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates statues from [Service Health]() and [Resource Health]() to give you a quick view of the machine's overall health.
+
+:::image type="content" source="media/tutorial-vm-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-vm-enable-monitoring/metrics-experience.png":::
+
+The logs-based experience uses summarized performance data collected in the Log Analytics workspace to populate a set of charts that allow you to analyze the performance of different components of the machine such as CPU, disk, and network over time.
+
+:::image type="content" source="media/tutorial-vm-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-vm-enable-monitoring/logs-experience.png":::
+
+> [!NOTE]
+> The **Maps** feature is available in both experiences but has been deprecated as described in []().
+
+## View multi-VM performance data
+The logs-based experience also provides the ability to view performance data across multiple virtual machines in a single chart. This allows you to compare the performance of different machines and identify any that might be under heavy load or experiencing performance issues. 
 
 
-## View performance
 When the deployment is finished, you see views on the **Performance** tab in VM insights with performance data for the machine. This data shows you the values of key guest metrics over time.
 
 :::image type="content" source="media/tutorial-monitor-vm/performance.png" lightbox="media/tutorial-monitor-vm/performance.png" alt-text="Screenshot that shows the VM insights Performance view.":::

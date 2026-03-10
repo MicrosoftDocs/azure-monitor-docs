@@ -397,7 +397,7 @@ items:
     - name: Deployment guidance
       displayName: containers
       href: containers/monitor-kubernetes.md
-    - name: Tutorials
+    - name: Getting started
       items:
       - name: Enable monitoring for a cluster
         href: containers/kubernetes-monitoring-tutorial.md

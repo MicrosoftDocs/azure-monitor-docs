@@ -15,7 +15,7 @@ This article describes how to enable monitoring for Azure virtual machines and v
 Select your preferred deployment method at the top of this article to see relevant commands and examples.
 
 > [!NOTE]
-> To quickly enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+> To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
 
 ## Overview
 
