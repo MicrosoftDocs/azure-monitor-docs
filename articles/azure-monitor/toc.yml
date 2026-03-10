@@ -277,18 +277,19 @@ items:
         href: vm/vminsights-troubleshoot.md
     - name: OpenTelemetry experience
       items:
-      - name: Enable OpenTelemetry metrics (Preview)
-        href: vm/vminsights-opentelemetry.md
       - name: Overview
+        displayName: OpenTelemetry
         href: vm/metrics-opentelemetry-guest.md
+      - name: Migrate
+        displayName: OpenTelemetry
+        href: vm/vminsights-opentelemetry.md
       - name: Metric reference
+        displayName: OpenTelemetry
         href: vm/metrics-opentelemetry-guest-reference.md
     - name: Logs-based experience (classic)
       items:
       - name: Overview
         href: vm/vminsights-overview.md
-      - name: Enable and configure
-        items:
       - name: Analyze data
         items:
         - name: Interactive views

@@ -3,7 +3,7 @@ title: 'Tutorial: Collect guest logs and metrics from an Azure virtual machine'
 description: Create a data collection rule to collect guest logs and metrics from Azure virtual machine.
 ms.topic: tutorial
 ms.custom: subject-monitoring
-ms.date: 05/21/2025
+ms.date: 03/09/2026
 ms.reviewer: Xema Pathak
 ---
 
@@ -55,7 +55,11 @@ Select the **Destination** tab. **Azure Monitor Metrics** should already be list
 
 Select **Add data source** again to add logs to the DCR. For the **Data source type**, select **Windows event logs** or **Linux syslog**. Select the types of log data that you want to collect.
 
+### [Windows](#tab/windows)
+
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" alt-text="Screenshot that shows the data collection rule Windows log data source.":::
+
+### [Linux](#tab/linux)
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" alt-text="Screenshot that shows the data collection rule Linux log data source.":::
 

@@ -2,30 +2,29 @@
 title: Disable monitoring in VM insights
 description: This article describes how to stop monitoring your virtual machines in VM insights.
 ms.topic: how-to
-ms.date: 10/30/2024
+ms.date: 103/09/2026
 ---
 
 # Disable monitoring of your VMs in VM insights
 
-This article describes how to disable VM insights monitoring for your monitored virtual machines. 
+This article describes how to disable monitoring for a virtual machine in Azure Monitor. 
 
 ## VM insights components
-The following steps are completed when you enable VM insights on a virtual machine. Depending on how you [onboarded the machine](./vminsights-enable.md), you may have performed all of these steps individually or had them performed for you. Each of these steps needs to be reversed for complete removal of VM insights monitoring, but you may want to leave some in place depending on your requirements.
+There are multiple methods to enable monitoring a virtual machine in Azure Monitor, but they all include the following:
 
-- The Azure Monitor agent is installed on the VM if it's not already installed.
-- The Dependency agent is installed on the VM if you choose to collect processes and dependencies using the VM insights Map feature.
-- A new VM insights DCR is created unless you specify an existing VM insights DCR.
-- A DCR association is created between the VM and the DCR.
+- The Azure Monitor agent is installed on the VM.
+- The Dependency agent is installed on the VM if you choose to collect processes and dependencies (deprecated).
+- One or more DCRs are associated with the VM.
 
-## Remove DCR association
-You can disable VM insights for a single machine by simply removing the DCR association between that VM and the VM insights DCR. This leaves the agents installed on the VM and the VM insights DCR intact, but it stops the collection of all VM insights data from the VM.  While multiple machines can use a common DCR, they will each have a separate DCR association. 
+## Remove DCR associations
+You can disable monitoring for a single machine by simply removing associations between that VM and any DCRs. This leaves any agents installed on the VM, but it stops collection for any DCRs removed.  While multiple machines can use a common DCR, they will each have a separate DCR association. 
 
 ### [Azure portal](#tab/portal)
 
 ### Remove DCR association with the Azure portal
-If you disable VM insights monitoring from the Azure portal, it will remove the DCR association but leave the agents and VM insights DCR intact.
+If you disable monitoring from the Azure portal, it will remove the DCR association but leave the agents and VM insights DCR intact.
 
-1. From the **Monitored** tab in VM insights, click **Enabled** next to the VM you want to disable.
+1. From the **Monitor** menu, select **Data Collection Rules**, and then select **Resources** to see all resources with DCR associations. 
 
     :::image type="content" source="media/vminsights-optout/monitored-vms.png" lightbox="media/vminsights-optout/monitored-vms.png" alt-text="Screenshot that shows the list of VMs monitored by VM insights with the enable option.":::
 

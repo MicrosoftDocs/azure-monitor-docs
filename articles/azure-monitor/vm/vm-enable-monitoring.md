@@ -88,48 +88,77 @@ Development VMs in West US 2 →  dcr-otel-westus2-dev       →  amw-developmen
 
 ## Step 1: Install Azure Monitor agent
 
-The first step is to install the Azure Monitor agent extension on your virtual machines.
+The first step is to install the Azure Monitor agent extension on your virtual machines and Arc-enabled servers.
 
-# [Azure CLI](#tab/azure-cli)
+## [Azure CLI](#tab/azure-cli)
 
-Install the Azure Monitor agent extension on a VM:
+### Azure virtual machine
 
 ```azurecli-interactive
-# For Linux VM
+#  Linux
 az vm extension set \
   --name AzureMonitorLinuxAgent \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
 
-# For Windows VM
+# Windows
 az vm extension set \
   --name AzureMonitorWindowsAgent \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
+```
 
-# For Linux VMSS
-az vmss extension set \
+### Arc-enabled server
+
+```azurecli-interactive
+# Windows
+az connectedmachine extension create \
+  --name AzureMonitorWindowsAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --type AzureMonitorWindowsAgent \
+  --machine-name <arc-server-name> \
+  --resource-group <resource-group> \
+  --location <location>
+
+# Linux
+az connectedmachine extension create \
   --name AzureMonitorLinuxAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --type AzureMonitorLinuxAgent \
+  --machine-name <arc-server-name> \
+  --resource-group <resource-group> \
+  --location <location>
+```
+
+
+### Virtual machine scale set
+
+```azurecli-interactive
+# Windows
+az vmss extension set \
+  --name AzureMonitorWindowsAgent \
   --publisher Microsoft.Azure.Monitor \
   --vmss-name <vmss-name> \
   --resource-group <resource-group>
 
-# For Windows VMSS
+# Linux
 az vmss extension set \
-  --name AzureMonitorWindowsAgent \
+  --name AzureMonitorLinuxAgent \
   --publisher Microsoft.Azure.Monitor \
   --vmss-name <vmss-name> \
   --resource-group <resource-group>
 ```
 
-# [PowerShell](#tab/azure-powershell)
 
-Install the Azure Monitor agent using PowerShell:
+## [PowerShell](#tab/azure-powershell)
+
+
+### Virtual machine
 
 ```powershell
-# For Windows VM
+# Windows
 Set-AzVMExtension `
   -Name AzureMonitorWindowsAgent `
   -ExtensionType AzureMonitorWindowsAgent `
@@ -139,13 +168,33 @@ Set-AzVMExtension `
   -Location <location> `
   -TypeHandlerVersion 1.0
 
-# For Linux VM
+# Linux
 Set-AzVMExtension `
   -Name AzureMonitorLinuxAgent `
   -ExtensionType AzureMonitorLinuxAgent `
   -Publisher Microsoft.Azure.Monitor `
   -ResourceGroupName <resource-group> `
   -VMName <vm-name> `
+  -Location <location> `
+  -TypeHandlerVersion 1.0
+
+# For Windows Arc-enabled server
+New-AzConnectedMachineExtension `
+  -Name AzureMonitorWindowsAgent `
+  -ExtensionType AzureMonitorWindowsAgent `
+  -Publisher Microsoft.Azure.Monitor `
+  -ResourceGroupName <resource-group> `
+  -MachineName <arc-server-name> `
+  -Location <location> `
+  -TypeHandlerVersion 1.0
+
+# For Linux Arc-enabled server
+New-AzConnectedMachineExtension `
+  -Name AzureMonitorLinuxAgent `
+  -ExtensionType AzureMonitorLinuxAgent `
+  -Publisher Microsoft.Azure.Monitor `
+  -ResourceGroupName <resource-group> `
+  -MachineName <arc-server-name> `
   -Location <location> `
   -TypeHandlerVersion 1.0
 
@@ -156,6 +205,8 @@ Add-AzVmssExtension `
   -Publisher Microsoft.Azure.Monitor `
   -Type AzureMonitorWindowsAgent `
   -TypeHandlerVersion 1.0
+
+
 ```
 
 # [ARM template](#tab/azure-resource-manager)
@@ -163,10 +214,25 @@ Add-AzVmssExtension `
 Add the agent extension to your ARM template:
 
 ```json
+// For Azure VM
 {
   "type": "Microsoft.Compute/virtualMachines/extensions",
   "apiVersion": "2023-03-01",
   "name": "[concat(parameters('vmName'), '/AzureMonitorWindowsAgent')]",
+  "location": "[parameters('location')]",
+  "properties": {
+    "publisher": "Microsoft.Azure.Monitor",
+    "type": "AzureMonitorWindowsAgent",
+    "typeHandlerVersion": "1.0",
+    "autoUpgradeMinorVersion": true
+  }
+}
+
+// For Arc-enabled server
+{
+  "type": "Microsoft.HybridCompute/machines/extensions",
+  "apiVersion": "2023-10-03-preview",
+  "name": "[concat(parameters('arcServerName'), '/AzureMonitorWindowsAgent')]",
   "location": "[parameters('location')]",
   "properties": {
     "publisher": "Microsoft.Azure.Monitor",
@@ -184,8 +250,21 @@ For Linux, change the type to `AzureMonitorLinuxAgent` and the name accordingly.
 Add the agent extension to your Bicep template:
 
 ```bicep
+// For Azure VM
 resource amaExtension 'Microsoft.Compute/virtualMachines/extensions@2023-03-01' = {
   name: '${vmName}/AzureMonitorWindowsAgent'
+  location: location
+  properties: {
+    publisher: 'Microsoft.Azure.Monitor'
+    type: 'AzureMonitorWindowsAgent'
+    typeHandlerVersion: '1.0'
+    autoUpgradeMinorVersion: true
+  }
+}
+
+// For Arc-enabled server
+resource arcAmaExtension 'Microsoft.HybridCompute/machines/extensions@2023-10-03-preview' = {
+  name: '${arcServerName}/AzureMonitorWindowsAgent'
   location: location
   properties: {
     publisher: 'Microsoft.Azure.Monitor'
@@ -619,11 +698,17 @@ DCR_ID=$(az monitor data-collection rule show \
   --resource-group <resource-group> \
   --query id -o tsv)
 
-# Create association
+# Create association for Azure VM
 az monitor data-collection rule association create \
   --name "dcr-association" \
   --rule-id $DCR_ID \
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
+
+# Create association for Arc-enabled server
+az monitor data-collection rule association create \
+  --name "dcr-association" \
+  --rule-id $DCR_ID \
+  --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<arc-server-name>
 ```
 
 # [PowerShell](#tab/azure-powershell)
@@ -636,10 +721,16 @@ $dcrId = (Get-AzDataCollectionRule `
   -ResourceGroupName <dcr-resource-group> `
   -Name "dcr-otel-westus2").Id
 
-# Create association
+# Create association for Azure VM
 New-AzDataCollectionRuleAssociation `
   -AssociationName "dcr-association" `
   -ResourceUri "/subscriptions/<subscription-id>/resourceGroups/<vm-resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" `
+  -DataCollectionRuleId $dcrId
+
+# Create association for Arc-enabled server
+New-AzDataCollectionRuleAssociation `
+  -AssociationName "dcr-association" `
+  -ResourceUri "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<arc-server-name>" `
   -DataCollectionRuleId $dcrId
 ```
 
@@ -648,6 +739,7 @@ New-AzDataCollectionRuleAssociation `
 Add the association resource to your ARM template:
 
 ```json
+// For Azure VM
 {
   "type": "Microsoft.Insights/dataCollectionRuleAssociations",
   "apiVersion": "2022-06-01",
@@ -661,6 +753,21 @@ Add the association resource to your ARM template:
     "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
   }
 }
+
+// For Arc-enabled server
+{
+  "type": "Microsoft.Insights/dataCollectionRuleAssociations",
+  "apiVersion": "2022-06-01",
+  "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('arcServerName'))]",
+  "name": "dcr-association",
+  "dependsOn": [
+    "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]",
+    "[resourceId('Microsoft.HybridCompute/machines/extensions', parameters('arcServerName'), 'AzureMonitorWindowsAgent')]"
+  ],
+  "properties": {
+    "dataCollectionRuleId": "[resourceId('Microsoft.Insights/dataCollectionRules', variables('dcrName'))]"
+  }
+}
 ```
 
 # [Bicep](#tab/bicep)
@@ -668,6 +775,7 @@ Add the association resource to your ARM template:
 Add the association resource to your Bicep template:
 
 ```bicep
+// For Azure VM
 resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-06-01' = {
   scope: resourceId('Microsoft.Compute/virtualMachines', vmName)
   name: 'dcr-association'
@@ -676,6 +784,18 @@ resource dcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-
   }
   dependsOn: [
     amaExtension
+  ]
+}
+
+// For Arc-enabled server
+resource arcDcrAssociation 'Microsoft.Insights/dataCollectionRuleAssociations@2022-06-01' = {
+  scope: resourceId('Microsoft.HybridCompute/machines', arcServerName)
+  name: 'dcr-association'
+  properties: {
+    dataCollectionRuleId: dcr.id
+  }
+  dependsOn: [
+    arcAmaExtension
   ]
 }
 ```
