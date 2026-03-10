@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Event Hubs
@@ -22,13 +22,14 @@ Set up Geo-replication on Event Hubs namespaces with Premium or Dedicated SKUs t
 
 **Impact:** High
   
-For more information, see [Azure Event Hubs geo-replication - Azure Event Hubs](/azure/event-hubs/geo-replication)  
+  
 
 ResourceType: microsoft.eventhub/namespaces  
 Recommendation ID: 36901a23-7263-44cb-9986-d60513ad97af  
 Subcategory: DisasterRecovery
 
 <!--36901a23-7263-44cb-9986-d60513ad97af_end-->
+
 
 <!--e1e0d94e-4805-42e6-b6b4-3bbcb4909c78_begin-->
 

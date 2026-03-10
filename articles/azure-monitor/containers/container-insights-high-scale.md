@@ -117,19 +117,19 @@ Enable the Monitoring Add-on with high scale mode using the following Azure CLI 
 **Existing AKS cluster**
 
 ```azurecli
-az aks enable-addons -a monitoring -g <resource-group-name> -n <cluster-name> --enable-high-log-scale-mode
+az aks enable-addons -a monitoring -g <resource-group-name> -n <cluster-name> --workspace-resource-id <workspace-resource-id> --enable-high-log-scale-mode
 ```
 
 **Existing AKS Private cluster**
 
 ```azurecli
-az aks enable-addons -a monitoring -g <resource-group-name> -n <cluster-name> --enable-high-scale-mode --ampls-resource-id /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/privatelinkscopes/<resourceName> 
+az aks enable-addons -a monitoring -g <resource-group-name> -n <cluster-name> --workspace-resource-id <workspace-resource-id> --enable-high-log-scale-mode --ampls-resource-id /subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/privatelinkscopes/<resourceName> 
 ```
 
 **New AKS cluster**
 
 ```azurecli
-az aks create -g <resource-group-name> -n <cluster-name> enable-addons -a monitoring --enable-high-log-scale-mode
+az aks create -g <resource-group-name> -n <cluster-name> --enable-addons monitoring --workspace-resource-id <workspace-resource-id> --enable-high-log-scale-mode
 ```
 
 **New AKS Private cluster**

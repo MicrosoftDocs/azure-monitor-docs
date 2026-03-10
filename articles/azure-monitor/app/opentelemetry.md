@@ -1,80 +1,47 @@
 ---
-title: OpenTelemetry on Azure 
-description: This article provides an overview of OpenTelemetry on Azure.
+title: OpenTelemetry on Azure
+description: This article links to Application Insights and other Azure OpenTelemetry documentation.
 ms.topic: overview
-ms.date: 06/22/2025
+ms.date: 03/06/2026
+ROBOTS: NOINDEX
 ---
 
 # OpenTelemetry on Azure
 
-Azure's integration with OpenTelemetry provides a suite of products for:
+Azure services and tools use OpenTelemetry for the following tasks:
 
 > [!div class="checklist"]
-> - Collection of telemetry data in a standardized way
-> - Consumption of data using curated experiences on Azure Monitor and local tools
+> - Collect telemetry in a standard format
+> - Analyze telemetry with Azure Monitor and local tools
 
-This article guides you through our OpenTelemetry offerings to help you understand Microsoft's strategic investments.
+This article links to product-specific guidance for Application Insights and other Azure services that use OpenTelemetry.
 
-For more information about OpenTelemetry on Azure, see [our OpenTelemetry Roadmap](https://techcommunity.microsoft.com/t5/azure-observability-blog/making-azure-the-best-place-to-observe-your-apps-with/ba-p/3995896).
+## Application Insights experiences
 
-## Data collection
+Use [Collect OpenTelemetry for Application Insights experiences](opentelemetry-overview.md) for Application Insights data collection by scenario:
 
-The **Azure Monitor OpenTelemetry Distro** is Microsoft's customized, supported, and open-sourced version of the OpenTelemetry software development kits (SDKs). It supports .NET, Java, JavaScript (Node.js), and Python. We recommend the Azure Monitor OpenTelemetry Distro for most customers, and we continue to invest in adding new capabilities to it.
+- [Web apps](opentelemetry-overview.md?tabs=?tabs=web-apps)
+- [Virtual machines](opentelemetry-overview.md?tabs=vm)
+- [Azure Functions](opentelemetry-overview.md?tabs=functions)
+- [Azure Kubernetes Service (AKS)](opentelemetry-overview.md?tabs=kubernetes)
+- [Artificial intelligence (AI) agents](opentelemetry-overview.md?tabs=agents)
 
-It focuses on ease-of-enablement by bundling together:
+Use the following resources for Application Insights features, autoinstrumentation, and migration guidance:
 
-> [!div class="checklist"]
-> - The OpenTelemetry SDK and API
-> - Instrumentation Libraries across logs, metrics, and traces
+- [Application Insights experiences](app-insights-overview.md#application-insights-experiences)
+- [Application Insights autoinstrumentation](codeless-overview.md)
+- [Migration from Application Insights classic SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md)
+- [Python migration from OpenCensus to OpenTelemetry](opentelemetry-python-opencensus-migrate.md)
 
-In addition, Azure Monitor OpenTelemetry Distro-based automatic instrumentation solutions are integrated into App Service for Java and Python apps and into Java Functions.
+## Other OpenTelemetry integrations on Azure
 
-- [Enable Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](./opentelemetry-enable.md)
-- [Diagnose with Live Metrics](./live-stream.md)
-- [Migrating Azure Monitor Application Insights Python from OpenCensus to OpenTelemetry](./opentelemetry-python-opencensus-migrate.md)
-- [Monitor Azure app services performance Python (Preview)](./azure-web-apps-python.md)
-- [Monitor Azure app services performance Java](./azure-web-apps-java.md)
-- [Monitor applications running on Azure Functions with Application Insights](/azure/azure-functions/opentelemetry-howto)
-
-**Azure SDKs** are instrumented with OpenTelemetry APIs to power end-to-end observability. All supported languages are instrumented to emit OpenTelemetry HTTP and/or Messaging Tracing Semantics; .NET and Java are being instrumented to emit OpenTelemetry HTTP Metrics Semantics.
+Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:
 
 - [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/observability/opentelemetry-conventions.md)
-- [Tracing in the Azure SDK for Java](/azure/developer/java/sdk/tracing)
+- [Java tracing in the Azure SDK](/azure/developer/java/sdk/tracing)
 - [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability)
-
-The **.NET** OpenTelemetry implementation uses logging, metrics, and activity APIs in the framework for instrumentation. The OpenTelemetry SDK collects telemetry from those APIs and other sources (via instrumentation libraries) and then exports the data to an application performance monitoring (APM) system for storage and analysis.
-
-- [.NET Observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel)
-
-**Azure Monitor pipeline at edge** is a powerful solution designed to facilitate high-scale data ingestion and routing from edge environments to seamlessly enable observability across cloud, edge, and multicloud. It uses the OpenTelemetry Collector. Currently, in public preview, it can be deployed on a single Arc-enabled Kubernetes cluster, and it can collect OpenTelemetry Protocol (OTLP) logs.
-
-- [Accelerate your observability journey with Azure Monitor pipeline (preview)](https://techcommunity.microsoft.com/t5/azure-observability-blog/accelerate-your-observability-journey-with-azure-monitor/ba-p/4124852)
-- [Configure Azure Monitor pipeline for edge and multicloud](../essentials/edge-pipeline-configure.md)
-
-**OpenTelemetry Collector Azure Data Explorer Exporter** is a data exporter component that can be plugged into the OpenTelemetry Collector. It supports ingestion of data from many receivers into to Azure Data Explorer, Azure Synapse Data Explorer, and Real-Time Analytics in Fabric. 
-
-- [Data ingestion from OpenTelemetry to Azure Data Explorer](/azure/data-explorer/open-telemetry-connector)
-- [GitHub repository of Azure Data Explorer Exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/azuredataexplorerexporter)
-- [Azure Synapse Data Explorer](/azure/synapse-analytics/data-explorer/data-explorer-overview)
-- [Real-Time Intelligence](/fabric/real-time-intelligence/overview)
-
-**Azure Functions** supports OTLP from both the host process and the worker process. When enabled, the data can be sent to any OpenTelemetry-compliant endpoints.
-
-- [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
-- [Monitor Azure Functions](/azure/azure-functions/monitor-functions)
-
-The **Azure Container Apps** OpenTelemetry agent automatically collects and exports data to any OTLP-supported endpoint. It's enabled via environment variable and doesn't require manual configuration. For more information, see [Collect and read OpenTelemetry data in Azure Container Apps](/azure/container-apps/opentelemetry-agents).
-
-## Data platform and consumption
-
-**Aspire** is an opinionated cloud-native stack that includes observability by default with OpenTelemetry. Part of it's a "Developer Dashboard" to observe OpenTelemetry signals in real-time during debugging. It collects logs, metrics, and traces using OTLP from applications of any OpenTelemetry-supported languages besides .NET.
-
-- [Aspire: Simplifying Cloud-Native Development with .NET 8](https://devblogs.microsoft.com/dotnet/introducing-dotnet-aspire-simplifying-cloud-native-development-with-dotnet-8/)
+- [.NET observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel)
+- [Azure Monitor pipeline at edge and multicloud configuration](../essentials/edge-pipeline-configure.md)
+- [OpenTelemetry ingestion into Azure Data Explorer, Azure Synapse Data Explorer, and Real-Time Intelligence](/azure/data-explorer/open-telemetry-connector)
+- [Azure Container Apps OpenTelemetry agent](/azure/container-apps/opentelemetry-agents)
 - [Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
-
-**Azure Monitor Application Insights** is Azure's APM that supports cloud-scale application monitoring and excels at observability for both cloud-native applications and VM-based applications. Application Insights provides experiences powered by OpenTelemetry to enhance the performance, reliability, and quality of your applications. For example, Application map is a visual overview of application architecture and components' interactions; Search helps identify issues and optimize performance.
-
-- [Application Insights overview](./app-insights-overview.md)
-- [Application map in Azure Application Insights](./app-map.md)
-- [Investigate failures, performance, and transactions with Application Insights](./failures-performance-transactions.md)
-- [Live Metrics](./live-stream.md)
