@@ -78,6 +78,7 @@ az k8s-extension create \
   --name "azure-cert-management" \
   --extension-type "microsoft.certmanagement" \
   --release-train stable
+  --config subcharts.zdtrcontroller.enabled=true
 ```
 
 
