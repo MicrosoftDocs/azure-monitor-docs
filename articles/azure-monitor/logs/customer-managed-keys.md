@@ -3,7 +3,7 @@ title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 01/27/2026 
+ms.date: 03/10/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 
 ---
@@ -171,7 +171,6 @@ This step updates dedicated cluster storage with the key and version to use for 
 >[!IMPORTANT]
 >- Key rotation can be automatic or per explicit key version. See [Key rotation](#key-rotation) to determine a suitable approach before updating the key identifier details in dedicated cluster.
 >- Dedicated cluster updates must not include both identity and key identifier details in the same operation. If you need to update both, the update must be in two consecutive operations.
->- If you're only enabling or changing CMK, use the REST API instead of the CLI. The dedicated cluster update CLI sends an update to capacity even when that property isn't used in the command. This update triggers the 30 day change threshold or the 500 GB commitment tier minimum check.
 
 :::image type="content" source="media/customer-managed-keys/key-identifier-8bit.png" lightbox="media/customer-managed-keys/key-identifier-8bit.png" alt-text="Screenshot of Grant Key Vault permissions.":::
 
