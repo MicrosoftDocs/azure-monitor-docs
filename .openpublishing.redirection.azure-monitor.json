@@ -8943,6 +8943,21 @@
    "source_path": "articles/azure-monitor/vm/vminsights-enable.md",
    "redirect_url": "/azure/azure-monitor/vm/vm-enable-monitoring",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-overview.md",
+   "redirect_url": "/azure/azure-monitor/vm/monitor-vm",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/kubernetes-monitoring-quickstart.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-tutorial",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/metrics-opentelemetry-guest.md",
+   "redirect_url": "/azure/azure-monitor/vm/metrics-opentelemetry-guest",
+   "redirect_document_id": false
   }
  ]
 }

@@ -2,7 +2,7 @@
 title: Disable monitoring in VM insights
 description: This article describes how to stop monitoring your virtual machines in VM insights.
 ms.topic: how-to
-ms.date: 103/09/2026
+ms.date: 03/09/2026
 ---
 
 # Disable monitoring of your VMs in VM insights
