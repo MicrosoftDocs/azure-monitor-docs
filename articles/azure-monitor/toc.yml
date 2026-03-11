@@ -288,16 +288,12 @@ items:
         href: vm/metrics-opentelemetry-guest-reference.md
     - name: Logs-based experience (classic)
       items:
-      - name: Overview
-        href: vm/vminsights-overview.md
-      - name: Analyze data
-        items:
-        - name: Interactive views
-          href: vm/vminsights-performance.md
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
+      - name: Interactive views
+        href: vm/vminsights-performance.md
+      - name: Monitor changes
+        href: vm/vminsights-change-analysis.md
+      - name: Visualize data with workbooks
+        href: vm/vminsights-workbooks.md
       - name: Migrate
         items:
         - name: Migrate to Azure Monitor agent

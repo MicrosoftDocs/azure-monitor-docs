@@ -2,30 +2,28 @@
 title: Collect data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: how-to
-ms.date: 12/09/2025
+ms.date: 03/10/2026
 ---
 
 # Collect data from virtual machine client with Azure Monitor
 
-Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. To collect metrics and logs from the client operating system and its workloads though, you need to create [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) that specify what you want to collect and where to send it. This article describes how to use the Azure portal to create a DCR to collect different types of common data from VM clients.
+Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. When you enable enhanced monitoring, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed, and [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) are applied that collect metrics from the guest operating system. For complete monitoring of your client applications and workloads though, you typically need to collect log data and potentially additional metrics that aren't collected by default.
 
-> [!NOTE]
->If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is automatically installed on each VM that doesn't already have it.
+This article describes how to use the Azure portal to create DCRs to collect different types of common data from VM clients. If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the Azure Monitor agent is automatically installed on each VM that doesn't already have it.
 >
->If you want to take advantage of more advanced features like [transformations](../data-collection/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md) and [Create DCRs in Azure Monitor](../data-collection/data-collection-rule-create-edit.md). You can also view sample DCRs created by this process at [Data collection rule (DCR) samples for VM  in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
+> [!NOTE]
+> If you want to take advantage of more advanced features like [transformations](../data-collection/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create DCRs in Azure Monitor](../data-collection/data-collection-rule-create-edit.md). You can also view sample DCRs created by this process at [Data collection rule (DCR) samples for VM  in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
 
 ## Prerequisites
 
-* For Guest OS metrics, an Azure Monitor workspace where you have at least contributor rights to collect the data you configure. See [[Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md) where you have at least contributor rights to collect the data you configure. 
-* For Guest OS logs, a Log Analytics workspace where you have at least contributor rights to collect the data you configure. See [[Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md) if you don't already have a workspace you can use.
-* The Azure Monitoring Agent requires 700MB of disk space to install. Updating needs an extra 700MB, which is freed after the update completes.
+* For logs, a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure.
+* For OpenTelemetry metrics, an [Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md) where you have at least contributor rights to collect the data you configure. 
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
 
 > [!IMPORTANT]
 > If your Log Analytics workspace is associated with a network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
-
 
 
 ## Create a data collection rule

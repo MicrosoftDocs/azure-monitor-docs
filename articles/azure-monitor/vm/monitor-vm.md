@@ -13,6 +13,13 @@ ms.service: azure-virtual-machines
 
 This article provides an overview of how to monitor the health and performance of Azure virtual machines (VM) and virtual machine scale sets (VMSS). Whether you're new to Azure or transitioning from on-premises infrastructure, understanding your monitoring options helps you maintain reliable, high-performing virtual machines.
 
+## Supported machines and operating systems
+This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems).
+
+- Azure virtual machines
+- Azure Virtual Machine Scale Sets
+- Arc-enabled servers
+
 ## Monitor a single VM
 View the current health of a VM from the **Monitor** option for the VM in the Azure portal. This includes a summary of the most common metrics for the VM. The data that's available in this view is based on the monitoring that you've enabled for the VM. Host metrics, including availability, are available by default. Guest metrics and logs are only available when you enable enhanced monitoring as described in [Enable enhanced monitoring](#enable-enhanced-monitoring).
 
