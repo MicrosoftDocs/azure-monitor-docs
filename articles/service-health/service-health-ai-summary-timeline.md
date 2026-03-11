@@ -1,11 +1,11 @@
 ---
-title: Service Health Alerts AI generated summary (Preview)
-description: Service health AI generated summary and timeline overview
+title: Service Health Alerts AI-generated summary (Preview)
+description: Service health AI-generated summary and timeline overview
 ms.topic: concept-article
 ms.date: 03/11/2026
 ---
 
-# AI generated summary and timeline (Preview) 
+# AI-generated summary and timeline (Preview) 
 
 When an Azure service outage happens, it can be tough to quickly find the information you actually need. 
 
