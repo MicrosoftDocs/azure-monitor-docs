@@ -233,7 +233,7 @@ SnapshotUploader.exe Information: 0 : Deleted PDB scan marker : D:\local\Temp\Du
     DateTime=2018-03-09T01:47:19.4614027Z
 ```
 
-For applications that *aren't* hosted in App Service, the uploader logs are in the same folder as the minidumps: `%TEMP%\Dumps\<string>`, (where `<string>` is your connection string.
+For applications that *aren't* hosted in App Service, the uploader logs are in the same folder as the minidumps: `%TEMP%\Dumps\<string>`, where `<string>` is your connection string.
 
 ## Troubleshoot Cloud Services
 
@@ -340,7 +340,7 @@ Or, if you're using *appsettings.json* with a .NET Core application:
 When a snapshot is created, the throwing exception is tagged with a snapshot ID. That snapshot ID is included as a custom property when the exception is reported to Application Insights. Using **Search** in Application Insights, you can find all records with the `ai.snapshot.id` custom property.
 
 1. Browse to your Application Insights resource in the Azure portal.
-1. Select **Investigate** >  **Search**.
+1. Select **Investigate** > **Search**.
 1. Type `ai.snapshot.id` in the search text box and press **Enter**.
 
 :::image type="content" source="./media/snapshot-debugger/search-snapshot-portal.png" alt-text="Screenshot showing search for telemetry with a snapshot ID in the Azure portal.":::
