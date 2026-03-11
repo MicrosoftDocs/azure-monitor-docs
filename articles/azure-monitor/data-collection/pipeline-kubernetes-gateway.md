@@ -7,26 +7,11 @@ ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Azure Monitor pipeline - Sample gateway setup using Traefik
-Azure Monitor pipeline extension gets deployed with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to remote clients external to the cluster (e.g. network switches, firewall devices), you need to deploy a gateway solution. This guide shows how to expose an Azure Monitor Pipeline receiver to external clients using a Traefik gateway. 
+Azure Monitor pipeline extension gets deployed with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to remote clients external to the cluster (e.g. network switches, firewall devices), you need to deploy a gateway solution.  
+This guide shows how to expose an Azure Monitor Pipeline receiver to external clients using a Traefik gateway. 
 
 > [!NOTE]
 > Traefik gateway will only work in environments where Kubernetes Load Balancers can be deployed successfully, such as when running on a supported cloud provider like Azure.
-
-## Gateway per pipeline
-
-Traefik has a unified data and control plane — each Traefik instance is both the router and the configuration watcher. Because of this, a separate Traefik Helm release must be installed for each pipeline that requires external exposure.
-
-To ensure each Traefik instance only processes routing resources for its pipeline, every installation must include a `labelSelector`, and every routing resource must carry the matching label:
-
-- **Helm install**: `--set "providers.kubernetesCRD.labelSelector=traefik-instance=<pipeline-name>-gateway"`
-- **Routing resources**: `labels: { traefik-instance: <pipeline-name>-gateway }`
-
-Each Traefik Helm release creates its own Deployment and LoadBalancer Service, giving each pipeline a dedicated external IP address. Traefik CRDs only need to be installed once on the cluster, regardless of how many pipelines are deployed.
-
-> [!WARNING]
-> Deploying Traefik without `labelSelector` causes every instance to watch all
-> `IngressRouteTCP` and `ServersTransportTCP` resources in the namespace, leading
-> to misrouting. Always set `labelSelector`.
 
 ## Prerequisites
 
@@ -40,21 +25,12 @@ Before deploying the Traefik gateway, here are additional prerequisites:
 kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
 ```
 
-### Install Traefik CRDs
-Before you start either of the options below, install the Traefik CRDs using the following commands.
-
-```bash
-helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
-helm repo update traefik
-helm show crds traefik/traefik | kubectl apply -f -
-```
-
-## Option 1: Deploy gateway for TLS secure encrypted ingestion 
-The following example will demonstrate a use case where remote clients can connect to the gateway with an insecure connection, while the gateway will have an mTLS connection with the pipeline. This example assumes that you deployed a syslog pipeline, which expects syslog packets on port 514.
+## (Option 1) Deploy gateway for TLS secure encrypted ingestion 
+The following example will demonstrate a use case where remote clients can connect to the gateway with an insecure connection, while the gateway will have an mTLS connection with the pipeline.
 
 ### Step 1: Create gateway client certificate
 
-The gateway needs a client certificate to authenticate to the pipeline. Create a certificate issued by the managed client CA. This certificate is shared by all Traefik instances in the same namespace, so it only needs to be created once.
+The gateway needs a client certificate to authenticate to the pipeline. Create a certificate issued by the managed client CA:
 
 ```yml
 apiVersion: cert-manager.io/v1
@@ -84,7 +60,17 @@ Apply the certificate:
 kubectl apply -f certificates.yaml
 kubectl wait --for=condition=ready certificate gateway-client-cert -n test --timeout=120s
 ```
-### Step 2: Configure Traefik routing with mTLS Backend
+
+### Step 3: Install CRDs
+
+```bash
+helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
+helm repo update traefik
+helm show crds traefik/traefik | kubectl apply -f
+```
+
+
+### Step 4: Configure Traefik routing with mTLS Backend
 
 Create the `ServersTransportTCP` and `IngressRouteTCP`. Since Traefik is deployed in the same namespace as the pipeline, it can directly access the trust bundle ConfigMap and client certificate Secret.
 
@@ -94,9 +80,7 @@ apiVersion: traefik.io/v1alpha1
 kind: ServersTransportTCP
 metadata:
   name: <pipeline-name>-mtls-transport
-  namespace: <pipeline-namespace>
-  labels:
-    traefik-instance: <pipeline-name>-gateway
+  namespace: test
 spec:
   tls:
     # Server name for SNI and certificate validation
@@ -116,9 +100,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: syslog-route
-  namespace: <pipeline-namespace>
-  labels:
-    traefik-instance: <pipeline-name>-gateway
+  namespace: test
 spec:
   entryPoints:
     - tcp-syslog
@@ -138,7 +120,7 @@ Apply the routing configuration:
 kubectl apply -f routing.yaml
 ```
 
-### Step 3: Install Traefik
+### Step 5: Install Traefik
 
 Deploy Traefik in the **same namespace** as the pipeline. This simplifies configuration because:
 
@@ -165,7 +147,7 @@ helm install traefik traefik/traefik \
 
 ```
 
-### Step 4: Test the gateway
+### Step 6: Test the gateway
 
 Get the gateway's external IP:
 
@@ -211,12 +193,19 @@ kubectl logs -n test -l pipeline=<pipeline-name>
 ```
 
 
-## Option 2: Deploy gateway for ingestion with TLS disabled
+## (Option 2) Deploy gateway for ingestion with TLS disabled
 
-### Step 1: Configure Traefik TCP Routing
+### Step 1: Install Traefik CRDs
 
-The Traefik `IngressRouteTCP` routes TCP directly to the pipeline service.  No
-`ServersTransportTCP` is needed when TLS is disabled.
+```bash
+helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
+helm repo update traefik
+helm show crds traefik/traefik | kubectl apply -f -
+```
+
+### Step 2: Configure Traefik TCP Routing
+
+The Traefik `IngressRouteTCP` routes TCP directly to the pipeline service.
 
 Save the following as `routing.yaml`:
 
@@ -226,8 +215,6 @@ kind: IngressRouteTCP
 metadata:
   name: syslog-route
   namespace: <pipeline-namespace>
-  labels:
-    traefik-instance: <pipeline-name>-gateway
 spec:
   entryPoints:
     - tcp-syslog
@@ -244,7 +231,7 @@ Apply:
 kubectl apply -f routing.yaml
 ```
 
-### Step 2: Install Traefik
+### Step 3: Install Traefik
 
 Deploy Traefik in the **same namespace** as the pipeline:
 
@@ -254,7 +241,6 @@ helm install traefik traefik/traefik \
     --set deployment.replicas=1 \
     --set providers.kubernetesIngress.enabled=false \
     --set providers.kubernetesCRD.enabled=true \
-    --set "providers.kubernetesCRD.labelSelector=traefik-instance=<pipeline-name>-gateway" \
     --set ports.tcp-syslog.port=514 \
     --set ports.tcp-syslog.expose.default=true \
     --set ports.tcp-syslog.exposedPort=514 \
@@ -265,7 +251,7 @@ helm install traefik traefik/traefik \
     --wait
 ```
 
-### Step 3: Get the Gateway's external IP
+### Step 4: Get the Gateway's external IP
 
 ```bash
 GATEWAY_IP=$(kubectl get svc traefik -n <pipeline-namespace> \
