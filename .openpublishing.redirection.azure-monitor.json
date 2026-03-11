@@ -8955,7 +8955,7 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/vm/metrics-opentelemetry-guest.md",
+   "source_path": "articles/azure-monitor/metrics/metrics-opentelemetry-guest.md",
    "redirect_url": "/azure/azure-monitor/vm/metrics-opentelemetry-guest",
    "redirect_document_id": false
   }

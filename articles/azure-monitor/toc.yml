@@ -254,7 +254,7 @@ items:
   - name: Monitor virtual machines
     items:
     - name: Overview
-      href: vm/monitor-vm
+      href: vm/monitor-vm.md
     - name: Best practices
       href: vm/best-practices-vm.md
     - name: Tutorials
@@ -964,8 +964,6 @@ items:
       - name: PromQL using Prometheus HTTP APIs
         displayName: Prometheus
         href: metrics/prometheus-api-promql.md
-    - name: OpenTelemetry Guest OS metrics (preview)
-      href: metrics/metrics-opentelemetry-guest.md
   - name: Logs
     items:
     - name: Overview
