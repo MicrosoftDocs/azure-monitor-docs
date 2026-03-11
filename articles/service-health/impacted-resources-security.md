@@ -2,7 +2,7 @@
 title: Impacted resources from Azure security advisories
 description: This article details where to find information from Azure Service Health about how Azure security advisories impact your resources.
 ms.topic: concept-article
-ms.date: 1/15/2026
+ms.date: 03/11/2026
 ---
 
 # Impacted resources from Azure security advisories
@@ -85,7 +85,8 @@ https://management.azure.com/subscriptions/<Subscription ID>/providers/microsoft
 https://management.azure.com/providers/microsoft.resourcehealth/events/("Tracking ID")/listSecurityAdvisoryImpactedResources?api-version=2025-05-01
 ```
 
-## More information
-- [Introduction to the Azure Service Health dashboard](service-health-overview.md)
+## for more information
+- [Introduction to the Azure Service Health dashboard](service-health-portal-update.md)
 - [Introduction to Azure Resource Health](resource-health-overview.md)
 - [Azure Resource Health frequently asked questions](resource-health-faq.yml)
+- [Service Health frequentl asked questions](service-health-faq.yml)
