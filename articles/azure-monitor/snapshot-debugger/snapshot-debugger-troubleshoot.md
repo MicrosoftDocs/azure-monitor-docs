@@ -6,7 +6,7 @@ reviewer: cweining
 ms.topic: troubleshooting-general
 ms.date: 03/12/2026
 ms.custom: devdivchpfy22, devx-track-dotnet
-#customer intent: As an application developer using Azure Service applications, I need to troubleshot issues I might have using the Snapshot Debugger and viewing snapshots.
+#customer intent: As an application developer using Azure App Service applications, I need to troubleshoot Snapshot Debugger issues so that I can successfully view snapshots.
 ---
 
 # <a id="troubleshooting"></a>Troubleshoot problems enabling Application Insights Snapshot Debugger or viewing snapshots
@@ -21,7 +21,7 @@ Scenarios where Snapshot Collector isn't supported:
 
 | Scenario | Side Effects | Recommendation |
 |----------|--------------|----------------|
-| When using the Snapshot Collector SDK in your application directly (*.csproj*) and you enabled the advance option *Interop*. | The local Application Insights SDK, including Snapshot Collector telemetry, is lost. Therefore, no Snapshots is available. <br/>Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor`.<br/>For more information about the Application Insights feature *Interop*, see [Troubleshoot Application Insights integration](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues). | If you're using the advance option *Interop*, use the codeless Snapshot Collector injection enabled through the Azure portal. |
+| When using the Snapshot Collector SDK in your application directly (*.csproj*) and you enabled the advanced option *Interop*. | The local Application Insights SDK, including Snapshot Collector telemetry, is lost. Therefore, no snapshots are available. <br/>Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor`.<br/>For more information about the Application Insights feature *Interop*, see [Troubleshoot Application Insights integration](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues). | If you're using the advanced option *Interop*, use the codeless Snapshot Collector injection enabled through the Azure portal. |
 
 ## Make sure you're using the appropriate Snapshot Debugger endpoint
 
@@ -129,7 +129,7 @@ You might experience small CPU, memory, and I/O overhead associated with the Sna
     
   This conversion is done in Snapshot Uploader, which runs in a separate process. The Snapshot Uploader process runs at below normal CPU priority and uses low priority I/O.
     
-  The minidump is first written to disk. The amount of disk spaced is roughly the same as the working set of the original process. Writing the minidump can induce page faults as memory is read.
+  The minidump is first written to disk. The amount of disk space is roughly the same as the working set of the original process. Writing the minidump can induce page faults as memory is read.
     
   The minidump is compressed during upload, which consumes both CPU and memory in the Snapshot Uploader process. The CPU, memory, and disk overhead are proportional to the size of the process snapshot. Snapshot Uploader processes snapshots serially.
 
@@ -162,7 +162,7 @@ You can use the Kudu management site for App Service to get the base url of this
 1. In the Azure portal, open your App Service application.
 1. In the left menu, select **Development Tools** > **Advanced Tools**.
 1. Select **Go**.
-1. When you are on the Kudu management site, in the URL, **append the following `/DiagnosticServices` and press enter**. It ends like this: `https://<kudu-url>/DiagnosticServices`
+1. When you are on the Kudu management site, in the URL, append the following `/DiagnosticServices` and press **Enter**. It ends like this: `https://<kudu-url>/DiagnosticServices`
 
 ## Upgrade to the latest version of the NuGet package
 
