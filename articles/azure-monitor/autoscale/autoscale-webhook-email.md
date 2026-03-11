@@ -112,8 +112,8 @@ When you use the Resource Manager templates or REST API, include the `notificati
           "sendToSubscriptionAdministrator": false,
           "sendToSubscriptionCoAdministrators": false,
           "customEmails": [
-              "user1@mycompany.com",
-              "user2@mycompany.com"
+              "user1@contoso.com",
+              "user2@contoso.com"
               ]
         },
         "webhooks": [
@@ -162,7 +162,7 @@ When the autoscale notification is generated, the following metadata is included
         "resourceName": "ScaleableAppServicePlan",
         "resourceType": "microsoft.web/serverfarms",
         "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
-        "portalLink": "https://portal.azure.com/#resource/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
+        "portalLink": "https://portal.azure.com/#resource/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Web/serverfarms/ScaleableAppServicePlan",
         "resourceRegion": "West Central US",
         "oldCapacity": "1",
         "newCapacity": "2"
