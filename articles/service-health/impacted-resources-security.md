@@ -51,8 +51,8 @@ For steps on how to configure subscription or tenant-based access to view Securi
 
 In the Azure portal, the **Impacted Resources** tab under **Service Health** > **Security Advisories** displays resources impacted from a security advisory. Along with resource information, Service Health provides the information shown here to users whose resources are impacted from a security advisory:
 
-|Column  |Description |
-|---------|---------|
+|Column|Description|
+|---|---|
 |**Subscription ID**|Unique ID for the subscription that contains the impacted resource|
 |**Subscription Name**|Name for the subscription that contains the impacted resource|
 |**Tenant Name**|Name for the tenant that contains the impacted resource|
