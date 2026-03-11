@@ -9,7 +9,7 @@ ms.date: 03/11/2026
 
 ## Overview
 
-The in-portal billing communication in [Service Health](service-health-portal-update.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in both the **Billing updates** pane and the Service Health API.
+The in-portal billing communication in [Service Health](service-health-portal-update.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in the **Billing updates** pane and the Service Health API.
 
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-main.png"alt-text="A screenshot of the In-portal billing main pane."Lightbox="./media/billing-elevated-access/in-portal-billing-main.png":::
 
@@ -51,11 +51,7 @@ Users without access see a message at the top of the pane.
 
 ## How to view billing events
 
-<<<<<<< Updated upstream
 Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing updates** pane in the [Service Health](service-health-portal-update.md) portal, and through the API access to retrieve billing event data,
-=======
-Azure customers with any of the elevated accesses defined here can view billing communication events through the **Billing updates** pane  in the [Service Health](service-health-portal-update.md) portal, and through the API access to retrieve billing event data,
->>>>>>> Stashed changes
   
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-details.png"alt-text="A screenshot of Billing event details."Lightbox="./media/billing-elevated-access/in-portal-billing-details.png":::
 
