@@ -21,7 +21,7 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 
 | Term or phrase | Detail |
 |:--- |:--- |
-| Manage recommendation lifecycle | To mark a recommendation as: `Mark as completed`, `Postponed`, `Dismissed`, or `Resolved`.|
+| Manage recommendation status| To mark a recommendation as: `Completed`, `Postponed`, or `Dismissed`|
 
 ## Changes to recommendation triage process
 
