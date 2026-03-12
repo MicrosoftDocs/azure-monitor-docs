@@ -220,7 +220,6 @@ Start by defining the DCR in JSON format.
 
 ```json
 {
-  "location": "eastus",
   "properties": {
     "dataSources": {
       "performanceCountersOTel": [
@@ -228,14 +227,16 @@ Start by defining the DCR in JSON format.
           "streams": "Microsoft-OtelPerfMetrics",
           "samplingFrequencyInSeconds": 60,
           "counterSpecifiers": [
-            "system.cpu.time",
-            "system.cpu.utilization",
-            "system.memory.usage",
-            "system.memory.utilization",
-            "system.disk.io",
-            "system.disk.operations",
-            "system.network.io",
-            "system.filesystem.usage"
+              "system.filesystem.usage",
+              "system.disk.io",
+              "system.disk.operation_time",
+              "system.disk.operations",
+              "system.memory.usage",
+              "system.network.io",
+              "system.cpu.time",
+              "system.network.dropped",
+              "system.network.errors",
+              "system.uptime"
           ],
           "name": "OtelPerfCounters"
         }
@@ -266,7 +267,6 @@ Start by defining the DCR in JSON format.
 
 ``` json
 {
-    "location": "eastus",
     "properties": {
         "description": "Data collection rule for VM Insights.",
         "dataSources": {

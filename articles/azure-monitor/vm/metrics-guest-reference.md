@@ -2,7 +2,7 @@
 title: OpenTelemetry Guest OS Metrics reference (preview)
 description: List of OpenTelemetry metrics collected by default from Windows and Linux virtual machines by Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 09/27/2025
+ms.date: 03/12/2026
 ms.reviewer: tylerkight
 ---
 
@@ -180,6 +180,32 @@ The following performance counters are collected by the Azure Monitor Agent for 
 
 ---
 
+
+## Resource Attributes
+
+The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
+
+In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Collection Rules and sent to Azure Monitor workspaces have the following cloud resource attributes automatically added as dimensions to support resource-scoped querying:
+* Microsoft.resourceid
+ * Microsoft.subscriptionid
+ * Microsoft.resourcegroupname
+ * Microsoft.resourcetype
+ * Microsoft.amwresourceid
+
+OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#process) have their own special set of [Resource Attributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#resource-attributes). The table shows those resource attributes that the Azure Monitor Agent automatically promotes as dimensions.
+
+| Name | Description | Values | Enabled | 
+|------|-------------|--------|---------|
+| process.command | The command used to launch the process (i.e., the command name). On Linux-based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | Any Str | true |
+ process.executable.name  | The name of the process executable. On Linux-based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | Any Str | true |
+| process.owner            | The username of the user that owns the process. | Any Str | true |
+| process.pid              | Process identifier (PID). | Any Int | true |
+| process.cgroup           | cgroup associated with the process (Linux only). | Any Str | false |
+| process.command_line     | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | Any Str | false |
+| process.executable.path  | The full path to the process executable. On Linux-based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | Any Str | false |
+| process.parent_pid | Parent Process Identifier (PPID). | Any Int | false |
+
+The process.command_line attribute can contain extremely long strings with thousands of characters, making it unsuitable as a normal metric dimension. We might find a different way to surface this attribute based on customer user scenarios submitted as feedback to the product team.
 
 
 ## Next steps

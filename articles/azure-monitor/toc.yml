@@ -284,11 +284,14 @@ items:
         - name: Overview
           displayName: OpenTelemetry
           href: vm/metrics-opentelemetry-guest.md
-        - name: Migrate
-          displayName: OpenTelemetry
+        - name: Migrate from logs-based experience
+          displayName: OpenTelemetry, migrate, migration
+          href: vm/vm-migrate-logs-to-opentelemetry.md
+        - name: Customize metric collection
+          displayName: OpenTelemetry, customize
           href: vm/vminsights-opentelemetry.md
-        - name: Metric reference
-          displayName: OpenTelemetry
+        - name: Reference
+          displayName: OpenTelemetry, metrics, performance counters
           href: vm/metrics-opentelemetry-guest-reference.md
       - name: Logs-based experience (classic)
         items:

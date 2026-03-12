@@ -1,25 +1,22 @@
 ---
-title: Migrate to VM insights OpenTelemetry
-description: Learn how to migrate to VM insights OpenTelemetry for enhanced monitoring and observability of your Azure virtual machines.
-ms.topic: concept-article
-ms.date: 01/06/2026
+title: Customize OpenTelemetry metric collection for Azure virtual machines
+description: Learn how to customize OpenTelemetry metric collection by modifying data collection rules to add per-process metrics and other advanced performance counters for your Azure virtual machines.
+ms.topic: how-to
+ms.date: 03/12/2026
 ---
 
-# Migrate to VM insights OpenTelemetry (preview)
+# Customize OpenTelemetry metric collection for Azure virtual machines (preview)
 
-[VM insights](./vminsights-overview.md) in Azure Monitor currently stores performance data collected from the client in a Log Analytics workspace and uses this data to populate visualizations in the Azure portal. With the release of OpenTelemetry (OTel) system metrics, VM insights is being transitioned to a more cost-effective and efficient method of collecting and visualize system-level metrics. This article describes how to get started using OpenTelemetry metrics as your primary visualization tool.
+After you enable OpenTelemetry-based monitoring for your Azure virtual machines, you can customize which metrics are collected by modifying the data collection rule (DCR). This article describes how to extend the default metric collection to include per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics.
+OTel guest OS metrics are system and process-level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per-process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
-OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
+> [!NOTE]
+> For information on migrating from the logs-based experience to OpenTelemetry, see [Migrate from logs-based to OpenTelemetry metrics](./vm-migrate-logs-to-opentelemetry.md).
 
+## Prerequisites
 
-
-## Visualize OpenTelemetry metrics
-When you enable OTel metrics, the VM insights dashboards are updated to use these metrics instead of those stored in Log Analytics workspace. You can do custom analysis of these metrics select the **Metrics** option from the Azure Monitor workspace to open metrics explorer. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md).
-
-:::image type="content" source="media/vminsights-opentelemetry/metrics-explorer.png" lightbox="media/vminsights-opentelemetry/metrics-explorer.png" alt-text="Screenshot that shows metrics explorer with PromQL in the Azure portal.":::
-
-## Disable classic log-based metrics
-If your VM is currently using the classic log-based VM insights experience, then you can choose to stop sending metrics to the Log Analytics workspace to save on ingestion and retention costs. See [Disable monitoring of your VMs in VM insights](./vminsights-optout.md) for this process.
+- An Azure virtual machine with OpenTelemetry-based monitoring enabled. See [Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+- Permissions to modify data collection rules.
 
 ## Customize metric collection
 By default, VM insights collects a core set of metrics at no cost. If you need additional visibility such as per-process performance, logical disk usage, filesystem utilization, or workload-specific metrics, you can extend the collection by updating the [Data Collection Rule (DCR)](../data-collection/data-collection-rule-overview.md) that gets deployed when VM insights with OTel metrics is enabled.
