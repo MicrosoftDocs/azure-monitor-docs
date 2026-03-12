@@ -883,10 +883,7 @@ items:
         items:
         - name: Configuration overview
           displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
-        - name: Sample gateway setup 
-          displayName: Sample gateway setup
-          href: data-collection/pipeline-kubernetes-gateway.md          
+          href: data-collection/pipeline-configure.md  
         - name: Azure portal
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure-portal.md
@@ -896,6 +893,14 @@ items:
         - name: Extension versions
           displayName: Azure Monitor pipeline extension versions
           href: data-collection/pipeline-extension-versions.md
+        - name: Gateway
+          items:
+          - name: Sample gateway setup 
+            displayName: Sample gateway setup
+            href: data-collection/pipeline-kubernetes-gateway.md     
+          - name: Multiple gateways
+            displayName: Sample gateway setup
+            href: data-collection/pipeline-kubernetes-gateway-multiple.md     
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
