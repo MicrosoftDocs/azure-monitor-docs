@@ -6,7 +6,7 @@ reviewer: cweining
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.custom: devdivchpfy22, devx-track-dotnet
-#customer intent: As an application developer using Azure Service apps, I want to enable Snapshot Debugger for .NET apps to troubleshoot my apps, if necessary.
+#customer intent: As an application developer running .NET apps in Azure Service Fabric, Azure Cloud Services, Azure Virtual Machines, or on-premises, I want to enable Snapshot Debugger to troubleshoot my applications when needed.
 ---
 
 # Enable Snapshot Debugger for .NET apps in Azure Service Fabric, Cloud Services, and Virtual Machines
@@ -19,7 +19,7 @@ If your application runs in Azure Service Fabric, Azure Cloud Services, Azure Vi
 
 - [Enable Application Insights in your .NET resource](../app/asp-net.md).
 - Include the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package version 1.4.2 or above in your app.
-- Understand that snapshots might take 10 to 15 minutes to be sent to the Application Insights instance after an exception has been triggered. 
+- Understand that snapshots might take 10 to 15 minutes to be sent to the Application Insights instance after an exception has been triggered.
 
 ## Configure snapshot collection for ASP.NET applications
 
