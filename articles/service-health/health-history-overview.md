@@ -2,7 +2,7 @@
 title: Health history overview
 description: Overview of the features and information found on the Health history pane.
 ms.topic: concept-article
-ms.date: 03/04/2026
+ms.date: 03/12/2026
 ---
 
 # Health history
@@ -33,7 +33,7 @@ This pane contains the following information:
 
 
 >[!Note]
->Service health history events are displayed in the panel for 90 days and then they are stored in the backend API for up to a year.<br>
+> The History tab shows Service health events that have been resolved or have passed their mitigation end time. These events will remain visible in your History for 90 days before automatically expiring.<br>
 >This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
 
 
