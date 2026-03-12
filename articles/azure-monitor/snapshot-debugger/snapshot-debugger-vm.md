@@ -28,7 +28,7 @@ When you add the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.n
 If you don't see `SnapshotCollectorTelemetryProcessor` in `ApplicationInsights.config`, or if you want to customize the Snapshot Debugger configuration, you can edit it manually. 
 
 > [!NOTE]
-> Any manual configurations might get overwritten when upgrading to a newer version of the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package.
+> Any manual configuration might get overwritten when you upgrade to a newer version of the [Microsoft.ApplicationInsights.SnapshotCollector](https://www.nuget.org/packages/Microsoft.ApplicationInsights.SnapshotCollector) NuGet package.
 
 Snapshot Collector's default configuration looks similar to the following example:
 
@@ -131,9 +131,9 @@ builder.Services.AddSnapshotCollector(config => config.IsEnabledInDeveloperMode 
 
 ## Configure snapshot collection for other .NET applications
 
-Snapshots are collected only on exceptions that are reported to Application Insights. 
+Snapshots are collected only on exceptions that are reported to Application Insights.
 
-For ASP.NET and ASP.NET Core applications, the Application Insights SDK automatically reports unhandled exceptions that escape a controller method or endpoint route handler. 
+For ASP.NET and ASP.NET Core applications, the Application Insights SDK automatically reports unhandled exceptions that escape a controller method or endpoint route handler.
 
 For other applications, you might need to modify your code to report them. The exception handling code depends on the structure of your application. For example:
 
@@ -204,7 +204,7 @@ internal class LoggerExample
 
 By default, the Application Insights Logger (`ApplicationInsightsLoggerProvider`) forwards exceptions to the Snapshot Debugger by using `TelemetryClient.TrackException`. This behavior is controlled through the `TrackExceptionsAsExceptionTelemetry` property on the `ApplicationInsightsLoggerOptions` class. 
 
-If you set `TrackExceptionsAsExceptionTelemetry` to `false` when configuring the Application Insights Logger, the preceding example won't trigger the Snapshot Debugger. In this case, modify your code to call `TrackException` manually.
+If you set `TrackExceptionsAsExceptionTelemetry` to `false` when you configure the Application Insights Logger, the preceding example won't trigger the Snapshot Debugger. In this case, modify your code to call `TrackException` manually.
 
 ## Related content
 
