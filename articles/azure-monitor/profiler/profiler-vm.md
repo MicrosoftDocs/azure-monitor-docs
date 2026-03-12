@@ -2,7 +2,7 @@
 title: Enable Application Insights Profiler for .NET for web apps on an Azure virtual machine
 description: Profile web apps running on an Azure virtual machine or a virtual machine scale set by using Application Insights Profiler.
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 03/12/2026
 ms.reviewer: charles.weininger
 #customer intent: As an application developer, I need to know how to run Application Insights Profiler for .NET for an app on an Azure virtual machine.
 ---
@@ -182,7 +182,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
 
 1. Verify that the Microsoft Azure Diagnostics extension is installed by viewing the extensions installed for your virtual machine.
 
-   :::image type="content" source="./media/profiler-vm/wad-extension.png" alt-text="Screenshot that shows checking if the WAD extension is installed.":::
+   :::image type="content" source="./media/profiler-vm/wad-extension.png" alt-text="Screenshot that shows checking if the WAD extension is installed." lightbox="./media/profiler-vm/wad-extension.png":::
 
 1. Find the VM Diagnostics extension for your VM:
 
@@ -198,7 +198,7 @@ Because the Azure portal doesn't provide a way to set the Application Insights P
    - Switch the Explorer mode to **Read/Write** in the upper-right corner.
    - Select **Edit**.
 
-     :::image type="content" source="./media/profiler-vm/resource-explorer-sinks-config.png" alt-text="Screenshot that shows adding the Application Insights Profiler sink.":::
+     :::image type="content" source="./media/profiler-vm/resource-explorer-sinks-config.png" alt-text="Screenshot that shows adding the Application Insights Profiler sink." lightbox="./media/profiler-vm/resource-explorer-sinks-config.png":::
 
      ```json
      "WadCfg": {
