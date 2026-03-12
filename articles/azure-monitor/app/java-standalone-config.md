@@ -11,7 +11,7 @@ ms.custom: devx-track-java, devx-track-extended-java
 
 This article shows you how to configure Azure Monitor Application Insights for Java.
 
-For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md) which includes [sample applications](opentelemetry-enable.md#sample-applications).
+For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md).
 
 ## Connection string and role name
 

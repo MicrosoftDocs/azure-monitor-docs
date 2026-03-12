@@ -615,8 +615,10 @@ Use this sample to scope a transformation to a single service when multiple appl
 ---
 
 > [!NOTE]
-> The following sections are available across all OpenTelemetr-specific Application Insights articles.
+> The following sections are available across all OpenTelemetry-specific Application Insights articles.
 
-[!INCLUDE [Help, support, and feedback](includes/opentelemetry-help-support-feedback.md)]
+[!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
 
 [!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]
+
+[!INCLUDE [Support](includes/opentelemetry-support.md)]
