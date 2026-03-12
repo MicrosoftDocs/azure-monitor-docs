@@ -66,7 +66,7 @@
     - name: Billing updates overview
       href: billing-elevated-access.md
       
-    - name: Service Health history overview
+    - name: Health history overview
       href: health-history-overview.md
   
     - name: Health alerts
