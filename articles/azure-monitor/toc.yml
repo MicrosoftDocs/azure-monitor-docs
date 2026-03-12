@@ -99,9 +99,7 @@ items:
         - name: Troubleshooting
           href: /troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting
       - name: Automatic instrumentation
-        items:
-        - name: Autoinstrumentation supported scenarios
-          href: app/codeless-overview.md
+        href: app/codeless-overview.md
       - name: Application Insights SDK (Classic API)
         displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
         href: app/classic-api.md
