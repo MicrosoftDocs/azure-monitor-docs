@@ -10,7 +10,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Cognitive Service | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Cognitive Service | Azure Content Moderator | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Kubernetes service | Windows Server 2022 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### March 17, 2027
