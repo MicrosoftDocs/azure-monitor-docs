@@ -264,7 +264,7 @@ items:
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts
-        href: vm/tutorial-vm-enable-monitoring.md
+        href: vm/tutorial-vm-alerts.md
     - name: Enable monitoring
       items:
       - name: Enable monitoring
@@ -315,8 +315,6 @@ items:
           - name: Uninstall
             displayName: dependency agent, vminsights
             href: vm/vminsights-dependency-agent-uninstall.md
-        - name: Map dependencies
-          href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
       - name: Unsure
