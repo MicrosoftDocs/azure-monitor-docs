@@ -45,13 +45,15 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
                     ],
                     "samplingFrequencyInSeconds": 60,
                     "counterSpecifiers": [
-                        "system.filesystem.usage",
-                        "system.disk.io",
-                        "system.disk.operation_time",
-                        "system.disk.operations",
-                        "system.memory.usage",
-                        "system.network.io",
                         "system.cpu.time",
+                        "system.cpu.utilization",
+                        "system.memory.usage",
+                        "system.memory.utilization",
+                        "system.disk.io",
+                        "system.disk.operations",
+                        "system.network.io",
+                        "system.filesystem.usage",
+                        "system.disk.operation_time",
                         "system.uptime",
                         "system.network.dropped",
                         "system.network.errors"
@@ -63,8 +65,8 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
         "destinations": {
             "monitoringAccounts": [
                 {
-                    "accountResourceId": "/subscriptions/my-subscription/resourcegroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace",
-                    "name": "MonitoringAccountDestination"
+                    "accountResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Monitor/accounts/<workspace-name>",
+                    "name": "MonitoringAccount"
                 }
             ]
         },
@@ -74,7 +76,7 @@ See [Create data collection rules (DCRs) in Azure Monitor](../data-collection/da
                     "Microsoft-OtelPerfMetrics"
                 ],
                 "destinations": [
-                    "MonitoringAccountDestination"
+                    "MonitoringAccount"
                 ]
             }
         ]

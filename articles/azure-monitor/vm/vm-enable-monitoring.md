@@ -225,7 +225,7 @@ Start by defining the DCR in JSON format.
     "dataSources": {
       "performanceCountersOTel": [
         {
-          "streams": ["Microsoft-OtelPerfMetrics"],
+          "streams": "Microsoft-OtelPerfMetrics",
           "samplingFrequencyInSeconds": 60,
           "counterSpecifiers": [
             "system.cpu.time",
@@ -251,7 +251,7 @@ Start by defining the DCR in JSON format.
     },
     "dataFlows": [
       {
-        "streams": ["Microsoft-OtelPerfMetrics"],
+        "streams": "Microsoft-OtelPerfMetrics",
         "destinations": "MonitoringAccount"
       }
     ]

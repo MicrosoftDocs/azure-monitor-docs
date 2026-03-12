@@ -265,7 +265,7 @@ items:
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts
         href: vm/tutorial-vm-alerts.md
-    - name: Enable monitoring
+    - name: Configure
       items:
       - name: Enable monitoring
         href: vm/vm-enable-monitoring.md 
