@@ -277,51 +277,53 @@ items:
         href: vm/vminsights-optout.md
       - name: Troubleshoot
         href: vm/vminsights-troubleshoot.md
-    - name: OpenTelemetry experience
+    - name: Client metrics
       items:
-      - name: Overview
-        displayName: OpenTelemetry
-        href: vm/metrics-opentelemetry-guest.md
-      - name: Migrate
-        displayName: OpenTelemetry
-        href: vm/vminsights-opentelemetry.md
-      - name: Metric reference
-        displayName: OpenTelemetry
-        href: vm/metrics-opentelemetry-guest-reference.md
-    - name: Logs-based experience (classic)
-      items:
-      - name: Interactive views
-        href: vm/vminsights-performance.md
-      - name: Visualize data with workbooks
-        href: vm/vminsights-workbooks.md
-      - name: Migrate
-        items:
-        - name: Migrate to Azure Monitor agent
-          href: vm/vminsights-migrate-agent.md
-        - name: Migrate from deprecated policies
-          href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Map feature
+      - name: OpenTelemetry experience
         items:
         - name: Overview
-          href: vm/vminsights-maps.md
-        - name: Retirement guidance
-          displayName: processes and dependencies, map, vminsights, dependency agent
-          href: vm/vminsights-maps-retirement.md
-        - name: Dependency agent
-          items:
-          - name: Manage
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent.md
-          - name: Uninstall
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent-uninstall.md
-        - name: Query map data
-          href: vm/vminsights-log-query.md
-      - name: Unsure
+          displayName: OpenTelemetry
+          href: vm/metrics-opentelemetry-guest.md
+        - name: Migrate
+          displayName: OpenTelemetry
+          href: vm/vminsights-opentelemetry.md
+        - name: Metric reference
+          displayName: OpenTelemetry
+          href: vm/metrics-opentelemetry-guest-reference.md
+      - name: Logs-based experience (classic)
         items:
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-    - name: Collect client data
+        - name: Interactive views
+          href: vm/vminsights-performance.md
+        - name: Visualize data with workbooks
+          href: vm/vminsights-workbooks.md
+        - name: Migrate
+          items:
+          - name: Migrate to Azure Monitor agent
+            href: vm/vminsights-migrate-agent.md
+          - name: Migrate from deprecated policies
+            href: vm/vminsights-migrate-deprecated-policies.md
+        - name: Map feature
+          items:
+          - name: Overview
+            href: vm/vminsights-maps.md
+          - name: Retirement guidance
+            displayName: processes and dependencies, map, vminsights, dependency agent
+            href: vm/vminsights-maps-retirement.md
+          - name: Dependency agent
+            items:
+            - name: Manage
+              displayName: dependency agent, vminsights
+              href: vm/vminsights-dependency-agent.md
+            - name: Uninstall
+              displayName: dependency agent, vminsights
+              href: vm/vminsights-dependency-agent-uninstall.md
+          - name: Query map data
+            href: vm/vminsights-log-query.md
+        - name: Unsure
+          items:
+          - name: Monitor changes
+            href: vm/vminsights-change-analysis.md
+    - name: Client logs
       items:
       - name: Create data collection rule
         displayName: Azure Monitor agent, AMA

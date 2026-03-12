@@ -12,29 +12,6 @@ ms.date: 01/06/2026
 OTel guest OS metrics are system and process‑level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per‑process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
 
-## Enable OpenTelemetry for VM insights
-
-> [!NOTE]
-> Onboarding to VM insights in the Azure portal automatically creates a new data collection rule (DCR) for each VM. To use an existing DCR, see [Collect performance counters from a virtual machine by using Azure Monitor](./data-collection-performance.md).
-
-1. Select a VM in the Azure portal and navigate to the **Insights** pane under the **Monitoring** section. 
-
-2. If your VM is already onboarded to VM insights, you'll see a prompt to enable OpenTelemetry.
-
-    :::image type="content" source="media/vminsights-opentelemetry/upgrade.png" lightbox="media/vminsights-opentelemetry/upgrade.png" alt-text="Screenshot that shows option to upgrade VM insights to OpenTelemetry experience in the Azure portal.":::
-
-    If your VM isn't onboarded yet, you can enable OpenTelemetry during the onboarding process.
-
-    :::image type="content" source="media/vminsights-opentelemetry/enable.png" lightbox="media/vminsights-opentelemetry/enable.png" alt-text="Screenshot that shows option to enable VM insights to OpenTelemetry experience in the Azure portal.":::
-
-3. For a VM that hasn't been onboarded yet, you can choose whether to enable the classic log-based metrics, the new OpenTelemetry metrics, or both. For a VM that has already been onboarded, you can only add OpenTelemetry metrics. The option to disable classic log-based metrics isn't currently available. See [Disable classic log-based metrics](#disable-classic-log-based-metrics) to disable the classic experience.
-
-4. The Azure Monitor workspace for OTel metrics and the Log Analytics workspace for classic metrics that will be used are displayed. You can change either workspace by selecting **Customize infrastructure monitoring**. If a workspace doesn't already exist, a default workspace will be created for you. You can also choose to create your own new workspace.
-
-    :::image type="content" source="media/vminsights-opentelemetry/customize-configuration.png" lightbox="media/vminsights-opentelemetry/customize-configuration.png" alt-text="Screenshot that shows screen for customizing metric collection in the Azure portal.":::
-
-    > [!NOTE]
-    > This screen displays the metrics that will be collected, although you can't modify them here. See [Customize metric collection](#customize-metric-collection).
 
 ## Visualize OpenTelemetry metrics
 When you enable OTel metrics, the VM insights dashboards are updated to use these metrics instead of those stored in Log Analytics workspace. You can do custom analysis of these metrics select the **Metrics** option from the Azure Monitor workspace to open metrics explorer. See [Azure Monitor metrics explorer with PromQL](../metrics/metrics-explorer.md).

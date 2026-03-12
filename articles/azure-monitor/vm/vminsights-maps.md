@@ -4,7 +4,7 @@ description: This article shows how to use the VM insights Map feature. It disco
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.update-cycle: 1095-days
-ms.date: 02/17/2026
+ms.date: 03/11/2026
 ---
 
 # Use the Map feature of VM insights to understand application components
