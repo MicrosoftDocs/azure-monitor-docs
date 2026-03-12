@@ -147,7 +147,7 @@ The following scenario demonstrates where Snapshot Collector isn't supported.
 
 | Scenario | Side Effects | Recommendation |
 |----------|--------------|----------------|
-| You're using the Snapshot Collector SDK in your application directly (*.csproj*) and enabled the advanced option *Interop*. | The local Application Insights SDK, including Snapshot Collector telemetry, is lost and no Snapshots are available.<br/>Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor.`<br/>[Learn more about the Application Insights feature Interop.](../app/azure-web-apps-net-core.md#troubleshooting) | If you're using the advanced option *Interop*, use the codeless Snapshot Collector injection, enabled through the Azure portal. |
+| You're using the Snapshot Collector SDK in your application directly (*.csproj*) and enabled the advanced option *Interop*. | The local Application Insights SDK, including Snapshot Collector telemetry, is lost and no Snapshots are available.<br/>Your application could crash at startup with `System.ArgumentException: telemetryProcessorTypedoes not implement ITelemetryProcessor.`<br/>For more information about the Application Insights feature *Interop*, see [Troubleshoot Application Insights integration](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues). | If you're using the advanced option *Interop*, use the codeless Snapshot Collector injection, enabled through the Azure portal. |
 
 ## Related content
 
