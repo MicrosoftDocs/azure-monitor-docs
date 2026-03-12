@@ -18,21 +18,21 @@ Now that you set up and configured Code Optimizations on your app, access and vi
 
 You can access Code Optimizations through two main entry points:
 
-* [Via the Code Optimizations consolidated overview page.](#via-the-code-optimizations-consolidated-overview-page-preview)
-* [Via individual Application Insights resources.](#via-individual-application-insights-resources)
+* [The Code Optimizations consolidated overview page.](#via-the-code-optimizations-consolidated-overview-page-preview)
+* [The individual Application Insights resources.](#via-individual-application-insights-resources)
 
-### Via the Code Optimizations consolidated overview page (preview)
+### Code Optimizations consolidated overview page (preview)
 
-View your Code Optimizations results via [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple Application Insights resources. 
+View your Code Optimizations results by using [the Code Optimizations overview page](https://aka.ms/codeoptimizations). In this consolidated overview, you can access results across multiple subscriptions for multiple Application Insights resources. 
 
-:::image type="content" source="media/code-optimizations/code-optimizations-consolidated-page.png" alt-text="Screenshot of Code Optimizations consolidated overview page.":::
+:::image type="content" source="media/code-optimizations/code-optimizations-consolidated-page.png" alt-text="Screenshot of Code Optimizations consolidated overview page." lightbox="media/code-optimizations/code-optimizations-consolidated-page.png":::
 
 You can filter the consolidated results by searching for filter field, or setting the following filters:
 
 | Filter               | Description                                                                                                                      | Default       |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------|---------------|
 | Time Range           | Select the time range from which you'd like to view Code Optimizations results.                                                  | Last 24 Hours |
-| Role                 | The role name assigned to the reporting services machine or workload. Can be updated via the Application Insights configuration. | All Roles     |
+| Role                 | The role name assigned to the reporting services machine or workload. Can be updated through the Application Insights configuration. | All Roles     |
 | Subscription         | The subscription that the insight belongs to. You can select more than one.                                                      | N/A           |
 | Application Insights | The Application Insights resource with which your application is associated. You can select more than one.                       | N/A           |
 | Insight Type         | The type of issue, such as CPU, memory, blocking, and exceptions.                                                                | All Types     |
@@ -42,18 +42,18 @@ You can then sort the columns in the insights results based on your desired view
 * Performance issue
 * The full name of the parent method
 
-### Via individual Application Insights resources
+### Individual Application Insights resources
 
-You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu. Click **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
+You can access Code Optimizations specific to individual Application Insights resources from that resource's left menu. Select **Investigate** > **Performance** and select the **Code Optimizations** button from the top menu.
 
-:::image type="content" source="media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance blade.":::
+:::image type="content" source="media/code-optimizations/code-optimizations-performance-blade.png" alt-text="Screenshot of Code Optimizations located in the Performance page." lightbox="media/code-optimizations/code-optimizations-performance-blade.png":::
 
 You can filter the consolidated results by searching for filter field, or setting the following filters:
 
 | Filter       | Description                                                                                                                      | Default       |
 |--------------|----------------------------------------------------------------------------------------------------------------------------------|---------------|
 | Time Range   | Select the time range from which you'd like to view Code Optimizations results.                                                  | Last 24 Hours |
-| Role         | The role name assigned to the reporting services machine or workload. Can be updated via the Application Insights configuration. | All Roles     |
+| Role         | The role name assigned to the reporting services machine or workload. Can be updated through the Application Insights configuration. | All Roles     |
 | Insight Type | The type of issue, such as CPU, memory, blocking, and exceptions.                                                                | All Types     |
 
 You can then sort the columns in the insights results based on your desired view, including by:
@@ -88,7 +88,7 @@ Use this metric to quickly identify latency bottlenecks, such as:
 
 ## Exceptions 
 
-Exception insights are extracted from the snapshots collected by the Snapshot Debugger. If Snapshot Debugger is enabled in your app, and snapshots are being collected, they are automatically be processed for insight extraction in Code Optimizations. 
+Exception insights are extracted from the snapshots collected by the Snapshot Debugger. If Snapshot Debugger is enabled in your app, and snapshots are being collected, they're automatically be processed for insight extraction in Code Optimizations. 
 
 ## View insights
 
@@ -110,7 +110,7 @@ The **Insights** tab provides:
 :::image type="content" source="media/code-optimizations/code-optimizations-details.png" alt-text="Screenshot of the detail pane for a specific Code Optimizations C-P-U result.":::
 
 > [!NOTE]
-> If you don't see any insights, it's likely that the Code Optimizations service hasn't noticed any performance bottlenecks in your code. Continue to check back to see if any insights pop up. 
+> If you don't see any insights, it's likely that the Code Optimizations service didn't notice any performance bottlenecks in your code. Continue to check back to see if any insights pop up. 
 
 ### Call Stack
 
@@ -125,9 +125,9 @@ In the insights details pane, under the **Call Stack** heading, you can:
 
 ### Timeline
 
-In the details pane, under **Timeline**, you can also view a graph depicting the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours may look like:
+In the details pane, under **Timeline**, you can also view a graph depicting the timeline of a specific performance issue's impact and threshold. The results vary depending on the filters you set. For example, a Memory "Inefficient `String.SubString()`" performance issue's insights seen over the last 24 hours might look like:
 
-:::image type="content" source="media/code-optimizations/code-optimizations-trend-impact.png" alt-text="Screenshot of the C-P-U trend impact over the course of seven days.":::
+:::image type="content" source="media/code-optimizations/code-optimizations-trend-impact.png" alt-text="Screenshot of the CPU trend impact over the course of seven days.":::
 
 ## Next steps
 
