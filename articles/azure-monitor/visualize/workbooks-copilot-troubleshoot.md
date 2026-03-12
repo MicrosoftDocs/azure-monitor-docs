@@ -13,47 +13,15 @@ This article helps you diagnose and resolve common issues when using Copilot wit
 
 ## Common errors
 
-### "No workbook is open or visible"
-
-**Cause:** Copilot can't detect an active workbook context.
-
-**Resolution:** Open a workbook in the [Dashboards preview](workbooks-dashboard-preview.md) experience and switch to edit mode.
-
-### "There are no items in this canvas"
-
-**Cause:** The workbook canvas is empty.
-
-**Resolution:** This message is informational. If a workbook is open but empty, Copilot suggests creating new items. Ask Copilot to create a workbook or add items to get started.
-
-### "No items created"
-
-**Cause:** An error occurred during item creation.
-
-**Resolution:** Check the browser console for detailed error information and retry the request. If the issue persists, try simplifying the request to fewer items.
-
-### "No updates applied"
-
-**Cause:** The update operation failed for the specified items.
-
-**Resolution:** The error message includes the specific cause. Verify that the items you're referencing exist on the canvas by asking Copilot _"What's in this workbook?"_ before requesting updates.
-
-### "Item with id '[id]' not found on canvas"
-
-**Cause:** The item Copilot is trying to update no longer exists or the ID reference is incorrect.
-
-**Resolution:** Ask Copilot to describe the current workbook canvas to refresh its understanding of the item IDs, then retry the update.
-
-### "Update items must have an 'id' field"
-
-**Cause:** Copilot attempted to update an item without referencing its ID.
-
-**Resolution:** Ask Copilot _"What's in this workbook?"_ to refresh its context, then retry the update request.
-
-### "Failed to open workbook"
-
-**Cause:** Copilot tried to open a workbook, but the workbook doesn't exist or you don't have access.
-
-**Resolution:** Verify that the workbook exists and that you have read permissions on the resource. Try opening the workbook manually from the [Dashboards preview](workbooks-dashboard-preview.md) experience.
+| Error message | Cause | Resolution |
+| --- | --- | --- |
+| "No workbook is open or visible" | Copilot can't detect an active workbook context. | Open a workbook in the [Dashboards preview](workbooks-dashboard-preview.md) experience and switch to edit mode. |
+| "There are no items in this canvas" | The workbook canvas is empty. | This message is informational. If a workbook is open but empty, Copilot suggests creating new items. Ask Copilot to create a workbook or add items to get started. |
+| "No items created" | An error occurred during item creation. | Check the browser console for detailed error information and retry the request. If the issue persists, try simplifying the request to fewer items. |
+| "No updates applied" | The update operation failed for the specified items. | The error message includes the specific cause. Verify that the items you're referencing exist on the canvas by asking Copilot _"What's in this workbook?"_ before requesting updates. |
+| "Item with id '[id]' not found on canvas" | The item Copilot is trying to update no longer exists or the ID reference is incorrect. | Ask Copilot to describe the current workbook canvas to refresh its understanding of the item IDs, then retry the update. |
+| "Update items must have an 'id' field" | Copilot attempted to update an item without referencing its ID. | Ask Copilot _"What's in this workbook?"_ to refresh its context, then retry the update request. |
+| "Failed to open workbook" | Copilot tried to open a workbook, but the workbook doesn't exist or you don't have access. | Verify that the workbook exists and that you have read permissions on the resource. Try opening the workbook manually from the [Dashboards preview](workbooks-dashboard-preview.md) experience. |
 
 ### Schema validation errors
 
@@ -70,14 +38,6 @@ This article helps you diagnose and resolve common issues when using Copilot wit
 | "Invalid metrics configuration: Unknown metrics"    | The specified metric doesn't exist for the selected resource.  | Verify the resource type and available metrics. Rephrase your request with a valid metric name. |
 | "Invalid metrics configuration: Invalid dimensions" | The specified split-by dimension doesn't exist for the metric. | Check the available dimensions for your metric and try again.                                   |
 | "No metrics available"                              | The selected resource doesn't have Azure Monitor metrics.      | Use log-based queries instead, or select a different resource.                                  |
-
-### Prometheus errors
-
-| Error message                                                        | Cause                                                     | Resolution                                                                                                       |
-| -------------------------------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| "Unable to fetch the PromQL expression... may not have query access" | Missing permissions on the Azure Monitor workspace.       | Verify that you have the required read permissions on the Azure Monitor workspace.                               |
-| "The selected resource has no associated Prometheus endpoint"        | The resource isn't connected to Azure Managed Prometheus. | Onboard the resource to [Azure Managed Prometheus](/azure/azure-monitor/essentials/prometheus-metrics-overview). |
-| "Unable to fetch the PromQL expression... Please try again later"    | Rate limiting or a transient error occurred.              | Wait a few minutes and retry the request.                                                                        |
 
 ## Known limitations
 
