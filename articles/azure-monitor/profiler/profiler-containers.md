@@ -2,7 +2,7 @@
 title: Profile Azure containers with Application Insights Profiler for .NET
 description: Learn how to enable the Application Insights Profiler for your ASP.NET Core application running in Azure containers.
 ms.topic: how-to
-ms.date: 03/09/2026
+ms.date: 03/12/2026
 ms.reviewer: charles.weininger
 # Customer Intent: As a .NET developer, I'd like to learn how to enable the Profiler on my ASP.NET Core application running in my container.
 ---
@@ -129,7 +129,7 @@ In this article, you learn about the various ways that you can:
 
 1. In the [Azure portal](https://portal.azure.com), open your Application Insights resource. In the **Overview** page, take note of your Application Insights connection string.
 
-   :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal.":::
+   :::image type="content" source="./media/profiler-containerinstances/application-insights-key.png" alt-text="Screenshot that shows finding the connection string in the Azure portal." lightbox="./media/profiler-containerinstances/application-insights-key.png":::
 
 1. Open `appsettings.json` and add your Application Insights connection string to this code section:
 
@@ -196,7 +196,7 @@ If you're unable to find traces from your app, consider following the steps in t
 1. In the Azure portal, open your Application Insights resource. From the left menu, select **Investigate** > **Performance**.
 1. After the trace process is finished, the **Profiler Traces** button appears.
 
-   :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane.":::
+   :::image type="content" source="./media/profiler-containerinstances/profiler-traces.png" alt-text="Screenshot that shows the .NET Profiler traces button in the Performance pane." lightbox="./media/profiler-containerinstances/profiler-traces.png":::
 
 ## Clean up resources
 
