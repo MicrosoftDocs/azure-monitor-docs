@@ -60,24 +60,24 @@ This category contains the record of all create, update, delete, and action oper
     "channels": "Operation",
     "claims": {
         "aud": "https://management.core.windows.net/",
-        "iss": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
+        "iss": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
         "iat": "1234567890",
         "nbf": "1234567890",
         "exp": "1234567890",
         "_claim_names": "{\"groups\":\"src1\"}",
-        "_claim_sources": "{\"src1\":{\"endpoint\":\"https://graph.microsoft.com/1114444b-7467-4144-a616-e3a5d63e147b/users/f409edeb-4d29-44b5-9763-ee9348ad91bb/getMemberObjects\"}}",
+        "_claim_sources": "{\"src1\":{\"endpoint\":\"https://graph.microsoft.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/users/bbbbbbbb-1111-2222-3333-cccccccccccc/getMemberObjects\"}}",
         "http://schemas.microsoft.com/claims/authnclassreference": "1",
         "aio": "A3GgTJdwK4vy7Fa7l6DgJC2mI0GX44tML385OpU1Q+z+jaPnFMwB",
         "http://schemas.microsoft.com/claims/authnmethodsreferences": "rsa,mfa",
         "appid": "00001111-aaaa-2222-bbbb-3333cccc4444",
         "appidacr": "2",
-        "http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier": "10845a4d-ffa4-4b61-a3b4-e57b9b31cdb5",
+        "http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier": "cccccccc-2222-3333-4444-dddddddddddd",
         "e_exp": "262800",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Robertson",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "Rob",
         "ipaddr": "111.111.1.111",
         "name": "Rob Robertson",
-        "http://schemas.microsoft.com/identity/claims/objectidentifier": "f409edeb-4d29-44b5-9763-ee9348ad91bb",
+        "http://schemas.microsoft.com/identity/claims/objectidentifier": "bbbbbbbb-1111-2222-3333-cccccccccccc",
         "onprem_sid": "S-1-5-21-4837261184-168309720-1886587427-18514304",
         "puid": "18247BBD84827C6D",
         "http://schemas.microsoft.com/identity/claims/scope": "user_impersonation",
@@ -101,7 +101,7 @@ This category contains the record of all create, update, delete, and action oper
     "eventTimestamp": "2018-01-29T20:42:31.3810679Z",
     "id": "/subscriptions/<subscription ID>/resourcegroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636528553513810679",
     "level": "Informational",
-    "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
+    "operationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "operationName": {
         "value": "Microsoft.Network/networkSecurityGroups/write",
         "localizedValue": "Microsoft.Network/networkSecurityGroups/write"
@@ -128,7 +128,7 @@ This category contains the record of all create, update, delete, and action oper
     "subscriptionId": "<subscription ID>",
     "properties": {
         "statusCode": "Created",
-        "serviceRequestId": "a4c11dbd-697e-47c5-9663-12362307157d",
+        "serviceRequestId": "ffff5555-aa66-7777-88bb-999999cccccc",
         "responseBody": "",
         "requestbody": ""
     },
@@ -466,7 +466,7 @@ This category contains the record of any events related to the operation of the 
   },
   "correlationId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
   "description": "The autoscale engine attempting to scale resource '/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
-  "eventDataId": "eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c",
+  "eventDataId": "aaaa6666-bb77-8888-99cc-000000dddddd",
   "eventName": {
     "value": "AutoscaleAction",
     "localizedValue": "AutoscaleAction"
@@ -475,7 +475,7 @@ This category contains the record of any events related to the operation of the 
     "value": "Autoscale",
     "localizedValue": "Autoscale"
   },
-  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c/ticks/636361956518681572",
+  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/aaaa6666-bb77-8888-99cc-000000dddddd/ticks/636361956518681572",
   "level": "Informational",
   "resourceGroupName": "myResourceGroup",
   "resourceProviderName": {
@@ -725,19 +725,19 @@ This category contains records of all effect action operations performed by [Azu
         "action": "Microsoft.Resources/checkPolicyCompliance/read",
         "scope": "/subscriptions/<subscriptionID>"
     },
-    "caller": "33a68b9d-63ce-484c-a97e-94aef4c89648",
+    "caller": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "channels": "Operation",
     "claims": {
         "aud": "https://management.azure.com/",
-        "iss": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
+        "iss": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
         "iat": "1234567890",
         "nbf": "1234567890",
         "exp": "1234567890",
         "aio": "A3GgTJdwK4vy7Fa7l6DgJC2mI0GX44tML385OpU1Q+z+jaPnFMwB",
         "appid": "1d78a85d-813d-46f0-b496-dd72f50a3ec0",
         "appidacr": "2",
-        "http://schemas.microsoft.com/identity/claims/identityprovider": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
-        "http://schemas.microsoft.com/identity/claims/objectidentifier": "f409edeb-4d29-44b5-9763-ee9348ad91bb",
+        "http://schemas.microsoft.com/identity/claims/identityprovider": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
+        "http://schemas.microsoft.com/identity/claims/objectidentifier": "bbbbbbbb-1111-2222-3333-cccccccccccc",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "b-24Jf94A3FH2sHWVIFqO3-RSJEiv24Jnif3gj7s",
         "http://schemas.microsoft.com/identity/claims/tenantid": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
         "uti": "IdP3SUJGtkGlt7dDQVRPAA",
@@ -757,7 +757,7 @@ This category contains records of all effect action operations performed by [Azu
     "eventTimestamp": "2019-01-15T13:19:56.1227642Z",
     "id": "/subscriptions/<subscriptionID>/resourceGroups/myResourceGroup/providers/Microsoft.Sql/servers/contososqlpolicy/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636831551961227642",
     "level": "Warning",
-    "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
+    "operationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "operationName": {
         "value": "Microsoft.Authorization/policies/audit/action",
         "localizedValue": "Microsoft.Authorization/policies/audit/action"
@@ -787,8 +787,8 @@ This category contains records of all effect action operations performed by [Azu
         "resourceLocation": "westus2",
         "ancestors": "72f988bf-86f1-41af-91ab-2d7cd011db47",
         "policies": "[{\"policyDefinitionId\":\"/subscriptions/<subscriptionID>/providers/Microsoft.
-            Authorization/policyDefinitions/5775cdd5-d3d3-47bf-bc55-bb8b61746506/\",\"policyDefiniti
-            onName\":\"5775cdd5-d3d3-47bf-bc55-bb8b61746506\",\"policyDefinitionEffect\":\"Deny\",\"
+            Authorization/policyDefinitions/ffff5555-aa66-7777-88bb-999999cccccc/\",\"policyDefiniti
+            onName\":\"ffff5555-aa66-7777-88bb-999999cccccc\",\"policyDefinitionEffect\":\"Deny\",\"
             policyAssignmentId\":\"/subscriptions/<subscriptionID>/providers/Microsoft.Authorization
             /policyAssignments/991a69402a6c484cb0f9b673/\",\"policyAssignmentName\":\"991a69402a6c48
             4cb0f9b673\",\"policyAssignmentScope\":\"/subscriptions/<subscriptionID>\",\"policyAssig
@@ -890,12 +890,12 @@ Following is an example of an event using this schema:
                },
                 "claims": {
                     "aud": "https://management.core.windows.net/",
-                    "iss": "https://sts.windows.net/abcde123-86f1-41af-91ab-abcde1234567/",
+                    "iss": "https://sts.windows.net/bbbbcccc-1111-dddd-2222-eeee3333ffff/",
                     "iat": "1421876371",
                     "nbf": "1421876371",
                     "exp": "1421880271",
                     "ver": "1.0",
-                    "http://schemas.microsoft.com/identity/claims/tenantid": "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0",
+                    "http://schemas.microsoft.com/identity/claims/tenantid": "ccccdddd-2222-eeee-3333-ffff4444aaaa",
                     "http://schemas.microsoft.com/claims/authnmethodsreferences": "pwd",
                     "http://schemas.microsoft.com/identity/claims/objectidentifier": "123abc45-8211-44e3-95xq-85137af64708",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "admin@contoso.com",
@@ -904,7 +904,7 @@ Following is an example of an event using this schema:
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "John",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Smith",
                     "name": "John Smith",
-                    "groups": "12345678-cacfe77c-e058-4712-83qw-f9b08849fd60,12345678-4c41-4b23-99d2-d32ce7aa621c,12345678-0578-4ea0-9gdc-e66cc564d18c",
+                    "groups": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee,11bb11bb-cc22-dd33-ee44-55ff55ff55ff,22cc22cc-dd33-ee44-ff55-66aa66aa66aa",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": " admin@contoso.com",
                     "appid": "11112222-bbbb-3333-cccc-4444dddd5555",
                     "appidacr": "2",
@@ -916,7 +916,7 @@ Following is an example of an event using this schema:
             "location": "global",
             "properties": {
                 "statusCode": "Created",
-                "serviceRequestId": "12345678-8ca0-47ad-9b80-6cde2207f97c"
+                "serviceRequestId": "eeeeeeee-4444-5555-6666-ffffffffffff"
             }
         }
     ]

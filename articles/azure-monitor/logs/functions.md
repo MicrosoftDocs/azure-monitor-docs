@@ -61,7 +61,7 @@ Create a function with Log Analytics in the Azure portal by selecting **Save** a
 
 :::image type="content" source="media/functions/function-details.png" alt-text="Screenshot that shows function details." lightbox="media/functions/function-details.png":::
 
-## [Resource Manager template](#tab/arm)
+## [ARM (JSON)](#tab/arm)
 
 The following sample uses the [Microsoft.OperationalInsights workspaces/savedSearches](/azure/templates/microsoft.operationalinsights/workspaces/savedsearches?pivots=deployment-language-arm-template) template to create a function. For more information about Azure Resource Manager templates, see [Understand the structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax).
 
@@ -73,70 +73,108 @@ To learn more about how to deploy resources from a custom template, go to [Deplo
 
 ```json
 {
-  "$schema": "
-https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#"
-,
-  "contentVersion": "1.0.0.0",
-  "resources": [
-    {
-      "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
-      "apiVersion": "2020-08-01",
-      "name": "[concat(parameters('workspaceName'), '/', parameters('functionName'))]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "etag": "*",
-        "displayName": "[parameters('functionDisplayName')]",
-        "category": "[parameters('category')]",
-        "query": "[parameters('query')]",
-        "functionAlias": "[parameters('functionAlias')]",
-        "version": 1
-      }
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "resources": [
+        {
+            "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+            "apiVersion": "2025-07-01",
+            "name": "[concat(parameters('workspaceName'), '/', parameters('functionName'))]",
+            "location": "[parameters('location')]",
+            "properties": {
+                "etag": "*",
+                "displayName": "[parameters('functionDisplayName')]",
+                "category": "[parameters('category')]",
+                "query": "[parameters('query')]",
+                "functionAlias": "[parameters('functionAlias')]",
+                "version": 1
+            }
+        }
+    ],
+    "parameters": {
+        "workspaceName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the Log Analytics workspace"
+            }
+        },
+        "functionName": {
+            "type": "string",
+            "metadata": {
+                "description": "Name of the function"
+            }
+        },
+        "location": {
+            "type": "string",
+            "metadata": {
+                "description": "Location of the Log Analytics workspace"
+            }
+        },
+        "functionDisplayName": {
+            "type": "string",
+            "metadata": {
+                "description": "Display name of the function"
+            }
+        },
+        "category": {
+            "type": "string",
+            "metadata": {
+                "description": "Category of the function"
+            }
+        },
+        "query": {
+            "type": "string",
+            "metadata": {
+                "description": "Kusto query for the function"
+            }
+        },
+        "functionAlias": {
+            "type": "string",
+            "metadata": {
+                "description": "Alias for the function"
+            }
+        }
     }
-  ],
-  "parameters": {
-    "workspaceName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the Log Analytics workspace"
-      }
-    },
-    "functionName": {
-      "type": "string",
-      "metadata": {
-        "description": "Name of the function"
-      }
-    },
-    "location": {
-      "type": "string",
-      "metadata": {
-        "description": "Location of the Log Analytics workspace"
-      }
-    },
-    "functionDisplayName": {
-      "type": "string",
-      "metadata": {
-        "description": "Display name of the function"
-      }
-    },
-    "category": {
-      "type": "string",
-      "metadata": {
-        "description": "Category of the function"
-      }
-    },
-    "query": {
-      "type": "string",
-      "metadata": {
-        "description": "Kusto query for the function"
-      }
-    },
-    "functionAlias": {
-      "type": "string",
-      "metadata": {
-        "description": "Alias for the function"
-      }
+}
+```
+
+# [Bicep](#tab/bicep)
+
+The following sample uses the [Microsoft.OperationalInsights workspaces/savedSearches](/azure/templates/microsoft.operationalinsights/workspaces/savedsearches?pivots=deployment-language-arm-template) template to create a function. For more information about Bicep templates, see [Bicep file structure and syntax](/azure/azure-resource-manager/bicep/file).
+
+```bicep
+@description('Name of the Log Analytics workspace')
+param workspaceName string
+
+@description('Name of the function')
+param functionName string
+
+@description('Location of the Log Analytics workspace')
+param location string
+
+@description('Display name of the function')
+param functionDisplayName string
+
+@description('Category of the function')
+param category string
+
+@description('Kusto query for the function')
+param query string
+
+@description('Alias for the function')
+param functionAlias string
+
+resource workspaceName_function 'Microsoft.OperationalInsights/workspaces/savedSearches@2025-07-01' = {
+    name: '${workspaceName}/${functionName}'
+    location: location
+    properties: {
+        etag: '*'
+        displayName: functionDisplayName
+        category: category
+        query: query
+        functionAlias: functionAlias
+        version: 1
     }
-  }
 }
 ```
 

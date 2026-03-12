@@ -2,7 +2,7 @@
 title: Supported Resource log categories for Azure Monitor
 description: Understand the supported services and event schemas for Azure Monitor resource logs.
 ms.topic: generated-reference
-ms.date: 02/02/2026
+ms.date: 03/02/2026
 
 # NOTE This list is largely auto-generated. Any modification made to this list via GitHub might be written over without warning. Contact the author of this article for details on how to make permanent updates.
 ---
@@ -117,7 +117,6 @@ Following table lists metrics and log categories available for each resource typ
 |microsoft.purview <a name="microsoftpurview"></a>|[accounts](./supported-metrics/microsoft-purview-accounts-metrics.md)<br>|[accounts](./supported-logs/microsoft-purview-accounts-logs.md)<br>|
 |Microsoft.RecoveryServices <a name="microsoftrecoveryservices"></a>|[Vaults](./supported-metrics/Microsoft-RecoveryServices-Vaults-metrics.md)<br>|[Vaults](./supported-logs/Microsoft-RecoveryServices-Vaults-logs.md)<br>|
 |Microsoft.Relay <a name="microsoftrelay"></a>|[namespaces](./supported-metrics/Microsoft-Relay-namespaces-metrics.md)<br>|[namespaces](./supported-logs/Microsoft-Relay-namespaces-logs.md)<br>|
-|Microsoft.ResourceBuilder <a name="microsoftresourcebuilder"></a>|N/A|[workspaces/pipelines](./supported-logs/Microsoft-ResourceBuilder-workspaces-pipelines-logs.md)<br>[workspaces/pipelines/jobs](./supported-logs/Microsoft-ResourceBuilder-workspaces-pipelines-jobs-logs.md)<br>|
 |Microsoft.Search <a name="microsoftsearch"></a>|[searchServices](./supported-metrics/Microsoft-Search-searchServices-metrics.md)<br>|[searchServices](./supported-logs/Microsoft-Search-searchServices-logs.md)<br>|
 |Microsoft.Security <a name="microsoftsecurity"></a>|N/A|[antiMalwareSettings](./supported-logs/Microsoft-Security-antiMalwareSettings-logs.md)<br>[defenderForStorageSettings](./supported-logs/Microsoft-Security-defenderForStorageSettings-logs.md)<br>|
 |microsoft.securityinsights <a name="microsoftsecurityinsights"></a>|N/A|[settings](./supported-logs/microsoft-securityinsights-settings-logs.md)<br>|

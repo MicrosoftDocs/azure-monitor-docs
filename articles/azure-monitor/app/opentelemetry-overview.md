@@ -1,106 +1,141 @@
 ---
-title: Application Insights OpenTelemetry data collection
-description: Learn how to instrument applications using OpenTelemetry (OTel) with Azure Monitor Application Insights for telemetry data collection and monitoring.
+title: Collect OpenTelemetry (OTel) for Application Insights experiences
+description: Learn the basic data collection flow for Application Insights. Start new server-side applications with Azure Monitor OpenTelemetry and store telemetry in a linked Log Analytics workspace.
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/05/2026
 
-#customer intent: "As a developer or site reliability engineer, I want to instrument my application with OpenTelemetry (OTel) in Application Insights so that I can collect standardized telemetry data for improved observability, performance monitoring, and diagnostics."
+#customer intent: "As a developer or site reliability engineer who is new to Azure Monitor and Application Insights, I want to understand the basic Application Insights data collection flow and start with the recommended OpenTelemetry instrumentation."
 
 ---
 
-# Collect telemetry with OpenTelemetry in Application Insights
+# Collect OpenTelemetry (OTel) for Application Insights experiences
 
-Before you can monitor your application, it needs to be instrumented. In the following sections, we cover some data collection basics of [Azure Monitor Application Insights](app-insights-overview.md).
+This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
 
-Instrumenting applications with OpenTelemetry (OTel) in Application Insights enables standardized telemetry collection across platforms. This improves observability, simplifies performance monitoring, and supports distributed tracing, metrics, and log analysis.
+Entry points include:
 
-> [!NOTE]
-> [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
+> [!div class="checklist"]
+> - Server-side web apps
+> - Server-side web apps hosted on a Virtual Machine (VM)
+> - Client-side JavaScript apps
+> - Azure Functions
+> - AI Agents
 
-## Instrumentation approaches for Application Insights: OpenTelemetry and more
+## Getting started
 
-At a basic level, "instrumenting" is simply enabling an application to capture telemetry.
+Choose the tab that best matches your workload or hosting model.
 
-There are two methods to instrument your application:
+Most server-side scenarios in this article use Azure Monitor OpenTelemetry.
 
-- [Automatic instrumentation](codeless-overview.md) (autoinstrumentation)
-- Manual instrumentation
+### [Web apps](#tab/webapps)
 
-**Autoinstrumentation** enables telemetry collection through configuration without touching the application's code. Although it's more convenient, it tends to be less configurable. It's also not available in all languages. See [Autoinstrumentation supported environments and languages](codeless-overview.md). When autoinstrumentation is available, it's the easiest way to enable Azure Monitor Application Insights.
+Use this path for server-side web apps that you instrument in code.
 
-**Manual instrumentation** is coding against the Application Insights or OpenTelemetry API. In the context of a user, it typically refers to installing a language-specific SDK in an application. This means that you have to manage the updates to the latest package version by yourself. You can use this option if you need to make custom dependency calls or API calls that are not captured by default with autoinstrumentation. There are two options for manual instrumentation:
-
-- [Application Insights SDKs](asp-net-core.md)
-- [Azure Monitor OpenTelemetry Distros](opentelemetry-enable.md).
-
-While we see OpenTelemetry as our future direction, we have no plans to stop collecting data from older SDKs. We still have a way to go before our Azure OpenTelemetry Distros [reach feature parity with our Application Insights SDKs](./application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro). In many cases, customers continue to choose to use Application Insights SDKs for quite some time.
-
-> [!IMPORTANT]
-> "Manual" doesn't mean you'll be required to write complex code to define spans for distributed traces, although it remains an option. Instrumentation Libraries packaged into our Distros enable you to effortlessly capture telemetry signals across common frameworks and libraries. We're actively working to [instrument the most popular Azure Service SDKs using OpenTelemetry](https://devblogs.microsoft.com/azure-sdk/introducing-experimental-opentelemetry-support-in-the-azure-sdk-for-net/) so these signals are available to customers who use the Azure Monitor OpenTelemetry Distro.
-
-## Telemetry Types
-
-Telemetry, the data collected to observe your application, can be broken into three types or "pillars":
-
-- Distributed Tracing
-- Metrics
-- Logs
-
-A complete observability story includes all three pillars, and Application Insights further breaks down these pillars into tables based on our [data model](data-model-complete.md). Our Application Insights SDKs or Azure Monitor OpenTelemetry Distros include everything you need to power Application Performance Monitoring on Azure. The package itself is free to install, and you only pay for the data you ingest in Azure Monitor.
-
-The following sources explain the three pillars:
-
-- [OpenTelemetry community website](https://opentelemetry.io/docs/concepts/data-collection/)
-- [OpenTelemetry specifications](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/overview.md)
-- [Distributed Systems Observability](https://www.oreilly.com/library/view/distributed-systems-observability/9781492033431/ch04.html) by Cindy Sridharan
-
-## Telemetry Routing
-
-There are two ways to send your data to Azure Monitor (or any vendor):
-
-- Via a direct exporter
-- Via an agent
-
-A direct exporter sends telemetry in-process (from the application's code) directly to the Azure Monitor ingestion endpoint. The main advantage of this approach is onboarding simplicity.
-
-*The currently available Application Insights SDKs and Azure Monitor OpenTelemetry Distros rely on a direct exporter*.
-
-> [!NOTE]
-> For Azure Monitor's position on the OpenTelemetry-Collector, see the [OpenTelemetry FAQ](./application-insights-faq.yml#can-i-use-the-opentelemetry-collector).
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!TIP]
-> If you are planning to use OpenTelemetry-Collector for sampling or additional data processing, you may be able to get these same capabilities built-in to Azure Monitor. [Workspace-based Application Insights resources](create-workspace-resource.md) benefit from [Ingestion-time Transformations](../essentials/data-collection-transformations.md). To enable, follow the details in the [tutorial](../logs/tutorial-workspace-transformations-portal.md), skipping the step that shows how to set up a diagnostic setting since with Workspace-centric Application Insights this is already configured. If you're filtering less than 50% of the overall volume, it's no additional cost. After 50%, there is a cost but much less than the standard per GB charge.
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
-## OpenTelemetry
+### [VM](#tab/vm)
 
-Microsoft is excited to embrace [OpenTelemetry](https://opentelemetry.io/) as the future of telemetry instrumentation. You, our customers, asked for vendor-neutral instrumentation, and we're pleased to partner with the OpenTelemetry community to create consistent APIs and SDKs across languages.
+Use this path when your app runs on a virtual machine or virtual machine scale set. The code-based flow is the same as for other server-side apps.
 
-Microsoft worked with project stakeholders from two previously popular open-source telemetry projects, [OpenCensus](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). Together, we helped to create a single project, OpenTelemetry. OpenTelemetry includes contributions from all major cloud and Application Performance Management (APM) vendors and lives within the [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/). Microsoft is a Platinum Member of the CNCF.
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
-For terminology, see the [glossary](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/glossary.md) in the OpenTelemetry specifications.
+> [!TIP]
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
-Some legacy terms in Application Insights are confusing because of the industry convergence on OpenTelemetry. The following table highlights these differences. OpenTelemetry terms are replacing Application Insights terms.
+### [JavaScript](#tab/js)
 
-Application Insights | OpenTelemetry
------- | ------
-Autocollectors | Instrumentation libraries
-Channel | Exporter
-Codeless / Agent-based | Autoinstrumentation
-Traces | Logs
-Requests | Server Spans
-Dependencies | Other Span Types (Client, Internal, etc.)
-Operation ID | Trace ID
-ID or Operation Parent ID | Span ID
+Use this path for browser telemetry such as page views and user interactions. Browser apps use the [Application Insights JavaScript SDK](javascript-sdk.md), not OpenTelemetry.
+
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [JavaScript SDK](javascript-sdk.md) to your app.
+1. Configure the [connection string](javascript-sdk.md#paste-the-connection-string-in-your-environment).
+
+> [!NOTE]
+> The Application Insights JavaScript SDK doesn't use OpenTelemetry. For more information, see [Can OpenTelemetry be used for web browsers?](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers)
+
+### [Functions](#tab/functions)
+
+Use this path for Azure Functions. Start with the function app settings, and then follow the Functions article for the language-specific steps.
+
+1. Enable OpenTelemetry in your function app's [`host.json`](/azure/azure-functions/functions-host-json) file by setting `"telemetryMode": "OpenTelemetry"`.
+1. Add the `APPLICATIONINSIGHTS_CONNECTION_STRING` [application setting](/azure/azure-functions/functions-app-settings) by using your Application Insights [connection string](connection-strings.md).
+1. Complete the language-specific instrumentation and any required worker settings in [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto).
+
+> [!NOTE]
+> OpenTelemetry isn't currently supported for [C# in-process apps](/azure/azure-functions/functions-dotnet-class-library).
+
+### [Kubernetes](#tab/aks)
+
+Use this path for apps running on Azure Kubernetes Service (AKS). The code-based flow is the same as for other server-side apps.
+
+1. Create an [Application Insights resource](create-workspace-resource.md).
+1. Get the resource's [connection string](connection-strings.md).
+1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
+
+> [!NOTE]
+> [Automatic instrumentation](../containers/kubernetes-codeless.md) for [Azure Kubernetes Service (AKS)](/azure/aks/what-is-aks) is available as a public preview.
+
+### [Agents](#tab/agents)
+
+Use this path for AI agents. Choose the setup that matches your hosting model.
+
+- **Managed hosting**
+  - **Azure AI Foundry:** For Foundry-managed agents and workflows, start with [tracing setup in Foundry](/azure/foundry/observability/how-to/trace-agent-setup). For app-side instrumentation, you can also use the Azure Monitor OpenTelemetry Distro with the [Foundry SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk).
+  - **Copilot Studio:** Use built-in configuration to emit your telemetry to Azure Monitor. For more information, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
+
+- **Self-hosting**
+  - **Microsoft Agent Framework:** If you're building an agent from scratch and self-hosting, use the [Microsoft Agent Framework](/agent-framework/agents/observability) to orchestrate your agent and emit telemetry to Azure Monitor.
+  - **Third-party agents:** If you built an agent elsewhere, use the Azure AI OpenTelemetry Tracer to emit telemetry to Azure Monitor. These agents can also be registered in Azure AI Foundry. For framework-specific guidance, see [Enable tracing for agents built on LangChain & LangGraph](/azure/foundry/observability/how-to/trace-agent-framework#configure-tracing-for-langchain-and-langgraph) and [Enable tracing for agents built on OpenAI Agents SDK](/azure/foundry/observability/how-to/trace-agent-framework#configure-tracing-for-openai-agents-sdk).
+
+After telemetry is flowing, you're ready to explore the Application Insights [agent details view](agents-view.md#monitor-ai-agents-with-application-insights).
+
+If you choose to collect full prompt information, for example by using the `EnableSensitiveData` flag in Agent Framework, you can search through prompts in the **Search** view and review conversations, including assistant messages, system prompts, and tool usage, in the [Transaction Details](agents-view.md#end-to-end-transaction-details-view) view.
+
+Give each agent a distinct name so you can tell them apart in the Agent details view. If your agentic components are part of a larger application, consider sending them to an existing Application Insights resource.
+
+If you also want to see your agents in Azure AI Foundry in addition to Azure Monitor, [connect an Application Insights resource to your Foundry project](/azure/foundry/observability/how-to/trace-agent-setup#connect-application-insights-to-your-foundry-project).
+
+You can also set up evaluations in these ways:
+
+- **Batch evaluations**
+  - **Local evaluations with Azure AI Evaluation SDK:** [Run evaluations on your development machine during testing.](/azure/foundry-classic/how-to/develop/evaluate-sdk)
+  - **Cloud evaluations with the Foundry SDK:** [Execute evaluations in Azure for larger datasets or team collaboration.](/azure/foundry/how-to/develop/cloud-evaluation)
+  - **Foundry portal-based evaluations:** [Use the Foundry portal for no-code evaluation workflows.](/azure/foundry/how-to/evaluate-generative-ai-app)
+- **Continuous evaluations:** [Set up automated evaluations that run against production traffic](/azure/foundry-classic/how-to/continuous-evaluation-agents) to detect quality regressions.
+
+---
+
+After you complete the setup for your scenario, run your app and wait a few minutes for telemetry to appear in Application Insights. Then explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
 
 ## Next steps
 
-Check out the [Azure Monitor Application Insights FAQ](./application-insights-faq.yml#overview) and [OpenTelemetry FAQ](application-insights-faq.yml#azure-monitor-opentelemetry) for more information.
+Review the following resources to get more familiar with Application Insights concepts.
 
-Select your enablement approach:
+> [!div class="nextstepaction"]
+> [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights)
 
-- [Autoinstrumentation](codeless-overview.md)
-- [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
-- Application Insights SDKs
-    - [.NET](./asp-net.md)
-    - [Node.js](./nodejs.md)
-    - [JavaScript (Browser)](./javascript.md)
+> [!div class="nextstepaction"]
+> [Dependency tracking in Application Insights](dependencies.md#dependency-tracking-in-application-insights)
+
+> [!div class="nextstepaction"]
+> [Metrics in Application Insights](metrics-overview.md#metrics-in-application-insights)
+
+> [!div class="nextstepaction"]
+> [Application Insights telemetry data model](data-model-complete.md#application-insights-telemetry-data-model)
+
+> [!div class="nextstepaction"]
+> [Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md#log-analytics-workspace-overview)
+
+> [!div class="nextstepaction"]
+> [Tutorial: Use Log Analytics](../logs/log-analytics-tutorial.md#tutorial-use-log-analytics)

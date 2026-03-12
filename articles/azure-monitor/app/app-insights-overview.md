@@ -29,7 +29,7 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 * [Availability view](availability-overview.md): Proactively monitor and test the availability and responsiveness of application endpoints.
 * [Failures view](failures-performance-transactions.md?tabs=failures-view): Identify and analyze failures in your application to minimize downtime.
 * [Performance view](failures-performance-transactions.md?tabs=performance-view): Review application performance metrics and potential bottlenecks.
-* [Agents details](agents-view.md): A unified view for monitoring AI agents across Azure AI Foundry, Copilot Studio, and third-party agents.
+* [Agents details](agents-view.md): A unified view for monitoring AI agents across Microsoft Foundry, Copilot Studio, and third-party agents.
 
 ### Monitoring
 
@@ -71,9 +71,7 @@ The logic model diagram visualizes components of Application Insights and how th
 
 This section outlines supported scenarios.
 
-For more information about instrumenting applications to enable Application Insights, see [data collection basics](opentelemetry-overview.md).
-
-### Manual instrumentation
+For more information about enabling Application Insights experiences, see [Collect OpenTelemetry (OTel) for Application Insights experiences](opentelemetry-overview.md).
 
 #### OpenTelemetry Distro
 
@@ -82,6 +80,9 @@ For more information about instrumenting applications to enable Application Insi
 * [Java](opentelemetry-enable.md?tabs=java)
 * [Node.js](opentelemetry-enable.md?tabs=nodejs)
 * [Python](opentelemetry-enable.md?tabs=python)
+
+> [!TIP]
+> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
 #### Client-side JavaScript SDK
 
@@ -92,15 +93,8 @@ For more information about instrumenting applications to enable Application Insi
 
 #### Application Insights SDK (Classic API)
 
-> [!NOTE]
-> Review [Should I use OpenTelemetry or the Application Insights SDK](application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-sdk) before considering instrumentation with the Classic API.
-
-* [.NET](classic-api.md?tabs=dotnet)
-* [Node.js](classic-api.md?tabs=nodejs)
-
-### Automatic instrumentation (enable without code changes)
-
-For supported environments and languages, see our [autoinstrumentation overview](codeless-overview.md#supported-environments-languages-and-resource-providers).
+> [!IMPORTANT]
+> If you're still using Application Insights Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
 
 ### Supported platforms
 

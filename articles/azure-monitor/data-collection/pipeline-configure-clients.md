@@ -24,10 +24,10 @@ kubectl get services -n <namespace where azure monitor pipeline was installed>
 > [!NOTE]
 > If the external-ip field is set to *pending*, you need to configure an external IP for this ingress manually according to your cluster configuration.
 
-| Client | Description |
-|:-------|:------------|
-| Syslog | Update Syslog clients to send data to the pipeline endpoint and the port of your Syslog dataflow. |
-| OTLP | The Azure Monitor pipeline exposes a gRPC-based OTLP endpoint on port 4317. Configuring your instrumentation to send to this OTLP endpoint will depend on the instrumentation library itself. See [OTLP endpoint or Collector](https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector) for OpenTelemetry documentation. The environment variable method is documented at [OTLP Exporter Configuration](https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/). |
+| Client | Description | Default port |
+|:-------|:------------|:---|
+| Syslog | Update Syslog clients to send data to the pipeline endpoint and the port of your Syslog dataflow. | 514 |
+| OTLP | The Azure Monitor pipeline exposes a gRPC-based OTLP endpoint. Configuring your instrumentation to send to this OTLP endpoint will depend on the instrumentation library itself. See [OTLP endpoint or Collector](https://opentelemetry.io/docs/instrumentation/python/exporters/#otlp-endpoint-or-collector) for OpenTelemetry documentation. The environment variable method is documented at [OTLP Exporter Configuration](https://opentelemetry.io/docs/concepts/sdk-configuration/otlp-exporter-configuration/). | 4317 |
 
 ## Verify data
 

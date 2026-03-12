@@ -272,24 +272,31 @@ client_id=<app-client-id>
 }
 ```
 
-### Implicit code flow
+### Client credentials flow
 
-The Log Analytics API supports the OAuth2 [implicit flow](/azure/active-directory/develop/active-directory-dev-understanding-oauth2-implicit-grant). For this flow, only a single request is required, but no refresh token can be acquired.
+The Log Analytics API supports the OAuth2 [client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow). This flow is suitable for service-to-service calls where no user interaction is required.
 
-#### Implicit code authorize URL
+#### Client credentials token request
 
 ```http
-GET https://login.microsoftonline.com/YOUR_AAD_TENANT/oauth2/authorize?
+POST https://login.microsoftonline.com/YOUR_AAD_TENANT/oauth2/v2.0/token HTTP/1.1
+Host: login.microsoftonline.com
+Content-Type: application/x-www-form-urlencoded
+
 client_id=<app-client-id>
-&response_type=token
-&redirect_uri=<app-redirect-uri>
-&resource=https://api.loganalytics.io
+&scope=https://api.loganalytics.io/.default
+&client_secret=<app-client-secret>
+&grant_type=client_credentials
 ```
 
-A successful request produces a redirect to your redirect URI with the token in the URL:
+**Example response:**
 
 ```http
-http://YOUR_REDIRECT_URI/#access_token=YOUR_ACCESS_TOKEN&token_type=Bearer&expires_in=3600&session_state=STATE_GUID
+{
+    "token_type": "Bearer",
+    "expires_in": 3599,
+    "access_token": "eyJ0eXAiOiJKV1QiLCJ.....Ax"
+}
 ```
 
 This access\_token can be used as the `Authorization: Bearer` header value when it's passed to the Log Analytics API to authorize requests.
@@ -299,8 +306,7 @@ This access\_token can be used as the `Authorization: Bearer` header value when 
 You can find documentation about OAuth2 with Microsoft Entra here:
 
 * [Microsoft Entra authorization code flow](/azure/active-directory/develop/active-directory-protocols-oauth-code)
-* [Microsoft Entra implicit grant flow](/azure/active-directory/develop/active-directory-dev-understanding-oauth2-implicit-grant)
-* [Microsoft Entra S2S client credentials flow](/azure/active-directory/develop/active-directory-protocols-oauth-service-to-service)
+* [Microsoft Entra client credentials flow](/entra/identity-platform/v2-oauth2-client-creds-grant-flow)
 
 ## Next steps
 

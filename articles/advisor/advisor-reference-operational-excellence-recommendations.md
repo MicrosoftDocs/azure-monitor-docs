@@ -1,10 +1,10 @@
 ---
 title: Operational excellence recommendations
 description: Operational excellence recommendations
-ms.topic: concept-article
+ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 09/09/2025
+ms.date: 02/10/2026
 ---
 
 # Operational Excellence recommendations

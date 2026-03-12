@@ -3,7 +3,7 @@ title: Monitor the health of log search alert rules
 description: This article how to monitor the health of a log search alert rule.
 ms.topic: how-to
 ms.reviewer: 
-ms.date: 02/08/2024
+ms.date: 03/12/2026
 
 #Customer-intent: As a alerts administrator, I want to know when there are  issues with an alert rule, so I can act to resolve the issue or know when to contact Microsoft for support.
 ---
@@ -14,7 +14,7 @@ ms.date: 02/08/2024
 
 Azure Service Health monitors:
 - [Resource health](../../service-health/resource-health-overview.md): information about the health of your individual cloud resources, such as a specific log search alert rule. See [here](../../service-health/resource-health-checks-resource-types.md) for the resource health checks performed on log search alert rules.
-- [Service health](../../service-health/service-health-overview.md): information about the health of the Azure services and regions you're using, which might affect your log search alert rule, including communications about outages, planned maintenance activities, and other health advisories.
+- [Service health](../../service-health/service-health-portal-update.md): information about the health of the Azure services and regions you're using, which might affect your log search alert rule, including communications about outages, planned maintenance activities, and other health advisories.
 
  > [!NOTE]
 > Today, the report health status is supported only for rules with a frequency of 15 minutes or lower. For rules that run at a frequency greater than 15 minutes (such as 30 minutes, 1 hour, etc.), the status in the resource health blade will be `Unavailable`.

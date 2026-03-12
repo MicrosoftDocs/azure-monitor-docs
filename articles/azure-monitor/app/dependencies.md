@@ -17,7 +17,7 @@ This section links to lists of dependency calls that are automatically detected 
 
 If your dependency isn't on the list, you can still track it manually, see [Manually track dependencies](#manually-track-dependencies).
 
-For a list of all autocollected dependencies, see the language-specific tabs in [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
+For a list of all autocollected dependencies, see the language-specific tabs in [Configure automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#included-instrumentation-libraries).
 
 > [!NOTE]
 > For webpages, the [Application Insights JavaScript SDK](javascript-sdk.md) automatically collects AJAX dependencies made via [XMLHttpRequest](https://developer.mozilla.org/docs/Web/API/XMLHttpRequest).
@@ -26,7 +26,7 @@ For a list of all autocollected dependencies, see the language-specific tabs in 
 
 Dependencies are automatically collected using one of the following techniques, depending on the telemetry collection method.
 
-* [OpenTelemetry instrumentation libraries](opentelemetry-add-modify.md#included-instrumentation-libraries) are used to automatically collect dependencies such as HTTP, SQL, and Azure SDK calls. These libraries hook into supported frameworks and client libraries using `DiagnosticSource` or equivalent mechanisms.
+* [OpenTelemetry instrumentation libraries](opentelemetry-collect-detect.md#included-instrumentation-libraries) are used to automatically collect dependencies such as HTTP, SQL, and Azure SDK calls. These libraries hook into supported frameworks and client libraries using `DiagnosticSource` or equivalent mechanisms.
 
 * In supported environments like [Azure App Services](codeless-app-service.md), [autoinstrumentation](codeless-overview.md) is available and enabled by default, injecting telemetry collectors at runtime without code changes.
 
@@ -36,7 +36,7 @@ Dependencies are automatically collected using one of the following techniques, 
 
 You can manually track dependencies when automatic collection doesn't meet your needs.
 
-To learn how to manually track dependencies, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#included-instrumentation-libraries).
+To learn how to manually track dependencies, see [Configure automatic data collection and resource detectors for Azure Monitor OpenTelemetrys](opentelemetry-collect-detect.md#included-instrumentation-libraries).
 
 > [!NOTE]
 > For webpages, you can enable [Real User Monitoring](javascript-sdk.md) with the Application Insights JavaScript SDK.

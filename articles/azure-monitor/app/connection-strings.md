@@ -182,7 +182,7 @@ To review frequently asked questions (FAQ):
 Get started at runtime with:
 
 * [Azure Virtual Machine (VM) and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
-* [Internet Information Server (IIS) server](./application-insights-asp-net-agent.md)
+* [Internet Information Server (IIS) server](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers)
 * [Web Apps feature of Azure App Service](./azure-web-apps.md)
 
 Get started at development time with:

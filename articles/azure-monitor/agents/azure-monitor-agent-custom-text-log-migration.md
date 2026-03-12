@@ -1,8 +1,8 @@
 ---
-title: Migrate from custom text log version 1 to DCR agent custom text logs.
-description: Steps that you must perform when migrating from custom text log v1 to DCR based AMA custom text logs.
+title: Migrate from custom text log version 1 to DCR agent custom text logs
+description: Steps that you must perform when migrating from custom text log v1 to DCR based AMA custom text logs
 ms.topic: upgrade-and-migration-article
-ms.date: 1/22/2025
+ms.date: 01/22/2025
 ---
 
 # Migrate from MMA custom text table to AMA DCR based custom text table

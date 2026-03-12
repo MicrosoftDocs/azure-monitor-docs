@@ -3,7 +3,7 @@ title: Dependency Agent in Azure Monitor VM insights
 description: This article describes how to upgrade the VM Insights Dependency Agent using command-line, setup wizard, and other methods.
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 01/29/2025
+ms.date: 02/17/2026
 ---
 
 # Dependency Agent in Azure Monitor VM insights
@@ -24,7 +24,10 @@ Dependency Agent collects data about processes running on the virtual machine an
 
 ## Supported operating systems
 
-The Dependency agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022, except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. The Dependency Agent only supports x64 architectures.
+The Dependency agent currently supports the same [Windows versions that Azure Monitor Agent supports](../agents/azure-monitor-agent-supported-operating-systems.md) up to Windows Server 2022 , except Azure Stack HCI and Windows IoT Enterprise. Windows Server Core isn't supported. The Dependency Agent only supports x64 architectures.
+
+- [Support matrix for Linux](/azure/virtual-machines/extensions/agent-dependency-linux)
+- [Support matrix for Windows](/azure/virtual-machines/extensions/agent-dependency-windows)
 
 Consider the following before you install Dependency agent on a Linux machine:
 

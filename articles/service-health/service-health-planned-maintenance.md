@@ -2,7 +2,7 @@
 title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
-ms.date: 12/09/2025
+ms.date: 03/03/2026
 ---
 
 # Planned maintenance
@@ -72,19 +72,19 @@ At the top of each tab, there's a command bar with several options of how to vie
 
 When you open the Planned maintenance event, it opens the Summary tab, which shows you a list of information about this event, which includes:
 
-|Field                  |Description  |
-|-----------------------|-------------|
-|Tracking ID            | The tracking ID of the event.                                               |
-|Shareable link         | Copy this link to share the information.                                    |
-|Impacted services      | A list of any services impacted by this event.                              |
-|Impacted regions       | A list of all the regions impacted by this event and shown on the calendar. |
-|Impacted subscriptions | A list of any subscriptions impacted by this event.                         |
-|Status                 | The current status of this event.                                           |
-|Health event type      | The type of health event (Planned maintence/Security advisory).             |
-|Event tags             | The information that explains or names the nature and status of this event. |
-|Start time             | The time the event started. <br> *All times displayed are in Coordinated Universal Time (UTC).* |
-|End time               | The time the event ended.<br> *All times displayed are in Coordinated Universal Time (UTC).* |
-|Last update            | The most current notification information about this event.                 |
+| Field                  | Description                                                                    |
+| ---------------------- | ------------------------------------------------------------------------------ |
+| Tracking ID            | The tracking ID of the event.                                                  |
+| Shareable link         | Copy this link to share the information.                                       |
+| Impacted services      | A list of any services impacted by this event.                                 |
+| Impacted regions       | A list of all the regions impacted by this event and shown on the calendar.    |
+| Impacted subscriptions | A list of any subscriptions impacted by this event.                            |
+| Status                 | The current status of this event.                                              |
+| Health event type      | The type of health event (Planned maintence/Security advisory).                |
+| Event tags             | The information that explains or names the nature and status of this event.    |
+| Start time             | The time the event started. <br> *All times displayed are in UTC*.             |
+| End time               | The time the event ended. <br> *All times displayed are in UTC*.               |
+| Last update            | The most current notification information about this event.                    |
 
 
 
@@ -153,6 +153,7 @@ For more information on event retention, see [Service Health notification transi
 
 ## Next steps
 
+- Read [How to report an impact (Preview)](report-issue.md)
 - Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
 - Read [Service Health Frequently asked questions](service-health-faq.yml)
 - Read [Resource impact from Azure outages](impacted-resources-outage.md)

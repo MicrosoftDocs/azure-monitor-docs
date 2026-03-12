@@ -21,7 +21,8 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 - You require at least [Contributor](/azure/role-based-access-control/built-in-roles#contributor) access to the cluster for onboarding.
 - You require [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
 
-
+> [!IMPORTANT]
+> If your clusters are going to connect to the Azure Monitor workspace or Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 
 
 ## Create workspaces
@@ -461,11 +462,7 @@ Configuration options are the same for both new and existing clusters. The only 
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of monitoring configuration for AKS cluster.":::
 
-
-3. Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you.
-4. Select **Advanced settings** if you want to select alternate workspaces or create new ones. The **Logging profiles and Classic profiles** setting allows you to modify the default collection details to reduce your monitoring costs. See [Enable cost optimization settings in Container insights](./container-insights-cost-config.md) for details.
-5. Select **Configure**.
-
+Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you. Select **Advanced settings** if you want to select alternate workspaces or create new ones. 
 
 For container logs, you must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
 
@@ -575,7 +572,7 @@ The settings for **collection frequency** and **namespace filtering** don't appl
 ### Special scenarios
 Check the references below for configuration requirements for particular scenarios.
  
-- If you're using private link, see [Enable private link for Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-private-link.md).
+- If you're using private link, see [Enable private link for Kubernetes monitoring in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 - To enable container logging with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 - To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
 
