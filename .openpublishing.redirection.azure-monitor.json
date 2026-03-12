@@ -8915,6 +8915,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/opentelemetry-help-support-feedback.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
