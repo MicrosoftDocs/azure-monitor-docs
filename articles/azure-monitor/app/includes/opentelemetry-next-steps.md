@@ -11,7 +11,7 @@ ms.date: 03/12/2026
 * To review a sample application, see [Azure Monitor OpenTelemetry for ASP.NET Core](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
 * To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor AspNetCore NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) page.
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
-* To enable usage experiences, [enable web or browser user monitoring](javascript-sdk.md).
+* To enable usage experiences, [enable web or browser user monitoring](../javascript-sdk.md).
 
 ### [.NET](#tab/net)
 
@@ -19,7 +19,7 @@ ms.date: 03/12/2026
 * To review a sample application, see [Azure Monitor OpenTelemetry for .NET](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
 * To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor Exporter NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) page.
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
-* To enable usage experiences, [enable web or browser user monitoring](javascript-sdk.md).
+* To enable usage experiences, [enable web or browser user monitoring](../javascript-sdk.md).
 
 ### [Java](#tab/java)
 
@@ -28,7 +28,7 @@ ms.date: 03/12/2026
 * To review sample applications, see [Application Insights Java Samples](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples).
 * Review the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
 * To learn more about OpenTelemetry and its community, review the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* To enable usage experiences, review [Enable web or browser user monitoring](javascript-sdk.md).
+* To enable usage experiences, review [Enable web or browser user monitoring](../javascript-sdk.md).
 
 ### [Java native](#tab/java-native)
 
@@ -45,7 +45,7 @@ ms.date: 03/12/2026
 * To review a sample application, see [Azure Monitor OpenTelemetry for Node.js](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
 * To install the npm package and check for updates, see the [`@azure/monitor-opentelemetry` npm Package](https://www.npmjs.com/package/@azure/monitor-opentelemetry) page.
 * To learn more about OpenTelemetry and its community, see the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
-* To enable usage experiences, [enable web or browser user monitoring](javascript-sdk.md).
+* To enable usage experiences, [enable web or browser user monitoring](../javascript-sdk.md).
 
 ### [Python](#tab/python)
 
@@ -55,6 +55,6 @@ ms.date: 03/12/2026
 * Review the [release notes](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
 * To review available OpenTelemetry instrumentations and components, see the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
 * To learn more about OpenTelemetry and its community, review the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
-* To enable usage experiences, [enable web or browser user monitoring](javascript-sdk.md).
+* To enable usage experiences, [enable web or browser user monitoring](../javascript-sdk.md).
 
 ---
