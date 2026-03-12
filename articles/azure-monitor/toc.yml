@@ -257,12 +257,14 @@ items:
       href: vm/monitor-vm.md
     - name: Best practices
       href: vm/best-practices-vm.md
-    - name: Tutorials
+    - name: Getting started
       items:
       - name: Enable monitoring
         href: vm/tutorial-vm-enable-monitoring.md
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
+      - name: Enable recommended alerts
+        href: vm/tutorial-vm-enable-monitoring.md
     - name: Enable monitoring
       items:
       - name: Enable monitoring
@@ -290,8 +292,6 @@ items:
       items:
       - name: Interactive views
         href: vm/vminsights-performance.md
-      - name: Monitor changes
-        href: vm/vminsights-change-analysis.md
       - name: Visualize data with workbooks
         href: vm/vminsights-workbooks.md
       - name: Migrate
@@ -319,6 +319,10 @@ items:
           href: vm/vminsights-maps.md
         - name: Query map data
           href: vm/vminsights-log-query.md
+      - name: Unsure
+        items:
+        - name: Monitor changes
+          href: vm/vminsights-change-analysis.md
     - name: Collect client data
       items:
       - name: Create data collection rule
