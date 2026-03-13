@@ -75,8 +75,3 @@ You can also collect log data such as Windows event log or Syslog from your virt
 
 > [!div class="nextstepaction"]
 > [Collect guest logs and metrics from Azure virtual machine](tutorial-monitor-vm-guest.md)
-
-If you enabled both experiences and want to migrate fully to the OpenTelemetry experience, see:
-
-> [!div class="nextstepaction"]
-> [Migrate from logs-based to OpenTelemetry metrics](./vm-migrate-logs-to-opentelemetry.md)

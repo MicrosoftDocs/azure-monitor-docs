@@ -10,8 +10,7 @@ ms.date: 03/12/2026
 After you enable OpenTelemetry-based monitoring for your Azure virtual machines, you can customize which metrics are collected by modifying the data collection rule (DCR). This article describes how to extend the default metric collection to include per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics.
 OTel guest OS metrics are system and process-level performance counters collected from inside a VM. This includes CPU, memory, disk I/O, network, and per-process details such as CPU percent, memory percent, uptime, and thread count. This level of visibility helps you diagnose issues without logging into the VM.
 
-> [!NOTE]
-> For information on migrating from the logs-based experience to OpenTelemetry, see [Migrate from logs-based to OpenTelemetry metrics](./vm-migrate-logs-to-opentelemetry.md).
+
 
 ## Prerequisites
 

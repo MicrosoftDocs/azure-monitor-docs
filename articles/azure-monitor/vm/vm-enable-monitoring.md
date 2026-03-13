@@ -330,7 +330,7 @@ New-AzDataCollectionRule `
   -Location <location>
   -RuleFile <path-to-json-file>
 ```
-
+---
 
 
 ## Associate DCRs with VMs
