@@ -13,7 +13,7 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale using command line tools that allow you to use infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
 
 > [!NOTE]
-> To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+> To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md). To enable monitoring for a virtual machine scale set using the Azure portal, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-vmss-enable-monitoring.md).
 
 ## Supported machines
 

@@ -2,25 +2,15 @@
 title: Troubleshoot VM Insights
 description: Get troubleshooting information about agent installation and the use of the VM Insights feature in Azure Monitor.
 ms.topic: troubleshooting-general
-ms.date: 03/27/2025
+ms.date: 03/12/2026
 ms.custom: references_regions
 ---
 
-# Troubleshoot VM insights
+# Troubleshoot VM monitoring in Azure Monitor
 
-This article provides troubleshooting information to help you with problems that you might experience when you try to enable or use VM Insights in Azure Monitor.
+This article provides troubleshooting information to help you with problems that you might experience when you try to enable monitoring of virtual machines in Azure Monitor.
 
-
-## Issues enabling VM insights
-
-When you enable VM insights from the Azure portal, the following actions are performed. Each of these steps is verified as it's completed with a notification status appearing in the portal.
-
-* A new Log Analytics workspace is created unless you selected an existing one.
-* The [Azure Monitor Agent (AMA)](../agents/azure-monitor-agent-overview.md) is installed on each virtual machine [using an extension](../agents/azure-monitor-agent-manage.md#install-the-agent-extension) if the VM doesn't already have it installed.
-* The [Dependency Agent](./vminsights-dependency-agent.md) is installed on the virtual machine [using an extension](/azure/virtual-machines/extensions/agent-dependency-windows) if you chose to enable processes and dependencies.
-* A [data collection rule (DCR)](../agents/data-collection-rule-overview.md) is created to collect performance data from the virtual machine and associated with the virtual machine.
-
-Configuration of the workspace and the agent installation may take up to 10 minutes, and it may take up to an additional 10 minutes for data to become available to view in the portal. If you receive a message that the virtual machine needs to be onboarded after you perform the onboarding process, allow up to 30 minutes for the process to finish. If the problem persists, see the following sections for possible causes.
+## Agent installation
 
 ### Verify that the virtual machine is running
 The virtual machines must be running for the onboarding process to complete. If the virtual machine is stopped before the installation is complete, the process may fail and must be restarted.
@@ -28,38 +18,35 @@ The virtual machines must be running for the onboarding process to complete. If 
 ### Verify that the operating system supported
 If the operating system isn't in the [list of supported operating systems](vminsights-enable-overview.md#supported-operating-systems), installation of the extension fails and you get a message about waiting for data to arrive.
 
-> [!IMPORTANT]
-> If a virtual machine that you onboarded on or after April 11, 2022, doesn't appear in VM Insights, you might be running an older version of the Dependency Agent. For more information, see the blog post [Potential breaking changes for VM Insights Linux customers](https://techcommunity.microsoft.com/t5/azure-monitor-status/potential-breaking-changes-for-vm-insights-linux-customers/ba-p/3271989). This consideration doesn't apply for Windows machines and for virtual machines that you onboarded before April 11, 2022.
-
 ### Verify that the extension is installed
 In the Azure portal, on the **Extensions** pane for your virtual machine, verify that the following extensions appear:
 
 | Operating system | Agents |
 |:---|:---|
-| Windows | `AzureMonitorWindowsAgent`<br>`DependencyAgentWindows` |
-| Linux | `AzureMonitorLinuxAgent`<br>`DependencyAgentLinux` |
+| Windows | `AzureMonitorWindowsAgent` |
+| Linux | `AzureMonitorLinuxAgent` |
 
-If you don't see both extensions in the list of installed extensions, then attempt the onboarding process again. If the extensions are listed but their status doesn't appear as **Provisioning succeeded**, remove the extensions and reinstall them.
+If you don't the extension in the list of installed extensions, then attempt the onboarding process again. If the extension is listed but its status doesn't appear as **Provisioning succeeded**, remove the extension and reinstall it.
 
 :::image type="content" source="media/vminsights-troubleshoot/extensions.png" lightbox="media/vminsights-troubleshoot/extensions.png" alt-text="Screenshot of VM insights required extensions for a virtual machine.":::
 
-## OTel experience
+## OpenTelemetry experience
 
 
 **The charts are stuck in a loading state**<br>
-This issue occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
+Occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
 
 **Unable to access Data Collection Rule (DCR)**<br>
-This error occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+Occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Data configuration error**<br>
-This error occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+Occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Access denied**<br>
-This error occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
+Occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
 
 **An unknown error occurred**<br>
-If this error message persists, then contact support to open up a ticket.
+If this error message persists, then contact support to open a support ticket.
 
 ## Performance view has no data
 
@@ -83,30 +70,6 @@ Heartbeat
 When you enable VM insights, a data collection rule (DCR) is created to collect performance data from the virtual machine. If the DCR was modified after it was created, it may not be collecting the data that you expect. Create a new DCR for the virtual machine and delete the old one.
 
 If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to edit your DCR to match the new one.
-
-## Virtual machine doesn't appear in the Map view
-
-The following sections help you resolve problems with the **Map** view.
-
-### Verify that the map feature was enabled for the virtual machine
-The virtual machine is only added to the map if you selected **Processes and dependencies (Map)** when you enabled VM insights on the virtual machine. Click the **Enable** button next to the virtual machine on the **Overview** pane of VM insights view the current configuration. If **Processes and dependencies (Map)** isn't enabled, click **Edit** to either select a different data collection rule (DCR) with this feature enabled or create a new DCR. See [Enable VM Insights](./vminsights-enable.md) for details.
-
-
-### Verify that the Dependency agent is installed
-The Dependency agent is required on VMs in order to collect process and dependency data which is required for a VM to appear in the **Map** view. Use the information in [Verify that the extension is installed](#verify-that-the-extension-is-installed) to determine if the Dependency Agent is installed and working properly.
-
-### Verify performance data is being collected
-
-Use the log query in the [Performance view has no data](#performance-view-has-no-data) section to determine if data is being collected for the virtual machine.
-
-## Virtual machine appears in the Map view but has missing data
-
-If the virtual machine is in the Map view and the Dependency Agent is installed and running, verify whether the kernel driver loaded successfully. Check the log file at the following locations. The last lines of the file should indicate if the kernel didn't load and provide a reason.
-
-| Operating system | Log                                                          |
-|:-----------------|:-------------------------------------------------------------|
-| Windows          | C:\Program Files\Microsoft Dependency Agent\logs\wrapper.log |
-| Linux            | /var/opt/microsoft/dependency-agent/log/service.log          |
 
 
 

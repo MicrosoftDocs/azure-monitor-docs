@@ -257,8 +257,10 @@ items:
       href: vm/best-practices-vm.md
     - name: Getting started
       items:
-      - name: Enable monitoring
+      - name: Enable monitoring for a virtual machine
         href: vm/tutorial-vm-enable-monitoring.md
+      - name: Enable monitoring for a virtual machine scale set
+        href: vm/tutorial-vmss-enable-monitoring.md
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts

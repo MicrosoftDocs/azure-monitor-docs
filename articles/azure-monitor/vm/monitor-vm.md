@@ -31,7 +31,9 @@ Collecting guest data requires installing the [Azure Monitor agent](../agents/az
 
 
 ## Enable enhanced monitoring
-When you enable enhanced monitoring for a VM, the Azure Monitor agent is installed on it, and the agent starts sending guest metrics to Azure Monitor. This fully enables the **Monitor** view in the Azure portal. You can use this data to analyze the performance of the VM and its workloads and create alerts based on metrics. See [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-collect-logs.md) for step-by-step guidance on enabling enhanced monitoring for a VM.
+When you enable enhanced monitoring for a VM, the Azure Monitor agent is installed on it, and the agent starts sending guest metrics to Azure Monitor. This fully enables the **Monitor** view in the Azure portal. You can use this data to analyze the performance of the VM and its workloads and create alerts based on metrics. See [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md) for step-by-step guidance on enabling enhanced monitoring for a VM.
+
+For virtual machine scale sets, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-vmss-enable-monitoring.md) for step-by-step guidance on enabling monitoring for scale sets.
 
 When you enable guest monitoring for a VM using the Azure portal, you choose between two experiences: the OpenTelemetry-based experience (preview) and the logs-based experience (classic). Both experiences provide robust monitoring capabilities, but they differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
 

@@ -12,6 +12,9 @@ Virtual machines in Azure automatically send host-level metrics to Azure Monitor
 
 This tutorial walks you through enabling enhanced monitoring to collect guest performance data from your virtual machines and fully enable monitoring views using the Azure portal.
 
+> [!NOTE]
+> For virtual machine scale sets, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-vmss-enable-monitoring.md).
+
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
