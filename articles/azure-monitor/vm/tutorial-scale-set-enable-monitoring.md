@@ -40,11 +40,11 @@ Virtual machine scale sets currently support only the logs-based experience for 
 2. Select **Insights** from the left menu.
 3. If monitoring hasn't been enabled, you see a message offering to enable it. Select **Enable**.
 
-:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-enable-monitoring.png" alt-text="Screenshot showing the enable monitoring option for a virtual machine scale set." lightbox="media/tutorial-vmss-enable-monitoring/vmss-enable-monitoring.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png" alt-text="Screenshot showing the enable monitoring option for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png":::
 
 4. On the **Monitoring configuration** page, select a Log Analytics workspace. If you don't have a workspace, a default workspace is selected and created in the same region as the scale set.
 
-:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-monitoring-configuration.png" alt-text="Screenshot showing the monitoring configuration page for a virtual machine scale set." lightbox="media/tutorial-vmss-enable-monitoring/vmss-monitoring-configuration.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png" alt-text="Screenshot showing the monitoring configuration page for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png":::
 
 5. Select **Configure** to begin the deployment.
 
@@ -60,7 +60,7 @@ After the deployment completes, it takes a few minutes for enough data to be col
 
 The Performance view provides a set of charts that allow you to analyze the performance of different components across all instances in the scale set such as CPU, memory, disk, and network over time.
 
-:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-performance-view.png" alt-text="Screenshot showing the performance view for a virtual machine scale set." lightbox="media/tutorial-vmss-enable-monitoring/vmss-performance-view.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-view.png" alt-text="Screenshot showing the performance view for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-view.png":::
 
 The performance charts include:
 
@@ -83,7 +83,7 @@ To view performance data for a specific instance in the scale set:
 3. The list shows all instances sorted by the selected metric.
 4. Select an instance to view detailed performance information.
 
-:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-instance-list.png" alt-text="Screenshot showing the instance list for a virtual machine scale set." lightbox="media/tutorial-vmss-enable-monitoring/vmss-instance-list.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-instance-list.png" alt-text="Screenshot showing the instance list for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-instance-list.png":::
 
 ## View multi-VMSS performance data
 
@@ -102,7 +102,7 @@ This view provides aggregated performance charts showing:
 - Top machines by bytes sent
 - Top machines by bytes received
 
-:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-performance-aggview.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-vmss-enable-monitoring/vmss-performance-aggview.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggview.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggview.png":::
 
 ## Query performance data
 
