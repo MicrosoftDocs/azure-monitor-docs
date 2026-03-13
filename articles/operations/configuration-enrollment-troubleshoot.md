@@ -1,35 +1,35 @@
 ---
-title: Troubleshoot machine enrollment in (preview)
-description: Describes how to troubleshoot machine enrollment to automatically configure management for VMs in your subscription.
+title: Troubleshoot essential machine management in (preview)
+description: Describes how to troubleshoot essential machine management to automatically configure management for VMs in your subscription.
 ms.topic: troubleshooting-general
 ms.date: 02/24/2026
 ---
 
 
-# Troubleshoot machine enrollment in (preview)
+# Troubleshoot essential machine management (preview)
 
-This article provides troubleshooting steps for issues that may occur when [enabling machine enrollment](./configuration-enrollment.md). If you receive an error during enrollment, then there should be a specific resolution. If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the sections below to validate the different steps of the enrollment process to identify where any issues may have occurred.
+This article provides troubleshooting steps for issues that may occur when [enabling essential machine management](./configuration-enrollment.md). If you receive an error during enrollment, then there should be a specific resolution. If you don't get any errors during enrollment, but the machines in the subscription are not being onboarded to the selected services, then use the sections below to validate the different steps of the enrollment process to identify where any issues may have occurred.
 
 
 ## Errors during enrollment
 
-Following are common errors that may occur when enabling machine enrollment for a subscription.
+Following are common errors that may occur when enabling essential machine management for a subscription.
 
 **Could not validate resource existence.**<br>
 The error message will include the resource ID of the Log Analytics workspace or Azure Monitor workspace that you selected during enrollment.
 
 1. Check whether you have the **Essential Machine Management Administrator** role in the resource group of the Log analytics workspace or Azure Monitor workspace. 
-2. If the workspaces are in a different subscription than the one being enabled for machine enrollment, verify that you have `Microsoft.ManagedOps` resource provider registered in the subscription.  
+2. If the workspaces are in a different subscription than the one being enabled for essential machine management, verify that you have `Microsoft.ManagedOps` resource provider registered in the subscription.  
 
 
 
 **Change Log Analytics workspace or Azure Monitor workspace**<br>
-If you've already configured machine enrollment and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
+If you've already configured essential machine management and then enable it again using a different Log Analytics workspace or Azure Monitor workspace, you'll get an error saying that the workspace can't be changed once it's set. 
 
 To change either of the workspaces, you must first [disable the subscription](./configuration-enrollment.md#disable-a-subscription) and then re-enable it with the new workspaces. All machines in the subscription will be re-enrolled and configured with the new workspaces, but any data already collected in the old workspace will be retained. 
 
 **Disable Defender for cloud**<br>
-You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for machine enrollment. You must disable the subscription from the Defender for cloud portal.
+You'll receive and error if you attempt to disable Defender for cloud for subscription that was already enabled for essential machine management. You must disable the subscription from the Defender for cloud portal.
 
 ## Verify objects created
 If you didn't see any errors during enrollment, start by verifying that the objects in the following table are created in the resource group for the Log Analytics workspace and Azure Monitor workspace. These are the [data collection rules (DCRs)](/azure/azure-monitor/data-collection/data-collection-rule-overview) and solutions that enable change tracking and data collection for Azure Monitor.
@@ -85,4 +85,4 @@ In the details of the remediation task, click on **Related Events** or **View De
 :::image type="content" source="./media/configuration-enrollment-troubleshoot/remediation-task.png" lightbox="./media/configuration-enrollment-troubleshoot/remediation-task.png" alt-text="Screenshot showing details of a remediation task.":::
 
 ## Contact Microsoft
-If you've completed all of the previous steps and are still having issues with machine enrollment, contact Microsoft at [machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).
+If you've completed all of the previous steps and are still having issues with essential machine management, contact Microsoft at [machineenrollmentsupport@microsoft.com](mailto:machineenrollmentsupport@microsoft.com).

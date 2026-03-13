@@ -1304,3 +1304,12 @@ For reference, see the following OpenTelemetry specifications:
 
 * [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
 * [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
+
+> [!NOTE]
+> The following sections are available across all OpenTelemetry-specific Application Insights articles.
+
+[!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
+
+[!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]
+
+[!INCLUDE [Support](includes/opentelemetry-support.md)]

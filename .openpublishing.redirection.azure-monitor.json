@@ -5152,12 +5152,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-faq.md",
-   "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-troubleshooting.md",
-   "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
   },
   {
@@ -8920,6 +8920,7 @@
    "redirect_document_id": false
   },
   {
+<<<<<<< HEAD
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md",
    "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-enable-monitoring",
    "redirect_document_id": false
@@ -8957,6 +8958,11 @@
   {
    "source_path": "articles/azure-monitor/metrics/metrics-opentelemetry-guest.md",
    "redirect_url": "/azure/azure-monitor/vm/metrics-opentelemetry-guest",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-help-support-feedback.md",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
   }
  ]

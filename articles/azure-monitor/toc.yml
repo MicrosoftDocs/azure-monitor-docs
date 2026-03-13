@@ -59,8 +59,6 @@ items:
           href: app/opentelemetry-filter.md
         - name: Migrate to OpenTelemetry
           href: app/migrate-to-opentelemetry.md
-        - name: Help, support, and feedback
-          href: app/opentelemetry-help-support-feedback.md
         - name: Java (supplemental)
           items:
           - name: Spring Boot

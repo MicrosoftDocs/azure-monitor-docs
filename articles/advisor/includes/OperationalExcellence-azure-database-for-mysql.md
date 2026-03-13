@@ -60,7 +60,7 @@ Add firewall rules to protect your server from unauthorized access
 
 **Impact:** Medium
   
-For more information, see [Manage Firewall Rules - Azure Portal - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/how-to-manage-firewall-portal)  
+For more information, see [Manage Firewall Rules - Azure portal - Azure Database for MySQL - Flexible Server](/azure/mysql/flexible-server/how-to-manage-firewall-portal)  
 
 ResourceType: microsoft.dbformysql/flexibleservers  
 Recommendation ID: 6e5238b4-d495-4bde-bc7b-17f5d67f696b  
