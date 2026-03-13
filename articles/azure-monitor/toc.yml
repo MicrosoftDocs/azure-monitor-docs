@@ -257,10 +257,12 @@ items:
       href: vm/best-practices-vm.md
     - name: Getting started
       items:
-      - name: Enable monitoring for a virtual machine
-        href: vm/tutorial-vm-enable-monitoring.md
-      - name: Enable monitoring for a virtual machine scale set
-        href: vm/tutorial-vmss-enable-monitoring.md
+      - name: Enable monitoring
+        items:
+        - name: Virtual machine
+          href: vm/tutorial-vm-enable-monitoring.md
+        - name: Virtual machine scale set
+          href: vm/tutorial-vmss-enable-monitoring.md
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts
@@ -287,8 +289,8 @@ items:
         - name: Migrate
           displayName: OpenTelemetry, migrate, migration
           href: vm/vm-opentelemetry-migrate.md
-        - name: Customize metric collection
-          displayName: OpenTelemetry, customize
+        - name: Customize
+          displayName: OpenTelemetry, metrics, performance counters
           href: vm/vminsights-opentelemetry.md
         - name: Reference
           displayName: OpenTelemetry, metrics, performance counters
@@ -641,8 +643,13 @@ items:
     - name: Create DCRs
       items:
       - name: Create and edit
-        displayName: Data collection rules, DCR
-        href: data-collection/data-collection-rule-create-edit.md
+        items:
+        - name: Azure portal
+          displayName: Data collection rules, DCR, portal
+          href: data-collection/data-collection-rule-create-portal.md
+        - name: JSON
+          displayName: Data collection rules, DCR, CLI, PowerShell, API, ARM, Bicep
+          href: data-collection/data-collection-rule-create-edit.md
       - name: Manage associations
         displayName: data collection rules, DCR
         href: data-collection/data-collection-rule-associations.md

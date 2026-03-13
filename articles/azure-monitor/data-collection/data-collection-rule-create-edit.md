@@ -1,15 +1,17 @@
 ---
-title: Create data collection rules (DCRs) in Azure Monitor
-description: Details on creating data collection rules (DCRs) in Azure Monitor.
+title: Create data collection rules (DCRs) using JSON
+description: Create and edit data collection rules (DCRs) in Azure Monitor by working directly with their JSON definition.
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 03/13/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
 
-# Create data collection rules (DCRs) in Azure Monitor
+# Create data collection rules (DCRs) using JSON
 
-There are multiple methods for creating a [data collection rule (DCR)](data-collection-rule-overview.md) in Azure Monitor. In some cases, Azure Monitor will create and manage the DCR according to settings that you configure in the Azure portal. You may not even realize that you're working with a DCR in some of these cases. For other scenarios though, you may need to create your own DCRs or edit existing ones by directly working with their definition in JSON. This article describes the different methods for creating a DCR and recommendations on editing and troubleshooting them.
+There are multiple methods for creating a [data collection rule (DCR)](data-collection-rule-overview.md) in Azure Monitor. For many scenarios, you can use the Azure portal to create a DCR without understanding the structure of the DCR definition. See [Create data collection rules (DCRs) using the Azure portal](data-collection-rule-create-portal.md) for details on creating DCRs in the portal.
+
+For other scenarios though, you may need to create your own DCRs or edit existing ones by directly working with their definition in JSON. This article describes different methods for creating and editing a DCR using JSON.
 
 > [!NOTE]
 > This article describes how to create and edit the DCR itself. To create and edit data collection rule associations, see [Create and manage data collection rule associations](data-collection-rule-associations.md).
@@ -27,22 +29,9 @@ You require the following permissions to create DCRs and [DCR associations](data
 > [!IMPORTANT]
 > Create your DCR in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the DCR to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
-## Create or edit a DCR using the Azure portal
+## Create or edit a DCR
 
-The Azure portal provides a simplified experience for creating a DCR for particular scenarios. Using this method, you don't need to understand the structure of a DCR, although you may be limited in the configuration you can perform and may need to later edit the DCR definition to implement an advanced feature such as a transformation. The experience will vary for each scenario, so refer to the documentation for the specific scenario you're working with as described in the following table.
-
-| Scenario | Description |
-|:---------|:------------|
-| Enable VM insights | When you enable VM Insights on a VM, the Azure Monitor agent is installed and a DCR is created and associated with the virtual machine. This DCR collects a predefined set of performance counters and shouldn't be modified. See [Enable VM Insights](../vm/vminsights-enable-overview.md). |
-| Collect client data from VM | Create a DCR in the Azure portal using a guided interface to select different data sources from the client operating system of a VM. Examples include Windows events, Syslog events, and text logs. The Azure Monitor agent is automatically installed if necessary, and an association is created between the DCR and each VM you select. See [Collect data with Azure Monitor Agent](../vm/data-collection.md). |
-| Metrics export | Create a DCR in the Azure portal using a guided interface to select metrics of different resource types to collect. An association is created between the DCR and each resource you select. See [Create a data collection rule (DCR) for metrics export](metrics-export-create.md). |
-| Table creation | When you create a new table in a Log Analytics workspace using the Azure portal, you upload sample data that Azure Monitor uses to create a DCR, including a transformation, that can be used with the [Logs Ingestion API](../logs/logs-ingestion-api-overview.md). You can't modify this DCR in the Azure portal but can modify it using any of the methods described in this article. See [Create a custom table](../logs/create-custom-table.md?tabs=azure-portal-1%2Cazure-portal-2%2Cazure-portal-3#create-a-custom-table). |
-| Kubernetes monitoring | To monitor a Kubernetes cluster, you enable Container Insights for logs and Prometheus for metrics. A DCR for each is created and associated with the containerized version of Azure Monitor agent in the cluster. You may need to modify the Container insights DCR to add a transformation. See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) and [Data transformations in Container insights](../containers/container-insights-transformations.md). |
-| Workspace transformation DCR | Workspace transformation DCRs provide transformations for data collection scenarios that don't yet use DCRs. You can create this DCR by using the Azure portal to create a transformation for a particular table. See [Create workspace transformation DCR](data-collection-transformations-create.md#create-workspace-transformation-dcr). |
-
-## Create or edit a DCR using JSON
-
-In addition to editing an existing DCR, you can create a new one using one of the [sample DCRs](data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
+You can create a new DCR using one of the [sample DCRs](data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
 
 [!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
 
@@ -50,6 +39,8 @@ Once you have the definition of your DCR, you can deploy it to Azure Monitor usi
 
 > [!TIP]
 > To view the JSON definition of a DCR, see [View DCR definition](./data-collection-rule-view.md#view-dcr-definition).
+
+
 
 ### [CLI](#tab/cli)
 

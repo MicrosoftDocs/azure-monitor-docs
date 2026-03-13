@@ -8,13 +8,13 @@ ms.reviewer: tylerkight
 
 # OpenTelemetry Guest OS Metrics reference (preview)
 
-## Performance Counter Names 
+## Performance counters 
 
 The following performance counters are collected by the Azure Monitor Agent for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but this frequency can be changed when creating or updating the data collection rule.
 
 ### [OpenTelemetry](#tab/OpenTelemetry)
 
-| OTel Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
 | system.cpu.utilization | Gauge | 1 | N/A | FALSE | **cpu**: Logical CPU number starting at 0 (values: Any Str)<br>**state**: Breakdown of CPU usage by type (values: idle, interrupt, nice, softirq, steal, system, user, wait) | Difference in system.cpu.time since the last measurement per logical CPU, divided by the elapsed time (0–1).|
 | system.cpu.time | Sum | s | Cumulative | TRUE | **cpu**: Logical CPU number starting at 0 (values: Any Str)<br>**state**: Breakdown of CPU usage by type (values: idle, interrupt, nice, softirq, steal, system, user, wait) | Total seconds each logical CPU spent on each mode. |
