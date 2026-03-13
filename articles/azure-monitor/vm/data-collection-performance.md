@@ -13,7 +13,7 @@ Performance counters provide insight into the performance of virtual hardware co
 Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
 
 > [!NOTE]
-> For OpenTelemetry metrics sent to Azure Monitor workspace, see [Collect OpenTelemetry metrics from virtual machines with Azure Monitor](./data-collection-otel-metrics.md). [Read more about the benefits of using OpenTelemetry metrics here](../vm/metrics-opentelemetry-guest.md).
+> For OpenTelemetry metrics sent to Azure Monitor workspace, see [Collect and customize OpenTelemetry metrics for virtual machines](./vminsights-opentelemetry.md). [Read more about the benefits of using OpenTelemetry metrics here](../vm/metrics-opentelemetry-guest.md).
 
 > [!NOTE]
 > To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
@@ -165,7 +165,7 @@ The following performance counters are available to be collected by the Azure Mo
 
 ## Next steps
 
-- [Collect OpenTelemetry metrics from virtual machines](./data-collection-otel-metrics.md)
+- [Collect and customize OpenTelemetry metrics for virtual machines](./vminsights-opentelemetry.md)
 - Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md)
 - Learn more about [data collection rules](../data-collection/data-collection-rule-overview.md)
 

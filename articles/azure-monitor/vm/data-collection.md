@@ -51,7 +51,7 @@ Once you verify that the agent is communicating properly, make sure that the dat
 |---|---|---|
 | [Windows events](data-collection-windows-events.md) | Virtual Machines | Event |
 | [Performance counters](data-collection-performance.md) | Virtual Machines | Perf |
-| [OpenTelemetry metrics](data-collection-otel-metrics.md) | Virtual Machines | Azure Monitor workspace |
+| [OpenTelemetry metrics](vminsights-opentelemetry.md) | Virtual Machines | Azure Monitor workspace |
 | [Syslog](data-collection-syslog.md) | Virtual Machines | Syslog |
 | [IIS logs](data-collection-iis.md) | Virtual Machines | W3CIISLog |
 | [Text log](data-collection-log-text.md) | Custom Logs | \<Custom table name\> |

@@ -286,20 +286,20 @@ items:
         href: vm/metrics-opentelemetry-guest.md
       - name: OpenTelemetry experience (preview)
         items:
-        - name: Collect OpenTelemetry metrics
-          displayName: OpenTelemetry, metrics, data collection rule
-          href: vm/data-collection-otel-metrics.md
+        - name: Customize
+          displayName: OpenTelemetry, metrics, data collection rule, performance counters
+          href: vm/vminsights-opentelemetry.md
         - name: Migrate
           displayName: OpenTelemetry, migrate, migration
           href: vm/vm-opentelemetry-migrate.md
-        - name: Customize
-          displayName: OpenTelemetry, metrics, performance counters
-          href: vm/vminsights-opentelemetry.md
         - name: Reference
           displayName: OpenTelemetry, metrics, performance counters
           href: vm/metrics-guest-reference.md
       - name: Logs-based experience (classic)
         items:
+        - name: Customize
+          displayName: data collection rule,Azure Monitor agent
+          href: vm/data-collection-performance.md
         - name: Interactive views
           href: vm/vminsights-performance.md
         - name: Visualize data with workbooks
@@ -346,9 +346,6 @@ items:
         - name: IIS logs
           displayName: data collection rule,Azure Monitor Agent,IIS logs
           href: vm/data-collection-iis.md
-        - name: Performance data
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-performance.md
         - name: Text logs
           displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
           href: vm/data-collection-log-text.md
