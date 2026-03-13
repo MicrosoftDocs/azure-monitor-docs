@@ -37,6 +37,8 @@ For virtual machine scale sets, see [Tutorial: Enable monitoring for an Azure vi
 
 When you enable guest monitoring for a VM using the Azure portal, you choose between two experiences: the OpenTelemetry-based experience (preview) and the logs-based experience (classic). Both experiences provide robust monitoring capabilities, but they differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
 
+If you're already using the logs-based experience and want to migrate to OpenTelemetry, see [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) for step-by-step guidance. You can also customize which OpenTelemetry metrics are collected by modifying the data collection rule. See [Collect and customize OpenTelemetry metrics](./vminsights-opentelemetry.md) for details.
+
 ## Enable at scale
 You can enable VM monitoring at scale using multiple methods including Azure CLI, PowerShell, Azure Policy, ARM templates, Bicep, and other infrastructure as code (IaC) tools that support automated and repeatable deployments across your VM fleet. See [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) for details on enabling monitoring at scale using these different methods.
 
@@ -96,7 +98,9 @@ See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance
 ## Related content
 
 - [Tutorial: Enable monitoring for Azure virtual machine](tutorial-vm-enable-monitoring.md) - Get started with step-by-step guidance for enabling VM monitoring
+- [Tutorial: Enable monitoring for Azure virtual machine scale set](tutorial-vmss-enable-monitoring.md) - Step-by-step guidance for enabling monitoring for VMSS
 - [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md) - Comprehensive guide to enabling both OpenTelemetry and logs-based monitoring
+- [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Switch from logs-based to OpenTelemetry experience
 - [Best practices for monitoring virtual machines in Azure Monitor](best-practices-vm.md) - Recommendations based on the Azure Well-Architected Framework
 - [Collect data from virtual machine client with Azure Monitor](data-collection.md) - Configure data collection rules for custom performance counters, logs, and events
 - [Overview of VM insights](vminsights-overview.md) - Learn about multi-VM monitoring with VM insights

@@ -102,7 +102,7 @@ This view provides aggregated performance charts showing:
 - Top machines by bytes sent
 - Top machines by bytes received
 
-:::image type="content" source="media/vminsights-performance/vminsights-performance-aggview-01.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/vminsights-performance/vminsights-performance-aggview-01.png":::
+:::image type="content" source="media/tutorial-vmss-enable-monitoring/vmss-performance-aggview.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-vmss-enable-monitoring/vmss-performance-aggview.png":::
 
 ## Query performance data
 
