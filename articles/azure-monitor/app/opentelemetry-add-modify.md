@@ -2021,8 +2021,7 @@ span_id = trace.get_current_span().get_span_context().span_id
 
 ---
 
-> [!NOTE]
-> The following sections are available across all OpenTelemetry-specific Application Insights articles.
+[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
 
 [!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
 

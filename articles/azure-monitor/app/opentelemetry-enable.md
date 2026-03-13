@@ -343,8 +343,7 @@ Application Insights is now enabled for your application. The following steps ar
 > [!IMPORTANT]
 > If you have two or more services that emit telemetry to the same Application Insights resource, you're required to [set Cloud Role Names](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance) to represent them properly on the Application Map.
 
-> [!NOTE]
-> The following sections are available across all OpenTelemetry-specific Application Insights articles.
+[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
 
 [!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
 
