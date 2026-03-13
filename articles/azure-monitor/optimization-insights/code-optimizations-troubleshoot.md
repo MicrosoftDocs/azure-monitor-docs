@@ -46,7 +46,7 @@ To make sure that profiles are uploaded to your Application Insights resource, f
 
    :::image type="content" source="media/code-optimizations-troubleshoot/performance-page.png" alt-text="Azure portal screenshot that shows how to navigate to the Application Insights Profiler." lightbox="media/code-optimizations-troubleshoot/performance-page.png":::
 
-1. On the **Applications Insights Profiler** page, view the **Recent profiling sessions** section.
+1. On the **Application Insights Profiler** page, view the **Recent profiling sessions** section.
 
    :::image type="content" source="media/code-optimizations-troubleshoot/profiling-sessions.png" alt-text="Azure portal screenshot of the Application Insights Profiler page.":::
 
