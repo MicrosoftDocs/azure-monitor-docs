@@ -297,7 +297,7 @@ items:
           href: vm/metrics-guest-reference.md
       - name: Logs-based experience (classic)
         items:
-        - name: Customize
+        - name: Collect performance counters
           displayName: data collection rule,Azure Monitor agent
           href: vm/data-collection-performance.md
         - name: Interactive views
@@ -333,7 +333,7 @@ items:
             href: vm/vminsights-change-analysis.md
     - name: Client logs
       items:
-      - name: Create data collection rule
+      - name: Collect log data
         displayName: Azure Monitor agent, AMA
         href: vm/data-collection.md
       - name: Agent data sources

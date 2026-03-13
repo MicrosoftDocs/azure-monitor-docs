@@ -7,8 +7,7 @@ ms.reviewer: jeffwo, tylerkight
 ---
 
 # Collect performance counters from virtual machines with Azure Monitor
-
-Performance counters provide insight into the performance of virtual hardware components, operating systems, and workloads. Collect counters from both Windows and Linux virtual machines using a [data collection rule (DCR)](../data-collection/data-collection-rule-create-edit.md) with a **Performance Counters** data source. 
+When you enable [logs-based monitoring experience](./tutorial-vm-enable-monitoring.md) for your Azure virtual machines, a default set of metrics are collected. This set of metrics can't be modified, but you can create a data collection rule (DCR) to collect additional performance counters from the virtual machine and send them to a Log Analytics workspace.
 
 Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
 
