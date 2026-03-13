@@ -86,7 +86,7 @@ There are four status management steps for recommendations: `active`, `dismissed
 
 1.  On **Reviews**, select the name of a review to open the recommendations list.
 
-    For new reviews, recommendations are set to **Pending** state.
+    For new reviews, recommendations are set to **Active** state.
 
 1.  Take a note of priority for each recommendation. To help you decide which recommendation should be implemented first, your account team defines the **Priority**.
 
