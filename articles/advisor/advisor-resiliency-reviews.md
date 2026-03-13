@@ -80,7 +80,7 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-There are four lifecycle management steps for recommendations: `new`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
+There are four lifecycle management steps for recommendations: `active`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
