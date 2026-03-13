@@ -41,7 +41,7 @@ The following table defines the responsible parties for Advisor actions.
 |:--- |:--- |
 | Request a resiliency review | Customer using your Customer Success Account Manager or aligned Cloud Solution Architect. |
 | Analyze workload configuration, perform the review using the Well Architected Reliability Assessment and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
-| Manage the lifecycle of each recommendation | Customer. Setting the status of recommendation as: `Mark as completed`, `Postponed`, `Dismissed`, or `Resolved`. |
+| Manage recommendation status | Customer. Setting the status of recommendation as: `Completed`, `Postponed`, or `Dismissed`. |
 | Implement recommendations | Customer. Implementation is done by engineers who are responsible for managing resources and the configuration. |
 | Facilitate implementation | Microsoft account team using your support contract. |
 
