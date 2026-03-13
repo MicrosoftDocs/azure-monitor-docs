@@ -1,6 +1,11 @@
 {
  "redirections": [
   {
+   "source_path": "articles/azure-monitor/app/codeless-app-service.md",
+   "redirect_url": "/azure/app-service/monitor-app-service",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-troubleshoot.md",
    "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
    "redirect_document_id": false
