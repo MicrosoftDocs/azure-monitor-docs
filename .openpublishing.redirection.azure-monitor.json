@@ -8920,7 +8920,6 @@
    "redirect_document_id": false
   },
   {
-<<<<<<< HEAD
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md",
    "redirect_url": "/azure/azure-monitor/vm/tutorial-vm-enable-monitoring",
    "redirect_document_id": false
