@@ -35,11 +35,11 @@ To create a custom table and collect log data, you need:
 
 # [Portal](#tab/azure-portal-1)
 
-To create a custom table with the Auxiliary / Lake plan in the Azure portal:
+To create a custom table with the Auxiliary plan in the Azure portal:
 
 1. From the **Log Analytics workspaces** menu, select **Tables**.
 
-1. Select **Create** and then **New custom log (DCR-based)**.
+1. Select **Create**.
 
 1. On the **Basics** tab, specify a name and, optionally, a description for the table. The portal automatically adds the *_CL* suffix to the table name.
 
