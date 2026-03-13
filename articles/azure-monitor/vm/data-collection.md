@@ -1,11 +1,11 @@
 ---
-title: Collect data from virtual machine client with Azure Monitor
+title: Collect log data from virtual machine client with Azure Monitor
 description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
 ms.topic: how-to
 ms.date: 03/10/2026
 ---
 
-# Collect data from virtual machine client with Azure Monitor
+# Collect log data from virtual machine client with Azure Monitor
 
 Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. When you enable enhanced monitoring, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed, and [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) are applied that collect metrics from the guest operating system. For complete monitoring of your client applications and workloads though, you typically need to collect log data and potentially additional metrics that aren't collected by default.
 
@@ -47,14 +47,15 @@ From the virtual machine in the Azure portal, select **Logs** and then click the
 
 Once you verify that the agent is communicating properly, make sure that the data you expect is being collected. Use the same process as above to view the data in the table for the data source that you configured. The following table lists the category and table for each data source.
 
-| Data source                                              | Category         | Table                 |
-|:---------------------------------------------------------|:-----------------|:----------------------|
-| [Windows events](data-collection-windows-events.md)    | Virtual Machines | Event                 |
-| [Performance counters](data-collection-performance.md) | Virtual Machines | Perf                  |
-| [Syslog](data-collection-syslog.md)                    | Virtual Machines | Syslog                |
-| [IIS logs](data-collection-iis.md)                     | Virtual Machines | W3CIISLog             |
-| [Text log](data-collection-log-text.md)                | Custom Logs      | \<Custom table name\> |
-| [JSON log](data-collection-log-json.md)                | Custom Logs      | \<Custom table name\> |
+| Data source | Category | Table |
+|---|---|---|
+| [Windows events](data-collection-windows-events.md) | Virtual Machines | Event |
+| [Performance counters](data-collection-performance.md) | Virtual Machines | Perf |
+| [OpenTelemetry metrics](data-collection-otel-metrics.md) | Virtual Machines | Azure Monitor workspace |
+| [Syslog](data-collection-syslog.md) | Virtual Machines | Syslog |
+| [IIS logs](data-collection-iis.md) | Virtual Machines | W3CIISLog |
+| [Text log](data-collection-log-text.md) | Custom Logs | \<Custom table name\> |
+| [JSON log](data-collection-log-json.md) | Custom Logs | \<Custom table name\> |
 
 ## Duplicate data warning
 

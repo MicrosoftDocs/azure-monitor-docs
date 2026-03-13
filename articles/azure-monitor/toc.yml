@@ -286,6 +286,9 @@ items:
         href: vm/metrics-opentelemetry-guest.md
       - name: OpenTelemetry experience (preview)
         items:
+        - name: Collect OpenTelemetry metrics
+          displayName: OpenTelemetry, metrics, data collection rule
+          href: vm/data-collection-otel-metrics.md
         - name: Migrate
           displayName: OpenTelemetry, migrate, migration
           href: vm/vm-opentelemetry-migrate.md

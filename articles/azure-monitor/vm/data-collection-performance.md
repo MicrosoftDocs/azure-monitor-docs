@@ -1,32 +1,25 @@
 ---
 title: Collect performance counters with Azure Monitor Agent
-description: Describes how to collect performance counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent.
-ms.topic: concept-article
-ms.date: 10/27/2025
+description: Describes how to collect performance counters from virtual machines, Virtual Machine Scale Sets, and Arc-enabled on-premises servers using Azure Monitor Agent and send them to Log Analytics workspace and Azure Monitor Metrics.
+ms.topic: how-to
+ms.date: 03/13/2026
 ms.reviewer: jeffwo, tylerkight
 ---
 
-# Collect performance counters from virtual machine with Azure Monitor
-Performance counters provide insight into the performance of virtual hardware components, operating systems, and workloads. Collect counters from both Windows and Linux virtual machines using a [data collection rule (DCR)](../essentials/data-collection-rule-create-edit.md) with a **Performance Counters** data source. 
+# Collect performance counters from virtual machines with Azure Monitor
 
-Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
+Performance counters provide insight into the performance of virtual hardware components, operating systems, and workloads. Collect counters from both Windows and Linux virtual machines using a [data collection rule (DCR)](../data-collection/data-collection-rule-create-edit.md) with a **Performance Counters** data source. 
 
-A new data source has been added for OpenTelemetry performance counters, supporting Azure Monitor Workspace as a destination. [Read more about the benefits of using this new data source here](../vm/metrics-opentelemetry-guest.md). 
+Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
 
 > [!NOTE]
-> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#collect-vm-client-data).
+> For OpenTelemetry metrics sent to Azure Monitor workspace, see [Collect OpenTelemetry metrics from virtual machines with Azure Monitor](./data-collection-otel-metrics.md). [Read more about the benefits of using OpenTelemetry metrics here](../vm/metrics-opentelemetry-guest.md).
+
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
 
 ## Configure data source
-### [OpenTelemetry performance counters](#tab/oteldatasource)
-Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **OpenTelemetry Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
-    
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-1.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-1.png" alt-text="Screenshot that shows the Azure portal form to select basic OpenTelemetry performance counters in a data collection rule." :::
 
-Select **Custom** for a more granular selection of OpenTelemetry performance counters. 
-
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-2.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-2.png" alt-text="Screenshot that shows the Azure portal form to select custom OpenTelemetry performance counters in a data collection rule." border="false":::
-
-### [Performance counters](#tab/perfdatasource)
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/data-source-performance.png" lightbox="media/data-collection-performance/data-source-performance.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule." :::
@@ -46,53 +39,136 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 > [!NOTE] 
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
 
----
+## Add destination
 
-## Add destinations
-### [OpenTelemetry performance counters](#tab/oteldestination)
-OpenTelemetry Performance Counters can be sent to an Azure Monitor Workspace where it can be queried via PromQl. This is the recommended data destination for all users, as Container Insights, Application Insights, and VM Insights are all moving to use Azure Monitor Workspace as their source for metrics instead of Log Analytics workspaces.
-
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-3-destinations.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-3-destinations.png" alt-text="Screenshot that shows configuration of an Azure Monitor Workspace destination in a data collection rule.":::
-
-### [Performance counters](#tab/perfdestination)
-Performance counters can still be sent to a Log Analytics workspace where it's stored in the [Perf](/azure/azure-monitor/reference/tables/event) table and/or Azure Monitor Metrics (preview) where it's available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this will send duplicate data to each which will result in additional cost. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
+Performance counters can be sent to a Log Analytics workspace where they're stored in the [Perf](/azure/azure-monitor/reference/tables/perf) table and/or Azure Monitor Metrics (preview) where they're available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this will send duplicate data to each which will result in additional cost. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
 
 :::image type="content" source="media/data-collection-performance/destination-metrics.png" lightbox="media/data-collection-performance/destination-metrics.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule.":::
 
----
-
 ## Verify data collection
-### [OpenTelemetry performance counters](#tab/otelquerying)
-To verify OpenTelemetry performance counters are being collected in the Azure Monitor workspace, you can start by scoping a query to the AMW chosen as destination for the DCR, and check for any of the **System.** metrics flowing as expected.
 
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" alt-text="Screenshot that shows records returned from an AMW." :::
-
-If the AMW was set to [resource-context access mode](../metrics/azure-monitor-workspace-manage-access.md), you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade in Portal and either choosing the "add with editor" dropdown or choosing the "view AMW metrics in editor" dropdown under Metric Namespaces. 
-
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" alt-text="Screenshot that shows how to navigate to AMW PromQl editor from a VM Metrics blade." :::
-
-Both entry points should result in a PromQl editor with a query scoped to the VM resource now, where the same query will work as before, but without any need to filter on the VM microsoft.resourceid dimension.
-
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-6-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-6-query.png" alt-text="Screenshot that shows records returned from a VM, stored in an AMW." :::
-
-:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" alt-text="Screenshot that shows query scoped to VM rather than AMW." :::
-
-### [Performance counters](#tab/perfquerying)
-To verify the legacy Performance Counter data source is being collected in the Log Analytics workspace, check for records in the **Perf** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Perf**. 
+To verify performance counters are being collected in the Log Analytics workspace, check for records in the **Perf** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Perf**. 
 
 :::image type="content" source="media/data-collection-performance/verify-performance-counter.png" lightbox="media/data-collection-performance/verify-performance-counter.png" alt-text="Screenshot that shows records returned from Perf table." :::
 
-To verify the legacy Performance Counter data source is being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows) or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
+To verify performance counters are being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows) or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
 
 :::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows client metrics in Metrics explorer." :::
 
----
-
-## Performance counters
+## Performance counters reference
 
 The following performance counters are available to be collected by the Azure Monitor Agent for Windows and Linux virtual machines. The sample frequency can be changed when creating or updating the data collection rule.
 
-### [OpenTelemetry](#tab/opentelemetry)
+### Windows
+
+| Performance Counter | Category | Default sample frequency |
+|---|---|---|
+| \\Processor Information(_Total)\\% Processor Time | CPU | 60 |
+| \\Processor Information(_Total)\\% Privileged Time | CPU | 60 |
+| \\Processor Information(_Total)\\% User Time | CPU | 60 |
+| \\Processor Information(_Total)\\Processor Frequency | CPU | 60 |
+| \\System\\Processes | CPU | 60 |
+| \\Process(_Total)\\Thread Count | CPU | 60 |
+| \\Process(_Total)\\Handle Count | CPU | 60 |
+| \\System\\System Up Time | CPU | 60 |
+| \\System\\Context Switches/sec | CPU | 60 |
+| \\System\\Processor Queue Length | CPU | 60 |
+| \\Memory\\% Committed Bytes In Use | Memory | 60 |
+| \\Memory\\Available Bytes | Memory | 60 |
+| \\Memory\\Committed Bytes | Memory | 60 |
+| \\Memory\\Cache Bytes | Memory | 60 |
+| \\Memory\\Pool Paged Bytes | Memory | 60 |
+| \\Memory\\Pool Nonpaged Bytes | Memory | 60 |
+| \\Memory\\Pages/sec | Memory | 60 |
+| \\Memory\\Page Faults/sec | Memory | 60 |
+| \\Process(_Total)\\Working Set | Memory | 60 |
+| \\Process(_Total)\\Working Set - Private | Memory | 60 |
+| \\LogicalDisk(_Total)\\% Disk Time | Disk | 60 |
+| \\LogicalDisk(_Total)\\% Disk Read Time | Disk | 60 |
+| \\LogicalDisk(_Total)\\% Disk Write Time | Disk | 60 |
+| \\LogicalDisk(_Total)\\% Idle Time | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Bytes/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Read Bytes/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Write Bytes/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Transfers/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Reads/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Disk Writes/sec | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk sec/Transfer | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk sec/Read | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk sec/Write | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk Queue Length | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk Read Queue Length | Disk | 60 |
+| \\LogicalDisk(_Total)\\Avg. Disk Write Queue Length | Disk | 60 |
+| \\LogicalDisk(_Total)\\% Free Space | Disk | 60 |
+| \\LogicalDisk(_Total)\\Free Megabytes  | Disk  | 60 |
+| \\Network Interface(*) \\Bytes Total/sec  | Network  | 60 |
+| \\Network Interface(*) \\Bytes Sent/sec  | Network  | 60 |
+| \\Network Interface(*) \\Bytes Received/sec  | Network  | 60 |
+| \\Network Interface(*) \\Packets/sec  | Network  | 60 |
+| \\Network Interface(*) \\Packets Sent/sec  | Network  | 60 |
+| \\Network Interface(*) \\Packets Received/sec  | Network  | 60 |
+| \\Network Interface(*) \\Packets Outbound Errors  | Network  | 60 |
+| \\Network Interface(*) \\Packets Received Errors  | Network  | 60 |
+
+### Linux
+
+| Performance counter | Category | Default sample frequency |
+|---|---|---|
+| Processor(*)\\% Processor Time | CPU | 60 |
+| Processor(*)\\% Idle Time | CPU | 60 |
+| Processor(*)\\% User Time | CPU | 60 |
+| Processor(*)\\% Nice Time | CPU | 60 |
+| Processor(*)\\% Privileged Time | CPU | 60 |
+| Processor(*)\\% IO Wait Time | CPU | 60 |
+| Processor(*)\\% Interrupt Time | CPU | 60 |
+| Memory(*)\\Available MBytes Memory | Memory | 60 |
+| Memory(*)\\% Available Memory | Memory | 60 |
+| Memory(*)\\Used Memory MBytes | Memory | 60 |
+| Memory(*)\\% Used Memory | Memory | 60 |
+| Memory(*)\\Pages/sec | Memory | 60 |
+| Memory(*)\\Page Reads/sec | Memory | 60 |
+| Memory(*)\\Page Writes/sec | Memory | 60 |
+| Memory(*)\\Available MBytes Swap | Memory | 60 |
+| Memory(*)\\% Available Swap Space | Memory | 60 |
+| Memory(*)\\Used MBytes Swap Space | Memory | 60 |
+| Memory(*)\\% Used Swap Space | Memory | 60 |
+| Process(*)\\Pct User Time | Memory | 60 |
+| Process(*)\\Pct Privileged Time | Memory | 60 |
+| Process(*)\\Used Memory | Memory | 60 |
+| Process(*)\\Virtual Shared Memory | Memory | 60 |
+| Logical Disk(*)\\% Free Inodes | Disk | 60 |
+| Logical Disk(*)\\% Used Inodes | Disk | 60 |
+| Logical Disk(*)\\Free Megabytes | Disk | 60 |
+| Logical Disk(*)\\% Free Space | Disk | 60 |
+| Logical Disk(*)\\% Used Space | Disk | 60 |
+| Logical Disk(*)\\Logical Disk Bytes/sec | Disk | 60 |
+| Logical Disk(*)\\Disk Read Bytes/sec | Disk | 60 |
+| Logical Disk(*)\\Disk Write Bytes/sec | Disk | 60 |
+| Logical Disk(*)\\Disk Transfers/sec | Disk | 60 |
+| Logical Disk(*)\\Disk Reads/sec | Disk | 60 |
+| Logical Disk(*)\\Disk Writes/sec | Disk | 60 |
+| Network(*)\\Total Bytes Transmitted | Network | 60 |
+| Network(*)\\Total Bytes Received | Network | 60 |
+| Network(*)\\Total Bytes | Network | 60 |
+| Network(*)\\Total Packets Transmitted | Network | 60 |
+| Network(*)\\Total Packets Received | Network | 60 |
+| Network(*)\\Total Rx Errors | Network | 60 |
+| Network(*)\\Total Tx Errors | Network | 60 |
+| Network(*)\\Total Collisions | Network | 60 |
+| System(*)\\Uptime | System | 60 |
+| System(*)\\Load1 | System | 60 |
+| System(*)\\Load5 | System | 60 |
+| System(*)\\Load15 | System | 60 |
+| System(*)\\Users | System | 60 |
+| System(*)\\Unique Users | System | 60 |
+| System(*)\\CPUs | System | 60 |
+
+## Next steps
+
+- [Collect OpenTelemetry metrics from virtual machines](./data-collection-otel-metrics.md)
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md)
+- Learn more about [data collection rules](../data-collection/data-collection-rule-overview.md)
+
 
 | OTel Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
