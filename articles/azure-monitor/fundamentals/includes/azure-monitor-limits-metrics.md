@@ -22,7 +22,7 @@ The following limits apply to the Azure Monitor workspace ingesting your Prometh
 | Events per minute ingested. | 1,000,000<br>You can request an increase. |
 
 
-The following limits apply to the data collection rule (DCR) and data collection endpoint (DCE) sending Prometheus metrics data to your Azure Monitor workspace.
+The following limits apply to the data collection rule (DCR) sending Prometheus metrics data to your Azure Monitor workspace.
 
 | Limit | Value |
 |:---|:---|
