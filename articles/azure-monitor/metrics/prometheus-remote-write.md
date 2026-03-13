@@ -9,7 +9,7 @@ ms.date: 09/16/2025
 [Azure Monitor managed service for Prometheus](./prometheus-metrics-overview.md) is intended to be a replacement for self-managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. This may be a temporary solution while you migrate to Managed Prometheus or a long term solution if you have specific requirements for self-managed Prometheus.
 
 > [!IMPORTANT]
-> If you are currently using the Azure Monitor sidecar container to remote write metrics to Azure Monitor Workspace, we recommend transitioning to a direct Prometheus configuration following the guidance in this article. This transition enables direct ingestion without requiring the sidecar component.
+> If you are currently using the Azure Monitor sidecar container to remote-write metrics to Azure Monitor Workspace, we recommend transitioning to a direct Prometheus configuration following the guidance in this article. This transition enables direct ingestion without requiring the sidecar component.
 
 ## Architecture
 [Remote_write](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#remote_write) is a feature in Prometheus that allows you to send metrics from a local Prometheus instance to remote storage or to another Prometheus instance. Use this feature to send metrics from self-managed Prometheus running in your Kubernetes clusters or virtual machines to an Azure Monitor workspace used by Managed Prometheus.
