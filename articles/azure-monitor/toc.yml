@@ -97,11 +97,7 @@ items:
         - name: Troubleshooting
           href: /troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting
       - name: Automatic instrumentation
-        items:
-        - name: Autoinstrumentation supported scenarios
-          href: app/codeless-overview.md
-        - name: Azure App Service
-          href: app/codeless-app-service.md
+        href: app/codeless-overview.md
       - name: Application Insights SDK (Classic API)
         displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
         href: app/classic-api.md
@@ -875,39 +871,39 @@ items:
       href: platform/stream-monitoring-data-event-hubs.md
   - name: Azure Monitor pipeline (preview)
     items:
-      - name: Overview
-        href: data-collection/pipeline-overview.md
-      - name: Install and configure
-        items:
-        - name: Configuration overview
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md
-        - name: Sample gateway setup 
-          displayName: Sample gateway setup
-          href: data-collection/pipeline-kubernetes-gateway.md          
-        - name: Azure portal
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-portal.md
-        - name: CLI and templates
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-cli.md
-        - name: Extension versions
-          displayName: Azure Monitor pipeline extension versions
-          href: data-collection/pipeline-extension-versions.md
-      - name: Configure clients
-        href: data-collection/pipeline-configure-clients.md
-      - name: Transformations
-        href: data-collection/pipeline-transformations.md
-      - name: Pod placement
-        href: data-collection/pipeline-pod-placement.md
-      - name: Transport Layer Security (TLS)
-        items:
-        - name: Configure TLS
-          href: data-collection/pipeline-tls.md
-        - name: Automated certificate management (Default TLS)
-          href: data-collection/pipeline-tls-automated.md
-        - name: Customer-managed certificates (BYOC)
-          href: data-collection/pipeline-tls-custom.md        
+    - name: Overview
+      href: data-collection/pipeline-overview.md
+    - name: Install and configure
+      items:
+      - name: Configuration overview
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Sample gateway setup
+        displayName: Sample gateway setup
+        href: data-collection/pipeline-kubernetes-gateway.md
+      - name: Azure portal
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-portal.md
+      - name: CLI and templates
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-cli.md
+      - name: Extension versions
+        displayName: Azure Monitor pipeline extension versions
+        href: data-collection/pipeline-extension-versions.md
+    - name: Configure clients
+      href: data-collection/pipeline-configure-clients.md
+    - name: Transformations
+      href: data-collection/pipeline-transformations.md
+    - name: Pod placement
+      href: data-collection/pipeline-pod-placement.md
+    - name: Transport Layer Security (TLS)
+      items:
+      - name: Configure TLS
+        href: data-collection/pipeline-tls.md
+      - name: Automated certificate management (Default TLS)
+        href: data-collection/pipeline-tls-automated.md
+      - name: Customer-managed certificates (BYOC)
+        href: data-collection/pipeline-tls-custom.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
