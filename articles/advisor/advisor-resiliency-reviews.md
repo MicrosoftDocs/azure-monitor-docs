@@ -53,7 +53,7 @@ Your Microsoft account team works with you to collect information about the work
 
 ## View recommendations
 
-To view recommendations, or to manage the lifecycle of each recommendation, requires specific role permissions. For definitions, see [Terminology](#terminology).
+To view recommendations, or to manage the status of each recommendation, requires specific role permissions. For definitions, see [Terminology](#terminology).
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
@@ -80,7 +80,7 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-There are four lifecycle management steps for recommendations: `active`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
+There are four status management steps for recommendations: `active`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
@@ -198,7 +198,7 @@ The options in the **Reliability** recommendations detail differ from the option
 
 For details on recommendation priority, see [Recommendation priority](#recommendation-priority).
 
-### Manage recommendation lifecycle
+### Manage recommendation status
 
 Recommendation status is a valuable indicator for determining what actions need to be taken.
 
