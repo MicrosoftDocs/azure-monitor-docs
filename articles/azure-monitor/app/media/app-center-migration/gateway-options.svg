@@ -1,15 +1,138 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
-<rect x="0" y="0" width="1600" height="900" fill="#FFFFFF" />
-<rect x="0" y="0" width="1600" height="90" fill="#F3F2F1" />
-<line x1="0" y1="90" x2="1600" y2="90" stroke="#D0D0D0" stroke-width="1" />
-<text x="800.0" y="55" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700" fill="#1A1A1A">Mobile app telemetry → Azure Monitor via gateway</text>
-<rect x="455" y="160" width="610" height="570" rx="18" ry="18" fill="none" stroke="#D0D0D0" stroke-width="2" stroke-dasharray="8 6" />
-<text x="760" y="185" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A1A">Telemetry gateway (choose one)</text>
-<text x="760" y="205" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#1A1A1A">Holds Azure Monitor credentials</text>
-<rect x="30" y="315" width="380" height="260" rx="18" ry="18" fill="#FFFFFF" stroke="#0078D4" stroke-width="3" /><rect x="30" y="315" width="380" height="56" rx="18" ry="18" fill="#E8F3FC" stroke="#0078D4" stroke-width="3" /><line x1="30" y1="371" x2="410" y2="371" stroke="#0078D4" stroke-width="3" /><text x="220.0" y="350.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">Mobile apps</text><text x="48" y="401" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Community OpenTelemetry SDKs</text><text x="48" y="425" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Export OTLP to your gateway endpoint</text><text x="48" y="449" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• No Azure Monitor credentials in the app</text>
-<rect x="475" y="250" width="570" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#0078D4" stroke-width="3" /><rect x="475" y="250" width="570" height="56" rx="18" ry="18" fill="#E8F3FC" stroke="#0078D4" stroke-width="3" /><line x1="475" y1="306" x2="1045" y2="306" stroke="#0078D4" stroke-width="3" /><text x="760.0" y="285.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">Option A: OTel Collector</text><text x="493" y="336" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Telemetry pipeline (signals-aware)</text><text x="493" y="360" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Reliability: batch + retry/queue</text><text x="493" y="384" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Process telemetry: sample, enrich, redact</text>
-<rect x="475" y="490" width="570" height="210" rx="18" ry="18" fill="#FFFFFF" stroke="#0078D4" stroke-width="3" /><rect x="475" y="490" width="570" height="56" rx="18" ry="18" fill="#E8F3FC" stroke="#0078D4" stroke-width="3" /><line x1="475" y1="546" x2="1045" y2="546" stroke="#0078D4" stroke-width="3" /><text x="760.0" y="525.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">Option B: APIM proxy</text><text x="493" y="576" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• API proxy + policies</text><text x="493" y="600" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Routing/throttling/header injection</text><text x="493" y="624" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Simpler ops; limited telemetry processing</text>
-<rect x="1150" y="335" width="420" height="220" rx="18" ry="18" fill="#FFFFFF" stroke="#0078D4" stroke-width="3" /><rect x="1150" y="335" width="420" height="56" rx="18" ry="18" fill="#E8F3FC" stroke="#0078D4" stroke-width="3" /><line x1="1150" y1="391" x2="1570" y2="391" stroke="#0078D4" stroke-width="3" /><text x="1360.0" y="370.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" fill="#1A1A1A">Azure Monitor</text><text x="1168" y="421" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Ingestion endpoint(s)</text><text x="1168" y="445" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Credentials required</text><text x="1168" y="469" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#4D4D4D">• Azure Monitor experiences</text>
-<line x1="410" y1="445.0" x2="455" y2="445.0" stroke="#0078D4" stroke-width="3" /><polygon points="455,445.0 439.0,454.6 439.0,435.4" fill="#0078D4" />
-<line x1="1065" y1="445.0" x2="1150" y2="445.0" stroke="#0078D4" stroke-width="3" /><polygon points="1150,445.0 1134.0,454.6 1134.0,435.4" fill="#0078D4" />
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Send mobile telemetry to Azure Monitor through a gateway</title>
+  <desc id="desc">Mobile apps send OTLP telemetry to a customer-managed gateway. Choose either an OpenTelemetry Collector or an APIM proxy. The gateway stores Azure Monitor credentials and forwards telemetry to Azure Monitor for ingestion and analysis.</desc>
+
+  <defs>
+    <marker id="arrowBlue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#2B7CD3" />
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="900" fill="#FFFFFF" />
+
+  <!-- Title -->
+  <text x="800" y="76" font-family="Segoe UI, Arial, sans-serif" font-size="34" fill="#17253D" font-weight="700" text-anchor="middle">Send mobile telemetry to Azure Monitor through a gateway</text>
+  <text x="800" y="118" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#5B6573" font-weight="400" text-anchor="middle">Apps send OTLP to a gateway you manage. The gateway forwards authenticated telemetry to Azure Monitor.</text>
+
+  <!-- Mobile apps card -->
+  <g id="mobile-apps-card">
+    <rect x="60" y="250" width="320" height="390" rx="24" ry="24" fill="#FFFFFF" stroke="#D7E3F2" stroke-width="2" />
+    <rect x="60" y="250" width="320" height="8" rx="8" ry="8" fill="#0F6CBD" />
+    <circle cx="220" cy="316" r="44" fill="#EAF4FF" />
+    <rect x="203" y="291" width="34" height="52" rx="7" ry="7" fill="none" stroke="#0F6CBD" stroke-width="3" />
+    <line x1="212" y1="297" x2="228" y2="297" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <line x1="214" y1="336" x2="226" y2="336" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <text x="220" y="398" font-family="Segoe UI, Arial, sans-serif" font-size="29" fill="#17253D" font-weight="700" text-anchor="middle">Mobile apps</text>
+    <rect x="152" y="420" width="136" height="34" rx="17" ry="17" fill="#EFF4FA" />
+    <text x="220" y="443" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#425466" font-weight="600" text-anchor="middle">Community OTel</text>
+    <circle cx="108" cy="482" r="4.2" fill="#0F6CBD" />
+    <text x="124" y="488" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">Instrument with OTel</text>
+    <circle cx="108" cy="524" r="4.2" fill="#0F6CBD" />
+    <text x="124" y="530" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">Send OTLP to your gateway</text>
+    <circle cx="108" cy="566" r="4.2" fill="#0F6CBD" />
+    <text x="124" y="572" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">Keep auth out of the app</text>
+  </g>
+
+  <!-- Gateway group -->
+  <g id="gateway-group">
+    <rect x="420" y="175" width="760" height="510" rx="30" ry="30" fill="#F8FBFF" stroke="#C8D9ED" stroke-width="2" />
+
+    <rect x="456" y="201" width="258" height="40" rx="20" ry="20" fill="#EAF4FF" />
+    <text x="585" y="227" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#0F6CBD" font-weight="700" text-anchor="middle">Customer-managed gateway</text>
+
+    <rect x="1022" y="201" width="122" height="40" rx="20" ry="20" fill="#FFFFFF" stroke="#C8D9ED" stroke-width="1" />
+    <text x="1083" y="227" font-family="Segoe UI, Arial, sans-serif" font-size="17" fill="#425466" font-weight="700" text-anchor="middle">Choose one</text>
+
+    <text x="460" y="271" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#5B6573" font-weight="400" text-anchor="start">Deploy in your cloud or network and choose the gateway model that fits your app.</text>
+
+    <!-- OTel Collector card -->
+    <rect x="456" y="305" width="330" height="280" rx="24" ry="24" fill="#FFFFFF" stroke="#D7E3F2" stroke-width="2" />
+    <rect x="456" y="305" width="330" height="8" rx="8" ry="8" fill="#0F6CBD" />
+    <rect x="662" y="322" width="96" height="28" rx="14" ry="14" fill="#EAF4FF" />
+    <text x="710" y="340.5" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#0F6CBD" font-weight="700" text-anchor="middle">High volume</text>
+    <circle cx="496" cy="359" r="24" fill="#EAF4FF" />
+    <line x1="483.4" y1="350" x2="497.8" y2="350" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <circle cx="479.8" cy="350" r="2.88" fill="#0F6CBD" />
+    <line x1="483.4" y1="359" x2="497.8" y2="359" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <circle cx="479.8" cy="359" r="2.88" fill="#0F6CBD" />
+    <line x1="483.4" y1="368" x2="497.8" y2="368" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <circle cx="479.8" cy="368" r="2.88" fill="#0F6CBD" />
+    <line x1="497.8" y1="350" x2="506.8" y2="359" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <line x1="497.8" y1="359" x2="506.8" y2="359" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <line x1="497.8" y1="368" x2="506.8" y2="359" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <line x1="506.8" y1="359" x2="515.8" y2="359" stroke="#0F6CBD" stroke-width="2.7" stroke-linecap="round" />
+    <circle cx="519.4" cy="359" r="3.24" fill="#0F6CBD" />
+    <text x="536" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#17253D" font-weight="700" text-anchor="start">OTel Collector</text>
+    <circle cx="496" cy="430" r="4.2" fill="#0F6CBD" />
+    <text x="512" y="436" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Batch, retry, queue</text>
+    <circle cx="496" cy="470" r="4.2" fill="#0F6CBD" />
+    <text x="512" y="476" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Sample, enrich, redact</text>
+    <circle cx="496" cy="510" r="4.2" fill="#0F6CBD" />
+    <text x="512" y="516" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Telemetry pipeline</text>
+
+    <!-- APIM proxy card -->
+    <rect x="814" y="305" width="330" height="280" rx="24" ry="24" fill="#FFFFFF" stroke="#D7E3F2" stroke-width="2" />
+    <rect x="814" y="305" width="330" height="8" rx="8" ry="8" fill="#7A57D1" />
+    <rect x="1016" y="322" width="104" height="28" rx="14" ry="14" fill="#F3EDFF" />
+    <text x="1068" y="340.5" font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#6941C6" font-weight="700" text-anchor="middle">Small volume</text>
+    <circle cx="854" cy="359" r="24" fill="#F3EDFF" />
+    <circle cx="839.6" cy="359" r="3.6" fill="#7A57D1" />
+    <circle cx="868.4" cy="348.2" r="3.6" fill="#7A57D1" />
+    <circle cx="868.4" cy="369.8" r="3.6" fill="#7A57D1" />
+    <line x1="843.2" y1="359" x2="861.2" y2="350" stroke="#7A57D1" stroke-width="2.7" stroke-linecap="round" />
+    <line x1="843.2" y1="359" x2="861.2" y2="368" stroke="#7A57D1" stroke-width="2.7" stroke-linecap="round" />
+    <text x="890" y="368" font-family="Segoe UI, Arial, sans-serif" font-size="25" fill="#17253D" font-weight="700" text-anchor="start">APIM proxy</text>
+    <circle cx="854" cy="430" r="4.2" fill="#7A57D1" />
+    <text x="870" y="436" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Simpler operations</text>
+    <circle cx="854" cy="470" r="4.2" fill="#7A57D1" />
+    <text x="870" y="476" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Routing, throttling, headers</text>
+    <circle cx="854" cy="510" r="4.2" fill="#7A57D1" />
+    <text x="870" y="516" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="400" text-anchor="start">Limited telemetry processing</text>
+
+    <!-- OR badge drawn last so it sits in front of both cards -->
+    <circle cx="800" cy="445" r="30" fill="#F8FBFF" />
+    <circle cx="800" cy="445" r="28" fill="#FFFFFF" stroke="#C8D9ED" stroke-width="2.5" />
+    <text x="800" y="454" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="700" text-anchor="middle">OR</text>
+
+    <!-- Gateway note -->
+    <rect x="456" y="595" width="688" height="56" rx="18" ry="18" fill="#FFFFFF" stroke="#DCE7F4" stroke-width="2" />
+    <circle cx="486" cy="623" r="18" fill="#EAF4FF" />
+    <rect x="478" y="615.4" width="16" height="14.4" rx="3.2" ry="3.2" fill="none" stroke="#0F6CBD" stroke-width="2.08" />
+    <line x1="480.4" y1="615.4" x2="480.4" y2="610.6" stroke="#0F6CBD" stroke-width="2.08" stroke-linecap="round" />
+    <line x1="491.6" y1="615.4" x2="491.6" y2="610.6" stroke="#0F6CBD" stroke-width="2.08" stroke-linecap="round" />
+    <line x1="480.4" y1="610.6" x2="491.6" y2="610.6" stroke="#0F6CBD" stroke-width="2.08" stroke-linecap="round" />
+    <circle cx="486" cy="621.8" r="1.6" fill="#0F6CBD" />
+    <text x="516" y="631" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#425466" font-weight="600" text-anchor="start">The gateway stores Azure Monitor auth and forwards telemetry.</text>
+  </g>
+
+  <!-- Azure Monitor card -->
+  <g id="azure-monitor-card">
+    <rect x="1220" y="250" width="320" height="390" rx="24" ry="24" fill="#FFFFFF" stroke="#D7E3F2" stroke-width="2" />
+    <rect x="1220" y="250" width="320" height="8" rx="8" ry="8" fill="#0F6CBD" />
+    <circle cx="1380" cy="316" r="44" fill="#EAF4FF" />
+    <rect x="1358" y="298" width="44" height="28" rx="5" ry="5" fill="none" stroke="#0F6CBD" stroke-width="3" />
+    <line x1="1380" y1="326" x2="1380" y2="336" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <line x1="1368" y1="339" x2="1392" y2="339" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <line x1="1366" y1="318" x2="1376" y2="312" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <line x1="1376" y1="312" x2="1386" y2="315" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <line x1="1386" y1="315" x2="1394" y2="308" stroke="#0F6CBD" stroke-width="3" stroke-linecap="round" />
+    <text x="1380" y="398" font-family="Segoe UI, Arial, sans-serif" font-size="29" fill="#17253D" font-weight="700" text-anchor="middle">Azure Monitor</text>
+    <rect x="1304" y="420" width="152" height="34" rx="17" ry="17" fill="#EFF4FA" />
+    <text x="1380" y="443" font-family="Segoe UI, Arial, sans-serif" font-size="16" fill="#425466" font-weight="600" text-anchor="middle">Ingest and analyze</text>
+    <circle cx="1268" cy="482" r="4.2" fill="#0F6CBD" />
+    <text x="1284" y="488" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">Ingestion endpoint</text>
+    <circle cx="1268" cy="524" r="4.2" fill="#0F6CBD" />
+    <text x="1284" y="530" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">App Insights and Logs</text>
+    <circle cx="1268" cy="566" r="4.2" fill="#0F6CBD" />
+    <text x="1284" y="572" font-family="Segoe UI, Arial, sans-serif" font-size="19" fill="#425466" font-weight="400" text-anchor="start">Workbooks and alerts</text>
+    <rect x="1273" y="592" width="214" height="28" rx="14" ry="14" fill="#EAF4FF" />
+    <text x="1380" y="611" font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#0F6CBD" font-weight="700" text-anchor="middle">Microsoft support starts here</text>
+  </g>
+
+  <!-- Flow arrows -->
+  <line x1="380" y1="430" x2="420" y2="430" stroke="#2B7CD3" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)" />
+  <rect x="356" y="362" width="88" height="30" rx="15" ry="15" fill="#FFFFFF" stroke="#C8D9ED" stroke-width="1" />
+  <text x="400" y="382" font-family="Segoe UI, Arial, sans-serif" font-size="15" fill="#0F6CBD" font-weight="700" text-anchor="middle">OTLP</text>
+
+  <line x1="1180" y1="430" x2="1220" y2="430" stroke="#2B7CD3" stroke-width="5" stroke-linecap="round" marker-end="url(#arrowBlue)" />
 </svg>

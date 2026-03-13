@@ -144,7 +144,16 @@ Start with these OpenTelemetry resources:
 - [OpenTelemetry guidance for iOS client apps](https://opentelemetry.io/docs/platforms/client-apps/ios/)
 - [OpenTelemetry ecosystem registry](https://opentelemetry.io/ecosystem/registry/)
 
-OpenTelemetry doesn't have cross-platform SDK support for .NET Multi-platform App UI (MAUI) or React Native projects. To use native OpenTelemetry native SDKs with .NET MAUI or React Native, refer to official docs for using native SDK via [Interop](/dotnet/communitytoolkit/maui/native-library-interop/get-started) for .NET MAUI or [Native Modules](https://reactnative.dev/docs/turbo-native-modules-introduction) for React Native.
+OpenTelemetry (OTel) doesn't provide cross-platform software development kit (SDK) support for .NET Multi-platform App UI (MAUI) or React Native projects. Enable OTel functionality by using a native bridge within the cross-platform framework.
+
+For .NET MAUI:
+
+- Use native SDK interop by following the official guidance for [Interop](/dotnet/communitytoolkit/maui/native-library-interop/get-started).
+- Implement custom OTel behavior by using examples in the [opentelemetry-dotnet](https://github.com/open-telemetry/opentelemetry-dotnet) repository.
+
+For React Native:
+
+- Create native integrations by using [Native Modules](https://reactnative.dev/docs/turbo-native-modules-introduction) in React Native.
 
 ### Configure apps to send telemetry to your gateway endpoint
 
