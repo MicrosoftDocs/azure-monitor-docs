@@ -15,9 +15,9 @@ ms.update-cycle: 180-days
 
 # Monitor and analyze runtime behavior with Code Optimizations
 
-Diagnosing your application's performance issues can be difficult, especially when your app runs in a production environment in the dynamic cloud. Infrastructure, framework, or application code handling the request in the pipeline might cause slow responses in your application. 
+Diagnosing your application's performance issues can be difficult, especially when your app runs in a production environment in the dynamic cloud. Infrastructure, framework, or application code that handles the request in the pipeline might cause slow responses in your application. 
 
-Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET. Together, they detect CPU and memory usage performance issues at a code level. They provide recommendations on how to fix them. 
+Code Optimizations, an AI-based service in Azure Application Insights, works in tandem with the Application Insights Profiler for .NET. Together, they detect CPU and memory usage performance issues at a code level. They provide recommendations on how to fix those issues. 
 
 Make informed decisions and optimize your code using real-time performance data and insights gathered from your production environment.
 
@@ -122,7 +122,7 @@ You can set an explicit region using connection strings. For more information, s
 ### Profiler 
 
 - **Profiling web apps:**
-  - Although you can use the .NET Profiler at no extra cost, your web app must be hosted, at minimum, in the Basic tier of the Web Apps feature of Azure App Service.
+  - You can use the .NET Profiler at no extra cost, although your web app must be hosted, at minimum, in the Basic tier of the Web Apps feature.
   - You can attach only one profiler to each web app.
 
 ### Code Optimizations
