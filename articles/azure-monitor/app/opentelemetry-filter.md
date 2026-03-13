@@ -614,8 +614,7 @@ Use this sample to scope a transformation to a single service when multiple appl
 
 ---
 
-> [!NOTE]
-> The following sections are available across all OpenTelemetry-specific Application Insights articles.
+[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
 
 [!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
 
