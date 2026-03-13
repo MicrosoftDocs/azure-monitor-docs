@@ -110,60 +110,6 @@ The priority of a recommendation is based on the impact value and urgency of the
 | Low | The recommendations that can provide extra benefits or insights for your Azure resources. The recommendations should be reviewed and implemented if the recommendations are relevant and feasible for your scenario. |
 | Informational | The recommendations that can help you learn more about the features and capabilities of Azure. The recommendations don't require any action, but the recommendations help you discover new ways to use Azure. |
 
-### Accept recommendations
-
-You must accept recommendations for your engineering team to start implementation. After a review recommendation is accepted, the recommendation becomes available on the **Reliability** pane from there you acted on the recommendation.
-
-1.  On a review recommendations details pane, accept one or more recommendations.
-
-    *   To accept a single recommendation, select **Accept**.
-
-    *   To accept multiple recommendations, select the checkbox next to each recommendation and select **Accept**.
-
-1.  Accepted recommendations are moved to the **Accepted** tab.
-
-    On **Recommendations** > **Reliability**, accepted recommendations are visible for engineers on your team.
-
-    :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane of accepted recommendations." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" source="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" type="content":::
-
-1.  If you accept a recommendation by mistake, select **Reset** to move it back to the **Pending** state.
-
-### Reject recommendations
-
-If a recommendation is targeting to multiple resources or subscriptions, you have to reject the recommendation for all resources or subscriptions.
-
-1.  On a review recommendations details pane, reject one or more recommendations.
-
-    > [!NOTE]
-    > If you need to select a different reason, reject one recommendation at a time.
-
-    *   To reject a single recommendation.
-
-        1.  Select a recommendation and select a reason when you reject a recommendation.
-
-        1.  Select one of the reasons from the list of available options.
-
-            :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations reject options." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-reject-options-medium.png" source="./media/resiliency-reviews/resiliency-review-recommendation-reject-options-medium.png" type="content":::
-
-    *   To reject multiple recommendations and apply the same reason to all selected recommendations.
-
-        1.  Select the checkbox next to each recommendation.
-
-        1.  Select the reason when you reject the recommendations. Select one of the reasons from the list of available options.
-
-1.  The rejected recommendations are moved to the **Rejected** tab. 
-
-    On **Recommendations** > **Reliability**, rejected recommendations aren't visible for engineers on your team.
-
-    :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations pane of rejected recommendations." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-list-rejected.png" source="./media/resiliency-reviews/resiliency-review-recommendation-list-rejected.png" type="content":::
-
-1.  If you reject a recommendation by mistake, select **Reset** to move it back to the **Pending** state.
-
-> [!NOTE]
-> The reason for the rejection is visible to your Microsoft account team. The reason helps your Microsoft account team understand workload context and your business priorities better. Additionally, the platform uses the information to improve the quality of recommendations.
-
-For definitions on recommendation states, see [Terminology](#terminology).
-
 ### Prerequisites to implement recommendations
 
 For details on permissions to act on recommendations, see [Roles and permissions](./permissions.md "Roles and permissions | Azure Advisor | Microsoft Learn").
