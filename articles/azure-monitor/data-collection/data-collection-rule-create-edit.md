@@ -9,44 +9,35 @@ ms.custom: references_regions
 
 # Create data collection rules (DCRs) using JSON
 
-There are multiple methods for creating a [data collection rule (DCR)](data-collection-rule-overview.md) in Azure Monitor. For many scenarios, you can use the Azure portal to create a DCR without understanding the structure of the DCR definition. See [Create data collection rules (DCRs) using the Azure portal](data-collection-rule-create-portal.md) for details on creating DCRs in the portal.
+There are multiple methods for creating a [data collection rule (DCR)](data-collection-rule-overview.md) in Azure Monitor. For many scenarios, you can [use the Azure portal](data-collection-rule-create-portal.md) to create a DCR without understanding the structure of the DCR definition. For other scenarios though, you may need to create your own DCRs or edit existing ones by directly working with their definition in JSON. This may be for using advanced features like [transformations](data-collection-transformations.md) or for using command line tools to create and manage DCRs.
 
-For other scenarios though, you may need to create your own DCRs or edit existing ones by directly working with their definition in JSON. This article describes different methods for creating and editing a DCR using JSON.
-
-> [!NOTE]
-> This article describes how to create and edit the DCR itself. To create and edit data collection rule associations, see [Create and manage data collection rule associations](data-collection-rule-associations.md).
+[!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
 
 ## Permissions
 
-You require the following permissions to create DCRs and [DCR associations](data-collection-rule-associations.md):
+You require the following permissions to create DCRs:
 
 | Built-in role | Scopes | Reason |
 |:--------------|:-------|:-------|
 | [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing DCR</li></ul> | Create or edit DCRs, assign rules to the machine, deploy associations. |
-| [Virtual Machine Contributor](/azure/role-based-access-control/built-in-roles#virtual-machine-contributor)<br>[Azure Connected Machine Resource Administrator](/azure/role-based-access-control/built-in-roles#azure-connected-machine-resource-administrator)</li></ul> | <ul><li>Virtual machines, virtual machine scale sets</li><li>Azure Arc-enabled servers</li></ul> | Deploy agent extensions on the VM (virtual machine). |
 | Any role that includes the action *Microsoft.Resources/deployments/** | <ul><li>Subscription and/or</li><li>Resource group and/or </li><li>An existing DCR</li></ul> | Deploy Azure Resource Manager templates. |
 
 > [!IMPORTANT]
 > Create your DCR in the same region as your destination Log Analytics workspace or Azure Monitor workspace. You can associate the DCR to machines or containers from any subscription or resource group in the tenant. To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 
-## Create or edit a DCR
+## DCR definition
+Instead of creating a DCR definition from scratch, start with a DCR that you created in the Azure portal and download its JSON definition to modify. Or you can use one of the [sample DCRs](data-collection-rule-samples.md) that provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
 
-You can create a new DCR using one of the [sample DCRs](data-collection-rule-samples.md) which provide the JSON for several common scenarios. Use information in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md) to modify the JSON file for your particular environment and requirements.
-
-[!INCLUDE [data-collection-rule-edit-warning](./includes/data-collection-rule-edit-warning.md)]
-
-Once you have the definition of your DCR, you can deploy it to Azure Monitor using the Azure portal, CLI, PowerShell, API, or ARM templates. 
-
-> [!TIP]
 > To view the JSON definition of a DCR, see [View DCR definition](./data-collection-rule-view.md#view-dcr-definition).
 
-
+## Create or edit a DCR
+Once you have the definition of your DCR, you can deploy it to Azure Monitor using any of the following methods. It's the same method to create a new DCR or to edit an existing one.
 
 ### [CLI](#tab/cli)
 
 ### Create or edit DCR with CLI
 
-Use the [az monitor data-collection rule create](/cli/azure/monitor/data-collection/rule) command to create a DCR from your JSON file. You can use this same command to update an existing DCR.
+Use the [az monitor data-collection rule create](/cli/azure/monitor/data-collection/rule) command to create a DCR from your JSON file.
 
 ```azurecli
 az monitor data-collection rule create --location 'eastus' --resource-group 'my-resource-group' --name 'my-dcr' --rule-file 'C:\MyNewDCR.json' --description 'This is my new DCR'
@@ -56,7 +47,7 @@ az monitor data-collection rule create --location 'eastus' --resource-group 'my-
 
 ### Create or edit DCR with PowerShell
 
-Use the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a DCR from your JSON file. You can use this same command to update an existing DCR.
+Use the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet to create a DCR from your JSON file. 
 
 ```powershell
 New-AzDataCollectionRule -Name 'my-dcr' -ResourceGroupName 'my-resource-group' -JsonFilePath 'C:\MyNewDCR.json'
@@ -66,7 +57,7 @@ New-AzDataCollectionRule -Name 'my-dcr' -ResourceGroupName 'my-resource-group' -
 
 ### Create or edit DCR with API
 
-Use the [DCR create API](/rest/api/monitor/data-collection-rules/create) to create the DCR from your JSON file. You can use any method to call a REST API as shown in the following examples. You can use these same commands to update an existing DCR.
+Use the [DCR create API](/rest/api/monitor/data-collection-rules/create) to create the DCR from your JSON file. You can use any method to call a REST API as shown in the following examples. 
 
 ```powershell
 $ResourceId = "/subscriptions/ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
