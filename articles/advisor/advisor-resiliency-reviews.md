@@ -29,7 +29,7 @@ The triage process has been deprecated and replaced with a new process.
 
 - `Pending` and `Accepted` are now combined into only `Active`
 - `Rejected` is now `Dismissed`
-- `Completed` and `Postponed` are available
+- `Completed` and `Postponed` remain unchanged
 
 ## How it works
 
