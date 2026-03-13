@@ -15,7 +15,7 @@ Azure Advisor Resiliency Reviews help you focus on the most important recommenda
 
 You can find resiliency reviews in [Azure Advisor](https://aka.ms/azureadvisordashboard "Overview | Advisor | Microsoft Azure"), which serves as your single-entry point for Azure Well Architected Framework (WAF) assessments of industry best practices.
 
-In this article, you learn how to enable and access resiliency reviews prepared for you, triage, manage, implement, and track the lifecycle of each recommendation.
+In this article, you learn how to enable and access resiliency reviews prepared for you manage, implement, and track the lifecycle of each recommendation.
 
 ## Terminology
 
@@ -23,7 +23,7 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 |:--- |:--- |
 | Manage recommendation status| To mark a recommendation as: `Completed`, `Postponed`, or `Dismissed`|
 
-## Changes to recommendation triage process
+## Changes to recommendation process
 
 The triage process has been deprecated and replaced with a new process.
 
@@ -51,9 +51,9 @@ Resiliency reviews are available to customers with Unified or Premier Support co
 
 Your Microsoft account team works with you to collect information about the workload. They need to know which subscriptions are used for the workload, and which subscriptions they should use to publish the review and recommendations. You need to work with the owner of the subscription to configure permissions for your team.
 
-## View and triage recommendations
+## View recommendations
 
-To view or triage recommendations, or to manage the lifecycle of each recommendation, requires specific role permissions. For definitions, see [Terminology](#terminology).
+To view recommendations, or to manage the lifecycle of each recommendation, requires specific role permissions. For definitions, see [Terminology](#terminology).
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
@@ -70,13 +70,6 @@ If a new review is available to you, you see a notification banner on top of Adv
     A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
 
 4.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
-
-    | Filter | Detail |
-    |:--- |:--- |
-    | New | No recommendations are triaged, such as accepted or rejected. |
-    | In progress | Some recommendations aren't triaged. |
-    | Triaged | All recommendations are triaged. |
-    | Completed | All accepted-state recommendations are implemented, postponed, or dismissed. |
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews pane." lightbox="./media/advisor-reviews-highlight-reviews-preview.png" source="./media/advisor-reviews-highlight-reviews.png" type="content":::
 
@@ -104,10 +97,6 @@ There are four lifecycle management steps for recommendations: `new`, `dismissed
     A pane opens with **Description**, **Potential benefits**, and **Notes** details from your Microsoft account team along with the list of impacted resources or subscriptions.
 
     :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with the details pane of a selected recommendation." lightbox="./media/advisor-reviews-contoso-company-traffic-manager-monitor-status-online-preview.png" source="./media/advisor-reviews-contoso-company-traffic-manager-monitor-status-online.png" type="content":::
-
-1.  If all recommendations for the review are triaged, none appear in the **Pending** view.
-
-    To view the triaged recommendations, select the **Accepted** or **Rejected** tabs.
 
 ### Recommendation priority
 
@@ -172,10 +161,6 @@ If a recommendation is targeting to multiple resources or subscriptions, you hav
 
 > [!NOTE]
 > The reason for the rejection is visible to your Microsoft account team. The reason helps your Microsoft account team understand workload context and your business priorities better. Additionally, the platform uses the information to improve the quality of recommendations.
-
-## Implement recommendations
-
-After review recommendations are triaged, all recommendations with **Accepted** status become available on the Advisor **Reliability** pane with links to the resources needing action. Typically, an engineer on your team implements the recommendations by going to the resource pane and making the recommended change. Separately track the implementation of the recommendation for each targeted resource or subscription.
 
 For definitions on recommendation states, see [Terminology](#terminology).
 
