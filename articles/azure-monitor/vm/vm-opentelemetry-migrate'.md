@@ -8,43 +8,25 @@ ms.reviewer: xpathak
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-This article provides step-by-step guidance for migrating your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience. The OpenTelemetry experience provides faster queries, lower costs, and cross-platform consistency using open standards.
+This article provides step-by-step guidance for migrating your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience. The OpenTelemetry experience provides faster queries, lower costs, and cross-platform consistency using open standards. For a complete comparison, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-opentelemetry-and-logs-based-experiences).
 
 > [!NOTE]
 > The OpenTelemetry metrics experience is currently in public preview.
 
-## Before you begin
-
-Before migrating, review the differences between the two experiences to understand what changes in your monitoring workflow.
-
-### Key differences
-
-| Aspect | Logs-based (classic) | OpenTelemetry-based |
-|:---|:---|:---|
-| **Storage** | Log Analytics workspace | Azure Monitor workspace |
-| **Query language** | KQL (Kusto Query Language) | PromQL (Prometheus Query Language) |
-| **Latency** | 1-3 minutes | Near real-time |
-| **Cost** | Standard Log Analytics ingestion and retention | Optimized metrics storage |
-| **Metric naming** | Platform-specific counters (different for Windows and Linux) | Consistent cross-platform OpenTelemetry naming |
-| **Multi-VM views** | Full dashboards and workbooks | Currently limited |
-
-For a complete comparison, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-opentelemetry-and-logs-based-experiences).
-
-### Migration impact
+## Migration impact
 
 Consider the following impacts before migrating:
 
-- **Queries and alerts**: Existing KQL queries against the `InsightsMetrics` table won't work with OpenTelemetry metrics stored in Azure Monitor workspace. You need to create new PromQL queries.
+- **Queries and alerts**: Existing KQL queries against the `InsightsMetrics` table won't work with OpenTelemetry metrics stored in Azure Monitor workspace. You need to create new queries using PromQL.
 - **Dashboards and workbooks**: Custom dashboards and workbooks that use the `InsightsMetrics` table require updates to query the Azure Monitor workspace.
 - **Multi-VM views**: If you rely on the multi-VM performance views in the logs-based experience, these aren't currently available in the OpenTelemetry experience.
 - **Correlating metrics and logs**: With logs-based collection, you can correlate metrics and logs in a single KQL query. With OpenTelemetry, metrics and logs are stored separately and require separate queries.
 
-## Prerequisites
+## Coexistence of experiences
+You can enable OpenTelemetry-based metrics collection alongside logs-based collection to validate the new experience before fully migrating. This allows you to compare the two experiences and update your queries and dashboards incrementally. 
 
-- An Azure virtual machine with the Azure Monitor agent installed.
-- Permissions to create data collection rules and associate them with virtual machines.
-- An Azure Monitor workspace for storing OpenTelemetry metrics. If you don't have one, it's created automatically when you enable monitoring. See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
-- If you plan to keep collecting logs, ensure you have a Log Analytics workspace configured.
+If you don't modify the default metrics collected by the OpenTelemetry experience, there's no additional cost. But once you disable the data collection required for logs-based collection, you can optimize costs by no longer collecting this data in the Log Analytics workspace.
+
 
 ## Migration process overview
 

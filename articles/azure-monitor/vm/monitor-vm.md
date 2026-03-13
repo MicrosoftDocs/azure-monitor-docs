@@ -4,7 +4,6 @@ description: Start here to learn how to monitor Azure Virtual Machines and Virtu
 ms.date: 03/08/2026
 ms.custom: horz-monitor
 ms.topic: concept-article
-ms.service: azure-virtual-machines
 
 #customer intent: As a cloud administrator, I want to understand how to monitor Azure virtual machines so that I can ensure the health and performance of my virtual machines and applications.
 ---
@@ -14,7 +13,7 @@ ms.service: azure-virtual-machines
 This article provides an overview of how to monitor the health and performance of Azure virtual machines (VM) and virtual machine scale sets (VMSS). Whether you're new to Azure or transitioning from on-premises infrastructure, understanding your monitoring options helps you maintain reliable, high-performing virtual machines.
 
 ## Supported machines and operating systems
-This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](azure/azure-monitor/agents/azure-monitor-agent-supported-operating-systems).
+This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
 
 - Azure virtual machines
 - Azure Virtual Machine Scale Sets
@@ -60,7 +59,7 @@ Common types of guest logs include:
 - [SNMP traps](./data-collection-snmp-data.md)
 - [Windows Firewall logs](./data-collection-firewall-logs.md)
 
-Once logs are collected in a Log Analytics workspace, you can analyze them using [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) to gain insights into the operations and behavior of your VMs. For example,  query Windows Event Logs to identify common errors or security events, or analyze IIS logs to understand web traffic patterns. See [Log Analytics overview](/azure/azure-monitor/logs/log-analytics-overview.md) for details on analyzing log data with KQL.
+Once logs are collected in a Log Analytics workspace, you can analyze them using [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) to gain insights into the operations and behavior of your VMs. For example,  query Windows Event Logs to identify common errors or security events, or analyze IIS logs to understand web traffic patterns. See [Log Analytics overview](../logs/log-analytics-overview.md) for details on analyzing log data with KQL.
 
 ## Alerts
 Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down or when its CPU usage exceeds a certain threshold.
@@ -73,7 +72,7 @@ Azure Monitor provides a set of recommended alert rules for VMs that you can qui
 Beyond recommended alert rules, you can create custom alert rules based on any metric or log data collected from your VMs. Alert rules can notify you through email, SMS, or webhooks, and can trigger automated responses using Azure Automation runbooks or Azure Functions.
 
 For guidance on creating custom alert rules for VMs, see:
-- [Create metric alerts in Azure Monitor](../alerts/alerts-create-metric-alert-rule.yml)
+- [Create metric alerts in Azure Monitor](../alerts/alerts-create-metric-alert-rule.md)
 - [Create log query alerts in Azure Monitor](../alerts/alerts-create-log-alert-rule.md)
 
 ### Azure Monitor Baseline Alerts (AMBA) 

@@ -94,6 +94,4 @@ You can enable either or both experiences on a VM. For step-by-step guidance, se
 - [Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines](./vm-migrate-logs-to-opentelemetry.md)
 - [Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md)
 - [Customize OpenTelemetry metric collection](./vminsights-opentelemetry.md)
-- [OpenTelemetry metrics reference](./metrics-opentelemetry-guest-reference.md)
 - [How to begin collecting OpenTelemetry Guest OS performance counters: DCR collection](./data-collection-performance.md)
-- [How to query OpenTelemetry Guest OS performance counters with PromQl](./prometheus-system-metrics-best-practices.md)

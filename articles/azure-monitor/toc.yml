@@ -279,20 +279,20 @@ items:
         href: vm/vminsights-troubleshoot.md
     - name: Client metrics
       items:
-      - name: OpenTelemetry experience
+      - name: Overview
+        displayName: OpenTelemetry
+        href: vm/metrics-opentelemetry-guest.md
+      - name: OpenTelemetry experience (preview)
         items:
-        - name: Overview
-          displayName: OpenTelemetry
-          href: vm/metrics-opentelemetry-guest.md
         - name: Migrate from logs-based experience
           displayName: OpenTelemetry, migrate, migration
-          href: vm/vm-migrate-logs-to-opentelemetry.md
+          href: vm/vm-opentelemetry-migrate.md
         - name: Customize metric collection
           displayName: OpenTelemetry, customize
           href: vm/vminsights-opentelemetry.md
         - name: Reference
           displayName: OpenTelemetry, metrics, performance counters
-          href: vm/metrics-opentelemetry-guest-reference.md
+          href: vm/metrics-guest-reference.md
       - name: Logs-based experience (classic)
         items:
         - name: Interactive views

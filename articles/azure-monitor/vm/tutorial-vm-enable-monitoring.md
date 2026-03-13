@@ -55,7 +55,7 @@ The logs-based experience uses summarized performance data collected in the Log 
 :::image type="content" source="media/tutorial-vm-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-vm-enable-monitoring/logs-experience.png":::
 
 > [!NOTE]
-> The **Maps** feature is available in both experiences but has been deprecated as described in []().
+> The **Maps** feature is available in both experiences but has been deprecated as described in [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md).
 
 ## View multi-VM performance data
 The logs-based experience also provides the ability to view performance data across multiple virtual machines in a single chart. This allows you to compare the performance of different machines and identify any that might be under heavy load or experiencing performance issues. 
@@ -69,7 +69,7 @@ When the deployment is finished, you see views on the **Performance** tab in VM 
 Now that you have enabled enhanced monitoring for your virtual machine, you can enable recommended alerts based on the performance data being collected.
 
 > [!div class="nextstepaction"]
-> [Enable recommended alerts for an Azure virtual machine](tutorial-vm-alert.md)
+> [Enable recommended alerts for an Azure virtual machine](./tutorial-vm-alerts.md)
 
 You can also collect log data such as Windows event log or Syslog from your virtual machine.
 
