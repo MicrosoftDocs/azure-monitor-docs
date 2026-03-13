@@ -52,7 +52,7 @@ Enabling data collection from a VM by Azure Monitor involves three steps that ca
 
 The first step is to install the Azure Monitor agent extension on your virtual machines and Arc-enabled servers. 
 
-## [Azure CLI](#tab/azure-cli)
+## [Azure CLI](#tab/cli)
 
 **Azure virtual machine**
 
@@ -114,7 +114,7 @@ az vmss extension set \
 ```
 
 
-## [PowerShell](#tab/azure-powershell)
+## [PowerShell](#tab/powershell)
 
 
 **Virtual machine**
@@ -184,15 +184,6 @@ Add-AzVmssExtension `
   -TypeHandlerVersion 1.0
 
 ```
-
-
-## [ARM template](#tab/azure-resource-manager)
-
-
-
-For Linux, change the type to `AzureMonitorLinuxAgent` and the name accordingly.
-
-## [Bicep](#tab/bicep)
 
 
 ---
@@ -308,7 +299,7 @@ Start by defining the DCR in JSON format.
 
 </details>
 
-## [CLI](#tab/azure-cli)
+## [CLI](#tab/cli)
 
 
 ```azurecli-interactive
@@ -337,7 +328,7 @@ New-AzDataCollectionRule `
 
 The final step is to create associations between your DCRs and your VMs to activate data collection.
 
-## [Azure CLI](#tab/azure-cli)
+## [Azure CLI](#tab/cli)
 
 ### Azure VM
 
@@ -366,7 +357,7 @@ az monitor data-collection rule association create \
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<arc-server-name>
 ```
 
-## [PowerShell](#tab/azure-powershell)
+## [PowerShell](#tab/powershell)
 
 ### Azure VM
 

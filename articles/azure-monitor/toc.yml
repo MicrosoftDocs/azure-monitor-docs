@@ -282,7 +282,7 @@ items:
         href: vm/metrics-opentelemetry-guest.md
       - name: OpenTelemetry experience (preview)
         items:
-        - name: Migrate from logs-based experience
+        - name: Migrate
           displayName: OpenTelemetry, migrate, migration
           href: vm/vm-opentelemetry-migrate.md
         - name: Customize metric collection
