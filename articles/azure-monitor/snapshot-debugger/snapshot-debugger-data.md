@@ -19,7 +19,7 @@ For a more powerful debugging experience with source code, open snapshots with V
 
 Snapshots might include sensitive information. You can view snapshots only if you have the `Application Insights Snapshot Debugger` role.
 
-<a name="">access-debug-snapshots-in-the-portal</a>
+<a name="access-debug-snapshots-in-the-portal"></a>
 ## Access debug snapshots in the Azure portal
 
 After an exception occurs in your application and a snapshot is created, you can view snapshots in the [Azure portal](https://portal.azure.com) within 5 to 10 minutes. 
