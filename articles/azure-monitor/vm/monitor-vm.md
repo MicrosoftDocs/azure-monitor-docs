@@ -22,7 +22,6 @@ This article applies to the following types of machines running any operating sy
 ## Monitor a single VM
 View the current health of a VM from the **Monitor** option for the VM in the Azure portal. This includes a summary of the most common metrics for the VM. The data that's available in this view is based on the monitoring that you've enabled for the VM. Host metrics, including availability, are available by default. Guest metrics and logs are only available when you enable enhanced monitoring as described in [Enable enhanced monitoring](#enable-enhanced-monitoring).
 
-:::image type="content" source="media/monitor-vm/vm-monitor-view.png" lightbox="media/monitor-vm/vm-monitor-view.png" alt-text="Screenshot that shows the Monitor view for a virtual machine in the Azure portal.":::
 
 ## Monitor VM host and guest metrics and logs
 Host-level VM data gives you an understanding of the VM's overall performance and load, while the guest-level data gives you visibility into the applications, components, and processes running on the machine and their performance and health. For example, if you’re troubleshooting a performance issue, you might start with host metrics to see which VM is under heavy load, and then use guest metrics to drill down into the details of the operating system and application performance.

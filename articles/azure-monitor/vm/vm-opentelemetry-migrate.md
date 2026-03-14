@@ -323,6 +323,6 @@ If you need to rollback to the logs-based experience:
 ## Next steps
 
 - [Customize OpenTelemetry metric collection](./vminsights-opentelemetry.md)
-- [OpenTelemetry metrics reference](./metrics-opentelemetry-guest-reference.md)
+- [OpenTelemetry metrics reference](./metrics-guest-reference.md)
 - [Query Prometheus metrics using Azure Monitor](../essentials/prometheus-api-promql.md)
 - [Disable monitoring of your VMs](./vminsights-optout.md)
