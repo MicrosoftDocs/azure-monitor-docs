@@ -102,7 +102,7 @@ This view provides aggregated performance charts showing:
 - Top machines by bytes sent
 - Top machines by bytes received
 
-:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggview.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggview.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png":::
 
 ## Query performance data
 

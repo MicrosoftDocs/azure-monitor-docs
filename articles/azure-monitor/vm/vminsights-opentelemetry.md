@@ -38,7 +38,7 @@ Click the number in the **Data collection rules** column to list the DCRs associ
 
 ## Configure data source
 
-Create the DCR using the preview process in [Collect data from virtual machine client with Azure Monitor](./data-collection.mdtabs=preview). On the **Collect and deliver** tab of the DCR, select **OpenTelemetry Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
+Create the DCR using the preview experience in [Collect data from virtual machine client with Azure Monitor](./data-collection.md?tabs=preview). On the **Collect and deliver** tab of the DCR, select **OpenTelemetry Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-1.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-1.png" alt-text="Screenshot that shows the Azure portal form to select basic OpenTelemetry performance counters in a data collection rule." :::
 
