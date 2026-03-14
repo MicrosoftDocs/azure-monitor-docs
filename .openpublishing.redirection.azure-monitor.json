@@ -1,4 +1,4 @@
-/app/{
+{
  "redirections": [
   {
    "source_path": "articles/azure-monitor/app/codeless-app-service.md",
