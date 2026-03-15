@@ -2,7 +2,7 @@
 title: Collect OpenTelemetry (OTel) for Application Insights experiences
 description: Learn the basic data collection flow for Application Insights. Start new server-side applications with Azure Monitor OpenTelemetry and store telemetry in a linked Log Analytics workspace.
 ms.topic: how-to
-ms.date: 03/05/2026
+ms.date: 03/14/2026
 
 #customer intent: "As a developer or site reliability engineer who is new to Azure Monitor and Application Insights, I want to understand the basic Application Insights data collection flow and start with the recommended OpenTelemetry instrumentation."
 
@@ -117,6 +117,19 @@ You can also set up evaluations in these ways:
 ---
 
 After you complete the setup for your scenario, run your app and wait a few minutes for telemetry to appear in Application Insights. Then explore [Application Insights experiences](app-insights-overview.md#application-insights-experiences).
+
+## Other OpenTelemetry integrations on Azure
+
+Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:
+
+- [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/observability/opentelemetry-conventions.md)
+- [Java tracing in the Azure SDK](/azure/developer/java/sdk/tracing)
+- [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability)
+- [.NET observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel)
+- [Azure Monitor pipeline at edge and multicloud configuration](../essentials/edge-pipeline-configure.md)
+- [OpenTelemetry ingestion into Azure Data Explorer, Azure Synapse Data Explorer, and Real-Time Intelligence](/azure/data-explorer/open-telemetry-connector)
+- [Azure Container Apps OpenTelemetry agent](/azure/container-apps/opentelemetry-agents)
+- [Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
 
 ## Next steps
 
