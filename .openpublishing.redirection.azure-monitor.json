@@ -8885,6 +8885,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/opentelemetry.md",
+   "redirect_url": "../app/opentelemetry-overview",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/app/kubernetes-open-protocol.md",
    "redirect_url": "../containers/kubernetes-open-protocol",
    "redirect_document_id": false
