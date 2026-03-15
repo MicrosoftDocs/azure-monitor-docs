@@ -2,7 +2,7 @@
 title: Usage analysis with Application Insights | Azure Monitor
 description: Understand your users and what they do with your application.
 ms.topic: how-to
-ms.date: 05/31/2025
+ms.date: 03/15/2026
 ---
 
 # Usage analysis with Application Insights
@@ -67,7 +67,7 @@ Combine custom events with user IDs and session context to enable:
 * Segmenting users by how they interact with your app.
 
 > [!NOTE]
-> Use [authenticated user IDs](data-model-complete.md#context) to enable tracking across devices and browsers, and improve user-level analysis over time.
+> Use [authenticated user IDs](data-model-complete.md#context) to enable tracking across devices and browsers, and improve user-level analysis over time. In browser apps, call `setAuthenticatedUserContext()` after sign-in. In OpenTelemetry-based services, set the `enduser.id` attribute on the span.
 
 Attaching property values to these events allows you to filter or split them during inspection in the portal. Each event also includes a standard set of properties, such as an anonymous user ID, allowing you to trace the sequence of activities of individual users.
 
@@ -188,6 +188,9 @@ Understanding the customer experience is of great importance to your business. I
 
 You can use Application Insights funnels to gain insights into your users and monitor step-by-step conversion rates. Selecting a step shows additional step-specific details.
 
+> [!TIP]
+> Use **Funnels** when you already know the ordered sequence you want users to follow and you want step-by-step conversion rates. Use **User Flows** when you want exploratory path analysis before or after a starting event.
+
 > [!NOTE]
 > If your application is sampled, you see a banner. Selecting it opens a context pane that explains how to turn off sampling.
 
@@ -231,6 +234,9 @@ Special **Session Started** nodes show where the subsequent nodes began a sessio
 
 > [!NOTE]
 > Your Application Insights resource must contain page views or custom events to use the User Flows tool. [Learn how to set up your application to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md).
+
+> [!TIP]
+> User Flows is best for exploratory path analysis. For exact ordered conversion through a fixed sequence, use [Funnels](#funnels). For precise historical analysis over longer ranges, use **Logs** or a workbook.
 
 #### Create a user flow visualization
 
@@ -385,7 +391,7 @@ The previous two cohorts were defined by using dropdown boxes. You can also defi
     * **Parameters**: Where you make your own parameters, like **Activities**, and other dropdown boxes from the previous two examples.
     * **Query**: Where you define the cohort by using an analytics query.
 
-    In the query section, you [write an analytics query](/azure/kusto/query). The query selects the certain set of rows that describe the cohort you want to define. The Cohorts tool then implicitly adds a `| summarize by user_Id` clause to the query. This data appears as a preview underneath the query in a table, so you can make sure your query is returning results.
+    In the query section, you [write an analytics query](/azure/kusto/query). The query selects the set of rows that describe the cohort you want to define. The Cohorts tool then implicitly adds a `| summarize by user_Id` clause to the query. This data appears as a preview underneath the query in a table, so you can make sure your query is returning results.
 
     > [!NOTE]
     > If you don't see the query, resize the section to make it taller and reveal the query.
@@ -446,7 +452,7 @@ One way to think of Impact is as the ultimate tool for settling arguments with s
 Analyzing performance is only a subset of Impact's capabilities. Impact supports custom events and dimensions, so you can easily answer questions like, How does user browser choice correlate with different rates of conversion?
 
 > [!NOTE]
-> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your application to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters.
+> Your Application Insights resource must contain page views or custom events to use the Impact analysis workbook. Learn how to [set up your application to collect page views automatically with the Application Insights JavaScript SDK](javascript-sdk.md). Also, because you're analyzing correlation, sample size matters. In single-page applications, `pageViews.duration` can be `0` by design for route changes. If you need route-level load time, calculate the duration yourself and send it with `trackPageView()`, or use `startTrackPageView()` and `stopTrackPageView()`.
 
 #### The User Impact Analysis workbook
 
