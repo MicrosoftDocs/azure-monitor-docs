@@ -6,6 +6,8 @@ ms.date: 03/14/2026
 
 #customer intent: "As a developer or site reliability engineer who is new to Azure Monitor and Application Insights, I want to understand the basic Application Insights data collection flow and start with the recommended OpenTelemetry instrumentation."
 
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Collect OpenTelemetry (OTel) for Application Insights experiences

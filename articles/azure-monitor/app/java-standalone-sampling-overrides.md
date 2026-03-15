@@ -4,7 +4,9 @@ description: Learn to configure sampling overrides in Azure Monitor Application 
 ms.topic: how-to
 ms.date: 03/06/2026
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom:
+  - devx-track-java, devx-track-extended-java
+  - sfi-ropc-nochange
 ---
 
 # Sampling overrides - Azure Monitor Application Insights for Java

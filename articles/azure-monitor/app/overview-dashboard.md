@@ -4,9 +4,6 @@ description: Monitor your application's health and performance with the Applicat
 #customer intent: As a developer, I want to understand the Application Insights Overview dashboard so that I can monitor my application's health and performance at a glance.
 ms.topic: how-to
 ms.date: 03/06/2026
-author: AarDavMax
-ms.author: aaronmax
-ms.reviewer: aaronmax
 ---
 
 # Application Insights Overview dashboard
