@@ -15,7 +15,7 @@ This article provides troubleshooting information to help you with problems that
 ### Verify that the virtual machine is running
 The virtual machines must be running for the onboarding process to complete. If the virtual machine is stopped before the installation is complete, the process may fail and must be restarted.
 
-### Verify that the operating system supported
+### Verify that the operating system is supported
 If the operating system isn't in the [list of supported operating systems](vminsights-enable-overview.md#supported-operating-systems), installation of the extension fails and you get a message about waiting for data to arrive.
 
 ### Verify that the extension is installed
@@ -34,19 +34,19 @@ If you don't the extension in the list of installed extensions, then attempt the
 
 
 **The charts are stuck in a loading state**<br>
-Occurs if the network traffic for the Azure Monitor workspace is blocked. This is typically related to network policies such as ad blocking software. To resolve this issue, disable the ad block or allowlist `monitor.azure.com` traffic and reload the page.
+Network traffic to the Azure Monitor workspace may be blocked, typically by network policies such as ad blocking software. Disable the ad blocker or allowlist `monitor.azure.com` traffic, then reload the page.
 
 **Unable to access Data Collection Rule (DCR)**<br>
-Occurs when the user doesn't have permission to view the associated DCR for the VM, or the DCR may have been deleted. To resolve, contact the system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+You may not have permission to view the associated DCR for the VM, or the DCR may have been deleted. Contact your system administrator or reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Data configuration error**<br>
-Occurs when the Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
+The Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Access denied**<br>
-Occurs when the user's portal token expires or doesn't have permissions to view the associated Azure Monitor workspace. This can typically be resolved by refreshing the browser session or contacting your system administrator to request access. The user needs monitor reader permission, and the resource centric flag should be enabled on the Azure Monitor workspace by the system administrator.
+Your portal token may have expired, or you don't have permissions to view the associated Azure Monitor workspace. Refresh your browser session or contact your system administrator to request access. You need Monitor Reader permission, and the system administrator should enable the resource centric flag on the Azure Monitor workspace.
 
 **An unknown error occurred**<br>
-If this error message persists, then contact support to open a support ticket.
+If this error persists, contact support to open a support ticket.
 
 ## Performance view has no data
 

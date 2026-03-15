@@ -57,13 +57,6 @@ The first step is to install the Azure Monitor agent extension on your virtual m
 **Azure virtual machine**
 
 ```azurecli-interactive
-#  Linux
-az vm extension set \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --vm-name <vm-name> \
-  --resource-group <resource-group>
-
 # Windows
 az vm extension set \
   --name AzureMonitorWindowsAgent \
@@ -71,6 +64,13 @@ az vm extension set \
   --vm-name <vm-name> \
   --resource-group <resource-group>
 ```
+
+#  Linux
+az vm extension set \
+  --name AzureMonitorLinuxAgent \
+  --publisher Microsoft.Azure.Monitor \
+  --vm-name <vm-name> \
+  --resource-group <resource-group>
 
 **Arc-enabled server**
 
@@ -195,19 +195,18 @@ Data collection rules (DCRs) define what data to collect from the Azure Monitor 
 
 DCRs are structured in JSON. When you create DCRs using the Azure portal, you don't require any knowledge of the DCR structure. You may need to understand the DCR structure though to create DCRs from scratch or to add advanced functionality to existing DCRs such as adding a transformation.
 
-The following table describes the most common DCR types used for VM monitoring. For an complete list of DCR types and their structures, see [Data collection rule structure](../data-collection/data-collection-rule-structure.md).
+The following table describes the most common DCR types used for VM monitoring. For an complete list of DCR types and their structures, see [Data collection rule structure](../data-collection/data-collection-rule-structure.md). For details on creating DCRs, see [Data collection rules: Create and edit](../data-collection/data-collection-rule-create-edit.md).
 
 | DCR Type | Description |
 |:---|:---|
-| **OpenTelemetry metrics** | Collects system-level performance counters using OpenTelemetry standards. Enables the metrics-based experience for VM monitoring in the Azure portal. |
-| **VM insights** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. |
-| **Logs** | Collect different types of logs from the VM including Windows Events and Syslog. These DCCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md) for a description of the different data sources available. |
-| Performance data | Collect performance data in addition to the data collected when enhanced monitoring is enabled. This may be OpenTelemetry metrics sent to an Azure Monitor workspace or performance counters sent to a Log Analytics workspace. |
+| **OpenTelemetry metrics** | Collects system-level performance counters using OpenTelemetry standards. Enables the metrics-based experience for VM monitoring in the Azure portal. Use the DCR definition below. Modify the `counterSpecifiers` section to add metrics to be collected. |
+| **VM insights** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. Use the DCR definition below. |
+| **Logs** | Collect different types of logs from the VM including Windows Events and Syslog. These CCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
 
-Start by defining the DCR in JSON format. 
+Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
 
 <details>
-<summary>OpenTelemetry metrics</summary>
+<summary>Metrics-based experience (OpenTelemetry)</summary>
 
 ```json
 {
@@ -254,7 +253,7 @@ Start by defining the DCR in JSON format.
 </details>
 
 <details>
-<summary>VM insights</summary>
+<summary>Logs-based experience (VM insights)</summary>
 
 ``` json
 {
@@ -299,6 +298,8 @@ Start by defining the DCR in JSON format.
 
 </details>
 
+Save the DCR definition to a JSON file and use it to create a DCR with the following commands..
+
 ## [CLI](#tab/cli)
 
 
@@ -326,7 +327,7 @@ New-AzDataCollectionRule `
 
 ## Associate DCRs with VMs
 
-The final step is to create associations between your DCRs and your VMs to activate data collection.
+The final step is to create associations between your DCRs and your VMs. This activates the DCRs and tells the Azure Monitor agent to begin collecting data based on the rules defined in the DCR. You can create multiple associations for a VM if you want to collect different types of data. You can also remove associations to stop data collection from specific DCRs without affecting other associations or the agent itself.
 
 ## [Azure CLI](#tab/cli)
 

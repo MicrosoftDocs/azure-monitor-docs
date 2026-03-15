@@ -284,6 +284,21 @@
       "source_path": "articles/azure-monitor/logs/custom-fields.md",
       "redirect_url": "/previous-versions/azure/azure-monitor/logs/custom-fields",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/vm/vminsights-optout.md",
+      "redirect_url": "/azure/azure-monitor/vm/vm-disable-monitoring",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/vm/vminsights-troubleshoot.md",
+      "redirect_url": "/azure/azure-monitor/vm/vm-enable-troubleshoot",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/vm/vminsights-opentelemetry.md",
+      "redirect_url": "/azure/azure-monitor/vm/metrics-opentelemetry-guest-modify",
+      "redirect_document_id": false
     }
   ]
 }

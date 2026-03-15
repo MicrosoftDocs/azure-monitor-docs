@@ -10,7 +10,7 @@ ms.topic: concept-article
 
 # Monitor Azure Virtual Machines and Virtual Machine Scale Sets
 
-This article provides an overview of how to monitor the health and performance of Azure virtual machines (VM) and virtual machine scale sets (VMSS). Whether you're new to Azure or transitioning from on-premises infrastructure, understanding your monitoring options helps you maintain reliable, high-performing virtual machines.
+Azure Monitor provides comprehensive capabilities for tracking the health and performance of your virtual infrastructure, including Azure virtual machines (VMs), Virtual Machine Scale Sets (VMSS), and Arc-enabled servers. This article helps you understand the complete range of monitoring options available—from basic host metrics to advanced guest-level telemetry—so you can maintain reliable, high-performing infrastructure whether your workloads run in Azure or on-premises.
 
 ## Supported machines and operating systems
 This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
@@ -19,38 +19,39 @@ This article applies to the following types of machines running any operating sy
 - Azure Virtual Machine Scale Sets
 - Arc-enabled servers
 
-## Monitor a single VM
-View the current health of a VM from the **Monitor** option for the VM in the Azure portal. This includes a summary of the most common metrics for the VM. The data that's available in this view is based on the monitoring that you've enabled for the VM. Host metrics, including availability, are available by default. Guest metrics and logs are only available when you enable enhanced monitoring as described in [Enable enhanced monitoring](#enable-enhanced-monitoring).
-
-
-## Monitor VM host and guest metrics and logs
-Host-level VM data gives you an understanding of the VM's overall performance and load, while the guest-level data gives you visibility into the applications, components, and processes running on the machine and their performance and health. For example, if you’re troubleshooting a performance issue, you might start with host metrics to see which VM is under heavy load, and then use guest metrics to drill down into the details of the operating system and application performance.
-
-Collecting guest data requires installing the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) on the VM. Once installed, the agent collects a default set of metrics, and you can create [data collection rules](../data-collection/data-collection-rule-overview.md) used by the agent to collect additional performance counters and logs.
-
+## View VM health
+View the current health of any virtual machine from the **Monitor** option in the Azure portal. This view provides a summary of the most common metrics, with available data varying based on your monitoring configuration. Host metrics, including availability, are collected by default. Guest metrics and logs require enhanced monitoring as described in [Enable enhanced monitoring](#enable-enhanced-monitoring).
 
 ## Enable enhanced monitoring
-When you enable enhanced monitoring for a VM, the Azure Monitor agent is installed on it, and the agent starts sending guest metrics to Azure Monitor. This fully enables the **Monitor** view in the Azure portal. You can use this data to analyze the performance of the VM and its workloads and create alerts based on metrics. See [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md) for step-by-step guidance on enabling enhanced monitoring for a VM.
+Azure Monitor collects two types of metric data from virtual machines:
 
-For virtual machine scale sets, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md) for step-by-step guidance on enabling monitoring for scale sets.
+- **Host metrics** provide visibility into overall performance and load (CPU usage, network traffic, disk I/O). These are collected automatically at no cost.
+- **Guest metrics** provide detailed insights into applications, components, and processes running inside the machine. For example, when troubleshooting performance issues, you might start with host metrics to identify which machines are under load, then use guest data to drill down into specific operating system and application behavior.
 
-When you enable guest monitoring for a VM using the Azure portal, you choose between two experiences: the OpenTelemetry-based experience (preview) and the logs-based experience (classic). Both experiences provide robust monitoring capabilities, but they differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
+Enable enhanced monitoring to collect guest data and fully enable the **Monitor** view in the Azure portal. This installs the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) on your virtual machine and starts collecting a default set of metrics. 
 
-If you're already using the logs-based experience and want to migrate to OpenTelemetry, see [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) for step-by-step guidance. You can also customize which OpenTelemetry metrics are collected by modifying the data collection rule. See [Collect and customize OpenTelemetry metrics](./vminsights-opentelemetry.md) for details.
+When you enable guest monitoring using the Azure portal, choose between two experiences:
+
+- **OpenTelemetry-based experience (preview)** - Modern metrics pipeline with improved performance
+- **Logs-based experience (classic)** - Traditional metrics collection through Log Analytics
+
+Both experiences provide robust monitoring capabilities but differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
+
+For step-by-step guidance on enabling enhanced monitoring:
+- Virtual machines: [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md)
+- Virtual machine scale sets: [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md)
 
 ## Enable at scale
 You can enable VM monitoring at scale using multiple methods including Azure CLI, PowerShell, Azure Policy, ARM templates, Bicep, and other infrastructure as code (IaC) tools that support automated and repeatable deployments across your VM fleet. See [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) for details on enabling monitoring at scale using these different methods.
 
-## Logs
+## Collect logs
 Azure Monitor collects several types of log data from your virtual machines that provide detailed information about events, operations, and system behavior.
 
 ### Activity logs
-Activity logs record operations performed on a VM, such as when a VM is started or stopped, when configurations are changed, or when a VM is deleted. Activity logs are collected automatically for all Azure resources at no cost. 
-
-View activity logs for a VM from its **Activity log** page in the Azure portal. This shows all operations for that specific VM. You can also view activity logs for all resources in a subscription from the **Activity log** page in the Azure Monitor menu. Send them to a Log Analytics workspace where you can query them with other log data. See [Azure Monitor activity log](../platform/activity-log.md) for details on viewing and analyzing activity logs.
+Activity logs record operations performed on a VM, such as when a VM is started or stopped, when configurations are changed, or when a VM is deleted. They're collected automatically for all Azure resources at no cost. View activity logs for a VM from its **Activity log** page in the Azure portal. This shows all operations for that specific VM. You can also view activity logs for all resources in a subscription from the **Activity log** page in the Azure Monitor menu. Send them to a Log Analytics workspace where you can query them with other log data. See [Azure Monitor activity log](../platform/activity-log.md) for details on viewing and analyzing activity logs.
 
 ### Guest logs
-Guest logs are collected from the operating system and applications running inside a VM. Unlike activity logs, guest logs require configuration before they're collected. You must install the Azure Monitor agent and create one or more data collection rules that specify which logs to collect and where to send them. See [Collect data from virtual machine client with Azure Monitor](data-collection.md).
+Guest logs are collected from the operating system and applications running inside a VM. Unlike activity logs, guest logs require configuration before they're collected and there is a charge for their ingestion and storage. Create data collection rules to specify which logs to collect and where to send them. See [Collect data from virtual machine client with Azure Monitor](data-collection.md).
 
 Common types of guest logs include:
 
@@ -65,8 +66,7 @@ Common types of guest logs include:
 Once logs are collected in a Log Analytics workspace, you can analyze them using [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) to gain insights into the operations and behavior of your VMs. For example,  query Windows Event Logs to identify common errors or security events, or analyze IIS logs to understand web traffic patterns. See [Log Analytics overview](../logs/log-analytics-overview.md) for details on analyzing log data with KQL.
 
 ## Alerts
-Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down or when its CPU usage exceeds a certain threshold.
-
+Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down, when its CPU usage exceeds a certain threshold, or when error events are discovered.
 
 ### Recommended alert rules
 Azure Monitor provides a set of recommended alert rules for VMs that you can quickly enable in the Azure portal. These are based on host metrics so you can enable them without enabling enhanced monitoring. Alert on common issues such as high CPU usage, low available memory, and disk performance problems. See [Enable recommended alert rules for Azure virtual machine](/azure/azure-monitor/vm/tutorial-monitor-vm-alert-recommended) for details on enabling recommended alerts.
@@ -79,7 +79,7 @@ For guidance on creating custom alert rules for VMs, see:
 - [Create log query alerts in Azure Monitor](../alerts/alerts-create-log-alert-rule.md)
 
 ### Azure Monitor Baseline Alerts (AMBA) 
-[Azure Monitor Baseline Alerts (AMBA)](https://azure.github.io/azure-monitor-baseline-alerts/welcome/) are a set of predefined, customizable alert rules optimized for Azure Monitor agent data. These rules cover a wide range of scenarios and can be easily enabled to monitor the performance and health of your VMs. For example, you can enable AMBA alert rules to monitor specific performance counters, such as available memory or disk queue length, and receive notifications when these metrics exceed defined thresholds.
+[Azure Monitor Baseline Alerts (AMBA)](https://azure.github.io/azure-monitor-baseline-alerts) are a set of predefined, customizable alert rules optimized for Azure Monitor agent data. These rules cover a wide range of scenarios and can be easily enabled to monitor the performance and health of your VMs. For example, you can enable AMBA alert rules to monitor specific performance counters, such as available memory or disk queue length, and receive notifications when these metrics exceed defined thresholds.
 
 
 ## Performance Diagnostics

@@ -267,101 +267,101 @@ items:
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts
         href: vm/tutorial-vm-alerts.md
-    - name: Configure
+    - name: Enable monitoring
       items:
-      - name: Enable monitoring
+      - name: Command line
         href: vm/vm-enable-monitoring.md 
-      - name: Enable with Azure Policy
+      - name: Azure Policy
         href: vm/vminsights-enable-policy.md
       - name: Windows client machines
         href: vm/vminsights-enable-client.md
       - name: Disable monitoring
-        href: vm/vminsights-optout.md
+        href: vm/vm-disable-monitoring.md
       - name: Troubleshoot
-        href: vm/vminsights-troubleshoot.md
-    - name: Client metrics
+        href: vm/vm-enable-troubleshoot.md
+    - name: Client data
       items:
-      - name: Overview
-        displayName: OpenTelemetry
-        href: vm/metrics-opentelemetry-guest.md
-      - name: OpenTelemetry experience (preview)
+      - name: Metrics
         items:
-        - name: Customize
-          displayName: OpenTelemetry, metrics, data collection rule, performance counters
-          href: vm/vminsights-opentelemetry.md
-        - name: Migrate
-          displayName: OpenTelemetry, migrate, migration
-          href: vm/vm-opentelemetry-migrate.md
-        - name: Reference
-          displayName: OpenTelemetry, metrics, performance counters
-          href: vm/metrics-guest-reference.md
-      - name: Logs-based experience (classic)
-        items:
-        - name: Collect performance counters
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-performance.md
-        - name: Interactive views
-          href: vm/vminsights-performance.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
-        - name: Migrate
+        - name: Overview
+          displayName: OpenTelemetry
+          href: vm/metrics-opentelemetry-guest.md
+        - name: OpenTelemetry experience (preview)
           items:
-          - name: Migrate to Azure Monitor agent
-            href: vm/vminsights-migrate-agent.md
-          - name: Migrate from deprecated policies
-            href: vm/vminsights-migrate-deprecated-policies.md
-        - name: Map feature
+          - name: Customize
+            displayName: OpenTelemetry, metrics, data collection rule, performance counters
+            href: vm/metrics-opentelemetry-guest-modify.md
+          - name: Migrate
+            displayName: OpenTelemetry, migrate, migration
+            href: vm/vm-opentelemetry-migrate.md
+        - name: Logs-based experience (classic)
           items:
-          - name: Overview
-            href: vm/vminsights-maps.md
-          - name: Retirement guidance
-            displayName: processes and dependencies, map, vminsights, dependency agent
-            href: vm/vminsights-maps-retirement.md
-          - name: Dependency agent
+            href: vm/data-collection-performance.md
+          - name: Interactive views
+            href: vm/vminsights-performance.md
+          - name: Visualize data with workbooks
+            href: vm/vminsights-workbooks.md
+          - name: Collect performance counters
+            displayName: data collection rule,Azure Monitor agent
+          - name: Migrate
             items:
-            - name: Manage
-              displayName: dependency agent, vminsights
-              href: vm/vminsights-dependency-agent.md
-            - name: Uninstall
-              displayName: dependency agent, vminsights
-              href: vm/vminsights-dependency-agent-uninstall.md
-          - name: Query map data
-            href: vm/vminsights-log-query.md
-        - name: Unsure
-          items:
-          - name: Monitor changes
-            href: vm/vminsights-change-analysis.md
-    - name: Client logs
-      items:
-      - name: Collect log data
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection.md
-      - name: Agent data sources
+            - name: Migrate to Azure Monitor agent
+              href: vm/vminsights-migrate-agent.md
+            - name: Migrate from deprecated policies
+              href: vm/vminsights-migrate-deprecated-policies.md
+          - name: Map feature
+            items:
+            - name: Overview
+              href: vm/vminsights-maps.md
+            - name: Retirement guidance
+              displayName: processes and dependencies, map, vminsights, dependency agent
+              href: vm/vminsights-maps-retirement.md
+            - name: Dependency agent
+              items:
+              - name: Manage
+                displayName: dependency agent, vminsights
+                href: vm/vminsights-dependency-agent.md
+              - name: Uninstall
+                displayName: dependency agent, vminsights
+                href: vm/vminsights-dependency-agent-uninstall.md
+            - name: Query map data
+              href: vm/vminsights-log-query.md
+            - name: Monitor changes
+              href: vm/vminsights-change-analysis.md
+      - name: Logs
         items:
-        - name: Windows events
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-windows-events.md
-        - name: Syslog events
-          href: vm/data-collection-syslog.md
-        - name: IIS logs
-          displayName: data collection rule,Azure Monitor Agent,IIS logs
-          href: vm/data-collection-iis.md
-        - name: Text logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-text.md
-        - name: JSON logs
-          displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-          href: vm/data-collection-log-json.md
-        - name: SNMP traps
-          displayName: data collection rule,Azure Monitor agent
-          href: vm/data-collection-snmp-data.md
-        - name: Windows Firewall logs
-          displayName: data collection rule,Azure Monitor Agent,firewall logs
-          href: vm/data-collection-firewall-logs.md
-      - name: Configure a syslog forwarder
-        href: /azure/sentinel/forward-syslog-monitor-agent
-      - name: Send data to Fabric and Azure Data Explorer
-        href: vm/send-fabric-destination.md
+        - name: Collect log data
+          displayName: Azure Monitor agent, AMA
+          href: vm/data-collection.md
+        - name: Agent data sources
+          items:
+          - name: Windows events
+            displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-windows-events.md
+          - name: Syslog events
+            href: vm/data-collection-syslog.md
+          - name: IIS logs
+            displayName: data collection rule,Azure Monitor Agent,IIS logs
+            href: vm/data-collection-iis.md
+          - name: Text logs
+            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+            href: vm/data-collection-log-text.md
+          - name: JSON logs
+            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+            href: vm/data-collection-log-json.md
+          - name: SNMP traps
+            displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-snmp-data.md
+          - name: Windows Firewall logs
+            displayName: data collection rule,Azure Monitor Agent,firewall logs
+            href: vm/data-collection-firewall-logs.md
+        - name: Configure a syslog forwarder
+          href: /azure/sentinel/forward-syslog-monitor-agent
+        - name: Send data to Fabric and Azure Data Explorer
+          href: vm/send-fabric-destination.md
+      - name: Reference
+        displayName: OpenTelemetry, metrics, performance counters
+        href: vm/metrics-guest-reference.md
     - name: Performance diagnostics
       items:
       - name: Overview

@@ -3,7 +3,7 @@ title: Collect and customize OpenTelemetry metrics for Azure virtual machines
 description: Learn how to collect OpenTelemetry metrics from virtual machines and customize the collection by modifying data collection rules to add per-process metrics and other advanced performance counters.
 ms.topic: how-to
 ms.date: 03/13/2026
-ms.reviewer: jeffwo, tylerkight
+ms.reviewer: jeffwo, tylerknight
 ---
 
 # Customize OpenTelemetry metrics for Azure virtual machines (preview)
@@ -31,14 +31,14 @@ To identify the DCR associated with the VM, open **Data Collection Rules** from 
 
 :::image type="content" source="media/vminsights-opentelemetry/resources.png" lightbox="media/vminsights-opentelemetry/resources.png" alt-text="Screenshot of Resources tab of Data Collection Rules menu item.":::
 
-Click the number in the **Data collection rules** column to list the DCRs associated with the VM. The OTel DCR will have a name in the form `MSVMOtel-<region>-<name>`.
+Click the number in the **Data collection rules** column to list the DCRs associated with the VM. The OTel DCR will have a name in the form `MSVMOtel-<region>-<name>`. Click on the DCR to open it.
 
 :::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
 
 
 ## Configure data source
 
-Create the DCR using the preview experience in [Collect data from virtual machine client with Azure Monitor](./data-collection.md?tabs=preview). On the **Collect and deliver** tab of the DCR, select **OpenTelemetry Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
+On the **Data sources** tab of the DCR, click on the **OpenTelemetry Performance Counters** data source. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-1.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-1.png" alt-text="Screenshot that shows the Azure portal form to select basic OpenTelemetry performance counters in a data collection rule." :::
 
@@ -49,11 +49,11 @@ Select **Custom** for a more granular selection of OpenTelemetry performance cou
 
 ## Verify data collection
 
-To verify OpenTelemetry performance counters are being collected in the Azure Monitor workspace, you can start by scoping a query to the AMW chosen as destination for the DCR, and check for any of the **System.** metrics flowing as expected.
+To verify OpenTelemetry performance counters are being collected, scope a query to the Azure Monitor workspace, and check that the data is returned for the metrics you selected.
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" alt-text="Screenshot that shows records returned from an AMW." :::
 
-If the AMW was set to [resource-context access mode](../metrics/azure-monitor-workspace-manage-access.md), you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade in Portal and either choosing the "add with editor" dropdown or choosing the "view AMW metrics in editor" dropdown under Metric Namespaces. 
+If the workspace was set to [resource-context access mode](../metrics/azure-monitor-workspace-manage-access.md), you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade. Either choose the **add with editor** dropdown or **View AMW metrics in editor** dropdown under **Metric Namespaces**. 
 
 :::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" alt-text="Screenshot that shows how to navigate to AMW PromQL editor from a VM Metrics blade." :::
 
