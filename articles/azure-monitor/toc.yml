@@ -296,6 +296,7 @@ items:
             href: vm/vm-opentelemetry-migrate.md
         - name: Logs-based experience (classic)
           items:
+          - name: Collect performance counters
             href: vm/data-collection-performance.md
           - name: Interactive views
             href: vm/vminsights-performance.md
