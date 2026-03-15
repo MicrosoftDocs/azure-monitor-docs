@@ -2,7 +2,7 @@
 title: Investigate failures, performance, and transactions with Application Insights | Microsoft Docs
 description: Monitor and investigate application performance, failures, and transactions with Application Insights.
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 03/15/2026
 ---
 
 # Investigate failures, performance, and transactions with Application Insights
@@ -101,7 +101,7 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
 
-* **Exception** - Captured exceptions, including server-side errors and exceptions explicitly recorded using `TrackException()`.
+* **Exception** - Captured exceptions, including server-side errors and exceptions explicitly recorded by your instrumentation.
 
 * **Page View** - [Telemetry sent by the web client](javascript-sdk.md) to create page view reports.
 
@@ -172,9 +172,9 @@ You can use the following search expressions:
 | `apple NOT banana`                     | Find events that contain one word but not the other.                                |
 
 > [!NOTE]
-> If your app generates significant telemetry and uses ASP.NET SDK version 2.0.0-beta3 or later, it automatically reduces the volume sent to the portal through adaptive sampling. This module sends only a representative fraction of events. It selects or deselects events related to the same request as a group, allowing you to navigate between related events.
+> If sampling is enabled, portal experiences such as **Failures**, **Performance**, **Search**, and **End-to-end transaction details** show the telemetry that was retained after sampling rather than every item your application emitted.
 >
-> Learn about [sampling](sampling.md).
+> Suggested samples and correlated views try to preserve related telemetry for the same operation when correlation data is available. Learn more about [sampling](sampling.md).
 
 ---
 
@@ -210,6 +210,9 @@ To investigate the root cause of an error or exception, you can drill into the p
 	> [!NOTE]
 	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
+	> [!TIP]
+	> If you need the call stack for a failure, open the related exception in **End-to-end transaction details** or the **Exceptions** tab. Stack traces are shown only when exception telemetry was captured for that operation.
+
 ### [Performance view](#tab/performance-view)
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
@@ -243,7 +246,10 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
     This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
-1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determining whether there are performance issues related to particular types of clients.
+    > [!TIP]
+    > For single-page applications (SPAs), turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) or call [trackPageView()](api-custom-events-metrics.md#page-views) on route changes so that each logical page creates its own page view and operation. Otherwise, multiple route changes can be correlated to a single operation and some page view durations can appear as `0`.
+
+1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determine whether there are performance issues related to particular types of clients.
 
     :::image type="content" source="media/failures-performance-transactions/transaction-view-page-view-properties.png" lightbox="media/failures-performance-transactions/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
 
@@ -572,7 +578,7 @@ This behavior is by design. All the related items, across all components, are al
 
 The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is created and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that the system creates a page view each time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) so that the system creates a page view each time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 </details>
 
 <br>
@@ -620,7 +626,7 @@ This behavior is by design. All the related items, across all components, are al
 
 The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 
 #### Why do transaction detail durations not add up to the top-request duration?
 
