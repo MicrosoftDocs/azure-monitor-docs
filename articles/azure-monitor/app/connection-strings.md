@@ -4,9 +4,8 @@ description: Learn how to configure connection strings in Application Insights t
 #customer intent: As a developer, I want to understand how to configure connection strings in Application Insights so that I can send telemetry data to the correct resource.
 ms.topic: how-to
 ms.date: 03/06/2026
-author: AarDavMax
-ms.author: aaronmax
-ms.reviewer: aaronmax
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Connection strings in Application Insights

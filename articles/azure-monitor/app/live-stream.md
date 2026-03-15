@@ -4,9 +4,6 @@ description: Monitor your web app in real time with Azure Application Insights. 
 #customer intent: As a developer, I want to monitor my web application's performance in real time so that I can quickly identify and resolve issues.
 ms.topic: how-to
 ms.date: 03/06/2026
-author: AarDavMax
-ms.author: aaronmax
-ms.reviewer: aaronmax
 ms.devlang: csharp
 ---
 

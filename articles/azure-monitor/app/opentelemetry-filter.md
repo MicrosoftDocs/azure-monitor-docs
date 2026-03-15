@@ -4,7 +4,9 @@ description: Learn how to filter OpenTelemetry (OTel) data in Application Insigh
 ms.topic: how-to
 ms.date: 04/14/2026
 # ms.devlang: csharp, javascript, typescript, python
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
+ms.custom:
+  - devx-track-dotnet, devx-track-extended-java, devx-track-python
+  - sfi-ropc-nochange
 
 #customer intent: As a developer or site reliability engineer, I want to filter OpenTelemetry (OTel) data in Application Insights so that I can exclude unnecessary telemetry and protect sensitive information in my .NET, Java, Node.js, or Python applications.
 

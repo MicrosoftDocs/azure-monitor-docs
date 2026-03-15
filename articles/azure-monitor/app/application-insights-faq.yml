@@ -2,8 +2,6 @@
 metadata:
   title: Application Insights FAQ - Frequently Asked Questions
   description: "Official FAQ for Azure Monitor Application Insights. Find answers to questions about using Application Insights with Azure Monitor."
-  author: 
-  ms.author: 
   ms.service: azure-monitor
   ms.topic: faq
   ms.custom: references_regions
