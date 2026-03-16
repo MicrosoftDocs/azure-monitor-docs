@@ -379,6 +379,8 @@ items:
           href: containers/kubernetes-codeless.md
       - name: Limited previews
         items:
+        - name: Autoinstrumentation for AKS - Python and .NET
+          href: containers/kubernetes-codeless-python-net.md
         - name: Collect and analyze OpenTelemetry data with Azure Monitor
           href: containers/collect-use-observability-data.md
         - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
