@@ -21,8 +21,12 @@ See [View and modify associations for a DCR in the Azure portal](../data-collect
 Get the DCR association name with the `az monitor data-collection rule association list` command and then use it with the `az monitor data-collection rule association delete` as in the following example.
 
 ```azurecli
-dcraName=$(az monitor data-collection rule association list --resource "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" --query "[?dataCollectionRuleId=='/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/MSVMI-DefaultWorkspace'].name | [0]" -o tsv)
-az monitor data-collection rule association delete --resource "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" --name $dcraName
+dcraName=$(az monitor data-collection rule association list \
+    --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
+    --query "[?dataCollectionRuleId=='/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name>'].name | [0]" -o tsv)
+az monitor data-collection rule association delete \
+    --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
+    --name $dcraName
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -30,8 +34,8 @@ az monitor data-collection rule association delete --resource "/subscriptions/aa
 Get the DCR association name with the `Get-AzDataCollectionRuleAssociation` cmdlet and then use it with the `Remove-AzDataCollectionRuleAssociation` cmdlet as in the following example.
 
 ```powershell
-$dcraName = (Get-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" | where {$_.DataCollectionRuleId -eq "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/MSVMI-DefaultWorkspace"}).Name
-remove-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Compute/virtualMachines/my-vm" -AssociationName $dcraName   
+$dcraName = (Get-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" | where {$_.DataCollectionRuleId -eq "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name>"}).Name
+remove-AzDataCollectionRuleAssociation -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" -AssociationName $dcraName   
 ```
 ---
 

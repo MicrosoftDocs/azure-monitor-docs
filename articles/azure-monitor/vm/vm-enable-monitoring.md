@@ -210,6 +210,7 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
 
 ```json
 {
+  "location": "<location>",
   "properties": {
     "dataSources": {
       "performanceCountersOTel": [
@@ -242,8 +243,12 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
     },
     "dataFlows": [
       {
-        "streams": "Microsoft-OtelPerfMetrics",
-        "destinations": "MonitoringAccount"
+        "streams": [
+            "Microsoft-OtelPerfMetrics"
+        ],
+        "destinations": [
+            "MonitoringAccount"
+        ]
       }
     ]
   }
@@ -319,8 +324,7 @@ az monitor data-collection rule create \
 New-AzDataCollectionRule `
   -Name <dcr-name> `
   -ResourceGroupName <resource-group> `
-  -Location <location>
-  -RuleFile <path-to-json-file>
+  -JsonFilePath <path-to-json-file>
 ```
 ---
 
@@ -336,7 +340,7 @@ The final step is to create associations between your DCRs and your VMs. This ac
 ```azurecli
 az monitor data-collection rule association create \
   --name "dcr-association" \
-  --rule-id /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
+  --rule-id /subscriptions/<subscription-id>/resourceGroups/<resource-group>/microsoft.insights/datacollectionrules/<dcr-name>
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
 ```
 
@@ -345,7 +349,7 @@ az monitor data-collection rule association create \
 ```azurecli
 az monitor data-collection rule association create \
   --name "dcr-association" \
-  --rule-id /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
+  --rule-id /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name>
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>
 ```
 
@@ -354,7 +358,7 @@ az monitor data-collection rule association create \
 ```azurecli
 az monitor data-collection rule association create \
   --name "dcr-association" \
-  --rule-id $DCR_ID \
+  --rule-id /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/microsoft.insights/datacollectionrules/<dcr-name> \
   --resource /subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.HybridCompute/machines/<arc-server-name>
 ```
 
