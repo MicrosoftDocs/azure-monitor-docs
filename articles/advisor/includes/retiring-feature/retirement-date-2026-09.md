@@ -69,6 +69,7 @@ ms.date: 11/11/2025
 > | Service bus namespace | WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus and com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | SQL managed instance | Azure Monitor SCOM Managed Instance | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Storage Account | Azure Blob Storage - BlobFuse v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Subscription | Azure Virtual Desktop Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Virtual machine | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual network gateway | Non-AZ VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
