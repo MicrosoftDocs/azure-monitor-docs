@@ -36,9 +36,9 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
 1. Select **Investigate** > **Performance**.
 
-1. In the Performance blade, select the **Code Optimizations** button in the top menu.
+1. In the Performance page, select the **Code Optimizations** button in the top menu.
 
-    :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade-inline.png" alt-text="Screenshot of Code Optimizations located in the Performance blade." lightbox="./media/code-optimizations/code-optimizations-performance-blade-expanded.png":::
+    :::image type="content" source="./media/code-optimizations/code-optimizations-performance-blade-inline.png" alt-text="Screenshot of Code Optimizations located in the Performance page." lightbox="./media/code-optimizations/code-optimizations-performance-blade-expanded.png":::
 
 ## Create a GitHub issue
 
@@ -56,7 +56,7 @@ Microsoft Privacy Statement.](https://go.microsoft.com/fwlink/?LinkId=521839)
 
     :::image type="content" source="./media/code-optimizations-github-copilot/assign-to-github-copilot-toggle-on.png" alt-text="Screenshot of the checked Assign to GitHub Copilot option.":::
 
-1. Click **Create Work Item**.
+1. Select **Create Work Item**.
 
 1. When prompted with a warning about leaving the Azure portal, select **Continue** to finish creating the GitHub issue.
 
