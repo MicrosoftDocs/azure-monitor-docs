@@ -8,7 +8,7 @@ ms.reviewer: xpathak
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-This article provides step-by-step guidance for migrating your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience. The OpenTelemetry experience provides faster queries, lower costs, and cross-platform consistency using open standards. For a complete comparison, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-opentelemetry-and-logs-based-experiences).
+This article provides step-by-step guidance for migrating your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience. The OpenTelemetry experience provides faster queries, lower costs, and cross-platform consistency using open standards. For a complete comparison, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
 
 > [!NOTE]
 > The OpenTelemetry metrics experience is currently in public preview.

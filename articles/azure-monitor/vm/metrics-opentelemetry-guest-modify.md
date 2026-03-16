@@ -83,7 +83,7 @@ The metrics in the following table are collected by default and at no additional
 | system.disk.operation_time | Average disk operation time |
 
 ### Additional metrics
-The metrics in the following table can be collected by modifying the DCR for the VM as described in [Customize metric collection](#customize-metric-collection). There's an additional cost to collect these metrics. 
+The metrics in the following table can be collected by modifying the DCR for the VM as described above. There's an additional cost to collect these metrics. 
 
 | Metric Name | Description |
 |:---|:---|

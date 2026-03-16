@@ -8,15 +8,14 @@ ms.topic: concept-article
 #customer intent: As a cloud administrator, I want to understand how to monitor Azure virtual machines so that I can ensure the health and performance of my virtual machines and applications.
 ---
 
-# Monitor Azure Virtual Machines and Virtual Machine Scale Sets
+# Monitor virtual machines in Azure
 
-Azure Monitor provides comprehensive capabilities for tracking the health and performance of your virtual infrastructure, including Azure virtual machines (VMs), Virtual Machine Scale Sets (VMSS), and Arc-enabled servers. This article helps you understand the complete range of monitoring options available—from basic host metrics to advanced guest-level telemetry—so you can maintain reliable, high-performing infrastructure whether your workloads run in Azure or on-premises.
+Azure Monitor provides comprehensive capabilities for tracking the health and performance of your virtual machines and the workloads they run. This article helps you understand the complete range of monitoring options available—from basic host metrics to advanced guest-level telemetry—so you can maintain reliable, high-performing infrastructure whether your workloads run in Azure or on-premises.
 
 ## Supported machines and operating systems
 This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
 
 - Azure virtual machines
-- Azure Virtual Machine Scale Sets
 - Arc-enabled servers
 
 ## View VM health
@@ -30,16 +29,10 @@ Azure Monitor collects two types of metric data from virtual machines:
 
 Enable enhanced monitoring to collect guest data and fully enable the **Monitor** view in the Azure portal. This installs the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) on your virtual machine and starts collecting a default set of metrics. 
 
-When you enable guest monitoring using the Azure portal, choose between two experiences:
+When you enable guest monitoring using the Azure portal, choose between two experiences. Both experiences provide robust monitoring capabilities but differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
 
-- **OpenTelemetry-based experience (preview)** - Modern metrics pipeline with improved performance
-- **Logs-based experience (classic)** - Traditional metrics collection through Log Analytics
+For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
 
-Both experiences provide robust monitoring capabilities but differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for details on each experience and guidance on selecting the right one for your needs.
-
-For step-by-step guidance on enabling enhanced monitoring:
-- Virtual machines: [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md)
-- Virtual machine scale sets: [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md)
 
 ## Enable at scale
 You can enable VM monitoring at scale using multiple methods including Azure CLI, PowerShell, Azure Policy, ARM templates, Bicep, and other infrastructure as code (IaC) tools that support automated and repeatable deployments across your VM fleet. See [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) for details on enabling monitoring at scale using these different methods.

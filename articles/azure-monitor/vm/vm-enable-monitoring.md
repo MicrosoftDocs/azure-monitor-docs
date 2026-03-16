@@ -63,7 +63,6 @@ az vm extension set \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
-```
 
 #  Linux
 az vm extension set \
@@ -71,6 +70,7 @@ az vm extension set \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
+```
 
 **Arc-enabled server**
 
@@ -204,7 +204,7 @@ The following table describes the most common DCR types used for VM monitoring. 
 | **Logs** | Collect different types of logs from the VM including Windows Events and Syslog. These CCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
 
 Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
-
+<br>
 <details>
 <summary>Metrics-based experience (OpenTelemetry)</summary>
 
