@@ -94,7 +94,7 @@ Use this metric to identify latency bottlenecks, such as:
 
 ## Exceptions 
 
-Exception insights are extracted from the snapshots collected by the Snapshot Debugger. If Snapshot Debugger is enabled in your app, and snapshots are being collected, they're automatically be processed for insight extraction in Code Optimizations.
+Exception insights are extracted from the snapshots collected by the Snapshot Debugger. If Snapshot Debugger is enabled in your app, and snapshots are being collected, they're automatically processed for insight extraction in Code Optimizations.
 
 ## View insights
 
