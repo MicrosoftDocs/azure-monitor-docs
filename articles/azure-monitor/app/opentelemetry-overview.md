@@ -1,5 +1,5 @@
 ---
-title: Collect OpenTelemetry (OTel) for Application Insights experiences
+title: Collect OpenTelemetry (OTel) data for Application Insights experiences
 description: Learn the basic data collection flow for Application Insights. Start new server-side applications with Azure Monitor OpenTelemetry and store telemetry in a linked Log Analytics workspace.
 ms.topic: how-to
 ms.date: 03/14/2026
@@ -10,9 +10,9 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Collect OpenTelemetry (OTel) for Application Insights experiences
+# Collect OpenTelemetry (OTel) data for Application Insights experiences
 
-This article covers getting started with [Application Insights](app-insights-overview.md#introduction-to-application-insights---opentelemetry-observability) data collection.
+This article covers getting started with OpenTelemetry-based data collection for [Application Insights](app-insights-overview.md).
 
 Entry points include:
 
@@ -27,7 +27,7 @@ Entry points include:
 
 Choose the tab that best matches your workload or hosting model.
 
-Most server-side scenarios in this article use Azure Monitor OpenTelemetry.
+For most code-based server-side scenarios, the recommended setup uses the Azure Monitor OpenTelemetry Distro. Each tab shows the recommended data-collection path for that scenario.
 
 ### [Web apps](#tab/webapps)
 
