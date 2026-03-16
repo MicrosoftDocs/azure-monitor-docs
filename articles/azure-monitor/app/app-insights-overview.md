@@ -10,7 +10,7 @@ ms.date: 11/14/2025
 
 # Introduction to Application Insights - OpenTelemetry observability
 
-Azure Monitor Application Insights is an OpenTelemetry feature of [Azure Monitor](..\overview.md) that offers application performance monitoring (APM) for live web applications. Integrating with OpenTelemetry (OTel) provides a vendor-neutral approach to collecting and analyzing telemetry data, enabling comprehensive observability of your applications.
+Azure Monitor Application Insights is an application performance monitoring (APM) feature of [Azure Monitor](..\overview.md). For supported scenarios, you can use OpenTelemetry (OTel), a vendor-neutral observability framework, to instrument your applications and collect telemetry data, then analyze that telemetry in Application Insights.
 
 :::image type="content" source="media/app-insights-overview/app-insights-overview.png" lightbox="media/app-insights-overview/app-insights-overview.png" alt-text="A screenshot of the Azure Monitor Application Insights user interface displaying an application map.":::
 
