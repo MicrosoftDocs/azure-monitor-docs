@@ -29,7 +29,7 @@ ms.date: 11/11/2025
 > | App service | Docker Compose | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Application gateway | WAF v2 Config | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Managed Redis | Redis Enterprise | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Cloud Service | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Cloud Service | Extended Support | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Data factory | Memory Optimized Data Flows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Front Door Web Application Firewall policy | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Virtual machine | Standard_M192idms_v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
