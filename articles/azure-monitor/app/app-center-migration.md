@@ -1,11 +1,12 @@
 ---
-title: Migrate App Center telemetry to Azure Monitor
+title: Migrate App Center telemetry to Azure Monitor (Preview)
 description: Migrate Visual Studio App Center telemetry to Azure Monitor by using community OpenTelemetry (OTel) software development kits (SDKs) and a telemetry gateway.
 ms.topic: how-to
-ms.date: 02/04/2026
+ms.date: 03/17/2026
+ROBOTS: NOINDEX
 ---
 
-# Migrate App Center telemetry to Azure Monitor
+# Migrate App Center telemetry to Azure Monitor (Preview)
 
 This article provides high-level linked guidance for sending mobile app telemetry to [Azure Monitor](../fundamentals/overview.md) using OpenTelemetry (OTel).
 
@@ -18,7 +19,8 @@ OTel is a vendor-neutral, open-source standard for collecting and exporting tele
 > - Analyze telemetry in Azure Monitor and [Application Insights](app-insights-overview.md).
 
 > [!IMPORTANT]
-> Microsoft supports Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn’t provide product support for community OpenTelemetry mobile SDKs or for configuring, operating, or troubleshooting an OpenTelemetry gateway. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
+> - See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> - Microsoft supports Azure Monitor experiences **after telemetry reaches Azure Monitor**. Microsoft doesn’t provide product support for community OpenTelemetry mobile SDKs or for configuring, operating, or troubleshooting an OpenTelemetry gateway. For details and support links, review [Support boundaries and support options](#support-boundaries-and-support-options).
 
 ## App Center retirement timeline
 
