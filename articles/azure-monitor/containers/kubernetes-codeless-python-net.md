@@ -1,11 +1,11 @@
 ---
-title: Azure Kubernetes Service autoinstrumentation - Python and .NET (Limited preview onboarding)
+title: Enable Azure Kubernetes Service autoinstrumentation for Python and .NET (limited preview)
 description: Learn how to onboard to the limited preview of Azure Kubernetes Service (AKS) autoinstrumentation for Python and .NET workloads.
 ms.topic: how-to
 ms.date: 03/16/2026
 ---
 
-# Azure Kubernetes Service autoinstrumentation - Python and .NET (Limited preview onboarding)
+# Enable AKS autoinstrumentation for Python and .NET (limited preview)
 
 Azure Kubernetes Service (AKS) autoinstrumentation is a feature that attaches Azure Monitor Application Insights SDK distros to your workload without requiring code changes. It works with workloads running as Kubernetes deployments in AKS. Currently, support for Java and Node.Js is in public preview, while support for Python and .NET is in limited preview. This article details the onboarding process that allows a select group of limited preview customers to enable Python and .NET support for their AKS clusters.
 

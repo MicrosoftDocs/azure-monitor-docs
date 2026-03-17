@@ -5,7 +5,7 @@ ms.topic: how-to
 ms.date: 03/17/2026
 ---
 
-# Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
+# Monitor AKS applications with OTLP and Azure Monitor (Preview)
 
 OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor adds **Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
 

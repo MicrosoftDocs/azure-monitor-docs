@@ -1,11 +1,11 @@
 ---
-title: Ingest OpenTelemetry Protocol Signals Into Azure Monitor with Azure Monitor Agent or OpenTelemetry Collector (Preview)
+title: Ingest OTLP signals into Azure Monitor with AMA or Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor using native ingestion endpoints.
 ms.topic: how-to
 ms.date: 03/18/2026
 ---
 
-# Ingest OpenTelemetry Protocol signals into Azure Monitor with Azure Monitor Agent or OpenTelemetry Collector (Preview)
+# Ingest OTLP data into Azure Monitor (Preview)
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
