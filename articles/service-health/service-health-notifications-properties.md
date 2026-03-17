@@ -2,7 +2,7 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: concept-article
-ms.date: 02/10/2026
+ms.date: 03/17/2026
 
 ---
 
@@ -10,7 +10,7 @@ ms.date: 02/10/2026
 
 Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) (which logs many events in Azure), and then shown in the Azure portal under [Azure Service Health](service-health-portal-update.md). In other words, whenever Azure needs to communicate something about service health (for example, an outage, upcoming maintenance, or account-specific alert), it creates a Service Health event in your Activity Log. 
 
-Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-notifications.md).
+Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-health-notifications-properties.md).
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
@@ -140,5 +140,5 @@ Service Health event type (`properties.incidentType`)
  ## For more information
 
 - [Service Health Frequently asked Questions](service-health-faq.yml)
-- [View Service Health notifications from the portal](service-notifications.md)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
 - [View and access Security advisories](security-advisories-elevated-access.md)
