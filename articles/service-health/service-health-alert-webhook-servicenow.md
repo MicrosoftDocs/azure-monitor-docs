@@ -2,7 +2,7 @@
 title: Send Azure service health alerts with ServiceNow
 description: Get personalized notifications about service health events to your ServiceNow instance.
 ms.topic: how-to
-ms.date: 02/03/2026
+ms.date: 03/17/2026
 ms.custom:
 ---
 # Send Azure service health alerts with ServiceNow using webhooks
@@ -190,6 +190,6 @@ This article shows you how to integrate Azure service health alerts with Service
 ## Next steps
 - Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
 - Review the [activity log alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md). 
-- Learn about [service health notifications](./service-notifications.md).
+- Learn about [service health notifications](./service-health-notifications-properties.md).
 - Learn more about [action groups](../azure-monitor/alerts/action-groups.md).
 - Learn about [Service Health Frequently asked questions](service-health-faq.yml)

@@ -2,7 +2,7 @@
 title: Azure Service Health Portal Classic Experience Overview
 description: Learn how to use the customizable dashboard in the Service Health portal to track the health of your Azure services in the regions where you use them. 
 ms.topic: how-to
-ms.date: 12/11/2025
+ms.date: 03/17/2026
 
 
 ---

@@ -1307,10 +1307,6 @@ For reference, see the following OpenTelemetry specifications:
 * [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
 * [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
 
-[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
-
-[!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
+[!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
 [!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]
-
-[!INCLUDE [Support](includes/opentelemetry-support.md)]
