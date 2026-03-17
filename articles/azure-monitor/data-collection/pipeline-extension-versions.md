@@ -16,9 +16,8 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 ## Version details
 
 ### Version v0.158.0 - Mar 2026 (Preview)
-- Added the Rust‑based pipeline image as the default workload in the collector container, instead of the previous Go-based pipeline
-- Installs and enables the `microsoft.extensiondiagnostics` extension for collection of Microsoft-internal telemetry (e.g. usage, diagnostic, and performance data to operate, secure, and improve Azure Monitor pipeline). Aditional pods may be created in the azure-arc namespace for this extension.
-- Fixed all known security and compliance issues
+- Added change to install and enable the `microsoft.extensiondiagnostics` extension for collection of Microsoft-internal telemetry (e.g. usage, diagnostic, and performance data to operate, secure, and improve Azure Monitor pipeline). Additional pods may be created in the azure-arc namespace for this extension.
+- Fixed all known security vulnerabilities and compliance issues.
 
 ### Version v0.157.0 - Feb 2026 (Preview)
 - Added **support for TLS and mutual TLS (mTLS)** for TCP‑based ingestion endpoints, improving security and compliance. [Learn more](./pipeline-tls.md)
