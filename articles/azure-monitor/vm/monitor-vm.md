@@ -12,11 +12,13 @@ ms.topic: concept-article
 
 Azure Monitor provides comprehensive capabilities for tracking the health and performance of your virtual machines and the workloads they run. This article helps you understand the complete range of monitoring options available—from basic host metrics to advanced guest-level telemetry—so you can maintain reliable, high-performing infrastructure whether your workloads run in Azure or on-premises.
 
-## Supported machines and operating systems
-This article applies to the following types of machines running any operating systems [supported by the Azure Monitor agent](../agents/azure-monitor-agent-supported-operating-systems.md).
+## Related resources
 
-- Azure virtual machines
-- Arc-enabled servers
+### Hybrid machine
+For virtual machines in other clouds and on-premises, use [Azure Arc-enabled servers](https://azure.microsoft.com/azure-arc/servers/) to connect them to Azure Monitor. Once the Azure Connected Machine agent has been installed, you can monitor the machine using the same methods as an Azure VM. 
+
+### Virtual machine scale sets
+Azure virtual machine scale sets (VMSS) monitoring capabilities are similar to Azure VMs, with support for host metrics and guest performance data using the Azure Monitor agent. They do not support the new metrics experience though. See [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md) for details on enabling monitoring for scale sets.
 
 ## View VM health
 View the current health of any virtual machine from the **Monitor** option in the Azure portal. This view provides a summary of the most common metrics, with available data varying based on your monitoring configuration. Host metrics, including availability, are collected by default. Guest metrics and logs require enhanced monitoring as described in [Enable enhanced monitoring](#enable-enhanced-monitoring).
@@ -62,7 +64,11 @@ Once logs are collected in a Log Analytics workspace, you can analyze them using
 Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down, when its CPU usage exceeds a certain threshold, or when error events are discovered.
 
 ### Recommended alert rules
-Azure Monitor provides a set of recommended alert rules for VMs that you can quickly enable in the Azure portal. These are based on host metrics so you can enable them without enabling enhanced monitoring. Alert on common issues such as high CPU usage, low available memory, and disk performance problems. See [Enable recommended alert rules for Azure virtual machine](/azure/azure-monitor/vm/tutorial-monitor-vm-alert-recommended) for details on enabling recommended alerts.
+Azure Monitor provides a set of recommended alert rules for VMs and virtual machine scale sets that you can quickly enable in the Azure portal. These are based on host metrics so you can enable them without enabling enhanced monitoring. Alert on common issues such as high CPU usage, low available memory, and disk performance problems.
+
+For step-by-step guidance on enabling recommended alerts, see:
+- [Enable recommended alert rules for Azure virtual machine](tutorial-vm-alerts.md)
+- [Enable recommended alert rules for Azure virtual machine scale set](tutorial-scale-set-alerts.md)
 
 ### Additional alert rules
 Beyond recommended alert rules, you can create custom alert rules based on any metric or log data collected from your VMs. Alert rules can notify you through email, SMS, or webhooks, and can trigger automated responses using Azure Automation runbooks or Azure Functions.
@@ -91,6 +97,8 @@ See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance
 
 - [Tutorial: Enable monitoring for Azure virtual machine](tutorial-vm-enable-monitoring.md) - Get started with step-by-step guidance for enabling VM monitoring
 - [Tutorial: Enable monitoring for Azure virtual machine scale set](tutorial-scale-set-enable-monitoring.md) - Step-by-step guidance for enabling monitoring for scale sets
+- [Tutorial: Enable recommended alerts for Azure virtual machine](tutorial-vm-alerts.md) - Enable alerts to get notified about VM issues
+- [Tutorial: Enable recommended alerts for Azure virtual machine scale set](tutorial-scale-set-alerts.md) - Enable alerts to get notified about scale set issues
 - [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md) - Comprehensive guide to enabling both OpenTelemetry and logs-based monitoring
 - [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Switch from logs-based to OpenTelemetry experience
 - [Best practices for monitoring virtual machines in Azure Monitor](best-practices-vm.md) - Recommendations based on the Azure Well-Architected Framework

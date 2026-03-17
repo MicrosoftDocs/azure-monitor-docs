@@ -12,6 +12,9 @@ Once you have enabled enhanced monitoring for a virtual machine, you should enab
 
 This tutorial walks you through enabling recommended alerts for an Azure virtual machine using the Azure portal. You'll learn how to select which alert rules to enable, configure their thresholds and severity, and set up email notifications.
 
+> [!NOTE]
+> For virtual machine scale sets, see [Enable recommended alerts for an Azure virtual machine scale set](tutorial-scale-set-alerts.md).
+
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]

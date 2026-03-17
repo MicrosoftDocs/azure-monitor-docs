@@ -101,7 +101,7 @@ This view provides aggregated performance charts showing:
 
 Now that you have enabled monitoring for your virtual machine scale set, you can:
 
-- Create alerts based on the performance data being collected. See [Create alerts in Azure Monitor](../alerts/alerts-overview.md).
+- Enable recommended alerts to get notified when the scale set or its instances experience issues. See [Enable recommended alerts for Azure virtual machine scale set](tutorial-scale-set-alerts.md).
 - Collect additional log data such as Windows event log or Syslog from your virtual machine scale set instances. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md).
 - Use workbooks to create custom dashboards and reports. See [Visualize data with Azure Monitor workbooks](./vminsights-workbooks.md).
 

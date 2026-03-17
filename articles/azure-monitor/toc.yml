@@ -266,7 +266,11 @@ items:
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
       - name: Enable recommended alerts
-        href: vm/tutorial-vm-alerts.md
+        items:
+        - name: Virtual machine
+          href: vm/tutorial-vm-alerts.md
+        - name: Virtual machine scale set
+          href: vm/tutorial-scale-set-alerts.md
     - name: Enable monitoring
       items:
       - name: Command line

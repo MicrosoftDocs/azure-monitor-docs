@@ -60,3 +60,4 @@ VM insights using the Log Analytics agent (deprecated) required a solution added
 - [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md) - Learn about the Azure Monitor agent
 
 
+Solution engineer on weekly call asking for assistance with large power customer going all in on Azure, including monitoring. Follow up call to initiate relationship and discussed potential opportunities. 
