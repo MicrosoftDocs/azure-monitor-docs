@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 01/15/2026
+ms.date: 03/17/2026
 ---
 
 # Azure Service Health portal
@@ -50,7 +50,10 @@ This section provides an overview of each pane in the Service Health portal.
 
 Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that could be affected from an outage, based on your subscription or tenant admin access.<br> For more information, see [Service issues overview](service-issues-blade.md).
 
+
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
+
+For information on how to report an impact see [How to report an impact (preview)](report-issue.md).
 
 ## See Planned maintenance events
 
@@ -131,3 +134,14 @@ The **Service issues**, **Health advisories**, **Security advisories**, and **He
 On the **Service issues** pane, you can filter by **Scope**. The **Scope** column indicates when an event is affecting the **Tenant** level or **Subscription** level.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the Service issues user interface that highlights the Scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
+
+
+## For more information
+
+- [Service Health Frequently asked Questions](service-health-faq.yml)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
+- [View and access Security advisories](security-advisories-elevated-access.md)
+- [Service Health event tags](service-health-event-tags.md)
+- [Service Health data transitions](service-health-notification-transitions.md)
+- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+- [How to report an impact](report-issue.md)

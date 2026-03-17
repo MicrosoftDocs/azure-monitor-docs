@@ -56,7 +56,7 @@ The schema for resource logs varies depending on the resource and log category. 
 | Azure Automation |[Log Analytics for Azure Automation](/azure/automation/automation-manage-send-joblogs-log-analytics) |
 | Azure Batch |[Azure Batch logging](/azure/batch/batch-diagnostics) |
 | Azure AI Search | [Cognitive Search monitoring data reference (schemas)](/azure/search/monitor-azure-cognitive-search-data-reference#schemas) |
-| Azure AI services | [Logging for Azure AI services](/azure/ai-services/diagnostic-logging) |
+| Foundry Tools | [Logging for Foundry Tools](/azure/ai-services/diagnostic-logging) |
 | Azure Container Instances | [Logging for Azure Container Instances](/azure/container-instances/container-instances-log-analytics#log-schema) |
 | Azure Container Registry | [Logging for Azure Container Registry](/azure/container-registry/monitor-service) |
 | Azure Content Delivery Network | [Diagnostic logs for Azure Content Delivery Network](/azure/cdn/cdn-azure-diagnostic-logs) |
@@ -66,7 +66,7 @@ The schema for resource logs varies depending on the resource and log category. 
 | Azure Data Lake Analytics |[Accessing logs for Azure Data Lake Analytics](/azure/data-lake-analytics/data-lake-analytics-diagnostic-logs) |
 | Azure Data Lake Storage |[Accessing logs for Azure Data Lake Storage](/azure/data-lake-store/data-lake-store-diagnostic-logs) |
 | Azure Database for MySQL | [Azure Database for MySQL diagnostic logs](/azure/mysql/concepts-server-logs#diagnostic-logs) |
-| Azure Database for PostgreSQL | [Azure Database for PostgreSQL logs](/azure/postgresql/concepts-server-logs#resource-logs) |
+| Azure Database for PostgreSQL | [Azure Database for PostgreSQL logs](/azure/postgresql/monitor/how-to-configure-and-access-logs) |
 | Azure Databricks | [Diagnostic logging in Azure Databricks](/azure/databricks/administration-guide/account-settings/azure-diagnostic-logs) |
 | Azure DDoS Protection | [Logging for Azure DDoS Protection](/azure/ddos-protection/ddos-view-diagnostic-logs#example-log-queries) |
 | Azure Digital Twins | [Set up Azure Digital Twins diagnostics](/azure/digital-twins/troubleshoot-diagnostics#log-schemas) |

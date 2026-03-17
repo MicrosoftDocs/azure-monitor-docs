@@ -4,7 +4,9 @@ description: This article shows you how to set up Application Insights.
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom:
+  - sfi-ropc-nochange
+  - devx-track-java, devx-track-extended-java
 ---
 
 # Get Started (Supplemental)
@@ -17,7 +19,7 @@ For more information, see [Application monitoring for Azure App Service and Java
 
 ## Azure Functions
 
-For more information, see [Monitoring Azure Functions with Azure Monitor Application Insights](./monitor-functions.md#distributed-tracing-for-java-applications).
+For more information, see [Monitoring Azure Functions with Azure Monitor Application Insights](/azure/azure-functions/opentelemetry-howto#distributed-tracing-for-java-applications).
 
 ## Azure Spring Apps
 

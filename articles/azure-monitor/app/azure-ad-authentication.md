@@ -2,8 +2,10 @@
 title: Microsoft Entra authentication for Application Insights
 description: Learn how to enable Microsoft Entra authentication to ensure that only authenticated telemetry is ingested in your Application Insights resources.
 ms.topic: how-to
-ms.date: 02/27/2026
+ms.date: 03/06/2026
 ms.devlang: csharp
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Microsoft Entra authentication for Application Insights
@@ -702,8 +704,8 @@ Example response:
           "0qRud6jz3k0=",
           "0qRud6jz3k0=",
           "Application Insights Availability Monitoring",
-          "9fc6738d-7e26-44f0-b88e-6fae8ccb6b26",
-          "us-va-ash-azr_9fc6738d-7e26-44f0-b88e-6fae8ccb6b26",
+          "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
+          "us-va-ash-azr_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
           null,
           null,
           "AutoGen_49c3aea0-4641-4675-93b5-55f7a62d22d3",
@@ -717,11 +719,11 @@ Example response:
           null,
           "fabrikamfiberapp",
           "RD00155D5053D1",
-          "cf58dcfd-0683-487c-bc84-048789bca8e5",
+          "bbbbbbbb-1111-2222-3333-cccccccccccc",
           "fabrikamprod",
-          "5a2e4e0c-e136-4a15-9824-90ba859b0a89",
+          "cccccccc-2222-3333-4444-dddddddddddd",
           "web:2.5.0-33031",
-          "051ad4ef-0776-11e8-ac6e-e30599af6943",
+          "dddddddd-3333-4444-5555-eeeeeeeeeeee",
           "request",
           "1"
         ],
@@ -741,8 +743,8 @@ Example response:
           "x/Ysh+M1TfU=",
           "x/Ysh+M1TfU=",
           "Application Insights Availability Monitoring",
-          "58b15be6-d1e6-4d89-9919-52f63b840913",
-          "emea-se-sto-edge_58b15be6-d1e6-4d89-9919-52f63b840913",
+          "eeeeeeee-4444-5555-6666-ffffffffffff",
+          "emea-se-sto-edge_eeeeeeee-4444-5555-6666-ffffffffffff",
           null,
           null,
           "AutoGen_49c3aea0-4641-4675-93b5-55f7a62d22d3",
@@ -756,11 +758,11 @@ Example response:
           null,
           "fabrikamfiberapp",
           "RD00155D5053D1",
-          "cf58dcfd-0683-487c-bc84-048789bca8e5",
+          "bbbbbbbb-1111-2222-3333-cccccccccccc",
           "fabrikamprod",
-          "5a2e4e0c-e136-4a15-9824-90ba859b0a89",
+          "cccccccc-2222-3333-4444-dddddddddddd",
           "web:2.5.0-33031",
-          "051ad4f0-0776-11e8-ac6e-e30599af6943",
+          "ffffffff-5555-6666-7777-aaaaaaaaaaaa",
           "request",
           "1"
         ]

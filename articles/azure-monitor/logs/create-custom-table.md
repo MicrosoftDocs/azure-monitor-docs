@@ -4,7 +4,7 @@ description: Create a table with a custom schema to collect logs from any data s
 ms.reviewer: adi.biran
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to 
-ms.date: 08/29/2025
+ms.date: 03/05/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to manage table schemas and be able create a table with a custom schema to store logs from an Azure or non-Azure data source.
 ---
 
@@ -65,19 +65,17 @@ To create a custom table using the Azure portal:
 
     :::image type="content" source="media/manage-logs-tables/azure-monitor-logs-table-configuration.png" lightbox="media/manage-logs-tables/azure-monitor-logs-table-configuration.png" alt-text="Screenshot that shows the Tables screen for a Log Analytics workspace.":::
 
-1. Select **Create** and then **New custom log (DCR-based)**.
-
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-custom-log.png" lightbox="media/tutorial-logs-ingestion-portal/new-custom-log.png" alt-text="Screenshot showing new DCR-based custom log.":::
+1. Select **Create**.
 
 1. Specify a name and, optionally, a description for the table. You don't need to add the *_CL* suffix to the custom table's name - this is added automatically to the name you specify in the portal.
 
+1. Under **Table plan**, select **Analytics** (default), **Basic**, or **Auxiliary / Lake**.
+
 1. Select an existing data collection rule from the **Data collection rule** dropdown, or select **Create a new data collection rule** and specify the **Subscription**, **Resource group**, and **Name** for the new data collection rule. 
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" alt-text="Screenshot showing new data collection rule.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/create-custom-table-portal.png" lightbox="media/tutorial-logs-ingestion-portal/create-custom-table-portal.png" alt-text="Screenshot showing new data collection rule.":::
 
-1. Select a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) and select **Next**.
-
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" alt-text="Screenshot showing custom log table name.":::
+1. Select a [data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) and select **Next**. If you selected a DCR that's already associated with a DCE, this pull-down menu is greyed out.
 
 1. Select **Browse for files** and locate the JSON file with the sample data for your new table.
 

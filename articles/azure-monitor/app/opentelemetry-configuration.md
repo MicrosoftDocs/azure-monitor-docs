@@ -5,7 +5,9 @@ ms.topic: how-to
 ms.date: 12/10/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
-ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
+ms.custom:
+  - devx-track-dotnet, devx-track-extended-java, devx-track-python
+  - sfi-ropc-nochange
 
 #customer intent: As a developer or site reliability engineer, I want to configure OpenTelemetry (OTel) settings in Application Insights so that I can standardize telemetry data collection and enhance observability for my .NET, Java, Node.js, or Python applications.
 
@@ -352,22 +354,103 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 ### Configure sampling using environment variables
 
-Use standard OpenTelemetry environment variables to select the sampler and provide its argument:
 
-* **`OTEL_TRACES_SAMPLER`** - sampler type
-    * `microsoft.fixed.percentage` - sample a fraction of traces.
-    * `microsoft.rate_limited` - cap traces per second.
+Use standard OpenTelemetry environment variables to select the sampler and provide its argument. For more information about OpenTelemetry sampler types, see [OTEL_TRACES_SAMPLER](https://opentelemetry.io/docs/languages/sdk-configuration/general/#otel_traces_sampler).
 
-* **`OTEL_TRACES_SAMPLER_ARG`** - sampler argument
-    * For `microsoft.fixed.percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+#### [ASP.NET Core](#tab/aspnetcore)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
+#### [.NET](#tab/net)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+
+#### [Java](#tab/java)
+
+For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+
+#### [Java native](#tab/java-native)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+#### [Node](#tab/nodejs)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+#### [Python](#tab/python)
+
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
+    * `always_on`: AlwaysOnSampler
+    * `always_off`: AlwaysOffSampler
+    * `trace_id_ratio`: TraceIdRatioBased
+    * `parentbased_always_on`: ParentBased(root=AlwaysOnSampler)
+    * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
+    * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
+
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+    * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
+    * For `always_on`: the default value is **1.0**. No need to set the argument.
+    * For `always_off`: the default value is **0.0**. No need to set the argument.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
+    * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+
+---
 
 The following examples show how to configure sampling using environment variables.
 
 **Fixed-percentage sampling (~10%)**
 
 ```console
-export OTEL_TRACES_SAMPLER="microsoft.fixed.percentage"
+export OTEL_TRACES_SAMPLER="microsoft.fixed_percentage"
 export OTEL_TRACES_SAMPLER_ARG=0.1
 ```
 
@@ -447,6 +530,8 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 # [Node.js](#tab/nodejs)
 
+Starting from 1.16.0, **rate‑limited sampling is the default**.
+
 #### Fixed percentage sampling
 
 ```typescript
@@ -474,9 +559,11 @@ const monitor = useAzureMonitor({
 ```
 
 > [!NOTE]
-> If you don't set a sampler in code or through environment variables, Azure Monitor uses **ApplicationInsightsSampler** by default.
+> If you don't set a sampler in code or through environment variables, Azure Monitor uses **RateLimitedSampler** by default.
 
 # [Python](#tab/python)
+
+Starting from 1.8.6, **rate‑limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -501,7 +588,7 @@ configure_azure_monitor(
 ```
 
 > [!NOTE]
-> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **ApplicationInsightsSampler** by default.
+> If you don't set any environment variables or provide either `sampling_ratio` or `traces_per_second`, `configure_azure_monitor()` uses **RateLimitedSampler** by default.
 
 ---
 
@@ -1219,3 +1306,7 @@ For reference, see the following OpenTelemetry specifications:
 
 * [Environment variable definitions](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/configuration/sdk-environment-variables.md#periodic-exporting-metricreader)
 * [Periodic exporting metric reader](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/sdk.md#periodic-exporting-metricreader)
+
+[!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
+
+[!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]

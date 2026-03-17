@@ -3,9 +3,11 @@ title: Feature extensions for Application Insights JavaScript SDK (Click Analyti
 description: Learn how to install and use JavaScript feature extensions (Click Analytics) for the Application Insights JavaScript SDK. 
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/06/2026
 ms.devlang: javascript
-ms.custom: devx-track-js
+ms.custom:
+  - devx-track-js
+  - sfi-ropc-nochange
 ---
 
 # Enable Click Analytics Auto-Collection plug-in

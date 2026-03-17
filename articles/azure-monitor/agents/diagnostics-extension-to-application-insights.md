@@ -12,6 +12,8 @@ Cloud services, Virtual Machines, Virtual Machine Scale Sets and Service Fabric 
 
 This article describes how to send data from the Azure Diagnostics extension to Application Insights.
 
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
+
 ## Diagnostics configuration explained
 
 The Azure diagnostics extension 1.5 introduced sinks, which are extra locations where you can send diagnostic data.

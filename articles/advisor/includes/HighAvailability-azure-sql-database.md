@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 02/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -130,11 +130,13 @@ Subcategory: undefined
 
 <!--8eff5550-a532-452b-88dd-f4032156da2f_end-->
 
-<!--8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7_begin-->
 
-#### Fsv2-series hardware configuration are being retired.  
+
+<!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_begin-->
+
+#### Fsv2-series hardware configuration is being retired  
   
-Azure SQL Databases running on FSV2-series hardware aren't supported. Remaining databases running on FSV2-series HW are migrated to General-purpose or Hyperscale tier with similar configurations.  
+We recommend transitioning to the Hyperscale premium-series or General-purpose standard-series (Gen5) service tier to maintain comparable performance levels.  
   
 **Potential benefits**: Avoid potential disruptions  
 
@@ -143,9 +145,9 @@ Azure SQL Databases running on FSV2-series hardware aren't supported. Remaining 
 For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485030)  
 
 ResourceType: microsoft.sql/servers/databases  
-Recommendation ID: 8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7  
-Subcategory: ServiceUpgradeAndRetirement
+Recommendation ID: 78a8bb04-6f10-4112-8b1e-ac0fd88c67a2  
+Subcategory: undefined
 
-<!--8f7b7aa9-aec7-4f36-a2fe-50a16e30bfd7_end-->
+<!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_end-->
 
 <!--articleBody-->

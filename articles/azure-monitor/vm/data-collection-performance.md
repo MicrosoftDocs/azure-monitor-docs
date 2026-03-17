@@ -4,7 +4,6 @@ description: Describes how to collect performance counters from virtual machines
 ms.topic: concept-article
 ms.date: 10/27/2025
 ms.reviewer: jeffwo, tylerkight
-
 ---
 
 # Collect performance counters from virtual machine with Azure Monitor
@@ -46,6 +45,7 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 
 > [!NOTE] 
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
+
 ---
 
 ## Add destinations
@@ -58,6 +58,7 @@ OpenTelemetry Performance Counters can be sent to an Azure Monitor Workspace whe
 Performance counters can still be sent to a Log Analytics workspace where it's stored in the [Perf](/azure/azure-monitor/reference/tables/event) table and/or Azure Monitor Metrics (preview) where it's available in [Metrics explorer](../essentials/metrics-explorer.md). Add a destination of type **Azure Monitor Logs** and select a Log Analytics workspace. While you can add multiple workspaces, be aware that this will send duplicate data to each which will result in additional cost. No further details are required for **Azure Monitor Metrics (preview)** since this is stored at the subscription level for the monitored resource.
 
 :::image type="content" source="media/data-collection-performance/destination-metrics.png" lightbox="media/data-collection-performance/destination-metrics.png" alt-text="Screenshot that shows configuration of an Azure Monitor Logs destination in a data collection rule.":::
+
 ---
 
 ## Verify data collection

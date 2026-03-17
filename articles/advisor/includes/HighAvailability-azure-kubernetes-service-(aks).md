@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2026
+ms.date: 02/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -224,23 +224,7 @@ Subcategory: undefined
 
 <!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
 
-<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_begin-->
 
-#### Migrate to Azure Linux 3.0  
-  
-Transition to Azure Linux 3.0 before the retirement date to receive future kernel updates, receive future security improvements, and avoid scaling failures.  
-  
-**Potential benefits**: Avoid service disruptions and unsupported configurations  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500645)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: cc59372b-bd3d-415f-91c1-6c596b5de2fc  
-Subcategory: undefined
-
-<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_end-->
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_begin-->
 

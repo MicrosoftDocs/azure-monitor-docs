@@ -1,10 +1,10 @@
 ---
 title: Performance recommendations
 description: Full list of available performance recommendations in Advisor.
-ms.topic: concept-article
+ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 12/22/2025
+ms.date: 02/24/2026
 ---
 
 # Performance recommendations

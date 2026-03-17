@@ -16,7 +16,7 @@ ms.custom: Performance Azure Database for MySQL
 
 #### Boost your workload performance by 30% with the new Ev5 compute hardware  
   
-With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput. Navigate to the Compute+Storage blade on the Azure Portal and switch to Ev5 compute at no extra cost. Ev5 compute provides best performance among other VM series in terms of QPS and latency.  
+With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput. Navigate to the Compute+Storage blade on the Azure portal and switch to Ev5 compute at no extra cost. Ev5 compute provides best performance among other VM series in terms of QPS and latency.  
   
 **Potential benefits**: With the new Ev5 compute hardware, you can boost workload performance by 30% with higher concurrency and better throughput.  
 

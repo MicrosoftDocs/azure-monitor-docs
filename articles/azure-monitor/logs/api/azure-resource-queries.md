@@ -1,7 +1,7 @@
 ---
 title: Querying logs for Azure resources
 description: In Log Analytics, queries typically execute in the context of a workspace. A workspace may contain data for many resources, making it difficult to isolate data for a particular resource.
-ms.date: 08/12/2024
+ms.date: 01/26/2026
 ms.topic: concept-article
 ---
 

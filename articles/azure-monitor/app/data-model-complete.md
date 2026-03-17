@@ -3,7 +3,7 @@ title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model and its different telemetry types.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 03/15/2026
 ---
 
 # Application Insights telemetry data model
@@ -20,7 +20,7 @@ Data collected by Application Insights models this typical application execution
 <sup>2</sup> `customEvents` and `customMetrics` are only available with custom instrumentation.
 
 > [!NOTE]
-> Application Insights stores logs in the `traces` table for legacy reasons. The spans for *distributed* traces are stored in the `requests` and `dependencies` tables. We plan to resolve this in a future release to avoid any confusion.
+> Application Insights stores application log records in the `traces` table for legacy reasons. Spans for distributed tracing are stored in the `requests` and `dependencies` tables. The differing table names remain important for backward compatibility in existing queries, workbooks, and dashboards.
 
 ## Types of telemetry
 
@@ -266,6 +266,8 @@ For a list of all available fields, see [AppPageViews](../reference/tables/apppa
 > [!NOTE]
 > * By default, the Application Insights JavaScript SDK logs single `PageView` events on each browser webpage load action, with [`pageViews.duration`](/azure/azure-monitor/reference/tables/pageviews) populated by [browser timing](#browser-timing-telemetry). Developers can extend additional tracking of `PageView` events by using the [trackPageView API call](api-custom-events-metrics.md#page-views).
 >
+> * In single-page applications (SPAs), route changes can legitimately produce `pageViews.duration` of `0` by design. If you need route-level duration, calculate it yourself and pass it to `trackPageView()`, or use `startTrackPageView()` and `stopTrackPageView()`.
+>
 > * The default logs retention is 30 days. If you want to view `PageView` statistics over a longer period of time, you must adjust the setting.
 
 ## Request telemetry
@@ -327,9 +329,9 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | `client_Browser` | `ClientBrowser` | The name of the web browser used by the client. |
 | `client_City` | `ClientCity` | The city where the client was located when the telemetry was collected (based on IP geolocation). |
 | `client_CountryOrRegion` | `ClientCountryOrRegion` | The country or region where the client was located when the telemetry was collected (based on IP geolocation). |
-| `client_IP` | `ClientIP` | The IP address of the client device. IPv4 and IPv6 are supported. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. Application Insights extracts the geo-location information from the client IP and then truncates it. The client IP by itself can't be used as user identifiable information. |
+| `client_IP` | `ClientIP` | The IP address of the client device. IPv4 and IPv6 are supported. By default, Application Insights uses the IP address to derive geolocation and then stores `0.0.0.0` in this field. If you disable IP masking on the component, only newly ingested telemetry stores the actual value. When telemetry is sent from a service, the location context is about the user who initiated the operation in the service. |
 | `client_OS` | `ClientOS` | Indicates the operating system of the client that generated the telemetry. |
-| `client_StateorProvince` | `ClientStateOrProvince` | The state or province where the client was located when the telemetry was collected (based on IP geolocation). |
+| `client_StateOrProvince` | `ClientStateOrProvince` | The state or province where the client was located when the telemetry was collected (based on IP geolocation). |
 | `client_Type` | `ClientType` | Describes the type of client device that sent the telemetry (for example, `Browser` or `PC`.) |
 | `cloud_RoleInstance` | `AppRoleInstance` | The name of the instance where the application is running. For example, it's the computer name for on-premises or the instance name for Azure. |
 | `cloud_RoleName` | `AppRoleName` | The name of the role of which the application is a part. It maps directly to the role name in Azure. It can also be used to distinguish micro services, which are part of a single application. |
@@ -342,8 +344,8 @@ Every telemetry item might have a strongly typed context field. Every field enab
 | `operation_SyntheticSource` | `SyntheticSource` | The name of the synthetic source. Some telemetry from the application might represent synthetic traffic. It might be the web crawler indexing the website, site availability tests, or traces from diagnostic libraries like the Application Insights SDK itself. |
 | `sdkVersion` | `SDKVersion` | The version of the Application Insights SDK that is sending telemetry data. For more information, see [SDK version](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/SDK-VERSIONS.md). |
 | `session_Id` | `SessionId` | Session ID is the instance of the user's interaction with the app. Information in the session context fields is always about the user. When telemetry is sent from a service, the session context is about the user who initiated the operation in the service. |
-| `user_AuthenticatedId` | `UserAuthenticatedId` | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's `AuthenticatedUserIdTelemetryInitializer`.<br><br>Use the Application Insights SDK to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. |
-| `user_Id` | `UserId` | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use an authenticated user ID. |
+| `user_AuthenticatedId` | `UserAuthenticatedId` | An authenticated user ID is the opposite of an anonymous user ID. This field represents the user with a friendly name. This ID is only collected by default with the ASP.NET Framework SDK's `AuthenticatedUserIdTelemetryInitializer`.<br><br>Use the Application Insights SDK or OpenTelemetry to initialize the authenticated user ID with a value that identifies the user persistently across browsers and devices. In this way, all telemetry items are attributed to that unique ID. This ID enables querying for all telemetry collected for a specific user (subject to [sampling configurations](sampling.md) and [telemetry filtering](api-filtering-sampling.md)).<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration. |
+| `user_Id` | `UserId` | The anonymous user ID represents the user of the application. When telemetry is sent from a service, the user context is about the user who initiated the operation in the service.<br><br>[Sampling](sampling.md) is one of the techniques to minimize the amount of collected telemetry. A sampling algorithm attempts to either sample in or out all the correlated telemetry. An anonymous user ID is used for sampling score generation, so an anonymous user ID should be a random-enough value.<br><br>In browser apps, the JavaScript SDK typically persists this value in a user cookie. Opening the app in a different browser or device, using in-private/incognito browsing, or clearing cookies creates a new anonymous user ID.<br><br>*The count of anonymous user IDs isn't the same as the number of unique application users. The count of anonymous user IDs is typically higher because each time the user opens your app on a different device or browser, or cleans up browser cookies, a new unique anonymous user ID is allocated. This calculation might result in counting the same physical users multiple times.*<br><br>User IDs can be cross-referenced with session IDs to provide unique telemetry dimensions and establish user activity over a session duration.<br><br>Using an anonymous user ID to store a username is a misuse of the field. Use `user_AuthenticatedId` to identify the same signed-in user across browsers and devices. |
 | `_ResourceId` | `_ResourceId` | The full Azure Resource ID of the Application Insights component, which includes the subscription, resource group, and resource name. |
 
 ## Next steps

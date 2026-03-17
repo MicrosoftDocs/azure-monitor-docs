@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2026
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -70,7 +70,7 @@ Subcategory: Scalability
 
 #### Check your app's service health issues  
   
-We have a recommendation related to your app's service health. Open the Azure Portal, go to the app, click the Diagnose and Solve to see more details.  
+We have a recommendation related to your app's service health. Open the Azure portal, go to the app, click the Diagnose and Solve to see more details.  
   
 **Potential benefits**: Keep your app healthy  
 
@@ -409,23 +409,7 @@ Subcategory: undefined
 
 <!--6f2c6ba6-3fd4-4786-af01-d10b127ee031_end-->
 
-<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_begin-->
 
-#### App Service web apps don't allow linked databases to be part of App Service custom backups  
-  
-Azure App Service custom backup feature don't back up linked databases configured as part of the Azure App Service custom backup feature. Transition to native backup and restore tools available with the respective databases.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485047)  
-
-ResourceType: microsoft.web/sites  
-Recommendation ID: c1b2b1b3-bc15-4ed6-84dd-bb14e215c761  
-Subcategory: ServiceUpgradeAndRetirement
-
-<!--c1b2b1b3-bc15-4ed6-84dd-bb14e215c761_end-->
 
 <!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_begin-->
 
@@ -437,13 +421,14 @@ The database connections feature of Static Web Apps (currently in public preview
 
 **Impact:** High
   
-  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500848)  
 
 ResourceType: microsoft.web/staticsites  
 Recommendation ID: 9545c3d7-f0cd-4e37-8b15-2d4bb89f9659  
 Subcategory: undefined
 
 <!--9545c3d7-f0cd-4e37-8b15-2d4bb89f9659_end-->
+
 
 
 <!--81c8903e-2d50-4e57-9c3b-7049b5a9d0e8_begin-->
@@ -502,22 +487,42 @@ Subcategory: ServiceUpgradeAndRetirement
 
 <!--3d5765c2-e25e-47ca-988a-cf11535a592d_end-->
 
-<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_begin-->
 
-#### Upgrade Python 3.9 app to newer version  
+
+<!--271b07b4-c9f6-450a-ac0b-68124c0faa63_begin-->
+
+#### Transition to native backup and restore tools  
   
-Extended support for Python 3.9 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for Python 3.9.  
+Azure App Service custom backup feature doesn't back up linked databases configured as part of the Azure App Service custom backup feature. Transition to native backup and restore tools available with the respective databases.  
   
 **Potential benefits**: Avoid potential disruptions  
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=python-39-app-svc)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485047)  
 
 ResourceType: microsoft.web/sites  
-Recommendation ID: 2350ea91-8dc1-4f7b-b85f-84990e9bfb5a  
+Recommendation ID: 271b07b4-c9f6-450a-ac0b-68124c0faa63  
 Subcategory: undefined
 
-<!--2350ea91-8dc1-4f7b-b85f-84990e9bfb5a_end-->
+<!--271b07b4-c9f6-450a-ac0b-68124c0faa63_end-->
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_begin-->
+
+#### Upgrade Azure Functions apps to Python 3.13  
+  
+In alignment with the end of community support, support for Python 3.10 in Azure Functions will end. Apps that are hosted on Functions will continue to run, but security updates and performance optimizations will no longer be available and we'll no longer provide customer service for Python 3.10.  
+  
+**Potential benefits**: Avoid service interruption  
+
+**Impact:** Medium
+  
+  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027  
+Subcategory: undefined
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
 
 <!--articleBody-->

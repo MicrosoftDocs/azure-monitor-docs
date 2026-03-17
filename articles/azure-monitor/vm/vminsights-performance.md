@@ -1,12 +1,12 @@
 ---
-title: Chart performance with VM insights
+title: Analyze the health and status of your virtual machine with Azure Monitor
 description: This article discusses the VM insights Performance feature that discovers application components on Windows and Linux systems and maps the communication between services.
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.date: 10/29/2024
 ---
 
-# Chart performance with VM insights
+# Analyze the health and status of your virtual machine with Azure Monitor
 
 VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. You can use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
 
@@ -26,6 +26,10 @@ Limitations in performance collection with VM insights:
 * Available memory isn't available in all Linux versions, including Red Hat Enterprise Linux (RHEL) 6. It's available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
 * Metrics are only available for data disks on Linux virtual machines that use XFS filesystem or EXT filesystem family (EXT2, EXT3, EXT4).
 * Collecting performance metrics from network shared drives is unsupported.
+
+## Permissions required
+
+You must have the Monitoring reader permissions on the virtual machine(s) and on the VM Insights Data Collection Rule (DCR).
 
 ## Multi-VM perspective from Azure Monitor
 
