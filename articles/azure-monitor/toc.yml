@@ -1650,6 +1650,8 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
+  - name: App Center migration
+    href: app/app-center-migration.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
