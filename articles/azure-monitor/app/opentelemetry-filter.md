@@ -616,10 +616,6 @@ Use this sample to scope a transformation to a single service when multiple appl
 
 ---
 
-[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
-
-[!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
+[!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
 [!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]
-
-[!INCLUDE [Support](includes/opentelemetry-support.md)]

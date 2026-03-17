@@ -470,10 +470,6 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 * `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
 
-[!INCLUDE [OTel Common](includes/opentelemetry-distro-common.md)]
-
-[!INCLUDE [Help and feedback](includes/opentelemetry-help-feedback.md)]
+[!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
 [!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]
-
-[!INCLUDE [Support](includes/opentelemetry-support.md)]
