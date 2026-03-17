@@ -1,22 +1,17 @@
 ---
-title: Ingest OpenTelemetry Protocol Signals Into Azure Monitor (Limited Preview)
+title: Ingest OpenTelemetry Protocol Signals Into Azure Monitor with Azure Monitor Agent or OpenTelemetry Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor using native ingestion endpoints.
 ms.topic: how-to
-ms.date: 11/18/2025
-ROBOTS: NOINDEX
+ms.date: 03/18/2026
 ---
 
-# Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)
+# Ingest OpenTelemetry Protocol signals into Azure Monitor with Azure Monitor Agent or OpenTelemetry Collector (Preview)
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
 > [!IMPORTANT]
-> * This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
+> * This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
-
-> [!NOTE]
-> * [Sign up](https://aka.ms/AzureMonitorOTelPreview) for the preview before onboarding to receive support, participate in Q&A sessions, and share feedback.
-> * [Support](#support) for this feature is limited to enrolled subscriptions.
 
 ## Overview
 
@@ -36,9 +31,9 @@ This article covers the OpenTelemetry Collector and Azure Monitor Agent methods.
 > * For VMs and Virtual Machine Scale Sets deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
 > * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension.
 
-## Set up OTLP data collection
+## Set up OTLP data ingestion
 
-You can configure OTLP data collection in Azure Monitor using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
+You can configure OTLP data ingestion in Azure Monitor using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
 
 ### Option 1: Create an Application Insights resource with OTLP support (Recommended)
 
@@ -150,11 +145,16 @@ Set the following configuration in your application environment:
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
 
+> [!IMPORTANT]
+> Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+
 Example environment variable configuration:
 
 ```bash
 export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
 export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
+export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
+export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
 ```
 
 > [!NOTE]
@@ -304,24 +304,22 @@ service:
       exporters: [otlphttp/azuremonitor]
 ```
 
+> [!IMPORTANT]
+> - Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+>
+> - Add `processors: [cumulativetodelta]` to metrics config if incoming metrics are in cumulative temporality.
+
 ## Limitations
 
-The following Azure regions aren't supported during the preview:
+The following Azure regions are supported for AMA ingestion during the preview:
 
-* Austria East
-* Chile Central
-* Indonesia Central
-* Malaysia West
-* Mexico Central
-* New Zealand North
-* North Central US
-* Poland Central
-* Qatar Central
-* West India
-
-## Support
-
-Reach out to us at [otel@microsoft.com](mailto:otel@microsoft.com) with your experiences, questions, or suggestions.
+* westcentralus
+* eastasia
+* uksouth
+* eastus
+* australiaeast
+* brazilsouth
+* canadacentral
 
 ## Next steps
 

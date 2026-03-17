@@ -1,17 +1,16 @@
 ---
-title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) (Limited Preview)
+title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 11/11/2025
-ROBOTS: NOINDEX
+ms.date: 03/17/2026
 ---
 
-# Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview
+# Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 
-OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor adds **Limited Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
+OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azure Monitor adds **Preview** support for monitoring applications that run on Azure Kubernetes Service (AKS) by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection.
 
 > [!IMPORTANT]
-> This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
+> This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads. 
 >  
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
@@ -111,13 +110,13 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 ### 4.2 Configure Application Monitoring (Preview)
 
 1. Select **Application Monitoring (Preview)**.
-2. Choose the Application Insights resource with OTLP enabled that was created in the [prior step](#3-create-an-application-insights-resource-with-otlp-support). If an Application Insights resource without OTLP is selected or created on demand using the Create New option, the Instrumentation type option used in the next step will not be visible.
+2. Choose the Application Insights resource with OTLP enabled that was created in the previous [step 3](#3-create-an-application-insights-resource-with-otlp-support). If an Application Insights resource without OTLP is selected or created on demand using the Create New option, the Instrumentation type option used in the next step will not be visible.
 3. Choose **Instrumentation type**:
    - **Autoinstrumentation** for supported languages **Java** and **Node.js**.
    - **Autoconfiguration** for applications already instrumented with OpenTelemetry SDKs.  
 
     > [!NOTE]
-    > - Note that the UI only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options in - Learn how codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
+    > - Note that the Azure portal only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options](../containers/kubernetes-codeless.md#onboard-deployments).
 
 4. Select the **Application language** that applies to the namespace.
 5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
@@ -158,7 +157,7 @@ Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. Full instructions are available [here](kubernetes-codeless.md).
+Use the Kubernetes custom resources when you need more control. For more information, see [Autoinstrumentation for Azure Kubernetes Service](kubernetes-codeless.md).
 
 ### Autoinstrumentation (Java, Node.js)
 
@@ -188,7 +187,17 @@ metadata:
     instrumentation.opentelemetry.io/inject-configuration: "false"
 ```
 
-## Known limitations
+## Limitations
+
+The following Azure regions are supported during the preview:
+
+* westcentralus
+* eastasia
+* uksouth
+* eastus
+* australiaeast
+* brazilsouth
+* canadacentral
 
 ### Limits
 
@@ -216,4 +225,4 @@ metadata:
 
 ## Support
 
-If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at **otel@microsoft.com**.
+If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at [otel@microsoft.com](mailto:otel@microsoft.com).
