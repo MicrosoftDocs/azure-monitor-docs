@@ -1,13 +1,13 @@
 ---
-title: AKS auto-instrumentation - Python and .NET (Limited preview onboarding)
-description: Learn how to onboard to the limited preview of AKS auto-instrumentation for Python and .NET workloads.
+title: Azure Kubernetes Service autoinstrumentation - Python and .NET (Limited preview onboarding)
+description: Learn how to onboard to the limited preview of Azure Kubernetes Service (AKS) autoinstrumentation for Python and .NET workloads.
 ms.topic: how-to
 ms.date: 03/16/2026
 ---
 
-# AKS auto-instrumentation - Python and .NET (Limited preview onboarding)
+# Azure Kubernetes Service autoinstrumentation - Python and .NET (Limited preview onboarding)
 
-AKS auto-instrumentation is a feature that you can use to codeless attach Azure Monitor Application Insights SDK distros to a workload running as a Kubernetes deployment in AKS. Currently, support for Java and Node.Js is in public preview, while support for Python and .NET is in limited preview. This article details the onboarding process that allows a select group of limited preview customers to enable Python and .NET support for their AKS clusters.
+Azure Kubernetes Service (AKS) autoinstrumentation is a feature that attaches Azure Monitor Application Insights SDK distros to your workload without requiring code changes. It works with workloads running as Kubernetes deployments in AKS. Currently, support for Java and Node.Js is in public preview, while support for Python and .NET is in limited preview. This article details the onboarding process that allows a select group of limited preview customers to enable Python and .NET support for their AKS clusters.
 
 >[!IMPORTANT]
 > - This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
@@ -22,14 +22,14 @@ This section outlines the process of enabling the limited preview feature. It si
   - [Install the aks-preview Azure CLI extension](kubernetes-codeless.md#install-the-aks-preview-azure-cli-extension)
   - [Register the AzureMonitorAppMonitoringPreview feature flag](kubernetes-codeless.md#register-the-azuremonitorappmonitoringpreview-feature-flag)
   - [Prepare a cluster](kubernetes-codeless.md#prepare-a-cluster)
-- Choose a deployment that you want to instrument and onboard it by following the information at [Per-deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding). The following points explain what you need to do differently for private preview:
-  - Keep in mind that namespace-wide onboarding (described in the previous section) is **_not available_** for private preview languages.
-  - Instead of using public preview annotations for Java and Node.Js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use private preview annotations:
-    - `instrumentation.opentelemetry.io/private-preview-inject-python` for Python
-    - `instrumentation.opentelemetry.io/private-preview-inject-dotnet` for .NET
+- Choose a deployment that you want to instrument and onboard it by following the information at [Per-deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding). The following points explain what you need to do differently for limited preview:
+  - Keep in mind that namespace-wide onboarding (described in the previous section) is **_not available_** for limited preview languages.
+  - Instead of using public preview annotations for Java and Node.Js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use limited preview annotations:
+    - `instrumentation.opentelemetry.io/limited-preview-inject-python` for Python
+    - `instrumentation.opentelemetry.io/limited-preview-inject-dotnet` for .NET
   - If you don't have an Application Insights resource yet, create one. Then copy its connection string (found in the Overview area of the Application Insights resource) into the `spec.destination.applicationInsightsConnectionString` field of the custom resource (CR), as instructed.
   - Put the CR into the same namespace as the deployment you're instrumenting.
-  - Place the `instrumentation.opentelemetry.io/private-preview-inject-*` annotation correctly. Put it under `spec.template.metadata.annotations` in the deployment, so that it exists at the pod level, _not_ at the deployment level.
+  - Place the `instrumentation.opentelemetry.io/limited-preview-inject-*` annotation correctly. Put it under `spec.template.metadata.annotations` in the deployment, so that it exists at the pod level, _not_ at the deployment level.
 - Restart the deployment you're onboarding after setup completes, as described in the [Restart deployment](../app/kubernetes-codeless.md#restart-deployment) section. This step isn't required if the CR already exists when you add the annotation. Afterward, you don't need to restart or redeploy the deployment every time you change the CR.
 - Make sure the deployment runs (under load if applicable). Wait three minutes and confirm that the Application Insights resource (or the underlying Log Analytics workspace) has telemetry.
 
