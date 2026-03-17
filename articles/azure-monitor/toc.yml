@@ -373,8 +373,6 @@ items:
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
-      - name: Autoinstrumentation for AKS (Preview)
-        href: containers/kubernetes-codeless.md
       - name: Public previews
         items:
         - name: Collect and analyze OpenTelemetry data
@@ -383,6 +381,8 @@ items:
           href: containers/opentelemetry-protocol-ingestion.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
           href: containers/kubernetes-open-protocol.md
+        - name: Autoinstrumentation for AKS (Preview)
+          href: containers/kubernetes-codeless.md
       - name: Limited previews
         items:
         - name: Autoinstrumentation for AKS - Python and .NET
