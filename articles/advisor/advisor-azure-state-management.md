@@ -3,14 +3,14 @@
 # For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
-title:       # Add a title for the browser tab
-description: # Add a meaningful description for search results
+title: Azure Advisor recommendation state management
+description: This article describes azure advisor recommendation state management and provides you with methods for use.
 author:      zucatihal # GitHub alias
 ms.author:   v-zucatihal # Microsoft alias
-ms.service:  # Add the ms.service or ms.prod value
-# ms.prod:   # To use ms.prod, uncomment it and delete ms.service
-ms.topic:    # Add the ms.topic value
+ms.service: azure-advisor
+ms.topic: how-to
 ms.date:     03/17/2026
+ms.reviewer: tiffanywang, adaga
 ---
 
 Azure Advisor recommendation state management
