@@ -13,11 +13,14 @@ Azure Kubernetes Service (AKS) autoinstrumentation is a feature that attaches Az
 > - This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > - For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
+
+You can use Python and .NET with both the AKS OTLP public preview and AKS autoinstrumentation (non-OTLP).
+
 ## Onboard to the limited preview
 
 This section outlines the process of enabling the limited preview feature. It significantly references public preview documentation at [Autoinstrumentation for Azure Kubernetes Service (Preview)](kubernetes-codeless.md), as most of the steps are the same. Limited preview-specific aspects are explicitly called out.
 
-1. Review the _Prerequisites_ section at [Autoinstrumentation for Azure Kubernetes Service (Preview)](kubernetes-codeless.md#prerequisites). The limitations apply to the limited preview except support is added for Python and .NET.
+1. Review the _Prerequisites_ section at [Autoinstrumentation for Azure Kubernetes Service](kubernetes-codeless.md#prerequisites). The limitations apply to the limited preview except support is added for Python and .NET.
 1. Enable the public preview feature for the entire cluster by following the instructions outlined in the following sections of the article:
   - [Install the aks-preview Azure CLI extension](kubernetes-codeless.md#install-the-aks-preview-azure-cli-extension)
   - [Register the AzureMonitorAppMonitoringPreview feature flag](kubernetes-codeless.md#register-the-azuremonitorappmonitoringpreview-feature-flag)

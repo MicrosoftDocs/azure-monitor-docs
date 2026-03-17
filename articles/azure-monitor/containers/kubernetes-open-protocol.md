@@ -27,6 +27,31 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 > [!IMPORTANT]
 > Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
 
+## Roles and responsibilities
+
+Use the following guidance to separate platform (cluster) responsibilities from application development (workload) responsibilities. *Cluster administrator* refers to the team that's responsible for the AKS cluster and Azure Monitor telemetry pipeline. *Developer* refers to the team that owns the application code and its telemetry configuration.
+
+| Cluster administrator responsibilities | Developer responsibilities |
+|---|---|
+| Enable and maintain the cluster-level monitoring integration (AKS Monitor settings / add-ons). | Instrument application code using OpenTelemetry SDKs (or adopt supported auto-instrumentation where applicable). |
+| Create, configure, and govern shared Azure resources used for ingestion and storage (Application Insights, Azure Monitor workspace, Log Analytics workspace, DCR/DCE where applicable). | Configure application telemetry (resource attributes, sampling, log correlation, and exporter settings) and validate signal correctness. |
+| Manage identities and permissions required for telemetry export (managed identities, Microsoft Entra app registrations/service principals, RBAC role assignments). | Onboard workloads at the namespace or deployment scope (labels/annotations/configuration resources) following the platform's supported pattern. |
+| Define and enforce cluster governance (namespaces, network policy, admission controls, quotas/limits) that can impact telemetry collection. | Perform application rollout restarts when required to apply monitoring changes to pods/deployments. |
+| Operate and troubleshoot platform components (Azure Monitor Agent/Managed Prometheus/collectors deployed as add-ons), including upgrades and rollback plans. | Troubleshoot application-level telemetry gaps (missing spans/metrics/logs, incorrect attributes, high cardinality, and noisy logs) and remediate in code/config. |
+| Provide supported recommended baseline configurations (standard ports/endpoints, required temporality/aggregation expectations, approved exporters/processors). | Own SLOs/alerting for the application and use Azure Monitor / Application Insights experiences to investigate regressions. |
+
+*Out of scope for cluster admins: changing application code, selecting libraries, and defining business-level telemetry semantics.*
+
+*Out of scope for developers: changing cluster add-ons, platform RBAC, shared ingestion resource topology, or cluster networking.*
+
+**Common collaboration points:**
+
+- Agree on naming/labeling standards (`service.name`, `deployment.environment`, and namespace conventions) so data is queryable and dashboards work across teams.
+- Align on performance and cost guardrails (sampling strategy, log verbosity, and metric cardinality) and who changes what when limits are exceeded.
+- Define a support workflow for telemetry issues (what developers check first vs. when to escalate to the cluster admin team).
+- Plan changes jointly when they span both layers (for example, switching ingestion method, changing endpoint/temporality expectations, or introducing a collector).
+
+
 ## Prerequisites
 
 - An AKS cluster in Azure public cloud that runs at least one Kubernetes deployment.
