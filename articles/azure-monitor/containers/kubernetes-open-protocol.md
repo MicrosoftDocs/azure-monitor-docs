@@ -14,7 +14,7 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 >  
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-## Key capabilities:
+## Key capabilities
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
 - Create an Application Insights resource with OTLP ingestion enabled.
@@ -25,9 +25,7 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 Telemetry flows to **Application Insights**, where you analyze application performance in context with Container Insights.
 
 > [!IMPORTANT]
-> - Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
-> The preview features are provided without a service-level agreement and aren't recommended for production workloads. 
-> For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
 
 ## Prerequisites
 
@@ -78,9 +76,9 @@ Telemetry flows to **Application Insights**, where you analyze application perfo
 
 If the cluster wasn't previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-enable-application.png" alt-text="A screenshot of the Azure settings page showing enable application option.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-enable-application.png" lightbox="./media/kubernetes-open-protocol/azure-settings-enable-application.png" alt-text="A screenshot of the Azure settings page showing enable application option.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-review-enable.png" alt-text="A screenshot of the Azure settings review page showing enable application option.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-settings-review-enable.png" lightbox="./media/kubernetes-open-protocol/azure-settings-review-enable.png" alt-text="A screenshot of the Azure settings review page showing enable application option.":::
 
 ## 3. Create an Application Insights resource with OTLP support
 
@@ -90,7 +88,7 @@ Create or select an Application Insights resource that supports OTLP and uses **
 2. Turn on **Enable OTLP Support (Preview)**.
 3. Set **Use managed workspaces** to **Yes**.
 
-:::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="A screenshot of Create Application Insights resource with enable option selected.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" lightbox="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="A screenshot of Create Application Insights resource with enable option selected.":::
 
 > [!IMPORTANT]
 > - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
@@ -105,24 +103,24 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 1. In the AKS resource, expand **Kubernetes resources**.
 2. Open **Namespaces**, then select the namespace that hosts your workloads.
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-namespaces-list.png" alt-text="A screenshot of the Azure namespaces list under Kubernetes resources.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-namespaces-list.png" lightbox="./media/kubernetes-open-protocol/azure-namespaces-list.png" alt-text="A screenshot of the Azure namespaces list under Kubernetes resources.":::
 
 ### 4.2 Configure Application Monitoring (Preview)
 
 1. Select **Application Monitoring (Preview)**.
-2. Choose the Application Insights resource with OTLP enabled that was created in the previous [step 3](#3-create-an-application-insights-resource-with-otlp-support). If an Application Insights resource without OTLP is selected or created on demand using the Create New option, the Instrumentation type option used in the next step will not be visible.
+2. Choose the Application Insights resource with OTLP enabled that was created in the previous [step 3](#3-create-an-application-insights-resource-with-otlp-support). If an Application Insights resource without OTLP is selected or created on demand using the **Create New** option, the **Instrumentation type** option used in the next step won't be visible.
 3. Choose **Instrumentation type**:
    - **Autoinstrumentation** for supported languages **Java** and **Node.js**.
    - **Autoconfiguration** for applications already instrumented with OpenTelemetry SDKs.  
 
     > [!NOTE]
-    > - Note that the Azure portal only allows you to apply Autoinstrumentation OR Autoconfigruation to a single namespace. If you need to use both options, see [per-deployment onboarding options](../containers/kubernetes-codeless.md#onboard-deployments).
+    > The Azure portal only allows you to apply Autoinstrumentation OR Autoconfiguration to a single namespace. If you need to use both options, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
 
 4. Select the **Application language** that applies to the namespace.
 5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
 6. Select **Configure**.
 
-:::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="A screenshot of the configuration pane for application with resource and language selections.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" lightbox="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="A screenshot of the configuration pane for application with resource and language selections.":::
 
 ### 4.3 Restart deployments to apply changes
 
@@ -132,13 +130,13 @@ Perform a rollout restart for deployments in the target namespace from **Run com
 kubectl rollout restart deployment -n <your-namespace>
 ```
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-run-command-rollout.png" alt-text="A screenshot of the Azure run command screen showing rollout restart command.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-run-command-rollout.png" lightbox="./media/kubernetes-open-protocol/azure-run-command-rollout.png" alt-text="A screenshot of the Azure run command screen showing rollout restart command.":::
 
 ### 4.4 Confirm instrumented status
 
 Return to **Application Monitoring (Preview)** for the namespace. Expand **Deployments in this namespace** and confirm that deployments show **Instrumented** status.
 
-:::image type="content" source="./media/kubernetes-open-protocol/application-deployments-status.png" alt-text="A screenshot of the Application deployments list showing instrumented status.":::
+:::image type="content" source="./media/kubernetes-open-protocol/application-deployments-status.png" lightbox="./media/kubernetes-open-protocol/application-deployments-status.png" alt-text="A screenshot of the Application deployments list showing instrumented status.":::
 
 > [!TIP]
 > After a few minutes, telemetry appears in the connected Application Insights resource.
@@ -147,9 +145,9 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 Explore application performance in the context of your cluster using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="A screenshot of the controller view showing performance metrics.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="A screenshot of the controller view showing performance metrics.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" alt-text="A screenshot of the controller view showing failed requests.":::
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" alt-text="A screenshot of the controller view showing failed requests.":::
 
 To drill down to Container Insights, select an application component node in the Application Map.
 
@@ -219,7 +217,7 @@ The following Azure regions are supported during the preview:
 
 ## Next steps
 
-- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](../containers/kubernetes-codeless.md#onboard-deployments).
+- Learn how [codeless instrumentation works for Kubernetes and how to onboard deployments](kubernetes-codeless.md#onboard-deployments).
 - Review the **Enable monitoring for AKS clusters** article to understand infrastructure monitoring with Azure Monitor.
 - Learn to configure application monitoring with Azure Monitor and OTLP for [other environments](https://aka.ms/otelignitedoc) with the Azure Monitor Agent or the open-source OpenTelemetry Collector.
 

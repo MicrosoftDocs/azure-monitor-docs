@@ -60,21 +60,21 @@ Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OT
   - **Autoinstrumentation** for **Java** and **Node.js**.
   - **Autoconfiguration** for apps already instrumented with OpenTelemetry Software Development Kits (SDKs).
 
-For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview](../app/kubernetes-open-protocol.md).
+For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview](kubernetes-open-protocol.md).
 
 ### Use the Azure Monitor Agent to send OTLP signals from compute resources outside AKS into Azure Monitor
 
 - **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
 - Configure the OTLP exporter to use gRPC on port 4317 for metrics and port 4319 for traces and logs, using Delta temporality and Exponential histogram aggregation for metrics.
 
-For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the Azure Monitor Agent (Preview)](../fundamentals/opentelemetry-protocol-ingestion.md).
+For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the Azure Monitor Agent (Preview)](opentelemetry-protocol-ingestion.md).
 
 ### Use the OpenTelemetry Collector to send OTLP signals from compute resources outside AKS into Azure Monitor
 
 - **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
-- **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector's **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the extension README: https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme Configure export to HTTP/Protobuf and set delta temporality and exponential histogram aggregation for metrics.
+- **Export from the OpenTelemetry Collector.** Use the Collector `contrib` distribution and authenticate with Microsoft Entra ID or a managed identity. Use the Collector's **Azure Auth extension** to authenticate with Microsoft Entra. For details, see the [extension README](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme). Configure export to HTTP/Protobuf and set delta temporality and exponential histogram aggregation for metrics.
 
-For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the OpenTelemetry Collector (Preview)](../fundamentals/opentelemetry-protocol-ingestion.md).
+For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the OpenTelemetry Collector (Preview)](opentelemetry-protocol-ingestion.md).
 
 > [!TIP]
 > Endpoint URLs also appear on the Application Insights **Overview** page when OTLP support is enabled. Use these values in your Collector exporters or SDK configuration.
@@ -132,7 +132,7 @@ Here are some known limitations to be aware of when using OpenTelemetry with Azu
 
 ## Next steps
 
-- [OpenTelemetry on Azure](../app/opentelemetry.md)
-- [Monitor AKS with OpenTelemetry](../app/kubernetes-open-protocol.md)
+- [OpenTelemetry on Azure](../app/opentelemetry-overview.md)
+- [Monitor AKS with OpenTelemetry](kubernetes-open-protocol.md)
 - [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
 - [OpenTelemetry documentation](https://opentelemetry.io/docs/)

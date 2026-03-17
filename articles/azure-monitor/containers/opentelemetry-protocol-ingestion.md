@@ -21,7 +21,7 @@ Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 * **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers.
 * **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters.
 
-This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](../app/kubernetes-open-protocol.md).
+This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md).
 
 ## Prerequisites
 
@@ -323,7 +323,7 @@ The following Azure regions are supported for AMA ingestion during the preview:
 
 ## Next steps
 
-* [OpenTelemetry on Azure](../app/opentelemetry.md)
-* [Monitor AKS with OpenTelemetry](../app/kubernetes-open-protocol.md)
+* [OpenTelemetry on Azure](../app/opentelemetry-overview.md)
+* [Monitor AKS with OpenTelemetry](kubernetes-open-protocol.md)
 * [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
 * [OpenTelemetry documentation](https://opentelemetry.io/docs/)
