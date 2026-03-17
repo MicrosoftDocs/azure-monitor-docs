@@ -2,7 +2,7 @@
 title: Azure Activity Log event schema
 description: Describes the event schema for each category in the Azure Activity log.
 ms.topic: reference
-ms.date: 05/21/2025
+ms.date: 03/17/2026
 ---
 
 # Azure Activity Log event schema
@@ -225,7 +225,7 @@ This category contains the record of any service health incidents that occurred 
 }
 ```
 
-Refer to the [service health notifications](../../service-health/service-notifications.md) article for documentation about the values in the properties.
+Refer to the [service health notifications](../../service-health/service-health-notifications-properties.md) article for documentation about the values in the properties.
 
 ## Resource health category
 
