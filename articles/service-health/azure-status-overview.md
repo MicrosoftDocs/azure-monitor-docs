@@ -7,9 +7,9 @@ ms.date: 03/17/2026
 ---
 # Azure status overview
 
-The [Azure status](https://azure.status.microsoft/) page provides you with a global view of the health of Azure services and regions, along with service availability.
+The [Azure status](https://azure.status.microsoft/) page provides you with a global view of the health of Azure services and regions, along with all service availability.
 
-Anyone can visit the **Azure status** page and view incidents related to all services that report service health and incidents with wide-ranging impact. However, we strongly encourage current Azure users to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth) as it includes all the outages, upcoming planned maintenance activities, and service advisories.
+Anyone can visit the **Azure status** page and view incidents related to all services that report service health and incidents with wide-ranging impact. However, we strongly encourage you to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth) as it includes all the outages, upcoming planned maintenance activities, and service advisories.
 
 :::image type="content"source="./media/azure-status-overview/azure-status.png"alt-text="Screenshot of the top-level Azure status page."Lightbox="./media/azure-status-overview/azure-status.png":::
 
