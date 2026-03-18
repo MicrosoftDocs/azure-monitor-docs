@@ -15,9 +15,9 @@ Azure Monitor supports native ingestion of OpenTelemetry Protocol (OTLP) traces,
 
 ## Collect and analyze OpenTelemetry data
 
-Use this guide when you need an end-to-end overview of OTLP capabilities in Azure Monitor. It covers onboarding paths, supported experiences such as Application Insights and Dashboards with Grafana, and how to query telemetry with OpenTelemetry semantic conventions in Log Analytics.
+Use the information at [Use OpenTelemetry with Azure Monitor](collect-use-observability-data.md) when you need an end-to-end overview of OTLP capabilities in Azure Monitor. It covers onboarding paths, supported experiences such as Application Insights and Dashboards with Grafana, and how to query telemetry with OpenTelemetry semantic conventions in Log Analytics.
 
-For more information, see [Use OpenTelemetry with Azure Monitor](collect-use-observability-data.md).
+For more information, see .
 
 ## Monitor AKS applications with OTLP
 
