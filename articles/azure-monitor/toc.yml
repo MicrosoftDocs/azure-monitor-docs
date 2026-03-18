@@ -377,8 +377,10 @@ items:
         items:
         - name: Collect and analyze OpenTelemetry data
           href: containers/collect-use-observability-data.md
-        - name: Ingest OpenTelemetry Protocol (OTLP) signals
+        - name: Ingest OTLP signals with OTel Collector
           href: containers/opentelemetry-protocol-ingestion.md
+        - name: Ingest OTLP signals with AMA
+          href: containers/opentelemetry-ingest-agent.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
           href: containers/kubernetes-open-protocol.md
         - name: Autoinstrumentation for AKS (Preview)

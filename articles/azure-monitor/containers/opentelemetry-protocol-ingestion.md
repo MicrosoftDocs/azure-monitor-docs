@@ -1,11 +1,12 @@
 ---
-title: Ingest OTLP signals into Azure Monitor with AMA or Collector (Preview)
-description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor using native ingestion endpoints.
+title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
+description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
 ms.date: 03/18/2026
+ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor (Preview)
+# Ingest OTLP data into Azure Monitor with OTel Collector (Preview)
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
@@ -18,17 +19,16 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 
 * **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment.
-* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers.
-* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters.
+* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers. See [Ingest OTLP data into Azure Monitor with AMA](opentelemetry-ingest-agent.md) for details.
+* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters. See [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md) for details.
 
-This article covers the OpenTelemetry Collector and Azure Monitor Agent methods. For AKS deployments, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md).
+This article covers the OTel Collector method of collecting OTLP signals.
 
 ## Prerequisites
 
 > [!div class="checklist"]
 > * Azure subscription: If you don't have one, [create an Azure subscription for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 > * [OpenTelemetry SDK](https://opentelemetry.io/docs/languages/) instrumented application (any supported language).
-> * For VMs and Virtual Machine Scale Sets deployments: Azure Monitor Agent version 1.38.1 or higher (Windows) or 1.37.0 or higher (Linux).
 > * For OpenTelemetry Collector deployments: Collector version 0.132.0 or higher with the Azure Authentication extension.
 
 ## Set up OTLP data ingestion
@@ -65,7 +65,7 @@ This method automatically provisions all required Azure resources and configures
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
-Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
+Proceed to [Configure your OpenTelemetry Collector](#configure-your-opentelemetry-collector).
 
 ### Option 2: Manual resource orchestration
 
@@ -107,64 +107,9 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 
 1. After deployment completes, navigate to the created DCR and copy its resource ID from the **Overview** page.
 
-## Configure your telemetry pipeline
+## Configure your OpenTelemetry Collector
 
-Choose the configuration method based on your compute environment.
-
-### Option 1: Azure Monitor Agent (for Azure VMs, Virtual Machine Scale Sets, and Arc-enabled servers)
-
-The Azure Monitor Agent provides a simplified ingestion path for Azure-hosted and Arc-enabled compute resources.
-
-#### Deploy Azure Monitor Agent
-
-Install the Azure Monitor Agent using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
-
-Verify you're installing the minimum required version:
-
-* **Windows**: Version 1.38.1 or higher
-* **Linux**: Version 1.37.0 or higher
-
-#### Associate the DCR with your compute resources
-
-Create an association between your Data Collection Rule and the VMs, Virtual Machine Scale Sets, or Arc-enabled servers running your instrumented applications:
-
-1. Navigate to your DCR in the Azure portal.
-1. Select **Resources** under **Configuration**.
-1. Select **Add** and choose the compute resources to associate.
-
-For programmatic association, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
-
-#### Configure application environment
-
-Set the following configuration in your application environment:
-
-1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`).
-
-1. Configure the OpenTelemetry SDK to send to localhost using these ports:
-
-    * **Metrics**: Port 4317 (gRPC)
-    * **Logs and Traces**: Port 4319 (gRPC)
-
-> [!IMPORTANT]
-> Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
-
-Example environment variable configuration:
-
-```bash
-export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
-export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
-export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
-export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
-```
-
-> [!NOTE]
-> The Azure Monitor Agent running on the VM handles authentication and routing to Azure Monitor endpoints.
-
-### Option 2: OpenTelemetry Collector
-
-For non-Azure environments or when you need maximum flexibility, configure the OpenTelemetry Collector to send data directly to Azure Monitor endpoints.
-
-#### Configure Microsoft Entra authentication
+### Configure Microsoft Entra authentication
 
 The OpenTelemetry Collector requires Microsoft Entra authentication to send data to Azure Monitor.
 
@@ -189,7 +134,7 @@ extensions:
 
 For workload identities, service principals, or other Entra identities, provide the `client_id` of the identity that will authenticate.
 
-#### Grant permissions to the Data Collection Rule
+### Grant permissions to the Data Collection Rule
 
 The identity used by your collector needs permission to write data to your DCR:
 
@@ -213,7 +158,7 @@ The identity used by your collector needs permission to write data to your DCR:
 
 1. Select **Review + assign** to save the role assignment.
 
-#### Construct endpoint URLs
+### Construct endpoint URLs
 
 If you created your resources using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
 
@@ -256,7 +201,7 @@ For manually orchestrated resources, construct the endpoint URLs:
     > [!NOTE]
     > The traces endpoint uses the logs DCE domain.
 
-#### Update collector configuration
+### Update collector configuration
 
 Configure your OpenTelemetry Collector with the authentication extension and Azure Monitor endpoints. Here's a sample configuration:
 
@@ -306,23 +251,11 @@ service:
 
 > [!IMPORTANT]
 > - Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
->
 > - Add `processors: [cumulativetodelta]` to metrics config if incoming metrics are in cumulative temporality.
-
-## Limitations
-
-The following Azure regions are supported for AMA ingestion during the preview:
-
-* westcentralus
-* eastasia
-* uksouth
-* eastus
-* australiaeast
-* brazilsouth
-* canadacentral
 
 ## Next steps
 
+* [Ingest OTLP data with Azure Monitor Agent](opentelemetry-ingest-agent.md)
 * [OpenTelemetry on Azure](../app/opentelemetry-overview.md)
 * [Monitor AKS with OpenTelemetry](kubernetes-open-protocol.md)
 * [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
