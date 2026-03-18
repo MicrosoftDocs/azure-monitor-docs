@@ -15,12 +15,26 @@ ms.reviewer: tiffanywang, adaga
 
 # Azure Advisor recommendation state management
 
+With Azure Advisor recommendation state management capability, you can track and manage new and existing recommendations through their state lifecycle.
 
-Lorem Ipsum Article Description. 
+> [!NOTE]
+>Azure Advisor recommendation state management is currently in Preview. Preview features are provided for evaluation purposes and may change before general availability.
 
-## Heading 2
+## Recommendation state
 
-Lorem Ipsum Heading 2 Content
+Each Azure Advisor recommendation can have one of the 4 supported states:
+
+- __Active__: New recommendations identified by the Azure Advisor system
+
+- __Postponed__: Temporarily hide a recommendation for a set period. After that, it automatically reappears.
+
+- __Dismissed__: Permanently remove an item from view until you choose to reactivate it.
+
+- __Completed__: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
+
+These states show the status of each recommendation and are used to manage your recommendations as they transition through their lifecycle.
+
+## Recommendation state transitions
 
 ## Heading 2 Procedure Title
 
@@ -36,7 +50,7 @@ The Advisor **Overview** page opens.
 1. Use the cost savings amount for each recommendation to calculate aggregated potential yearly savings.
 
     [![Screenshot of the Azure Advisor cost recommendations page that shows download option.](./media/advisor-how-to-calculate-total-cost-savings.png)](./media/advisor-how-to-calculate-total-cost-savings.png#lightbox)
-
+   
 > [!NOTE]
 > Different types of cost savings recommendations are generated using overlapping datasets (for example, VM rightsizing/shutdown, VM reservations and savings plan recommendations all consider on-demand VM usage). As a result, resource changes (e.g., VM shutdowns) or reservation/savings plan purchases will impact on-demand usage, and the resulting recommendations and associated savings forecast. 
 
