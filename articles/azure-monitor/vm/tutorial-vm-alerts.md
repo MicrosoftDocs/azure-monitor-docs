@@ -1,4 +1,4 @@
- pull upstream main---
+---
 title: Enable recommended alerts for an Azure virtual machine
 description: Enable recommended alerts in Azure Monitor to get notified about issues with an Azure virtual machine.
 ms.topic: tutorial
