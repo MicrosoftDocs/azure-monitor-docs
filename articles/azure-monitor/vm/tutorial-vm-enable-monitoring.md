@@ -34,7 +34,7 @@ Select **Monitor** from your virtual machine's menu in the Azure portal. This sh
 Click **Configure** to open the **Configure monitor** page. This page allows you to select between collecting OpenTelemetry-based metrics (preview) which are stored in an Azure Monitor workspaces or collecting log-based metrics (classic), which are stored in a Log Analytics workspace. For the purposes of this tutorial, select both options so you can compare the different experience between the two.
 
 > [!NOTE]
-> For a complete description of the differences between these two experiences, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-opentelemetry-and-logs-based-experiences).
+> For a complete description of the differences between these two experiences, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
 
 A default Azure Monitor workspace and Log Analytics workspace are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. If you already have existing workspaces that you want to use, then select **Customize infrastructure monitoring** and select the workspaces you want to use.
 

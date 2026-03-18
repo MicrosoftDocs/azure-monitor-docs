@@ -300,14 +300,13 @@ items:
             href: vm/vm-opentelemetry-migrate.md
         - name: Logs-based experience (classic)
           items:
-          - name: Collect performance counters
-            href: vm/data-collection-performance.md
           - name: Interactive views
             href: vm/vminsights-performance.md
           - name: Visualize data with workbooks
             href: vm/vminsights-workbooks.md
           - name: Collect performance counters
             displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-performance.md
           - name: Migrate
             items:
             - name: Migrate to Azure Monitor agent
