@@ -61,6 +61,7 @@ This method automatically provisions all required Azure resources and configures
 1. Locate the **OTLP Connection Info** section and copy the following values:
 
     * Data Collection Rule (DCR) resource ID
+    * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
