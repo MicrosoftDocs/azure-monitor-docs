@@ -65,6 +65,8 @@ Azure Advisor performs automatic system verification every 24 hours to check whe
 > [!NOTE]
 > Azure Advisor doesn’t require you to manually mark a recommendation as completed for it to be system verified. Advisor continuously performs automatic detection of >remediation for all recommendations. Advisor automatically marks a recommendation as __Completed (system verified)__ when the issue is resolved or no longer applies to a >resource.
 
+You can mark a recommendation as completed manually for personal tracking or when your solution differs from the recommended steps. Manually completed recommendations remain editable and can be reactivated until Azure Advisor completes system verification.
+
 ## Heading 2 Procedure Title
 
 Heading 2 Procedure Intro Sentence
