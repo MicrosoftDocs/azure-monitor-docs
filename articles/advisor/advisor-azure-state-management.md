@@ -24,17 +24,35 @@ With Azure Advisor recommendation state management capability, you can track and
 
 Each Azure Advisor recommendation can have one of the 4 supported states:
 
-- __Active__: New recommendations identified by the Azure Advisor system
+- **Active**: New recommendations identified by the Azure Advisor system
 
-- __Postponed__: Temporarily hide a recommendation for a set period. After that, it automatically reappears.
+- **Postponed**: Temporarily hide a recommendation for a set period. After that, it automatically reappears.
 
-- __Dismissed__: Permanently remove an item from view until you choose to reactivate it.
+- **Dismissed**: Permanently remove an item from view until you choose to reactivate it.
 
-- __Completed__: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
+- **Completed**: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
 
 These states show the status of each recommendation and are used to manage your recommendations as they transition through their lifecycle.
 
 ## Recommendation state transitions
+
+Azure Advisor recommendations move through a simple lifecycle that helps you track progress and understand when no further action is required. You can manually manage recommendation states while Azure Advisor automatically verifies when a recommendation has been addressed or no longer applies.
+
+## Manual state changes
+
+When a recommendation is **Active**, you can manually update its state to manage your work:
+
+- **Postponed**: Temporarily hide the recommendation and review it later.
+
+- **Dismissed**: Indicate that the recommendation is not relevant.
+
+- **Completed**: Indicate that you have taken the recommended action.
+
+You can continue to change states between **Active**, **Postponed**, **Dismissed**, and **Completed**, or reactivate a recommendation, **until Azure Advisor performs system verification and Marks a recommendation as Completed**. Recommendations manually marked as completed are indicated as **Marked completed**.
+
+## System verification
+
+Azure Advisor performs automatic system verification every 24 hours to check whether a recommendation has been addressed or no longer applies to the resource.
 
 ## Heading 2 Procedure Title
 
