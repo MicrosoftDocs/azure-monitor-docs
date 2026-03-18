@@ -10,6 +10,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
+> | App Service | Support for Python 3.10 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Anomaly Detector | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Metrics Advisor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Personalizer | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
