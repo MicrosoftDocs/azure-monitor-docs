@@ -38,7 +38,7 @@ The [Azure Monitor agent](../agents/agents-overview.md) installed by Container i
 
 ## Applications
 
-Applications hosted outside of Azure must be hard coded to send telemetry to [Azure Monitor Application Insights](../app/app-insights-overview.md) using SDKs for [supported languages](../app/app-insights-overview.md#supported-languages). Annual code maintenance should be planned to upgrade the SDKs per [Application Insights SDK support guidance](../app/sdk-support-guidance.md).
+Applications hosted outside of Azure must be hard coded to send telemetry to [Azure Monitor Application Insights](../app/app-insights-overview.md) using SDKs for [supported languages](../app/app-insights-overview.md#getting-started). Annual code maintenance should be planned to upgrade the SDKs per [Application Insights SDK support guidance](../app/sdk-support-guidance.md).
 
 * If you use [Grafana](https://grafana.com/grafana/) for visualization of monitoring data across your different clouds. use the [Azure Monitor data source](https://grafana.com/docs/grafana/latest/datasources/azure-monitor/) to include application log and metric data in your dashboards.
 * If you use [Data Dog](https://www.datadoghq.com/), use [Azure integrations](https://www.datadoghq.com/blog/azure-monitoring-enhancements/) to include application log and metric data in your Data Dog UI.

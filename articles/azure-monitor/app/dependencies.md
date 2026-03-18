@@ -121,4 +121,4 @@ Like every Application Insights SDK, the dependency collection module is also op
 
 * Review frequently asked questions in our [Dependency tracking FAQ](application-insights-faq.yml#dependency-tracking).
 * See the [data model](data-model-complete.md) for Application Insights.
-* Check out [platforms](app-insights-overview.md#supported-languages) supported by Application Insights.
+* Check out [platforms](app-insights-overview.md#getting-started) supported by Application Insights.

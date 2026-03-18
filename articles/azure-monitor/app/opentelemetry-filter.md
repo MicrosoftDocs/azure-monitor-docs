@@ -22,7 +22,7 @@ Reasons to filter out telemetry include:
 * Ensuring personal data and credentials aren't collected.
 * Filtering out low-value telemetry to optimize performance.
 
-To learn more about OpenTelemetry concepts, review the [OpenTelemetry overview](opentelemetry-overview.md).
+To learn more about OpenTelemetry concepts, review the [OpenTelemetry overview](app-insights-overview.md).
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]

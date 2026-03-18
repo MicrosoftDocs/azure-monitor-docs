@@ -558,7 +558,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Manage your alert instances](../alerts/alerts-manage-alert-instances.md)|We've added documentation about the new alerts timeline view.|
 |Alerts|[Create or edit a log search alert rule](../alerts/alerts-create-log-alert-rule.md)|Added limitations to log search alert queries.|
 |Alerts|[Create or edit a log search alert rule](../alerts/alerts-create-log-alert-rule.md)|We've added samples of log search alert rule queries that use Azure Data Explorer and Azure Resource Graph.|
-|Application-Insights|[Data Collection Basics of Azure Monitor Application Insights](../app/opentelemetry-overview.md)|We've provided information on how to get a list of Application Insights SDK versions and their names.|
+|Application-Insights|[Data Collection Basics of Azure Monitor Application Insights](../app/app-insights-overview.md)|We've provided information on how to get a list of Application Insights SDK versions and their names.|
 |Application-Insights|[Application Insights logging with .NET](../app/ilogger.md)|We've clarified steps to view ILogger telemetry.|
 |Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|The script to discover classic resources has been updated.|
 |Application-Insights|[Migrate to workspace-based Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource)|Extra details are now available on migrating from Continuous Export to Diagnostic Settings.|
@@ -701,7 +701,7 @@ Application-Insights|[Migrate availability tests](../app/availability-test-migra
 Application-Insights|[Enable a framework extension for Application Insights JavaScript SDK](../app/javascript-framework-extensions.md)|The 'What does the plug-in enable?' and 'Add configuration' sections have been rewritten to align across all of our JavaScript documentation.|
 Application-Insights|[Microsoft Azure Monitor Application Insights JavaScript SDK configuration](../app/javascript-sdk-configuration.md)|The 'What does the plug-in enable?' and 'Add configuration' sections have been rewritten to align across all of our JavaScript documentation.|
 Application-Insights|[Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python and Java applications](../app/opentelemetry-enable.md)|Clarification of the term "Distro" has been provided.|
-Application-Insights|[Data Collection Basics of Azure Monitor Application Insights](../app/opentelemetry-overview.md)|We've added a new article to clarify both manual and automatic instrumentation options to enable Application Insights.|
+Application-Insights|[Data Collection Basics of Azure Monitor Application Insights](../app/app-insights-overview.md)|We've added a new article to clarify both manual and automatic instrumentation options to enable Application Insights.|
 Application-Insights|[Enable a framework extension for Application Insights JavaScript SDK](../app/javascript-framework-extensions.md)|The "Explore your data" section has been improved.|
 Application-Insights|[Sampling overrides (preview) - Azure Monitor Application Insights for Java](../app/java-standalone-sampling-overrides.md)|We've documented steps for troubleshooting sampling.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Additional Azure tables now support low-cost basic logs, including tables for the Bare Metal Machines, Managed Lustre, Nexus Clusters, and Nexus Storage Appliances services. |

@@ -39,8 +39,6 @@ items:
       href: app/app-insights-overview.md
     - name: Enable Application Insights
       items:
-      - name: Data Collection Basics
-        href: app/opentelemetry-overview.md
       - name: Create and configure a resource
         href: app/create-workspace-resource.md
       - name: OpenTelemetry Distro
@@ -94,11 +92,6 @@ items:
           href: /previous-versions/azure/azure-monitor/app/javascript-sdk-upgrade
         - name: Troubleshooting
           href: /troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting
-      - name: Automatic instrumentation
-        href: app/codeless-overview.md
-      - name: Application Insights SDK (Classic API)
-        displayName: SDK, NET, .NET, ASP.NET, ASP.NET Core .NET Core, Core, dotnet, dotnetcore, Worker Service, c#, csharp, Node.js, nodejs, JavaScript, js
-        href: app/classic-api.md
     - name: Experiences
       items:
       - name: Agent details
@@ -227,6 +220,8 @@ items:
         href: app/azure-ad-authentication.md
       - name: Managed workspaces
         href: app/managed-workspaces.md
+      - name: Automatic instrumentation
+        href: app/codeless-overview.md
       - name: Telemetry data model
         href: app/data-model-complete.md
     - name: Help and support
@@ -1650,8 +1645,12 @@ items:
   - name: Azure Policy built-ins
     displayName: samples, policies, definitions
     href: fundamentals/policy-reference.md
-  - name: App Center migration
-    href: app/app-center-migration.md
+  - name: Application Insights
+    items:
+    - name: App Center migration (Preview)
+      href: app/app-center-migration.md
+    - name: Application Insights SDK (Classic API)
+      href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
