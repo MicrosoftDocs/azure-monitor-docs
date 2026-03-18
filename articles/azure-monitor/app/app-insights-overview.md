@@ -75,8 +75,8 @@ Entry points include:
 > - AI Agents
 
 > [!TIP]
-> - Callouts are presented when OpenTelemetry isn't available for specific scenarios.
 > - For most code-based server-side scenarios, the recommended setup uses the Azure Monitor OpenTelemetry Distro.
+> - Scenarios where OpenTelemetry isn't available are clearly identified.
 
 Choose the tab that best matches your workload or hosting model. Each tab shows the recommended data-collection path for that scenario.
 

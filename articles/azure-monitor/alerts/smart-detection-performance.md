@@ -15,7 +15,7 @@ ms.date: 04/01/2024
 
 [Application Insights](../app/app-insights-overview.md) automatically analyzes the performance of your web application, and can warn you about potential problems.
 
-This feature requires no special setup, other than configuring your app for Application Insights for your [supported language](../app/app-insights-overview.md#supported-languages). It's active when your app generates enough telemetry.
+This feature requires no special setup, other than configuring your app for Application Insights for your [supported language](../app/app-insights-overview.md#getting-started). It's active when your app generates enough telemetry.
 
 ## When would I get a smart detection notification?
 

@@ -17,7 +17,7 @@ ms.custom:
 
 This guide provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md).
 
-To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](opentelemetry-overview.md).
+To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app-insights-overview.md).
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]

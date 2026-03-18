@@ -351,7 +351,7 @@ Every telemetry item might have a strongly typed context field. Every field enab
 ## Next steps
 
 * Review frequently asked questions (FAQ): [Telemetry data model FAQ](application-insights-faq.yml#telemetry-data-model)
-* Check out [platforms](app-insights-overview.md#supported-languages) supported by Application Insights.
+* Check out [platforms](app-insights-overview.md#getting-started) supported by Application Insights.
 * Learn how to [collect custom telemetry using the Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#collect-custom-telemetry).
 * Learn how to use the [Application Insights API for custom events and metrics](api-custom-events-metrics.md).
 * Learn how to [extend and filter telemetry](api-filtering-sampling.md).

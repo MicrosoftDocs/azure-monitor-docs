@@ -40,7 +40,7 @@ items:
     - name: Enable Application Insights
       items:
       - name: Data Collection Basics
-        href: app/opentelemetry-overview.md
+        href: app/app-insights-overview.md
       - name: Create and configure a resource
         href: app/create-workspace-resource.md
       - name: OpenTelemetry Distro
