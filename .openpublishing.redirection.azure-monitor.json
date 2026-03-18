@@ -7,7 +7,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/opentelemetry-overview.md",
-   "redirect_url": "/azure//azure-monitor/app/app-insights-overview#getting-started",
+   "redirect_url": "/azure/azure-monitor/app/app-insights-overview#getting-started",
    "redirect_document_id": false
   },
   {
@@ -8891,7 +8891,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/opentelemetry.md",
-   "redirect_url": "../app/opentelemetry-overview",
+   "redirect_url": "../app/app-insights-overview#getting-started",
    "redirect_document_id": false
   },
   {
