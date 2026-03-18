@@ -376,7 +376,7 @@ items:
       - name: Public previews
         items:
         - name: OpenTelemetry Protocol ingestion overview
-          href: containers/opentelemetry-ingest.md
+          href: containers/opentelemetry-summary.md
         - name: Collect and analyze OpenTelemetry data
           href: containers/collect-use-observability-data.md
         - name: Ingest OTLP signals with OTel Collector

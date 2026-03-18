@@ -64,8 +64,6 @@ This method automatically provisions all required Azure resources and configures
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
-Proceed to [Configure your telemetry pipeline](#configure-your-telemetry-pipeline).
-
 ### Option 2: Manual resource orchestration
 
 This option requires you to manually create and configure Data Collection Endpoints (DCE), Data Collection Rules (DCR), and destination workspaces. Use this approach when you need custom configurations or want to reuse existing resources.

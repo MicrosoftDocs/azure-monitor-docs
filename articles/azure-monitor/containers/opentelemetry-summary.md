@@ -17,8 +17,6 @@ Azure Monitor supports native ingestion of OpenTelemetry Protocol (OTLP) traces,
 
 Use the information at [Use OpenTelemetry with Azure Monitor](collect-use-observability-data.md) when you need an end-to-end overview of OTLP capabilities in Azure Monitor. It covers onboarding paths, supported experiences such as Application Insights and Dashboards with Grafana, and how to query telemetry with OpenTelemetry semantic conventions in Log Analytics.
 
-For more information, see .
-
 ## Monitor AKS applications with OTLP
 
 Use the information at [Monitor AKS applications with OTLP and Azure Monitor](kubernetes-open-protocol.md) when your workloads run on Azure Kubernetes Service. It walks through enabling cluster-level monitoring, creating an OTLP-enabled Application Insights resource, and onboarding applications with autoinstrumentation or autoconfiguration at the namespace or deployment scope.
