@@ -375,6 +375,8 @@ items:
         href: containers/kubernetes-monitoring-disable.md
       - name: Public previews
         items:
+        - name: OpenTelemetry Protocol ingestion overview
+          href: containers/opentelemetry-ingest.md
         - name: Collect and analyze OpenTelemetry data
           href: containers/collect-use-observability-data.md
         - name: Ingest OTLP signals with OTel Collector
