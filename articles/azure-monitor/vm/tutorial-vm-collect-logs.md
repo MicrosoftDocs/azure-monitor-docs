@@ -9,7 +9,9 @@ ms.reviewer: Xema Pathak
 ---
 
 # Tutorial: Collect guest logs from an Azure virtual machine
-After you enable monitoring for an Azure virtual machine, you can create additional data collection rules (DCRs) to collect guest logs such as Windows event logs and Syslog. This tutorial shows how to add log collection for a virtual machine that already has monitoring enabled.
+After you enable monitoring for an Azure virtual machine, you can create additional data collection rules (DCRs) to collect guest logs. This tutorial shows how to collect event logs from Windows machines and syslog from Linux machines. These logs provide rich insights into the behavior of the operating system and applications running on the virtual machine, which can be used for troubleshooting, performance monitoring, and security analysis.
+
+These are two of the data sources available for virtual machines. Other data sources are documented in [Collect data from a VM client with data collection rules in Azure Monitor](./data-collection.md).
 
 In this tutorial, you learn how to:
 
@@ -18,35 +20,45 @@ In this tutorial, you learn how to:
 > * View guest logs in Log Analytics.
 
 ## Prerequisites
-To complete this tutorial, you need an Azure virtual machine with monitoring already enabled using []().
+To complete this tutorial, you need an Azure virtual machine with monitoring already enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+
+If you're monitoring a virtual machine scale set instead, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 
 ## Create a data collection rule
-[Data collection rules](../essentials/data-collection-rule-overview.md) in Azure Monitor define data to collect and where it should be sent. When you define the DCR by using the Azure portal, you specify the virtual machines it should be applied to. Azure Monitor Agent is automatically installed on any virtual machines that don't already have it.
-
-On the **Monitor** menu in the Azure portal, select **Data Collection Rules**. Then select **Create** to create a new DCR.
+[Data collection rules](../essentials/data-collection-rule-overview.md) in Azure Monitor define data to collect and where it should be sent. On the **Monitor** menu in the Azure portal, select **Data Collection Rules**. Then select **Create** to create a new DCR.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-create.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-create.png" alt-text="Screenshot that shows creating a data collection rule.":::
 
-On the **Basics** tab, enter a **Rule Name**, which is the name of the rule displayed in the Azure portal. Select a **Subscription**, **Resource Group**, and **Region** where the DCR and its associations are stored. These resources don't need to be the same as the resources being monitored. The **Platform Type** defines the options that are available as you define the rest of the DCR. Select **Windows** or **Linux** if the rule is associated only with those resources or select **Custom** if it's associated with both types.
+On the **Basics** tab, enter a **Rule Name**, which is the name of the rule displayed in the Azure portal. Select a **Subscription**, **Resource Group**, and **Region** where the DCR and its associations are stored. These settings don't need to be the same as the resources being monitored. The **Platform Type** defines the options that are available as you define the rest of the DCR. Select **Windows** or **Linux** if the rule is associated only with those resources or select **Custom** if it's associated with both types.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-basics.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-basics.png" alt-text="Screenshot that shows data collection rule basics.":::
 
 ## Select resources
-On the **Resources** tab, identify one or more virtual machines to which the DCR applies. Select **Add resources** and then select either your virtual machines or the resource group or subscription where your virtual machine is located. The DCR applies to all virtual machines in the selected scope.
+On the **Resources** tab, select **Add resources** and then select your virtual machine and any other machines that should share the same log collection. The DCR applies to all virtual machines in the selected scope.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-resources.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-resources.png" alt-text="Screenshot that shows data collection rule resources.":::
 
 ## Select data sources
-Select **Add data source**. For **Data source type**, select **Windows event logs** or **Linux syslog**. Then select the types of log data that you want to collect.
+Select **Add data source**. This tutorial uses either **Windows event logs** or **Linux syslog**, but these are only two of the VM data sources that a DCR can collect. For the full list, see [Collect data from a VM client with data collection rules in Azure Monitor](./data-collection.md).
 
-### [Windows](#tab/windows)
+### [Windows event logs](#tab/windows)
+
+For **Data source type**, select **Windows event logs**. Then select the event logs and levels that you want to collect.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" alt-text="Screenshot that shows the data collection rule Windows log data source.":::
 
-### [Linux](#tab/linux)
+For more detail about configuring this data source, see [Collect Windows events with Azure Monitor Agent](./data-collection-windows-events.md).
+
+### [Syslog](#tab/linux)
+
+For **Data source type**, select **Linux syslog**. Then select the facilities and log levels that you want to collect.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" alt-text="Screenshot that shows the data collection rule Linux log data source.":::
+
+For more detail about configuring this data source, see [Collect Syslog events with Azure Monitor Agent](./data-collection-syslog.md).
+
+---
 
 Select the **Destination** tab. **Azure Monitor Logs** should already be selected for **Destination type**. Select your Log Analytics workspace for **Account or namespace**. If you don't already have a workspace, you can select the default workspace for your subscription, which is created automatically. Select **Add data source** to save the data source.
 
@@ -66,7 +78,17 @@ Select **Logs** from your virtual machine's menu. Log Analytics opens with an em
 
 :::image type="content" source="media/tutorial-monitor-vm/log-analytics.png" lightbox="media/tutorial-monitor-vm/log-analytics.png" alt-text="Screenshot that shows Log Analytics.":::
 
-In the empty query window, enter either **Event** or **Syslog** depending on whether your machine is running Windows or Linux. Then select **Run**. The events collected within the selected **Time range** are displayed.
+In the empty query window, run one of the following queries depending on the data source you configured.
+
+### [Windows event logs](#tab/windows)
+
+Enter **Event** and then select **Run**. Windows events collected within the selected **Time range** are displayed.
+
+### [Syslog](#tab/linux)
+
+Enter **Syslog** and then select **Run**. Syslog records collected within the selected **Time range** are displayed.
+
+---
 
 > [!NOTE]
 > If the query doesn't return any data, you might need to wait a few minutes until events are created on the virtual machine to be collected. You might also need to modify the data source in the DCR to include other categories of events.
