@@ -11,7 +11,7 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 **Core Overview & Enablement (9 articles)**
 - monitor-vm.md (NEW - overview article)
 - vm-enable-monitoring.md (NEW - at-scale enablement)
-- tutorial-vm-enable-monitoring.md (portal enablement)
+- tutorial-virtual-machine-enable-monitoring.md (portal enablement)
 - vminsights-overview.md (legacy overview)
 - vminsights-enable.md (legacy enablement overview)
 - vminsights-enable-client.md (legacy portal enablement)
@@ -66,8 +66,8 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 - performance-diagnostics-analyze.md
 
 **Tutorial Series (2 articles)**
-- tutorial-vm-enable-monitoring.md (NEW)
-- tutorial-vm-collect-logs.md
+- tutorial-virtual-machine-enable-monitoring.md (NEW)
+- tutorial-virtual-machine-collect-logs.md
 
 ### Relevant Content in azure-monitor/agents
 
@@ -128,14 +128,14 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 |--------------|------|---------|----------|--------|
 | **monitor-vm.md** | Overview | Main landing page for VM monitoring | Existing (new) | ✅ Keep |
 | **choose-monitoring-experience.md** | Concept | Decision guide: OTel vs logs-based | New | 📝 Create |
-| **quickstart-enable-monitoring.md** | Quickstart | 5-min guide to enable basic monitoring | tutorial-vm-enable-monitoring.md | 🔄 Refactor |
+| **quickstart-enable-monitoring.md** | Quickstart | 5-min guide to enable basic monitoring | tutorial-virtual-machine-enable-monitoring.md | 🔄 Refactor |
 
 ### Level 2: OpenTelemetry Experience (Recommended)
 
 | New Filename | Type | Purpose | Based On | Status |
 |--------------|------|---------|----------|--------|
 | **opentelemetry-overview.md** | Concept | What is the OTel experience | metrics-opentelemetry-guest.md | 🔄 Refactor |
-| **opentelemetry-enable-portal.md** | How-to | Enable OTel via portal | tutorial-vm-enable-monitoring.md (extract) | 📝 Create |
+| **opentelemetry-enable-portal.md** | How-to | Enable OTel via portal | tutorial-virtual-machine-enable-monitoring.md (extract) | 📝 Create |
 | **opentelemetry-enable-scale.md** | How-to | Enable OTel at scale | vm-enable-monitoring.md (extract OTel) | 🔄 Refactor |
 | **opentelemetry-metrics-reference.md** | Reference | Available OTel metrics | metrics-opentelemetry-guest-reference.md | ✅ Keep |
 | **opentelemetry-query-analyze.md** | How-to | Query OTel metrics with PromQL | New | 📝 Create |
@@ -263,9 +263,9 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 - name: Tutorials
   items:
   - name: Enable enhanced monitoring
-    href: tutorial-vm-enable-monitoring.md
+    href: tutorial-virtual-machine-enable-monitoring.md
   - name: Collect and analyze logs
-    href: tutorial-vm-collect-logs.md
+    href: tutorial-virtual-machine-collect-logs.md
 
 - name: Concepts
   items:
@@ -410,7 +410,7 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 | `overview` | Landing pages, "What is" articles | monitor-vm.md, opentelemetry-overview.md |
 | `concept` | Explain concepts, architectures, comparisons | choose-monitoring-experience.md, data-collection-overview.md |
 | `quickstart` | Get started in 5-10 minutes | quickstart-enable-monitoring.md |
-| `tutorial` | Step-by-step guided learning (15-30 min) | tutorial-vm-enable-monitoring.md |
+| `tutorial` | Step-by-step guided learning (15-30 min) | tutorial-virtual-machine-enable-monitoring.md |
 | `how-to` | Task-oriented instructions | enable-monitoring-at-scale.md, data-collection-*.md |
 | `reference` | Technical specifications, APIs, metrics | opentelemetry-metrics-reference.md, agent-requirements.md |
 | `troubleshooting` | Diagnose and fix problems | troubleshoot-*.md |
@@ -447,7 +447,7 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 - [x] ✅ Create `monitor-vm.md` (DONE)
 - [x] ✅ Create `vm-enable-monitoring.md` (DONE)
 - [ ] 📝 Create `choose-monitoring-experience.md` (decision guide)
-- [ ] 🔄 Refactor `tutorial-vm-enable-monitoring.md` → `quickstart-enable-monitoring.md`
+- [ ] 🔄 Refactor `tutorial-virtual-machine-enable-monitoring.md` → `quickstart-enable-monitoring.md`
 - [ ] 🔄 Update `metrics-opentelemetry-guest.md` → `opentelemetry-overview.md`
 - [ ] 🔄 Update `vminsights-overview.md` → `logs-based-overview.md`
 - [ ] 📝 Update TOC with new structure (Level 1-3)
@@ -763,7 +763,7 @@ This plan restructures the azure-monitor/vm documentation to align with the new 
 |--------------|--------------|--------|-------|
 | monitor-virtual-machine.md | monitor-vm.md | ✅ Replaced | Already exists |
 | vm-enable-monitoring.md | enable-monitoring-at-scale.md | 🔄 Refactor | Already exists, needs refinement |
-| tutorial-vm-enable-monitoring.md | quickstart-enable-monitoring.md | 🔄 Refactor | Shorten to 5-10 min |
+| tutorial-virtual-machine-enable-monitoring.md | quickstart-enable-monitoring.md | 🔄 Refactor | Shorten to 5-10 min |
 | vminsights-overview.md | logs-based-overview.md | 🔄 Refactor | Add "classic" framing |
 | vminsights-enable.md | enable-monitoring-overview.md | 🔄 Refactor | Unified enablement overview |
 | vminsights-enable-client.md | logs-based-enable-portal.md | 🔄 Refactor | Logs-based specific |

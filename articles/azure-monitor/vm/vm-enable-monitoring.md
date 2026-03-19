@@ -13,7 +13,7 @@ ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, 
 This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale using command line tools that allow you to use infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
 
 > [!NOTE]
-> - To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+> - To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md).
 > - To enable monitoring for a virtual machine scale set using the Azure portal, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 ## Supported machines
@@ -35,7 +35,7 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 
 ## Overview
 
-Enabling full monitoring by collecting data from the guest operating system and workloads of a virtual machine by Azure Monitor involves three steps as shown in the following table. When you [enable enhanced monitoring](./tutorial-vm-enable-monitoring.md) or [create a DCR](./data-collection.md) in the Azure portal, each of these steps is completed for you automatically. 
+Enabling full monitoring by collecting data from the guest operating system and workloads of a virtual machine by Azure Monitor involves three steps as shown in the following table. When you [enable enhanced monitoring](./tutorial-virtual-machine-enable-monitoring.md) or [create a DCR](./data-collection.md) in the Azure portal, each of these steps is completed for you automatically. 
 
 | Step | Description |
 |:---|:---|
@@ -408,7 +408,7 @@ There are two methods for network isolation that VM insights supports as describ
 ## Related content
 
 - [Monitor virtual machines in Azure](./monitor-vm.md) - Review the core monitoring capabilities available for virtual machines and scale sets.
-- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
 - [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md) - Enable monitoring for a scale set by using the Azure portal.
 - [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) - Add guest logs such as Windows events, Syslog, IIS logs, and custom logs.
 - [Troubleshoot VM monitoring in Azure Monitor](./vm-enable-troubleshoot.md) - Investigate agent installation and common onboarding problems.

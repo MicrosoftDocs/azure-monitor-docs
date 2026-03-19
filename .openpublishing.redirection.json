@@ -1,6 +1,21 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/vm/tutorial-vm-enable-monitoring.md",
+      "redirect_url": "/azure/azure-monitor/vm/tutorial-virtual-machine-enable-monitoring",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/vm/tutorial-vm-collect-logs.md",
+      "redirect_url": "/azure/azure-monitor/vm/tutorial-virtual-machine-collect-logs",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/azure-monitor/vm/tutorial-vm-alerts.md",
+      "redirect_url": "/azure/azure-monitor/vm/tutorial-virtual-machine-alerts",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/vm/vminsights-change-analysis.md",
       "redirect_url": "/azure/azure-monitor/vm/monitor-vm",
       "redirect_document_id": false

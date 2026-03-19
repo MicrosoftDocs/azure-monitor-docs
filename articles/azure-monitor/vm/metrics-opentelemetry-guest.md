@@ -69,7 +69,7 @@ Enhanced monitoring with OpenTelemetry uses a subset of the available system met
 
 ## Related content
 
-- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
 - [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md) - Change the default OpenTelemetry metrics collected from guest operating systems.
 - [Collect performance counters from virtual machines with Azure Monitor](./data-collection-performance.md) - Configure additional performance counter collection by using data collection rules.
 - [Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines](./vm-opentelemetry-migrate.md) - Decide when to retire the logs-based experience and move fully to metrics-based monitoring.
