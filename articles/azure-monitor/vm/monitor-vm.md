@@ -35,7 +35,7 @@ Enable enhanced monitoring to collect guest data and fully light up the **Monito
 
 If you enable guest monitoring in the Azure portal, choose between two experiences. Both provide guest monitoring, but they differ in how they store and process metrics. See [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) for guidance on choosing the right option.
 
-For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md).
+For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 
 
 ## Enable at scale
@@ -69,7 +69,7 @@ Alerts in Azure Monitor proactively notify you when specific conditions are foun
 Azure Monitor provides recommended alert rules for VMs and virtual machine scale sets that you can enable quickly in the Azure portal. These rules use host metrics, so you can enable them without enhanced monitoring. They cover common conditions such as high CPU usage, low available memory, and disk performance issues.
 
 For step-by-step guidance on enabling recommended alerts, see:
-- [Enable recommended alert rules for Azure virtual machine](tutorial-virtual-machine-alerts.md)
+- [Enable recommended alert rules for Azure virtual machine](tutorial-alerts.md)
 - [Enable recommended alert rules for Azure virtual machine scale set](tutorial-scale-set-alerts.md)
 
 ### Additional alert rules
@@ -97,9 +97,9 @@ See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance
 
 ## Related content
 
-- [Tutorial: Enable monitoring for Azure virtual machine](tutorial-virtual-machine-enable-monitoring.md) - Enable monitoring for a single VM.
+- [Tutorial: Enable monitoring for Azure virtual machine](tutorial-enable-monitoring.md) - Enable monitoring for a single VM.
 - [Tutorial: Enable monitoring for Azure virtual machine scale set](tutorial-scale-set-enable-monitoring.md) - Enable monitoring for a scale set.
-- [Tutorial: Enable recommended alerts for Azure virtual machine](tutorial-virtual-machine-alerts.md) - Turn on recommended alert rules for a VM.
+- [Tutorial: Enable recommended alerts for Azure virtual machine](tutorial-alerts.md) - Turn on recommended alert rules for a VM.
 - [Tutorial: Enable recommended alerts for Azure virtual machine scale set](tutorial-scale-set-alerts.md) - Turn on recommended alert rules for a scale set.
 - [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md) - Configure monitoring at scale.
 - [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Move to the OpenTelemetry-based metrics experience.

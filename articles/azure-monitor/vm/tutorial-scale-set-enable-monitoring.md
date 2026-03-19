@@ -14,7 +14,7 @@ Azure virtual machine scale sets (VMSS) automatically send host-level metrics to
 This tutorial walks you through enabling monitoring to collect guest performance data from your virtual machine scale sets using the Azure portal and the logs-based experience.
 
 > [!NOTE]
-> Virtual machine scale sets currently support only the logs-based experience for monitoring described in [Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md). The metrics-based experience available for individual virtual machines is not yet supported for scale sets.
+> Virtual machine scale sets currently support only the logs-based experience for monitoring described in [Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md). The metrics-based experience available for individual virtual machines is not yet supported for scale sets.
 
 In this tutorial, you learn how to:
 

@@ -7,7 +7,7 @@ ms.reviewer: jeffwo, tylerkight
 ---
 
 # Collect performance counters from virtual machines with Azure Monitor
-When you enable [logs-based monitoring experience](./tutorial-virtual-machine-enable-monitoring.md) for your Azure virtual machines, a default set of performance counters are collected. This set can't be modified, but you can create a data collection rule (DCR) to collect additional performance counters from the virtual machine and send them to a Log Analytics workspace.
+When you enable [logs-based monitoring experience](./tutorial-enable-monitoring.md) for your Azure virtual machines, a default set of performance counters are collected. This set can't be modified, but you can create a data collection rule (DCR) to collect additional performance counters from the virtual machine and send them to a Log Analytics workspace.
 
 Details for creating the DCR are provided in [Collect guest log data from virtual machines with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
 

@@ -30,13 +30,13 @@ To complete this tutorial, you need an Azure virtual machine to monitor.
 ## Enable enhanced monitoring
 Select **Monitor** from your virtual machine's menu in the Azure portal. This shows common monitoring data collected for the machine. Host metrics showing CPU, network, and disk utilization are available by default. If enhanced monitoring hasn't been enabled, then several of the performance charts show no data, and you'll receive a message offering to enable it. Click **Configure** to open the **Configure monitor** page. 
 
-:::image type="content" source="media/tutorial-virtual-machine-enable-monitoring/enable-monitoring.png" alt-text="Screenshot showing the Monitor page for a virtual machine with the option to enable monitoring." lightbox="media/tutorial-virtual-machine-enable-monitoring/enable-monitoring.png":::
+:::image type="content" source="media/tutorial-enable-monitoring/enable-monitoring.png" alt-text="Screenshot showing the Monitor page for a virtual machine with the option to enable monitoring." lightbox="media/tutorial-enable-monitoring/enable-monitoring.png":::
 
 Leave **[Preview] OpenTelemetry metrics** selected since this experience is available at no cost. You can choose to also select the logs-based option so you can compare the different experience between the two. For a complete description of the differences between these two experiences, see [Compare metrics-based and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
 
 A default Azure Monitor workspace and Log Analytics workspace are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. If you already have existing workspaces that you want to use, then select **Customize infrastructure monitoring** and select the workspaces you want to use.
 
-:::image type="content" source="media/tutorial-virtual-machine-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-virtual-machine-enable-monitoring/configure-monitor.png":::
+:::image type="content" source="media/tutorial-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-enable-monitoring/configure-monitor.png":::
 
 > [!NOTE]
 > Metrics collected for metrics-based experience (preview) are listed in the **Customize configuration** page for information purposes only. This list can't be modified from this screen.
@@ -48,11 +48,11 @@ It will take a few minutes after the agent is installed for enough data to be co
 
 The metrics-based (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
 
-:::image type="content" source="media/tutorial-virtual-machine-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-virtual-machine-enable-monitoring/metrics-experience.png":::
+:::image type="content" source="media/tutorial-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/metrics-experience.png":::
 
 The logs-based experience uses summarized performance data collected in the Log Analytics workspace to populate a set of charts that allow you to analyze the performance of different components of the machine such as CPU, disk, and network over time.
 
-:::image type="content" source="media/tutorial-virtual-machine-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-virtual-machine-enable-monitoring/logs-experience.png":::
+:::image type="content" source="media/tutorial-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/logs-experience.png":::
 
 > [!NOTE]
 > The **Maps** feature is displayed in both experiences but has been deprecated as described in [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md).
@@ -63,10 +63,10 @@ The logs-based experience also provides the ability to view performance data acr
 
 When the deployment is finished, you see views on the **Performance** tab in VM insights with performance data for the machine. This data shows you the values of key guest metrics over time.
 
-:::image type="content" source="media/tutorial-virtual-machine-enable-monitoring/multiple-machine-view.png" lightbox="media/tutorial-virtual-machine-enable-monitoring/multiple-machine-view.png" alt-text="Screenshot that shows the VM insights Performance view.":::
+:::image type="content" source="media/tutorial-enable-monitoring/multiple-machine-view.png" lightbox="media/tutorial-enable-monitoring/multiple-machine-view.png" alt-text="Screenshot that shows the VM insights Performance view.":::
 
 ## Next steps
 Now that you have enabled enhanced monitoring for your virtual machine, collect guest logs such as Windows event logs or Syslog from the virtual machine.
 
 > [!div class="nextstepaction"]
-> [Collect guest logs from an Azure virtual machine](./tutorial-virtual-machine-collect-logs.md)
+> [Collect guest logs from an Azure virtual machine](./tutorial-collect-logs.md)

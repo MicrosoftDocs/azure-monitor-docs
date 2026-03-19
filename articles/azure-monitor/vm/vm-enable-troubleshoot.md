@@ -78,5 +78,5 @@ If you have multiple virtual machines using the same DCR, you can edit the DCR t
 ## Related content
 
 - [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) - Configure VM monitoring at scale by using command-line tools and infrastructure as code.
-- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
 - [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) - Review how to configure guest log collection with data collection rules.

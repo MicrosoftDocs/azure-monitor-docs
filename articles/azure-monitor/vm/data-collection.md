@@ -184,4 +184,4 @@ Get-AzDataCollectionRuleAssociation -resourceUri <vm-resource-id>
 - [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md) - Review how Azure Monitor Agent collects data from virtual machines.
 - [Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md) - Learn how DCRs define sources, destinations, and associations.
 - [Collect performance counters from virtual machines with Azure Monitor](./data-collection-performance.md) - Configure performance counter collection for logs-based monitoring.
-- [Tutorial: Collect guest logs from an Azure virtual machine](./tutorial-virtual-machine-collect-logs.md) - Walk through collecting Windows event logs or Syslog from a monitored VM.
+- [Tutorial: Collect guest logs from an Azure virtual machine](./tutorial-collect-logs.md) - Walk through collecting Windows event logs or Syslog from a monitored VM.

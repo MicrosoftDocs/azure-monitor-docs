@@ -32,7 +32,7 @@ The process for creating a DCR in the Azure portal varies depending on what type
 ## Enhanced monitoring for Virtual machines
 When you enable enhanced monitoring for a virtual machine in Azure Monitor, a DCR is created and associated with the VM to collect guest performance data. 
 
-See [Enable enhanced monitoring for an Azure virtual machine](../vm/tutorial-virtual-machine-enable-monitoring.md) for details.
+See [Enable enhanced monitoring for an Azure virtual machine](../vm/tutorial-enable-monitoring.md) for details.
 
 ## Logs collection for virtual machines
 

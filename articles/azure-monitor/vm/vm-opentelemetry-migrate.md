@@ -55,7 +55,7 @@ Use the following process to retire the logs-based experience:
 This article doesn't cover initial setup. If you haven't enabled metrics-based monitoring yet, use one of these articles first:
 
 - [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md)
-- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-virtual-machine-enable-monitoring.md)
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md)
 
 After setup, return to this article to decide whether you can retire logs-based collection.
 

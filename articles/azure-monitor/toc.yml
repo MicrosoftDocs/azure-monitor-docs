@@ -261,10 +261,10 @@ items:
         items:
         - name: Enable monitoring
           displayName: virtual machine, VM
-          href: vm/tutorial-virtual-machine-enable-monitoring.md
+          href: vm/tutorial-enable-monitoring.md
         - name: Enable recommended alerts
           displayName: virtual machine, VM
-          href: vm/tutorial-virtual-machine-alerts.md
+          href: vm/tutorial-alerts.md
       - name: Virtual machine scale sets
         items:
         - name: Enable monitoring
@@ -274,7 +274,7 @@ items:
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
-        href: vm/tutorial-virtual-machine-collect-logs.md
+        href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
       - name: Enable from command line
