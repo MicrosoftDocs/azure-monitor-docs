@@ -24,15 +24,15 @@ Copilot in Azure can help you create, inspect, and modify Azure Workbooks using 
 
 Copilot supports the following scenarios:
 
-| Scenario                        | Description                                                                                                       |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Describe the workbook canvas    | Ask Copilot to summarize all items in a workbook, including queries, charts, parameters, and text blocks.         |
-| Analyze a chart for anomalies   | Ask Copilot to analyze a specific chart and identify patterns, spikes, or anomalies in the data.                  |
-| Create a new workbook           | Ask Copilot to generate a workbook with specific visualizations, queries, and parameters.                         |
-| Add a chart or query step       | Ask Copilot to add a new visualization or query to an existing workbook.                                          |
-| Modify an existing step         | Ask Copilot to update a parameter, query, or visualization in a workbook.                                         |
-| Remove a step                   | Ask Copilot to remove one or more items from the workbook canvas.                                                 |
-| Improve titles and descriptions | Ask Copilot to rewrite titles and text blocks for clarity and readability.                                        |
+| Scenario                        | Description                                                                                               |
+| ------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| Describe the workbook canvas    | Ask Copilot to summarize all items in a workbook, including queries, charts, parameters, and text blocks. |
+| Analyze a chart for anomalies   | Ask Copilot to analyze a specific chart and identify patterns, spikes, or anomalies in the data.          |
+| Create a new workbook           | Ask Copilot to generate a workbook with specific visualizations, queries, and parameters.                 |
+| Add a chart or query step       | Ask Copilot to add a new visualization or query to an existing workbook.                                  |
+| Modify an existing step         | Ask Copilot to update a parameter, query, or visualization in a workbook.                                 |
+| Remove a step                   | Ask Copilot to remove one or more items from the workbook canvas.                                         |
+| Improve titles and descriptions | Ask Copilot to rewrite titles and text blocks for clarity and readability.                                |
 
 ## Supported step types
 
