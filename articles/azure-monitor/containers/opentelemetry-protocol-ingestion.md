@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 ai-usage: ai-assisted
 ---
 
@@ -190,12 +190,12 @@ For manually orchestrated resources, construct the endpoint URLs:
     
     **Logs endpoint:**
     ```
-    https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_logs/otlp/v1/logs
+    https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Microsoft-OTLP-Logs/otlp/v1/logs
     ```
     
     **Traces endpoint:**
     ```
-    https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_traces/otlp/v1/traces
+    https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Microsoft-OTLP-Traces/otlp/v1/traces
     ```
     
     > [!NOTE]
