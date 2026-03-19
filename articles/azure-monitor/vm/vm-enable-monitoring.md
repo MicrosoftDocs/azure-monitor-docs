@@ -56,7 +56,7 @@ The first step is to install the Azure Monitor agent extension on your virtual m
 
 **Azure virtual machine**
 
-```azurecli-interactive
+```azurecli
 # Windows
 az vm extension set \
   --name AzureMonitorWindowsAgent \
@@ -74,7 +74,7 @@ az vm extension set \
 
 **Arc-enabled server**
 
-```azurecli-interactive
+```azurecli
 # Windows
 az connectedmachine extension create \
   --name AzureMonitorWindowsAgent \
@@ -97,7 +97,7 @@ az connectedmachine extension create \
 
 **Virtual machine scale set**
 
-```azurecli-interactive
+```azurecli
 # Windows
 az vmss extension set \
   --name AzureMonitorWindowsAgent \
@@ -262,6 +262,7 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
 
 ``` json
 {
+    "location": "<location>",
     "properties": {
         "description": "Data collection rule for VM Insights.",
         "dataSources": {
@@ -308,7 +309,7 @@ Save the DCR definition to a JSON file and use it to create a DCR with the follo
 ## [CLI](#tab/cli)
 
 
-```azurecli-interactive
+```azurecli
 az monitor data-collection rule create \
   --name <dcr-name> \
   --resource-group <resource-group> \
