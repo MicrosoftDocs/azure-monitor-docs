@@ -42,15 +42,15 @@ New chart features:
 - New layers feature where you can add line, icon, rectangle annotations to a chart based on data in another query.
 - New synchronized hover, zoom - hovering over charts shows a hover line in other charts at the same x coordinate. Zooming in on a zooms all charts to show the same region.
 
-Any new settings that might appear in the preview may not work if you open a saved dashboard workbook in the standard, non-preview workbooks view.
+Any new settings that might appear in the Workbooks preview may not work if you open a saved workbook in the legacy workbooks experience.
 
 ## New Functionality
 
-- New "Data Source" item - this new item available in the add menu allows you to add a data source that is never visible and has no visualization in view mode. It is only visible in the workbook while in edit mode. In standard workbooks, it would be common to use a query item for this case, and then use conditional visibility to make it always hidden.
+- New "Data Source" item - this new item available in the add menu allows you to add a data source that is never visible and has no visualization in view mode. It is only visible in the workbook while in edit mode. In legacy workbooks, it would be common to use a query item for this case, and then use conditional visibility to make it always hidden.
 
   Data source items are commonly used for things like queries using the Merge data source, or to add annotations to charts using the "Layers" feature.
 
-- New "Visualization" item - this new item lets you visualize the results of another query or data source item. In standard workbooks, you can do this by using a query step and "merge" data source with the "duplicate" option, but was hard to find.
+- New "Visualization" item - this new item lets you visualize the results of another query or data source item. In legacy workbooks, you can do this by using a query step and "merge" data source with the "duplicate" option, but was hard to find.
 - New "Data Repeater" item - this new item allows you to create a data source that repeats over the value of a parameter.
   For example, you could use a data repeater to repeat an Azure Resource Manager (ARM) data source for each selected value of a multi-select resource parameter,
   and union all the results.
@@ -84,6 +84,6 @@ Any new settings that might appear in the preview may not work if you open a sav
 
 Many new features have been added, and the settings for new items and features are _preserved_ when saving. You should be able to edit most workbooks with the existing workbook view, then open them in the preview to get new functionality and features.
 
-Dashboard mode has specific limitations that regular workbooks don't. See [Azure Workbook dashboard preview](workbooks-dashboard-preview.md) to learn more.
+Dashboard mode has specific limitations that legacy workbooks don't have. See [Azure Workbook dashboard preview](workbooks-dashboard-preview.md) to learn more.
 
 If you need help or have feedback, use the **Feedback** button in the Workbooks preview view.
