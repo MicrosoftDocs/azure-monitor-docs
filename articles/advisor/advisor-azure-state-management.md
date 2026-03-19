@@ -67,6 +67,19 @@ Azure Advisor performs automatic system verification every 24 hours to check whe
 
 You can mark a recommendation as completed manually for personal tracking or when your solution differs from the recommended steps. Manually completed recommendations remain editable and can be reactivated until Azure Advisor completes system verification.
 
+## Completed vs. Dismissed
+
+Review the definitions and implications for the Completed and Dismissed recommendation state:
+
+- **Completed** means the recommended action was taken or the recommendation no longer applies, and no further action is required
+
+- **Dismissed** means the recommendation was intentionally ignored by a user. Dismissed recommendations can be reactivated at any time
+
+> [!NOTE]
+>Performing these actions requires specific permissions. Refer to the [Roles and permissions](https://learn.microsoft.com/en-us/azure/advisor/permissions) page for details on the required access.
+
+## How to set recommendations to Postpone, Dismiss, and Completed
+
 ## Heading 2 Procedure Title
 
 Heading 2 Procedure Intro Sentence
