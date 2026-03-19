@@ -2,7 +2,7 @@
 title: Resource Health virtual machine Health Annotations
 description: Messages, meanings, and troubleshooting for virtual machines resource health statuses. 
 ms.topic: reference
-ms.date: 03/18/2026
+ms.date: 03/19/2026
 
 ---
 
