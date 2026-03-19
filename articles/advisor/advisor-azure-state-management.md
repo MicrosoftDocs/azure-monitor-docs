@@ -128,7 +128,94 @@ Dismissing a recommendation removes it from view until you choose to reactivate 
 
 1. Choose the recommendation(s) you want to dismiss and select Dismiss
 
-1. Select a __Reason for__ __Dismissal, then confirm__
+1. Select a __Reason for__ __Dismissal,__ then confirm
+
+### Complete a recommendation
+
+Completing a recommendation when you’ve taken the recommended action or when the recommendation no longer applies
+
+1. Select a recommendation from the list of active recommendations
+
+1. Select **Complete** for the recommendation you want to manually mark as completed
+
+> [!NOTE]
+> Recommendations marked as completed manually can be reactivated until Azure Advisor performs system verification. After system verification, completed recommendations can’t >be changed or reactivated.
+### Reactivate a recommendation
+
+You can reactivate a recommendation that was postponed, dismissed or completed. This action can be done in the Azure portal or programmatically. In the Azure portal:
+
+1. Open [Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
+
+1. Change the filter on the __Overview__ pane to __Postponed__. Advisor then displays postponed or dismissed recommendations.
+
+1. Select a category to see __Postponed__ and __Dismissed__ recommendations.
+
+1. Select a recommendation from the list of recommendations. This action opens recommendations with the __Postponed & Dismissed__ tab already selected to show the resources for which this recommendation was postponed or dismissed.
+
+1. Select __Activate__ at the end of the row. The recommendation is now active for that resource and removed from the table. The recommendation is visible on the __Active__ tab.
+
+### Postpone, Dismiss, or Mark as complete multiple resources for a single recommendation
+
+1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal
+
+1. To view your recommendations, select a recommendation category
+
+1. Select a recommendation from the list of recommendations
+
+1. The Recommendation Details page opens
+
+1. On the Recommendation Details page, in the resources table, select the checkbox or checkboxes next to each resource for all resources you want to postpone, dismiss, or complete
+
+1. In the resources table header, select __Postpone__, __Dismiss__, or __Completed__
+
+> [!TIP]
+>If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone, dismiss, or mark as complete.
+
+### Choosing a recommendation type from the Viewing drop down
+
+The Viewing drop-down displays recommendations grouped by type.
+
+Selecting one of the four Recommendation status options displays that recommendation. The recommendation status options are:
+
+- __Active Recommendations__: Recommendations marked as need action from your organization
+
+- __Completed Recommendations__: Recommendations marked as completed by your organization or are system verified
+
+- __Postponed Recommendations__: Recommendations that have been postponed by your organization
+
+- __Dismissed Recommendations__: Recommendations that have been dismissed by your organization
+
+### Active recommendation page
+
+This page displays a table with the following columns:
+
+- __Recommendation__: System identified recommendation in that’s currently Active
+
+- __Impact__: Impact level, High, Medium, Low
+
+- __Active resources__: Number of resource instances where the recommendation is active
+
+- __Completion progress__: Percent of resources impacted by this recommendation that are completed. Dismissed resources are excluded from the calculations
+
+- __Recommended action__: Link to available action
+
+- Other category specific columns
+
+### Completed recommendation page
+
+This page displays a table with the following columns:
+
+·         __Recommendation__: System identified recommendation in that’s new or in-progress
+
+·         __Impact__: Impact level, High, Medium, Low
+
+·         __Completed resources__: Number of resource instances where the recommendations are in completed state.
+
+·         __Completion progress__: Percent of resources impacted by this recommendation that are completed
+
+·         __Recommended action__: Link to available action
+
+·         Other category specific columns
 
 ## Heading 2 Procedure Title
 
