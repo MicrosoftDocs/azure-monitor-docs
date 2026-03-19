@@ -24,7 +24,7 @@ The following table shows the current state of autoinstrumentation availability.
 Links are provided to more information for each supported scenario.
 
 > [!NOTE]
-> If your hosting environment or resource provider isn't listed in the following table, see [Collect OpenTelemetry (OTel) for Application Insights experiences](app-insights-overview.md).
+> If your hosting environment or resource provider isn't listed in the following table, see [getting started](app-insights-overview.md#getting-started).
 
 | Environment/Resource provider                       | .NET Framework                                                                                                               | .NET Core / .NET                                                                                                             | Java                                                                                                                         | Node.js                                                                                                                                                               | Python                                                                                                                   |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -43,7 +43,9 @@ Links are provided to more information for each supported scenario.
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
-* [Application Insights overview](app-insights-overview.md)
-* [Application Insights overview dashboard](overview-dashboard.md)
-* [Application map](app-map.md)
+- [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
+- [Monitor Azure App Service](/azure/app-service/monitor-app-service)
+- [Troubleshoot Application Insights autoinstrumentation](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot)
+- [Troubleshoot Application Insights integration with Azure App Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues)
+- [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)
+- [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
