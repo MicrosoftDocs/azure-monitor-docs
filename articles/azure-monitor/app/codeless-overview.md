@@ -41,6 +41,9 @@ Links are provided to more information for each supported scenario.
 - ²: This feature is in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 - ³: Autoinstrumentation only supports single-container applications. For multi-container applications, manual instrumentation is required using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
+> [!TIP]
+> Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+
 ## Next steps
 
 - [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
