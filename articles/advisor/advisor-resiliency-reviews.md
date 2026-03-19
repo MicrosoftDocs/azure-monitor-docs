@@ -146,17 +146,15 @@ For details on recommendation priority, see [Recommendation priority](#recommend
 
 ### Manage recommendation status
 
-Recommendation status is a valuable indicator for determining what actions need to be taken.
+Recommendation status is a valuable indicator for determining needed actions. Review each available recommendation status: 
 
-*   After you begin to implement a recommendation, mark it as **In progress**.
+* Active: New recommendations identified by the Azure Advisor system
 
-*   After the recommendation is implemented, the recommended action is taken, update the status to **Completed**.
+* Postponed: Temporarily hide a recommendation for a set period. After that, it automatically reappears
 
-    On **Review**, after all recommendations are marked a **Completed** in a review the review is also marked as **Completed**.
+* Dismissed: Permanently remove an item from view until you choose to reactivate it
 
-*   You can also postpone the recommendation for action later.
-
-*   You can dismiss a recommendation if you don't plan to implement it. If you dismiss the recommendation, you must give a reason, just as you must give a reason if you reject a recommendation in a review.
+* Completed: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations dismiss options." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" source="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" type="content":::
 
