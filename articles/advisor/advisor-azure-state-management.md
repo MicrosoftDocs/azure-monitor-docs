@@ -15,7 +15,7 @@ ms.reviewer: tiffanywang, adaga
 
 # Azure Advisor recommendation state management
 
-With Azure Advisor recommendation state management capability, you can track and manage new and existing recommendations through their state lifecycle.
+With Azure Advisor recommendation state management, you can track and manage new and existing recommendation states.
 
 > [!NOTE]
 >Azure Advisor recommendation state management is currently in Preview. Preview features are provided for evaluation purposes and may change before general availability.
@@ -26,11 +26,11 @@ Each Azure Advisor recommendation can have one of the 4 supported states:
 
 - **Active**: New recommendations identified by the Azure Advisor system
 
-- **Postponed**: Temporarily hide a recommendation for a set period. After that, it automatically reappears.
+- **Postponed**: Temporarily hide a recommendation for a set period. After that, it automatically reappears
 
-- **Dismissed**: Permanently remove an item from view until you choose to reactivate it.
+- **Dismissed**: Permanently remove an item from view until you choose to reactivate it
 
-- **Completed**: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
+- **Completed**: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies
 
 These states show the status of each recommendation and are used to manage your recommendations as they transition through their lifecycle.
 
