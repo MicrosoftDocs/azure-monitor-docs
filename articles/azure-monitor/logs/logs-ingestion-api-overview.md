@@ -223,6 +223,7 @@ Data sent to the ingestion API can be sent to the following tables:
 * [AWSVPCFlow](/azure/azure-monitor/reference/tables/awsvpcflow)<br>
 * [AWSWAF](/azure/azure-monitor/reference/tables/awswaf)<br>
 * [AzureAssessmentRecommendation](/azure/azure-monitor/reference/tables/azureassessmentrecommendation)<br>
+* [AzureMetricsV2](/azure/azure-monitor/reference/tables/azuremetricsv2)<br>
 * [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)<br>
 * [CrowdStrikeAlerts](/azure/azure-monitor/reference/tables/crowdstrikealerts)<br>
 * CrowdStrikeAPIActivityAudit<br>
@@ -271,7 +272,6 @@ Data sent to the ingestion API can be sent to the following tables:
 * [GoogleWorkspaceReports](/azure/azure-monitor/reference/tables/googleworkspacereports)<br>
 * [IlumioInsights](/azure/azure-monitor/reference/tables/ilumioinsights)<br>
 * [OTelLogs](/azure/azure-monitor/reference/tables/otellogs)<br>
-* PlatformTelemetryMetricsLaTable<br>
 * [QualysKnowledgeBase](/azure/azure-monitor/reference/tables/qualysknowledgebase)<br>
 * [Rapid7InsightVMCloudAssets](/azure/azure-monitor/reference/tables/rapid7insightvmcloudassets)<br>
 * [Rapid7InsightVMCloudVulnerabilities](/azure/azure-monitor/reference/tables/rapid7insightvmcloudvulnerabilities)<br>
