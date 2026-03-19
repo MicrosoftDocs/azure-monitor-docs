@@ -8938,6 +8938,28 @@
    "source_path": "articles/azure-monitor/app/opentelemetry-help-support-feedback.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-jmx-metrics-configuration.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#java-management-extensions-jmx-metrics",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-sampling-overrides.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#sampling-overrides",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-telemetry-processors.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processors-preview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-telemetry-processors-examples.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processor-examples",
+   "redirect_document_id": false
   }
  ]
 }
+
+
