@@ -26,7 +26,7 @@ If you need advanced features such as [transformations](../data-collection/data-
 > [!IMPORTANT]
 > If your Log Analytics workspace is associated with a network security perimeter, see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 
-## Create data collection rule
+## Create data collection rule (DCR)
 
 [!INCLUDE [data-collection-rule-edit-warning](../data-collection/includes/data-collection-rule-edit-warning.md)]
 

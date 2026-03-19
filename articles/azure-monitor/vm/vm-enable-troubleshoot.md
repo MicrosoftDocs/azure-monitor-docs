@@ -71,7 +71,7 @@ Heartbeat
 ### Verify that the DCR hasn't been modified
 When you enable VM insights, a data collection rule (DCR) is created to collect performance data from the virtual machine. If the DCR was modified after it was created, it may not be collecting the data that you expect. Create a new DCR for the virtual machine and delete the old one.
 
-If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../data-collection/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to edit your DCR to match the new one.
+If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../data-collection/data-collection-rule-create-edit.md#create-data-collection-rules-dcrs-using-json) to edit your DCR to match the new one.
 
 
 

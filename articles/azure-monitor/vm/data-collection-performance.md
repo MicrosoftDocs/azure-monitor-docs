@@ -30,7 +30,7 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 > [!WARNING]
 > Be careful when manually defining counters for DCRs that are associated with both Windows and Linux machines, since some Windows and Linux style counter names can resolve to the same metric and cause duplicate collection. For example, specifying both `\LogicalDisk(*)\Disk Transfers/sec` (Windows) and `Logical Disk(*)\Disk Transfers/sec` (Linux) in the same DCR will cause the Disk Transfers metric to be collected twice per sampling period.
 > 
-> This behavior can be avoided by not collecting performance counters in DCRs that don't specify a [platform type](./data-collection.md#create-a-data-collection-rule). Ensure that Windows counters are only included in DCRs associated with Windows machines, and Linux counters are only included in DCRs associated with Linux machines.
+> This behavior can be avoided by not collecting performance counters in DCRs that don't specify a [platform type](./data-collection.md#create-data-collection-rule-dcr). Ensure that Windows counters are only included in DCRs associated with Windows machines, and Linux counters are only included in DCRs associated with Linux machines.
 
 > [!NOTE] 
 > Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
