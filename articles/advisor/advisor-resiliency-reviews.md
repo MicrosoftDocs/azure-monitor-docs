@@ -71,6 +71,14 @@ If a new review is available to you, you see a notification banner on top of Adv
 
 4.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
 
+### Review status
+
+| Filter | Detail |
+|:--- |:--- |
+| New | All recommendations are active |
+| In progress | At least one recommendation are moved to 'non-active' |
+| Completed | All recommendations are either complete or marked as 'dismissed' |
+
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews pane." lightbox="./media/advisor-reviews-highlight-reviews-preview.png" source="./media/advisor-reviews-highlight-reviews.png" type="content":::
 
 At the top of the reviews pane, use **Feedback** to tell the platform about your experience. To refresh the pane, use the **Refresh** button.
