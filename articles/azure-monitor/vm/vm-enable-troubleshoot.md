@@ -1,6 +1,6 @@
 ---
-title: Troubleshoot VM Insights
-description: Get troubleshooting information about agent installation and the use of the VM Insights feature in Azure Monitor.
+title: Troubleshoot VM monitoring in Azure Monitor
+description: Get troubleshooting information for agent installation and common issues when you enable VM monitoring in Azure Monitor.
 ms.topic: troubleshooting-general
 ms.date: 03/12/2026
 ms.custom: references_regions
@@ -16,7 +16,7 @@ This article provides troubleshooting information to help you with problems that
 The virtual machines must be running for the onboarding process to complete. If the virtual machine is stopped before the installation is complete, the process may fail and must be restarted.
 
 ### Verify that the operating system is supported
-If the operating system isn't in the [list of supported operating systems](vminsights-enable-overview.md#supported-operating-systems), installation of the extension fails and you get a message about waiting for data to arrive.
+If the operating system isn't in the [list of supported operating systems](../agents/azure-monitor-agent-supported-operating-systems.md), installation of the extension fails and you get a message about waiting for data to arrive.
 
 ### Verify that the extension is installed
 In the Azure portal, on the **Extensions** pane for your virtual machine, verify that the following extensions appear:
@@ -26,7 +26,7 @@ In the Azure portal, on the **Extensions** pane for your virtual machine, verify
 | Windows | `AzureMonitorWindowsAgent` |
 | Linux | `AzureMonitorLinuxAgent` |
 
-If you don't see the extension in the list of installed extensions, then attempt the onboarding process again. If the extension is listed but its status doesn't appear as **Provisioning succeeded**, remove the extension and reinstall it.
+If you don't see the extension in the list of installed extensions, try enabling monitoring again. If the extension is listed but its status doesn't appear as **Provisioning succeeded**, remove the extension and reinstall it.
 
 :::image type="content" source="media/vminsights-troubleshoot/extensions.png" lightbox="media/vminsights-troubleshoot/extensions.png" alt-text="Screenshot of VM insights required extensions for a virtual machine.":::
 
@@ -52,6 +52,8 @@ If this error persists, contact support to open a support ticket.
 
 If the agents appear to be installed correctly but no data appears in the **Performance** view, see the following sections for possible causes.
 
+The following checks apply to the logs-based experience that stores data in a Log Analytics workspace.
+
 ### Check the daily cap for the Log Analytics workspace
 When you set a daily cap for a Log Analytics workspace, it stops collecting data when the cap is reached and then resumes again the next day. See [Set daily cap on Log Analytics workspace](../logs/daily-cap.md) for details on how to set the daily cap and to determine whether it has been reached.
 
@@ -75,4 +77,4 @@ If you have multiple virtual machines using the same DCR, you can edit the DCR t
 
 ## Related content
 
-* For more information on installing VM Insights, see [Enable VM Insights overview](vminsights-enable-overview.md)
+* For more information on enabling VM monitoring, see [Enable VM monitoring in Azure Monitor](vm-enable-monitoring.md)

@@ -1,22 +1,24 @@
 ---
-title: Collect log data from virtual machine client with Azure Monitor
-description: Learn how to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled on-premises servers by using the Azure Monitor Agent.
+title: Collect log data from virtual machines with Azure Monitor
+description: Learn how to collect log data from virtual machines, virtual machine scale sets, and Azure Arc-enabled servers by using Azure Monitor agent and data collection rules.
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/10/2026
 ---
 
-# Collect log data from virtual machine client with Azure Monitor
+# Collect guest log data from virtual machines with Azure Monitor
 
-Azure Monitor automatically collects host metrics and activity logs from your Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. When you enable enhanced monitoring, the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed, and [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) are applied that collect metrics from the guest operating system. For complete monitoring of your client applications and workloads though, you typically need to collect log data and potentially additional metrics that aren't collected by default.
+Azure Monitor automatically collects host metrics and activity logs from Azure virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. To fully monitor the guest operating system and workloads though, you typically also need to collect log data which isn't collected by default. This describes how to use the Azure portal to create data collection rules (DCRs) for common data sources on virtual machines.
 
-This article describes how to use the Azure portal to create DCRs to collect different types of common data from VM clients. If you have basic data collection requirements, you should be able to meet all your requirements using the guidance in this article and the related articles on each [data source](#add-data-sources). You can use the Azure portal to create and edit the DCR, and the Azure Monitor agent is automatically installed on each VM that doesn't already have it.
+## Scope of article
 
-If you want to take advantage of more advanced features like [transformations](../data-collection/data-collection-transformations.md) or create and assign DCRs using other methods such as Azure CLI or Azure Policy, then see [Create data collection rules (DCRs) using JSON](../data-collection/data-collection-rule-create-edit.md). You can also view sample DCRs created by this process at [Data collection rule (DCR) samples for VM  in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
+ If you have basic data collection requirements, the guidance in this article and the related articles for each [data source](#add-data-sources) should be sufficient. The Azure portal can create and edit the DCR without requiring you to understand its structure and to associate it with the VM.
+
+If you need advanced features such as [transformations](../data-collection/data-collection-transformations.md) or want to create and assign DCRs by using Azure CLI, Azure Policy, or other methods, see [Create data collection rules (DCRs) using JSON](../data-collection/data-collection-rule-create-edit.md). You can also review sample DCRs created by this process at [Data collection rule (DCR) samples for VMs in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
 
 ## Prerequisites
 
-* For logs, a [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure.
-* For OpenTelemetry metrics, an [Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md) where you have at least contributor rights to collect the data you configure. 
+* [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) where you have at least [contributor rights](../logs/manage-access.md#azure-rbac) to collect the data you configure.
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * To send data across tenants, you must first enable [Azure Lighthouse](/azure/lighthouse/overview).
 * See the detailed article for each [data source](#add-data-sources) for any additional prerequisites.
@@ -24,9 +26,7 @@ If you want to take advantage of more advanced features like [transformations](.
 > [!IMPORTANT]
 > If your Log Analytics workspace is associated with a network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
 
-## Create a data collection rule
-
-This section describes how to create a DCR in the Azure portal to collect data from virtual machines, virtual machine scale sets, and Azure Arc-enabled servers. For specific guidance on each data source type, see [Add data sources](#add-data-sources).
+## Create data collection rule (DCR)
 
 [!INCLUDE [data-collection-rule-edit-warning](../data-collection/includes/data-collection-rule-edit-warning.md)]
 
@@ -67,14 +67,14 @@ On the **Resources** pane, select **Add resources** to add VMs that will use the
 
 ### Add data sources
 
-On the **Collect and deliver** pane, click **Add data source** to add and configure data sources and destinations for the DCR. You can choose to add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
+On the **Collect and deliver** pane, select **Add data source** to add and configure data sources and destinations for the DCR. You can add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
 
 :::image type="content" source="media/data-collection/add-data-source.png" lightbox="media/data-collection/add-data-source.png" alt-text="Screenshot that shows the Add data sources tab for a new data collection rule.":::
 
 | Setting | Description |
 |:---|:---|
 | **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See [Add data sources](#add-data-sources) for details about configuring each type of data source. |
-| **Destination** | Add one or more destinations for each data source. Some data sources will only allow a single data source. If you need multiple, then you can create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
+| **Destination** | Add one or more destinations for each data source. Some data sources allow only a single destination. If you need multiple destinations, create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this sends duplicate data to each destination and increases cost. See the details for each data type for the destinations it supports. |
 
 ### [Preview experience](#tab/preview)
 
@@ -112,14 +112,14 @@ On the **Resources** pane, select **Add resources** to add resources that will u
 
 ### Add dataflows
 
-On the **Collect and deliver** pane, click **Add new dataflow** to add and configure data sources and destinations for the DCR. You can choose to add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
+On the **Collect and deliver** pane, select **Add new dataflow** to add and configure data sources and destinations for the DCR. You can add multiple data sources to the same DCR or create multiple DCRs with different data sources. A DCR can have up to 10 data sources, and a VM can use any number of DCRs.
 
 :::image type="content" source="media/data-collection/preview-add-data-source.png" lightbox="media/data-collection/preview-add-data-source.png" alt-text="Screenshot that shows the preview Add data sources tab for a new data collection rule.":::
 
 | Setting | Description |
 |:---|:---|
 | **Data source** | Select a **Data source type** and provide values for the fields based on the data source type you select. See [Add data sources](#add-data-sources) for details about configuring each type of data source. |
-| **Destination** | Add one or more destinations for each data source. Some data sources will only allow a single data source. If you need multiple, then you can create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this will send duplicate data to each which will result in additional cost. See the details for each data type for the different destinations they support. |
+| **Destination** | Add one or more destinations for each data source. Some data sources allow only a single destination. If you need multiple destinations, create another DCR.<br><br>While you can select multiple destinations of the same type for some data sources, be aware that this sends duplicate data to each destination and increases cost. See the details for each data type for the destinations it supports. |
 
 ---
 
@@ -131,7 +131,7 @@ The following table lists the types of data you can collect from a VM client wit
 |:---|:---|:---|:---|
 | [Windows events](data-collection-windows-events.md) | Information sent to the Windows event logging system, including sysmon events | Windows | Log Analytics workspace |
 | [Performance counters](data-collection-performance.md) | Numerical values that measure the performance of different aspects of the operating system and workloads | Windows<br>Linux | Azure Monitor metrics (preview) <br>Log Analytics workspace |
-| [OpenTelemetry metrics](vminsights-opentelemetry.md) | OpenTelemetry performance counters from the guest operating system | Windows<br>Linux | Azure Monitor workspace |
+| [OpenTelemetry metrics](metrics-opentelemetry-guest-modify.md) | OpenTelemetry performance counters from the guest operating system | Windows<br>Linux | Azure Monitor workspace |
 | [Syslog](data-collection-syslog.md) | Information sent to the Linux event logging system | Linux | Log Analytics workspace |
 | [Text log](data-collection-log-text.md) | Information sent to a text log file on a local disk | Windows<br>Linux | Log Analytics workspace |
 | [JSON log](data-collection-log-json.md) | Information sent to a JSON log file on a local disk | Windows<br>Linux | Log Analytics workspace |
@@ -159,7 +159,7 @@ Once you verify that the agent is communicating properly, make sure that the dat
 |---|---|---|
 | [Windows events](data-collection-windows-events.md) | Virtual Machines | Event |
 | [Performance counters](data-collection-performance.md) | Virtual Machines | Perf |
-| [OpenTelemetry metrics](vminsights-opentelemetry.md) | Virtual Machines | Azure Monitor workspace |
+| [OpenTelemetry metrics](metrics-opentelemetry-guest-modify.md) | Virtual Machines | Azure Monitor workspace |
 | [Syslog](data-collection-syslog.md) | Virtual Machines | Syslog |
 | [IIS logs](data-collection-iis.md) | Virtual Machines | W3CIISLog |
 | [Text log](data-collection-log-text.md) | Custom Logs | \<Custom table name\> |

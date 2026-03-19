@@ -9,12 +9,17 @@ ms.reviewer: xpathak
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-Use the metrics-based experience for Azure virtual machines in all cases. Default metrics collection is free, and setup is covered in [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) and [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
-
-This article focuses on the remaining decision: when you can retire the logs-based experience. For a detailed comparison of the two experiences, see [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md).
+The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your default monitoring option for virtual machines in Azure Monitor since it's provided at no cost. If you already have the older logs-based experience enabled, the next decision is whether you need keep it enabled and when you can retire it. Since the logs-based experience includes cost for data ingestion and retention, you want to retire it as soon as possible to optimize costs. This article helps you make that decision and walks through the migration process when can retire the logs-based experience.
 
 > [!NOTE]
 > The metrics-based experience is currently in public preview.
+
+## Considerations
+
+- **Data retention**: Removing the logs-based DCR association stops new data collection but doesn't delete historical data in your Log Analytics workspace. Historical data remains available according to your workspace retention settings.
+- **Cost optimization**: The default metrics-based experience is free. Retiring the logs-based experience can reduce Log Analytics ingestion costs.
+- **Azure Monitor agent**: You don't need to reinstall or update the Azure Monitor agent. The same agent handles both logs-based and OpenTelemetry metrics collection using different DCRs.
+- **Run both experiences temporarily if needed**: Keep both experiences enabled only long enough to validate replacement queries and dashboards.
 
 ## When to keep the logs-based experience
 
@@ -29,14 +34,12 @@ If none of these apply, you can retire the logs-based experience and keep the me
 
 ## Before you retire the logs-based experience
 
-Before you remove the logs-based data collection rule (DCR) association, confirm the following:
+Before you retire the logs-based experience, confirm the following:
 
-- Metrics-based monitoring is already enabled for the VM.
+- Metrics-based monitoring is already enabled for each VM.
 - The metrics-based experience shows the performance data that you need.
+- You don't need the built-in multi-VM experience.
 - Any KQL queries, alerts, dashboards, or workbooks that use `InsightsMetrics` have been updated, retired, or replaced.
-- You don't need the built-in multi-VM experience for this workload.
-
-Historical data in your Log Analytics workspace isn't deleted when you stop logs-based collection. Only new collection stops.
 
 ## Migration process
 
@@ -60,13 +63,10 @@ After setup, return to this article to decide whether you can retire logs-based 
 
 Before you remove logs-based collection, verify that the metrics-based experience provides the data you need.
 
-1. In the Azure portal, go to the VM.
-1. Select **Monitor**.
+1. Go to the VM in the Azure portal and select **Monitor**.
 1. Select the metrics-based experience in the experience selector.
 1. Confirm that the performance charts show data.
 1. If needed, go to the Azure Monitor workspace and verify that metrics such as `system.cpu.time` and `system.memory.usage` are available.
-
-If you still depend on logs-based-only capabilities, keep the logs-based experience enabled.
 
 ## Update dependencies
 
@@ -85,14 +85,6 @@ InsightsMetrics
 | summarize avg(Val) by bin(TimeGenerated, 5m)
 ```
 
-**OpenTelemetry PromQL query example:**
-
-```promql
-avg(system_cpu_utilization{state="user"})
-```
-
-For more information on querying OpenTelemetry metrics, see [Query Prometheus metrics using Azure Monitor](../essentials/prometheus-api-promql.md).
-
 ### Update alerts, dashboards, and workbooks
 
 - Identify alert rules, dashboards, and workbooks that query the `InsightsMetrics` table.
@@ -101,9 +93,7 @@ For more information on querying OpenTelemetry metrics, see [Query Prometheus me
 
 ## Remove the logs-based DCR association
 
-After you update dependencies, remove the logs-based DCR association to stop new logs-based metric collection and reduce Log Analytics ingestion costs. This step doesn't delete historical data.
-
-The logs-based DCR typically has a name such as `MSVMI-<workspace-name>`.
+After you update dependencies, remove the logs-based DCR association to stop new logs-based metric collection and reduce Log Analytics ingestion costs. The logs-based DCR typically has a name such as `MSVMI-<workspace-name>`.
 
 ### [Azure portal](#tab/portal)
 
@@ -161,12 +151,7 @@ Remove-AzDataCollectionRuleAssociation `
 
 ---
 
-## Considerations
 
-- **Data retention**: Removing the logs-based DCR association stops new data collection but doesn't delete historical data in your Log Analytics workspace. Historical data remains available according to your workspace retention settings.
-- **Cost optimization**: The default metrics-based experience is free. Retiring the logs-based experience can reduce Log Analytics ingestion costs.
-- **Azure Monitor agent**: You don't need to reinstall or update the Azure Monitor agent. The same agent handles both logs-based and OpenTelemetry metrics collection using different DCRs.
-- **Run both experiences temporarily if needed**: Keep both experiences enabled only long enough to validate replacement queries and dashboards.
 
 ## Rollback
 
@@ -177,6 +162,12 @@ If you need to resume the logs-based experience:
 1. Remove the metrics-based DCR association if you no longer need it.
 
 For more information about VM monitoring configuration, see [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md).
+
+## Remove the VM insights solution
+
+After you remove the logs-based experience from all VMs that use the workspace, you can remove the VM insights solution from that Log Analytics workspace. Do this only when no VMs still depend on the logs-based experience.
+
+For the steps, see [Remove VM insights solution](./vm-disable-monitoring.md#remove-vm-insights-solution).
 
 ## Next steps
 

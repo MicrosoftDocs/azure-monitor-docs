@@ -257,20 +257,24 @@ items:
       href: vm/best-practices-vm.md
     - name: Getting started
       items:
-      - name: Enable monitoring
+      - name: Virtual machines
         items:
-        - name: Virtual machine
+        - name: Enable monitoring
+          displayName: virtual machine, VM
           href: vm/tutorial-vm-enable-monitoring.md
-        - name: Virtual machine scale set
+        - name: Enable recommended alerts
+          displayName: virtual machine, VM
+          href: vm/tutorial-vm-alerts.md
+      - name: Virtual machine scale sets
+        items:
+        - name: Enable monitoring
+          displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-enable-monitoring.md
+        - name: Enable recommended alerts
+          displayName: virtual machine scale set, VMSS
+          href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
         href: vm/tutorial-vm-collect-logs.md
-      - name: Enable recommended alerts
-        items:
-        - name: Virtual machine
-          href: vm/tutorial-vm-alerts.md
-        - name: Virtual machine scale set
-          href: vm/tutorial-scale-set-alerts.md
     - name: Enable monitoring
       items:
       - name: Enable from command line
@@ -343,8 +347,8 @@ items:
             href: vm/data-collection-firewall-logs.md
         - name: Configure a syslog forwarder
           href: /azure/sentinel/forward-syslog-monitor-agent
-        - name: Send data to Fabric and Azure Data Explorer
-          href: vm/send-fabric-destination.md
+      - name: Send data to Fabric and Azure Data Explorer
+        href: vm/send-fabric-destination.md
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md

@@ -7,19 +7,16 @@ ms.reviewer: jeffwo, tylerkight
 ---
 
 # Collect performance counters from virtual machines with Azure Monitor
-When you enable [logs-based monitoring experience](./tutorial-vm-enable-monitoring.md) for your Azure virtual machines, a default set of metrics are collected. This set of metrics can't be modified, but you can create a data collection rule (DCR) to collect additional performance counters from the virtual machine and send them to a Log Analytics workspace.
+When you enable [logs-based monitoring experience](./tutorial-vm-enable-monitoring.md) for your Azure virtual machines, a default set of performance counters are collected. This set can't be modified, but you can create a data collection rule (DCR) to collect additional performance counters from the virtual machine and send them to a Log Analytics workspace.
 
 Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Performance Counters data source type.
 
 > [!NOTE]
-> For OpenTelemetry metrics sent to Azure Monitor workspace, see [Collect and customize OpenTelemetry metrics for virtual machines](./vminsights-opentelemetry.md). [Read more about the benefits of using OpenTelemetry metrics here](../vm/metrics-opentelemetry-guest.md).
-
-> [!NOTE]
-> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
+> For OpenTelemetry metrics collected with the metrics-based experience, see [Collect and customize OpenTelemetry metrics for virtual machines](./metrics-opentelemetry-guest-modify.md). The metrics-based experience sends guest metrics to an Azure Monitor workspace. This article describes how to send performance counters to a Log Analytics workspace as part of the logs-based experience.
 
 ## Configure data source
 
-Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
+Create the DCR using the process in [Customize OpenTelemetry metrics collection for virtual machines in Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Performance Counters** from the **Data source type** dropdown. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
     
 :::image type="content" source="media/data-collection-performance/data-source-performance.png" lightbox="media/data-collection-performance/data-source-performance.png" alt-text="Screenshot that shows the Azure portal form to select basic performance counters in a data collection rule." :::
 
