@@ -9,9 +9,9 @@ ms.reviewer: Xema Pathak
 ---
 
 # Tutorial: Collect guest logs from an Azure virtual machine
-After you enable monitoring for an Azure virtual machine, you can create additional data collection rules (DCRs) to collect guest logs. This tutorial shows how to collect event logs from Windows machines and syslog from Linux machines. These logs provide rich insights into the behavior of the operating system and applications running on the virtual machine, which can be used for troubleshooting, performance monitoring, and security analysis.
+After you enable monitoring for an Azure virtual machine to collect guest metrics, you can create additional data collection rules (DCRs) to collect guest logs. These logs provide rich insights into the behavior of the operating system and applications running on the virtual machine, which can be used for troubleshooting, performance monitoring, and security analysis.
 
-These are two of the data sources available for virtual machines. Other data sources are documented in [Collect data from a VM client with data collection rules in Azure Monitor](./data-collection.md).
+This tutorial shows how to collect event logs from Windows machines and syslog from Linux machines. These are two of the data sources available for virtual machines. Other data sources are documented in [Collect data from a VM client with data collection rules in Azure Monitor](./data-collection.md).
 
 In this tutorial, you learn how to:
 
@@ -20,9 +20,10 @@ In this tutorial, you learn how to:
 > * View guest logs in Log Analytics.
 
 ## Prerequisites
-To complete this tutorial, you need an Azure virtual machine with monitoring already enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+To complete this tutorial, you need either:
 
-If you're monitoring a virtual machine scale set instead, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
+- Virtual machine with monitoring enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md)
+- Virtual machine scale set with monitoring enabled by following [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 
 ## Create a data collection rule
@@ -30,29 +31,31 @@ If you're monitoring a virtual machine scale set instead, see [Tutorial: Enable 
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-create.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-create.png" alt-text="Screenshot that shows creating a data collection rule.":::
 
-On the **Basics** tab, enter a **Rule Name**, which is the name of the rule displayed in the Azure portal. Select a **Subscription**, **Resource Group**, and **Region** where the DCR and its associations are stored. These settings don't need to be the same as the resources being monitored. The **Platform Type** defines the options that are available as you define the rest of the DCR. Select **Windows** or **Linux** if the rule is associated only with those resources or select **Custom** if it's associated with both types.
+On the **Basics** tab, enter a **Rule Name**, which is the name of the rule displayed in the Azure portal. Select a **Subscription**, **Resource Group**, and **Region** where the DCR and its associations are stored. These settings don't need to be the same as the resources being monitored. 
+
+The **Platform Type** defines the options that are available as you define the rest of the DCR. Select **Windows** or **Linux** if the rule is associated only with those resources or select **Custom** if it's associated with both types.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-basics.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-basics.png" alt-text="Screenshot that shows data collection rule basics.":::
 
 ## Select resources
-On the **Resources** tab, select **Add resources** and then select your virtual machine and any other machines that should share the same log collection. The DCR applies to all virtual machines in the selected scope.
+On the **Resources** tab, select **Add resources** and then select your virtual machine. Add any other machines that should share the same log collection. The DCR applies to all virtual machines in the selected scope.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-resources.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-resources.png" alt-text="Screenshot that shows data collection rule resources.":::
 
 ## Select data sources
-Select **Add data source**. This tutorial uses either **Windows event logs** or **Linux syslog**, but these are only two of the VM data sources that a DCR can collect. For the full list, see [Collect data from a VM client with data collection rules in Azure Monitor](./data-collection.md).
+Select **Add data source** and then either **Windows event logs** or **Linux Syslog**.
 
-### [Windows event logs](#tab/windows)
+### [Windows Event Logs](#tab/windows)
 
-For **Data source type**, select **Windows event logs**. Then select the event logs and levels that you want to collect.
+Select the event logs and levels that you want to collect. A common selection is **Critical**, **Error**, **Warning** events for **Application** and **System** logs.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-windows.png" alt-text="Screenshot that shows the data collection rule Windows log data source.":::
 
 For more detail about configuring this data source, see [Collect Windows events with Azure Monitor Agent](./data-collection-windows-events.md).
 
-### [Syslog](#tab/linux)
+### [Linux Syslog](#tab/linux)
 
-For **Data source type**, select **Linux syslog**. Then select the facilities and log levels that you want to collect.
+Select the facilities and log levels that you want to collect. To collect warning levels and above for all facilities, check the box next the **Facility** to select all facilities and then select **LOG_WARNING** for **Set minimum log level for selected facilities**.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-data-source-logs-linux.png" alt-text="Screenshot that shows the data collection rule Linux log data source.":::
 
@@ -60,9 +63,13 @@ For more detail about configuring this data source, see [Collect Syslog events w
 
 ---
 
+## Select destinations
+
 Select the **Destination** tab. **Azure Monitor Logs** should already be selected for **Destination type**. Select your Log Analytics workspace for **Account or namespace**. If you don't already have a workspace, you can select the default workspace for your subscription, which is created automatically. Select **Add data source** to save the data source.
 
 :::image type="content" source="media/tutorial-monitor-vm/data-collection-rule-destination-logs.png" lightbox="media/tutorial-monitor-vm/data-collection-rule-destination-logs.png" alt-text="Screenshot that shows the data collection rule Logs destination.":::
+
+## Save DCR
 
 Select **Review + create** to create the DCR.
 
@@ -82,12 +89,15 @@ In the empty query window, run one of the following queries depending on the dat
 
 ### [Windows event logs](#tab/windows)
 
-Enter **Event** and then select **Run**. Windows events collected within the selected **Time range** are displayed.
+To verify that data is being collected, check for records in the **Event** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Event**. 
+
+:::image type="content" source="media/tutorial-vm-collect-logs/verify-event.png" lightbox="media/tutorial-vm-collect-logs/verify-event.png" alt-text="Screenshot that shows records returned from Event table." :::
 
 ### [Syslog](#tab/linux)
 
-Enter **Syslog** and then select **Run**. Syslog records collected within the selected **Time range** are displayed.
+To verify that data is being collected, check for records in the **Syslog** table. From the virtual machine or from the Log Analytics workspace in the Azure portal, select **Logs** and then click the **Tables** button. Under the **Virtual machines** category, click **Run** next to **Syslog**.
 
+:::image type="content" source="media/tutorial-vm-collect-logs/verify-syslog.png" lightbox="media/tutorial-vm-collect-logs/verify-syslog.png" alt-text="Screenshot that shows records returned from Syslog table." :::
 ---
 
 > [!NOTE]

@@ -14,7 +14,7 @@ Azure virtual machine scale sets (VMSS) automatically send host-level metrics to
 This tutorial walks you through enabling monitoring to collect guest performance data from your virtual machine scale sets using the Azure portal and the logs-based experience.
 
 > [!NOTE]
-> Virtual machine scale sets currently support only the logs-based experience for monitoring described in [Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md). The OpenTelemetry-based metrics experience available for individual virtual machines is not yet supported for scale sets.
+> Virtual machine scale sets currently support only the logs-based experience for monitoring described in [Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md). The metrics-based experience available for individual virtual machines is not yet supported for scale sets.
 
 In this tutorial, you learn how to:
 
@@ -33,23 +33,17 @@ To complete this tutorial, you need:
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to each instance in the scale set if such an identity doesn't already exist.
 
-## Current limitations
-
-Virtual machine scale sets currently support only the logs-based experience for monitoring. The OpenTelemetry-based metrics experience available for individual virtual machines is not yet supported for scale sets.
 
 ## Enable monitoring
-
-1. In the Azure portal, go to your virtual machine scale set.
-2. Select **Insights** from the left menu.
-3. If monitoring hasn't been enabled, you see a message offering to enable it. Select **Enable**.
+Select **Insights** from your virtual machine scale set's menu in the Azure portal. If monitoring hasn't been enabled, you see a message offering to enable it. Select **Enable**.
 
     :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png" alt-text="Screenshot showing the enable monitoring option for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png":::
 
-4. On the **Monitoring configuration** page, select a Log Analytics workspace. If you don't have a workspace, a default workspace is selected and created in the same region as the scale set.
+On the **Monitoring configuration** page, select a Log Analytics workspace. If you don't have a workspace, a default workspace is selected and created in the same region as the scale set.
 
     :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png" alt-text="Screenshot showing the monitoring configuration page for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png":::
 
-5. Select **Configure** to begin the deployment.
+Select **Configure** to begin the deployment.
 
 The deployment process installs the Azure Monitor agent on all instances in the scale set and creates a data collection rule (DCR) that specifies which performance counters to collect and where to send the data. The process may take several minutes to complete.
 
@@ -57,11 +51,9 @@ The deployment process installs the Azure Monitor agent on all instances in the 
 
 After the deployment completes, it takes a few minutes for enough data to be collected to populate the performance charts.
 
-1. In the Azure portal, go to your virtual machine scale set.
-2. Select **Insights** from the left menu.
-3. Select the **Performance** tab to view performance charts.
+From your virtual machine scale set in the Azure portal, select **Insights** and then select the **Performance** tab to view performance charts.
 
-The Performance view provides a set of charts that allow you to analyze the performance of different components across all instances in the scale set such as CPU, memory, disk, and network over time.
+The **Performance** view provides a set of charts that allow you to analyze the performance of different components across all instances in the scale set such as CPU, memory, disk, and network over time.
 
 :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-view.png" alt-text="Screenshot showing the performance view for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-view.png":::
 
@@ -81,10 +73,7 @@ You can adjust the time range using the time picker at the top of the page to vi
 
 You can also view performance data across multiple virtual machine scale sets in your subscription:
 
-1. In the Azure portal, select **Monitor** from the left navigation.
-2. Select **Virtual Machines** under the **Insights** section.
-3. Select the **Performance** tab.
-4. Use the **Workspace** and **Group** selectors to filter the view to specific workspaces, subscriptions, resource groups, or virtual machine scale sets.
+From the **Monitor** menu in the Azure portal, select **Virtual Machines** under the **Insights** section and then select the **Performance** tab. Use the **Workspace** and **Group** selectors to filter the view to specific workspaces, subscriptions, resource groups, or virtual machine scale sets.
 
 This view provides aggregated performance charts showing:
 
@@ -94,7 +83,7 @@ This view provides aggregated performance charts showing:
 - Top machines by bytes sent
 - Top machines by bytes received
 
-    :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png" alt-text="Screenshot showing VM insights performance aggregate view." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-performance-aggregate-view.png":::
 
 
 ## Next steps

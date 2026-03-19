@@ -10,8 +10,6 @@ ms.reviewer: Xema Pathak
 # Tutorial: Enable recommended alerts for an Azure virtual machine scale set
 Once you have enabled monitoring for a virtual machine scale set, you should enable alerts to get notified when the scale set or its instances experience issues or performance degradation. Azure Monitor provides a set of recommended alert rules based on common performance scenarios that you can quickly enable for your virtual machine scale sets.
 
-This tutorial walks you through enabling recommended alerts for an Azure virtual machine scale set using the Azure portal. You'll learn how to select which alert rules to enable, configure their thresholds and severity, and set up email notifications.
-
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]
@@ -28,21 +26,21 @@ To complete this tutorial, you need:
 
 ## Enable recommended alert rules
 
-1. From the menu for the virtual machine scale set in the Azure portal, select **Monitoring** tab. In the **Alerts** section, select **Enable** next to **Enable recommended alert rules**.
+From the menu for the virtual machine scale set in the Azure portal, select the **Monitoring** tab. In the **Alerts** section, select **Enable** next to **Enable recommended alert rules**.
 
-    :::image type="content" source="media/tutorial-scale-set-alerts/enable-recommended-alerts.png" alt-text="Screenshot of option to enable recommended alerts for a virtual machine scale set." lightbox="media/tutorial-scale-set-alerts/enable-recommended-alerts.png":::
+:::image type="content" source="media/tutorial-scale-set-alerts/enable-recommended-alerts.png" alt-text="Screenshot of option to enable recommended alerts for a virtual machine scale set." lightbox="media/tutorial-scale-set-alerts/enable-recommended-alerts.png":::
 
-    A list of recommended alert rules is displayed. You can select which rules to create. You can also change the recommended threshold. Ensure that **Email** is enabled and provide an email address to be notified when any of the alerts fire. An [action group](../alerts/action-groups.md) will be created with this address. If you already have an action group that you want to use, you can specify it instead.
+A list of recommended alert rules is displayed. You can select which rules to create. You can also change the recommended threshold. Ensure that **Email** is enabled and provide an email address to be notified when any of the alerts fire. An [action group](../alerts/action-groups.md) will be created with this address. If you already have an action group that you want to use, you can specify it instead.
 
-    :::image type="content" source="media/tutorial-scale-set-alerts/set-up-recommended-alerts.png" alt-text="Screenshot of recommended alert rule configuration." lightbox="media/tutorial-scale-set-alerts/set-up-recommended-alerts.png":::
+:::image type="content" source="media/tutorial-scale-set-alerts/set-up-recommended-alerts.png" alt-text="Screenshot of recommended alert rule configuration." lightbox="media/tutorial-scale-set-alerts/set-up-recommended-alerts.png":::
 
 ## Configure alert severity
 
-1. Expand each of the alert rules to see its details. By default, the severity for each is **Informational**. You might want to change to another severity such as **Error** or **Warning** depending on how critical each condition is for your environment.
+Expand each of the alert rules to see its details. By default, the severity for each is **Informational**. You might want to change to another severity such as **Error** or **Warning** depending on how critical each condition is for your environment.
 
-    :::image type="content" source="media/tutorial-scale-set-alerts/configure-alert-severity.png" alt-text="Screenshot of recommended alert rule severity configuration." lightbox="media/tutorial-scale-set-alerts/configure-alert-severity.png":::
+:::image type="content" source="media/tutorial-scale-set-alerts/configure-alert-severity.png" alt-text="Screenshot of recommended alert rule severity configuration." lightbox="media/tutorial-scale-set-alerts/configure-alert-severity.png":::
 
-1. Select **Save** to create the alert rules.
+Select **Save** to create the alert rules.
 
 ## View created alert rules
 
