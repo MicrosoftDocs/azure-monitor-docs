@@ -75,10 +75,60 @@ Review the definitions and implications for the Completed and Dismissed recommen
 
 - **Dismissed** means the recommendation was intentionally ignored by a user. Dismissed recommendations can be reactivated at any time
 
+
+## How to set recommendations to Postpone, Dismiss, and Completed
+
+
+
+Use the following procedures to change recommendation states
+
 > [!NOTE]
 >Performing these actions requires specific permissions. Refer to the [Roles and permissions](https://learn.microsoft.com/en-us/azure/advisor/permissions) page for details on the required access.
 
-## How to set recommendations to Postpone, Dismiss, and Completed
+
+
+
+
+
+
+
+
+
+### How to change recommendation states
+
+Azure Advisor provides personalized best‑practice recommendations to help you optimize your Azure resources. When a recommendation isn’t immediately actionable, isn’t relevant, or has already been addressed, you can manually change its state to manage the items and stay focused on what matters most.
+
+### Start from the Active recommendations view
+
+All manual state changes start from the **Active recommendations** view. The same process is used to manage recommendations across supported states based on the recommendation state lifecycle.
+
+1. Open **Azure Advisor** in the Azure portal.
+
+1. Select a recommendation **category**.
+
+1. From the **Viewing** drop-down, select **Active** to display active recommendations.
+
+1. Select a recommendation from the list to change its state.
+
+### Postpone a recommendation
+
+Postponing a recommendation temporarily hides it for a set period. After the selected time elapses, the recommendation automatically returns to the __Active__ state.
+
+1. Select a recommendation from the list of recommendations
+
+1. Choose the recommendation(s) you want to postpone and select Postpone
+
+1. Choose how long to postpone the recommendation and then confirm
+
+### Dismiss a recommendation
+
+Dismissing a recommendation removes it from view until you choose to reactivate it. Dismissed recommendations aren’t included when calculating completion progress.
+
+1. Select a recommendation from the list of recommendations
+
+1. Choose the recommendation(s) you want to dismiss and select Dismiss
+
+1. Select a __Reason for__ __Dismissal, then confirm__
 
 ## Heading 2 Procedure Title
 
