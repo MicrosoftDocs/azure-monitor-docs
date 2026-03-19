@@ -61,7 +61,7 @@ To view recommendations, or to manage the status of each recommendation, require
 
 Find resiliency reviews created by your Microsoft account team.
 
-If a new review is available to you, you see a notification banner on top of Advisor. A **New** review is one with all recommendations in the **Pending** state.
+If a new review is available to you, you see a notification banner on top of Advisor. A **New** review is one with all recommendations in the **Active** state.
 
 [!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
 
