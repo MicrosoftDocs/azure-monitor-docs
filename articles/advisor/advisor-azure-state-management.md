@@ -247,3 +247,7 @@ This page displays a table with the following columns:
 
 - Other category specific columns
 
+## More Information
+
+To learn more, read the [How-to guide](/azure/advisor/advisor-cost-recommendations).
+
