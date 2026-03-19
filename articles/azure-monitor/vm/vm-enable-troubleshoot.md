@@ -43,7 +43,7 @@ You may not have permission to view the associated DCR for the VM, or the DCR ma
 The Azure Monitor workspace or DCR has been modified or deleted. Reconfigure OpenTelemetry metrics using the **Monitor Settings** button in the toolbar.
 
 **Access denied**<br>
-Your portal token may have expired, or you don't have permissions to view the associated Azure Monitor workspace. Refresh your browser session or contact your system administrator to request access. You need Monitor Reader permission, and the system administrator should enable the resource centric flag on the Azure Monitor workspace.
+Your portal token may have expired, or you don't have permissions to view the associated Azure Monitor workspace. Refresh your browser session or contact your system administrator to request access. You need Monitor Reader permission, and the system administrator should enable the resource-centric experience for the Azure Monitor workspace.
 
 **An unknown error occurred**<br>
 If this error persists, contact support to open a support ticket.
@@ -71,7 +71,7 @@ Heartbeat
 ### Verify that the DCR hasn't been modified
 When you enable VM insights, a data collection rule (DCR) is created to collect performance data from the virtual machine. If the DCR was modified after it was created, it may not be collecting the data that you expect. Create a new DCR for the virtual machine and delete the old one.
 
-If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../essentials/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to edit your DCR to match the new one.
+If you have multiple virtual machines using the same DCR, you can edit the DCR to remove the modifications so you don't have to reconfigure each machine. Create a new VM insights DCR and compare it to the DCR that was potentially modified. Use guidance at [Create or edit a DCR using JSON](../data-collection/data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json) to edit your DCR to match the new one.
 
 
 

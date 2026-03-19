@@ -8,10 +8,10 @@ ms.reviewer: tylerkight
 ---
 
 # Metrics experience for virtual machines in Azure Monitor
-When you enable enhanced monitoring for Azure virtual machines or Arc-enabled servers in Azure Monitor, you choose between two experiences for collecting and visualizing performance data from the guest operating system: metrics-based metrics (preview) and log-based metrics (classic). This article describes the differences between these experiences and provides guidance on which to select.
+When you enable enhanced monitoring for Azure virtual machines or Arc-enabled servers in Azure Monitor, you choose between two experiences for collecting and visualizing performance data from the guest operating system: metrics-based monitoring (preview) and logs-based monitoring (classic). This article describes the differences between these experiences and provides guidance on which to select.
 
 ## Compare experiences
-The following table compares the OpenTelemetry-based and logs-based metrics experiences for Azure Monitor VM insights.
+The following table compares the OpenTelemetry-based and logs-based monitoring experiences for Azure virtual machines in Azure Monitor.
 
 | Feature | Metrics-based (preview) | Logs-based (classic) |
 |:---|:---|:---|
@@ -37,7 +37,7 @@ You should enable the metrics-based experience in all cases since collection of 
 ## Benefits of OpenTelemetry
 
 **Cross-OS observability**<br>
-The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for you to manage all virtual machines with a single set of queries used for either Windows or Linux OS images. The same [configuration-as-code](./vm-enable-monitoring.md) deployment methods and the same PromQl queries can be used for any hosting resource that adopts OpenTelemetry system metrics. 
+The OpenTelemetry semantic convention for system metrics streamlines the cross-OS end-user experience by converging Windows and Linux performance counters into a consistent naming convention and metric data model. This makes it easier for you to manage all virtual machines with a single set of queries used for either Windows or Linux operating systems. The same [configuration-as-code](./vm-enable-monitoring.md) deployment methods and the same PromQL queries can be used for any hosting resource that adopts OpenTelemetry system metrics.
 
 **More performance counters**<br>
 The OpenTelemetry Collector Host Metrics Receiver collects more performance counters than Azure Monitor currently makes available for logs-based collection. For example, you can monitor per-process CPU utilization, disk I/O, and memory usage.

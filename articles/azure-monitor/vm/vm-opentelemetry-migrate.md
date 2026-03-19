@@ -9,7 +9,7 @@ ms.reviewer: xpathak
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your default monitoring option for virtual machines in Azure Monitor since it's provided at no cost. If you already have the older logs-based experience enabled, the next decision is whether you need keep it enabled and when you can retire it. Since the logs-based experience includes cost for data ingestion and retention, you want to retire it as soon as possible to optimize costs. This article helps you make that decision and walks through the migration process when can retire the logs-based experience.
+The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your default monitoring option for virtual machines in Azure Monitor because it's available at no cost. If you already have the older logs-based experience enabled, the next decision is whether you need to keep it enabled and when you can retire it. Because the logs-based experience includes data ingestion and retention charges, you should retire it as soon as possible to optimize costs. This article helps you make that decision and walks through the migration process when you can retire the logs-based experience.
 
 > [!NOTE]
 > The metrics-based experience is currently in public preview.

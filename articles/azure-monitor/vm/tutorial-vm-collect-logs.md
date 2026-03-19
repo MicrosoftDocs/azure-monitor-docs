@@ -108,7 +108,7 @@ To verify that data is being collected, check for records in the **Syslog** tabl
 For a tutorial on using Log Analytics to analyze log data, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md). For a tutorial on creating alert rules from log data, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
 ## Next steps
-[Recommended alerts](tutorial-monitor-vm-alert-recommended.md) and the [VM Availability metric](tutorial-monitor-vm-alert-availability.md) provide alerting from the virtual machine host, but they don't have visibility into the guest operating system and its workloads. Now that you're collecting guest logs, you can analyze them in Log Analytics and create alerts based on the events they contain.
+[Recommended alerts](./tutorial-vm-alerts.md) provide alerting from the virtual machine host, but they don't have visibility into the guest operating system and its workloads. Now that you're collecting guest logs, you can analyze them in Log Analytics and create alerts based on the events they contain.
 
 > [!div class="nextstepaction"]
 > [Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md)

@@ -56,7 +56,7 @@ Click **Alert rules** to view the rules you just created. You can click on any o
 :::image type="content" source="media/tutorial-vm-alerts/recommended-alerts-rules.png" alt-text="Screenshot of list of created alert rules." lightbox="media/tutorial-vm-alerts/recommended-alerts-rules.png":::
 
 ## Next steps
-Now that you have enabled alerts for your virtual machine, you can collect additional log data such as Windows event log or Syslog to further enhance your monitoring capabilities.
+Now that you have enabled alerts for your virtual machine, you can collect additional guest logs such as Windows event logs or Syslog to further enhance your monitoring capabilities.
 
 > [!div class="nextstepaction"]
-> [Collect guest logs and metrics from Azure virtual machine](tutorial-monitor-vm-guest.md)
+> [Collect guest logs from an Azure virtual machine](./tutorial-vm-collect-logs.md)

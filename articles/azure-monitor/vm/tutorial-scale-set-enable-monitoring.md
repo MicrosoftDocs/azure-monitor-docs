@@ -1,6 +1,6 @@
 ---
 title: Enable monitoring for an Azure virtual machine scale set
-description: Enable monitoring with VM insights in Azure Monitor to monitor an Azure virtual machine scale set.
+description: Enable monitoring in Azure Monitor for an Azure virtual machine scale set.
 ms.topic: tutorial
 ms.custom: subject-monitoring
 ms.date: 03/13/2026
@@ -37,11 +37,11 @@ To complete this tutorial, you need:
 ## Enable monitoring
 Select **Insights** from your virtual machine scale set's menu in the Azure portal. If monitoring hasn't been enabled, you see a message offering to enable it. Select **Enable**.
 
-    :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png" alt-text="Screenshot showing the enable monitoring option for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png" alt-text="Screenshot showing the enable monitoring option for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-enable-monitoring.png":::
 
 On the **Monitoring configuration** page, select a Log Analytics workspace. If you don't have a workspace, a default workspace is selected and created in the same region as the scale set.
 
-    :::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png" alt-text="Screenshot showing the monitoring configuration page for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png":::
+:::image type="content" source="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png" alt-text="Screenshot showing the monitoring configuration page for a virtual machine scale set." lightbox="media/tutorial-scale-set-enable-monitoring/scale-set-monitoring-configuration.png":::
 
 Select **Configure** to begin the deployment.
 
@@ -91,7 +91,7 @@ This view provides aggregated performance charts showing:
 Now that you have enabled monitoring for your virtual machine scale set, you can:
 
 - Enable recommended alerts to get notified when the scale set or its instances experience issues. See [Enable recommended alerts for Azure virtual machine scale set](tutorial-scale-set-alerts.md).
-- Collect additional log data such as Windows event log or Syslog from your virtual machine scale set instances. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md).
+- Collect additional guest log data such as Windows event logs or Syslog from your virtual machine scale set instances. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md).
 - Use workbooks to create custom dashboards and reports. See [Visualize data with Azure Monitor workbooks](./vminsights-workbooks.md).
 
 ## Related content

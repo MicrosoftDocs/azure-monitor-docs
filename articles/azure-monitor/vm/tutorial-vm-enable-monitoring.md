@@ -1,6 +1,6 @@
 ---
-title: Enable monitoring with VM insights for an Azure virtual machine
-description: Enable monitoring with VM insights in Azure Monitor to monitor an Azure virtual machine.
+title: Enable enhanced monitoring for an Azure virtual machine
+description: Enable enhanced monitoring in Azure Monitor for an Azure virtual machine.
 ms.topic: tutorial
 ms.custom: subject-monitoring
 ms.date: 03/09/2026
@@ -46,7 +46,7 @@ Select **Review + Enable** and then **Enable** After a few minutes, the Azure Mo
 ## View performance data
 It will take a few minutes after the agent is installed for enough data to be collected to populate the portal. When both experiences are enabled for a VM, you get a selector at the top to choose the experience you want to view. Select each experience to compare the different charts and insights that are available.
 
-The metrics-based (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates statues from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
+The metrics-based (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
 
 :::image type="content" source="media/tutorial-vm-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-vm-enable-monitoring/metrics-experience.png":::
 
@@ -66,7 +66,7 @@ When the deployment is finished, you see views on the **Performance** tab in VM 
 :::image type="content" source="media/tutorial-vm-enable-monitoring/multiple-machine-view.png" lightbox="media/tutorial-vm-enable-monitoring/multiple-machine-view.png" alt-text="Screenshot that shows the VM insights Performance view.":::
 
 ## Next steps
-Now that you have enabled enhanced monitoring for your virtual machine, collect log data such as Windows event log or Syslog from your virtual machine.
+Now that you have enabled enhanced monitoring for your virtual machine, collect guest logs such as Windows event logs or Syslog from the virtual machine.
 
 > [!div class="nextstepaction"]
-> [Collect guest logs and metrics from Azure virtual machine](tutorial-monitor-vm-guest.md)
+> [Collect guest logs from an Azure virtual machine](./tutorial-vm-collect-logs.md)

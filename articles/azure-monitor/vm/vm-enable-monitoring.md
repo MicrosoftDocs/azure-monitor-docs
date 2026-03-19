@@ -30,7 +30,7 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 - **Azure Monitor workspace** if you enable OpenTelemetry metrics (preview). See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
 - **Log Analytics workspace** if you enable logs-based metrics or collect logs. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Permissions** to create data collection rules (DCRs) and associate them with VMs. See [Data collection rule permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
-- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent on your so that the machine can be managed through Azure Arc-enabled servers before you can install the Azure Monitor agent and enable monitoring. See [Connect a machine to Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
+- **Azure Connected Machine agent** if you're monitoring virtual machines hosted outside of Azure. You must first install the Connected Machine agent so that the machine can be managed through Azure Arc-enabled servers before you can install the Azure Monitor agent and enable monitoring. See [Connect a machine to Arc-enabled servers](/azure/azure-arc/servers/quick-enable-hybrid-vm).
 
 
 ## Overview
@@ -195,13 +195,13 @@ Data collection rules (DCRs) define what data to collect from the Azure Monitor 
 
 DCRs are structured in JSON. When you create DCRs using the Azure portal, you don't require any knowledge of the DCR structure. You may need to understand the DCR structure though to create DCRs from scratch or to add advanced functionality to existing DCRs such as adding a transformation.
 
-The following table describes the most common DCR types used for VM monitoring. For an complete list of DCR types and their structures, see [Data collection rule structure](../data-collection/data-collection-rule-structure.md). For details on creating DCRs, see [Data collection rules: Create and edit](../data-collection/data-collection-rule-create-edit.md).
+The following table describes the most common DCR types used for VM monitoring. For a complete list of DCR types and their structures, see [Data collection rule structure](../data-collection/data-collection-rule-structure.md). For details on creating DCRs, see [Data collection rules: Create and edit](../data-collection/data-collection-rule-create-edit.md).
 
 | DCR Type | Description |
 |:---|:---|
 | **OpenTelemetry metrics** | Collects system-level performance counters using OpenTelemetry standards. Enables the metrics-based experience for VM monitoring in the Azure portal. Use the DCR definition below. Modify the `counterSpecifiers` section to add metrics to be collected. See [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md). |
 | **Log based metrics** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. Use the DCR definition below. This DCR shouldn't be modified. |
-| **Logs** | Collect different types of logs from the VM including Windows Events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect data from virtual machine client with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
+| **Logs** | Collect different types of logs from the VM, including Windows events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
 
 Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the location and destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
 <br><br>
@@ -303,7 +303,7 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
 
 </details>
 
-Save the DCR definition to a JSON file and use it to create a DCR with the following commands..
+Save the DCR definition to a JSON file and use it to create a DCR with the following commands.
 
 ## [CLI](#tab/cli)
 

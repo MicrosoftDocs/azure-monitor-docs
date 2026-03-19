@@ -33,7 +33,7 @@ Azure Monitor collects two types of metrics from virtual machines:
 
 Enable enhanced monitoring to collect guest data and fully light up the **Monitor** view in the Azure portal. This process installs [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) on the virtual machine and starts collecting a default set of metrics.
 
-If you enable guest monitoring in the Azure portal, choose between two experiences. Both provide guest monitoring, but they differ in how they store and process metrics. See [OpenTelemetry Guest OS Metrics (preview)](./metrics-opentelemetry-guest.md) for guidance on choosing the right option.
+If you enable guest monitoring in the Azure portal, choose between two experiences. Both provide guest monitoring, but they differ in how they store and process metrics. See [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) for guidance on choosing the right option.
 
 For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
 
@@ -48,7 +48,7 @@ Azure Monitor collects several types of log data from your virtual machines that
 Activity logs record operations performed on a VM, such as when a VM is started or stopped, when configurations are changed, or when a VM is deleted. They're collected automatically for all Azure resources at no cost. View activity logs for a VM from its **Activity log** page in the Azure portal. This shows all operations for that specific VM. You can also view activity logs for all resources in a subscription from the **Activity log** page in the Azure Monitor menu. Send them to a Log Analytics workspace where you can query them with other log data. See [Azure Monitor activity log](../platform/activity-log.md) for details on viewing and analyzing activity logs.
 
 ### Guest logs
-Guest logs come from the operating system and applications running inside a VM. Unlike activity logs, you must configure guest logs before Azure Monitor can collect them, and ingestion and storage charges apply. Create data collection rules to define which logs to collect and where to send them. See [Collect data from virtual machine client with Azure Monitor](data-collection.md).
+Guest logs come from the operating system and applications running inside a VM. Unlike activity logs, you must configure guest logs before Azure Monitor can collect them, and ingestion and storage charges apply. Create data collection rules to define which logs to collect and where to send them. See [Collect guest log data from virtual machines with Azure Monitor](data-collection.md).
 
 Common types of guest logs include:
 
@@ -105,5 +105,5 @@ See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance
 - [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Move to the OpenTelemetry-based metrics experience.
 - [Best practices for monitoring virtual machines in Azure Monitor](best-practices-vm.md) - Review architecture and operational recommendations.
 - [Collect guest log data from virtual machines with Azure Monitor](data-collection.md) - Configure custom performance counters, guest logs, and events.
-- [Overview of VM insights](vminsights-overview.md) - Learn about multi-VM monitoring with VM insights.
+- [Analyze the health and status of your virtual machine with Azure Monitor](./vminsights-performance.md) - Use the VM insights Performance view to analyze health and performance data across machines.
 - [Monitor your Azure virtual machines with Azure Monitor](/training/modules/monitor-azure-vm-using-diagnostic-data) - Complete the training module for VM monitoring.

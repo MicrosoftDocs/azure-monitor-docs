@@ -56,4 +56,4 @@ Click **Alert rules** to view the rules you just created. You can click on any o
 Now that you have enabled alerts for your virtual machine scale set, you can collect additional log data such as Windows event log or Syslog to further enhance your monitoring capabilities.
 
 > [!div class="nextstepaction"]
-> [Collect data from virtual machine client with Azure Monitor](data-collection.md)
+> [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md)
