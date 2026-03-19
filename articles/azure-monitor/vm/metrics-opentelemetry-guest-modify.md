@@ -6,9 +6,9 @@ ms.date: 03/13/2026
 ms.reviewer: jeffwo, tylerknight
 ---
 
-# Customize OpenTelemetry metrics for Azure virtual machines (preview)
+# Customize OpenTelemetry metrics collection for virtual machines in Azure Monitor (preview)
 
-When you [enable the OpenTelemetry-based experience](./tutorial-vm-enable-monitoring.md) for monitoring your Azure virtual machines, a default set of metrics are collected. You can customize your collection to include additional metrics such as per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics by modifying the data collection rule. 
+When you [enable the metrics-based experience](./tutorial-vm-enable-monitoring.md) for monitoring your Azure virtual machines, a default set of metrics are collected. You can customize your collection to include additional metrics such as per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics by modifying the data collection rule. 
 
 Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the OpenTelemetry Performance Counters data source type.
 
@@ -18,7 +18,7 @@ Details for the creation of the DCR are provided in [Collect data from virtual m
 
 ## Cost
 
-The default set of OTel metrics are collected at no cost. There is an additional cost to collect any additional OTel metrics beyond the default set. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing details.
+The default set of OpenTelemetry metrics are collected at no cost. There is an additional cost to collect any additional OTel metrics beyond the default set. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing details.
 
 ## Prerequisites
 

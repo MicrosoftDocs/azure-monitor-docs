@@ -26,7 +26,7 @@ In the Azure portal, on the **Extensions** pane for your virtual machine, verify
 | Windows | `AzureMonitorWindowsAgent` |
 | Linux | `AzureMonitorLinuxAgent` |
 
-If you don't the extension in the list of installed extensions, then attempt the onboarding process again. If the extension is listed but its status doesn't appear as **Provisioning succeeded**, remove the extension and reinstall it.
+If you don't see the extension in the list of installed extensions, then attempt the onboarding process again. If the extension is listed but its status doesn't appear as **Provisioning succeeded**, remove the extension and reinstall it.
 
 :::image type="content" source="media/vminsights-troubleshoot/extensions.png" lightbox="media/vminsights-troubleshoot/extensions.png" alt-text="Screenshot of VM insights required extensions for a virtual machine.":::
 

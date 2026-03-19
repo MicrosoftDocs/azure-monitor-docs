@@ -5,9 +5,9 @@ ms.topic: how-to
 ms.date: 03/12/2026
 ---
 
-# Disable monitoring of your VMs in Azure Monitor
+# Disable monitoring of virtual machines in Azure Monitor
 
-This article describes how to disable monitoring for a virtual machine in Azure Monitor, whether to remove monitoring entirely or to disable collection of certain data.
+This article describes how to disable monitoring for a virtual machine in Azure Monitor. This may be to remove monitoring entirely or to disable collection of certain data.
 
 ## Remove DCR associations
 As described in [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md#overview), data collection is enabled by an association between the VM and a data collection rule (DCR). You can stop data collection from one or more DCRs by removing their association with the VM. While multiple machines can use a common DCR, each has a separate DCR association. 

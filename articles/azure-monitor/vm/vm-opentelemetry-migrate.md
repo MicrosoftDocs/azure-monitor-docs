@@ -1,6 +1,7 @@
 ---
 title: Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 description: Learn how to migrate your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience in Azure Monitor.
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/12/2026
 ms.reviewer: xpathak
@@ -8,268 +9,72 @@ ms.reviewer: xpathak
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-This article provides step-by-step guidance for migrating your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience. The OpenTelemetry experience provides faster queries, lower costs, and cross-platform consistency using open standards. For a complete comparison, see [Compare OpenTelemetry and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
+Use the metrics-based experience for Azure virtual machines in all cases. Default metrics collection is free, and setup is covered in [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) and [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md).
+
+This article focuses on the remaining decision: when you can retire the logs-based experience. For a detailed comparison of the two experiences, see [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md).
 
 > [!NOTE]
-> The OpenTelemetry metrics experience is currently in public preview.
+> The metrics-based experience is currently in public preview.
 
-## Migration impact
+## When to keep the logs-based experience
 
-Consider the following impacts before migrating:
+Keep the logs-based experience enabled if any of the following are still true:
 
-- **Queries and alerts**: Existing KQL queries against the `InsightsMetrics` table won't work with OpenTelemetry metrics stored in Azure Monitor workspace. You need to create new queries using PromQL.
-- **Dashboards and workbooks**: Custom dashboards and workbooks that use the `InsightsMetrics` table require updates to query the Azure Monitor workspace.
-- **Multi-VM views**: If you rely on the multi-VM performance views in the logs-based experience, these aren't currently available in the OpenTelemetry experience.
-- **Correlating metrics and logs**: With logs-based collection, you can correlate metrics and logs in a single KQL query. With OpenTelemetry, metrics and logs are stored separately and require separate queries.
+- You need to monitor VM Scale Sets.
+- You rely on the built-in multi-VM dashboards and workbooks in VM insights.
+- You need to correlate metrics and logs in a single KQL query.
+- You still use queries, alerts, dashboards, or workbooks that depend on the `InsightsMetrics` table.
 
-## Coexistence of experiences
-You can enable OpenTelemetry-based metrics collection alongside logs-based collection to validate the new experience before fully migrating. This allows you to compare the two experiences and update your queries and dashboards incrementally. 
+If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
 
-If you don't modify the default metrics collected by the OpenTelemetry experience, there's no additional cost. But once you disable the data collection required for logs-based collection, you can optimize costs by no longer collecting this data in the Log Analytics workspace.
+## Before you retire the logs-based experience
 
+Before you remove the logs-based data collection rule (DCR) association, confirm the following:
 
-## Migration process overview
+- Metrics-based monitoring is already enabled for the VM.
+- The metrics-based experience shows the performance data that you need.
+- Any KQL queries, alerts, dashboards, or workbooks that use `InsightsMetrics` have been updated, retired, or replaced.
+- You don't need the built-in multi-VM experience for this workload.
 
-The migration involves these steps:
+Historical data in your Log Analytics workspace isn't deleted when you stop logs-based collection. Only new collection stops.
 
-1. [Enable OpenTelemetry-based metrics collection](#enable-opentelemetry-based-metrics)
-2. [Validate data collection in Azure Monitor workspace](#validate-data-collection)
-3. [Remove logs-based DCR association](#remove-logs-based-dcr-association)
-4. [Update queries, alerts, and dashboards](#update-queries-alerts-and-dashboards)
+## Migration process
 
-## Enable OpenTelemetry-based metrics
+Use the following process to retire the logs-based experience:
 
-You can enable OpenTelemetry metrics collection alongside your existing logs-based collection. This approach lets you validate the new experience before removing the old one.
+1. Confirm that metrics-based monitoring is already enabled.
+1. Validate that the metrics-based experience meets your monitoring requirements.
+1. Update or retire dependencies on `InsightsMetrics`.
+1. Remove the logs-based DCR association.
 
-### [Azure portal](#tab/portal)
+## Confirm that metrics-based monitoring is enabled
 
-1. In the Azure portal, go to your virtual machine.
-2. Select **Monitor** from the left menu.
-3. Select **Configure** to open the monitoring configuration page.
-4. Select **OpenTelemetry-based metrics (preview)**.
-5. Choose an Azure Monitor workspace or accept the default workspace. If the workspace doesn't exist, it's created automatically.
-6. Select **Review + Enable**, then select **Enable**.
+This article doesn't cover initial setup. If you haven't enabled metrics-based monitoring yet, use one of these articles first:
 
-:::image type="content" source="media/tutorial-vm-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-vm-enable-monitoring/configure-monitor.png":::
+- [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md)
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md)
 
-### [Azure CLI](#tab/cli)
+After setup, return to this article to decide whether you can retire logs-based collection.
 
-1. Create a data collection rule (DCR) for OpenTelemetry metrics by saving the following JSON to a file named `otel-dcr.json`. Replace the placeholders with your subscription ID, resource group, and Azure Monitor workspace name.
+## Validate the metrics-based experience
 
-    ```json
-    {
-      "properties": {
-        "dataSources": {
-          "performanceCountersOTel": [
-            {
-              "streams": ["Microsoft-OtelPerfMetrics"],
-              "samplingFrequencyInSeconds": 60,
-              "counterSpecifiers": [
-                "system.filesystem.usage",
-                "system.disk.io",
-                "system.disk.operation_time",
-                "system.disk.operations",
-                "system.memory.usage",
-                "system.network.io",
-                "system.cpu.time",
-                "system.network.dropped",
-                "system.network.errors",
-                "system.uptime"
-              ],
-              "name": "OtelPerfCounters"
-            }
-          ]
-        },
-        "destinations": {
-          "monitoringAccounts": [
-            {
-              "accountResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Monitor/accounts/<workspace-name>",
-              "name": "MonitoringAccount"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": ["Microsoft-OtelPerfMetrics"],
-            "destinations": ["MonitoringAccount"]
-          }
-        ]
-      }
-    }
-    ```
+Before you remove logs-based collection, verify that the metrics-based experience provides the data you need.
 
-2. Create the DCR:
+1. In the Azure portal, go to the VM.
+1. Select **Monitor**.
+1. Select the metrics-based experience in the experience selector.
+1. Confirm that the performance charts show data.
+1. If needed, go to the Azure Monitor workspace and verify that metrics such as `system.cpu.time` and `system.memory.usage` are available.
 
-    ```azurecli
-    az monitor data-collection rule create \
-      --name "MSVMOtel-<region>-<name>" \
-      --resource-group <resource-group> \
-      --location <location> \
-      --rule-file otel-dcr.json
-    ```
+If you still depend on logs-based-only capabilities, keep the logs-based experience enabled.
 
-3. Associate the DCR with your VM:
+## Update dependencies
 
-    ```azurecli
-    az monitor data-collection rule association create \
-      --name "otel-dcr-association" \
-      --rule-id "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/MSVMOtel-<region>-<name>" \
-      --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>"
-    ```
-
-### [PowerShell](#tab/powershell)
-
-1. Create a data collection rule (DCR) for OpenTelemetry metrics by saving the following JSON to a file named `otel-dcr.json`. Replace the placeholders with your subscription ID, resource group, and Azure Monitor workspace name.
-
-    ```json
-    {
-      "properties": {
-        "dataSources": {
-          "performanceCountersOTel": [
-            {
-              "streams": ["Microsoft-OtelPerfMetrics"],
-              "samplingFrequencyInSeconds": 60,
-              "counterSpecifiers": [
-                "system.filesystem.usage",
-                "system.disk.io",
-                "system.disk.operation_time",
-                "system.disk.operations",
-                "system.memory.usage",
-                "system.network.io",
-                "system.cpu.time",
-                "system.network.dropped",
-                "system.network.errors",
-                "system.uptime"
-              ],
-              "name": "OtelPerfCounters"
-            }
-          ]
-        },
-        "destinations": {
-          "monitoringAccounts": [
-            {
-              "accountResourceId": "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Monitor/accounts/<workspace-name>",
-              "name": "MonitoringAccount"
-            }
-          ]
-        },
-        "dataFlows": [
-          {
-            "streams": ["Microsoft-OtelPerfMetrics"],
-            "destinations": ["MonitoringAccount"]
-          }
-        ]
-      }
-    }
-    ```
-
-2. Create the DCR:
-
-    ```powershell
-    New-AzDataCollectionRule `
-      -Name "MSVMOtel-<region>-<name>" `
-      -ResourceGroupName <resource-group> `
-      -Location <location> `
-      -RuleFile otel-dcr.json
-    ```
-
-3. Associate the DCR with your VM:
-
-    ```powershell
-    New-AzDataCollectionRuleAssociation `
-      -AssociationName "otel-dcr-association" `
-      -ResourceUri "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" `
-      -DataCollectionRuleId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/MSVMOtel-<region>-<name>"
-    ```
-
----
-
-## Validate data collection
-
-After enabling OpenTelemetry metrics, verify that data is being collected correctly before removing the logs-based collection.
-
-1. In the Azure portal, go to your virtual machine.
-2. Select **Monitor** from the left menu.
-3. At the top of the page, select **OpenTelemetry-based metrics (preview)** from the experience selector.
-4. Verify that the performance charts display data. It may take a few minutes for data to appear.
-
-You can also query the Azure Monitor workspace directly:
-
-1. In the Azure portal, go to your Azure Monitor workspace.
-2. Select **Metrics** from the left menu.
-3. Select your VM as the resource.
-4. Verify that OpenTelemetry metrics such as `system.cpu.time` and `system.memory.usage` appear in the metric list.
-
-## Remove logs-based DCR association
-
-After you confirm that OpenTelemetry metrics are being collected correctly, you can remove the logs-based DCR association to stop data collection and reduce costs. This doesn't delete historical data in your Log Analytics workspace.
-
-### Identify the logs-based DCR
-
-The logs-based DCR typically has a name in the format `MSVMI-<workspace-name>` or similar.
-
-### [Azure portal](#tab/portal)
-
-1. In the Azure portal, select **Monitor** > **Data Collection Rules**.
-2. Select the **Resources** tab.
-3. Locate your virtual machine in the list.
-4. Select the number in the **Data collection rules** column to view the DCRs associated with the VM.
-5. Identify the logs-based DCR. It typically has a name starting with `MSVMI-`.
-6. Select the DCR, then select **Delete association** from the toolbar.
-7. Confirm the deletion.
-
-### [Azure CLI](#tab/cli)
-
-1. List the DCR associations for your VM and identify the logs-based DCR:
-
-    ```azurecli
-    az monitor data-collection rule association list \
-      --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
-      --output table
-    ```
-
-2. Remove the logs-based DCR association. Replace `<dcr-name>` with the DCR name that starts with `MSVMI-`:
-
-    ```azurecli
-    dcraName=$(az monitor data-collection rule association list \
-      --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
-      --query "[?contains(dataCollectionRuleId, 'MSVMI')].name" -o tsv)
-    
-    az monitor data-collection rule association delete \
-      --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
-      --name $dcraName
-    ```
-
-### [PowerShell](#tab/powershell)
-
-1. List the DCR associations for your VM and identify the logs-based DCR:
-
-    ```powershell
-    Get-AzDataCollectionRuleAssociation `
-      -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>"
-    ```
-
-2. Remove the logs-based DCR association. Replace the DCR ID with the one that contains `MSVMI`:
-
-    ```powershell
-    $dcraName = (Get-AzDataCollectionRuleAssociation `
-      -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" | 
-      Where-Object {$_.DataCollectionRuleId -like "*MSVMI*"}).Name
-    
-    Remove-AzDataCollectionRuleAssociation `
-      -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" `
-      -AssociationName $dcraName
-    ```
-
----
-
-## Update queries, alerts, and dashboards
-
-After migrating to OpenTelemetry metrics, update any queries, alerts, and dashboards that reference the logs-based data.
+Before you remove the logs-based DCR association, update or retire dependencies on logs-based metrics.
 
 ### Update queries
 
-Queries need to change from KQL (querying Log Analytics workspace) to PromQL (querying Azure Monitor workspace).
+Queries must change from KQL against Log Analytics to PromQL against the Azure Monitor workspace.
 
 **Logs-based KQL query example:**
 
@@ -288,37 +93,90 @@ avg(system_cpu_utilization{state="user"})
 
 For more information on querying OpenTelemetry metrics, see [Query Prometheus metrics using Azure Monitor](../essentials/prometheus-api-promql.md).
 
-### Update alerts
+### Update alerts, dashboards, and workbooks
 
-1. In the Azure portal, go to **Monitor** > **Alerts**.
-2. Select **Alert rules**.
-3. Identify alert rules that query the `InsightsMetrics` table.
-4. Create new alert rules that query the Azure Monitor workspace using PromQL.
-5. After validating the new alerts, disable or delete the old alert rules.
+- Identify alert rules, dashboards, and workbooks that query the `InsightsMetrics` table.
+- Replace them with PromQL-based queries against the Azure Monitor workspace where needed.
+- Validate the updated artifacts before you stop logs-based collection.
 
-### Update dashboards and workbooks
+## Remove the logs-based DCR association
 
-Update any custom dashboards or workbooks that display logs-based metrics:
+After you update dependencies, remove the logs-based DCR association to stop new logs-based metric collection and reduce Log Analytics ingestion costs. This step doesn't delete historical data.
 
-1. Identify dashboards and workbooks that query the `InsightsMetrics` table.
-2. Update queries to use the Azure Monitor workspace and PromQL.
-3. Test the updated visualizations to ensure they display data correctly.
+The logs-based DCR typically has a name such as `MSVMI-<workspace-name>`.
+
+### [Azure portal](#tab/portal)
+
+1. In the Azure portal, go to **Monitor** > **Data Collection Rules**.
+1. Select the **Resources** tab.
+1. Find your VM.
+1. Select the number in the **Data collection rules** column.
+1. Identify the logs-based DCR. It typically has a name that starts with `MSVMI-`.
+1. Select the DCR, and then select **Delete association**.
+1. Confirm the deletion.
+
+### [Azure CLI](#tab/cli)
+
+1. List the DCR associations for your VM and identify the logs-based DCR:
+
+```azurecli
+az monitor data-collection rule association list \
+  --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
+  --output table
+```
+
+2. Remove the logs-based DCR association:
+
+```azurecli
+dcraName=$(az monitor data-collection rule association list \
+  --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
+  --query "[?contains(dataCollectionRuleId, 'MSVMI')].name" \
+  --output tsv)
+
+az monitor data-collection rule association delete \
+  --resource "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" \
+  --name "$dcraName"
+```
+
+### [PowerShell](#tab/powershell)
+
+1. List the DCR associations for your VM and identify the logs-based DCR:
+
+```powershell
+Get-AzDataCollectionRuleAssociation `
+  -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>"
+```
+
+2. Remove the logs-based DCR association:
+
+```powershell
+$dcraName = (Get-AzDataCollectionRuleAssociation `
+  -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" |
+  Where-Object { $_.DataCollectionRuleId -like "*MSVMI*" }).Name
+
+Remove-AzDataCollectionRuleAssociation `
+  -TargetResourceId "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Compute/virtualMachines/<vm-name>" `
+  -AssociationName $dcraName
+```
+
+---
 
 ## Considerations
 
-- **Run both experiences in parallel**: Consider running both the logs-based and OpenTelemetry experiences in parallel for a period of time to ensure the new experience meets your monitoring requirements before fully migrating.
 - **Data retention**: Removing the logs-based DCR association stops new data collection but doesn't delete historical data in your Log Analytics workspace. Historical data remains available according to your workspace retention settings.
-- **Cost optimization**: Running both experiences simultaneously doubles your metrics ingestion costs. Remove the logs-based association as soon as you're confident in the OpenTelemetry experience.
+- **Cost optimization**: The default metrics-based experience is free. Retiring the logs-based experience can reduce Log Analytics ingestion costs.
 - **Azure Monitor agent**: You don't need to reinstall or update the Azure Monitor agent. The same agent handles both logs-based and OpenTelemetry metrics collection using different DCRs.
-- **Multi-VM scale**: To migrate multiple VMs, use Azure Policy or automation scripts to apply the OpenTelemetry DCR and remove logs-based associations at scale. See [Enable VM insights using Azure Policy](./vminsights-enable-policy.md).
+- **Run both experiences temporarily if needed**: Keep both experiences enabled only long enough to validate replacement queries and dashboards.
 
 ## Rollback
 
-If you need to rollback to the logs-based experience:
+If you need to resume the logs-based experience:
 
-1. Keep the logs-based DCR. Don't delete it, just remove the association.
-2. To re-enable logs-based collection, recreate the association between your VM and the logs-based DCR using the methods described in [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md).
-3. Remove the OpenTelemetry DCR association if you no longer need it.
+1. Recreate the association between the VM and the logs-based DCR.
+1. Confirm that the expected `InsightsMetrics` data is flowing again.
+1. Remove the metrics-based DCR association if you no longer need it.
+
+For more information about VM monitoring configuration, see [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md).
 
 ## Next steps
 

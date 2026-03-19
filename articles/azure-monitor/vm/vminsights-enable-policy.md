@@ -12,7 +12,7 @@ ms.date: 03/09/2026
 [Azure Policy](/azure/governance/policy/overview) lets you set and enforce requirements for all new resources you create and resources you modify. VM insights policy initiatives, which are predefined sets of policies created for VM insights, install the agents required for VM insights and enable monitoring on all new virtual machines in your Azure environment.
 
 > [!NOTE]
-> This article describes policies for the logs-based experience for VM monitoring in Azure Monitor. Policies are not yet available for the [OpenTelemetry-based experience](./metrics-opentelemetry-guest.md), which is currently in preview. 
+> This article describes policies for the logs-based experience for VM monitoring in Azure Monitor. Policies are not yet available for the [metrics-based experience](./metrics-opentelemetry-guest.md), which is currently in preview. 
 
 This article explains how to enable VM insights for Azure virtual machines, virtual machine scale sets, and hybrid virtual machines connected with Azure Arc by using predefined VM insights policy initiatives. This ensures that your machines are consistently monitored without requiring manual configuration for each. 
 

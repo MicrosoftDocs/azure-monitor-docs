@@ -273,7 +273,8 @@ items:
           href: vm/tutorial-scale-set-alerts.md
     - name: Enable monitoring
       items:
-      - name: Command line
+      - name: Enable from command line
+        displayName: virtual machine, enable monitoring
         href: vm/vm-enable-monitoring.md 
       - name: Azure Policy
         href: vm/vminsights-enable-policy.md
@@ -283,14 +284,14 @@ items:
         href: vm/vm-disable-monitoring.md
       - name: Troubleshoot
         href: vm/vm-enable-troubleshoot.md
-    - name: Client data
+    - name: Guest data
       items:
-      - name: Metrics
+      - name: Performance counters
         items:
         - name: Overview
           displayName: OpenTelemetry
           href: vm/metrics-opentelemetry-guest.md
-        - name: OpenTelemetry experience (preview)
+        - name: Metrics-based experience (preview)
           items:
           - name: Customize
             displayName: OpenTelemetry, metrics, data collection rule, performance counters
@@ -313,25 +314,6 @@ items:
               href: vm/vminsights-migrate-agent.md
             - name: Migrate from deprecated policies
               href: vm/vminsights-migrate-deprecated-policies.md
-          - name: Map feature
-            items:
-            - name: Overview
-              href: vm/vminsights-maps.md
-            - name: Retirement guidance
-              displayName: processes and dependencies, map, vminsights, dependency agent
-              href: vm/vminsights-maps-retirement.md
-            - name: Dependency agent
-              items:
-              - name: Manage
-                displayName: dependency agent, vminsights
-                href: vm/vminsights-dependency-agent.md
-              - name: Uninstall
-                displayName: dependency agent, vminsights
-                href: vm/vminsights-dependency-agent-uninstall.md
-            - name: Query map data
-              href: vm/vminsights-log-query.md
-            - name: Monitor changes
-              href: vm/vminsights-change-analysis.md
       - name: Logs
         items:
         - name: Collect log data
@@ -366,6 +348,23 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
+  - name: Map feature (deprecated)
+    items:
+    - name: Overview
+      href: vm/vminsights-maps.md
+    - name: Retirement guidance
+      displayName: processes and dependencies, map, vminsights, dependency agent
+      href: vm/vminsights-maps-retirement.md
+    - name: Dependency agent
+      items:
+      - name: Manage
+        displayName: dependency agent, vminsights
+        href: vm/vminsights-dependency-agent.md
+      - name: Uninstall
+        displayName: dependency agent, vminsights
+        href: vm/vminsights-dependency-agent-uninstall.md
+    - name: Query map data
+      href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
