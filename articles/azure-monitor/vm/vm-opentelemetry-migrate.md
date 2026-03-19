@@ -169,9 +169,9 @@ After you remove the logs-based experience from all VMs that use the workspace, 
 
 For the steps, see [Remove VM insights solution](./vm-disable-monitoring.md#remove-vm-insights-solution).
 
-## Next steps
+## Related content
 
-- [Customize OpenTelemetry metric collection](./vminsights-opentelemetry.md)
-- [OpenTelemetry metrics reference](./metrics-guest-reference.md)
-- [Query Prometheus metrics using Azure Monitor](../essentials/prometheus-api-promql.md)
-- [Disable monitoring of your VMs](./vminsights-optout.md)
+- [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) - Compare the metrics-based and logs-based experiences before you retire logs-based collection.
+- [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md) - Adjust the OpenTelemetry metrics collected for your virtual machines.
+- [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md) - Configure VM monitoring by using Azure CLI, PowerShell, ARM templates, or Bicep.
+- [Remove VM insights solution](./vm-disable-monitoring.md#remove-vm-insights-solution) - Remove the VM insights solution after no VMs depend on the logs-based experience.

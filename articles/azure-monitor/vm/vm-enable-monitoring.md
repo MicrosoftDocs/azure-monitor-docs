@@ -404,12 +404,10 @@ There are two methods for network isolation that VM insights supports as describ
 | Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 
-## Next steps
+## Related content
 
-Now that you've enabled VM monitoring at scale, learn how to:
-
-- [View VM insights Performance](vminsights-performance.md) to identify performance bottlenecks and overall utilization across your VMs
-- [View VM insights Map](vminsights-maps.md) to visualize dependencies between VMs and applications
-- [Create alert rules](monitor-virtual-machine-alerts.md) to proactively notify you of issues with your VMs
-- [Customize data collection rules](../data-collection/data-collection-rule-create-edit.md) to add custom performance counters, additional Windows events, or Syslog facilities
-- [Troubleshoot VM insights](vminsights-troubleshoot.md) if you encounter issues with agent deployment or data collection
+- [Monitor virtual machines in Azure](./monitor-vm.md) - Review the core monitoring capabilities available for virtual machines and scale sets.
+- [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-vm-enable-monitoring.md) - Enable monitoring for a single VM by using the Azure portal.
+- [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md) - Enable monitoring for a scale set by using the Azure portal.
+- [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) - Add guest logs such as Windows events, Syslog, IIS logs, and custom logs.
+- [Troubleshoot VM monitoring in Azure Monitor](./vm-enable-troubleshoot.md) - Investigate agent installation and common onboarding problems.

@@ -49,10 +49,12 @@ To verify performance counters are being collected in the Log Analytics workspac
 
 To verify performance counters are being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows) or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
 
-:::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows client metrics in Metrics explorer." :::
+:::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows guest metrics in Metrics explorer." :::
 
 
-## Next steps
-- Learn more about [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md)
-- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md).
-- Learn more about [data collection rules](../essentials/data-collection-rule-overview.md).
+## Related content
+
+- [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) - Create and manage data collection rules for VM log and event data.
+- [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) - Compare logs-based and metrics-based guest performance monitoring.
+- [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md) - Configure the metrics-based experience if you want guest metrics in an Azure Monitor workspace.
+- [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md) - Review how Azure Monitor Agent collects data from virtual machines.

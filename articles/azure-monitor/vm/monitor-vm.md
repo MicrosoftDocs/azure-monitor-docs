@@ -11,7 +11,9 @@ ms.topic: concept-article
 
 # Monitor virtual machines in Azure
 
-Use Azure Monitor to track the health and performance of your virtual machines and the workloads that run on them. This article introduces the main monitoring options for virtual machines, from host metrics to guest-level telemetry.
+Azure Monitor provides the tools to monitor the health, performance, and availability of Azure virtual machines and virtual machine scale sets. It combines host-level signals that Azure collects automatically with optional metrics and logs from the guest operating system. Together, this data helps you detect service issues, understand resource pressure, and troubleshoot the workloads running on each machine.
+
+This article explains the monitoring capabilities for virtual machines in Azure Monitor, including host metrics, enhanced guest monitoring, log collection, and alerting. It also helps you understand which capabilities to use for different monitoring goals.
 
 ## Related resources
 
@@ -102,6 +104,6 @@ See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance
 - [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md) - Configure monitoring at scale.
 - [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Move to the OpenTelemetry-based metrics experience.
 - [Best practices for monitoring virtual machines in Azure Monitor](best-practices-vm.md) - Review architecture and operational recommendations.
-- [Collect data from virtual machine client with Azure Monitor](data-collection.md) - Configure custom performance counters, logs, and events.
+- [Collect guest log data from virtual machines with Azure Monitor](data-collection.md) - Configure custom performance counters, guest logs, and events.
 - [Overview of VM insights](vminsights-overview.md) - Learn about multi-VM monitoring with VM insights.
 - [Monitor your Azure virtual machines with Azure Monitor](/training/modules/monitor-azure-vm-using-diagnostic-data) - Complete the training module for VM monitoring.
