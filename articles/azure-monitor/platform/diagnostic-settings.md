@@ -33,8 +33,7 @@ Diagnostic settings can collect data from the sources in the following table. Fo
 | [Activity log](./activity-log.md) | Automatically collected without configuration. Use a diagnostic setting to send activity log entries to other destinations. |
 | [Resource logs](./resource-logs.md) | Aren't collected by default. Create a diagnostic setting to collect resource logs. |
 
-> [!NOTE]
-> After a diagnostic setting is configured, the time for each data source to become available for analysis varies. For expected latency for platform metrics, resource logs, and activity logs, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
+After you configure a diagnostic setting, the time for each data source to become available for analysis varies. For expected latency for platform metrics, resource logs, and activity logs, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
 ## Destinations
 

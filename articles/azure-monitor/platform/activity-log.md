@@ -15,10 +15,7 @@ The Azure Monitor activity log is a platform log for control plane events from A
 
 ## Activity log entries
 
-Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
-
-> [!NOTE]
-> Activity log entries are available for analysis and alerting within 3 to 20 minutes of the event occurring. For more information on latency expectations, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
+Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 
 > [!NOTE]
 > Operations above the control plane are logged in [Azure Resource Logs](resource-logs.md). These aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md) to be collected.

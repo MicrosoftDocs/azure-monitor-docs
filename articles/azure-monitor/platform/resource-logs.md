@@ -22,9 +22,7 @@ Resource logs aren't collected by default. To collect them, you must create a di
 >
 > Resource Logs aren't completely lossless. They're based on a store and forward architecture designed to affordably move petabytes of data per day at scale. This capability includes built-in redundancy and retries across the platform but doesn't provide transactional guarantees. Anytime a persistent source of data loss is identified, its resolution and future prevention is prioritized. Small data losses may still occur to temporary, non-repeating service issues distributed across Azure.
 
-> [!NOTE]
-> After resource logs are collected, the time for them to become available for analysis varies by destination and Azure service. For expected ingestion latency, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
-
+After resource logs are collected, the time for them to become available for analysis varies by destination and Azure service. For expected ingestion latency, see [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs).
 
 ## Destinations
 
