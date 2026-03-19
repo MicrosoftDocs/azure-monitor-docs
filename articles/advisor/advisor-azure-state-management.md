@@ -205,33 +205,45 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-·         __Recommendation__: System identified recommendation in that’s new or in-progress
+- __Recommendation__: System identified recommendation in that’s new or in-progress
 
-·         __Impact__: Impact level, High, Medium, Low
+- __Impact__: Impact level, High, Medium, Low
 
-·         __Completed resources__: Number of resource instances where the recommendations are in completed state.
+- __Completed resources__: Number of resource instances where the recommendations are in completed state
 
-·         __Completion progress__: Percent of resources impacted by this recommendation that are completed
+- __Completion progress__: Percent of resources impacted by this recommendation that are completed
 
-·         __Recommended action__: Link to available action
+- __Recommended action__: Link to available action
 
-·         Other category specific columns
+- Other category specific columns
 
-## Heading 2 Procedure Title
+### Postponed recommendation page
 
-Heading 2 Procedure Intro Sentence
+This page displays a table with the following columns:
 
-1. Sign in to the [**Azure portal**](https://portal.azure.com).
+- __Recommendation__: System identified recommendation in that’s new or in-progress
 
-1. Search for and select [**Advisor**](https://aka.ms/azureadvisordashboard) from any page.\
-The Advisor **Overview** page opens.
+- __Impact__: Impact level, High, Medium, Low
 
-1. Export cost recommendations by navigating to the **Cost** tab on the left navigation menu and choosing **Download as CSV**.
+- __Completed resources__: Number of resource instances where the recommendations are in completed state
 
-1. Use the cost savings amount for each recommendation to calculate aggregated potential yearly savings.
+- __Completion progress__: Percent of resources impacted by this recommendation that are completed
 
-    [![Screenshot of the Azure Advisor cost recommendations page that shows download option.](./media/advisor-how-to-calculate-total-cost-savings.png)](./media/advisor-how-to-calculate-total-cost-savings.png#lightbox)
-   
-> [!NOTE]
-> Different types of cost savings recommendations are generated using overlapping datasets (for example, VM rightsizing/shutdown, VM reservations and savings plan recommendations all consider on-demand VM usage). As a result, resource changes (e.g., VM shutdowns) or reservation/savings plan purchases will impact on-demand usage, and the resulting recommendations and associated savings forecast. 
+- __Recommended action__: Link to available action
+
+- Other category specific columns
+
+### Dismissed recommendation page
+
+This page displays a table with the following columns:
+
+- __Recommendation__: System identified recommendation in that’s new or in-progress
+
+- __Dismissed resources__: Resources affected by this recommendation have been dismissed
+
+- __Impact__: Impact level, High, Medium, Low
+
+- __Recommended action__: Link to available action
+
+- Other category specific columns
 
