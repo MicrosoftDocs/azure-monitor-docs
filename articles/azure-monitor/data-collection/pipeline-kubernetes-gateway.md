@@ -1,6 +1,6 @@
 ---
 title: Configure a Kubernetes gateway for Azure Monitor pipeline
-description: Expose Azure Monitor pipeline receivers to clients outside the cluster by using a Kubernetes gateway.
+description: Deploy a dedicated Kubernetes gateway for a new Azure Monitor pipeline receiver.
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 03/20/2026
@@ -9,9 +9,9 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure a Kubernetes gateway for Azure Monitor pipeline
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). Azure Monitor pipeline services are deployed as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
+Azure Monitor pipeline services are deployed as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
 
-This article uses Traefik as the worked example. For a first deployment, the recommended path is one pipeline group and one dedicated gateway. Treat brownfield changes, shared gateways, and multi-pipeline layouts as advanced scenarios after the core path works.
+This article shows how to deploy a dedicated Traefik gateway for a new pipeline group. For a first deployment, start with one pipeline group and one dedicated gateway. If you need to modify an existing gateway deployment, see [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
 
 > [!NOTE]
 > Traefik is used in this article as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
@@ -20,30 +20,24 @@ This article uses Traefik as the worked example. For a first deployment, the rec
 
 ## Prerequisites
 
-- Completion of [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Azure Monitor pipeline installed and working. See [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Access to `kubectl`, `helm`, and the target cluster.
 - Access to the Traefik Helm repository from the workstation that runs `helm`.
 - A deployed pipeline group and its Kubernetes service.
 - A namespace label that allows the pipeline trust bundle to be distributed:
-
   ```bash
   kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
   ```
 
-## When to use a gateway
+## When to use this article
 
-Use a gateway when clients outside the cluster need to send data to a pipeline receiver and can't connect to the pipeline service directly. For a new deployment, start with one dedicated gateway per pipeline. That design keeps the setup easier to reason about and avoids sharing ports, upgrades, and failures across unrelated pipelines.
+Use this article when clients outside the cluster need to send data to a pipeline receiver and the pipeline group doesn't already have a gateway. The recommended starting design is one dedicated gateway per pipeline group. That design keeps the setup easier and avoids sharing ports, upgrades, and failures across unrelated pipelines.
 
-| Scenario | Recommended action |
-|:---------|:-------------------|
-| First deployment | Deploy one gateway for one pipeline group. |
-| Add another client to an existing receiver | Reuse the existing gateway IP and port. No gateway changes are required. |
-| Add a new receiver on a new port | Update the existing gateway to open the new port and add new routing resources. |
-| Add another pipeline group on the same cluster | Deploy another dedicated gateway for the new pipeline group. |
+If you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline group on the same cluster, see [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
 
 ## Prepare the Traefik resources
 
-The greenfield procedure below uses syslog on port `514` as the running example. Replace the placeholders with the values for your pipeline.
+The procedure below uses syslog on port `514`. Replace the placeholders with the values for your pipeline.
 
 | Placeholder | Description | Example |
 |:------------|:------------|:--------|
@@ -52,9 +46,14 @@ The greenfield procedure below uses syslog on port `514` as the running example.
 | `<receiver-port>` | Receiver port exposed by the pipeline service. | `514` |
 | `<entrypoint-name>` | Traefik entry point for that receiver port. | `tcp-syslog` |
 
-### Install Traefik custom resource definitions
+> [!IMPORTANT]
+> Even though only one pipeline is being used, the instructions below include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). This prepares the gateway for future multi-pipeline scenarios and avoids a disruptive Helm upgrade later. If a second pipeline is added in the future with its own dedicated gateway, label selectors ensure each Traefik instance only processes routes intended for its own pipeline.
 
-Install the Traefik custom resource definitions once per cluster.
+
+
+### Install Traefik custom resource definitions (CRDs)
+
+Install the Traefik CRDs once per cluster.
 
 ```bash
 helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
@@ -62,18 +61,25 @@ helm repo update traefik
 helm show crds traefik/traefik | kubectl apply -f -
 ```
 
-### Create a gateway client certificate for TLS-enabled ingestion
+## Configure gateway authentication
 
-If the pipeline uses TLS, the gateway needs a client certificate so it can authenticate to the pipeline backend. Skip this step when TLS is disabled.
+#### [TLS enabled](#tab/tls-enabled)
+
+If the pipeline uses TLS, the gateway needs a client certificate so it can authenticate to the pipeline backend.
 
 Save the following as `certificates.yaml`:
 
 ```yaml
+# certificates.yaml
+# Creates a short-lived client certificate that the gateway presents to the
+# pipeline when dialing the mTLS backend.
+# Applicable to: Greenfield (Section 1), Brownfield 2A, Brownfield 2C.
+# NOT required for TLS-disabled ingestion (see Option 2 in Section 1).
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: gateway-client-cert
-  namespace: <pipeline-namespace>
+  namespace: <pipeline-namespace>       # Deploy in the pipeline namespace
 spec:
   secretName: gateway-client-tls
   duration: 48h
@@ -96,26 +102,51 @@ Apply the certificate and wait for it to become ready.
 kubectl apply -f certificates.yaml
 kubectl wait --for=condition=ready certificate gateway-client-cert \
   -n <pipeline-namespace> --timeout=120s
+```
+
+Verify the secret was created:
+
+```bash
 kubectl get secret gateway-client-tls -n <pipeline-namespace>
 ```
 
-## Deploy the gateway for a new pipeline
+#### [TLS disabled](#tab/tls-disabled)
 
-This is the recommended starting point for a greenfield deployment.
+Skip this step. The gateway doesn't need a client certificate when the pipeline receiver doesn't use TLS.
 
-### Configure routing for TLS-enabled ingestion
+---
+
+## Configure Traefik routing
+
+#### [TLS enabled](#tab/tls-enabled)
 
 When the pipeline uses TLS, create both a `ServersTransportTCP` resource and an `IngressRouteTCP` resource. The label selector prepares the gateway for future multi-pipeline scenarios without requiring a disruptive Helm change later.
 
-Save the following as `routing.yaml`:
+Save the following as `routing.yaml` and replace the placeholders with your values. For a syslog receiver:
+
+| Placeholder | Value |
+|---|---|
+| `<pipeline-name>` | your pipeline name |
+| `<pipeline-namespace>` | your pipeline namespace |
+| `<entrypoint-name>` | `tcp-syslog` |
+| `<receiver-port>` | `514` |
 
 ```yaml
+# routing.yaml
+# Create one copy of each resource per receiver/port combination.
+# For example, a pipeline exposing both syslog (514) and OTLP (4317) requires
+# two ServersTransportTCP + IngressRouteTCP pairs.
+---
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransportTCP
 metadata:
   name: <pipeline-name>-mtls-transport
   namespace: <pipeline-namespace>
   labels:
+    # Label selector for Traefik instance isolation.
+    # Include this label from the start so the gateway is ready for future
+    # multi-pipeline scenarios without requiring a disruptive Helm upgrade.
+    # The value must match the labelSelector configured in the Helm install.
     traefik-instance: <pipeline-name>-gateway
 spec:
   tls:
@@ -126,15 +157,19 @@ spec:
       - gateway-client-tls
     insecureSkipVerify: false
 ---
+# IngressRouteTCP — TCP routing rule
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: <pipeline-name>-<entrypoint-name>-route
   namespace: <pipeline-namespace>
   labels:
+    # Same label selector as above.
     traefik-instance: <pipeline-name>-gateway
 spec:
   entryPoints:
+    # Must match the port name used in the Traefik Helm install
+    # (e.g., ports.<entrypoint-name>.port=<receiver-port>).
     - <entrypoint-name>
   routes:
     - match: HostSNI(`*`)
@@ -151,22 +186,29 @@ Apply the routing resources.
 kubectl apply -f routing.yaml
 ```
 
-### Configure routing for TLS-disabled ingestion
+#### [TLS disabled](#tab/tls-disabled)
 
 When the pipeline does not use TLS, create only the `IngressRouteTCP` resource.
 
 Save the following as `routing.yaml`:
 
 ```yaml
+# routing.yaml
+# Create one copy of each resource per receiver/port combination.
+# For example, a pipeline exposing both syslog (514) and OTLP (4317) requires two ServersTransportTCP + IngressRouteTCP pairs.
+# IngressRouteTCP — TCP routing rule
 apiVersion: traefik.io/v1alpha1
 kind: IngressRouteTCP
 metadata:
   name: <pipeline-name>-<entrypoint-name>-route
   namespace: <pipeline-namespace>
   labels:
+    # Same label selector as above.
     traefik-instance: <pipeline-name>-gateway
 spec:
   entryPoints:
+    # Must match the port name used in the Traefik Helm install
+    # (e.g., ports.<entrypoint-name>.port=<receiver-port>).
     - <entrypoint-name>
   routes:
     - match: HostSNI(`*`)
@@ -181,9 +223,13 @@ Apply the routing resource.
 kubectl apply -f routing.yaml
 ```
 
+---
+
 ### Install Traefik
 
 Deploy Traefik in the same namespace as the pipeline. This keeps the trust bundle ConfigMap and, when TLS is enabled, the gateway client certificate in the same namespace as the routing resources.
+
+#### [TLS](#tab/tls-enabled)
 
 ```bash
 helm install traefik-<pipeline-name> traefik/traefik \
@@ -192,20 +238,41 @@ helm install traefik-<pipeline-name> traefik/traefik \
     --set providers.kubernetesIngress.enabled=false \
     --set providers.kubernetesCRD.enabled=true \
     --set "providers.kubernetesCRD.labelSelector=traefik-instance=<pipeline-name>-gateway" \
-    --set ports.<entrypoint-name>.port=<receiver-port> \
-    --set ports.<entrypoint-name>.expose.default=true \
-    --set ports.<entrypoint-name>.exposedPort=<receiver-port> \
-    --set ports.<entrypoint-name>.protocol=TCP \
+    --set ports.tcp-syslog.port=514 \
+    --set ports.tcp-syslog.expose.default=true \
+    --set ports.tcp-syslog.exposedPort=514 \
+    --set ports.tcp-syslog.protocol=TCP \
     --set ports.web.expose.default=false \
     --set ports.websecure.expose.default=false \
     --set service.type=LoadBalancer \
     --wait
 ```
 
+#### [TLS disabled](#tab/tls-disabled)
+
+```bash
+helm install traefik-<pipeline-name> traefik/traefik \
+    --namespace <pipeline-namespace> \
+    --set deployment.replicas=1 \
+    --set providers.kubernetesIngress.enabled=false \
+    --set providers.kubernetesCRD.enabled=true \
+    --set "providers.kubernetesCRD.labelSelector=traefik-instance=<pipeline-name>-gateway" \
+    --set ports.tcp-syslog.port=514 \
+    --set ports.tcp-syslog.expose.default=true \
+    --set ports.tcp-syslog.exposedPort=514 \
+    --set ports.tcp-syslog.protocol=TCP \
+    --set ports.web.expose.default=false \
+    --set ports.websecure.expose.default=false \
+    --set service.type=LoadBalancer \
+    --wait
+```
+
+---
+
 > [!NOTE]
 > Helm might show a warning about resources that don't match the `labelSelector`. That warning refers to Traefik's default dashboard route, not to the pipeline routing resources in this article.
 
-### Verify the gateway
+## Verify the gateway
 
 1. Confirm the Traefik pod is running.
 
@@ -229,7 +296,7 @@ helm install traefik-<pipeline-name> traefik/traefik \
    kubectl get serverstransporttcp -n <pipeline-namespace>
    ```
 
-4. Check the Traefik logs.
+4. Check the Traefik logs for errors.
 
    ```bash
    kubectl logs -n <pipeline-namespace> \
@@ -237,46 +304,6 @@ helm install traefik-<pipeline-name> traefik/traefik \
    ```
 
 Clients can now connect to `$GATEWAY_IP:<receiver-port>` to send data through the gateway to the pipeline.
-
-## Modify an existing gateway deployment
-
-Use these scenarios only after the base deployment works.
-
-### Add a new receiver on a new port
-
-Create a new `ServersTransportTCP` and `IngressRouteTCP` pair for the new receiver if TLS is enabled, or a new `IngressRouteTCP` if TLS is disabled. Then run `helm upgrade` with `--reuse-values` to add the new port.
-
-For example, to add an OTLP receiver on port `4317`:
-
-```bash
-helm upgrade traefik-<pipeline-name> traefik/traefik \
-    --namespace <pipeline-namespace> \
-    --reuse-values \
-    --set ports.tcp-otlp.port=4317 \
-    --set ports.tcp-otlp.expose.default=true \
-    --set ports.tcp-otlp.exposedPort=4317 \
-    --set ports.tcp-otlp.protocol=TCP
-```
-
-> [!WARNING]
-> `helm upgrade` restarts the Traefik pod. Existing client connections through that gateway are interrupted briefly, so do this during a maintenance window when possible.
-
-### Add a new client to an existing receiver
-
-No gateway changes are required. Point the new client to the existing gateway IP and receiver port.
-
-```bash
-GATEWAY_IP=$(kubectl get svc traefik-<pipeline-name> \
-  -n <pipeline-namespace> \
-  -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
-echo "Gateway IP: $GATEWAY_IP"
-```
-
-### Add another pipeline group on the same cluster
-
-Deploy another dedicated gateway for the new pipeline group by following the same greenfield procedure in this article with a different pipeline name, namespace, and Helm release. This keeps the pipelines isolated for upgrades, scaling, and failures.
-
-Shared gateways across multiple pipelines are possible, but they are an advanced exception path. They require unique external ports for each pipeline, routing resources in each pipeline namespace, replicated trust bundle and certificate dependencies per namespace, and upgrades that can interrupt traffic for every pipeline that shares the gateway.
 
 ## Certificate management for TLS-enabled ingestion
 
@@ -286,14 +313,18 @@ Shared gateways across multiple pipelines are possible, but they are an advanced
 
 ## Troubleshooting
 
-### Check certificate status
+<details>
+<summary>Check certificate status</summary>
 
 ```bash
 kubectl get certificate -n <pipeline-namespace>
 kubectl describe certificate gateway-client-cert -n <pipeline-namespace>
 ```
 
-### Check Traefik routing resources
+</details>
+
+<details>
+<summary>Check Traefik routing resources</summary>
 
 ```bash
 kubectl get ingressroutetcp -n <pipeline-namespace> \
@@ -302,21 +333,30 @@ kubectl get serverstransporttcp -n <pipeline-namespace> \
   -l traefik-instance=<pipeline-name>-gateway -o yaml
 ```
 
-### Check Traefik logs for TLS or routing errors
+</details>
+
+<details>
+<summary>Check Traefik logs for TLS or routing errors</summary>
 
 ```bash
 kubectl logs -n <pipeline-namespace> \
   -l app.kubernetes.io/instance=traefik-<pipeline-name> --tail=50 | grep -i "tls\|error\|certificate"
 ```
 
-### Check pipeline pods and logs
+</details>
+
+<details>
+<summary>Check pipeline pods and logs</summary>
 
 ```bash
 kubectl get pods -n <pipeline-namespace> -l pipeline=<pipeline-name>
 kubectl logs -n <pipeline-namespace> -l pipeline=<pipeline-name> --tail=50
 ```
 
-### Check the LoadBalancer IP assignment
+</details>
+
+<details>
+<summary>Check the LoadBalancer IP assignment</summary>
 
 ```bash
 kubectl get svc traefik-<pipeline-name> -n <pipeline-namespace>
@@ -324,8 +364,11 @@ kubectl get svc traefik-<pipeline-name> -n <pipeline-namespace>
 
 If the external IP remains pending, verify that the cluster supports `LoadBalancer` services and that the cloud provider can allocate one.
 
-## Next steps
+</details>
 
+## Related content
+
+- Modify an existing gateway deployment by using [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
+- Plan advanced shared-gateway topologies by using [Azure Monitor pipeline - Traefik gateway for multiple pipelines](./pipeline-kubernetes-gateway-multiple.md).
 - Configure TLS by using [Transport Layer Security (TLS) in Azure Monitor pipeline](./pipeline-tls.md).
 - Configure your senders by using [Configure clients for Azure Monitor pipeline](./pipeline-configure-clients.md).
-
