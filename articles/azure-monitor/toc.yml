@@ -33,6 +33,8 @@ items:
     href: fundamentals/best-practices-performance.md
 - name: Monitoring scenarios
   items:
+  - name: Create service level indicators
+    href: fundamentals/create-service-level-indicators.md
   - name: Monitor applications with Application Insights
     items:
     - name: Application Insights overview
