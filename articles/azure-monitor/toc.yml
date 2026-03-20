@@ -1222,18 +1222,20 @@ items:
       href: visualize/workbooks-samples.md
     - name: Previews
       items:
+      - name: Workbooks preview overview
+        href: visualize/workbooks-preview.md
       - name: Dashboard preview
         href: visualize/workbooks-dashboard-preview.md
       - name: Use Copilot with Workbooks
         href: visualize/workbooks-copilot-overview.md
-      - name: Troubleshoot Copilot for Workbooks
-        href: visualize/workbooks-copilot-troubleshoot.md
     - name: Troubleshooting
       items:
       - name: Access troubleshooting guides
         href: visualize/workbooks-access-troubleshooting-guide.md
       - name: Troubleshoot insights
         href: visualize/troubleshoot-workbooks.md
+      - name: Troubleshoot Copilot for Workbooks
+        href: visualize/workbooks-copilot-troubleshoot.md
   - name: Azure Monitor Dashboards
     items:
     - name: Dashboard using log data
