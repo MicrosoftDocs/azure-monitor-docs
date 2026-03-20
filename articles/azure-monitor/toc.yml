@@ -883,46 +883,44 @@ items:
       href: logs/ingest-logs-event-hub.md
     - name: Stream monitoring data to Event Hubs
       href: platform/stream-monitoring-data-event-hubs.md
-  - name: Azure Monitor pipeline (preview)
+  - name: Azure Monitor pipeline
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Install and configure
-        items:
-        - name: Configuration overview
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure.md  
-        - name: Azure portal
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-portal.md
-        - name: CLI and templates
-          displayName: Azure Monitor pipeline
-          href: data-collection/pipeline-configure-cli.md
-        - name: Extension versions
-          displayName: Azure Monitor pipeline extension versions
-          href: data-collection/pipeline-extension-versions.md
-        - name: Gateway
-          items:
-          - name: Sample gateway setup 
-            displayName: Sample gateway setup
-            href: data-collection/pipeline-kubernetes-gateway.md     
-          - name: Multiple gateways
-            displayName: Sample gateway setup
-            href: data-collection/pipeline-kubernetes-gateway-multiple.md     
+      - name: Configure Azure Monitor pipeline
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure.md
+      - name: Configure with the Azure portal
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-portal.md
+      - name: Configure with CLI or ARM templates
+        displayName: Azure Monitor pipeline
+        href: data-collection/pipeline-configure-cli.md
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
-      - name: Pod placement
-        href: data-collection/pipeline-pod-placement.md
+      - name: Gateway setup
+        items:
+        - name: Set up a sample gateway
+          displayName: Sample gateway setup
+          href: data-collection/pipeline-kubernetes-gateway.md
+        - name: Configure multiple gateways
+          displayName: Sample gateway setup
+          href: data-collection/pipeline-kubernetes-gateway-multiple.md
       - name: Transport Layer Security (TLS)
         items:
         - name: Configure TLS
           href: data-collection/pipeline-tls.md
-        - name: Automated certificate management (Default TLS)
+        - name: Automated certificate management (default TLS)
           href: data-collection/pipeline-tls-automated.md
         - name: Customer-managed certificates (BYOC)
-          href: data-collection/pipeline-tls-custom.md        
+          href: data-collection/pipeline-tls-custom.md
+      - name: Pod placement
+        href: data-collection/pipeline-pod-placement.md
+      - name: Extension versions
+        displayName: Azure Monitor pipeline extension versions
+        href: data-collection/pipeline-extension-versions.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
