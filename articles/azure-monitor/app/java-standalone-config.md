@@ -11,9 +11,7 @@ ms.custom:
 
 # Configuration options: Azure Monitor Application Insights for Java
 
-This article shows you how to configure Azure Monitor Application Insights for Java.
-
-For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md).
+This article shows you how to configure Azure Monitor Application Insights for Java. For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md).
 
 ## Configuration basics
 
@@ -184,7 +182,7 @@ Sampling only applies to logs inside of a request. Logs that aren't inside of a 
 
 ### Choose a sampling method
 
-#### Rate-limited sampling
+# [Rate-limited sampling](#tab/rate-limited)
 
 Starting from 3.4.0, rate-limited sampling is available and is now the default.
 
@@ -209,7 +207,7 @@ The `requestsPerSecond` can be a decimal, so you can configure it to capture les
 
 You can also set the sampling percentage by using the environment variable `APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`. It then takes precedence over the rate limit specified in the JSON configuration.
 
-#### Fixed-percentage sampling
+# [Fixed-percentage sampling](#tab/fixed-percentage)
 
 This example shows how to set the sampling to capture approximately a third of all requests:
 
@@ -225,6 +223,8 @@ You can also set the sampling percentage by using the environment variable `APPL
 
 > [!NOTE]
 > For the sampling percentage, choose a percentage that's close to 100/N, where N is an integer. Currently, sampling doesn't support other values.
+
+---
 
 ### Configure sampling overrides
 
@@ -689,9 +689,11 @@ Log file output looks similar to these examples. In some cases, it can be extens
 
 You can also use a [command line tool](https://github.com/microsoft/ApplicationInsights-Java/wiki/Troubleshoot-JMX-metrics) to check the available JMX metrics.
 
-#### Configuration example
+#### JMX configuration example
 
 Knowing what metrics are available, you can configure the agent to collect them.
+
+# [Java 8](#tab/java-8)
 
 In the following Java 8 configuration examples, the first one is a nested metric - `LastGcInfo` that has several properties, and we want to capture the `GcThreadCount`:
 
@@ -715,6 +717,8 @@ In the following Java 8 configuration examples, the first one is a nested metric
 ]
 ```
 
+# [Java 17](#tab/java-17)
+
 Other configuration examples for Java 17:
 
 ```json
@@ -736,6 +740,8 @@ Other configuration examples for Java 17:
     }
   ]
 ```
+
+---
 
 If you want to collect some other Java Management Extensions (JMX) metrics:
 
@@ -762,7 +768,7 @@ In the preceding configuration example:
 * `objectName` is the [Object Name](https://docs.oracle.com/javase/8/docs/api/javax/management/ObjectName.html) of the `JMX MBean` that you want to collect. Wildcard character asterisk (*) is supported.
 * `attribute` is the attribute name inside of the `JMX MBean` that you want to collect.
 
-Numeric and Boolean JMX metric values are supported. Boolean JMX metrics are mapped to `0` for false and `1` for true.
+Numeric and boolean JMX metric values are supported. Boolean JMX metrics are mapped to `0` for false and `1` for true.
 
 #### Where to find the JMX metrics in Application Insights
 
@@ -974,19 +980,9 @@ If you want to enable this feature, add the below configuration option:
 
 ## Configure telemetry processors (preview)
 
-You can use telemetry processors to configure rules that are applied to request, dependency, and trace telemetry. For example, you can:
+You can use telemetry processors to configure rules that are applied to request, dependency, and trace telemetry. Application Insights Java 3.x can process telemetry data before the data is exported.
 
-* Mask sensitive data.
-* Conditionally add custom dimensions.
-* Update the span name, which is used to aggregate similar telemetry in the Azure portal.
-* Drop specific span attributes to control ingestion costs.
-
-> [!NOTE]
-> The telemetry processors feature is designated as preview because we cannot guarantee backwards compatibility from release to release due to the experimental state of the attribute [semantic conventions](https://opentelemetry.io/docs/reference/specification/trace/semantic_conventions). However, the feature has been tested and is supported in production.
-
-Application Insights Java 3.x can process telemetry data before the data is exported.
-
-Some use cases:
+**Use cases:**
 
 * Mask sensitive data.
 * Conditionally add custom dimensions.
@@ -994,50 +990,43 @@ Some use cases:
 * Drop specific span attributes to control ingestion costs.
 * Filter out some metrics to control ingestion costs.
 
+If you are looking to drop specific (whole) spans for controlling ingestion cost, see [sampling overrides](#sampling-overrides).
+
 > [!NOTE]
-> If you are looking to drop specific (whole) spans for controlling ingestion cost,
-> see [sampling overrides](./java-standalone-sampling-overrides.md).
+> The telemetry processors feature is designated as preview because we cannot guarantee backwards compatibility from release to release due to the experimental state of the attribute [semantic conventions](https://opentelemetry.io/docs/reference/specification/trace/semantic_conventions). However, the feature has been tested and is supported in production.
 
 ### Terminology
 
 Before you learn about telemetry processors, you should understand the terms *span* and *log*.
 
-A span is a type of telemetry that represents one of:
+**Span:** A type of telemetry that represents one of:
 
 * An incoming request.
 * An outgoing dependency (for example, a remote call to another service).
 * An in-process dependency (for example, work being done by subcomponents of the service).
 
-A log is a type of telemetry that represents:
+**Log:** A type of telemetry that represents:
 
 * log data captured from Log4j, Logback, and java.util.logging 
 
-For telemetry processors, these span/log components are important:
+For telemetry processors, the following span/log components are important:
 
-* Name
-* Body
-* Attributes
-
-The span name is the primary display for requests and dependencies in the Azure portal. Span attributes represent both standard and custom properties of a given request or dependency.
-
-The trace message or body is the primary display for logs in the Azure portal. Log attributes represent both standard and custom properties of a given log.
+| Component | Description |
+|-----------|-------------|
+| Name | The primary display for requests and dependencies in the Azure portal. |
+| Attributes | Span attributes represent both standard and custom properties of a given request or dependency.<br><br>Log attributes represent both standard and custom properties of a given log. |
+| Body | The trace message or body is the primary display for logs in the Azure portal. |
 
 ### Telemetry processor types
 
 Currently, the four types of telemetry processors are:
 
-* Attribute processors
-* Span processors
-* Log processors
-* Metric filters
-
-An attribute processor can insert, update, delete, or hash attributes of a telemetry item (`span` or `log`). It can also use a regular expression to extract one or more new attributes from an existing attribute.
-
-A span processor can update the telemetry name of requests and dependencies. It can also use a regular expression to extract one or more new attributes from the span name.
-
-A log processor can update the telemetry name of logs. It can also use a regular expression to extract one or more new attributes from the log name.
-
-A metric filter can filter out metrics to help control ingestion cost.
+| Processor | Description |
+|-----------|-------------|
+| Attribute processors | An attribute processor can insert, update, delete, or hash attributes of a telemetry item (`span` or `log`). It can also use a regular expression to extract one or more new attributes from an existing attribute. |
+| Span processors | A span processor can update the telemetry name of requests and dependencies. It can also use a regular expression to extract one or more new attributes from the span name. |
+| Log processors | A log processor can update the telemetry name of logs. It can also use a regular expression to extract one or more new attributes from the log name. |
+| Metric filters | A metric filter can filter out metrics to help control ingestion cost. |
 
 > [!NOTE]
 > Currently, telemetry processors process only attributes of type string. They don't process attributes of type Boolean or number.
@@ -1076,18 +1065,15 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 }
 ```
 
-### Attribute processor
+# [Attribute processor](#tab/attribute)
 
 The attribute processor modifies attributes of a `span` or a `log`. It can support the ability to include or exclude `span` or `log`. It takes a list of actions that are performed in the order that the configuration file specifies. The processor supports these actions:
 
-* `insert`
-* `update`
-* `delete`
-* `hash`
-* `extract`
-* `mask`
+> [!NOTE]
+> Expand each action to view  more information.
 
-#### `insert`
+<details>
+<summary><code>insert</code></summary>
 
 The `insert` action inserts a new attribute in telemetry item where the `key` doesn't already exist.
 
@@ -1112,7 +1098,10 @@ The `insert` action requires the following settings:
 * Either `value` or `fromAttribute`
 * `action`: `insert`
 
-#### `update`
+</details>
+
+<details>
+<summary><code>update</code></summary>
 
 The `update` action updates an attribute in telemetry item where the `key` already exists.
 
@@ -1136,8 +1125,10 @@ The `update` action requires the following settings:
 * Either `value` or `fromAttribute`
 * `action`: `update`
 
+</details>
 
-#### `delete` 
+<details>
+<summary><code>delete</code></summary>
 
 The `delete` action deletes an attribute from a telemetry item.
 
@@ -1160,7 +1151,10 @@ The `delete` action requires the following settings:
 * `key`
 * `action`: `delete`
 
-#### `hash`
+</details>
+
+<details>
+<summary><code>hash</code></summary>
 
 The `hash` action hashes (SHA1) an existing attribute value.
 
@@ -1183,7 +1177,10 @@ The `hash` action requires the following settings:
 * `key`
 * `action`: `hash`
 
-#### `extract`
+</details>
+
+<details>
+<summary><code>extract</code></summary>
 
 > [!NOTE]
 > The `extract` feature is available only in version 3.0.2 and later.
@@ -1211,7 +1208,10 @@ The `extract` action requires the following settings:
 * `pattern`
 * `action`: `extract`
 
-#### `mask`
+</details>
+
+<details>
+<summary><code>mask</code></summary>
 
 > [!NOTE]
 > The `mask` feature is available only in version 3.2.5 and later.
@@ -1243,336 +1243,6 @@ The `mask` action requires the following settings:
 
 `pattern` can contain a named group placed between `?<` and `>:`. Example: `(?<userGroupName>[a-zA-Z.:\/]+)\d+`? The group is `(?<userGroupName>[a-zA-Z.:\/]+)` and `userGroupName` is the name of the group. `pattern` can then contain the same named group placed between `${` and `}` followed by the mask. Example where the mask is **: `${userGroupName}**`.
 
-#### Attribute processor samples
-
-Expand the sections below to view various attribute processor samples.
-
-<details>
-<summary><b>Insert</b></summary>
-
-The following sample inserts the new attribute `{"attribute1": "attributeValue1"}` into spans and logs where the key `attribute1` doesn't exist.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "attribute1",
-            "value": "attributeValue1",
-            "action": "insert"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Insert from another key</b></summary>
-
-The following sample uses the value from attribute `anotherkey` to insert the new attribute `{"newKey": "<value from attribute anotherkey>"}` into spans and logs where the key `newKey` doesn't exist. If the attribute `anotherkey` doesn't exist, no new attribute is inserted into spans and logs.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "newKey",
-            "fromAttribute": "anotherKey",
-            "action": "insert"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Update</b></summary>
-
-The following sample updates the attribute to `{"db.secret": "redacted"}`. It updates the attribute `boo` by using the value from attribute `foo`. Spans and logs that don't have the attribute `boo` don't change.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "db.secret",
-            "value": "redacted",
-            "action": "update"
-          },
-          {
-            "key": "boo",
-            "fromAttribute": "foo",
-            "action": "update" 
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Delete</b></summary>
-
-The following sample shows how to delete an attribute that has the key `credit_card`.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "credit_card",
-            "action": "delete"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Hash</b></summary>
-
-The following sample shows how to hash existing attribute values.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "user.email",
-            "action": "hash"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Extract</b></summary>
-
-The following sample shows how to use a regular expression (regex) to create new attributes based on the value of another attribute.
-
-For example, given `url.path = /path?queryParam1=value1,queryParam2=value2`, the following attributes are inserted:
-
-* httpProtocol: `http`
-* httpDomain: `example.com`
-* httpPath: `path`
-* httpQueryParams: `queryParam1=value1,queryParam2=value2`
-* url.path: *no* change
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "url.path",
-            "pattern": "^(?<httpProtocol>.*):\\/\\/(?<httpDomain>.*)\\/(?<httpPath>.*)(\\?|\\&)(?<httpQueryParams>.*)",
-            "action": "extract"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Mask</b></summary>
-
-For example, given `url.path = https://example.com/user/12345622` is updated to `url.path = https://example.com/user/****` using either of the below configurations.
-
-
-First configuration example:
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "url.path",
-            "pattern": "user\\/\\d+",
-            "replace": "user\\/****",
-            "action": "mask"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-Second configuration example with regular expression group name:
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "url.path",
-            "pattern": "^(?<userGroupName>[a-zA-Z.:\/]+)\d+",
-            "replace": "${userGroupName}**",
-            "action": "mask"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Nonstring typed attributes samples</b></summary>
-
-Starting 3.4.19 GA, telemetry processors support nonstring typed attributes:
-`boolean`, `double`, `long`, `boolean-array`, `double-array`, `long-array`, and `string-array`.
-
-When `attributes.type` isn't provided in the json, it's default to `string`.
-
-The following sample inserts the new attribute `{"newAttributeKeyStrict": "newAttributeValueStrict"}` into spans and logs where the attributes match the following examples:
-
-* `{"longAttributeKey": 1234}`
-* `{"booleanAttributeKey": true}`
-* `{"doubleArrayAttributeKey": [1.0, 2.0, 3.0, 4.0]}`
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "include": {
-          "matchType": "strict",
-          "attributes": [
-            {
-              "key": "longAttributeKey",
-              "value": 1234,
-              "type": "long"
-            },
-            {
-              "key": "booleanAttributeKey",
-              "value": true,
-              "type": "boolean"
-            },
-            {
-              "key": "doubleArrayAttributeKey",
-              "value": [1.0, 2.0, 3.0, 4.0],
-              "type": "double-array"
-            }
-          ]
-        },
-        "actions": [
-          {
-            "key": "newAttributeKeyStrict",
-            "value": "newAttributeValueStrict",
-            "action": "insert"
-          }
-        ],
-        "id": "attributes/insertNewAttributeKeyStrict"
-      }
-    ]
-  }
-}
-
-```
-
-Additionally, nonstring typed attributes support `regexp`.
-
-The following sample inserts the new attribute `{"newAttributeKeyRegexp": "newAttributeValueRegexp"}` into spans and logs where the attribute `longRegexpAttributeKey` matches the value from `400` to `499`.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "attribute",
-        "include": {
-          "matchType": "regexp",
-          "attributes": [
-            {
-              "key": "longRegexpAttributeKey",
-              "value": "4[0-9][0-9]",
-              "type": "long"
-            }
-          ]
-        },
-        "actions": [
-          {
-            "key": "newAttributeKeyRegexp",
-            "value": "newAttributeValueRegexp",
-            "action": "insert"
-          }
-        ],
-        "id": "attributes/insertNewAttributeKeyRegexp"
-      }
-    ]
-  }
-}
-
-```
-
 </details>
 
 #### Include criteria and exclude criteria
@@ -1595,7 +1265,249 @@ To configure this option, under `include` or `exclude` (or both), specify at lea
 >
 > * If the `include` or `exclude` configuration do not have `spanNames` specified, then the matching criteria are applied on both `spans` and `logs`.
 
-#### Sample usage
+# [Span processor](#tab/span)
+
+The span processor modifies either the span name or attributes of a span based on the span name. It can support the ability to include or exclude spans.
+
+#### Name a span
+
+The `name` section requires the `fromAttributes` setting. The values from these attributes are used to create a new name, concatenated in the order that the configuration specifies. The processor changes the span name only if all of these attributes are present on the span.
+
+The `separator` setting is optional. This setting is a string, and you can use split values.
+
+> [!NOTE]
+> If renaming relies on the attributes processor to modify attributes, ensure the span processor is specified after the attributes processor in the pipeline specification.
+
+```json
+"processors": [
+  {
+	"type": "span",
+	"name": {
+	  "fromAttributes": [
+		"attributeKey1",
+		"attributeKey2",
+	  ],
+	  "separator": "::"
+	}
+  }
+] 
+```
+
+#### Extract attributes from the span name
+
+The `toAttributes` section lists the regular expressions to match the span name against. It extracts attributes based on subexpressions.
+
+The `rules` setting is required. This setting lists the rules that are used to extract attribute values from the span name. 
+
+Extracted attribute names replace the values in the span name. Each rule in the list is a regular expression (regex) pattern string. 
+
+Here's how extracted attribute names replace values:
+
+1. The span name is checked against the regex. 
+1. All named subexpressions of the regex are extracted as attributes if the regex matches. 
+1. The extracted attributes are added to the span. 
+1. Each subexpression name becomes an attribute name. 
+1. The subexpression matched portion becomes the attribute value. 
+1. The extracted attribute name replaces the matched portion in the span name. If the attributes already exist in the span, they're overwritten. 
+ 
+This process is repeated for all rules in the order they're specified. Each subsequent rule works on the span name that's the output of the previous rule.
+
+```json
+"processors": [
+  {
+	"type": "span",
+	"name": {
+	  "toAttributes": {
+		"rules": [
+		  "rule1",
+		  "rule2",
+		  "rule3"
+		]
+	  }
+	}
+  }
+]
+```
+
+#### Common span attributes
+
+This section lists some common span attributes that telemetry processors can use.
+
+##### HTTP spans
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `http.request.method` (used to be `http.method`) | string | HTTP request method. |
+| `url.full` (client span) or `url.path` (server span) (used to be `http.url`) | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. The fragment typically isn't transmitted over HTTP. But if the fragment is known, it should be included. |
+| `http.response.status_code` (used to be `http.status_code`) | number | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). |
+| `network.protocol.version` (used to be `http.flavor`) | string | Type of HTTP protocol. |
+| `user_agent.original` (used to be `http.user_agent`) | string | Value of the [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3) header sent by the client. |
+
+##### Java Database Connectivity spans
+
+The following table describes attributes that you can use in Java Database Connectivity (JDBC) spans:
+
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `db.system` | string | Identifier for the database management system (DBMS) product being used. See [Semantic Conventions for database operations](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md). |
+| `db.connection_string` | string | Connection string used to connect to the database. We recommend that you remove embedded credentials. |
+| `db.user` | string | Username for accessing the database. |
+| `db.name` | string | String used to report the name of the database being accessed. For commands that switch the database, this string should be set to the target database, even if the command fails. |
+| `db.statement` | string | Database statement that's being run. |
+
+#### Include criteria and exclude criteria
+
+Span processors support optional `include` and `exclude` criteria.
+A span processor is applied only to telemetry that matches its `include` criteria (if it's available)
+*and* don't match its `exclude` criteria (if it's available).
+
+To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or span `attributes`.
+The `include` or `exclude` configuration allows more than one specified condition.
+All specified conditions must evaluate to true to result in a match. 
+
+* **Required fields**:
+
+	* `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* **Optional fields**:
+
+	* `spanNames` must match at least one of the items.
+	* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
+	
+> [!NOTE]
+> If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
+
+# [Log processor](#tab/log)
+
+> [!NOTE]
+> Log processors are available starting from version 3.1.1.
+
+The log processor modifies either the log message body or attributes of a log based on the log message body. It can support the ability to include or exclude logs.
+
+#### Update log message body
+
+The `body` section requires the `fromAttributes` setting. The values from these attributes are used to create a new body, concatenated in the order that the configuration specifies. The processor changes the log body only if all of these attributes are present on the log.
+
+The `separator` setting is optional. This setting is a string. You can specify it to split values.
+> [!NOTE]
+> If renaming relies on the attributes processor to modify attributes, ensure the log processor is specified after the attributes processor in the pipeline specification.
+
+```json
+"processors": [
+  {
+	"type": "log",
+	"body": {
+	  "fromAttributes": [
+		"attributeKey1",
+		"attributeKey2",
+	  ],
+	  "separator": "::"
+	}
+  }
+] 
+```
+
+#### Extract attributes from the log message body
+
+The `toAttributes` section lists the regular expressions to match the log message body. It extracts attributes based on subexpressions.
+
+The `rules` setting is required. This setting lists the rules that are used to extract attribute values from the body. 
+
+Extracted attribute names replace the values in the log message body. Each rule in the list is a regular expression (regex) pattern string. 
+
+Here's how extracted attribute names replace values:
+
+1. The log message body is checked against the regex. 
+1. All named subexpressions of the regex are extracted as attributes if the regex matches. 
+1. The extracted attributes are added to the log. 
+1. Each subexpression name becomes an attribute name. 
+1. The subexpression matched portion becomes the attribute value. 
+1. The extracted attribute name replaces the matched portion in the log name. If the attributes already exist in the log, they're overwritten. 
+ 
+This process is repeated for all rules in the order they're specified. Each subsequent rule works on the log name that's the output of the previous rule.
+
+```json
+"processors": [
+  {
+	"type": "log",
+	"body": {
+	  "toAttributes": {
+		"rules": [
+		  "rule1",
+		  "rule2",
+		  "rule3"
+		]
+	  }
+	}
+  }
+]
+```
+
+#### Include criteria and exclude criteria
+
+Log processors support optional `include` and `exclude` criteria.
+A log processor is applied only to telemetry that matches its `include` criteria (if it's available)
+*and* don't match its `exclude` criteria (if it's available).
+
+To configure this option, under `include` or `exclude` (or both), specify the `matchType` and `attributes`.
+The `include` or `exclude` configuration allows more than one specified condition.
+All specified conditions must evaluate to true to result in a match. 
+
+**Required field**: 
+
+* `matchType` controls how items in `attributes` arrays are interpreted. Possible values are `regexp` and `strict`.
+
+	Regular expression matches are performed against the entire attribute value,
+	so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
+	
+> [!NOTE]
+> * If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
+>
+> * Log processors do not support `spanNames`.
+
+# [Metric filter](#tab/metric)
+
+> [!NOTE]
+> Metric filters are available starting from version 3.1.1.
+
+Metric filters are used to exclude some metrics in order to help control ingestion cost.
+
+Metric filters only support `exclude` criteria. Metrics that match its `exclude` criteria aren't exported.
+
+To configure this option, under `exclude`, specify the `matchType` one or more `metricNames`.
+
+**Required field**:
+
+* `matchType` controls how items in `metricNames` are matched. Possible values are `regexp` and `strict`.
+
+	Regular expression matches are performed against the entire attribute value,
+	so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* `metricNames` must match at least one of the items.
+
+#### Default metrics captured by Java agent
+
+| Metric name | Metric type | Description | Filterable |
+|-------------|-------------|-------------|------------|
+| `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | ✅ |
+| `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | ✅ |
+| `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | ✅ |
+| `GC Total Time` | Ccustom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
+| `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | ✅ |
+| `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| ✅ |
+| `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | ❌ |
+| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | ❌ |
+| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | ❌ |
+| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | ❌ |
+| `\Memory\Available Bytes` | Default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | ❌ |
+
+---
+
+### Processor sample usage
+
+# [Attribute processor](#tab/attribute)
 
 ```json
 "processors": [
@@ -1630,6 +1542,624 @@ To configure this option, under `include` or `exclude` (or both), specify at lea
   }
 ]
 ```
+
+# [Span processor](#tab/span)
+
+```json
+"processors": [
+  {
+	"type": "span",
+	"include": {
+	  "matchType": "strict",
+	  "spanNames": [
+		"spanA",
+		"spanB"
+	  ]
+	},
+	"exclude": {
+	  "matchType": "strict",
+	  "attributes": [
+		{
+		  "key": "attribute1",
+		  "value": "attributeValue1"
+		}
+	  ]
+	},
+	"name": {
+	  "toAttributes": {
+		"rules": [
+		  "rule1",
+		  "rule2",
+		  "rule3"
+		]
+	  }
+	}
+  }
+]
+```
+
+# [Log processor](#tab/log)
+
+```json
+"processors": [
+  {
+	"type": "log",
+	"include": {
+	  "matchType": "strict",
+	  "attributes": [
+		{
+		  "key": "attribute1",
+		  "value": "value1"
+		}
+	  ]
+	},
+	"exclude": {
+	  "matchType": "strict",
+	  "attributes": [
+		{
+		  "key": "attribute2",
+		  "value": "value2"
+		}
+	  ]
+	},
+	"body": {
+	  "toAttributes": {
+		"rules": [
+		  "rule1",
+		  "rule2",
+		  "rule3"
+		]
+	  }
+	}
+  }
+]
+```
+
+# [Metric filter](#tab/metric)
+
+The following sample shows how to exclude metrics with names "metricA" and "metricB":
+
+```json
+"processors": [
+  {
+	"type": "metric-filter",
+	"exclude": {
+	  "matchType": "strict",
+	  "metricNames": [
+		"metricA",
+		"metricB"
+	  ]
+	}
+  }
+]
+```
+
+The following sample shows how to turn off all metrics including the default autocollected performance metrics like cpu and memory.
+
+```json
+"processors": [
+  {
+	"type": "metric-filter",
+	"exclude": {
+	  "matchType": "regexp",
+	  "metricNames": [
+		".*"
+	  ]
+	}
+  }
+]
+```
+
+---
+
+### Processor samples
+
+# [Attribute processor](#tab/attribute)
+
+Expand the sections below to view various attribute processor samples.
+
+<details>
+<summary><b>Insert</b></summary>
+
+The following sample inserts the new attribute `{"attribute1": "attributeValue1"}` into spans and logs where the key `attribute1` doesn't exist.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "attribute1",
+			"value": "attributeValue1",
+			"action": "insert"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Insert from another key</b></summary>
+
+The following sample uses the value from attribute `anotherkey` to insert the new attribute `{"newKey": "<value from attribute anotherkey>"}` into spans and logs where the key `newKey` doesn't exist. If the attribute `anotherkey` doesn't exist, no new attribute is inserted into spans and logs.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "newKey",
+			"fromAttribute": "anotherKey",
+			"action": "insert"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Update</b></summary>
+
+The following sample updates the attribute to `{"db.secret": "redacted"}`. It updates the attribute `boo` by using the value from attribute `foo`. Spans and logs that don't have the attribute `boo` don't change.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "db.secret",
+			"value": "redacted",
+			"action": "update"
+		  },
+		  {
+			"key": "boo",
+			"fromAttribute": "foo",
+			"action": "update" 
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Delete</b></summary>
+
+The following sample shows how to delete an attribute that has the key `credit_card`.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "credit_card",
+			"action": "delete"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Hash</b></summary>
+
+The following sample shows how to hash existing attribute values.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "user.email",
+			"action": "hash"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Extract</b></summary>
+
+The following sample shows how to use a regular expression (regex) to create new attributes based on the value of another attribute.
+
+For example, given `url.path = /path?queryParam1=value1,queryParam2=value2`, the following attributes are inserted:
+
+* httpProtocol: `http`
+* httpDomain: `example.com`
+* httpPath: `path`
+* httpQueryParams: `queryParam1=value1,queryParam2=value2`
+* url.path: *no* change
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "url.path",
+			"pattern": "^(?<httpProtocol>.*):\\/\\/(?<httpDomain>.*)\\/(?<httpPath>.*)(\\?|\\&)(?<httpQueryParams>.*)",
+			"action": "extract"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Mask</b></summary>
+
+For example, given `url.path = https://example.com/user/12345622` is updated to `url.path = https://example.com/user/****` using either of the below configurations.
+
+
+First configuration example:
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "url.path",
+			"pattern": "user\\/\\d+",
+			"replace": "user\\/****",
+			"action": "mask"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+Second configuration example with regular expression group name:
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "url.path",
+			"pattern": "^(?<userGroupName>[a-zA-Z.:\/]+)\d+",
+			"replace": "${userGroupName}**",
+			"action": "mask"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Nonstring typed attributes samples</b></summary>
+
+Starting 3.4.19 GA, telemetry processors support nonstring typed attributes:
+`boolean`, `double`, `long`, `boolean-array`, `double-array`, `long-array`, and `string-array`.
+
+When `attributes.type` isn't provided in the json, it's default to `string`.
+
+The following sample inserts the new attribute `{"newAttributeKeyStrict": "newAttributeValueStrict"}` into spans and logs where the attributes match the following examples:
+
+* `{"longAttributeKey": 1234}`
+* `{"booleanAttributeKey": true}`
+* `{"doubleArrayAttributeKey": [1.0, 2.0, 3.0, 4.0]}`
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"include": {
+		  "matchType": "strict",
+		  "attributes": [
+			{
+			  "key": "longAttributeKey",
+			  "value": 1234,
+			  "type": "long"
+			},
+			{
+			  "key": "booleanAttributeKey",
+			  "value": true,
+			  "type": "boolean"
+			},
+			{
+			  "key": "doubleArrayAttributeKey",
+			  "value": [1.0, 2.0, 3.0, 4.0],
+			  "type": "double-array"
+			}
+		  ]
+		},
+		"actions": [
+		  {
+			"key": "newAttributeKeyStrict",
+			"value": "newAttributeValueStrict",
+			"action": "insert"
+		  }
+		],
+		"id": "attributes/insertNewAttributeKeyStrict"
+	  }
+	]
+  }
+}
+
+```
+
+Additionally, nonstring typed attributes support `regexp`.
+
+The following sample inserts the new attribute `{"newAttributeKeyRegexp": "newAttributeValueRegexp"}` into spans and logs where the attribute `longRegexpAttributeKey` matches the value from `400` to `499`.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "attribute",
+		"include": {
+		  "matchType": "regexp",
+		  "attributes": [
+			{
+			  "key": "longRegexpAttributeKey",
+			  "value": "4[0-9][0-9]",
+			  "type": "long"
+			}
+		  ]
+		},
+		"actions": [
+		  {
+			"key": "newAttributeKeyRegexp",
+			"value": "newAttributeValueRegexp",
+			"action": "insert"
+		  }
+		],
+		"id": "attributes/insertNewAttributeKeyRegexp"
+	  }
+	]
+  }
+}
+
+```
+
+</details>
+
+# [Span processor](#tab/span)
+
+<details>
+<summary><b>Name a span</b></summary>
+
+The following sample specifies the values of attributes `db.svc`, `operation`, and `id`. It forms the new name of the span by using those attributes, in that order, separated by the value `::`.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "span",
+		"name": {
+		  "fromAttributes": [
+			"db.svc",
+			"operation",
+			"id"
+		  ],
+		  "separator": "::"
+		}
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Extract attributes from a span name</b></summary>
+
+Let's assume the input span name is `/api/v1/document/12345678/update`. The following sample results in the output span name `/api/v1/document/{documentId}/update`. It adds the new attribute `documentId=12345678` to the span.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "span",
+		"name": {
+		  "toAttributes": {
+			"rules": [
+			  "^/api/v1/document/(?<documentId>.*)/update$"
+			]
+		  }
+		}
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Extract attributes from a span name by using include and exclude</b></summary>
+
+The following sample shows how to change the span name to `{operation_website}`. It adds an attribute with key `operation_website` and value `{oldSpanName}` when the span has the following properties:
+
+* The span name contains `/` anywhere in the string.
+* The span name isn't `donot/change`.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "span",
+		"include": {
+		  "matchType": "regexp",
+		  "spanNames": [
+			"^(.*?)/(.*?)$"
+		  ]
+		},
+		"exclude": {
+		  "matchType": "strict",
+		  "spanNames": [
+			"donot/change"
+		  ]
+		},
+		"name": {
+		  "toAttributes": {
+			"rules": [
+			  "(?<operation_website>.*?)$"
+			]
+		  }
+		}
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+# [Log processor](#tab/log)
+
+<details>
+<summary><b>Extract attributes from a log message body</b></summary>
+
+Let's assume the input log message body is `Starting PetClinicApplication on WorkLaptop with PID 27984 (C:\randompath\target\classes started by userx in C:\randompath)`. The following sample results in the output message body `Starting PetClinicApplication on WorkLaptop with PID {PIDVALUE} (C:\randompath\target\classes started by userx in C:\randompath)`. It adds the new attribute `PIDVALUE=27984` to the log.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "log",
+		"body": {
+		  "toAttributes": {
+			"rules": [
+			  "^Starting PetClinicApplication on WorkLaptop with PID (?<PIDVALUE>\\d+) .*"
+			]
+		  }
+		}
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+<br>
+<details>
+<summary><b>Masking sensitive data in log message</b></summary>
+
+The following sample shows how to mask sensitive data in a log message body using both log processor and attribute processor.
+
+Let's assume the input log message body is `User account with userId 123456xx failed to login`. The log processor updates output message body to `User account with userId {redactedUserId} failed to login` and the attribute processor deletes the new attribute `redactedUserId`, which was adding in the previous step.
+
+```json
+{
+  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
+  "preview": {
+	"processors": [
+	  {
+		"type": "log",
+		"body": {
+		  "toAttributes": {
+			"rules": [
+			  "userId (?<redactedUserId>[0-9a-zA-Z]+)"
+			]
+		  }
+		}
+	  },
+	  {
+		"type": "attribute",
+		"actions": [
+		  {
+			"key": "redactedUserId",
+			"action": "delete"
+		  }
+		]
+	  }
+	]
+  }
+}
+```
+
+</details>
+
+# [Metric filter](#tab/metric)
+
+N/A
+
+---
 
 #### Include and exclude span samples
 
@@ -1841,520 +2371,6 @@ These spans don't match the `include` properties, and processor actions aren't a
 ```
 
 </details>
-
-### Span processor
-
-The span processor modifies either the span name or attributes of a span based on the span name. It can support the ability to include or exclude spans.
-
-#### Name a span
-
-The `name` section requires the `fromAttributes` setting. The values from these attributes are used to create a new name, concatenated in the order that the configuration specifies. The processor changes the span name only if all of these attributes are present on the span.
-
-The `separator` setting is optional. This setting is a string, and you can use split values.
-
-> [!NOTE]
-> If renaming relies on the attributes processor to modify attributes, ensure the span processor is specified after the attributes processor in the pipeline specification.
-
-```json
-"processors": [
-  {
-	"type": "span",
-	"name": {
-	  "fromAttributes": [
-		"attributeKey1",
-		"attributeKey2",
-	  ],
-	  "separator": "::"
-	}
-  }
-] 
-```
-
-#### Extract attributes from the span name
-
-The `toAttributes` section lists the regular expressions to match the span name against. It extracts attributes based on subexpressions.
-
-The `rules` setting is required. This setting lists the rules that are used to extract attribute values from the span name. 
-
-Extracted attribute names replace the values in the span name. Each rule in the list is a regular expression (regex) pattern string. 
-
-Here's how extracted attribute names replace values:
-
-1. The span name is checked against the regex. 
-2. All named subexpressions of the regex are extracted as attributes if the regex matches. 
-3. The extracted attributes are added to the span. 
-4. Each subexpression name becomes an attribute name. 
-5. The subexpression matched portion becomes the attribute value. 
-6. The extracted attribute name replaces the matched portion in the span name. If the attributes already exist in the span, they're overwritten. 
- 
-This process is repeated for all rules in the order they're specified. Each subsequent rule works on the span name that's the output of the previous rule.
-
-```json
-"processors": [
-  {
-	"type": "span",
-	"name": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
-  }
-]
-```
-
-#### Common span attributes
-
-This section lists some common span attributes that telemetry processors can use.
-
-##### HTTP spans
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `http.request.method` (used to be `http.method`) | string | HTTP request method. |
-| `url.full` (client span) or `url.path` (server span) (used to be `http.url`) | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. The fragment typically isn't transmitted over HTTP. But if the fragment is known, it should be included. |
-| `http.response.status_code` (used to be `http.status_code`) | number | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). |
-| `network.protocol.version` (used to be `http.flavor`) | string | Type of HTTP protocol. |
-| `user_agent.original` (used to be `http.user_agent`) | string | Value of the [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3) header sent by the client. |
-
-##### Java Database Connectivity spans
-
-The following table describes attributes that you can use in Java Database Connectivity (JDBC) spans:
-
-| Attribute | Type | Description |
-|-----------|------|-------------|
-| `db.system` | string | Identifier for the database management system (DBMS) product being used. See [Semantic Conventions for database operations](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md). |
-| `db.connection_string` | string | Connection string used to connect to the database. We recommend that you remove embedded credentials. |
-| `db.user` | string | Username for accessing the database. |
-| `db.name` | string | String used to report the name of the database being accessed. For commands that switch the database, this string should be set to the target database, even if the command fails. |
-| `db.statement` | string | Database statement that's being run. |
-
-#### Include criteria and exclude criteria
-
-Span processors support optional `include` and `exclude` criteria.
-A span processor is applied only to telemetry that matches its `include` criteria (if it's available)
-*and* don't match its `exclude` criteria (if it's available).
-
-To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or span `attributes`.
-The `include` or `exclude` configuration allows more than one specified condition.
-All specified conditions must evaluate to true to result in a match. 
-
-* **Required fields**:
-
-	* `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
-
-* **Optional fields**:
-
-	* `spanNames` must match at least one of the items.
-	* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
-	
-> [!NOTE]
-> If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
-
-#### Sample usage
-
-```json
-"processors": [
-  {
-	"type": "span",
-	"include": {
-	  "matchType": "strict",
-	  "spanNames": [
-		"spanA",
-		"spanB"
-	  ]
-	},
-	"exclude": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute1",
-		  "value": "attributeValue1"
-		}
-	  ]
-	},
-	"name": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
-  }
-]
-```
-
-#### Span processor samples
-
-<details>
-<summary><b>Name a span</b></summary>
-
-The following sample specifies the values of attributes `db.svc`, `operation`, and `id`. It forms the new name of the span by using those attributes, in that order, separated by the value `::`.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "span",
-        "name": {
-          "fromAttributes": [
-            "db.svc",
-            "operation",
-            "id"
-          ],
-          "separator": "::"
-        }
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Extract attributes from a span name</b></summary>
-
-Let's assume the input span name is `/api/v1/document/12345678/update`. The following sample results in the output span name `/api/v1/document/{documentId}/update`. It adds the new attribute `documentId=12345678` to the span.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "span",
-        "name": {
-          "toAttributes": {
-            "rules": [
-              "^/api/v1/document/(?<documentId>.*)/update$"
-            ]
-          }
-        }
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Extract attributes from a span name by using include and exclude</b></summary>
-
-The following sample shows how to change the span name to `{operation_website}`. It adds an attribute with key `operation_website` and value `{oldSpanName}` when the span has the following properties:
-
-* The span name contains `/` anywhere in the string.
-* The span name isn't `donot/change`.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "span",
-        "include": {
-          "matchType": "regexp",
-          "spanNames": [
-            "^(.*?)/(.*?)$"
-          ]
-        },
-        "exclude": {
-          "matchType": "strict",
-          "spanNames": [
-            "donot/change"
-          ]
-        },
-        "name": {
-          "toAttributes": {
-            "rules": [
-              "(?<operation_website>.*?)$"
-            ]
-          }
-        }
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-### Log processor
-
-> [!NOTE]
-> Log processors are available starting from version 3.1.1.
-
-The log processor modifies either the log message body or attributes of a log based on the log message body. It can support the ability to include or exclude logs.
-
-#### Update log message body
-
-The `body` section requires the `fromAttributes` setting. The values from these attributes are used to create a new body, concatenated in the order that the configuration specifies. The processor changes the log body only if all of these attributes are present on the log.
-
-The `separator` setting is optional. This setting is a string. You can specify it to split values.
-> [!NOTE]
-> If renaming relies on the attributes processor to modify attributes, ensure the log processor is specified after the attributes processor in the pipeline specification.
-
-```json
-"processors": [
-  {
-	"type": "log",
-	"body": {
-	  "fromAttributes": [
-		"attributeKey1",
-		"attributeKey2",
-	  ],
-	  "separator": "::"
-	}
-  }
-] 
-```
-
-#### Extract attributes from the log message body
-
-The `toAttributes` section lists the regular expressions to match the log message body. It extracts attributes based on subexpressions.
-
-The `rules` setting is required. This setting lists the rules that are used to extract attribute values from the body. 
-
-Extracted attribute names replace the values in the log message body. Each rule in the list is a regular expression (regex) pattern string. 
-
-Here's how extracted attribute names replace values:
-
-1. The log message body is checked against the regex. 
-1. All named subexpressions of the regex are extracted as attributes if the regex matches. 
-1. The extracted attributes are added to the log. 
-1. Each subexpression name becomes an attribute name. 
-1. The subexpression matched portion becomes the attribute value. 
-1. The extracted attribute name replaces the matched portion in the log name. If the attributes already exist in the log, they're overwritten. 
- 
-This process is repeated for all rules in the order they're specified. Each subsequent rule works on the log name that's the output of the previous rule.
-
-```json
-"processors": [
-  {
-	"type": "log",
-	"body": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
-  }
-]
-```
-
-#### Log processor samples
-
-<details>
-<summary><b>Extract attributes from a log message body</b></summary>
-
-Let's assume the input log message body is `Starting PetClinicApplication on WorkLaptop with PID 27984 (C:\randompath\target\classes started by userx in C:\randompath)`. The following sample results in the output message body `Starting PetClinicApplication on WorkLaptop with PID {PIDVALUE} (C:\randompath\target\classes started by userx in C:\randompath)`. It adds the new attribute `PIDVALUE=27984` to the log.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "log",
-        "body": {
-          "toAttributes": {
-            "rules": [
-              "^Starting PetClinicApplication on WorkLaptop with PID (?<PIDVALUE>\\d+) .*"
-            ]
-          }
-        }
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-<br>
-<details>
-<summary><b>Masking sensitive data in log message</b></summary>
-
-The following sample shows how to mask sensitive data in a log message body using both log processor and attribute processor.
-
-Let's assume the input log message body is `User account with userId 123456xx failed to login`. The log processor updates output message body to `User account with userId {redactedUserId} failed to login` and the attribute processor deletes the new attribute `redactedUserId`, which was adding in the previous step.
-
-```json
-{
-  "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-    "processors": [
-      {
-        "type": "log",
-        "body": {
-          "toAttributes": {
-            "rules": [
-              "userId (?<redactedUserId>[0-9a-zA-Z]+)"
-            ]
-          }
-        }
-      },
-      {
-        "type": "attribute",
-        "actions": [
-          {
-            "key": "redactedUserId",
-            "action": "delete"
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-</details>
-
-#### Include criteria and exclude criteria
-
-Log processors support optional `include` and `exclude` criteria.
-A log processor is applied only to telemetry that matches its `include` criteria (if it's available)
-*and* don't match its `exclude` criteria (if it's available).
-
-To configure this option, under `include` or `exclude` (or both), specify the `matchType` and `attributes`.
-The `include` or `exclude` configuration allows more than one specified condition.
-All specified conditions must evaluate to true to result in a match. 
-
-**Required field**: 
-
-* `matchType` controls how items in `attributes` arrays are interpreted. Possible values are `regexp` and `strict`.
-
-	Regular expression matches are performed against the entire attribute value,
-	so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
-
-* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
-	
-> [!NOTE]
-> * If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
->
-> * Log processors do not support `spanNames`.
-
-#### Sample usage
-
-```json
-"processors": [
-  {
-	"type": "log",
-	"include": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute1",
-		  "value": "value1"
-		}
-	  ]
-	},
-	"exclude": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute2",
-		  "value": "value2"
-		}
-	  ]
-	},
-	"body": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
-  }
-]
-```
-
-### Metric filter
-
-> [!NOTE]
-> Metric filters are available starting from version 3.1.1.
-
-Metric filters are used to exclude some metrics in order to help control ingestion cost.
-
-Metric filters only support `exclude` criteria. Metrics that match its `exclude` criteria aren't exported.
-
-To configure this option, under `exclude`, specify the `matchType` one or more `metricNames`.
-
-**Required field**:
-
-* `matchType` controls how items in `metricNames` are matched. Possible values are `regexp` and `strict`.
-
-	Regular expression matches are performed against the entire attribute value,
-	so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
-
-* `metricNames` must match at least one of the items.
-
-#### Sample usage
-
-The following sample shows how to exclude metrics with names "metricA" and "metricB":
-
-```json
-"processors": [
-  {
-	"type": "metric-filter",
-	"exclude": {
-	  "matchType": "strict",
-	  "metricNames": [
-		"metricA",
-		"metricB"
-	  ]
-	}
-  }
-]
-```
-
-The following sample shows how to turn off all metrics including the default autocollected performance metrics like cpu and memory.
-
-```json
-"processors": [
-  {
-	"type": "metric-filter",
-	"exclude": {
-	  "matchType": "regexp",
-	  "metricNames": [
-		".*"
-	  ]
-	}
-  }
-]
-```
-
-#### Default metrics captured by Java agent
-
-| Metric name | Metric type | Description | Filterable |
-|-------------|-------------|-------------|------------|
-| `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | ✅ |
-| `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | ✅ |
-| `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | ✅ |
-| `GC Total Time` | Ccustom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
-| `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | ✅ |
-| `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| ✅ |
-| `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | ❌ |
-| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | ❌ |
-| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | ❌ |
-| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | ❌ |
-| `\Memory\Available Bytes` | Default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | ❌ |
 
 ### Telemetry processors FAQ
 
