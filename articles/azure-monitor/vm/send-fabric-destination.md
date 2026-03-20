@@ -33,7 +33,7 @@ The DCR creation process gives the required user-assigned managed identity the [
 ## Create a data collection rule
 
 1. In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
-1. Select the option presented by the informational banner to preview the [new Data Collection Rule creation experience](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+1. Select the option presented by the informational banner to preview the [new Data Collection Rule creation experience](../vm/data-collection.md#create-data-collection-rule-dcr).
 
    :::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
 

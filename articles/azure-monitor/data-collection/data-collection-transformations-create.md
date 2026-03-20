@@ -162,7 +162,7 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
 ### [JSON](#tab/json)
 
-Workspace transformation DCRs are mostly like any other DCR. They use the same JSON structure for their definition, and you can create and edit them using the same commands and strategies described in [Create or edit a DCR using JSON](data-collection-rule-create-edit.md#create-or-edit-a-dcr-using-json). The differences are with the JSON definition:
+Workspace transformation DCRs are mostly like any other DCR. They use the same JSON structure for their definition, and you can create and edit them using the same commands and strategies described in [Create or edit a DCR using JSON](data-collection-rule-create-edit.md). The differences are with the JSON definition:
 
 * It must include the `kind` parameter with a value of `WorkspaceTransforms`.
 * The `dataSources` section must be empty.
