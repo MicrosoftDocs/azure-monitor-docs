@@ -8956,7 +8956,7 @@
   },
   {
    "source_path": "articles/azure-monitor/app/java-standalone-telemetry-processors-examples.md",
-   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processor-examples",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processors-preview",
    "redirect_document_id": false
   }
  ]
