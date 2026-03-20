@@ -118,7 +118,7 @@ Use one of the following two ways to configure the connection string:
 
 ### [Java](#tab/java)
 
-To set the connection string, see [Connection string](java-standalone-config.md#connection-string).
+To set the connection string, see [Connection string](java-standalone-config.md#set-the-connection-string).
 
 ### [Java native](#tab/java-native)
 
@@ -274,9 +274,9 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 ### [Java](#tab/java)
 
-To set the cloud role name, see [cloud role name](java-standalone-config.md#cloud-role-name).
+To set the cloud role name, see [cloud role name](java-standalone-config.md#set-the-cloud-role-name).
 
-To set the cloud role instance, see [cloud role instance](java-standalone-config.md#cloud-role-instance).
+To set the cloud role instance, see [cloud role instance](java-standalone-config.md#set-the-cloud-role-instance).
 
 ### [Java native](#tab/java-native)
 

@@ -32,7 +32,7 @@ Connection string and role name are the most common settings you need to get sta
 
 More information and configuration options are provided in the following sections.
 
-### Set up the JSON configuration
+### JSON configuration set-up
 
 #### Default configuration
 
@@ -178,7 +178,7 @@ Sampling is based on request, which means that if a request is captured (sampled
 
 Sampling is also based on trace ID to help ensure consistent sampling decisions across different services.
 
-Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](./java-standalone-sampling-overrides.md).
+Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](#sampling-overrides).
 
 ### Choose a sampling method
 
@@ -188,7 +188,7 @@ Starting from 3.4.0, rate-limited sampling is available and is now the default.
 
 If no sampling is configured, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
 
-This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use [fixed-percentage sampling](#fixed-percentage-sampling) and set the sampling percentage to 100.
+This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use fixed-percentage sampling and set the sampling percentage to 100.
 
 > [!NOTE]
 > The rate-limited sampling is approximate because internally it must adapt a "fixed" sampling percentage over time to emit accurate item counts on each telemetry record. Internally, the rate-limited sampling is tuned to adapt quickly (0.1 seconds) to new application loads. For this reason, you shouldn't see it exceed the configured rate by much, or for very long.
@@ -226,7 +226,7 @@ You can also set the sampling percentage by using the environment variable `APPL
 
 ---
 
-### Configure sampling overrides
+### Sampling overrides
 
 > [!NOTE]
 > The sampling overrides feature is in GA, starting from 3.5.0.
@@ -659,7 +659,7 @@ To review frequently asked questions (FAQ), see [Sampling overrides FAQ](applica
 
 ## Collect additional telemetry
 
-### Configure Java Management Extensions (JMX) metrics
+### Java Management Extensions (JMX) metrics
 
 Application Insights Java 3.x collects some of the Java Management Extensions (JMX) metrics by default, but in many cases it isn't enough. This section describes the JMX configuration option in details.
 
@@ -2382,7 +2382,7 @@ To review frequently asked questions (FAQ), see [Telemetry processors FAQ](appli
 
 This feature is in preview, starting from 3.4.0.
 
-Connection string overrides allow you to override the [default connection string](#connection-string). For example, you can:
+Connection string overrides allow you to override the [default connection string](#set-the-connection-string). For example, you can:
 
 * Set one connection string for one HTTP path prefix `/myapp1`.
 * Set another connection string for another HTTP path prefix `/myapp2/`.
@@ -2408,7 +2408,7 @@ Connection string overrides allow you to override the [default connection string
 
 This feature is in preview, starting from 3.3.0.
 
-Cloud role name overrides allow you to override the [default cloud role name](#cloud-role-name). For example, you can:
+Cloud role name overrides allow you to override the [default cloud role name](#set-the-cloud-role-name). For example, you can:
 
 * Set one cloud role name for one HTTP path prefix `/myapp1`.
 * Set another cloud role name for another HTTP path prefix `/myapp2/`.
