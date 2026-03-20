@@ -8,18 +8,18 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline TLS configuration (preview)
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to your local data center and multicloud environments. It supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
+Use this article to choose how to secure TCP-based ingestion for [Azure Monitor pipeline](./pipeline-overview.md). The pipeline supports TLS and mutual TLS (mTLS) for TCP-based receivers through two certificate management approaches:
 
 - **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
 - **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
 
-With these options, you can:
+Choose one of the following approaches:
 
-- Use automated certificate management for simplified operations and zero-downtime rotation
-- Provide your own keys and certificates that the Azure Monitor receiver TLS endpoint should use
-- Configure TLS with your own CA cert and PKI that Azure Monitor should provision certs from for its receiver TLS endpoint
+- Use automated certificate management with zero-downtime rotation.
+- Provide your own server certificate and key.
+- Provide your own CA for client certificate validation.
 
-This article explains how to secure data ingestion into Azure Monitor pipeline using TLS encryption, and additional secure intra-cluster traffic using mTLS client authentication. Using the options below, you can choose fully automated certificate management or integrate with your existing PKI to control certificate issuance, renewal, and trust.
+Use the following sections to choose the approach that fits your deployment.
 
 ## Prerequisites
 
@@ -38,13 +38,13 @@ The Azure Monitor pipeline supports three TLS modes:
 
 ## Option 1: Default TLS (automated certificate management)
 
-The Certificate Manager extension provides automated certificate lifecycle management with zero-downtime rotation. This means certificates are automatically renewed and rotated without any service interruption or manual intervention.
+Use this option when you want the Certificate Manager extension to manage certificate issuance and rotation for you.
 
 See [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md) for more information on how to set this up.
 
 ## Option 2: BYOC (Bring Your Own Certificates)
 
-Customers can provide their own certificates to meet compliance, security, and custom PKI requirements. With BYOC, you can:
+Use this option when you need to use your own certificates or integrate with your existing PKI. With BYOC, you can:
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation
@@ -54,9 +54,9 @@ See [TLS configuration - Using your own certificate management](./pipeline-tls-c
 
 ## Option 3: Disable TLS and mTLS
 
-While it's not recommended from a security standpoint, you may choose to disable TLS and mTLS when using the pipeline. Follow this guidance to do so:
+If your environment doesn't require encrypted ingestion, you can disable TLS and mTLS.
 
-1. Disable the config using the configuration shown below.
+1. Disable the configuration by using the following settings.
 2. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
 
 **Disable TLS**

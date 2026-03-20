@@ -8,14 +8,9 @@ ms.custom: references_regions, devx-track-azurecli
 
 # TLS configuration - Using your own certificate management (customer managed or BYOC)
 
-The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
+Use this article when you want to manage certificates for Azure Monitor pipeline receivers yourself. For the automated option, see [Using automated certificate management](./pipeline-tls-automated.md).
 
-- **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
-- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
-
-This article provides detailed guidance for the **BYOC** option. See [Using automated certificate management](./pipeline-tls-automated.md) for the **Default TLS** option. 
-
-You can provide your own certificates to meet compliance, security, and custom PKI requirements. With BYOC, you can:
+With BYOC, you can:
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation
@@ -91,7 +86,7 @@ spec:
   dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
 ```
 
-Apply the YAML to your cluster using the following command. cert‑manager will populate the collector-server-tls secret with certificate and key.
+Apply the YAML to your cluster using the following command. cert-manager populates the `collector-server-tls` secret with the certificate and key.
 
 ```bash
 kubectl apply -f azmonpipeline-server-cert.yaml
@@ -141,7 +136,7 @@ Certificates and keys must be stored in Kubernetes resources in the **same names
 
 ### Create Kubernetes secrets
 
-In order to provide your own certificate and key for client or the pipeline, it must be stored in a Kubernetes secret. Ensure that the following secrets exist in the pipeline namespace so the ARM template can reference them directly.
+To provide your own certificate and key for the client or the pipeline, store them in a Kubernetes secret. Ensure that the following secrets exist in the pipeline namespace so the ARM template can reference them directly.
 
   - Kubernetes TLS secret named `collector-server-tls` containing `tls.crt` and `tls.key` for the collector
   - Opaque secret named `byoc-client-root-ca-secret` that stores `ca.crt`
@@ -150,17 +145,17 @@ In order to provide your own certificate and key for client or the pipeline, it 
 kubectl create secret tls my-tls-secret --cert=tls.crt --key=tls.key -n <namespace>
 ```
 
-You can optionally leverage the [Secret Store Extension (SSE)](/azure/azure-arc/kubernetes/secret-store-extension) to automatically synchronize certificates from Azure Key Vault to Kubernetes secrets. This provides a secure and automated way to manage certificate lifecycle without manually creating secrets.
+You can optionally use the [Secret Store Extension (SSE)](/azure/azure-arc/kubernetes/secret-store-extension) to automatically synchronize certificates from Azure Key Vault to Kubernetes secrets.
 
 To encrypt Secrets at rest, see [Update the key vault mode for an Azure Kubernetes Service (AKS) cluster](/azure/aks/update-kms-key-vault).
 
 
 ### Configure pipeline
 
-Use one of the following templates to configure TLS or mTLS for your Azure Monitor pipeline receivers. Before you deploy the template, change the `tlsConfigurations` section to provide your required TLS settings according to the following guidelines:
+Use one of the following templates to configure TLS or mTLS for your Azure Monitor pipeline receivers. Before you deploy the template, update the `tlsConfigurations` section to match your requirements.
 
 - Set `name` to a friendly identifier, such as `byoc-mtls`, and reference that identifier from any receiver in the `tlsConfiguration` field.
-- If the receiver omits `tlsConfiguration`, it uses the platform’s default TLS chain created during bootstrap which covers server-side encryption only.
+- If the receiver omits `tlsConfiguration`, it uses the platform's default TLS chain created during bootstrap, which covers server-side encryption only.
 - Receivers can share the same TLS configuration, or you can define multiple entries and map each receiver to the appropriate configuration.
 - For BYOC, specify Kubernetes secrets or ConfigMaps for `tlsCertificate` and `clientCa` and specify the correct key for `subLocation` (`tls.crt`, `tls.key`, `ca.crt`).
 - Specify one of the following values for `mode`:
@@ -262,9 +257,10 @@ resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
 ---
 
 ## Example configurations
-The following section provides different configurations to include in the `tlsCertificate` section of the pipeline configuration shown above. Plug in the appropriate JSON snippet based on your desired configuration before applying to the configuration to the pipeline.
 
-## TLS Modes
+The following section provides example configurations that you can include in the pipeline configuration.
+
+## TLS modes
 
 The Azure Monitor pipeline supports three TLS modes:
 
@@ -273,7 +269,7 @@ The Azure Monitor pipeline supports three TLS modes:
 - **disabled**: Plain text communication
 
 
-**BYOC TLS**: Enable TLS secure encryption using customer-managed certificates
+**BYOC TLS**: Enables TLS by using customer-managed certificates.
 
 ```json
 {
@@ -294,7 +290,7 @@ The Azure Monitor pipeline supports three TLS modes:
 }
 ```
 
-**Default TLS + BYOC mTLS**: Enable TLS secure encryption using automated certificate management, and mTLS client authentication using customer-managed certificates
+**Default TLS + BYOC mTLS**: Enables TLS by using automated certificate management and mTLS client authentication by using customer-managed certificates.
 
 ```json
 {
@@ -307,13 +303,7 @@ The Azure Monitor pipeline supports three TLS modes:
 }
 ```
 
-## Related articles
-
-- Review the overview in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-- Use the default certificate flow in [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
-- Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-
-**BYOC (TLS + mTLS)**: Enable TLS secure encryption and mTLS client authentication, both using customer-managed certificates
+**BYOC (TLS + mTLS)**: Enables TLS and mTLS by using customer-managed certificates.
 
 ```json
 {
@@ -338,4 +328,10 @@ The Azure Monitor pipeline supports three TLS modes:
   }
 }
 ```
+
+## Related articles
+
+- Review the overview in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+- Use the default certificate flow in [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
+- Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 

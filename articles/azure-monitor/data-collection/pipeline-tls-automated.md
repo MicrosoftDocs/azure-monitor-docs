@@ -8,12 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # TLS configuration - Using automated certificate management
 
-The [Azure Monitor pipeline](./pipeline-overview.md) supports both TLS and mutual TLS (mTLS) for TCP‑based receivers through two certificate management approaches:
-
-- **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
-- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
-
-This article provides detailed guidance for the **Default TLS** option. See [Using your own certificate management (Customer managed or BYOC)](./pipeline-tls-custom.md) for the **BYOC** option. 
+Use this article when you want the Certificate Manager extension to manage certificates for TLS-enabled Azure Monitor pipeline receivers. For the customer-managed option, see [Using your own certificate management](./pipeline-tls-custom.md).
 
 ## Prerequisites
 
@@ -21,8 +16,8 @@ This article provides detailed guidance for the **Default TLS** option. See [Usi
 - Access to `kubectl` and the Azure CLI for the Arc-enabled cluster context.
 
 ## How automated certificate management works
-The Certificate Manager extension provides automated certificate lifecycle management with zero-downtime rotation. This means certificates are automatically renewed and rotated without any service interruption or manual intervention.
-The automated certificate management includes:
+
+The Certificate Manager extension manages certificate lifecycle and rotation for the pipeline. This includes the following components:
 
 - **Server Certificates**: Unique TLS certificates for each collector service
 - **Client CA Certificates**: Client CA Certificates for mTLS authentication
@@ -32,15 +27,15 @@ The automated certificate management includes:
 
 ### Certificate lifecycle
 
-Following are the details of the lifecycle for server and client certificates:
+The following sections summarize the lifecycle for server and client certificates:
 
-**Server leaf Certificates:**
+**Server leaf certificates:**
 
 - Duration: 48 hours (2 days)
 - Automatic renewal 24 hours before expiration
 - Managed automatically by the pipeline operator
 
-**Client Certificates:**
+**Client certificates:**
 
 Client certificate lifetimes are controlled by clients, but must meet zero-downtime rotation constraints. The certificate must renew within 2 days.
 
@@ -55,18 +50,18 @@ Recommended configurations:
 > [!WARNING]
 > Client certificates that don't renew within 2 days may become invalid when the CA rotates. Always set `renewBefore` to ensure renewal happens before the CA enters its next incubation period.
 
-## Using automated certificate management
-The Certificate Manager extension provides automated certificate lifecycle management with zero-downtime rotation. This means certificates are automatically renewed and rotated without any service interruption or manual intervention.
+## Use automated certificate management
+
 When you deploy a pipeline group with default settings, the operator automatically:
 
 - Creates unique TLS certificates for each collector service
 - Configures collectors to use managed server certificates
-- Distributes trust bundles containing server or client CA certificates to labeled namespaces. It's the responsibility of the user to label the client namespace so the server CA certificate configmap is available in the client namespace.
+- Distributes trust bundles containing server or client CA certificates to labeled namespaces. You must label the client namespace so the server CA certificate ConfigMap is available in that namespace.
 - Enables mTLS with automatic certificate rotation
 
 ### Step 1: Deploy pipeline group
 
-Deploy a pipeline group with default TLS settings (mTLS enabled). No tlsConfigurations needed for default mTLS behavior.
+Deploy a pipeline group with default TLS settings with mTLS enabled. No `tlsConfigurations` section is required for the default behavior.
 
 ### Step 2: Get server CA certificate for client validation
 
@@ -165,7 +160,7 @@ The pipeline service is accessible via these DNS names (from most to least speci
 
 
 ## Example configurations
-The following section provides different configurations to include in the `tlsCertificate` section of the pipeline configuration shown above. Plug in the appropriate JSON snippet based on your desired configuration before applying to the configuration to the pipeline.
+The following section provides example configurations that you can include in the pipeline configuration.
 
 ### TLS modes
 
@@ -175,7 +170,7 @@ The Azure Monitor pipeline supports three TLS modes:
 - **serverOnly**: TLS encryption without client certificate validation
 - **disabled**: Plain text communication
 
-**Default TLS**: Enable TLS secure encryption using automated certificate management
+**Default TLS**: Enables TLS by using automated certificate management.
 
 ```json
 {			
@@ -184,7 +179,7 @@ The Azure Monitor pipeline supports three TLS modes:
 }	
 ```
 
-**Default TLS + BYOC mTLS**: Enable TLS secure encryption using automated certificate management, and mTLS client authentication using customer-managed certificates
+**Default TLS + BYOC mTLS**: Enables TLS by using automated certificate management and mTLS client authentication by using customer-managed certificates.
 
 ```json
 {
