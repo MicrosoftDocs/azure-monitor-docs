@@ -904,15 +904,9 @@ items:
         href: data-collection/pipeline-transformations.md
       - name: Gateway setup
         items:
-        - name: Deploy a gateway for a new pipeline
+        - name: Configure a Kubernetes gateway
           displayName: Sample gateway setup
           href: data-collection/pipeline-kubernetes-gateway.md
-        - name: Modify an existing gateway deployment
-          displayName: Sample gateway setup
-          href: data-collection/pipeline-kubernetes-gateway-brownfield.md
-        - name: Configure multiple gateways
-          displayName: Sample gateway setup
-          href: data-collection/pipeline-kubernetes-gateway-multiple.md
       - name: Transport Layer Security (TLS)
         items:
         - name: Configure TLS

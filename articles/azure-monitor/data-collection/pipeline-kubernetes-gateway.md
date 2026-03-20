@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 Azure Monitor pipeline services are deployed as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
 
-This article shows how to deploy a dedicated Traefik gateway for a new pipeline group. For a first deployment, start with one pipeline group and one dedicated gateway. If you need to modify an existing gateway deployment, see [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
+This article shows how to deploy and manage a Traefik gateway for Azure Monitor pipeline. It covers a first deployment, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and deploying another pipeline group on the same cluster.
 
 > [!NOTE]
 > Traefik is used in this article as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
@@ -33,12 +33,11 @@ This article shows how to deploy a dedicated Traefik gateway for a new pipeline 
 
 Use this article when clients outside the cluster need to send data to a pipeline receiver and the pipeline group doesn't already have a gateway. The recommended starting design is one dedicated gateway per pipeline group. That design keeps the setup easier and avoids sharing ports, upgrades, and failures across unrelated pipelines.
 
-If you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline group on the same cluster, see [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
+Use the later sections in this article if you already have a gateway and need to add a new receiver, onboard another client to an existing receiver, or deploy another pipeline group on the same cluster.
 
 ## Placeholders
 
-Replace the angle-bracket placeholders throughout this document with values
-specific to your environment.
+This procedure uses multiple yaml files to define configuration. Placeholders are used in these files to indicate where you need to add your own values. The following table describes the placeholders used in the yaml files in this article and gives example values.
 
 | Placeholder | Description | Example |
 |---|---|---|
@@ -51,6 +50,16 @@ specific to your environment.
 
 
 ## Single gateway for a new pipeline group
+The cluster has no existing gateway or Azure Monitor Pipeline. Deploy one gateway and one Azure Monitor Pipeline Group for the first time. This may include TLS configuration for secure ingestion, but the same steps apply for non-TLS ingestion.:
+
+```text
+TLS-enabled:
+  Client ── TCP ──▶ Traefik ══ mTLS ══▶ Pipeline Service:514
+
+TLS-disabled:
+  Client ── TCP ──▶ Traefik ── TCP ──▶ Pipeline Service:514
+```
+
 
 > [!IMPORTANT]
 > Even though only one pipeline is being used, the instructions below include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). This prepares the gateway for future multi-pipeline scenarios and avoids a disruptive Helm upgrade later. If a second pipeline is added in the future with its own dedicated gateway, label selectors ensure each Traefik instance only processes routes intended for its own pipeline.
@@ -77,8 +86,6 @@ Save the following as `certificates.yaml`:
 # certificates.yaml
 # Creates a short-lived client certificate that the gateway presents to the
 # pipeline when dialing the mTLS backend.
-# Applicable to: Greenfield (Section 1), Brownfield 2A, Brownfield 2C.
-# NOT required for TLS-disabled ingestion (see Option 2 in Section 1).
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -126,15 +133,7 @@ Skip this step. The gateway doesn't need a client certificate when the pipeline 
 
 When the pipeline uses TLS, create both a `ServersTransportTCP` resource and an `IngressRouteTCP` resource. The label selector prepares the gateway for future multi-pipeline scenarios without requiring a disruptive Helm change later.
 
-Save the following as `routing.yaml` and replace the placeholders with your values. For a syslog receiver:
-
-| Placeholder | Value |
-|---|---|
-| `<pipeline-name>` | your pipeline name |
-| `<pipeline-namespace>` | your pipeline namespace |
-| `<entrypoint-name>` | `tcp-syslog` |
-| `<receiver-port>` | `514` |
-
+Save the following as `routing.yaml`.
 ```yaml
 # routing.yaml
 # Create one copy of each resource per receiver/port combination.
@@ -276,7 +275,7 @@ helm install traefik-<pipeline-name> traefik/traefik \
 > [!NOTE]
 > Helm might show a warning about resources that don't match the `labelSelector`. That warning refers to Traefik's default dashboard route, not to the pipeline routing resources in this article.
 
-## Verify the gateway
+### Verify the gateway
 
 1. Confirm the Traefik pod is running.
 
@@ -309,13 +308,13 @@ helm install traefik-<pipeline-name> traefik/traefik \
 
 Clients can now connect to `$GATEWAY_IP:<receiver-port>` to send data through the gateway to the pipeline.
 
-## Certificate management for TLS-enabled ingestion
+### Certificate management for TLS-enabled ingestion
 
 - Gateway client certificates are issued by `arc-amp-client-root-ca-cluster-issuer` and renewed by cert-manager.
 - Pipeline server certificates are managed by the operator and rotate without downtime.
 - Trust bundles are distributed automatically to namespaces labeled with `arc-amp-trust-bundle=true`.
 
-## Troubleshooting
+### Troubleshooting
 
 <details>
 <summary>Check certificate status</summary>
@@ -447,11 +446,13 @@ Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. T
 
 Follow the procedure above for [Single gateway for new pipeline group](#single-gateway-for-a-new-pipeline-group) adjusting the following values for the new pipeline:
 
-1. **Install Traefik CRDs:** Skip if CRDs were already installed during the first gateway deployment.
-2. **Create the gateway client certificate:** Apply `certificates.yaml` with `namespace` set to the new pipeline's namespace. The same certificate spec can be reused, only the namespace differs. Skip for TLS-disabled ingestion.
-3. **Configure Traefik routing:** Apply `routing.yaml` with the new pipeline's name, namespace, receiver port, and entrypoint name. The  `traefik-instance` label value must be unique.
-4. ** Install Traefik:** Use a **distinct Helm release name**. For example, `traefik-<new-pipeline-name>`. The `labelSelector` must match the label set in the previous step.
-5. **Verify:** The new gateway receives its own LoadBalancer IP.
+| Task | Guidance |
+|---|---|
+| Install Traefik CRDs | Skip this task if CRDs were already installed during the first gateway deployment. |
+| Create the gateway client certificate | Apply `certificates.yaml` with `namespace` set to the new pipeline's namespace. You can reuse the same certificate spec because only the namespace changes. Skip this task for TLS-disabled ingestion. |
+| Configure Traefik routing | Apply `routing.yaml` with the new pipeline name, namespace, receiver port, and entrypoint name. The `traefik-instance` label value must be unique. |
+| Install Traefik | Use a distinct Helm release name, such as `traefik-<new-pipeline-name>`. The `labelSelector` must match the label set in the previous task. |
+| Verify | Confirm that the new gateway receives its own LoadBalancer IP. |
 
 ```text
 Client A → 20.x.x.1:514 → Traefik instance 1 → [mTLS] → pipeline-1-service:514
@@ -463,7 +464,5 @@ Client B → 20.x.x.2:514 → Traefik instance 2 → [mTLS] → pipeline-2-servi
 
 ## Related content
 
-- Modify an existing gateway deployment by using [Modify a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway-brownfield.md).
-- Plan advanced shared-gateway topologies by using [Azure Monitor pipeline - Traefik gateway for multiple pipelines](./pipeline-kubernetes-gateway-multiple.md).
 - Configure TLS by using [Transport Layer Security (TLS) in Azure Monitor pipeline](./pipeline-tls.md).
 - Configure your senders by using [Configure clients for Azure Monitor pipeline](./pipeline-configure-clients.md).
