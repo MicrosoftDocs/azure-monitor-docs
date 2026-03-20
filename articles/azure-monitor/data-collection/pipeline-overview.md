@@ -16,10 +16,12 @@ Azure Monitor pipeline extends Azure Monitor data collection to local datacenter
 
 Use Azure Monitor pipeline when you need Azure Monitor data collection to work beyond a direct cloud-connected model.
 
-- **Scalability**. The pipeline can handle large volumes of data from monitored resources that a direct connection to Azure Monitor might not be able to support.
-- **Periodic connectivity**. Some environments have unreliable connectivity to the cloud or long unexpected periods without connection. There might also be periods of planned maintenance or need to temporarily disconnect from internet for security reasons. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
-- **Reduce network bandwidth**. Transformations in Azure Monitor pipeline can filter and aggregate data before sending it to the cloud, reducing the amount of data transmitted over the network.
-- **Centralized ingress for external clients**. A gateway can expose pipeline receivers to clients outside the cluster when those clients can't connect directly to Azure Monitor.
+| Need | How the pipeline helps |
+|:---|:---|
+| Scale beyond direct cloud ingestion | Handles larger telemetry volumes than some direct-to-cloud collection paths can support. |
+| Maintain collection during connectivity gaps | Buffers data locally and syncs when cloud connectivity returns. |
+| Reduce network traffic | Applies transformations before upload to filter or aggregate data. |
+| Receive data from external clients | Uses a gateway to expose pipeline receivers to clients outside the cluster. |
 
 ## How Azure Monitor pipeline works
 
@@ -39,15 +41,15 @@ Complete the shared prerequisites and cluster preparation steps in [Configure Az
 
 ## Recommended setup sequence
 
-For a new deployment, use the following greenfield sequence.
+Use the following sequence for a new deployment:
 
-1. Complete the shared cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This step prepares the cluster and installs cert-manager.
-1. Choose a configuration method:
+1. Complete the shared cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md) to prepare the cluster.
+1. Choose a configuration method for the pipeline:
      - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
      - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
-1. If you need encrypted ingestion, configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure your client connections. See [Configure clients](./pipeline-configure-clients.md).
+1. If you need encrypted ingestion, configure TLS. See [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+1. Configure connections for your clients to the cluster. See [Configure clients](./pipeline-configure-clients.md).
 1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
 1. After the core flow is working, review advanced or operational topics such as [Pod placement](./pipeline-pod-placement.md) and [Extension versions](./pipeline-extension-versions.md).
 

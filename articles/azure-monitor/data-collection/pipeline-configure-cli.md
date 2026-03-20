@@ -1,34 +1,42 @@
 ---
-title: Configure Azure Monitor pipeline using CLI or ARM templates
-description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your data center.
+title: Configure Azure Monitor pipeline with CLI or ARM templates
+description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 03/20/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline using CLI or ARM templates
+# Configure Azure Monitor pipeline with CLI or ARM templates
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Before you begin, complete the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites). Depending on the method you use, you may not require all the details in this article.
+Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, caching, and other advanced scenarios. For the fastest guided experience, use [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
 
-## Components
+## Use this method when
 
-The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud.
+| Need | Why use CLI or ARM templates |
+|:-----|:-----------------------------|
+| Automation | Deploy the same configuration across multiple clusters. |
+| Advanced configuration | Configure custom tables, caching, and more detailed resource settings. |
+| Infrastructure as code | Store and review configuration in templates and deployment pipelines. |
+| Repeatable deployments | Standardize pipeline deployments for testing and production environments. |
 
-:::image type="content" source="./media/pipeline-configure/components.png" lightbox="./media/pipeline-configure/components.png" alt-text="Overview diagram of the components making up Azure Monitor pipeline." border="false"::: 
+## Configuration workflow
 
-The following table identifies the components required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
+Follow these tasks to configure a pipeline with CLI or ARM templates.
 
-| Component | Description |
-|:----------|:------------|
-| Pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
-| Pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
-| Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
-| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver, processors, and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. Processors can convert the data structure and apply a transformation. |
-| Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
-| Data collection rule (DCR) | [DCR](./data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
+| Step | Purpose | Output |
+|:-----|:--------|:-------|
+| Prepare workspace tables | Create destination tables in Log Analytics. | Tables ready for incoming data |
+| Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
+| Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
+| Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
+| Create a data collection rule | Define the schema, routing, and optional transformations in Azure Monitor. | DCR resource and immutable ID |
+| Give the pipeline access to the DCR | Allow the pipeline extension to send data to the DCR. | Role assignment |
+| Create the pipeline configuration | Deploy the pipeline instance and dataflows. | Running pipeline instance |
+| Configure clients | Point your data sources to the pipeline endpoint. | Data flowing through the pipeline |
 
 
-## Log Analytics workspace tables
+## Prepare workspace tables
 
 Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. The Azure Monitor pipeline can send data to the following tables.
 
@@ -45,10 +53,10 @@ See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-cust
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name OTelLogs_CL --columns TimeGenerated=datetime Body=string SeverityText=string
 ```
 
-## Enable pipeline 
-Use the following steps to enable and configure the Azure Monitor pipeline on your cluster.
+## Create pipeline resources
+Use the following tasks to configure the Azure Monitor pipeline resources on your cluster.
 
-### Add pipeline extension to cluster
+### Add the pipeline extension
 
 Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster.
 
@@ -96,7 +104,7 @@ az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pi
 
 ---
 
-### Create custom location
+### Create a custom location
 An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc–enabled Kubernetes clusters as targetable locations for Azure resources.
 
 ### [CLI](#tab/cli)
@@ -133,7 +141,7 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 
 ---
 
-### Create data collection endpoint (DCE)
+### Create a data collection endpoint
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
 
@@ -172,11 +180,11 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 
 ---
 
-## Data collection rule (DCR)
-The DCR is stored in Azure Monitor and defines how the data will be processed when it's received from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that will process the data. 
+## Create a data collection rule
+The DCR is stored in Azure Monitor and defines how the data is processed when Azure Monitor receives it from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
 
-### Create DCR
+### Define the DCR
 The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created.
 
 DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
@@ -385,7 +393,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 
 
-### Give DCR access to pipeline extension
+## Give the pipeline access to the DCR
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
 
@@ -436,7 +444,7 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 
 ---
 
-## Pipeline configuration
+## Create the pipeline configuration
 
 The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
 
@@ -1363,7 +1371,7 @@ The following table describes the sections of the pipeline configuration and cri
 </details>
 
 
-## Enable cache
+## Enable caching
 
 Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
 
@@ -1380,5 +1388,8 @@ Once the volume is created in the appropriate namespace, configure it using para
 
 ## Next steps
 
-* [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
-* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
+- [Configure clients](./pipeline-configure-clients.md) to send data to the pipeline.
+- [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.
+- [Modify data before it's sent to the cloud](./pipeline-transformations.md).
+- [Set up a gateway](./pipeline-kubernetes-gateway.md) for clients outside the cluster.
+- [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md) if you want a simpler guided experience.

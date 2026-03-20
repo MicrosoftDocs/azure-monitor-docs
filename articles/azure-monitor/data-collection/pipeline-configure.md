@@ -9,7 +9,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline
 
-Use this article as the shared setup step for [Azure Monitor pipeline](./pipeline-overview.md). It prepares your Arc-enabled Kubernetes cluster for the pipeline by validating prerequisites, installing cert-manager, and routing you to the correct configuration method for your deployment.
+Use this article for initial setup for [Azure Monitor pipeline](./pipeline-overview.md). It prepares your Arc-enabled Kubernetes cluster for the pipeline by validating prerequisites, installing cert-manager, and routing you to the correct configuration method for your deployment.
 
 ## Use the shared setup flow
 
@@ -36,24 +36,20 @@ For a new deployment, use this sequence:
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
-This section describes how to install cert-manager as an Azure Arc extension. Installing cert-manager is required for Azure Monitor pipeline.
+This section describes how to install cert-manager as an Azure Arc extension. Installing cert-manager is required for Azure Monitor pipeline. Installing cert-manager as a cluster managed extension (CME) will register the `cert-manager` and `trust-manager` services on your cluster.
 
-> [!NOTE]
->
-> Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
->
-> - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11
-> - SUSE Rancher K3s v1.33.3+k3s1
-> - AKS Arc v1.32.7
+Supported Kubernetes distributions for cert‑manager extension on Arc-enabled Kubernetes include the following.
+- VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11
+- SUSE Rancher K3s v1.33.3+k3s1
+- AKS Arc v1.32.7
 
-Installing cert-manager as a cluster managed extension (CME) will register the `cert-manager` and `trust-manager` services on your cluster.
 
-Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version.
+### Remove existing cert-manager and trust-manager instances
 
 > [!WARNING]
 > Between uninstalling the open source version and installing the Arc extension, certificate rotation won't occur, and trust bundles won't be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
 
-The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
+Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version. The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
 
 `helm list -A | grep -E 'trust-manager|cert-manager'`
 
@@ -68,6 +64,7 @@ NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP}
 az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
   --resource-group ${RESOURCE_GROUP} --cluster-type connectedClusters
 ```
+### Install cert-manager extension
 
 Use the following command to connect your cluster to Arc if it wasn't already connected.
 
@@ -90,10 +87,15 @@ az k8s-extension create \
 
 ## Choose a configuration method
 
-After you complete the prerequisites and cert-manager installation steps in this article, continue with one of the following articles depending on your preferred configuration method:
+Select the approach that fits your needs:
 
-- [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) for a simplified configuration experience that abstracts away the individual components of the pipeline. This method is recommended if you are new to the pipeline or prefer a more guided experience.
-- [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) for more advanced configuration options such as enabling the cache and configuring custom tables. This method is recommended if you are comfortable with CLI or ARM templates and want more control over the configuration of your pipeline.
+| Method | When to use | Key features |
+|--------|-------------|--------------|
+| **[Azure portal](./pipeline-configure-portal.md)** | • Getting started<br>• Simple configurations<br>• Quick deployment | • Guided UI experience<br>• Automatic component creation<br>• Built-in validation |
+| **[CLI/ARM templates](./pipeline-configure-cli.md)** | • Advanced scenarios<br>• Automation needed<br>• Custom requirements | • Full configuration control<br>• Caching support<br>• Custom tables<br>• Infrastructure as code |
+
+> [!TIP]
+> **New to Azure Monitor pipeline?** Start with the portal. You can always switch to CLI/ARM templates later for advanced features.
 
 
 ## Verify the configuration
