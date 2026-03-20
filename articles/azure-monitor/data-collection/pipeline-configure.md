@@ -1,6 +1,7 @@
 ---
 title: Configure Azure Monitor pipeline
 description: Configure Azure Monitor pipeline which extends Azure Monitor data collection into your data center.
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
@@ -14,18 +15,17 @@ The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection
 Start with the prerequisites and cert-manager installation steps in this article. Then use one of the following articles depending on your preferred configuration method:
 
 - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) for a simplified configuration experience that abstracts away the individual components of the pipeline. This method is recommended if you are new to the pipeline or prefer a more guided experience.
-- [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure.md) for more advanced configuration options such as enabling the cache and configuring custom tables. This method is recommended if you are comfortable with CLI or ARM templates and want more control over the configuration of your pipeline.
+- [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) for more advanced configuration options such as enabling the cache and configuring custom tables. This method is recommended if you are comfortable with CLI or ARM templates and want more control over the configuration of your pipeline.
 
 ## Prerequisites
 
-* [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your own environment with an external IP address. See [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster) for details on enabling Arc for a cluster.
-* The Arc-enabled Kubernetes cluster must have the custom locations features enabled. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-* Log Analytics workspace in Azure Monitor to receive the data from the pipeline. See [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md) for details on creating a workspace.
-* The following resource providers must be registered in your Azure subscription. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
+* An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
+* Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
+* A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+* An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
     * Microsoft.Insights
-    * Microsoft.Monitor 
-* The **cert-manager** extension must be installed, as described below
-* A gateway must be installed for receiving data from external client(s). An example using Traefik is [documented here](./pipeline-kubernetes-gateway.md). 
+  * Microsoft.Monitor
+* A gateway installed to receive data from external clients. For an example using Traefik, see [Configure the Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
@@ -83,7 +83,7 @@ az k8s-extension create \
 
 
 ## Verify configuration
-Once you've complete the configuration using your chosen method, use the following steps verify that the pipeline is running correctly in your environment.
+Once you've completed the configuration using your chosen method, use the following steps to verify that the pipeline is running correctly in your environment.
 
 ### Verify pipeline components running in the cluster
 
@@ -141,6 +141,8 @@ az k8s-extension list --cluster-name <cluster-name> --resource-group <resource-g
 ```
 
 The extension should show a `Succeeded` provisioning state.
+
+</details>
 
 ## Next steps
 

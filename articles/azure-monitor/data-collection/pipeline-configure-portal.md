@@ -8,11 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline using the Azure portal
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline using the Azure portal. Using this method, you don't need to understand the individual components that make up the pipeline, but you may need to use other methods for more advanced functionality such as enabling the cache. To use CLI or ARM templates to configure the pipeline, see [Configure Azure Monitor](./pipeline-configure.md).
-
-## Prerequisites
-
-See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline.
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article describes how to enable and configure the Azure Monitor pipeline using the Azure portal. Before you begin, complete the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites). Using this method, you don't need to understand the individual components that make up the pipeline, but you may need to use other methods for more advanced functionality such as enabling the cache. To use CLI or ARM templates to configure the pipeline, see [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
 
 ## Create pipeline and data flows
 

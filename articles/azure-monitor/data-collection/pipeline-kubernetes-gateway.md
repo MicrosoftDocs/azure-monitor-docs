@@ -10,7 +10,11 @@ ms.custom: references_regions, devx-track-azurecli
 Azure Monitor pipeline extension gets deployed with ClusterIP services, which are only accessible within the Kubernetes cluster. To expose these pipelines to remote clients external to the cluster (e.g. network switches, firewall devices), you need to deploy a gateway solution.  
 This guide shows how to expose an Azure Monitor Pipeline receiver to external clients using a Traefik gateway. 
 
+
+
 > [!NOTE]
+> Traefik is used in this article as an example gateway implementation. You can use other gateway solutions if they can expose the pipeline service to external clients and meet your security and routing requirements.
+>
 > Traefik gateway will only work in environments where Kubernetes Load Balancers can be deployed successfully, such as when running on a supported cloud provider like Azure.
 
 ## Prerequisites

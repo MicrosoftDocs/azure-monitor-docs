@@ -8,11 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline using CLI or ARM templates
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Depending on the method you use, you may not require all the details in this article. 
-
-## Prerequisites
-
-See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline.
+The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Before you begin, complete the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites). Depending on the method you use, you may not require all the details in this article.
 
 ## Components
 
