@@ -1,6 +1,6 @@
 ---
 title: What is Azure Monitor pipeline?
-description: Learn what Azure Monitor pipeline is, when to use it, the shared prerequisites, and the recommended setup sequence for edge and multicloud data collection.
+description: Learn what Azure Monitor pipeline is, when to use it, and the recommended setup sequence for edge and multicloud data collection.
 ai-usage: ai-assisted
 ms.topic: overview
 ms.date: 03/20/2026
@@ -10,22 +10,20 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 # What is Azure Monitor pipeline?
 
-Azure Monitor pipeline extends Azure Monitor data collection to local datacenters and multicloud environments. You deploy it on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) so you can collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud.
-
-This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline, what you need before you begin, and the recommended sequence for setting up end-to-end data collection.
+Azure Monitor pipeline extends Azure Monitor data collection to local datacenters and multicloud environments. It allows you to collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
 ## Why use Azure Monitor pipeline
 
 Use Azure Monitor pipeline when you need Azure Monitor data collection to work beyond a direct cloud-connected model.
 
-- **Scalability**. The pipeline can handle large volumes of data from monitored resources that other collection methods, such as Azure Monitor agent, might limit.
+- **Scalability**. The pipeline can handle large volumes of data from monitored resources that a direct connection to Azure Monitor might not be able to support.
 - **Periodic connectivity**. Some environments have unreliable connectivity to the cloud or long unexpected periods without connection. There might also be periods of planned maintenance or need to temporarily disconnect from internet for security reasons. The pipeline can cache data locally and sync with the cloud when connectivity is restored.
 - **Reduce network bandwidth**. Transformations in Azure Monitor pipeline can filter and aggregate data before sending it to the cloud, reducing the amount of data transmitted over the network.
 - **Centralized ingress for external clients**. A gateway can expose pipeline receivers to clients outside the cluster when those clients can't connect directly to Azure Monitor.
 
 ## How Azure Monitor pipeline works
 
-The pipeline is a containerized solution that runs on an Arc-enabled Kubernetes cluster in your datacenter or another cloud provider. It's built on open-source technologies from the OpenTelemetry ecosystem and includes the components needed to receive telemetry from local clients, process that telemetry, and send it to Azure Monitor.
+The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview)  in your datacenter or another cloud provider. It's built on open-source technologies from the OpenTelemetry ecosystem and includes the components needed to receive telemetry from local clients, process that telemetry, and send it to Azure Monitor.
 
 In a typical deployment:
 
@@ -37,17 +35,7 @@ In a typical deployment:
 
 ## Before you begin
 
-Use the following shared prerequisites for the Azure Monitor pipeline setup flow:
-
-- An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
-- Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-- A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
-- An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-    - `Microsoft.Insights`
-    - `Microsoft.Monitor`
-- A gateway solution if clients outside the cluster need to send data to the pipeline. Traefik is one example, but other gateway solutions can also work if they meet your routing and security requirements.
-
-You install cert-manager as part of the shared setup flow in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+Complete the shared prerequisites and cluster preparation steps in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites). That article also installs cert-manager before you choose the Azure portal or CLI and ARM configuration path.
 
 ## Recommended setup sequence
 

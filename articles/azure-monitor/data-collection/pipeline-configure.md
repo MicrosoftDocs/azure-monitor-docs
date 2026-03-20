@@ -1,31 +1,38 @@
 ---
 title: Configure Azure Monitor pipeline
-description: Configure Azure Monitor pipeline which extends Azure Monitor data collection into your data center.
+description: Learn how to prepare your cluster, install cert-manager, and choose a configuration method for Azure Monitor pipeline.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 03/20/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Configure Azure Monitor pipeline
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. 
+Use this article as the shared setup step for [Azure Monitor pipeline](./pipeline-overview.md). It prepares your Arc-enabled Kubernetes cluster for the pipeline by validating prerequisites, installing cert-manager, and routing you to the correct configuration method for your deployment.
 
-## Configuration methods
-Start with the prerequisites and cert-manager installation steps in this article. Then use one of the following articles depending on your preferred configuration method:
+## Use the shared setup flow
 
-- [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) for a simplified configuration experience that abstracts away the individual components of the pipeline. This method is recommended if you are new to the pipeline or prefer a more guided experience.
-- [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) for more advanced configuration options such as enabling the cache and configuring custom tables. This method is recommended if you are comfortable with CLI or ARM templates and want more control over the configuration of your pipeline.
+For a new deployment, use this sequence:
+
+1. Complete the prerequisites in this article.
+1. Install cert-manager on the Arc-enabled Kubernetes cluster.
+1. Choose a configuration method:
+   - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
+   - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
+1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
+1. If you need encrypted ingestion, configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+1. Configure your client connections. See [Configure clients](./pipeline-configure-clients.md).
+1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
 
 ## Prerequisites
 
-* An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
-* Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-* A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
-* An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
-    * Microsoft.Insights
-  * Microsoft.Monitor
-* A gateway installed to receive data from external clients. For an example using Traefik, see [Configure the Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
+- An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
+- Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
+- A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+- An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
+  - `Microsoft.Insights`
+  - `Microsoft.Monitor`
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
@@ -81,9 +88,17 @@ az k8s-extension create \
   --config subcharts.zdtrcontroller.enabled=true
 ```
 
+## Choose a configuration method
 
-## Verify configuration
-Once you've completed the configuration using your chosen method, use the following steps to verify that the pipeline is running correctly in your environment.
+After you complete the prerequisites and cert-manager installation steps in this article, continue with one of the following articles depending on your preferred configuration method:
+
+- [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) for a simplified configuration experience that abstracts away the individual components of the pipeline. This method is recommended if you are new to the pipeline or prefer a more guided experience.
+- [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) for more advanced configuration options such as enabling the cache and configuring custom tables. This method is recommended if you are comfortable with CLI or ARM templates and want more control over the configuration of your pipeline.
+
+
+## Verify the configuration
+
+After you complete the configuration by using your chosen method, use the following steps to verify that the pipeline is running correctly in your environment.
 
 ### Verify pipeline components running in the cluster
 
@@ -146,5 +161,7 @@ The extension should show a `Succeeded` provisioning state.
 
 ## Next steps
 
-* [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
-* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
+- Continue with [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) or [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
+- Expose the pipeline to external clients by using [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
+- Configure client connections in [Configure clients](./pipeline-configure-clients.md).
+- Modify data before it's sent to the cloud by using [pipeline transformations](./pipeline-transformations.md).
