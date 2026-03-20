@@ -902,11 +902,9 @@ items:
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
-      - name: Gateway setup
-        items:
-        - name: Configure a Kubernetes gateway
-          displayName: Sample gateway setup
-          href: data-collection/pipeline-kubernetes-gateway.md
+      - name: Configure a Kubernetes gateway
+        displayName: Sample gateway setup
+        href: data-collection/pipeline-kubernetes-gateway.md
       - name: Transport Layer Security (TLS)
         items:
         - name: Configure TLS
