@@ -3,7 +3,7 @@ title: Monitor Log Analytics workspace health
 description: This article how to monitor the health of a Log Analytics workspace and set up alerts about latency issues specific to the Log Analytics workspace or related to known Azure service issues.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 12/08/2024
+ms.date: 03/17/2026
 
 #Customer-intent: As a Log Analytics workspace administrator, I want to know when there are latency issues in a Log Analytics workspace, so I can act to resolve the issue, contact Microsoft for support, or track that is Azure is meeting its SLA.  
 ---
@@ -15,7 +15,7 @@ ms.date: 12/08/2024
 Azure Service Health monitors:
 
 - [Resource health](../../service-health/resource-health-overview.md): information about the health of your individual cloud resources, such as a specific Log Analytics workspace. 
-- [Service health](../../service-health/service-health-overview.md): information about the health of the Azure services and regions you're using, which might affect your Log Analytics workspace, including communications about outages, planned maintenance activities, and other health advisories.
+- [Service health](../../service-health/service-health-portal-update.md): information about the health of the Azure services and regions you're using, which might affect your Log Analytics workspace, including communications about outages, planned maintenance activities, and other health advisories.
 
 ## Permissions required
 
@@ -43,9 +43,9 @@ To view your Log Analytics workspace health and set up health status alerts:
 
     This table describes the possible resource health status values for a Log Analytics workspace:
 
-    | Resource health status | Description |
+    |Resource health status|Description|
     |-|-|
-    |Available| [Average latency](../logs/data-ingestion-time.md#average-latency) and no query execution issues detected.|
+    |Available|[Average latency](../logs/data-ingestion-time.md#average-latency) and no query execution issues detected.|
     |Unavailable|Higher than average latency detected.|    
     |Degraded|Query failures detected.|
     |Unknown|Currently unable to determine Log Analytics workspace health because you haven't run queries or ingested data to this workspace recently.|
@@ -85,11 +85,11 @@ To view Log Analytics workspace health metrics:
    | - | - | - | - |
    | SLI | AvailabilityRate_Query | Workspace | Percentage of successful user queries in the Log Analytics workspace within the selected time range.<br>This number includes all queries that return 2XX, 4XX, and 504 response codes; in other words, all user queries that don't result in a service error. |
    | SLI | Ingestion Time | Workspace or table | Indicates the time it takes (in seconds) for a record to become available for queries after being received by Azure Monitor Logs. We recommend you examine [ingestion time](./data-ingestion-time.md) for specific tables. <br><br> Available for frequently used tables. To see which tables in your workspaces support the Ingestion Time metric, check the Table Name [dimension values for this metric](../essentials/analyze-metrics.md#use-dimension-filters-and-splitting). |
-   | SLI | Ingestion Volume | Workspace or table | Number of records ingested into a workspace or a table. <br><br> Available for frequently used tables. To see which tables in your workspaces support the Ingestion Volume metric, check the Table Name [dimension values for this metric](../essentials/analyze-metrics.md#use-dimension-filters-and-splitting).|
+   | SLI | Ingestion Volume | Workspace or table | Number of records ingested into a workspace or a table. <br><br> Available for frequently used tables. To see which tables in your workspaces support the Ingestion Volume metric, check the Table Name [dimension values for this metric](../essentials/analyze-metrics.md#use-dimension-filters-and-splitting). |
    | User Queries | Query count | Workspace | Total number of user queries in the Log Analytics workspace within the selected time range.<br>This number includes only user-initiated queries, and doesn't include queries initiated by Sentinel rules and alert-related queries. |
-   | User Queries | Query failure count | Workspace | Total number of failed user queries in the Log Analytics workspace within the selected time range.<br>This number includes all queries that return 5XX response codes - except 504 *Gateway Timeout* - which indicate an error related to the application gateway or the backend server.|
+   | User Queries | Query failure count | Workspace | Total number of failed user queries in the Log Analytics workspace within the selected time range.<br>This number includes all queries that return 5XX response codes - except 504 *Gateway Timeout* - which indicate an error related to the application gateway or the backend server. |
    | [Data Export](./logs-data-export.md) | Bytes Exported | Workspace | Total number of bytes exported to destination from Log Analytics workspace within the selected time range. The size of data exported is the number of bytes in the exported JSON formatted data. 1 GB = 10^9 bytes. |
-   | [Data Export](./logs-data-export.md) | Export Failures | Workspace | Total number of failed export requests in the Log Analytics workspace within the selected time range. <br>This number includes export failures that can result by Azure Monitor, destination resource availability, or throttling.  |
+   | [Data Export](./logs-data-export.md) | Export Failures | Workspace | Total number of failed export requests in the Log Analytics workspace within the selected time range. <br>This number includes export failures that can result by Azure Monitor, destination resource availability, or throttling. |
    | [Data Export](./logs-data-export.md) | Records exported | Workspace | Total number of records exported from Log Analytics workspace within the selected time range. |   
 
 ## Investigate Log Analytics workspace health issues

@@ -286,7 +286,7 @@ You have three options to add Application Insights to your web app. Expand the o
 
 # [OpenTelemetry Profiler](#tab/otel)
 
-If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-enable.md#troubleshooting).
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 

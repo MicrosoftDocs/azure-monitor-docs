@@ -15,7 +15,7 @@ The Azure Monitor activity log is a platform log for control plane events from A
 
 ## Activity log entries
 
-Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
+Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 
 > [!NOTE]
 > Operations above the control plane are logged in [Azure Resource Logs](resource-logs.md). These aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md) to be collected.
@@ -139,7 +139,7 @@ The following sample output data is from event hubs for an activity log:
                     "nbf": "1421876371",
                     "exp": "1421880271",
                     "ver": "1.0",
-                    "http://schemas.microsoft.com/identity/claims/tenantid": "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0",
+                    "http://schemas.microsoft.com/identity/claims/tenantid": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
                     "http://schemas.microsoft.com/claims/authnmethodsreferences": "pwd",
                     "http://schemas.microsoft.com/identity/claims/objectidentifier": "2468adf0-8211-44e3-95xq-85137af64708",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "admin@contoso.com",
@@ -148,7 +148,7 @@ The following sample output data is from event hubs for an activity log:
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "John",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Smith",
                     "name": "John Smith",
-                    "groups": "cacfe77c-e058-4712-83qw-f9b08849fd60,7f71d11d-4c41-4b23-99d2-d32ce7aa621c,31522864-0578-4ea0-9gdc-e66cc564d18c",
+                    "groups": "cacfe77c-e058-4712-83qw-f9b08849fd60,aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb,31522864-0578-4ea0-9gdc-e66cc564d18c",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": " admin@contoso.com",
                     "appid": "00001111-aaaa-2222-bbbb-3333cccc4444",
                     "appidacr": "2",
@@ -160,7 +160,7 @@ The following sample output data is from event hubs for an activity log:
             "location": "global",
             "properties": {
                 "statusCode": "Created",
-                "serviceRequestId": "50d5cddb-8ca0-47ad-9b80-6cde2207f97c"
+                "serviceRequestId": "bbbbbbbb-1111-2222-3333-cccccccccccc"
             }
         }
     ]

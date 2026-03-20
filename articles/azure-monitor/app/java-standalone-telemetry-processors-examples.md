@@ -4,7 +4,9 @@ description: Explore examples that show telemetry processors in Azure Monitor Ap
 ms.topic: how-to
 ms.date: 01/31/2025
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom:
+  - devx-track-java, devx-track-extended-java
+  - sfi-ropc-nochange
 ---
 
 # Telemetry processor examples - Azure Monitor Application Insights for Java

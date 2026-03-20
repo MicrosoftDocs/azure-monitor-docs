@@ -4,7 +4,9 @@ description: This article shows you how to set up Application Insights.
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom:
+  - sfi-ropc-nochange
+  - devx-track-java, devx-track-extended-java
 ---
 
 # Get Started (Supplemental)

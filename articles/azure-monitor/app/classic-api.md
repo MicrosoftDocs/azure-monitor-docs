@@ -2,7 +2,9 @@
 title: Monitor .NET and Node.js Applications with Application Insights (Classic API) | Microsoft Docs
 description: Monitor .NET and Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
 ms.topic: how-to
-ms.custom: references_regions
+ms.custom:
+  - references_regions
+  - sfi-ropc-nochange
 ms.date: 11/11/2025
 ---
 

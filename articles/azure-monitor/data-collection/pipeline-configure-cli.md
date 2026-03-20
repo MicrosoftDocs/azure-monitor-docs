@@ -413,7 +413,7 @@ Use the output from this command as input to the following command to give Azure
 az role assignment create --assignee "<extension principal ID>" --role "Monitoring Metrics Publisher" --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/<dcr-name>" 
 
 ## Example:
-az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
+az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --role "Monitoring Metrics Publisher" --scope "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr"
 ```
 
 
@@ -430,7 +430,7 @@ az role assignment create --assignee "00000000-0000-0000-0000-000000000000" --ro
             "name": "my-dcr-role-assignment",
             "properties": {
                 "roleDefinitionId": "[resourceId('Microsoft.Authorization/roleDefinitions','3913510d-42f4-4e42-8a64-420c390055eb')]",
-                "principalId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e",
+                "principalId": "aaaaaaaa-bbbb-cccc-1111-222222222222",
                 "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.Insights/dataCollectionRules/my-dcr""
             }
         }

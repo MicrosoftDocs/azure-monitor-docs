@@ -4,13 +4,13 @@ description: This article shows how to use the VM insights Map feature. It disco
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.update-cycle: 1095-days
-ms.date: 02/17/2026
+ms.date: 03/11/2026
 ---
 
 # Use the Map feature of VM insights to understand application components
 
 > [!IMPORTANT]
->  The Dependency Agent and the Map experience in VM Insights will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
+>  The Dependency Agent and the Map experience in VM Insights has been deprecated and will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
 
 In VM insights, you can view discovered application components on Windows and Linux virtual machines (VMs) that run in Azure or your environment. You can observe the VMs in two ways. You can view a map directly from a VM. You can also view a map from Azure Monitor to see the components across groups of VMs. This article helps you to understand these two viewing methods and how to use the Map feature.
 

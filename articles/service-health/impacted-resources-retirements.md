@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: concept-article
-ms.date: 11/07/2025
+ms.date: 03/11/2026
 
 ---
 
@@ -30,14 +30,14 @@ They're shown in the Impacted Resources tab.
 
 Service Health provides the following information on resources impacted by a Retirement.
 
-|Field |Description  |
-|---------|---------|
-|**Resource Name**     | The name of the resource impacted by the planned maintenance event.        |
-|**Resource Type**    | The type of resource impacted by the planned maintenance event.        |
-|**Resource Group**    | The Resource group that contains the impacted resource.        |
-|**Region**    |The region where the impacted resource is located.         |
-|**Subscription ID**    | The Unique ID for the subscription that contains the impacted resource.         |
-|**Subscription name**    | The name of the subscription that contains the impacted resource.        |
+| Field                | Description                                                            |
+| ---------------------|------------------------------------------------------------------------|
+| **Resource Name**    | The name of the resource impacted by the planned maintenance event.    |
+| **Resource Type**    | The type of resource impacted by the planned maintenance event.        |
+| **Resource Group**   | The Resource group that contains the impacted resource.                |
+| **Region**           | The region where the impacted resource is located.                     |
+| **Subscription ID**  | The Unique ID for the subscription that contains the impacted resource.|
+| **Subscription name**| The name of the subscription that contains the impacted resource.      |
 
 ### Filter the results
 
@@ -58,13 +58,13 @@ Select the **Export to CSV** to export the list of impacted resources to an Exce
 The CSV file contains the following fields:
 
 
-|Column property  |Description |
-|---------|---------|
-|**ResourceGroup**   | The name of the Resource group.        |
-|**ResourceName**    | The name of the impacted resource.        |
-|**ResourceType**    | The type of resource impacted.        |
-|**Subscription**    | Any `SubscriptionId`'s that are in the scope of the published event.          |
-|**Region**          | The location where the affected resources are located.        |
+|Column property    |Description                                                          |
+|-------------------|---------------------------------------------------------------------|
+|**ResourceGroup**  | The name of the Resource group.                                     |
+|**ResourceName**   | The name of the impacted resource.                                  |
+|**ResourceType**   | The type of resource impacted.                                      |
+|**Subscription**   | Any `SubscriptionId`'s that are in the scope of the published event.|
+|**Region**         | The location where the affected resources are located.              |
 
 ### Access impacted resources programmatically
 
@@ -81,10 +81,10 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 
 **URI Parameters**
 
-|Name        |In          |Required |Type  | Description |
-|------------|------------|---------|---------|-----|
-|**api-version** | query  | True    | string  |The version of the API to be used with the client request.<br>Example: 2025-05-01|
-|**$filter**     | query  |         | string  | Example:<br>`- $filter= trackingIds/any`(t: t eq ' TEST-123')  |
+| Name            | In    | Required | Type   | Description                                                                       |
+| ----------------| ----- | -------- | ------ | --------------------------------------------------------------------------------- |
+| **api-version** | query | True     | string | The version of the API to be used with the client request.<br>Example: 2025-05-01 |
+| **$filter**     | query |          | string | Example:<br>`- $filter= trackingIds/any`(t: t eq ' TEST-123')                     |
 
 **Sample response**
 
@@ -276,7 +276,7 @@ advisorresources
 
 ## For more information
 
-* [Introduction to the Azure Service Health dashboard](service-health-overview.md)
+* [Introduction to the Azure Service Health dashboard](service-health-portal-update.md)
 * [Introduction to Azure Resource Health](resource-health-overview.md)
 * [Resource Health frequently asked questions](resource-health-faq.yml)
 * [Service Health frequently asked questions](service-health-faq.yml)
