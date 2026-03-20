@@ -887,15 +887,17 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
-      - name: Configure Azure Monitor pipeline
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure.md
-      - name: Configure with the Azure portal
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure-portal.md
-      - name: Configure with CLI or ARM templates
-        displayName: Azure Monitor pipeline
-        href: data-collection/pipeline-configure-cli.md
+      - name: Configure
+        items:
+        - name: Configure Azure Monitor pipeline
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure.md
+        - name: Configure with the Azure portal
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure-portal.md
+        - name: Configure with CLI or ARM templates
+          displayName: Azure Monitor pipeline
+          href: data-collection/pipeline-configure-cli.md
       - name: Configure clients
         href: data-collection/pipeline-configure-clients.md
       - name: Transformations

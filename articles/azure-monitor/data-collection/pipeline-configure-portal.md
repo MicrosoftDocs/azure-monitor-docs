@@ -15,8 +15,8 @@ Use this article after you complete the shared setup in [Configure Azure Monitor
 
 Start the creation flow from one of the following locations in the Azure portal:
 
-1. From **Azure Monitor pipelines (preview)**, select **Create**.
-1. From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension (preview)**.
+- From **Azure Monitor pipelines (preview)**, select **Create**.
+- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension (preview)**.
 
 ## Configure basics
 
@@ -53,13 +53,12 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 | Table name | Table name in the Log Analytics workspace. Must match **Table** when the destination is `Syslog` or `CommonSecurityLog`. |
 | Add Data Transformations | Add a transformation to the dataflow. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 
-### Send data to standard tables
+### Choose a destination table
 
-To send Syslog or CEF data to standard Azure Monitor tables, select `Syslog` as the **Source type**, and then select `Syslog` or `CommonSecurityLog` as the **Table**. The incoming data is converted automatically to the required format.
+Choose the destination table based on the data that you want to collect.
 
-### Send data to custom tables
-
-To send data to a custom table, select `Syslog` or `OTLP` as the **Source type**, and then specify a custom table name in the **Table name** field. Add a transformation to shape the incoming data to match the custom table schema. See [Azure Monitor pipeline transformations](./pipeline-transformations.md).
+- To send Syslog or CEF data to standard Azure Monitor tables, select `Syslog` as the **Source type**, and then select `Syslog` or `CommonSecurityLog` as the **Table**. The incoming data is converted automatically to the required format.
+- To send data to a custom table, select `Syslog` or `OTLP` as the **Source type**, and then specify a custom table name in the **Table name** field. Add a transformation to shape the incoming data to match the custom table schema. See [Azure Monitor pipeline transformations](./pipeline-transformations.md).
 
 ### Add transformations
 
@@ -84,25 +83,7 @@ Deployment typically takes several minutes while Azure installs the extension, c
 
 ## Verify deployment
 
-After deployment completes, verify that data is arriving in the target workspace.
-
-1. Open the destination Log Analytics workspace.
-1. Select **Logs**.
-1. Run a query against the destination table.
-
-```kusto
-// Standard table example
-Syslog
-| where TimeGenerated > ago(10m)
-| take 10
-
-// Custom table example
-<YourTableName>_CL
-| where TimeGenerated > ago(10m)
-| take 10
-```
-
-You can also use the shared verification steps in [Configure Azure Monitor pipeline](./pipeline-configure.md#verify-the-configuration).
+After deployment completes, use the shared verification steps in [Configure Azure Monitor pipeline](./pipeline-configure.md#verify-the-configuration) to confirm that the pipeline components are running and that data is reaching your Log Analytics workspace.
 
 ## Next steps
 

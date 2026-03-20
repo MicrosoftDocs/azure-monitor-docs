@@ -9,9 +9,11 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline with CLI or ARM templates
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, caching, and other advanced scenarios. For the fastest guided experience, use [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
+Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, caching, and other advanced scenarios.
 
-## Use this method when
+## When to use this method
+
+Use CLI or ARM templates when you need a repeatable deployment process or more control over the pipeline resources. If you want the fastest guided experience for a standard deployment, use [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
 
 | Need | Why use CLI or ARM templates |
 |:-----|:-----------------------------|
@@ -26,7 +28,7 @@ Follow these tasks to configure a pipeline with CLI or ARM templates.
 
 | Step | Purpose | Output |
 |:-----|:--------|:-------|
-| Prepare workspace tables | Create destination tables in Log Analytics. | Tables ready for incoming data |
+| Prepare workspace tables | Create destination tables in Log Analytics workspace. | Tables ready for incoming data |
 | Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
 | Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
 | Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
@@ -141,7 +143,7 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 
 ---
 
-### Create a data collection endpoint
+### Create a data collection endpoint (DCE)
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
 
@@ -180,14 +182,12 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 
 ---
 
-## Create a data collection rule
+## Create a data collection rule (DCR)
 The DCR is stored in Azure Monitor and defines how the data is processed when Azure Monitor receives it from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
 
 ### Define the DCR
-The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created.
-
-DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
+The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created. DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
 
 | Parameter | Description |
 |:----------|:------------|
@@ -397,7 +397,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
 
-You'll require the object ID of your cluster's System Assigned Identity. Retrieve the Azure portal or using the following CLI command:
+You'll require the object ID of your cluster's System Assigned Identity. Retrieve from the Azure portal or using the following CLI command:
 
 ```azurecli
 az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
@@ -446,7 +446,7 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 
 ## Create the pipeline configuration
 
-The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
+The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
 
 #### Data sources
 To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown below. The incoming data is automatically converted to the appropriate format. 
