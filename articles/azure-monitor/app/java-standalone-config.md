@@ -27,6 +27,7 @@ Connection string and role name are the most common settings you need to get sta
   }
 }
 ```
+
 *The connection string is required.* Role name is important anytime you're sending data from different applications to the same Application Insights resource.
 
 More information and configuration options are provided in the following sections.
@@ -35,12 +36,12 @@ More information and configuration options are provided in the following section
 
 ### Default configuration
 
-By default, Application Insights Java 3  expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.5.jar*.
+By default, Application Insights Java 3 expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.5.jar*.
  
 ### Alternative configurations
 
 #### Custom configuration file
-   
+
 You can specify a custom configuration file with:
 
 * the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable, or
@@ -60,7 +61,6 @@ Instead of using a configuration file, you can set the entire JSON configuration
 Connection string is required. You can find your connection string in your Application Insights resource.
 
 :::image type="content" source="media/java-ipa/connection-string.png" alt-text="Screenshot that shows an Application Insights connection string.":::
-
 
 ```json
 {
@@ -96,7 +96,7 @@ If you want to set the cloud role name:
 
 ```json
 {
-  "role": {   
+  "role": {
     "name": "my cloud role name"
   }
 }
@@ -127,8 +127,7 @@ If you want to set the cloud role instance to something different rather than th
 
 You can also set the cloud role instance by using the environment variable `APPLICATIONINSIGHTS_ROLE_INSTANCE`. It then takes precedence over the cloud role instance specified in the JSON configuration.
 
-Or you can set the cloud role instance by using the Java system property `applicationinsights.role.instance`.
-It also takes precedence over the cloud role instance specified in the JSON configuration.
+Or you can set the cloud role instance by using the Java system property `applicationinsights.role.instance`. It also takes precedence over the cloud role instance specified in the JSON configuration.
 
 ## Sampling
 
@@ -140,8 +139,7 @@ Sampling is based on request, which means that if a request is captured (sampled
 
 Sampling is also based on trace ID to help ensure consistent sampling decisions across different services.
 
-Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default.
-If you want to sample those logs, you can use [Sampling overrides](./java-standalone-sampling-overrides.md).
+Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](./java-standalone-sampling-overrides.md).
 
 ### Rate-limited sampling
 
@@ -152,8 +150,7 @@ If no sampling is configured, the default is now rate-limited sampling configure
 This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use [fixed-percentage sampling](#fixed-percentage-sampling) and set the sampling percentage to 100.
 
 > [!NOTE]
-> The rate-limited sampling is approximate because internally it must adapt a "fixed" sampling percentage over time to emit accurate item counts on each telemetry record. Internally, the rate-limited sampling is
-tuned to adapt quickly (0.1 seconds) to new application loads. For this reason, you shouldn't see it exceed the configured rate by much, or for very long.
+> The rate-limited sampling is approximate because internally it must adapt a "fixed" sampling percentage over time to emit accurate item counts on each telemetry record. Internally, the rate-limited sampling is tuned to adapt quickly (0.1 seconds) to new application loads. For this reason, you shouldn't see it exceed the configured rate by much, or for very long.
 
 This example shows how to set the sampling to capture at most (approximately) one request per second:
 
@@ -268,17 +265,12 @@ OpenTelemetry span attributes are autocollected and based on the [OpenTelemetry 
 
 You can also programmatically add span attributes and use them for sampling.
 
->[!Note]
-> To see the exact set of attributes captured by Application Insights Java for your application, set the
-[self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting
-with the text "exporting span".
-
->[!Note]
-> Only attributes set at the start of the span are available for sampling,
-so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
-
->[!Note]
-> The attributes added with a [telemetry processor](./java-standalone-telemetry-processors.md) are not available for sampling.
+>[!NOTE]
+> * To see the exact set of attributes captured by Application Insights Java for your application, set the [self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting with the text "exporting span".
+>
+> * Only attributes set at the start of the span are available for sampling, so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
+>
+> * The attributes added with a [telemetry processor](./java-standalone-telemetry-processors.md) are not available for sampling.
 
 ### Use cases
 
@@ -455,7 +447,7 @@ Using that output, you can configure a sampling override similar to the followin
 }
 ```
 
-Once the changes are applied, the following query allows us to determine the last time these dependencies were ingested into Application Insights:  
+Once the changes are applied, the following query allows us to determine the last time these dependencies were ingested into Application Insights:
 
 ```kusto
 dependencies
@@ -531,6 +523,7 @@ You can then remove the log having the added attribute:
 We're going to add a span to a Java method and remove this span with sampling override. 
 
 Let's first add the `opentelemetry-instrumentation-annotations` dependency:
+
 ```xml
 	<dependency>
 	  <groupId>io.opentelemetry.instrumentation</groupId>
@@ -564,11 +557,12 @@ class VetController {
 	private Page<Vet> findPaginated(int page) {
 		int pageSize = 5;
 		Pageable pageable = PageRequest.of(page - 1, pageSize);
-		return vetRepository.findAll(pageable);  // Execution of SQL requests
+		return vetRepository.findAll(pageable); // Execution of SQL requests
 	}
 ```
 
 The following sampling override configuration allows you to remove the span added by the `WithSpan` annotation:
+
 ```json
   "sampling": {
 	"overrides": [
@@ -731,23 +725,6 @@ Numeric and Boolean JMX metric values are supported. Boolean JMX metrics are map
 You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
 :::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of the Metrics pane in the Azure portal.":::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## Custom dimensions
 
@@ -937,10 +914,10 @@ If you want to enable this feature, add the below configuration option:
 
 You can use telemetry processors to configure rules that are applied to request, dependency, and trace telemetry. For example, you can:
 
- * Mask sensitive data.
- * Conditionally add custom dimensions.
- * Update the span name, which is used to aggregate similar telemetry in the Azure portal.
- * Drop specific span attributes to control ingestion costs.
+* Mask sensitive data.
+* Conditionally add custom dimensions.
+* Update the span name, which is used to aggregate similar telemetry in the Azure portal.
+* Drop specific span attributes to control ingestion costs.
 
 > [!NOTE]
 > The telemetry processors feature is designated as preview because we cannot guarantee backwards compatibility from release to release due to the experimental state of the attribute [semantic conventions](https://opentelemetry.io/docs/reference/specification/trace/semantic_conventions). However, the feature has been tested and is supported in production.
@@ -948,11 +925,12 @@ You can use telemetry processors to configure rules that are applied to request,
 Application Insights Java 3.x can process telemetry data before the data is exported.
 
 Some use cases:
- * Mask sensitive data.
- * Conditionally add custom dimensions.
- * Update the span name, which is used to aggregate similar telemetry in the Azure portal.
- * Drop specific span attributes to control ingestion costs.
- * Filter out some metrics to control ingestion costs.
+
+* Mask sensitive data.
+* Conditionally add custom dimensions.
+* Update the span name, which is used to aggregate similar telemetry in the Azure portal.
+* Drop specific span attributes to control ingestion costs.
+* Filter out some metrics to control ingestion costs.
 
 > [!NOTE]
 > If you are looking to drop specific (whole) spans for controlling ingestion cost,
@@ -984,20 +962,18 @@ The trace message or body is the primary display for logs in the Azure portal. L
 
 ### Telemetry processor types
 
-Currently, the four types of telemetry processors are
+Currently, the four types of telemetry processors are:
+
 * Attribute processors
 * Span processors
 * Log processors
 * Metric filters
 
-An attribute processor can insert, update, delete, or hash attributes of a telemetry item (`span` or `log`).
-It can also use a regular expression to extract one or more new attributes from an existing attribute.
+An attribute processor can insert, update, delete, or hash attributes of a telemetry item (`span` or `log`). It can also use a regular expression to extract one or more new attributes from an existing attribute.
 
-A span processor can update the telemetry name of requests and dependencies.
-It can also use a regular expression to extract one or more new attributes from the span name.
+A span processor can update the telemetry name of requests and dependencies. It can also use a regular expression to extract one or more new attributes from the span name.
 
-A log processor can update the telemetry name of logs.
-It can also use a regular expression to extract one or more new attributes from the log name.
+A log processor can update the telemetry name of logs. It can also use a regular expression to extract one or more new attributes from the log name.
 
 A metric filter can filter out metrics to help control ingestion cost.
 
@@ -1042,16 +1018,16 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 
 The attribute processor modifies attributes of a `span` or a `log`. It can support the ability to include or exclude `span` or `log`. It takes a list of actions that are performed in the order that the configuration file specifies. The processor supports these actions:
 
-- `insert`
-- `update`
-- `delete`
-- `hash`
-- `extract`
-- `mask`
+* `insert`
+* `update`
+* `delete`
+* `hash`
+* `extract`
+* `mask`
 
 #### `insert`
 
-The `insert` action inserts a new attribute in telemetry item where the `key` doesn't already exist.   
+The `insert` action inserts a new attribute in telemetry item where the `key` doesn't already exist.
 
 ```json
 "processors": [
@@ -1067,7 +1043,9 @@ The `insert` action inserts a new attribute in telemetry item where the `key` do
   }
 ]
 ```
+
 The `insert` action requires the following settings:
+
 * `key`
 * Either `value` or `fromAttribute`
 * `action`: `insert`
@@ -1090,6 +1068,7 @@ The `update` action updates an attribute in telemetry item where the `key` alrea
   }
 ]
 ```
+
 The `update` action requires the following settings:
 * `key`
 * Either `value` or `fromAttribute`
@@ -1113,7 +1092,9 @@ The `delete` action deletes an attribute from a telemetry item.
   }
 ]
 ```
+
 The `delete` action requires the following settings:
+
 * `key`
 * `action`: `delete`
 
@@ -1134,7 +1115,9 @@ The `hash` action hashes (SHA1) an existing attribute value.
   }
 ]
 ```
+
 The `hash` action requires the following settings:
+
 * `key`
 * `action`: `hash`
 
@@ -1159,7 +1142,9 @@ The `extract` action extracts values by using a regular expression rule from the
   }
 ]
 ```
+
 The `extract` action requires the following settings:
+
 * `key`
 * `pattern`
 * `action`: `extract`
@@ -1186,7 +1171,9 @@ The `mask` action masks attribute values by using a regular expression rule spec
   }
 ]
 ```
+
 The `mask` action requires the following settings:
+
 * `key`
 * `pattern`
 * `replace`
@@ -1194,32 +1181,27 @@ The `mask` action requires the following settings:
 
 `pattern` can contain a named group placed between `?<` and `>:`. Example: `(?<userGroupName>[a-zA-Z.:\/]+)\d+`? The group is `(?<userGroupName>[a-zA-Z.:\/]+)` and `userGroupName` is the name of the group. `pattern` can then contain the same named group placed between `${` and `}` followed by the mask. Example where the mask is **: `${userGroupName}**`.
 
-See  [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md) for masking examples.
+See [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md) for masking examples.
 
 #### Include criteria and exclude criteria
 
-Attribute processors support optional `include` and `exclude` criteria.
-An attribute processor is applied only to telemetry that matches its `include` criteria (if it's available)
-_and_ don't match its `exclude` criteria (if it's available).
+Attribute processors support optional `include` and `exclude` criteria. An attribute processor is applied only to telemetry that matches its `include` criteria (if it's available) *and* don't match its `exclude` criteria (if it's available).
 
-To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or `attributes`.
-The `include` or `exclude` configuration allows more than one specified condition.
-All specified conditions must evaluate to true to result in a match. 
+To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or `attributes`. The `include` or `exclude` configuration allows more than one specified condition. All specified conditions must evaluate to true to result in a match.
 
 * **Required fields**:
 
-	* `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+    * `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
 
 * **Optional fields**: 
 
-	* `spanNames` must match at least one of the items. 
-	* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
+    * `spanNames` must match at least one of the items. 
+    * `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
 	
 > [!NOTE]
-> If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
-
-> [!NOTE]
-> If the `include` or `exclude` configuration do not have `spanNames` specified, then the matching criteria are applied on both `spans` and `logs`.
+> * If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
+>
+> * If the `include` or `exclude` configuration do not have `spanNames` specified, then the matching criteria are applied on both `spans` and `logs`.
 
 #### Sample usage
 
@@ -1256,6 +1238,7 @@ All specified conditions must evaluate to true to result in a match.
   }
 ]
 ```
+
 For more information, see [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md).
 
 ### Span processor
@@ -1267,6 +1250,7 @@ The span processor modifies either the span name or attributes of a span based o
 The `name` section requires the `fromAttributes` setting. The values from these attributes are used to create a new name, concatenated in the order that the configuration specifies. The processor changes the span name only if all of these attributes are present on the span.
 
 The `separator` setting is optional. This setting is a string, and you can use split values.
+
 > [!NOTE]
 > If renaming relies on the attributes processor to modify attributes, ensure the span processor is specified after the attributes processor in the pipeline specification.
 
@@ -1319,7 +1303,6 @@ This process is repeated for all rules in the order they're specified. Each subs
 	}
   }
 ]
-
 ```
 
 ### Common span attributes
@@ -1328,11 +1311,11 @@ This section lists some common span attributes that telemetry processors can use
 
 #### HTTP spans
 
-| Attribute  | Type | Description | 
-|---|---|---|
-| `http.request.method` (used to be `http.method`) | string | HTTP request method.|
-| `url.full` (client span) or `url.path` (server span) (used to be `http.url`) | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. The fragment typically isn't transmitted over HTTP. But if the fragment is known, it should be included.|
-| `http.response.status_code` (used to be `http.status_code`) | number | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6).|
+| Attribute | Type | Description |
+|-----------|------|-------------|
+| `http.request.method` (used to be `http.method`) | string | HTTP request method. |
+| `url.full` (client span) or `url.path` (server span) (used to be `http.url`) | string | Full HTTP request URL in the form `scheme://host[:port]/path?query[#fragment]`. The fragment typically isn't transmitted over HTTP. But if the fragment is known, it should be included. |
+| `http.response.status_code` (used to be `http.status_code`) | number | [HTTP response status code](https://tools.ietf.org/html/rfc7231#section-6). |
 | `network.protocol.version` (used to be `http.flavor`) | string | Type of HTTP protocol. |
 | `user_agent.original` (used to be `http.user_agent`) | string | Value of the [HTTP User-Agent](https://tools.ietf.org/html/rfc7231#section-5.5.3) header sent by the client. |
 
@@ -1340,30 +1323,32 @@ This section lists some common span attributes that telemetry processors can use
 
 The following table describes attributes that you can use in Java Database Connectivity (JDBC) spans:
 
-| Attribute  | Type | Description  |
-|---|---|---|
+| Attribute | Type | Description |
+|-----------|------|-------------|
 | `db.system` | string | Identifier for the database management system (DBMS) product being used. See [Semantic Conventions for database operations](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md). |
-| `db.connection_string` | string | Connection string used to connect to the database. We recommend that you remove embedded credentials.|
+| `db.connection_string` | string | Connection string used to connect to the database. We recommend that you remove embedded credentials. |
 | `db.user` | string | Username for accessing the database. |
-| `db.name` | string | String used to report the name of the database being accessed. For commands that switch the database, this string should be set to the target database, even if the command fails.|
-| `db.statement` | string | Database statement that's being run.|
+| `db.name` | string | String used to report the name of the database being accessed. For commands that switch the database, this string should be set to the target database, even if the command fails. |
+| `db.statement` | string | Database statement that's being run. |
 
 #### Include criteria and exclude criteria
 
 Span processors support optional `include` and `exclude` criteria.
 A span processor is applied only to telemetry that matches its `include` criteria (if it's available)
-_and_ don't match its `exclude` criteria (if it's available).
+*and* don't match its `exclude` criteria (if it's available).
 
-To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or  span `attributes`.
+To configure this option, under `include` or `exclude` (or both), specify at least one `matchType` and either `spanNames` or span `attributes`.
 The `include` or `exclude` configuration allows more than one specified condition.
 All specified conditions must evaluate to true to result in a match. 
 
 * **Required fields**:
-	* `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
 
-* **Optional fields**: 
-	* `spanNames` must match at least one of the items. 
-	* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
+    * `matchType` controls how items in `spanNames` arrays and `attributes` arrays are interpreted. Possible values are `regexp` and `strict`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* **Optional fields**:
+
+    * `spanNames` must match at least one of the items.
+    * `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
 	
 > [!NOTE]
 > If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
@@ -1402,6 +1387,7 @@ All specified conditions must evaluate to true to result in a match.
   }
 ]
 ```
+
 For more information, see [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md).
 
 ### Log processor
@@ -1445,11 +1431,11 @@ Extracted attribute names replace the values in the log message body. Each rule 
 Here's how extracted attribute names replace values:
 
 1. The log message body is checked against the regex. 
-2. All named subexpressions of the regex are extracted as attributes if the regex matches. 
-3. The extracted attributes are added to the log. 
-4. Each subexpression name becomes an attribute name. 
-5. The subexpression matched portion becomes the attribute value. 
-6. The extracted attribute name replaces the matched portion in the log name. If the attributes already exist in the log, they're overwritten. 
+1. All named subexpressions of the regex are extracted as attributes if the regex matches. 
+1. The extracted attributes are added to the log. 
+1. Each subexpression name becomes an attribute name. 
+1. The subexpression matched portion becomes the attribute value. 
+1. The extracted attribute name replaces the matched portion in the log name. If the attributes already exist in the log, they're overwritten. 
  
 This process is repeated for all rules in the order they're specified. Each subsequent rule works on the log name that's the output of the previous rule.
 
@@ -1468,30 +1454,31 @@ This process is repeated for all rules in the order they're specified. Each subs
 	}
   }
 ]
-
 ```
 
 #### Include criteria and exclude criteria
 
 Log processors support optional `include` and `exclude` criteria.
 A log processor is applied only to telemetry that matches its `include` criteria (if it's available)
-_and_ don't match its `exclude` criteria (if it's available).
+*and* don't match its `exclude` criteria (if it's available).
 
 To configure this option, under `include` or `exclude` (or both), specify the `matchType` and `attributes`.
 The `include` or `exclude` configuration allows more than one specified condition.
 All specified conditions must evaluate to true to result in a match. 
 
-* **Required field**: 
-  * `matchType` controls how items in `attributes` arrays are interpreted. Possible values are `regexp` and `strict`.
-	 Regular expression matches are performed against the entire attribute value,
-	 so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
-  * `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
+**Required field**: 
+
+* `matchType` controls how items in `attributes` arrays are interpreted. Possible values are `regexp` and `strict`.
+
+    Regular expression matches are performed against the entire attribute value,
+    so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* `attributes` specifies the list of attributes to match. All of these attributes must match exactly to result in a match.
 	
 > [!NOTE]
-> If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
-
-> [!NOTE]
-> Log processors do not support `spanNames`.
+> * If both `include` and `exclude` are specified, the `include` properties are checked before the `exclude` properties are checked.
+>
+> * Log processors do not support `spanNames`.
 
 #### Sample usage
 
@@ -1529,6 +1516,7 @@ All specified conditions must evaluate to true to result in a match.
   }
 ]
 ```
+
 For more information, see [Telemetry processor examples](./java-standalone-telemetry-processors-examples.md).
 
 ### Metric filter
@@ -1542,11 +1530,14 @@ Metric filters only support `exclude` criteria. Metrics that match its `exclude`
 
 To configure this option, under `exclude`, specify the `matchType` one or more `metricNames`.
 
-* **Required field**:
-  * `matchType` controls how items in `metricNames` are matched. Possible values are `regexp` and `strict`.
-	 Regular expression matches are performed against the entire attribute value,
-	 so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
-   * `metricNames` must match at least one of the items.
+**Required field**:
+
+* `matchType` controls how items in `metricNames` are matched. Possible values are `regexp` and `strict`.
+
+    Regular expression matches are performed against the entire attribute value,
+    so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
+
+* `metricNames` must match at least one of the items.
 
 #### Sample usage
 
@@ -1585,19 +1576,19 @@ The following sample shows how to turn off all metrics including the default aut
 
 #### Default metrics captured by Java agent
 
-| Metric name  | Metric type | Description  | Filterable |
-|---|---|---|---|
-| `Current Thread Count` | custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | yes |
-| `Loaded Class Count` | custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | yes |
-| `GC Total Count` | custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | yes |
-| `GC Total Time` | custom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| yes |
-| `Heap Memory Used (MB)` | custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | yes |
-| `% Of Max Heap Memory Used` | custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| yes |
-| `\Processor(_Total)\% Processor Time` | default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | no |
-| `\Process(??APP_WIN32_PROC??)\% Processor Time` | default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | no |
-| `\Process(??APP_WIN32_PROC??)\Private Bytes` | default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | no |
-| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | no |
-| `\Memory\Available Bytes` | default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | no |
+| Metric name | Metric type | Description | Filterable |
+|-------------|-------------|-------------|------------|
+| `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | ✅ |
+| `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | ✅ |
+| `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | ✅ |
+| `GC Total Time` | Ccustom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
+| `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | ✅ |
+| `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| ✅ |
+| `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | ❌ |
+| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | ❌ |
+| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | ❌ |
+| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | ❌ |
+| `\Memory\Available Bytes` | Default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | ❌ |
 
 ### Telemetry processors FAQ
 
@@ -1619,11 +1610,13 @@ This section shows how to include spans for an attribute processor. The processo
 A match requires the span name to be equal to `spanA` or `spanB`. 
 
 These spans match the `include` properties, and the processor actions are applied:
+
 * `Span1` Name: 'spanA' Attributes: {env: dev, test_request: 123, credit_card: 1234}
 * `Span2` Name: 'spanB' Attributes: {env: dev, test_request: false}
 * `Span3` Name: 'spanA' Attributes: {env: 1, test_request: dev, credit_card: 1234}
 
 This span doesn't match the `include` properties, and the processor actions aren't applied:
+
 * `Span4` Name: 'spanC' Attributes: {env: dev, test_request: false}
 
 ```json
@@ -1663,11 +1656,13 @@ This section demonstrates how to exclude spans for an attribute processor. This 
 A match requires the span name to be equal to `spanA` or `spanB`.
 
 The following spans match the `exclude` properties, and the processor actions aren't applied:
+
 * `Span1` Name: 'spanA' Attributes: {env: dev, test_request: 123, credit_card: 1234}
 * `Span2` Name: 'spanB' Attributes: {env: dev, test_request: false}
 * `Span3` Name: 'spanA' Attributes: {env: 1, test_request: dev, credit_card: 1234}
 
 This span doesn't match the `exclude` properties, and the processor actions are applied:
+
 * `Span4` Name: 'spanC' Attributes: {env: dev, test_request: false}
 
 ```json
@@ -1705,14 +1700,17 @@ This span doesn't match the `exclude` properties, and the processor actions are 
 This section demonstrates how to exclude spans for an attribute processor. This processor doesn't process spans that match the properties.
 
 A match requires the following conditions to be met:
+
 * An attribute (for example, `env` with value `dev`) must exist in the span.
 * The span must have an attribute that has key `test_request`.
 
-The following spans match the `exclude` properties, and the processor actions aren't applied.
+The following spans match the `exclude` properties, and the processor actions aren't applied:
+
 * `Span1` Name: 'spanB' Attributes: {env: dev, test_request: 123, credit_card: 1234}
 * `Span2` Name: 'spanA' Attributes: {env: dev, test_request: false}
 
 The following span doesn't match the `exclude` properties, and the processor actions are applied:
+
 * `Span3` Name: 'spanB' Attributes: {env: 1, test_request: dev, credit_card: 1234}
 * `Span4` Name: 'spanC' Attributes: {env: dev, dev_request: false}
 
@@ -1960,7 +1958,9 @@ The following sample shows how to hash existing attribute values.
 <summary><b>Extract</b></summary>
 
 The following sample shows how to use a regular expression (regex) to create new attributes based on the value of another attribute.
+
 For example, given `url.path = /path?queryParam1=value1,queryParam2=value2`, the following attributes are inserted:
+
 * httpProtocol: `http`
 * httpDomain: `example.com`
 * httpPath: `path`
@@ -2054,9 +2054,10 @@ Starting 3.4.19 GA, telemetry processors support nonstring typed attributes:
 When `attributes.type` isn't provided in the json, it's default to `string`.
 
 The following sample inserts the new attribute `{"newAttributeKeyStrict": "newAttributeValueStrict"}` into spans and logs where the attributes match the following examples:
-`{"longAttributeKey": 1234}`
-`{"booleanAttributeKey": true}`
-`{"doubleArrayAttributeKey": [1.0, 2.0, 3.0, 4.0]}`
+
+* `{"longAttributeKey": 1234}`
+* `{"booleanAttributeKey": true}`
+* `{"doubleArrayAttributeKey": [1.0, 2.0, 3.0, 4.0]}`
 
 ```json
 {
@@ -2144,6 +2145,7 @@ The following sample inserts the new attribute `{"newAttributeKeyRegexp": "newAt
 <summary><b>Name a span</b></summary>
 
 The following sample specifies the values of attributes `db.svc`, `operation`, and `id`. It forms the new name of the span by using those attributes, in that order, separated by the value `::`.
+
 ```json
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
@@ -2172,6 +2174,7 @@ The following sample specifies the values of attributes `db.svc`, `operation`, a
 <summary><b>Extract attributes from a span name</b></summary>
 
 Let's assume the input span name is `/api/v1/document/12345678/update`. The following sample results in the output span name `/api/v1/document/{documentId}/update`. It adds the new attribute `documentId=12345678` to the span.
+
 ```json
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
@@ -2200,8 +2203,8 @@ Let's assume the input span name is `/api/v1/document/12345678/update`. The foll
 
 The following sample shows how to change the span name to `{operation_website}`. It adds an attribute with key `operation_website` and value `{oldSpanName}` when the span has the following properties:
 
-- The span name contains `/` anywhere in the string.
-- The span name isn't `donot/change`.
+* The span name contains `/` anywhere in the string.
+* The span name isn't `donot/change`.
 
 ```json
 {
@@ -2271,7 +2274,9 @@ Let's assume the input log message body is `Starting PetClinicApplication on Wor
 <summary><b>Masking sensitive data in log message</b></summary>
 
 The following sample shows how to mask sensitive data in a log message body using both log processor and attribute processor.
+
 Let's assume the input log message body is `User account with userId 123456xx failed to login`. The log processor updates output message body to `User account with userId {redactedUserId} failed to login` and the attribute processor deletes the new attribute `redactedUserId`, which was adding in the previous step.
+
 ```json
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
@@ -2325,16 +2330,11 @@ Starting from version 3.3.1, you can capture spans for a method in your applicat
 
 ## Locally disabling ingestion sampling (preview)
 
-By default, when the effective sampling percentage in the Java agent is 100%
-and [ingestion sampling](./opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource,
-then the ingestion sampling percentage will be applied.
+By default, when the effective sampling percentage in the Java agent is 100% and [ingestion sampling](./opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource, then the ingestion sampling percentage will be applied.
 
-Note that this behavior applies to both fixed-rate sampling of 100% and also applies to rate-limited sampling when the
-request rate doesn't exceed the rate limit (effectively capturing 100% during the continuously sliding time window).
+Note that this behavior applies to both fixed-rate sampling of 100% and also applies to rate-limited sampling when the request rate doesn't exceed the rate limit (effectively capturing 100% during the continuously sliding time window).
 
-Starting from 3.5.3, you can disable this behavior
-(and keep 100% of telemetry in these cases even when ingestion sampling has been configured
-on your Application Insights resource):
+Starting from 3.5.3, you can disable this behavior (and keep 100% of telemetry in these cases even when ingestion sampling has been configured on your Application Insights resource):
 
 ```json
 {
@@ -2355,8 +2355,7 @@ Logging is only captured if it:
 * Meets the configured level for the logging framework.
 * Also meets the configured level for Application Insights.
 
-For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`,
-and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
+For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`, and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
 
 The default level configured for Application Insights is `INFO`. If you want to change this level:
 
@@ -2402,8 +2401,8 @@ Starting from 3.4.2, you can capture the log markers for Logback and Log4j 2:
 ```json
 {
   "preview": {
-    "captureLogbackMarker":  true,
-    "captureLog4jMarker":  true
+    "captureLogbackMarker": true,
+    "captureLog4jMarker": true
   }
 }
 ```
@@ -2468,10 +2467,7 @@ To send custom metrics using micrometer:
     counter.increment();
     ```
 
-1. The metrics are ingested into the
-   [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the
-   `customDimensions` column. You can also view the metrics in the
-   [metrics explorer](../essentials/metrics-getting-started.md) under the `Log-based metrics` metric namespace.
+1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../essentials/metrics-getting-started.md) under the `Log-based metrics` metric namespace.
 
     > [!NOTE]
     > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
@@ -2548,8 +2544,7 @@ Starting from version 3.3.0, you can capture request and response headers on you
 
 The header names are case insensitive.
 
-The preceding examples are captured under the property names `http.request.header.my_header_a` and
-`http.response.header.my_header_b`.
+The preceding examples are captured under the property names `http.request.header.my_header_a` and `http.response.header.my_header_b`.
 
 Similarly, you can capture request and response headers on your client (dependency) telemetry:
 
@@ -2568,8 +2563,7 @@ Similarly, you can capture request and response headers on your client (dependen
 }
 ```
 
-Again, the header names are case insensitive. The preceding examples are captured under the property names
-`http.request.header.my_header_c` and `http.response.header.my_header_d`.
+Again, the header names are case insensitive. The preceding examples are captured under the property names `http.request.header.my_header_c` and `http.response.header.my_header_d`.
 
 ## HTTP server 4xx response codes
 
@@ -2797,8 +2791,7 @@ In the preceding configuration example:
 * `path` can be an absolute or relative path. Relative paths are resolved against the directory where
 `applicationinsights-agent-3.7.5.jar` is located.
 
-Starting from version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable
-`APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
+Starting from version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
 
 Starting from version 3.0.3, you can also set the self-diagnostics file location by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_FILE_PATH`. It then takes precedence over the self-diagnostics file path specified in the JSON configuration.
 
