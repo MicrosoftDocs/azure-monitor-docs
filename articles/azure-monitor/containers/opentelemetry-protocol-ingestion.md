@@ -89,7 +89,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]
-> If you skip this step, you'll need to modify the ARM template in the next section to remove Application Insights references.
+> If you skip this step you need to modify the ARM template in the next section to remove Application Insights references.
 
 #### Deploy the Data Collection Endpoint and Rule
 
@@ -121,7 +121,7 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 **For non-Azure environments:**
 
-Configure the Azure Authentication extension in your collector with an appropriate Entra identity:
+Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity:
 
 ```yaml
 extensions:
@@ -132,7 +132,7 @@ extensions:
       - https://monitor.azure.com/.default
 ```
 
-For workload identities, service principals, or other Entra identities, provide the `client_id` of the identity that will authenticate.
+For workload identities, service principals, or other Microsoft Entra identities, provide the `client_id` of the identity that needs to authenticate.
 
 ### Grant permissions to the Data Collection Rule
 
@@ -250,8 +250,12 @@ service:
 ```
 
 > [!IMPORTANT]
-> - Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
-> - Add `processors: [cumulativetodelta]` to metrics config if incoming metrics are in cumulative temporality.
+> - Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+>
+> - If you emit OTLP metrics from an OpenTelemetry SDK, configure your OTLP exporter to produce the metrics with delta temporality. For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
+>
+> - If OTLP metrics received by the OpenTelemetry collector are in cumulative temporality, add `processors: [cumulativetodelta]` to the metrics section of the OpenTelemetry collector config to convert to delta. For more information, see [cumulativetodeltaprocessor on GitHub](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/cumulativetodeltaprocessor).
+
 
 ## Next steps
 
