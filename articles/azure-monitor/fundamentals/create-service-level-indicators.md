@@ -43,6 +43,8 @@ Create SLIs from the service group that represents the application or workload y
 
 :::image type="content" source="media/create-service-level-indicators/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button.":::
 
+The **Create SLIs** action opens the **Basics** tab, where you choose the indicator type and provide identifying details for the new SLI.
+
 :::image type="content" source="media/create-service-level-indicators/create-sli-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
 
 Choose **Availability** when you want to measure whether requests or time windows meet a success condition. Choose **Latency** when you want to measure whether requests or time windows stay within a latency threshold.
@@ -56,6 +58,8 @@ On the **SLI** tab, Azure Monitor asks you how to evaluate the metric and how to
 1. Select the source Azure Monitor workspace.
 
 :::image type="content" source="media/create-service-level-indicators/sli-tab-overview.png" alt-text="Screenshot of the SLI tab with metric details, signal configuration, and destination settings for a request-based SLI.":::
+
+Start in **Metric details** to set the evaluation method and connect the managed identity and source workspace that Azure Monitor uses to read metrics.
 
 :::image type="content" source="media/create-service-level-indicators/metric-details.png" alt-text="Screenshot of the Metric details area on the SLI tab with evaluation method and source identity fields.":::
 
@@ -100,6 +104,8 @@ Request-based SLIs require two signals:
 1. Select **Show Preview charts** to confirm that the query returns the expected results.
 
 :::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI details area with separate Good signal and Total signal sections.":::
+
+After the signal sections are available, add the metric logic, filters, and any formulas that combine multiple metrics into the numerator or denominator.
 
 :::image type="content" source="media/create-service-level-indicators/formula-builder.png" alt-text="Screenshot of a request-based SLI query with metric filters, aggregations, and signal formulas configured.":::
 
@@ -152,7 +158,11 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 
 :::image type="content" source="media/create-service-level-indicators/service-group-sli-list.png" alt-text="Screenshot of the service group Monitoring page showing the SLI card after several SLIs have been created.":::
 
+Select **View all SLIs** to open the management experience, where you can compare each definition and review its current compliance state.
+
 :::image type="content" source="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
+
+From the management list, select an individual SLI to open its detail view and inspect performance, remaining error budget, and burn rate trends over time.
 
 :::image type="content" source="media/create-service-level-indicators/sli-details.png" alt-text="Screenshot of an SLI details page with charts for SLI performance, error budget remaining, and burn rate.":::
 
