@@ -85,7 +85,7 @@ Deployment typically takes several minutes while Azure installs the extension, c
 
 After deployment completes, use the shared verification steps in [Configure Azure Monitor pipeline](./pipeline-configure.md#verify-the-configuration) to confirm that the pipeline components are running and that data is reaching your Log Analytics workspace.
 
-## Next steps
+## Related articles
 
 - [Configure clients](./pipeline-configure-clients.md) to send data to the pipeline.
 - [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.

@@ -37,7 +37,7 @@ Use the later sections in this article if you already have a gateway and need to
 
 ## Placeholders
 
-This procedure uses multiple yaml files to define configuration. Placeholders are used in these files to indicate where you need to add your own values. The following table describes the placeholders used in the yaml files in this article and gives example values.
+This procedure uses multiple YAML files to define configuration. Placeholders in these files indicate where you need to add your own values. The following table describes the placeholders used in the YAML files in this article and gives example values.
 
 | Placeholder | Description | Example |
 |---|---|---|
@@ -50,7 +50,7 @@ This procedure uses multiple yaml files to define configuration. Placeholders ar
 
 
 ## Single gateway for a new pipeline group
-The cluster has no existing gateway or Azure Monitor Pipeline. Deploy one gateway and one Azure Monitor Pipeline Group for the first time. This may include TLS configuration for secure ingestion, but the same steps apply for non-TLS ingestion.:
+The cluster has no existing gateway or Azure Monitor pipeline. Deploy one gateway and one Azure Monitor pipeline group for the first time. This deployment might include TLS configuration for secure ingestion, but the same steps apply for non-TLS ingestion.
 
 ```text
 TLS-enabled:
@@ -369,14 +369,13 @@ If the external IP remains pending, verify that the cluster supports `LoadBalanc
 
 </details>
 
-## Add a new receiver to existing pipeline group
-The existing pipeline group is configured with a new receiver, for example an OTLP receiver on port 4317 is added alongside an existing syslog receiver on 514. The gateway must expose the new port.
+## Add a new receiver to an existing pipeline group
+The existing pipeline group is configured with a new receiver. For example, an OTLP receiver on port 4317 is added alongside an existing Syslog receiver on 514. The gateway must expose the new port.
 
 
 ### Create routing resources for the new receiver
 
-Create a new `ServersTransportTCP` and `IngressRouteTCP` pair for the new
-receiver using the same `routing.yaml` template from []() using the new receiver's values. 
+Create a new `ServersTransportTCP` and `IngressRouteTCP` pair for the new receiver by using the same `routing.yaml` template described earlier in this article and supplying the new receiver values.
 
 For an OTLP receiver example:
 
@@ -439,7 +438,7 @@ echo "Gateway IP: $GATEWAY_IP"
 ```
 Point the new client at `$GATEWAY_IP:514`. No Helm upgrade, no routing changes, and no certificate changes are needed.
 
-## New Pipeline Group instance
+## New pipeline group instance
 A completely new pipeline group is being deployed alongside an existing one on the same cluster.
 
 Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. This provides full isolation between the existing and new pipelines, including independent scaling, independent upgrades, and no shared failure domain.
@@ -462,7 +461,8 @@ Client B → 20.x.x.2:514 → Traefik instance 2 → [mTLS] → pipeline-2-servi
 > [!NOTE]
 > Adding a new pipeline with its own gateway does not affect the existing gateway or its clients. No `helm upgrade` is required on the existing Traefik instance.
 
-## Related content
+## Related articles
 
+- Continue the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Configure TLS by using [Transport Layer Security (TLS) in Azure Monitor pipeline](./pipeline-tls.md).
 - Configure your senders by using [Configure clients for Azure Monitor pipeline](./pipeline-configure-clients.md).

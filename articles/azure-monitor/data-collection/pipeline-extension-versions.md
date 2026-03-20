@@ -7,11 +7,12 @@ ms.custom: references_regions, devx-track-azurecli
 ---
 
 # Azure Monitor pipeline extension versions
-This article describes the version details for the Azure Monitor pipeline Arc-enabled Kubernetes extension. This extension deploys the pipeline on Arc-enabled Kubernetes clusters in your on-premises, edge, hybrid or multicloud environments.
+
+This article describes the version details for the Azure Monitor pipeline Arc-enabled Kubernetes extension. This extension deploys the pipeline on Arc-enabled Kubernetes clusters in your on-premises, edge, hybrid, or multicloud environments.
 
 - Pipeline versions release once each month. If there are any critical bug fixes or security patches, additional hotfix releases can happen.
 - The latest version deploys over a fortnight, and you might see it in some regions before others.
-- You can manually install the release once it is in a VMs region.
+- You can manually install the release once it's available in your region.
 
 ## Version details
 
@@ -25,14 +26,20 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 > If updating from an existing installation, this is a **breaking change** as it now requires the installation of cert-manager extension and gateway. Without these components, the update/deployment will fail.
 > See the [updated prerequisites](./pipeline-configure.md#prerequisites) for how to install the additional components. You can also [disable the default TLS, mTLS configuration](./pipeline-tls.md#option-3-disable-tls-and-mtls).
 - Fixed an issue where `RemoteIP` and `RemotePort` fields were incorrectly swapped during Common Event Format (CEF) log processing.
-- Updated the underlying Azure Linux base image to the latest compliant version
+- Updated the underlying Azure Linux base image to the latest compliant version.
 
 ### Version v0.155.0 - Jan 2026 (Preview)
 - Added support for pre-ingestion, KQL‑based data transformations in preview, letting you **filter, reshape, and aggregate logs** (via portal or ARM templates) with built‑in syntax/schema validation to optimize costs and ensure clean, standardized data. [Learn more](./pipeline-transformations.md)
-- Added support for sending **Syslog to Log Analytics standard tables**, using built-in schematization for raw syslog events
-- Added support for sending Syslog in Common Event Format (CEF) to Log Analytics standard table **CommonSecurityLog** used for Microsoft Sentinel, using built-in schematization for raw events
-- Improved Syslog normalization by correctly mapping Syslog `SeverityText` into the expected Log Analytics schema
-- Fixed collector crash scenarios when multiple OTLP receivers were configured
-- Moved pipeline images to Azure Linux Core 3.0 as Mariner 2.0 reached deprecation
-- Added support for [new regions](./pipeline-overview.md#supported-configurations)
-- Fixed all known security and compliance issues
+- Added support for sending **Syslog to Log Analytics standard tables**, using built-in schematization for raw Syslog events.
+- Added support for sending Syslog in Common Event Format (CEF) to the Log Analytics standard table **CommonSecurityLog** used for Microsoft Sentinel, using built-in schematization for raw events.
+- Improved Syslog normalization by correctly mapping Syslog `SeverityText` into the expected Log Analytics schema.
+- Fixed collector crash scenarios when multiple OTLP receivers were configured.
+- Moved pipeline images to Azure Linux Core 3.0 as Mariner 2.0 reached deprecation.
+- Added support for [new regions](./pipeline-overview.md#supported-configurations).
+- Fixed all known security and compliance issues.
+
+## Related articles
+
+- Learn about the service in [What is Azure Monitor pipeline?](./pipeline-overview.md).
+- Set up the service in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Secure ingestion by using [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).

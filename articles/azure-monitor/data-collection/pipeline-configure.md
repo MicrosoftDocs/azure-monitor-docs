@@ -49,7 +49,7 @@ Supported Kubernetes distributions for cert‑manager extension on Arc-enabled K
 > [!WARNING]
 > Between uninstalling the open source version and installing the Arc extension, certificate rotation won't occur, and trust bundles won't be distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These will remain usable once the Azure cert-manager is installed.
 
-Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version. The specific steps for removal will depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespace cert-manager and trust-manager installed using this command.
+Remove any existing instances of `cert‑manager` and `trust‑manager` from the cluster. Any open source versions must be removed before installing the Microsoft version. The specific steps for removal depend on your installation method. See [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling) for detailed guidance. If you used Helm for installation, use the following command to check which namespaces cert-manager and trust-manager use.
 
 `helm list -A | grep -E 'trust-manager|cert-manager'`
 
@@ -58,7 +58,7 @@ If you have an existing cert-manager extension installed, uninstall it using the
 ```azurecli
 export RESOURCE_GROUP="<resource-group-name>"
 export CLUSTER_NAME="<arc-enabled-cluster-name>"
-export LOCATION="<arc-enabled-cluster-location"
+export LOCATION="<arc-enabled-cluster-location>"
 
 NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP} --cluster-name ${CLUSTER_NAME})
 az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
@@ -81,7 +81,7 @@ az k8s-extension create \
   --cluster-type connectedClusters \
   --name "azure-cert-management" \
   --extension-type "microsoft.certmanagement" \
-  --release-train stable
+  --release-train stable \
   --config subcharts.zdtrcontroller.enabled=true
 ```
 
@@ -161,7 +161,7 @@ The extension should show a `Succeeded` provisioning state.
 
 </details>
 
-## Next steps
+## Related articles
 
 - Continue with [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) or [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
 - Expose the pipeline to external clients by using [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).

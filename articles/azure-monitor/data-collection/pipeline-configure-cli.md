@@ -187,14 +187,14 @@ The DCR is stored in Azure Monitor and defines how the data is processed when Az
 
 
 ### Define the DCR
-The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created. DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
+The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created. DCRs are defined in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
 
 | Parameter | Description |
 |:----------|:------------|
 | `name` | Name of the DCR. Must be unique for the subscription. |
 | `location` | Location of the DCR. Must match the location of the DCE. |
 | `dataCollectionEndpointId` | Resource ID of the DCE that you previously created. |
-| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the samples below should be used for the OLTP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
+| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the following samples should be used for the OTLP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
 | `destinations` | Details of one or more Log Analytics workspaces where the data will be sent.
 | `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
 
@@ -449,7 +449,7 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
 
 #### Data sources
-To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown below. The incoming data is automatically converted to the appropriate format. 
+To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown in the following samples. The incoming data is automatically converted to the appropriate format.
 
 <br>
 
@@ -480,10 +480,10 @@ To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSec
 </details>
 
 #### Destinations
-To send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This will output all columns for the table without requiring any record mapping. The samples below include complete record mappings for sample purposes, but these can be omitted if you're sending to the Azure tables.
+To send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This outputs all columns for the table without requiring any record mapping. The following samples include complete record mappings for sample purposes, but you can omit them if you're sending to the Azure tables.
 
 
-The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files below the table for the structure of each section.
+The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files that follow the table for the structure of each section.
 
 | Property | Description |
 |:---------|:------------|
@@ -1386,7 +1386,7 @@ Once the volume is created in the appropriate namespace, configure it using para
 
 
 
-## Next steps
+## Related articles
 
 - [Configure clients](./pipeline-configure-clients.md) to send data to the pipeline.
 - [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.

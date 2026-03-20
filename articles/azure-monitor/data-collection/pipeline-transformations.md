@@ -9,13 +9,13 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline transformations
 
-Azure Monitor pipeline data transformations allow you to filter and manipulate log data before it's sent to Azure Monitor in the cloud. Transformations enable you to structure incoming data according to your analytics needs, ensuring that only relevant information is sent to Azure Monitor and that it's in an appropriate format to be processed.
+Azure Monitor pipeline data transformations let you filter and manipulate log data before it's sent to Azure Monitor in the cloud. Transformations let you structure incoming data according to your analytics needs, ensuring that only relevant information is sent to Azure Monitor and that it's in an appropriate format to be processed.
 
 Benefits of using pipeline transformations include:
 
 - **Lower costs:** Filter and aggregate data to reduce ingestion volume and in turn lower ingestion costs 
 - **Better analytics:** Standardized schemas for faster queries and cleaner dashboards.
-- **Future proof:** Built-in schema validation prevents surprises during deployment.
+- **Future-proof:** Built-in schema validation helps prevent surprises during deployment.
 
 Azure Monitor pipeline solves the challenges of high ingestion costs and complex analytics by enabling transformations before ingestion, so your data is clean, structured, and optimized before it even hits your Log Analytics Workspace. 
 
@@ -115,7 +115,8 @@ source
 
 
 ## Supported KQL
-Expand the following sections for KQL functions and operators are supported in Azure Monitor pipeline transformations:
+
+Expand the following sections for KQL functions and operators that are supported in Azure Monitor pipeline transformations:
 
 <details>
 <summary><b>Aggregations</b></summary>
@@ -197,6 +198,9 @@ Expand the following sections for KQL functions and operators are supported in A
 </details>
 
 
-## Next steps
+## Related articles
 
-* [Read more about data collection rules (DCRs) in Azure Monitor](data-collection-rule-overview.md).
+- Set up the service in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Configure transformations in the Azure portal by using [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
+- Configure transformations by using templates in [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+- Read more about schemas and streams in [Data collection rules (DCRs) in Azure Monitor](data-collection-rule-overview.md).

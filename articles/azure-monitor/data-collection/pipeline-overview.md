@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 # What is Azure Monitor pipeline?
 
-Azure Monitor pipeline extends Azure Monitor data collection to local datacenters and multicloud environments. It allows you to collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
+Azure Monitor pipeline extends Azure Monitor data collection to local data centers and multicloud environments. It lets you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
 ## Why use Azure Monitor pipeline
 
@@ -75,7 +75,7 @@ The following diagram shows a typical Azure Monitor pipeline deployment.
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
-## Next steps
+## Related articles
 
 - Complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).

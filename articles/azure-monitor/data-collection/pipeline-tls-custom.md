@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor pipeline TLS configuration (Customer managed)
-description: Secure the connection from your Azure Monitor pipeline to Azure Monitor by configuring TLS (Customer managed).
+description: Secure data ingestion to Azure Monitor pipeline by using customer-managed certificates.
 ms.topic: article
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
@@ -24,11 +24,11 @@ You can provide your own certificates to meet compliance, security, and custom P
 ## Prerequisites
 
 - Arc-enabled Kubernetes cluster with Azure Monitor pipeline installed, along with additional components and prerequisites described in [Configure Azure Monitor pipeline](./pipeline-configure.md).
-- `kubectl` and `az access` to the Arc‑enabled cluster context.
+- Access to `kubectl` and the Azure CLI for the Arc-enabled cluster context.
 
 ## Configure cert-manager with external PKI
 
-The following example uses LetsEncrypt, but you can use any supported external PKI.
+The following example uses Let's Encrypt, but you can use any supported external PKI.
 
 ### Create issuer resource for external PKI
 
@@ -306,6 +306,12 @@ The Azure Monitor pipeline supports three TLS modes:
   }
 }
 ```
+
+## Related articles
+
+- Review the overview in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+- Use the default certificate flow in [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
+- Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 **BYOC (TLS + mTLS)**: Enable TLS secure encryption and mTLS client authentication, both using customer-managed certificates
 

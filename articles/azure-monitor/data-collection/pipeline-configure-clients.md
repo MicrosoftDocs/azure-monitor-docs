@@ -1,6 +1,6 @@
 ---
 title: Configure clients to use Azure Monitor pipeline
-description: Configure clients to use the Azure Monitor pipeline which extends Azure Monitor data collection into your data center. 
+description: Configure clients to use Azure Monitor pipeline, which extends Azure Monitor data collection into your data center.
 ms.topic: how-to
 ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
@@ -37,6 +37,9 @@ The final step is to verify that the data is received in the Log Analytics works
 
 
 
-## Next steps
+## Related articles
 
-* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
+- Continue the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Expose receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
+- Secure ingestion traffic by using [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+- Modify data before it's sent to the cloud by using [Configure Azure Monitor pipeline transformations](./pipeline-transformations.md).
