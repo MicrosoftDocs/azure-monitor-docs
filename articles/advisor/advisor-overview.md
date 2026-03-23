@@ -2,7 +2,7 @@
 title: Introduction to Azure Advisor
 description: Learn how to use Azure Advisor to optimize your Azure deployments and get answers to frequently asked questions.
 ms.topic: overview
-ms.date: 12/02/2024
+ms.date: 3/23/2026
 ---
 
 # Introduction to Azure Advisor
