@@ -28,35 +28,40 @@ Connection string and role name are the most common settings you need to get sta
 }
 ```
 
-*The connection string is required.* Role name is important anytime you're sending data from different applications to the same Application Insights resource.
-
-More information and configuration options are provided in the following sections.
+*The connection string is required.* Role name is important anytime you're sending data from different applications to the same Application Insights resource. More information and configuration options are provided in the following sections.
 
 ### JSON configuration set-up
 
-#### Default configuration
+# [Default configuration](#tab/config-default)
 
 By default, Application Insights Java 3 expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.5.jar*.
 
-#### Custom configuration file
+# [Custom configuration file](#tab/config-custom)
 
 You can specify a custom configuration file with:
 
 * the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable, or
-* the `applicationinsights.configuration.file` system property
+* the `applicationinsights.configuration.file` system property.
 
 If you provide a relative path, it will resolve relative to the directory where *applicationinsights-agent-3.7.5.jar* is located.
 
-#### JSON configuration
+# [JSON configuration](#tab/config-json)
 
 Instead of using a configuration file, you can set the entire JSON configuration with:
 
 * the `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT` environment variable, or
-* the `applicationinsights.configuration.content` system property
+* the `applicationinsights.configuration.content` system property.
+
+**Example:**
+
+* Name: `APPLICATIONINSIGHTS_CONFIGURATION_CONTENT`
+* Value: `{"connectionString":"InstrumentationKey=...;IngestionEndpoint=https://...;LiveEndpoint=https://...","role":{"name":"my-service"},"sampling":{"requestsPerSecond":5}}`
+
+---
 
 ### Set the connection string
 
-Connection string is required. You can find your connection string in your Application Insights resource.
+*The connection string is required.* You can find it on the **Overview** pane of your Application Insights resource:
 
 :::image type="content" source="media/java-ipa/connection-string.png" alt-text="Screenshot that shows an Application Insights connection string.":::
 
@@ -66,13 +71,7 @@ Connection string is required. You can find your connection string in your Appli
 }
 ```
 
-You can also set the connection string by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`. It then takes precedence over the connection string specified in the JSON configuration.
-
-Or you can set the connection string by using the Java system property `applicationinsights.connection.string`. It also takes precedence over the connection string specified in the JSON configuration.
-
-You can also set the connection string by specifying a file to load the connection string from.
-
-If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
+You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
 
 ```json
 {
@@ -80,17 +79,16 @@ If you specify a relative path, it resolves relative to the directory where `app
 }
 ```
 
-The file should contain only the connection string and nothing else.
+Alternatively, you can set the connection string by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` or the Java system property `applicationinsights.connection.string`. Both take precedence over the connection string specified in the JSON configuration.
 
-Not setting the connection string disables the Java agent.
+> [!IMPORTANT]
+> Not setting the connection string disables the Java agent.
 
 If you have multiple applications deployed in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](#connection-string-overrides-preview).
 
 ### Set the cloud role name
 
 The cloud role name is used to label the component on the application map.
-
-If you want to set the cloud role name:
 
 ```json
 {
@@ -102,15 +100,13 @@ If you want to set the cloud role name:
 
 If the cloud role name isn't set, the Application Insights resource's name is used to label the component on the application map.
 
-You can also set the cloud role name by using the environment variable `APPLICATIONINSIGHTS_ROLE_NAME`. It then takes precedence over the cloud role name specified in the JSON configuration.
-
-Or you can set the cloud role name by using the Java system property `applicationinsights.role.name`. It also takes precedence over the cloud role name specified in the JSON configuration.
+You can also set the cloud role name by using the environment variable `APPLICATIONINSIGHTS_ROLE_NAME` or the Java system property `applicationinsights.role.name`. Both take precedence over the cloud role name specified in the JSON configuration.
 
 If you have multiple applications deployed in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](#cloud-role-name-overrides-preview).
 
 ### Set the cloud role instance
 
-The cloud role instance defaults to the machine name. If you want to set the cloud role instance to something different rather than the machine name:
+The cloud role instance defaults to the machine name. If you want to set the cloud role instance to something different rather than the machine name.
 
 ```json
 {
@@ -121,9 +117,7 @@ The cloud role instance defaults to the machine name. If you want to set the clo
 }
 ```
 
-You can also set the cloud role instance by using the environment variable `APPLICATIONINSIGHTS_ROLE_INSTANCE`. It then takes precedence over the cloud role instance specified in the JSON configuration.
-
-Or you can set the cloud role instance by using the Java system property `applicationinsights.role.instance`. It also takes precedence over the cloud role instance specified in the JSON configuration.
+You can also set the cloud role instance by using the environment variable `APPLICATIONINSIGHTS_ROLE_INSTANCE` or the Java system property `applicationinsights.role.instance`. Both take precedence over the cloud role instance specified in the JSON configuration.
 
 ### Custom dimensions
 
@@ -170,15 +164,12 @@ See also [Add a custom property to a Span](./opentelemetry-add-modify.md?tabs=ja
 
 ## Sampling
 
+Sampling can be a great way to reduce the costs. Make sure to set up your sampling configuration appropriately for your use case.
+
+Sampling is based on requests, which means that if a request is captured (sampled), so are its dependencies, logs, and exceptions. It's also based on trace ID to help ensure consistent sampling decisions across different services.
+
 > [!NOTE]
-> Sampling can be a great way to reduce the cost of Application Insights. Make sure to set up your sampling
-> configuration appropriately for your use case.
-
-Sampling is based on request, which means that if a request is captured (sampled), so are its dependencies, logs, and exceptions.
-
-Sampling is also based on trace ID to help ensure consistent sampling decisions across different services.
-
-Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](#sampling-overrides).
+> Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](#sampling-overrides).
 
 ### Choose a sampling method
 
@@ -2633,7 +2624,7 @@ Similarly, you can capture request and response headers on your client (dependen
 }
 ```
 
-Again, the header names are case insensitive. The preceding examples are captured under the property names `http.request.header.my_header_c` and `http.response.header.my_header_d`.
+The header names are case insensitive. The preceding examples are captured under the property names `http.request.header.my_header_c` and `http.response.header.my_header_d`.
 
 ## Runtime and environment configuration
 
@@ -2642,9 +2633,7 @@ Again, the header names are case insensitive. The preceding examples are capture
 > [!NOTE]
 > The authentication feature is GA since version 3.4.17.
 
-You can use authentication to configure the agent to generate [token credentials](/java/api/overview/azure/identity-readme#credentials) that are required for Microsoft Entra authentication.
-
-For more information, see the [Authentication](./azure-ad-authentication.md) documentation.
+You can use authentication to configure the agent to generate [token credentials](/java/api/overview/azure/identity-readme#credentials) that are required for Microsoft Entra authentication. For more information, see the [Microsoft Entra authentication for Application Insights](./azure-ad-authentication.md).
 
 ### HTTP proxy
 
@@ -2861,3 +2850,7 @@ This example shows what a configuration file looks like with multiple components
   }
 }
 ```
+
+## Next steps
+
+
