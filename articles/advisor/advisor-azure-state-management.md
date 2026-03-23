@@ -205,7 +205,7 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or in-progress
+- __Recommendation__: System identified recommendation in that’s new or completed
 
 - __Impact__: Impact level, High, Medium, Low
 
@@ -221,7 +221,7 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or in-progress
+- __Recommendation__: System identified recommendation in that’s new or postponed
 
 - __Impact__: Impact level, High, Medium, Low
 
@@ -237,7 +237,7 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or in-progress
+- __Recommendation__: System identified recommendation in that’s new or dismissed
 
 - __Dismissed resources__: Resources affected by this recommendation have been dismissed
 
