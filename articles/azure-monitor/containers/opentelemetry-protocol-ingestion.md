@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/23/2026
 ai-usage: ai-assisted
 ---
 
