@@ -11,7 +11,6 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Search service | Bing Search - Search and Custom Search APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Search service | Search and Custom Search APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### August 15, 2025
 
