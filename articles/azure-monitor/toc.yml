@@ -341,23 +341,23 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
-    - name: Map feature (deprecated)
+  - name: Map feature (deprecated)
+    items:
+    - name: Overview
+      href: vm/vminsights-maps.md
+    - name: Retirement guidance
+      displayName: processes and dependencies, map, vminsights, dependency agent
+      href: vm/vminsights-maps-retirement.md
+    - name: Dependency agent
       items:
-      - name: Overview
-        href: vm/vminsights-maps.md
-      - name: Retirement guidance
-        displayName: processes and dependencies, map, vminsights, dependency agent
-        href: vm/vminsights-maps-retirement.md
-      - name: Dependency agent
-        items:
-        - name: Manage
-          displayName: dependency agent, vminsights
-          href: vm/vminsights-dependency-agent.md
-        - name: Uninstall
-          displayName: dependency agent, vminsights
-          href: vm/vminsights-dependency-agent-uninstall.md
-      - name: Query map data
-        href: vm/vminsights-log-query.md
+      - name: Manage
+        displayName: dependency agent, vminsights
+        href: vm/vminsights-dependency-agent.md
+      - name: Uninstall
+        displayName: dependency agent, vminsights
+        href: vm/vminsights-dependency-agent-uninstall.md
+    - name: Query map data
+      href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
@@ -413,16 +413,16 @@ items:
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
-      - name: OpenTelemetry Protocol ingestion overview (Preview)
-        href: containers/opentelemetry-summary.md
-      - name: Monitor AKS applications with OpenTelemetry Protocol (Preview)
-        href: containers/kubernetes-open-protocol.md
-      - name: Autoinstrumentation for AKS (Preview)
-        href: containers/kubernetes-codeless.md
+      - name: Public previews
+        items:
+        - name: Autoinstrumentation for Azure Kubernetes Service (Preview)
+          href: containers/kubernetes-codeless.md
       - name: Limited previews
         items:
-        - name: Autoinstrumentation for AKS - Python and .NET
-          href: containers/kubernetes-codeless-python-net.md
+        - name: Collect and analyze OpenTelemetry data with Azure Monitor
+          href: containers/collect-use-observability-data.md
+        - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
+          href: containers/kubernetes-open-protocol.md
     - name: Analyze data
       items:
       - name: Interactive views
@@ -692,14 +692,10 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
-  - name: Collect OpenTelemetry
+  - name: Data collection rules (DCR)
     items:
-    - name: Collect and analyze OpenTelemetry data (Preview)
-      href: containers/collect-use-observability-data.md
-    - name: Ingest OTLP signals with OTel Collector (Preview)
+    - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
       href: containers/opentelemetry-protocol-ingestion.md
-    - name: Ingest OTLP signals with AMA (Preview)
-      href: containers/opentelemetry-ingest-agent.md
   - name: Diagnostic Settings
     items:
     - name: Create or edit

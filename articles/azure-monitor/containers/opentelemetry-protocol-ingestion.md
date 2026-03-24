@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 03/23/2026
 ai-usage: ai-assisted
 ---
 
@@ -19,7 +19,7 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 
 * **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment.
-* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers. See [Ingest OTLP data into Azure Monitor with AMA](opentelemetry-ingest-agent.md) for details.
+* **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure virtual machines (VMs), Virtual Machine Scale Sets, or Azure Arc-enabled servers.
 * **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters. See [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md) for details.
 
 This article covers the OTel Collector method of collecting OTLP signals.
@@ -60,8 +60,8 @@ This method automatically provisions all required Azure resources and configures
 
 1. Locate the **OTLP Connection Info** section and copy the following values:
 
-    * Data Collection Rule (DCR) resource ID
-    * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
+    * The Data Collection Rule (DCR) resource ID
+    * The endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
@@ -89,7 +89,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]
-> If you skip this step you need to modify the ARM template in the next section to remove Application Insights references.
+> If you skip this step, you need to modify the ARM template in the next section to remove Application Insights references.
 
 #### Deploy the Data Collection Endpoint and Rule
 
@@ -109,6 +109,11 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 
 ## Configure your OpenTelemetry Collector
 
+>[!NOTE]
+>- The following Collector configuration uses components from the [OpenTelemetry Collector Contrib](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension) project and the [Azure Authentication Extension](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension) to send telemetry data to Azure Monitor. You can also build a custom distribution by using the [OpenTelemetry Collector Builder](https://github.com/open-telemetry/opentelemetry-collector/tree/main/cmd/builder) with components from the core and contrib repositories.
+>- Support for these open-source components is provided exclusively through community channels. To submit bug reports, request new features, or report other issues, [create a new issue](https://github.com/open-telemetry/opentelemetry-collector-contrib/issues/new/choose) in the public repository.
+>- Azure support is available for Azure services and resources, including Application Insights, Azure Monitor, and Log Analytics workspaces, as well as Data Collection Rules and Data Collection Endpoints.
+
 ### Configure Microsoft Entra authentication
 
 The OpenTelemetry Collector requires Microsoft Entra authentication to send data to Azure Monitor.
@@ -117,7 +122,7 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. Leave the `managed_identity` section blank in your collector configuration to use the system-assigned identity.
+1. To use the system-assigned identity, leave the `managed_identity` section blank in your collector configuration .
 
 **For non-Azure environments:**
 
@@ -225,8 +230,8 @@ extensions:
 
 exporters:
   otlphttp/azuremonitor:
-    traces_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_traces/otlp/v1/traces"
-    logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/opentelemetry_logs/otlp/v1/logs"
+    traces_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Traces</strong>/otlp/v1/traces"
+    logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Logs</strong>/otlp/v1/logs"
     metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
     auth:
       authenticator: azureauth/monitor
@@ -256,10 +261,8 @@ service:
 >
 > - If OTLP metrics received by the OpenTelemetry collector are in cumulative temporality, add `processors: [cumulativetodelta]` to the metrics section of the OpenTelemetry collector config to convert to delta. For more information, see [cumulativetodeltaprocessor on GitHub](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/cumulativetodeltaprocessor).
 
-
 ## Next steps
 
-* [Ingest OTLP data with Azure Monitor Agent](opentelemetry-ingest-agent.md)
 * [OpenTelemetry on Azure](../app/opentelemetry-overview.md)
 * [Monitor AKS with OpenTelemetry](kubernetes-open-protocol.md)
 * [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
