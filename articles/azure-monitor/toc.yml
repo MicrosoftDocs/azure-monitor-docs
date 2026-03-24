@@ -692,7 +692,7 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
-  - name: Data collection rules (DCR)
+  - name: Collect OpenTelemetry
     items:
     - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
       href: containers/opentelemetry-protocol-ingestion.md
