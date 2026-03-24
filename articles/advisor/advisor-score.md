@@ -121,13 +121,13 @@ Subcategory Score = (Healthy Resources /  Total Applicable Resources) * 100
 The category score is calculated by incorporating the weights of the subcategories.
 
 ```math
-Category Score = ∑((Healthy Resources / Total Applicable) * (Subcategory Weight))/∑(All applicable SubCategoryWeight) * 100
+Category Score = ∑((Healthy Resources / Total Applicable) * (Subcategory Weight))/(∑All applicable SubCategoryWeight) * 100
 ```
 
 | Resource | Detail |
 |:--- |:--- |
 | Healthy Resource | A resource that follows the WAF assessment and doesn't have any recommendations against it. |
-| Total Applicable Resources | Total resources against which Advisor recommendations were evaluated. It excludes the resources for which the recommendations were postponed/dismissed. |
+| Total Applicable Resources | Total resources which were evaluated while generating Advisor recommendations. It excludes the resources for which the recommendations were postponed/dismissed. |
 | Subcategory Weight | Fixed weight assigned to each subcategory. |
 
 ##### Single VS Multiple subscription
@@ -156,12 +156,13 @@ The reliability score can be calculated as follows:
 ```math
 ((25/31)*30 + (13/14)*25 + (28/38)*20 + (10/20)*10 + (10/13)*10 + (5/11)*5 + (9/12)*5 + (10/14)*5) / (30+25+20+10+10+5+5+5) * 100
 ```
+
 This evaluates to:
 
 ```math
 84.42/110 * 100 = 76.76
 ```
-The Reliability in this example will be 76.76%.
+The Reliability score in this example is `76.76%`.
 
 ## Frequently asked questions (F.A.Q.s)
 
