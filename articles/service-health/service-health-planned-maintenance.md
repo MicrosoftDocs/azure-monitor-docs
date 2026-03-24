@@ -156,32 +156,45 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
    - Health history: 90 days from most recent published date
 
 #### Summary 
-**Service Health experience for Planned maintenance**
 
-This is what you can expect from the Service health dashboard during planned maintenance events, and why functionality may vary across different events.
+
+**Service health dashboard experience for Planned maintenance**
+
+We want to provide clarity on what customers can expect from the **Service Health (SH) dashboard** during planned maintenance events, and why functionality may vary across different events.
 
 **Service health dashboard capabilities**<br>
-Service health is the central place for you to view maintenance events, understand potential impact, and take action when supported.
-For some planned maintenance events, you'll see the full Service health experience, which includes:
+Service Health is designed to be the **authoritative place** for customers to understand maintenance events, assess impact, and be redirected to take action where applicable. For some planned maintenance events, customers will see the **full Service Health experience**, which includes:
   - **Dynamic impacted resources on page refresh**<br>
-    Every time the page is refreshed the dashboard displays a live list of impacted resources that updates as maintenance progresses and completes.
+    A live, automatically updated list of impacted resources as maintenance progresses and completes on each page refresh.
   - **Live status updates**<br>
     The resource status reflects the current maintenance phase without requiring a manual page refresh.
-  - **Customer actionability (where supported)**<br>
-    Links are provided to redirect you from Service health to the right location in Azure Portal, where you can to take proactive actions on the individual resources directly.<br>
-  Together, these features represent the full functionality of the Service health dashboard for planned maintenance.
+  - **A link to self-serve Customer actionability (where supported)**<br>
+    The ability to redirect customers from Service Health to the right location in Azure Portal to take proactive actions on individual resources directly.
+    
+Together, these features represent the **full functionality** of the Service health dashboard for planned maintenance.
 
 **Limited functionality for some maintenance events**<br>
-For other planned maintenance events, you might experience a more limited version of the Service Health experience. In these cases:
-  - Impacted resources may appear as a static list, or may not be shown at all, depending on the data available for that event.
-  - Resource status might not update dynamically as the maintenance progresses or completes.
-  - Resource-level customer actions links **might not be supported**.<br>
-  In these scenarios, Service health continues to provide maintenance visibility and notifications, but without the full set of dynamic and actionable capabilities described above.
+For other planned maintenance events, you might see a limited Service Health experience. In these cases:
+  - Impacted resources could be shown as a **static list or may be unavailable**, based on the information provided to Service Health for that event.
+  - Resource status **may not update dynamically** as the maintenance progresses or completes.
+  - Resource-level customer action links might **not be supported**.<br>
+  In these scenarios, Service health continues to provide **maintenance visibility and notifications**, but without the full set of dynamic and actionable capabilities described above.
+
+**What we mean by full functionality**
+
+From our perspective, full Service Health functionality for planned maintenance includes:
+- Automatically identified and continuously updated impacted resources.
+- Live status tracking throughout the maintenance lifecycle.
+- Resource‑level customer actionability links available for redirection where supported.
+- Consistent behavior across the Service Health portal, APIs, and integrations.
+
+When one or more of these elements aren't available, the experience is considered **limited**, even though Service Health remains available and operational.
+
 
 **Service health commitment**<br>
 Service Health continues to meet its **availability** and **notification commitments** for all planned maintenance events. 
 
-Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface or programmatic access (API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
+Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface(Portal UI) or programmatic access (API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
 
 
 
