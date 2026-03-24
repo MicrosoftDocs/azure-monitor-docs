@@ -1,6 +1,6 @@
 ---
 title: Workspace configuration to DCR config generator
-description: Using the Workspace configuration to DCR config generator to help migrate from Microsoft Monitoring Agent (MMA) to Azure Monitor Agent (AMA)
+description: Learn how to use the workspace configuration to DCR config generator to migrate from Microsoft Monitoring Agent (MMA) to Azure Monitor Agent (AMA).
 ms.topic: concept-article
 ms.date: 11/14/2024
 # Customer intent: As an azure administrator, I want to understand how to use the workspace configuration to DCR config generator.
