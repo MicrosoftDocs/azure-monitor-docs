@@ -9,6 +9,13 @@ ms.date: 06/10/2025
 
 Learn about the latest updates and changes in Azure Advisor with the items in this article. The updates and changes include release notes, videos, blog posts, and other types of information. Bookmark this article to stay up to date with the service.
 
+## April 2026
+
+### Advisor Lifecycle Management (Preview) 
+
+With Azure Advisor recommendation state management capability, you can track and manage new and existing recommendations through their state lifecycle: active, postponed, dismissed, and completed. 
+
+
 ## November 2025
 
 ### Critical Risks
