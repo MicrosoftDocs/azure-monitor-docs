@@ -156,7 +156,7 @@ And then at the beginning of each request, call:
 Span.current().setAttribute("mycustomer", "xyz");
 ```
 
-See also [Add a custom property to a Span](./opentelemetry-add-modify.md?tabs=java#add-a-custom-property-to-a-span).
+See also [Add a custom property to a Span](opentelemetry-add-modify.md?tabs=java#add-a-custom-property-to-a-span).
 
 ## Sampling
 
@@ -284,7 +284,7 @@ not.
 
 Only the first sampling override that matches is used. If no sampling overrides match:
 
-* If it's the first span in the trace, then the [top-level sampling configuration](./java-standalone-config.md#sampling) is used.
+* If it's the first span in the trace, then the [top-level sampling configuration](#sampling) is used.
 * If it isn't the first span in the trace, then the parent sampling decision is used.
 
 #### Span attributes available for sampling
@@ -294,11 +294,11 @@ OpenTelemetry span attributes are autocollected and based on the [OpenTelemetry 
 You can also programmatically add span attributes and use them for sampling.
 
 >[!NOTE]
-> * To see the exact set of attributes captured by Application Insights Java for your application, set the [self-diagnostics level to debug](./java-standalone-config.md#self-diagnostics), and look for debug messages starting with the text "exporting span".
+> * To see the exact set of attributes captured by Application Insights Java for your application, set the [self-diagnostics level to debug](#self-diagnostics), and look for debug messages starting with the text "exporting span".
 >
 > * Only attributes set at the start of the span are available for sampling, so attributes such as `http.response.status_code` or request duration which are captured later on can be filtered through [OpenTelemetry Java extensions](https://opentelemetry.io/docs/languages/java/automatic/extensions/). Here is a [sample extension that filters spans based on request duration](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples/tree/main/opentelemetry-api/java-agent/TelemetryFilteredBaseOnRequestDuration).
 >
-> * The attributes added with a [telemetry processor](./java-standalone-telemetry-processors.md) are not available for sampling.
+> * The attributes added with a [telemetry processor](#configure-telemetry-processors-preview) are not available for sampling.
 
 ### Sampling override use cases
 
@@ -418,9 +418,9 @@ dependencies
 ```
 
 ```output
-SQL: DB Query    POST /Order             DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    36712549    
-SQL: DB Query    POST /Receipt           DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    2220248    
-SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    554074    
+SQL: DB Query    POST /Order             DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    36712549
+SQL: DB Query    POST /Receipt           DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    2220248
+SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    554074
 SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
 ```
 
@@ -501,19 +501,16 @@ import org.slf4j.MDC;
 
 public class MdcClass {
 
-  private static final Logger logger = LoggerFactory.getLogger(MdcClass.class);
+    private static final Logger logger = LoggerFactory.getLogger(MdcClass.class);
 
-  void method {
-	
-	MDC.put("key", "value");
-	try {
-	   logger.info(...); // Application log to remove
-	finally {
-	   MDC.remove("key"); // In a finally block in case an exception happens with logger.info
-	}
-	
-  }
-  
+    void method() {
+        MDC.put("key", "value");
+        try {
+            logger.info(...); // Application log to remove
+        } finally {
+            MDC.remove("key"); // In a finally block in case an exception happens with logger.info
+        }
+    }
 }
 ```
 
@@ -613,7 +610,7 @@ This configuration removes all the telemetry data created from the `findPaginate
 The following configuration removes all telemetry data emitted from methods of the `VetController` class having the `WithSpan` annotation:
 
 ```json
- "sampling": {
+  "sampling": {
 	"overrides": [
 	  {
 		"telemetryType": "dependency",
@@ -690,21 +687,21 @@ In the following Java 8 configuration examples, the first one is a nested metric
 
 ```json
 "jmxMetrics": [
-      {
-        "name": "Demo - GC Thread Count",
-        "objectName": "java.lang:type=GarbageCollector,name=PS MarkSweep",
-        "attribute": "LastGcInfo.GcThreadCount"
-      },
-      {
-        "name": "Demo - GC Collection Count",
-        "objectName": "java.lang:type=GarbageCollector,name=PS MarkSweep",
-        "attribute": "CollectionCount"
-      },
-      {
-        "name": "Demo - Thread Count",
-        "objectName": "java.lang:type=Threading",
-        "attribute": "ThreadCount"
-      }
+  {
+    "name": "Demo - GC Thread Count",
+    "objectName": "java.lang:type=GarbageCollector,name=PS MarkSweep",
+    "attribute": "LastGcInfo.GcThreadCount"
+  },
+  {
+    "name": "Demo - GC Collection Count",
+    "objectName": "java.lang:type=GarbageCollector,name=PS MarkSweep",
+    "attribute": "CollectionCount"
+  },
+  {
+    "name": "Demo - Thread Count",
+    "objectName": "java.lang:type=Threading",
+    "attribute": "ThreadCount"
+  }
 ]
 ```
 
@@ -713,23 +710,23 @@ In the following Java 8 configuration examples, the first one is a nested metric
 Other configuration examples for Java 17:
 
 ```json
- "jmxMetrics": [
-    {
-      "name": "Demo - G1 Collection Count Young",
-      "objectName": "java.lang:name=G1 Young Generation,type=GarbageCollector",
-      "attribute": "CollectionCount"
-    },
-    {
-      "name": "Demo - G1 Collection Count Old",
-      "objectName": "java.lang:name=G1 Old Generation,type=GarbageCollector",
-      "attribute": "CollectionCount"
-    },
-    {
-      "name": "Demo - Thread Count",
-      "objectName": "java.lang:type=Threading",
-      "attribute": "ThreadCount"
-    }
-  ]
+"jmxMetrics": [
+  {
+    "name": "Demo - G1 Collection Count Young",
+    "objectName": "java.lang:name=G1 Young Generation,type=GarbageCollector",
+    "attribute": "CollectionCount"
+  },
+  {
+    "name": "Demo - G1 Collection Count Old",
+    "objectName": "java.lang:name=G1 Old Generation,type=GarbageCollector",
+    "attribute": "CollectionCount"
+  },
+  {
+    "name": "Demo - Thread Count",
+    "objectName": "java.lang:type=Threading",
+    "attribute": "ThreadCount"
+  }
+]
 ```
 
 ---
@@ -887,7 +884,7 @@ If your application uses [Spring Boot Actuator](https://docs.spring.io/spring-bo
     counter.increment();
     ```
 
-1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../essentials/metrics-getting-started.md) under the `Log-based metrics` metric namespace.
+1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../metrics/analyze-metrics.md) under the `Log-based metrics` metric namespace.
 
     > [!NOTE]
     > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
@@ -973,7 +970,7 @@ If you want to enable this feature, add the below configuration option:
 
 ## Configure telemetry processors (preview)
 
-##### In this section
+**In this section:**
 
 * [Telemetry processors terminology](#telemetry-processors-terminology)
 * [Types of telemetry processors](#types-of-telemetry-processors)
@@ -1041,24 +1038,24 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		...
-	  },
-	  {
-		"type": "span",
-		...
-	  },
-	  {
-		"type": "log",
-		...
-	  },
-	  {
-		"type": "metric-filter",
-		...
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        ...
+      },
+      {
+        "type": "span",
+        ...
+      },
+      {
+        "type": "log",
+        ...
+      },
+      {
+        "type": "metric-filter",
+        ...
+      }
+    ]
   }
 }
 ```
@@ -1079,14 +1076,14 @@ The `insert` action inserts a new attribute in telemetry item where the `key` do
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attribute1",
-		"value": "value1",
-		"action": "insert"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attribute1",
+        "value": "value1",
+        "action": "insert"
+      }
+    ]
   }
 ]
 ```
@@ -1107,14 +1104,14 @@ The `update` action updates an attribute in telemetry item where the `key` alrea
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attribute1",
-		"value": "newValue",
-		"action": "update"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attribute1",
+        "value": "newValue",
+        "action": "update"
+      }
+    ]
   }
 ]
 ```
@@ -1134,13 +1131,13 @@ The `delete` action deletes an attribute from a telemetry item.
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attribute1",
-		"action": "delete"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attribute1",
+        "action": "delete"
+      }
+    ]
   }
 ]
 ```
@@ -1160,13 +1157,13 @@ The `hash` action hashes (SHA1) an existing attribute value.
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attribute1",
-		"action": "hash"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attribute1",
+        "action": "hash"
+      }
+    ]
   }
 ]
 ```
@@ -1189,14 +1186,14 @@ The `extract` action extracts values by using a regular expression rule from the
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attribute1",
-		"pattern": "<regular pattern with named matchers>",
-		"action": "extract"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attribute1",
+        "pattern": "<regular pattern with named matchers>",
+        "action": "extract"
+      }
+    ]
   }
 ]
 ```
@@ -1220,15 +1217,15 @@ The `mask` action masks attribute values by using a regular expression rule spec
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"actions": [
-	  {
-		"key": "attributeName",
-		"pattern": "<regular expression pattern>",
-		"replace": "<replacement value>",
-		"action": "mask"
-	  }
-	]
+    "type": "attribute",
+    "actions": [
+      {
+        "key": "attributeName",
+        "pattern": "<regular expression pattern>",
+        "replace": "<replacement value>",
+        "action": "mask"
+      }
+    ]
   }
 ]
 ```
@@ -1277,14 +1274,14 @@ The `separator` setting is optional. This setting is a string, and you can use s
 ```json
 "processors": [
   {
-	"type": "span",
-	"name": {
-	  "fromAttributes": [
-		"attributeKey1",
-		"attributeKey2",
-	  ],
-	  "separator": "::"
-	}
+    "type": "span",
+    "name": {
+      "fromAttributes": [
+        "attributeKey1",
+        "attributeKey2",
+      ],
+      "separator": "::"
+    }
   }
 ] 
 ```
@@ -1311,16 +1308,16 @@ This process is repeated for all rules in the order they're specified. Each subs
 ```json
 "processors": [
   {
-	"type": "span",
-	"name": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
+    "type": "span",
+    "name": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
   }
 ]
 ```
@@ -1382,14 +1379,14 @@ The `separator` setting is optional. This setting is a string. You can specify i
 ```json
 "processors": [
   {
-	"type": "log",
-	"body": {
-	  "fromAttributes": [
-		"attributeKey1",
-		"attributeKey2",
-	  ],
-	  "separator": "::"
-	}
+    "type": "log",
+    "body": {
+      "fromAttributes": [
+        "attributeKey1",
+        "attributeKey2",
+      ],
+      "separator": "::"
+    }
   }
 ] 
 ```
@@ -1416,16 +1413,16 @@ This process is repeated for all rules in the order they're specified. Each subs
 ```json
 "processors": [
   {
-	"type": "log",
-	"body": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
+    "type": "log",
+    "body": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
   }
 ]
 ```
@@ -1486,33 +1483,33 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 ```json
 "processors": [
   {
-	"type": "attribute",
-	"include": {
-	  "matchType": "strict",
-	  "spanNames": [
-		"spanA",
-		"spanB"
-	  ]
-	},
-	"exclude": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "redact_trace",
-		  "value": "false"
-		}
-	  ]
-	},
-	"actions": [
-	  {
-		"key": "credit_card",
-		"action": "delete"
-	  },
-	  {
-		"key": "duplicate_key",
-		"action": "delete"
-	  }
-	]
+    "type": "attribute",
+    "include": {
+      "matchType": "strict",
+      "spanNames": [
+        "spanA",
+        "spanB"
+      ]
+    },
+    "exclude": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "redact_trace",
+          "value": "false"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "key": "credit_card",
+        "action": "delete"
+      },
+      {
+        "key": "duplicate_key",
+        "action": "delete"
+      }
+    ]
   }
 ]
 ```
@@ -1522,32 +1519,32 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 ```json
 "processors": [
   {
-	"type": "span",
-	"include": {
-	  "matchType": "strict",
-	  "spanNames": [
-		"spanA",
-		"spanB"
-	  ]
-	},
-	"exclude": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute1",
-		  "value": "attributeValue1"
-		}
-	  ]
-	},
-	"name": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
+    "type": "span",
+    "include": {
+      "matchType": "strict",
+      "spanNames": [
+        "spanA",
+        "spanB"
+      ]
+    },
+    "exclude": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute1",
+          "value": "attributeValue1"
+        }
+      ]
+    },
+    "name": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
   }
 ]
 ```
@@ -1557,34 +1554,34 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 ```json
 "processors": [
   {
-	"type": "log",
-	"include": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute1",
-		  "value": "value1"
-		}
-	  ]
-	},
-	"exclude": {
-	  "matchType": "strict",
-	  "attributes": [
-		{
-		  "key": "attribute2",
-		  "value": "value2"
-		}
-	  ]
-	},
-	"body": {
-	  "toAttributes": {
-		"rules": [
-		  "rule1",
-		  "rule2",
-		  "rule3"
-		]
-	  }
-	}
+    "type": "log",
+    "include": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute1",
+          "value": "value1"
+        }
+      ]
+    },
+    "exclude": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute2",
+          "value": "value2"
+        }
+      ]
+    },
+    "body": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
   }
 ]
 ```
@@ -1596,14 +1593,14 @@ The following sample shows how to exclude metrics with names "metricA" and "metr
 ```json
 "processors": [
   {
-	"type": "metric-filter",
-	"exclude": {
-	  "matchType": "strict",
-	  "metricNames": [
-		"metricA",
-		"metricB"
-	  ]
-	}
+    "type": "metric-filter",
+    "exclude": {
+      "matchType": "strict",
+      "metricNames": [
+        "metricA",
+        "metricB"
+      ]
+    }
   }
 ]
 ```
@@ -1613,13 +1610,13 @@ The following sample shows how to turn off all metrics including the default aut
 ```json
 "processors": [
   {
-	"type": "metric-filter",
-	"exclude": {
-	  "matchType": "regexp",
-	  "metricNames": [
-		".*"
-	  ]
-	}
+    "type": "metric-filter",
+    "exclude": {
+      "matchType": "regexp",
+      "metricNames": [
+        ".*"
+      ]
+    }
   }
 ]
 ```
@@ -1640,19 +1637,19 @@ The following sample inserts the new attribute `{"attribute1": "attributeValue1"
 ```json
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
-  "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "attribute1",
-			"value": "attributeValue1",
-			"action": "insert"
-		  }
-		]
-	  }
-	]
+    "preview": {
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "attribute1",
+            "value": "attributeValue1",
+            "action": "insert"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1669,18 +1666,18 @@ The following sample uses the value from attribute `anotherkey` to insert the ne
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "newKey",
-			"fromAttribute": "anotherKey",
-			"action": "insert"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "newKey",
+            "fromAttribute": "anotherKey",
+            "action": "insert"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1697,23 +1694,23 @@ The following sample updates the attribute to `{"db.secret": "redacted"}`. It up
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "db.secret",
-			"value": "redacted",
-			"action": "update"
-		  },
-		  {
-			"key": "boo",
-			"fromAttribute": "foo",
-			"action": "update" 
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "db.secret",
+            "value": "redacted",
+            "action": "update"
+          },
+          {
+            "key": "boo",
+            "fromAttribute": "foo",
+            "action": "update" 
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1730,17 +1727,17 @@ The following sample shows how to delete an attribute that has the key `credit_c
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "credit_card",
-			"action": "delete"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "credit_card",
+            "action": "delete"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1757,17 +1754,17 @@ The following sample shows how to hash existing attribute values.
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "user.email",
-			"action": "hash"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "user.email",
+            "action": "hash"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1792,18 +1789,18 @@ For example, given `url.path = /path?queryParam1=value1,queryParam2=value2`, the
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "url.path",
-			"pattern": "^(?<httpProtocol>.*):\\/\\/(?<httpDomain>.*)\\/(?<httpPath>.*)(\\?|\\&)(?<httpQueryParams>.*)",
-			"action": "extract"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.path",
+            "pattern": "^(?<httpProtocol>.*):\\/\\/(?<httpDomain>.*)\\/(?<httpPath>.*)(\\?|\\&)(?<httpQueryParams>.*)",
+            "action": "extract"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1823,19 +1820,19 @@ First configuration example:
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "url.path",
-			"pattern": "user\\/\\d+",
-			"replace": "user\\/****",
-			"action": "mask"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.path",
+            "pattern": "user\\/\\d+",
+            "replace": "user\\/****",
+            "action": "mask"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1846,19 +1843,19 @@ Second configuration example with regular expression group name:
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "url.path",
-			"pattern": "^(?<userGroupName>[a-zA-Z.:\/]+)\d+",
-			"replace": "${userGroupName}**",
-			"action": "mask"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "url.path",
+            "pattern": "^(?<userGroupName>[a-zA-Z.:\/]+)\d+",
+            "replace": "${userGroupName}**",
+            "action": "mask"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -1884,42 +1881,41 @@ The following sample inserts the new attribute `{"newAttributeKeyStrict": "newAt
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"include": {
-		  "matchType": "strict",
-		  "attributes": [
-			{
-			  "key": "longAttributeKey",
-			  "value": 1234,
-			  "type": "long"
-			},
-			{
-			  "key": "booleanAttributeKey",
-			  "value": true,
-			  "type": "boolean"
-			},
-			{
-			  "key": "doubleArrayAttributeKey",
-			  "value": [1.0, 2.0, 3.0, 4.0],
-			  "type": "double-array"
-			}
-		  ]
-		},
-		"actions": [
-		  {
-			"key": "newAttributeKeyStrict",
-			"value": "newAttributeValueStrict",
-			"action": "insert"
-		  }
-		],
-		"id": "attributes/insertNewAttributeKeyStrict"
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "include": {
+          "matchType": "strict",
+          "attributes": [
+            {
+              "key": "longAttributeKey",
+              "value": 1234,
+              "type": "long"
+            },
+            {
+              "key": "booleanAttributeKey",
+              "value": true,
+              "type": "boolean"
+            },
+            {
+              "key": "doubleArrayAttributeKey",
+              "value": [1.0, 2.0, 3.0, 4.0],
+              "type": "double-array"
+            }
+          ]
+        },
+        "actions": [
+          {
+            "key": "newAttributeKeyStrict",
+            "value": "newAttributeValueStrict",
+            "action": "insert"
+          }
+        ],
+        "id": "attributes/insertNewAttributeKeyStrict"
+      }
+    ]
   }
 }
-
 ```
 
 Additionally, nonstring typed attributes support `regexp`.
@@ -1930,32 +1926,31 @@ The following sample inserts the new attribute `{"newAttributeKeyRegexp": "newAt
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "attribute",
-		"include": {
-		  "matchType": "regexp",
-		  "attributes": [
-			{
-			  "key": "longRegexpAttributeKey",
-			  "value": "4[0-9][0-9]",
-			  "type": "long"
-			}
-		  ]
-		},
-		"actions": [
-		  {
-			"key": "newAttributeKeyRegexp",
-			"value": "newAttributeValueRegexp",
-			"action": "insert"
-		  }
-		],
-		"id": "attributes/insertNewAttributeKeyRegexp"
-	  }
-	]
+    "processors": [
+      {
+        "type": "attribute",
+        "include": {
+          "matchType": "regexp",
+          "attributes": [
+            {
+              "key": "longRegexpAttributeKey",
+              "value": "4[0-9][0-9]",
+              "type": "long"
+            }
+          ]
+        },
+        "actions": [
+          {
+            "key": "newAttributeKeyRegexp",
+            "value": "newAttributeValueRegexp",
+            "action": "insert"
+          }
+        ],
+        "id": "attributes/insertNewAttributeKeyRegexp"
+      }
+    ]
   }
 }
-
 ```
 
 </details>
@@ -1971,19 +1966,19 @@ The following sample specifies the values of attributes `db.svc`, `operation`, a
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "span",
-		"name": {
-		  "fromAttributes": [
-			"db.svc",
-			"operation",
-			"id"
-		  ],
-		  "separator": "::"
-		}
-	  }
-	]
+    "processors": [
+      {
+        "type": "span",
+        "name": {
+          "fromAttributes": [
+            "db.svc",
+            "operation",
+            "id"
+          ],
+          "separator": "::"
+        }
+      }
+    ]
   }
 }
 ```
@@ -2000,18 +1995,18 @@ Let's assume the input span name is `/api/v1/document/12345678/update`. The foll
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "span",
-		"name": {
-		  "toAttributes": {
-			"rules": [
-			  "^/api/v1/document/(?<documentId>.*)/update$"
-			]
-		  }
-		}
-	  }
-	]
+    "processors": [
+      {
+        "type": "span",
+        "name": {
+          "toAttributes": {
+            "rules": [
+              "^/api/v1/document/(?<documentId>.*)/update$"
+            ]
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -2031,30 +2026,30 @@ The following sample shows how to change the span name to `{operation_website}`.
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "span",
-		"include": {
-		  "matchType": "regexp",
-		  "spanNames": [
-			"^(.*?)/(.*?)$"
-		  ]
-		},
-		"exclude": {
-		  "matchType": "strict",
-		  "spanNames": [
-			"donot/change"
-		  ]
-		},
-		"name": {
-		  "toAttributes": {
-			"rules": [
-			  "(?<operation_website>.*?)$"
-			]
-		  }
-		}
-	  }
-	]
+    "processors": [
+      {
+        "type": "span",
+        "include": {
+          "matchType": "regexp",
+          "spanNames": [
+            "^(.*?)/(.*?)$"
+          ]
+        },
+        "exclude": {
+          "matchType": "strict",
+          "spanNames": [
+            "donot/change"
+          ]
+        },
+        "name": {
+          "toAttributes": {
+            "rules": [
+              "(?<operation_website>.*?)$"
+            ]
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -2072,18 +2067,18 @@ Let's assume the input log message body is `Starting PetClinicApplication on Wor
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "log",
-		"body": {
-		  "toAttributes": {
-			"rules": [
-			  "^Starting PetClinicApplication on WorkLaptop with PID (?<PIDVALUE>\\d+) .*"
-			]
-		  }
-		}
-	  }
-	]
+    "processors": [
+      {
+        "type": "log",
+        "body": {
+          "toAttributes": {
+            "rules": [
+              "^Starting PetClinicApplication on WorkLaptop with PID (?<PIDVALUE>\\d+) .*"
+            ]
+          }
+        }
+      }
+    ]
   }
 }
 ```
@@ -2102,27 +2097,27 @@ Let's assume the input log message body is `User account with userId 123456xx fa
 {
   "connectionString": "InstrumentationKey=00000000-0000-0000-0000-000000000000",
   "preview": {
-	"processors": [
-	  {
-		"type": "log",
-		"body": {
-		  "toAttributes": {
-			"rules": [
-			  "userId (?<redactedUserId>[0-9a-zA-Z]+)"
-			]
-		  }
-		}
-	  },
-	  {
-		"type": "attribute",
-		"actions": [
-		  {
-			"key": "redactedUserId",
-			"action": "delete"
-		  }
-		]
-	  }
-	]
+    "processors": [
+      {
+        "type": "log",
+        "body": {
+          "toAttributes": {
+            "rules": [
+              "userId (?<redactedUserId>[0-9a-zA-Z]+)"
+            ]
+          }
+        }
+      },
+      {
+        "type": "attribute",
+        "actions": [
+          {
+            "key": "redactedUserId",
+            "action": "delete"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -2351,7 +2346,7 @@ To review frequently asked questions (FAQ), see [Telemetry processors FAQ](appli
 
 ## Override or suppress default behavior
 
-##### In this section
+**In this section:**
 
 * [Connection string overrides (preview)](#connection-string-overrides-preview)
 * [Cloud role name overrides (preview)](#cloud-role-name-overrides-preview)
@@ -2372,16 +2367,16 @@ Connection string overrides allow you to override the [default connection string
 ```json
 {
   "preview": {
-	"connectionStringOverrides": [
-	  {
-		"httpPathPrefix": "/myapp1",
-		"connectionString": "..."
-	  },
-	  {
-		"httpPathPrefix": "/myapp2",
-		"connectionString": "..."
-	  }
-	]
+    "connectionStringOverrides": [
+      {
+        "httpPathPrefix": "/myapp1",
+        "connectionString": "..."
+      },
+      {
+        "httpPathPrefix": "/myapp2",
+        "connectionString": "..."
+      }
+    ]
   }
 }
 ```
@@ -2398,16 +2393,16 @@ Cloud role name overrides allow you to override the [default cloud role name](#s
 ```json
 {
   "preview": {
-	"roleNameOverrides": [
-	  {
-		"httpPathPrefix": "/myapp1",
-		"roleName": "Role A"
-	  },
-	  {
-		"httpPathPrefix": "/myapp2",
-		"roleName": "Role B"
-	  }
-	]
+    "roleNameOverrides": [
+      {
+        "httpPathPrefix": "/myapp1",
+        "roleName": "Role A"
+      },
+      {
+        "httpPathPrefix": "/myapp2",
+        "roleName": "Role B"
+      }
+    ]
   }
 }
 ```
@@ -2439,7 +2434,7 @@ Use the static `configure(String)` method in the class `com.microsoft.applicatio
 
 ### Locally disable ingestion sampling (preview)
 
-By default, when the effective sampling percentage in the Java agent is 100% and [ingestion sampling](./opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource, then the ingestion sampling percentage will be applied.
+By default, when the effective sampling percentage in the Java agent is 100% and [ingestion sampling](opentelemetry-sampling.md#ingestion-sampling-not-recommended) has been configured on your Application Insights resource, then the ingestion sampling percentage will be applied.
 
 Note that this behavior applies to both fixed-rate sampling of 100% and also applies to rate-limited sampling when the request rate doesn't exceed the rate limit (effectively capturing 100% during the continuously sliding time window).
 
@@ -2448,9 +2443,9 @@ Starting from 3.5.3, you can disable this behavior (and keep 100% of telemetry i
 ```json
 {
   "preview": {
-	"sampling": {
-	  "ingestionSamplingEnabled": false
-	}
+    "sampling": {
+      "ingestionSamplingEnabled": false
+    }
   }
 }
 ```
@@ -2464,42 +2459,42 @@ Starting from version 3.0.3, specific autocollected telemetry can be suppressed 
 ```json
 {
   "instrumentation": {
-	"azureSdk": {
-	  "enabled": false
-	},
-	"cassandra": {
-	  "enabled": false
-	},
-	"jdbc": {
-	  "enabled": false
-	},
-	"jms": {
-	  "enabled": false
-	},
-	"kafka": {
-	  "enabled": false
-	},
-	"logging": {
-	  "enabled": false
-	},
-	"micrometer": {
-	  "enabled": false
-	},
-	"mongo": {
-	  "enabled": false
-	},
-	"quartz": {
-	  "enabled": false
-	},
-	"rabbitmq": {
-	  "enabled": false
-	},
-	"redis": {
-	  "enabled": false
-	},
-	"springScheduling": {
-	  "enabled": false
-	}
+    "azureSdk": {
+      "enabled": false
+    },
+    "cassandra": {
+      "enabled": false
+    },
+    "jdbc": {
+      "enabled": false
+    },
+    "jms": {
+      "enabled": false
+    },
+    "kafka": {
+      "enabled": false
+    },
+    "logging": {
+      "enabled": false
+    },
+    "micrometer": {
+      "enabled": false
+    },
+    "mongo": {
+      "enabled": false
+    },
+    "quartz": {
+      "enabled": false
+    },
+    "rabbitmq": {
+      "enabled": false
+    },
+    "redis": {
+      "enabled": false
+    },
+    "springScheduling": {
+      "enabled": false
+    }
   }
 }
 ```
@@ -2541,7 +2536,7 @@ By default, HTTP server requests that result in 4xx response codes are captured 
 
 ## Data protection and query handling
 
-##### In this section
+**In this section:**
 
 * [Query masking](#query-masking)
 * [HTTP headers](#http-headers)
@@ -2628,7 +2623,7 @@ The header names are case insensitive. The preceding examples are captured under
 
 ## Runtime and environment configuration
 
-##### In this section
+**In this section:**
 
 * [Authentication](#authentication)
 * [HTTP proxy](#http-proxy)
@@ -2643,7 +2638,7 @@ The header names are case insensitive. The preceding examples are captured under
 > [!NOTE]
 > The authentication feature is GA since version 3.4.17.
 
-You can use authentication to configure the agent to generate [token credentials](/java/api/overview/azure/identity-readme#credentials) that are required for Microsoft Entra authentication. For more information, see the [Microsoft Entra authentication for Application Insights](./azure-ad-authentication.md).
+You can use authentication to configure the agent to generate [token credentials](/java/api/overview/azure/identity-readme#credentials) that are required for Microsoft Entra authentication. For more information, see the [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
 
 ### HTTP proxy
 
@@ -2692,7 +2687,7 @@ By default, Application Insights Java 3.x sends a heartbeat metric once every 15
 ```json
 {
   "heartbeat": {
-	"intervalSeconds": 60
+    "intervalSeconds": 60
   }
 }
 ```
@@ -2757,7 +2752,7 @@ Telemetry correlation is enabled by default, but you may disable it in configura
 
 ## Advanced and preview features
 
-##### In this section
+**In this section:**
 
 * [Custom instrumentation (preview)](#custom-instrumentation-preview)
 * [Preview instrumentations](#preview-instrumentations)
