@@ -2,7 +2,7 @@
 title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
-ms.date: 03/10/2026
+ms.date: 03/23/2026
 ---
 
 # Planned maintenance
@@ -161,7 +161,7 @@ This is what you can expect from the Service health dashboard during planned mai
 **Service health dashboard capabilities**<br>
 Service health is the central place for you to view maintenance events, understand potential impact, and take action when supported.
 For some planned maintenance events, you'll see the full Service health experience, which includes:
-  - **Autmatically impacted resources**<br>
+  - **Automatically impacted resources**<br>
     Every time the page is refreshed the dashboard displays a live list of impacted resources that updates as maintenance progresses and completes.
   - **Live status updates**<br>
     The resource status reflects the current maintenance phase without requiring a manual page refresh.
