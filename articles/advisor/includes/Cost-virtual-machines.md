@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/11/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Virtual Machines
@@ -16,9 +16,9 @@ ms.custom: Cost Virtual Machines
 
 #### Review disks that aren't attached to a VM and evaluate if you still need the disks  
   
-We have observed that you have disks that aren't attached to a VM. Evaluate if you still need the disk. If you decide to delete the disk, recovery isn't possible. We recommend that you create a snapshot before deletion or ensure the data in the disk is no longer required.  
+There are disks not attached to a VM. Evaluate if you still need them. Deleting a disk is irreversible. Create a snapshot before deletion and confirm the data is no longer needed.  
   
-**Potential benefits**: Cost saving.  
+**Potential benefits**: Cost savings  
 
 **Impact:** Medium
   
@@ -29,6 +29,7 @@ Recommendation ID: 48eda464-1485-4dcf-a674-d0905df5054a
 
 
 <!--48eda464-1485-4dcf-a674-d0905df5054a_end-->
+
 
 
 <!--201fb2fe-989f-45c1-8533-785ee8a4a08f_begin-->

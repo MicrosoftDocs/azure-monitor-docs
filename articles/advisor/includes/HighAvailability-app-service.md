@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -517,12 +517,31 @@ In alignment with the end of community support, support for Python 3.10 in Azure
 
 **Impact:** Medium
   
-  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=545771)  
 
 ResourceType: microsoft.web/sites  
 Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027  
 Subcategory: undefined
 
 <!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
+
+
+<!--970c8068-7d7d-470f-93f1-0840d6f63ba2_begin-->
+
+#### Extended support for .NET 9 (STS) is ending  
+  
+Applications hosted on App Service continue to run. Future security updates and customer service for .NET 9 (STS) aren't available.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485077)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 970c8068-7d7d-470f-93f1-0840d6f63ba2  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--970c8068-7d7d-470f-93f1-0840d6f63ba2_end-->
 
 <!--articleBody-->
