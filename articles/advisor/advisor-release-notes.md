@@ -2,7 +2,7 @@
 title: What's new in Azure Advisor
 description: Learn about what's new and what's changed in Azure Advisor with information from release notes, videos, and blog posts.
 ms.topic: reference
-ms.date: 06/10/2025
+ms.date: 03/24/2026
 ---
 
 # New in Azure Advisor
