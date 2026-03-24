@@ -2,7 +2,7 @@
 title: Impacted Resources from Service issues
 description: This article details where to find information from Azure Service Health about how Service issues might affect your resources.
 ms.topic: concept-article
-ms.date: 02/09/2026
+ms.date: 03/11/2026
 ---
 
 # Impacted Resources from Service issues
@@ -69,7 +69,8 @@ You can get information about impacted resources programmatically by using the E
 
 
 
-### Next steps
-- [Introduction to the Azure Service Health dashboard](service-health-overview.md)
+### For more information
+- [Introduction to the Azure Service Health dashboard](service-health-portal-update.md)
 - [Introduction to Azure Resource Health](resource-health-overview.md)
 - [Resource Health Frequently asked questions](resource-health-faq.yml)
+- [Service Health Frequently asked questions](service-health-faq.yml)

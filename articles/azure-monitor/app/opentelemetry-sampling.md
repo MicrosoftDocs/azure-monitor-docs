@@ -16,7 +16,7 @@ ms.date: 12/10/2025
 
 > [!div class="checklist"]
 > Before you continue, make sure you have:
-> * A basic understanding of [data collection](./opentelemetry-overview.md) methods.
+> * A basic understanding of [data collection](./app-insights-overview.md) methods.
 > * A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/).
 > * An application instrumented with [OpenTelemetry](./opentelemetry-enable.md).
 

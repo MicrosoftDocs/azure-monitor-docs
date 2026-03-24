@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -40,7 +40,7 @@ If the quota for your resource is exceeded your resource becomes blocked. You ca
 
 **Impact:** Medium
   
-For more information, see [Plan and manage costs for Azure AI Foundry - Azure AI Foundry ](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
+For more information, see [Plan and manage costs for Microsoft Foundry - Foundry ](/azure/cognitive-services/plan-manage-costs#pay-as-you-go)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 3f83aee8-222d-445c-9a46-2af5fe5b4777  
@@ -52,7 +52,7 @@ Subcategory: Scalability
 
 #### Migrate to named entity recognition  
   
-Entity linking in Azure AI Language is retiring. Consider a replacement solution such as named entity recognition in Azure AI Language that supports entity and doesn't provide a link to a public page.  
+Entity linking in Azure Language in Foundry Tools is retiring. Consider a replacement solution such as named entity recognition in Language that supports entity and doesn't provide a link to a public page.  
   
 **Potential benefits**: Maintain entity identification capabilities  
 
@@ -104,9 +104,9 @@ Subcategory: undefined
 
 <!--85c750a4-a0cb-4610-a2df-074a5e775ddc_begin-->
 
-#### Migrate away from Azure AI Vision - Image Analysis API  
+#### Migrate away from Azure Vision in Foundry Tools - Image Analysis API  
   
-The Azure AI Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
+The Vision - Image Analysis API is retiring. Full support for all existing Image Analysis customers continues until retirement. To ensure business continuity and minimize disruption, customers should plan for migration to alternative solutions.  
   
 **Potential benefits**: Avoid service disruptions  
 
@@ -142,7 +142,7 @@ Subcategory: undefined
 
 #### Migrate to conversational language understanding  
   
-Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure AI Service for Language.  
+Language Understanding (LUIS) is retiring. Migrate to conversational language understanding, a capability of Azure Language in Foundry Tools.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -156,23 +156,7 @@ Subcategory: undefined
 
 <!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
 
-<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_begin-->
 
-#### Support for Video Retrieval in Azure AI Content Understanding is ending  
-  
-Support for Video Retrieval in Azure AI Content Understanding is ending  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure Content Understanding in Foundry Tools video overview - Foundry Tools](/azure/ai-services/content-understanding/video/overview?WT.mc_id=Portal-AppInsightsExtension)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: d0f31a4b-60c1-4e61-b095-2d14504a9675  
-Subcategory: undefined
-
-<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_end-->
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_begin-->
 
@@ -209,5 +193,77 @@ Recommendation ID: 4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577
 Subcategory: undefined
 
 <!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_end-->
+
+<!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_begin-->
+
+#### AI Services Anomaly Detector is being retired.  
+  
+Until the retirement date, continue use of AI Services Anomaly Detector resources.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-anomaly-detector-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: e0e84b83-8be3-48d6-91bf-730d1d5fd745  
+Subcategory: undefined
+
+<!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_end-->
+
+<!--8dca8881-92ae-480a-aa8c-0933efdf9e02_begin-->
+
+#### AI Services Metrics Advisor is being retired.  
+  
+After the retirement date, you can no longer use AI Services Metrics Advisor with the applications.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-metrics-advisor-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 8dca8881-92ae-480a-aa8c-0933efdf9e02  
+Subcategory: undefined
+
+<!--8dca8881-92ae-480a-aa8c-0933efdf9e02_end-->
+
+<!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_begin-->
+
+#### AI Services Personalizer is being retired.  
+  
+You can no longer use AI Services Personalizer with the applications after the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions for the applications  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-personalizer-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: d4f522ba-0646-4c73-8ca6-7636f7ad119c  
+Subcategory: undefined
+
+<!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_end-->
+
+<!--e30a6464-0e05-4d48-b604-741074db3aa3_begin-->
+
+#### Azure Content Moderator is being retired.  
+  
+The platform encourages users to explore our new offering Azure AI Content Safety that offers both new and updated capabilities to meet various content moderation needs.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-content-moderator-retirement)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: e30a6464-0e05-4d48-b604-741074db3aa3  
+Subcategory: undefined
+
+<!--e30a6464-0e05-4d48-b604-741074db3aa3_end-->
 
 <!--articleBody-->

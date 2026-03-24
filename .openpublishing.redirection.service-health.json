@@ -6,6 +6,10 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/service-health/service-health-overview.md",
+      "redirect_url": "/azure/service-health/overview",
+      "redirect_document_id": false
+    },    {
       "source_path_from_root": "/articles/service-health/service-health-rest.md",
       "redirect_url": "/azure/service-health/index",
       "redirect_document_id": false

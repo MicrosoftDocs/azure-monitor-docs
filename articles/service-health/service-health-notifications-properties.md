@@ -2,7 +2,7 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: concept-article
-ms.date: 02/10/2026
+ms.date: 03/17/2026
 
 ---
 
@@ -10,7 +10,7 @@ ms.date: 02/10/2026
 
 Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) (which logs many events in Azure), and then shown in the Azure portal under [Azure Service Health](service-health-portal-update.md). In other words, whenever Azure needs to communicate something about service health (for example, an outage, upcoming maintenance, or account-specific alert), it creates a Service Health event in your Activity Log. 
 
-Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-notifications.md).
+Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-health-notifications-properties.md).
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
@@ -19,9 +19,9 @@ For information on how long Service Health notifications stay active in the port
 ## View Service Health notifications
 Once logged into Azure, you can access Service Health notifications in one of three ways:
 
-- **Azure Portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
+- **Azure portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
 
-- **Azure Portal – Activity Log**: In the Azure portal, open the activity log to view notifications that contain more detailed information, but only under specific conditions. 
+- **Azure portal – Activity Log**: In the Azure portal, open the activity log to view notifications that contain more detailed information, but only under specific conditions. 
     - Service Health events appear in the Activity Log when they're subscription-scoped (for example, service issues, planned maintenance, health advisories).
     - Emerging Issues don't show up because they're global and not tied to a subscription.<br>
 For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
@@ -140,5 +140,5 @@ Service Health event type (`properties.incidentType`)
  ## For more information
 
 - [Service Health Frequently asked Questions](service-health-faq.yml)
-- [View Service Health notifications from the portal](service-notifications.md)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
 - [View and access Security advisories](security-advisories-elevated-access.md)

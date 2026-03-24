@@ -3,7 +3,9 @@ title: Migrate Application Insights Classic API Software Development Kits (SDKs)
 description: This article provides guidance on how to migrate .NET, Java, Node.js, and Python applications from the Application Insights Classic API SDKs to Azure Monitor OpenTelemetry.
 ms.topic: how-to
 ms.date: 03/06/2026
-ms.custom: devx-track-dotnet, devx-track-java, devx-track-extended-java, devx-track-js, devx-track-python
+ms.custom:
+  - devx-track-dotnet, devx-track-java, devx-track-extended-java, devx-track-js, devx-track-python
+  - sfi-ropc-nochange
 ---
 
 # Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry
@@ -538,7 +540,7 @@ The OpenCensus Python Azure Monitor exporter automatically collected system and 
 
 ## Support
 
-To review troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
+To review troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry troubleshooting, support, and feedback for Azure Monitor Application Insights](opentelemetry-enable.md#troubleshooting).
 
 ---
 

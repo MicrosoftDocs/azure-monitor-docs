@@ -4,11 +4,10 @@ description: Discover how to use the Azure Monitor Application Insights JavaScri
 #customer intent: As a web developer, I want to enable real user monitoring with the Application Insights JavaScript SDK so that I can analyze my application's performance.
 ms.topic: how-to
 ms.date: 03/06/2026
-author: AarDavMax
-ms.author: aaronmax
-ms.reviewer: aaronmax
 ms.devlang: javascript
-ms.custom: devx-track-js
+ms.custom:
+  - devx-track-js
+  - sfi-ropc-nochange
 ---
 
 # Enable Azure Monitor Application Insights Real User Monitoring

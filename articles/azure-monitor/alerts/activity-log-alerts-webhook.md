@@ -3,7 +3,7 @@ title: Configure a webhook to get activity log alerts
 description: Learn about the schema of the JSON that's posted to a webhook URL when an activity log alert activates.
 ms.reviewer: yagil
 ms.topic: how-to
-ms.date: 04/01/2024
+ms.date: 03/17/2026
 ---
 
 # Configure a webhook to get activity log alerts
@@ -226,7 +226,7 @@ The JSON payload contained in the POST operation differs based on the payload's 
 }
 ```
 
-For specific schema details on service health notification activity log alerts, see [Service health notifications](../../service-health/service-notifications.md). You can also learn how to [configure service health webhook notifications with your existing problem management solutions](../../service-health/service-health-alert-webhook-guide.md).
+For specific schema details on service health notification activity log alerts, see [Service health notifications](../../service-health/service-health-notifications-properties.md). You can also learn how to [configure service health webhook notifications with your existing problem management solutions](../../service-health/service-health-alert-webhook-guide.md).
 
 ### ResourceHealth
 

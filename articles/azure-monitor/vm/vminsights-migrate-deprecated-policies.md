@@ -9,9 +9,10 @@ ms.date: 02/17/2026
 
 # Migrate from deprecated VM insights policies
 
-We're deprecating the VM insights DCR deployment policies and replacing them with new policies because of a race condition issue. The deprecated policies will continue to work on existing assignments, but will no longer be available for new assignments. If you're using deprecated policies, we recommend you migrate to the new policies as soon as possible. 
+VM insights DCR deployment policies have been deprecated and replaced new policies because of a race condition issue. The deprecated policies will continue to work on existing assignments, but will no longer be available for new assignments. If you're using deprecated policies, we recommend you migrate to the new policies as soon as possible. This article explains how to migrate from deprecated VM insights policies to their replacement policies.
 
-This article explains how to migrate from deprecated VM insights policies to their replacement policies.
+> [!NOTE]
+> This article describes policies for the logs-based experience for VM monitoring in Azure Monitor. Policies are not yet available for the [OpenTelemetry-based experience](./metrics-opentelemetry-guest.md), which is currently in preview. 
 
 ## Prerequisites
 

@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 03/03/2026
+ms.date: 03/19/2026
 ---
 
 # Azure Service Health portal
@@ -82,7 +82,7 @@ Select **Security advisories** from the left menu to see all the current securit
 
 ## See all Billing updates
 
-Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. For more information, see [In-portal billing](billing-elevated-access.md).
+Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. For more information, see [Billing updates](billing-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
@@ -139,7 +139,7 @@ On the **Service issues** pane, you can filter by **Scope**. The **Scope** colum
 ## For more information
 
 - [Service Health Frequently asked Questions](service-health-faq.yml)
-- [View Service Health notifications from the portal](service-notifications.md)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
 - [View and access Security advisories](security-advisories-elevated-access.md)
 - [Service Health event tags](service-health-event-tags.md)
 - [Service Health data transitions](service-health-notification-transitions.md)
