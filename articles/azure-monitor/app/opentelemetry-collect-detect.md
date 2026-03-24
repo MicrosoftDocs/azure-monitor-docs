@@ -243,7 +243,7 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-winston)
 
 > [!IMPORTANT]
-> Bunyan and Winston *are not* enabled by default.
+> Bunyan and Winston *are not* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
 
 To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
