@@ -42,7 +42,7 @@ Advisor displays your overall Advisor score and a breakdown for Advisor categori
 
 *   Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
 
-*   Score calculation is dependenct on the recommendations under each category. The overall score is calculated as the average of the contributions from all categories. 
+*   Score calculation is dependent on the recommendations under each category. The overall score is calculated as the average of the contributions from all categories. 
 
 *   For Reliability, Operational Excellence, and Performance, recommendations and scores are grouped into subcategories to provide a more detailed and granular view. Each subcategory has a weighted contribution to the category score.
 
