@@ -102,7 +102,7 @@ Here are some known limitations to be aware of when using OpenTelemetry with Azu
 - **4319** (gRPC) for logs and traces
 - **Host:** `localhost`
 
-### Known limitations for OpenTelemetry collector ingestion
+### Limitations for OpenTelemetry collector ingestion
 
 - Export OTLP over **HTTP/protobuf**.
 
