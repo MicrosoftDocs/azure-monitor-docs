@@ -41,7 +41,7 @@ For more information, see [Ingest OTLP data into Azure Monitor with AMA](opentel
 
 ## OTLP ingestion with the OpenTelemetry Collector
 
-Use this approach when you need maximum deployment flexibility or operate in environments outside Azure where the Azure Monitor Agent isn't available. The OpenTelemetry Collector sends data directly to Azure Monitor cloud endpoints using Microsoft Entra authentication and supports any platform where the Collector can run, making it the most versatile option for hybrid and multicloud scenarios.
+Use this approach when you need maximum deployment flexibility or operate in environments outside Azure where the Azure Monitor Agent isn't available. The OpenTelemetry Collector sends data directly to Azure Monitor cloud endpoints by using Microsoft Entra authentication. It supports any platform where the Collector can run, making it the most versatile option for hybrid and multicloud scenarios.
 
 For more information, see [Ingest OTLP data into Azure Monitor with OTel Collector](opentelemetry-protocol-ingestion.md).
 

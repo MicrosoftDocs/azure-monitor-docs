@@ -8,19 +8,19 @@ ai-usage: ai-assisted
 
 # Ingest OTLP data into Azure Monitor by using AMA (Preview)
 
-Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
+Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals. You can send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
 > [!IMPORTANT]
-> * This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
+> * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Overview
 
 Azure Monitor can receive OTLP signals through three ingestion mechanisms:
 
-* **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment. See [Ingest OTLP data into Azure Monitor with OTel Collector](opentelemetry-protocol-ingestion.md) for details.
+* **OpenTelemetry Collector** - Send data directly to Azure Monitor cloud ingestion endpoints from any OTel Collector deployment. For more information, see [Ingest OTLP data into Azure Monitor with OTel Collector](opentelemetry-protocol-ingestion.md).
 * **Azure Monitor Agent (AMA)** - Ingest data from applications running on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers.
-* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters. See [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md) for details.
+* **Azure Kubernetes Service (AKS) add-on** - Collect telemetry from containerized applications in AKS clusters. For more information, see [Enable Azure Monitor OpenTelemetry for Kubernetes clusters](kubernetes-open-protocol.md).
 
 This article covers the Azure Monitor Agent method of collecting OTLP signals.
 
@@ -33,13 +33,13 @@ This article covers the Azure Monitor Agent method of collecting OTLP signals.
 
 ## Set up OTLP data ingestion
 
-You can configure OTLP data ingestion in Azure Monitor using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
+You can configure OTLP data ingestion in Azure Monitor by using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
 
 ### Option 1: Create an Application Insights resource with OTLP support (Recommended)
 
-This method automatically provisions all required Azure resources and configures their relationships, enabling you to use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
+This method automatically creates all required Azure resources and configures their relationships. You can use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
-1. Register the Application Insights OTLP preview features and provider:
+1. Register the Application Insights OTLP preview features and provider.
 
     ```bash
     az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
@@ -56,12 +56,12 @@ This method automatically provisions all required Azure resources and configures
 
 1. Complete the resource creation process.
 
-1. After deployment, navigate to the **Overview** page of your Application Insights resource.
+1. After deployment, go to the **Overview** page of your Application Insights resource.
 
-1. Locate the **OTLP Connection Info** section and copy the following values:
+1. In the **OTLP Connection Info** section, copy the following values:
 
     * Data Collection Rule (DCR) resource ID
-    * Endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
+    * Endpoint URLs for traces, logs, and metrics (if you're using OpenTelemetry Collector)
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
@@ -87,7 +87,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]
-> If you skip this step, you'll need to modify the ARM template in the next section to remove Application Insights references.
+> If you skip this step, you need to modify the ARM template in the next section to remove Application Insights references.
 
 #### Deploy the Data Collection Endpoint and Rule
 
@@ -103,13 +103,13 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 
 1. Review and create the deployment.
 
-1. After deployment completes, navigate to the created DCR and copy its resource ID from the **Overview** page.
+1. After deployment completes, go to the created DCR and copy its resource ID from the **Overview** page.
 
 ### Deploy Azure Monitor Agent
 
-Install the Azure Monitor Agent using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
+Install the Azure Monitor Agent by using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
 
-Verify you're installing the minimum required version:
+Verify that you're installing the minimum required version:
 
 * **Windows**: Version 1.38.1 or higher
 * **Linux**: Version 1.37.0 or higher
@@ -119,7 +119,7 @@ Verify you're installing the minimum required version:
 Create an association between your Data Collection Rule and the VMs, Virtual Machine Scale Sets, or Arc-enabled servers running your instrumented applications:
 
 1. Navigate to your DCR in the Azure portal.
-1. Select **Resources** under **Configuration**.
+1. Under **Configuration**, select **Resources**.
 1. Select **Add** and choose the compute resources to associate.
 
 For programmatic association, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
@@ -130,13 +130,13 @@ Set the following configuration in your application environment:
 
 1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`).
 
-1. Configure the OpenTelemetry SDK to send to localhost using these ports:
+1. Configure the OpenTelemetry SDK to send to localhost by using these ports:
 
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
 
 > [!IMPORTANT]
-> Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
 Example environment variable configuration:
 
@@ -157,7 +157,7 @@ export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponentia
 1. Leave the `managed_identity` section blank in your collector configuration to use the system-assigned identity.
 
 > [!IMPORTANT]
-> - Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> - Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 > - Add `processors: [cumulativetodelta]` to metrics config if incoming metrics are in cumulative temporality.
 
 
