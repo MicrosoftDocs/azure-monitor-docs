@@ -1,6 +1,6 @@
 ---
-title: Configuration Options - Azure Monitor Application Insights for Java
-description: This article shows how to configure Azure Monitor Application Insights for Java.
+title: Configure Azure Monitor Application Insights for Java
+description: Learn how to configure Azure Monitor Application Insights for Java, including connection strings, JSON configuration, sampling overrides, JMX metrics, telemetry processors, logging, Micrometer metrics, and runtime settings.
 ms.topic: how-to
 ms.date: 03/20/2026
 ms.devlang: java
@@ -9,11 +9,11 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Configuration options: Azure Monitor Application Insights for Java
+# Configure Azure Monitor Application Insights for Java
 
 This article shows you how to configure Azure Monitor Application Insights for Java. For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md).
 
-## Configuration basics
+## Configure Java agent settings
 
 **In this section:**
 
@@ -26,11 +26,11 @@ This article shows you how to configure Azure Monitor Application Insights for J
 
 ### JSON configuration set-up
 
-# [Default configuration](#tab/config-default)
+# [Default config file](#tab/config-default)
 
 By default, Application Insights Java 3 expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.5.jar*.
 
-# [Custom configuration file](#tab/config-custom)
+# [Custom config file](#tab/config-custom)
 
 You can specify a custom configuration file with:
 
@@ -39,7 +39,7 @@ You can specify a custom configuration file with:
 
 If you provide a relative path, it will resolve relative to the directory where *applicationinsights-agent-3.7.5.jar* is located.
 
-# [JSON configuration](#tab/config-json)
+# [Inline JSON config](#tab/config-json)
 
 Instead of using a configuration file, you can set the entire JSON configuration with:
 
@@ -82,9 +82,7 @@ If you have multiple applications deployed in the same Java Virtual Machine (JVM
 
 ### Set the cloud role name
 
-Role name is important anytime you're sending data from different applications to the same Application Insights resource. More information and configuration options are provided in the following sections.
-
-The cloud role name is used to label the component on the application map.
+The cloud role name is used to label the component on the application map. This is important anytime you're sending data from different applications to the same Application Insights resource.
 
 ```json
 {
@@ -158,13 +156,15 @@ Span.current().setAttribute("mycustomer", "xyz");
 
 See also [Add a custom property to a Span](opentelemetry-add-modify.md?tabs=java#add-a-custom-property-to-a-span).
 
-## Sampling
+## Configure sampling and sampling overrides
 
 **In this section:**
 
 * [Choose a sampling method](#choose-a-sampling-method)
 * [Sampling overrides](#sampling-overrides)
 * [Sampling override use cases](#sampling-override-use-cases)
+* [Sampling overrides troubleshooting](#sampling-overrides-troubleshooting)
+* [Sampling overrides FAQ](#sampling-overrides-faq)
 
 ### Choose a sampling method
 
@@ -173,7 +173,7 @@ Sampling is based on requests, which means that if a request is captured (sample
 > [!NOTE]
 > Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](#sampling-overrides).
 
-Sampling can be a great way to reduce costs. Make sure to set up your sampling configuration appropriately for your use case. See the tabs below for more information about different sampling methods.
+Sampling can help reduce ingestion costs. Make sure to set up your sampling configuration appropriately for your use case. See the tabs below for more information about different sampling methods.
 
 # [Rate-limited sampling](#tab/sampling-rate)
 
@@ -302,7 +302,7 @@ You can also programmatically add span attributes and use them for sampling.
 
 ### Sampling override use cases
 
-Expand any of the following uses cases to view the sample configuration.
+Expand any of the following use cases to view the sample configuration.
 
 <br>
 <details>
@@ -407,7 +407,7 @@ Since downstream spans (dependencies) respect the parent's sampling decision (ab
 <details>
 <summary><b>Exposing span attributes to suppress SQL dependency calls</b></summary>
 
-This example walks through the experience of finding available attributes to suppress noisy SQL calls. The following query depicts the different SQL calls and associated record counts in the last 30 days: 
+This example shows how to idenfity available attributes to suppress noisy SQL calls. The following query depicts the different SQL calls and associated record counts in the last 30 days: 
 
 ```kusto
 dependencies
@@ -424,7 +424,7 @@ SQL: DB Query    POST /CheckOutForm      DECLARE @MyVar varbinary(20); SET @MyVa
 SQL: DB Query    GET /ClientInfo         DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;    37064
 ```
 
-From the results, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it a good candidate for a sampling override. 
+From the results, it can be observed that all operations share the same value in the `data` field: `DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;`. The commonality between all these records makes it suitable for a sampling override. 
 
 By setting the self-diagnostics to debug, the following log entries become visible in the output:
 
@@ -492,7 +492,7 @@ DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World')
 <details>
 <summary><b>Suppress collecting telemetry for log</b></summary>
 
-With SL4J, you can add log attributes:
+With SLF4J, you can add log attributes:
 
 ```java
 import org.slf4j.Logger;
@@ -542,9 +542,9 @@ You can then remove the log having the added attribute:
 <details>
 <summary><b>Suppress collecting telemetry for a Java method</b></summary>
 
-We're going to add a span to a Java method and remove this span with sampling override. 
+The following examples adds a span to a Java method and removes the span with a sampling override.
 
-Let's first add the `opentelemetry-instrumentation-annotations` dependency:
+First, add the `opentelemetry-instrumentation-annotations` dependency:
 
 ```xml
 <dependency>
@@ -553,7 +553,7 @@ Let's first add the `opentelemetry-instrumentation-annotations` dependency:
 </dependency>
 ```
 
-We can now add the `WithSpan` annotation to a Java method executing SQL requests:
+Then, add the `WithSpan` annotation to a Java method executing SQL requests:
 
 ```java
 package org.springframework.samples.petclinic.vet;
@@ -584,7 +584,7 @@ class VetController {
 }
 ```
 
-The following sampling override configuration allows you to remove the span added by the `WithSpan` annotation:
+The following sampling override configuration removes the span added by the `WithSpan` annotation:
 
 ```json
 "sampling": {
@@ -630,33 +630,30 @@ The following configuration removes all telemetry data emitted from methods of t
 
 </details>
 
-#### Sampling overrides troubleshooting
+### Sampling overrides troubleshooting
 
 See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/app-insights/telemetry/java-standalone-troubleshoot#regex-issues-in-java-sampling-overrides).
 
-#### Sampling overrides FAQ
+### Sampling overrides FAQ
 
 To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling-overrides---application-insights-for-java).
 
-## Collect additional telemetry
+## Configure JMX metrics
 
 **In this section:**
 
-* [Java Management Extensions (JMX) metrics](#java-management-extensions-jmx-metrics)
-* [Autocollect logging](#autocollect-logging)
-* [Autocollected Micrometer metrics (including Spring Boot Actuator metrics)](#autocollected-micrometer-metrics-including-spring-boot-actuator-metrics)
-* [Autocollect InProc dependencies (preview)](#autocollect-inproc-dependencies-preview)
-* [Browser SDK Loader (preview)](#browser-sdk-loader-preview)
+* [How to collect extra JMX metrics](#how-to-collect-extra-jmx-metrics)
+* [How to know what metrics are available to configure](#how-to-know-what-metrics-are-available-to-configure)
+* [JMX configuration example](#jmx-configuration-example)
+* [Where to find the JMX metrics in Application Insights](#where-to-find-the-jmx-metrics-in-application-insights)
 
-### Java Management Extensions (JMX) metrics
+### How to collect extra JMX metrics
 
-Application Insights Java 3.x collects some of the Java Management Extensions (JMX) metrics by default, but in many cases it isn't enough. This section describes the JMX configuration option in details.
-
-#### How to collect extra JMX metrics
+Application Insights Java 3.x collects some of the Java Management Extensions (JMX) metrics by default, but in many cases it isn't enough. This section describes the JMX configuration option in detail.
 
 JMX metrics collection can be configured by adding a `"jmxMetrics"` section to the *applicationinsights.json* file. Enter a name for the metric as you want it to appear in Azure portal in your Application Insights resource. Object name and attribute are required for each of the metrics you want collected. You may use `*` in object names for glob-style wildcard ([details](/azure/azure-monitor/app/java-standalone-config#java-management-extensions-metrics)).
 
-#### How to know what metrics are available to configure
+### How to know what metrics are available to configure
 
 Properties like object names and attributes are different for various libraries, frameworks, and application servers, and are often not well documented.
 
@@ -678,7 +675,7 @@ Log file output looks similar to these examples. In some cases, it can be extens
 
 You can also use a [command line tool](https://github.com/microsoft/ApplicationInsights-Java/wiki/Troubleshoot-JMX-metrics) to check the available JMX metrics.
 
-#### JMX configuration example
+### JMX configuration example
 
 Knowing what metrics are available, you can configure the agent to collect them.
 
@@ -759,215 +756,11 @@ In the preceding configuration example:
 
 Numeric and boolean JMX metric values are supported. Boolean JMX metrics are mapped to `0` for false and `1` for true.
 
-#### Where to find the JMX metrics in Application Insights
+### Where to find the JMX metrics in Application Insights
 
 You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
 :::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of the Metrics pane in the Azure portal.":::
-
-### Autocollect logging
-
-Log4j, Logback, JBoss Logging, and java.util.logging are autoinstrumented. Logging performed via these logging frameworks is autocollected.
-
-Logging is only captured if it:
-
-* Meets the configured level for the logging framework.
-* Also meets the configured level for Application Insights.
-
-For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`, and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
-
-The default level configured for Application Insights is `INFO`. If you want to change this level:
-
-```json
-{
-  "instrumentation": {
-    "logging": {
-      "level": "WARN"
-    }
-  }
-}
-```
-
-You can also set the level by using the environment variable `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL`. It then takes precedence over the level specified in the JSON configuration.
-
-You can use these valid `level` values to specify in the `applicationinsights.json` file. The table shows how they correspond to logging levels in different logging frameworks.
-
-| Level             | Log4j  | Logback | JBoss  | JUL     |
-|-------------------|--------|---------|--------|---------|
-| OFF               | OFF    | OFF     | OFF    | OFF     |
-| FATAL             | FATAL  | ERROR   | FATAL  | SEVERE  |
-| ERROR (or SEVERE) | ERROR  | ERROR   | ERROR  | SEVERE  |
-| WARN (or WARNING) | WARN   | WARN    | WARN   | WARNING |
-| INFO              | INFO   | INFO    | INFO   | INFO    |
-| CONFIG            | DEBUG  | DEBUG   | DEBUG  | CONFIG  |
-| DEBUG (or FINE)   | DEBUG  | DEBUG   | DEBUG  | FINE    |
-| FINER             | DEBUG  | DEBUG   | DEBUG  | FINER   |
-| TRACE (or FINEST) | TRACE  | TRACE   | TRACE  | FINEST  |
-| ALL               | ALL    | ALL     | ALL    | ALL     |
-
-> [!NOTE]
-> If an exception object is passed to the logger, the log message (and exception object details) will show up in the Azure portal under the `exceptions` table instead of the `traces` table. If you want to see the log messages across both the `traces` and `exceptions` tables, you can write a Logs (Kusto) query to union across them. For example:
->
-> ```
-> union traces, (exceptions | extend message = outerMessage)
-> | project timestamp, message, itemType
-> ```
-
-#### Log markers (preview)
-
-Starting from 3.4.2, you can capture the log markers for Logback and Log4j 2:
-
-```json
-{
-  "preview": {
-    "captureLogbackMarker": true,
-    "captureLog4jMarker": true
-  }
-}
-```
-
-#### Other log attributes for Logback (preview)
-
-Starting from 3.4.3, you can capture `FileName`, `ClassName`, `MethodName`, and `LineNumber`, for Logback:
-
-```json
-{
-  "preview": {
-    "captureLogbackCodeAttributes": true
-  }
-}
-```
-
-> [!WARNING]
-> Capturing code attributes might add a performance overhead.
-
-#### Logging level as a custom dimension
-
-Starting from version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
-
-If needed, you can temporarily re-enable the previous behavior:
-
-```json
-{
-  "preview": {
-    "captureLoggingLevelAsCustomDimension": true
-  }
-}
-```
-
-### Autocollected Micrometer metrics (including Spring Boot Actuator metrics)
-
-If your application uses [Micrometer](https://micrometer.io), metrics that are sent to the Micrometer global registry are autocollected.
-
-If your application uses [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html), metrics configured by Spring Boot Actuator are also autocollected.
-
-#### Send custom metrics using Micrometer
-
-1. Add Micrometer to your application as shown in the following example.
-    
-    ```xml
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-core</artifactId>
-      <version>1.6.1</version>
-    </dependency>
-    ```
-
-1. Use the Micrometer [global registry](https://micrometer.io/?/docs/concepts#_global_registry) to create a meter as shown in the following example.
-
-    ```java
-    static final Counter counter = Metrics.counter("test.counter");
-    ```
-
-1. Use the counter to record metrics by using the following command.
-
-    ```java
-    counter.increment();
-    ```
-
-1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../metrics/analyze-metrics.md) under the `Log-based metrics` metric namespace.
-
-    > [!NOTE]
-    > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
-
-#### Disable metrics autocollection
-
-To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics:
-
-```json
-{
-  "instrumentation": {
-    "micrometer": {
-      "enabled": false
-    }
-  }
-}
-```
-
-> [!NOTE]
-> Custom metrics are billed separately and might generate extra costs. Make sure to check the [Pricing information](https://azure.microsoft.com/pricing/details/monitor/). To disable the Micrometer and Spring Boot Actuator metrics, add the following configuration to your config file.
-
-### Autocollect InProc dependencies (preview)
-
-Starting from version 3.2.0, if you want to capture controller "InProc" dependencies, use the following configuration:
-
-```json
-{
-  "preview": {
-    "captureControllerSpans": true
-  }
-}
-```
-
-### Browser SDK Loader (preview)
-
-This feature automatically injects the [Browser SDK Loader](javascript-sdk.md#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String.
-
-For example, when your Java application returns a response like:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Title</title>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-It automatically modifies to return:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script type="text/javascript">
-    !function(v,y,T){var S=v.location,k="script"
-    <!-- Removed for brevity -->
-    connectionString: "YOUR_CONNECTION_STRING"
-    <!-- Removed for brevity --> }});
-    </script>
-    <title>Title</title>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-The script is aiming at helping customers to track the web user data, and sent the collecting server-side telemetry back to users' Azure portal. Details can be found at [ApplicationInsights-JS](https://github.com/microsoft/ApplicationInsights-JS).
-
-If you want to enable this feature, add the below configuration option:
-
-```json
-{
-  "preview": {
-    "browserSdkLoader": {
-      "enabled": true
-    }
-  }
-}
-```
 
 ## Configure telemetry processors (preview)
 
@@ -997,9 +790,9 @@ If you are looking to drop specific (whole) spans for controlling ingestion cost
 
 ### Telemetry processors terminology
 
-Before you learn about telemetry processors, you should understand the terms *span* and *log*.
+Before you learn about telemetry processors, you should understand the terms *span* and *log*. For more information, see [Terminology](#terminology).
 
-**Span:** A type of telemetry that represents one of:
+**Span:** A type of telemetry that represents one of the following:
 
 * An incoming request.
 * An outgoing dependency (for example, a remote call to another service).
@@ -1007,7 +800,7 @@ Before you learn about telemetry processors, you should understand the terms *sp
 
 **Log:** A type of telemetry that represents:
 
-* log data captured from Log4j, Logback, and java.util.logging 
+* log data captured from Log4j, Logback, and java.util.logging
 
 For telemetry processors, the following span/log components are important:
 
@@ -1065,7 +858,7 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 
 The attribute processor modifies attributes of a `span` or a `log`. It can support the ability to include or exclude `span` or `log`. It takes a list of actions that are performed in the order that the configuration file specifies. The processor supports these actions:
 
-> [!TIPP]
+> [!TIP]
 > Expand each of the following actions to view more information.
 
 <br>
@@ -1466,7 +1259,7 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 | `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | ✅ |
 | `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | ✅ |
 | `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | ✅ |
-| `GC Total Time` | Ccustom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
+| `GC Total Time` | Custom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
 | `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | ✅ |
 | `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| ✅ |
 | `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | ❌ |
@@ -2344,6 +2137,219 @@ These spans don't match the `include` properties, and processor actions aren't a
 ### Telemetry processors FAQ
 
 To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-processors)
+
+## Configure logging, metrics, and other telemetry collection
+
+**In this section:**
+
+* [Autocollect logging](#autocollect-logging)
+* [Autocollected Micrometer metrics (including Spring Boot Actuator metrics)](#autocollected-micrometer-metrics-including-spring-boot-actuator-metrics)
+* [Autocollect InProc dependencies (preview)](#autocollect-inproc-dependencies-preview)
+* [Browser SDK Loader (preview)](#browser-sdk-loader-preview)
+
+### Autocollect logging
+
+Log4j, Logback, JBoss Logging, and java.util.logging are autoinstrumented. Logging performed via these logging frameworks is autocollected.
+
+Logging is only captured if it:
+
+* Meets the configured level for the logging framework.
+* Also meets the configured level for Application Insights.
+
+For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`, and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
+
+The default level configured for Application Insights is `INFO`. If you want to change this level:
+
+```json
+{
+  "instrumentation": {
+    "logging": {
+      "level": "WARN"
+    }
+  }
+}
+```
+
+You can also set the level by using the environment variable `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL`. It then takes precedence over the level specified in the JSON configuration.
+
+You can use these valid `level` values to specify in the `applicationinsights.json` file. The table shows how they correspond to logging levels in different logging frameworks.
+
+| Level             | Log4j  | Logback | JBoss  | JUL     |
+|-------------------|--------|---------|--------|---------|
+| OFF               | OFF    | OFF     | OFF    | OFF     |
+| FATAL             | FATAL  | ERROR   | FATAL  | SEVERE  |
+| ERROR (or SEVERE) | ERROR  | ERROR   | ERROR  | SEVERE  |
+| WARN (or WARNING) | WARN   | WARN    | WARN   | WARNING |
+| INFO              | INFO   | INFO    | INFO   | INFO    |
+| CONFIG            | DEBUG  | DEBUG   | DEBUG  | CONFIG  |
+| DEBUG (or FINE)   | DEBUG  | DEBUG   | DEBUG  | FINE    |
+| FINER             | DEBUG  | DEBUG   | DEBUG  | FINER   |
+| TRACE (or FINEST) | TRACE  | TRACE   | TRACE  | FINEST  |
+| ALL               | ALL    | ALL     | ALL    | ALL     |
+
+> [!NOTE]
+> If an exception object is passed to the logger, the log message (and exception object details) will show up in the Azure portal under the `exceptions` table instead of the `traces` table. If you want to see the log messages across both the `traces` and `exceptions` tables, you can write a Logs (Kusto) query to union across them. For example:
+>
+> ```
+> union traces, (exceptions | extend message = outerMessage)
+> | project timestamp, message, itemType
+> ```
+
+#### Log markers (preview)
+
+Starting from 3.4.2, you can capture the log markers for Logback and Log4j 2:
+
+```json
+{
+  "preview": {
+    "captureLogbackMarker": true,
+    "captureLog4jMarker": true
+  }
+}
+```
+
+#### Other log attributes for Logback (preview)
+
+Starting from 3.4.3, you can capture `FileName`, `ClassName`, `MethodName`, and `LineNumber`, for Logback:
+
+```json
+{
+  "preview": {
+    "captureLogbackCodeAttributes": true
+  }
+}
+```
+
+> [!WARNING]
+> Capturing code attributes might add a performance overhead.
+
+#### Logging level as a custom dimension
+
+Starting from version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
+
+If needed, you can temporarily re-enable the previous behavior:
+
+```json
+{
+  "preview": {
+    "captureLoggingLevelAsCustomDimension": true
+  }
+}
+```
+
+### Autocollected Micrometer metrics (including Spring Boot Actuator metrics)
+
+If your application uses [Micrometer](https://micrometer.io), metrics that are sent to the Micrometer global registry are autocollected.
+
+If your application uses [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html), metrics configured by Spring Boot Actuator are also autocollected.
+
+#### Send custom metrics using Micrometer
+
+1. Add Micrometer to your application as shown in the following example.
+    
+    ```xml
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-core</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    ```
+
+1. Use the Micrometer [global registry](https://micrometer.io/?/docs/concepts#_global_registry) to create a meter as shown in the following example.
+
+    ```java
+    static final Counter counter = Metrics.counter("test.counter");
+    ```
+
+1. Use the counter to record metrics by using the following command.
+
+    ```java
+    counter.increment();
+    ```
+
+1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../metrics/analyze-metrics.md) under the `Log-based metrics` metric namespace.
+
+    > [!NOTE]
+    > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
+
+#### Disable metrics autocollection
+
+To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics:
+
+```json
+{
+  "instrumentation": {
+    "micrometer": {
+      "enabled": false
+    }
+  }
+}
+```
+
+> [!NOTE]
+> Custom metrics are billed separately and might generate extra costs. Make sure to check the [Pricing information](https://azure.microsoft.com/pricing/details/monitor/). To disable the Micrometer and Spring Boot Actuator metrics, add the following configuration to your config file.
+
+### Autocollect InProc dependencies (preview)
+
+Starting from version 3.2.0, if you want to capture controller "InProc" dependencies, use the following configuration:
+
+```json
+{
+  "preview": {
+    "captureControllerSpans": true
+  }
+}
+```
+
+### Browser SDK Loader (preview)
+
+This feature automatically injects the [Browser SDK Loader](javascript-sdk.md#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String.
+
+For example, when your Java application returns a response like:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+The reponse is modified as follows:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript">
+    !function(v,y,T){var S=v.location,k="script"
+    <!-- Removed for brevity -->
+    connectionString: "YOUR_CONNECTION_STRING"
+    <!-- Removed for brevity --> }});
+    </script>
+    <title>Title</title>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+The script helps collect client-side web telemetry and sends it together with server-side telemetry to the user's Azure portal. Details can be found at [ApplicationInsights-JS](https://github.com/microsoft/ApplicationInsights-JS).
+
+If you want to enable this feature, add the below configuration option:
+
+```json
+{
+  "preview": {
+    "browserSdkLoader": {
+      "enabled": true
+    }
+  }
+}
+```
 
 ## Override or suppress default behavior
 
