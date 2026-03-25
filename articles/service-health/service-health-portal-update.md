@@ -89,20 +89,18 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 ## View the history of all your Service Health events
 
-<<<<<<< HEAD
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents, and configure alerts. 
 
 For more information, see [Health history overview](health-history-overview.md).
-=======
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents, and configure alerts.<br> For more information, see [Health history overview](health-history-overview.md).
->>>>>>> 0c48271e0d2d89cef603f7fe7d30bb1e93641d49
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
 
 ## See and manage your Resource health
 
-Select **Resource health** from the left menu to find out if your resource is running as expected. You can select links that open directly to information about the health of your selected resource.<br> For more information, see [Resource health overview](resource-health-overview.md).
+Select **Resource health** from the left menu to find out if your resource is running as expected. You can select links that open directly to information about the health of your selected resource. 
+
+For more information, see [Resource health overview](resource-health-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
