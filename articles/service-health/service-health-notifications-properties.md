@@ -19,7 +19,7 @@ Depending on the notification type, it can be purely informational or indicate a
 For information on how long Service Health notifications stay active in the portal, see [Service Health data transitions](service-health-notification-transitions.md).
 
 ## View Service Health notifications
-After you sign in to Azure, you can access Service Health notifications in one of three ways:
+After you sign in to Azure, access Service Health notifications in one of three ways:
 
 - **Azure portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard that shows any active notifications for your subscriptions. The dashboard organizes the notifications into categories that correspond to the types of notifications, such as Incidents and Maintenance. There's also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details, including impact, status updates, and resolution. See [Azure Service Health Portal](service-health-portal-update.md).  
 
