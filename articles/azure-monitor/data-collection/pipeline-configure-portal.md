@@ -15,8 +15,8 @@ Use this article after you complete the shared setup in [Configure Azure Monitor
 
 Start the creation flow from one of the following locations in the Azure portal:
 
-- From **Azure Monitor pipelines (preview)**, select **Create**.
-- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension (preview)**.
+- From **Azure Monitor pipelines**, select **Create**.
+- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension**.
 
 ## Configure basics
 
