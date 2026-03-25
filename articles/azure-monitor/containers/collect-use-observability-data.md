@@ -75,7 +75,7 @@ After onboarding, use the following experiences to investigate and visualize you
 For more information, see [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md).
 
 > [!IMPORTANT]
-> Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
 ### Query logs and traces with OpenTelemetry semantic conventions
 
