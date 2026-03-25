@@ -87,7 +87,7 @@ For more information, see [OpenTelemetry semantic conventions](https://opentelem
 
 ## Limitations
 
-When using OpenTelemetry with Azure Monitor, be aware of the following limitations:
+When you use OpenTelemetry with Azure Monitor, be aware of the following limitations:
 
 ### Limitations in AKS auto-instrumentation and auto-configuration
 
