@@ -85,7 +85,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
    az provider show --namespace "Microsoft.ContainerService" --query "registrationState"
    ```
 
-3. Register the Application Insights OTLP preview features and provider:
+1. Register the Application Insights OTLP preview features and provider:
    ```bash
    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
