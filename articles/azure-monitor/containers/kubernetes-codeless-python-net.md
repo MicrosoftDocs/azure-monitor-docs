@@ -18,7 +18,7 @@ You can use Python and .NET with both the AKS OTLP public preview and AKS autoin
 
 ## Onboard to the limited preview
 
-This section outlines the process of enabling the limited preview feature. It significantly references public preview documentation at [Autoinstrumentation for Azure Kubernetes Service (Preview)](kubernetes-codeless.md), as most of the steps are the same. Limited preview-specific aspects are explicitly called out.
+This section outlines the process of enabling the limited preview feature. It significantly references public preview documentation at [Autoinstrumentation for Azure Kubernetes Service (Preview)](kubernetes-codeless.md), as most of the steps are the same. The documentation explicitly calls out limited preview-specific aspects.
 
 1. Review the _Prerequisites_ section at [Autoinstrumentation for Azure Kubernetes Service](kubernetes-codeless.md#prerequisites). The limitations apply to the limited preview except support is added for Python and .NET.
 1. Enable the public preview feature for the entire cluster by following the instructions outlined in the following sections of the article:
