@@ -26,21 +26,12 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | App service | Customer Backup - Linked Database Backup | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | App service | Durable Functions support for Netherite | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure Log Analytics | batch API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Maps Account | Route v1 APIs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Maps Account | Traffic v1 APIs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Virtual Machines | D series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Virtual Machines | Ds series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Virtual Machines | Dsv2 series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Virtual Machines | Dv2 series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Virtual Machines | Ls series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Container registry | Support for Docker Content Trust | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Extension | Desired State Configuration Extension | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Extension | Desired State Configuration extension | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Kubernetes service | Kubenet Networking | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Log Analytics | batch API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Log Analytics workspace | Batch API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Microsoft Entra ID | VPN Gateway with Third-party App | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Spring Cloud Service | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | Desired State Configuration Extension | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual network gateway | Manually registered Azure VPN clients | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-

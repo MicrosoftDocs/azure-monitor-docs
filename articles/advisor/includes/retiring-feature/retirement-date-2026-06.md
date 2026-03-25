@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -17,10 +17,7 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Entra Domain Services | Support for TLS 1.0 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Entra Domain Services | Support for TLS 1.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | SQL server | Microsoft.SQL 2014-04-01 stable APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Virtual machine | DCsv2-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Workspace | Azure Machine Learning - SDK V1 - Dependent Libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Workspace | V1 SDK | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-
