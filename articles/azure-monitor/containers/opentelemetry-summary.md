@@ -1,36 +1,52 @@
 ---
-title: OpenTelemetry Protocol Ingestion in Azure Monitor (Preview)
-description: Understand the available methods for ingesting OpenTelemetry Protocol signals into Azure Monitor, including AKS monitoring, OTel Collector, and Azure Monitor Agent.
+title: OpenTelemetry ingestion options (preview)
+description: Compare OpenTelemetry Protocol (OTLP) ingestion options in Azure Monitor, including AKS monitoring, Azure Monitor Agent, and the OpenTelemetry Collector.
 ms.topic: concept-article
-ms.date: 03/18/2026
+ms.date: 03/25/2026
 ai-usage: ai-assisted
+
+#customer intent: As a cloud engineer, I want to understand the OpenTelemetry ingestion options in Azure Monitor so that I can choose the right approach for my environment.
+
 ---
 
-# OpenTelemetry Protocol ingestion in Azure Monitor (Preview)
+# OpenTelemetry ingestion options for Azure Monitor (preview)
 
-Azure Monitor supports native ingestion of OpenTelemetry Protocol (OTLP) traces, metrics, and logs. You can send telemetry from OpenTelemetry-instrumented applications to Azure Monitor and then explore that data through Application Insights, Dashboards with Grafana, and Log Analytics. Choose an ingestion method based on your compute environment, instrumentation strategy, and operational requirements.
+OpenTelemetry Protocol (OTLP) is an open standard for transmitting traces, metrics, and logs from applications and infrastructure to observability backends. Azure Monitor supports OTLP ingestion so you can collect telemetry from your workloads without proprietary instrumentation.
+
+Different compute environments—Azure Kubernetes Service (AKS), virtual machines, Azure Arc-enabled servers, hybrid clouds—call for different ingestion approaches. Choosing the wrong path can mean extra infrastructure to manage or gaps in the telemetry you collect.
+
+This article describes each ingestion option and when to use it, so you can pick the approach that matches your environment and operational requirements.
 
 > [!IMPORTANT]
-> OTLP ingestion in Azure Monitor is currently in **preview**. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> OTLP ingestion in Azure Monitor is currently in PREVIEW.
+> See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-## Collect and analyze OpenTelemetry data
+## End-to-end onboarding with OpenTelemetry and Azure Monitor
 
-Use the information at [Use OpenTelemetry with Azure Monitor](collect-use-observability-data.md) when you need an end-to-end overview of OTLP capabilities in Azure Monitor. It covers onboarding paths, supported experiences such as Application Insights and Dashboards with Grafana, and how to query telemetry with OpenTelemetry semantic conventions in Log Analytics.
+Use this approach when you need a comprehensive view of the available onboarding paths, supported experiences, and data exploration options across Application Insights, Dashboards with Grafana, and Log Analytics. It's the best starting point if you're evaluating OpenTelemetry support in Azure Monitor for the first time and want to understand the full scope of capabilities before you choose a specific ingestion method.
 
-## Monitor AKS applications with OTLP
+For more information, see [Use OpenTelemetry with Azure Monitor](collect-use-observability-data.md).
 
-Use the information at [Monitor AKS applications with OTLP and Azure Monitor](kubernetes-open-protocol.md) when your workloads run on Azure Kubernetes Service. It walks through enabling cluster-level monitoring, creating an OTLP-enabled Application Insights resource, and onboarding applications with autoinstrumentation or autoconfiguration at the namespace or deployment scope.
+## AKS application monitoring with OpenTelemetry Protocol (OTLP)
 
-## Ingest OTLP data with Azure Monitor Agent
+Use this approach when your applications run on Azure Kubernetes Service (AKS) and you want cluster-integrated monitoring with autoinstrumentation or autoconfiguration for traces, metrics, and logs. It provides a managed experience that handles agent deployment, identity management, and telemetry routing at the namespace or deployment scope. You can onboard workloads without managing collector infrastructure separately.
 
-Use the information at [Ingest OTLP data into Azure Monitor with AMA](opentelemetry-ingest-agent.md) when your applications run on Azure VMs, Virtual Machine Scale Sets, or Azure Arc-enabled servers. The Azure Monitor Agent provides a simplified ingestion path that handles authentication and routing to Azure Monitor endpoints locally on the host.
+For more information, see [Monitor AKS applications with OTLP and Azure Monitor](kubernetes-open-protocol.md).
 
-## Ingest OTLP data with the OpenTelemetry Collector
+## OpenTelemetry Protocol (OTLP) ingestion with Azure Monitor Agent
 
-Use the information at [Ingest OTLP data into Azure Monitor with OTel Collector](opentelemetry-protocol-ingestion.md) when you need maximum flexibility or operate in non-Azure environments. The OpenTelemetry Collector sends data directly to Azure Monitor cloud ingestion endpoints using Microsoft Entra authentication and supports any environment where the Collector can run.
+Use this approach when your applications run on Azure virtual machines, Virtual Machine Scale Sets, or Azure Arc-enabled servers and you want a host-level agent that handles authentication and routing to Azure Monitor endpoints. Azure Monitor Agent simplifies the ingestion pipeline by receiving OTLP traces, metrics, and logs locally and forwarding them to the appropriate destinations without requiring you to manage a separate collector deployment.
+
+For more information, see [Ingest OTLP data into Azure Monitor with AMA](opentelemetry-ingest-agent.md).
+
+## OTLP ingestion with the OpenTelemetry Collector
+
+Use this approach when you need maximum deployment flexibility or operate in environments outside Azure where the Azure Monitor Agent isn't available. The OpenTelemetry Collector sends data directly to Azure Monitor cloud endpoints using Microsoft Entra authentication and supports any platform where the Collector can run, making it the most versatile option for hybrid and multicloud scenarios.
+
+For more information, see [Ingest OTLP data into Azure Monitor with OTel Collector](opentelemetry-protocol-ingestion.md).
 
 ## Related content
 
-- [OpenTelemetry on Azure](../app/opentelemetry-overview.md)
+- [Enable OpenTelemetry in Application Insights](../app/opentelemetry-enable.md)
 - [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md)
 - [OpenTelemetry documentation](https://opentelemetry.io/docs/)
