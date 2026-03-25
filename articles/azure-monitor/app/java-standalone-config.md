@@ -115,6 +115,9 @@ You can also set the cloud role instance by using the environment variable `APPL
 
 ### Custom dimensions
 
+> [!NOTE]
+> Starting with Java agent version 3.0.2, if you add a custom dimension named `service.version`, the value is stored in the `application_Version` column in the Application Insights Logs table instead of as a custom dimension.
+
 If you want to add custom dimensions to all your telemetry:
 
 ```json
@@ -128,12 +131,12 @@ If you want to add custom dimensions to all your telemetry:
 
 You can use `${...}` to read the value from the specified environment variable at startup.
 
-> [!NOTE]
-> Starting from version 3.0.2, if you add a custom dimension named `service.version`, the value is stored in the `application_Version` column in the Application Insights Logs table instead of as a custom dimension.
-
 ### Inherited attribute (preview)
 
-Starting with version 3.2.0, you can set a custom dimension programmatically on your request telemetry. It ensures inheritance by dependency and log telemetry. All are captured in the context of that request.
+> [!NOTE]
+> This feature is available starting with Java agent version 3.2.0.
+
+You can set a custom dimension programmatically on your request telemetry. It ensures inheritance by dependency and log telemetry. All are captured in the context of that request.
 
 ```json
 {
@@ -177,7 +180,8 @@ Sampling can help reduce ingestion costs. Make sure to set up your sampling conf
 
 # [Rate-limited sampling](#tab/sampling-rate)
 
-Starting from 3.4.0, rate-limited sampling is available and is now the default.
+> [!NOTE]
+> Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
 
 If no sampling is configured, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
 
@@ -214,7 +218,7 @@ This example shows how to set the sampling to capture approximately a third of a
 
 You can also set the sampling percentage by using the environment variable `APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`. It then takes precedence over the sampling percentage specified in the JSON configuration.
 
-> [!NOTE]
+> [!TIP]
 > For the sampling percentage, choose a percentage that's close to 100/N, where N is an integer. Currently, sampling doesn't support other values.
 
 ---
@@ -222,7 +226,7 @@ You can also set the sampling percentage by using the environment variable `APPL
 ### Sampling overrides
 
 > [!NOTE]
-> The sampling overrides feature is in GA, starting from 3.5.0.
+> This feature is GA starting with Java agent version 3.5.0.
 
 Sampling overrides allow you to override the [default sampling percentage](#configure-sampling-and-sampling-overrides). For example, you can:
 
@@ -647,7 +651,7 @@ To review frequently asked questions (FAQ), see [Sampling overrides FAQ](applica
 * [How to collect extra JMX metrics](#how-to-collect-extra-jmx-metrics)
 * [How to know what metrics are available to configure](#how-to-know-what-metrics-are-available-to-configure)
 * [JMX configuration example](#jmx-configuration-example)
-* [Where to find JMX metrics in Application Insights](#where-to-find-the-jmx-metrics-in-application-insights)
+* [Where to find JMX metrics in Application Insights](#where-to-find-jmx-metrics-in-application-insights)
 
 ### How to collect extra JMX metrics
 
@@ -975,7 +979,7 @@ The `hash` action requires the following settings:
 <summary><code>extract</code></summary>
 
 > [!NOTE]
-> The `extract` feature is available only in version 3.0.2 and later.
+> The `extract` feature is available starting with Java agent version 3.0.2.
 
 The `extract` action extracts values by using a regular expression rule from the input key to target keys that the rule specifies. If a target key already exists, the `extract` action overrides the target key. This action behaves like the [span processor](#extract-attributes-from-the-span-name) `toAttributes` setting, where the existing attribute is the source.
 
@@ -1006,7 +1010,7 @@ The `extract` action requires the following settings:
 <summary><code>mask</code></summary>
 
 > [!NOTE]
-> The `mask` feature is available only in version 3.2.5 and later.
+> The `mask` feature is available starting with Java agent version 3.2.5.
 
 The `mask` action masks attribute values by using a regular expression rule specified in the `pattern` and `replace`.
 
@@ -1160,7 +1164,7 @@ To configure this option, under `include` or `exclude` (or both), specify at lea
 # [Log processor](#tab/processor-log)
 
 > [!NOTE]
-> Log processors are available starting from version 3.1.1.
+> Log processors are available starting with Java agent version 3.1.1.
 
 The log processor modifies either the log message body or attributes of a log based on the log message body. It can support the ability to include or exclude logs.
 
@@ -1242,7 +1246,7 @@ To configure this option, under `include` or `exclude` (or both), specify the `m
 # [Metric filter](#tab/processor-metric)
 
 > [!NOTE]
-> Metric filters are available starting from version 3.1.1.
+> Metric filters are available starting with Java agent version 3.1.1.
 
 Metric filters are used to exclude some metrics in order to help control ingestion cost. Metric filters only support `exclude` criteria. Metrics that match its `exclude` criteria aren't exported. To configure this option, under `exclude`, specify the `matchType` one or more `metricNames`.
 
@@ -2227,7 +2231,7 @@ Starting from 3.4.3, you can capture `FileName`, `ClassName`, `MethodName`, and 
 
 #### Logging level as a custom dimension
 
-Starting from version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
+Starting with Java agent version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
 
 If needed, you can temporarily re-enable the previous behavior:
 
@@ -2293,7 +2297,10 @@ To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics
 
 ### Autocollect InProc dependencies (preview)
 
-Starting from version 3.2.0, if you want to capture controller "InProc" dependencies, use the following configuration:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.2.0.
+
+If you want to capture controller "InProc" dependencies, use the following configuration:
 
 ```json
 {
@@ -2418,7 +2425,10 @@ Cloud role name overrides allow you to override the [default cloud role name](#s
 
 ### Configure the connection string at runtime
 
-Starting from version 3.4.8, if you need the ability to configure the connection string at runtime, add this property to your json configuration:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.4.8.
+
+If you need the ability to configure the connection string at runtime, add this property to your json configuration:
 
 ```json
 {
@@ -2461,7 +2471,10 @@ Starting from 3.5.3, you can disable this behavior (and keep 100% of telemetry i
 
 ### Suppress specific autocollected telemetry
 
-Starting from version 3.0.3, specific autocollected telemetry can be suppressed by using these configuration options or environment variables:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.0.3.
+
+Specific autocollected telemetry can be suppressed by using these configuration options or environment variables:
 
 # [Configuration options](#tab/suppress-config)
 
@@ -2533,7 +2546,10 @@ These variables then take precedence over the enabled variables specified in the
 
 ### HTTP server 4xx response codes
 
-By default, HTTP server requests that result in 4xx response codes are captured as errors. Starting from version 3.3.0, you can change this behavior to capture them as success:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.3.0.
+
+By default, HTTP server requests that result in 4xx response codes are captured as errors. You can change this behavior to capture them as success:
 
 ```json
 {
@@ -2588,7 +2604,10 @@ Starting from 3.4.0, this behavior can be disabled. For example:
 
 ### HTTP headers
 
-Starting from version 3.3.0, you can capture request and response headers on your server (request) and client (dependency) telemetry:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.3.0.
+
+You can capture request and response headers on your server (request) and client (dependency) telemetry:
 
 # [Server](#tab/header-server)
 
@@ -2645,7 +2664,7 @@ The header names are case insensitive. The preceding examples are captured under
 ### Authentication
 
 > [!NOTE]
-> The authentication feature is GA since version 3.4.17.
+> The authentication feature is GA starting with Java agent version 3.4.17.
 
 You can use authentication to configure the agent to generate [token credentials](/java/api/overview/azure/identity-readme#credentials) that are required for Microsoft Entra authentication. For more information, see the [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md).
 
@@ -2672,7 +2691,10 @@ Application Insights Java 3.x also respects the global `https.proxyHost` and `ht
 
 ### Metric interval
 
-By default, metrics are captured every 60 seconds. Starting from version 3.0.3, you can change this interval:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.0.3.
+
+By default, metrics are captured every 60 seconds. You can change this interval:
 
 ```json
 {
@@ -2680,13 +2702,13 @@ By default, metrics are captured every 60 seconds. Starting from version 3.0.3, 
 }
 ```
 
-Starting from 3.4.9 GA, you can also set the `metricIntervalSeconds` by using the environment variable `APPLICATIONINSIGHTS_METRIC_INTERVAL_SECONDS`. It then takes precedence over the `metricIntervalSeconds` specified in the JSON configuration.
+Starting with Java agent version 3.4.9 (GA), you can also set the `metricIntervalSeconds` by using the environment variable `APPLICATIONINSIGHTS_METRIC_INTERVAL_SECONDS`. It then takes precedence over the `metricIntervalSeconds` specified in the JSON configuration.
 
 The setting applies to the following metrics:
 
 * **Default performance counters**: For example, CPU and memory.
 * **Default custom metrics**: For example, garbage collection timing.
-* **Configured JMX metrics**: [See the JMX metric section](#java-management-extensions-jmx-metrics).
+* **Configured JMX metrics**: [See the JMX metric section](#configure-jmx-metrics).
 * **Micrometer metrics**: [See the Autocollected Micrometer metrics section](#autocollected-micrometer-metrics-including-spring-boot-actuator-metrics).
 
 ### Heartbeat
@@ -2706,9 +2728,12 @@ By default, Application Insights Java 3.x sends a heartbeat metric once every 15
 
 ### Recovery from ingestion failures
 
+> [!NOTE]
+> This feature is available starting with Java agent version 3.3.0.
+
 When sending telemetry to the Application Insights service fails, Application Insights Java 3.x stores the telemetry to disk and continues retrying from disk.
 
-The default limit for disk persistence is 50 Mb. If you have high telemetry volume or need to be able to recover from longer network or ingestion service outages, you can increase this limit starting from version 3.3.0:
+The default limit for disk persistence is 50 Mb. If you have high telemetry volume or need to be able to recover from longer network or ingestion service outages, you can increase this limit:
 
 ```json
 {
@@ -2743,9 +2768,9 @@ In the preceding configuration example:
 * `level` can be one of `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, or `TRACE`.
 * `path` can be an absolute or relative path. Relative paths are resolved against the directory where `applicationinsights-agent-3.7.5.jar` is located.
 
-Starting from version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
+Starting with Java agent version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
 
-Starting from version 3.0.3, you can also set the self-diagnostics file location by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_FILE_PATH`. It then takes precedence over the self-diagnostics file path specified in the JSON configuration.
+Starting with Java agent version 3.0.3, you can also set the self-diagnostics file location by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_FILE_PATH`. It then takes precedence over the self-diagnostics file path specified in the JSON configuration.
 
 ### Telemetry correlation
 
@@ -2768,7 +2793,10 @@ Telemetry correlation is enabled by default, but you may disable it in configura
 
 ### Custom instrumentation (preview)
 
-Starting from version 3.3.1, you can capture spans for a method in your application:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.3.1.
+
+You can capture spans for a method in your application:
 
 ```json
 {
@@ -2785,7 +2813,10 @@ Starting from version 3.3.1, you can capture spans for a method in your applicat
 
 ### Preview instrumentations
 
-Starting from version 3.2.0, you can enable the following preview instrumentations:
+> [!NOTE]
+> This feature is available starting with Java agent version 3.2.0.
+
+You can enable the following preview instrumentations:
 
 ```json
 {
@@ -2821,7 +2852,9 @@ Starting from version 3.2.0, you can enable the following preview instrumentatio
 ```
 
 > [!NOTE]
-> Akka instrumentation is available starting from version 3.2.2. Vertx HTTP Library instrumentation is available starting from version 3.3.0.
+> * Akka instrumentation is available starting with Java agent version 3.2.2.
+>
+> * Vertx HTTP Library instrumentation is available starting with Java agent version 3.3.0.
 
 ## Configuration file example
 
