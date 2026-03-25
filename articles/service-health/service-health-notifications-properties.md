@@ -24,7 +24,7 @@ After you sign in to Azure, you can access Service Health notifications in one o
 - **Azure portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard that shows any active notifications for your subscriptions. The dashboard organizes the notifications into categories that correspond to the types of notifications, such as Incidents and Maintenance. There's also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details, including impact, status updates, and resolution. See [Azure Service Health Portal](service-health-portal-update.md).  
 
 - **Azure portal – Activity Log**: In the Azure portal, open the activity log to view notifications that contain more detailed information, but only under specific conditions. 
-    - Service Health events appear in the Activity Log when they're subscription-scoped, such as service issues, planned maintenance, and health advisories.
+    - Service Health events appear in the Activity Log when they're subscription-scoped, such as service problems, planned maintenance, and health advisories.
     - Emerging Issues don't appear when they're global and not tied to a subscription.<br>
 For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
 
