@@ -11,7 +11,7 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates.<br> For more information about the portal elements and controls, see [Azure portal overview](/azure/azure-portal/azure-portal-overview).
 
-You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
+Use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues affect you.
 
 ## Service Health events
 
