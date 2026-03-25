@@ -16,7 +16,7 @@ Depending on the notification type, it can be purely informational or indicate a
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
-For information on how long Service Health notifications stay active in the portal see [Service Health data transitions](service-health-notification-transitions.md).
+For information on how long Service Health notifications stay active in the portal, see [Service Health data transitions](service-health-notification-transitions.md).
 
 ## View Service Health notifications
 After you sign in to Azure, you can access Service Health notifications in one of three ways:
