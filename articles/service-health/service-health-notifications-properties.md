@@ -28,7 +28,7 @@ Once logged into Azure, you can access Service Health notifications in one of th
     - Emerging Issues don't appear when they're global and not tied to a subscription.<br>
 For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
 
-- **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, Short Message Service (SMS), etc.) when new Service Health events occur. For instance, you might create an alert to get an email whenever there’s a new Incident or a Security advisory. This way you don’t have to constantly check the portal, as Azure proactively sends you a notification through your chosen channel. 
+- **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, Short Message Service (SMS), and more) when new Service Health events occur. For instance, you might create an alert to get an email whenever there's a new Incident or a Security advisory. This way you don't have to constantly check the portal, as Azure proactively sends you a notification through your chosen channel. 
 
 For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
 
