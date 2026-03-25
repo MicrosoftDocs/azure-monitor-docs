@@ -61,7 +61,7 @@ Instead of using a configuration file, you can set the entire JSON configuration
 
 ```json
 {
-"connectionString": "..."
+  "connectionString": "..."
 }
 ```
 
@@ -89,7 +89,7 @@ The cloud role name is used to label the component on the application map.
 ```json
 {
   "role": {
-	"name": "my cloud role name"
+    "name": "my cloud role name"
   }
 }
 ```
@@ -107,8 +107,8 @@ The cloud role instance defaults to the machine name. If you want to set the clo
 ```json
 {
   "role": {
-	"name": "my cloud role name",
-	"instance": "my cloud role instance"
+    "name": "my cloud role name",
+    "instance": "my cloud role instance"
   }
 }
 ```
@@ -122,8 +122,8 @@ If you want to add custom dimensions to all your telemetry:
 ```json
 {
   "customDimensions": {
-	"mytag": "my value",
-	"anothertag": "${ANOTHER_VALUE}"
+    "mytag": "my value",
+    "anothertag": "${ANOTHER_VALUE}"
   }
 }
 ```
@@ -140,12 +140,12 @@ Starting with version 3.2.0, you can set a custom dimension programmatically on 
 ```json
 {
   "preview": {
-	"inheritedAttributes": [
-	  {
-		"key": "mycustomer",
-		"type": "string"
-	  }
-	]
+    "inheritedAttributes": [
+      {
+        "key": "mycustomer",
+        "type": "string"
+      }
+    ]
   }
 }
 ```
@@ -191,7 +191,7 @@ This example shows how to set the sampling to capture at most (approximately) on
 ```json
 {
   "sampling": {
-	"requestsPerSecond": 1.0
+    "requestsPerSecond": 1.0
   }
 }
 ```
@@ -207,7 +207,7 @@ This example shows how to set the sampling to capture approximately a third of a
 ```json
 {
   "sampling": {
-	"percentage": 33.333
+    "percentage": 33.333
   }
 }
 ```
@@ -252,23 +252,23 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 {
   "connectionString": "...",
   "sampling": {
-	"percentage": 10,
-	"overrides": [
-	  {
-		"telemetryType": "request",
-		"attributes": [
-		  ...
-		],
-		"percentage": 0
-	  },
-	  {
-		"telemetryType": "request",
-		"attributes": [
-		  ...
-		],
-		"percentage": 100
-	  }
-	]
+    "percentage": 10,
+    "overrides": [
+      {
+        "telemetryType": "request",
+        "attributes": [
+          ...
+        ],
+        "percentage": 0
+      },
+      {
+        "telemetryType": "request",
+        "attributes": [
+          ...
+        ],
+        "percentage": 100
+      }
+    ]
   }
 }
 ```
@@ -316,19 +316,19 @@ This example also suppresses collecting any downstream spans (dependencies) that
 {
   "connectionString": "...",
   "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "request",
-		"attributes": [
-		  {
-			"key": "url.path",
-			"value": "/health-check",
-			"matchType": "strict"
-		  }
-		],
-		"percentage": 0
-	  }
-	]
+    "overrides": [
+        {
+        "telemetryType": "request",
+        "attributes": [
+          {
+            "key": "url.path",
+            "value": "/health-check",
+            "matchType": "strict"
+          }
+        ],
+        "percentage": 0
+      }
+    ]
   }
 }
 ```
@@ -345,24 +345,24 @@ This example suppresses collecting telemetry for all `GET my-noisy-key` redis ca
 {
   "connectionString": "...",
   "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "dependency",
-		"attributes": [
-		  {
-			"key": "db.system",
-			"value": "redis",
-			"matchType": "strict"
-		  },
-		  {
-			"key": "db.statement",
-			"value": "GET my-noisy-key",
-			"matchType": "strict"
-		  }
-		],
-		"percentage": 0
-	  }
-	]
+    "overrides": [
+      {
+        "telemetryType": "dependency",
+        "attributes": [
+          {
+            "key": "db.system",
+            "value": "redis",
+            "matchType": "strict"
+          },
+          {
+            "key": "db.statement",
+            "value": "GET my-noisy-key",
+            "matchType": "strict"
+          }
+        ],
+        "percentage": 0
+      }
+    ]
   }
 }
 ```
@@ -381,22 +381,22 @@ Since downstream spans (dependencies) respect the parent's sampling decision (ab
 {
   "connectionString": "...",
   "sampling": {
-	"percentage": 10
+    "percentage": 10
   },
   "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "request",
-		"attributes": [
-		  {
-			"key": "url.path",
-			"value": "/login",
-			"matchType": "strict"
-		  }
-		],
-		"percentage": 100
-	  }
-	]
+    "overrides": [
+      {
+        "telemetryType": "request",
+        "attributes": [
+          {
+            "key": "url.path",
+            "value": "/login",
+            "matchType": "strict"
+          }
+        ],
+        "percentage": 100
+      }
+    ]
   }
 }
 ```
@@ -435,14 +435,14 @@ The area of interest from those logs is the "attributes" section:
 ```json
 {
   "attributes": {
-	"data": {
-	  "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
-	  "thread.id": 96,
-	  "db.connection_string": "apache:",
-	  "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
-	  "db.system": "other_sql",
-	  "applicationinsights.internal.item_count": 1
-	}
+    "data": {
+      "thread.name": "DefaultDatabaseBroadcastTransport: MessageReader thread",
+      "thread.id": 96,
+      "db.connection_string": "apache:",
+      "db.statement": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+      "db.system": "other_sql",
+      "applicationinsights.internal.item_count": 1
+    }s
   }
 }
 ```
@@ -453,21 +453,21 @@ Using that output, you can configure a sampling override similar to the followin
 {
   "connectionString": "...",
   "preview": {
-	"sampling": {
-	  "overrides": [
-		{
-		  "telemetryType": "dependency",
-		  "attributes": [
-			{
-			  "key": "db.statement",
-			  "value": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
-			  "matchType": "strict"
-			}
-		  ],
-		  "percentage": 0
-		}
-	  ]
-	}
+    "sampling": {
+      "overrides": [
+        {
+          "telemetryType": "dependency",
+          "attributes": [
+            {
+              "key": "db.statement",
+              "value": "DECLARE @MyVar varbinary(20); SET @MyVar = CONVERT(VARBINARY(20), 'Hello World');SET CONTEXT_INFO @MyVar;",
+              "matchType": "strict"
+            }
+          ],
+          "percentage": 0
+        }
+      ]
+    }
   }
 }
 ```
@@ -501,16 +501,16 @@ import org.slf4j.MDC;
 
 public class MdcClass {
 
-    private static final Logger logger = LoggerFactory.getLogger(MdcClass.class);
+  private static final Logger logger = LoggerFactory.getLogger(MdcClass.class);
 
-    void method() {
-        MDC.put("key", "value");
-        try {
-            logger.info(...); // Application log to remove
-        } finally {
-            MDC.remove("key"); // In a finally block in case an exception happens with logger.info
-        }
+  void method() {
+    MDC.put("key", "value");
+    try {
+      logger.info(...); // Application log to remove
+    } finally {
+      MDC.remove("key"); // In a finally block in case an exception happens with logger.info
     }
+  }
 }
 ```
 
@@ -519,19 +519,19 @@ You can then remove the log having the added attribute:
 ```json
 {
   "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "trace",
-		"percentage": 0,
-		"attributes": [
-		  {
-			"key": "key",
-			"value": "value",
-			"matchType": "strict"
-		  }
-		]
-	  }
-	]
+    "overrides": [
+      {
+        "telemetryType": "trace",
+        "percentage": 0,
+        "attributes": [
+          {
+            "key": "key",
+            "value": "value",
+            "matchType": "strict"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -547,10 +547,10 @@ We're going to add a span to a Java method and remove this span with sampling ov
 Let's first add the `opentelemetry-instrumentation-annotations` dependency:
 
 ```xml
-	<dependency>
-	  <groupId>io.opentelemetry.instrumentation</groupId>
-	  <artifactId>opentelemetry-instrumentation-annotations</artifactId>
-	</dependency>
+<dependency>
+  <groupId>io.opentelemetry.instrumentation</groupId>
+  <artifactId>opentelemetry-instrumentation-annotations</artifactId>
+</dependency>
 ```
 
 We can now add the `WithSpan` annotation to a Java method executing SQL requests:
@@ -561,46 +561,47 @@ package org.springframework.samples.petclinic.vet;
 @Controller
 class VetController {
 
-	private final VetRepository vetRepository;
+  private final VetRepository vetRepository;
 
-	public VetController(VetRepository vetRepository) {
-		this.vetRepository = vetRepository;
-	}
+  public VetController(VetRepository vetRepository) {
+    this.vetRepository = vetRepository;
+  }
 
-	@GetMapping("/vets.html")
-	public String showVetList(@RequestParam(defaultValue = "1") int page, Model model) {
-		Vets vets = new Vets();
-		Page<Vet> paginated = findPaginated(page);
-		vets.getVetList().addAll(paginated.toList());
-		return addPaginationModel(page, paginated, model);
-	}
+  @GetMapping("/vets.html")
+  public String showVetList(@RequestParam(defaultValue = "1") int page, Model model) {
+    Vets vets = new Vets();
+    Page<Vet> paginated = findPaginated(page);
+    vets.getVetList().addAll(paginated.toList());
+    return addPaginationModel(page, paginated, model);
+  }
 
-	@WithSpan
-	private Page<Vet> findPaginated(int page) {
-		int pageSize = 5;
-		Pageable pageable = PageRequest.of(page - 1, pageSize);
-		return vetRepository.findAll(pageable); // Execution of SQL requests
-	}
+  @WithSpan
+  private Page<Vet> findPaginated(int page) {
+    int pageSize = 5;
+    Pageable pageable = PageRequest.of(page - 1, pageSize);
+    return vetRepository.findAll(pageable); // Execution of SQL requests
+  }
+}
 ```
 
 The following sampling override configuration allows you to remove the span added by the `WithSpan` annotation:
 
 ```json
-  "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "dependency",
-		"attributes": [
-		  {
-			"key": "code.function",
-			"value": "findPaginated",
-			"matchType": "strict"
-		  }
-		],
-		"percentage": 0
-	  }
-	]
-  }
+"sampling": {
+  "overrides": [
+    {
+      "telemetryType": "dependency",
+      "attributes": [
+        {
+          "key": "code.function",
+          "value": "findPaginated",
+          "matchType": "strict"
+        }
+      ],
+      "percentage": 0
+    }
+  ]
+}
 ```
 
 The attribute value is the name of the Java method.
@@ -610,21 +611,21 @@ This configuration removes all the telemetry data created from the `findPaginate
 The following configuration removes all telemetry data emitted from methods of the `VetController` class having the `WithSpan` annotation:
 
 ```json
-  "sampling": {
-	"overrides": [
-	  {
-		"telemetryType": "dependency",
-		"attributes": [
-		  {
-			"key": "code.namespace",
-			"value": "org.springframework.samples.petclinic.vet.VetController",
-			"matchType": "strict"
-		  }
-		],
-		"percentage": 0
-	  }
-	]
-  }
+"sampling": {
+  "overrides": [
+    {
+      "telemetryType": "dependency",
+      "attributes": [
+        {
+          "key": "code.namespace",
+          "value": "org.springframework.samples.petclinic.vet.VetController",
+          "matchType": "strict"
+        }
+      ],
+      "percentage": 0
+    }
+  ]
+}
 ```
 
 </details>
