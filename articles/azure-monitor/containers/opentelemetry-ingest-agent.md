@@ -130,7 +130,7 @@ Set the following configuration in your application environment:
 
 1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`).
 
-1. Configure the OpenTelemetry SDK to send to localhost by using these ports:
+1. Configure the OpenTelemetry SDK to send data to localhost by using these ports:
 
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
