@@ -77,7 +77,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
    az account set --subscription "<subscription-name>"
    ```
 
-2. Register the AKS preview feature and provider:
+1. Register the AKS preview feature and provider:
    ```bash
    az feature register --namespace "Microsoft.ContainerService" --name "AzureMonitorAppMonitoringPreview"
    az feature list -o table --query "[?contains(name, 'Microsoft.ContainerService/AzureMonitorAppMonitoringPreview')].{Name:name,State:properties.state}"
