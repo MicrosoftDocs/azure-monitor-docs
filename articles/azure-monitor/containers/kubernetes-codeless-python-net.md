@@ -27,7 +27,7 @@ This section outlines the process of enabling the limited preview feature. It si
     - [Prepare a cluster](kubernetes-codeless.md#prepare-a-cluster)
 1. Choose a deployment that you want to instrument and onboard it by following the information at [Per-deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding). The following points explain what you need to do differently for limited preview:
     - Keep in mind that namespace-wide onboarding (described in the previous section) is **_not available_** for limited preview languages.
-    - Instead of using public preview annotations for Java and Node.Js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use limited preview annotations:
+    - Instead of using public preview annotations for Java and Node.js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use limited preview annotations:
         - `instrumentation.opentelemetry.io/limited-preview-inject-python` for Python
         - `instrumentation.opentelemetry.io/limited-preview-inject-dotnet` for .NET
     - If you don't have an Application Insights resource yet, create one. Then copy its connection string (found in the Overview area of the Application Insights resource) into the `spec.destination.applicationInsightsConnectionString` field of the custom resource (CR), as instructed.
