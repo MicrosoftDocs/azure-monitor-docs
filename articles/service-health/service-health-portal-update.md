@@ -89,7 +89,7 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 ## View the history of all your Service Health events
 
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.<br> For more information, see [Health history overview](health-history-overview.md).
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents, and configure alerts.<br> For more information, see [Health history overview](health-history-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
