@@ -33,7 +33,7 @@ For more information, see [View and retrieve the activity log](/azure/azure-moni
 For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
 
 
-- **Programmatic Access**: Because the Service health notification are from Activity Log events, you can retrieve them using Azure’s APIs or command-line tools. Azure also provides Resource Graph queries to list service health events across resources. This programmatic access is helpful for integration with external systems or dashboards.<br> 
+- **Programmatic Access**: Because the Service health notification are from Activity Log events, you can retrieve them by using Azure's APIs or command-line tools. Azure also provides Resource Graph queries to list service health events across resources. This programmatic access is helpful for integration with external systems or dashboards.<br> 
 
 For information about using Azure Resource Graph (ARG) queries to create reports on your Service health notifications, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
