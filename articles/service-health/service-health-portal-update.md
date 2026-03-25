@@ -100,7 +100,7 @@ Select **Resource health** from the left menu to find out if your resource is ru
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
-## View and sort Health alerts
+## View and sort health alerts
 
 Select **Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 
