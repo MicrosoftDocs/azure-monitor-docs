@@ -203,7 +203,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
       instrumentation.opentelemetry.io/inject-configuration: "cr1"
   ```
 
-When you use the `inject-configuration` annotation, the `spec.settings.autoInstrumentationPlatforms` setting on the referenced custom resource is ignored and the deployment is configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment from Autoconfiguration:
+When you use the `inject-configuration` annotation, the `spec.settings.autoInstrumentationPlatforms` setting on the referenced custom resource is ignored and the deployment is configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment from Autoconfiguration.
 ```yaml
 metadata:
   annotations:
