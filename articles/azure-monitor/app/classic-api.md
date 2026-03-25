@@ -12,7 +12,8 @@ ms.date: 11/11/2025
 
 [!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+> [!CAUTION]
+> For new applications, use the [Azure Monitor OpenTelemetry Distro](../opentelemetry-enable.md#enable-azure-monitor-opentelemetry-for-net-nodejs-python-and-java-applications) with [Azure Monitor Application Insights](../app-insights-overview.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate from the Application Insights SDK, review the [migration guidance](./migrate-to-opentelemetry.md).
 
 This article explains how to enable and configure [Application Insights](app-insights-overview.md) for .NET (ASP.NET, ASP.NET Core, and Worker Service) and Node.js applications. Application Insights can collect the following telemetry from your apps:
 
