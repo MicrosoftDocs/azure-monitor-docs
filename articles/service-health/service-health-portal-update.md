@@ -89,7 +89,9 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 ## View the history of all your Service Health events
 
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.<br> For more information, see [Health history overview](health-history-overview.md).
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.
+
+For more information, see [Health history overview](health-history-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
@@ -104,7 +106,7 @@ Select **Resource health** from the left menu to find out if your resource is ru
 
 Select **Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 
-You can configure your alerts so that an alert is triggered when specified conditions are met. Select any alert rule to see more information, including the alert firing history. You can also select the link of any alert to see more details. 
+You can configure your alerts so that an alert triggers when specified conditions are met. Select any alert rule to see more information, including the alert firing history. You can also select the link of any alert to see more details. 
 
 - For more information on Service Health alerts, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 - Learn how to deploy alerts at scale through [Deploy Service health alerts at scale using Azure Policy](service-health-alert-deploy-policy.md).
