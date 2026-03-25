@@ -224,7 +224,7 @@ You can also set the sampling percentage by using the environment variable `APPL
 > [!NOTE]
 > The sampling overrides feature is in GA, starting from 3.5.0.
 
-Sampling overrides allow you to override the [default sampling percentage](#sampling). For example, you can:
+Sampling overrides allow you to override the [default sampling percentage](#configure-sampling-and-sampling-overrides). For example, you can:
 
 * Set the sampling percentage to 0, or some small value, for noisy health checks.
 * Set the sampling percentage to 0, or some small value, for noisy dependency calls.
@@ -232,7 +232,9 @@ Sampling overrides allow you to override the [default sampling percentage](#samp
 
 #### Sampling overrides terminology
 
-Before you learn about sampling overrides, you should understand the term *span*. A span is a general term for:
+Before you learn about sampling overrides, you should understand the term *span*.
+
+A **span** is a type of telemetry that represents one of the following:
 
 * An incoming request.
 * An outgoing dependency (for example, a remote call to another service).
@@ -284,7 +286,7 @@ not.
 
 Only the first sampling override that matches is used. If no sampling overrides match:
 
-* If it's the first span in the trace, then the [top-level sampling configuration](#sampling) is used.
+* If it's the first span in the trace, then the [top-level sampling configuration](#configure-sampling-and-sampling-overrides) is used.
 * If it isn't the first span in the trace, then the parent sampling decision is used.
 
 #### Span attributes available for sampling
@@ -645,13 +647,13 @@ To review frequently asked questions (FAQ), see [Sampling overrides FAQ](applica
 * [How to collect extra JMX metrics](#how-to-collect-extra-jmx-metrics)
 * [How to know what metrics are available to configure](#how-to-know-what-metrics-are-available-to-configure)
 * [JMX configuration example](#jmx-configuration-example)
-* [Where to find the JMX metrics in Application Insights](#where-to-find-the-jmx-metrics-in-application-insights)
+* [Where to find JMX metrics in Application Insights](#where-to-find-the-jmx-metrics-in-application-insights)
 
 ### How to collect extra JMX metrics
 
 Application Insights Java 3.x collects some of the Java Management Extensions (JMX) metrics by default, but in many cases it isn't enough. This section describes the JMX configuration option in detail.
 
-JMX metrics collection can be configured by adding a `"jmxMetrics"` section to the *applicationinsights.json* file. Enter a name for the metric as you want it to appear in Azure portal in your Application Insights resource. Object name and attribute are required for each of the metrics you want collected. You may use `*` in object names for glob-style wildcard ([details](/azure/azure-monitor/app/java-standalone-config#java-management-extensions-metrics)).
+JMX metrics collection can be configured by adding a `"jmxMetrics"` section to the *applicationinsights.json* file. Enter a name for the metric as you want it to appear in Azure portal in your Application Insights resource. Object name and attribute are required for each of the metrics you want collected. You may use `*` in object names for glob-style wildcard.
 
 ### How to know what metrics are available to configure
 
@@ -756,7 +758,7 @@ In the preceding configuration example:
 
 Numeric and boolean JMX metric values are supported. Boolean JMX metrics are mapped to `0` for false and `1` for true.
 
-### Where to find the JMX metrics in Application Insights
+### Where to find JMX metrics in Application Insights
 
 You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
@@ -790,15 +792,15 @@ If you are looking to drop specific (whole) spans for controlling ingestion cost
 
 ### Telemetry processors terminology
 
-Before you learn about telemetry processors, you should understand the terms *span* and *log*. For more information, see [Terminology](#terminology).
+Before you learn about telemetry processors, you should understand the terms *span* and *log*.
 
-**Span:** A type of telemetry that represents one of the following:
+A **span** is a type of telemetry that represents one of the following:
 
 * An incoming request.
 * An outgoing dependency (for example, a remote call to another service).
 * An in-process dependency (for example, work being done by subcomponents of the service).
 
-**Log:** A type of telemetry that represents:
+A **log** is a type of telemetry that represents:
 
 * log data captured from Log4j, Logback, and java.util.logging
 

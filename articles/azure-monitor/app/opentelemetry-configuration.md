@@ -379,7 +379,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 #### [Java](#tab/java)
 
-For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+For configuration options and examples, see [Java sampling](java-standalone-config.md#configure-sampling-and-sampling-overrides).
 
 #### [Java native](#tab/java-native)
 
@@ -518,7 +518,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 # [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#configure-sampling-and-sampling-overrides).
 
 # [Java native](#tab/java-native)
 
@@ -690,7 +690,7 @@ This feature isn't available in the Azure Monitor .NET Exporter.
 
 The Live Metrics experience is enabled by default.
 
-For more information on Java configuration, see [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#configuration-options-azure-monitor-application-insights-for-java).
+For more information on Java configuration, see [Configure Azure Monitor Application Insights for Java](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
 
