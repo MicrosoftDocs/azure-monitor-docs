@@ -11,7 +11,7 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 
 By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates.<br> For more information about the portal elements and controls, see [Azure portal overview](/azure/azure-portal/azure-portal-overview).
 
-You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
+Use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues affect you.
 
 ## Service Health events
 
@@ -89,9 +89,13 @@ Select **Billing updates** from the left menu to see billing updates. Only users
 
 ## View the history of all your Service Health events
 
+<<<<<<< HEAD
 Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts.
 
 For more information, see [Health history overview](health-history-overview.md).
+=======
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents, and configure alerts.<br> For more information, see [Health history overview](health-history-overview.md).
+>>>>>>> 0c48271e0d2d89cef603f7fe7d30bb1e93641d49
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
@@ -102,7 +106,7 @@ Select **Resource health** from the left menu to find out if your resource is ru
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
-## View and sort Health alerts
+## View and sort health alerts
 
 Select **Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 
