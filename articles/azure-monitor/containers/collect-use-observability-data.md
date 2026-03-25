@@ -61,7 +61,7 @@ After onboarding, use the following experiences to investigate and visualize you
 
 ### Use Application Insights troubleshooting and diagnostics
 
-- [Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md). Most Application Insights experiences continue to work with OTel data (for example, **Performance**, **Failures**, **Search**, and **end‑to‑end transaction** views).
+- [Investigate **distributed traces** end-to-end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md). Most Application Insights experiences continue to work with OTel data, such as **Performance**, **Failures**, **Search**, and **end-to-end transaction** views.
 - Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
 - For agentic workloads, use the [**Agents details (Preview)**](../app/agents-view.md) experience to monitor AI agents that emit OpenTelemetry data.
 - For OpenTelemetry metrics scenarios, prefer [**Dashboards with Grafana**](../app/grafana-dashboards.md). **Metrics Explorer** on OTel metrics can require manual PromQL authoring, and **Live Metrics** isn't available with the OTel path today.
