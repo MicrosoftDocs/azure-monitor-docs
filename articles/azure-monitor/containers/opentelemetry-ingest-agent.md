@@ -6,7 +6,7 @@ ms.date: 03/18/2026
 ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor with AMA (Preview)
+# Ingest OTLP data into Azure Monitor by using AMA (Preview)
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
