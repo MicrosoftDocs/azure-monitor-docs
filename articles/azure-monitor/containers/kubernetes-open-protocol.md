@@ -133,7 +133,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 ### 4.2 Configure Application Monitoring (Preview)
 
 1. Select **Application Monitoring (Preview)**.
-1. Choose the Application Insights resource with OTLP enabled that you created in the previous [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select an Application Insights resource without OTLP or use the **Create New** option to create one, you won't see the **Instrumentation type** option.
+1. Choose the Application Insights resource with OTLP enabled that you created in the previous [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select an Application Insights resource without OTLP or use the **Create New** option to create one, you don't see the **Instrumentation type** option.
 1. Choose **Instrumentation type**:
    - **Autoinstrumentation** for supported languages **Java** and **Node.js**.
    - **Autoconfiguration** for applications already instrumented with OpenTelemetry SDKs.  
