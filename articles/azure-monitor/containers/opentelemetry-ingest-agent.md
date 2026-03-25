@@ -118,7 +118,7 @@ Verify that you're installing the minimum required version:
 
 Create an association between your Data Collection Rule and the VMs, Virtual Machine Scale Sets, or Arc-enabled servers running your instrumented applications:
 
-1. Navigate to your DCR in the Azure portal.
+1. Go to your DCR in the Azure portal.
 1. Under **Configuration**, select **Resources**.
 1. Select **Add** and choose the compute resources to associate.
 
