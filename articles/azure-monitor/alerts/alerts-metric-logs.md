@@ -4,7 +4,7 @@ description: Get information about creating near-real time metric alerts on popu
 ms.topic: how-to
 ms.reviewer: harelbr
 ms.date: 04/24/2026
-mc.custom: references_regions
+ms.custom: references_regions
 ---
 
 # Create a metric alert in Azure Monitor Logs

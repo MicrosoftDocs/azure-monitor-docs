@@ -4,7 +4,7 @@ description: Alert at scale by using a single alert rule for multiple time serie
 ms.topic: how-to
 ms.reviewer: harelbr
 ms.date: 04/24/2026
-mc.custom: references_regions
+ms.custom: references_regions
 ---
 
 # Monitor multiple time series in a single metric alert rule

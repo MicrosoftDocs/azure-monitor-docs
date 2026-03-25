@@ -3,7 +3,7 @@ title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
 ms.date: 04/24/2026
-mc.custom: references_regions
+ms.custom: references_regions
 ---
 
 # What are Azure Monitor alerts?
