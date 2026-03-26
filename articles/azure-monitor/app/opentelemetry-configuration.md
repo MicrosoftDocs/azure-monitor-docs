@@ -349,7 +349,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
 > 2. Environment Variable
 > 3. Configuration File
 
-If you have multiple applications deployed in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](java-standalone-config.md#cloud-role-name-overrides-preview).
+If you deploy multiple applications in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](java-standalone-config.md#cloud-role-name-overrides-preview).
 
 ### [Java native](#tab/java-native)
 
