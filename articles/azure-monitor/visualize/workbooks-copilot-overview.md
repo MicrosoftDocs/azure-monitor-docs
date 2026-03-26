@@ -148,7 +148,7 @@ Ask Copilot to delete one or more items from the workbook canvas.
 - **Start simple.** Begin with a focused request like a single chart or query, then build up incrementally.
 - **Be specific with metrics.** Include the resource type and metric name when asking for metrics visualizations. For example, _"Add a CPU percentage chart for my virtual machines"_ produces better results than _"Add a chart."_
 - **Review generated queries.** Always run and verify Copilot-generated KQL queries before saving the workbook. Adjust time ranges, filters, and aggregations as needed.
-- **Use describe before modify.** Ask Copilot to describe the workbook canvas before requesting updates. This ensures Copilot has accurate context about the current items.
+- **Use describe before modify.** Ask Copilot to describe the workbook canvas before requesting updates. This step ensures Copilot has accurate context about the current items.
 - **Set resource context.** Make sure the correct resource or resource group is selected in the workbook before asking Copilot to generate queries. Queries execute against the current resource context.
 
 ## Supported data sources
