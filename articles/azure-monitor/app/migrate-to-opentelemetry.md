@@ -136,11 +136,11 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 | 2.x dependency | Action | Remarks |
 |----------------|--------|---------|
 | `applicationinsights-core` | Update the version to `3.4.3` or later | |
-| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter your `web.xml` file. | |
+| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter from your `web.xml` file. | |
 | `applicationinsights-web-auto` | Replace with `3.4.3` or later of `applicationinsights-web` | |
-| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 1.2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | No longer needed since Logback is autoinstrumented in the 3.x Java agent. |
+| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 1.2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 1.2. |
+| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 2. |
+| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | Logback appender isn't needed since the 3.x Java agent autoinstruments Logback. |
 | `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [3.x configuration docs](./java-standalone-config.md#set-the-cloud-role-name). |
 
 ## Step 2: Add the 3.x Java agent
