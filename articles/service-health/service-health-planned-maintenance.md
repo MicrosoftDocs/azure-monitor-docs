@@ -121,7 +121,7 @@ The Impacted Resources tab displays information about any of your resources that
   - **Subscription ID** - The subscription that owns the resource.
   - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
-For more information about Impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
+For more information about impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
 
 
 ### Planned Maintenance FAQ
