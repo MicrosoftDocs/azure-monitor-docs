@@ -1,9 +1,10 @@
 ---
 title: Smart detection - performance anomalies | Microsoft Docs
 description: Smart detection analyzes your app telemetry and warns you of potential problems. This feature needs no setup.
-ms.reviewer: yagil
 ms.topic: how-to
-ms.date: 04/01/2024
+ms.reviewer: yagil
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # Smart detection - Performance Anomalies
