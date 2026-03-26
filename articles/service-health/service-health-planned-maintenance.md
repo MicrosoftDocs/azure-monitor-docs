@@ -130,7 +130,7 @@ For more information about impacted resources, see [Impacted Resources from Plan
 The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that provides visibility into upcoming maintenance activities that could affect your Azure resources. Here's how it happens and what best practices you should consider:
 
 1. What are the types of maintenance windows?
-    - **Self-Service Maintenance window**: Updates can be manually initiated within approximately 35 days.
+    - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
     - **Scheduled Maintenance window**: If not initiated, Azure Service Health automatically applies updates.
     - **Zero-Downtime Maintenance**: Azure limits disruption with live migration and cold starts.<br>
   
