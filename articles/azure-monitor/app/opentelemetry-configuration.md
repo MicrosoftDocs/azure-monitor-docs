@@ -155,7 +155,7 @@ Use one of the following three ways to configure the connection string:
 > 2. Environment Variable
 > 3. Configuration File
 
-If you have multiple applications deployed in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](java-standalone-config.md#connection-string-overrides-preview).
+If you deploy multiple applications in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](java-standalone-config.md#connection-string-overrides-preview).
 
 ### [Java native](#tab/java-native)
 
