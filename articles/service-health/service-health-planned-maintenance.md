@@ -112,7 +112,7 @@ The Issues Updates tab displays all information notifications by the date they w
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-resources.png":::
 
-The tab for Impacted Resources displays the following information about any of your resources that are affected. 
+The Impacted Resources tab displays information about any of your resources that are affected. 
 
   - **Resource Name** - The name of the impacted resource.
   - **Resource Type** - Type of Azure service (for example, Virtual Machine, App Service).
