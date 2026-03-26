@@ -158,7 +158,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 #### Summary 
 
 
-**Service health dashboard experience for Planned maintenance**
+**Service health dashboard experience for planned maintenance**
 
 We want to provide clarity on what customers can expect from the **Service Health (SH) dashboard** during planned maintenance events, and why functionality may vary across different events.
 
