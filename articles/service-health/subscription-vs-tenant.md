@@ -65,7 +65,7 @@ In the Service Health portal, you can filter and sort events by tenant or subscr
 
 For more information, refer to [Resource impact from Azure security advisories](impacted-resources-security.md).
 
->[!Note]
+>[!NOTE]
 > 
 >* Tenant-level events can't be seen within Subscription scope on UI. 
 >* Subscription-level events can't be seen at Tenant scope. Events published on Azure Service Health are mutually exclusive in view scope.
