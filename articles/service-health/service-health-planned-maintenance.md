@@ -185,7 +185,7 @@ For other planned maintenance events, you might see a limited Service Health exp
 From our perspective, full Service Health functionality for planned maintenance includes:
 - Automatically identified and continuously updated impacted resources.
 - Live status tracking throughout the maintenance lifecycle.
-- Resource‑level customer actionability links available for redirection where supported.
+- Resource-level customer actionability links available for redirection where supported.
 - Consistent behavior across the Service Health portal, APIs, and integrations.
 
 If one or more of these elements aren't available, the experience is considered **limited**, even though Service Health remains available and operational.
