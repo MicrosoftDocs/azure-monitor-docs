@@ -12,7 +12,7 @@ ms.date: 10/15/2024
 
 The workbooks preview includes new functionality, including a new dashboard mode.
 
-## Dashboard Mode
+## Dashboard mode
 
 The workbooks preview supports a new layout mode that behaves like many dashboarding tools.
 
@@ -28,7 +28,7 @@ Changing this setting changes the top level layout of the workbook. You can free
 
 This behavior is also available inside a Group item in a workbook; any group can be displayed in either workbook or dashboard layout.
 
-## Updated Visualizations
+## Updated visualizations
 
 All of the visualizations in the workbooks preview are built on new technology, so everything looks a bit different.
 
@@ -44,7 +44,7 @@ New chart features:
 
 Any new settings that might appear in the Workbooks preview may not work if you open a saved workbook in the legacy workbooks experience.
 
-## New Functionality
+## New functionality
 
 - New "Data Source" item - this new item available in the add menu allows you to add a data source that is never visible and has no visualization in view mode. It is only visible in the workbook while in edit mode. In legacy workbooks, it would be common to use a query item for this case, and then use conditional visibility to make it always hidden.
 
@@ -72,12 +72,12 @@ Any new settings that might appear in the Workbooks preview may not work if you 
 
 - Prometheus Data source editing includes completions for metrics, namespaces, etc.
 
-- When editing various items in edit mode, you can chose to split the editor horizontally. You can also expand the editor to be full screen.
+- When editing various items in edit mode, you can choose to split the editor horizontally. You can also expand the editor to be full screen.
 
 - Style options on items include new options for border styles, like dashed, rounded.
 - New options in grid columns let you sort / resize / move columns via context menu and keyboard
 
-## Preview Limitations
+## Preview limitations
 
 > [!NOTE]
 > The workbook preview doesn't have the full functionality of Workbooks. We're working every day to remove these limitations.
