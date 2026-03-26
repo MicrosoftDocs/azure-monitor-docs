@@ -124,7 +124,7 @@ The Impacted Resources tab displays information about any of your resources that
 For more information about impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
 
 
-### Planned Maintenance FAQ
+### Planned maintenance FAQ
 
 
 The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that provides visibility into upcoming maintenance activities that could affect your Azure resources. Here's how it happens and what best practices you should consider:
