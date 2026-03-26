@@ -454,7 +454,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 > [!NOTE]
 > * Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
 >
-> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](java-standalone-config.md#sampling-overrides).
+> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [Sampling overrides](java-standalone-config.md#sampling-overrides).
 
 **Fixed-percentage sampling**
 
