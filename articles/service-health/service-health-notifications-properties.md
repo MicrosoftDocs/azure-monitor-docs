@@ -2,34 +2,38 @@
 title: Azure Service Health notifications overview
 description: Service Health notifications allow you to view Service Health messages published by Microsoft Azure.
 ms.topic: concept-article
-ms.date: 03/17/2026
+ms.date: 03/25/2026
 
 ---
 
 # Service Health notifications
 
-Azure Service Health notifications are system-generated alerts that inform you about Azure service issues or events affecting your resources. They're recorded as part of your subscription’s [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) (which logs many events in Azure), and then shown in the Azure portal under [Azure Service Health](service-health-portal-update.md). In other words, whenever Azure needs to communicate something about service health (for example, an outage, upcoming maintenance, or account-specific alert), it creates a Service Health event in your Activity Log. 
+Azure Service Health notifications are system-generated alerts that inform you about Azure service problems or events that affect your resources. The subscription's [Azure Activity Log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics) records these notifications as part of logging many events in Azure. The Azure portal then displays them under [Azure Service Health](service-health-portal-update.md).
 
-Depending on the notification’s type, it could be purely informational or indicate an issue that requires you to act. For more information, see [View Service Health notifications](service-health-notifications-properties.md).
+When Azure needs to communicate something about service health, such as an outage, upcoming maintenance, or account-specific alert, it creates a Service Health event in your Activity Log.
+
+Depending on the notification type, it can be purely informational or indicate a problem that requires your action.
 
  :::image type="content"source="./media/service-health-notifications/service-health-notifications-main.png"alt-text="Screenshot of service health notification history pane." lightbox="./media/service-health-notifications/service-health-notifications-main.png":::
 
-For information on how long Service Health notifications stay active in the portal see [Service Health data transitions](service-health-notification-transitions.md).
+For information on how long Service Health notifications stay active in the portal, see [Service Health data transitions](service-health-notification-transitions.md).
 
 ## View Service Health notifications
-Once logged into Azure, you can access Service Health notifications in one of three ways:
+After you sign in to Azure, access Service Health notifications in one of three ways:
 
-- **Azure portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard showing any active notifications for your subscriptions. The notifications are organized into the categories corresponding to the types (Incidents, Maintenance, etc.), and there’s also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details (impact, status updates, resolution, etc.). See [Azure Service Health Portal](service-health-portal-update.md).  
+- **Azure portal – Service Health**: In the Azure portal, select Service Health to open a personalized dashboard that shows any active notifications for your subscriptions. The dashboard organizes the notifications into categories that correspond to the types of notifications, such as Incidents and Maintenance. There's also a Health history section for past events. For example, active service outages are listed under Incidents, planned maintenance under Maintenance, and so on. From this interface, you can select a notification to read its details, including impact, status updates, and resolution. See [Azure Service Health Portal](service-health-portal-update.md).  
 
 - **Azure portal – Activity Log**: In the Azure portal, open the activity log to view notifications that contain more detailed information, but only under specific conditions. 
-    - Service Health events appear in the Activity Log when they're subscription-scoped (for example, service issues, planned maintenance, health advisories).
-    - Emerging Issues don't show up because they're global and not tied to a subscription.<br>
+    - Service Health events appear in the Activity Log when they're subscription-scoped, such as service problems, planned maintenance, and health advisories.
+    - Emerging Issues don't appear when they're global and not tied to a subscription.<br>
 For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log). 
 
-- **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, Short Message Service (SMS), etc.) when new Service Health events occur. For instance, you might create an alert to get an email whenever there’s a new Incident or a Security advisory. This way you don’t have to constantly check the portal; Azure proactively sends you a notification through your chosen channel. For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
+- **Alerts**: Within the Service Health portal pane, you can also set up Activity Log alerts to notify you (via email, Short Message Service (SMS), and more) when new Service Health events occur. For instance, you might create an alert to get an email whenever there's a new Incident or a Security advisory. This way you don't have to constantly check the portal, as Azure proactively sends you a notification through your chosen channel. 
+
+For more information on how to create alerts, see [Create Service Health Alerts](alerts-activity-log-service-notifications-portal.md).
 
 
-- **Programmatic Access**: Because the Service health notification are from Activity Log events, you can retrieve them using Azure’s APIs or command-line tools. Azure also provides Resource Graph queries to list service health events across resources. This programmatic access is helpful for integration with external systems or dashboards.<br> 
+- **Programmatic Access**: Because the Service health notification are from Activity Log events, you can retrieve them by using Azure APIs or command-line tools. Azure also provides Resource Graph queries to list service health events across resources. This programmatic access is helpful for integration with external systems or dashboards.<br> 
 
 For information about using Azure Resource Graph (ARG) queries to create reports on your Service health notifications, see [Resource graph sample queries](resource-graph-samples.md). This document provides guidance on how to utilize the available queries.
 
@@ -41,22 +45,34 @@ To help you stay ahead of potential disruptions, Azure categorizes service healt
 
 Here’s a breakdown of each notification type, what it means, and how you can access and retain these updates.
 
-- **Action required** – *Actionable*. Azure detected something unusual or important in your subscription that needs your attention or intervention. For example, Azure could detect something that needs your attention—like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> 
+- **Action required** – *Actionable*
+ 
+    Azure detected something unusual or important in your subscription that needs your attention or intervention. For example, Azure could detect something that needs your attention, like a configuration problem or an upcoming change that could affect your service. When that happens, Azure sends you a notification explaining what’s happening and provides clear steps you can take to fix it or how to reach support for help. The notifications are proactively issued to prevent or fix potential problems.<br> 
 *The notifications often appear in the Service Health portal under Health Advisories.* 
 
-- **Incident** - *Informational (urgent service issue)*. This type represents a service outage or degradation (an unplanned event) that is currently affecting one or more of your Azure resources. Essentially, an Incident notification means Azure is experiencing a problem (for example, a data center issue) that impacts you. The notification describes the issue and keeps you updated on its status. While labeled informational, Incidents are critical to know about; you usually don’t fix them, but you might activate your contingency plans.<br>
+- **Incident** - *Informational (urgent service issue)* 
+ 
+    This type represents a service outage or degradation (an unplanned event) that is currently affecting one or more of your Azure resources. Essentially, an Incident notification means Azure is experiencing a problem (for example, a data center issue) that impacts you. The notification describes the issue and keeps you updated on its status. While labeled informational, Incidents are critical to know about; you usually don’t fix them, but you might activate your contingency plans.<br>
 *You typically see them under the Service Issues pane for active outages.*
 
-- **Maintenance** – *Informational (scheduled event)*. This type is for planned maintenance activities that might affect your resources. Azure uses these notifications to inform you of upcoming maintenance windows, such as infrastructure upgrades or patches that could cause a brief downtime or performance impact. The notification includes the schedule and scope of the maintenance so you can prepare.<br>
+- **Maintenance** – *Informational (scheduled event)* 
+
+    This type is for planned maintenance activities that might affect your resources. Azure uses these notifications to inform you of upcoming maintenance windows, such as infrastructure upgrades or patches that could cause a brief downtime or performance impact. The notification includes the schedule and scope of the maintenance so you can prepare.<br>
 *Maintenance notifications appear in the Planned Maintenance pane in the portal.* 
 
-- **Information** – *Informational (advisory)*. These notifications are health advisories or suggestions that don’t require action, but provide useful information to optimize or improve your use of Azure. For example, Azure might send an informational notice about best practices or a heads-up about a non-urgent issue. In general, an Information type notification highlights potential optimizations or minor issues that don't directly impact service availability.<br>
+- **Information** – *Informational (advisory)* 
+
+    These notifications are health advisories or suggestions that don’t require action, but provide useful information to optimize or improve your use of Azure. For example, Azure might send an informational notice about best practices or a heads-up about a non-urgent issue. In general, an Information type notification highlights potential optimizations or minor issues that don't directly impact service availability.<br>
 *These notifications also show in under Health Advisories pane.*
 
-- **Security** – *Actionable or informational (security-related)*. Security notifications warn you of urgent security issues or advisories related to your Azure resources or Azure services. For instance, if there’s a security vulnerability affecting an Azure service you’re using, or a configuration that exposes a security risk, Azure issues a Security advisory. Some security notifications might require you to act (for example, apply a patch or update your settings) while others might just inform you of a potential threat or fix.<br>
+- **Security** – *Actionable or informational (security-related)*. 
+
+    Security notifications warn you of urgent security issues or advisories related to your Azure resources or Azure services. For instance, if there’s a security vulnerability affecting an Azure service you’re using, or a configuration that exposes a security risk, Azure issues a Security advisory. Some security notifications might require you to act (for example, apply a patch or update your settings) while others might just inform you of a potential threat or fix.<br>
 *These notifications are found in Security advisories pane in the portal.*
 
-- **Billing** – *Informational (account notices)*. These notifications provide information about billing or subscription changes. They might notify subscription owners/contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure—if there’s a billing issue, you’d contact support or check your billing settings.<br>
+- **Billing** – *Informational (account notices)*
+    
+    These notifications provide information about billing or subscription changes. They might notify subscription owners or contributors about things like upcoming billing updates, credit expiration, or other billing-related issues. Billing notifications are purely informational. You don't fix anything in Azure - if there’s a billing issue, you’d contact support or check your billing settings.<br>
 *These notifications are shown in the Billing updates pane*.
 
 <!--
