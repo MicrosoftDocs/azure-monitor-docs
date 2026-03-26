@@ -15,7 +15,7 @@ When an organization signs up for Microsoft cloud services, Microsoft creates a 
 
 Some events or issues can affect the entire organization. These events are called **tenant-level events**, and the Azure Service Health portal shows them.
 
-Tenant admin access means having special permissions to manage the organization’s setup. People with these permissions, such as Global Administrators,  Application Administrator, and others can add or manage users, control access, and see organization-wide service health updates. Regular users do not see this information.
+Tenant admin access means having special permissions to manage the organization's setup. People with these permissions, such as Global Administrators, Application Administrator, and others, can add or manage users, control access, and see organization-wide service health updates. Regular users don't see this information.
 
 
 For more information about Tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
