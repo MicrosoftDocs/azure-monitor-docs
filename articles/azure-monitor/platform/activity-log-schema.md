@@ -149,7 +149,7 @@ This category contains the record of all create, update, delete, and action oper
 | eventDataId | Unique identifier of an event. |
 | eventName | Friendly name of the Administrative event. |
 | category | Always `Administrative` |
-| httpRequest | Blob describing the Http Request. Usually includes the `clientRequestId`, `clientIpAddress` and `method` (HTTP method. For example, PUT). |
+| httpRequest | Blob describing the Http Request. Usually includes the `clientRequestId`, `clientIpAddress` and `method` (HTTP method. For example, PUT). This property isn't included when you view an event in the Azure portal since raw HTTP request details may include sensitive information. |
 | level | [Severity level](#severity-level) of the event. |
 | resourceGroupName | Name of the resource group for the impacted resource. |
 | resourceProviderName | Name of the resource provider for the impacted resource |
