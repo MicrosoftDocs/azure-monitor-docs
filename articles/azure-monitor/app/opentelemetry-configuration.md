@@ -425,7 +425,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
-### Configure sampling using environment variables
+### Configure sampling by using environment variables
 
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument. For more information about OpenTelemetry sampler types, see [OTEL_TRACES_SAMPLER](https://opentelemetry.io/docs/languages/sdk-configuration/general/#otel_traces_sampler).
 
