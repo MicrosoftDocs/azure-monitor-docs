@@ -146,7 +146,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - trackingId
     - status
     
-4. Can I automate maintenance tracking?<br>
+1. Can I automate maintenance tracking?<br>
   Yes, you can use:
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
