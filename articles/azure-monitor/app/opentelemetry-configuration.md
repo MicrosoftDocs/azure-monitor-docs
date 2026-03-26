@@ -734,7 +734,7 @@ This example shows how to set the sampling to capture at most (approximately) on
 
 The `requestsPerSecond` value can be a decimal, so you can configure it to capture less than one request per second if you want. For example, a value of `0.5` means capture at most one request every 2 seconds.
 
-You can also set the sampling percentage by using the environment variable. It then takes precedence over the rate limit specified in the JSON configuration.
+Set the sampling percentage by using the environment variable. It takes precedence over the rate limit specified in the JSON configuration.
 
 # [Java native](#tab/java-native)
 
