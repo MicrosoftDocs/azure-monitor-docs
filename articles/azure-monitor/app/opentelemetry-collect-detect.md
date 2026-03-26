@@ -250,36 +250,30 @@ To reduce or increase the number of logs that Azure Monitor collects, first set 
 Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
 
 ```typescript
-export class BunyanInstrumentationSample {
-  static async run() {
-    // Dynamically import Azure Monitor and Bunyan
-    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-    const bunyanMod = await import("bunyan");
-    const bunyan = (bunyanMod as any).default ?? bunyanMod;
+import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
+import bunyan from "bunyan";
 
-    // Enable Azure Monitor integration and bunyan instrumentation
-    const options = {
-      instrumentationOptions: {
-        bunyan: { enabled: true },
-      },
-    };
+// Call useAzureMonitor before importing other libraries
+const options: AzureMonitorOpenTelemetryOptions = {
+  azureMonitorExporterOptions: {
+    connectionString:
+      process.env.APPLICATIONINSIGHTS_CONNECTION_STRING ||
+      "<your-connection-string>",
+  },
+  // Bunyan is disabled by default — explicitly enable it
+  instrumentationOptions: {
+    bunyan: { enabled: true },
+  },
+};
 
-    const monitor = useAzureMonitor(options);
+useAzureMonitor(options);
 
-    // Emit a test log entry
-    const log = (bunyan as any).createLogger({ name: "testApp" });
-    log.info(
-      {
-        testAttribute1: "testValue1",
-        testAttribute2: "testValue2",
-        testAttribute3: "testValue3",
-      },
-      "testEvent"
-    );
+// Create a bunyan logger as usual logs are automatically captured
+const logger = bunyan.createLogger({ name: "my-app" });
 
-    console.log("Bunyan log emitted");
-  }
-}
+logger.info("Application started");
+logger.warn({ requestId: "abc-123" }, "Slow response detected");
+logger.error(new Error("Something failed"), "Unhandled error");
 ```
 
 #### [Python](#tab/python)
