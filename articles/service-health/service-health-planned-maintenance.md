@@ -194,7 +194,7 @@ If one or more of these elements aren't available, the experience is considered 
 **Service health commitment**<br>
 Service Health continues to meet its **availability** and **notification commitments** for all planned maintenance events. 
 
-Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface (Portal UI) or programmatic access (API). We're actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
+Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface (Portal UI) or programmatic access (API). Microsoft is actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
 
 
 
