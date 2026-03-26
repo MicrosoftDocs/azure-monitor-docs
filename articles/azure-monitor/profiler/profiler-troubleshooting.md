@@ -124,7 +124,7 @@ For the .NET Profiler to work properly, make sure:
 
   1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
 
-     1. In your App Service instance, select **Advanced Tools** on the left pane.
+     1. In your App Service instance, select **Advanced Tools** in the left pane.
      1. Select **Go**.
 
   1. On the top menu, select **Tools** > **WebJobs dashboard**. The **WebJobs** pane opens.
@@ -221,7 +221,7 @@ To see whether the .NET Profiler is configured correctly by Azure Diagnostics:
 
 1. Make sure Azure Diagnostics passes the proper iKey on the Profiler command line.
 
-1. Check the Profiler log file to see whether the .NET Profiler ran but returned an error.
+1. Review the Profiler log file to see if the .NET Profiler ran but returned an error.
 
 To check the settings used to configure Azure Diagnostics:
 
@@ -233,7 +233,7 @@ To check the settings used to configure Azure Diagnostics:
    c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
    ```
 
-1. In the file, search for the string `WadCfg` to find the settings that Azure Diagnostics passes to the virtual machine to configure Azure Diagnostics.
+1. Search the file for the string `WadCfg` to find the settings that Azure Diagnostics passes to the virtual machine to configure Azure Diagnostics.
 
 1. Verify that the iKey used by the .NET Profiler sink is correct.
 
