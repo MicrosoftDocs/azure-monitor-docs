@@ -138,7 +138,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - Monitor the Planned Maintenance pane regularly.
     - Use the Resources tab to identify the affected services.<br>
     
-3. What metadata is available for maintenance events?<br>
+1. What metadata is available for maintenance events?<br>
   These key fields help you assess the scope, timing, and severity of the events.
     - impactType
     - impactMitigationTime
