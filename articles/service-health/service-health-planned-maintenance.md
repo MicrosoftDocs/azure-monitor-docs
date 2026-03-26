@@ -163,7 +163,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 We want to provide clarity on what customers can expect from the **Service Health (SH) dashboard** during planned maintenance events, and why functionality may vary across different events.
 
 **Service health dashboard capabilities**<br>
-Service Health is designed to be the **authoritative place** for customers to understand maintenance events, assess impact, and be redirected to take action where applicable. For some planned maintenance events, customers will see the **full Service Health experience**, which includes:
+Service Health is designed to be the **authoritative place** for you to understand maintenance events, assess impact, and be redirected to take action where applicable. For some planned maintenance events, you see the **full Service Health experience**, which includes:
   - **Dynamic impacted resources on page refresh**<br>
     A live, automatically updated list of impacted resources as maintenance progresses and completes on each page refresh.
   - **Live status updates**<br>
