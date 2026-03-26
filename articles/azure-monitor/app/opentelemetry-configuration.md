@@ -747,7 +747,7 @@ You can also set the sampling percentage by using the environment variable. It t
 # [Python](#tab/python)
 
 > [!TIP]
-> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+> When using fixed-percentage sampling and you're not sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 
 ---
 
