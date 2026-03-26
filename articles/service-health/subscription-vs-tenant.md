@@ -52,7 +52,7 @@ In Azure Service Health, subscription access allows users to view and manage var
 * Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure Activity Logs.
     
 **Role-Based Access Control (RBAC)**<br>
-* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security advisories](impacted-resources-security.md).
+* Manage subscription access through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security advisories](impacted-resources-security.md).
     
 **Filtering and Sorting Events** <br>
 * In the Service Health portal, users can filter and sort events by subscription scope. These filters allow them to see service issues, health advisories, security advisories, and health history at the subscription level. See [Azure Service Health Portal](service-health-portal-update.md).
