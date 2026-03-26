@@ -20,7 +20,7 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 
 - You need at least [Contributor](/azure/role-based-access-control/built-in-roles#privileged) access to the cluster for onboarding.
 - To link an Azure Monitor Workspace with an existing Managed Grafana workspace as part of onboarding, you need either [Owner](/azure/role-based-access-control/built-in-roles#privileged) access or at least [Contributor](/azure/role-based-access-control/built-in-roles#privileged) and [User Access Administrator](/azure/role-based-access-control/built-in-roles#privileged) roles.
-- You require [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) to view data after monitoring is enabled.
+- You need [Monitoring Reader](../roles-permissions-security.md#monitoring-reader) or [Monitoring Contributor](../roles-permissions-security.md#monitoring-contributor) roles to view data after monitoring is enabled.
 
 > [!IMPORTANT]
 > If your clusters are going to connect to the Azure Monitor workspace or Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
