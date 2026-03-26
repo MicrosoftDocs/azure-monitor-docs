@@ -30,7 +30,8 @@ The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes
 In a typical deployment:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster.
-- Clients send Syslog or OpenTelemetry Protocol (OTLP) data to the pipeline.
+- Clients send Syslog (including CEF) data to the pipeline.
+- (Preview) Clients send OpenTelemetry Protocol (OTLP) data to the pipeline.
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.

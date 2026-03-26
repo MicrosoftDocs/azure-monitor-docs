@@ -913,6 +913,8 @@ items:
           href: data-collection/pipeline-tls-automated.md
         - name: Customer-managed certificates (BYOC)
           href: data-collection/pipeline-tls-custom.md
+      - name: Sizing best practices
+        href: data-collection/pipeline-sizing.md
       - name: Pod placement
         href: data-collection/pipeline-pod-placement.md
       - name: Extension versions
