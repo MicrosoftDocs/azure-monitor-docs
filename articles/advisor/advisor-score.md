@@ -40,7 +40,7 @@ On **Advisor | Advisor score**, see the percentages for your overall Advisor sco
 
 Advisor displays your overall Advisor score and a breakdown for Advisor categories, in percentages. A score of 100% in any category means all your resources assessed by Advisor follow the industry best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources assessed by Advisor follow the Advisor recommendations. Score is only provided for resources assessed by Advisor. While Advisor attempts to scan your entire workload and all the resources, a chance always exists that no recommendation is available for a few of your resources. If a resource has no available recommendations, the resource contributes nothing to the score. To easily achieve the following flow, use the grains of the score.
 
-*   Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
+*   The Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
 
 *   Score calculation is dependent on the recommendations under each category. The overall score is calculated as the average of the contributions from all categories. 
 
