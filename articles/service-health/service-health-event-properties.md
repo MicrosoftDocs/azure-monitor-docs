@@ -14,7 +14,7 @@ Azure Service Health notifications include different data properties depending o
 
 Each type of notification serves a specific purpose and comes with its own metadata. This metadata helps you understand what's happening to your resources and what level of attention the issue requires.
 
-**Event** types describe the broad category of the issue Azure is reporting. 
+**Event** types describe the broad category of the issue that Azure is reporting.
 
 **Incident** types add the specific context such as whether it’s a platform‑initiated outage, a scheduled maintenance update, or an advisory that might require action. 
 
