@@ -105,14 +105,14 @@ The **Cost** category score is calculated by using the individual subscription s
 
 ### Score methodology for Reliability, Performance, and Operational Excellence categories
 
-Scoring for the three categories is driven by their respective subcategories. Each subcategory is assigned a fixed weight in the overall calculation.
+Scoring for the three categories is driven by their respective subcategories. Each subcategory is assigned a fixed weight, which contibutes to category score calculation.
 
 #### Subcategory defined
 
 A subcategory is a logical grouping of recommendations mapped to each WAF pillar. Each subcategory has a fixed weight assigned. A subcategory is the fundamental basis of score calculation at the category level.
 
 #### Subcategory score calculation
-The subcategory score is calculated using percentage of healthy resources and maximum score.
+The subcategory score is calculated using percentage of healthy resources.
 
 ```math
 Subcategory Score = (Healthy Resources /  Total Applicable Resources) * 100
