@@ -18,7 +18,7 @@ Some events or issues can affect the entire organization. These events are calle
 Tenant admin access means having special permissions to manage the organization's setup. People with these permissions, such as Global Administrators, Application Administrator, and others, can add or manage users, control access, and see organization-wide service health updates. Regular users don't see this information.
 
 
-For more information about Tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
+For more information about tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
 
 To create a tenant account in Service Health, follow these steps:
 1.	**Sign in to the Azure portal**: Go to the Azure portal and sign in with your credentials.
