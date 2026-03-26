@@ -22,7 +22,8 @@ In this article, you:
 
 [!INCLUDE [application-insights-sdk-support-policy](../app/includes/application-insights-sdk-support-policy.md)]
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](../app/includes/azure-monitor-app-insights-otel-available-notification.md)]
+> [!CAUTION]
+> For new applications, use the [Azure Monitor OpenTelemetry Distro](../app/opentelemetry-enable.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate to an OpenTelemetry based offering, review the [migration guidance](../app/migrate-to-opentelemetry.md).
 
 ## Prerequisites
 
@@ -286,7 +287,7 @@ You have three options to add Application Insights to your web app. Expand the o
 
 # [OpenTelemetry Profiler](#tab/otel)
 
-If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-help-support-feedback.md).
+If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-enable.md#troubleshooting).
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 

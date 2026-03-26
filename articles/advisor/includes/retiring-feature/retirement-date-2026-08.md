@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -11,4 +11,3 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Cognitive Service | v2.0 API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-

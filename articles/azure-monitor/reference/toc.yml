@@ -1470,6 +1470,8 @@ items:
             href: tables/microsoft-media_mediaservices.md
           - name: microsoft.monitor/accounts
             href: tables/microsoft-monitor_accounts.md
+          - name: microsoft.monitor/pipelinegroups
+            href: tables/microsoft-monitor_pipelinegroups.md
           - name: microsoft.network/applicationgateways
             href: tables/microsoft-network_applicationgateways.md
           - name: microsoft.network/azurefirewalls
@@ -2209,6 +2211,8 @@ items:
             href: tables/azuremetrics.md
           - name: AzureMetricsV2
             href: tables/azuremetricsv2.md
+          - name: AzureMonitorPipelineLogErrors
+            href: tables/azuremonitorpipelinelogerrors.md
           - name: BehaviorAnalytics
             href: tables/behavioranalytics.md
           - name: BehaviorEntities
@@ -2867,6 +2871,8 @@ items:
             href: tables/ncbmsystemlogs.md
           - name: NCCIDRACLogs
             href: tables/nccidraclogs.md
+          - name: NCCKubernetesAPIAuditLogs
+            href: tables/ncckubernetesapiauditlogs.md
           - name: NCCKubernetesLogs
             href: tables/ncckuberneteslogs.md
           - name: NCCPlatformOperationsLogs
@@ -3017,6 +3023,10 @@ items:
             href: tables/qualysknowledgebase.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
+          - name: Rapid7InsightVMCloudAssets
+            href: tables/rapid7insightvmcloudassets.md
+          - name: Rapid7InsightVMCloudVulnerabilities
+            href: tables/rapid7insightvmcloudvulnerabilities.md
           - name: RemoteNetworkHealthLogs
             href: tables/remotenetworkhealthlogs.md
           - name: ResourceManagementPublicAccessLogs
@@ -3627,6 +3637,8 @@ items:
             href: queries/AzureLoadTestingOperation.md
           - name: AzureMetrics
             href: queries/AzureMetrics.md
+          - name: AzureMonitorPipelineLogErrors
+            href: queries/AzureMonitorPipelineLogErrors.md
           - name: CCFApplicationLogs
             href: queries/CCFApplicationLogs.md
           - name: CIEventsAudit
@@ -3735,6 +3747,8 @@ items:
             href: queries/EGNSuccessfulMqttConnections.md
           - name: EdgeActionConsoleLog
             href: queries/EdgeActionConsoleLog.md
+          - name: EdgeActionServiceLog
+            href: queries/EdgeActionServiceLog.md
           - name: EmailAttachmentInfo
             href: queries/EmailAttachmentInfo.md
           - name: EmailEvents
@@ -3807,6 +3821,8 @@ items:
             href: queries/MySqlAuditLogs.md
           - name: MySqlSlowLogs
             href: queries/MySqlSlowLogs.md
+          - name: NCCKubernetesAPIAuditLogs
+            href: queries/NCCKubernetesAPIAuditLogs.md
           - name: NGXOperationLogs
             href: queries/NGXOperationLogs.md
           - name: NGXSecurityLogs
@@ -3883,6 +3899,10 @@ items:
             href: queries/QualysKnowledgeBase.md
           - name: REDConnectionEvents
             href: queries/REDConnectionEvents.md
+          - name: Rapid7InsightVMCloudAssets
+            href: queries/Rapid7InsightVMCloudAssets.md
+          - name: Rapid7InsightVMCloudVulnerabilities
+            href: queries/Rapid7InsightVMCloudVulnerabilities.md
           - name: ResourceManagementPublicAccessLogs
             href: queries/ResourceManagementPublicAccessLogs.md
           - name: RetinaNetworkFlowLogs
@@ -3917,6 +3937,8 @@ items:
             href: queries/StorageCacheWarningEvents.md
           - name: StorageMalwareScanningResults
             href: queries/StorageMalwareScanningResults.md
+          - name: StorageMoverCopyLogsTransferred
+            href: queries/StorageMoverCopyLogsTransferred.md
           - name: SucceededIngestion
             href: queries/SucceededIngestion.md
           - name: SynapseLinkEvent

@@ -2,9 +2,8 @@
 title: How to update alert rules or alert processing rules when their target resource moves to a different Azure region
 description: Background and instructions for how to update alert rules or alert processing rules when their target resource moves to a different Azure region. 
 ms.topic: how-to
-ms.custom: subject-moving-resources
-ms.date: 06/19/2024
-ms.reviewer: 
+ms.date: 04/24/2026
+ms.custom: references_regions, subject-moving-resources
 ---
 
 # Update alert rules or alert processing rules when their target resource moves to a different Azure region

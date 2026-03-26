@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -107,9 +107,10 @@ For more information, see [Configure policy-based backups for Azure NetApp Files
 
 ResourceType: microsoft.netapp/netappaccounts  
 Recommendation ID: c70fc854-2814-4b03-9b93-8ad7b918bfcf  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_end-->
+
 
 
 

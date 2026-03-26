@@ -8,7 +8,7 @@ ms.date: 05/05/2025
 
 # VM Insights Map and Dependency Agent retirement guidance
 
-The VM Insights Map feature and the Dependency Agent will be retired on 30 June 2028 and no longer be supported. The following article calls out impacted functionality, provides guidance for offboarding and lists out key dates.
+The VM Insights Map feature and the Dependency Agent has been deprecated and will be retired on 30 June 2028 and no longer be supported. The following article calls out impacted functionality, provides guidance for offboarding and lists out key dates.
 
 ## Customer impact
 

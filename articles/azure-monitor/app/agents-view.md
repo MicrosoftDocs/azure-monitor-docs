@@ -2,12 +2,12 @@
 title: Monitor AI Agents with Application Insights
 description: Learn how to monitor AI agents across multiple sources with Application Insights for performance tracking and troubleshooting.
 ms.topic: overview
-ms.date: 11/11/2025
+ms.date: 03/05/2026
 ---
 
 # Monitor AI agents with Application Insights
 
-The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
+The **Agent details** view in Application Insights provides a unified experience for monitoring AI agents across multiple sources, including [Microsoft Foundry](/azure/ai-foundry/what-is-azure-ai-foundry), [Copilot Studio](/microsoft-copilot-studio/fundamentals-what-is-copilot-studio), and third-party agents.
 
 This feature consolidates telemetry and diagnostics, enabling customers to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
 
@@ -16,7 +16,7 @@ This feature consolidates telemetry and diagnostics, enabling customers to track
 
 ## Prerequisites
 
-Before you can use the Agents details view, you need to [implement AI agent data collection](opentelemetry-overview.md).
+Before you can use the Agents details view, you need to [implement AI agent data collection](app-insights-overview.md?tabs=agents#getting-started).
 
 ## Monitor your AI agents
 
@@ -30,7 +30,7 @@ Once telemetry is flowing to Application Insights:
     :::image type="content" source="media/agents-view/agent-details-goto.png" lightbox="media/agents-view/agent-details-goto.png" alt-text="A screenshot showing how to get to the Agent details experience.":::
 
 > [!NOTE]
-> You can also get to the Agent details view from AI Foundry. From your agent, go to the **Monitoring** tab, then select **View in Azure Monitor**.
+> You can also get to the Agent details view from Foundry. From your agent, go to the **Monitoring** tab, then select **View in Azure Monitor**.
 
 ### Investigate traces
 
@@ -60,7 +60,7 @@ To drill into specific agent runs:
 
 The end-to-end transaction details now offer a **simple view**. This view shows agent steps in a clear, story-like fashion, including the invoked agent, underlying large language model (LLM), executed tools, and more.
 
-Simple view allows you to quickly find the relevant telemetry and transition to Azure AI Foundry or other tools to make the necessary changes.
+Simple view allows you to quickly find the relevant telemetry and transition to Foundry or other tools to make the necessary changes.
 
 > [!NOTE]
 > To return to the traditional view, select **Leave simple view** in the top action bar.
@@ -77,7 +77,7 @@ Azure Monitor includes prebuilt Grafana dashboards designed for Gen AI monitorin
 
 * **Agent Framework -** Monitor agent execution and performance
 * **Agent Framework workflow -** Track agent workflow patterns and dependencies
-* **AI Foundry -** Visualize AI Foundry-specific metrics and telemetry
+* **Foundry -** Visualize Foundry-specific metrics and telemetry
 
 :::image type="content" source="media/agents-view/grafana-monitoring-agents.png" lightbox="media/agents-view/grafana-monitoring-agents.png" alt-text="A screenshot showing Grafana dashboard when monitoring AI agents.":::
 

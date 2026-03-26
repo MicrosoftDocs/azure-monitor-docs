@@ -91,7 +91,7 @@ Azure Monitor automatically stamps the following dimensions on metrics ingested 
 | Dimension | Description | Example Value |
 |-----------|-------------|---------------|
 | `Microsoft.resourceid` | Full resource ID | `/subscriptions/.../virtualMachines/vm-01` |
-| `Microsoft.subscriptionid` | Subscription GUID | `12345678-1234-1234-1234-123456789012` |
+| `Microsoft.subscriptionid` | Subscription GUID | `aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e` |
 | `Microsoft.resourcegroupname` | Resource group name | `production-rg` |
 | `Microsoft.resourcetype` | Resource type | `Microsoft.Compute/virtualMachines` |
 | `Microsoft.amwresourceid` | Workspace storing the metric | `/subscriptions/.../providers/Microsoft.Monitor/accounts/my-amw` |
@@ -113,7 +113,7 @@ Azure Monitor automatically stamps the following dimensions on metrics ingested 
 curl -X GET \
   'https://query.eastus.prometheus.monitor.azure.com/api/v1/query?query=avg({"system.cpu.utilization"})+by+("Microsoft.resourceid")' \
   -H 'Authorization: Bearer <token>' \
-  -H 'x-ms-azure-scoping: /subscriptions/12345678-1234-1234-1234-123456789012/resourceGroups/prod-rg/providers/Microsoft.Compute/virtualMachines/vm-01'
+  -H 'x-ms-azure-scoping: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/prod-rg/providers/Microsoft.Compute/virtualMachines/vm-01'
 ```
 
 ### Resource group scope
@@ -125,7 +125,7 @@ avg({"system.cpu.utilization"}) by ("Microsoft.resourceid")
 
 With header:
 ```
-x-ms-azure-scoping: /subscriptions/12345678-1234-1234-1234-123456789012/resourceGroups/prod-rg
+x-ms-azure-scoping: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/prod-rg
 ```
 
 ### Subscription scope with filtering
@@ -140,7 +140,7 @@ avg({"system.cpu.utilization"}) by ("Microsoft.resourceid")
 
 With header:
 ```
-x-ms-azure-scoping: /subscriptions/12345678-1234-1234-1234-123456789012
+x-ms-azure-scoping: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 ```
 
 ### Using with Grafana

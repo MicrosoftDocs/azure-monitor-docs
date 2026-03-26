@@ -2,7 +2,7 @@
 title: Azure Service Health notifications data overview
 description: An overview of Service Health notifications data properties
 ms.topic: concept-article
-ms.date: 02/24/2026
+ms.date: 03/17/2026
 
 ---
 
@@ -122,7 +122,7 @@ Service Health event type (`properties.incidentType`)
  ## For more information
 
 - [Service Health Frequently asked Questions](service-health-faq.yml)
-- [View Service Health notifications from the portal](service-notifications.md)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
 - [View and access Security advisories](security-advisories-elevated-access.md)
 - [Service Health event tags](service-health-event-tags.md)
 - [Service Health data transitions](service-health-notification-transitions.md)

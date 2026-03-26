@@ -11,10 +11,10 @@ ms.date: 08/29/2025
 
 A Log Analytics workspace is a data store into which you can collect any type of log data from all of your Azure and non-Azure resources and applications. Workspace configuration options let you manage all of your log data in one workspace to meet the operations, analysis, and auditing needs of different personas in your organization through: 
 
-- Azure Monitor features, such as built-in [insights experiences](../insights/insights-overview.md), [alerts](../alerts/alerts-create-log-alert-rule.md), and [automatic actions](../autoscale/autoscale-overview.md)
-- Other Azure services, such as [Microsoft Sentinel](/azure/sentinel/overview), [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), and [Logic Apps](/azure/connectors/connectors-azure-monitor-logs)
-- Microsoft tools, such as [Power BI](log-powerbi.md) and [Excel](log-excel.md)
-- Integration with custom and third-party applications
+* Azure Monitor features, such as built-in [insights experiences](../insights/insights-overview.md), [alerts](../alerts/alerts-create-log-alert-rule.md), and [automatic actions](../autoscale/autoscale-overview.md)
+* Other Azure services, such as [Microsoft Sentinel](/azure/sentinel/overview), [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), and [Logic Apps](/azure/connectors/connectors-azure-monitor-logs)
+* Microsoft tools, such as [Power BI](log-powerbi.md) and [Excel](log-excel.md)
+* Integration with custom and third-party applications
 
 This article provides an overview of concepts related to Log Analytics workspaces.
 
@@ -30,7 +30,6 @@ Azure Monitor Logs automatically creates tables required to store monitoring dat
 Table management settings let you control access to specific tables, and manage the data model, retention, and cost of data in each table. For more information, see [Manage tables in a Log Analytics workspace](manage-logs-tables.md). 
 
 :::image type="content" source="media/data-platform-logs/logs-structure.png" lightbox="media/data-platform-logs/logs-structure.png" alt-text="Diagram that shows the Azure Monitor Logs structure.":::
-
 
 ## Data retention
 
@@ -62,6 +61,9 @@ For more information, see [Manage access to log data and workspaces in Azure Mon
 
 For example, you might have [diagnostic settings](../essentials/diagnostic-settings.md) that send [resource logs](../essentials/resource-logs.md) for different Azure resources to your workspace. You can create a transformation for the table that collects the resource logs that filters this data for only records that you want. This method saves you the ingestion cost for records you don't need. You might also want to extract important data from certain columns and store it in other columns in the workspace to support simpler queries.
 
+> [!NOTE]
+> Not all tables in a Log Analytics workspace support transformations. See [Tables that support transformations in Azure Monitor Logs](tables-feature-support.md) for a list of supported tables.
+
 ## Cost
 
 There's no direct cost for creating or maintaining a workspace. You're charged for the data you ingest into the workspace and for data retention, based on each table's [table plan](data-platform-logs.md#table-plans).
@@ -74,9 +76,8 @@ You can use a single workspace for all your data collection. However, you can al
 
 For considerations related to creating multiple workspaces, see [Design a Log Analytics workspace configuration](./workspace-design.md).
 
-
 ## Next steps
 
-- [Create a new Log Analytics workspace](quick-create-workspace.md).
-- See [Design a Log Analytics workspace configuration](workspace-design.md) for considerations on creating multiple workspaces.
-- [Learn about log queries to retrieve and analyze data from a Log Analytics workspace](./log-query-overview.md).
+* [Create a new Log Analytics workspace](quick-create-workspace.md).
+* See [Design a Log Analytics workspace configuration](workspace-design.md) for considerations on creating multiple workspaces.
+* [Learn about log queries to retrieve and analyze data from a Log Analytics workspace](./log-query-overview.md).

@@ -39,6 +39,9 @@ To report an impact, follow these steps.
 
 :::image type="content" source="media/report-issue/report-an-impact-specific.png" alt-text="Screenshot of the screen to select single resource." lightbox="media/report-issue/report-an-impact-specific.png":::
 
+>[!NOTE]
+>The Impact start time and Impact end time fields use your local timezone, not UTC.
+
 3. Fill out the required fields.
     - Subscription
     - Impacted resource

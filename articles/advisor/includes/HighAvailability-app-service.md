@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -70,7 +70,7 @@ Subcategory: Scalability
 
 #### Check your app's service health issues  
   
-We have a recommendation related to your app's service health. Open the Azure Portal, go to the app, click the Diagnose and Solve to see more details.  
+We have a recommendation related to your app's service health. Open the Azure portal, go to the app, click the Diagnose and Solve to see more details.  
   
 **Potential benefits**: Keep your app healthy  
 
@@ -506,5 +506,42 @@ Recommendation ID: 271b07b4-c9f6-450a-ac0b-68124c0faa63
 Subcategory: undefined
 
 <!--271b07b4-c9f6-450a-ac0b-68124c0faa63_end-->
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_begin-->
+
+#### Upgrade Azure Functions apps to Python 3.13  
+  
+In alignment with the end of community support, support for Python 3.10 in Azure Functions will end. Apps that are hosted on Functions will continue to run, but security updates and performance optimizations will no longer be available and we'll no longer provide customer service for Python 3.10.  
+  
+**Potential benefits**: Avoid service interruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=545771)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: b5ff4db4-4032-4380-a0fb-2db4f37b4027  
+Subcategory: undefined
+
+<!--b5ff4db4-4032-4380-a0fb-2db4f37b4027_end-->
+
+
+<!--970c8068-7d7d-470f-93f1-0840d6f63ba2_begin-->
+
+#### Extended support for .NET 9 (STS) is ending  
+  
+Applications hosted on App Service continue to run. Future security updates and customer service for .NET 9 (STS) aren't available.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485077)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 970c8068-7d7d-470f-93f1-0840d6f63ba2  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--970c8068-7d7d-470f-93f1-0840d6f63ba2_end-->
 
 <!--articleBody-->

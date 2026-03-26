@@ -22,7 +22,7 @@ Upgrade to the latest API version to get the best results in terms of model qual
 
 **Impact:** Medium
   
-For more information, see [What is Azure AI Language - Azure AI services](/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-call-api)  
+For more information, see [What is Azure Language in Foundry Tools - Foundry Tools](/azure/cognitive-services/text-analytics/how-tos/text-analytics-how-to-call-api)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: c8bbcb72-b778-48b4-882c-d8ce271995e5  
@@ -40,7 +40,7 @@ Upgrade to the latest SDK version to get the best results in terms of model qual
 
 **Impact:** Medium
   
-For more information, see [What is language detection in Azure AI Language? - Azure AI services](/azure/cognitive-services/text-analytics/quickstarts/text-analytics-sdk?tabs=version-3-1&pivots=programming-language-csharp)  
+For more information, see [What is language detection in Language? - Foundry Tools](/azure/cognitive-services/text-analytics/quickstarts/text-analytics-sdk?tabs=version-3-1&pivots=programming-language-csharp)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 1b94aa41-a51e-4cad-98fb-3a44447d5997  
@@ -94,7 +94,7 @@ The resource is approaching PTU utilization limit for seven or more days. Add mo
 
 **Impact:** Medium
   
-For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
+For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Foundry Tools](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 5bb8940d-e316-4dea-90fd-5d879619c98c  
@@ -113,7 +113,7 @@ Request more PTU quota for the deployment. The resource is approaching the limit
 
 **Impact:** Medium
   
-For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Azure AI services](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
+For more information, see [Understanding costs associated with provisioned throughput units (PTU) - Foundry Tools](/azure/ai-services/openai/how-to/provisioned-throughput-onboarding)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 6b44d824-b4f7-4928-b755-abec825931dd  
@@ -132,7 +132,7 @@ We observed 1,000 or more 429 throttling errors on this resource in a one day ti
 
 **Impact:** Medium
   
-For more information, see [Autoscale AI services limits - Azure AI services](/azure/cognitive-services/autoscale?tabs=portal)  
+For more information, see [Autoscale Foundry Tools limits - Foundry Tools](/azure/cognitive-services/autoscale?tabs=portal)  
 
 ResourceType: microsoft.cognitiveservices/accounts  
 Recommendation ID: 8dde1045-da54-4d32-b8f9-635c5c9c0ac6  

@@ -2,7 +2,7 @@
 title: Application Insights IP address collection | Microsoft Docs
 description: Understand how Application Insights handles IP addresses and geolocation.
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 03/15/2026
 ---
 
 # Geolocation and IP address handling
@@ -32,9 +32,11 @@ When IP addresses aren't collected, city and other geolocation attributes also a
 > To learn more about handling personal data, see [Guidance for personal data](../logs/personal-data-mgmt.md).
 
 > [!NOTE]
-> The IP addresses associated with telemetry ingested before enabling the `DisableIpMasking` property continues to be displayed as `0.0.0.0`. Only telemetry ingested after this change reflects the actual IP address information.
+> The IP addresses associated with telemetry ingested before enabling the `DisableIpMasking` property continue to be displayed as `0.0.0.0`. Only telemetry ingested after this change reflects the actual IP address information.
 
 To enable IP collection and storage, the `DisableIpMasking` property of the Application Insights component must be set to `true`.
+
+If you use OpenTelemetry, you can also populate the request IP used for geolocation by setting the `client.address` span attribute. The stored `client_IP` value still follows the masking behavior described in this article unless `DisableIpMasking` is enabled. For more information, see [Set the user IP](opentelemetry-add-modify.md#set-the-user-ip).
 
 ## Disable IP masking
 
@@ -67,7 +69,7 @@ To enable IP collection and storage, the `DisableIpMasking` property of the Appl
 
 1. After the deployment is complete, new telemetry data will be recorded.
 
-    If you select and edit the template again, only the default template without the newly added property. If you aren't seeing IP address data and want to confirm that `"DisableIpMasking": true` is set, run the following PowerShell commands:
+    If you select and edit the template again, only the default template without the newly added property is shown. If you aren't seeing IP address data and want to confirm that `"DisableIpMasking": true` is set, run the following PowerShell commands:
     
     ```powershell
     # Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
@@ -84,7 +86,18 @@ To enable IP collection and storage, the `DisableIpMasking` property of the Appl
 ### [Azure CLI](#tab/cli)
 
 > [!NOTE]
-> Currently, Azure doesn't provide a way to disable IP masking for Application Insights via the Azure CLI. To disable IP masking programmatically, use Azure PowerShell.
+> Azure CLI doesn't currently expose a dedicated `az monitor app-insights` parameter for `DisableIpMasking`, but you can still update the resource by using [`az rest`](/cli/azure/use-azure-cli-rest-command).
+
+To disable IP masking using Azure CLI, run the following commands and replace the placeholders with your specific values:
+
+```azurecli
+body='{ "location": "<azure-region-name>", "kind": "web", "properties": { "Application_Type": "web", "DisableIpMasking": true } }'
+
+az rest --method patch \
+  --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview" \
+  --headers "Content-Type=application/json" \
+  --body "$body"
+```
 
 ### [PowerShell](#tab/powershell)
 

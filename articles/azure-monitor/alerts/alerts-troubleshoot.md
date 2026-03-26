@@ -2,8 +2,8 @@
 title: Troubleshooting Azure Monitor alerts and notifications
 description: Troubleshoot common problems with Azure Monitor alerts and possible solutions. 
 ms.topic: troubleshooting
-ms.date: 03/25/2025
-ms.reviewer: 
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # Troubleshooting problems in Azure Monitor alerts

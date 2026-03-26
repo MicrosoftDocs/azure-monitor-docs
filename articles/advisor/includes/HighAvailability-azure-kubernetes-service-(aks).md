@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -243,5 +243,23 @@ Recommendation ID: 91594754-953c-4eda-ac71-7b8e2e9b0e74
 Subcategory: undefined
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_end-->
+
+<!--40985a2e-6876-4a4c-902e-c85d06272935_begin-->
+
+#### Migrate from NGINX Ingress with Application Routing Add On  
+  
+Managed NGINX Ingress via the AKS Application Routing add-on is retiring. Plan migrations to alternative solutions like Application Gateway for Containers (AGC) or Istio-based service mesh.  
+  
+**Potential benefits**: Avoid service interruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=555839)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 40985a2e-6876-4a4c-902e-c85d06272935  
+Subcategory: undefined
+
+<!--40985a2e-6876-4a4c-902e-c85d06272935_end-->
 
 <!--articleBody-->

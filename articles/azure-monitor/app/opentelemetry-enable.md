@@ -22,7 +22,7 @@ This article describes how to enable and configure OpenTelemetry-based data coll
 
 For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
-To learn more about collecting data using OpenTelemetry, check out [Collect OpenTelemetry (OTel) for Application Insights experiences](opentelemetry-overview.md) or the [OpenTelemetry FAQ](.\application-insights-faq.yml#opentelemetry-support-and-feedback).
+To learn more about collecting data using OpenTelemetry, check out [Collect OpenTelemetry (OTel) for Application Insights experiences](app-insights-overview.md) or the [OpenTelemetry FAQ](.\application-insights-faq.yml#opentelemetry-support-and-feedback).
 
 ### OpenTelemetry release status
 
@@ -337,88 +337,12 @@ Run your application, then open Application Insights in the Azure portal. It mig
 
 Application Insights is now enabled for your application. The following steps are optional and allow for further customization.
 
+> [!NOTE]
+> As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. [Learn more in the Application Insights FAQ](application-insights-faq.yml).
+
 > [!IMPORTANT]
 > If you have two or more services that emit telemetry to the same Application Insights resource, you're required to [set Cloud Role Names](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance) to represent them properly on the Application Map.
 
-As part of using Application Insights instrumentation, we collect and send diagnostic data to Microsoft. This data helps us run and improve Application Insights. To learn more, see [Statsbeat in Azure Application Insights](./statsbeat.md).
+[!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
-## Sample applications
-
-Azure Monitor OpenTelemetry sample applications are available for all supported languages:
-
-* [ASP.NET Core sample app](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo)
-* [NET sample app](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo)
-* [Java sample apps](https://github.com/Azure-Samples/ApplicationInsights-Java-Samples)
-* [Java GraalVM native sample apps](https://github.com/Azure-Samples/java-native-telemetry)
-* [Node.js sample app](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js)
-* [Python sample apps](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples)
-
-## Next steps
-
-### [ASP.NET Core](#tab/aspnetcore)
-
-* For details on adding and modifying Azure Monitor OpenTelemetry, see [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
-* To further configure the OpenTelemetry distro, see [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md).
-* To review the source code, see the [Azure Monitor AspNetCore GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore).
-* To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor AspNetCore NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) page.
-* To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.AspNetCore/tests/Azure.Monitor.OpenTelemetry.AspNetCore.Demo).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
-* To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
-### [.NET](#tab/net)
-
-* For details on adding and modifying Azure Monitor OpenTelemetry, see [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
-* To further configure the OpenTelemetry distro, see [Azure Monitor OpenTelemetry configuration](opentelemetry-configuration.md).
-* To review the source code, see the [Azure Monitor Exporter GitHub repository](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter).
-* To install the NuGet package, check for updates, or view release notes, see the [Azure Monitor Exporter NuGet Package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) page.
-* To become more familiar with Azure Monitor and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/monitor/Azure.Monitor.OpenTelemetry.Exporter/tests/Azure.Monitor.OpenTelemetry.Exporter.Demo).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry .NET GitHub repository](https://github.com/open-telemetry/opentelemetry-dotnet).
-* To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
-### [Java](#tab/java)
-
-* See [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md) for details on adding and modifying Azure Monitor OpenTelemetry.
-* Review [Java autoinstrumentation configuration options](java-standalone-config.md).
-* Review the source code in the [Azure Monitor Java autoinstrumentation GitHub repository](https://github.com/Microsoft/ApplicationInsights-Java).
-* Learn more about OpenTelemetry and its community in the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* Enable usage experiences by seeing [Enable web or browser user monitoring](javascript.md).
-* Review the [release notes](https://github.com/microsoft/ApplicationInsights-Java/releases) on GitHub.
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
-### [Java native](#tab/java-native)
-* See [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md) for details on adding and modifying Azure Monitor OpenTelemetry.
-* Review the source code in the [Azure Monitor OpenTelemetry Distro in Spring Boot native image Java application](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-starter-monitor) and [Quarkus OpenTelemetry Exporter for Azure](https://github.com/quarkiverse/quarkus-opentelemetry-exporter/tree/main/quarkus-opentelemetry-exporter-azure).
-* Learn more about OpenTelemetry and its community in the [OpenTelemetry Java GitHub repository](https://github.com/open-telemetry/opentelemetry-java-instrumentation).
-* Learn more features for Spring Boot native image applications in [OpenTelemetry SpringBoot starter](https://opentelemetry.io/docs/zero-code/java/spring-boot-starter/.)
-* Learn more features for Quarkus native applications in [Quarkus OpenTelemetry Exporter for Azure](https://quarkus.io/guides/opentelemetry).
-* Review the [release notes](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-monitor/CHANGELOG.md) on GitHub.
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
-[!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
-
-### [Node.js](#tab/nodejs)
-
-* For details on adding and modifying Azure Monitor OpenTelemetry, see [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md).
-* To review the source code, see the [Azure Monitor OpenTelemetry GitHub repository](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry).
-* To install the npm package and check for updates, see the [`@azure/monitor-opentelemetry` npm Package](https://www.npmjs.com/package/@azure/monitor-opentelemetry) page.
-* To become more familiar with Azure Monitor Application Insights and OpenTelemetry, see the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-node.js).
-* To learn more about OpenTelemetry and its community, see the [OpenTelemetry JavaScript GitHub repository](https://github.com/open-telemetry/opentelemetry-js).
-* To enable usage experiences, [enable web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
-### [Python](#tab/python)
-
-* See [Add and modify Azure Monitor OpenTelemetry](opentelemetry-add-modify.md) for details on adding and modifying Azure Monitor OpenTelemetry.
-* Review the source code and extra documentation in the [Azure Monitor Distro GitHub repository](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md).
-* See extra samples and use cases in [Azure Monitor Distro samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples).
-* Review the [changelog](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/CHANGELOG.md) on GitHub.
-* Install the PyPI package, check for updates, or view release notes on the [Azure Monitor Distro PyPI Package](https://pypi.org/project/azure-monitor-opentelemetry/) page.
-* Become more familiar with Azure Monitor Application Insights and OpenTelemetry in the [Azure Monitor Example Application](https://github.com/Azure-Samples/azure-monitor-opentelemetry-python).
-* Learn more about OpenTelemetry and its community in the [OpenTelemetry Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python).
-* See available OpenTelemetry instrumentations and components in the [OpenTelemetry Contributor Python GitHub repository](https://github.com/open-telemetry/opentelemetry-python-contrib).
-* Enable usage experiences by [enabling web or browser user monitoring](javascript.md).
-* To review frequently asked questions, troubleshooting steps, support options, or to provide OpenTelemetry feedback, see [OpenTelemetry help, support, and feedback for Azure Monitor Application Insights](.\opentelemetry-help-support-feedback.md).
-
----
+[!INCLUDE [Next steps](includes/opentelemetry-next-steps.md)]

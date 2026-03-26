@@ -174,10 +174,12 @@ When you configure the .NET Profiler, updates are made to the web app's settings
 
 #### Too many active profiling sessions
 
-In Azure App Service, there's a limit of only **one profiling session at a time**. This limit is enforced at the virtual machine level across all applications and deployment slots running in an App Service Plan. 
-This limit applies equally to profiling sessions started by using **Diagnose and solve problems**, Kudu, and Application Insights Profiler for .NET.
+In Azure App Service, there's a limit of only **one profiling session at a time per VM**. This limit is enforced at the VM level across all applications and deployment slots running in an App Service Plan.
+This limit applies equally to profiling sessions started via *Diagnose and solve problems*, Kudu, and Application Insights Profiler for .NET.
 
-If the .NET Profiler tries to start a session when another is already running, an error is logged in the Application Log and also the continuous WebJob log for `ApplicationInsightsProfiler3`.
+For a single app scaled out to multiple instances, each instance runs on a separate VM and can run its own profiling session independently. The contention occurs only when multiple apps or deployment slots on the same App Service Plan share the same VM.
+
+If the .NET Profiler tries to start a session when another is already running on the same VM, an error is logged in the Application Log and also the continuous WebJob log for `ApplicationInsightsProfiler3`.
 
 You might see one of the following messages in the logs:
 
@@ -186,7 +188,12 @@ You might see one of the following messages in the logs:
 
 The error code `0xE111005E` indicates that a profiling session couldn't start because another session is already running.
 
-To avoid the error, move some web apps to a different App Service Plan or disable the Profiler on some of the applications. If you use deployment slots, be sure to stop any unused slots.
+To avoid the error and reduce noise in your deployment logs:
+
+- Move some web apps to a different App Service Plan so they don't share VMs.
+- Disable the Profiler on applications that don't need profiling.
+- Stop any unused deployment slots. Each running slot has the Profiler active and competes for the profiling session on its VM.
+- During deployments, consider temporarily disabling the Profiler on staging slots to prevent errors caused by slot swaps triggering concurrent sessions.
 
 #### Deployment error: Directory Not Empty 'D:\\home\\site\\wwwroot\\App_Data\\jobs'
 

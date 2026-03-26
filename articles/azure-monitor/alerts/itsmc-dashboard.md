@@ -2,8 +2,8 @@
 title: Investigate errors by using the ITSMC dashboard
 description: Learn how to use the IT Service Management Connector dashboard to investigate errors.  
 ms.topic: how-to
-ms.date: 12/11/2024
-ms.reviewer: 
+ms.date: 4/24/2026
+ms.custom: references_regions
 ---
 
 # Investigate errors by using the ITSMC dashboard
