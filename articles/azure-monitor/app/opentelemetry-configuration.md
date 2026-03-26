@@ -712,7 +712,7 @@ This example shows how to set the sampling to capture approximately a third of a
 }
 ```
 
-You can also set the sampling percentage by using the environment variable . It then takes precedence over the sampling percentage specified in the JSON configuration.
+Set the sampling percentage by using the environment variable. It takes precedence over the sampling percentage specified in the JSON configuration.
 
 > [!TIP]
 > For the sampling percentage, choose a percentage that's close to 100/N, where N is an integer. Currently, sampling doesn't support other values.
