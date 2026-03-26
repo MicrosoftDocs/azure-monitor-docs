@@ -13,7 +13,7 @@ In Azure Service Health, tenant-level and subscription-level access work differe
 
 When an organization signs up for Microsoft cloud services, Microsoft creates a secure space just for that organization. This space is called a **tenant**. It's where the organization manages its users, accounts, and access settings.
 
-Some events or issues can affect the entire organization. These are called **tenant-level events**, and they are shown in the Azure Service Health portal.
+Some events or issues can affect the entire organization. These events are called **tenant-level events**, and the Azure Service Health portal shows them.
 
 Tenant admin access means having special permissions to manage the organization’s setup. People with these permissions, such as Global Administrators,  Application Administrator, and others can add or manage users, control access, and see organization-wide service health updates. Regular users do not see this information.
 
