@@ -115,7 +115,7 @@ The Issues Updates tab displays all information notifications by the date they w
 The Impacted Resources tab displays information about any of your resources that are affected. 
 
   - **Resource Name** - The name of the impacted resource.
-  - **Resource Type** - Type of Azure service (for example, Virtual Machine, App Service).
+  - **Resource Type** - Type of Azure service, such as Virtual Machine or App Service.
   - **Resource Group** - The resource group containing the impacted resource.
   - **Regions** - The Azure region where the resource is located.
   - **Subscription ID** - The subscription that owns the resource.
