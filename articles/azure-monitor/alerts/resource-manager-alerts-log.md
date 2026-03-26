@@ -1,10 +1,10 @@
 ---
 title: Resource Manager template samples for log search alerts
 description: Sample Azure Resource Manager templates to deploy Azure Monitor log search alerts.
-ms.reviewer: yalavi
 ms.topic: sample
-ms.custom: devx-track-arm-template
-ms.date: 11/12/2024
+ms.reviewer: yalavi
+ms.date: 04/26/2026
+ms.custom: references_regions, devx-track-arm-template
 ---
 
 # Resource Manager template samples for log search alert rules in Azure Monitor

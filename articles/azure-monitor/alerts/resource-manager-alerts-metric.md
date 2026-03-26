@@ -2,9 +2,9 @@
 title: Resource Manager template samples for metric alerts
 description: This article provides sample Resource Manager templates used to create metric alerts in Azure Monitor.
 ms.topic: sample
-ms.date: 02/16/2024
-ms.custom: references_regions
 ms.reviewer: harelbr
+ms.date: 04/26/2026
+ms.custom: references_regions
 ---
 
 # Resource Manager template samples for metric alert rules in Azure Monitor
