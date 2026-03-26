@@ -77,7 +77,7 @@ The Impacted Services section in Azure Service Health advisories outlines how an
 
 ### Issue Updates tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of Health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
+:::image type="content" source="./media/service-health-advisories/health-advisories-issue-updates.png" alt-text="A screenshot of Health advisories Issue Updates tab." Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
 
 The Issue Updates section in the Health advisories pane provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
 - **Chronological Updates**: These updates track the progression of the advisory - detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
