@@ -169,7 +169,7 @@ Service Health is designed to be the **authoritative place** for you to understa
   - **Live status updates**<br>
     The resource status reflects the current maintenance phase without requiring a manual page refresh.
   - **A link to self-serve Customer actionability (where supported)**<br>
-    The ability to redirect customers from Service Health to the right location in Azure Portal to take proactive actions on individual resources directly.
+    The ability to redirect you from Service Health to the right location in Azure portal to take proactive actions on individual resources directly.
     
 Together, these features represent the **full functionality** of the Service health dashboard for planned maintenance.
 
