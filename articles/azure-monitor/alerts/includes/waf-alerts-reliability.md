@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 4/24/2026
 ---
 
-Azure Monitor alerts offer a high degree of reliability without any design decisions. Conditions where a temporary loss of alert data may occur are often mitigated by features of other Azure Monitor components.
+Azure Monitor alerts offer high reliability without any design decisions. Features of other Azure Monitor components often mitigate conditions where a temporary loss of alert data might occur.
 
 ### Design checklist
 
