@@ -334,7 +334,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
     `APPLICATIONINSIGHTS_ROLE_NAME`
     `APPLICATIONINSIGHTS_ROLE_INSTANCE`
 
-* Add `applicationinsights.role.name` and `applicationinsights.role.instance` as a system property.
+* Add `applicationinsights.role.name` and `applicationinsights.role.instance` as system properties.
 
     ```console
     java -javaagent:/path/to/applicationinsights-agent-3.7.5.jar \
