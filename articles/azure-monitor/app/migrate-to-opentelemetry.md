@@ -141,7 +141,7 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 | `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 1.2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 1.2. |
 | `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 2. |
 | `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | Logback appender isn't needed since the 3.x Java agent autoinstruments Logback. |
-| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [3.x configuration docs](./java-standalone-config.md#set-the-cloud-role-name). |
+| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance). |
 
 ## Step 2: Add the 3.x Java agent
 
@@ -158,7 +158,7 @@ If you're using the Application Insights 2.x Java agent, just replace your exist
 
 ## Step 3: Configure your Application Insights connection string
 
-See [configuring the connection string](./java-standalone-config.md#set-the-connection-string).
+See [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#connection-string).
 
 ## Other notes
 
@@ -170,7 +170,7 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryProcessors
 
-2.x SDK TelemetryProcessors don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by configuring [sampling overrides](./java-standalone-config.md#sampling-overrides).
+2.x SDK TelemetryProcessors don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by [configuring sampling overrides](./java-standalone-config.md#configure-sampling-overrides).
 
 ## Multiple applications in a single JVM
 

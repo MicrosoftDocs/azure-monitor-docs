@@ -95,7 +95,7 @@ See also [Add a custom property to a Span](opentelemetry-add-modify.md?tabs=java
 > [!NOTE]
 > This feature is GA starting with Java agent version 3.5.0.
 
-Sampling overrides allow you to override the [default sampling percentage](#configure-sampling-and-sampling-overrides). For example, you can:
+Sampling overrides allow you to override the default sampling percentage. For example, you can:
 
 * Set the sampling percentage to 0, or some small value, for noisy health checks.
 * Set the sampling percentage to 0, or some small value, for noisy dependency calls.
@@ -157,7 +157,7 @@ not.
 
 Only the first sampling override that matches is used. If no sampling overrides match:
 
-* If it's the first span in the trace, then the [top-level sampling configuration](#configure-sampling-and-sampling-overrides) is used.
+* If it's the first span in the trace, then the top-level sampling configuration is used.
 * If it isn't the first span in the trace, then the parent sampling decision is used.
 
 ### Span attributes available for sampling
@@ -656,7 +656,7 @@ You can use telemetry processors to configure rules that are applied to request,
 * Drop specific span attributes to control ingestion costs.
 * Filter out some metrics to control ingestion costs.
 
-If you are looking to drop specific (whole) spans for controlling ingestion cost, see [sampling overrides](#sampling-overrides).
+If you are looking to drop specific (whole) spans for controlling ingestion cost, see [Configure sampling overrides](#configure-sampling-overrides).
 
 > [!NOTE]
 > The telemetry processors feature is designated as preview because we cannot guarantee backwards compatibility from release to release due to the experimental state of the attribute [semantic conventions](https://opentelemetry.io/docs/reference/specification/trace/semantic_conventions). However, the feature has been tested and is supported in production.
@@ -2242,7 +2242,7 @@ If you want to enable this feature, add the below configuration option:
 
 This feature is in preview, starting from 3.4.0.
 
-Connection string overrides allow you to override the [default connection string](#set-the-connection-string). For example, you can:
+Connection string overrides allow you to override the default connection string. For example, you can:
 
 * Set one connection string for one HTTP path prefix `/myapp1`.
 * Set another connection string for another HTTP path prefix `/myapp2/`.
@@ -2268,7 +2268,7 @@ Connection string overrides allow you to override the [default connection string
 
 This feature is in preview, starting from 3.3.0.
 
-Cloud role name overrides allow you to override the [default cloud role name](#set-the-cloud-role-name). For example, you can:
+Cloud role name overrides allow you to override the default cloud role name. For example, you can:
 
 * Set one cloud role name for one HTTP path prefix `/myapp1`.
 * Set another cloud role name for another HTTP path prefix `/myapp2/`.
@@ -2409,7 +2409,7 @@ These variables then take precedence over the enabled variables specified in the
 ---
 
 > [!NOTE]
-> If you're looking for more fine-grained control, for example, to suppress some redis calls but not all redis calls, see [Sampling overrides](#sampling-overrides).
+> If you're looking for more fine-grained control, for example, to suppress some redis calls but not all redis calls, see [Configure sampling overrides](#configure-sampling-overrides).
 
 ### HTTP server 4xx response codes
 

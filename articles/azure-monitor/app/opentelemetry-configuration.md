@@ -419,7 +419,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
-> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
 > * **Metrics** are never sampled.
 >
 
@@ -455,7 +455,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 > [!NOTE]
 > * Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
 >
-> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [Sampling overrides](java-standalone-config.md#sampling-overrides).
+> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 **Fixed-percentage sampling**
 
@@ -467,7 +467,7 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 * **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** — maximum requests per second
     * For example, `1.5`.
 
-For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling-overrides).
+For configuration options and examples, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 #### [Java native](#tab/java-native)
 
@@ -606,7 +606,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 # [Java](#tab/java)
 
-Starting from version 3.4.0, **rate-limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#configure-sampling-and-sampling-overrides).
+For Java, configuring sampling in code isn't available.
 
 # [Java native](#tab/java-native)
 
@@ -695,7 +695,7 @@ configure_azure_monitor(
 > [!NOTE]
 > * Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
 >
-> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [Sampling overrides](java-standalone-config.md#sampling-overrides).
+> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 If you don't configure sampling, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
 
