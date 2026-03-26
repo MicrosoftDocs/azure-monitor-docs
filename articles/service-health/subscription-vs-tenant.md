@@ -6,7 +6,7 @@ ms.date: 03/26/2026
 ---
 # Subscription vs tenant admin accounts in Service Health
 
-In Azure Service Health, tenant-level and subscription-level access are different. These differences determine what service health updates a user can see and who is allowed to view them. This article provides a breakdown on the access needed to use Azure Service Health.
+In Azure Service Health, tenant-level and subscription-level access work differently. These differences determine which service health updates a user can see and who can view them. This article explains the access needed to use Azure Service Health.
 
 ## Tenant admin account
 
