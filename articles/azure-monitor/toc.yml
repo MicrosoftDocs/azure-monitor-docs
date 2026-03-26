@@ -692,7 +692,7 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
-  - name: Data collection rules (DCR)
+  - name: Collect OpenTelemetry
     items:
     - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
       href: containers/opentelemetry-protocol-ingestion.md
@@ -1666,7 +1666,7 @@ items:
     items:
     - name: App Center migration (Preview)
       href: app/app-center-migration.md
-    - name: Application Insights SDK (Classic API)
+    - name: Application Insights SDK (Classic API 2.x)
       href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive

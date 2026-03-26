@@ -2,9 +2,8 @@
 title: Delete unused ITSM connectors
 description: This article provides an explanation of how to delete ITSM connectors and the action groups that are associated with it.
 ms.topic: how-to
-ms.date: 12/11/2024
+ms.date: 4/24/2026
 ms.custom: references_regions
-ms.reviewer: 
 ---
 
 # Delete unused ITSM connectors
