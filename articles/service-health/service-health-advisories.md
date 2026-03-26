@@ -82,7 +82,7 @@ The Impacted Services section in Azure Service Health advisories outlines how an
 The Issue Updates section in the Health advisories pane provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
 - **Chronological Updates**: These updates track the progression of the advisory. They detail when Microsoft initially identified the advisory, any modifications in scope or severity, and the point at which Microsoft resolved or mitigated the advisory.
 - **Contextual Details**: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
-- **Status Transitions**: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled”.
+- **Status Transitions**: Updates on whether the advisory is moved from **Active** to **Resolved** or **Scheduled**.
 
 
 
