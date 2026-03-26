@@ -188,7 +188,7 @@ From our perspective, full Service Health functionality for planned maintenance 
 - Resource‑level customer actionability links available for redirection where supported.
 - Consistent behavior across the Service Health portal, APIs, and integrations.
 
-When one or more of these elements aren't available, the experience is considered **limited**, even though Service Health remains available and operational.
+If one or more of these elements aren't available, the experience is considered **limited**, even though Service Health remains available and operational.
 
 
 **Service health commitment**<br>
