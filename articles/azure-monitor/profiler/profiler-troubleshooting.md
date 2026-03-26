@@ -13,7 +13,7 @@ This article presents troubleshooting steps and information to enable you to use
 
 ## Are you using the appropriate .NET Profiler endpoint?
 
-Currently, the only regions that require endpoint modifications are [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide#application-insights).
+Currently, only [Azure Government](/azure/azure-government/compare-azure-government-global-azure#application-insights) and [Microsoft Azure operated by 21Vianet](/azure/china/resources-developer-guide#application-insights) require endpoint modifications.
 
 |App setting    | US Government Cloud | China Cloud |
 |---------------|---------------------|-------------|
@@ -69,11 +69,11 @@ Search for trace messages and custom events sent by the .NET Profiler to your Ap
 
    The preceding search results include two examples of searches from two AI resources:
 
-   - If the application isn't receiving requests while Profiler is running, the message explains that the upload was canceled because of no activity.
+   - If the application isn't receiving requests while the profiler is running, the message explains that the upload was canceled because of no activity.
 
-   - Profiler started and sent custom events when it detected requests that happened while Profiler was running. If the `ServiceProfilerSample` custom event is displayed, it means that a profile was captured and is available in the Application Insights **Performance** page.
+   - The profiler starts and sends custom events when it detects requests that happen while the profiler is running. If the `ServiceProfilerSample` custom event is displayed, it means that a profile was captured and is available in the Application Insights **Performance** page.
 
-   If no records are displayed, Profiler isn't running or took too long to respond. Make sure [Profiler is enabled on your Azure service](./profiler.md).
+   If no records are displayed, the profiler isn't running or took too long to respond. Make sure [Profiler is enabled on your Azure service](./profiler.md).
 
 ## The .NET Profiler is on, but no traces captured
 
@@ -85,13 +85,13 @@ Even when the Profiler is enabled, it might not capture or upload traces, especi
 
 1. **No incoming telemetry acknowledged by Application Insights:**
 
-   - If traffic is coming to your application: validate that there are incoming requests showing in Application Insights [Live Metrics](../app/live-stream.md). 
+   - If traffic is coming to your application: validate that Application Insights [Live Metrics](../app/live-stream.md) shows incoming requests. 
    - If the `Incoming Requests` charts are empty (no data or showing zero): [troubleshoot Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/asp-net-troubleshoot-no-data). 
    - If you host your .NET application on Azure App Service, see [Troubleshoot Application Insights integration with Azure App Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues).
 
 1. **Profiler setting for Sampling is turned off:**
 
-   If still no profiler traces are available, check the Profiler Sampling setting.
+   If no profiler traces are available, check the Profiler Sampling setting.
 
    1. Open **Application Insights** > **Performance**. 
    1. Select **Profiler**.
@@ -100,7 +100,7 @@ Even when the Profiler is enabled, it might not capture or upload traces, especi
 
 1. **Still no traces uploaded?**
 
-   [Create a support request](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview?DMC=troubleshoot), or ask [Azure community support](/answers/products/azure?product=all). You can also submit product feedback to [Azure feedback community](https://feedback.azure.com/d365community).
+   [Create a support request](https://ms.portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/overview?DMC=troubleshoot), or ask [Azure community support](/answers/products/azure?product=all). You can also submit product feedback to the [Azure feedback community](https://feedback.azure.com/d365community).
 
 ## Double counting in parallel threads
 
@@ -223,7 +223,7 @@ To see whether the .NET Profiler is configured correctly by Azure Diagnostics:
 
 1. Check the Profiler log file to see whether the .NET Profiler ran but returned an error.
 
-To check the settings that were used to configure Azure Diagnostics:
+To check the settings used to configure Azure Diagnostics:
 
 1. Sign in to the virtual machine.
 
@@ -233,9 +233,9 @@ To check the settings that were used to configure Azure Diagnostics:
    c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
    ```
 
-1. In the file, search for the string `WadCfg` to find the settings that were passed to the virtual machine to configure Azure Diagnostics.
+1. In the file, search for the string `WadCfg` to find the settings that Azure Diagnostics passes to the virtual machine to configure Azure Diagnostics.
 
-1. Check to see whether the iKey used by the .NET Profiler sink is correct.
+1. Verify that the iKey used by the .NET Profiler sink is correct.
 
 1. Check the command line that starts Profiler. The command line arguments are in the following file (the drive could be `c:` or `d:` and the directory might be hidden):
 
