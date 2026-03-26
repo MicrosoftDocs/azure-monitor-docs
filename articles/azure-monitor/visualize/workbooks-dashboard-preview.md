@@ -7,7 +7,7 @@ ms.date: 10/16/2025
 
 # Azure Workbooks dashboard preview
 
-This preview includes new dashboarding functionality in Azure Workbooks. The dashboard preview only applies to dashboard style workbooks. Opening other workbooks continues to open them in the legacy workbooks view. To open the dashboard preview, use the **Dashboard (preview)** item in the Workbooks gallery.
+This preview introduces new dashboarding functionality in Azure Workbooks. The dashboard preview only applies to dashboard style workbooks. Opening other workbooks continues to open them in the legacy workbooks view. To open the dashboard preview, use the **Dashboard (preview)** item in the Workbooks gallery.
 
 > [!NOTE]
 > The dashboard preview is slowly rolling out to all users. If you don't see the **Dashboard (preview)** item in the workbooks gallery yet, check back later.
