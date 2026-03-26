@@ -1,9 +1,9 @@
 ---
 title: Tutorial - Create a log search alert for an Azure resource
 description: Tutorial to create a log search alert for an Azure resource.
-ms.reviewer: 
 ms.topic: tutorial
-ms.date: 12/11/2024
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # Tutorial: Create a log search alert for an Azure resource
