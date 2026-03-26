@@ -753,7 +753,7 @@ You can also set the sampling percentage by using the environment variable. It t
 
 ### Configure trace‑based sampling for logs
 
-When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
+When you enable this feature, the system drops log records that belong to **unsampled traces** so that your logs stay aligned with trace sampling.
 
 * A log record is considered part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
