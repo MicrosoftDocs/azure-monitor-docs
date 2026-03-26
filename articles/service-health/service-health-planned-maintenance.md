@@ -131,30 +131,30 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
 
 - What are the types of maintenance windows?
 
-       - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
-       - **Scheduled Maintenance window**: If you don't initiate updates, Azure Service Health automatically applies them.
-       - **Zero-Downtime Maintenance**: Azure limits disruption by using live migration and cold starts.
+    - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
+    - **Scheduled Maintenance window**: If you don't initiate updates, Azure Service Health automatically applies them.
+    - **Zero-Downtime Maintenance**: Azure limits disruption by using live migration and cold starts.
     
   
 -    How can I prepare for maintenance?
 
-       - Monitor the Planned Maintenance pane regularly.
-       - Use the Resources tab to identify the affected services.<br>
+    - Monitor the Planned Maintenance pane regularly.
+    - Use the Resources tab to identify the affected services.<br>
     
 - What metadata is available for maintenance events?<br>
     These key fields help you assess the scope, timing, and severity of the events.
 
-      - impactType
-      - impactMitigationTime
-      - eventSource
-      - trackingId
-      - status
+    - impactType
+    - impactMitigationTime
+    - eventSource
+    - trackingId
+    - status
     
 -  Can I automate maintenance tracking?
 
       Yes, you can use:<br>
-      - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
-      - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
+    - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
+    - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
     
 - How long is the maintenance history available?
 
