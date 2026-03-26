@@ -2,8 +2,8 @@
 title: Monitor the health of log search alert rules
 description: This article how to monitor the health of a log search alert rule.
 ms.topic: how-to
-ms.reviewer: 
-ms.date: 03/12/2026
+ms.date: 4/24/2026
+ms.custom: references_regions
 
 #Customer-intent: As a alerts administrator, I want to know when there are  issues with an alert rule, so I can act to resolve the issue or know when to contact Microsoft for support.
 ---
