@@ -751,7 +751,7 @@ You can also set the sampling percentage by using the environment variable. It t
 
 ---
 
-### Configure trace‑based sampling for logs
+### Configure trace-based sampling for logs
 
 When you enable this feature, the system drops log records that belong to **unsampled traces** so that your logs stay aligned with trace sampling.
 
