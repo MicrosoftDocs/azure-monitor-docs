@@ -76,9 +76,9 @@ In this article, you:
 
 # [OpenTelemetry Profiler](#tab/otel)
 
-1. In your preferred code editor, verify the two packages for the Azure Monitor OpenTelemetry Profiler for .NET were added to `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
+1. In your preferred code editor, verify that you added the two packages for the Azure Monitor OpenTelemetry Profiler for .NET to `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/Azure/azuremonitor-opentelemetry-profiler-net/blob/main/docs/Configurations.md).
 
-   In your project's `.csproj` file, verify the following lines have been added:
+   In your project's `.csproj` file, verify that you added the following lines:
 
     ```csharp
     <ItemGroup>
@@ -87,7 +87,7 @@ In this article, you:
     </ItemGroup>
     ```
 
-   In your `Program.cs` file, verify the following lines have been added:
+   In your `Program.cs` file, verify that you added the following lines:
 
     ```csharp
     using Azure.Monitor.OpenTelemetry.AspNetCore;
@@ -110,7 +110,7 @@ In this article, you:
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 
-1. In your preferred code editor, verify Application Insights and the .NET Profiler have been added using the SDK in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
+1. In your preferred code editor, verify that you added Application Insights and the .NET Profiler by using the SDK in `Program.cs`. [Add custom Profiler settings, if applicable](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/Configurations.md).
 
    <details>
    <summary><b>For WebAPI</b></summary>
@@ -178,7 +178,8 @@ In this article, you:
 
 ## Deploy your project
 
-You can deploy code to Azure App Service in various ways. The simplest way is to deploy by using local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
+You can deploy code to Azure App Service in various ways. The simplest way is to deploy by using local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
+
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
@@ -287,7 +288,7 @@ You have three options to add Application Insights to your web app. Expand the o
 ## Troubleshooting
 
 # [OpenTelemetry Profiler](#tab/otel)
-
+If you can't find traces from your app, try the steps in this [troubleshooting guide](../app/opentelemetry-enable.md#troubleshooting).
 If you are unable to find traces from your app, consider following the steps in this [troubleshooting guide](../app/opentelemetry-enable.md#troubleshooting).
 
 # [Application Insights SDK (legacy)](#tab/sdk)
