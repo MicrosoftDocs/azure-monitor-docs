@@ -606,7 +606,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 # [Java](#tab/java)
 
-For Java, configuring sampling in code isn't available.
+For Java, you can't configure sampling in code.
 
 # [Java native](#tab/java-native)
 
