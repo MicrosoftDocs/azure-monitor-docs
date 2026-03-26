@@ -15,15 +15,6 @@ This article shows you how to configure Azure Monitor Application Insights for J
 
 ## Configure Java agent settings
 
-**In this section:**
-
-* [JSON configuration set-up](#json-configuration-set-up)
-* [Set the connection string](#set-the-connection-string)
-* [Set the cloud role name](#set-the-cloud-role-name)
-* [Set the cloud role instance](#set-the-cloud-role-instance)
-* [Custom dimensions](#custom-dimensions)
-* [Inherited attribute (preview)](#inherited-attribute-preview)
-
 ### JSON configuration set-up
 
 # [Default config file](#tab/config-default)
@@ -52,66 +43,6 @@ Instead of using a configuration file, you can set the entire JSON configuration
 * Value: `{"connectionString":"InstrumentationKey=...;IngestionEndpoint=https://...;LiveEndpoint=https://...","role":{"name":"my-service"},"sampling":{"requestsPerSecond":5}}`
 
 ---
-
-### Set the connection string
-
-*The connection string is required.* You can find it on the **Overview** pane of your Application Insights resource:
-
-:::image type="content" source="media/java-ipa/connection-string.png" alt-text="Screenshot that shows an Application Insights connection string.":::
-
-```json
-{
-  "connectionString": "..."
-}
-```
-
-You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
-
-```json
-{
-  "connectionString": "${file:connection-string-file.txt}"
-}
-```
-
-Alternatively, you can set the connection string by using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING` or the Java system property `applicationinsights.connection.string`. Both take precedence over the connection string specified in the JSON configuration.
-
-> [!IMPORTANT]
-> Not setting the connection string disables the Java agent.
-
-If you have multiple applications deployed in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](#connection-string-overrides-preview).
-
-### Set the cloud role name
-
-The cloud role name is used to label the component on the application map. This is important anytime you're sending data from different applications to the same Application Insights resource.
-
-```json
-{
-  "role": {
-    "name": "my cloud role name"
-  }
-}
-```
-
-If the cloud role name isn't set, the Application Insights resource's name is used to label the component on the application map.
-
-You can also set the cloud role name by using the environment variable `APPLICATIONINSIGHTS_ROLE_NAME` or the Java system property `applicationinsights.role.name`. Both take precedence over the cloud role name specified in the JSON configuration.
-
-If you have multiple applications deployed in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](#cloud-role-name-overrides-preview).
-
-### Set the cloud role instance
-
-The cloud role instance defaults to the machine name. If you want to set the cloud role instance to something different rather than the machine name.
-
-```json
-{
-  "role": {
-    "name": "my cloud role name",
-    "instance": "my cloud role instance"
-  }
-}
-```
-
-You can also set the cloud role instance by using the environment variable `APPLICATIONINSIGHTS_ROLE_INSTANCE` or the Java system property `applicationinsights.role.instance`. Both take precedence over the cloud role instance specified in the JSON configuration.
 
 ### Custom dimensions
 
@@ -159,71 +90,7 @@ Span.current().setAttribute("mycustomer", "xyz");
 
 See also [Add a custom property to a Span](opentelemetry-add-modify.md?tabs=java#add-a-custom-property-to-a-span).
 
-## Configure sampling and sampling overrides
-
-**In this section:**
-
-* [Choose a sampling method](#choose-a-sampling-method)
-* [Sampling overrides](#sampling-overrides)
-* [Sampling override use cases](#sampling-override-use-cases)
-* [Sampling overrides troubleshooting](#sampling-overrides-troubleshooting)
-* [Sampling overrides FAQ](#sampling-overrides-faq)
-
-### Choose a sampling method
-
-Sampling is based on requests, which means that if a request is captured (sampled), so are its dependencies, logs, and exceptions. It's also based on trace ID to help ensure consistent sampling decisions across different services.
-
-> [!NOTE]
-> Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](#sampling-overrides).
-
-Sampling can help reduce ingestion costs. Make sure to set up your sampling configuration appropriately for your use case. See the tabs below for more information about different sampling methods.
-
-# [Rate-limited sampling](#tab/sampling-rate)
-
-> [!NOTE]
-> Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
-
-If no sampling is configured, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
-
-This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use fixed-percentage sampling and set the sampling percentage to 100.
-
-> [!NOTE]
-> The rate-limited sampling is approximate because internally it must adapt a "fixed" sampling percentage over time to emit accurate item counts on each telemetry record. Internally, the rate-limited sampling is tuned to adapt quickly (0.1 seconds) to new application loads. For this reason, you shouldn't see it exceed the configured rate by much, or for very long.
-
-This example shows how to set the sampling to capture at most (approximately) one request per second:
-
-```json
-{
-  "sampling": {
-    "requestsPerSecond": 1.0
-  }
-}
-```
-
-The `requestsPerSecond` can be a decimal, so you can configure it to capture less than one request per second if you want. For example, a value of `0.5` means capture at most one request every 2 seconds.
-
-You can also set the sampling percentage by using the environment variable `APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`. It then takes precedence over the rate limit specified in the JSON configuration.
-
-# [Fixed-percentage sampling](#tab/sampling-percentage)
-
-This example shows how to set the sampling to capture approximately a third of all requests:
-
-```json
-{
-  "sampling": {
-    "percentage": 33.333
-  }
-}
-```
-
-You can also set the sampling percentage by using the environment variable `APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`. It then takes precedence over the sampling percentage specified in the JSON configuration.
-
-> [!TIP]
-> For the sampling percentage, choose a percentage that's close to 100/N, where N is an integer. Currently, sampling doesn't support other values.
-
----
-
-### Sampling overrides
+## Configure sampling overrides
 
 > [!NOTE]
 > This feature is GA starting with Java agent version 3.5.0.
@@ -234,7 +101,7 @@ Sampling overrides allow you to override the [default sampling percentage](#conf
 * Set the sampling percentage to 0, or some small value, for noisy dependency calls.
 * Set the sampling percentage to 100 for an important request type. For example, you can use `/login` even though you have the default sampling configured to something lower.
 
-#### Sampling overrides terminology
+### Sampling overrides terminology
 
 Before you learn about sampling overrides, you should understand the term *span*.
 
@@ -250,7 +117,7 @@ For sampling overrides, these span components are important:
 
 The span attributes represent both standard and custom properties of a given request or dependency.
 
-#### Getting started with sampling overrides
+### Getting started with sampling overrides
 
 To begin, create a configuration file named *applicationinsights.json*. Save it in the same directory as *applicationinsights-agent-\*.jar*. Use the following template.
 
@@ -279,7 +146,7 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 }
 ```
 
-#### How sampling overrides work
+### How sampling overrides work
 
 `telemetryType` (`telemetryKind` in Application Insights 3.4.0) must be one of `request`, `dependency`, `trace` (log), or `exception`.
 
@@ -293,7 +160,7 @@ Only the first sampling override that matches is used. If no sampling overrides 
 * If it's the first span in the trace, then the [top-level sampling configuration](#configure-sampling-and-sampling-overrides) is used.
 * If it isn't the first span in the trace, then the parent sampling decision is used.
 
-#### Span attributes available for sampling
+### Span attributes available for sampling
 
 OpenTelemetry span attributes are autocollected and based on the [OpenTelemetry semantic conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
