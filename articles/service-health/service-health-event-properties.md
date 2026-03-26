@@ -12,7 +12,7 @@ Azure Service Health notifications include different data properties depending o
 - The Activity Log
 - Azure Resource Graph
 
-Understanding the difference matters because each type carries its own purpose, required level of attention, and unique metadata that helps you interpret what’s happening to your resources. 
+Each type of notification serves a specific purpose and comes with its own metadata. This metadata helps you understand what's happening to your resources and what level of attention the issue requires.
 
 **Event** types describe the broad category of the issue Azure is reporting. 
 
