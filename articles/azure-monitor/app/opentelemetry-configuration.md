@@ -312,7 +312,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
 ### [Java](#tab/java)
 
 > [!NOTE]
-> If the cloud role name and cloud role instance aren't set, the cloud role name defaults to the name of your Application Insights resource, and the cloud role instance defaults to the machine name.
+> If you don't set the cloud role name and cloud role instance, the cloud role name defaults to the name of your Application Insights resource, and the cloud role instance defaults to the machine name.
 
 Use one of the following three ways to configure the cloud role name and cloud role instance:
 
