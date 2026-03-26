@@ -2,7 +2,7 @@
 title: Subscription vs Tenant admin accounts in Service Health
 description: Information on the difference and how to set up the accounts 
 ms.topic: overview
-ms.date: 05/20/2025
+ms.date: 03/26/2026
 ---
 # Subscription vs tenant admin accounts in Service Health
 
@@ -10,11 +10,15 @@ In Azure Service Health, tenant-level and subscription-level access are differen
 
 ## Tenant admin account
 
-In the Azure Service Health portal, a tenant admin role refers to a dedicated instance of Microsoft Entra ID that an organization receives when it signs up for a Microsoft cloud service. The tenant is used to manage users, groups, and permissions within the organization. Tenant-level events affect the entire organization, and users with tenant admin access can see them.
 
-Tenant admin access in Azure refers to the permissions granted to roles that allow users to manage and view resources at the tenant level. These roles include Global Administrator, Application Administrator, and others. Tenant admin access enables users to manage users, groups, and permissions within the organization, and view tenant-level events in the Azure Service Health portal. 
+When an organization signs up for Microsoft cloud services, Microsoft creates a secure space just for that organization. This space is called a **tenant**. It’s where the organization manages its users, accounts, and access settings.
 
-For Tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
+Some events or issues can affect the entire organization. These are called **tenant-level events**, and they are shown in the Azure Service Health portal.
+
+Tenant admin access means having special permissions to manage the organization’s setup. People with these permissions, such as Global Administrators,  Application Administrator, and others can add or manage users, control access, and see organization-wide service health updates. Regular users do not see this information.
+
+
+For more information about Tenant-level roles, see [Roles with tenant admin access](admin-access-reference.md).
 
 To create a tenant account in Service Health, follow these steps:
 1.	**Sign in to the Azure portal**: Go to the Azure portal and sign in with your credentials.
@@ -48,7 +52,7 @@ In Azure Service Health, subscription access allows users to view and manage var
 * Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure Activity Logs.
     
 **Role-Based Access Control (RBAC)**<br>
-* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. See [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security advisories](impacted-resources-security.md).
+* Subscription access is managed through RBAC. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. For more information, see [Elevated access for viewing Security Advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security advisories](impacted-resources-security.md).
     
 **Filtering and Sorting Events** <br>
 * In the Service Health portal, users can filter and sort events by subscription scope. These filters allow them to see service issues, health advisories, security advisories, and health history at the subscription level. See [Azure Service Health Portal](service-health-portal-update.md).
@@ -59,7 +63,7 @@ In Azure Service Health, subscription access allows users to view and manage var
     
 In the Service Health portal, you can filter and sort events by tenant or subscription scope. These filters allow you to see service issues, health advisories, security advisories, and health history at both the tenant and subscription levels.    
 
-For more information, see[Resource impact from Azure security advisories](impacted-resources-security.md).
+For more information, refer to [Resource impact from Azure security advisories](impacted-resources-security.md).
 
 >[!Note]
 > 
