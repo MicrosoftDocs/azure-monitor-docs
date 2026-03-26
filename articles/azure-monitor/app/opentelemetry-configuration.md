@@ -696,7 +696,7 @@ configure_azure_monitor(
 >
 > * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, you can use [Sampling overrides](java-standalone-config.md#sampling-overrides).
 
-If no sampling is configured, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
+If you don't configure sampling, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
 
 This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use fixed-percentage sampling and set the sampling percentage to 100.
 
