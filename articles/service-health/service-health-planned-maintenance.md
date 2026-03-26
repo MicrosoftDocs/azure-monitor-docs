@@ -129,38 +129,32 @@ For more information about impacted resources, see [Impacted Resources from Plan
 
 The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that provides visibility into upcoming maintenance activities that could affect your Azure resources. Here's how it happens and what best practices you should consider:
 
-- What are the types of maintenance windows?
+**What are the types of maintenance windows?**<br>
+  - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
+  - **Scheduled Maintenance window**: If you don't initiate updates, Azure Service Health automatically applies them.
+  - **Zero-Downtime Maintenance**: Azure limits disruption by using live migration and cold starts.
+ 
+**How can I prepare for maintenance?**
+  - Monitor the Planned Maintenance pane regularly.
+  - Use the Resources tab to identify the affected services.<br>
 
-    - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
-    - **Scheduled Maintenance window**: If you don't initiate updates, Azure Service Health automatically applies them.
-    - **Zero-Downtime Maintenance**: Azure limits disruption by using live migration and cold starts.
-    
-  
--    How can I prepare for maintenance?
-
-    - Monitor the Planned Maintenance pane regularly.
-    - Use the Resources tab to identify the affected services.<br>
-    
-- What metadata is available for maintenance events?<br>
+**What metadata is available for maintenance events?**<br>
     These key fields help you assess the scope, timing, and severity of the events.
-
-    - impactType
-    - impactMitigationTime
-    - eventSource
-    - trackingId
-    - status
+  - impactType
+  - impactMitigationTime
+  - eventSource
+  - trackingId
+  - status
     
--  Can I automate maintenance tracking?
-
+**Can I automate maintenance tracking?**<br>
       Yes, you can use:<br>
-    - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
-    - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
-    
-- How long is the maintenance history available?
+  - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
+  - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
 
-     - Active view: up to 90 days
-     - Health history: 90 days from most recent published date.
-     
+**How long is the maintenance history available?**<br>
+  - Active view: up to 90 days
+  - Health history: 90 days from most recent p*ublished date.
+
      
 
 #### Summary 
