@@ -13,7 +13,7 @@ ms.reviewer: ryankahng
 In this article, you use the Azure portal to:
 - View the current app settings for your Functions app. 
 - Add two new app settings to enable the .NET Profiler on the Functions app. 
-- Navigate to the Profiler page for your Functions app to view data.
+- Go to the Profiler page for your Functions app to view data.
 
 > [!NOTE]
 > You can enable the Application Insights Profiler for .NET for Azure Functions apps on the **App Service** plan. 
@@ -24,7 +24,7 @@ In this article, you use the Azure portal to:
      
   :::image type="content" source="./media/profiler-azure-functions/choose-plan.png" alt-text="Screenshot of where to select App Service plan from drop-down in Functions app creation.":::
 
-- Your app must be linked to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
+- Link your app to [an Application Insights resource](/previous-versions/azure/azure-monitor/app/create-new-resource). Make note of the connection string.
 
 ## App settings for enabling the .NET Profiler
 
@@ -56,7 +56,7 @@ In [the Azure portal](https://portal.azure.com), open your Function app **Overvi
 
 1. Select **Apply** for each value.
 
-1. In the **Environment variables**, select **Apply**, then **Confirm**.
+1. In the **Environment variables** pane, select **Apply**, then **Confirm**.
 
    :::image type="content" source="./media/profiler-azure-functions/continue-button.png" alt-text="Screenshot outlining the continue button in the dialog after saving.":::
 
@@ -65,7 +65,7 @@ The app settings now show up in the table:
 :::image type="content" source="./media/profiler-azure-functions/app-settings-table.png" alt-text="Screenshot showing the two new app settings in the table on the configuration pane.":::
 
 > [!NOTE]
-> You can also enable the .NET Profiler using:  
+> You can also enable the .NET Profiler by using:  
 >
 > - [Azure Resource Manager Templates](../app/azure-web-apps-net-core.md#app-service-application-settings-with-azure-resource-manager)
 > - [Azure PowerShell](/powershell/module/az.websites/set-azwebapp)
