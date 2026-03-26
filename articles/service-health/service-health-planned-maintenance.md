@@ -151,7 +151,7 @@ The Planned Maintenance pane in Azure Service Health is a dedicated section with
     - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
     - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
     
-5. How long is the maintenance history available?
+1. How long is the maintenance history available?
    - Active view: up to 90 days
    - Health history: 90 days from most recent published date
 
