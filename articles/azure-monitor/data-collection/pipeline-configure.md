@@ -24,7 +24,8 @@ Start with the prerequisites and cert-manager installation steps in this article
 * The following resource providers must be registered in your Azure subscription. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
     * Microsoft.Insights
     * Microsoft.Monitor 
-* Install cert-manager as described in the following section.
+* The **cert-manager** extension must be installed, as described below
+* A gateway must be installed for receiving data from external client(s). An example using Traefik is [documented here](./pipeline-kubernetes-gateway.md). 
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
@@ -76,7 +77,8 @@ az k8s-extension create \
   --cluster-type connectedClusters \
   --name "azure-cert-management" \
   --extension-type "microsoft.certmanagement" \
-  --release-train stable
+  --release-train stable \
+  --config subcharts.zdtrcontroller.enabled=true
 ```
 
 

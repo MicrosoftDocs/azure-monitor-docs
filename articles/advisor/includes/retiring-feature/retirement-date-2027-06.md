@@ -10,9 +10,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Lab Services - Lab Accounts | v1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Lab Services - Lab Accounts | v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Lab Services - Lab Plans | v1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Lab Services - Lab Plans | v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Lab Services - Labs | v1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure Lab Services - Labs | v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Lab | V1 and V2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Lab account | V1 and V2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Lab plan | V1 and V2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+

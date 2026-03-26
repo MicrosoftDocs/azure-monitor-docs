@@ -730,10 +730,11 @@ items:
             displayName: MySQL Audit Logs,MySQL Server Logs
           - name: Microsoft.DBforPostgreSQL/flexibleServers
             href: supported-logs/microsoft-dbforpostgresql-flexibleservers-logs.md
-            displayName: PostgreSQL remaining transactions,PostgreSQL Query Store
-              Runtime,PostgreSQL Query Store Wait Statistics,PostgreSQL Sessions
-              data,PostgreSQL Autovacuum and schema statistics,PostgreSQL Server
-              Logs
+            displayName: PostgreSQL remaining transactions,PostgreSQL PgBouncer
+              Logs,PostgreSQL Query Store Runtime,PostgreSQL Query Store Wait
+              Statistics,PostgreSQL Sessions data,PostgreSQL Autovacuum and
+              schema statistics,PostgreSQL Server Logs,PostgreSQL Query Store
+              SQL Text
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-logs/microsoft-dbforpostgresql-servergroupsv2-logs.md
             displayName: PostgreSQL Server Logs
@@ -923,13 +924,13 @@ items:
               Log,Application Gateway Performance Log
           - name: Microsoft.Network/azureFirewalls
             href: supported-logs/microsoft-network-azurefirewalls-logs.md
-            displayName: Azure Firewall Application Rule,Azure Firewall Network Rule
+            displayName: Azure Firewall Application Rule,Azure Firewall Application Rule
               Aggregation (Policy Analytics),Azure Firewall DNS Flow Trace
               Log,Azure Firewall DNS query,Azure Firewall Fat Flow Log,Azure
               Firewall Flow Trace Log,Azure Firewall FQDN Resolution
               Failure,Azure Firewall IDPS Signature,Azure Firewall Nat
               Rule,Azure Firewall Nat Rule Aggregation (Policy Analytics),Azure
-              Firewall Network Rule,Azure Firewall Application Rule Aggregation
+              Firewall Network Rule,Azure Firewall Network Rule Aggregation
               (Policy Analytics),Azure Firewall Threat Intelligence,Azure
               Firewall Application Rule (Legacy Azure Diagnostics),Azure
               Firewall DNS Proxy (Legacy Azure Diagnostics),Azure Firewall
@@ -1050,12 +1051,12 @@ items:
               Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File
               Service Logs,Indexer Service Logs,Legal Service Logs,Notification
               Service Logs,Partition Service Logs,PDSBackend Service
-              Logs,PDSFrontend Service Logs,Rafs DDMS Logs,Register Service
-              Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Schema
-              Service Logs,Search Extensions Service Logs,Search Service
-              Logs,EDS Secret Logs,Storage Service Logs,Unit Service
-              Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow
-              Service Logs
+              Logs,PDSFrontend Service Logs,Rock and Fluid Samples DDMS
+              Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir
+              DDMS Server Logs,Schema Service Logs,Search Extensions Service
+              Logs,Search Service Logs,EDS Secret Logs,Storage Service Logs,Unit
+              Service Logs,Wellbore Service Logs,WellDelivery Service
+              Logs,Workflow Service Logs
           - name: Microsoft.OpenLogisticsPlatform/Workspaces
             href: supported-logs/microsoft-openlogisticsplatform-workspaces-logs.md
             displayName: Supply Chain Entity Operations,Supply Chain Event logs
@@ -1102,12 +1103,6 @@ items:
           - name: Microsoft.Relay/namespaces
             href: supported-logs/microsoft-relay-namespaces-logs.md
             displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
-          - name: Microsoft.ResourceBuilder/workspaces/pipelines
-            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md
-            displayName: Diagnostic Logs
-          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
-            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
-            displayName: Diagnostic Logs
           - name: Microsoft.Search/searchServices
             href: supported-logs/microsoft-search-searchservices-logs.md
             displayName: Operation Logs
@@ -1475,6 +1470,8 @@ items:
             href: tables/microsoft-media_mediaservices.md
           - name: microsoft.monitor/accounts
             href: tables/microsoft-monitor_accounts.md
+          - name: microsoft.monitor/pipelinegroups
+            href: tables/microsoft-monitor_pipelinegroups.md
           - name: microsoft.network/applicationgateways
             href: tables/microsoft-network_applicationgateways.md
           - name: microsoft.network/azurefirewalls
@@ -2214,6 +2211,8 @@ items:
             href: tables/azuremetrics.md
           - name: AzureMetricsV2
             href: tables/azuremetricsv2.md
+          - name: AzureMonitorPipelineLogErrors
+            href: tables/azuremonitorpipelinelogerrors.md
           - name: BehaviorAnalytics
             href: tables/behavioranalytics.md
           - name: BehaviorEntities
@@ -2872,6 +2871,8 @@ items:
             href: tables/ncbmsystemlogs.md
           - name: NCCIDRACLogs
             href: tables/nccidraclogs.md
+          - name: NCCKubernetesAPIAuditLogs
+            href: tables/ncckubernetesapiauditlogs.md
           - name: NCCKubernetesLogs
             href: tables/ncckuberneteslogs.md
           - name: NCCPlatformOperationsLogs
@@ -3022,6 +3023,10 @@ items:
             href: tables/qualysknowledgebase.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
+          - name: Rapid7InsightVMCloudAssets
+            href: tables/rapid7insightvmcloudassets.md
+          - name: Rapid7InsightVMCloudVulnerabilities
+            href: tables/rapid7insightvmcloudvulnerabilities.md
           - name: RemoteNetworkHealthLogs
             href: tables/remotenetworkhealthlogs.md
           - name: ResourceManagementPublicAccessLogs
@@ -3632,6 +3637,8 @@ items:
             href: queries/AzureLoadTestingOperation.md
           - name: AzureMetrics
             href: queries/AzureMetrics.md
+          - name: AzureMonitorPipelineLogErrors
+            href: queries/AzureMonitorPipelineLogErrors.md
           - name: CCFApplicationLogs
             href: queries/CCFApplicationLogs.md
           - name: CIEventsAudit
@@ -3740,6 +3747,8 @@ items:
             href: queries/EGNSuccessfulMqttConnections.md
           - name: EdgeActionConsoleLog
             href: queries/EdgeActionConsoleLog.md
+          - name: EdgeActionServiceLog
+            href: queries/EdgeActionServiceLog.md
           - name: EmailAttachmentInfo
             href: queries/EmailAttachmentInfo.md
           - name: EmailEvents
@@ -3812,6 +3821,8 @@ items:
             href: queries/MySqlAuditLogs.md
           - name: MySqlSlowLogs
             href: queries/MySqlSlowLogs.md
+          - name: NCCKubernetesAPIAuditLogs
+            href: queries/NCCKubernetesAPIAuditLogs.md
           - name: NGXOperationLogs
             href: queries/NGXOperationLogs.md
           - name: NGXSecurityLogs
@@ -3888,6 +3899,10 @@ items:
             href: queries/QualysKnowledgeBase.md
           - name: REDConnectionEvents
             href: queries/REDConnectionEvents.md
+          - name: Rapid7InsightVMCloudAssets
+            href: queries/Rapid7InsightVMCloudAssets.md
+          - name: Rapid7InsightVMCloudVulnerabilities
+            href: queries/Rapid7InsightVMCloudVulnerabilities.md
           - name: ResourceManagementPublicAccessLogs
             href: queries/ResourceManagementPublicAccessLogs.md
           - name: RetinaNetworkFlowLogs
@@ -3922,6 +3937,8 @@ items:
             href: queries/StorageCacheWarningEvents.md
           - name: StorageMalwareScanningResults
             href: queries/StorageMalwareScanningResults.md
+          - name: StorageMoverCopyLogsTransferred
+            href: queries/StorageMoverCopyLogsTransferred.md
           - name: SucceededIngestion
             href: queries/SucceededIngestion.md
           - name: SynapseLinkEvent

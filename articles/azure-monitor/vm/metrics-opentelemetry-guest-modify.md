@@ -1,0 +1,140 @@
+---
+title: Collect and customize OpenTelemetry metrics for Azure virtual machines
+description: Learn how to collect OpenTelemetry metrics from virtual machines and customize the collection by modifying data collection rules to add per-process metrics and other advanced performance counters.
+ms.topic: how-to
+ms.date: 03/13/2026
+ms.reviewer: jeffwo, tylerknight
+---
+
+# Customize OpenTelemetry metrics collection for virtual machines in Azure Monitor (preview)
+
+When you [enable the metrics-based experience](./tutorial-enable-monitoring.md) for monitoring your Azure virtual machines, a default set of metrics are collected. You can customize your collection to include additional metrics such as per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics by modifying the data collection rule.
+
+Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the OpenTelemetry Performance Counters data source type.
+
+
+> [!NOTE]
+> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
+
+## Cost
+
+The default set of OpenTelemetry metrics are collected at no cost. There is an additional cost to collect any additional OTel metrics beyond the default set. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor) for pricing details.
+
+## Prerequisites
+
+- An Azure Monitor workspace to store the OpenTelemetry metrics. See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
+- Permissions to create data collection rules. See [Permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
+
+## Identify data collection rule (DCR)
+
+To identify the DCR associated with the VM, open **Data Collection Rules** from the **Monitor** menu in the Azure portal. Select the **Resources** tab and locate your VM.
+
+:::image type="content" source="media/vminsights-opentelemetry/resources.png" lightbox="media/vminsights-opentelemetry/resources.png" alt-text="Screenshot of Resources tab of Data Collection Rules menu item.":::
+
+Click the number in the **Data collection rules** column to list the DCRs associated with the VM. The OTel DCR will have a name in the form `MSVMOtel-<region>-<name>`. Click on the DCR to open it.
+
+:::image type="content" source="media/vminsights-opentelemetry/data-collection-rules.png" lightbox="media/vminsights-opentelemetry/data-collection-rules.png" alt-text="Screenshot of DCRs associated with selected resource.":::
+
+
+## Configure data source
+
+On the **Data sources** tab of the DCR, click on the **OpenTelemetry Performance Counters** data source. Select from a predefined set of objects to collect and their sampling rate. The lower the sampling rate, the more frequently the value is collected.
+    
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-1.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-1.png" alt-text="Screenshot that shows the Azure portal form to select basic OpenTelemetry performance counters in a data collection rule." :::
+
+Select **Custom** for a more granular selection of OpenTelemetry performance counters. 
+
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-2.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-2.png" alt-text="Screenshot that shows the Azure portal form to select custom OpenTelemetry performance counters in a data collection rule." border="false":::
+
+
+## Verify data collection
+
+To verify OpenTelemetry performance counters are being collected, scope a query to the Azure Monitor workspace, and check that the data is returned for the metrics you selected.
+
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-4-query.png" alt-text="Screenshot that shows records returned from an AMW." :::
+
+If the workspace was set to [resource-context access mode](../metrics/azure-monitor-workspace-manage-access.md), you can also verify the same query works as expected when scoped to the VM itself by navigating to the VM Metrics blade. Either choose the **add with editor** dropdown or **View AMW metrics in editor** dropdown under **Metric Namespaces**. 
+
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-5-query.png" alt-text="Screenshot that shows how to navigate to AMW PromQL editor from a VM Metrics blade." :::
+
+Both entry points should result in a PromQL editor with a query scoped to the VM resource now, where the same query will work as before, but without any need to filter on the VM microsoft.resourceid dimension.
+
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-6-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-6-query.png" alt-text="Screenshot that shows records returned from a VM, stored in an AMW." :::
+
+:::image type="content" source="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" lightbox="media/data-collection-performance/opentelemetry-performance-dcr-7-query.png" alt-text="Screenshot that shows query scoped to VM rather than AMW." :::
+
+## Metrics reference
+The following tables list the OpenTelemetry metrics available for virtual machines.
+
+### Default metrics
+The metrics in the following table are collected by default and at no additional cost.
+
+| Metric Name | Description |
+|:---|:---|
+| system.uptime | Time since last reboot (in seconds) |
+| system.cpu.time | Total CPU time consumed (user + system + idle), in seconds |
+| system.memory.usage | Memory in use (bytes) |
+| system.network.io | Bytes transmitted/received |
+| system.network.dropped | Dropped packets |
+| system.network.errors | Network errors |
+| system.disk.io | Disk I/O (bytes read/written) |
+| system.disk.operations | Disk operations (read/write counts) |
+| system.filesystem.usage | Filesystem usage in bytes |
+| system.disk.operation_time | Average disk operation time |
+
+### Additional metrics
+The metrics in the following table can be collected by modifying the DCR for the VM as described above. There's an additional cost to collect these metrics. 
+
+| Metric Name | Description |
+|:---|:---|
+| system.cpu.utilization | CPU usage % |
+| system.cpu.logical.count | Number of logical processors |
+| system.cpu.physical.count | Number of physical CPUs |
+| system.cpu.frequency | CPU frequency |
+| system.cpu.load_average.1m | System load average (1 min) |
+| system.cpu.load_average.5m | System load average (5 min) |
+| system.cpu.load_average.15m | System load average (15 min) |
+| system.memory.utilization | % memory used |
+| system.memory.limit | Total memory limit |
+| system.memory.page_size | Page size (bytes) |
+| system.linux.memory.available | Available memory |
+| system.linux.memory.dirty | Dirty memory pages |
+| system.paging.faults | Page faults |
+| system.paging.operations | Paging operations (reads/writes) |
+| system.paging.usage | Paging/swap usage (bytes) |
+| system.paging.utilization | % paging/swap used |
+| system.disk.io_time | Time spent doing I/O |
+| system.disk.merged | Number of merged operations |
+| system.disk.pending_operations | Pending I/O operations |
+| system.disk.weighted_io_time | Weighted I/O time (accounts for queue depth) |
+| system.filesystem.utilization | Filesystem usage % |
+| system.filesystem.inodes.usage | Inodes usage |
+| system.network.packets | Packets transmitted/received |
+| system.network.connections | Active network connections |
+| system.network.conntrack.count | Current conntrack table entries |
+| system.network.conntrack.max | Maximum conntrack table size |
+| process.uptime | Process uptime |
+| process.cpu.time | CPU time consumed by process |
+| process.cpu.utilization | CPU usage % per process |
+| process.memory.usage | Memory usage (RSS) |
+| process.memory.virtual | Virtual memory usage |
+| process.memory.utilization | Memory % usage |
+| process.disk.io | Disk I/O (bytes per process) |
+| process.disk.operations | Disk operations per process |
+| process.paging.faults | Process page faults |
+| process.open_file_descriptors | Open file descriptors |
+| process.threads | Number of threads |
+| process.handles | Handles in use (Windows) |
+| process.context_switches | Context switches |
+| process.signals_pending | Pending signals |
+| system.processes.count | Total number of processes |
+| system.processes.created | Processes created |
+
+For a complete reference with types, units, dimensions, and other metadata, see [OpenTelemetry metrics reference](./metrics-guest-reference.md).
+
+## Next steps
+
+- [OpenTelemetry metrics reference](./metrics-guest-reference.md)
+- [Metrics experience for VMs in Azure Monitor](./metrics-opentelemetry-guest.md)
+- Learn more about [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md)
+- Learn more about [data collection rules](../data-collection/data-collection-rule-overview.md)

@@ -80,7 +80,7 @@ The common schema includes information about the affected resource and the cause
             "dimensions": [
               {
                 "name": "ResourceId",
-                "value": "3efad9dc-3d50-4eac-9c87-8b3fd6f97e4e"
+                "value": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
               }
             ],
             "metricValue": 7.727
@@ -97,7 +97,7 @@ The common schema includes information about the affected resource and the cause
 ```
 
 > [!NOTE]
-> The `alertRuleId` field may not appear in all alert payloads. It’s included only in certain alert types or API versions that support returning the alert rule’s full resource ID.
+> The `alertRuleId` field may not appear in all alert payloads. It's included only in certain alert types or API versions that support returning the alert rule's full resource ID.
 
 For sample alerts that use the common schema, see [Sample alert payloads](alerts-payload-samples.md).
 
@@ -171,7 +171,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
             "dimensions": [
               {
                 "name": "ResourceId",
-                "value": "3efad9dc-3d50-4eac-9c87-8b3fd6f97e4e"
+                "value": "a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1"
               }
             ],
             "metricValue": 31.1105
@@ -497,10 +497,10 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
       "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
       "eventSource": "Administrative",
       "eventTimestamp": "2019-03-22T13:56:31.2917159+00:00",
-      "eventDataId": "161fda7e-1cb4-4bc5-9c90-857c55a8f57b",
+      "eventDataId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
       "level": "Informational",
       "operationName": "Microsoft.Compute/virtualMachines/restart/action",
-      "operationId": "310db69b-690f-436b-b740-6103ab6b0cba",
+      "operationId": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
       "status": "Succeeded",
       "subStatus": "",
       "submissionTimestamp": "2019-03-22T13:56:54.067593+00:00"
@@ -611,7 +611,7 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
     "claims": null,
     "caller": null,
     "correlationId": "bbbb1111-cc22-3333-44dd-555555eeeeee",
-    "eventSource": "ServiceHealth,
+    "eventSource": "ServiceHealth",
     "eventTimestamp": "2019-06-24T11:31:19.0312699+00:00",
     "httpRequest": null,
     "eventDataId": "<GUID>",
@@ -737,12 +737,12 @@ The following [create or update](/rest/api/monitor/actiongroups/createorupdate) 
     "emailReceivers": [
       {
         "name": "John Doe's email",
-        "emailAddress": "johndoe@email.com",
+        "emailAddress": "johndoe@contoso.com",
         "useCommonAlertSchema": true
       },
       {
         "name": "Jane Smith's email",
-        "emailAddress": "janesmith@email.com",
+        "emailAddress": "janesmith@contoso.com",
         "useCommonAlertSchema": false
       }
     ],

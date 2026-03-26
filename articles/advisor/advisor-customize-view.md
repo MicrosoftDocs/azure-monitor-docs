@@ -2,7 +2,7 @@
 title: Customize recommendations view using filters and grouping
 description: Customize recommendations view using filters and grouping in the Azure portal.
 ms.topic: how-to
-ms.date: 11/11/2025
+ms.date: 03/23/2026
 
 ---
 

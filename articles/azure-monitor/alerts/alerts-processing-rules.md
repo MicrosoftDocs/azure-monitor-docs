@@ -2,9 +2,9 @@
 title: Alert processing rules for Azure Monitor alerts
 description: Understand Azure Monitor alert processing rules and how to configure and manage them.
 ms.topic: how-to
-ms.custom: devx-track-azurepowershell
-ms.date: 7/30/2024
-ms.reviewer: 
+ms.date: 04/24/2026
+ms.custom: references_regions, devx-track-azurepowershell
+
 ---
 
 # Alert processing rules
@@ -46,7 +46,7 @@ Azure Monitor alert rules let you select which action groups will be triggered w
 For those alert types, you can use alert processing rules to add action groups.
 
 > [!NOTE]
-> Alert processing rules don't affect [Azure Service Health](../../service-health/service-health-overview.md) alerts.
+> Alert processing rules don't affect [Azure Service Health](../../service-health/service-health-portal-update.md) alerts.
 
 ## Scope and filters for alert processing rules
 <a name="filter-criteria"></a>

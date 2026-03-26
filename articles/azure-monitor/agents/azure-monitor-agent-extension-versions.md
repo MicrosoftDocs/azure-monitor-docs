@@ -4,7 +4,7 @@ description: This article describes the version details for the Azure Monitor Ag
 ms.topic: release-notes
 ms.date: 02/25/2026
 ms.custom: references_region
-ms.reviewer: JeffWo
+ms.reviewer: jeffwo
 # customer intent: As a cloud administrator, I want to know the version history of the Azure Monitor Agent extension so that I can manage updates and compatibility.
 ---
 

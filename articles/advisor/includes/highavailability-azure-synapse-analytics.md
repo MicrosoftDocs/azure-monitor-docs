@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Synapse Analytics
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Azure Synapse Analytics
   
 ## Azure Synapse Analytics  
   
-<!--439a275e-50fd-412d-8167-8297b32ee12d_begin-->
+<!--5202f09f-6886-4daf-a2e2-21fea2672973_begin-->
 
-#### Migrate to Eventhouse in Microsoft Fabric  
+#### Azure Synapse runtime for Apache Spark 3.4 is being retired.  
   
-Synapse Data Explorer (Preview) is retiring. Migrate to Eventhouse in Real-Time Intelligence, part of Microsoft Fabric.  
+Azure Synapse runtime for Apache Spark 3.4 is being retired and disabled.  
   
-**Potential benefits**: Avoid service disruption  
+**Potential benefits**: Avoid potential disruptions for the applications  
 
 **Impact:** High
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=484968)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=490042)  
 
-ResourceType: microsoft.synapse/workspaces/kustopools  
-Recommendation ID: 439a275e-50fd-412d-8167-8297b32ee12d  
+ResourceType: microsoft.synapse/workspaces/bigdatapools  
+Recommendation ID: 5202f09f-6886-4daf-a2e2-21fea2672973  
 Subcategory: undefined
 
-<!--439a275e-50fd-412d-8167-8297b32ee12d_end-->
+<!--5202f09f-6886-4daf-a2e2-21fea2672973_end-->
 
 <!--articleBody-->

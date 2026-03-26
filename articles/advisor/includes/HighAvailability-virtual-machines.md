@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -33,21 +33,23 @@ Subcategory: HighAvailability
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_begin-->
 
-#### Use Azure Disks with Zone Redundant Storage (ZRS) for higher resiliency and availability  
+#### Ensure Azure Disks are in the same zone as your VM for higher resiliency and availability  
   
-Azure Disks with ZRS provide synchronous replication of data across three Availability Zones in a region, making the disk tolerant to zonal failures without disruptions to applications. For higher resiliency and availability, migrate disks from LRS to ZRS.  
+Azure VMs can be regional or zonal. For higher resilience, use a zonal VM with the disk in the same zone to be isolated from zonal failures without disruptions to applications. For higher even resiliency and availability, migrate disks from LRS to ZRS.  
   
-**Potential benefits**: By designing your applications to use ZRS Disks, your data is replicated across 3 Availability Zones, making your disk resilient to a zone outage  
+**Potential benefits**: Improved availability and reliability.  
 
 **Impact:** High
   
-For more information, see [Convert a disk from LRS to ZRS - Azure Virtual Machines ](https://aka.ms/migratedisksfromLRStoZRS)  
+For more information, see [Best practices for high availability with Azure VMs and managed disks - Azure Virtual Machines](https://aka.ms/learnmore_compute_disks)  
 
 ResourceType: microsoft.compute/disks  
 Recommendation ID: d4102c0f-ebe3-4b22-8fe0-e488866a87af  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--d4102c0f-ebe3-4b22-8fe0-e488866a87af_end-->
+
+
 
 <!--ed651749-cd37-4fd5-9897-01b416926745_begin-->
 
@@ -164,17 +166,18 @@ Subcategory: Other
   
 Availability Zones (AZ) in Azure help protect your applications and data from datacenter failures. Each AZ is made up of one or more datacenters equipped with independent power, cooling, and networking. By designing solutions to use zonal VMs, you can isolate your VMs from failure in any other zone.  
   
-**Potential benefits**: Usage of zonal VMs protect your apps from zone outage in any other zones.  
+**Potential benefits**: Zonal VMs protect your apps from zonal outage in other zones  
 
 **Impact:** High
   
-For more information, see [Tutorial - Move Azure single instance Virtual Machines from regional to zonal availability zones - Azure Virtual Machines ](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
+For more information, see [Tutorial - Move Azure single instance Virtual Machines from regional to zonal availability zones - Azure Virtual Machines](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 066a047a-9ace-45f4-ac50-6325840a6b00  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
+
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
 
@@ -347,6 +350,8 @@ Recommendation ID: 3c03549b-9c0a-4c13-bed4-def3c7e34ddd
 Subcategory: undefined
 
 <!--3c03549b-9c0a-4c13-bed4-def3c7e34ddd_end-->
+
+
 
 
 
@@ -753,12 +758,31 @@ Dependency Agent and VM Insights Map is retiring. We recommend considering a rep
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=491629)  
+  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
 Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
+
+
+<!--69e994b4-9b84-4581-930b-edcf9cc81582_begin-->
+
+#### Cloud Services (extended support) is being retired  
+  
+Migrating to Virtual Machine Scale Sets with Flexible orchestration enhances the scalability, flexibility, and reliability of the Azure deployments. After the retirement date, workloads running Cloud Services (extended support) are deleted and associated application data is lost.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=486344)  
+
+ResourceType: microsoft.compute/cloudservices  
+Recommendation ID: 69e994b4-9b84-4581-930b-edcf9cc81582  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--69e994b4-9b84-4581-930b-edcf9cc81582_end-->
 
 <!--articleBody-->

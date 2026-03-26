@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 03/10/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -166,13 +166,14 @@ When an account is throwing a TooManyRequests error with the 16500 error code, e
 
 **Impact:** High
   
-  
+For more information, see [Prevent rate-limiting errors for Azure Cosmos DB for MongoDB operations. - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/prevent-rate-limiting-errors)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: ec6fe20c-08d6-43da-ac18-84ac83756a88  
-Subcategory: Other
+Subcategory: undefined
 
 <!--ec6fe20c-08d6-43da-ac18-84ac83756a88_end-->
+
 
 <!--b57f7a29-dcc8-43de-86fa-18d3f9d3764d_begin-->
 
@@ -250,7 +251,7 @@ Subcategory: Other
 
 #### Enable HA for your Production workload  
   
-Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure Portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
+Many clusters with consistent workloads do not have high availability (HA) enabled. It's recommended to activate HA from the Scale page in the Azure portal to prevent database downtime in case of unexpected node failures and to qualify for SLA guarantees.  
   
 **Potential benefits**: Activate HA to avoid database downtime in case of an unexpected node failure  
 

@@ -2,11 +2,11 @@
 title:  Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
 description: Detailed process for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure virtual machines and virtual machine scale set instances.
 ms.topic: how-to
-ms.date: 02/26/2025
+ms.date: 03/10/2026
 ---
 
 # Remove Dependency Agent from Azure Virtual Machines and Virtual Machine Scale Sets
-The [Dependency Agent](./vminsights-dependency-agent.md) is a required component for the map feature in VM insights. This feature is [being deprecated](./vminsights-maps-retirement.md) so the dependency agent will no longer be required. This article provides the steps for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure virtual machines and virtual machine scale set instances.
+The [Dependency Agent](./vminsights-dependency-agent.md) is a required component for the map feature in VM insights. This feature is [being deprecated](./vminsights-maps-retirement.md) so the dependency agent is longer be required. This article provides the steps for safely uninstalling the Dependency Agent from both Windows and Linux-based Azure virtual machines and virtual machine scale set instances.
 
 > [!IMPORTANT]
 > [VM insights](./vminsights-overview.md) isn't being retired, just the map feature and any components that rely on it, such as the dependency agent.

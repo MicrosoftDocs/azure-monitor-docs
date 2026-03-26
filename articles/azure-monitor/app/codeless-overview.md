@@ -24,7 +24,7 @@ The following table shows the current state of autoinstrumentation availability.
 Links are provided to more information for each supported scenario.
 
 > [!NOTE]
-> If your hosting environment or resource provider isn't listed in the following table, then autoinstrumentation isn't supported. In this case, we recommend manually instrumenting using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md). For more information, see [Data Collection Basics of Azure Monitor Application Insights](opentelemetry-overview.md).
+> If your hosting environment or resource provider isn't listed in the following table, see [getting started](app-insights-overview.md#getting-started).
 
 | Environment/Resource provider                       | .NET Framework                                                                                                               | .NET Core / .NET                                                                                                             | Java                                                                                                                         | Node.js                                                                                                                                                               | Python                                                                                                                   |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
@@ -41,9 +41,14 @@ Links are provided to more information for each supported scenario.
 - ²: This feature is in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 - ³: Autoinstrumentation only supports single-container applications. For multi-container applications, manual instrumentation is required using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
+> [!TIP]
+> Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)
-* [Application Insights overview](app-insights-overview.md)
-* [Application Insights overview dashboard](overview-dashboard.md)
-* [Application map](app-map.md)
+- [Use OpenTelemetry with Azure Functions](/azure/azure-functions/opentelemetry-howto)
+- [Monitor Azure App Service](/azure/app-service/monitor-app-service)
+- [Troubleshoot Application Insights autoinstrumentation](/troubleshoot/azure/azure-monitor/app-insights/telemetry/auto-instrumentation-troubleshoot)
+- [Troubleshoot Application Insights integration with Azure App Service](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-app-service-issues)
+- [Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)
+- [Autoinstrumentation FAQ](application-insights-faq.yml#autoinstrumentation)

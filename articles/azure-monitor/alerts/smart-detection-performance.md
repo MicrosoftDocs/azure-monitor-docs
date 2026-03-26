@@ -1,21 +1,22 @@
 ---
 title: Smart detection - performance anomalies | Microsoft Docs
 description: Smart detection analyzes your app telemetry and warns you of potential problems. This feature needs no setup.
-ms.reviewer: yagil
 ms.topic: how-to
-ms.date: 04/01/2024
+ms.reviewer: yagil
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
-# Smart detection - Performance Anomalies
+# Smart detection - Performance anomalies
 
 >[!NOTE]
->You can migrate your Application Insight resources to alerts-based smart detection (preview). The migration creates alert rules for the different smart detection modules. Once created, you can manage and configure these rules just like any other Azure Monitor alert rules. You can also configure action groups for these rules, thus enabling multiple methods of taking actions or triggering notification on new detections.
+>You can migrate your Application Insights resources to alerts-based smart detection (preview). The migration creates alert rules for the different smart detection modules. After the migration, you can manage and configure these rules just like any other Azure Monitor alert rules. You can also configure action groups for these rules, enabling multiple methods of taking actions or triggering notification on new detections.
 >
 > For more information on the migration process, see [Smart Detection Alerts migration](./alerts-smart-detections-migration.md).
 
 [Application Insights](../app/app-insights-overview.md) automatically analyzes the performance of your web application, and can warn you about potential problems.
 
-This feature requires no special setup, other than configuring your app for Application Insights for your [supported language](../app/app-insights-overview.md#supported-languages). It's active when your app generates enough telemetry.
+This feature requires no special setup, other than configuring your app for Application Insights for your [supported language](../app/app-insights-overview.md#getting-started). It's active when your app generates enough telemetry.
 
 ## When would I get a smart detection notification?
 
@@ -127,7 +128,7 @@ The response time degradation notification tells you:
 
 ## Dependency Duration Degradation
 
-Modern applications often adopt a micro services design approach, which in many cases rely heavily on external services. For example, if your application relies on some data platform, or on a critical services provider such as Azure AI services.   
+Modern applications often adopt a micro services design approach, which in many cases rely heavily on external services. For example, if your application relies on some data platform, or on a critical services provider such as Foundry Tools.   
 
 Example of dependency degradation notification:
 

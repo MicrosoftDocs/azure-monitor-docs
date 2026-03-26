@@ -63,7 +63,7 @@ The common schema includes information about the affected resource and the cause
             "dimensions": [
               {
                 "name": "ResourceId",
-                "value": "3efad9dc-3d50-4eac-9c87-8b3fd6f97e4e"
+                "value": "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2"
               }
             ],
             "metricValue": 7.727
@@ -98,7 +98,7 @@ The following are sample metric alert payloads.
             "dimensions": [
               {
                 "name": "ResourceId",
-                "value": "3efad9dc-3d50-4eac-9c87-8b3fd6f97e4e"
+                "value": "b1b1b1b1-cccc-dddd-eeee-f2f2f2f2f2f2"
               }
             ],
             "metricValue": 31.1105
@@ -387,10 +387,10 @@ The following are sample metric alert payloads.
       "correlationId": "aaaa0000-bb11-2222-33cc-444444dddddd",
       "eventSource": "Administrative",
       "eventTimestamp": "2019-03-22T13:56:31.2917159+00:00",
-      "eventDataId": "161fda7e-1cb4-4bc5-9c90-857c55a8f57b",
+      "eventDataId": "bbbbcccc-1111-dddd-2222-eeee3333ffff",
       "level": "Informational",
       "operationName": "Microsoft.Compute/virtualMachines/restart/action",
-      "operationId": "310db69b-690f-436b-b740-6103ab6b0cba",
+      "operationId": "aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb",
       "status": "Succeeded",
       "subStatus": "",
       "submissionTimestamp": "2019-03-22T13:56:54.067593+00:00"
@@ -603,19 +603,19 @@ This section describes the structure and content of the test payload sent when u
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/test-RG/providers/microsoft.insights/activityLogAlerts/Test_Alert",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/microsoft.insights/activityLogAlerts/Test_Alert",
       "alertRule": "test-activityLogAlertRule",
       "severity": "Sev4",
       "signalType": "Activity Log",
       "monitorCondition": "Fired",
       "monitoringService": "Activity Log - Administrative",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.compute/virtualmachines/test-VM"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.compute/virtualmachines/test-VM"
       ],
       "configurationItems": [
         "test-VM"
       ],
-      "originAlertId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb_123456789012345678901234567890ab",
+      "originAlertId": "dddd3333-ee44-5555-66ff-777777aaaaaa_123456789012345678901234567890ab",
       "firedDateTime": "2025-04-15T11:26:21.386Z",
       "description": "Alert rule description",
       "essentialsVersion": "1.0",
@@ -624,23 +624,23 @@ This section describes the structure and content of the test payload sent when u
     "alertContext": {
       "authorization": {
         "action": "Microsoft.Compute/virtualMachines/restart/action",
-        "scope": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM"
+        "scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM"
       },
       "channels": "Operation",
       "claims": "{}",
-      "caller": "user-email@domain.com",
-      "correlationId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "caller": "user@contoso.com",
+      "correlationId": "cccc2222-dd33-4444-55ee-666666ffffff",
       "eventSource": "Administrative",
       "eventTimestamp": "2025-04-15T11:26:21.386Z",
-      "eventDataId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "eventDataId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "level": "Informational",
       "operationName": "Microsoft.Compute/virtualMachines/restart/action",
-      "operationId": "cccccccc-cccc-cccc-cccc-cccccccccccc",
+      "operationId": "bbbbbbbb-1111-2222-3333-cccccccccccc",
       "properties": {
         "eventCategory": "Administrative",
-        "entity": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
+        "entity": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/Microsoft.Compute/virtualMachines/test-VM",
         "message": "Microsoft.Compute/virtualMachines/restart/action",
-        "hierarchy": "22222222-2222-2222-2222-222222222222/CnAIOrchestrationServicePublicCorpprod/33333333-3333-3333-3333-3333333333333/44444444-4444-4444-4444-444444444444/55555555-5555-5555-5555-555555555555/11111111-1111-1111-1111-111111111111"
+        "hierarchy": "22222222-2222-2222-2222-222222222222/CnAIOrchestrationServicePublicCorpprod/33333333-3333-3333-3333-3333333333333/cccccccc-2222-3333-4444-dddddddddddd/dddddddd-3333-4444-5555-eeeeeeeeeeee/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
       },
       "status": "Succeeded",
       "subStatus": "",
@@ -658,19 +658,19 @@ This section describes the structure and content of the test payload sent when u
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-availabilityTest-test-applicationInsights",
       "severity": "Sev4",
       "signalType": "Metric",
       "monitorCondition": "Fired",
       "monitoringService": "Platform",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.insights/components/test-applicationInsights"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.insights/components/test-applicationInsights"
       ],
       "configurationItems": [
         "test-applicationInsights"
       ],
-      "originAlertId": "11111111-1111-1111-1111-111111111111_test-RG_microsoft.insights_metricalerts_test-availabilityTest-test-applicationInsights_1234567890",
+      "originAlertId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e_test-RG_microsoft.insights_metricalerts_test-availabilityTest-test-applicationInsights_1234567890",
       "firedDateTime": "2025-04-15T17:42:34.824Z",
       "description": "Alertruledescription",
       "essentialsVersion": "1.0",
@@ -717,7 +717,7 @@ This section describes the structure and content of the test payload sent when u
       "description": "Delivery Confirmation: This is a sample budget alert from Azure Monitor Action Groups.",
       "essentialsVersion": "1.0",
       "alertContextVersion": "1.0",
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.CostManagement/alerts/Test_Alert",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.CostManagement/alerts/Test_Alert",
       "alertRule": null,
       "severity": null,
       "signalType": null,
@@ -731,13 +731,13 @@ This section describes the structure and content of the test payload sent when u
     "alertContext": {
       "AlertCategory": "budgets",
       "AlertData": {
-        "Scope": "/subscriptions/11111111-1111-1111-1111-111111111111/",
+        "Scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/",
         "ThresholdType": "Forecasted",
         "BudgetType": "Cost",
         "BudgetThreshold": "$50.00",
         "NotificationThresholdAmount": "$50.00",
         "BudgetName": "Test_forcasted_budget",
-        "BudgetId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.Consumption/budgets/Test_forcasted_budget",
+        "BudgetId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.Consumption/budgets/Test_forcasted_budget",
         "BudgetStartDate": "2022-11-01",
         "BudgetCreator": "test@sample.test",
         "Unit": "USD",
@@ -761,7 +761,7 @@ This section describes the structure and content of the test payload sent when u
       "description": "YourspendforbudgetTest_actual_cost_budgetisnow$11,111.00exceedingyourspecifiedthreshold$25.00.",
       "essentialsVersion": "1.0",
       "alertContextVersion": "1.0",
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.CostManagement/alerts/Test_Alert",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.CostManagement/alerts/Test_Alert",
       "alertRule": null,
       "severity": null,
       "signalType": null,
@@ -775,13 +775,13 @@ This section describes the structure and content of the test payload sent when u
     "alertContext": {
       "AlertCategory": "budgets",
       "AlertData": {
-        "Scope": "/subscriptions/11111111-1111-1111-1111-111111111111/",
+        "Scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/",
         "ThresholdType": "Actual",
         "BudgetType": "Cost",
         "BudgetThreshold": "$50.00",
         "NotificationThresholdAmount": "$25.00",
         "BudgetName": "Test_actual_cost_budget",
-        "BudgetId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.Consumption/budgets/Test_actual_cost_budget",
+        "BudgetId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.Consumption/budgets/Test_actual_cost_budget",
         "BudgetStartDate": "2022-11-01",
         "BudgetCreator": "test@sample.test",
         "Unit": "USD",
@@ -804,7 +804,7 @@ This section describes the structure and content of the test payload sent when u
       "description": "Thetotalspendforyourbudget,Test_forcasted_budget,isforecastedtoreach$1111.11beforetheendoftheperiod.Thisamountexceedsyourspecifiedbudgetthresholdof$50.00.",
       "essentialsVersion": "1.0",
       "alertContextVersion": "1.0",
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.CostManagement/alerts/Test_Alert",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.CostManagement/alerts/Test_Alert",
       "alertRule": null,
       "severity": null,
       "signalType": null,
@@ -818,13 +818,13 @@ This section describes the structure and content of the test payload sent when u
     "alertContext": {
       "AlertCategory": "budgets",
       "AlertData": {
-        "Scope": "/subscriptions/11111111-1111-1111-1111-111111111111/",
+        "Scope": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/",
         "ThresholdType": "Forecasted",
         "BudgetType": "Cost",
         "BudgetThreshold": "$50.00",
         "NotificationThresholdAmount": "$50.00",
         "BudgetName": "Test_forcasted_budget",
-        "BudgetId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.Consumption/budgets/Test_forcasted_budget",
+        "BudgetId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.Consumption/budgets/Test_forcasted_budget",
         "BudgetStartDate": "2022-11-01",
         "BudgetCreator": "test@sample.test",
         "Unit": "USD",
@@ -854,17 +854,17 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-logAlertRule-v1-metricMeasurement",
       "severity": "Sev4",
       "signalType": "Log",
       "monitorCondition": "Fired",
       "monitoringService": "Log Analytics",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
       ],
       "configurationItems": [],
-      "originAlertId": "12345678-4444-4444-4444-1234567890ab",
+      "originAlertId": "ffffffff-5555-6666-7777-aaaaaaaaaaaa",
       "firedDateTime": "2025-04-15T17:57:27.967Z",
       "description": "Alert rule description",
       "essentialsVersion": "1.0",
@@ -875,12 +875,12 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
       "SearchIntervalStartTimeUtc": "2025-04-15T17:57:27.967Z",
       "SearchIntervalEndtimeUtc": "2025-04-15T17:57:27.967Z",
       "ResultCount": 2,
-      "LinkToSearchResults": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2BWqUSguzc1NLMqsSlVwTE8vSk1PLElNCUvMKU21Tc4vzSvRaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHi/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-      "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHidp%2BOPOhDKsHR%2FFeJXsTgzGJRmVui3KF3RpLyEJCX9A2iMl6jgxMn6jRevng3JmIHLdYtKP4DRI9mhc%3D/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
-      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToSearchResults": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2BWqUSguzc1NLMqsSlVwTE8vSk1PLElNCUvMKU21Tc4vzSvRaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHi/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHiaBcDeFgHidp%2BOPOhDKsHR%2FFeJXsTgzGJRmVui3KF3RpLyEJCX9A2iMl6jgxMn6jRevng3JmIHLdYtKP4DRI9mhc%3D/prettify/1/timespan/2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
+      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%20%0A%7C%20summarize%20AggregatedValue%3Dcount%28%29%20by%20bin%28TimeGenerated%2C%205m%29%7C%20where%20todouble%28AggregatedValue%29%20%3E%200&timespan=2021-11-15T15%3a16%3a49.0000000Z%2f2021-11-16T15%3a16%3a49.0000000Z",
       "SeverityDescription": "Informational",
-      "WorkspaceId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "WorkspaceId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "SearchIntervalDurationMin": "1440",
       "AffectedConfigurationItems": [],
       "AlertType": "Metric measurement",
@@ -915,7 +915,7 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
@@ -938,14 +938,14 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-logAlertRule-v1-numResults",
       "severity": "Sev4",
       "signalType": "Log",
       "monitorCondition": "Fired",
       "monitoringService": "Log Analytics",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
       ],
       "configurationItems": [
         "test-computer"
@@ -961,12 +961,12 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
       "SearchIntervalStartTimeUtc": "2025-04-15T18:04:40.852Z",
       "SearchIntervalEndtimeUtc": "2025-04-15T18:04:40.852Z",
       "ResultCount": 1,
-      "LinkToSearchResults": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-      "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
-      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToSearchResults": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHi%2ABCDE%3D%3D/prettify/1/timespan/2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
+      "LinkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%0A&timespan=2021-11-15T15%3a15%3a24.0000000Z%2f2021-11-16T15%3a15%3a24.0000000Z",
       "SeverityDescription": "Informational",
-      "WorkspaceId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "WorkspaceId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "SearchIntervalDurationMin": "1440",
       "AffectedConfigurationItems": [
         "test-computer"
@@ -994,7 +994,7 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
             ],
             "rows": [
               [
-                "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+                "dddd3333-ee44-5555-66ff-777777aaaaaa",
                 "test-computer",
                 "2025-04-15T18:04:40.852Z"
               ]
@@ -1003,7 +1003,7 @@ You should only test **Log alerts V1** payloads if your receiving endpoint or au
         ],
         "dataSources": [
           {
-            "resourceId": "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
+            "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace",
             "region": "eastus",
             "tables": [
               "Heartbeat"
@@ -1031,14 +1031,14 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-logAlertRule-v2",
       "severity": "Sev4",
       "signalType": "Log",
       "monitorCondition": "Fired",
       "monitoringService": "Log Alerts V2",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.operationalinsights/workspaces/test-logAnalyticsWorkspace"
       ],
       "configurationItems": [
         "test-computer"
@@ -1076,10 +1076,10 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
               "numberOfEvaluationPeriods": 1,
               "minFailingPeriodsToAlert": 1
             },
-            "linkToSearchResultsUI": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmN1234567890ZAZBZiaGBlaG5lbKlnAAFRmnp6WNUZoqvTBAA%3D/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
-            "linkToFilteredSearchResultsUI": "https://portal.azure.com#@aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2F11111111-1111-1111-1111-111111111111%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmN%2Fl35oOTZoKioEOouaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN7HHgOCZTR0Ak%2FaBcDeFgHiJkLmN1234567890Ltcw%2FOqZS%2FuX0L5d%2Bx3iMHNzQiu3Y%2BzsjpFSWlOzgA87vAxeHW2MoAtQxe6OUvVrZR3XYZPXrd%2FIE/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
-            "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
-            "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29%7C%20where%20tostring%28Computer%29%20%3D%3D%20%27test-computer%27&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z"
+            "linkToSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmNaBcDeFgHiJkLmN1234567890ZAZBZiaGBlaG5lbKlnAAFRmnp6WNUZoqvTBAA%3D/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
+            "linkToFilteredSearchResultsUI": "https://portal.azure.com#@cccc2222-dd33-4444-55ee-666666ffffff/blade/Microsoft_Azure_Monitoring_Logs/LogsBlade/source/Alerts.EmailLinks/scope/%7B%22resources%22%3A%5B%7B%22resourceId%22%3A%22%2Fsubscriptions%2Faaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e%2FresourceGroups%2Ftest-RG%2Fproviders%2FMicrosoft.OperationalInsights%2Fworkspaces%2Ftest-logAnalyticsWorkspace%22%7D%5D%7D/q/aBcDeFgHiJkLmN%2Fl35oOTZoKioEOouaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN%2BaBcDeFgHiJkLmN7HHgOCZTR0Ak%2FaBcDeFgHiJkLmN1234567890Ltcw%2FOqZS%2FuX0L5d%2Bx3iMHNzQiu3Y%2BzsjpFSWlOzgA87vAxeHW2MoAtQxe6OUvVrZR3XYZPXrd%2FIE/prettify/1/timespan/2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
+            "linkToSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z",
+            "linkToFilteredSearchResultsAPI": "https://api.loganalytics.io/v1/workspaces/dddd3333-ee44-5555-66ff-777777aaaaaa/query?query=Heartbeat%7C%20where%20TimeGenerated%20between%28datetime%282021-11-16T10%3A17%3A39.0000000Z%29..datetime%282021-11-16T11%3A17%3A39.0000000Z%29%29%7C%20where%20tostring%28Computer%29%20%3D%3D%20%27test-computer%27&timespan=2021-11-16T10%3a17%3a39.0000000Z%2f2021-11-16T11%3a17%3a39.0000000Z"
           }
         ],
         "windowStartTime": "2025-04-15T18:08:03.626Z",
@@ -1097,19 +1097,19 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-dynamicMetricAlertRule",
       "severity": "Sev4",
       "signalType": "Metric",
       "monitorCondition": "Fired",
       "monitoringService": "Platform",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/Microsoft.Storage/storageAccounts/test-storageAccount"
       ],
       "configurationItems": [
         "test-storageAccount"
       ],
-      "originAlertId": "11111111-1111-1111-1111-111111111111_test-RG_microsoft.insights_metricAlerts_test-metricAlertRule_1234567890",
+      "originAlertId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e_test-RG_microsoft.insights_metricAlerts_test-metricAlertRule_1234567890",
       "firedDateTime": "2025-04-15T18:15:16.104Z",
       "description": "Alertruledescription",
       "essentialsVersion": "1.0",
@@ -1160,19 +1160,19 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-metricAlertRule",
       "severity": "Sev4",
       "signalType": "Metric",
       "monitorCondition": "Fired",
       "monitoringService": "Platform",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.storage/storageaccounts/test-storageAccount"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.storage/storageaccounts/test-storageAccount"
       ],
       "configurationItems": [
         "test-storageAccount"
       ],
-      "originAlertId": "11111111-1111-1111-1111-111111111111_test-RG_microsoft.insights_metricAlerts_test-metricAlertRule_1234567890",
+      "originAlertId": "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e_test-RG_microsoft.insights_metricAlerts_test-metricAlertRule_1234567890",
       "firedDateTime": "2025-04-15T18:17:12.851Z",
       "description": "Alertruledescription",
       "essentialsVersion": "1.0",
@@ -1222,19 +1222,19 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-ResourceHealthAlertRule",
       "severity": "Sev4",
       "signalType": "Activity Log",
       "monitorCondition": "Fired",
       "monitoringService": "Resource Health",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.compute/virtualmachines/test-VM"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.compute/virtualmachines/test-VM"
       ],
       "configurationItems": [
         "test-VM"
       ],
-      "originAlertId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb_123456789012345678901234567890ab",
+      "originAlertId": "dddd3333-ee44-5555-66ff-777777aaaaaa_123456789012345678901234567890ab",
       "firedDateTime": "2025-04-15T18:19:45.304Z",
       "description": "Alert rule description",
       "essentialsVersion": "1.0",
@@ -1242,13 +1242,13 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
     },
     "alertContext": {
       "channels": "Admin, Operation",
-      "correlationId": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+      "correlationId": "cccc2222-dd33-4444-55ee-666666ffffff",
       "eventSource": "ResourceHealth",
       "eventTimestamp": "2025-04-15T18:19:45.304Z",
-      "eventDataId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "eventDataId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "level": "Informational",
       "operationName": "Microsoft.Resourcehealth/healthevent/Activated/action",
-      "operationId": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb",
+      "operationId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
       "properties": {
         "title": "Rebooted by user",
         "details": null,
@@ -1272,16 +1272,16 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/1234abcd5678efgh1234abcd5678efgh1234abcd5678efgh1234abcd5678efgh",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/1234abcd5678efgh1234abcd5678efgh1234abcd5678efgh1234abcd5678efgh",
       "alertRule": "test-ServiceHealthAlertRule",
       "severity": "Sev4",
       "signalType": "ActivityLog",
       "monitorCondition": "Fired",
       "monitoringService": "ServiceHealth",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
       ],
-      "originAlertId": "12345678-1234-1234-1234-1234567890ab",
+      "originAlertId": "eeeeeeee-4444-5555-6666-ffffffffffff",
       "firedDateTime": "2025-04-15T18:20:36.256Z",
       "description": "Alertruledescription",
       "essentialsVersion": "1.0",
@@ -1296,7 +1296,7 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
       "eventSource": 2,
       "eventTimestamp": "2025-04-15T18:20:36.256Z",
       "httpRequest": null,
-      "eventDataId": "12345678-1234-1234-1234-1234567890ab",
+      "eventDataId": "eeeeeeee-4444-5555-6666-ffffffffffff",
       "level": 3,
       "operationName": "Microsoft.ServiceHealth/incident/action",
       "operationId": "12345678-abcd-efgh-ijkl-abcd12345678",
@@ -1345,14 +1345,14 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
   "schemaId": "azureMonitorCommonAlertSchema",
   "data": {
     "essentials": {
-      "alertId": "/subscriptions/11111111-1111-1111-1111-111111111111/providers/Microsoft.AlertsManagement/alerts/12345678-1234-1234-1234-1234567890ab",
+      "alertId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/providers/Microsoft.AlertsManagement/alerts/eeeeeeee-4444-5555-6666-ffffffffffff",
       "alertRule": "test-SmartAlertRule",
       "severity": "Sev4",
       "signalType": "Log",
       "monitorCondition": "Fired",
       "monitoringService": "SmartDetector",
       "alertTargetIDs": [
-        "/subscriptions/11111111-1111-1111-1111-111111111111/resourcegroups/test-RG/providers/microsoft.insights/components/test-applicationInsights"
+        "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/test-RG/providers/microsoft.insights/components/test-applicationInsights"
       ],
       "configurationItems": [
         "test-applicationInsights"
@@ -1368,7 +1368,7 @@ You can also use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to
       "FormattedOccurrenceTime": "2025-04-15T18:23:16.577Z",
       "DetectedValue": "0.45 sec",
       "NormalValue": "0.27 sec (over the last 7 days)",
-      "PresentationInsightEventRequest": "/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/test-RG/providers/microsoft.insights/components/test-applicationInsights/query?query=systemEvents%0d%0a++++++++++++++++%7c+where+timestamp+%3e%3d+datetime(%272021-10-27T23%3a29%3a59.0000000Z%27)+%0d%0a++++++++++++++++%7c+where+itemType+%3d%3d+%27systemEvent%27+and+name+%3d%3d+%27ProactiveDetectionInsight%27+%0d%0a++++++++++++++++%7c+where+dimensions.InsightType+%3d%3d+3+%0d%0a++++++++++++++++%7c+where+dimensions.InsightVersion+%3d%3d+%27SmartAlert%27%0d%0a++++++++++++++++%7c+where+dimensions.InsightDocumentId+%3d%3d+%2712345678-abcd-1234-5678-abcd12345678%27+%0d%0a++++++++++++++++%7c+project+dimensions.InsightPropertiesTable%2cdimensions.InsightDegradationChart%2cdimensions.InsightCountChart%2cdimensions.InsightLinksTable%0d%0a++++++++++++++++&api-version=2018-04-20",
+      "PresentationInsightEventRequest": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/test-RG/providers/microsoft.insights/components/test-applicationInsights/query?query=systemEvents%0d%0a++++++++++++++++%7c+where+timestamp+%3e%3d+datetime(%272021-10-27T23%3a29%3a59.0000000Z%27)+%0d%0a++++++++++++++++%7c+where+itemType+%3d%3d+%27systemEvent%27+and+name+%3d%3d+%27ProactiveDetectionInsight%27+%0d%0a++++++++++++++++%7c+where+dimensions.InsightType+%3d%3d+3+%0d%0a++++++++++++++++%7c+where+dimensions.InsightVersion+%3d%3d+%27SmartAlert%27%0d%0a++++++++++++++++%7c+where+dimensions.InsightDocumentId+%3d%3d+%2712345678-abcd-1234-5678-abcd12345678%27+%0d%0a++++++++++++++++%7c+project+dimensions.InsightPropertiesTable%2cdimensions.InsightDegradationChart%2cdimensions.InsightCountChart%2cdimensions.InsightLinksTable%0d%0a++++++++++++++++&api-version=2018-04-20",
       "SmartDetectorId": "DependencyPerformanceDegradationDetector",
       "SmartDetectorName": "Dependency Performance Degradation Detector",
       "AnalysisTimestamp": "2025-04-15T18:23:16.577Z"

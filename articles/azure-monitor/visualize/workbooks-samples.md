@@ -2,16 +2,17 @@
 title: Sample Azure Workbooks with links
 description: See sample Azure Workbooks.
 ms.topic: how-to
-ms.custom: devx-track-arm-template
+ms.custom: devx-track-arm-template, references_regions
 ms.date: 09/17/2024
 ms.reviewer: gardnerjr 
 ---
 
 # Sample Azure Workbooks
+
 This article includes sample Azure Workbooks.
 
-
 ## Sample JSON Path parameter workbook
+
 ```json
 {
   "version": "Notebook/1.0",
@@ -46,10 +47,14 @@ This article includes sample Azure Workbooks.
   "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
 ```
-## Sample ARM template for creating a workbook template
+
+## Sample ARM (JSON) and Bicep templates for creating a workbook template
+
+# [ARM (JSON)](#tab/arm)
+
 ```json
 {
-	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"$schema": "http://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
 	"contentVersion": "1.0.0.0",
 	"parameters": {
 		"resourceName": {
@@ -65,7 +70,7 @@ This article includes sample Azure Workbooks.
 			"name": "[parameters('resourceName')]",
 			"type": "microsoft.insights/workbooktemplates",
 			"location": "[resourceGroup().location]",
-			"apiVersion": "2019-10-17-preview",
+			"apiVersion": "2020-11-20",
 			"dependsOn": [],
 			"properties": {
 				"priority": 1,
@@ -109,6 +114,59 @@ This article includes sample Azure Workbooks.
 	]
 }
 ```
+
+# [Bicep](#tab/bicep)
+
+```bicep
+@description('The unique name for this workbook template instance')
+param resourceName string = 'test-template'
+
+resource resource 'microsoft.insights/workbooktemplates@2020-11-20' = {
+  name: resourceName
+  location: resourceGroup().location
+  properties: {
+    priority: 1
+    galleries: [
+      {
+        name: 'A Workbook Template'
+        category: 'Deployed Templates'
+        order: 100
+        type: 'workbook'
+        resourceType: 'Azure Monitor'
+      }
+    ]
+    templateData: {
+      version: 'Notebook/1.0'
+      items: [
+        {
+          type: 1
+          content: {
+            json: '## New workbook\n---\n\nWelcome to your new workbook.  This area will display text formatted as markdown.\n\n\nWe\'ve included a basic analytics query to get you started. Use the `Edit` button below each section to configure it or add more sections.'
+          }
+          name: 'text - 2'
+        }
+        {
+          type: 3
+          content: {
+            version: 'KqlItem/1.0'
+            query: 'union withsource=["$TableName"] *\n| summarize Count=count() by TableName=["$TableName"]\n| render barchart'
+            size: 1
+            exportToExcelOptions: 'visible'
+            queryType: 0
+            resourceType: 'microsoft.operationalinsights/workspaces'
+          }
+          name: 'query - 2'
+        }
+      ]
+      styleSettings: {}
+      '$schema': 'https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json'
+    }
+  }
+  dependsOn: []
+}
+```
+
+---
 
 ## Sample workbook with links
 
