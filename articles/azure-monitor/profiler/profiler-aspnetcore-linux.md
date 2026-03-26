@@ -11,7 +11,7 @@ ms.reviewer: charles.weininger
 
 # Enable the .NET Profiler for Azure App Service apps in Linux
 
-Using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps. This article focuses on web apps hosted in Linux. You can also experiment by using Windows and Mac development environments.
+By using Application Insights Profiler for .NET, you can track how much time is spent in each method of your live ASP.NET Core web apps. This article focuses on web apps hosted in Linux. You can also experiment by using Windows and Mac development environments.
 
 In this article, you:
 > [!div class="checklist"]
@@ -155,18 +155,18 @@ In this article, you:
 
 ## Create the Linux web app to host your project
 
-1. In [the Azure portal](https://portal.azure.com), search for and select *App Services*, then select **Create** > **Web App**.
+1. In [the Azure portal](https://portal.azure.com), search for and select *App Services*, and then select **Create** > **Web App**.
 1. Create a web app environment by using App Service on Linux.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/create-web-app.png" alt-text="Screenshot that shows creating the Linux web app.":::
 
-1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center**, then select **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
+1. Go to your new web app resource. In the left menu, select **Deployment** > **Deployment Center**, and then select **FTPS Credentials** to create the deployment credentials. Make a note of your credentials to use later.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/credentials.png" alt-text="Screenshot that shows creating the deployment credentials.":::    
 
 1. Select **Save**.
 1. Select the **Settings** tab.
-1. To set up a local Git repository in the web app, select **Source**, then **Local Git**.
+1. To set up a local Git repository in the web app, select **Source**, and then select **Local Git**.
 
    :::image type="content" source="./media/profiler-aspnetcore-linux/deployment-options.png" alt-text="Screenshot that shows view deployment options in a dropdown.":::    
 
@@ -178,7 +178,7 @@ In this article, you:
 
 ## Deploy your project
 
-While you can deploy code to Azure App Service various ways, the simplest way is deploy by using local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
+While you can deploy code to Azure App Service in various ways, the simplest way is to deploy by using local Git. For more information, see [Deploy to Azure App Service by using local Git](/azure/app-service/deploy-local-git).
 
 1. In your command prompt window, browse to the root folder for your project. Add a Git remote repository to point to the repository on App Service:
 
@@ -292,7 +292,7 @@ If you are unable to find traces from your app, consider following the steps in 
 
 # [Application Insights SDK (legacy)](#tab/sdk)
 
-If you can't find traces from your app, consider following the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
+If you can't find traces from your app, try the steps in this [troubleshooting guide](https://github.com/microsoft/ApplicationInsights-Profiler-AspNetCore/blob/main/docs/Troubleshoot.md).
 
 ---
 
