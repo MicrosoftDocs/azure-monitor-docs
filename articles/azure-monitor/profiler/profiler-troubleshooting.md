@@ -9,7 +9,7 @@ ms.reviewer: charles.weininger
 
 # Troubleshoot Application Insights Profiler for .NET
 
-This article presents troubleshooting steps and information to enable you to use Application Insights Profiler for .NET.
+This article provides troubleshooting steps and information to help you use Application Insights Profiler for .NET.
 
 ## Are you using the appropriate .NET Profiler endpoint?
 
@@ -22,9 +22,9 @@ Currently, only [Azure Government](/azure/azure-government/compare-azure-governm
 
 ## Is your app running on the right version?
 
-The Profiler is supported on [.NET Framework versions later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
+The Profiler supports [.NET Framework versions later than 4.6.2](https://dotnet.microsoft.com/download/dotnet-framework).
 
-If your web app is an ASP.NET Core application, it must be running on the [latest supported ASP.NET Core runtime](https://dotnet.microsoft.com/download/dotnet/8.0).
+If your web app is an ASP.NET Core application, it must run on the [latest supported ASP.NET Core runtime](https://dotnet.microsoft.com/download/dotnet/8.0).
 
 ## Are you using the right Azure service plan?
 
@@ -47,13 +47,13 @@ The .NET Profiler randomly runs two minutes per hour on each virtual machine hos
 
 Check that a firewall or proxies aren't blocking your access to [this webpage](https://gateway.azureserviceprofiler.net).
 
-## Are you seeing timeouts or do you need to check to see if the .NET Profiler is running?
+## Are you seeing timeouts or do you need to check if the .NET Profiler is running?
 
-Profiling data is uploaded only when it can be attached to a request that happened while Profiler was running. The .NET Profiler collects data for two minutes each hour. You can also trigger the Profiler by [starting a profiling session](./profiler-settings.md#profile-now).
+The profiler uploads profiling data only when it can attach the data to a request that happens while the profiler is running. The .NET Profiler collects data for two minutes each hour. You can also trigger the profiler by [starting a profiling session](./profiler-settings.md#profile-now).
 
-The Profiler writes trace messages and custom events to your Application Insights resource. You can use these events to see how the Profiler is running.
+The profiler writes trace messages and custom events to your Application Insights resource. You can use these events to see how the profiler is running.
 
-Search for trace messages and custom events sent by the .NET Profiler to your Application Insights resource.
+Search for trace messages and custom events that the .NET Profiler sends to your Application Insights resource.
 
 1. In your Application Insights resource, select **Search** from the top menu.
 
@@ -104,11 +104,11 @@ Even when the Profiler is enabled, it might not capture or upload traces, especi
 
 ## Double counting in parallel threads
 
-When two or more parallel threads are associated with a request, the total time metric in the stack viewer might be more than the duration of the request. In that case, the total thread time is more than the actual elapsed time.
+When two or more parallel threads associate with a request, the stack viewer's total time metric might exceed the request's duration. In this case, the total thread time surpasses the actual elapsed time.
 
-For example, one thread might be waiting on the other to be completed. The viewer tries to detect this situation and omits the uninteresting wait. In doing so, it errs on the side of displaying too much information rather than omitting what might be critical information.
+For example, one thread might wait for the other thread to finish. The viewer tries to detect this situation and omits the uninteresting wait. In doing so, it errs on the side of displaying too much information rather than omitting what might be critical information.
 
-When you see parallel threads in your traces, determine which threads are waiting so that you can identify the hot path for the request. Usually, the thread that quickly goes into a wait state is waiting on the other threads. Concentrate on the other threads and ignore the time in the waiting threads.
+When you see parallel threads in your traces, determine which threads are waiting so that you can identify the hot path for the request. Usually, the thread that quickly goes into a wait state waits on the other threads. Concentrate on the other threads and ignore the time in the waiting threads.
 
 ## Troubleshoot the .NET Profiler on your specific Azure service
 
@@ -116,15 +116,16 @@ The following sections walk you through troubleshooting steps for using Profiler
 
 ### Azure App Service
 
-For the .NET Profiler to work properly, make sure:
+For the .NET Profiler to work properly, make sure that you:
 
-- Your web app has [Application Insights enabled](./profiler.md) with the [right settings](./profiler.md#for-application-insights-and-app-service-in-different-subscriptions).
+- Enable [Application Insights](./profiler.md) for your web app with the [right settings](./profiler.md#for-application-insights-and-app-service-in-different-subscriptions).
 
-- The [**ApplicationInsightsProfiler3** WebJob](./profiler.md#enable-application-insights-and-the-net-profiler) is running. To check the WebJob:
+- Run the [**ApplicationInsightsProfiler3** WebJob](./profiler.md#enable-application-insights-and-the-net-profiler). To check the WebJob:
 
   1. Go to [Kudu](https://github.com/projectkudu/kudu/wiki/Accessing-the-kudu-service). In the Azure portal:
 
-     1. In your App Service instance, select **Advanced Tools** in the left pane.
+     1. In your App Service instance, select **Advanced Tools** in the left pane.
+
      1. Select **Go**.
 
   1. On the top menu, select **Tools** > **WebJobs dashboard**. The **WebJobs** pane opens.
@@ -146,7 +147,7 @@ If you enabled the .NET Profiler through the [Application Insights page](profile
 
 > [!NOTE]
 > The domain of the status page link varies depending on the cloud. This domain is the same as the Kudu management site for App Service.
-
+The status page shows the installation state of the .NET Profiler and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) agents. If there's an unexpected error, it appears along with steps on how to fix it.
 The status page shows the installation state of the .NET Profiler and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md) agents. If there was an unexpected error, it appears along with steps on how to fix it.
 
 You can use the Kudu management site for App Service to get the base URL of this status page:
@@ -169,7 +170,7 @@ A status page appears similar to the following example.
 > Codeless installation of Application Insights Profiler for .NET follows the .NET Core support policy. For more information about supported runtimes, see [.NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
 
 #### Manual installation
-
+When you configure the .NET Profiler, the process updates the web app's settings. If necessary, you can [apply the updates manually](./profiler.md#verify-the-always-on-setting-is-enabled).
 When you configure the .NET Profiler, updates are made to the web app's settings. If necessary, you can [apply the updates manually](./profiler.md#verify-the-always-on-setting-is-enabled).
 
 #### Too many active profiling sessions
@@ -216,12 +217,13 @@ The Profiler runs as a continuous WebJob in the web app. You can open the web ap
 ### Virtual machines
 
 To see whether the .NET Profiler is configured correctly by Azure Diagnostics:
-
+1. Verify that the deployed Azure Diagnostics configuration matches your expectations.
 1. Verify that the content of the Azure Diagnostics configuration deployed is what you expect.
-
+1. Make sure Azure Diagnostics passes the correct iKey on the Profiler command line.
 1. Make sure Azure Diagnostics passes the proper iKey on the Profiler command line.
 
-1. Review the Profiler log file to see if the .NET Profiler ran but returned an error.
+1. Review the Profiler log file to see if the .NET Profiler ran but returned an error.
+
 
 To check the settings used to configure Azure Diagnostics:
 
@@ -233,7 +235,8 @@ To check the settings used to configure Azure Diagnostics:
    c:\WindowsAzure\logs\Plugins\Microsoft.Azure.Diagnostics.PaaSDiagnostics\1.11.3.12\DiagnosticsPlugin.log
    ```
 
-1. Search the file for the string `WadCfg` to find the settings that Azure Diagnostics passes to the virtual machine to configure Azure Diagnostics.
+1. Search the file for the string `WadCfg` to find the settings that Azure Diagnostics passes to the virtual machine to configure Azure Diagnostics.
+
 
 1. Verify that the iKey used by the .NET Profiler sink is correct.
 
