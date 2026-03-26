@@ -65,7 +65,7 @@ When you open the Health advisories pane, you see a list of relevant notificatio
 
 ### Impacted Services tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of the health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
+:::image type="content" source="./media/service-health-advisories/health-advisories-impacted-services.png" alt-text="A screenshot of the health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
 
 The Impacted Services section in Azure Service Health advisories outlines how an advisory can affect specific Azure services. It typically includes the following information:
 
