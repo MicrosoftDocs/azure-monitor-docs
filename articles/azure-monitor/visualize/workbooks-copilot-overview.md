@@ -9,14 +9,14 @@ ai-usage: ai-assisted
 
 # Use Copilot with Azure Workbooks (preview)
 
-Copilot in Azure can help you create, inspect, and modify Azure Workbooks using natural language. Instead of manually configuring queries, visualizations, and parameters, you can describe what you want, and Copilot generates the workbook components for you.
+Copilot in Azure can help you create, inspect, and modify Azure Workbooks by using natural language. Instead of manually configuring queries, visualizations, and parameters, describe what you want, and Copilot generates the workbook components for you.
 
 > [!IMPORTANT]
 > Copilot for Azure Workbooks is currently in public preview. Preview features are provided without a service level agreement and aren't recommended for production workloads. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Prerequisites
 
-- Access to [Copilot in Azure](/azure/copilot/overview). Copilot in Azure must be enabled for your tenant.
+- Access to [Copilot in Azure](/azure/copilot/overview). Your tenant must have Copilot in Azure enabled.
 - [Dashboards preview](workbooks-dashboard-preview.md) experience. Copilot isn't available in the legacy Azure Workbooks experience.
 - To create, modify, or remove workbook items, the workbook must be in edit mode.
 
