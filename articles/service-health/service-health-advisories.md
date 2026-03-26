@@ -69,7 +69,7 @@ When you open the Health advisories pane, you see a list of relevant notificatio
 
 The Impacted Services section in Azure Service Health advisories outlines how an advisory can affect specific Azure services. It typically includes the following information:
 
-- **Service Names**: Lists the specific Azure services affected by the advisory (for example, Azure Synapse, Azure SQL, etc.).
+- **Service Names**: Lists the specific Azure services affected by the advisory, such as Azure Synapse, Azure SQL, and more.
 - **Regions**: Indicates the geographic regions where the services are impacted.
 - **Scope of Impact**: It might include whether the impact is global, regional, or limited to specific subscriptions or tenants.
 - **Service Categories**: Sometimes grouped by service type (for example, compute, storage, networking).
