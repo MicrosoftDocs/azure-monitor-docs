@@ -18,7 +18,7 @@ Each type of notification serves a specific purpose and comes with its own metad
 
 **Incident** types provide specific context, such as whether the issue is a platform‑initiated outage, a scheduled maintenance update, or an advisory that might require action.
 
-When you know what each type of notification means, it becomes easier to decide what needs immediate action. It also helps you set up the right alerts and create dashboards or workflows that show the true effect on your environment. 
+When you understand what each type of notification means, you can more easily decide what needs immediate action. You can also set up the right alerts and create dashboards or workflows that show the true effect on your environment.
 
 In other words, the event type tells you *why* Azure is contacting you. The incident details tell you *what to do next* to help you stay informed, maintain continuity, and act quickly and confidently when your services are affected.
 
