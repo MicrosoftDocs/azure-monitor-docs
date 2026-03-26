@@ -42,11 +42,11 @@ Advisor displays your overall Advisor score and a breakdown for Advisor categori
 
 *   The Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
 
-*   Score calculation is dependent on the recommendations under each category. The overall score is calculated as the average of the contributions from all categories. 
+*   Score calculation depends on the recommendations under each category. The overall score is calculated as the average of the contributions from all categories. 
 
 *   For Reliability, Operational Excellence, and Performance, recommendations and scores are grouped into subcategories to provide a more detailed and granular view. Each subcategory has a weighted contribution to the category score.
 
-*   Potential score increase refers to the estimated score increase from adopting the recommendation. It can be used as one of the factores to help you prioritize recommendations.
+*   Potential score increase refers to the estimated score increase from adopting the recommendation. Use it as one of the factors to help you prioritize recommendations.
 
 *   If any Advisor recommendations aren't relevant for an individual resource, postpone or dismiss the recommendations. The postponed or dismissed recommendations are excluded from the score calculation with the next refresh. Advisor also uses the input as feedback to improve the model.
 
@@ -118,7 +118,7 @@ The subcategory score is calculated using percentage of healthy resources.
 Subcategory Score = (Healthy Resources /  Total Applicable Resources) * 100
 ```
 #### Category score calculation
-The category score is calculated by incorporating the weights of the subcategories.
+Calculate the category score by incorporating the weights of the subcategories.
 
 ```math
 Category Score = ∑((Healthy Resources / Total Applicable) * (Subcategory Weight))/(∑All applicable SubCategoryWeight) * 100
@@ -127,44 +127,44 @@ Category Score = ∑((Healthy Resources / Total Applicable) * (Subcategory Weigh
 | Resource | Detail |
 |:--- |:--- |
 | Healthy Resource | A resource that follows the WAF assessment and doesn't have any recommendations against it. |
-| Total Applicable Resources | Total resources which were evaluated while generating Advisor recommendations. It excludes the resources for which the recommendations were postponed/dismissed. |
+| Total Applicable Resources | Total resources that the system evaluated while generating Advisor recommendations. This count excludes the resources for which you postponed or dismissed the recommendations. |
 | Subcategory Weight | Fixed weight assigned to each subcategory. |
 
-##### Single VS Multiple subscription
+##### Single vs. multiple subscription
 
-The score calculation logic remains the same, whether it is applied to a single subscription or multiple subscriptions. The count of resources changes, based on the selected scope of subscription - eventually changing the score value.
+The score calculation logic stays the same whether you apply it to a single subscription or multiple subscriptions. The count of resources changes based on the selected scope of subscription, which eventually changes the score value.
 
 ### Score calculation examples
 
-An example of how the Reliability score is calculated for a defined scope of subscription(s).
+An example of how the Reliability score is calculated for a defined scope of subscriptions.
 
-The following table displays the number of healthy, total applicable resources and subcategory score.
+The following table displays the number of healthy resources, total applicable resources, and subcategory score.
 
-| Subcategory <br /> Subcategory weight | Resources <br /> Healthy resources/ Total applicable | Sub Category score |
+| Subcategory <br /> Subcategory weight | Resources <br /> Healthy resources / Total applicable | Subcategory score |
 |:--- |:--- |:--- |
 | Zone Resiliency <br /> `30` | `25` / `31` | 80.65%
 | Regional Resiliency <br /> `25` | `13` / `14` | 92.86%
-| Data Protection and Recovery <br /> `20` | `28`/ `38` | 73.68%
+| Data Protection and Recovery <br /> `20` | `28` / `38` | 73.68%
 | Governance and Compliance <br /> `10` | `10` / `20` | 50%
-| Scalability <br /> `10` | `10`/ 13` | 76.92%
+| Scalability <br /> `10` | `10` / `13` | 76.92%
 | Monitoring and Alerting <br /> `5` | `5` / `11` | 45.45%
 | Service Upgrade and Retirement <br /> `5` | `9` / `12` | 75%
 | Other <br /> `5` | `10` / `14` | 71.43%
 
-The reliability score can be calculated as follows:
+You can calculate the reliability score as follows:
 
 ```math
 ((25/31)*30 + (13/14)*25 + (28/38)*20 + (10/20)*10 + (10/13)*10 + (5/11)*5 + (9/12)*5 + (10/14)*5) / (30+25+20+10+10+5+5+5) * 100
 ```
 
-This evaluates to:
+This calculation evaluates to:
 
 ```math
 84.42/110 * 100 = 76.76
 ```
 The Reliability score in this example is `76.76%`.
 
-## Frequently asked questions (F.A.Q.s)
+## Frequently asked questions (FAQs)
 
 The following sections answer common questions about Advisor score.
 
@@ -174,24 +174,24 @@ Your score is refreshed at least once per day.
 
 ### Why did my score change?
 
-The score is driven by recommendations and changes as the number of impacted resources varies. It may increase or decrease when recommendations are adopted or when new resources with associated recommendations are added.
+Recommendations drive the score. It changes as the number of impacted resources varies. The score might increase or decrease when you adopt recommendations or add new resources with associated recommendations.
 
 ### I implemented a recommendation but my score didn't change. Why didn't the score increase?
 
-The score doesn't immediately reflect adopted recommendations. It takes at least 24 hours for the score to change after the recommendation is remediated.
+The score doesn't immediately reflect adopted recommendations. It takes at least 24 hours for the score to change after you remediate the recommendation.
 
-### What is the list of subcategories for Reliability category and the related subcategory weights?
+### What is the list of subcategories for the Reliability category and the related subcategory weights?
 
 | Subcategories <br /> Subcategory weight | Description |
 |:--- |:--- |
-| Zone Resiliency  <br /> `30` | Recommendations that protect workloads from datacentre or availability zone failures within a region. |
-| Regional Resiliency  <br /> `25` | Recommendations that protect workloads from entire region outages, including multi-region deployments, geo-redundancy, etc. |
-| Data Protection and Recovery  <br /> `20` | Recommendations that support restoration of services or data after disruptive events like recover from accidental data deletion, corruption, or misconfiguration, cyberattacks, etc.|
-| Governance and Compliance  <br /> `10` | Recommendations that ensure policies, rules, configurations and standards are enforced to maintain reliability and availability.|
-| Scalability <br /> `10` | Recommendations that help workloads handle increased load, scale up/down efficiently, or distribute traffic more effectively.|
+| Zone Resiliency  <br /> `30` | Recommendations that protect workloads from datacenter or availability zone failures within a region. |
+| Regional Resiliency  <br /> `25` | Recommendations that protect workloads from entire region outages, including multiregion deployments, geo-redundancy, and similar solutions. |
+| Data Protection and Recovery  <br /> `20` | Recommendations that support restoration of services or data after disruptive events like recover from accidental data deletion, corruption, or misconfiguration, cyberattacks, and similar events.|
+| Governance and Compliance  <br /> `10` | Recommendations that ensure policies, rules, configurations, and standards are enforced to maintain reliability and availability.|
+| Scalability <br /> `10` | Recommendations that help workloads handle increased load, scale up or down efficiently, or distribute traffic more effectively.|
 | Monitoring and Alerting <br /> `5` | Recommendations that enhance visibility into service health, set alerts, or proactively detect issues.|
-| Service upgrade and Retirement <br /> `5` | ARecommendations involving migration to supported SKUs, retiring deprecated services, or upgrading for improved reliability and performance.|
-| Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
+| Service upgrade and Retirement <br /> `5` | Recommendations involving migration to supported SKUs, retiring deprecated services, or upgrading for improved reliability and performance.|
+| Other <br /> `5` | All recommendations that aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### What is the list of subcategories for Performance category and the related subcategory weights?
 
@@ -252,11 +252,11 @@ No. Your score reflects your adoption of practices that Advisor recommends, even
 
 ### Does the score methodology differentiate between production and dev-test workloads?
 
-Currently not available. If a recommendation doesn't apply to an individual resource that is used for development and test, dismiss the recommendation for the resource.
+Currently, it doesn't. If a recommendation doesn't apply to an individual resource that you use for development and test, dismiss the recommendation for the resource.
 
 ### Does my score depend on how much I spend on Azure?
 
-No. Your score isn't necessarily a reflection of how much you spend. Unnecessary spending results in a lower score for Cost category.
+No. Your score isn't necessarily a reflection of how much you spend. Unnecessary spending results in a lower score for the Cost category.
 
 ## Related articles
 
