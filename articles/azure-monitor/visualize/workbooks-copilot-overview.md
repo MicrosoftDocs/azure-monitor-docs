@@ -87,7 +87,7 @@ Ask Copilot to scaffold a new workbook with the visualizations and queries you n
    - _"Build a dashboard with CPU, memory, and disk metrics for my virtual machines."_
    - _"Create a workbook that shows failed sign-ins from Microsoft Entra ID logs."_
 
-1. Copilot generates workbook items—queries, charts, parameters, and text blocks—and adds them to the canvas in edit mode.
+1. Copilot generates workbook items - queries, charts, parameters, and text blocks - and adds them to the canvas in edit mode.
 1. Review the generated items. Adjust queries or visualization settings as needed.
 1. Select **Save** to keep the workbook.
 
