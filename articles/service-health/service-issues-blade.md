@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 03/03/2026
+ms.date: 03/26/2026
 
 ---
 
@@ -50,7 +50,7 @@ At the top of each tab, there's a command bar with several options of how to vie
 - **Request post incident review**: Select this button to open a window to start the creation of a Service health alert where you can receive a Post Incident Review (PIR) when it's available.
 - **Track issue on mobile**: Select this link to open and point your mobile phone camera at the QR code.
 - **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
-- **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
+- **Create service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md). 
 
 
 ### Summary tab
@@ -61,19 +61,19 @@ The Summary tab shows detailed information about the Service issue.
 
 The information on this tab includes the following data:
 
-|Field  |Description  |
-|---------|---------|
-|Title    | A summary of the issue |
-|Tracking ID |A unique identifier for the incident |
-|Status   |Whether the issue is Active or Resolved<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> *The issue is **Resolved** only if all the services in the region are resolved.*|
-|Start/End Time |When the issue began and when it was resolved (if applicable)<br> *All times displayed are in Coordinated Universal Time (UTC).* |
-|Impacted Services |The Azure services affected by the issue.|
-|Impacted Regions |All geographic regions where the issue is occurring. |
-|Impacted Subscriptions    |Your subscriptions that are affected.|
-|Impacted Resources| The resources affected by this service issue. <br>Select the **View details** link to open the Impacted Resources tab for more detailed information. |
-|Event level   | The severity of the issue (for example, Informational, Warning, Critical).<br> *Each communication for an incident includes its own event level, but the summary tab always shows the highest severity across all affected regions and services.*|
-|Event tags    | The definition of the nature and status of the event.<br> *The tags are a combination of all communications for the incident.*|
-|Last update    | The timestamp of the most recent update from Azure Service Health. <br> Select the **See all updates** link to open the Issue Updates tab for more detailed information.|
+|Field                  |Description                                                                                            |
+|-----------------------|-------------------------------------------------------------------------------------------------------|
+|Title                  | A summary of the issue                                                                                |
+|Tracking ID            |A unique identifier for the incident                                                                   |
+|Status                 |Whether the issue is Active or Resolved<br> Select the **See details** link to open the Impacted Services tab for more detailed information. <br> *The issue is **Resolved** only if all the services in the region are resolved.*|
+|Start/End Time         |When the issue began and when it was resolved (if applicable)<br> *All times displayed are in Coordinated Universal Time (UTC).* |
+|Impacted Services      |The Azure services affected by the issue.                                                              |
+|Impacted Regions       |All geographic regions where the issue is occurring.                                                   |
+|Impacted Subscriptions |Your subscriptions that are affected.                                                                  |
+|Impacted Resources     | The resources affected by this service issue. <br>Select the **View details** link to open the Impacted Resources tab for more detailed information. |
+|Event level            | The severity of the issue (for example, Informational, Warning, Critical).<br> *Each communication for an incident includes its own event level, but the summary tab always shows the highest severity across all affected regions and services.*  |
+|Event tags             | The definition of the nature and status of the event.<br> *The tags are a combination of all communications for the incident.*                                                                                                                      |
+|Last update            | The timestamp of the most recent update from Azure Service Health. <br> Select the **See all updates** link to open the Issue Updates tab for more detailed information.                                                                            |
 
 
 
