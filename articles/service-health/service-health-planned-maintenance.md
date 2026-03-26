@@ -176,7 +176,7 @@ Together, these features represent the **full functionality** of the Service hea
 **Limited functionality for some maintenance events**<br>
 For other planned maintenance events, you might see a limited Service Health experience. In these cases:
   - Impacted resources could be shown as a **static list or might be unavailable**, based on the information provided to Service Health for that event.
-  - Resource status **may not update dynamically** as the maintenance progresses or completes.
+  - Resource status **might not update dynamically** as the maintenance progresses or completes.
   - Resource-level customer action links might **not be supported**.<br>
   In these scenarios, Service health continues to provide **maintenance visibility and notifications**, but without the full set of dynamic and actionable capabilities described above.
 
