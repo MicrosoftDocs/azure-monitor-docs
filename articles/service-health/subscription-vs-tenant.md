@@ -67,5 +67,5 @@ For more information, refer to [Resource impact from Azure security advisories](
 
 >[!NOTE]
 > 
->* Tenant-level events can't be seen within Subscription scope on UI. 
+>* You can't see tenant-level events within subscription scope on the UI. 
 >* You can't see subscription-level events at tenant scope. Events published on Azure Service Health are mutually exclusive in view scope.
