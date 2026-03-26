@@ -38,7 +38,7 @@ On **Advisor | Advisor score**, see the percentages for your overall Advisor sco
 
 ## Interpret an Advisor score
 
-Advisor displays your overall Advisor score and a breakdown for Advisor categories, in percentages. A score of 100% in any category means all your resources assessed by Advisor follow the industry best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources assessed by Advisor follow the Advisor recommendations. Score is only provided for resources assessed by Advisor. While Advisor attempts to scan your entire workload and all the resources, a chance always exists that no recommendation is available for a few of your resources. If a resource has no available recommendations, the resource contributes nothing to the score. To easily achieve the following flow, use the grains of the score.
+Advisor displays your overall Advisor score and a breakdown for Advisor categories, in percentages. A score of 100% in any category means all your resources that Advisor assessed follow the industry best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources that Advisor assessed follow the Advisor recommendations. Score is only provided for resources that Advisor assessed. While Advisor attempts to scan your entire workload and all the resources, a chance always exists that no recommendation is available for a few of your resources. If a resource has no available recommendations, the resource contributes nothing to the score. To easily achieve the following flow, use the grains of the score.
 
 *   The Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
 
@@ -105,14 +105,14 @@ The **Cost** category score is calculated by using the individual subscription s
 
 ### Score methodology for Reliability, Performance, and Operational Excellence categories
 
-Scoring for the three categories is driven by their respective subcategories. Each subcategory is assigned a fixed weight, which contibutes to category score calculation.
+The scores for these three categories come from their respective subcategories. Each subcategory has a fixed weight that contributes to the category score calculation.
 
 #### Subcategory defined
 
 A subcategory is a logical grouping of recommendations mapped to each WAF pillar. Each subcategory has a fixed weight assigned. A subcategory is the fundamental basis of score calculation at the category level.
 
 #### Subcategory score calculation
-The subcategory score is calculated using percentage of healthy resources.
+Calculate the subcategory score by using the percentage of healthy resources.
 
 ```math
 Subcategory Score = (Healthy Resources /  Total Applicable Resources) * 100
@@ -193,7 +193,7 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Service upgrade and Retirement <br /> `5` | Recommendations involving migration to supported SKUs, retiring deprecated services, or upgrading for improved reliability and performance.|
 | Other <br /> `5` | All recommendations that aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
-### What is the list of subcategories for Performance category and the related subcategory weights?
+### What is the list of subcategories for the Performance category and the related subcategory weights?
 
 | Subcategories <br /> Subcategory weight | Description |
 |:--- |:--- |
@@ -203,14 +203,14 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Storage Optimization <br /> `25` | Assess and optimize the performance of your Storage resources. <ul> <li> SQL data warehouse </li> <li> Storage account </li> </ul> |
 | Network Optimization <br /> `25` | Assess and optimize the performance of your Network resources. <ul> <li> Traffic Manager </li> </ul> |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
-| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
-### What is the list of subcategories for Operational Excellence category and the related subcategory weights?
+### What is the list of subcategories for the Operational Excellence category and the related subcategory weights?
 
 | Subcategories <br /> Subcategory weight | Description |
 |:--- |:--- |
-| Efficiency Optimization <br /> `30` | Assess and manage configurations to ensure better performance of Azure Resources. <ul> <li> Enable accelerated networking </li> </ul> |
+| Efficiency Optimization <br /> `30` | Assess and manage configurations to ensure better performance of Azure resources. <ul> <li> Enable accelerated networking </li> </ul> |
 | Failure Mitigation <br /> `20` | Implement and configure Azure resources in a well-designed fashion to handle and mitigate deployment failures with little effect on the user. |
 | Monitoring and Alerting <br /> `5` | To effectively monitor your workload for security, performance, and reliability, you need a comprehensive system with a stand-alone stack. The comprehensive system provides the foundation for all monitoring, detection, and alert functions. |
 | Safe and Secure Deployment <br /> `5` | Safe and secure deployment processes define how to safely make and deploy changes to your workload. Implementing it requires you to think about deployments through the lens of managing risk. |
