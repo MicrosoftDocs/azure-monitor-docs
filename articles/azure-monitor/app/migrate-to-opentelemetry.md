@@ -170,7 +170,7 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryProcessors
 
-2.x SDK TelemetryProcessors don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by [configuring sampling overrides](./java-standalone-config.md#configure-sampling-overrides).
+TelemetryProcessors from the 2.x SDK don't run when you use the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by [configuring sampling overrides](./java-standalone-config.md#configure-sampling-overrides).
 
 ## Multiple applications in a single JVM
 
