@@ -2,7 +2,7 @@
 title: Billing updates overview
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 03/11/2026
+ms.date: 03/27/2026
 ---
 
 # Billing updates
@@ -14,7 +14,10 @@ The in-portal billing communication in [Service Health](service-health-portal-up
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-main.png"alt-text="A screenshot of the In-portal billing main pane."Lightbox="./media/billing-elevated-access/in-portal-billing-main.png":::
 
 
-To help you track billing changes, the communication includes updates that relate to your subscription. Users without these roles can’t access the **Billing updates** pane.
+To help you track billing changes, the communication includes updates that relate to your subscription.
+
+>[!NOTE]
+>Users without these roles can’t access the **Billing updates** pane.
 
 :::image type="content"source="./media/billing-elevated-access/in-portal-billing-2.png"alt-text="A screenshot of in-portal billing main pane with more information."Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
 
@@ -37,7 +40,10 @@ You can view up to three months of billing updates in the user interface and ret
 
 ## Access requirements
 
-The detail pages for billing communication event types appear in the **Billing updates** pane in [Service Health](service-health-portal-update.md). Only users with elevated access can open the pane.
+The detail pages for billing communication event types appear in the **Billing updates** pane in [Service Health](service-health-portal-update.md).
+
+>![NOTE] 
+>Only users with elevated access can open the pane.
 
 To view the **Billing updates** pane, you need to have access as one of the following roles:
 
