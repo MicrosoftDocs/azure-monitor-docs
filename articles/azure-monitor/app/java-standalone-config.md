@@ -13,9 +13,9 @@ ms.custom:
 
 This article shows you how to configure Azure Monitor Application Insights for Java. For more information, see [Get started with OpenTelemetry](opentelemetry-enable.md).
 
-## Configure Java agent settings
+## Configure the Java agent
 
-### JSON configuration set-up
+### JSON configuration source
 
 # [Default config file](#tab/config-default)
 
@@ -62,7 +62,7 @@ If you want to add custom dimensions to all your telemetry:
 
 You can use `${...}` to read the value from the specified environment variable at startup.
 
-### Inherited attribute (preview)
+### Inherited attributes (preview)
 
 > [!NOTE]
 > This feature is available starting with Java agent version 3.2.0.
@@ -511,22 +511,25 @@ See the dedicated [troubleshooting article](/troubleshoot/azure/azure-monitor/ap
 
 To review frequently asked questions (FAQ), see [Sampling overrides FAQ](application-insights-faq.yml#sampling-overrides---application-insights-for-java).
 
-## Configure JMX metrics
+## Configure telemetry collection
 
 **In this section:**
 
-* [How to collect extra JMX metrics](#how-to-collect-extra-jmx-metrics)
-* [How to know what metrics are available to configure](#how-to-know-what-metrics-are-available-to-configure)
-* [JMX configuration example](#jmx-configuration-example)
-* [Where to find JMX metrics in Application Insights](#where-to-find-jmx-metrics-in-application-insights)
+* [Configure JMX metrics](#configure-jmx-metrics)
+* [Autocollect logging](#autocollect-logging)
+* [Autocollected Micrometer metrics (including Spring Boot Actuator metrics)](#autocollected-micrometer-metrics-including-spring-boot-actuator-metrics)
+* [Autocollect InProc dependencies (preview)](#autocollect-inproc-dependencies-preview)
+* [Browser SDK Loader (preview)](#browser-sdk-loader-preview)
 
-### How to collect extra JMX metrics
+### Configure JMX metrics
+
+#### How to collect extra JMX metrics
 
 Application Insights Java 3.x collects some of the Java Management Extensions (JMX) metrics by default, but in many cases it isn't enough. This section describes the JMX configuration option in detail.
 
 JMX metrics collection can be configured by adding a `"jmxMetrics"` section to the *applicationinsights.json* file. Enter a name for the metric as you want it to appear in Azure portal in your Application Insights resource. Object name and attribute are required for each of the metrics you want collected. You may use `*` in object names for glob-style wildcard.
 
-### How to know what metrics are available to configure
+#### How to know what metrics are available to configure
 
 Properties like object names and attributes are different for various libraries, frameworks, and application servers, and are often not well documented.
 
@@ -548,7 +551,7 @@ Log file output looks similar to these examples. In some cases, it can be extens
 
 You can also use a [command line tool](https://github.com/microsoft/ApplicationInsights-Java/wiki/Troubleshoot-JMX-metrics) to check the available JMX metrics.
 
-### JMX configuration example
+#### JMX configuration example
 
 Knowing what metrics are available, you can configure the agent to collect them.
 
@@ -629,11 +632,218 @@ In the preceding configuration example:
 
 Numeric and boolean JMX metric values are supported. Boolean JMX metrics are mapped to `0` for false and `1` for true.
 
-### Where to find JMX metrics in Application Insights
+#### Where to find JMX metrics in Application Insights
 
 You can view the JMX metrics collected while your application is running by navigating to your Application Insights resource in the Azure portal. On the **Metrics** pane, select the dropdown as shown to view the metrics.
 
 :::image type="content" source="media/java-ipa/jmx/jmx-portal.png" lightbox="media/java-ipa/jmx/jmx-portal.png" alt-text="Screenshot of the Metrics pane in the Azure portal.":::
+
+### Autocollect logging
+
+Log4j, Logback, JBoss Logging, and java.util.logging are autoinstrumented. Logging performed via these logging frameworks is autocollected.
+
+Logging is only captured if it:
+
+* Meets the configured level for the logging framework.
+* Also meets the configured level for Application Insights.
+
+For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`, and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
+
+The default level configured for Application Insights is `INFO`. If you want to change this level:
+
+```json
+{
+  "instrumentation": {
+    "logging": {
+      "level": "WARN"
+    }
+  }
+}
+```
+
+You can also set the level by using the environment variable `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL`. It then takes precedence over the level specified in the JSON configuration.
+
+You can use these valid `level` values to specify in the `applicationinsights.json` file. The table shows how they correspond to logging levels in different logging frameworks.
+
+| Level             | Log4j  | Logback | JBoss  | JUL     |
+|-------------------|--------|---------|--------|---------|
+| OFF               | OFF    | OFF     | OFF    | OFF     |
+| FATAL             | FATAL  | ERROR   | FATAL  | SEVERE  |
+| ERROR (or SEVERE) | ERROR  | ERROR   | ERROR  | SEVERE  |
+| WARN (or WARNING) | WARN   | WARN    | WARN   | WARNING |
+| INFO              | INFO   | INFO    | INFO   | INFO    |
+| CONFIG            | DEBUG  | DEBUG   | DEBUG  | CONFIG  |
+| DEBUG (or FINE)   | DEBUG  | DEBUG   | DEBUG  | FINE    |
+| FINER             | DEBUG  | DEBUG   | DEBUG  | FINER   |
+| TRACE (or FINEST) | TRACE  | TRACE   | TRACE  | FINEST  |
+| ALL               | ALL    | ALL     | ALL    | ALL     |
+
+> [!NOTE]
+> If an exception object is passed to the logger, the log message (and exception object details) will show up in the Azure portal under the `exceptions` table instead of the `traces` table. If you want to see the log messages across both the `traces` and `exceptions` tables, you can write a Logs (Kusto) query to union across them. For example:
+>
+> ```
+> union traces, (exceptions | extend message = outerMessage)
+> | project timestamp, message, itemType
+> ```
+
+#### Log markers (preview)
+
+Starting from 3.4.2, you can capture the log markers for Logback and Log4j 2:
+
+```json
+{
+  "preview": {
+    "captureLogbackMarker": true,
+    "captureLog4jMarker": true
+  }
+}
+```
+
+#### Other log attributes for Logback (preview)
+
+Starting from 3.4.3, you can capture `FileName`, `ClassName`, `MethodName`, and `LineNumber`, for Logback:
+
+```json
+{
+  "preview": {
+    "captureLogbackCodeAttributes": true
+  }
+}
+```
+
+> [!WARNING]
+> Capturing code attributes might add a performance overhead.
+
+#### Logging level as a custom dimension
+
+Starting with Java agent version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
+
+If needed, you can temporarily re-enable the previous behavior:
+
+```json
+{
+  "preview": {
+    "captureLoggingLevelAsCustomDimension": true
+  }
+}
+```
+
+### Autocollected Micrometer metrics (including Spring Boot Actuator metrics)
+
+If your application uses [Micrometer](https://micrometer.io), metrics that are sent to the Micrometer global registry are autocollected.
+
+If your application uses [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html), metrics configured by Spring Boot Actuator are also autocollected.
+
+#### Send custom metrics using Micrometer
+
+1. Add Micrometer to your application as shown in the following example.
+    
+    ```xml
+    <dependency>
+      <groupId>io.micrometer</groupId>
+      <artifactId>micrometer-core</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+    ```
+
+1. Use the Micrometer [global registry](https://micrometer.io/?/docs/concepts#_global_registry) to create a meter as shown in the following example.
+
+    ```java
+    static final Counter counter = Metrics.counter("test.counter");
+    ```
+
+1. Use the counter to record metrics by using the following command.
+
+    ```java
+    counter.increment();
+    ```
+
+1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../metrics/analyze-metrics.md) under the `Log-based metrics` metric namespace.
+
+    > [!NOTE]
+    > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
+
+#### Disable metrics autocollection
+
+To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics:
+
+```json
+{
+  "instrumentation": {
+    "micrometer": {
+      "enabled": false
+    }
+  }
+}
+```
+
+> [!NOTE]
+> Custom metrics are billed separately and might generate extra costs. Make sure to check the [Pricing information](https://azure.microsoft.com/pricing/details/monitor/). To disable the Micrometer and Spring Boot Actuator metrics, add the following configuration to your config file.
+
+### Autocollect InProc dependencies (preview)
+
+> [!NOTE]
+> This feature is available starting with Java agent version 3.2.0.
+
+If you want to capture controller "InProc" dependencies, use the following configuration:
+
+```json
+{
+  "preview": {
+    "captureControllerSpans": true
+  }
+}
+```
+
+### Browser SDK Loader (preview)
+
+This feature automatically injects the [Browser SDK Loader](javascript-sdk.md#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String.
+
+For example, when your Java application returns a response like:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+The reponse is modified as follows:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="text/javascript">
+    !function(v,y,T){var S=v.location,k="script"
+    <!-- Removed for brevity -->
+    connectionString: "YOUR_CONNECTION_STRING"
+    <!-- Removed for brevity --> }});
+    </script>
+    <title>Title</title>
+  </head>
+  <body>
+  </body>
+</html>
+```
+
+The script helps collect client-side web telemetry and sends it together with server-side telemetry to the user's Azure portal. Details can be found at [ApplicationInsights-JS](https://github.com/microsoft/ApplicationInsights-JS).
+
+If you want to enable this feature, add the below configuration option:
+
+```json
+{
+  "preview": {
+    "browserSdkLoader": {
+      "enabled": true
+    }
+  }
+}
+```
 
 ## Configure telemetry processors (preview)
 
@@ -1996,222 +2206,6 @@ These spans don't match the `include` properties, and processor actions aren't a
 
 To review frequently asked questions (FAQ), see [Telemetry processors FAQ](application-insights-faq.yml#telemetry-processors)
 
-## Configure logging, metrics, and other telemetry collection
-
-**In this section:**
-
-* [Autocollect logging](#autocollect-logging)
-* [Autocollected Micrometer metrics (including Spring Boot Actuator metrics)](#autocollected-micrometer-metrics-including-spring-boot-actuator-metrics)
-* [Autocollect InProc dependencies (preview)](#autocollect-inproc-dependencies-preview)
-* [Browser SDK Loader (preview)](#browser-sdk-loader-preview)
-
-### Autocollect logging
-
-Log4j, Logback, JBoss Logging, and java.util.logging are autoinstrumented. Logging performed via these logging frameworks is autocollected.
-
-Logging is only captured if it:
-
-* Meets the configured level for the logging framework.
-* Also meets the configured level for Application Insights.
-
-For example, if your logging framework is configured to log `WARN` (and you configured it as described earlier) from the package `com.example`, and Application Insights is configured to capture `INFO` (and you configured as described), Application Insights only captures `WARN` (and more severe) from the package `com.example`.
-
-The default level configured for Application Insights is `INFO`. If you want to change this level:
-
-```json
-{
-  "instrumentation": {
-    "logging": {
-      "level": "WARN"
-    }
-  }
-}
-```
-
-You can also set the level by using the environment variable `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL`. It then takes precedence over the level specified in the JSON configuration.
-
-You can use these valid `level` values to specify in the `applicationinsights.json` file. The table shows how they correspond to logging levels in different logging frameworks.
-
-| Level             | Log4j  | Logback | JBoss  | JUL     |
-|-------------------|--------|---------|--------|---------|
-| OFF               | OFF    | OFF     | OFF    | OFF     |
-| FATAL             | FATAL  | ERROR   | FATAL  | SEVERE  |
-| ERROR (or SEVERE) | ERROR  | ERROR   | ERROR  | SEVERE  |
-| WARN (or WARNING) | WARN   | WARN    | WARN   | WARNING |
-| INFO              | INFO   | INFO    | INFO   | INFO    |
-| CONFIG            | DEBUG  | DEBUG   | DEBUG  | CONFIG  |
-| DEBUG (or FINE)   | DEBUG  | DEBUG   | DEBUG  | FINE    |
-| FINER             | DEBUG  | DEBUG   | DEBUG  | FINER   |
-| TRACE (or FINEST) | TRACE  | TRACE   | TRACE  | FINEST  |
-| ALL               | ALL    | ALL     | ALL    | ALL     |
-
-> [!NOTE]
-> If an exception object is passed to the logger, the log message (and exception object details) will show up in the Azure portal under the `exceptions` table instead of the `traces` table. If you want to see the log messages across both the `traces` and `exceptions` tables, you can write a Logs (Kusto) query to union across them. For example:
->
-> ```
-> union traces, (exceptions | extend message = outerMessage)
-> | project timestamp, message, itemType
-> ```
-
-#### Log markers (preview)
-
-Starting from 3.4.2, you can capture the log markers for Logback and Log4j 2:
-
-```json
-{
-  "preview": {
-    "captureLogbackMarker": true,
-    "captureLog4jMarker": true
-  }
-}
-```
-
-#### Other log attributes for Logback (preview)
-
-Starting from 3.4.3, you can capture `FileName`, `ClassName`, `MethodName`, and `LineNumber`, for Logback:
-
-```json
-{
-  "preview": {
-    "captureLogbackCodeAttributes": true
-  }
-}
-```
-
-> [!WARNING]
-> Capturing code attributes might add a performance overhead.
-
-#### Logging level as a custom dimension
-
-Starting with Java agent version 3.3.0, `LoggingLevel` isn't captured by default as part of the Traces custom dimension because that data is already captured in the `SeverityLevel` field.
-
-If needed, you can temporarily re-enable the previous behavior:
-
-```json
-{
-  "preview": {
-    "captureLoggingLevelAsCustomDimension": true
-  }
-}
-```
-
-### Autocollected Micrometer metrics (including Spring Boot Actuator metrics)
-
-If your application uses [Micrometer](https://micrometer.io), metrics that are sent to the Micrometer global registry are autocollected.
-
-If your application uses [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html), metrics configured by Spring Boot Actuator are also autocollected.
-
-#### Send custom metrics using Micrometer
-
-1. Add Micrometer to your application as shown in the following example.
-    
-    ```xml
-    <dependency>
-      <groupId>io.micrometer</groupId>
-      <artifactId>micrometer-core</artifactId>
-      <version>1.6.1</version>
-    </dependency>
-    ```
-
-1. Use the Micrometer [global registry](https://micrometer.io/?/docs/concepts#_global_registry) to create a meter as shown in the following example.
-
-    ```java
-    static final Counter counter = Metrics.counter("test.counter");
-    ```
-
-1. Use the counter to record metrics by using the following command.
-
-    ```java
-    counter.increment();
-    ```
-
-1. The metrics are ingested into the [customMetrics](/azure/azure-monitor/reference/tables/custommetrics) table, with tags captured in the `customDimensions` column. You can also view the metrics in the [metrics explorer](../metrics/analyze-metrics.md) under the `Log-based metrics` metric namespace.
-
-    > [!NOTE]
-    > Application Insights Java replaces all nonalphanumeric characters (except dashes) in the Micrometer metric name with underscores. As a result, the preceding `test.counter` metric will show up as `test_counter`.
-
-#### Disable metrics autocollection
-
-To disable autocollection of Micrometer metrics and Spring Boot Actuator metrics:
-
-```json
-{
-  "instrumentation": {
-    "micrometer": {
-      "enabled": false
-    }
-  }
-}
-```
-
-> [!NOTE]
-> Custom metrics are billed separately and might generate extra costs. Make sure to check the [Pricing information](https://azure.microsoft.com/pricing/details/monitor/). To disable the Micrometer and Spring Boot Actuator metrics, add the following configuration to your config file.
-
-### Autocollect InProc dependencies (preview)
-
-> [!NOTE]
-> This feature is available starting with Java agent version 3.2.0.
-
-If you want to capture controller "InProc" dependencies, use the following configuration:
-
-```json
-{
-  "preview": {
-    "captureControllerSpans": true
-  }
-}
-```
-
-### Browser SDK Loader (preview)
-
-This feature automatically injects the [Browser SDK Loader](javascript-sdk.md#add-the-javascript-code) into your application's HTML pages, including configuring the appropriate Connection String.
-
-For example, when your Java application returns a response like:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Title</title>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-The reponse is modified as follows:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <script type="text/javascript">
-    !function(v,y,T){var S=v.location,k="script"
-    <!-- Removed for brevity -->
-    connectionString: "YOUR_CONNECTION_STRING"
-    <!-- Removed for brevity --> }});
-    </script>
-    <title>Title</title>
-  </head>
-  <body>
-  </body>
-</html>
-```
-
-The script helps collect client-side web telemetry and sends it together with server-side telemetry to the user's Azure portal. Details can be found at [ApplicationInsights-JS](https://github.com/microsoft/ApplicationInsights-JS).
-
-If you want to enable this feature, add the below configuration option:
-
-```json
-{
-  "preview": {
-    "browserSdkLoader": {
-      "enabled": true
-    }
-  }
-}
-```
-
 ## Override or suppress default behavior
 
 **In this section:**
@@ -2220,7 +2214,6 @@ If you want to enable this feature, add the below configuration option:
 * [Cloud role name overrides (preview)](#cloud-role-name-overrides-preview)
 * [Configure the connection string at runtime](#configure-the-connection-string-at-runtime)
 * [Locally disable ingestion sampling (preview)](#locally-disable-ingestion-sampling-preview)
-* [HTTP server 4xx response codes](#http-server-4xx-response-codes)
 
 ### Connection string overrides (preview)
 
@@ -2320,22 +2313,7 @@ Starting from 3.5.3, you can disable this behavior (and keep 100% of telemetry i
 }
 ```
 
-### HTTP server 4xx response codes
-
-> [!NOTE]
-> This feature is available starting with Java agent version 3.3.0.
-
-By default, HTTP server requests that result in 4xx response codes are captured as errors. You can change this behavior to capture them as success:
-
-```json
-{
-  "preview": {
-    "captureHttpServer4xxAsError": false
-  }
-}
-```
-
-## Data protection and query handling
+## Protect telemetry data
 
 ### Query masking
 
@@ -2420,7 +2398,7 @@ The header names are case insensitive. The preceding examples are captured under
 
 ---
 
-## Runtime and environment configuration
+## Configure runtime and environment configuration
 
 **In this section:**
 
@@ -2556,11 +2534,6 @@ Telemetry correlation is enabled by default, but you may disable it in configura
 ```
 
 ## Advanced and preview features
-
-**In this section:**
-
-* [Custom instrumentation (preview)](#custom-instrumentation-preview)
-* [Preview instrumentations](#preview-instrumentations)
 
 ### Custom instrumentation (preview)
 
