@@ -1670,7 +1670,7 @@ items:
     items:
     - name: App Center migration (Preview)
       href: app/app-center-migration.md
-    - name: Application Insights SDK (Classic API)
+    - name: Application Insights SDK (Classic API 2.x)
       href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
