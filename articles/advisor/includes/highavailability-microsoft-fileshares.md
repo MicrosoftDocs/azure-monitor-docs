@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability MICROSOFT.FILESHARES
@@ -22,7 +22,7 @@ Secure your data by enabling vault backups for your azure file shares.
 
 **Impact:** Medium
   
-  
+For more information, see [Manage Azure Files backups - Azure Backup](/azure/backup/manage-afs-backup#modify-policy)  
 
 ResourceType: microsoft.fileshares/fileshares  
 Recommendation ID: b263dad8-02a1-4546-a496-3dc5361c3f0c  

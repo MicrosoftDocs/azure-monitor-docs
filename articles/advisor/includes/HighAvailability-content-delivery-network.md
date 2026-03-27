@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Content Delivery Network
@@ -78,13 +78,14 @@ Validate domain ownership by adding the DNS TXT record to your DNS provider. Val
 
 **Impact:** High
   
-  
+For more information, see [How to add a custom domain - Azure Front Door](/azure/frontdoor/standard-premium/how-to-add-custom-domain#domain-validation-state)  
 
 ResourceType: microsoft.cdn/profiles  
 Recommendation ID: 9411bc9f-d181-497c-b519-4154ae04fb00  
 Subcategory: undefined
 
 <!--9411bc9f-d181-497c-b519-4154ae04fb00_end-->
+
 
 
 <!--825ff735-ed9a-4335-b132-321df86b0e81_begin-->

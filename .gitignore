@@ -6,3 +6,14 @@ _themes*/
 _repo.*/
 
 .openpublishing.buildcore.ps1
+# Doc-Kit workspace files
+.github/AGENTS.md
+.github/agents/
+.github/instructions/
+.github/prompts/
+.github/skills/
+.vscode/settings.json
+.dockit/
+.env
+.env.example
+requirements.txt

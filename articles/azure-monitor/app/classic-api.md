@@ -1,6 +1,6 @@
 ---
-title: Monitor .NET and Node.js Applications with Application Insights (Classic API) | Microsoft Docs
-description: Monitor .NET and Node.js applications and services with Application Insights (Classic API) for availability, performance, and usage.
+title: Monitor .NET and Node.js Applications with Application Insights (Classic API 2.x)
+description: Monitor .NET and Node.js applications and services with Application Insights (Classic API 2.x) for availability, performance, and usage.
 ms.topic: how-to
 ms.custom:
   - references_regions
@@ -8,11 +8,12 @@ ms.custom:
 ms.date: 11/11/2025
 ---
 
-# Monitor .NET and Node.js applications with Application Insights (Classic API)
+# Monitor .NET and Node.js applications with Application Insights (Classic API 2.x)
 
 [!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
 
-[!INCLUDE [azure-monitor-app-insights-otel-available-notification](includes/azure-monitor-app-insights-otel-available-notification.md)]
+> [!CAUTION]
+> For new applications, use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate to an OpenTelemetry based offering, review the [migration guidance](./migrate-to-opentelemetry.md).
 
 This article explains how to enable and configure [Application Insights](app-insights-overview.md) for .NET (ASP.NET, ASP.NET Core, and Worker Service) and Node.js applications. Application Insights can collect the following telemetry from your apps:
 

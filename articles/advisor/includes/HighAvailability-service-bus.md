@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -60,13 +60,14 @@ Set up Geo-replication on Premium Service Bus namespaces to ensure high availabi
 
 **Impact:** High
   
-  
+For more information, see [Azure Service Bus Geo-Replication - Azure Service Bus](/azure/service-bus-messaging/service-bus-geo-replication)  
 
 ResourceType: microsoft.servicebus/namespaces  
 Recommendation ID: 15a7e73b-943e-4cf5-847d-f54ed39c33f1  
 Subcategory: DisasterRecovery
 
 <!--15a7e73b-943e-4cf5-847d-f54ed39c33f1_end-->
+
 
 
 <!--d45d2fe8-866c-43d6-8045-a5997dd61e05_begin-->
