@@ -96,7 +96,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 ## 2. Prepare the cluster
 
 1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use **Enable monitoring for AKS clusters** in Azure Monitor (Application Insights isn't required yet).
-2. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
+1. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
    Turn on **Enable application monitoring** and select **Review + enable**.
 
 If you didn't previously onboard the cluster, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
