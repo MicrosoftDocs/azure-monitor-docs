@@ -3,7 +3,7 @@ title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
 
-ms.date: 03/26/2026
+ms.date: 03/27/2026
 ---
 
 # Planned maintenance
@@ -204,7 +204,7 @@ Feature-level capabilities can vary by event and delivery mechanism such as the 
 For more information on event retention, see [Service Health notification transitions](service-health-notification-transitions.md).
 
 
-## Next steps
+## For more information
 
 - Read [How to report an impact (Preview)](report-issue.md)
 - Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
