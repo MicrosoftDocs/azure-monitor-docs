@@ -19,7 +19,7 @@ To help you track billing changes, the communication includes updates that relat
 >[!NOTE]
 >Users without these roles can't access the **Billing updates** pane.
 
-:::image type="content"source="./media/billing-elevated-access/in-portal-billing-2.png"alt-text="A screenshot of in-portal billing main pane with more information."Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
+:::image type="content" source="./media/billing-elevated-access/in-portal-billing-2.png" alt-text="A screenshot of in-portal billing main pane with more information." Lightbox="./media/billing-elevated-access/in-portal-billing-2.png":::
 
 
 The **Billing updates** pane includes billing communication types such as:
