@@ -193,7 +193,7 @@ Follow the **namespace-wide** or **per-deployment** onboarding guidance in the a
 
 Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights through the Azure Monitor Agent on the cluster. It doesn't place any SDK on the pod.
 
-- **Namespace-wide**: Set the **Instrumentation** custom resource with an empty platforms list:
+- **Namespace-wide**: Set the **Instrumentation** custom resource with an empty platforms list.
   ```yaml
   spec:
     settings:
