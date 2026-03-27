@@ -422,6 +422,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
 > * **Metrics** are never sampled.
 >
+>
 
 > [!NOTE]
 > If you see unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
