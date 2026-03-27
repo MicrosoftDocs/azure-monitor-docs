@@ -7,7 +7,7 @@ ms.date: 03/17/2026
 
 # Use OpenTelemetry with Azure Monitor (Preview)
 
-Azure Monitor ingests OpenTelemetry (OTel) **signals**—traces, metrics, and logs—from your applications and platforms. Application Insights orchestrates ingestion into Azure Monitor and provides experiences to explore the data. You can also use the OpenTelemetry Collector to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics in **Dashboards with Grafana**, and analyze logs and traces in Log Analytics using OpenTelemetry semantic conventions.
+Azure Monitor ingests OpenTelemetry (OTel) **signals** - traces, metrics, and logs - from your applications and platforms. Application Insights orchestrates ingestion into Azure Monitor and provides experiences to explore the data. You can also use the OpenTelemetry Collector to export telemetry to Azure Monitor. After onboarding, use troubleshooting and exploration experiences in Application Insights, work with Prometheus metrics in **Dashboards with Grafana**, and analyze logs and traces in Log Analytics using OpenTelemetry semantic conventions.
 
 > [!IMPORTANT]
 > * This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
@@ -61,21 +61,21 @@ After onboarding, use the following experiences to investigate and visualize you
 
 ### Use Application Insights troubleshooting and diagnostics
 
-- [Investigate **distributed traces** end‑to‑end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md). Most Application Insights experiences continue to work with OTel data (for example, **Performance**, **Failures**, **Search**, and **end‑to‑end transaction** views).
+- [Investigate **distributed traces** end-to-end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md). Most Application Insights experiences continue to work with OTel data, such as **Performance**, **Failures**, **Search**, and **end-to-end transaction** views.
 - Use **Search** and **Transaction details** to analyze events across services and drill into problem areas.
 - For agentic workloads, use the [**Agents details (Preview)**](../app/agents-view.md) experience to monitor AI agents that emit OpenTelemetry data.
 - For OpenTelemetry metrics scenarios, prefer [**Dashboards with Grafana**](../app/grafana-dashboards.md). **Metrics Explorer** on OTel metrics can require manual PromQL authoring, and **Live Metrics** isn't available with the OTel path today.
 
 ### Use Dashboards with Grafana for OpenTelemetry metrics
 
-- Start from **Azure‑managed dashboards** that cover OpenTelemetry and common Application Insights scenarios. You can customize, copy, or use them as a reference for your own dashboards.
-- Create, edit, and save dashboards as **Azure resources** and manage access with Azure role‑based access control (RBAC). Use Azure Resource Manager (ARM) or Bicep to automate deployments.
-- Use **Grafana Explore** for ad‑hoc queries and add results to dashboards. Prometheus metrics queried here complement the Application Insights experiences.
+- Start from **Azure-managed dashboards** that cover OpenTelemetry and common Application Insights scenarios. You can customize, copy, or use them as a reference for your own dashboards.
+- Create, edit, and save dashboards as **Azure resources** and manage access with Azure role-based access control (RBAC). Use Azure Resource Manager (ARM) or Bicep to automate deployments.
+- Use **Grafana Explore** for ad-hoc queries and add results to dashboards. Prometheus metrics queried here complement the Application Insights experiences.
 
 For more information, see [Dashboards with Grafana in Application Insights](../app/grafana-dashboards.md).
 
 > [!IMPORTANT]
-> Application Insights experiences including pre-built dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
 ### Query logs and traces with OpenTelemetry semantic conventions
 
@@ -87,22 +87,22 @@ For more information, see [OpenTelemetry semantic conventions](https://opentelem
 
 ## Limitations
 
-Here are some known limitations to be aware of when using OpenTelemetry with Azure Monitor:
+When you use OpenTelemetry with Azure Monitor, be aware of the following limitations:
 
-### Known limitations in AKS auto-instrumentation and auto-configuration
+### Limitations in AKS auto-instrumentation and auto-configuration
 
 - Unsupported node pools: **Windows** and **Linux Arm64**.
 - OTLP **HTTP/protobuf** only; JSON payloads and **OTLP/gRPC** aren't supported.
 - Selected networking scenarios such as Istio mTLS aren't supported.
 
-### Known limitations for AMA-based ingestion
+### Limitations for AMA-based ingestion
 
 - AMA path: Application-to-agent communication over **gRPC** on local ports.
-- **4317** (gRPC) for metrics
-- **4319** (gRPC) for logs and traces
-- **Host:** `localhost`
+- **4317** (gRPC) for metrics.
+- **4319** (gRPC) for logs and traces.
+- **Host:** `localhost`.
 
-### Known limitations for OpenTelemetry collector ingestion
+### Limitations for OpenTelemetry collector ingestion
 
 - Export OTLP over **HTTP/protobuf**.
 
