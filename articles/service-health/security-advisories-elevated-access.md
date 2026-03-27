@@ -115,7 +115,7 @@ Users assigned only **Reader** or **Monitoring Reader** roles:
 
 - For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
 
-- If you need more information on how to access Security advisories through API endpoint, see [Access Security advisories through API endpoint](access-service-advisories-api.md).
+- For more information on how to access Security advisories through API endpoint, see [Access Security advisories through API endpoint](access-service-advisories-api.md).
 
 
 ## For more information
