@@ -11,7 +11,7 @@ ms.date: 03/27/2026
 
 The in-portal billing communication in [Service Health](service-health-portal-update.md) shows billing updates for users with the **subscription owner** or **subscription contributor** roles. These users can view updates in the **Billing updates** pane and the Service Health API.
 
-:::image type="content"source="./media/billing-elevated-access/in-portal-billing-main.png"alt-text="A screenshot of the In-portal billing main pane."Lightbox="./media/billing-elevated-access/in-portal-billing-main.png":::
+:::image type="content" source="./media/billing-elevated-access/in-portal-billing-main.png" alt-text="A screenshot of the In-portal billing main pane." Lightbox="./media/billing-elevated-access/in-portal-billing-main.png":::
 
 
 To help you track billing changes, the communication includes updates that relate to your subscription.
