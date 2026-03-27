@@ -67,7 +67,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
   ```
 
 > [!NOTE]
-> The Azure Kubernetes Service (AKS) preview APIs are designed to allow you to test and provide feedback on new features before they become generally available. This AKS-preview needs to be installed before you can register the AzureMonitorAppMonitoringPreview feature flag.
+> The Azure Kubernetes Service (AKS) preview APIs are designed to allow you to test and provide feedback on new features before they become generally available. You need to install this `aks-preview` extension before you can register the AzureMonitorAppMonitoringPreview feature flag.
 
 ## 1. Register the preview features
 
