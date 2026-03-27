@@ -61,7 +61,7 @@ For more detailed information and sampling edge cases, see [Frequently Asked Que
 
 ## General sampling guidance
 
-Use the following general guidance if you’re unsure where to start.
+Use the following general guidance if you're unsure where to start.
 
 - **Metrics:** [Metrics](metrics-overview.md) aren't sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
