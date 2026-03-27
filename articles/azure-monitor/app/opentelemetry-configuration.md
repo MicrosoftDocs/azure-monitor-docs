@@ -423,6 +423,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > * **Metrics** are never sampled.
 >
 >
+>
 
 > [!NOTE]
 > If you see unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
