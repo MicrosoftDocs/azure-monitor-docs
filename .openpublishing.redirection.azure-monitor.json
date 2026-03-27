@@ -8936,22 +8936,22 @@
   },
   {
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md",
-    "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-availability.md",
-    "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-enable-insights.md",
-    "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-guest.md",
-    "redirect_url": "/azure/azure-monitor/vm/tutorial-collect-logs",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-collect-logs",
    "redirect_document_id": false
   },
   {
@@ -8977,6 +8977,26 @@
   {
    "source_path": "articles/azure-monitor/app/opentelemetry-help-support-feedback.md",
    "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-dbforpostgresql-servers-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-dbforpostgresql-servers-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-dbforpostgresql-serversv2-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }
  ]
