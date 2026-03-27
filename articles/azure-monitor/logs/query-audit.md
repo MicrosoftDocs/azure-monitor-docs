@@ -87,9 +87,9 @@ An audit record is created each time a query is run. If you send the data to a L
 ## Considerations
 
 - The system logs queries only when you execute them in a user context. It doesn't log any service-to-service queries within Azure. This exclusion covers two main sets of queries: billing calculations and automated alert executions. For alerts, the system doesn't log alert queries triggered on a schedule. The initial execution of the alert in the alert creation screen runs in a user context though and is available for audit purposes.
-- Performance statistics aren't available for queries coming from the Azure Data Explorer proxy. All other data for these queries will still be populated.
-- The *h* hint on strings that [obfuscates string literals](/azure/data-explorer/kusto/query/scalar-data-types/string#obfuscated-string-literals) is supported (it wasn't previously).
-- For queries that include data from multiple workspaces, the query will only be captured in those workspaces to which the user has access.
+- Performance statistics aren't available for queries that come from the Azure Data Explorer proxy. All other data for these queries is still populated.
+- The system supports the *h* hint on strings that [obfuscates string literals](/azure/data-explorer/kusto/query/scalar-data-types/string#obfuscated-string-literals) (it didn't previously).
+- For queries that include data from multiple workspaces, the system captures the query only in those workspaces to which you have access.
 
 ## Costs  
 There's no cost for Azure Diagnostic Extension, but you may incur charges for the data ingested. Check [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) for the destination where you're collecting data.
