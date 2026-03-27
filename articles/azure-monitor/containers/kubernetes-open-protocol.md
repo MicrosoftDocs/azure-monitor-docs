@@ -199,7 +199,7 @@ Autoconfiguration sets environment variables so existing SDKs export telemetry t
     settings:
       autoInstrumentationPlatforms: []
   ```
-- **Per-deployment**: Add the annotation to the deployment and reference your instrumentation custom resource (replace `cr1` with your resource name):
+- **Per-deployment**: Add the annotation to the deployment and reference your instrumentation custom resource (replace `cr1` with your resource name).
   ```yaml
   metadata:
     annotations:
