@@ -1,6 +1,6 @@
 ---
 title: Migrate to Azure Monitor Agent from Azure Diagnostic extensions (WAD/LAD)
-description: Guidance for migrating to Azure Monitor Agent from WAD/LAD agents
+description: Learn how to migrate from Azure Diagnostics extensions (WAD/LAD) to Azure Monitor Agent, including key differences and configuration mapping.
 ms.topic: concept-article
 ms.date: 02/25/2026
 ms.reviewer: miguelparada, jeffwo

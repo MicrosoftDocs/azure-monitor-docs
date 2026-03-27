@@ -2,7 +2,8 @@
 title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
-ms.date: 03/16/2026
+
+ms.date: 03/27/2026
 ---
 
 # Planned maintenance
@@ -111,48 +112,99 @@ The Issues Updates tab displays all information notifications by the date they w
 
 :::image type="content" source="./media/planned-maintenance/planned-maintenance-impacted-resources.PNG" alt-text="Screenshot of Impacted Resources tab." lightbox="media/planned-maintenance/planned-maintenance-impacted-resources.png":::
 
-The tab for Impacted Resources displays the following information about any of your resources that are affected. 
+The Impacted Resources tab displays information about any of your resources that are affected. 
 
-- **Resource Name** - The name of the impacted resource.
-- **Resource Type** - Type of Azure service (for example, Virtual Machine, App Service).
-- **Resource Group** - The resource group containing the impacted resource.
-- **Regions** - The Azure region where the resource is located.
-- **Subscription ID** - The subscription that owns the resource.
-- **Action** - A link to apply the update during a self-service window (for reboot-required updates).
+  - **Resource Name** - The name of the impacted resource.
+  - **Resource Type** - Type of Azure service, such as Virtual Machine or App Service.
+  - **Resource Group** - The resource group containing the impacted resource.
+  - **Regions** - The Azure region where the resource is located.
+  - **Subscription ID** - The subscription that owns the resource.
+  - **Action** - A link to apply the update during a self-service window (for reboot-required updates).
 
-For more information about Impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
+For more information about impacted resources, see [Impacted Resources from Planned maintenance events](impacted-resources-planned-maintenance.md).
 
 
-### Planned Maintenance FAQ
+### Planned maintenance FAQ
+
 
 The Planned Maintenance pane in Azure Service Health is a dedicated section within the Azure portal that provides visibility into upcoming maintenance activities that could affect your Azure resources. Here's how it happens and what best practices you should consider:
 
-1. What are the types of maintenance windows?
-- **Self-Service Maintenance window**: Updates can be manually initiated within approximately 35 days.
-- **Scheduled Maintenance window**: If not initiated, Azure Service Health automatically applies updates.
-- **Zero-Downtime Maintenance**: Azure limits disruption with live migration and cold starts.
-2. How can I prepare for maintenance?
-- Monitor the Planned Maintenance pane regularly.
-- Use the Resources tab to identify the affected services.
-3. What metadata is available for maintenance events?<br>
-  These key fields help you assess the scope, timing, and severity of the events.
-    - impactType
-    - impactMitigationTime
-    - eventSource
-    - trackingId
-    - status
-4. Can I automate maintenance tracking?<br>
-  Yes, you can use:
-    - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
-    - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
-5. How long is the maintenance history available?
-- Active view: up to 90 days
-- Health history: 90 days from most recent published date
+**What are the types of maintenance windows?**<br>
+  - **Self-Service Maintenance window**: You can manually initiate updates within approximately 35 days.
+  - **Scheduled Maintenance window**: If you don't initiate updates, Azure Service Health automatically applies them.
+  - **Zero-Downtime Maintenance**: Azure limits disruption by using live migration and cold starts.
+ 
+**How can I prepare for maintenance?**
+  - Monitor the Planned Maintenance pane regularly.
+  - Use the Resources tab to identify the affected services.<br>
+
+**What metadata is available for maintenance events?**<br>
+    These key fields help you assess the scope, timing, and severity of the events.
+  - impactType
+  - impactMitigationTime
+  - eventSource
+  - trackingId
+  - status
+    
+**Can I automate maintenance tracking?**<br>
+      Yes, you can use:<br>
+  - [Azure Policy](service-health-alert-deploy-policy.md) to deploy Service health alerts across all subscriptions.
+  - Azure Resource Graph (ARG): use the queries to filter and analyze maintenance events.
+
+**How long is the maintenance history available?**<br>
+  - Active view: up to 90 days
+  - Health history: 90 days from most recent p*ublished date.
+
+     
+
+#### Summary 
+
+
+**Service health dashboard experience for planned maintenance**
+
+We want to provide clarity on what customers can expect from the **Service Health (SH) dashboard** during planned maintenance events, and why functionality may vary across different events.
+
+**Service health dashboard capabilities**<br>
+Service Health is designed to be the **authoritative place** for you to understand maintenance events, assess impact, and be redirected to take action where applicable. For some planned maintenance events, you see the **full Service Health experience**, which includes:
+  - **Dynamic impacted resources on page refresh**<br>
+    A live, automatically updated list of impacted resources as maintenance progresses and completes on each page refresh.
+  - **Live status updates**<br>
+    The resource status reflects the current maintenance phase without requiring a manual page refresh.
+  - **A link to self-serve Customer actionability (where supported)**<br>
+    The ability to redirect you from Service Health to the right location in Azure portal to take proactive actions on individual resources directly.
+    
+Together, these features represent the **full functionality** of the Service health dashboard for planned maintenance.
+
+**Limited functionality for some maintenance events**<br>
+For other planned maintenance events, you might see a limited Service Health experience. In these cases:
+  - Impacted resources could be shown as a **static list or might be unavailable**, based on the information provided to Service Health for that event.
+  - Resource status **might not update dynamically** as the maintenance progresses or completes.
+  - Resource-level customer action links might **not be supported**.<br>
+  In these scenarios, Service Health continues to provide **maintenance visibility and notifications**, but without the full set of dynamic and actionable capabilities described earlier.
+
+**What we mean by full functionality**
+
+From our perspective, full Service Health functionality for planned maintenance includes:
+- Automatically identified and continuously updated impacted resources.
+- Live status tracking throughout the maintenance lifecycle.
+- Resource-level customer actionability links available for redirection where supported.
+- Consistent behavior across the Service Health portal, APIs, and integrations.
+
+If one or more of these elements aren't available, the experience is considered **limited**, even though Service Health remains available and operational.
+
+
+**Service health commitment**<br>
+Service Health continues to meet its **availability** and **notification commitments** for all planned maintenance events. 
+
+Feature-level capabilities can vary by event and delivery mechanism such as the Azure portal interface (Portal UI) or programmatic access (API). Microsoft is actively working toward delivering a **consistent and fully functional Service Health experience** across all services over time.
+
+
+
 
 For more information on event retention, see [Service Health notification transitions](service-health-notification-transitions.md).
 
 
-## Next steps
+## For more information
 
 - Read [How to report an impact (Preview)](report-issue.md)
 - Read [Impacted resources from Azure Retirements](impacted-resources-retirements.md)
