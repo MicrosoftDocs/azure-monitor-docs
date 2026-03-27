@@ -46,7 +46,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 
 **Common collaboration points:**
 
-- Agree on naming/labeling standards (`service.name`, `deployment.environment`, and namespace conventions) so data is queryable and dashboards work across teams.
+- Agree on naming and labeling standards (`service.name`, `deployment.environment`, and namespace conventions) so data is queryable and dashboards work across teams.
 - Align on performance and cost guardrails (sampling strategy, log verbosity, and metric cardinality) and who changes what when limits are exceeded.
 - Define a support workflow for telemetry issues (what developers check first vs. when to escalate to the cluster admin team).
 - Plan changes jointly when they span both layers (for example, switching ingestion method, changing endpoint/temporality expectations, or introducing a collector).
@@ -99,7 +99,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 2. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
    Turn on **Enable application monitoring** and select **Review + enable**.
 
-If the cluster wasn't previously onboarded, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
+If you didn't previously onboard the cluster, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-settings-enable-application.png" lightbox="./media/kubernetes-open-protocol/azure-settings-enable-application.png" alt-text="A screenshot of the Azure settings page showing enable application option.":::
 
@@ -110,8 +110,8 @@ If the cluster wasn't previously onboarded, you can enable Managed Prometheus, C
 Create or select an Application Insights resource that supports OTLP and uses **Managed workspaces**.
 
 1. In the Azure portal, create a new Application Insights resource.
-2. Turn on **Enable OTLP Support (Preview)**.
-3. Set **Use managed workspaces** to **Yes**.  
+1. Turn on **Enable OTLP Support (Preview)**.
+1. Set **Use managed workspaces** to **Yes**.  
     :::image type="content" source="./media/kubernetes-open-protocol/application-insights-create-enable.png" lightbox="./media/kubernetes-open-protocol/application-insights-create-enable.png" alt-text="A screenshot of Create Application Insights resource with enable option selected.":::
 
 > [!IMPORTANT]
@@ -125,29 +125,29 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 ### 4.1 Open the namespace
 
 1. In the AKS resource, expand **Kubernetes resources**.
-2. Open **Namespaces**, then select the namespace that hosts your workloads.
+1. Open **Namespaces**, and then select the namespace that hosts your workloads.
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-namespaces-list.png" lightbox="./media/kubernetes-open-protocol/azure-namespaces-list.png" alt-text="A screenshot of the Azure namespaces list under Kubernetes resources.":::
 
 ### 4.2 Configure Application Monitoring (Preview)
 
-With OTLP enabled, Application Insights works with standard OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
+When you enable OTLP, Application Insights works with standard OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
 
-If OTLP isn't enabled, Application Insights uses Azure Monitor auto-instrumentation and legacy custom ingestion.
+If you don't enable OTLP, Application Insights uses Azure Monitor autoinstrumentation and legacy custom ingestion.
 
 1. Select **Application Monitoring (Preview)**.
-2. Choose the Application Insights resource with OTLP enabled that you created previously in [step 3](#3-create-an-application-insights-resource-with-otlp-support). If an Application Insights resource without OTLP is selected or created on demand using the **Create New** option, the **Instrumentation Type** option used in the next step isn't visible.
-3. Choose an **Instrumentation Type**:  
+1. Choose the Application Insights resource with OTLP enabled that you created previously in [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select or create an Application Insights resource without OTLP by using the **Create New** option, you won't see the **Instrumentation Type** option in the next step.
+1. Choose an **Instrumentation Type**:  
     - **User-configured instrumentation per deployment** for manual configuration. 
-      - Each deployment must already have auto-instrumentation annotations or manual instrumentation. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
-    - **Java auto-instrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
-      - All deployments in the namespace use Java auto-instrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
-    - **NodeJs auto-instrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
-       - All deployments in the namespace use Node.js auto-instrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+      - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+    - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
+      - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+    - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
+       - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
     > [!NOTE]
-    > The Azure portal only allows you to apply Autoinstrumentation OR Autoconfiguration to a single namespace. If you need to use both options, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
-5. Leave **Perform rollout restart of all deployments** cleared. You perform the restart manually in the next step.
-6. Select **Configure**.  
+    > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
+1. Leave **Perform rollout restart of all deployments** unchecked. You perform the restart manually in the next step.
+1. Select **Configure**.  
   :::image type="content" source="./media/kubernetes-open-protocol/application-configuration-pane.png" lightbox="./media/kubernetes-open-protocol/application-configuration-pane.png" alt-text="A screenshot of the configuration pane for application with resource and language selections.":::
 
 ### 4.3 Restart deployments to apply changes
