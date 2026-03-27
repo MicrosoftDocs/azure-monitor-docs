@@ -745,16 +745,16 @@ Set the sampling percentage by using the environment variable. It takes preceden
 
 # [Java native](#tab/java-native)
 
-Configuring sampling in a configuration file isn't supported for Java native. To configure sampling, use code or environment variables instead.
+Java native doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
 
 # [Node.js](#tab/nodejs)
 
-Configuring sampling in a configuration file isn't supported for Node.js. To configure sampling, use code or environment variables instead.
+Node.js doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
 
 
 # [Python](#tab/python)
 
-Configuring sampling in a configuration file isn't supported for Python. To configure sampling, use code or environment variables instead.
+Python doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
 
 ---
 

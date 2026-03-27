@@ -1922,11 +1922,11 @@ logger.warning("WARNING: Warning log with properties", extra={"key1": "value1"})
 
 ### Override request error status for HTTP 4xx responses
 
-You can prevent 4xx responses from being counted as errors in Application Insights.
+You can prevent Application Insights from counting 4xx responses as errors.
 
 #### [ASP.NET Core](#tab/aspnetcore)
 
-The following code is for a custom activity processor that marks HTTP 4xx responses as successful.
+The following code shows a custom activity processor that marks HTTP 4xx responses as successful.
 
 **Processor:**
 
@@ -2019,7 +2019,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 > [!NOTE]
 > This feature is available starting with Java agent version 3.3.0.
 
-By default, HTTP server requests that result in 4xx response codes are captured as errors. You can change this behavior to capture them as success:
+By default, the agent captures HTTP server requests that result in 4xx response codes as errors. You can change this behavior to capture them as success:
 
 ```json
 {

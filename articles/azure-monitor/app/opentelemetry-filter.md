@@ -79,7 +79,7 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 > [!NOTE]
 > This feature is available starting with Java agent version 3.0.3.
 
-Specific autocollected telemetry can be suppressed by using these configuration options or environment variables:
+Suppress specific autocollected telemetry by using these configuration options or environment variables:
 
 ```json
 {
@@ -138,12 +138,12 @@ You can also suppress instrumentations by setting these environment variables to
 * `APPLICATIONINSIGHTS_INSTRUMENTATION_REDIS_ENABLED`
 * `APPLICATIONINSIGHTS_INSTRUMENTATION_SPRING_SCHEDULING_ENABLED`
 
-These variables then take precedence over the enabled variables specified in the JSON configuration.
+These variables take precedence over the enabled variables specified in the JSON configuration.
 
 > [!NOTE]
-> * If you're looking for more fine-grained control, for example, to suppress some redis calls but not all redis calls, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
+> * For more fine-grained control, such as suppressing some Redis calls but not all Redis calls, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 >
-> * There's no need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
+> * You don't need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
 
 ### [Java native](#tab/java-native)
 
