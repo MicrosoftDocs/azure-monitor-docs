@@ -76,10 +76,74 @@ Many instrumentation libraries provide a filter option. For guidance, review the
 
 ### [Java](#tab/java)
 
-With Java agent version 3.0.3+, specific autocollected telemetry can be suppressed. For more information, review [Configuration options: Azure Monitor Application Insights for Java](./java-standalone-config.md#suppress-specific-autocollected-telemetry).
+> [!NOTE]
+> This feature is available starting with Java agent version 3.0.3.
+
+Specific autocollected telemetry can be suppressed by using these configuration options or environment variables:
+
+```json
+{
+  "instrumentation": {
+	"azureSdk": {
+	  "enabled": false
+	},
+	"cassandra": {
+	  "enabled": false
+	},
+	"jdbc": {
+	  "enabled": false
+	},
+	"jms": {
+	  "enabled": false
+	},
+	"kafka": {
+	  "enabled": false
+	},
+	"logging": {
+	  "enabled": false
+	},
+	"micrometer": {
+	  "enabled": false
+	},
+	"mongo": {
+	  "enabled": false
+	},
+	"quartz": {
+	  "enabled": false
+	},
+	"rabbitmq": {
+	  "enabled": false
+	},
+	"redis": {
+	  "enabled": false
+	},
+	"springScheduling": {
+	  "enabled": false
+	}
+  }
+}
+```
+
+You can also suppress instrumentations by setting these environment variables to `false`:
+
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_AZURE_SDK_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_CASSANDRA_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_JMS_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_KAFKA_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_MONGO_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_RABBITMQ_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_REDIS_ENABLED`
+* `APPLICATIONINSIGHTS_INSTRUMENTATION_SPRING_SCHEDULING_ENABLED`
+
+These variables then take precedence over the enabled variables specified in the JSON configuration.
 
 > [!NOTE]
-> There's no need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
+> * If you're looking for more fine-grained control, for example, to suppress some redis calls but not all redis calls, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
+>
+> * There's no need to filter SQL telemetry for personal data reasons since all literal values are automatically scrubbed.
 
 ### [Java native](#tab/java-native)
 
@@ -397,7 +461,7 @@ In a workspace transformation DCR, use the stream name format `Microsoft-Table-<
 
 The following samples show workspace transformation DCR JSON. Use `dataFlows` to define one transformation per table. Keep `transformKql` on one line in the DCR definition.
 
-
+<br>
 <details>
 <summary><b>Create a workspace transformation DCR template</b></summary>
 

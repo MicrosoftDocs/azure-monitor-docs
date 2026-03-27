@@ -681,15 +681,18 @@ configure_azure_monitor(
 
 ---
 
+> [!TIP]
+> When using fixed-percentage sampling and you're not sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+
 ### Configure sampling in the configuration file
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-
+Configuring sampling in a configuration file isn't supported for ASP.NET Core. To configure sampling, use code or environment variables instead.
 
 # [.NET](#tab/net)
 
-
+Configuring sampling in a configuration file isn't supported for .NET. To configure sampling, use code or environment variables instead.
 
 # [Java](#tab/java)
 
@@ -740,16 +743,16 @@ Set the sampling percentage by using the environment variable. It takes preceden
 
 # [Java native](#tab/java-native)
 
-
+Configuring sampling in a configuration file isn't supported for Java native. To configure sampling, use code or environment variables instead.
 
 # [Node.js](#tab/nodejs)
 
+Configuring sampling in a configuration file isn't supported for Node.js. To configure sampling, use code or environment variables instead.
 
 
 # [Python](#tab/python)
 
-> [!TIP]
-> When using fixed-percentage sampling and you're not sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+Configuring sampling in a configuration file isn't supported for Python. To configure sampling, use code or environment variables instead.
 
 ---
 

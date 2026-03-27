@@ -637,15 +637,6 @@ You can view the JMX metrics collected while your application is running by navi
 
 ## Configure telemetry processors (preview)
 
-**In this section:**
-
-* [Telemetry processors terminology](#telemetry-processors-terminology)
-* [Types of telemetry processors](#types-of-telemetry-processors)
-* [Getting started with telemetry processors](#getting-started-with-telemetry-processors)
-* [Telemetry processor sample usage](#telemetry-processor-sample-usage)
-* [Telemetry processor samples](#telemetry-processor-samples)
-* [Telemetry processors FAQ](#telemetry-processors-faq)
-
 You can use telemetry processors to configure rules that are applied to request, dependency, and trace telemetry. Application Insights Java 3.x can process telemetry data before the data is exported.
 
 **Use cases:**
@@ -1143,7 +1134,7 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 
 ---
 
-### Telemetry processor sample usage
+### Telemetry processor samples
 
 # [Attribute processor](#tab/processor-attribute)
 
@@ -1181,121 +1172,9 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 ]
 ```
 
-# [Span processor](#tab/processor-span)
-
-```json
-"processors": [
-  {
-    "type": "span",
-    "include": {
-      "matchType": "strict",
-      "spanNames": [
-        "spanA",
-        "spanB"
-      ]
-    },
-    "exclude": {
-      "matchType": "strict",
-      "attributes": [
-        {
-          "key": "attribute1",
-          "value": "attributeValue1"
-        }
-      ]
-    },
-    "name": {
-      "toAttributes": {
-        "rules": [
-          "rule1",
-          "rule2",
-          "rule3"
-        ]
-      }
-    }
-  }
-]
-```
-
-# [Log processor](#tab/processor-log)
-
-```json
-"processors": [
-  {
-    "type": "log",
-    "include": {
-      "matchType": "strict",
-      "attributes": [
-        {
-          "key": "attribute1",
-          "value": "value1"
-        }
-      ]
-    },
-    "exclude": {
-      "matchType": "strict",
-      "attributes": [
-        {
-          "key": "attribute2",
-          "value": "value2"
-        }
-      ]
-    },
-    "body": {
-      "toAttributes": {
-        "rules": [
-          "rule1",
-          "rule2",
-          "rule3"
-        ]
-      }
-    }
-  }
-]
-```
-
-# [Metric filter](#tab/processor-metric)
-
-The following sample shows how to exclude metrics with names "metricA" and "metricB":
-
-```json
-"processors": [
-  {
-    "type": "metric-filter",
-    "exclude": {
-      "matchType": "strict",
-      "metricNames": [
-        "metricA",
-        "metricB"
-      ]
-    }
-  }
-]
-```
-
-The following sample shows how to turn off all metrics including the default autocollected performance metrics like cpu and memory.
-
-```json
-"processors": [
-  {
-    "type": "metric-filter",
-    "exclude": {
-      "matchType": "regexp",
-      "metricNames": [
-        ".*"
-      ]
-    }
-  }
-]
-```
-
----
-
-### Telemetry processor samples
-
-# [Attribute processor](#tab/processor-attribute)
-
 Expand the sections below to view various attribute processor samples.
 
+<br>
 <details>
 <summary><b>Insert</b></summary>
 
@@ -1624,6 +1503,42 @@ The following sample inserts the new attribute `{"newAttributeKeyRegexp": "newAt
 
 # [Span processor](#tab/processor-span)
 
+```json
+"processors": [
+  {
+    "type": "span",
+    "include": {
+      "matchType": "strict",
+      "spanNames": [
+        "spanA",
+        "spanB"
+      ]
+    },
+    "exclude": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute1",
+          "value": "attributeValue1"
+        }
+      ]
+    },
+    "name": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
+  }
+]
+```
+
+Expand the sections below to view various span processor samples.
+
+<br>
 <details>
 <summary><b>Name a span</b></summary>
 
@@ -1725,6 +1640,44 @@ The following sample shows how to change the span name to `{operation_website}`.
 
 # [Log processor](#tab/processor-log)
 
+```json
+"processors": [
+  {
+    "type": "log",
+    "include": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute1",
+          "value": "value1"
+        }
+      ]
+    },
+    "exclude": {
+      "matchType": "strict",
+      "attributes": [
+        {
+          "key": "attribute2",
+          "value": "value2"
+        }
+      ]
+    },
+    "body": {
+      "toAttributes": {
+        "rules": [
+          "rule1",
+          "rule2",
+          "rule3"
+        ]
+      }
+    }
+  }
+]
+```
+
+Expand the sections below to view various log processor samples.
+
+<br>
 <details>
 <summary><b>Extract attributes from a log message body</b></summary>
 
@@ -1793,7 +1746,38 @@ Let's assume the input log message body is `User account with userId 123456xx fa
 
 # [Metric filter](#tab/processor-metric)
 
-N/A
+The following sample shows how to exclude metrics with names "metricA" and "metricB":
+
+```json
+"processors": [
+  {
+    "type": "metric-filter",
+    "exclude": {
+      "matchType": "strict",
+      "metricNames": [
+        "metricA",
+        "metricB"
+      ]
+    }
+  }
+]
+```
+
+The following sample shows how to turn off all metrics including the default autocollected performance metrics like cpu and memory.
+
+```json
+"processors": [
+  {
+    "type": "metric-filter",
+    "exclude": {
+      "matchType": "regexp",
+      "metricNames": [
+        ".*"
+      ]
+    }
+  }
+]
+```
 
 ---
 
@@ -1801,6 +1785,7 @@ N/A
 
 Expand the sections below to view various include and exclude span samples.
 
+<br>
 <details>
 <summary><b>Include spans</b></summary>
 
@@ -2235,7 +2220,6 @@ If you want to enable this feature, add the below configuration option:
 * [Cloud role name overrides (preview)](#cloud-role-name-overrides-preview)
 * [Configure the connection string at runtime](#configure-the-connection-string-at-runtime)
 * [Locally disable ingestion sampling (preview)](#locally-disable-ingestion-sampling-preview)
-* [Suppress specific autocollected telemetry](#suppress-specific-autocollected-telemetry)
 * [HTTP server 4xx response codes](#http-server-4xx-response-codes)
 
 ### Connection string overrides (preview)
@@ -2336,81 +2320,6 @@ Starting from 3.5.3, you can disable this behavior (and keep 100% of telemetry i
 }
 ```
 
-### Suppress specific autocollected telemetry
-
-> [!NOTE]
-> This feature is available starting with Java agent version 3.0.3.
-
-Specific autocollected telemetry can be suppressed by using these configuration options or environment variables:
-
-# [Configuration options](#tab/suppress-config)
-
-```json
-{
-  "instrumentation": {
-    "azureSdk": {
-      "enabled": false
-    },
-    "cassandra": {
-      "enabled": false
-    },
-    "jdbc": {
-      "enabled": false
-    },
-    "jms": {
-      "enabled": false
-    },
-    "kafka": {
-      "enabled": false
-    },
-    "logging": {
-      "enabled": false
-    },
-    "micrometer": {
-      "enabled": false
-    },
-    "mongo": {
-      "enabled": false
-    },
-    "quartz": {
-      "enabled": false
-    },
-    "rabbitmq": {
-      "enabled": false
-    },
-    "redis": {
-      "enabled": false
-    },
-    "springScheduling": {
-      "enabled": false
-    }
-  }
-}
-```
-
-# [Environment variables](#tab/suppress-environment)
-
-You can also suppress instrumentations by setting these environment variables to `false`:
-
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_AZURE_SDK_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_CASSANDRA_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_JDBC_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_JMS_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_KAFKA_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_MICROMETER_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_MONGO_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_RABBITMQ_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_REDIS_ENABLED`
-* `APPLICATIONINSIGHTS_INSTRUMENTATION_SPRING_SCHEDULING_ENABLED`
-
-These variables then take precedence over the enabled variables specified in the JSON configuration.
-
----
-
-> [!NOTE]
-> If you're looking for more fine-grained control, for example, to suppress some redis calls but not all redis calls, see [Configure sampling overrides](#configure-sampling-overrides).
-
 ### HTTP server 4xx response codes
 
 > [!NOTE]
@@ -2427,11 +2336,6 @@ By default, HTTP server requests that result in 4xx response codes are captured 
 ```
 
 ## Data protection and query handling
-
-**In this section:**
-
-* [Query masking](#query-masking)
-* [HTTP headers](#http-headers)
 
 ### Query masking
 
