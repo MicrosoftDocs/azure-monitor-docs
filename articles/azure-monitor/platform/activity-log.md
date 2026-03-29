@@ -16,7 +16,7 @@ The Azure Monitor activity log records management operations on your Azure resou
 
 ## Activity log entries
 
-Entries in the activity log are collected by default with no required configuration. They're system generated and can't be changed or deleted. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. Operations focused on reading details of a resource aren't typically captured. Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
+Azure Monitor collects activity log entries by default with no required configuration. The system generates these entries, and you can't change or delete them. Entries are typically a result of changes (create, update, delete operations) or an action having been initiated. The activity log doesn't typically capture read operations. Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 
 > [!NOTE]
 > [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource — for example, getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
@@ -39,21 +39,24 @@ You can also access activity log events by using the following methods:
 
 ### Retrieve activity log events using the REST API
 
-Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. The `$filter` parameter is required and must include at least an `eventTimestamp` start value. The activity log retains events for 90 days, so the start time can't be more than 90 days in the past.
+Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. The `$filter` parameter is required and must include at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Ensure both the start and end of your time range fall within that 90-day window unless a longer retention period has been configured.
 
 For more information about available filter patterns and the `$select` parameter, see [Retrieve activity log data using Azure Monitor REST API](rest-activity-log.md).
 
 #### List activity log events for a subscription
 
-The following example retrieves activity log events for a subscription during a specific time range.
+Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI allows you to dynamically calculate the time range, so the example shows a 14-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
 To list activity log events, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
 
 ```azurecli
+startDate=$(date -u -d '14 days ago' '+%Y-%m-%dT00:00:00Z')
+endDate=$(date -u '+%Y-%m-%dT23:59:59Z')
+
 az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'"
+  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '$startDate' and eventTimestamp le '$endDate'"
 ```
 
 # [REST API](#tab/rest-api)
@@ -61,7 +64,7 @@ az rest --method get \
 To list activity log events, use this `GET` request:
 
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-14T23:59:59Z'
 ```
 
 ---
@@ -74,39 +77,42 @@ Add `resourceGroupName` to the filter to scope results to a specific resource gr
 
 ```azurecli
 az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'"
+  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'"
 ```
 
 # [REST API](#tab/rest-api)
 
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
 ```
 
 ---
 
 #### Return specific activity log properties
 
-Use the `$select` parameter to return only specified properties, which reduces the response payload size.
+Use the `$select` parameter to return only specified properties, which reduces the response payload size. The Azure CLI allows you to dynamically calculate the time range, so the example shows a 30-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
 ```azurecli
+startDate=$(date -u -d '30 days ago' '+%Y-%m-%dT00:00:00Z')
+endDate=$(date -u '+%Y-%m-%dT23:59:59Z')
+
 az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'&\$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level"
+  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '$startDate' and eventTimestamp le '$endDate'&\$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level"
 ```
 
 # [REST API](#tab/rest-api)
 
 ```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
 ```
 
 ---
 
 #### List tenant-level activity log events
 
-Tenant-level activity logs capture events generated at the tenant level, such as management group operations. These events are separate from subscription-level activity logs. Use the [Tenant Activity Logs REST API](/rest/api/monitor/tenant-activity-logs) to retrieve tenant-level events.
+Tenant-level activity logs are typically limited but might include important events such as management group or subscription creation. These events are separate from subscription-level activity logs, but might contain duplicate resource management events. Use the [Tenant Activity Logs REST API](/rest/api/monitor/tenant-activity-logs) to retrieve tenant-level events.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -114,7 +120,7 @@ To list tenant-level activity log events, use the [az rest](/cli/azure/use-azure
 
 ```azurecli
 az rest --method get \
-  --uri "/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'"
+  --uri "/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'"
 ```
 
 # [REST API](#tab/rest-api)
@@ -122,14 +128,14 @@ az rest --method get \
 To list tenant-level activity log events, use this `GET` request:
 
 ```http
-GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'
+GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'
 ```
 
 ---
 
 #### List management group-level activity log events
 
-Management group-level activity logs capture events scoped to a specific management group, such as policy assignments and management group membership changes. This API uses a preview API version.
+Management group-level activity logs capture events scoped to a specific management group, such as policy assignments and management group membership changes.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -137,7 +143,7 @@ To list management group-level activity log events, use the [az rest](/cli/azure
 
 ```azurecli
 az rest --method get \
-  --uri "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2017-03-01-preview&\$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'"
+  --uri "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2017-03-01-preview&\$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'"
 ```
 
 # [REST API](#tab/rest-api)
@@ -145,7 +151,7 @@ az rest --method get \
 To list management group-level activity log events, use this `GET` request:
 
 ```http
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2017-03-01-preview&$filter=eventTimestamp ge '2024-03-01T00:00:00Z' and eventTimestamp le '2024-03-15T23:59:59Z'
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2017-03-01-preview&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'
 ```
 
 ---
@@ -157,7 +163,7 @@ The following table describes the parameters used in the preceding examples.
 | `{subscriptionId}` | The ID of the Azure subscription. |
 | `{resourceGroupName}` | The name of the resource group. |
 | `{managementGroupId}` | The ID of the management group. |
-| `eventTimestamp ge` / `le` | The start and end of the time range in ISO 8601 format. The range shouldn't exceed 90 days unless retention is configured for longer periods. |
+| `eventTimestamp ge` / `le` | The start and end of the time range in ISO 8601 format. The start date can't exceed 90 days from the current date unless retention is configured for longer periods. |
 
 ## View change history
 
@@ -322,19 +328,17 @@ Each event is stored in the PT1H.json file with the following format. This forma
 ## Export management group activity logs
 When you create a [diagnostic setting log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it exports any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
 
-The management group also collects many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you receive duplicate events.
+The management group also collects many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you receive duplicate events. Azure Resource Manager includes a hierarchy property when writing events, but it's not a required field. Resource providers outside Azure Resource Manager don't populate it, so their events don't propagate up the hierarchy. Because of this, getting duplicate events is better than missing events.
 
 For example, if you have MG1 which contains MG2 which contains Subscription1, a diagnostic setting on MG1 captures all activity log events for MG1, MG2, and many of the events collected by a diagnostic setting on Subscription1. In this case, no diagnostic setting is needed on MG2 since it would just collect duplicate events.
 
-If you have duplicate events, you can combine them by using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
+If you have duplicate events, combine them by using a query that uses a hash of all fields to identify unique records. The following example Kusto query shows a sample for logs collected in a Log Analytics workspace:
 
 ```kusto
 AzureActivity
 | extend Hash = hash(dynamic_to_json(pack_all()))
 | summarize arg_max(TimeGenerated, *) by Hash
 ```
-
-
 
 ## Export the activity log to CSV
 
