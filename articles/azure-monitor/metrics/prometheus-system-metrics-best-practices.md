@@ -16,7 +16,7 @@ This article provides guidance for querying OpenTelemetry system metrics and Gue
 ## Prerequisites
 
 - [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) configured with OpenTelemetry metrics collection
-- [Azure Monitor workspace](azure-monitor-workspace-overview.md) receiving [OpenTelemetry Guest OS metrics](metrics-opentelemetry-guest.md)
+- [Azure Monitor workspace](azure-monitor-workspace-overview.md) receiving [OpenTelemetry Guest OS metrics](../vm/metrics-opentelemetry-guest.md)
 - Understanding of [PromQL best practices for OpenTelemetry metrics](prometheus-opentelemetry-best-practices.md)
 - Familiarity with [PromQL basics](prometheus-api-promql.md)
 - Knowledge of system performance monitoring concepts

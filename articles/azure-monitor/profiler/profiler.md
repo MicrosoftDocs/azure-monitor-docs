@@ -1,20 +1,20 @@
 ---
 title: Enable Application Insights Profiler for .NET for Azure App Service apps in Windows | Microsoft Docs
-description: Profile live apps on Azure App Service with Application Insights Profiler for .NET.
+description: Learn how to profile ASP.NET and ASP.NET Core apps on Azure App Service with Application Insights Profiler for .NET.
 ms.topic: how-to
-ms.date: 02/18/2025
+ms.date: 03/02/2026
 ms.reviewer: charles.weininger
+
+#customer intent: As an app developer, I need to use Application Insights Profiler for my Azure App Service apps.
 ---
 
 # Enable the .NET Profiler for Azure App Service apps in Windows
 
 [Application Insights Profiler for .NET](./profiler-overview.md) is preinstalled as part of the Azure App Service runtime. You can run Profiler on ASP.NET and ASP.NET Core apps running on App Service by using the Basic service tier or higher.
 
-Codeless installation of Application Insights Profiler for .NET:
-- Follows [the .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core).
-- Is only supported on *Windows-based* web apps.
+Codeless installation of Application Insights Profiler for .NET follows [the .NET Core support policy](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Azure supports it only on *Windows-based* web apps.
 
-To enable .NET Profiler on Linux, walk through the [ASP.NET Core Azure Linux web apps instructions](profiler-aspnetcore-linux.md).
+To enable .NET Profiler on Linux, see [Enable the .NET Profiler for Azure App Service apps in Linux](profiler-aspnetcore-linux.md).
 
 ## Prerequisites
 
@@ -23,16 +23,16 @@ To enable .NET Profiler on Linux, walk through the [ASP.NET Core Azure Linux web
 
 ## Verify the "Always on" setting is enabled
 
-1. In the Azure portal, go to your App Service instance.
+1. In the [Azure portal](https://portal.azure.com/), go to your App Service instance.
 1. In the left menu, select **Settings** > **Configuration**.
 
-   :::image type="content" source="./media/profiler/configuration-menu.png" alt-text="Screenshot that shows selecting Configuration on the left pane.":::
+   :::image type="content" source="./media/profiler/configuration-menu.png" alt-text="Screenshot that shows selecting Configuration on the left menu.":::
 
-1. Select the **General settings** tab.
-1. Verify that **Always on** > **On** is selected.
+1. Select **General settings**.
+1. Verify that **Always on** is set to **On**.
 
    > [!NOTE]
-   > If the **Always on** toggle is disabled, upgrade your App Service web app to run on Basic tier or higher. 
+   > If **Always on** is disabled, upgrade your App Service web app to run on Basic tier or higher. 
 
    :::image type="content" source="./media/profiler/always-on.png" alt-text="Screenshot that shows the General tab on the Configuration pane showing that Always On is enabled.":::
 
@@ -41,40 +41,41 @@ To enable .NET Profiler on Linux, walk through the [ASP.NET Core Azure Linux web
 ## Enable Application Insights and the .NET Profiler
 
 You can enable Profiler either when:
-- [Your Application Insights resource and App Service resource are in the same subscription](#for-application-insights-and-app-service-in-the-same-subscription), or
-- [Your Application Insights resource and App Service resource are in separate subscriptions.](#for-application-insights-and-app-service-in-different-subscriptions)
+
+- [Your Application Insights resource and App Service resource are in the same subscription](#for-application-insights-and-app-service-in-the-same-subscription)
+- [Your Application Insights resource and App Service resource are in separate subscriptions](#for-application-insights-and-app-service-in-different-subscriptions).
 
 ### For Application Insights and App Service in the same subscription
 
 If your Application Insights resource is in the same subscription as your instance of App Service:
 
-1. In the left menu, select **Monitoring** > **Application Insights**.
+1. In the left menu of your App Service instance, select **Monitoring** > **Application Insights**.
 
-1. Click the **Turn on Application Insights** button.
+1. Select **Turn on Application Insights**.
 
    :::image type="content" source="./media/profiler/turn-on-app-insights.png" alt-text="Screenshot that shows turning on Application Insights for your app.":::
 
-1. In the Application Insights setting page, under **Application Insights**, make sure **Enable** is selected.
+1. In the Application Insights setting page, under **Application Insights**, select **Enable**.
 
 1. Verify that you connected an Application Insights resource to your app.
 
    :::image type="content" source="./media/profiler/enable-app-insights.png" alt-text="Screenshot that shows enabling Application Insights on your app.":::
 
 1. Scroll down and select the **.NET** or **.NET Core** tab, depending on your app.
-1. Verify that **Collection level** > **Recommended** is selected.
+1. For **Collection level**, select **Recommended**.
 1. Under **Profiler and Code Optimizations**, select **On**. If you chose the **Basic** collection level earlier, the Profiler setting is disabled.
 
    :::image type="content" source="./media/profiler/enable-profiler.png" alt-text="Screenshot that shows enabling Profiler on your app.":::
 
-1. Select **Apply** > **Yes** to confirm.
+1. Select **Apply**, and then **Yes** to confirm.
 
 ### For Application Insights and App Service in different subscriptions
 
-If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable the Profiler for .NET manually by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
+If your Application Insights resource is in a different subscription from your instance of App Service, you need to enable the Profiler for .NET manually. Enable it by creating app settings for your App Service instance. You can automate the creation of these settings by using a template or other means. Here are the settings you need to enable Profiler.
 
 |App setting    | Value    |
 |---------------|----------|
-|APPLICATIONINSIGHTS_CONNECTION_STRING | Unique value from your App Insights resource. |
+|APPLICATIONINSIGHTS_CONNECTION_STRING | Get this value from the **Overview** page for your Application Insights resource. |
 |APPINSIGHTS_PROFILERFEATURE_VERSION | 1.0.0 |
 |DiagnosticServices_EXTENSION_VERSION | ~3 |
 
@@ -106,9 +107,9 @@ To enable Microsoft Entra ID for profile ingestion:
 
 1. Create and add the managed identity to authenticate against your Application Insights resource to your App Service:
 
-   1.  [System-assigned managed identity documentation](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity)
+   - [System-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity)
 
-   1.  [User-assigned managed identity documentation](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-user-assigned-identity)
+   - [User-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-user-assigned-identity)
 
 1. [Configure and enable Microsoft Entra ID](../app/azure-ad-authentication.md?tabs=net#configure-and-enable-azure-ad-based-authentication) in your Application Insights resource.
 
@@ -130,22 +131,23 @@ To enable Microsoft Entra ID for profile ingestion:
 
 To stop or restart Profiler for an individual app's instance:
 
-1. Under **Settings** on the left pane, select **WebJobs**.
+1. Under **Settings** on the left menu, select **WebJobs**.
 
-   :::image type="content" source="./media/profiler/web-jobs-menu.png" alt-text="Screenshot that shows selecting web jobs on the left pane.":::
+   :::image type="content" source="./media/profiler/web-jobs-menu.png" alt-text="Screenshot that shows selecting web jobs on the left menu.":::
 
 1. Select the webjob  named `ApplicationInsightsProfiler3`.
 
-1. Select **Stop**.
+1. Select the **Stop** icon.
 
    :::image type="content" source="./media/profiler/stop-web-job.png" alt-text="Screenshot that shows selecting stop for stopping the webjob.":::
 
-1. Select **Yes** to confirm.
+1. Select **Stop** to confirm.
 
 We recommend that you have Profiler enabled on all your apps to discover any performance issues as early as possible.
 
 You can delete Profiler's files when you use WebDeploy to deploy changes to your web application. You can prevent the deletion by excluding the *App_Data* folder from being deleted during deployment.
 
-## Next steps
+## Related content
+
 - Learn how to [generate load and view the .NET Profiler traces](./profiler-data.md)
 - Learn how to use the [Code Optimizations feature](../insights/code-optimizations.md) alongside the Application Insights Profiler for .NET

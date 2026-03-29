@@ -241,80 +241,123 @@ items:
   - name: Monitor virtual machines
     items:
     - name: Overview
-      href: /azure/virtual-machines/monitor-vm?toc=/azure/azure-monitor/toc.json
+      href: vm/monitor-vm.md
     - name: Best practices
       href: vm/best-practices-vm.md
-    - name: Tutorials
+    - name: Getting started
       items:
-      - name: Enable recommended alerts
-        displayName: virtual machines, vm, vms
-        href: vm/tutorial-monitor-vm-alert-recommended.md
-      - name: Create an availability alert
-        displayName: virtual machines, vm, vms
-        href: vm/tutorial-monitor-vm-alert-availability.md
-      - name: Enable VM insights
-        href: vm/tutorial-monitor-vm-enable-insights.md
-      - name: Collect VM guest logs and metrics
-        href: vm/tutorial-monitor-vm-guest.md
-    - name: Collect client data
+      - name: Virtual machines
+        items:
+        - name: Enable monitoring
+          displayName: virtual machine, VM
+          href: vm/tutorial-enable-monitoring.md
+        - name: Enable recommended alerts
+          displayName: virtual machine, VM
+          href: vm/tutorial-alerts.md
+      - name: Virtual machine scale sets
+        items:
+        - name: Enable monitoring
+          displayName: virtual machine scale set, VMSS
+          href: vm/tutorial-scale-set-enable-monitoring.md
+        - name: Enable recommended alerts
+          displayName: virtual machine scale set, VMSS
+          href: vm/tutorial-scale-set-alerts.md
+      - name: Collect guest logs
+        href: vm/tutorial-collect-logs.md
+    - name: Enable monitoring
       items:
-      - name: Create data collection rule
-        displayName: Azure Monitor agent, AMA
-        href: vm/data-collection.md
-      - name: Configure a syslog forwarder
-        href: /azure/sentinel/forward-syslog-monitor-agent
-        maintainContext: true
+      - name: Enable from command line
+        displayName: virtual machine, enable monitoring
+        href: vm/vm-enable-monitoring.md 
+      - name: Azure Policy
+        href: vm/vminsights-enable-policy.md
+      - name: Windows client machines
+        href: vm/vminsights-enable-client.md
+      - name: Disable monitoring
+        href: vm/vm-disable-monitoring.md
+      - name: Troubleshoot
+        href: vm/vm-enable-troubleshoot.md
+    - name: Guest data
+      items:
+      - name: Performance counters
+        items:
+        - name: Overview
+          displayName: OpenTelemetry
+          href: vm/metrics-opentelemetry-guest.md
+        - name: Metrics-based experience (preview)
+          items:
+          - name: Customize
+            displayName: OpenTelemetry, metrics, data collection rule, performance counters
+            href: vm/metrics-opentelemetry-guest-modify.md
+          - name: Migrate
+            displayName: OpenTelemetry, migrate, migration
+            href: vm/vm-opentelemetry-migrate.md
+        - name: Logs-based experience (classic)
+          items:
+          - name: Interactive views
+            href: vm/vminsights-performance.md
+          - name: Visualize data with workbooks
+            href: vm/vminsights-workbooks.md
+          - name: Collect performance counters
+            displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-performance.md
+          - name: Migrate
+            items:
+            - name: Migrate to Azure Monitor agent
+              href: vm/vminsights-migrate-agent.md
+            - name: Migrate from deprecated policies
+              href: vm/vminsights-migrate-deprecated-policies.md
+      - name: Logs
+        items:
+        - name: Collect log data
+          displayName: Azure Monitor agent, AMA
+          href: vm/data-collection.md
+        - name: Agent data sources
+          items:
+          - name: Windows events
+            displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-windows-events.md
+          - name: Syslog events
+            href: vm/data-collection-syslog.md
+          - name: IIS logs
+            displayName: data collection rule,Azure Monitor Agent,IIS logs
+            href: vm/data-collection-iis.md
+          - name: Text logs
+            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+            href: vm/data-collection-log-text.md
+          - name: JSON logs
+            displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
+            href: vm/data-collection-log-json.md
+          - name: SNMP traps
+            displayName: data collection rule,Azure Monitor agent
+            href: vm/data-collection-snmp-data.md
+          - name: Windows Firewall logs
+            displayName: data collection rule,Azure Monitor Agent,firewall logs
+            href: vm/data-collection-firewall-logs.md
+        - name: Configure a syslog forwarder
+          href: /azure/sentinel/forward-syslog-monitor-agent
       - name: Send data to Fabric and Azure Data Explorer
         href: vm/send-fabric-destination.md
-    - name: VM insights
+      - name: Reference
+        displayName: OpenTelemetry, metrics, performance counters
+        href: vm/metrics-guest-reference.md
+    - name: Map feature (deprecated)
       items:
       - name: Overview
-        href: vm/vminsights-overview.md
-      - name: Enable and configure
+        href: vm/vminsights-maps.md
+      - name: Retirement guidance
+        displayName: processes and dependencies, map, vminsights, dependency agent
+        href: vm/vminsights-maps-retirement.md
+      - name: Dependency agent
         items:
-        - name: Enable VM insights
-          href: vm/vminsights-enable.md
-        - name: Enable with Azure Policy
-          href: vm/vminsights-enable-policy.md
-        - name: Enable OpenTelemetry metrics (Preview)
-          href: vm/vminsights-opentelemetry.md
-        - name: Windows client machines
-          href: vm/vminsights-enable-client.md
-        - name: Disable monitoring
-          href: vm/vminsights-optout.md
-        - name: Troubleshoot
-          href: vm/vminsights-troubleshoot.md
-      - name: Analyze data
-        items:
-        - name: Interactive views
-          href: vm/vminsights-performance.md
-        - name: Monitor changes
-          href: vm/vminsights-change-analysis.md
-        - name: Visualize data with workbooks
-          href: vm/vminsights-workbooks.md
-      - name: Migrate
-        items:
-        - name: Migrate to Azure Monitor agent
-          href: vm/vminsights-migrate-agent.md
-        - name: Migrate from deprecated policies
-          href: vm/vminsights-migrate-deprecated-policies.md
-      - name: Map feature
-        items:
-        - name: Retirement guidance
-          displayName: processes and dependencies, map, vminsights, dependency agent
-          href: vm/vminsights-maps-retirement.md
-        - name: Dependency agent
-          items:
-          - name: Manage
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent.md
-          - name: Uninstall
-            displayName: dependency agent, vminsights
-            href: vm/vminsights-dependency-agent-uninstall.md
-        - name: Map dependencies
-          href: vm/vminsights-maps.md
-        - name: Query map data
-          href: vm/vminsights-log-query.md
+        - name: Manage
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent.md
+        - name: Uninstall
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent-uninstall.md
+      - name: Query map data
+        href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
@@ -355,8 +398,10 @@ items:
     - name: Deployment guidance
       displayName: containers
       href: containers/monitor-kubernetes.md
-    - name: Quickstart
-      href: containers/kubernetes-monitoring-quickstart.md
+    - name: Getting started
+      items:
+      - name: Enable monitoring for a cluster
+        href: containers/kubernetes-monitoring-tutorial.md
     - name: Best practices
       displayName: containers, kubernetes
       href: containers/best-practices-containers.md
@@ -376,8 +421,6 @@ items:
         items:
         - name: Collect and analyze OpenTelemetry data with Azure Monitor
           href: containers/collect-use-observability-data.md
-        - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
-          href: containers/opentelemetry-protocol-ingestion.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
           href: containers/kubernetes-open-protocol.md
     - name: Analyze data
@@ -594,8 +637,13 @@ items:
     - name: Create DCRs
       items:
       - name: Create and edit
-        displayName: Data collection rules, DCR
-        href: data-collection/data-collection-rule-create-edit.md
+        items:
+        - name: Azure portal
+          displayName: Data collection rules, DCR, portal
+          href: data-collection/data-collection-rule-create-portal.md
+        - name: JSON
+          displayName: Data collection rules, DCR, CLI, PowerShell, API, ARM, Bicep
+          href: data-collection/data-collection-rule-create-edit.md
       - name: Manage associations
         displayName: data collection rules, DCR
         href: data-collection/data-collection-rule-associations.md
@@ -644,6 +692,10 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
+  - name: Collect OpenTelemetry
+    items:
+    - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
+      href: containers/opentelemetry-protocol-ingestion.md
   - name: Diagnostic Settings
     items:
     - name: Create or edit
@@ -679,8 +731,6 @@ items:
     - name: Install and configure
       displayName: Azure Monitor agent
       items:
-      - name: Configure agent settings
-        href: agents/agent-settings.md
       - name: Virtual machines
         href: agents/azure-monitor-agent-manage.md
       - name: Windows clients
@@ -689,33 +739,10 @@ items:
         href: agents/resource-manager-agent.md
       - name: Azure Policy
         href: agents/azure-monitor-agent-policy.md
+      - name: Configure agent settings
+        href: agents/agent-settings.md
       - name: Log Analytics gateway
         href: agents/gateway.md
-    - name: Agent data sources
-      items:
-      - name: Windows events
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-windows-events.md
-      - name: Syslog events
-        href: vm/data-collection-syslog.md
-      - name: IIS logs
-        displayName: data collection rule,Azure Monitor Agent,IIS logs
-        href: vm/data-collection-iis.md
-      - name: Performance data
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-performance.md
-      - name: Text logs
-        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-        href: vm/data-collection-log-text.md
-      - name: JSON logs
-        displayName: data collection rule,Azure Monitor Agent,text logs,file-based logs
-        href: vm/data-collection-log-json.md
-      - name: SNMP traps
-        displayName: data collection rule,Azure Monitor agent
-        href: vm/data-collection-snmp-data.md
-      - name: Windows Firewall logs
-        displayName: data collection rule,Azure Monitor Agent,firewall logs
-        href: vm/data-collection-firewall-logs.md
     - name: Monitor
       href: agents/azure-monitor-agent-health.md
     - name: Performance
@@ -767,10 +794,8 @@ items:
               href: agents/diagnostics-extension-windows-install.md
             - name: PowerShell
               href: /azure/virtual-machines/extensions/diagnostics-windows
-              maintainContext: true
             - name: Resource Manager template
               href: /azure/virtual-machines/extensions/diagnostics-template
-              maintainContext: true
           - name: Send to Azure Monitor Metrics
             items:
             - name: Virtual Machine
@@ -796,10 +821,8 @@ items:
           items:
           - name: Version 4.0
             href: /azure/virtual-machines/extensions/diagnostics-linux
-            maintainContext: true
           - name: Version 3.0
             href: /azure/virtual-machines/extensions/diagnostics-linux-v3
-            maintainContext: true
           - name: Collect metrics with Telegraf
             href: agents/collect-custom-metrics-linux-telegraf.md
       - name: Troubleshoot
@@ -953,8 +976,6 @@ items:
       - name: PromQL using Prometheus HTTP APIs
         displayName: Prometheus
         href: metrics/prometheus-api-promql.md
-    - name: OpenTelemetry Guest OS metrics (preview)
-      href: metrics/metrics-opentelemetry-guest.md
   - name: Logs
     items:
     - name: Overview
@@ -988,7 +1009,6 @@ items:
             href: logs/move-workspace.md
           - name: Move a workspace across regions
             href: /azure/operational-excellence/relocation-log-analytics
-            maintainContext: true
           - name: Delete and recover a workspace
             href: logs/delete-workspace.md
         - name: Replicate workspace across regions
@@ -1059,10 +1079,8 @@ items:
       items:
       - name: Azure Monitor Logs connector
         href: /azure/connectors/connectors-azure-monitor-logs
-        maintainContext: true
       - name: Application Insights connector
         href: /azure/connectors/connectors-azure-application-insights
-        maintainContext: true
     - name: Data export
       items:
       - name: Workspace data export
@@ -1524,7 +1542,6 @@ items:
       href: autoscale/autoscale-using-powershell.md
     - name: Scale Virtual Machine Scale Sets using CLI
       href: /azure/virtual-machine-scale-sets/tutorial-autoscale-cli
-      maintainContext: true
     - name: Use webhooks and email notifications
       href: autoscale/autoscale-webhook-email.md
     - name: Autoscale diagnostics
@@ -1649,7 +1666,7 @@ items:
     items:
     - name: App Center migration (Preview)
       href: app/app-center-migration.md
-    - name: Application Insights SDK (Classic API)
+    - name: Application Insights SDK (Classic API 2.x)
       href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
