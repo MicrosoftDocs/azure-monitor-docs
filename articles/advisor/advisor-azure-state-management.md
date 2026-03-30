@@ -48,7 +48,7 @@ When a recommendation is **Active**, you can manually update its state to manage
 
 - **Completed**: Indicate that you took the recommended action.
 
-You can continue to change states between **Active**, **Postponed**, **Dismissed**, and **Completed**, or reactivate a recommendation, **until Azure Advisor performs system verification and Marks a recommendation as Completed**. Recommendations manually marked as completed are indicated as **Marked completed**.
+You can continue to change states between **Active**, **Postponed**, **Dismissed**, and **Completed**, or reactivate a recommendation, **until Azure Advisor performs system verification and marks a recommendation as Completed**. Recommendations you manually mark as completed are indicated as **Marked completed**.
 
 ## System verification
 
