@@ -18,8 +18,8 @@ Azure Monitor has several throttling limits to protect back-end system resources
 
 | Measure | Limit per user | Description |
 |:--------|:---------------|:------------|
-| Concurrent Analytics queries | 5 | A user can run up to five concurrent queries against Analytics tables. Additional queries are added to the concurrency queue in a first in, first out order (FIFO). When one of the concurrent running queries finishes, the first query from the queue is added to the concurrent queries and starts running. Alert queries aren't part of this limit. |
-| Concurrent Basic and Auxiliary queries | 2 | A user can run up to two concurrent [search queries](..//basic-logs-query.md) against Basic and Auxiliary tables. Additional queries follow the same FIFO model in the concurrency queue. |
+| Concurrent Analytics queries | 5 | A user can run up to five concurrent queries against Analytics tables. The system adds extra queries to the concurrency queue in a first in, first out order (FIFO). When one of the concurrent running queries finishes, the first query from the queue is added to the concurrent queries and starts running. Alert queries aren't part of this limit. |
+| Concurrent Basic and Auxiliary queries | 2 | A user can run up to two concurrent [search queries](..//basic-logs-query.md) against Basic and Auxiliary tables. The concurrency queue follows the same FIFO model. |
 | Time in concurrency queue | 3 minutes | If a query sits in the queue for more than 3 minutes without starting, the system terminates it with an HTTP error response with code 429. |
 | Total queries in concurrency queue | 200 | When the number of queries in the queue reaches 200, the next query is rejected with an HTTP error code 429. This number is in addition to the five queries that can be running simultaneously. |
 | Query rate | 200 queries per 30 seconds | Overall rate of queries that a single user can submit to all workspaces. This limit applies to programmatic queries or queries initiated by visualization parts such as Azure dashboards and the Log Analytics workspace summary (deprecated) page. |
