@@ -9,7 +9,7 @@ ms.date: 03/30/2026
 
 The Health Alerts panel in Azure Service Health helps you view and manage alerts about service problems, planned maintenance, health advisories, and security advisories. These alerts notify you about events that could affect your resources.
 
-It shows only the alerts that you create based on the criteria you configured such as subscription, services, regions, event types. 
+It shows only the alerts that you create based on the criteria you configured, such as subscription, services, regions, and event types. 
 Health alerts are tied to your alert rules, not to all events occurring in Azure.
 
 
