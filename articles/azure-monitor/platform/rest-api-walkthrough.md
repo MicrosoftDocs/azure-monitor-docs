@@ -457,7 +457,7 @@ The following JSON shows an example response body:
 
 ## Querying metrics for multiple resources at a time
 
-In addition to querying for metrics on an individual resource, some resource types also support querying for multiple resources in a single request. These APIs are what power the [multi-resource experience in Azure metrics explorer](../metrics/analyze-metrics.md). The set of resources types that support querying for multiple metrics can be seen on the [Metrics blade in Azure monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) via the resource type drop-down in the scope selector on the context blade. For more information, see the [multi-resource UX documentation](../metrics/analyze-metrics.md).
+In addition to querying for metrics on an individual resource, some resource types also support querying for multiple resources in a single request. These APIs power the [multi-resource experience in Azure metrics explorer](../metrics/analyze-metrics.md). You can see the set of resource types that support querying for multiple metrics on the [Metrics blade in Azure monitor](https://portal.azure.com/#view/Microsoft_Azure_Monitoring/AzureMonitoringBrowseBlade/~/metrics) via the resource type drop-down in the scope selector on the context blade. For more information, see the [multi-resource UX documentation](../metrics/analyze-metrics.md).
 
 There are some important differences between querying metrics for multiple and individual resources.
 
