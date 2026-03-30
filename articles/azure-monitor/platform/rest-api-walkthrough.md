@@ -364,7 +364,7 @@ Use the metric's `name.value` element in the filter definitions. If no dimension
 
 A time series is a set of data points that are ordered by time for a given combination of dimensions. A dimension is an aspect of the metric that describes the data point such as resource Id, region, or ApiName.
 
-* To fetch multiple time series with specific dimension values, specify a filter query parameter that specifies both dimension values such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`. In this example, you get a time series where `ApiName` is `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
+* To fetch multiple time series with specific dimension values, specify a filter query parameter that includes both dimension values, such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`. In this example, you get a time series where `ApiName` is `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
 
 * To return a time series for every value of a given dimension, use an `*` filter such as `"&$filter=ApiName eq '*'"`. Use the `Top` and `OrderBy` query parameters to limit and sort the number of time series returned. In this example, you get a time series for every value of `ApiName`in the result set. If no data is returned, the API returns an empty time series `"timeseries": []`.
 
@@ -641,6 +641,6 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
 * Review the [overview of monitoring](../fundamentals/overview.md).
 * View the [supported metrics with Azure Monitor](../reference/metrics-index.md).
 * Review the [Microsoft Azure Monitor REST API reference](/rest/api/monitor/).
-* Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
+* Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/).
 * Review the [Azure Management Library](/previous-versions/azure/reference/mt417623(v=azure.100)).
 * [Activity log in Azure Monitor](activity-log.md#retrieve-activity-log-events-by-using-the-rest-api).
