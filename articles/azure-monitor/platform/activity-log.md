@@ -202,7 +202,7 @@ In the Azure portal, select **Activity log** on the **Azure Monitor** menu and t
 :::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
 
 
-The following sections provide details on each configurable destination for resource logs .
+The following sections provide details on each configurable destination for resource logs.
 
 > [!NOTE]
 > The legacy method of exporting the activity log is log profiles. See [Legacy collection methods](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
