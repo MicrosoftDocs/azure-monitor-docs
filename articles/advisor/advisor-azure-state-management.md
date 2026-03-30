@@ -241,9 +241,9 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or dismissed
+- __Recommendation__: System identified recommendation in that's dismissed
 
-- __Dismissed resources__: Resources affected by this recommendation are dismissed.
+- __Dismissed resources__: Resources affected by this recommendation are dismissed
 
 - __Impact__: Impact level, High, Medium, Low
 
