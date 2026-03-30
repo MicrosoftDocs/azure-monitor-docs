@@ -2,7 +2,8 @@
 title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 03/26/2026
+ms.date: 03/30/2026
+ms.reviewer: kaprince
 ---
 
 # Monitor AKS applications with OTLP and Azure Monitor (Preview)
@@ -46,7 +47,7 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 
 **Common collaboration points:**
 
-- Agree on naming and labeling standards (`service.name`, `deployment.environment`, and namespace conventions) so data is queryable and dashboards work across teams.
+- Agree on naming and labeling standards (`service.name`, `k8s.deployment.name`, and namespace conventions) so data is queryable and dashboards work across teams.
 - Align on performance and cost guardrails (sampling strategy, log verbosity, and metric cardinality) and who changes what when limits are exceeded.
 - Define a support workflow for telemetry issues (what developers check first vs. when to escalate to the cluster admin team).
 - Plan changes jointly when they span both layers (for example, switching ingestion method, changing endpoint/temporality expectations, or introducing a collector).
@@ -95,9 +96,8 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 
 ## 2. Prepare the cluster
 
-1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use **Enable monitoring for AKS clusters** in Azure Monitor (Application Insights isn't required yet).
-1. In the Azure portal, open the AKS **Monitor** pane and then **Monitor settings**.  
-   Turn on **Enable application monitoring** and select **Review + enable**.
+1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [**Enable monitoring for AKS clusters**](kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) in Azure Monitor (Application Insights isn't required yet).
+1. Turn on **Enable support for Autoinstrumentation** and **Enable support for data collection from vendor neutral OpenTelemetry SDKs (Preview)** then select **Review + enable**.
 
 If you didn't previously onboard the cluster, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
@@ -131,15 +131,16 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 
 ### 4.2 Configure Application Monitoring (Preview)
 
-When you enable OTLP, Application Insights works with standard OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
+When you enable OTLP, Application Insights adds support for open-source, vendor-neutral OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
 
 If you don't enable OTLP, Application Insights uses Azure Monitor autoinstrumentation and legacy custom ingestion.
 
 1. Select **Application Monitoring (Preview)**.
 1. Choose the Application Insights resource with OTLP enabled that you created previously in [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select or create an Application Insights resource without OTLP by using the **Create New** option, you won't see the **Instrumentation Type** option in the next step.
 1. Choose an **Instrumentation Type**:  
-    - **User-configured instrumentation per deployment** for manual configuration. 
-      - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+    - **User-configured instrumentation per deployment**
+      - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights
+      - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
       - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
     - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
@@ -183,11 +184,13 @@ Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
 ## Advanced onboarding (custom resources)
 
-Use the Kubernetes custom resources when you need more control. For more information, see [Autoinstrumentation for Azure Kubernetes Service](kubernetes-codeless.md).
+Use the Kubernetes custom resources when you need more control. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
 
 ### Autoinstrumentation (Java, Node.js)
 
 Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject the Azure Monitor OpenTelemetry distribution into your pods.
+
+To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
 
 ### Autoconfiguration (apps already instrumented with OpenTelemetry SDKs)
 

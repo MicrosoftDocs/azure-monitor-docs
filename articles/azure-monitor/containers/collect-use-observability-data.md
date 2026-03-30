@@ -2,7 +2,8 @@
 title: Collect and analyze OpenTelemetry data with Azure Monitor (Preview)
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.reviewer: kaprince
+ms.date: 03/30/2026
 ---
 
 # Use OpenTelemetry with Azure Monitor (Preview)

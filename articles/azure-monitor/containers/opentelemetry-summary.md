@@ -2,7 +2,8 @@
 title: OpenTelemetry ingestion options (preview)
 description: Compare OpenTelemetry Protocol (OTLP) ingestion options in Azure Monitor, including AKS monitoring, Azure Monitor Agent, and the OpenTelemetry Collector.
 ms.topic: concept-article
-ms.date: 03/25/2026
+ms.date: 03/30/2026
+ms.reviewer: kaprince
 ai-usage: ai-assisted
 
 #customer intent: As a cloud engineer, I want to understand the OpenTelemetry ingestion options in Azure Monitor so that I can choose the right approach for my environment.

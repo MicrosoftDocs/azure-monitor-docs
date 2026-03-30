@@ -2,7 +2,8 @@
 title: Ingest OTLP Data into Azure Monitor with AMA (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data to Azure Monitor using Azure Monitor Agent on VMs, Scale Sets, and Arc-enabled servers.
 ms.topic: how-to
-ms.date: 03/18/2026
+ms.date: 03/30/2026
+ms.reviewer: kaprince
 ai-usage: ai-assisted
 ---
 

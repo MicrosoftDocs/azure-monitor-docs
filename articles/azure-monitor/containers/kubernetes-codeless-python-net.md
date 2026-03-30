@@ -2,7 +2,8 @@
 title: Enable Azure Kubernetes Service autoinstrumentation for Python and .NET (limited preview)
 description: Learn how to onboard to the limited preview of Azure Kubernetes Service (AKS) autoinstrumentation for Python and .NET workloads.
 ms.topic: how-to
-ms.date: 03/16/2026
+ms.reviewer: kaprince
+ms.date: 03/30/2026
 ---
 
 # Enable AKS autoinstrumentation for Python and .NET (limited preview)
