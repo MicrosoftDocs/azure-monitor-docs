@@ -40,14 +40,14 @@ The following table defines the responsible parties for Advisor actions.
 | Responsibility | Detail |
 |:--- |:--- |
 | Request a resiliency review | Customer using your Customer Success Account Manager or aligned Cloud Solution Architect. |
-| Analyze workload configuration, perform the review using the Well Architected Reliability Assessment and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
+| Analyze workload configuration, perform the review using the Well Architected Reliability Assessment, and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
 | Manage recommendation status | Customer. Set the status of recommendation as: `Completed`, `Postponed`, or `Dismissed`. |
 | Implement recommendations | Customer. Engineers responsible for managing resources and the configuration. |
 | Facilitate implementation | Microsoft account team using your support contract. |
 
 ## Enable reviews
 
-Resiliency reviews are available to customers with Unified or Premier Support contracts using a Well Architected Reliability Assessment. To initiate a review, reach out to your Customer Success Account Manager. You can find contact information in [Services Hub](https://serviceshub.microsoft.com "Microsoft Services Hub").
+Customers with Unified or Premier Support contracts can access resiliency reviews by using a Well Architected Reliability Assessment. To initiate a review, reach out to your Customer Success Account Manager. You can find contact information in [Services Hub](https://serviceshub.microsoft.com "Microsoft Services Hub").
 
 Your Microsoft account team works with you to collect information about the workload. They need to know which subscriptions are used for the workload, and which subscriptions they should use to publish the review and recommendations. You need to work with the owner of the subscription to configure permissions for your team.
 
@@ -65,7 +65,7 @@ If a new review is available to you, you see a notification banner on top of Adv
 
 [!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
 
-3.  On the menu for Advisor, select **Manage** > **Reviews (Preview)**.
+1.  On the menu for Advisor, select **Manage** > **Reviews (Preview)**.
 
     A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
 
@@ -106,9 +106,9 @@ The priority of a recommendation is based on the impact value and urgency of the
 
 | Priority | Detail |
 |:--- |:--- |
-| Critical | The most important recommendations that can have a significant impact value on your Azure resources. The recommendations should be addressed as soon as possible to avoid potential issues such as security breaches, data loss, or service outages. |
-| High | The recommendations that can improve the performance, reliability, or cost efficiency of your Azure resources. The recommendations should be addressed in a timely manner to optimize your Azure deployments. |
-| Medium | The recommendations that can enhance the operational excellence or user experience of your Azure resources. The recommendations should be considered and implemented if the recommendations align with your business goals and requirements. |
+| Critical | The most important recommendations that can have a significant impact value on your Azure resources. Address these recommendations as soon as possible to avoid potential issues such as security breaches, data loss, or service outages. |
+| High | Recommendations that can improve the performance, reliability, or cost efficiency of your Azure resources. Address these recommendations in a timely manner to optimize your Azure deployments. |
+| Medium | Recommendations that can enhance the operational excellence or user experience of your Azure resources. Consider and implement these recommendations if they align with your business goals and requirements. |
 | Low | Recommendations that can provide extra benefits or insights for your Azure resources. Review and implement these recommendations if they're relevant and feasible for your scenario. |
 | Informational | Recommendations that can help you learn more about the features and capabilities of Azure. These recommendations don't require any action, but they help you discover new ways to use Azure. |
 
@@ -127,13 +127,13 @@ The recommendations are grouped by type.
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations pane of accepted recommendations." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" source="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" type="content":::
 
-You can filter the recommendations by subscription, priority, and workload; and sort the recommendation list.
+You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
 
-You can sort recommendations using following column headers. **Priority** (**Critical**, **High**, **Medium**, **Low**, **Informational**), **Description**, **Impacted resources**, **Review name**, **Potential benefits**, or **Last updated** date.
+You can sort recommendations by using the following column headers: **Priority** (**Critical**, **High**, **Medium**, **Low**, **Informational**), **Description**, **Impacted resources**, **Review name**, **Potential benefits**, or **Last updated** date.
 
 ### View recommendation details
 
-Select a recommendation description to open a details pane. Your Microsoft account team adds the **Description**, **Potential benefits**, and **Notes** when the review is prepared.
+Select a recommendation description to open a details pane. Your Microsoft account team adds the **Description**, **Potential benefits**, and **Notes** when they prepare the review.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability pane for a Resiliency Reviews recommendation." lightbox="./media/resiliency-reviews/resiliency-review-reliability-page-detail.png" source="./media/resiliency-reviews/resiliency-review-reliability-page-detail.png" type="content":::
 
@@ -143,15 +143,15 @@ For details on recommendation priority, see [Recommendation priority](#recommend
 
 ### Manage recommendation status
 
-Recommendation status is a valuable indicator for determining needed actions. Review each available recommendation status: 
+Recommendation status helps you decide what action to take. Review each available recommendation status: 
 
-* Active: New recommendations identified by the Azure Advisor system.
+* **Active**: New recommendations identified by the Azure Advisor system.
 
-* Postponed: Temporarily hide a recommendation for a set period. After that period, the recommendation automatically reappears.
+* **Postponed**: Temporarily hides a recommendation for a set period. After that period, the recommendation automatically reappears.
 
-* Dismissed: Permanently remove an item from view until you choose to reactivate it.
+* **Dismissed**: Permanently removes an item from view until you choose to reactivate it.
 
-* Completed: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
+* **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations dismiss options." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" source="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" type="content":::
 
