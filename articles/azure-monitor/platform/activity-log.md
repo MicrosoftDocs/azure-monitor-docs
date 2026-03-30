@@ -45,7 +45,9 @@ For more information about available filter patterns and the `$select` parameter
 
 #### List activity log events for a subscription
 
-Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI dynamically calculates the time range, so the example shows a 14-day window from the current date.
+Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. 
+
+The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI is able to dynamically calculate a the time range, so the example shows a 14-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -90,7 +92,9 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 #### Return specific activity log properties
 
-Use the `$select` parameter to return only specified properties, which reduces the response payload size. The Azure CLI dynamically calculates the time range, so the example shows a 30-day window from the current date.
+Use the `$select` parameter to return only specified properties, which reduces the response payload size. 
+
+The Azure CLI is able to dynamically calculate a time range, so the example shows a 30-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -171,7 +175,9 @@ For some events, you can view the change history, which shows what changes happe
 
 :::image type="content" source="media/activity-log/change-history-event.png" lightbox="media/activity-log/change-history-event.png" alt-text="Screenshot that shows the Change history list for an event.":::
 
-If any changes are associated with the event, the portal shows you a selectable list of changes. Selecting a change opens the **Change history** page. This page displays the changes to the resource. The following example shows that the VM changed sizes. The page displays the VM size before the change and after the change. To learn more about change history, see [Get resource changes](/azure/governance/resource-graph/how-to/get-resource-changes).
+If any changes are associated with the event, the portal shows you a selectable list of changes. Selecting a change opens the **Change history** page. This page displays the changes to the resource. 
+
+The following example shows that the VM changed sizes. The page displays the VM size before the change and after the change. To learn more about change history, see [Get resource changes](/azure/governance/resource-graph/how-to/get-resource-changes).
 
 :::image type="content" source="media/activity-log/change-history-event-details.png" lightbox="media/activity-log/change-history-event-details.png" alt-text="Screenshot that shows the Change history page showing differences.":::
 
