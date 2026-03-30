@@ -394,10 +394,10 @@ export class RegisterExpressInstrumentationSample {
 
 #### [Python](#tab/python)
 
-To add a community instrumentation library (not officially supported/included in the Azure Monitor Distro), you can instrument directly with the instrumentations. The list of community instrumentation libraries can be found on [GitHub](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
+To add a community instrumentation library (not officially supported or included in the Azure Monitor Distro), instrument directly with the instrumentations. You can find the list of community instrumentation libraries on [GitHub](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
 > [!NOTE]
-> Instrumenting a [supported instrumentation library](#included-instrumentation-libraries) manually with `instrument()` and the distro `configure_azure_monitor()` isn't recommended. It's not a supported scenario and you could get undesired behavior for your telemetry.
+> Don't manually instrument a [supported instrumentation library](#included-instrumentation-libraries) by using `instrument()` and the distro `configure_azure_monitor()`. This approach isn't supported and could cause undesired behavior for your telemetry.
 
 ```python
 # Import the `configure_azure_monitor()`, `SQLAlchemyInstrumentor`, `create_engine`, and `text` functions from the appropriate packages.
@@ -446,7 +446,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 * Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported.
 
-* For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
+* For manual setups, set resource attributes directly with standard OpenTelemetry options:
 
     ```bash
     # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
