@@ -18,25 +18,25 @@ ms.reviewer: tiffanywang, adaga
 By using Azure Advisor recommendation state management, you can track and manage new and existing recommendation states.
 
 > [!NOTE]
->Azure Advisor recommendation state management is currently in Preview. Preview features are provided for evaluation purposes and may change before general availability.
+>Azure Advisor recommendation state management is currently in preview. Preview features are provided for evaluation purposes and might change before general availability.
 
 ## Recommendation state
 
 Each Azure Advisor recommendation can have one of four supported states:
 
-- **Active**: New recommendations identified by the Azure Advisor system
+- **Active**: New recommendations identified by the Azure Advisor system.
 
-- **Postponed**: Temporarily hide a recommendation for a set period. After that, it automatically reappears
+- **Postponed**: Temporarily hides a recommendation for a set period. After that period, the recommendation automatically reappears.
 
-- **Dismissed**: Permanently remove an item from view until you choose to reactivate it
+- **Dismissed**: Permanently removes an item from view until you choose to reactivate it.
 
 - **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies.
 
-These states show the status of each recommendation and are used to manage your recommendations as they transition through their lifecycle.
+These states show the status of each recommendation. Use them to manage your recommendations as they transition through their lifecycle.
 
 ## Recommendation state transitions
 
-Azure Advisor recommendations move through a simple lifecycle that helps you track progress and understand when no further action is required. You can manually manage recommendation states while Azure Advisor automatically verifies when a recommendation has been addressed or no longer applies.
+Azure Advisor recommendations move through a simple lifecycle that helps you track progress and understand when no further action is required. You can manually manage recommendation states while Azure Advisor automatically verifies when a recommendation is addressed or no longer applies.
 
 ## Manual state changes
 
@@ -80,7 +80,7 @@ Review the definitions and implications for the Completed and Dismissed recommen
 
 
 
-Use the following procedures to change recommendation states
+Use the following procedures to change recommendation states.
 
 > [!NOTE]
 >To perform these actions, you need specific permissions. For more information, see [Roles and permissions](https://learn.microsoft.com/en-us/azure/advisor/permissions).
@@ -114,11 +114,11 @@ All manual state changes start from the **Active recommendations** view. Use the
 
 Postponing a recommendation temporarily hides it for a set period. After the selected time elapses, the recommendation automatically returns to the __Active__ state.
 
-1. Select a recommendation from the list of recommendations
+1. Select a recommendation from the list of recommendations.
 
 1. Choose the recommendations you want to postpone and select **Postpone**.
 
-1. Choose how long to postpone the recommendation and then confirm
+1. Choose how long to postpone the recommendation and then confirm.
 
 ### Dismiss a recommendation
 
@@ -134,9 +134,9 @@ When you dismiss a recommendation, it disappears from view until you choose to r
 
 Mark a recommendation as complete when you take the recommended action or when the recommendation no longer applies.
 
-1. Select a recommendation from the list of active recommendations
+1. Select a recommendation from the list of active recommendations.
 
-1. Select **Complete** for the recommendation you want to manually mark as completed
+1. Select **Complete** for the recommendation you want to manually mark as completed.
 
 > [!NOTE]
 > You can reactivate recommendations you marked as completed manually until Azure Advisor performs system verification. After system verification, you can't change or reactivate completed recommendations.
@@ -154,19 +154,19 @@ You can reactivate a recommendation that you previously postponed, dismissed, or
 
 1. Select __Activate__ at the end of the row. The recommendation is now active for that resource and removed from the table. The recommendation is visible on the __Active__ tab.
 
-### Postpone, Dismiss, or Mark as complete multiple resources for a single recommendation
+### Postpone, dismiss, or mark as complete multiple resources for a single recommendation
 
-1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal
+1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
 
-1. To view your recommendations, select a recommendation category
+1. Select a recommendation category to view your recommendations.
 
 1. Select a recommendation from the list of recommendations
 
-1. The Recommendation Details page opens
+1. The Recommendation Details page opens.
 
 1. On the Recommendation Details page, in the resources table, select the checkboxes next to each resource for all resources you want to postpone, dismiss, or mark as complete.
 
-1. In the resources table header, select __Postpone__, __Dismiss__, or __Completed__
+1. In the resources table header, select __Postpone__, __Dismiss__, or __Completed__.
 
 > [!TIP]
 > If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone, dismiss, or mark as complete.
@@ -177,11 +177,11 @@ The Viewing dropdown displays recommendations grouped by type.
 
 Select one of the four recommendation status options to display that recommendation. The recommendation status options are:
 
-- __Active Recommendations__: Recommendations marked as need action from your organization
+- __Active Recommendations__: Recommendations marked as need action from your organization.
 
-- __Completed Recommendations__: Recommendations marked as completed by your organization or are system verified
+- __Completed Recommendations__: Recommendations marked as completed by your organization or are system verified.
 
-- __Postponed Recommendations__: Recommendations that have been postponed by your organization
+- __Postponed Recommendations__: Recommendations that your organization postponed.
 
 - __Dismissed Recommendations__: Recommendations that your organization dismissed.
 
@@ -189,17 +189,17 @@ Select one of the four recommendation status options to display that recommendat
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation that’s currently active.
+- __Recommendation__: System identified recommendation that's currently active.
 
-- __Impact__: Impact level, High, Medium, Low
+- __Impact__: Impact level, High, Medium, Low.
 
-- __Active resources__: Number of resource instances where the recommendation is active
+- __Active resources__: Number of resource instances where the recommendation is active.
 
-- __Completion progress__: Percent of resources impacted by this recommendation that are completed. Dismissed resources are excluded from the calculations
+- __Completion progress__: Percent of resources impacted by this recommendation that are completed. Dismissed resources are excluded from the calculations.
 
-- __Recommended action__: Link to available action
+- __Recommended action__: Link to available action.
 
-- Other category specific columns
+- Other category specific columns.
 
 ### Completed recommendation page
 
@@ -209,7 +209,7 @@ This page displays a table with the following columns:
 
 - __Impact__: Impact level, High, Medium, Low
 
-- __Completed resources__: Number of resource instances where the recommendations are in completed state
+- __Completed resources__: Number of resource instances where the recommendations are in completed state.
 Dismissed resources are excluded from the calculation, for all completed progress
 
 - __Completion progress__: Percent of resources impacted by this recommendation that are completed
@@ -223,13 +223,13 @@ Dismissed resources are excluded from the calculation, for all completed progres
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or postponed
+- __Recommendation__: System identified recommendation that's new or postponed.
 
 - __Impact__: Impact level, High, Medium, Low
 
 - __Completed resources__: Number of resource instances where the recommendations are in completed state
 
-- __Postponed resources__: Number of resource instance where the recommendations are postponed
+- __Postponed resources__: Number of resource instances where the recommendations are postponed.
 
 - __Completion progress__: Percent of resources impacted by this recommendation that are completed
 
@@ -241,9 +241,9 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that's dismissed
+- __Recommendation__: System identified recommendation that's dismissed.
 
-- __Dismissed resources__: Resources affected by this recommendation are dismissed
+- __Dismissed resources__: Resources affected by this recommendation are dismissed.
 
 - __Impact__: Impact level, High, Medium, Low
 
