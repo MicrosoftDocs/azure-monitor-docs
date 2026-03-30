@@ -9,17 +9,17 @@ ms.reviewer: orens
 
 # Activity log in Azure Monitor
 
-The Azure Monitor activity log records management operations on your Azure resources — for example, creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
+The Azure Monitor activity log records management operations on your Azure resources. For example, it records operations such as creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
 
 > [!TIP]
-> If you were directed to this article from a deployment operation error, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
+> If a deployment operation error directs you to this article, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
 
 ## Activity log entries
 
 Azure Monitor collects activity log entries by default with no required configuration. The system generates these entries, and you can't change or delete them. Entries typically result from changes (create, update, delete operations) or an action being initiated. The activity log doesn't typically capture read operations. Activity log entries are usually available for analysis and alerting within [3 to 20 minutes of the event occurring](../logs/data-ingestion-time.md#azure-metrics-resource-logs-activity-logs). For a description of activity log categories, see [Azure activity log event schema](activity-log-schema.md#categories).
 
 > [!NOTE]
-> [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource — for example, getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
+> [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, resource logs record operations such as getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
 
 ## Retention period
 
@@ -35,11 +35,11 @@ You can also access activity log events by using the following methods:
 
 - Use the [Get-AzLog](/powershell/module/az.monitor/get-azlog) cmdlet to retrieve the activity log from PowerShell. See [Azure Monitor PowerShell samples](../powershell-samples.md#retrieve-activity-log).
 - Use [az monitor activity-log](/cli/azure/monitor/activity-log) to retrieve the activity log from the CLI. See [Azure Monitor CLI samples](../cli-samples.md#view-activity-log).
-* Use the [Azure Monitor REST API](/rest/api/monitor/) to retrieve the activity log from a REST client.
+- Use the [Azure Monitor REST API](/rest/api/monitor/) to retrieve the activity log from a REST client.
 
-### Retrieve activity log events using the REST API
+### Retrieve activity log events by using the REST API
 
-Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. The `$filter` parameter is required and must include at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Ensure both the start and end of your time range fall within that 90-day window unless a longer retention period has been configured.
+Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. You need to include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period.
 
 For more information about available filter patterns and the `$select` parameter, see [Retrieve activity log data using Azure Monitor REST API](rest-activity-log.md).
 
@@ -90,7 +90,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 #### Return specific activity log properties
 
-Use the `$select` parameter to return only specified properties, which reduces the response payload size. The Azure CLI allows you to dynamically calculate the time range, so the example shows a 30-day window from the current date.
+Use the `$select` parameter to return only specified properties, which reduces the response payload size. The Azure CLI dynamically calculates the time range, so the example shows a 30-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -112,7 +112,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 #### List tenant-level activity log events
 
-Tenant-level activity logs are typically limited but might include important events such as management group or subscription creation. These events are separate from subscription-level activity logs, but might contain duplicate resource management events. Use the [Tenant Activity Logs REST API](/rest/api/monitor/tenant-activity-logs) to retrieve tenant-level events.
+Tenant-level activity logs typically have limited entries but might include important events such as management group or subscription creation. These events are separate from subscription-level activity logs, but might contain duplicate resource management events. Use the [Tenant Activity Logs REST API](/rest/api/monitor/tenant-activity-logs) to retrieve tenant-level events.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -167,7 +167,7 @@ The following table describes the parameters used in the preceding examples.
 
 ## View change history
 
-For some events, you can view the change history, which shows what changes happened during that event time. Select an event from the activity log you want to look at more deeply. Select the **Change history** tab to view any changes on the resource up to 30 minutes before and after the time of the operation.
+For some events, you can view the change history, which shows what changes happened during that event time. Select an event from the activity log that you want to look at more deeply. Select the **Change history** tab to view any changes on the resource up to 30 minutes before and after the time of the operation.
 
 :::image type="content" source="media/activity-log/change-history-event.png" lightbox="media/activity-log/change-history-event.png" alt-text="Screenshot that shows the Change history list for an event.":::
 
@@ -193,7 +193,7 @@ For an individual resource, select **Activity Logs Insights** from the **Workboo
 
 ## Export activity log
 
-Create a diagnostic setting to send activity log entries to other destinations for additional retention time and functionality.
+Create a diagnostic setting to send activity log entries to other destinations for extra retention time and functionality.
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
@@ -216,7 +216,7 @@ Send the activity log to a [Log Analytics workspace](../logs/log-analytics-works
 - Access activity log data with [Power BI](/power-bi/transform-model/log-analytics/desktop-log-analytics-overview).
 - Retain activity log data for longer than 90 days.
 
-There are no data ingestion charges for activity logs. Retention charges for activity logs are only applied to the period extended past the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
+There are no data ingestion charges for activity logs. Retention charges for activity logs apply only to the period extended past the default retention period of 90 days. You can [increase the retention period](../logs/data-retention-configure.md) to up to 12 years.
 
 Activity log data in a Log Analytics workspace is stored in a table called [AzureActivity](/azure/azure-monitor/reference/tables/azureactivity). The structure of this table varies depending on the [category of the log entry](activity-log-schema.md).
 
@@ -235,7 +235,7 @@ AzureActivity
 ```
 
 > [!IMPORTANT]
-> In some scenarios, it's possible that values in fields of `AzureActivity` might have different case from otherwise equivalent values. When querying data in `AzureActivity`, use case-insensitive operators for string comparisons, or use a scalar function to force a field to a uniform casing before any comparisons. For example, use the [tolower()](/azure/kusto/query/tolowerfunction) function on a field to force it to always be lowercase or the [=~ operator](/azure/kusto/query/datatypes-string-operators) when performing a string comparison.
+> In some scenarios, values in fields of `AzureActivity` might have different case from otherwise equivalent values. When querying data in `AzureActivity`, use case-insensitive operators for string comparisons, or use a scalar function to force a field to a uniform casing before any comparisons. For example, use the [tolower()](/azure/kusto/query/tolowerfunction) function on a field to force it to always be lowercase or the [=~ operator](/azure/kusto/query/datatypes-string-operators) when performing a string comparison.
 
 ### [Azure Event Hubs](#tab/event-hub)
 
@@ -347,7 +347,7 @@ Select **Download as CSV** to export the activity log to a CSV file in the Azure
 :::image type="content" source="media/activity-log/export-csv.png" lightbox="media/activity-log/export-csv.png" alt-text="Screenshot that shows the Download as CSV button in the Azure portal activity log.":::
 
 > [!IMPORTANT]
-> The export may take an excessive amount of time if you have a large number of log entries. To improve performance, reduce the time range of the export. In the Azure portal, this is set with the **Timespan** setting. 
+> Exporting a large number of log entries can take a long time. To improve performance, reduce the time range of the export. In the Azure portal, set the **Timespan** setting.
 
 
 You can also export the activity log to a CSV file by using PowerShell or the Azure CLI, as shown in the following examples.
