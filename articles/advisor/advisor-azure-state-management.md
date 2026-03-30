@@ -71,7 +71,7 @@ You can mark a recommendation as completed manually for personal tracking or whe
 
 Review the definitions and implications for the Completed and Dismissed recommendation states:
 
-- **Completed** means the recommended action was taken or the recommendation no longer applies, and no further action is required
+- **Completed** means you took the recommended action or the recommendation no longer applies, and no further action is required.
 
 - **Dismissed** means the recommendation was intentionally ignored by a user. Dismissed recommendations can be reactivated at any time
 
