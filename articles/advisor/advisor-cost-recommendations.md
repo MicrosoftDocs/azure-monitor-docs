@@ -41,10 +41,10 @@ Advisor recommends resizing virtual machines when it's possible to fit the curre
   * Performance of the workloads on the new SKU won't be impacted.
     * Target for user-facing workloads:
       * P95 of CPU and Outbound Network utilization at 40% or lower on the recommended SKU
-      * P100 of Memory utilization at 60% or lower on the recommended SKU
+      * P99 of Memory utilization at 60% or lower on the recommended SKU
     * Target for non user-facing workloads:
       * P95 of the CPU and Outbound Network utilization at 80% or lower on the new SKU
-      * P100 of Memory utilization at 80% or lower on the new SKU
+      * P99 of Memory utilization at 80% or lower on the new SKU
   * The new SKU, if applicable, has the same Accelerated Networking and Premium Storage capabilities
   * The new SKU, if applicable, is supported in the current region of the Virtual Machine with the recommendation
   * The new SKU, if applicable, is less expensive
