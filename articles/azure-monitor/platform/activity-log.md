@@ -39,11 +39,7 @@ You can also access activity log events by using the following methods:
 
 ### Retrieve activity log events by using the REST API
 
-Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period.
-
-#### $filter patterns
-
-The `$filter` parameter is required and must include at least a start date and time. The following patterns are supported:
+Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period. The following patterns are supported:
 
 - List events for a resource group: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`
 - List events for a specific resource: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'`
@@ -51,9 +47,48 @@ The `$filter` parameter is required and must include at least a start date and t
 - List events for a resource provider: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceProvider eq '{resourceProviderName}'`
 - List events for a correlation ID: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and correlationId eq '{correlationID}'`
 
-#### $select parameter
+#### Use the $filter to list activity log events for a resource group
 
-The `$select` parameter returns only specified properties for each event, which reduces the response payload size. The value is a comma-separated list of property names. Valid values are: `authorization`, `claims`, `correlationId`, `description`, `eventDataId`, `eventName`, `eventTimestamp`, `httpRequest`, `level`, `operationId`, `operationName`, `properties`, `resourceGroupName`, `resourceProviderName`, `resourceId`, `status`, `submissionTimestamp`, `subStatus`, and `subscriptionId`.
+Add `resourceGroupName` to the filter to scope results to a specific resource group.
+
+# [Azure CLI](#tab/azure-cli)
+
+```azurecli
+az rest --method get \
+  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'"
+```
+
+# [REST API](#tab/rest-api)
+
+```http
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
+```
+
+---
+
+#### Return specific activity log properties
+
+Use the `$select` parameter to return only specified properties, which reduces the response payload size. The value is a comma-separated list of property names. For more information, see [Activity log schema property descriptions](/azure/azure-monitor/platform/activity-log-schema.md#property-descriptions).
+
+The Azure CLI is able to dynamically calculate a time range, so the example shows a 30-day window from the current date.
+
+# [Azure CLI](#tab/azure-cli)
+
+```azurecli
+startDate=$(date -u -d '30 days ago' '+%Y-%m-%dT00:00:00Z')
+endDate=$(date -u '+%Y-%m-%dT23:59:59Z')
+
+az rest --method get \
+  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '$startDate' and eventTimestamp le '$endDate'&\$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level"
+```
+
+# [REST API](#tab/rest-api)
+
+```http
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
+```
+
+---
 
 #### List activity log events for a subscription
 
@@ -79,49 +114,6 @@ To list activity log events, use this `GET` request:
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-14T23:59:59Z'
-```
-
----
-
-#### List activity log events for a resource group
-
-Add `resourceGroupName` to the filter to scope results to a specific resource group.
-
-# [Azure CLI](#tab/azure-cli)
-
-```azurecli
-az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'"
-```
-
-# [REST API](#tab/rest-api)
-
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
-```
-
----
-
-#### Return specific activity log properties
-
-Use the `$select` parameter to return only specified properties, which reduces the response payload size. 
-
-The Azure CLI is able to dynamically calculate a time range, so the example shows a 30-day window from the current date.
-
-# [Azure CLI](#tab/azure-cli)
-
-```azurecli
-startDate=$(date -u -d '30 days ago' '+%Y-%m-%dT00:00:00Z')
-endDate=$(date -u '+%Y-%m-%dT23:59:59Z')
-
-az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '$startDate' and eventTimestamp le '$endDate'&\$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level"
-```
-
-# [REST API](#tab/rest-api)
-
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
 ```
 
 ---
