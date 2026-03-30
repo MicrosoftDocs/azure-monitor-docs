@@ -44,7 +44,7 @@ When a recommendation is **Active**, you can manually update its state to manage
 
 - **Postponed**: Temporarily hide the recommendation and review it later.
 
-- **Dismissed**: Indicate that the recommendation is not relevant.
+- **Dismissed**: Indicate that the recommendation isn't relevant.
 
 - **Completed**: Indicate that you have taken the recommended action.
 
