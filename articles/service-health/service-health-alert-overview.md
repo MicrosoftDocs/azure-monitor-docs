@@ -48,7 +48,7 @@ You can also:
 
 ## View the alert details
 
-Select the name of the alert to open a new panel that displays the details of the alert and all information that's collected.
+Select the name of the alert to open a new panel that displays the details of the alert and all the information that's collected.
 
 :::image type="content" source="./media/alert-overview/health-alerts-overview.PNG" alt-text="Screenshot of Health alerts overview panel." lightbox="./media/alert-overview/health-alerts-overview.PNG":::
 
