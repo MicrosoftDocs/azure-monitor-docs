@@ -229,6 +229,8 @@ This page displays a table with the following columns:
 
 - __Completed resources__: Number of resource instances where the recommendations are in completed state
 
+- __Postponed resources__: Number of resource instance where the recommendations are postponed
+
 - __Completion progress__: Percent of resources impacted by this recommendation that are completed
 
 - __Recommended action__: Link to available action
