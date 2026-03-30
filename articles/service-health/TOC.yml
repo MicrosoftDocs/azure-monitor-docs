@@ -65,10 +65,10 @@
 
     - name: Billing
       items:
-      - name: Billing updates overview
-        href: billing-elevated-access.md
+       - name: Billing updates overview
+         href: billing-elevated-access.md
 
-    - name: Health history 
+    - name: Health history
       items: 
        - name: Health history overview
          href: health-history-overview.md
