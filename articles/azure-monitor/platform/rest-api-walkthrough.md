@@ -362,9 +362,9 @@ Use the metric's `name.value` element in the filter definitions. If no dimension
 
 ### Multiple time series
 
-A time series is a set of data points that are ordered by time for a given combination of dimensions. A dimension is an aspect of the metric that describes the data point such as resource ID, region, or ApiName.
+A time series is a set of data points that are ordered by time for a given combination of dimensions. A dimension is an aspect of the metric that describes the data point, such as resource ID, region, or ApiName.
 
-* To fetch multiple time series with specific dimension values, specify a filter query parameter that specifies both dimension values such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`. In this example, you get a time series where `ApiName` is `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
+* To fetch multiple time series with specific dimension values, specify a filter query parameter that includes both dimension values, such as `"&$filter=ApiName eq 'ListContainers' or ApiName eq 'GetBlobServiceProperties'"`. In this example, you get a time series where `ApiName` is `ListContainers` and a second time series where `ApiName` is `GetBlobServiceProperties`.
 
 * To return a time series for every value of a given dimension, use an `*` filter such as `"&$filter=ApiName eq '*'"`. Use the `Top` and `OrderBy` query parameters to limit and sort the number of time series returned. In this example, you get a time series for every value of `ApiName`in the result set. If no data is returned, the API returns an empty time series `"timeseries": []`.
 
