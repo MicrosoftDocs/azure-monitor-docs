@@ -2,7 +2,7 @@
 title: Service Health Alerts overview
 description: Service health alerts notify of the health of your Azure services or regions.
 ms.topic: concept-article
-ms.date: 02/24/2026
+ms.date: 03/30/2026
 ---
 
 # Service Health alerts 
@@ -13,7 +13,7 @@ It shows only the alerts that you create based on the criteria you configured (s
 Health alerts are tied to your alert rules, not to all events occurring in Azure.
 
 
-For information on how to create Service Health alerts, refer to [How to create Service health alerts](alerts-activity-log-service-notifications-portal.md).
+For information on how to create Service health alerts, see [How to create Service health alerts](alerts-activity-log-service-notifications-portal.md).
 
 ## Service Health alert notifications
 
@@ -48,7 +48,7 @@ You can also:
 
 ## View the alert details
 
-Select the name of the alert to open a new panel that displays the details of the alert and all information that is collected.
+Select the name of the alert to open a new panel that displays the details of the alert and all information that's collected.
 
 :::image type="content" source="./media/alert-overview/health-alerts-overview.PNG" alt-text="Screenshot of Health alerts overview panel." lightbox="./media/alert-overview/health-alerts-overview.PNG":::
 
@@ -74,7 +74,7 @@ Select **Activity log** to open the panel showing information from the Activity 
 <!--
 :::image type="content" source="./media/alert-overview/health-alerts-activity-log.PNG" alt-text="Screenshot of Activity log panel." lightbox="./media/alert-overview/health-alerts-activity-log.PNG":::
 -->
-For more information on the Activity log, read [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
+For more information on the Activity log, see [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
 
 #### Access control (IAM)
 Select **Access Control *Identity and Access Management* (IAM)** to open the panel showing what access you have, and also where you can assign role access. For more information, see [Check access for a user](/azure/role-based-access-control/check-access?tabs=default).
