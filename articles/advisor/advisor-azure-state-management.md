@@ -203,7 +203,6 @@ This page displays a table with the following columns:
 
 ### Completed recommendation page
 
-Dismissed resources are excluded from the calculation, for all completed progress.
 This page displays a table with the following columns:
 
 - __Recommendation__: System identified recommendation in that’s new or completed
@@ -211,6 +210,7 @@ This page displays a table with the following columns:
 - __Impact__: Impact level, High, Medium, Low
 
 - __Completed resources__: Number of resource instances where the recommendations are in completed state
+Dismissed resources are excluded from the calculation, for all completed progress
 
 - __Completion progress__: Percent of resources impacted by this recommendation that are completed
 
