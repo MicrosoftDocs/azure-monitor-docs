@@ -68,7 +68,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 #### Return specific activity log properties
 
-Use the `$select` parameter to return only specified properties, which reduces the response payload size. The value is a comma-separated list of property names. For more information, see [Activity log schema property descriptions](/azure/azure-monitor/platform/activity-log-schema.md#property-descriptions).
+Use the `$select` parameter to return only specified properties, which reduces the response payload size. The value is a comma-separated list of property names. For more information, see [Activity log schema property descriptions](activity-log-schema.md#property-descriptions).
 
 The Azure CLI is able to dynamically calculate a time range, so the example shows a 30-day window from the current date.
 
