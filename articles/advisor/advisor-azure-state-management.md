@@ -22,7 +22,7 @@ By using Azure Advisor recommendation state management, you can track and manage
 
 ## Recommendation state
 
-Each Azure Advisor recommendation can have one of the 4 supported states:
+Each Azure Advisor recommendation can have one of four supported states:
 
 - **Active**: New recommendations identified by the Azure Advisor system
 
