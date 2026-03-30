@@ -203,6 +203,7 @@ This page displays a table with the following columns:
 
 ### Completed recommendation page
 
+Dismissed resources are excluded from the calculation, for all completed progress.
 This page displays a table with the following columns:
 
 - __Recommendation__: System identified recommendation in that’s new or completed
@@ -216,6 +217,7 @@ This page displays a table with the following columns:
 - __Recommended action__: Link to available action
 
 - Other category specific columns
+
 
 ### Postponed recommendation page
 
