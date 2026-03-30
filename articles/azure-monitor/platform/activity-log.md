@@ -96,7 +96,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. 
 
-The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI is able to dynamically calculate a the time range, so the example shows a 14-day window from the current date.
+The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI is able to dynamically calculate the time range, so the example shows a 14-day window from the current date.
 
 # [Azure CLI](#tab/azure-cli)
 
