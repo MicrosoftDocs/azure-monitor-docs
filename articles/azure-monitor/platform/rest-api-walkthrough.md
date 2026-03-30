@@ -643,4 +643,4 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
 * Review the [Microsoft Azure Monitor REST API reference](/rest/api/monitor/).
 * Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
 * Review the [Azure Management Library](/previous-versions/azure/reference/mt417623(v=azure.100)).
-* [Retrieve activity log data using Azure monitor REST API](rest-activity-log.md).
+* [Activity log in Azure Monitor](activity-log.md#retrieve-activity-log-events-by-using-the-rest-api).
