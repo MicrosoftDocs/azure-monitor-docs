@@ -100,12 +100,6 @@ There are four status management steps for recommendations: `active`, `dismissed
 
     :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/advisor-reviews-contoso-company-pending-preview.png" source="./media/advisor-reviews-contoso-company-pending.png" type="content":::
 
-1.  To get detailed information for a recommendation, select the **Title** or the **Impacted resources** view link.
-
-    A pane opens with **Description**, **Potential benefits**, and **Notes** details from your Microsoft account team along with the list of impacted resources or subscriptions.
-
-    :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with the details pane of a selected recommendation." lightbox="./media/advisor-reviews-contoso-company-traffic-manager-monitor-status-online-preview.png" source="./media/advisor-reviews-contoso-company-traffic-manager-monitor-status-online.png" type="content":::
-
 ### Recommendation priority
 
 The priority of a recommendation is based on the impact value and urgency of the suggested improvements. Your Microsoft account team sets recommendation priority. If a recommendation is targeting multiple resources or subscriptions, you have to accept the recommendation for all resources or subscriptions.
