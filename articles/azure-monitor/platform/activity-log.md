@@ -39,13 +39,15 @@ You can also access activity log events by using the following methods:
 
 ### Retrieve activity log events by using the REST API
 
-Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period.
+Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period.
+
 
 For more information about available filter patterns and the `$select` parameter, see [Retrieve activity log data using Azure Monitor REST API](rest-activity-log.md).
 
 #### List activity log events for a subscription
 
-Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI dynamically calculates the time range, so the example shows a 14-day window from the current date.
+Subscription level events capture events created directly by resource providers. Tenant level and management group level events only capture Azure Resource Manager events in those hierarchies. The following example retrieves activity log events for a subscription during a specific time range. The Azure CLI dynamically calculates the time range, so the example shows a 14-day window from the current date.
+
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -177,7 +179,7 @@ If any changes are associated with the event, you'll see a list of changes that 
 
 ## Activity log insights
 
-Activity log insights is a workbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
+To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This process sends events to the `AzureActivity` table, which activity log insights uses.
 
 To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This sends events to the `AzureActivity` table which is used by activity log insights.
 
