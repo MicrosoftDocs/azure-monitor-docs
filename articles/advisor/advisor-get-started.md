@@ -71,9 +71,8 @@ You can view recommendation details, such as the recommended actions and affecte
 
 1. You can postpone the recommendation.
 
-   :::image type="content" source="./media/advisor-get-started/advisor-recommendation-postpone.png" alt-text="Screenshot that shows an Advisor recommendation postpone option." lightbox="./media/advisor-get-started/advisor-recommendation-postpone.png":::
-
-   You can't dismiss the recommendation without certain privileges. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
+To manage a recommendation's status see: [Azure Advisor recommendation state managment](./advisor/advisor-azure-state-management.md)
+You can't dismiss the recommendation without certain privileges. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
 
 ### Download recommendations
 
