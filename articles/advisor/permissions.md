@@ -17,7 +17,7 @@ Review the following section to learn more about each role and the associated ac
 
 ### Roles to view, dismiss, and postpone recommendations
 
-| Role | View recommendations | Dismiss and postpone recommendations |
+| Role | View recommendations | Manage recommendation status |
 |:---|:--- |:--- |
 | Subscription Reader | X |  |
 | Subscription Contributor | X | X |
@@ -45,7 +45,7 @@ To learn more about built-in roles, see [Azure built-in roles](/azure/role-based
 
 [!INCLUDE [View and manage assessments](./includes/advisor-permissions-review-recommendations.md)]
 
-[!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-waf-assessments.md)]
+[!INCLUDE [Reviews and personalized recommendations](./includes/-permissions-waf-assessments.md)]
 
 ## Available actions to build custom roles
 
@@ -53,11 +53,11 @@ If your organization requires roles that don't match the Azure built-in roles, c
 
 | Action | Details |
 |:--- |:--- |
-| `Microsoft.Advisor/generateRecommendations/action` | Create a Recommendation. |
-| `Microsoft.Advisor/register/action` | Register with the Provider. |
-| `Microsoft.Advisor/unregister/action` | Unregister with the Provider. |
-| `Microsoft.Advisor/advisorScore/read` | Gets Advisor score. |
-| `Microsoft.Advisor/configurations/read` | Read Configurations. |
+| `Microsoft./generateRecommendations/action` | Create a Recommendation. |
+| `Microsoft./register/action` | Register with the Provider. |
+| `Microsoft./unregister/action` | Unregister with the Provider. |
+| `Microsoft./Score/read` | Gets  score. |
+| `Microsoft./configurations/read` | Read Configurations. |
 | `Microsoft.Advisor/configurations/write` | Create or update Configuration. |
 | `Microsoft.Advisor/generateRecommendations/read` | Get status of `generateRecommendations` action. |
 | `Microsoft.Advisor/metadata/read` | Read Metadata. |
