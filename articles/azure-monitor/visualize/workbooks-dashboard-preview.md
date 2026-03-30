@@ -18,21 +18,21 @@ The workbooks dashboard preview supports a new layout mode that behaves like man
 :::image type="content" source="./media/workbooks-dashboards/dashboard-preview.png" lightbox="./media/workbooks-dashboards/dashboard-preview.png" alt-text="Screenshot that shows an example dashboard." border="false":::
 
 Dashboard features:
-* Items can be dragged to be moved and resized;
-  * If an item has a title, the title area allows dragging of that item.
-  * If an item doesn't have a title, there's a drag icon in the floating toolbar that can be used to move the item.
-* Any visualization in a dashboard can be expanded to full screen by using the **View** item in the item's dropdown menu in the toolbar.
-* Only one item on the dashboard can be edited at a time, and editing takes place in a popup view.
-* Items are added to dashboards via a new widget window, including by drag and drop;
-  * Only a subset of items can currently be added in dashboards.
+* Drag and resize items.
+  * If an item has a title, drag the title area to move the item.
+  * If an item doesn't have a title, use the drag icon in the floating toolbar to move the item.
+* Expand any visualization in a dashboard to full screen by using the **View** item in the item's dropdown menu in the toolbar.
+* Edit only one item on the dashboard at a time. Editing takes place in a popup view.
+* Add items to dashboards via a new widget window, including by drag and drop.
+  * You can currently add only a subset of items in dashboards.
 
 ## Updated visualizations
 
-All of the visualizations in the dashboard preview are built on new technology, so everything looks a bit different. 
+All of the visualizations in the dashboard preview use new technology, so everything looks a bit different. 
 
-New chart features:
+New chart features include:
 * New options and settings for tooltips.
-* New options for location / sorting of metrics and legends.
+* New options for location and sorting of metrics and legends.
 * New pan and zoom functionality in maps, including zooming in by default to the area containing data.
 * New data point click action in maps that shows merged data for a point as a table of individual items.
 * New options for icons and coloring options in graph visualization, including colorized links.
@@ -50,13 +50,13 @@ If you use new settings in the dashboard preview, they might not work if you ope
 
 * Mermaid content in text steps - Text steps in the dashboard preview also allow embedding [Mermaid](https://mermaid.js.org/intro/) content, to embed flow chart, sequence, and other diagrams inline with other Markdown content.
 
-* Prometheus Data source editing includes completions for metrics, namespaces, etc.
+* Prometheus data source editing includes completions for metrics, namespaces, and other options.
 
 * When editing various items in edit mode, you can choose to split the editor horizontally. You can also expand the editor to be full screen.
 
-* Style options on items include new options for border styles, like dashed, rounded.
+* Style options on items include new options for border styles, like dashed and rounded.
 
-* New options in grid columns let you sort / resize / move columns via context menu and keyboard.
+* New options in grid columns let you sort, resize, and move columns by using the context menu and keyboard.
 
 ## Preview limitations
 
