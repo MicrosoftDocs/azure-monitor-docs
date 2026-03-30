@@ -41,7 +41,19 @@ You can also access activity log events by using the following methods:
 
 Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period.
 
-For more information about available filter patterns and the `$select` parameter, see [Retrieve activity log data using Azure Monitor REST API](rest-activity-log.md).
+#### $filter patterns
+
+The `$filter` parameter is required and must include at least a start date/time. The following patterns are supported:
+
+- List events for a resource group: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`
+- List events for a specific resource: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'`
+- List events for a subscription in a time range: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}'`
+- List events for a resource provider: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceProvider eq '{resourceProviderName}'`
+- List events for a correlation ID: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and correlationId eq '{correlationID}'`
+
+#### $select parameter
+
+The `$select` parameter returns only specified properties for each event, which reduces the response payload size. The value is a comma-separated list of property names. Valid values are: `authorization`, `claims`, `correlationId`, `description`, `eventDataId`, `eventName`, `eventTimestamp`, `httpRequest`, `level`, `operationId`, `operationName`, `properties`, `resourceGroupName`, `resourceProviderName`, `resourceId`, `status`, `submissionTimestamp`, `subStatus`, and `subscriptionId`.
 
 #### List activity log events for a subscription
 
