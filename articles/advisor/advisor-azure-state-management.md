@@ -15,7 +15,7 @@ ms.reviewer: tiffanywang, adaga
 
 # Azure Advisor recommendation state management
 
-With Azure Advisor recommendation state management, you can track and manage new and existing recommendation states.
+By using Azure Advisor recommendation state management, you can track and manage new and existing recommendation states.
 
 > [!NOTE]
 >Azure Advisor recommendation state management is currently in Preview. Preview features are provided for evaluation purposes and may change before general availability.
