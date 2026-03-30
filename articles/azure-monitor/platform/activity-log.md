@@ -199,7 +199,7 @@ Create a diagnostic setting to send activity log entries to other destinations f
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
-In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for other details and other methods for creating diagnostic settings. Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. For more information and other methods for creating diagnostic settings, see [Diagnostic settings in Azure Monitor](diagnostic-settings.md). Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
 
 :::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
 
