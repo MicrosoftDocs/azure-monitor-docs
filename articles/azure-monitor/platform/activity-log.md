@@ -9,7 +9,7 @@ ms.reviewer: orens
 
 # Activity log in Azure Monitor
 
-The Azure Monitor activity log records management operations on your Azure resources. For example, it records operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
+Azure Monitor activity logs record management operations on your Azure resources. For example, they record operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
 
 > [!TIP]
 > If a deployment operation error directs you to this article, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
