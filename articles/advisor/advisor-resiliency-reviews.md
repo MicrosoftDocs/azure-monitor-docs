@@ -122,11 +122,6 @@ On **Recommendations** > **Reliability**, view the **Active** review recommendat
 
 The recommendations are grouped by type.
 
-| Type | Detail |
-|:--- |:--- |
-| Reviews | The recommendations that are part of a review for a selected workload. |
-| Automated | The recommendations that are the standard Advisor recommendations for the selected subscriptions. |
-
 > [!NOTE]
 > If none of your resiliency review recommendations are in the **Accepted** state, the **Reviews** tab is hidden.
 
