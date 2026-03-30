@@ -74,16 +74,17 @@ Review both the breaking changes reference and the detailed migration guidance. 
 - [Migration guidance: Application Insights 2.x to 3.x](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md)
 
 | 2.x API, setting, or pattern | 3.x guidance |
+| --- | --- |
 | `TrackPageView` | Remove `TrackPageView` calls. Page view tracking is removed in the .NET 3.x SDK. |
 | `TrackEvent`, `TrackException`, and `TrackAvailability` overloads that include `IDictionary<string, double> metrics` | Remove the custom metrics parameter. Track metrics separately by using `TrackMetric()`. |
 | `GetMetric` overloads that use `MetricConfiguration` or `MetricAggregationScope` | Use the simplified `GetMetric` overloads. Metrics configuration and aggregation are managed internally in SDK 3.x. |
-| `InstrumentationKey` configuration or `TelemetryClient.InstrumentationKey` | Use `TelemetryConfiguration.ConnectionString` and provide a connection string instead of an instrumentation key. | SDK 3.x requires a connection string and can fail at startup if one isn't configured. For test scenarios, you can use a dummy connection string such as `InstrumentationKey=00000000-0000-0000-0000-000000000000`. |
+| `InstrumentationKey` configuration or `TelemetryClient.InstrumentationKey` | Use `TelemetryConfiguration.ConnectionString` and provide a connection string instead of an instrumentation key. SDK 3.x requires a connection string and can fail at startup if one isn't configured. For test scenarios, you can use a dummy connection string such as `InstrumentationKey=00000000-0000-0000-0000-000000000000`. |
 | `TelemetryClient()` or `TelemetryConfiguration.Active` | Create a configuration explicitly by using `TelemetryConfiguration.CreateDefault()`, and pass it to `new TelemetryClient(config)`. |
-| `TelemetryModule`, `TelemetryInitializer`, or `TelemetryProcessor` customization | Custom initializers or processors should be migrated to OpenTelemetry based processors. References to built-in 2.x processors, initializers, and modules should be removed. For more information, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md). |
-| `ITelemetryChannel` or `TelemetryConfiguration.TelemetryChannel` | The classic channel abstraction is removed. The classic channel abstraction is removed as 3.x internally incorporates the use of the Azure monitor exporter. For tests, use OpenTelemetry-friendly validation such as an in-memory exporter. |
+| `TelemetryModule`, `TelemetryInitializer`, or `TelemetryProcessor` customization | Custom initializers or processors should be migrated to OpenTelemetry-based processors. References to built-in 2.x processors, initializers, and modules should be removed. For more information, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md). |
+| `ITelemetryChannel` or `TelemetryConfiguration.TelemetryChannel` | The classic channel abstraction is removed because 3.x internally incorporates the Azure Monitor exporter. For tests, use OpenTelemetry-friendly validation such as an in-memory exporter. |
 | `EnableAdaptiveSampling` | Replace adaptive sampling with `TracesPerSecond` or `SamplingRatio`. |
 | `Microsoft.ApplicationInsights.Web` targeting .NET Framework 4.5.2 | Target .NET Framework 4.6.2 or later. |
-| Metric name and namespace conventions | To follow OpenTelemetry instrument naming syntax, update the `name`, `metricId`, and `metricNamespace` values used with `TrackMetric()`, `GetMetric()`, and `MetricIdentifier`. | Metric names and namespaces must start with a letter and can contain only letters, digits, `_`, `.`, `-`, or `/`. Spaces aren't allowed. |
+| Metric name and namespace conventions | To follow OpenTelemetry instrument naming syntax, update the `name`, `metricId`, and `metricNamespace` values used with `TrackMetric()`, `GetMetric()`, and `MetricIdentifier`. Metric names and namespaces must start with a letter and can contain only letters, digits, `_`, `.`, `-`, or `/`. Spaces aren't allowed. |
 
 ## Replace removed extensibility points
 
