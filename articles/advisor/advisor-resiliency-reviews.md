@@ -118,7 +118,7 @@ For details on permissions to act on recommendations, see [Roles and permissions
 
 ### Access accepted review recommendations
 
-On **Recommendations** > **Reliability**, view the **Accepted** review recommendations for the **Reliability** pillar, by default.
+On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
 
 The recommendations are grouped by type.
 
