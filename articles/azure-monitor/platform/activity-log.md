@@ -189,7 +189,7 @@ The following example shows that the VM changed sizes. The page displays the VM 
 
 Activity log insights is a workbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
 
-To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This sends events to the `AzureActivity` table which is used by activity log insights.
+To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This process sends events to the `AzureActivity` table, which activity log insights uses.
 
 :::image type="content" source="media/activity-log/activity-logs-insights-main-screen.png" lightbox= "media/activity-log/activity-logs-insights-main-screen.png" alt-text="Screenshot that shows activity log insights dashboards.":::
 
@@ -207,7 +207,7 @@ Create a diagnostic setting to send activity log entries to other destinations f
 
 :::image type="content" source="media/diagnostic-settings/platform-logs-metrics.png" lightbox="media/diagnostic-settings/platform-logs-metrics.png" alt-text="Diagram showing collection of activity logs, resource logs, and platform metrics." border="false":::
 
-In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. See [Diagnostic settings in Azure Monitor](diagnostic-settings.md) for other details and other methods for creating diagnostic settings. Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+In the Azure portal, select **Activity log** on the **Azure Monitor** menu and then select **Export Activity Logs**. For more information and other methods for creating diagnostic settings, see [Diagnostic settings in Azure Monitor](diagnostic-settings.md). Make sure you disable any [legacy configuration for the activity log](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
 
 :::image type="content" source="media/diagnostic-settings/menu-activity-log.png" alt-text="Screenshot that shows the Azure Monitor menu with Activity log selected and Export activity logs highlighted in the Monitor-Activity log menu bar.":::
 
