@@ -352,13 +352,13 @@ Select **Download as CSV** to export the activity log to a CSV file in the Azure
 
 You can also export the activity log to a CSV file by using PowerShell or the Azure CLI, as shown in the following examples.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/csv-azure-cli)
 
 ```azurecli
 az monitor activity-log list --start-time "2024-03-01T00:00:00Z" --end-time "2024-03-15T23:59:59Z" --max-items 1000 > activitylog.json
 ```
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/csv-powershell)
 
 ```powershell
 Get-AzActivityLog -StartTime 2021-12-01T10:30 -EndTime 2022-01-14T11:30 | Export-csv operations_logs.csv
