@@ -54,7 +54,7 @@ Remove these packages because they aren't compatible with SDK 3.x:
 - `Microsoft.ApplicationInsights.EtwCollector`
 - `Microsoft.ApplicationInsights.EventSourceListener`
 
-SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead.
+SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead. The following sections describe the intended replacements for these packages. In some cases, the functionality is built into the supported 3.x packages or replaced by OpenTelemetry APIs.
 
 > [!NOTE]
 > This list includes only Microsoft packages. If you use third-party packages that depend on `Microsoft.ApplicationInsights` 2.x (for example, `Serilog.Sinks.ApplicationInsights`), verify those packages support SDK 3.x before upgrading. Follow guidance from the package maintainers.
@@ -75,68 +75,22 @@ Review both the breaking changes reference and the detailed migration guidance. 
 
 | 2.x API, setting, or pattern | 3.x guidance |
 | --- | --- |
-| `TrackPageView` | Remove `TrackPageView` calls. Page view tracking is removed in the .NET 3.x SDK. Use `TrackEvent` or `TrackRequest` if you need to record similar application activity. |
+| `TrackPageView` | Remove `TrackPageView` calls. Page view tracking is removed in the .NET 3.x SDK. |
 | `TrackEvent`, `TrackException`, and `TrackAvailability` overloads that include `IDictionary<string, double> metrics` | Remove the custom metrics parameter. Track metrics separately by using `TrackMetric()`. |
 | `GetMetric` overloads that use `MetricConfiguration` or `MetricAggregationScope` | Use the simplified `GetMetric` overloads. Metrics configuration and aggregation are managed internally in SDK 3.x. |
-| `InstrumentationKey` configuration or `TelemetryClient.InstrumentationKey` | Use a full connection string and set `TelemetryConfiguration.ConnectionString`. SDK 3.x requires a connection string. If it isn't configured, startup can fail. |
+| `InstrumentationKey` configuration or `TelemetryClient.InstrumentationKey` | Use `TelemetryConfiguration.ConnectionString` and provide a connection string instead of an instrumentation key. | SDK 3.x requires a connection string and can fail at startup if one isn't configured. For test scenarios, you can use a dummy connection string such as `InstrumentationKey=00000000-0000-0000-0000-000000000000`. |
 | `TelemetryClient()` or `TelemetryConfiguration.Active` | Create a configuration explicitly by using `TelemetryConfiguration.CreateDefault()`, and pass it to `new TelemetryClient(config)`. |
-| `TelemetryModule`, `TelemetryInitializer`, or `TelemetryProcessor` customization | Don't try to recreate the 2.x pipeline directly. Some built-in behaviors are now handled automatically by the 3.x packages. For custom enrichment or filtering, use OpenTelemetry processors, instrumentation libraries, resource configuration, or `TelemetryClient.Context.GlobalProperties`, depending on the scenario. |
-| `ITelemetryChannel` or `TelemetryConfiguration.TelemetryChannel` | The classic channel abstraction is removed. Use the built-in Azure Monitor exporter behavior for production transport settings. For tests, use OpenTelemetry-friendly validation such as an in-memory exporter. |
+| `TelemetryModule`, `TelemetryInitializer`, or `TelemetryProcessor` customization | Custom initializers or processors should be migrated to OpenTelemetry based processors. References to built-in 2.x processors, initializers, and modules should be removed. For more information, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md). |
+| `ITelemetryChannel` or `TelemetryConfiguration.TelemetryChannel` | The classic channel abstraction is removed. The classic channel abstraction is removed as 3.x internally incorporates the use of the Azure monitor exporter. For tests, use OpenTelemetry-friendly validation such as an in-memory exporter. |
 | `EnableAdaptiveSampling` | Replace adaptive sampling with `TracesPerSecond` or `SamplingRatio`. |
 | `Microsoft.ApplicationInsights.Web` targeting .NET Framework 4.5.2 | Target .NET Framework 4.6.2 or later. |
-
-> [!IMPORTANT]
-> `ApplicationInsightsServiceOptions` settings such as `EnableQuickPulseMetricStream`, `EnablePerformanceCounterCollectionModule`, `EnableDependencyTrackingTelemetryModule`, and `EnableRequestTrackingTelemetryModule` configure SDK 3.x behavior. They don't enable or register classic `TelemetryModule` implementations.
-
-> [!TIP]
-> The replacement isn't always one-to-one. `Microsoft.ApplicationInsights.Web` automatically replaces more web-specific 2.x behavior than `Microsoft.ApplicationInsights.AspNetCore` and `Microsoft.ApplicationInsights.WorkerService`. If your application relied on custom initializers or processors, review the detailed migration guidance for the specific package you're using.
-
-#### Common migration patterns
-
-Use the following guidance for the scenarios that most often require manual code changes:
-
-**Create a `TelemetryClient` explicitly**
-
-```csharp
-var config = TelemetryConfiguration.CreateDefault();
-config.ConnectionString = "<connection string>";
-
-var client = new TelemetryClient(config);
-```
-
-**Add the same custom property to every telemetry item**
-
-```csharp
-var config = TelemetryConfiguration.CreateDefault();
-config.ConnectionString = "<connection string>";
-
-var client = new TelemetryClient(config);
-client.Context.GlobalProperties["DeploymentEnvironment"] = "Production";
-```
-
-For more complex enrichment or filtering logic, use a custom OpenTelemetry processor instead of `ITelemetryInitializer` or `ITelemetryProcessor`.
-
-**Replace `ITelemetryChannel`-based tests**
-
-Use an OpenTelemetry in-memory exporter or another test exporter in nonproduction environments. If you only need to avoid startup failures in tests without a real Application Insights resource, configure a dummy connection string such as `InstrumentationKey=00000000-0000-0000-0000-000000000000`.
-
-**Replace `TelemetryContext` values that don't map directly**
-
-If you previously depended on `Device`, `Session`, or `User.AccountId`, use custom dimensions as a workaround.
+| Metric name and namespace conventions | To follow OpenTelemetry instrument naming syntax, update the `name`, `metricId`, and `metricNamespace` values used with `TrackMetric()`, `GetMetric()`, and `MetricIdentifier`. | Metric names and namespaces must start with a letter and can contain only letters, digits, `_`, `.`, `-`, or `/`. Spaces aren't allowed. |
 
 ## Replace removed extensibility points
 
 Application Insights .NET SDK 2.x provided Application Insights-specific extensibility types such as telemetry modules, initializers, processors, and channels. Application Insights .NET SDK 3.x uses OpenTelemetry extensibility instead.
 
-Use the following replacements:
-
-| 2.x extensibility point | 3.x replacement |
-| --- | --- |
-| `TelemetryModule` | Use supported 3.x packages and their built-in automatic collection. Use package configuration and `ApplicationInsightsServiceOptions` to control SDK behavior. |
-| `TelemetryInitializer` that adds global key-value properties | Use `TelemetryClient.Context.GlobalProperties`. |
-| `TelemetryInitializer` that sets resource or service metadata | Use OpenTelemetry resource configuration or `ApplicationVersion`. |
-| `TelemetryInitializer` or `TelemetryProcessor` with custom logic | Use custom OpenTelemetry processors. |
-| `TelemetryChannel` or custom sinks | Use the built-in Azure Monitor exporter or add OpenTelemetry exporters. |
+For detailed guidance on replacing 2.x extensibility points, including edge cases, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md).
 
 > [!TIP]
 > Resource-based values such as role metadata can flow through OpenTelemetry resource mappings instead of appearing on every telemetry item. If you need a key-value pair on every telemetry item, use `GlobalProperties` or a custom processor.
@@ -149,9 +103,6 @@ SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these 
 | `Operation`        | `Name`                                   |
 | `Location`         | `Ip`                                     |
 | `GlobalProperties` | (dictionary)                             |
-
-> [!NOTE]
-> `GlobalProperties` propagates when you set it on `TelemetryClient.Context`. Other public `TelemetryContext` properties can be set on individual telemetry items today, but they don't fully propagate from `TelemetryClient.Context` yet. `Device`, `Session`, and `User.AccountId` don't currently have a direct mapping; use custom dimensions if you still need those values.
 
 ## Configure sampling
 
