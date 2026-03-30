@@ -69,7 +69,7 @@ You can mark a recommendation as completed manually for personal tracking or whe
 
 ## Completed vs. Dismissed
 
-Review the definitions and implications for the Completed and Dismissed recommendation state:
+Review the definitions and implications for the Completed and Dismissed recommendation states:
 
 - **Completed** means the recommended action was taken or the recommendation no longer applies, and no further action is required
 
