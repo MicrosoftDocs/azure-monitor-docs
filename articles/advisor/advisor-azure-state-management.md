@@ -54,7 +54,7 @@ You can continue to change states between **Active**, **Postponed**, **Dismissed
 
 Azure Advisor performs automatic system verification every 24 hours to check whether a recommendation is addressed or no longer applies to the resource.
 
-- If Azure Advisor verifies that the recommended action has been applied, or that the recommendation no longer applies, the recommendation is marked as **Completed** and indicated with **System-verified**.
+- If Azure Advisor verifies that the recommended action is applied, or that the recommendation no longer applies, it marks the recommendation as **Completed** and indicates it with **System-verified**.
 
 - If a recommendation was previously marked as **Completed** manually (**Marked by user**), and Azure Advisor later verifies it during system verification, the status automatically changes to **System verified**.
 
