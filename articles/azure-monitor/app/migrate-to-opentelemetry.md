@@ -74,7 +74,6 @@ Review both the breaking changes reference and the detailed migration guidance. 
 - [Migration guidance: Application Insights 2.x to 3.x](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md)
 
 | 2.x API, setting, or pattern | 3.x guidance |
-| --- | --- |
 | `TrackPageView` | Remove `TrackPageView` calls. Page view tracking is removed in the .NET 3.x SDK. |
 | `TrackEvent`, `TrackException`, and `TrackAvailability` overloads that include `IDictionary<string, double> metrics` | Remove the custom metrics parameter. Track metrics separately by using `TrackMetric()`. |
 | `GetMetric` overloads that use `MetricConfiguration` or `MetricAggregationScope` | Use the simplified `GetMetric` overloads. Metrics configuration and aggregation are managed internally in SDK 3.x. |
