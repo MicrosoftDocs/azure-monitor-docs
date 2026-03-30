@@ -32,7 +32,6 @@ On the Advisor **Overview** page, you see personalized and actionable recommenda
 ### Filter and access recommendations
 
 The tiles on the Advisor **Overview** page show the different categories of recommendations for all the subscriptions to which you have access, by default.
-
 To filter the display, use the buttons at the top of the page:
 
 * **Subscription**: Select **All** for Advisor recommendations on all subscriptions. Alternatively, select specific subscriptions. Apply changes by clicking outside of the button.
@@ -40,6 +39,9 @@ To filter the display, use the buttons at the top of the page:
 * **Resource Group**: Select **All** (the default) or specific resource groups. Apply changes by clicking outside of the button.
 * **Type**: Select **All** (the default) or specific resources. Apply changes by clicking outside of the button.
 * For more advanced filtering, select **Add filter**.
+
+> [!NOTE]
+>  By default, recommendations are active. Recommendation status can be: active, postponed, dismissed, or completed.
 
 To display a specific list of recommendations, select a category tile.
 
