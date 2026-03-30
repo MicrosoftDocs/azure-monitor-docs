@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.DBforPostgreSQL/servers
-description: Reference for Microsoft.DBforPostgreSQL/servers in Azure Monitor Logs.
+title: Supported log categories - Microsoft.Quantum/providerAccounts
+description: Reference for Microsoft.Quantum/providerAccounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.DBforPostgreSQL/servers, arm
+ms.date: 03/27/2026
+ms.custom: Microsoft.Quantum/providerAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,16 @@ ms.custom: Microsoft.DBforPostgreSQL/servers, arm
 
 
 
-# Supported logs for Microsoft.DBforPostgreSQL/servers  
-The following table lists the types of logs available for the Microsoft.DBforPostgreSQL/servers resource type.
+# Supported logs for Microsoft.Quantum/providerAccounts  
+The following table lists the types of logs available for the Microsoft.Quantum/providerAccounts resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.DBforPostgreSQL/servers](../supported-metrics/microsoft-dbforpostgresql-servers-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Microsoft.Quantum/providerAccounts](../supported-metrics/microsoft-quantum-provideraccounts-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.DBforPostgreSQL/servers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbforpostgresql-servers-logs-include.md)]  
+[!INCLUDE [Microsoft.Quantum/providerAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-quantum-provideraccounts-logs-include.md)]  
   
 
 ## Next Steps

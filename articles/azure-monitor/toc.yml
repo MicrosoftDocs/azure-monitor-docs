@@ -341,23 +341,23 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
-  - name: Map feature (deprecated)
-    items:
-    - name: Overview
-      href: vm/vminsights-maps.md
-    - name: Retirement guidance
-      displayName: processes and dependencies, map, vminsights, dependency agent
-      href: vm/vminsights-maps-retirement.md
-    - name: Dependency agent
+    - name: Map feature (deprecated)
       items:
-      - name: Manage
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent.md
-      - name: Uninstall
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent-uninstall.md
-    - name: Query map data
-      href: vm/vminsights-log-query.md
+      - name: Overview
+        href: vm/vminsights-maps.md
+      - name: Retirement guidance
+        displayName: processes and dependencies, map, vminsights, dependency agent
+        href: vm/vminsights-maps-retirement.md
+      - name: Dependency agent
+        items:
+        - name: Manage
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent.md
+        - name: Uninstall
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent-uninstall.md
+      - name: Query map data
+        href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
