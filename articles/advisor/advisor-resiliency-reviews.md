@@ -25,11 +25,11 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 
 ## Changes to recommendation process
 
-The triage process has been deprecated and replaced with a new process.
+The triage process is deprecated and replaced with a new process.
 
-- `Pending` and `Accepted` are now combined into only `Active`
-- `Rejected` is now `Dismissed`
-- `Completed` and `Postponed` remain unchanged
+- `Pending` and `Accepted` are now combined into only `Active`.
+- `Rejected` is now `Dismissed`.
+- `Completed` and `Postponed` remain unchanged.
 
 ## How it works
 
@@ -41,8 +41,8 @@ The following table defines the responsible parties for Advisor actions.
 |:--- |:--- |
 | Request a resiliency review | Customer using your Customer Success Account Manager or aligned Cloud Solution Architect. |
 | Analyze workload configuration, perform the review using the Well Architected Reliability Assessment and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
-| Manage recommendation status | Customer. Setting the status of recommendation as: `Completed`, `Postponed`, or `Dismissed`. |
-| Implement recommendations | Customer. Implementation is done by engineers who are responsible for managing resources and the configuration. |
+| Manage recommendation status | Customer. Set the status of recommendation as: `Completed`, `Postponed`, or `Dismissed`. |
+| Implement recommendations | Customer. Engineers responsible for managing resources and the configuration. |
 | Facilitate implementation | Microsoft account team using your support contract. |
 
 ## Enable reviews
@@ -53,7 +53,7 @@ Your Microsoft account team works with you to collect information about the work
 
 ## View recommendations
 
-To view recommendations, or to manage the status of each recommendation, requires specific role permissions. For definitions, see [Terminology](#terminology).
+To view recommendations or manage the status of each recommendation, you need specific role permissions. For definitions, see [Terminology](#terminology).
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
@@ -69,14 +69,14 @@ If a new review is available to you, you see a notification banner on top of Adv
 
     A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
 
-4.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
+1.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
 
 ### Review status
 
 | Filter | Detail |
 |:--- |:--- |
 | New | All recommendations are active |
-| In progress | At least one recommendation are moved to 'non-active' |
+| In progress | At least one recommendation is moved to 'non-active' |
 | Completed | All recommendations are either complete or marked as 'dismissed' |
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews pane." lightbox="./media/advisor-reviews-highlight-reviews-preview.png" source="./media/advisor-reviews-highlight-reviews.png" type="content":::
@@ -88,7 +88,7 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-There are four status management steps for recommendations: `active`, `dismissed`, `completed`, and `postponed`. Recommendations are available to engineers on your team on **Reliability** pane.
+Manage recommendation statuses through four steps: `active`, `dismissed`, `completed`, and `postponed`. Engineers on your team can access recommendations on the **Reliability** pane.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
@@ -96,21 +96,21 @@ There are four status management steps for recommendations: `active`, `dismissed
 
     For new reviews, recommendations are set to **Active** state.
 
-1.  Take a note of priority for each recommendation. To help you decide which recommendation should be implemented first, your account team defines the **Priority**.
+1.  Note the priority for each recommendation. To help you decide which recommendation to implement first, your account team defines the **Priority**.
 
     :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/advisor-reviews-contoso-company-pending-preview.png" source="./media/advisor-reviews-contoso-company-pending.png" type="content":::
 
 ### Recommendation priority
 
-The priority of a recommendation is based on the impact value and urgency of the suggested improvements. Your Microsoft account team sets recommendation priority. If a recommendation is targeting multiple resources or subscriptions, you have to accept the recommendation for all resources or subscriptions.
+The priority of a recommendation is based on the impact value and urgency of the suggested improvements. Your Microsoft account team sets recommendation priority. If a recommendation targets multiple resources or subscriptions, you must accept the recommendation for all resources or subscriptions.
 
 | Priority | Detail |
 |:--- |:--- |
 | Critical | The most important recommendations that can have a significant impact value on your Azure resources. The recommendations should be addressed as soon as possible to avoid potential issues such as security breaches, data loss, or service outages. |
 | High | The recommendations that can improve the performance, reliability, or cost efficiency of your Azure resources. The recommendations should be addressed in a timely manner to optimize your Azure deployments. |
 | Medium | The recommendations that can enhance the operational excellence or user experience of your Azure resources. The recommendations should be considered and implemented if the recommendations align with your business goals and requirements. |
-| Low | The recommendations that can provide extra benefits or insights for your Azure resources. The recommendations should be reviewed and implemented if the recommendations are relevant and feasible for your scenario. |
-| Informational | The recommendations that can help you learn more about the features and capabilities of Azure. The recommendations don't require any action, but the recommendations help you discover new ways to use Azure. |
+| Low | Recommendations that can provide extra benefits or insights for your Azure resources. Review and implement these recommendations if they're relevant and feasible for your scenario. |
+| Informational | Recommendations that can help you learn more about the features and capabilities of Azure. These recommendations don't require any action, but they help you discover new ways to use Azure. |
 
 ### Prerequisites to implement recommendations
 
@@ -150,13 +150,13 @@ For details on recommendation priority, see [Recommendation priority](#recommend
 
 Recommendation status is a valuable indicator for determining needed actions. Review each available recommendation status: 
 
-* Active: New recommendations identified by the Azure Advisor system
+* Active: New recommendations identified by the Azure Advisor system.
 
-* Postponed: Temporarily hide a recommendation for a set period. After that, it automatically reappears
+* Postponed: Temporarily hide a recommendation for a set period. After that period, the recommendation automatically reappears.
 
-* Dismissed: Permanently remove an item from view until you choose to reactivate it
+* Dismissed: Permanently remove an item from view until you choose to reactivate it.
 
-* Completed: The recommended action has been successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies
+* Completed: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
 
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations dismiss options." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" source="./media/resiliency-reviews/resiliency-review-recommendation-dismiss-options-medium.png" type="content":::
 
