@@ -45,7 +45,9 @@ To start using the Critical Risks feature, complete the following actions.
 
 All other Azure Advisor recommendations remain available, but Critical Risks are flagged separately, so you can first address the most critical recommendations.
 
-:::image alt-text="Screenshot of Critical risks." lightbox="./media/advisor-critical-risks-highlight-critical-risks.png" source="./media/advisor-critical-risks-highlight-critical-risks-preview.png" type="content":::
+![advisor-critical-risks-highlight-critical-risks-preview-2](media/advisor-critical-risks/advisor-critical-risks-highlight-critical-risks-preview-2.png)
+
+
 
 ## Why zone resiliency is essential
 
