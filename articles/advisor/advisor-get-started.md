@@ -35,8 +35,8 @@ By default, the tiles on the Advisor **Overview** page show the different catego
 To filter the display, use the buttons at the top of the page:
 
 * **Subscription**: Select **All** for Advisor recommendations on all subscriptions. Alternatively, select specific subscriptions. Apply changes by selecting a value outside of the button.
-* **Recommendation Status**: **Active** (the default, recommendations not postponed or dismissed), **Postponed** or **Dismissed**. Apply changes by clicking outside of the button.
-* **Resource Group**: Select **All** (the default) or specific resource groups. Apply changes by clicking outside of the button.
+* **Recommendation Status**: **Active** (the default, recommendations not postponed or dismissed), **Postponed**, or **Dismissed**. Apply changes by selecting a value outside of the button.
+* **Resource Group**: Select **All** (the default) or specific resource groups. Apply changes by selecting a value outside of the button.
 * **Type**: Select **All** (the default) or specific resources. Apply changes by selecting a value outside of the button.
 * For more advanced filtering, select **Add filter**.
 
@@ -71,8 +71,8 @@ You can view recommendation details, such as the recommended actions and affecte
 
 1. You can postpone the recommendation.
 
-To manage a recommendation's status see: [Azure Advisor recommendation state managment](./advisor/advisor-azure-state-management.md)
-You can't dismiss the recommendation without certain privileges. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
+To manage a recommendation's status, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
+You need certain privileges to dismiss the recommendation. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
 
 ### Download recommendations
 
