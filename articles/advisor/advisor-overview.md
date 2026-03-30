@@ -34,7 +34,9 @@ You can apply filters to display recommendations for specific subscriptions and 
 
 Select a category to display the list of recommendations for that category. Select a recommendation to learn more about it. You can also learn about actions that you can perform to take advantage of an opportunity or resolve an issue.
 
-:::image type="content" source="./media/advisor-overview/advisor-reliability-recommendations-main-m.png" alt-text="Screenshot of the Advisor Reliability recommendations page." lightbox="./media/advisor-overview/advisor-reliability-recommendations-main-m.png":::
+![advisor-reliability-recommendations-main-m-2](media/advisor-overview/advisor-reliability-recommendations-main-m-2.png)
+
+
 
 Select the recommended action for a recommendation to implement the recommendation. A simple interface opens that enables you to implement the recommendation. It also might refer you to documentation that assists you with implementation. After you implement a recommendation, it can take up to a day for Advisor to recognize the action.
 
