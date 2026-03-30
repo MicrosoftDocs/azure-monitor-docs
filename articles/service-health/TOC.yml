@@ -63,12 +63,12 @@
        - name: Impacted Resources from Azure security advisories
          href: impacted-resources-security.md
 
-    - name: Billing updates
+    - name: Billing
       items:
       - name: Billing updates overview
         href: billing-elevated-access.md
 
-    - name: Health history overview
+    - name: Health history 
       items: 
        - name: Health history overview
          href: health-history-overview.md
