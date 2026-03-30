@@ -13,7 +13,7 @@ It shows only the alerts that you create based on the criteria you configured su
 Health alerts are tied to your alert rules, not to all events occurring in Azure.
 
 
-For information on how to create Service health alerts, see [How to create Service health alerts](alerts-activity-log-service-notifications-portal.md).
+For information about how to create Service Health alerts, see [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 
 ## Service Health alert notifications
 
