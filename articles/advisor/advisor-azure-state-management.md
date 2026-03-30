@@ -73,7 +73,7 @@ Review the definitions and implications for the Completed and Dismissed recommen
 
 - **Completed** means you took the recommended action or the recommendation no longer applies, and no further action is required.
 
-- **Dismissed** means the recommendation was intentionally ignored by a user. Dismissed recommendations can be reactivated at any time
+- **Dismissed** means a user intentionally ignored the recommendation. You can reactivate dismissed recommendations at any time.
 
 
 ## How to set recommendations to Postpone, Dismiss, and Completed
@@ -83,7 +83,7 @@ Review the definitions and implications for the Completed and Dismissed recommen
 Use the following procedures to change recommendation states
 
 > [!NOTE]
->Performing these actions requires specific permissions. Refer to the [Roles and permissions](https://learn.microsoft.com/en-us/azure/advisor/permissions) page for details on the required access.
+>To perform these actions, you need specific permissions. For more information, see [Roles and permissions](https://learn.microsoft.com/en-us/azure/advisor/permissions).
 
 
 
@@ -96,11 +96,11 @@ Use the following procedures to change recommendation states
 
 ### How to change recommendation states
 
-Azure Advisor provides personalized best‑practice recommendations to help you optimize your Azure resources. When a recommendation isn’t immediately actionable, isn’t relevant, or has already been addressed, you can manually change its state to manage the items and stay focused on what matters most.
+Azure Advisor provides personalized best-practice recommendations to help you optimize your Azure resources. When a recommendation isn't immediately actionable, isn't relevant, or is already addressed, manually change its state to manage the items and stay focused on what matters most.
 
 ### Start from the Active recommendations view
 
-All manual state changes start from the **Active recommendations** view. The same process is used to manage recommendations across supported states based on the recommendation state lifecycle.
+All manual state changes start from the **Active recommendations** view. Use the same process to manage recommendations across supported states based on the recommendation state lifecycle.
 
 1. Open **Azure Advisor** in the Azure portal.
 
@@ -116,35 +116,35 @@ Postponing a recommendation temporarily hides it for a set period. After the sel
 
 1. Select a recommendation from the list of recommendations
 
-1. Choose the recommendation(s) you want to postpone and select Postpone
+1. Choose the recommendations you want to postpone and select **Postpone**.
 
 1. Choose how long to postpone the recommendation and then confirm
 
 ### Dismiss a recommendation
 
-Dismissing a recommendation removes it from view until you choose to reactivate it. Dismissed recommendations aren’t included when calculating completion progress.
+When you dismiss a recommendation, it disappears from view until you choose to reactivate it. Dismissed recommendations aren't included when calculating completion progress.
 
 1. Select a recommendation from the list of recommendations
 
-1. Choose the recommendation(s) you want to dismiss and select Dismiss
+1. Choose the recommendations you want to dismiss and select **Dismiss**.
 
-1. Select a __Reason for__ __Dismissal,__ then confirm
+1. Select a __Reason for Dismissal__, and then confirm.
 
 ### Complete a recommendation
 
-Completing a recommendation when you’ve taken the recommended action or when the recommendation no longer applies
+Mark a recommendation as complete when you take the recommended action or when the recommendation no longer applies.
 
 1. Select a recommendation from the list of active recommendations
 
 1. Select **Complete** for the recommendation you want to manually mark as completed
 
 > [!NOTE]
-> Recommendations marked as completed manually can be reactivated until Azure Advisor performs system verification. After system verification, completed recommendations can’t >be changed or reactivated.
+> You can reactivate recommendations you marked as completed manually until Azure Advisor performs system verification. After system verification, you can't change or reactivate completed recommendations.
 ### Reactivate a recommendation
 
-You can reactivate a recommendation that was postponed, dismissed or completed. This action can be done in the Azure portal or programmatically. In the Azure portal:
+You can reactivate a recommendation that you previously postponed, dismissed, or completed. You can perform this action in the Azure portal or programmatically. In the Azure portal:
 
-1. Open [Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
+1. Open [Advisor](https://aka.ms/azureadvisordashboard).
 
 1. Change the filter on the __Overview__ pane to __Postponed__. Advisor then displays postponed or dismissed recommendations.
 
@@ -164,18 +164,18 @@ You can reactivate a recommendation that was postponed, dismissed or completed. 
 
 1. The Recommendation Details page opens
 
-1. On the Recommendation Details page, in the resources table, select the checkbox or checkboxes next to each resource for all resources you want to postpone, dismiss, or complete
+1. On the Recommendation Details page, in the resources table, select the checkboxes next to each resource for all resources you want to postpone, dismiss, or mark as complete.
 
 1. In the resources table header, select __Postpone__, __Dismiss__, or __Completed__
 
 > [!TIP]
->If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone, dismiss, or mark as complete.
+> If the selection boxes are disabled, recommendations might still be loading. Wait for all recommendations to load before you try to postpone, dismiss, or mark as complete.
 
-### Choosing a recommendation type from the Viewing drop down
+### Choose a recommendation type from the Viewing dropdown
 
-The Viewing drop-down displays recommendations grouped by type.
+The Viewing dropdown displays recommendations grouped by type.
 
-Selecting one of the four Recommendation status options displays that recommendation. The recommendation status options are:
+Select one of the four recommendation status options to display that recommendation. The recommendation status options are:
 
 - __Active Recommendations__: Recommendations marked as need action from your organization
 
@@ -183,13 +183,13 @@ Selecting one of the four Recommendation status options displays that recommenda
 
 - __Postponed Recommendations__: Recommendations that have been postponed by your organization
 
-- __Dismissed Recommendations__: Recommendations that have been dismissed by your organization
+- __Dismissed Recommendations__: Recommendations that your organization dismissed.
 
 ### Active recommendation page
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s currently Active
+- __Recommendation__: System identified recommendation that’s currently active.
 
 - __Impact__: Impact level, High, Medium, Low
 
@@ -243,7 +243,7 @@ This page displays a table with the following columns:
 
 - __Recommendation__: System identified recommendation in that’s new or dismissed
 
-- __Dismissed resources__: Resources affected by this recommendation have been dismissed
+- __Dismissed resources__: Resources affected by this recommendation are dismissed.
 
 - __Impact__: Impact level, High, Medium, Low
 
@@ -251,7 +251,7 @@ This page displays a table with the following columns:
 
 - Other category specific columns
 
-## More Information
+## More information
 
-To learn more, read the [How-to guide](/azure/advisor/advisor-cost-recommendations).
+To learn more, see the [How-to guide](/azure/advisor/advisor-cost-recommendations).
 
