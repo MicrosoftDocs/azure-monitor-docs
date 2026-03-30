@@ -26,7 +26,7 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app
 
 ## Automatic data collection
 
-The distros automatically collect data by bundling OpenTelemetry instrumentation libraries.
+The Azure Monitor Distros automatically collect data by bundling OpenTelemetry instrumentation libraries.
 
 ### Included instrumentation libraries
 
@@ -394,7 +394,7 @@ export class RegisterExpressInstrumentationSample {
 
 #### [Python](#tab/python)
 
-To add a community instrumentation library (not officially supported/included in Azure Monitor distro), you can instrument directly with the instrumentations. The list of community instrumentation libraries can be found [here](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
+To add a community instrumentation library (not officially supported/included in the Azure Monitor Distro), you can instrument directly with the instrumentations. The list of community instrumentation libraries can be found on [GitHub](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
 
 > [!NOTE]
 > Instrumenting a [supported instrumentation library](#included-instrumentation-libraries) manually with `instrument()` and the distro `configure_azure_monitor()` isn't recommended. It's not a supported scenario and you could get undesired behavior for your telemetry.
@@ -436,7 +436,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 | Environment | How detection works | Notes |
 |-------------|---------------------|-------|
-| Azure App Service | The language SDK or Azure Monitor distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
+| Azure App Service | The language SDK or Azure Monitor Distro reads well-known App Service environment variables and host metadata | Works with .NET, Java, Node.js, and Python when you use the guidance in this article. |
 | Azure Functions | See the [Azure Functions OpenTelemetry how‑to](/azure/azure-functions/opentelemetry-howto) | All Azure Functions guidance lives there. |
 | Azure Virtual Machines | The language SDK or distro queries the Azure Instance Metadata Service | Ensure the VM has access to the Instance Metadata Service endpoint. |
 | Azure Kubernetes Service (AKS) | Use the OpenTelemetry Collector `k8sattributes` processor to add Kubernetes metadata | Recommended for all languages running in AKS. |
@@ -444,7 +444,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 ### Manual and automatic instrumentation
 
-* Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported.
+* Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported.
 
 * For manual setups, you can set resource attributes directly with standard OpenTelemetry options:
 
