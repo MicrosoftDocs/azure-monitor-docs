@@ -43,7 +43,7 @@ Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activ
 
 #### $filter patterns
 
-The `$filter` parameter is required and must include at least a start date/time. The following patterns are supported:
+The `$filter` parameter is required and must include at least a start date and time. The following patterns are supported:
 
 - List events for a resource group: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`
 - List events for a specific resource: `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'`
