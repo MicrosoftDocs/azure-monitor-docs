@@ -41,7 +41,7 @@ You can also access activity log events by using the following methods:
 
 Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period. 
 
-| Supported `$filter` patterns | details |
+| Supported `$filter` patterns | Details |
 |---|----|
 | default subscription with a time range | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}'` |
 | resource group | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`|
