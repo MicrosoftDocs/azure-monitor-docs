@@ -247,7 +247,7 @@ The following OpenTelemetry Instrumentation libraries are included as part of th
 
 To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
-Instrumentations can be configured using `AzureMonitorOpenTelemetryOptions`:
+You can configure instrumentations by using `AzureMonitorOpenTelemetryOptions`:
 
 ```typescript
 import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
