@@ -74,7 +74,7 @@ Select **Activity log** to open the panel showing information from the Activity 
 <!--
 :::image type="content" source="./media/alert-overview/health-alerts-activity-log.PNG" alt-text="Screenshot of Activity log panel." lightbox="./media/alert-overview/health-alerts-activity-log.PNG":::
 -->
-For more information on the Activity log, see [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
+For more information about the Activity log, see [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
 
 #### Access control (IAM)
 Select **Access Control *Identity and Access Management* (IAM)** to open the panel showing what access you have, and also where you can assign role access. For more information, see [Check access for a user](/azure/role-based-access-control/check-access?tabs=default).
