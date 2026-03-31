@@ -54,7 +54,11 @@ Queries of data in Auxiliary tables are unoptimized and might take longer to ret
 
 ### Purge
 
-You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-personal-data) from Basic and Auxiliary tables. 
+You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-personal-data) from Basic and Auxiliary tables.
+
+### Visualizations 
+
+Basic and Auxiliary table plans currently support Workbooks and Grafana, while Azure Monitor Dashboards are not supported. 
 
 ## Run a query on a Basic or Auxiliary table
 

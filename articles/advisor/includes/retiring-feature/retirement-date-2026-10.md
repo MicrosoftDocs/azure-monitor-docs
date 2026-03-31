@@ -10,14 +10,11 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | App Service | Support for Python 3.10 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | App service | Support for Python 3.10 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Anomaly Detector | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Metrics Advisor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | Azure Personalizer | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cognitive Service | S2, S3, and S4 price instances | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Cognitive Services Translator | S2 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Cognitive Services Translator | S3 price instance  | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Cognitive Services Translator | S4 price instance | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Databricks Workspace | Azure Databricks - Standard Tier | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | SQL database | FSV2 Database | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
@@ -34,4 +31,3 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Kubernetes - Azure Arc | Windows Server 2022 SKU on AKS Arc | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-

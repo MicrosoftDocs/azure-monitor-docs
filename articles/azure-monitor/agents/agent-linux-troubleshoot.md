@@ -3,11 +3,14 @@ title: Troubleshoot Azure Log Analytics Linux Agent
 description: Describe the symptoms, causes, and resolution for the most common issues with the Log Analytics agent for Linux in Azure Monitor.
 ms.topic: troubleshooting-general
 ms.custom: linux-related-content
-ms.date: 11/14/2024
+ms.date: 03/13/2026
 ms.reviewer: luki, mattmcinnes
+ai-usage: ai-assisted
 ---
 
 # Troubleshoot issues with the Log Analytics agent for Linux
+
+[!INCLUDE [Log Analytics agent deprecation](includes/log-analytics-agent-deprecation.md)]
 
 This article helps you troubleshoot errors you might experience with the Log Analytics agent for Linux in Azure Monitor.
 
@@ -79,7 +82,7 @@ A clean reinstall of the agent fixes most problems. This task might be the first
  Extra configurations | `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/*.conf`
 
  > [!NOTE]
- > If you configure the collection from the [agent's configuration](../agents/agent-data-sources.md#configure-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
+ > If you configure the collection from the [data collection configuration](../vm/data-collection.md#add-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
 >
 > `sudo /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --disable && sudo rm /etc/opt/omi/conf/omsconfig/configuration/Current.mof* /etc/opt/omi/conf/omsconfig/configuration/Pending.mof*`
 
@@ -90,7 +93,7 @@ A clean reinstall of the agent fixes most problems. This task might be the first
 | NOT_DEFINED | The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd. |
 | 2 | Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
 | 3 | No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
-| 4 | Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](agent-linux.md#agent-install-package). Also review to verify your proxy settings. |
+| 4 | Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings. |
 | 5 | The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`. |
 | 6 | Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). |
 | 17 | Installation of OMS package failed. Look through the command output for the root failure. |
@@ -114,7 +117,7 @@ A clean reinstall of the agent fixes most problems. This task might be the first
 | --- | --- |
 | 2 | Invalid option provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage. |
 | 3 | Invalid configuration provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage. |
-| 4 | Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for using an HTTP proxy](./log-analytics-agent.md#firewall-requirements). |
+| 4 | Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for network requirements](./azure-monitor-agent-network-configuration.md#firewall-endpoints). |
 | 5 | 403 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details. |
 | 6 | Non-200 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details. |
 | 7 | Unable to connect to Azure Monitor. See the full output of the omsadmin script for details. |
@@ -199,9 +202,9 @@ Below the output plug-in, uncomment the following section by removing the `#` in
 1. Reonboard to Azure Monitor by using the Log Analytics agent for Linux. Use the following command with the `-v` option enabled. This option provides verbose output of the agent connecting through the proxy to Azure Monitor:
 `/opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key> -p <Proxy Conf> -v`
 
-1. Review the section [Update proxy settings](agent-manage.md#update-proxy-settings) to verify you properly configured the agent to communicate through a proxy server.
+1. Review the section [proxy configuration](azure-monitor-agent-network-configuration.md#proxy-configuration) to verify you properly configured the agent to communicate through a proxy server.
 
-1. Double-check that the endpoints outlined in the Azure Monitor [network firewall requirements](./log-analytics-agent.md#firewall-requirements) list are added to an allow list correctly. If you use Azure Automation, the necessary network configuration steps are also linked previously.
+1. Double-check that the endpoints outlined in the Azure Monitor [network firewall requirements](azure-monitor-agent-network-configuration.md#firewall-endpoints) list are added to an allow list correctly. If you use Azure Automation, the necessary network configuration steps are also linked previously.
 
 ## Issue: You receive a 403 error when trying to onboard
 
@@ -257,7 +260,7 @@ Performance-related bugs don't always happen and they're difficult to reproduce.
 
 ### Resolution
 
-* Verify the configuration in the Log Analytics workspace for Syslog has all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](data-sources-syslog.md#configure-syslog-in-the-azure-portal).
+* Verify the configuration in the Log Analytics workspace for Syslog has all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](../vm/data-collection-syslog.md#create-the-dcr).
 * Verify the native Syslog messaging daemons (`rsyslog`, `syslog-ng`) can receive the forwarded messages.
 * To ensure that messages aren't being blocked, check firewall settings on the Syslog server.
 * Simulate a Syslog message to Log Analytics by using a `logger` command: <br/>
@@ -504,3 +507,9 @@ Change the VM's environmental language to English:
 ```
 export LANG=en_US.UTF-8
 ```
+
+## Related content
+
+- [Migrate to Azure Monitor Agent from Log Analytics agent](azure-monitor-agent-migration.md)
+- [Troubleshoot the Azure Monitor agent on Linux virtual machines](azure-monitor-agent-troubleshoot-linux-vm.md)
+- [Azure Monitor Agent overview](azure-monitor-agent-overview.md)

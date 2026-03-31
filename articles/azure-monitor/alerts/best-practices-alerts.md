@@ -2,7 +2,8 @@
 title: Best practices for Azure Monitor alerts
 description: Provides a template for a Well-Architected Framework (WAF) article specific to Azure Monitor alerts.
 ms.topic: best-practice
-ms.date: 03/07/2025
+ms.date: 4/24/2026
+ms.custom: references_regions
 ---
 
 # Best practices for Azure Monitor alerts

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -407,17 +407,18 @@ Subcategory: HighAvailability
   
 Implement zone-redundant Virtual Network Gateway in Azure Availability Zones. This brings resiliency, scalability, and higher availability to your Virtual Network Gateways.  
   
-**Potential benefits**: Provides zone resiliency and redundancy for ExpressRoute  
+**Potential benefits**: Provides zonal resiliency and redundancy for ExpressRoute  
 
 **Impact:** High
   
-For more information, see [Create a zone-redundant virtual network gateway in Azure availability zones - Azure VPN Gateway ](/azure/vpn-gateway/create-zone-redundant-vnet-gateway)  
+For more information, see [Create a zone-redundant virtual network gateway in Azure availability zones - Azure VPN Gateway](/azure/vpn-gateway/create-zone-redundant-vnet-gateway)  
 
 ResourceType: microsoft.network/virtualnetworkgateways  
 Recommendation ID: c9af1ef6-55bc-48af-bfe4-2c80490159f8  
-Subcategory: null
+Subcategory: undefined
 
 <!--c9af1ef6-55bc-48af-bfe4-2c80490159f8_end-->
+
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_begin-->
 
@@ -441,7 +442,7 @@ Subcategory: HighAvailability
 
 #### Use a health probe for monitoring the health of servers  
   
-Use a health probe of the application gateway for monitoring the health of servers in the backend pool. The health probe of the application gateway stops traffic from sending to a server the health probe considers unhealthy.  
+Use an Application Gateway health probe to monitor backend pool server health.  Application Gateway health probes prevent traffic being sent to unhealthy servers.  
   
 **Potential benefits**: Prevent sending traffic to unhealthy server.  
 
@@ -454,6 +455,7 @@ Recommendation ID: 01c0dcd3-d6f7-4d50-a98b-4e15f9486a32
 Subcategory: undefined
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_end-->
+
 
 
 
