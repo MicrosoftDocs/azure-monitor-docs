@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 03/17/2026
+ms.date: 03/31/2026
 
 ---
 
@@ -24,7 +24,7 @@ To create or edit an alert rule, you must have the following permissions:
 - Write permission on the resource group in which the alert rule is created.
 - Read permission on any action group associated to the alert rule, if applicable.
 
-For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
+For more information about Roles and access permissions, see [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
 ## Service Health alerts overview
 
@@ -64,7 +64,7 @@ On this panel you set up:
 >[!TIP]
 > We recommend selecting **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
 
-3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
+3. Select **Create** to finish the alert. If you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
 
 
 > [!NOTE]
@@ -75,7 +75,7 @@ On this panel you set up:
 The *Advanced Options* section lets you add more details and adjust how a Service Health alert works.
 These settings don't change the Service Health events that Microsoft publishes. Instead, they control which events you're notified about and how you receive those notifications.
 
-Use Advanced Options to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
+Use *Advanced Options* to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
 
 #### Scope
 When you select **Advanced options**, the Scope tab opens first. 
