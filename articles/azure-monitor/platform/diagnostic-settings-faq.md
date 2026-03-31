@@ -9,7 +9,7 @@ ms.author: shseth
 
 # Frequently asked questions – Platform logs exported through diagnostic settings
 
-### Q : What is changing with platform logs exported through Diagnostic Settings?
+### Q : What is changing with platform logs exported through diagnostic settings?
 
 Billing will apply to certain platform logs exported using Azure Diagnostic Settings when they are streamed to destinations such as:
 - Azure Storage  
