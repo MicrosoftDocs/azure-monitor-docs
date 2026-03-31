@@ -52,7 +52,7 @@ For information on how to configure Service Health notification alerts by using 
 
 2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. 
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
+   :::image type="content" source="media/alerts-activity-log-service-notifications/service-health-blades.png" alt-text="A screenshot of the Health alerts tab." Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
 On this panel, set up the following values:
 
