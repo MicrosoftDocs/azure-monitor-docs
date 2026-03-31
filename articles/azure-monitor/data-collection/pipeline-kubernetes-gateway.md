@@ -66,7 +66,7 @@ kubectl wait --for=condition=ready certificate gateway-client-cert -n test --tim
 ```bash
 helm repo add traefik https://traefik.github.io/charts 2>/dev/null || true
 helm repo update traefik
-helm show crds traefik/traefik | kubectl apply -f
+helm show crds traefik/traefik | kubectl apply -f -
 ```
 
 
