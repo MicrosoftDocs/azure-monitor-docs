@@ -138,7 +138,7 @@ On the **Tags** tab, you can select tags and then assign a value for them. For m
 #### Review + create
 The **Review + Create** tab lets you review everything you selected. When you're ready, select *Create* to finish and create the alert.
 
-:::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
+:::image type="content" source="media/create-alerts/service-health-alert-final.png" alt-text="Screenshot of the Review and create tab." Lightbox="media/create-alerts/service-health-alert-final.png":::
 
 
 
