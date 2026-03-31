@@ -2,18 +2,18 @@
 title: Service Health Alerts overview
 description: Service health alerts notify of the health of your Azure services or regions.
 ms.topic: concept-article
-ms.date: 02/24/2026
+ms.date: 03/30/2026
 ---
 
 # Service Health alerts 
 
-The Health Alerts panel in Azure Service Health lets you view and manage alerts about service issues, planned maintenance, health advisories and security advisories. These alerts notify you about events that could affect your resources.
+The Health Alerts panel in Azure Service Health helps you view and manage alerts about service problems, planned maintenance, health advisories, and security advisories. These alerts notify you about events that could affect your resources.
 
-It shows only the alerts that you create based on the criteria you configured (subscription, services, regions, event types). 
+It shows only the alerts that you create based on the criteria you configured, such as subscription, services, regions, and event types. 
 Health alerts are tied to your alert rules, not to all events occurring in Azure.
 
 
-For information on how to create Service Health alerts, refer to [How to create Service health alerts](alerts-activity-log-service-notifications-portal.md).
+For information about how to create Service Health alerts, see [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 
 ## Service Health alert notifications
 
@@ -48,7 +48,7 @@ You can also:
 
 ## View the alert details
 
-Select the name of the alert to open a new panel that displays the details of the alert and all information that is collected.
+Select the name of the alert to open a new panel that displays the details of the alert and all the information that's collected.
 
 :::image type="content" source="./media/alert-overview/health-alerts-overview.PNG" alt-text="Screenshot of Health alerts overview panel." lightbox="./media/alert-overview/health-alerts-overview.PNG":::
 
@@ -74,10 +74,10 @@ Select **Activity log** to open the panel showing information from the Activity 
 <!--
 :::image type="content" source="./media/alert-overview/health-alerts-activity-log.PNG" alt-text="Screenshot of Activity log panel." lightbox="./media/alert-overview/health-alerts-activity-log.PNG":::
 -->
-For more information on the Activity log, read [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
+For more information about the Activity log, see [Azure Monitor data sources and data collection](/azure/azure-monitor/fundamentals/data-sources).
 
 #### Access control (IAM)
-Select **Access Control *Identity and Access Management* (IAM)** to open the panel showing what access you have, and also where you can assign role access. For more information, see [Check access for a user](/azure/role-based-access-control/check-access?tabs=default).
+Select **Access Control (IAM)** to open the panel that shows what access you have, and also where you can assign role access. For more information, see [Check access for a user](/azure/role-based-access-control/check-access?tabs=default).
 <!-- 
 :::image type="content" source="./media/alert-overview/health-alerts-assignments.PNG" alt-text="Screenshot of Health alerts Access panel." lightbox="./media/alert-overview/health-alerts-assignments.PNG":::
 -->

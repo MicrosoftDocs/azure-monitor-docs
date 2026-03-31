@@ -1,29 +1,29 @@
 ---
-title: Supported metrics - Microsoft.DBforPostgreSQL/serversv2
-description: Reference for Microsoft.DBforPostgreSQL/serversv2 metrics in Azure Monitor.
+title: Supported metrics - Microsoft.Quantum/providerAccounts
+description: Reference for Microsoft.Quantum/providerAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.DBforPostgreSQL/serversv2, arm
+ms.date: 03/27/2026
+ms.custom: Microsoft.Quantum/providerAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.DBforPostgreSQL/serversv2
+# Supported metrics for Microsoft.Quantum/providerAccounts
   
-The following table lists the metrics available for the Microsoft.DBforPostgreSQL/serversv2 resource type.  
+The following table lists the metrics available for the Microsoft.Quantum/providerAccounts resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
   
   
-For a list of supported logs, see [Supported log categories - Microsoft.DBforPostgreSQL/serversv2](../supported-logs/microsoft-dbforpostgresql-serversv2-logs.md)  
+For a list of supported logs, see [Supported log categories - Microsoft.Quantum/providerAccounts](../supported-logs/microsoft-quantum-provideraccounts-logs.md)  
   
  
 
-[!INCLUDE [Microsoft.DBforPostgreSQL/serversv2](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-dbforpostgresql-serversv2-metrics-include.md)]  
+[!INCLUDE [Microsoft.Quantum/providerAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-quantum-provideraccounts-metrics-include.md)]  
 
 
 

@@ -141,12 +141,10 @@ items:
             href: supported-metrics/microsoft-dbforpostgresql-flexibleservers-metrics.md
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-metrics/microsoft-dbforpostgresql-servergroupsv2-metrics.md
-          - name: Microsoft.DBforPostgreSQL/servers
-            href: supported-metrics/microsoft-dbforpostgresql-servers-metrics.md
-          - name: Microsoft.DBforPostgreSQL/serversv2
-            href: supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md
           - name: Microsoft.DevCenter/devcenters
             href: supported-metrics/microsoft-devcenter-devcenters-metrics.md
+          - name: microsoft.deviceregistry/namespaces
+            href: supported-metrics/microsoft-deviceregistry-namespaces-metrics.md
           - name: Microsoft.Devices/IotHubs
             href: supported-metrics/microsoft-devices-iothubs-metrics.md
           - name: Microsoft.Devices/provisioningServices
@@ -267,6 +265,8 @@ items:
             href: supported-metrics/microsoft-mobilenetwork-radioaccessnetworks-metrics.md
           - name: Microsoft.Monitor/accounts
             href: supported-metrics/microsoft-monitor-accounts-metrics.md
+          - name: Microsoft.Monitor/pipelineGroups
+            href: supported-metrics/microsoft-monitor-pipelinegroups-metrics.md
           - name: Microsoft.NetApp/elasticAccounts/elasticCapacityPools
             href: supported-metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-metrics.md
           - name: Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes
@@ -385,10 +385,14 @@ items:
             href: supported-metrics/microsoft-powerbidedicated-capacities-metrics.md
           - name: microsoft.purview/accounts
             href: supported-metrics/microsoft-purview-accounts-metrics.md
+          - name: Microsoft.Quantum/providerAccounts
+            href: supported-metrics/microsoft-quantum-provideraccounts-metrics.md
           - name: Microsoft.RecoveryServices/Vaults
             href: supported-metrics/microsoft-recoveryservices-vaults-metrics.md
           - name: Microsoft.Relay/namespaces
             href: supported-metrics/microsoft-relay-namespaces-metrics.md
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+            href: supported-metrics/microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md
           - name: microsoft.resources/subscriptions
             href: supported-metrics/microsoft-resources-subscriptions-metrics.md
           - name: Microsoft.Search/searchServices
@@ -738,13 +742,6 @@ items:
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-logs/microsoft-dbforpostgresql-servergroupsv2-logs.md
             displayName: PostgreSQL Server Logs
-          - name: Microsoft.DBforPostgreSQL/servers
-            href: supported-logs/microsoft-dbforpostgresql-servers-logs.md
-            displayName: PostgreSQL Server Logs,PostgreSQL Query Store Runtime
-              Statistics,PostgreSQL Query Store Wait Statistics
-          - name: Microsoft.DBforPostgreSQL/serversv2
-            href: supported-logs/microsoft-dbforpostgresql-serversv2-logs.md
-            displayName: PostgreSQL Server Logs
           - name: Microsoft.DesktopVirtualization/appAttachPackages
             href: supported-logs/microsoft-desktopvirtualization-appattachpackages-logs.md
             displayName: Management
@@ -1089,6 +1086,9 @@ items:
           - name: microsoft.purview/accounts
             href: supported-logs/microsoft-purview-accounts-logs.md
             displayName: DataSensitivity,ScanStatus,PurviewAccountAuditEvents
+          - name: Microsoft.Quantum/providerAccounts
+            href: supported-logs/microsoft-quantum-provideraccounts-logs.md
+            displayName: Audit Logs
           - name: Microsoft.RecoveryServices/Vaults
             href: supported-logs/microsoft-recoveryservices-vaults-logs.md
             displayName: Addon Azure Backup Alert Data,Addon Azure Backup Job Data,Addon
@@ -1100,9 +1100,18 @@ items:
               Recovery Recovery Points,Azure Site Recovery Replicated
               Items,Azure Site Recovery Replication Data Upload Rate,Azure Site
               Recovery Replication Stats,Core Azure Backup Data
+          - name: Microsoft.RedHatOpenShift/hcpOpenShiftClusters
+            href: supported-logs/microsoft-redhatopenshift-hcpopenshiftclusters-logs.md
+            displayName: Cloud Controller Manager,CSI Azure Disk Controller,CSI Azure File
+              Controller,CSI Snapshot Controller,Kubernetes API
+              Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes
+              Controller Manager,Kubernetes Scheduler
           - name: Microsoft.Relay/namespaces
             href: supported-logs/microsoft-relay-namespaces-logs.md
             displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
+          - name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+            href: supported-logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
+            displayName: JobExecution
           - name: Microsoft.Search/searchServices
             href: supported-logs/microsoft-search-searchservices-logs.md
             displayName: Operation Logs

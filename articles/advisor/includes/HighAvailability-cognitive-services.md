@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -156,23 +156,7 @@ Subcategory: undefined
 
 <!--2b8347d8-bd08-4046-892d-8844f741b8b2_end-->
 
-<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_begin-->
 
-#### Support for Video Retrieval in Azure Content Understanding in Foundry Tools is ending  
-  
-Support for Video Retrieval in Content Understanding is ending  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [Azure Content Understanding in Foundry Tools video overview - Foundry Tools](/azure/ai-services/content-understanding/video/overview?WT.mc_id=Portal-AppInsightsExtension)  
-
-ResourceType: microsoft.cognitiveservices/accounts  
-Recommendation ID: d0f31a4b-60c1-4e61-b095-2d14504a9675  
-Subcategory: undefined
-
-<!--d0f31a4b-60c1-4e61-b095-2d14504a9675_end-->
 
 <!--8523d119-bfd8-4f91-b17d-13d6b34338c4_begin-->
 
@@ -209,5 +193,77 @@ Recommendation ID: 4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577
 Subcategory: undefined
 
 <!--4d9bed4d-22e3-4dae-8eb3-ceb1bdd8c577_end-->
+
+<!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_begin-->
+
+#### AI Services Anomaly Detector is being retired.  
+  
+Until the retirement date, continue use of AI Services Anomaly Detector resources.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-anomaly-detector-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: e0e84b83-8be3-48d6-91bf-730d1d5fd745  
+Subcategory: undefined
+
+<!--e0e84b83-8be3-48d6-91bf-730d1d5fd745_end-->
+
+<!--8dca8881-92ae-480a-aa8c-0933efdf9e02_begin-->
+
+#### AI Services Metrics Advisor is being retired.  
+  
+After the retirement date, you can no longer use AI Services Metrics Advisor with the applications.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-metrics-advisor-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 8dca8881-92ae-480a-aa8c-0933efdf9e02  
+Subcategory: undefined
+
+<!--8dca8881-92ae-480a-aa8c-0933efdf9e02_end-->
+
+<!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_begin-->
+
+#### AI Services Personalizer is being retired.  
+  
+You can no longer use AI Services Personalizer with the applications after the retirement date.  
+  
+**Potential benefits**: Avoid potential disruptions for the applications  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=ai-services-personalizer-will-be-retired-on-1-october-2026)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: d4f522ba-0646-4c73-8ca6-7636f7ad119c  
+Subcategory: undefined
+
+<!--d4f522ba-0646-4c73-8ca6-7636f7ad119c_end-->
+
+<!--e30a6464-0e05-4d48-b604-741074db3aa3_begin-->
+
+#### Azure Content Moderator is being retired.  
+  
+The platform encourages users to explore our new offering Azure AI Content Safety that offers both new and updated capabilities to meet various content moderation needs.  
+  
+**Potential benefits**: Avoid potential disruptions and use new capabilities  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=azure-content-moderator-retirement)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: e30a6464-0e05-4d48-b604-741074db3aa3  
+Subcategory: undefined
+
+<!--e30a6464-0e05-4d48-b604-741074db3aa3_end-->
 
 <!--articleBody-->

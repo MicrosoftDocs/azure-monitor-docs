@@ -341,23 +341,23 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
-  - name: Map feature (deprecated)
-    items:
-    - name: Overview
-      href: vm/vminsights-maps.md
-    - name: Retirement guidance
-      displayName: processes and dependencies, map, vminsights, dependency agent
-      href: vm/vminsights-maps-retirement.md
-    - name: Dependency agent
+    - name: Map feature (deprecated)
       items:
-      - name: Manage
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent.md
-      - name: Uninstall
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent-uninstall.md
-    - name: Query map data
-      href: vm/vminsights-log-query.md
+      - name: Overview
+        href: vm/vminsights-maps.md
+      - name: Retirement guidance
+        displayName: processes and dependencies, map, vminsights, dependency agent
+        href: vm/vminsights-maps-retirement.md
+      - name: Dependency agent
+        items:
+        - name: Manage
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent.md
+        - name: Uninstall
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent-uninstall.md
+      - name: Query map data
+        href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
@@ -421,8 +421,6 @@ items:
         items:
         - name: Collect and analyze OpenTelemetry data with Azure Monitor
           href: containers/collect-use-observability-data.md
-        - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
-          href: containers/opentelemetry-protocol-ingestion.md
         - name: Monitor AKS applications with OpenTelemetry Protocol (OTLP)
           href: containers/kubernetes-open-protocol.md
     - name: Analyze data
@@ -694,6 +692,10 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
+  - name: Collect OpenTelemetry
+    items:
+    - name: Ingest OpenTelemetry Protocol (OTLP) signals into Azure Monitor
+      href: containers/opentelemetry-protocol-ingestion.md
   - name: Diagnostic Settings
     items:
     - name: Create or edit
@@ -1221,14 +1223,24 @@ items:
           href: visualize/workbooks-multi-value.md
       - name: Workbook result limits
         href: visualize/workbooks-limits.md
-    - name: Access Troubleshooting guides
-      href: visualize/workbooks-access-troubleshooting-guide.md
     - name: Workbook Samples
       href: visualize/workbooks-samples.md
-    - name: Troubleshoot insights
-      href: visualize/troubleshoot-workbooks.md
-    - name: Dashboard Preview
-      href: visualize/workbooks-dashboard-preview.md
+    - name: Previews
+      items:
+      - name: Workbooks preview overview
+        href: visualize/workbooks-preview.md
+      - name: Dashboard preview
+        href: visualize/workbooks-dashboard-preview.md
+      - name: Use Copilot with Workbooks
+        href: visualize/workbooks-copilot-overview.md
+    - name: Troubleshooting
+      items:
+      - name: Access troubleshooting guides
+        href: visualize/workbooks-access-troubleshooting-guide.md
+      - name: Troubleshoot insights
+        href: visualize/troubleshoot-workbooks.md
+      - name: Troubleshoot Copilot for Workbooks
+        href: visualize/workbooks-copilot-troubleshoot.md
   - name: Azure Monitor Dashboards
     items:
     - name: Dashboard using log data
@@ -1359,8 +1371,6 @@ items:
           href: logs/api/errors.md
         - name: Migrate from using batch and beta query APIs
           href: logs/api/migrate-batch-and-beta.md
-  - name: Get the Activity log using the REST API
-    href: platform/rest-activity-log.md
 - name: Respond
   items:
   - name: Alerts
@@ -1664,7 +1674,7 @@ items:
     items:
     - name: App Center migration (Preview)
       href: app/app-center-migration.md
-    - name: Application Insights SDK (Classic API)
+    - name: Application Insights SDK (Classic API 2.x)
       href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
