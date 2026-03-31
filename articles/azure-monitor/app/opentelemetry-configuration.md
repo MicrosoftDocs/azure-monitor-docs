@@ -344,7 +344,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
     ```
 
 > [!NOTE]
-> If you set the cloud role name and cloud role instance in more than one place, we adhere to the following precedence:
+> If you set the cloud role name and cloud role instance in more than one place, the following precedence order applies:
 > 1. System property
 > 2. Environment Variable
 > 3. Configuration File
@@ -535,7 +535,7 @@ For configuration options and examples, see [Configure sampling overrides](java-
 The following examples show how to configure sampling using environment variables.
 
 > [!NOTE]
-> The following examples are not valid for Java. Please see the previous Java tab for the correct environment variables.
+> The following examples aren't valid for Java. For the correct environment variables, see the previous Java tab.
 
 **Fixed-percentage sampling (~10%)**
 
@@ -683,7 +683,7 @@ configure_azure_monitor(
 ---
 
 > [!TIP]
-> When using fixed-percentage sampling and you're not sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+> When using fixed-percentage sampling and you're not sure what value to set for the sampling rate, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 
 ### Configure sampling in the configuration file
 
@@ -750,7 +750,7 @@ Java native doesn't support configuring sampling in a configuration file. To con
 
 Starting from 1.16.0, **rate‑limited sampling is the default**.
 
-Sampling can be set using the configuration file *applicationinsights.json* located under the root folder of the @azure/monitor-opentelemetry package installation folder, for example *node_modules/@azure/monitor-opentelemetry*. These configuration values will be applied to all `AzureMonitorOpenTelemetryClient` instances.
+Set the sampling configuration in the *applicationinsights.json* file. This file is located under the root folder of the @azure/monitor-opentelemetry package installation folder, such as *node_modules/@azure/monitor-opentelemetry*. All `AzureMonitorOpenTelemetryClient` instances use these configuration values.
 
 #### Fixed percentage sampling
 
@@ -776,7 +776,7 @@ Python doesn't support configuring sampling in a configuration file. To configur
 
 ### Configure trace-based sampling for logs
 
-When you enable this feature, the system drops log records that belong to **unsampled traces** so that your logs stay aligned with trace sampling.
+When you enable this feature, the system drops log records that belong to **unsampled traces** so your logs stay aligned with trace sampling.
 
 * A log record is part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the feature **drops** the log record.

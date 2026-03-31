@@ -2286,7 +2286,7 @@ configure_azure_monitor(
 
 ## Get the trace ID or span ID
     
-You can obtain the `Trace ID` and `Span ID` of the currently active Span using following steps.
+You can get the `Trace ID` and `Span ID` for the currently active span by using the following steps.
 
 ### [ASP.NET Core](#tab/aspnetcore)
 
