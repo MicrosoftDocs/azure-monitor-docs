@@ -59,7 +59,7 @@ On this panel you set up:
 - **Scope** - select the scope level by *subscription*.
 - **Condition** - select the *Services*, *Regions*, and *Event types* from the drop-down menus.
 - **Details** - select the *Resource group* and then create an *Alert rule name*.
-- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
+- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role*, and if needed, the *Azure mobile app notification*.
     
 >[!TIP]
 > Select **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
