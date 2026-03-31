@@ -141,6 +141,10 @@ items:
             href: supported-metrics/microsoft-dbforpostgresql-flexibleservers-metrics.md
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-metrics/microsoft-dbforpostgresql-servergroupsv2-metrics.md
+          - name: Microsoft.DBforPostgreSQL/servers
+            href: supported-metrics/microsoft-dbforpostgresql-servers-metrics.md
+          - name: Microsoft.DBforPostgreSQL/serversv2
+            href: supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md
           - name: Microsoft.DevCenter/devcenters
             href: supported-metrics/microsoft-devcenter-devcenters-metrics.md
           - name: microsoft.deviceregistry/namespaces
@@ -741,6 +745,13 @@ items:
               SQL Text
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-logs/microsoft-dbforpostgresql-servergroupsv2-logs.md
+            displayName: PostgreSQL Server Logs
+          - name: Microsoft.DBforPostgreSQL/servers
+            href: supported-logs/microsoft-dbforpostgresql-servers-logs.md
+            displayName: PostgreSQL Server Logs,PostgreSQL Query Store Runtime
+              Statistics,PostgreSQL Query Store Wait Statistics
+          - name: Microsoft.DBforPostgreSQL/serversv2
+            href: supported-logs/microsoft-dbforpostgresql-serversv2-logs.md
             displayName: PostgreSQL Server Logs
           - name: Microsoft.DesktopVirtualization/appAttachPackages
             href: supported-logs/microsoft-desktopvirtualization-appattachpackages-logs.md
