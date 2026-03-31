@@ -8805,6 +8805,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/data-collection/pipeline-configure-clients.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
    "redirect_url": "/azure/azure-monitor/reference/tables-index",
    "redirect_document_id": false

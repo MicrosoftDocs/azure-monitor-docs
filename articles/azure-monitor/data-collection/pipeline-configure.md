@@ -22,7 +22,7 @@ For a new deployment, use this sequence:
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 1. If you need encrypted ingestion, configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure your client connections. See [Configure clients](./pipeline-configure-clients.md).
+1. Configure your client connections. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
 
 ## Prerequisites
@@ -111,7 +111,7 @@ In the Azure portal, navigate to the **Kubernetes services** menu and select you
 
 :::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
 
-Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Retrieve ingress endpoint](./pipeline-configure-clients.md#retrieve-ingress-endpoint) for retrieving this address from the client.
+Click on the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This is the external IP address and port that your clients will send data to. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md) for details on exposing the pipeline to external clients.
 
 ### Verify heartbeat
 
@@ -165,5 +165,5 @@ The extension should show a `Succeeded` provisioning state.
 
 - Continue with [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md) or [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md).
 - Expose the pipeline to external clients by using [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
-- Configure client connections in [Configure clients](./pipeline-configure-clients.md).
+- Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 - Modify data before it's sent to the cloud by using [pipeline transformations](./pipeline-transformations.md).

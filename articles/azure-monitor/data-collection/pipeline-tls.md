@@ -84,7 +84,7 @@ If your environment doesn't require encrypted ingestion, you can disable TLS and
 - Use the default certificate flow in [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
 - Use customer-managed certificates in [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
 - Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-- Configure client connections in [Configure clients to use Azure Monitor pipeline](./pipeline-configure-clients.md).
+- Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 
 

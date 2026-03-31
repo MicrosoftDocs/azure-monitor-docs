@@ -31,7 +31,7 @@ In a typical deployment:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster.
 - Clients send Syslog (including CEF) data to the pipeline.
-- (Preview) Clients send OpenTelemetry Protocol (OTLP) data to the pipeline.
+- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
@@ -45,14 +45,15 @@ Complete the shared prerequisites and cluster preparation steps in [Configure Az
 Use the following sequence for a new deployment:
 
 1. Complete the shared cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md) to prepare the cluster.
+1. Consider [pod placement](./pipeline-pod-placement.md) for the pipeline.
 1. Choose a configuration method for the pipeline:
      - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
      - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
-1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
+1. Expose the pipeline through a gateway so that external clients can reach the pipeline receivers to send data to them. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 1. If you need encrypted ingestion, configure TLS. See [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure connections for your clients to the cluster. See [Configure clients](./pipeline-configure-clients.md).
+1. Configure connections for your clients to the cluster. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
-1. After the core flow is working, review advanced or operational topics such as [Pod placement](./pipeline-pod-placement.md) and [Extension versions](./pipeline-extension-versions.md).
+1. After the core flow is working, review [Extension versions](./pipeline-extension-versions.md) for version details.
 
 ## Supported configurations
 

@@ -87,7 +87,7 @@ After deployment completes, use the shared verification steps in [Configure Azur
 
 ## Related articles
 
-- [Configure clients](./pipeline-configure-clients.md) to send data to the pipeline.
+- [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md) to expose the pipeline to external clients.
 - [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.
 - [Modify data before it's sent to the cloud](./pipeline-transformations.md).
 - [Set up a gateway](./pipeline-kubernetes-gateway.md) for clients outside the cluster.

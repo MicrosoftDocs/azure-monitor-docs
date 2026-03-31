@@ -196,6 +196,6 @@ The Azure Monitor pipeline supports three TLS modes:
 
 - Review the overview in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
 - Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-- Configure client connections in [Configure clients to use Azure Monitor pipeline](./pipeline-configure-clients.md).
+- Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 

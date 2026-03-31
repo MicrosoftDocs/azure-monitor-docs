@@ -465,4 +465,4 @@ Client B → 20.x.x.2:514 → Traefik instance 2 → [mTLS] → pipeline-2-servi
 
 - Continue the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Configure TLS by using [Transport Layer Security (TLS) in Azure Monitor pipeline](./pipeline-tls.md).
-- Configure your senders by using [Configure clients for Azure Monitor pipeline](./pipeline-configure-clients.md).
+- Configure your senders by using the gateway endpoint exposed in this article.
