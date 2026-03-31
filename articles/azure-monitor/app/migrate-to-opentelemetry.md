@@ -166,7 +166,7 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryInitializers
 
-2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attribute-preview).
+2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attributes-preview).
 
 ## TelemetryProcessors
 
