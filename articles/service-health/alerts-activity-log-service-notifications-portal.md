@@ -62,7 +62,7 @@ On this panel you set up:
 - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
     
 >[!TIP]
-> We recommend selecting **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
+> Select **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
 
 3. Select **Create** to finish the alert. If you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
 
