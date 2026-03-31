@@ -24,7 +24,7 @@ This billing change applies only to platform log categories that are **not eligi
 
 No.
 
-Some platform log categories remain eligible for **free export**.
+Some platform log categories remain eligible for **free export**. Billing for certain platform logs depends on both the selected log category and the destination to which logs are exported using diagnostic dettings
 
 Only platform logs that are:
 - Not eligible for free export  
