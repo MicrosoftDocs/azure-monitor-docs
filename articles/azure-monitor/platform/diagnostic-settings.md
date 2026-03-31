@@ -258,7 +258,7 @@ To work around the limitations for specific metrics, you can manually extract th
 
 ## Controlling costs
 
-There might be a cost for data that diagnostic settings collect. The cost depends on the destination that you choose and the volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
+You might incur costs for data that diagnostic settings collect. The cost depends on the destination that you choose and the volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
 
 Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because this data is already being collected in **Metrics**. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis with log queries.
 
