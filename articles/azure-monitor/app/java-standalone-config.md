@@ -153,7 +153,7 @@ To begin, create a configuration file named *applicationinsights.json*. Save it 
 When a span is started, the type of span and the attributes present on it at that time are used to check if any of the sampling overrides match. Matches can be either `strict` or `regexp`. Regular expression matches are performed against the entire attribute value, so if you want to match a value that contains `abc` anywhere in it, then you need to use `.*abc.*`.
 
 A sampling override can specify multiple attribute criteria, in which case all of them must match for the sampling override to match. If one of the sampling overrides matches, then its sampling percentage is used to decide whether to sample the span or
-not. 
+not.
 
 Only the first sampling override that matches is used. If no sampling overrides match:
 
@@ -280,7 +280,7 @@ Since downstream spans (dependencies) respect the parent's sampling decision (ab
 <details>
 <summary><b>Exposing span attributes to suppress SQL dependency calls</b></summary>
 
-This example shows how to idenfity available attributes to suppress noisy SQL calls. The following query depicts the different SQL calls and associated record counts in the last 30 days: 
+This example shows how to identify available attributes to suppress noisy SQL calls. The following query depicts the different SQL calls and associated record counts in the last 30 days: 
 
 ```kusto
 dependencies

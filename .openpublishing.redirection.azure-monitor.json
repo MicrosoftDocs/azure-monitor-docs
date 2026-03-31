@@ -8994,7 +8994,7 @@
    "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processors-preview",
    "redirect_document_id": false
   },
-  { 
+  {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-dbforpostgresql-servers-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
