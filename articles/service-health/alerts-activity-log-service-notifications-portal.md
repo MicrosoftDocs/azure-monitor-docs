@@ -28,7 +28,7 @@ For more information about Roles and access permissions, see [Roles, permissions
 
 ## Service Health alerts overview
 
-Alerts are based on the type of notification, affected subscription, tenant directories, services, and regions. They're created using the Azure portal’s Service Health interface.
+Create alerts in the Azure portal by using the Service Health interface. The alerts are based on the type of notification, affected subscription, tenant directories, services, and regions.
 
 You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
 
@@ -54,12 +54,12 @@ For information on how to configure Service Health notification alerts by using 
 
 :::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
-On this panel you set up:
+On this panel, set up the following values:
 
 - **Scope** - select the scope level by *subscription*.
 - **Condition** - select the *Services*, *Regions*, and *Event types* from the drop-down menus.
 - **Details** - select the *Resource group* and then create an *Alert rule name*.
-- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
+- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role*, and if needed, the *Azure mobile app notification*.
     
 >[!TIP]
 > We recommend selecting **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
@@ -136,7 +136,7 @@ On the **Tags** tab, you can select tags and then assign a value for them. For m
 :::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review + create
-The **Review + Create** tab lets you review everything you selected. When you’re done, select *Create* to finish and create the alert.
+The **Review + Create** tab lets you review everything you selected. When you're, select *Create* to finish and create the alert.
 
 :::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
 
