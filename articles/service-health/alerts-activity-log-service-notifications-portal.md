@@ -133,7 +133,7 @@ Here you can select **Advanced options** to set up your own *Custom properties* 
 
 On the **Tags** tab, you can select tags and then assign a value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
-:::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
+:::image type="content" source="media/create-alerts/service-health-alert-tags.png" alt-text="Screenshot of the Tags tab." Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review + create
 The **Review + Create** tab lets you review everything you selected. When you're, select *Create* to finish and create the alert.
