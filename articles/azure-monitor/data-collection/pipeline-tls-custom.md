@@ -40,7 +40,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: user@contoso.com
     # If the ACME server supports profiles, you can specify the profile name here.
     # See #acme-certificate-profiles below.
     profile: tlsserver

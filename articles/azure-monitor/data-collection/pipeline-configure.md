@@ -22,17 +22,19 @@ For a new deployment, use this sequence:
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 1. If you need encrypted ingestion, configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure your client connections. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
+1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md#add-a-new-client-to-an-existing-receiver).
 1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
 
 ## Prerequisites
 
 - An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
 - Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-- A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
 - An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
   - `Microsoft.Insights`
   - `Microsoft.Monitor`
+- A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+- A DCR and DCE is required. These are created automatically when you create a pipeline and dataflow using the Azure portal. [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) includes steps to create these.
+- (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](/azure/azure-monitor/logs/data-collection-create-custom-table).
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
@@ -91,8 +93,8 @@ Select the approach that fits your needs:
 
 | Method | When to use | Key features |
 |--------|-------------|--------------|
-| **[Azure portal](./pipeline-configure-portal.md)** | • Getting started<br>• Simple configurations<br>• Quick deployment | • Guided UI experience<br>• Automatic component creation<br>• Built-in validation |
-| **[CLI/ARM templates](./pipeline-configure-cli.md)** | • Advanced scenarios<br>• Automation needed<br>• Custom requirements | • Full configuration control<br>• Caching support<br>• Custom tables<br>• Infrastructure as code |
+| **[Azure portal](./pipeline-configure-portal.md)** | * Getting started<br>* Simple configurations<br>* Quick deployment | * Guided UI experience<br>* Automatic component creation<br>* Built-in validation |
+| **[CLI/ARM templates](./pipeline-configure-cli.md)** | * Advanced scenarios<br>* Automation needed<br>* Custom requirements | * Full configuration control<br>* Caching support<br>* Custom tables<br>* Infrastructure as code |
 
 > [!TIP]
 > **New to Azure Monitor pipeline?** Start with the portal. You can always switch to CLI/ARM templates later for advanced features.

@@ -6,7 +6,7 @@ ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor pipeline TLS configuration (preview)
+# Azure Monitor pipeline TLS configuration
 
 Use this article to choose how to secure TCP-based ingestion for [Azure Monitor pipeline](./pipeline-overview.md). The pipeline supports TLS and mutual TLS (mTLS) for TCP-based receivers through two certificate management approaches:
 

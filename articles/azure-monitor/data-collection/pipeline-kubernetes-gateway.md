@@ -50,15 +50,16 @@ This procedure uses multiple YAML files to define configuration. Placeholders in
 
 
 ## Single gateway for a new pipeline group
-The cluster has no existing gateway or Azure Monitor pipeline. Deploy one gateway and one Azure Monitor pipeline group for the first time. This deployment might include TLS configuration for secure ingestion, but the same steps apply for non-TLS ingestion.
+
+The cluster starts with no existing gateway or Azure Monitor pipeline. Deploy one gateway to one Azure Monitor pipeline group to start with. This deployment might include a backend TLS config of server-only TLS or mutual TLS (mTLS) configuration to secure ingestion, but the same steps apply for non-TLS ingestion.
 
 ```text
 TLS-enabled:
-  Client ── TCP ──▶ Traefik ══ mTLS ══▶ Pipeline Service:514
+  Client ── TCP ──▶ Traefik ══ mTLS or TLS ══▶ Pipeline Service:514
 
 TLS-disabled:
   Client ── TCP ──▶ Traefik ── TCP ──▶ Pipeline Service:514
-```
+---
 
 
 > [!IMPORTANT]
@@ -78,7 +79,7 @@ helm show crds traefik/traefik | kubectl apply -f -
 
 #### [TLS enabled](#tab/tls-enabled)
 
-If the pipeline uses TLS, the gateway needs a client certificate so it can authenticate to the pipeline backend.
+If the pipeline uses mTLS, the gateway needs a client certificate so it can authenticate to the pipeline backend.
 
 Save the following as `certificates.yaml`:
 
