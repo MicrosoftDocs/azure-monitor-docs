@@ -260,7 +260,7 @@ To work around the limitations for specific metrics, you can manually extract th
 
 You might incur costs for data that diagnostic settings collect. The cost depends on the destination that you choose and the volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
 
-Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because this data is already being collected in **Metrics**. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis with log queries.
+Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because **Metrics** already collects this data. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis by using log queries.
 
 Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace by using transformations. For details, see [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
 
