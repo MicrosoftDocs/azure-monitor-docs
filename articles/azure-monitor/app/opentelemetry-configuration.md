@@ -421,10 +421,6 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 > * Sampling decisions apply to **traces** (spans).
 > * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
 > * **Metrics** are never sampled.
->
->
->
->
 
 > [!NOTE]
 > If you see unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -537,6 +533,9 @@ For configuration options and examples, see [Configure sampling overrides](java-
 ---
 
 The following examples show how to configure sampling using environment variables.
+
+> [!NOTE]
+> The following examples are not valid for Java. Please see the previous Java tab for the correct environment variables.
 
 **Fixed-percentage sampling (~10%)**
 
@@ -749,8 +748,25 @@ Java native doesn't support configuring sampling in a configuration file. To con
 
 # [Node.js](#tab/nodejs)
 
-Node.js doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
+Starting from 1.16.0, **rate‑limited sampling is the default**.
 
+Sampling can be set using the configuration file *applicationinsights.json* located under the root folder of the @azure/monitor-opentelemetry package installation folder, for example *node_modules/@azure/monitor-opentelemetry*. These configuration values will be applied to all `AzureMonitorOpenTelemetryClient` instances.
+
+#### Fixed percentage sampling
+
+```javascript
+{
+    "samplingRatio": 0.1, // ~10%
+}
+```
+
+#### Rate-limited sampling
+
+```javascript
+{
+    "samplingRatio": 1.5, // ~1.5 traces/sec
+}
+```
 
 # [Python](#tab/python)
 

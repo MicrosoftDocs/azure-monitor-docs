@@ -2282,7 +2282,6 @@ configure_azure_monitor(
 )
 ```
 
-
 ---
 
 ## Get the trace ID or span ID
