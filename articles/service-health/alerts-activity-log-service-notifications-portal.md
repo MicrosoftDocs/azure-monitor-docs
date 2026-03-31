@@ -21,7 +21,7 @@ When your alerts are created, you can view them on the Health alerts page. For m
 To create or edit an alert rule, you must have the following permissions:
 
 - Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created.
+- Write permission on the resource group in which you create the alert rule.
 - Read permission on any action group associated to the alert rule, if applicable.
 
 For more information about Roles and access permissions, see [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
