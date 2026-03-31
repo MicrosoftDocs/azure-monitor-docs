@@ -7,7 +7,7 @@ ms.date: 03/31/2026
 ms.author: shseth
 ---
 
-# Frequently Asked Questions – Platform Logs exported via Diagnostic Settings
+# Frequently asked questions – Platform logs exported through diagnostic settings
 
 ### Q : What is changing with platform logs exported through Diagnostic Settings?
 
