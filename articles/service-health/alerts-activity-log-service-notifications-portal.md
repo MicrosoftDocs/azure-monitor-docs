@@ -21,10 +21,10 @@ When your alerts are created, you can view them on the Health alerts page. For m
 To create or edit an alert rule, you must have the following permissions:
 
 - Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created.
+- Write permission on the resource group in which you create the alert rule.
 - Read permission on any action group associated to the alert rule, if applicable.
 
-For more information about Roles and access permissions, see [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
+For more information about roles and access permissions, see [Roles, permissions, and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
 ## Service Health alerts overview
 
@@ -62,9 +62,9 @@ On this panel, set up the following values:
 - **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role*, and if needed, the *Azure mobile app notification*.
     
 >[!TIP]
-> We recommend selecting **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
+> Select **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
 
-3. Select **Create** to finish the alert. If you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
+1. Select **Create** to finish the alert. If you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
 
 
 > [!NOTE]
