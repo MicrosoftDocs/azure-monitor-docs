@@ -344,7 +344,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
     ```
 
 > [!NOTE]
-> If you set the connection string in more than one place, we adhere to the following precedence:
+> If you set the cloud role name and cloud role instance in more than one place, we adhere to the following precedence:
 > 1. System property
 > 2. Environment Variable
 > 3. Configuration File
@@ -740,7 +740,7 @@ This example shows how to set the sampling to capture at most (approximately) on
 
 The `requestsPerSecond` value can be a decimal, so you can configure it to capture less than one request per second if you want. For example, a value of `0.5` means capture at most one request every 2 seconds.
 
-Set the sampling percentage by using the environment variable. It takes precedence over the rate limit specified in the JSON configuration.
+Set the rate limit by using the environment variable. It takes precedence over the rate limit specified in the JSON configuration.
 
 # [Java native](#tab/java-native)
 
