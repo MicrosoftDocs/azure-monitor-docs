@@ -21,7 +21,7 @@ To create or edit an alert rule, you need the following permissions:
 - **Read** permission on any action group associated with the alert rule, if applicable.
 
 
-## Create a Resource Health alert using PowerShell
+## Create a Resource Health alert by using PowerShell
 
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
