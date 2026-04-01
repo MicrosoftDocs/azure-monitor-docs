@@ -24,7 +24,7 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 - Access to `kubectl`, `helm`, and the target cluster.
 - Access to the Traefik Helm repository from the workstation that runs `helm`.
 - A deployed pipeline group and its Kubernetes service.
-- A namespace label that allows the pipeline trust bundle to be distributed.
+- A namespace label that allows the pipeline trust bundle to be distributed. Here's an example command:
   ```bash
   kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
   ```

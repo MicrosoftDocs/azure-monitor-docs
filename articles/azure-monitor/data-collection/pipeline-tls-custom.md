@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 Use this article when you want to manage certificates for Azure Monitor pipeline receivers yourself. For the automated option, see [Using automated certificate management](./pipeline-tls-automated.md).
 
-By using BYOC, you can:
+Advantages of BYOC::
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation
@@ -27,7 +27,7 @@ The following example uses Let's Encrypt, but you can use any supported external
 
 ### Create issuer resource for external PKI
 
-Save the following YAML to a file named `external-pki-issuer.yaml`.
+Save the following YAML to a file named *external-pki-issuer.yaml*.
 
 ```yml
 apiVersion: cert-manager.io/v1
@@ -86,7 +86,7 @@ spec:
   dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
 ```
 
-Apply the YAML to your cluster by using the following command. cert-manager adds the certificate and key to the `collector-server-tls` secret.
+Apply the YAML to your cluster by using the following command. The certificate manager adds the certificate and key to the `collector-server-tls` secret.
 
 ```bash
 kubectl apply -f azmonpipeline-server-cert.yaml

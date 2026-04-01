@@ -124,7 +124,7 @@ Apply the certificate:
 kubectl apply -f client-certificate.yaml
 ```
 
-Wait for cert-manager to issue the certificate (usually within seconds):
+Wait for the certificate manager to issue the certificate (usually within seconds):
 
 ```bash
 kubectl get certificate my-client-certificate -n <client-namespace> -w
@@ -132,7 +132,7 @@ kubectl get certificate my-client-certificate -n <client-namespace> -w
 
 ### Step 4: Extract Client Certificate and Key
 
-After cert-manager issues the certificate, extract the client certificate and private key:
+After the certificate manager issues the certificate, extract the client certificate and private key:
 
 ```bash
 # Extract client certificate
@@ -150,7 +150,7 @@ Use the extracted certificates to establish an mTLS connection.
 
 **Service DNS Names:**
 
-You can access the pipeline service through these DNS names, listed from most specific to least specific:
+Here are the DNS names the pipeline service can be acceessed by, listed from most specific to least specific:
 
 - `<pipeline-name>-service.<namespace>.svc.cluster.local` (fully qualified)
 - `<pipeline-name>-service.<namespace>.svc` (cross-namespace)
@@ -166,17 +166,17 @@ The following section provides example configurations that you can include in th
 
 The Azure Monitor pipeline supports three TLS modes:
 
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication.
-- **serverOnly**: TLS encryption without client certificate validation.
-- **disabled**: Plain text communication.
+- **mutualTls** (default): Full mTLS with both server and client certificate authentication
+- **serverOnly**: TLS encryption without client certificate validation
+- **disabled**: Plain text communication
 
 **Default TLS**: Enables TLS by using automated certificate management.
 
 ```json
-{			
-"name": "default-server-tls",			
-"mode": "serverOnly"			
-}	
+{                                                         
+"name": "default-server-tls",                                                         
+"mode": "serverOnly"                                                         
+}                   
 ```
 
 **Default TLS + BYOC mTLS**: Enables TLS by using automated certificate management and mTLS client authentication by using customer-managed certificates.
