@@ -161,7 +161,7 @@ The following table describes the specific configuration applied to each VM when
 | Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Configures metric-based recommended alerts |
 | Azure Update Manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
 | Azure Machine Configuration |- Installs extension (`Microsoft.GuestConfiguration.ConfigurationforLinux` or `Microsoft.GuestConfiguration.ConfigurationforWindows`)<br>- Applies the [Linux security baseline](/azure/governance/policy/samples/guest-configuration-baseline-linux) and [Windows security baseline](/azure/governance/policy/samples/guest-configuration-baseline-windows) in **Audit only** mode. |
-| Azure Change Tracking and Inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
+| Azure Change Tracking and Inventory | - Installs extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
 
 
