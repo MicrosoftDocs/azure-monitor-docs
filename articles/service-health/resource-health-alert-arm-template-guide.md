@@ -184,7 +184,7 @@ Select from the **Name** drop-down menu, and then choose the value from the **Va
 For more information about using tags, see [Use tags to organize your resources](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
 ## Review + Create
-This tab is where you have your final check before activating the alert. 
+Use this tab to perform your final check before activating the alert. 
 
 Review all the settings from **Scope**, **Condition**, **Actions**, **Tags**, and **Details** to make sure they're correct.
 
