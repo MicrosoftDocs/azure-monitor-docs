@@ -74,7 +74,7 @@ You can also select either or both boxes to include all future resource groups a
 
 ## Condition
 
-Use this tab to choose what you need to trigger your alert. You can set it to watch for changes in resource health status (Unavailable or Degraded), event status (Active or Resolved), or even specific reason types (platform vs. user actions). 
+Use this tab to choose what triggers your alert. Set it to watch for changes in resource health status (Unavailable or Degraded), event status (Active or Resolved), or specific reason types (platform vs. user actions). 
 
 Pick the conditions that matter most so you only get alerts when action is needed.
 
