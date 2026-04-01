@@ -7,7 +7,7 @@ ms.date: 03/20/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline with the Azure portal
+# Configure Azure Monitor pipeline in the Azure portal
 
 Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). The Azure portal is the quickest way to create a pipeline and its dataflows because it creates the required pipeline resources for you. If you need automation, caching, or more control over the deployed resources, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
@@ -27,10 +27,10 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Property | Description |
 |:---------|:------------|
 | Instance name | Name for the Azure Monitor pipeline instance. Must be unique in the subscription. |
-| Subscription | Azure subscription where the pipeline instance is created. |
-| Resource group | Resource group where the pipeline instance is created. |
-| Cluster name | Arc-enabled Kubernetes cluster where the pipeline is installed. |
-| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you can select another custom location on the cluster. |
+| Subscription | Azure subscription where the service creates the pipeline instance. |
+| Resource group | Resource group where the service creates the pipeline instance. |
+| Cluster name | Arc-enabled Kubernetes cluster where you install the pipeline. |
+| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you optionally select another custom location on the cluster. |
 
 When you're done, select **Next: Dataflows**.
 

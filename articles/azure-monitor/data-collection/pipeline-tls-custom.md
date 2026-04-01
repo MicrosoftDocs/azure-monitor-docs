@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 Use this article when you want to manage certificates for Azure Monitor pipeline receivers yourself. For the automated option, see [Using automated certificate management](./pipeline-tls-automated.md).
 
-Advantages of BYOC::
+Advantages of BYOC:
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation

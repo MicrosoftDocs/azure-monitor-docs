@@ -150,7 +150,7 @@ Use the extracted certificates to establish an mTLS connection.
 
 **Service DNS Names:**
 
-Here are the DNS names the pipeline service can be acceessed by, listed from most specific to least specific:
+Here are the accessible DNS names the pipeline service supports, listed from most specific to least specific:
 
 - `<pipeline-name>-service.<namespace>.svc.cluster.local` (fully qualified)
 - `<pipeline-name>-service.<namespace>.svc` (cross-namespace)
@@ -166,9 +166,9 @@ The following section provides example configurations that you can include in th
 
 The Azure Monitor pipeline supports three TLS modes:
 
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication
-- **serverOnly**: TLS encryption without client certificate validation
-- **disabled**: Plain text communication
+- **mutualTls** (default): Full mTLS with both server and client certificate authentication.
+- **serverOnly**: TLS encryption without client certificate validation.
+- **disabled**: Plain text communication.
 
 **Default TLS**: Enables TLS by using automated certificate management.
 

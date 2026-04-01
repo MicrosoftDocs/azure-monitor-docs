@@ -55,9 +55,9 @@ The pipeline automatically uses all available CPU cores per node. You don't need
 
 Calculate the resources you need for a target throughput by using these three steps:
 
-1. **Per-replica throughput** = per-vCPU throughput x cores available per node.
+1. **Per-replica throughput** = per-vCPU throughput × cores available per node.
 1. **Replicas needed** = target throughput / per-replica throughput (round up).
-1. **Memory per replica** = memory per vCPU x cores available per node.
+1. **Memory per replica** = memory per vCPU × cores available per node.
 
 Add 20-30% buffer to your resource allocation for production workloads. Each replica handles traffic independently, so running more replicas also improves fault tolerance.
 

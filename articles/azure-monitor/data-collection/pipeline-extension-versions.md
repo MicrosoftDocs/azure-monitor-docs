@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 This article describes the version details for the Azure Monitor pipeline Arc-enabled Kubernetes extension. This extension deploys the pipeline on Arc-enabled Kubernetes clusters in your on-premises, edge, hybrid, or multicloud environments.
 
-- Pipeline versions release once each month. If there are any critical bug fixes or security patches, the team might release additional hotfix versions.
+- The team releases pipeline versions once each month. If there are any critical bug fixes or security patches, the team might release additional hotfix versions.
 - The latest version rolls out over a fortnight, and you might see it in some regions before others.
 - You can manually install the release once it's available in your region.
 

@@ -83,7 +83,7 @@ No configuration required. Instances use default Kubernetes scheduling.
 
 ### Node labeling for team isolation
 
-Target nodes are dedicated to your observability team to avoid noisy neighbor problems. Multiple instances can run on the same dedicated node. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes by using the following command:
+Dedicate target nodes to your observability team to avoid noisy neighbor problems. The same dedicated node supports multiple running instances. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes by using the following command:
 
 ```azurecli
 kubectl label nodes <node-name> <key>=<value>
@@ -234,15 +234,15 @@ To identify problems when your pipeline instances stay in a pending state, try t
 
 1.  Check node availability by running `kubectl get nodes --show-labels`. Make sure nodes have the labels required by your constraints configuration.
 
-2.  Check pod events by running `kubectl describe pod <pod-name>`. Look for scheduling failure messages that show unmet constraints.
+1.  Check pod events by running `kubectl describe pod <pod-name>`. Look for scheduling failure messages that show unmet constraints.
 
-3.  Verify constraint configuration:
+1.  Verify constraint configuration:
 
     - Make sure capability names match actual node labels.
     - Confirm operator and values are correct.
     - Check for typos in label names or values.
 
-4.  If you use `maxInstancesPerHost: 1`, make sure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Run `kubectl get nodes -l <your-label-selector>` to count eligible nodes:
+1.  If you use `maxInstancesPerHost: 1`, make sure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Run `kubectl get nodes -l <your-label-selector>` to count eligible nodes:
 
 
 ## Common issues
