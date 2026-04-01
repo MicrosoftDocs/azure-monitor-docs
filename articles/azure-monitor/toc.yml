@@ -689,6 +689,8 @@ items:
     - name: Create or edit
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
+    - name: Frequently asked questions 
+      href: platform/diagnostic-settings-faq.md
     - name: Create with Azure Policy
       items:
       - name: Use built-in policy or initiative
