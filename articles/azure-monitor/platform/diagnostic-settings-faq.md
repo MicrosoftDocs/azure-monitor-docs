@@ -42,7 +42,7 @@ Billing for streaming platform logs started on **February 1, 2022** for select r
 
 ### Q : How can I determine if a platform log category is billable?
 
-Review the **"Costs to export"** column in the Azure Monitor documentation under:
+Review the **"Costs to export"** column in the [Azure Monitor resource logs documentation](/azure/azure-monitor/reference/logs-index) under:
 
 > Logs categories by resource type
 
@@ -51,11 +51,12 @@ Review the **"Costs to export"** column in the Azure Monitor documentation under
 
 ---
 
-### Q : What determines whether export charges apply?
+### Q : What determines whether export charges apply? Will this introduce new charges for logs I am already exporting today?
 
+Starting from May 2026, export charges may apply to platform log categories that were previously exported at no charge for certain Azure resource types.
 Export charges depend on:
-- The platform log category you select for the resource type  
-- The destination to which you export the logs
+- The platform **log category** you select for the **resource type**
+- The **destination** to which you export the logs
 
 ---
 
