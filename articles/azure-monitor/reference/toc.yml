@@ -141,6 +141,10 @@ items:
             href: supported-metrics/microsoft-dbforpostgresql-flexibleservers-metrics.md
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-metrics/microsoft-dbforpostgresql-servergroupsv2-metrics.md
+          - name: Microsoft.DBforPostgreSQL/servers
+            href: supported-metrics/microsoft-dbforpostgresql-servers-metrics.md
+          - name: Microsoft.DBforPostgreSQL/serversv2
+            href: supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md
           - name: Microsoft.DevCenter/devcenters
             href: supported-metrics/microsoft-devcenter-devcenters-metrics.md
           - name: microsoft.deviceregistry/namespaces
@@ -741,6 +745,13 @@ items:
               SQL Text
           - name: Microsoft.DBForPostgreSQL/serverGroupsv2
             href: supported-logs/microsoft-dbforpostgresql-servergroupsv2-logs.md
+            displayName: PostgreSQL Server Logs
+          - name: Microsoft.DBforPostgreSQL/servers
+            href: supported-logs/microsoft-dbforpostgresql-servers-logs.md
+            displayName: PostgreSQL Server Logs,PostgreSQL Query Store Runtime
+              Statistics,PostgreSQL Query Store Wait Statistics
+          - name: Microsoft.DBforPostgreSQL/serversv2
+            href: supported-logs/microsoft-dbforpostgresql-serversv2-logs.md
             displayName: PostgreSQL Server Logs
           - name: Microsoft.DesktopVirtualization/appAttachPackages
             href: supported-logs/microsoft-desktopvirtualization-appattachpackages-logs.md
@@ -2146,6 +2157,8 @@ items:
             href: tables/appevents.md
           - name: AppExceptions
             href: tables/appexceptions.md
+          - name: AppGenAIContent
+            href: tables/appgenaicontent.md
           - name: AppMetrics
             href: tables/appmetrics.md
           - name: AppPageViews
@@ -3084,6 +3097,12 @@ items:
             href: tables/securityrecommendation.md
           - name: SecurityRegulatoryCompliance
             href: tables/securityregulatorycompliance.md
+          - name: SentinelAlibabaCloudAPIGatewayLogs
+            href: tables/sentinelalibabacloudapigatewaylogs.md
+          - name: SentinelAlibabaCloudVPCFlowLogs
+            href: tables/sentinelalibabacloudvpcflowlogs.md
+          - name: SentinelAlibabaCloudWAFLogs
+            href: tables/sentinelalibabacloudwaflogs.md
           - name: SentinelAudit
             href: tables/sentinelaudit.md
           - name: SentinelBehaviorEntities
@@ -3092,6 +3111,8 @@ items:
             href: tables/sentinelbehaviorinfo.md
           - name: SentinelHealth
             href: tables/sentinelhealth.md
+          - name: SentinelImpervaWAFCloudV2Logs
+            href: tables/sentinelimpervawafcloudv2logs.md
           - name: ServiceFabricOperationalEvent
             href: tables/servicefabricoperationalevent.md
           - name: ServiceFabricReliableActorEvent
