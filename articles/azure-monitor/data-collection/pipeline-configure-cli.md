@@ -24,7 +24,7 @@ Use CLI or ARM templates when you need a repeatable deployment process or more c
 
 ## Configuration workflow
 
-Follow these tasks to configure a pipeline with CLI or ARM templates.
+Follow these tasks to configure a pipeline by using CLI or ARM templates.
 
 | Step | Purpose | Output |
 |:-----|:--------|:-------|
@@ -40,16 +40,16 @@ Follow these tasks to configure a pipeline with CLI or ARM templates.
 
 ## Prepare workspace tables
 
-Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. The Azure Monitor pipeline can send data to the following tables.
+Before you configure the data collection process for the pipeline, confirm or create the destination tables in the Log Analytics workspace. The Azure Monitor pipeline supports sending data to the following tables:
 
 - [Syslog](/azure/azure-monitor/reference/tables/syslog)
 - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-- Any custom table created in the Log Analytics workspace
+- Any custom table in the Log Analytics workspace
 
 
-If you're sending data to a custom table, then you need to create that table before you can create any data flows that send to it. The schema of the table must match the data that it receives. There are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
+If you're sending data to a new custom table, create that table before you create any data flows that send to it. The schema of the table must match the data that it receives but not necessarily the schema of the source data that you're collecting from. Multiple steps in the collection process allow you to modify the incoming data before it's received. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
 
-See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md) for details on different methods for creating a table. For example, use the CLI command below to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
+For details on different methods for creating a table, see [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md). For example, use the following CLI command to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
 
 ```azurecli
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name OTelLogs_CL --columns TimeGenerated=datetime Body=string SeverityText=string
@@ -107,7 +107,7 @@ az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pi
 ---
 
 ### Create a custom location
-An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc–enabled Kubernetes clusters as targetable locations for Azure resources.
+An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc-enabled Kubernetes clusters as targetable locations for Azure resources.
 
 ### [CLI](#tab/cli)
 
@@ -183,23 +183,23 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 ---
 
 ## Create a data collection rule (DCR)
-The DCR is stored in Azure Monitor and defines how the data is processed when Azure Monitor receives it from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
+Azure Monitor stores the DCR and defines how to process the data when it receives it from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
 
 ### Define the DCR
-The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created. DCRs are defined in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
+You need to create the DCR before you can create the pipeline configuration. The pipeline configuration needs the immutable ID of the DCR, which is automatically generated when you create the DCR. Define DCRs in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
 
 | Parameter | Description |
 |:----------|:------------|
 | `name` | Name of the DCR. Must be unique for the subscription. |
 | `location` | Location of the DCR. Must match the location of the DCE. |
 | `dataCollectionEndpointId` | Resource ID of the DCE that you previously created. |
-| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the following samples should be used for the OTLP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
-| `destinations` | Details of one or more Log Analytics workspaces where the data will be sent.
+| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the following samples should be used for the OTLP and Syslog data flows. If the schema for your destination table is different, modify it by using a transformation defined in the `transformKql` parameter. |
+| `destinations` | Details of one or more Log Analytics workspaces where the data is sent.
 | `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
 
 ### [CLI](#tab/cli)
-Replace the properties in the sample template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for further details on the structure of a DCR.
+Replace the properties in the sample template and save them in a JSON file before running the CLI command to create the DCR. For more information about the structure of a DCR, see [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md).
 
 ```azurecli
 az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
@@ -397,7 +397,7 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
 
-You'll require the object ID of your cluster's System Assigned Identity. Retrieve from the Azure portal or using the following CLI command:
+You need the object ID of your cluster's System Assigned Identity. Get it from the Azure portal or use the following CLI command:
 
 ```azurecli
 az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
@@ -411,7 +411,7 @@ az k8s-extension show --name my-pipeline-extension --cluster-name my-cluster --r
 
 ### [CLI](#tab/cli)
 
-Use the output from this command as input to the following command to give Azure Monitor pipeline the authority to send its telemetry to the DCR.
+Use the output from this command as input to the following command. It gives Azure Monitor pipeline the authority to send its telemetry to the DCR.
 
 ```azurecli
 az role assignment create --assignee "<extension principal ID>" --role "Monitoring Metrics Publisher" --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/<dcr-name>" 
@@ -446,7 +446,7 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 
 ## Create the pipeline configuration
 
-The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
+The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. Format the configuration in JSON, similar to the structure of a DCR. You can only install it by using an ARM template.
 
 #### Data sources
 To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown in the following samples. The incoming data is automatically converted to the appropriate format.
@@ -489,8 +489,8 @@ The following table describes the sections of the pipeline configuration and cri
 |:---------|:------------|
 | `name` | Name of the pipeline instance. Must be unique in the subscription. |
 | `location` | Location of the pipeline instance. |
-| `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
-| `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
+| `extendedLocation` | The `name` property includes the resource ID of the custom location created earlier. The `type` property is always `CustomLocation`.  |
+| `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it listens on, and a unique name that the `pipelines` section of the configuration uses. |
 | `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Species the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation, and you can customize the aggregation interval using the batch processor.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 | `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
 | `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if caching is enabled. |
@@ -1373,7 +1373,7 @@ The following table describes the sections of the pipeline configuration and cri
 
 ## Enable caching
 
-Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
+Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
 
 * Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
 * Access mode must support `ReadWriteMany`.
@@ -1383,10 +1383,10 @@ Edge devices in some environments may experience intermittent connectivity due t
 | persistence.RetentionPeriod (optional) | 2880 minutes (48 hours) | 2880 |
 | persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
 
-Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
+After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline retrieves data from the cache by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
 
 > [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
+> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.
 
 
 <details>

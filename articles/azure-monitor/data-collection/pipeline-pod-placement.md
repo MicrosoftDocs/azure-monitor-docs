@@ -8,7 +8,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline pod placement
 
-As Azure Monitor pipeline scales, default scheduling behavior in your Kubernetes environment may not meet your performance, isolation, or compliance needs. Pod placement allows you to manage how your [Azure Monitor pipeline instances](./pipeline-overview.md) are scheduled across Kubernetes cluster nodes. This feature allows you to target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
+As Azure Monitor pipeline scales, default scheduling behavior in your Kubernetes environment might not meet your performance, isolation, or compliance needs. Pod placement helps you manage how your [Azure Monitor pipeline instances](./pipeline-overview.md) are scheduled across Kubernetes cluster nodes. This feature helps you target specific nodes based on their capabilities, control instance distribution to prevent resource contention, and enforce isolation policies for high-scale deployments.
 
 ## When to use pod placement
 
@@ -21,7 +21,7 @@ Consider using pod placement configuration for the following capabilities:
 - **Optimize resource utilization** by distributing instances across availability zones.
 
 ## Configuration
-You can currently configure pod placement only by using ARM or Bicep templates, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties by using the following structure. If the `executionPlacement` property is omitted from the configuration, default Kubernetes scheduling behavior applies. The details for each field are described in the next section.
+You can currently configure pod placement only by using ARM or Bicep templates, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties by using the following structure. If you omit the `executionPlacement` property from the configuration, default Kubernetes scheduling behavior applies. The next section describes the details for each field.
 
 ```json
 {
@@ -36,7 +36,7 @@ You can currently configure pod placement only by using ARM or Bicep templates, 
 
 ### constraints
 
-The `constraints` field contains a list of objects that define where your pipeline instances should run. Instances will only be scheduled on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
+The `constraints` field contains a list of objects that define where your pipeline instances should run. The scheduler only schedules instances on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
 
 
 | Property | Type | Required | Description |
@@ -52,17 +52,17 @@ The `distribution` field contains the distribution policy for controlling how ma
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If no value is specified, then there's no limit per host. |
+| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If you don't specify a value, there's no limit per host. |
 
 The maximum instances per node applies only to replicas of the same pipeline group. Different pipelineGroups can share the same node.
 
     
 ## Deployment
-Execution placement rules are applied immediately when you create or update your pipeline group resource. If placement requirements cannot be satisfied, for example due to a bad configuration, your pipeline group instances will not deploy and will remain in a pending state. Updates to execution placement settings will redeploy instances of your pipeline group with the new constraints.
+Execution placement rules are applied immediately when you create or update your pipeline group resource. If placement requirements can't be satisfied, for example due to a bad configuration, your pipeline group instances aren't deployed and remain in a pending state. Updates to execution placement settings redeploy instances of your pipeline group with the new constraints.
 
 ## Automatic pod labeling
 
-A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` is configured. You don’t need to manually label pods since this is handled automatically.
+A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` is configured. You don't need to manually label pods since this process is handled automatically.
 
 ## Configuration examples
 
@@ -83,7 +83,7 @@ No configuration required. Instances use default Kubernetes scheduling.
 
 ### Node labeling for team isolation
 
-Target nodes dedicated to your observability team to avoid noisy neighbor issues. Multiple instances can run on the same dedicated node. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes with the following command:
+Target nodes dedicated to your observability team to avoid noisy neighbor problems. You can run multiple instances on the same dedicated node. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes by using the following command:
 
 ```azurecli
 kubectl label nodes <node-name> <key>=<value>
@@ -108,7 +108,7 @@ kubectl label nodes <node-name> <key>=<value>
 
 ### Zone-based placement
 
-Ensure your pipeline runs only in specific availability zones, which helps meet data residency or compliance requirements. In the following example, only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
+Ensure your pipeline runs only in specific availability zones. This restriction helps you meet data residency or compliance requirements. In the following example, only nodes in zones `us-east-1a` or `us-east-1b` are eligible.
 
 ```json
 {
@@ -128,7 +128,7 @@ Ensure your pipeline runs only in specific availability zones, which helps meet 
 
 ### Strict isolation with node labeling
 
-Combine node targeting with strict isolation. This approach allows exactly one instance per node, which is recommended for high-scale environments. It prevents port conflicts and ensures resource isolation. In the following example, only nodes labeled `workload-type=telemetry-processing` are eligible. Set the label of your choice on your nodes with the following command:
+Combine node targeting with strict isolation. This approach allows exactly one instance per node, which is recommended for high-scale environments. It prevents port conflicts and ensures resource isolation. In the following example, only nodes labeled `workload-type=telemetry-processing` are eligible. Set the label of your choice on your nodes by using the following command:
 
 ```azurecli
 kubectl label nodes <node-name> <key>=<value>
@@ -137,7 +137,7 @@ kubectl label nodes <node-name> <key>=<value>
 
 This strategy is recommended for the following use cases:
 
-- High-throughput environments requiring dedicated resources.
+- High-throughput environments that require dedicated resources.
 - Preventing node port exhaustion.
 - Ensuring predictable performance per instance.
 
@@ -230,25 +230,25 @@ Combine multiple constraints. All constraints must be satisfied for a node to be
 
 ## Troubleshooting
 
-Perform the following steps to identify issues if your pipeline instances remain in a pending state.
+To identify problems when your pipeline instances stay in a pending state, try the following steps:
 
-1.  Check node availability with the command `kubectl get nodes --show-labels`. Verify that nodes exist with the required labels from your constraints configuration.
+1.  Check node availability by running `kubectl get nodes --show-labels`. Make sure nodes have the labels required by your constraints configuration.
 
-2.  Check pod events with the command `kubectl describe pod <pod-name>`. Look for scheduling failure messages indicating unmet constraints.
+2.  Check pod events by running `kubectl describe pod <pod-name>`. Look for scheduling failure messages that show unmet constraints.
 
 3.  Verify constraint configuration:
 
-    - Ensure capability names match actual node labels.
+    - Make sure capability names match actual node labels.
     - Confirm operator and values are correct.
     - Check for typos in label names or values.
 
-4.  If using `maxInstancesPerHost: 1`, ensure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Use the command `kubectl get nodes -l <your-label-selector>` to count eligible nodes:
+4.  If you use `maxInstancesPerHost: 1`, make sure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Run `kubectl get nodes -l <your-label-selector>` to count eligible nodes:
 
 
 ## Common issues
 
 **Pods stuck in Pending state with message "0/N nodes are available"**
-The cluster doesn’t have enough nodes matching your placement constraints. Correct with one of the following actions.
+The cluster doesn't have enough nodes that match your placement constraints. Fix this problem by using one of the following solutions:
 
 - Add more nodes with the required labels.
 - Adjust your constraints to be less restrictive.
@@ -256,7 +256,7 @@ The cluster doesn’t have enough nodes matching your placement constraints. Cor
 
 **Configuration changes not applied**
 
-Execution placement changes require a rolling restart. Check the following.
+Execution placement changes require a rolling restart. Check the following items:
 
 - The pipeline group resource was successfully updated.
 - The operator is running and processing changes.
@@ -272,11 +272,11 @@ This setting only applies within a pipeline group.
 
 ## Kubernetes implementation details
 
-For advanced users and debugging, following are the affinity and anti-affinity rules in the [pod spec](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) resulting from pod placement.
+For advanced users and debugging, the following sections describe the affinity and anti-affinity rules in the [pod spec](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/) that result from pod placement.
 
 **Node Affinity (constraints)**
 
-Defined by `constraints`. Each constraint maps to a node affinity rule in the pod spec.
+The `constraints` property defines node affinity. Each constraint maps to a node affinity rule in the pod spec.
 
 ```yaml
 affinity:
@@ -291,7 +291,7 @@ affinity:
 
 **Pod Anti-Affinity**
 
-Defined by `maxInstancesPerHost`. This ensures pods with the same pipeline label value, which are replicas of the same pipelineGroup, cannot be scheduled on the same node.
+The `maxInstancesPerHost` property defines pod anti-affinity. This property ensures that pods with the same pipeline label value, which are replicas of the same pipelineGroup, aren't scheduled on the same node.
 
 ```yaml
 affinity:
@@ -312,6 +312,6 @@ affinity:
 
 ## Related articles
 
-- Learn about the service in [What is Azure Monitor pipeline?](./pipeline-overview.md).
-- Set up the service in [Configure Azure Monitor pipeline](./pipeline-configure.md).
-- Configure the pipeline by using [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+- Learn about the service in [What is Azure Monitor pipeline?](./pipeline-overview.md)
+- Set up the service in [Configure Azure Monitor pipeline](./pipeline-configure.md)
+- Configure the pipeline by using [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md)
