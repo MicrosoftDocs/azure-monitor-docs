@@ -154,7 +154,7 @@ For more information about Action groups, see [Action Groups](/azure/azure-monit
 
 
 ## Details
-The Details tab is where you name and describe your alert. This information is needed so you can easily identify the alert and understand its purpose immediately. 
+Use the **Details** tab to name and describe your alert. Provide this information so you can easily identify the alert and understand its purpose immediately. 
 
 A clear name and description help you manage multiple alerts, avoid confusion, and ensure the right alert is triggered for the right scenario.  
 
