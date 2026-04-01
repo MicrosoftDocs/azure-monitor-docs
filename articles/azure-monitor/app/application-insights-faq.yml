@@ -1838,7 +1838,7 @@ sections:
              * [Microsoft Entra authentication](../app/azure-ad-authentication.md)
              * [Offline Storage and Automatic Retries](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries)
              * [Application Insights Standard Metrics](../app/standard-metrics.md)
-             * Detect resource metadata to autopopulate [Cloud Role Name](../app/java-standalone-config.md#cloud-role-name) and [Cloud Role Instance](../app/java-standalone-config.md#cloud-role-instance) on various Azure environments
+             * Detect resource metadata to autopopulate [Cloud Role Name and Cloud Role Instance](../app/opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance) on various Azure environments
              * [Live Metrics](../app/live-stream.md)
 
           In the spirit of OpenTelemetry, we designed the distro to be open and extensible. For example, you can add:
