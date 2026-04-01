@@ -117,6 +117,7 @@ Each option is described in the following table.
 | **Run on-demand diagnostics** | Runs an on-demand report when the installation is complete. You can choose to run any of these reports later. See the list of reports and their description at [On-demand diagnostics](./performance-diagnostics.md#on-demand-diagnostics). |
 | **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account). |
 |[Authentication method](#authentication-methods)| Authentication method to use as described in [Authentication methods](#authentication-methods). |
+| **Threshold settings (Preview)** | Specify optional user-defined threshold values that override the default thresholds used by Performance Diagnostics to generate insights based on workload-specific resource usage patterns. |
 
 
 A notification is displayed as Performance Diagnostics starts to install, and you'll receive a second notification when it completes. This typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario is then run for the specified duration.
@@ -463,13 +464,39 @@ To download a report, select the container and then click **Download**.
 
 ### Change storage account
 
-To change storage accounts, open **Performance diagnostics** from the Azure portal as described in [Install Performance Diagnostics on a VM](#install-performance-diagnostics-on-a-vm). Select **Settings** to open the **Performance diagnostic settings** screen.
+To view or change the storage account for Performance Diagnostics, select **View or edit diagnostic settings** when running on-demand diagnostics or enabling continuous diagnostics. You can also view the configured storage account under the **Settings** page in Performance Diagnostics.
 
-:::image type="content" source="media/performance-diagnostics-run/performance-diagnostics-settings.png" alt-text="Screenshot of the Performance Diagnostics screen toolbar that shows the Settings button highlighted." lightbox="media/performance-diagnostics-run/performance-diagnostics-settings.png":::
-
-Select **Change storage account** to select a different storage account.
-
+<!-- TODO: Replace with updated screenshot from Pooja -->
 :::image type="content" source="media/performance-diagnostics-run/change-storage-settings.png" alt-text="Screenshot of the Performance Diagnostics settings screen on which you can change storage accounts." lightbox="media/performance-diagnostics-run/change-storage-settings.png":::
+
+## Threshold settings (Preview)
+
+Performance Diagnostics monitors CPU, memory, and disk usage to generate insights into virtual machine (VM) performance. Insights are generated when observed resource utilization exceeds or falls below threshold values during continuous or on-demand diagnostics runs.
+
+By default, predefined threshold values are used to determine when resource usage should be considered high or low. For workloads that operate at consistently elevated utilization levels, default thresholds might generate frequent insights that don't indicate abnormal system behavior.
+
+Threshold settings allow you to configure custom values for supported resource signals so that insights are generated only when usage deviates from the expected operating range of your workload. For example, if a virtual machine is expected to run at sustained CPU utilization, you can increase the configured CPU threshold so that insights are generated only when usage exceeds that level.
+
+You can configure threshold values for the following resource signals for both continuous and on-demand diagnostics.
+
+| Category | Threshold | Description | Continuous default | On-demand default |
+|:---|:---|:---|:---:|:---:|
+| CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
+| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 90 |
+| Memory | Available Memory (%) | Percentage of free system memory. Considered low when below this value. | 10 | 10 |
+| Memory | Commit in Use (%) | Percentage of committed memory in use. Considered high when this value is exceeded. | 90 | 90 |
+| Disk | IOPS Write (%) | Percentage of write I/O operations on a disk. Considered high when this value is exceeded for any disk. | 30 | 30 |
+| Disk | IOPS Read (%) | Percentage of read I/O operations on a disk. Considered high when this value is exceeded for any disk. | 40 | 40 |
+
+You can select **View or edit diagnostic settings** under **Threshold settings (Preview)** when installing Performance Diagnostics, running on-demand diagnostics, or enabling continuous diagnostics to configure threshold values.
+
+Threshold values remain in effect until they're updated again.
+
+<!-- TODO: Insert thresholds screen screenshot from Pooja -->
+
+You can also view the default and currently configured threshold values under the **Settings** page in Performance Diagnostics, and insights include the threshold values that were used to generate them.
+
+<!-- TODO: Insert settings screen screenshot from Pooja -->
 
 ## Uninstall Performance Diagnostics
 
