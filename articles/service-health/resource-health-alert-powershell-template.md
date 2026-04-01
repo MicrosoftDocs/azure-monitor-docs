@@ -18,7 +18,7 @@ To create or edit an alert rule, you need the following permissions:
 
 - **Read** permission on the target resource of the alert rule.
 - **Write** permission on the resource group where you create the rule.
-- **Read** permission on any action group associated to the alert rule, if applicable.
+- **Read** permission on any action group associated with the alert rule, if applicable.
 
 
 ## Create a Resource Health alert using PowerShell
