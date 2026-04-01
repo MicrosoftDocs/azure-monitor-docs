@@ -514,7 +514,7 @@ The following table describes the sections of the pipeline configuration and cri
             "location": "eastus2euap",
             "apiVersion": "2025-03-01-preview",
             "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resouce-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
             "name": "my-pipeline-eastus2euap",
@@ -1378,13 +1378,165 @@ Edge devices in some environments may experience intermittent connectivity due t
 * Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
 * Access mode must support `ReadWriteMany`.
 
+| Caching elements | Default value and units | Max value |
+|---|---|---|
+| persistence.RetentionPeriod (optional) | 2880 minutes (48 hours) | 2880 |
+| persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
+
 Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
 
 > [!CAUTION]
 > Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
 
 
+<details>
+<summary><b>Expand for caching sample using the previous Syslog configuration</b></summary>
 
+``` json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+        "description": "This template deploys an edge pipeline with caching for Azure Monitor."
+    },
+    "resources": [
+        {
+            "type": "Microsoft.monitor/pipelineGroups",
+            "location": "eastus2",
+            "apiVersion": "2026-04-01",
+            "extendedLocation": {
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "type": "CustomLocation"
+            },
+            "name": "my-pipeline-eastus2",
+            "properties": {
+                "receivers": [
+                    {
+                        "type": "Syslog",
+                        "name": "syslog-receiver",
+                        "syslog": {
+                            "endpoint": "0.0.0.0:514"
+                        }
+                    }
+                ],
+                "processors": [
+                    {
+                        "type": "MicrosoftSyslog",
+                        "name": "ms-syslog-processor"
+                    },
+                    {
+                        "type": "Batch",
+                        "name": "batch-processor",
+                        "batch": {
+                            "timeout": 60000
+                        }
+                    },
+                    {
+                        "type": "TransformLanguage",
+                        "name": "my-transform",
+                        "transformLanguage": {
+                            "transformStatement": "source"
+                        }
+                    }
+                ],
+                "exporters": [
+                    {
+                        "type": "AzureMonitorWorkspaceLogs",
+                        "name": "syslog-eus2",
+                        "azureMonitorWorkspaceLogs": {
+                            "api": {
+                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
+                                "dataCollectionRule": "dcr-00000000000000000000000000000000",
+                                "stream": "Custom-MyTableRawData_CL",
+                                "schema": {
+                                    "recordMap": [
+                                        {
+                                            "from": "attributes.CollectorHostName",
+                                            "to": "CollectorHostName"
+                                        },
+                                        {
+                                            "from": "attributes.Computer",
+                                            "to": "Computer"
+                                        },
+                                        {
+                                            "from": "attributes.EventTime",
+                                            "to": "EventTime"
+                                        },
+                                        {
+                                            "from": "attributes.Facility",
+                                            "to": "Facility"
+                                        },
+                                        {
+                                            "from": "attributes.HostIP",
+                                            "to": "HostIP"
+                                        },
+                                        {
+                                            "from": "attributes.HostName",
+                                            "to": "HostName"
+                                        },
+                                        {
+                                            "from": "attributes.ProcessID",
+                                            "to": "ProcessID"
+                                        },
+                                        {
+                                            "from": "attributes.ProcessName",
+                                            "to": "ProcessName"
+                                        },
+                                        {
+                                            "from": "attributes.SeverityLevel",
+                                            "to": "SeverityLevel"
+                                        },
+                                        {
+                                            "from": "attributes.SourceSystem",
+                                            "to": "SourceSystem"
+                                        },
+                                        {
+                                            "from": "attributes.SyslogMessage",
+                                            "to": "SyslogMessage"
+                                        },
+                                        {
+                                            "from": "attributes.TimeGenerated",
+                                            "to": "TimeGenerated"
+                                        }
+                                    ]
+                                }
+                            },
+                            "persistence": {
+                              "maxStorageUsage": 100,
+                              "retentionPeriod": 10
+                            }
+                        }
+                    }
+                ],
+                "service": {
+                    "pipelines": [
+                        {
+                            "name": "syslog-pipeline",
+                            "receivers": [
+                                "syslog-receiver"
+                            ],
+                            "processors": [
+                                "ms-syslog-processor",
+                                "batch-processor",
+                                "my-transform"
+                            ],
+                            "exporters": [
+                                "syslog-eus2"
+                            ],
+                            "type": "Logs"
+                        }
+                    ],
+                    "persistence": {
+                        "persistentVolumeName": "my-pv"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
+
+</details>
 
 ## Related articles
 

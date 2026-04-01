@@ -43,7 +43,7 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 | Property | Description |
 |:---------|:------------|
 | Name | Name for the dataflow. Must be unique for this pipeline. |
-| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP`. |
+| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP` (Preview). |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
 | Protocol<br>(Syslog only) | Whether the dataflow collects TCP or UDP traffic. |
 | RFC<br>(Syslog only) | Syslog message format to collect. `5424` is the newer structured format. `3164` is the older, less structured format. |
