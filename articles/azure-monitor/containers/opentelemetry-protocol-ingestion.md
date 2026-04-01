@@ -2,16 +2,16 @@
 title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 03/23/2026
+ms.date: 04/01/2026
 ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor with OTel Collector (Preview)
+# Ingest OTLP data into Azure Monitor by using OTel Collector (Preview)
 
-Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals, enabling you to send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
+Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals. You can send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
 > [!IMPORTANT]
-> * This feature is a **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
+> * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Overview
@@ -33,13 +33,13 @@ This article covers the OTel Collector method of collecting OTLP signals.
 
 ## Set up OTLP data ingestion
 
-You can configure OTLP data ingestion in Azure Monitor using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
+You can configure OTLP data ingestion in Azure Monitor by using one of two approaches. The Application Insights-based approach is recommended for most scenarios as it automates resource creation and enables built-in troubleshooting experiences.
 
 ### Option 1: Create an Application Insights resource with OTLP support (Recommended)
 
-This method automatically provisions all required Azure resources and configures their relationships, enabling you to use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
+This method automatically provisions all required Azure resources and configures their relationships. You can use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
-1. Register the Application Insights OTLP preview features and provider:
+1. Register the Application Insights OTLP preview features and provider.
 
     ```bash
     az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
@@ -56,12 +56,12 @@ This method automatically provisions all required Azure resources and configures
 
 1. Complete the resource creation process.
 
-1. After deployment, navigate to the **Overview** page of your Application Insights resource.
+1. After deployment, go to the **Overview** page of your Application Insights resource.
 
-1. Locate the **OTLP Connection Info** section and copy the following values:
+1. In the **OTLP Connection Info** section, copy the following values:
 
     * The Data Collection Rule (DCR) resource ID
-    * The endpoint URLs for traces, logs, and metrics (if using OpenTelemetry Collector)
+    * The endpoint URLs for traces, logs, and metrics (if you're using OpenTelemetry Collector)
     
     :::image type="content" source="./media/opentelemetry-protocol-ingestion/connection-info.png" lightbox="./media/opentelemetry-protocol-ingestion/connection-info.png" alt-text="Screenshot showing OTLP connection information on the Application Insights Overview page.":::
 
@@ -94,17 +94,12 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 #### Deploy the Data Collection Endpoint and Rule
 
 1. In the Azure portal, search for **Deploy a custom template** and select it.
-
 1. Select **Build your own template in the editor**.
-
 1. Copy the template content from the [Azure Monitor Community repository](https://github.com/microsoft/AzureMonitorCommunity/blob/master/Azure%20Services/Azure%20Monitor/OpenTelemetry/OTLP_DCE_DCR_ARM_Template.txt).
-
 1. Paste the template into the editor and update the parameters with your workspace resource IDs and (optionally) Application Insights resource ID.
-
+1. Update the metrics data collection endpoint stream name as `https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-OTel/otlp/v1/metrics`. In this example, the stream name from the community DCR template is used to create the URL. You can optionally change the stream name in the DCR definition and match it when creating the DCE name. The stream name should start with `Custom-Metrics-` followed by a letter and then any combination of alphanumeric characters, `-`, and `_`.
 1. Set the location to match your workspace region.
-
 1. Review and create the deployment.
-
 1. After deployment completes, navigate to the created DCR and copy its resource ID from the **Overview** page.
 
 ## Configure your OpenTelemetry Collector
@@ -141,9 +136,9 @@ For workload identities, service principals, or other Microsoft Entra identities
 
 ### Grant permissions to the Data Collection Rule
 
-The identity used by your collector needs permission to write data to your DCR:
+The identity your collector uses needs permission to write data to your DCR:
 
-1. Navigate to your DCR in the Azure portal.
+1. Go to your DCR in the Azure portal.
 
 1. Select **Access control (IAM)** in the left navigation.
 
@@ -165,11 +160,13 @@ The identity used by your collector needs permission to write data to your DCR:
 
 ### Construct endpoint URLs
 
-If you created your resources using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
+If you created your resources by using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
+
+You can optionally change the stream name in the Data Collection Rule (DCR) definition, but the stream name used in the DCR must exactly match the stream name used when constructing the Data Collection Endpoint (DCE) URL. The stream name must start with `Custom-Metrics-`, followed by a letter, and then any combination of alphanumeric characters, hyphens (`-`), or underscores (`_`). If you change the stream name, you must update all references to the stream name in the DCR template and ensure the DCE URL uses the same value.
 
 For manually orchestrated resources, construct the endpoint URLs:
 
-1. Navigate to your Data Collection Endpoint in the Azure portal.
+1. Go to your Data Collection Endpoint in the Azure portal.
 
 1. Select **JSON View** from the **Overview** page.
 
@@ -184,13 +181,13 @@ For manually orchestrated resources, construct the endpoint URLs:
     }
     ```
 
-1. Navigate to your Data Collection Rule and copy the **Immutable ID** from the **Overview** page.
+1. Go to your Data Collection Rule and copy the **Immutable ID** from the **Overview** page.
 
-1. Construct your endpoint URLs using this pattern:
+1. Construct your endpoint URLs by using this pattern:
 
     **Metrics endpoint:**
     ```
-    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics
+    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-OTel/otlp/v1/metrics
     ```
     
     **Logs endpoint:**
@@ -255,11 +252,11 @@ service:
 ```
 
 > [!IMPORTANT]
-> - Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> - Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 >
 > - If you emit OTLP metrics from an OpenTelemetry SDK, configure your OTLP exporter to produce the metrics with delta temporality. For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
 >
-> - If OTLP metrics received by the OpenTelemetry collector are in cumulative temporality, add `processors: [cumulativetodelta]` to the metrics section of the OpenTelemetry collector config to convert to delta. For more information, see [cumulativetodeltaprocessor on GitHub](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/cumulativetodeltaprocessor).
+> - If the OpenTelemetry collector receives OTLP metrics in cumulative temporality, add `processors: [cumulativetodelta]` to the metrics section of the OpenTelemetry collector config to convert to delta. For more information, see [cumulativetodeltaprocessor on GitHub](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/processor/cumulativetodeltaprocessor).
 
 ## Next steps
 

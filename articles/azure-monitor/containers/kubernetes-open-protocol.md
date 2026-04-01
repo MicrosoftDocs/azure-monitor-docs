@@ -2,7 +2,7 @@
 title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 03/30/2026
+ms.date: 04/01/2026
 ms.reviewer: kaprince
 ---
 
@@ -22,6 +22,7 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 - Onboard applications at the namespace or deployment scope by using either:
   - **Autoinstrumentation** with the Azure Monitor OpenTelemetry distribution.
   - **Autoconfiguration** for applications already instrumented with the open-source OpenTelemetry Software Development Kits (SDKs).
+    - Autoconfiguration applies only to applications that are already instrumented with OpenTelemetry. When you select autoconfiguration, Azure Monitor doesn't add instrumentation to your application. Instead, it sets environment variables at the platform level so existing OpenTelemetry SDKs export telemetry to Application Insights. You're responsible for instrumenting the application (for example, by using OpenTelemetry SDKs or annotations) before you enable autoconfiguration.
 
 Telemetry flows to **Application Insights**, where you analyze application performance in context with Container Insights.
 
@@ -170,6 +171,15 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 > [!TIP]
 > After a few minutes, telemetry appears in the connected Application Insights resource.
 
+
+> [!IMPORTANT]
+> Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+>
+> When using AKS auto-instrumentation or auto-configuration, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. No additional user configuration is required.
+>
+> For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
+
+
 ## 5. View application signals in Container Insights
 
 Explore application performance in the context of your cluster using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
@@ -218,21 +228,23 @@ metadata:
 
 ## Limitations
 
-The following Azure regions are supported during the preview:
+During the preview, the feature supports the following Azure regions:
 
-* westcentralus
-* eastasia
-* uksouth
-* eastus
-* australiaeast
-* brazilsouth
-* canadacentral
+* West Central US
+* East Asia
+* UK South
+* East US
+* Australia East
+* Brazil South
+* Canada Central
+
+If you need programmatic names for these regions, see [Azure regions list](/azure/reliability/regions-list?tabs=all#azure-regions-list-1).
 
 ### Limits
 
-- Accepts **OTLP/HTTP** with **binary Protobuf** only. JSON payloads and **OTLP/gRPC** aren't supported. Configure your OTLP exporter accordingly.
-- Supports a maximum of **30** Data Collection Rule (DCR) associations per AKS cluster.
-- Tested scale for logs and traces is **50,000 events per second (EPS)**. Expect approximately **250 MiB** extra memory usage and **0.5 vCPU** per cluster for this feature.
+- The feature accepts only **OTLP/HTTP** with **binary Protobuf**. It doesn't support JSON payloads or **OTLP/gRPC**. You need to configure your OTLP exporter accordingly.
+- The feature supports up to **30** Data Collection Rule (DCR) associations per AKS cluster.
+- The tested scale for logs and traces is **50,000 events per second (EPS)**. You can expect approximately **250 MiB** extra memory usage and **0.5 vCPU** per cluster for this feature.
 
 ### Unsupported scenarios
 

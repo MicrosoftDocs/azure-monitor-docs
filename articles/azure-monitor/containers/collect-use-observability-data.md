@@ -3,7 +3,7 @@ title: Collect and analyze OpenTelemetry data with Azure Monitor (Preview)
 description: Onboard OpenTelemetry Protocol (OTLP) signals to Azure Monitor for AKS and other environments. Learn the supported onboarding paths and how to use Dashboards with Grafana, Application Insights experiences, and Log Analytics with OpenTelemetry semantic conventions.
 ms.topic: how-to
 ms.reviewer: kaprince
-ms.date: 03/30/2026
+ms.date: 04/01/2026
 ---
 
 # Use OpenTelemetry with Azure Monitor (Preview)
@@ -60,6 +60,13 @@ For more information, see [Ingest OpenTelemetry Protocol signals into Azure Moni
 
 After onboarding, use the following experiences to investigate and visualize your telemetry.
 
+> [!IMPORTANT]
+> Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+>
+> When you use AKS auto-instrumentation or auto-configuration, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. You don't need to provide any extra configuration.
+>
+> For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
+
 ### Use Application Insights troubleshooting and diagnostics
 
 - [Investigate **distributed traces** end-to-end and correlate requests, dependencies, and failures](../app/failures-performance-transactions.md). Most Application Insights experiences continue to work with OTel data, such as **Performance**, **Failures**, **Search**, and **end-to-end transaction** views.
@@ -78,10 +85,10 @@ For more information, see [Dashboards with Grafana in Application Insights](../a
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
-### Query logs and traces with OpenTelemetry semantic conventions
+### Query logs and traces by using OpenTelemetry semantic conventions
 
-- Use **Kusto Query Language (KQL)** in **Log Analytics** to query logs and traces stored with an **OpenTelemetry semantic conventions–based schema**.
-- Filter and aggregate with familiar OpenTelemetry attributes and span kinds.
+- Use **Kusto Query Language (KQL)** in **Log Analytics** to query logs and traces stored by using an **OpenTelemetry semantic conventions–based schema**.
+- Filter and aggregate by using familiar OpenTelemetry attributes and span kinds.
 - Join metrics, logs, and traces for correlated analysis.
 
 For more information, see [OpenTelemetry semantic conventions](https://opentelemetry.io/docs/specs/semconv/) and [Application Insights telemetry data model](../app/data-model-complete.md).
