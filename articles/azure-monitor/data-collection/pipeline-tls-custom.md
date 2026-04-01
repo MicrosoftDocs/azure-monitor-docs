@@ -169,7 +169,7 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
 ```json
 {
   "type": "Microsoft.Monitor/pipelineGroups",
-  "apiVersion": "2025-03-01-preview",
+  "apiVersion": "2026-04-01",
   "name": "byoc-cm-pipeline-arm",
   "location": "eastus2",
   "properties": {
@@ -214,7 +214,7 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
 param name string = 'byoc-sample'
 param location string = resourceGroup().location
 
-resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
+resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2026-04-01' = {
   name: '${name}-pipeline'
   location: location
   properties: {

@@ -34,7 +34,7 @@ For a new deployment, use this sequence:
   - `Microsoft.Monitor`
 - A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
 - A DCR and DCE is required. These are created automatically when you create a pipeline and dataflow using the Azure portal. [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) includes steps to create these.
-- (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](/azure/azure-monitor/logs/data-collection-create-custom-table).
+- (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md).
 
 ## Install cert-manager for Arc-enabled Kubernetes
 

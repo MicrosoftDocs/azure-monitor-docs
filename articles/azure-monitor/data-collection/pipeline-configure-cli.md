@@ -512,7 +512,7 @@ The following table describes the sections of the pipeline configuration and cri
         {
             "type": "Microsoft.monitor/pipelineGroups",
             "location": "eastus2euap",
-            "apiVersion": "2025-03-01-preview",
+            "apiVersion": "2026-04-01",
             "extendedLocation": {
                 "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
@@ -654,7 +654,7 @@ The following table describes the sections of the pipeline configuration and cri
         {
             "type": "Microsoft.monitor/pipelineGroups",
             "location": "eastus2",
-            "apiVersion": "2025-03-01-preview",
+            "apiVersion": "2026-04-01",
             "extendedLocation": {
                 "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
