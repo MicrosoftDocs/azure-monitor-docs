@@ -17,7 +17,7 @@ Resource Health alerts notify you when your Azure resources experience a change 
 To create or edit an alert rule, you need the following permissions:
 
 - **Read** permission on the target resource of the alert rule.
-- **Write** permission on the resource group in which you create the rule.
+- **Write** permission on the resource group where you create the rule.
 - **Read** permission on any action group associated to the alert rule, if applicable.
 
 
