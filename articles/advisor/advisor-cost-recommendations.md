@@ -38,13 +38,13 @@ Advisor recommends resizing virtual machines when it's possible to fit the curre
 * Metrics are sampled every 30 seconds, aggregated to 1 minute, and then further aggregated to 30 minutes (taking the max of average values while aggregating to 30 minutes). On virtual machine scale sets, the metrics from individual virtual machines are aggregated using the average of the metrics for instance count recommendations, and aggregated using the max of the metrics for SKU change recommendations.
 
 * An appropriate SKU (for virtual machines) or instance count (for virtual machine scale set resources) is determined based on the following criteria:
-  * Performance of the workloads on the new SKU won't be impacted.
+  * Performance of the workloads on the new SKU isn't impacted.
     * Target for user-facing workloads:
       * P95 of CPU and Outbound Network utilization at 40% or lower on the recommended SKU
-      * P100 of Memory utilization at 60% or lower on the recommended SKU
+      * P99 of Memory utilization at 60% or lower on the recommended SKU
     * Target for non user-facing workloads:
       * P95 of the CPU and Outbound Network utilization at 80% or lower on the new SKU
-      * P100 of Memory utilization at 80% or lower on the new SKU
+      * P99 of Memory utilization at 80% or lower on the new SKU
   * The new SKU, if applicable, has the same Accelerated Networking and Premium Storage capabilities
   * The new SKU, if applicable, is supported in the current region of the Virtual Machine with the recommendation
   * The new SKU, if applicable, is less expensive
