@@ -9,12 +9,12 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure a Kubernetes gateway for Azure Monitor pipeline
 
-Azure Monitor pipeline services are deployed as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
+Azure Monitor pipeline services deploy as Kubernetes `ClusterIP` services, so clients outside the cluster can't reach them directly. A gateway exposes the receiver endpoint to external clients such as network devices, firewalls, and other telemetry sources.
 
 This article shows how to deploy and manage a Traefik gateway for Azure Monitor pipeline. It covers a first deployment, adding a receiver to an existing gateway, onboarding another client to an existing receiver, and deploying another pipeline group on the same cluster.
 
 > [!NOTE]
-> Traefik is used in this article as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
+> This article uses Traefik as an example gateway implementation. You can use another gateway if it can expose the pipeline service to external clients and meet your security and routing requirements.
 >
 > This guidance assumes the cluster can deploy Kubernetes `LoadBalancer` services successfully, such as on a supported cloud provider like Azure.
 
@@ -24,7 +24,7 @@ This article shows how to deploy and manage a Traefik gateway for Azure Monitor 
 - Access to `kubectl`, `helm`, and the target cluster.
 - Access to the Traefik Helm repository from the workstation that runs `helm`.
 - A deployed pipeline group and its Kubernetes service.
-- A namespace label that allows the pipeline trust bundle to be distributed:
+- A namespace label that allows the pipeline trust bundle to be distributed.
   ```bash
   kubectl label namespace <pipeline-namespace> arc-amp-trust-bundle=true
   ```
@@ -86,7 +86,7 @@ Save the following as `certificates.yaml`:
 ```yaml
 # certificates.yaml
 # Creates a short-lived client certificate that the gateway presents to the
-# pipeline when dialing the mTLS backend.
+# Pipeline when dialing the mTLS backend.
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -139,7 +139,7 @@ Save the following as `routing.yaml`.
 # routing.yaml
 # Create one copy of each resource per receiver/port combination.
 # For example, a pipeline exposing both syslog (514) and OTLP (4317) requires
-# two ServersTransportTCP + IngressRouteTCP pairs.
+# Two ServersTransportTCP and IngressRouteTCP pairs
 ---
 apiVersion: traefik.io/v1alpha1
 kind: ServersTransportTCP

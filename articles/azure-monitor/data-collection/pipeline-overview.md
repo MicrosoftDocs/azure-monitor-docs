@@ -67,11 +67,11 @@ For more information, see [Product availability by region](https://azure.microso
 
 The following diagram shows a typical Azure Monitor pipeline deployment.
 
-- The pipeline is deployed in third-party clouds, and any physical locations with devices and applications to collect data from.
-- The pipeline is deployed on an Arc-enabled Kubernetes cluster at each location and in each third-party cloud provider.
-- Data sources include the following:
-    - Syslog being collected from sources such as network devices and agents running on local servers. Collected by default on TCP port 514.
-    - OpenTelemetry (OTLP) being collected from applications. Collected by default on TCP port 4317.
+- You deploy the pipeline in third-party clouds, and any physical locations with devices and applications to collect data from.
+- You deploy the pipeline on an Arc-enabled Kubernetes cluster at each location and in each third-party cloud provider.
+- Data sources include the following sources:
+    - Syslog collected from sources such as network devices and agents running on local servers. It's collected by default on TCP port 514.
+    - OpenTelemetry (OTLP) collected from applications. It's collected by default on TCP port 4317.
 - The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor. 
 - Once data is collected from the pipeline, it's available to any Azure Monitor features accessing that data.
 

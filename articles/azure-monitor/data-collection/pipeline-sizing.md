@@ -11,7 +11,7 @@ ms.custom: references_regions
 
 # Best practices for sizing Azure Monitor pipeline
 
-Azure Monitor pipeline is CPU-bound and scales linearly with available cores. This article provides throughput baselines, scaling strategies, and capacity planning examples to help you size a pipeline deployment for your environment.
+The Azure Monitor pipeline is CPU-bound and scales linearly with available cores. This article provides throughput baselines, scaling strategies, and capacity planning examples to help you size a pipeline deployment for your environment.
 
 Use these baselines alongside the [Azure Monitor pipeline overview](./pipeline-overview.md) and [Configure Azure Monitor pipeline](./pipeline-configure.md) to plan your deployment.
 
@@ -32,9 +32,9 @@ The difference between pipeline types reflects the parsing cost. Syslog Basic pa
 
 ## Scale vertically, horizontally, or both
 
-To handle more load, you can use nodes with more CPU cores (vertical scaling), add more pipeline replicas (horizontal scaling), or combine both approaches. All three yield linear throughput increases.
+To handle more load, use nodes with more CPU cores (vertical scaling), add more pipeline replicas (horizontal scaling), or combine both approaches. All three approaches yield linear throughput increases.
 
-The pipeline automatically uses all available CPU cores per node. No configuration changes are needed when you change node sizes.
+The pipeline automatically uses all available CPU cores per node. You don't need to make any configuration changes when you change node sizes.
 
 **Per-replica throughput** = per-vCPU throughput x cores per node  
 **Total throughput** = per-replica throughput x replica count

@@ -21,7 +21,7 @@ Consider using pod placement configuration for the following capabilities:
 - **Optimize resource utilization** by distributing instances across availability zones.
 
 ## Configuration
-You can currently configure pod placement only by using ARM or Bicep templates, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties by using the following structure. If you omit the `executionPlacement` property from the configuration, default Kubernetes scheduling behavior applies. The next section describes the details for each field.
+ARM or Bicep templates are the only way to configure pod placement, either when creating a new pipeline group or editing an existing one. Add the `executionPlacement` property to your `pipelineGroups` resource properties by using the following structure. If you omit the `executionPlacement` property from the configuration, default Kubernetes scheduling behavior applies. The next section describes the details for each field.
 
 ```json
 {
@@ -36,7 +36,7 @@ You can currently configure pod placement only by using ARM or Bicep templates, 
 
 ### constraints
 
-The `constraints` field contains a list of objects that define where your pipeline instances should run. The scheduler only schedules instances on nodes that satisfy all specified constraints. Each constraint consists of the properties in the following table.
+The `constraints` field contains a list of objects that define where your pipeline instances should run. Only nodes that satisfy all specified constraints are eligible for scheduling. Each constraint consists of the properties in the following table.
 
 
 | Property | Type | Required | Description |
@@ -83,7 +83,7 @@ No configuration required. Instances use default Kubernetes scheduling.
 
 ### Node labeling for team isolation
 
-Target nodes dedicated to your observability team to avoid noisy neighbor problems. You can run multiple instances on the same dedicated node. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes by using the following command:
+Target nodes are dedicated to your observability team to avoid noisy neighbor problems. Multiple instances can run on the same dedicated node. In the following example, only nodes labeled `team=observability-team` are eligible. Set the label of your choice on your nodes by using the following command:
 
 ```azurecli
 kubectl label nodes <node-name> <key>=<value>
