@@ -8975,26 +8975,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-dbforpostgresql-servers-metrics.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-dbforpostgresql-servers-logs.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-dbforpostgresql-serversv2-logs.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-   },
-   {
    "source_path": "articles/azure-monitor/platform/rest-activity-log.md",
    "redirect_url": "/azure/azure-monitor/platform/activity-log#retrieve-activity-log-events-by-using-the-rest-api",
    "redirect_document_id": true
