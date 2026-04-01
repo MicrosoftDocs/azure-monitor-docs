@@ -188,7 +188,7 @@ Use this tab to perform your final check before activating the alert.
 
 Review all the settings from **Scope**, **Condition**, **Actions**, **Tags**, and **Details** to make sure they're correct.
 
-:::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
+:::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG:::
 
 When everything looks good, select **Create** to start monitoring your resources.
 
