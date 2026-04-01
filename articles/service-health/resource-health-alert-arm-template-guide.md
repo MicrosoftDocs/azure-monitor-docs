@@ -156,7 +156,7 @@ For more information about Action groups, see [Action Groups](/azure/azure-monit
 ## Details
 Use the **Details** tab to name and describe your alert. Provide this information so you can easily identify the alert and understand its purpose immediately. 
 
-A clear name and description help you manage multiple alerts, avoid confusion, and ensure the right alert is triggered for the right scenario.  
+A clear name and description help you manage multiple alerts, avoid confusion, and ensure the right alert triggers for the right scenario.  
 
 :::image type="content" source="./media/resource-health/resource-health-create-details.PNG" alt-text="Screenshot of Resource Health Details tab." lightbox="./media/resource-health/resource-health-create-details.PNG"::: 
 
