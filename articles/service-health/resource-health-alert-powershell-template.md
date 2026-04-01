@@ -2,7 +2,7 @@
 title: Create Resource Health alerts with PowerShell and ARM templates
 description: Create Resource health alerts programmatically to notify you when your Azure resources become unavailable.
 ms.topic: how-to
-ms.date: 11/25/2025 
+ms.date: 04/01/2026 
 
 ---
 
@@ -16,9 +16,9 @@ Resource Health alerts notify you when your Azure resources experience a change 
 
 To create or edit an alert rule, you must have the following permissions:
 
-- Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created.
-- Read permission on any action group associated to the alert rule, if applicable.
+- **Read** permission on the target resource of the alert rule.
+- **Write** permission on the resource group in which you create the rule.
+- **Read** permission on any action group associated to the alert rule, if applicable.
 
 
 ## Create a Resource Health alert using PowerShell
@@ -26,10 +26,10 @@ To create or edit an alert rule, you must have the following permissions:
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-To follow the instructions on this page, you need to set up a few things in advance:
+You need to set up some thins in advance before you follow the instructions on this page:
 
-1. You need to install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
-2. You need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
+1. Install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
+2. Next, you need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
 
 
 #### PowerShell instructions
@@ -511,9 +511,11 @@ Learn more about Resource Health:
 
 * [Azure Resource Health overview](Resource-health-overview.md)
 * [Resource types and health checks available through Azure Resource Health](resource-health-checks-resource-types.md)
+* [Resource Health frequently asked questions](resource-health-faq.yml)
 
 Create Service Health Alerts:
 
 * [Configure Alerts for Service Health](./alerts-activity-log-service-notifications-portal.md) 
 * [Azure Activity Log event schema](../azure-monitor/essentials/activity-log-schema.md)
 * [Understand structure and syntax of ARM templates](/azure/azure-resource-manager/templates/syntax#template-format)
+* [Service Health frequently asked questions](service-health-faq.yml)
