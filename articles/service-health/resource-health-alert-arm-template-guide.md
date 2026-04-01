@@ -186,7 +186,7 @@ For more information about using tags, see [Use tags to organize your resources]
 ## Review + Create
 This tab is where you have your final check before activating the alert. 
 
-Review all the settings from **Scope**, **Condition**, **Actions**, **Tags**, and **Details** to make sure they’re correct.
+Review all the settings from **Scope**, **Condition**, **Actions**, **Tags**, and **Details** to make sure they're correct.
 
 :::image type="content" source="./media/resource-health/resource-health-create-rule.PNG" alt-text="Screenshot of Resource Health Review tab." lightbox="./media/resource-health/resource-health-create-rule.PNG":::
 
