@@ -53,7 +53,7 @@ Review the **"Costs to export"** column in the [Azure Monitor resource logs docu
 
 ### Q : What determines whether export charges apply? Will this change introduce new charges for logs I am already exporting today?
 
-Starting from May 2026, export charges may apply to platform log categories that were previously exported at no charge for certain Azure resource types.
+Starting in May 2026, export charges might apply to platform log categories that were previously exported at no charge for certain Azure resource types.
 Export charges depend on:
 - The platform **log category** you select for the **resource type**
 - The **destination** to which you export the logs
