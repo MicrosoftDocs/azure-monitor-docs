@@ -26,7 +26,7 @@ To create or edit an alert rule, you need the following permissions:
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
-You need to set up some thins in advance before you follow the instructions on this page:
+Before you follow the instructions in this article, complete the following steps:
 
 1. Install the [Azure PowerShell module](/powershell/azure/install-azure-powershell).
 2. Next, you need to [create or reuse an Action Group](../azure-monitor/alerts/action-groups.md) configured to notify you.
