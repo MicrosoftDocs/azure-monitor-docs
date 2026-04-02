@@ -3,7 +3,7 @@ title: Call Grafana APIs programmatically
 description: Learn how to call Grafana APIs programmatically with Microsoft Entra ID and an Azure service principal
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 10/29/2025
+ms.date: 04/02/2026
 ---
 
 # Tutorial: Call Grafana APIs programmatically

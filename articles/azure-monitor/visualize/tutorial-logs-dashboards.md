@@ -2,7 +2,7 @@
 title: Create and share dashboards that visualize data in Azure Monitor Logs
 description: This tutorial explains how to create a dashboard that visualizes data based on a query that you run in Azure Monitor Logs.
 ms.topic: tutorial
-ms.date: 01/23/2025
+ms.date: 04/02/2026
 
 ms.custom: mvc
 ---
