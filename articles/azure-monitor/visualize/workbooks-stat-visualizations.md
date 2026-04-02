@@ -3,7 +3,7 @@ title: Azure Workbooks stat visualizations
 description: Learn about all the Azure Workbooks stat visualizations.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 10/10/2024
+ms.date: 04/02/2026
 ---
 
 # Stat visualizations

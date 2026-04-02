@@ -2,7 +2,7 @@
 title: Azure Monitor best practices - Analysis and visualizations
 description: Guidance and recommendations for customizing visualizations beyond standard analysis features in Azure Monitor.
 ms.topic: best-practice
-ms.date: 08/22/2025
+ms.date: 04/02/2026
 ms.reviewer: IngridAtMicrosoft
 ---
 
