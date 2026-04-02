@@ -11,8 +11,7 @@ ms.date: 03/04/2025
 Learn how to use Azure Advisor score to measure optimization progress.
 
 > [!IMPORTANT]
-> The platform updated the logic of the Azure Advisor score to provide you with more accurate results. As a result, the more precise assessment increases or decreases your score.
-
+>The platform enriches the score by introducing finer granularity across categories and subcategories, enabling more precise tracking of adoption of recommendations.
 ## Introduction to Advisor score
 
 Advisor score is a core feature of Advisor that helps you effectively and efficiently achieve your goals. To get the most out of Azure, you must understand where you are in your workload optimization journey. You need to know the services or resources that are well consumed. Further, you want to know how to prioritize your actions, based on recommendations, to maximize the outcome.
@@ -38,7 +37,8 @@ On **Advisor | Advisor score**, see the percentages for your overall Advisor sco
 
 ## Interpret an Advisor score
 
-Advisor displays your overall Advisor score and a breakdown for Advisor categories, in percentages. A score of 100% in any category means all your resources that Advisor assessed follow the industry best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources that Advisor assessed follow the Advisor recommendations. Score is only provided for resources that Advisor assessed. While Advisor attempts to scan your entire workload and all the resources, a chance always exists that no recommendation is available for a few of your resources. If a resource has no available recommendations, the resource contributes nothing to the score. To easily achieve the following flow, use the grains of the score.
+Advisor displays your overall Advisor score and a breakdown for Advisor categories, in percentages. A score of 100% in any category means all your resources that Advisor assessed follow the industry best practices that Advisor recommends. On the other end of the spectrum, a score of 0% means that none of your resources that Advisor assessed follow the Advisor recommendations. Score is only provided for resources that Advisor assessed. While Advisor attempts to scan your entire workload and all the resources, a chance always exists that no recommendation is available for a few of your resources. If a resource has no available recommendations, the resource contributes nothing to the score. To easily achieve the following flow, use the grains of the score.
+
 
 *   The Advisor score helps you baseline how your workload or subscriptions are doing based on an Advisor score. To understand your trend, review the historical trends.
 
@@ -105,14 +105,16 @@ The **Cost** category score is calculated by using the individual subscription s
 
 ### Score methodology for Reliability, Performance, and Operational Excellence categories
 
-The scores for these three categories come from their respective subcategories. Each subcategory has a fixed weight that contributes to the category score calculation.
+The scores for these three categories come from their respective subcategories. Each subcategory has a fixed weight that contributes to the category score calculation.
+
 
 #### Subcategory defined
 
 A subcategory is a logical grouping of recommendations mapped to each WAF pillar. Each subcategory has a fixed weight assigned. A subcategory is the fundamental basis of score calculation at the category level.
 
 #### Subcategory score calculation
-Calculate the subcategory score by using the percentage of healthy resources.
+Calculate the subcategory score by using the percentage of healthy resources.
+
 
 ```math
 Subcategory Score = (Healthy Resources /  Total Applicable Resources) * 100
@@ -142,16 +144,16 @@ The following table displays the number of healthy resources, total applicable r
 
 | Subcategory <br /> Subcategory weight | Resources <br /> Healthy resources / Total applicable | Subcategory score |
 |:--- |:--- |:--- |
-| Zone Resiliency <br /> `30` | `25` / `31` | 80.65%
-| Regional Resiliency <br /> `25` | `13` / `14` | 92.86%
-| Data Protection and Recovery <br /> `20` | `28` / `38` | 73.68%
+| Zone Resiliency <br /> `30` | `25` / `31` | 81%
+| Regional Resiliency <br /> `25` | `13` / `14` | 92%
+| Data Protection and Recovery <br /> `20` | `28` / `38` | 73%
 | Governance and Compliance <br /> `10` | `10` / `20` | 50%
-| Scalability <br /> `10` | `10` / `13` | 76.92%
-| Monitoring and Alerting <br /> `5` | `5` / `11` | 45.45%
+| Scalability <br /> `10` | `10` / `13` | 77%
+| Monitoring and Alerting <br /> `5` | `5` / `11` | 46%
 | Service Upgrade and Retirement <br /> `5` | `9` / `12` | 75%
-| Other <br /> `5` | `10` / `14` | 71.43%
+| Other <br /> `5` | `10` / `14` | 72%
 
-You can calculate the reliability score as follows:
+The values are rounded up to the nearest higher whole number. You can calculate the reliability score as follows:
 
 ```math
 ((25/31)*30 + (13/14)*25 + (28/38)*20 + (10/20)*10 + (10/13)*10 + (5/11)*5 + (9/12)*5 + (10/14)*5) / (30+25+20+10+10+5+5+5) * 100
@@ -162,7 +164,7 @@ This calculation evaluates to:
 ```math
 84.42/110 * 100 = 76.76
 ```
-The Reliability score in this example is `76.76%`.
+The Reliability score in this example is `77%`.
 
 ## Frequently asked questions (FAQs)
 
@@ -193,7 +195,8 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Service upgrade and Retirement <br /> `5` | Recommendations involving migration to supported SKUs, retiring deprecated services, or upgrading for improved reliability and performance.|
 | Other <br /> `5` | All recommendations that aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
-### What is the list of subcategories for the Performance category and the related subcategory weights?
+### What is the list of subcategories for the Performance category and the related subcategory weights?
+
 
 | Subcategories <br /> Subcategory weight | Description |
 |:--- |:--- |
@@ -203,14 +206,17 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Storage Optimization <br /> `25` | Assess and optimize the performance of your Storage resources. <ul> <li> SQL data warehouse </li> <li> Storage account </li> </ul> |
 | Network Optimization <br /> `25` | Assess and optimize the performance of your Network resources. <ul> <li> Traffic Manager </li> </ul> |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
-| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
-### What is the list of subcategories for the Operational Excellence category and the related subcategory weights?
+### What is the list of subcategories for the Operational Excellence category and the related subcategory weights?
+
 
 | Subcategories <br /> Subcategory weight | Description |
 |:--- |:--- |
-| Efficiency Optimization <br /> `30` | Assess and manage configurations to ensure better performance of Azure resources. <ul> <li> Enable accelerated networking </li> </ul> |
+| Efficiency Optimization <br /> `30` | Assess and manage configurations to ensure better performance of Azure resources. <ul> <li> Enable accelerated networking </li> </ul> |
+
 | Failure Mitigation <br /> `20` | Implement and configure Azure resources in a well-designed fashion to handle and mitigate deployment failures with little effect on the user. |
 | Monitoring and Alerting <br /> `5` | To effectively monitor your workload for security, performance, and reliability, you need a comprehensive system with a stand-alone stack. The comprehensive system provides the foundation for all monitoring, detection, and alert functions. |
 | Safe and Secure Deployment <br /> `5` | Safe and secure deployment processes define how to safely make and deploy changes to your workload. Implementing it requires you to think about deployments through the lens of managing risk. |
