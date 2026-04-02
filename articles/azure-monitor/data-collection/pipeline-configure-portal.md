@@ -66,10 +66,10 @@ If you specify a transformation, select **Check KQL syntax** before saving the d
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of the KQL syntax checker and a typical error message.":::
 
-For `Syslog` and `CommonSecurityLog`, the appropriate table columns are available to the transformation. For custom tables, only `TimeGenerated`, `SeverityText`, and `Body` are available in the portal experience. If you need other columns, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+For `Syslog` and `CommonSecurityLog`, the transformation has access to the appropriate table columns. For custom tables, the portal experience provides access to only `TimeGenerated`, `SeverityText`, and `Body`. If you need other columns, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
 > [!NOTE]
-> See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on creating transformations.
+> For details on creating transformations, see [Azure Monitor pipeline transformations](./pipeline-transformations.md).
 
 ## Review and create
 

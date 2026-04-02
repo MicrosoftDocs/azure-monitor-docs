@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-azurecli
 Use this article to choose how to secure TCP-based ingestion for [Azure Monitor pipeline](./pipeline-overview.md). The pipeline supports TLS and mutual TLS (mTLS) for TCP-based receivers through two certificate management approaches:
 
 - **Default TLS**: Automated certificate management with zero-downtime rotation, managed by the Certificate Manager extension
-- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys created by users with their own PKI that the Azure Monitor receiver TLS endpoint should use
+- **Bring Your Own Certificates (BYOC)**: Customer-managed certificates and keys that users create with their own PKI for the Azure Monitor receiver TLS endpoint to use
 
 Choose one of the following approaches:
 
@@ -38,7 +38,7 @@ The Azure Monitor pipeline supports three TLS configuration modes:
 | `"mode": "serverOnly"` | TLS encryption without client certificate validation |
 | `"mode": "disabled"` | Plain text communication |
 
-Once a name is assigned to a `tlsConfiguration`, it can be referenced by any TCP-based receiver in the pipeline configuration. If no TLS configuration is specified for a receiver, that receiver defaults to `mutualTls` mode.
+After you assign a name to a `tlsConfiguration`, any TCP-based receiver in the pipeline configuration can reference it. If you don't specify a TLS configuration for a receiver, the receiver defaults to `mutualTls` mode.
 
 ## Option 1: Default TLS (automated certificate management)
 

@@ -183,7 +183,7 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 ---
 
 ## Create a data collection rule (DCR)
-Azure Monitor stores the DCR and defines how to process the data when it receives it from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
+Azure Monitor stores the DCR and defines how to process the received data from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
 
 ### Define the DCR

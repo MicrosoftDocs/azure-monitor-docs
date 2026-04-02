@@ -172,7 +172,7 @@ The Azure Monitor pipeline supports three TLS configuration modes:
 | `"mode": "serverOnly"` | TLS encryption without client certificate validation |
 | `"mode": "disabled"` | Plain text communication |
 
-Once a name is assigned to a `tlsConfiguration`, it can be referenced by any TCP-based receiver in the pipeline configuration. If no TLS configuration is specified for a receiver, that receiver defaults to `mutualTls` mode.
+After you assign a name to a `tlsConfiguration`, any TCP-based receiver in the pipeline configuration can reference it. If you don't specify a TLS configuration for a receiver, the receiver defaults to `mutualTls` mode.
 
 **Default TLS**: Enables TLS by using automated certificate management.
 
