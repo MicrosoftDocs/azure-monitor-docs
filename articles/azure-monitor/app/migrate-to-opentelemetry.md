@@ -146,12 +146,12 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 | 2.x dependency | Action | Remarks |
 |----------------|--------|---------|
 | `applicationinsights-core` | Update the version to `3.4.3` or later | |
-| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter your `web.xml` file. | |
+| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter from your `web.xml` file. | |
 | `applicationinsights-web-auto` | Replace with `3.4.3` or later of `applicationinsights-web` | |
-| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 1.2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | No longer needed since Logback is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [3.x configuration docs](./java-standalone-config.md#cloud-role-name). |
+| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 1.2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 1.2. |
+| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 2. |
+| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | Logback appender isn't needed since the 3.x Java agent autoinstruments Logback. |
+| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance). |
 
 ## Step 2: Add the 3.x Java agent
 
@@ -168,7 +168,7 @@ If you're using the Application Insights 2.x Java agent, just replace your exist
 
 ## Step 3: Configure your Application Insights connection string
 
-See [configuring the connection string](./java-standalone-config.md#connection-string).
+See [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#connection-string).
 
 ## Other notes
 
@@ -176,11 +176,11 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryInitializers
 
-2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attribute-preview).
+2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attributes-preview).
 
 ## TelemetryProcessors
 
-2.x SDK TelemetryProcessors don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by configuring [sampling overrides](./java-standalone-config.md#sampling-overrides).
+TelemetryProcessors from the 2.x SDK don't run when you use the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by [configuring sampling overrides](./java-standalone-config.md#configure-sampling-overrides).
 
 ## Multiple applications in a single JVM
 
