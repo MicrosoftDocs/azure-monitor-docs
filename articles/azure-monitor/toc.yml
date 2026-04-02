@@ -63,20 +63,8 @@ items:
             href: app/java-standalone-profiler.md
           - name: Get started (supplemental)
             href: app/java-get-started-supplemental.md
-          - name: Configuration
-            items:
-            - name: General
-              href: app/java-standalone-config.md
-            - name: JMX metrics
-              href: app/java-jmx-metrics-configuration.md
-            - name: Sampling overrides
-              href: app/java-standalone-sampling-overrides.md
-            - name: Telemetry processors
-              items:
-              - name: Overview
-                href: app/java-standalone-telemetry-processors.md
-              - name: Examples
-                href: app/java-standalone-telemetry-processors-examples.md
+          - name: Configuration (supplemental)
+            href: app/java-standalone-config.md
       - name: Client-side JavaScript SDK
         items:
         - name: Get Started with JavaScript SDK
@@ -701,6 +689,8 @@ items:
     - name: Create or edit
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
+    - name: Frequently asked questions 
+      href: platform/diagnostic-settings-faq.md
     - name: Create with Azure Policy
       items:
       - name: Use built-in policy or initiative
