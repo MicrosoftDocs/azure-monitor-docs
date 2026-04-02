@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -173,5 +173,23 @@ Recommendation ID: d1e9f4a0-926e-4480-a4e4-3ea94877370c
 
 
 <!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_end-->
+
+<!--cc62fec4-24e5-4fc4-bf99-2b83d0702549_begin-->
+
+#### Simplify multi-cluster management with Azure Kubernetes Fleet Manager  
+  
+Use Azure Kubernetes Fleet Manager to simplify management of Kubernetes clusters in any Azure region or subscription.  
+  
+**Potential benefits**: Simplified multi-cluster management  
+
+**Impact:** Medium
+  
+For more information, see [Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: cc62fec4-24e5-4fc4-bf99-2b83d0702549  
+
+
+<!--cc62fec4-24e5-4fc4-bf99-2b83d0702549_end-->
 
 <!--articleBody-->

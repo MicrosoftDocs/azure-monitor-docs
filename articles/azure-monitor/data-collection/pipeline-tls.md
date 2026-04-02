@@ -6,7 +6,7 @@ ms.date: 01/15/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Azure Monitor pipeline TLS configuration (preview)
+# Azure Monitor pipeline TLS configuration
 
 Use this article to choose how to secure TCP-based ingestion for [Azure Monitor pipeline](./pipeline-overview.md). The pipeline supports TLS and mutual TLS (mTLS) for TCP-based receivers through two certificate management approaches:
 
@@ -40,24 +40,24 @@ The Azure Monitor pipeline supports three TLS modes:
 
 Use this option when you want the Certificate Manager extension to manage certificate issuance and rotation for you.
 
-See [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md) for more information on how to set this up.
+For more information about how to set up automated certificate management, see [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
 
 ## Option 2: BYOC (Bring Your Own Certificates)
 
-Use this option when you need to use your own certificates or integrate with your existing PKI. With BYOC, you can:
+Use this option when you need to use your own certificates or integrate with your existing PKI. By using BYOC, you can:
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation
 - Integrate with Azure Key Vault for certificate storage
 
-See [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md) for more information on how this works and how to set this up.
+For more information about how this works and how to set it up, see [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
 
 ## Option 3: Disable TLS and mTLS
 
 If your environment doesn't require encrypted ingestion, you can disable TLS and mTLS.
 
 1. Disable the configuration by using the following settings.
-2. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
+1. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
 
 **Disable TLS**
 
@@ -84,7 +84,7 @@ If your environment doesn't require encrypted ingestion, you can disable TLS and
 - Use the default certificate flow in [TLS configuration - Using automated certificate management](./pipeline-tls-automated.md).
 - Use customer-managed certificates in [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
 - Expose secure receivers to external clients by using [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-- Configure client connections in [Configure clients to use Azure Monitor pipeline](./pipeline-configure-clients.md).
+- Configure client connections in [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 
 

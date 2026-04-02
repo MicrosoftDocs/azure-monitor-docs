@@ -9,38 +9,38 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline transformations
 
-Azure Monitor pipeline data transformations let you filter and manipulate log data before it's sent to Azure Monitor in the cloud. Transformations let you structure incoming data according to your analytics needs, ensuring that only relevant information is sent to Azure Monitor and that it's in an appropriate format to be processed.
+Azure Monitor pipeline data transformations let you filter and manipulate log data before sending it to Azure Monitor in the cloud. Transformations help you structure incoming data according to your analytics needs, ensuring that only relevant information is sent to Azure Monitor and that it's in an appropriate format for processing.
 
 Benefits of using pipeline transformations include:
 
-- **Lower costs:** Filter and aggregate data to reduce ingestion volume and in turn lower ingestion costs 
+- **Lower costs:** Filter and aggregate data to reduce ingestion volume which lowers ingestion costs.
 - **Better analytics:** Standardized schemas for faster queries and cleaner dashboards.
 - **Future-proof:** Built-in schema validation helps prevent surprises during deployment.
 
-Azure Monitor pipeline solves the challenges of high ingestion costs and complex analytics by enabling transformations before ingestion, so your data is clean, structured, and optimized before it even hits your Log Analytics Workspace. 
+Azure Monitor pipeline transformations address the challenges of high ingestion costs and complex analytics by reducing data volume before ingestion. Your data is clean, structured, and optimized before it even reaches your Log Analytics Workspace. 
 
 
 ## Basic query structure
 Like Azure Monitor transformations, all pipeline transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. The query is applied individually to each entry sent by the data source.
 
-See [Basic query structure](./data-collection-transformations-create.md#basic-query-structure) for more details on the query structure and supported operators.
+For more details on the query structure and supported operators, see [Basic query structure](./data-collection-transformations-create.md#basic-query-structure).
 
 ## Define a transformation
-Pipeline transformations are defined as part of a dataflow. You can configure them using either the Azure portal or ARM templates. You can define your own custom transformation or use prebuilt templates for common patterns. Syntax validation, such as checking KQL expressions, is available to help ensure accuracy before saving your configuration. These capabilities allow for flexible and powerful data shaping directly within your monitoring infrastructure.
+You define pipeline transformations as part of a dataflow. Configure them by using either the Azure portal or ARM templates. Define your own custom transformation or use prebuilt templates for common patterns. Syntax validation, such as checking KQL expressions, is available to help ensure accuracy before saving your configuration. These capabilities provide flexible and powerful data shaping directly within your monitoring infrastructure.
 
 ### [Azure portal](#tab/portal)
 
-To define a transformation in the Azure portal, select **Add Data Transformations**, which opens the transformation editor. Select a template which provides predefined queries for common scenarios. Use the template as a starting point and modify the KQL query as needed to fit your requirements. Use the **Custom** template to start with a blank query.
+To define a transformation in the Azure portal, select **Add Data Transformations**. From the transformation editor, select a template that provides predefined queries for common scenarios. Use the template as a starting point and modify the KQL query as needed to fit your requirements. Use the **Custom** template to start with a blank query.
 
 :::image type="content" source="./media/pipeline-transformations/template.png" lightbox="./media/pipeline-transformations/template.png" alt-text="Screenshot of template selection for a transformation.":::
 
-Once you have the query defined, click **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For syslog and CEF data, the checker will also verify the data resulting from the transformation matches the schema of the table the data is sent to. If the transformation renames or adds columns as part of an aggregation for example, you'll be prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
+After you define the query, select **Check KQL syntax** to validate the syntax of the query before saving the dataflow. For syslog and CEF data, the checker also verifies that the data resulting from the transformation matches the schema of the table the data is sent to. If the transformation renames or adds columns as part of an aggregation, for example, you're prompted to either remove those transformations or send the data to a custom table instead. An example is shown in the following image.
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of KQL syntax checker and typical error message.":::
 
 ### [ARM](#tab/arm)
 
-The transformation is defined in the `processors` section of the data flow in the ARM template. The `type` of the processor must be set to `TransformLanguage`, and the KQL query is specified in the `transformLanguage/transformStatement` property. The processor is then referenced in the `service/pipelines` section of the data flow configuration.
+Define the transformation in the `processors` section of the data flow in the ARM template. Set the `type` of the processor to `TransformLanguage`. Specify the KQL query in the `transformLanguage/transformStatement` property. Reference the processor in the `service/pipelines` section of the data flow configuration.
 
 The following example shows a transformation that filters out syslog records with a `Facility` of `auth`. 
 
@@ -56,7 +56,7 @@ The following example shows a transformation that filters out syslog records wit
 ]
 ```
 
-This processor would then be referenced in the `service/pipelines` section similar to the following:
+Reference this processor in the `service/pipelines` section similar to the following:
 
 ```json
     "service": {
@@ -78,16 +78,16 @@ This processor would then be referenced in the `service/pipelines` section simil
     }
 ```
 
-See [Configure Azure Monitor pipeline](./pipeline-configure.md) for more details and examples of the processor configuration file.
+For more details and examples of the processor configuration file, see [Configure Azure Monitor pipeline](./pipeline-configure.md).
 
 ---
 
 ## Aggregations
-An aggregation in KQL summarizes data from multiple records into a single record based on specified criteria. For example, you can aggregate log entries to calculate the average value of numeric property or count the number of occurrences of specific events over a defined time period. Aggregations help reduce data volume and provide insights by condensing large datasets into meaningful summaries.
+An aggregation in KQL summarizes data from multiple records into a single record based on specified criteria. For example, you can aggregate log entries to calculate the average value of a numeric property or count the number of occurrences of specific events over a defined time period. Aggregations help reduce data volume and provide insights by condensing large datasets into meaningful summaries.
 
-Data in Azure Monitor pipeline is retrieved and processed in batches of one minute intervals by default. Aggregations in a pipeline transformation are performed over each batch of data meaning that an aggregated record will be created each minute. To change this time window, you can configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure-cli.md#create-the-pipeline-configuration). You can't change the time interval using the Azure portal.
+Azure Monitor retrieves and processes data in batches of one-minute intervals by default. Aggregations form in a pipeline transformation over each batch of data, so the process creates an aggregated record each minute. To change this time window, configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure-cli.md#create-the-pipeline-configuration). You can't change the time interval by using the Azure portal.
 
-Aggregations are defined using the [`summarize`](/kusto/query/summarize-operator) operator in KQL. You specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
+Define aggregations by using the [`summarize`](/kusto/query/summarize-operator) operator in KQL. Specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
 
 ```kusto
 source 
@@ -106,10 +106,10 @@ source
 
 ### Aggregation notes
 
-- When using the `summarize` operator for aggregation, an automatic latency of up to 5 minutes may be introduced due to batching in the pipeline for the UI experience.
-- A [batch processor](./pipeline-configure-cli.md#create-the-pipeline-configuration) is always required to perform aggregations. Modify the batch processor to change the aggregation interval. Avoid using batch processor to send data with minimum latency. 
-- If an aggregation includes bin(), you may receive multiple records for the same time interval. This occurs because of batching and the streaming nature of data ingestion.
-- Transformations are performed on fully formed Syslog or CEF data. If the transformation alters the schema, then you should send the data to a custom table. When creating the transformation using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
+- When you use the `summarize` operator for aggregation, batching in the pipeline introduces an automatic latency of up to five minutes before you see the results in the UI.
+- You always need a [batch processor](./pipeline-configure-cli.md#create-the-pipeline-configuration) to perform aggregations. Modify the batch processor to change the aggregation interval. Avoid using batch processor to send data with minimum latency. 
+- If an aggregation includes `bin()`, you might receive multiple records for the same time interval. This result occurs because of batching and the streaming nature of data ingestion.
+- Transformations work on fully formed Syslog or CEF data. If the transformation alters the schema, send the data to a custom table. When you create the transformation by using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
 
 
 

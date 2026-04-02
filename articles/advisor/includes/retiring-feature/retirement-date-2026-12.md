@@ -11,5 +11,4 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | App service | PHP 8.2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Microsoft Entra Domain Service | Azure FXT Edge Filer - Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-
+> | Microsoft Entra Domain Service | Azure FXT Edge Filer - Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

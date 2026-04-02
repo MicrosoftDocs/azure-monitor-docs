@@ -2,8 +2,8 @@
 title: Create and manage action groups in Azure Monitor
 description: Find out how to create and manage action groups. Learn about notifications and actions that action groups enable, such as email, webhooks, and Azure functions.
 ms.topic: how-to
-ms.date: 02/13/2025
 ms.reviewer: jagummersall
+ms.date: 04/24/2026
 ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azure-ad-ref-level-one-done
 ---
 

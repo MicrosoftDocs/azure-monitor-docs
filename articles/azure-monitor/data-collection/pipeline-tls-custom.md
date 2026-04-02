@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 Use this article when you want to manage certificates for Azure Monitor pipeline receivers yourself. For the automated option, see [Using automated certificate management](./pipeline-tls-automated.md).
 
-With BYOC, you can:
+Advantages of BYOC:
 
 - Replace the default collector server certificate with your own
 - Provide your own CA for client certificate validation
@@ -27,7 +27,7 @@ The following example uses Let's Encrypt, but you can use any supported external
 
 ### Create issuer resource for external PKI
 
-Save the following YAML to a file named external-pki-issuer.yaml.
+Save the following YAML to a file named *external-pki-issuer.yaml*.
 
 ```yml
 apiVersion: cert-manager.io/v1
@@ -40,7 +40,7 @@ spec:
     # You must replace this email address with your own.
     # Let's Encrypt will use this to contact you about expiring
     # certificates, and issues related to your account.
-    email: user@example.com
+    email: user@contoso.com
     # If the ACME server supports profiles, you can specify the profile name here.
     # See #acme-certificate-profiles below.
     profile: tlsserver
@@ -62,7 +62,7 @@ spec:
           ingressClassName: nginx
 ```
 
-Apply the YAML to your cluster using the following command.
+Apply the YAML to your cluster by using the following command.
 
 ```bash
 kubectl apply -f external-pki-issuer.yaml
@@ -86,7 +86,7 @@ spec:
   dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
 ```
 
-Apply the YAML to your cluster using the following command. cert-manager populates the `collector-server-tls` secret with the certificate and key.
+Apply the YAML to your cluster by using the following command. The certificate manager adds the certificate and key to the `collector-server-tls` secret.
 
 ```bash
 kubectl apply -f azmonpipeline-server-cert.yaml
@@ -94,10 +94,10 @@ kubectl apply -f azmonpipeline-server-cert.yaml
 
 ## BYOC server certificate requirements
 
-When bringing your own server certificate:
+When you bring your own server certificate:
 
-- **Certificate and Private Key**: Both must be provided together.
-- **DNS Subject Alternative Names (SANs)**: The certificate must include appropriate SANs matching the service endpoints.
+- **Certificate and Private Key**: Provide both together.
+- **DNS Subject Alternative Names (SANs)**: The certificate must include appropriate SANs that match the service endpoints.
 
 The server certificate must include the service FQDN at minimum:
 
@@ -105,7 +105,7 @@ The server certificate must include the service FQDN at minimum:
 <pipeline-name>-service.<namespace>.svc.cluster.local
 ```
 
-Optionally include shorter variants for flexibility:
+Optionally, include shorter variants for flexibility:
 
 ```ini
 <pipeline-name>-service.<namespace>.svc
@@ -125,12 +125,12 @@ DNS SANs:
   - byoc-pipeline-service (optional)
 ```
 
-## Certificate Storage
+## Certificate storage
 
-Certificates and keys must be stored in Kubernetes resources in the **same namespace** as the pipeline group:
+Store certificates and keys in Kubernetes resources in the **same namespace** as the pipeline group:
 
-- **Certificates**: Can be stored in Secrets or ConfigMaps
-- **Private Keys**: Must be stored in Secrets only (for security)
+- **Certificates**: Store in Secrets or ConfigMaps
+- **Private keys**: Store in Secrets only (for security)
 
 ## Configure TLS or mTLS
 
@@ -169,7 +169,7 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
 ```json
 {
   "type": "Microsoft.Monitor/pipelineGroups",
-  "apiVersion": "2025-03-01-preview",
+  "apiVersion": "2026-04-01",
   "name": "byoc-cm-pipeline-arm",
   "location": "eastus2",
   "properties": {
@@ -214,7 +214,7 @@ Use one of the following templates to configure TLS or mTLS for your Azure Monit
 param name string = 'byoc-sample'
 param location string = resourceGroup().location
 
-resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2025-03-01-preview' = {
+resource pipelineGroup 'Microsoft.Monitor/pipelineGroups@2026-04-01' = {
   name: '${name}-pipeline'
   location: location
   properties: {
@@ -264,9 +264,9 @@ The following section provides example configurations that you can include in th
 
 The Azure Monitor pipeline supports three TLS modes:
 
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication
-- **serverOnly**: TLS encryption without client certificate validation
-- **disabled**: Plain text communication
+- **mutualTls** (default): Full mTLS with both server and client certificate authentication.
+- **serverOnly**: TLS encryption without client certificate validation.
+- **disabled**: Plain text communication.
 
 
 **BYOC TLS**: Enables TLS by using customer-managed certificates.

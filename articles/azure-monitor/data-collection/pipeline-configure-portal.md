@@ -7,7 +7,7 @@ ms.date: 03/20/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline with the Azure portal
+# Configure Azure Monitor pipeline in the Azure portal
 
 Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). The Azure portal is the quickest way to create a pipeline and its dataflows because it creates the required pipeline resources for you. If you need automation, caching, or more control over the deployed resources, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
@@ -15,8 +15,8 @@ Use this article after you complete the shared setup in [Configure Azure Monitor
 
 Start the creation flow from one of the following locations in the Azure portal:
 
-- From **Azure Monitor pipelines (preview)**, select **Create**.
-- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension (preview)**.
+- From **Azure Monitor pipelines**, select **Create**.
+- From your Arc-enabled Kubernetes cluster, select **Extensions**, and then add **Azure Monitor pipeline extension**.
 
 ## Configure basics
 
@@ -27,10 +27,10 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Property | Description |
 |:---------|:------------|
 | Instance name | Name for the Azure Monitor pipeline instance. Must be unique in the subscription. |
-| Subscription | Azure subscription where the pipeline instance is created. |
-| Resource group | Resource group where the pipeline instance is created. |
-| Cluster name | Arc-enabled Kubernetes cluster where the pipeline is installed. |
-| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you can select another custom location on the cluster. |
+| Subscription | Azure subscription where the service creates the pipeline instance. |
+| Resource group | Resource group where the service creates the pipeline instance. |
+| Cluster name | Arc-enabled Kubernetes cluster where you install the pipeline. |
+| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you optionally select another custom location on the cluster. |
 
 When you're done, select **Next: Dataflows**.
 
@@ -43,7 +43,7 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 | Property | Description |
 |:---------|:------------|
 | Name | Name for the dataflow. Must be unique for this pipeline. |
-| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP`. |
+| Source type | Type of data to collect. Supported values are `Syslog` and `OTLP` (Preview). |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
 | Protocol<br>(Syslog only) | Whether the dataflow collects TCP or UDP traffic. |
 | RFC<br>(Syslog only) | Syslog message format to collect. `5424` is the newer structured format. `3164` is the older, less structured format. |
@@ -87,7 +87,7 @@ After deployment completes, use the shared verification steps in [Configure Azur
 
 ## Related articles
 
-- [Configure clients](./pipeline-configure-clients.md) to send data to the pipeline.
+- [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md) to expose the pipeline to external clients.
 - [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.
 - [Modify data before it's sent to the cloud](./pipeline-transformations.md).
 - [Set up a gateway](./pipeline-kubernetes-gateway.md) for clients outside the cluster.

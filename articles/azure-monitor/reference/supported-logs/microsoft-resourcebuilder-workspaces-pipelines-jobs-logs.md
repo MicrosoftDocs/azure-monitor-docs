@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.DBforPostgreSQL/serversv2
-description: Reference for Microsoft.DBforPostgreSQL/serversv2 in Azure Monitor Logs.
+title: Supported log categories - Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+description: Reference for Microsoft.ResourceBuilder/workspaces/pipelines/jobs in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.DBforPostgreSQL/serversv2, arm
+ms.date: 03/27/2026
+ms.custom: Microsoft.ResourceBuilder/workspaces/pipelines/jobs, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,16 @@ ms.custom: Microsoft.DBforPostgreSQL/serversv2, arm
 
 
 
-# Supported logs for Microsoft.DBforPostgreSQL/serversv2  
-The following table lists the types of logs available for the Microsoft.DBforPostgreSQL/serversv2 resource type.
+# Supported logs for Microsoft.ResourceBuilder/workspaces/pipelines/jobs  
+The following table lists the types of logs available for the Microsoft.ResourceBuilder/workspaces/pipelines/jobs resource type.
   
   
   
-For a list of supported metrics, see [Supported metrics - Microsoft.DBforPostgreSQL/serversv2](../supported-metrics/microsoft-dbforpostgresql-serversv2-metrics.md)  
+For a list of supported metrics, see [Supported metrics - Microsoft.ResourceBuilder/workspaces/pipelines/jobs](../supported-metrics/microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md)  
   
 
   
-[!INCLUDE [Microsoft.DBforPostgreSQL/serversv2](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbforpostgresql-serversv2-logs-include.md)]  
+[!INCLUDE [Microsoft.ResourceBuilder/workspaces/pipelines/jobs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs-include.md)]  
   
 
 ## Next Steps
