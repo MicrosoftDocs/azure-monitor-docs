@@ -164,32 +164,58 @@ The following section provides example configurations that you can include in th
 
 ### TLS modes
 
-The Azure Monitor pipeline supports three TLS modes:
+The Azure Monitor pipeline supports three TLS configuration modes:
 
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication.
-- **serverOnly**: TLS encryption without client certificate validation.
-- **disabled**: Plain text communication.
+| `tlsConfigurations` value | Description |
+|:-------------------------------|:------------|
+| `"mode": "mutualTls"` | Full mTLS with both server and client certificate authentication (default) |
+| `"mode": "serverOnly"` | TLS encryption without client certificate validation |
+| `"mode": "disabled"` | Plain text communication |
+
+Once a name is assigned to a `tlsConfiguration`, it can be referenced by any TCP-based receiver in the pipeline configuration. If no TLS configuration is specified for a receiver, that receiver defaults to `mutualTls` mode.
 
 **Default TLS**: Enables TLS by using automated certificate management.
 
 ```json
-{                                                         
-"name": "default-server-tls",                                                         
-"mode": "serverOnly"                                                         
-}                   
+"tlsConfigurations": [
+    {
+        "name": "automanaged-server-tls",
+        "mode": "serverOnly"
+    }
+],
+"receivers": [
+    {
+        "type": "Syslog",
+        "name": "receiverSyslog",
+        "tlsConfiguration": "automanaged-server-tls",
+          ....
+    }
+]
+ 
 ```
 
 **Default TLS + BYOC mTLS**: Enables TLS by using automated certificate management and mTLS client authentication by using customer-managed certificates.
 
 ```json
-{
-  "name": "default-server-byoc-client",
-  "clientCA": {
-    "type": "kubernetesSecret",
-    "location": "custom-client-root-ca",
-    "subLocation": "ca.crt"
-  }
-}
+"tlsConfigurations": [
+    {
+      "name": "automanaged-server-byoc-client",
+      "clientCA": {
+        "type": "kubernetesSecret",
+        "location": "custom-client-root-ca",
+        "subLocation": "ca.crt"
+      }
+    }
+],
+"receivers": [
+    {
+        "type": "Syslog",
+        "name": "receiverSyslog",
+        "tlsConfiguration": "automanaged-server-byoc-client",
+          ....
+    }
+]
+ 
 ```
 
 ## Related articles

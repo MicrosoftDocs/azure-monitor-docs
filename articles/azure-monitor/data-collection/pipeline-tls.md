@@ -30,11 +30,15 @@ Additionally, add the following to your cluster:
 
 ## TLS modes
 
-The Azure Monitor pipeline supports three TLS modes:
+The Azure Monitor pipeline supports three TLS configuration modes:
 
-- **mutualTls** (default): Full mTLS with both server and client certificate authentication
-- **serverOnly**: TLS encryption without client certificate validation
-- **disabled**: Plain text communication
+| `tlsConfigurations` value | Description |
+|:-------------------------------|:------------|
+| `"mode": "mutualTls"` | Full mTLS with both server and client certificate authentication (default) |
+| `"mode": "serverOnly"` | TLS encryption without client certificate validation |
+| `"mode": "disabled"` | Plain text communication |
+
+Once a name is assigned to a `tlsConfiguration`, it can be referenced by any TCP-based receiver in the pipeline configuration. If no TLS configuration is specified for a receiver, that receiver defaults to `mutualTls` mode.
 
 ## Option 1: Default TLS (automated certificate management)
 
@@ -54,7 +58,7 @@ For more information about how this works and how to set it up, see [TLS configu
 
 ## Option 3: Disable TLS and mTLS
 
-If your environment doesn't require encrypted ingestion, you can disable TLS and mTLS.
+Disable TLS and mTLS only if your environment doesn't require encrypted ingestion or if you're trying to test your workflow before locking it down securely.
 
 1. Disable the configuration by using the following settings.
 1. You must have the CME extension and gateway installed, even for non-TLS ingestion from your resources. [Review prerequisites](./pipeline-configure.md#prerequisites) for detailed guidance.
