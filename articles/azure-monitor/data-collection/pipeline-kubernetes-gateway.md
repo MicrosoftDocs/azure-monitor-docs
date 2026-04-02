@@ -230,9 +230,7 @@ kubectl apply -f routing.yaml
 
 ### Install Traefik
 
-Deploy Traefik in the same namespace as the pipeline. This keeps the trust bundle ConfigMap and, when TLS is enabled, the gateway client certificate in the same namespace as the routing resources.
-
-#### [TLS](#tab/tls-enabled)
+Deploy Traefik in the same namespace as the pipeline. This keeps the trust bundle ConfigMap and, when TLS is enabled, the gateway client certificate in the same namespace as the routing resources. This command is the same whether TLS is enabled or not.
 
 ```bash
 helm install traefik-<pipeline-name> traefik/traefik \
@@ -250,27 +248,6 @@ helm install traefik-<pipeline-name> traefik/traefik \
     --set service.type=LoadBalancer \
     --wait
 ```
-
-#### [TLS disabled](#tab/tls-disabled)
-
-```bash
-helm install traefik-<pipeline-name> traefik/traefik \
-    --namespace <pipeline-namespace> \
-    --set deployment.replicas=1 \
-    --set providers.kubernetesIngress.enabled=false \
-    --set providers.kubernetesCRD.enabled=true \
-    --set "providers.kubernetesCRD.labelSelector=traefik-instance=<pipeline-name>-gateway" \
-    --set ports.tcp-syslog.port=514 \
-    --set ports.tcp-syslog.expose.default=true \
-    --set ports.tcp-syslog.exposedPort=514 \
-    --set ports.tcp-syslog.protocol=TCP \
-    --set ports.web.expose.default=false \
-    --set ports.websecure.expose.default=false \
-    --set service.type=LoadBalancer \
-    --wait
-```
-
----
 
 > [!NOTE]
 > Helm might show a warning about resources that don't match the `labelSelector`. That warning refers to Traefik's default dashboard route, not to the pipeline routing resources in this article.
@@ -292,21 +269,7 @@ helm install traefik-<pipeline-name> traefik/traefik \
    echo "Gateway IP: $GATEWAY_IP"
    ```
 
-3. Verify the routing resources.
-
-   ```bash
-   kubectl get ingressroutetcp -n <pipeline-namespace>
-   kubectl get serverstransporttcp -n <pipeline-namespace>
-   ```
-
-4. Check the Traefik logs for errors.
-
-   ```bash
-   kubectl logs -n <pipeline-namespace> \
-     -l app.kubernetes.io/name=traefik --tail=50
-   ```
-
-Clients can now connect to `$GATEWAY_IP:<receiver-port>` to send data through the gateway to the pipeline.
+External clients use this gateway IP `$GATEWAY_IP:<receiver-port>` to send data to the pipeline.
 
 ### Certificate management for TLS-enabled ingestion
 
