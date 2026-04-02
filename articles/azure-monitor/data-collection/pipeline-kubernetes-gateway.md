@@ -286,9 +286,14 @@ External clients use this gateway IP `$GATEWAY_IP:<receiver-port>` to send data 
 
 ### Certificate management for TLS-enabled ingestion
 
-- Gateway client certificates are issued by `arc-amp-client-root-ca-cluster-issuer` and renewed by the certificate manager.
-- Pipeline server certificates are managed by the operator and rotate without downtime.
-- Trust bundles are distributed automatically to namespaces labeled with `arc-amp-trust-bundle=true`.
+The gateway requires two pieces of TLS material to establish mTLS with the pipeline backend:
+
+- **Client certificate** (`gateway-client-tls` Secret) — presented by Traefik
+  to the pipeline. Must be trusted by the pipeline's client CA.
+- **Server CA** (`rootCAs` in `ServersTransportTCP`) — used by Traefik to
+  verify the pipeline's server certificate.
+
+See inline comments in `certificates.yaml` and `routing.yaml` above for how to configure these for default (automated) TLS vs [BYOC](pipeline-tls-custom.md).
 
 ### Troubleshooting
 
