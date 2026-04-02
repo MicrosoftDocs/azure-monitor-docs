@@ -81,6 +81,11 @@ helm show crds traefik/traefik | kubectl apply -f -
 
 If the pipeline uses mTLS, the gateway needs a client certificate so it can authenticate to the pipeline backend.
 
+> [!NOTE]
+> **BYOC:** If your pipeline uses custom certificates, skip this file and ensure
+> a `gateway-client-tls` Secret (with `tls.crt` and `tls.key` signed by your
+> BYOC client CA) exists in the pipeline namespace.
+
 Save the following as `certificates.yaml`:
 
 ```yaml
@@ -156,7 +161,14 @@ spec:
   tls:
     serverName: "<pipeline-name>-service.<pipeline-namespace>.svc.cluster.local"
     rootCAs:
+      # Default TLS: use the managed trust bundle ConfigMap.
       - configMap: arc-amp-trust-bundle
+      # BYOC: replace the line above with a reference to your BYOC server
+      # root CA — the CA that signed the pipeline's server certificate.
+      # Use 'secret' for a Secret or 'configMap' for a ConfigMap:
+      #   - secret: <byoc-server-root-ca-secret>
+      # The server certificate must include the serverName above as a DNS SAN.
+      # See: https://learn.microsoft.com/azure/azure-monitor/data-collection/pipeline-tls-custom
     certificatesSecrets:
       - gateway-client-tls
     insecureSkipVerify: false
@@ -261,7 +273,7 @@ helm install traefik-<pipeline-name> traefik/traefik \
    kubectl get pods -n <pipeline-namespace> -l app.kubernetes.io/name=traefik
    ```
 
-2. Get the external IP for the gateway service.
+2. Get the external IP for the gateway service to validate it's provisioned successfully.
 
    ```bash
    GATEWAY_IP=$(kubectl get svc traefik-<pipeline-name> \
@@ -274,7 +286,7 @@ External clients use this gateway IP `$GATEWAY_IP:<receiver-port>` to send data 
 
 ### Certificate management for TLS-enabled ingestion
 
-- Gateway client certificates are issued by `arc-amp-client-root-ca-cluster-issuer` and renewed by cert-manager.
+- Gateway client certificates are issued by `arc-amp-client-root-ca-cluster-issuer` and renewed by the certificate manager.
 - Pipeline server certificates are managed by the operator and rotate without downtime.
 - Trust bundles are distributed automatically to namespaces labeled with `arc-amp-trust-bundle=true`.
 
@@ -307,7 +319,7 @@ kubectl get serverstransporttcp -n <pipeline-namespace> \
 
 ```bash
 kubectl logs -n <pipeline-namespace> \
-  -l app.kubernetes.io/instance=traefik-<pipeline-name> --tail=50 | grep -i "tls\|error\|certificate"
+  -l app.kubernetes.io/instance=traefik-<pipeline-name> --tail=50 | grep -Ei "tls\|error\|certificate"
 ```
 
 </details>
