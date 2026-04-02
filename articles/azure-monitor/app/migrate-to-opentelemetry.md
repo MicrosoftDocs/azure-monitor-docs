@@ -97,15 +97,6 @@ For detailed guidance on replacing 2.x extensibility points, including edge case
 > [!TIP]
 > Resource-based values such as role metadata can flow through OpenTelemetry resource mappings instead of appearing on every telemetry item. If you need a key-value pair on every telemetry item, use `GlobalProperties` or a custom processor.
 
-SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these properties on individual telemetry items:
-
-| Context            | Properties                               |
-| ------------------ | ---------------------------------------- |
-| `User`             | `Id`, `AuthenticatedUserId`, `UserAgent` |
-| `Operation`        | `Name`                                   |
-| `Location`         | `Ip`                                     |
-| `GlobalProperties` | (dictionary)                             |
-
 ## Configure sampling
 
 Application Insights .NET SDK 3.x supports two sampling modes for traces (requests and dependencies):
