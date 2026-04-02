@@ -1,7 +1,7 @@
 ---
 title: Receive Service health alerts on Azure service notifications using Resource Manager template
 description: Get notified via SMS, email, or webhook when Azure service occurs using a Resource Manager template.
-ms.date: 03/17/2026
+ms.date: 04/02/2026
 ms.topic: quickstart
 ms.custom: subject-armqs, mode-arm, devx-track-arm-template
 ---
@@ -187,13 +187,15 @@ Remove-AzResourceGroup -Name my-resource-group
 
 ---
 
-## Next steps
+## For more information
 
 - Learn about [best practices for setting up Azure Service Health alerts](https://learn-video.azurefd.net/vod/player?id=771688cf-0348-44c4-ba48-f36bcd0aba3f).
-- Learn how to [setup mobile push notifications for Azure Service Health](https://learn-video.azurefd.net/vod/player?id=4a3171ca-2104-4447-8f4b-c4d27f6dfe96).
+- Learn how to [set up mobile push notifications for Azure Service Health](https://learn-video.azurefd.net/vod/player?id=4a3171ca-2104-4447-8f4b-c4d27f6dfe96).
 - Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
-- Learn about [service health notifications](service-health-notifications-properties.md).
-- Learn about [notification rate limiting](../azure-monitor/alerts/alerts-rate-limiting.md).
+- Learn about [Service health notifications](service-health-notifications-properties.md).
+- Learn about [Notification rate limiting](../azure-monitor/alerts/alerts-rate-limiting.md).
 - Review the [Service health alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md).
 - Get an [overview of Service health alerts](../azure-monitor/alerts/alerts-overview.md), and learn how to receive alerts.
 - Learn more about [action groups](../azure-monitor/alerts/action-groups.md).
+- Learn about [Service Health frequently asked questions](service-health-faq.yml).
+- Learn about [Resource Health frequently asked questions](resource-health-faq.yml).
