@@ -79,7 +79,7 @@ This article shows you how to set up Azure service health notifications through 
 1. Go to [PagerDuty](https://www.pagerduty.com/) to confirm that your integration was set up successfully.
 
 ## For more information
-- Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md)
+- Learn how to [configure webhook notifications for existing problem management systems](service-health-alert-webhook-guide.md).
 - Review the [activity log alert webhook schema](../azure-monitor/alerts/activity-log-alerts-webhook.md) 
 - Learn about [service health notifications](./service-health-notifications-properties.md)
 - Learn more about [action groups](../azure-monitor/alerts/action-groups.md)
