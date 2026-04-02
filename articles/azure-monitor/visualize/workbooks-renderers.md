@@ -2,7 +2,7 @@
 title: Azure Workbooks rendering options
 description: Learn about all the Azure Monitor workbook rendering options.
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ---
 
 # Rendering options

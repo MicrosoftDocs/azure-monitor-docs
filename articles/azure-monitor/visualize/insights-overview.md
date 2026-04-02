@@ -2,7 +2,7 @@
 title: Azure Monitor Insights Overview
 description: Lists available Azure Monitor "Insights" and other Azure product integrations 
 ms.topic: concept-article
-ms.date: 01/29/2025
+ms.date: 04/02/2026
 ---
 
 # Azure Monitor Insights overview

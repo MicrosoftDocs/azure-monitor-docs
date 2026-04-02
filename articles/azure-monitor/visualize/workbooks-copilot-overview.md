@@ -2,7 +2,7 @@
 title: Use Copilot with Azure Workbooks (preview)
 description: Learn how to use Copilot in Azure to create, analyze, and modify Azure Workbooks using natural language.
 ms.topic: concept-article
-ms.date: 02/09/2026
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr
 ai-usage: ai-assisted
 ---

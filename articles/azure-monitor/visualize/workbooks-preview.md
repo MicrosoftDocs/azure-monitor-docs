@@ -5,7 +5,7 @@ services: azure-monitor
 author: gardnerjr
 ms.author: jgardner
 ms.topic: conceptual
-ms.date: 03/30/2026
+ms.date: 04/02/2026
 ---
 
 # Azure Workbooks Preview

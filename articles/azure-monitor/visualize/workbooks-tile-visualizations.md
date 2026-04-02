@@ -3,7 +3,7 @@ title: Azure Monitor workbook tile visualizations
 description: Learn about all the Azure Monitor workbook tile visualizations.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ---
 
 # Tile visualizations

@@ -3,7 +3,7 @@ title: Sample Azure Workbooks with links
 description: See sample Azure Workbooks.
 ms.topic: how-to
 ms.custom: devx-track-arm-template, references_regions
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr 
 ---
 

@@ -3,7 +3,7 @@ title: Use Azure Monitor Dashboards with Grafana
 description: Explains how to use Azure Monitor dashboards with Grafana.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 03/04/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ---
 
