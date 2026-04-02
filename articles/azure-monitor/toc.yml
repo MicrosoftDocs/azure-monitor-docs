@@ -63,20 +63,8 @@ items:
             href: app/java-standalone-profiler.md
           - name: Get started (supplemental)
             href: app/java-get-started-supplemental.md
-          - name: Configuration
-            items:
-            - name: General
-              href: app/java-standalone-config.md
-            - name: JMX metrics
-              href: app/java-jmx-metrics-configuration.md
-            - name: Sampling overrides
-              href: app/java-standalone-sampling-overrides.md
-            - name: Telemetry processors
-              items:
-              - name: Overview
-                href: app/java-standalone-telemetry-processors.md
-              - name: Examples
-                href: app/java-standalone-telemetry-processors-examples.md
+          - name: Configuration (supplemental)
+            href: app/java-standalone-config.md
       - name: Client-side JavaScript SDK
         items:
         - name: Get Started with JavaScript SDK
@@ -341,23 +329,23 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
-  - name: Map feature (deprecated)
-    items:
-    - name: Overview
-      href: vm/vminsights-maps.md
-    - name: Retirement guidance
-      displayName: processes and dependencies, map, vminsights, dependency agent
-      href: vm/vminsights-maps-retirement.md
-    - name: Dependency agent
+    - name: Map feature (deprecated)
       items:
-      - name: Manage
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent.md
-      - name: Uninstall
-        displayName: dependency agent, vminsights
-        href: vm/vminsights-dependency-agent-uninstall.md
-    - name: Query map data
-      href: vm/vminsights-log-query.md
+      - name: Overview
+        href: vm/vminsights-maps.md
+      - name: Retirement guidance
+        displayName: processes and dependencies, map, vminsights, dependency agent
+        href: vm/vminsights-maps-retirement.md
+      - name: Dependency agent
+        items:
+        - name: Manage
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent.md
+        - name: Uninstall
+          displayName: dependency agent, vminsights
+          href: vm/vminsights-dependency-agent-uninstall.md
+      - name: Query map data
+        href: vm/vminsights-log-query.md
     - name: Performance diagnostics
       items:
       - name: Overview
@@ -701,6 +689,8 @@ items:
     - name: Create or edit
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
+    - name: Frequently asked questions 
+      href: platform/diagnostic-settings-faq.md
     - name: Create with Azure Policy
       items:
       - name: Use built-in policy or initiative
@@ -1223,14 +1213,24 @@ items:
           href: visualize/workbooks-multi-value.md
       - name: Workbook result limits
         href: visualize/workbooks-limits.md
-    - name: Access Troubleshooting guides
-      href: visualize/workbooks-access-troubleshooting-guide.md
     - name: Workbook Samples
       href: visualize/workbooks-samples.md
-    - name: Troubleshoot insights
-      href: visualize/troubleshoot-workbooks.md
-    - name: Dashboard Preview
-      href: visualize/workbooks-dashboard-preview.md
+    - name: Previews
+      items:
+      - name: Workbooks preview overview
+        href: visualize/workbooks-preview.md
+      - name: Dashboard preview
+        href: visualize/workbooks-dashboard-preview.md
+      - name: Use Copilot with Workbooks
+        href: visualize/workbooks-copilot-overview.md
+    - name: Troubleshooting
+      items:
+      - name: Access troubleshooting guides
+        href: visualize/workbooks-access-troubleshooting-guide.md
+      - name: Troubleshoot insights
+        href: visualize/troubleshoot-workbooks.md
+      - name: Troubleshoot Copilot for Workbooks
+        href: visualize/workbooks-copilot-troubleshoot.md
   - name: Azure Monitor Dashboards
     items:
     - name: Dashboard using log data
@@ -1361,8 +1361,6 @@ items:
           href: logs/api/errors.md
         - name: Migrate from using batch and beta query APIs
           href: logs/api/migrate-batch-and-beta.md
-  - name: Get the Activity log using the REST API
-    href: platform/rest-activity-log.md
 - name: Respond
   items:
   - name: Alerts
