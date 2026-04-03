@@ -19,17 +19,21 @@ The Azure Copilot observability agent is an AI-powered system that helps you exp
   - **Explore logs and metrics** — find common errors, understand application usage volume, visualize trends over time, and more.
   - **Analyze specific events or anomalies** — find correlated changes and dependency failures, and understand the impact on users.
 
-## Running a deep investigation
+## Run a deep investigation
 
-A deep investigation is a focused analysis that the observability agent runs as part of the troubleshooting experience. You initiate it from an Azure Monitor alert - either from the Azure portal or directly from an alert notification.
+A deep investigation is a focused analysis that the observability agent runs as part of the troubleshooting experience. You initiate it from an Azure Monitor alert - either from the Azure portal or directly from an email alert notification.
 
-The investigation produces analysis that explains what happened and surfaces relevant insights. Investigation results are temporary and available for a limited time. To preserve the investigation context, create an Azure Monitor issue.
+During an investigation, the agent analyzes and correlates observability signals - such as metrics, logs, alerts and alert context, tracing data, and resource health signals - to understand what changed, detect abnormal behavior, and assess the scope and impact of the issue.
+
+The investigation produces analysis that explains what happened and surfaces relevant insights. Investigation results are temporary and available for a limited time. To preserve the investigation context and results, you can save them as an Azure Monitor issue. Saving an issue lets you return to the investigation later, resume the conversation, and continue exploring the problem with full context and reasoning. 
+
+For more information about Azure Monitor issues and capabilities, see [Azure Monitor issues](aiops-issue-and-investigation-overview.md).
 
 :::image type="content" source="media/observability-agent-overview/issue-integration-investigate-option.png" alt-text="Screenshot of Azure Monitor alerts page with an alert details pane open, highlighting the Investigate (preview) action." lightbox="media/observability-agent-overview/issue-integration-investigate-option.png":::
 
-## Chatting with your data
+## Chat with your data
 
-The simplest way to use the observability agent is to chat with your observability data. This process happens in the scope of a specific resource, as shown in the following section. The chat is temporary, which means it isn't saved after the session ends.
+The simplest way to use the observability agent is to chat with your observability data. This process happens in the scope of a specific resource, as shown in the following section. The chat is temporary, which means it's not saved for later access or use. The agent accesses the resource through which it was launched, and provides suggestions to help you explore and analyze the resource's telemetry.
 
 To ask the observability agent anything about your data, open the Azure portal and select your Application Insights or Log Analytics Workspace resource.
 
@@ -41,13 +45,13 @@ To ask the observability agent anything about your data, open the Azure portal a
 
    :::image type="content" source="media/observability-agent-overview/logs-chat-window.png" alt-text="Screenshot of the Observability Agent chat window opened from the Logs blade." lightbox="media/observability-agent-overview/logs-chat-window.png":::
 
-## Working with the observability agent
+## Work with the observability agent
 
-The observability agent provides a conversational experience for exploring and understanding your observability data. You interact with the agent through chat to ask questions, explore signals, and gain insight into problems.
+The observability agent provides a conversational experience for exploring and understanding your observability data. You interact with the agent through chat to ask questions, explore signals, and gain insights in an iterative and flexible way.
 
 As the agent generates insights, it explains its reasoning. It highlights which signals it considered and how they relate to one another. This transparency helps you understand not only what the agent surfaced, but why it identified the information as relevant.
 
-The conversation continues as your understanding evolves. You can ask follow-up questions to dig deeper into the information already presented. For example, you might want to clarify a specific behavior, focus on a particular resource, or explore a different aspect of the problem.
+The conversation continues as your understanding evolves. You can ask follow-up questions to dig deeper into the information already presented - for example, to clarify a specific behavior, focus on a particular resource or signal, or explore a related angle - while maintaining context across the conversation.
 
 :::image type="content" source="media/observability-agent-overview/investigation-start.png" alt-text="Screenshot of Azure Monitor investigation in progress, showing baseline patterns and investigation process steps." lightbox="media/observability-agent-overview/investigation-start.png":::
 
@@ -122,12 +126,12 @@ The observability agent is currently available in the following Azure regions. S
 Keep in mind these general current limitations:
 
 - You can't continue the same conversation beyond 24 hours.
-- Full support is provided in English only, with limited support for conversations in other languages.
-- Customer Managed Keys (CMK) aren't supported for observability agent conversation data at this time. The data is encrypted by using Microsoft-managed encryption keys in accordance with Azure data protection standards.
+- The agent supports English only. Other languages have limited support.
+- Customer-managed keys (CMK) aren't supported for observability agent conversation data at this time. The data is encrypted by using Microsoft-managed encryption keys in accordance with Azure data protection standards.
 
 ## Responsible AI
 
-Azure Copilot is designed and operated in alignment with Microsoft's Responsible AI principles; for more information, see [Responsible AI FAQ for Azure Copilot](observability-agent-responsible-use.md).
+Azure Copilot is designed and operated in alignment with Microsoft's Responsible AI principles. For more information, see [Responsible AI FAQ for Azure Copilot](observability-agent-responsible-use.md).
 
 ## Related content
 

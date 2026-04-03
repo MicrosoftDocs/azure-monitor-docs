@@ -10,7 +10,7 @@ ms.date: 04/03/2026
 
 # Use Azure Monitor issues (preview)
 
-Issues help teams manage and resolve operational problems by providing a centralized way to track them over time. This article helps you get started with Azure Monitor issues. It shows how to create, view, configure, and interact with issues.
+Issues help teams manage and resolve operational problems by providing a centralized way to track them over time. This article helps you get started with Azure Monitor issues. It shows how to create, manage, and work with issues.
 
 ## Prerequisites
 
@@ -66,7 +66,7 @@ Host: management.azure.com
 Authorization: Bearer <bearerToken>
 ```
 
-## Creating issues
+## Create issues
 
 Create an issue when you want to persist the results of an investigation. Each issue is saved in an Azure Monitor Workspace (AMW).
 
@@ -84,7 +84,7 @@ In the **Create issue** box:
 
 :::image type="content" source="media/issue-investigation-how-to/create-issue-box.png" alt-text="Screenshot of the Create issue box with Issue name, severity, impact time, and Azure Monitor Workspace fields." lightbox="media/issue-investigation-how-to/create-issue-box.png":::
 
-When you create the issue, it appears on the **Issues (preview)** page. From there, you can open the issue details page to update issue parameters, interact with the Azure Copilot observability agent, and share the issue.
+After you create the issue, it appears on the **Issues (preview)** page. From there, you can open the issue details page to update issue parameters, interact with the Azure Copilot observability agent, and share a link to the issue, as described in the following sections.
 
 You can also access issues directly from an Azure Monitor Workspace, which shows the issues stored in that specific workspace.
 
@@ -106,7 +106,9 @@ The issue background provides information about the alerts associated with the i
 
 ## The Investigation tab
 
-An issue can include one or more investigations. The **Investigation** tab contains the Azure Copilot observability agent, which presents the investigation associated with the issue. The agent highlights key findings and supports follow-up questions.
+An issue can include one or more investigations. The **Investigation** tab contains the Azure Copilot observability agent, which presents the investigation associated with the issue. The agent highlights what was observed, the suspected cause, and suggested next steps related to the issue.
+
+You can continue interacting with the observability agent from this tab to further explore the problem. For more information about the observability agent, see [Azure Copilot observability agent overview](observability-agent-overview.md).
 
 :::image type="content" source="media/issue-investigation-how-to/investigation-details-page.png" alt-text="Screenshot of Azure Monitor issue showing the Investigation tab with chat pane and findings." lightbox="media/issue-investigation-how-to/investigation-details-page.png":::
 

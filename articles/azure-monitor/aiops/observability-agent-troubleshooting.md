@@ -1,6 +1,6 @@
 ---
-title: Troubleshooting guide - Azure Copilot observability agent (preview)
-description: Troubleshooting guidance for the Azure Copilot observability agent, including steps to address common problems.
+title: Troubleshoot Azure Copilot observability agent (preview)
+description: Troubleshoot common problems with the Azure Copilot observability agent, including steps to resolve issues caused by OpenAI service disruptions.
 ms.topic: troubleshooting-general
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
@@ -10,7 +10,7 @@ ms.date: 04/03/2026
 
 # Troubleshooting guide: Azure Copilot observability agent (preview)
 
-This article provides troubleshooting guidance for Azure Monitor Observability agent. It explains the causes of these problems and offers steps to address them.
+This article provides troubleshooting guidance for the Azure Copilot observability agent.
 
 ## OpenAI issue
 

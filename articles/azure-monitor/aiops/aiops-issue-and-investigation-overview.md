@@ -1,6 +1,6 @@
 ---
 title: Azure Monitor issues (preview)
-description: Learn how Azure Monitor issues help your team manage and resolve operational problems by consolidating observability data, investigations, and alerts into a single workflow.
+description: Learn how Azure Monitor issues help you manage and resolve operational problems by consolidating observability data, investigations, and alerts in one workflow.
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
@@ -17,13 +17,13 @@ Issues combine AI-powered investigations from the Azure Copilot observability ag
 
 :::image type="content" source="media/issue-investigation-overview/issue-investigation-tab.png" alt-text="Screenshot of an Azure Monitor issue showing the Investigation tab with findings and supporting data." lightbox="media/issue-investigation-overview/issue-investigation-tab.png":::
 
-## Creating issues
+## Create issues
 
 Create an issue when you want to persist the results of an investigation. Each issue is saved under an Azure Monitor Workspace (AMW).
 
 You need the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the Azure Monitor Workspace to create an issue. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
-## Viewing issues
+## View issues
 
 You can view a list of issues in the following locations:
 
@@ -32,7 +32,7 @@ You can view a list of issues in the following locations:
 
 ## Azure Monitor Workspace as an issue container
 
-Azure Monitor Workspaces (AMWs) act as the container for issues.
+Azure Monitor Workspaces (AMWs) act as containers for issues.
 
 You can configure an AMW as the default container for all issues in a subscription. When you set a default AMW, the investigation process saves issues in the same workspace when alerts fire on resources in that subscription. Saving them in the same workspace helps ensure that all related issues are stored and managed in a consistent location.
 
