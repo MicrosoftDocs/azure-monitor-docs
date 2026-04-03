@@ -116,7 +116,7 @@ source
 
 ## Supported KQL
 
-Expand the following sections for KQL functions and operators that Azure Monitor pipeline transformations support:
+Expand the following sections for KQL functions and operators that Azure Monitor pipeline transformations support:
 
 <details>
 <summary><b>Aggregations</b></summary>

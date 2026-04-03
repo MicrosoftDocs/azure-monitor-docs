@@ -83,7 +83,7 @@ Per-vCPU throughput for Syslog Fully Formed: ~8,000 logs/sec.
 
 ### Example: CEF Fully Formed at 100,000 logs/sec
 
-Per-vCPU throughput for CEF Fully Formed: about 6,500 logs/sec.
+Per-vCPU throughput for CEF Fully Formed: about 6,500 logs/sec.
 
 | Node size | Per-replica throughput | Replicas needed | Total CPU | Total memory |
 |:---|:---|:---|:---|:---|
@@ -97,7 +97,7 @@ The baselines in this article were measured under controlled conditions. The fol
 
 - **External ingress (gateway)**: Sending traffic through a gateway like Traefik adds network hops and potential TLS termination overhead compared to in-cluster delivery.
 - **TLS enabled**: Enabling TLS or mTLS adds encryption overhead per connection.
-- **Variable payloads**: The baselines use identical ~1.2 KB messages. Real-world traffic with variable message sizes and formats might affect parsing throughput.
+- **Variable payloads**: The baselines use identical ~1.2 KB messages. Real-world traffic with variable message sizes and formats might affect parsing throughput.
 - **Durable buffering**: Enabling disk-backed buffers adds I/O overhead but improves reliability during connectivity gaps.
 - **Transformations**: Complex KQL transformations applied to data before export add processing overhead per message.
 
