@@ -86,7 +86,7 @@ spec:
   dnsNames: azmonpipeline-receiver.pipeline.svc.cluster.local
 ```
 
-Apply the YAML to your cluster by using the following command. The certificate manager adds the certificate and key to the `collector-server-tls` secret.
+Apply the YAML to your cluster by using the following command. cert-manager adds the certificate and key to the `collector-server-tls` secret.
 
 ```bash
 kubectl apply -f azmonpipeline-server-cert.yaml

@@ -124,7 +124,7 @@ Apply the certificate:
 kubectl apply -f client-certificate.yaml
 ```
 
-Wait for the certificate manager to issue the certificate (usually within seconds):
+Wait for cert-manager to issue the certificate (usually within seconds):
 
 ```bash
 kubectl get certificate my-client-certificate -n <client-namespace> -w
@@ -132,7 +132,7 @@ kubectl get certificate my-client-certificate -n <client-namespace> -w
 
 ### Step 4: Extract Client Certificate and Key
 
-After the certificate manager issues the certificate, extract the client certificate and private key:
+After cert-manager issues the certificate, extract the client certificate and private key:
 
 ```bash
 # Extract client certificate
