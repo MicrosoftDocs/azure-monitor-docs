@@ -11,10 +11,9 @@ ms.date: 11/11/2025
 # Monitor .NET and Node.js applications with Application Insights (Classic API 2.x)
 
 > [!CAUTION]
-> - The Application Insights Classic API SDK 2.x is deprecated.
->   - The Node.js SDK retires on 01/26/2027.
->   - The .NET SDK retires on 03/31/2027.
-> - To remain supported, [migrate](./migrate-to-opentelemetry.md) to an OpenTelemetry-based solution before retirement.
+> - The Node.js Application Insights Classic API SDK 2.x is retired.
+> - The .NET Application Insights Classic API SDK 2.x is deprecated and retires on 03/31/2027.
+> - To remain supported, [migrate](./migrate-to-opentelemetry.md) to an OpenTelemetry-based SDK 3.x or preferably the [OpenTelemetry Distro](opentelemetry-enable.md).
 > - For support policy details, see [Application Insights SDK support guidance](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance).
 
 > [!IMPORTANT]
