@@ -2,7 +2,7 @@
 title: Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance issues
 description: Use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
 ms.topic: troubleshooting
-ms.date: 06/10/2025
+ms.date: 04/03/2026
 ms.reviewer: poharjan
 
 # Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share Performance Diagnostics information with Microsoft Support.
@@ -16,7 +16,7 @@ Performance Diagnostics (PerfInsights) helps identify and troubleshoot performan
 
 Run Performance Diagnostics directly from the Azure portal where you can review insights and reports about logs, configuration, and diagnostics data for the VM. Use this information to diagnose your issue before contacting Microsoft Support.
 
-Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs.
+Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs. The virtual machine must have outbound network access to the storage account so that Performance Diagnostics can upload diagnostics data, insights, and reports. For more information, see [Default outbound access in Azure](/azure/virtual-network/ip-services/default-outbound-access).
 
 ## Performance Diagnostics modes
 Performance diagnostics operates in one of the following two modes:
