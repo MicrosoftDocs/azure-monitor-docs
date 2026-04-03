@@ -12,7 +12,7 @@ ms.reviewer: poharjan
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-Performance Diagnostics (PerfInsights) helps identify and troubleshoot performance issues on Azure virtual machines. It provides insights into high resource usage such as high CPU, memory, and disk usage, and helps you understand the root cause of performance issues. 
+Performance Diagnostics (PerfInsights) helps you identify and troubleshoot performance problems on Azure virtual machines. It provides insights into high resource usage, such as high CPU, memory, and disk usage, and helps you understand the root cause of performance problems.
 
 Run Performance Diagnostics directly from the Azure portal where you can review insights and reports about logs, configuration, and diagnostics data for the VM. Use this information to diagnose your problem before contacting Microsoft Support.
 

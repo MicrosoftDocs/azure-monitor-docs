@@ -123,7 +123,7 @@ Each option is described in the following table.
 A notification is displayed as Performance Diagnostics starts to install, and you receive a second notification when it completes. This process typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario runs for the specified duration.
 
 ## Install in standalone mode
-Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
+By using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance problems on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must sign in interactively to the VM to run PerfInsights in standalone mode.
 
 ### [Windows](#tab/windows)
 1. Download [PerfInsights.zip](https://aka.ms/perfinsightsdownload).
