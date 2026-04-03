@@ -94,7 +94,7 @@ Select the approach that fits your needs:
 | Method | When to use | Key features |
 |--------|-------------|--------------|
 | **[Azure portal](./pipeline-configure-portal.md)** | * Getting started<br>* Simple configurations<br>* Quick deployment | * Guided UI experience<br>* Automatic component creation<br>* Built-in validation |
-| **[CLI/ARM templates](./pipeline-configure-cli.md)** | * Advanced scenarios<br>* Automation needed<br>* Custom requirements | * Full configuration control<br>* Caching support<br>* Custom tables<br>* Infrastructure as code |
+| **[CLI/ARM templates](./pipeline-configure-cli.md)** | * Advanced scenarios<br>* Automation needed<br>* Custom requirements | * Full configuration control<br>* Buffering to persistent volume<br>* Custom tables<br>* Infrastructure as code |
 
 > [!TIP]
 > **New to Azure Monitor pipeline?** Start with the portal. You can always switch to CLI/ARM templates later for advanced features.

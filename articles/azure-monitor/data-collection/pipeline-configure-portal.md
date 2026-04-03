@@ -9,7 +9,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline in the Azure portal
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). The Azure portal is the quickest way to create a pipeline and its dataflows because it creates the required pipeline resources for you. If you need automation, caching, or more control over the deployed resources, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). The Azure portal is the quickest way to create a pipeline and its dataflows because it creates the required pipeline resources for you. If you need automation, buffering, or more control over the deployed resources, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
 
 ## Create a pipeline
 
@@ -66,10 +66,12 @@ If you specify a transformation, select **Check KQL syntax** before saving the d
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of the KQL syntax checker and a typical error message.":::
 
-For `Syslog` and `CommonSecurityLog`, the transformation has access to the appropriate table columns. For custom tables, the portal experience provides access to only `TimeGenerated`, `SeverityText`, and `Body`. If you need other columns, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+For `Syslog` and `CommonSecurityLog`, the transformation has access to the appropriate table columns. For custom tables, the portal experience provides access to only `TimeGenerated`, `SeverityText`, and `Body`. If you need other columns, use [Configure Azure Monitor pipeline with CLI or ARM templates](./pipeline-configure-cli.md).
+
 
 > [!NOTE]
-> For details on creating transformations, see [Azure Monitor pipeline transformations](./pipeline-transformations.md).
+> For details on creating transformations, see [Azure Monitor pipeline transformations](./pipeline-transformations.md).
+
 
 ## Review and create
 
