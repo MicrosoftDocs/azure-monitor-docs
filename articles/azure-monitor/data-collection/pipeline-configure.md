@@ -123,6 +123,116 @@ To retrieve the heartbeat records, use a log query as shown in the following exa
 
 :::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
 
+## Set up Private Link
+
+When you enable Private Link, keep in mind the following key points about the architecture:
+
+- Pipeline instances run inside a Kubernetes cluster ([AKS](/azure/aks/intro-kubernetes) or Azure Arc-enabled Kubernetes).
+- The cluster connects to an Azure virtual network that hosts a [private endpoint](/azure/private-link/private-endpoint-overview).
+- The pipeline exports telemetry privately to Azure Monitor by using:
+  - [Azure Monitor Private Link Scope (AMPLS)](/azure/azure-monitor/logs/private-link-security)
+  - A private endpoint in the customer-managed virtual network
+- You disable public network access on the data collection endpoint (DCE).
+
+> [!NOTE]
+> Clients can still send telemetry to the pipeline's public, internal, or load-balancer endpoint. Private Link secures the cluster-to-Azure Monitor leg only.
+
+### Prerequisites for Private Link
+
+Before you begin, make sure you create the following resources:
+
+- A Kubernetes cluster:
+  - [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes), or
+  - A Kubernetes cluster connected by using Azure Arc-enabled Kubernetes
+- Network connectivity from the cluster to an Azure virtual network
+- A Log Analytics workspace
+- A data collection endpoint (DCE)
+- A deployed Azure Monitor pipeline that exports to the DCE
+- Azure CLI (latest version)
+- Azure permissions to create:
+  - Private endpoints
+  - [Private DNS zones](/azure/dns/private-dns-overview)
+  - [Azure Monitor Private Link Scopes](/azure/azure-monitor/logs/private-link-security)
+
+> [!NOTE]
+> For Azure Arc-enabled Kubernetes, create the private endpoint in an Azure virtual network reachable from the cluster, for example, via VPN, ExpressRoute, or a peered VNet.
+
+### Identify the virtual network and subnet for the private endpoint
+
+Create the private endpoint in a customer-managed Azure virtual network that is reachable from the Kubernetes cluster.
+
+#### Supported scenarios
+
+- **AKS** - Use the AKS node virtual network.
+- **Azure Arc-enabled Kubernetes** - Use:
+  - An Azure VNet connected via VPN or ExpressRoute, or
+  - A peered VNet accessible from the cluster
+
+#### Requirements for the subnet
+
+- The subnet must allow private endpoints.
+- You must disable private endpoint network policies on the subnet.
+
+Disable private endpoint network policies:
+
+```azurecli
+az network vnet subnet update \
+  --ids <subnet-id> \
+  --disable-private-endpoint-network-policies true
+```
+
+### Create a private endpoint for Azure Monitor
+
+Create a private endpoint in the selected Azure virtual network subnet and associate it with the Azure Monitor Private Link scope.
+
+```azurecli
+az network private-endpoint create \
+  --name <private-endpoint-name> \
+  --resource-group <resource-group> \
+  --location <region> \
+  --subnet <subnet-id> \
+  --private-connection-resource-id <ampls-id> \
+  --group-id azuremonitor \
+  --connection-name <connection-name>
+```
+
+Retrieve the private endpoint IP address (used for validation):
+
+```azurecli
+az network private-endpoint show \
+  --name <private-endpoint-name> \
+  --resource-group <resource-group> \
+  --query "networkInterfaces[0].id" -o tsv
+```
+
+### Configure private DNS zones
+
+Link the [private DNS zones](/azure/azure-monitor/logs/private-link-configure#review-your-endpoints-dns-settings) to the Azure virtual network hosting the private endpoint, not necessarily the Kubernetes cluster itself.
+
+Make sure the following zones exist and are linked to the VNet:
+
+- `privatelink.monitor.azure.com`
+- `privatelink.oms.opinsights.azure.com`
+- `privatelink.ods.opinsights.azure.com`
+- `privatelink.agentsvc.azure-automation.net`
+- `privatelink.blob.core.windows.net`
+
+> [!NOTE]
+> Kubernetes clusters (including Azure Arc-enabled clusters) must be able to resolve these names through the virtual network DNS configuration.
+
+### Validate Private Link
+
+After configuration:
+
+- Pipeline pods resolve Azure Monitor endpoints to private IP addresses.
+- Telemetry flows into Log Analytics.
+- The DCE blocks public network access.
+
+For Azure Arc-enabled Kubernetes clusters, validate that:
+
+- DNS resolution works from inside cluster pods.
+- Network routing allows traffic to the Azure private endpoint.
+
 ## Troubleshooting
 
 <details>
