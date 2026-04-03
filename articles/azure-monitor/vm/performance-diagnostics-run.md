@@ -25,7 +25,7 @@ This article describes how to install and run performance diagnostics on the fol
 - Azure Arc-enabled servers
 - Azure virtual machine scale sets running in [flexible orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-flexible-orchestration)
 
-Install the [Azure Performance Diagnostics VM extension](./performance-diagnostics-extension.md) for the following machines:
+Install the [Azure Performance Diagnostics VM extension](./performance-diagnostics-extension.md) for the following machines:
 
 - Azure classic VMs
 - Azure virtual machine scale sets running in [uniform orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-uniform-orchestration)
@@ -300,7 +300,7 @@ If you installed the performance diagnostics extension on the VM, you can run di
 > 
 > - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. Don't run these scenarios in a live production environment.
 > - For the benchmarking scenario or the "Advanced performance analysis" scenario that you configure to use Diskspd, ensure that no other background activity interferes with the I/O workload.
-> - By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This condition can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
+> - By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This condition can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
 
 If you installed the standalone version of PerfInsights, you can run on-demand diagnostics from the command line. 
 
