@@ -2,7 +2,7 @@
 title: Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
 description: Configure diagnostics extension in Azure Monitor to send data to Azure Event Hubs so you can forward it to locations outside of Azure.
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 02/24/2026
 ---
 
 # Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
