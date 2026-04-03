@@ -94,10 +94,10 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | traceDurationInSeconds | 300 | The duration of the traces, if any of the trace options are selected. |
 | perfCounterTrace | p | Option to enable Performance Counter Trace. Valid values are **p** or empty value. If you don't want to capture this trace, leave the value as empty. |
 | networkTrace | n | Option to enable Network Trace. Valid values are **n** or empty value. If you don't want to capture this trace, leave the value as empty. |
-| xperfTrace | x | Option to enable XPerf Trace. Valid values are **x** or empty value. If you don't want to capture this trace, leave the value as empty. |
-| storPortTrace | s | Option to enable StorPort Trace. Valid values are **s** or empty value. If you don't want to capture this trace, leave the value as empty. |
+| xperfTrace | x | Option to enable XPerf Trace. Valid values are **x** or empty value. If you don't want to capture this trace, leave the value as empty. |
+| storPortTrace | s | Option to enable StorPort Trace. Valid values are **s** or empty value. If you don't want to capture this trace, leave the value as empty. |
 | srNumber | 123452016365929 | The support ticket number, if available. Leave the value as empty if you don't have it. |
-| requestTimeUtc | 2017-09-28T22:08:53.736Z | Current date and time in UTC. If you're using the portal to install this extension, you don't need to provide this value. |
+| requestTimeUtc | 2017-09-28T22:08:53.736Z | Current date and time in UTC. If you're using the portal to install this extension, you don't need to provide this value. |
 | resourceId | /subscriptions/{subscriptionId}<br>/resourceGroups/{resourceGroupName}<br>/providers/{resourceProviderNamespace}<br>/{resourceType}/{resourceName} | The unique identifier of a VM. |
 | storageAccountName | mystorageaccount | The name of the storage account to store the diagnostics logs and results. |
 | storageAccountKey | aB1cD2eF-3gH4iJ5kL6-mN7oP8qR= | The key for the storage account. |
@@ -255,9 +255,9 @@ Use the `Set-AzVMExtension` command to deploy Azure Performance Diagnostics VM E
 
 * The extension deployment status (in the notification area) might show *Deployment in progress* even though the extension is successfully provisioned. Ignore this issue as long as the extension status indicates that the extension is successfully provisioned.
   
-* Use the extension logs to address some issues during installation. The extension execution output is logged to files found in `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Performance.Diagnostics.AzurePerformanceDiagnostics\<version>`.
+* Use the extension logs to address some issues during installation. The extension execution output is logged to files found in `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Performance.Diagnostics.AzurePerformanceDiagnostics\<version>`.
 
-* If you see the following errors in the Azure portal or performance diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), the HTTPS certificate chain is usually broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
+* If you see the following errors in the Azure portal or performance diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), the HTTPS certificate chain is usually broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
 
     - Provisioning Failed - message: Failed to upload the PerfInsights result to Azure storage account.
     - PerfInsights process exited with code 1700.
