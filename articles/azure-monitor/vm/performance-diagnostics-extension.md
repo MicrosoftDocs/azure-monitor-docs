@@ -103,7 +103,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | storageAccountKey | aB1cD2eF-3gH4iJ5kL6-mN7oP8qR= | The key for the storage account. |
 |authenticationType|systemmanagedidentity|The authentication type used to connect to the storage account. Valid values are `systemmanagedidentity`, `usermanagedidentity`, and `storagekeys`.|
 |managedIdentityClientId|00001111-aaaa-2222-bbbb-3333cccc4444|The client ID of the user-managed identity to be used for authenticating to the storage account.|
-| Overrides | `"Overrides": { "AlwaysOnThresholdConfigs": { "HighCPURule": { "CpuPercentageThresholdAllCore": 80 } } }` | (Optional) Specifies user-defined threshold values used by Performance Diagnostics to evaluate CPU, memory, and disk utilization during continuous or on-demand diagnostics runs. If this property isn't specified, default threshold values are used. Specify only the thresholds that you want to override. |
+| Overrides | `"Overrides": { "AlwaysOnThresholdConfigs": { "HighCPURule": { "CpuPercentageThresholdAllCore": 80 } } }` | (Optional) Specifies user-defined threshold values used by Performance Diagnostics to evaluate CPU, memory, and disk utilization during continuous or on-demand diagnostics runs. If you don't specify this property, default threshold values are used. Specify only the thresholds that you want to override. |
 
 
 ## Remove the extension

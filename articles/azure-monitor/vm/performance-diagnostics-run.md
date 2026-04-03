@@ -120,7 +120,7 @@ Each option is described in the following table.
 | **Threshold settings (Preview)** | Specify optional user-defined threshold values that override the default thresholds used by Performance Diagnostics to generate insights based on workload-specific resource usage patterns. |
 
 
-A notification is displayed as Performance Diagnostics starts to install, and you'll receive a second notification when it completes. This typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario is then run for the specified duration.
+A notification is displayed as Performance Diagnostics starts to install, and you receive a second notification when it completes. This process typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario runs for the specified duration.
 
 ## Install in standalone mode
 Using standalone mode, you can run performance diagnostics without installing the extension on the VM. This mode is useful for troubleshooting performance issues on non-Azure VMs or when you want to run diagnostics without modifying the VM configuration. You must log in interactively to the VM to run PerfInsights in standalone mode.
@@ -471,11 +471,11 @@ To view or change the storage account for Performance Diagnostics, select **View
 
 ## Threshold settings (Preview)
 
-Performance Diagnostics monitors CPU, memory, and disk usage to generate insights into virtual machine (VM) performance. Insights are generated when observed resource utilization exceeds or falls below threshold values during continuous or on-demand diagnostics runs.
+Performance Diagnostics monitors CPU, memory, and disk usage to generate insights into virtual machine (VM) performance. It generates insights when observed resource utilization exceeds or falls below threshold values during continuous or on-demand diagnostics runs.
 
-By default, predefined threshold values are used to determine when resource usage should be considered high or low. For workloads that operate at consistently elevated utilization levels, default thresholds might generate frequent insights that don't indicate abnormal system behavior.
+By default, predefined threshold values determine when resource usage is high or low. For workloads that operate at consistently elevated utilization levels, default thresholds might generate frequent insights that don't indicate abnormal system behavior.
 
-Threshold settings allow you to configure custom values for supported resource signals so that insights are generated only when usage deviates from the expected operating range of your workload. For example, if a virtual machine is expected to run at sustained CPU utilization, you can increase the configured CPU threshold so that insights are generated only when usage exceeds that level.
+Use threshold settings to configure custom values for supported resource signals so that insights are generated only when usage deviates from the expected operating range of your workload. For example, if a virtual machine is expected to run at sustained CPU utilization, you can increase the configured CPU threshold so that insights are generated only when usage exceeds that level.
 
 Configure threshold values for the following resource signals for both continuous and on-demand diagnostics. Available categories depend on the VM operating system.
 
@@ -489,14 +489,14 @@ Configure threshold values for the following resource signals for both continuou
 | Disk (Windows)| IOPS Read (%) | Percentage of read I/O operations on a disk. Considered high when this value is exceeded for any disk. | 40 | 40 |
 | Disk (Linux)| Latency (ms) | Latency is the time taken for a disk operation to complete, measured in milliseconds. Considered high when this value is exceeded for any disk | 200 | 200 |
 
-Select **View or edit diagnostic settings** under **Threshold settings (Preview)** when you do the following:
+Select **View or edit diagnostic settings** under **Threshold settings (Preview)** when you do the following tasks:
 - install Performance Diagnostics
 - run on-demand diagnostics
 - enable continuous diagnostics to configure threshold values
 
-Threshold values remain in effect until they're updated again.
+Threshold values remain in effect until you update them.
 
-::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics threshold settings screen where you can configure threshold values." lightbox="media/performance-diagnostics-run/threshold-settings.png":::
+::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics threshold settings screen where you can configure threshold values." lightbox="media/performance-diagnostics-run/threshold-settings.png"::
 
 View the default and currently configured threshold values under the **Settings** page in Performance Diagnostics. The insights shown are generated based on the current threshold values.
 
