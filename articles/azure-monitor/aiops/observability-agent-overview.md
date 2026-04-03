@@ -29,7 +29,7 @@ A deep investigation is a focused analysis that the observability agent runs as 
 
 During an investigation, the agent analyzes and correlates observability signals - such as metrics, logs, alerts and alert context, tracing data, and resource health signals - to understand what changed, detect abnormal behavior, and assess the scope and impact of the issue.
 
-:::image type="content" source="media/observability-agent-overview/investigation-start.png" alt-text="Screenshot of Azure Monitor investigation in progress, showing baseline patterns and investigation process steps." lightbox="media/observability-agent-overview/investigation-start.png":::
+:::image type="content" source="media/observability-agent-overview/investigation-started.png" alt-text="Screenshot of Azure Monitor investigation in progress, showing baseline patterns and investigation process steps." lightbox="media/observability-agent-overview/investigation-started.png":::
 
 The investigation produces analysis that explains what happened and surfaces relevant insights. Investigation results are temporary and available for a limited time. To preserve the investigation context and results, you can save them as an Azure Monitor issue. Saving an issue lets you return to the investigation later, resume the conversation, and continue exploring the problem with full context and reasoning. 
 
