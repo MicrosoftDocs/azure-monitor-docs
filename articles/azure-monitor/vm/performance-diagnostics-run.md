@@ -500,7 +500,7 @@ Threshold values remain in effect until they're updated again.
 
 View the default and currently configured threshold values under the **Settings** page in Performance Diagnostics. The insights shown are generated based on the current threshold values.
 
-:::image type="content" source="media/performance-diagnostics-run/threshold-values-insights.png" alt-text="Screenshot of the Performance Diagnostics insights screen that shows the threshold values that were used to generate insights." lightbox="media/performance-diagnostics-run/threshold-values-insights.png":::
+:::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics insights screen that shows the threshold values that were used to generate insights." lightbox="media/performance-diagnostics-run/threshold-settings.png":::
 
 ## Uninstall Performance Diagnostics
 
