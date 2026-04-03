@@ -6,6 +6,7 @@ ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
 ms.date: 04/03/2026
+ms.custom: references_regions
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
 
