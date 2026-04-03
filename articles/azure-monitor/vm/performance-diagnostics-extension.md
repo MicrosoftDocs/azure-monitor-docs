@@ -8,10 +8,10 @@ ms.date: 11/19/2025
 
 **Applies to:** :heavy_check_mark: Windows VMs
 
-[Performance Diagnostics](performance-diagnostics.md) is a troubleshooting tool that helps you identify and resolve performance issues on Azure virtual machines (VMs). This article describes the VM extension that enables Performance Diagnostics on Windows VMs and alternate methods on how to install it.
+[Performance diagnostics](performance-diagnostics.md) is a troubleshooting tool that helps you identify and resolve performance issues on Azure virtual machines (VMs). This article describes the VM extension that enables performance diagnostics on Windows VMs and alternate methods on how to install it.
 
 > [!NOTE]
-> See [Run Performance Diagnostics reports on Azure virtual machines](performance-diagnostics-run.md) for details on enabling the tool using the Azure portal and how to run reports.
+> See [Run performance diagnostics reports on Azure virtual machines](performance-diagnostics-run.md) for details on enabling the tool using the Azure portal and how to run reports.
 
 
 ## Extension schema
@@ -90,7 +90,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | type | AzurePerformanceDiagnostics | The type of the VM extension. |
 | typeHandlerVersion | 1.0 | The version of the extension handler. |
 | performanceScenario | basic | The performance scenario for which to capture data. Valid values are: **basic**, **vmslow**, **azurefiles**, and **custom**. |
-| enableContinuousDiagnostics | True | Enable continuous diagnostics. Valid values are **true** or **false**. To enable Continuous Performance Diagnostics, you need to provide this property. |
+| enableContinuousDiagnostics | True | Enable continuous diagnostics. Valid values are **true** or **false**. To enable Continuous performance diagnostics, you need to provide this property. |
 | traceDurationInSeconds | 300 | The duration of the traces, if any of the trace options are selected. |
 | perfCounterTrace | p | Option to enable Performance Counter Trace. Valid values are **p** or empty value. If you do not want to capture this trace, leave the value as empty. |
 | networkTrace | n | Option to enable Network Trace. Valid values are **n** or empty value. If you do not want to capture this trace, leave the value as empty. |
@@ -103,7 +103,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | storageAccountKey | aB1cD2eF-3gH4iJ5kL6-mN7oP8qR= | The key for the storage account. |
 | authenticationType | systemmanagedidentity | The authentication type used to connect to the storage account. Valid values are `systemmanagedidentity`, `usermanagedidentity`, and `storagekeys`. |
 | managedIdentityClientId | 00001111-aaaa-2222-bbbb-3333cccc4444 | The client ID of the user-managed identity to use for authenticating to the storage account. |
-| Overrides | `"Overrides": { "AlwaysOnThresholdConfigs": { "HighCPURule": { "CpuPercentageThresholdAllCore": 80 } } }` | (Optional) Specifies user-defined threshold values that Performance Diagnostics uses to evaluate CPU, memory, and disk utilization during continuous or on-demand diagnostics runs. If you don't specify this property, default threshold values are used. Specify only the thresholds that you want to override. |
+| Overrides | `"Overrides": { "AlwaysOnThresholdConfigs": { "HighCPURule": { "CpuPercentageThresholdAllCore": 80 } } }` | (Optional) Specifies user-defined threshold values that performance diagnostics uses to evaluate CPU, memory, and disk utilization during continuous or on-demand diagnostics runs. If you don't specify this property, default threshold values are used. Specify only the thresholds that you want to override. |
 
 
 ## Remove the extension
@@ -114,7 +114,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 To remove the extension from a virtual machine, follow these steps:
 
 1. Sign in to the [Azure portal](https://portal.azure.com), select the virtual machine from which you want to remove this extension, and then select the **Extensions + applications** blade.
-2. Select the Performance Diagnostics Extension, and then select **Uninstall**.
+2. Select the **AzurePerformanceDiagnostics** extension, and then select **Uninstall**.
 
      :::image type="content" source="media/performance-diagnostics-extension/uninstall-extension.png" alt-text="Screenshot of Extensions blade, with Uninstall highlighted.":::
 
@@ -177,12 +177,12 @@ Azure virtual machine extensions can be deployed with Azure Resource Manager tem
      "defaultValue": "10/2/2017 11:06:00 PM"
    },
    "authenticationType": {
-	 "type": "string",
-	 "defaultValue": "SystemManagedIdentity"
+     "type": "string",
+     "defaultValue": "SystemManagedIdentity"
    },
    "managedIdentityClientId": {
-	 "type": "string",
-		 "defaultValue": ""
+     "type": "string",
+         "defaultValue": ""
    }      
  },
  "resources": [
@@ -257,7 +257,7 @@ Use the `Set-AzVMExtension` command to deploy Azure Performance Diagnostics VM E
   
 * You can address some issues during installation by using the extension logs. Extension execution output is logged to files found in `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Performance.Diagnostics.AzurePerformanceDiagnostics\<version>`.
 
-* If you see the following errors in the Azure portal or Performance Diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), this usually means the HTTPS certificate chain is broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
+* If you see the following errors in the Azure portal or performance diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), this usually means the HTTPS certificate chain is broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
 
     - Provisioning Failed - message: Failed to upload the PerfInsights result to Azure storage account.
     - PerfInsights process exited with code 1700.
