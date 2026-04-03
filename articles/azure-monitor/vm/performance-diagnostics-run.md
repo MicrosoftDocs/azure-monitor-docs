@@ -484,7 +484,7 @@ Configure threshold values for the following resource signals for both continuou
 | Category | Threshold | Description | Continuous default | On-demand default |
 |:---|:---|:---|:---:|:---:|
 | CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
-| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 90 |
+| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 80 |
 | Memory | Available Memory (%) | Percentage of free system memory. Considered low when below this value. | 10 | 10 |
 | Memory (Windows)| Commit in Use (%) | Percentage of committed memory in use. Considered high when this value is exceeded. | 90 | 90 |
 | Disk (Windows)| IOPS Write (%) | Percentage of write I/O operations on a disk. Considered high when this value is exceeded for any disk. | 30 | 30 |
@@ -496,7 +496,7 @@ Configure threshold values for the following resource signals for both continuou
 | Category | Threshold | Description | Continuous default | On-demand default |
 |:---|:---|:---|:---:|:---:|
 | CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
-| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 90 |
+| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 80 |
 | Memory | Available Memory (%) | Percentage of free system memory. Considered low when below this value. | 10 | 10 |
 | Disk (Linux)| Latency (ms) | Latency is the time taken for a disk operation to complete, measured in milliseconds. Considered high when this value is exceeded for any disk | 200 | 200 |
 
