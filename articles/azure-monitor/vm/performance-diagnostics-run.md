@@ -479,6 +479,8 @@ Use threshold settings to configure custom values for supported resource signals
 
 Configure threshold values for the following resource signals for both continuous and on-demand diagnostics. Available categories depend on the VM operating system.
 
+### [Windows](#tab/windows)
+
 | Category | Threshold | Description | Continuous default | On-demand default |
 |:---|:---|:---|:---:|:---:|
 | CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
@@ -487,7 +489,19 @@ Configure threshold values for the following resource signals for both continuou
 | Memory (Windows)| Commit in Use (%) | Percentage of committed memory in use. Considered high when this value is exceeded. | 90 | 90 |
 | Disk (Windows)| IOPS Write (%) | Percentage of write I/O operations on a disk. Considered high when this value is exceeded for any disk. | 30 | 30 |
 | Disk (Windows)| IOPS Read (%) | Percentage of read I/O operations on a disk. Considered high when this value is exceeded for any disk. | 40 | 40 |
+
+
+### [Linux](#tab/linux)
+
+| Category | Threshold | Description | Continuous default | On-demand default |
+|:---|:---|:---|:---:|:---:|
+| CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
+| CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 90 |
+| Memory | Available Memory (%) | Percentage of free system memory. Considered low when below this value. | 10 | 10 |
 | Disk (Linux)| Latency (ms) | Latency is the time taken for a disk operation to complete, measured in milliseconds. Considered high when this value is exceeded for any disk | 200 | 200 |
+
+---
+
 
 Select **View or edit diagnostic settings** under **Threshold settings (Preview)** when you do the following tasks:
 - **Enable Performance Diagnostics**
@@ -498,9 +512,9 @@ Threshold values remain in effect until you update them.
 
 :::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics threshold settings screen where you can configure threshold values." lightbox="media/performance-diagnostics-run/threshold-settings.png":::
 
-View the default and currently configured threshold values under the **Settings** page in Performance Diagnostics. The insights shown are generated based on the current threshold values.
+View the default and currently configured threshold values under the **Settings** page in Performance Diagnostics. The insights displayed are generated based on the current threshold values. Here's an example screenshot of the threshold settings for a Linux VM:
 
-:::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics insights screen that shows the threshold values that were used to generate insights." lightbox="media/performance-diagnostics-run/threshold-settings.png":::
+:::image type="content" source="media/performance-diagnostics-run/diagnostic-setting.png" alt-text="Screenshot of the Performance Diagnostics insights screen that shows the threshold values that were used to generate insights." lightbox="media/performance-diagnostics-run/diagnostic-setting.png":::
 
 ## Uninstall Performance Diagnostics
 
