@@ -11,18 +11,18 @@ ms.date: 06/10/2025
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-[Performance diagnostics](./performance-diagnostics.md) helps identify and troubleshoot performance issues on Azure virtual machines. This article describes how to install performance diagnostics and run on-demand reports on your Azure virtual machine (VM).
+[Performance diagnostics](./performance-diagnostics.md) helps you identify and troubleshoot performance problems on Azure virtual machines. This article describes how to install performance diagnostics and run on-demand reports on your Azure virtual machine (VM).
 
 
 ## Prerequisites
 
-* To run continuous and on-demand diagnostics on Windows, you need [.NET SDK](/dotnet/core/install/windows) version 4.5 or a later version installed.
+* To run continuous and on-demand diagnostics on Windows, you need [.NET SDK](/dotnet/core/install/windows) version 4.5 or later.
 
 ## Supported machines
-This article describes how to install and run performance diagnostics on the following:
+This article describes how to install and run performance diagnostics on the following machines:
 
 - Azure VMs
-- Arc-enabled servers
+- Azure Arc-enabled servers
 - Azure virtual machine scale sets running in [flexible orchestration mode](/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-orchestration-modes#scale-sets-with-flexible-orchestration)
 
 Install the [Azure Performance Diagnostics VM extension](./performance-diagnostics-extension.md) for the following:
@@ -72,7 +72,7 @@ The following distributions are currently supported for on-demand diagnostics.
 ---
 
 ## Permissions required
-The permissions in the following table are required to run performance diagnostics and view the reports. 
+To run performance diagnostics and view the reports, you need the permissions listed in the following table. 
 
 | Action | Authentication type | Permissions required |
 |:-|:-|:-|
@@ -82,9 +82,9 @@ The permissions in the following table are required to run performance diagnosti
 | View performance diagnostics | Managed Identities (System-assigned and User-assigned) | An Azure role that includes the **Storage Table Data Reader** role on the storage account. |
 | Download performance diagnostics reports | All | An Azure role that includes the **Storage Table Data Reader** role and the **Storage Blob Data Reader** role on the storage account. |
 
-For detailed information about built-in roles for Azure Storage, refer to [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account).
+For detailed information about built-in roles for Azure Storage, see [Azure built-in roles for Storage](/azure/role-based-access-control/built-in-roles/storage). For more information about storage account settings, see [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account).
 
-If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. The account NT AUTHORITY\SYSTEM must be granted View Server State permission and Connect SQL permission for each instance, otherwise PerfInsights won't be able to connect to the SQL Server and the PerfInsights report won't show any SQL Server related information.
+If the VM has SQL Server instances installed on it, PerfInsights uses the account NT AUTHORITY\SYSTEM to access the SQL Server instances to collect configuration information and run rules. You must grant the account NT AUTHORITY\SYSTEM the View Server State permission and Connect SQL permission for each instance. Otherwise, PerfInsights can't connect to the SQL Server and the PerfInsights report doesn't show any SQL Server related information.
 
 
 ## Install performance diagnostics on a VM
@@ -93,7 +93,7 @@ Performance diagnostics installs a VM extension that runs a diagnostics tool, ca
 
 You can install the performance diagnostics tool from multiple locations in the Azure portal:
 
-- From the menu for the virtual machine. In the **Help** section of the menu, select **Performance diagnostics**. Select **Enable performance diagnostics**
+- From the menu for the virtual machine. In the **Help** section of the menu, select **Performance diagnostics**. Select **Enable performance diagnostics**.
 
     :::image type="content" source="media/performance-diagnostics-run/open-performance-diagnostics.png" alt-text="Screenshot of the Performance diagnostics pane in the Azure portal that shows the Enable performance diagnostics button highlighted." lightbox="media/performance-diagnostics-run/open-performance-diagnostics.png":::
 
@@ -286,20 +286,20 @@ The following categories of rules are currently supported:
 ## Run reports
 
 ### Run continuous diagnostics
-There's no need to run continuous diagnostics manually. The performance diagnostics extension runs continuously on the VM and uploads the results. See [Install performance diagnostics on Azure virtual machines](./performance-diagnostics-run.md) for instructions on enabling and disabling continuous diagnostics.
+You don't need to run continuous diagnostics manually. The performance diagnostics extension runs continuously on the VM and uploads the results. For instructions on enabling and disabling continuous diagnostics, see [Install performance diagnostics on Azure virtual machines](./performance-diagnostics-run.md).
 
 ### Run on-demand diagnostics
 
-There are two methods to run on-demand diagnostics.
+Follow one of these methods to run on-demand diagnostics.
 
-If you installed the performance diagnostics extension on the VM, you can run diagnostics from the Azure portal. From the **Performance diagnostics** option in the VM menu, select **Run diagnostics** and then select the report to run and its duration. 
+If you installed the performance diagnostics extension on the VM, you can run diagnostics from the Azure portal. From the **Performance diagnostics** option in the VM menu, select **Run diagnostics**. Then select the report to run and its duration. 
 
 > [!WARNING]
 > #### Possible performance impact
 > Be aware of the following potential performance impacts on the VM when you run performance diagnostics.
 > 
-> - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. These scenarios shouldn't be run in a live production environment.
-> - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Diskspd, ensure that no other background activity interferes with the I/O workload.
+> - For the benchmarking scenario or the "Advanced performance analysis" scenario that is configured to use Xperf or Diskspd, the tool might adversely affect the performance of the VM. Don't run these scenarios in a live production environment.
+> - For the benchmarking scenario or the "Advanced performance analysis" scenario that you configure to use Diskspd, ensure that no other background activity interferes with the I/O workload.
 > - By default, the tool uses the temporary storage drive to collect data. If tracing stays enabled for a longer time, the amount of data that is collected might be relevant. This can reduce the availability of space on the temporary disk, and can therefore affect any application that relies on this drive.
 
 If you installed the standalone version of PerfInsights, you can run on-demand diagnostics from the command line. 
@@ -418,20 +418,20 @@ Performance diagnostics supports [Managed Identities](/entra/identity/managed-id
 
 - System-assigned managed identity
 
-    This is the default authentication method. Performance diagnostics adds the **Storage Table Data Contributor** role and the **Storage Blob Data Contributor** role for the storage account, to the system-assigned managed identity. For more information, see [How to enable system-assigned managed identity on an existing VM](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#enable-system-assigned-managed-identity-on-an-existing-vm).
+    This method is the default authentication method. Performance diagnostics adds the **Storage Table Data Contributor** role and the **Storage Blob Data Contributor** role for the storage account, to the system-assigned managed identity. For more information, see [How to enable system-assigned managed identity on an existing VM](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#enable-system-assigned-managed-identity-on-an-existing-vm).
 
 - User-assigned managed identity
 
-    The user can select one from a list of user-assigned managed identities associated with the VM. Performance diagnostics adds the **Storage Table Data Contributor** role and the **Storage Blob Data Contributor** role for the storage account, to the user-assigned managed identity. For more information, see [How to assign a user-assigned managed identity to an existing VM](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#assign-a-user-assigned-managed-identity-to-an-existing-vm).
+    Select a user-assigned managed identity from a list of user-assigned managed identities associated with the VM. Performance diagnostics adds the **Storage Table Data Contributor** role and the **Storage Blob Data Contributor** role for the storage account, to the user-assigned managed identity. For more information, see [How to assign a user-assigned managed identity to an existing VM](/entra/identity/managed-identities-azure-resources/how-to-configure-managed-identities#assign-a-user-assigned-managed-identity-to-an-existing-vm).
 
 - Storage account access keys
 
-    The user can select storage account access keys. If **Allow storage account key access** is disabled for the storage account, the installation operation fails. For more information, see [Shared key authorization](/azure/storage/common/shared-key-authorization-prevent#disable-shared-key-authorization).
+    Select storage account access keys. If you disable **Allow storage account key access** for the storage account, the installation operation fails. For more information, see [Shared key authorization](/azure/storage/common/shared-key-authorization-prevent#disable-shared-key-authorization).
 
 To change the authentication method, uninstall performance diagnostics and reinstall it. 
 
 > [!NOTE]
-> Once the managed identities are linked to the VM, it might take a few minutes for them to be propagated and recognized by performance diagnostics. If the installation fails, wait a few minutes and try again.
+> After you link the managed identities to the VM, it might take a few minutes for performance diagnostics to propagate and recognize them. If the installation fails, wait a few minutes and try again.
 
 
 
@@ -439,7 +439,7 @@ To change the authentication method, uninstall performance diagnostics and reins
 
 Performance diagnostics stores all insights and reports in a binary large object (BLOB) container in a storage account that you can [configure for short data retention](/azure/storage/blobs/lifecycle-management-policy-configure) to minimize costs. You can use the same storage account for multiple VMs that use performance diagnostics or use a separate account for each VM.
 
-If you selected **Storage account access keys** for the [Authentication method](#authentication-methods)  during installation of performance diagnostics, you must enable the **Allow storage account key access** setting for the storage account.
+If you select **Storage account access keys** for the [Authentication method](#authentication-methods) during installation of performance diagnostics, you must enable the **Allow storage account key access** setting for the storage account.
 
 :::image type="content" source="media/performance-diagnostics-run/storage-account-configuration.png" alt-text="Screenshot of the configuration settings for storage account." lightbox="media/performance-diagnostics-run/storage-account-configuration.png":::
 
@@ -450,11 +450,11 @@ If you change the storage account after installation, the old reports and insigh
 
 ### View stored data
 
-To view diagnostics data, navigate to your storage account in the Azure portal and select **Storage browser**.
+To view diagnostics data, go to your storage account in the Azure portal and select **Storage browser**.
 
 :::image type="content" source="media/performance-diagnostics-run/performance-diagnostics-storage-browser.png" alt-text="Screenshot of the storage account screen that shows the performance diagnostics insights and report files." lightbox="media/performance-diagnostics-run/performance-diagnostics-storage-browser.png":::
 
-Performance diagnostics stores reports in a binary large object (BLOB) container named `azdiagextnresults`, and insights in tables. Insights include:
+Performance diagnostics stores reports in a BLOB container named `azdiagextnresults`, and insights in tables. Insights include:
 
 * All the insights and related information about the run
 * An output compressed file named `PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.zip` on Windows and a tar file named `PerformanceDiagnostics_yyyy-MM-dd_hh-mm-ss-fff.tar.gz` on Linux that contains log files
@@ -518,7 +518,7 @@ View the default and currently configured threshold values under the **Settings*
 
 ## Uninstall performance diagnostics
 
-Uninstalling performance diagnostics from a VM removes the VM extension but doesn't affect any diagnostics data that's in the storage account.
+When you uninstall performance diagnostics from a VM, you remove the VM extension but don't affect any diagnostics data in the storage account.
 
 To uninstall performance diagnostics, select the **Uninstall** button on the toolbar.
 
