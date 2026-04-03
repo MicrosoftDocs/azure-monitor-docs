@@ -256,7 +256,7 @@ items:
       items:
       - name: Enable from command line
         displayName: virtual machine, enable monitoring
-        href: vm/vm-enable-monitoring.md 
+        href: vm/vm-enable-monitoring.md
       - name: Azure Policy
         href: vm/vminsights-enable-policy.md
       - name: Windows client machines
@@ -689,7 +689,7 @@ items:
     - name: Create or edit
       displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
       href: platform/diagnostic-settings.md
-    - name: Frequently asked questions 
+    - name: Frequently asked questions
       href: platform/diagnostic-settings-faq.md
     - name: Create with Azure Policy
       items:
@@ -1510,9 +1510,9 @@ items:
       href: aiops/observability-agent-responsible-use.md
   - name: Issues and investigations
     items:
-    - name: Issues and investigations overview
+    - name: Issues overview
       href: aiops/aiops-issue-and-investigation-overview.md
-    - name: Use issues and investigations
+    - name: Use issues
       href: aiops/aiops-issue-and-investigation-how-to.md
   - name: AutoScale
     items:
@@ -1664,8 +1664,6 @@ items:
     items:
     - name: App Center migration (Preview)
       href: app/app-center-migration.md
-    - name: Application Insights SDK (Classic API 2.x)
-      href: app/classic-api.md
   - name: Archived documentation
     href: /previous-versions/azure/azure-monitor/azure-monitor-documentation-archive
 - name: Resources
