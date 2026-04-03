@@ -10,10 +10,15 @@ ms.date: 11/11/2025
 
 # Monitor .NET and Node.js applications with Application Insights (Classic API 2.x)
 
-[!INCLUDE [application-insights-sdk-support-policy](includes/application-insights-sdk-support-policy.md)]
-
 > [!CAUTION]
-> For new applications, use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md). It provides a similar experience and comparable functionality to the Application Insights SDK. To migrate to an OpenTelemetry based offering, review the [migration guidance](./migrate-to-opentelemetry.md).
+> - The Application Insights Classic API SDK 2.x is deprecated.
+>   - The Node.js SDK will be retired on 01/26/2027.
+>   - The .NET SDK will be retired on 03/31/2027.
+> - To remain supported, [migrate](./migrate-to-opentelemetry.md) to an OpenTelemetry-based solution before retirement.
+> - For support policy details, see [Application Insights SDK support guidance](/troubleshoot/azure/azure-monitor/app-insights/telemetry/sdk-support-guidance).
+
+> [!IMPORTANT]
+> For new applications, use the [Azure Monitor OpenTelemetry Distro](./opentelemetry-enable.md).
 
 This article explains how to enable and configure [Application Insights](app-insights-overview.md) for .NET (ASP.NET, ASP.NET Core, and Worker Service) and Node.js applications. Application Insights can collect the following telemetry from your apps:
 
