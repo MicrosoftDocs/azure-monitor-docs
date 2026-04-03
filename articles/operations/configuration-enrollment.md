@@ -53,10 +53,11 @@ The following features are part of the essentials tier.
 
 | Feature | Description |
 |:---|:---|
-| Azure Monitor | Monitors and provides insights into VM performance and health. |
-| Update manager | Automates the deployment of operating system updates to VMs. Configure recommended alerts. |
-| Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
-| Machine configuration | Audits the Azure security baseline policy |
+| [Azure Monitor](/azure/azure-monitor/vm/monitor-vm) | Monitors and provides insights into VM performance and health. Configures metric-based recommended alerts. |
+| [Azure Update Manager](/azure/update-manager/overview) | Automates the deployment of operating system updates to VMs. |
+| [Azure Machine Configuration](/azure/governance/machine-configuration/overview/01-overview-concepts) | Audits the Azure security baseline policy |
+| [Azure Change Tracking and Inventory](/azure/azure-change-tracking-inventory/overview-monitoring-agent) | Tracks changes to VM configurations and maintains an inventory of resources. |
+
 
 ### Security tier
 
@@ -157,9 +158,10 @@ The following table describes the specific configuration applied to each VM when
 
 | Feature | Configuration details |
 |:---|:---|
-| Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Configures recommended alerts |
-| Azure update manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
-| Change tracking and inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
+| Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Configures metric-based recommended alerts |
+| Azure Update Manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
+| Azure Machine Configuration |- Installs extension (`Microsoft.GuestConfiguration.ConfigurationforLinux` or `Microsoft.GuestConfiguration.ConfigurationforWindows`)<br>- Applies the [Linux security baseline](/azure/governance/policy/samples/guest-configuration-baseline-linux) and [Windows security baseline](/azure/governance/policy/samples/guest-configuration-baseline-windows) in **Audit only** mode. |
+| Azure Change Tracking and Inventory | - Installs extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
 
 

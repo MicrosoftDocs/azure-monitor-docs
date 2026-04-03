@@ -118,7 +118,44 @@ Use one of the following two ways to configure the connection string:
 
 ### [Java](#tab/java)
 
-To set the connection string, see [Connection string](java-standalone-config.md#connection-string).
+Use one of the following three ways to configure the connection string:
+
+* Add the following section to your *applicationinsights.json* config file.
+
+    ```json
+    {
+      "connectionString": "..."
+    }
+    ```
+
+    You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
+    
+    ```json
+    {
+      "connectionString": "${file:connection-string-file.txt}"
+    }
+    ```
+
+* Set an environment variable.
+
+    `APPLICATIONINSIGHTS_CONNECTION_STRING`
+
+
+* Add `applicationinsights.connection.string` as a system property.
+
+    ```console
+    java -javaagent:/path/to/applicationinsights-agent-3.7.5.jar \
+         -Dapplicationinsights.connection.string="<YOUR-CONNECTION-STRING>" \
+         -jar myapp.jar
+    ```
+
+> [!NOTE]
+> If you set the connection string in more than one place, we adhere to the following precedence:
+> 1. System property
+> 2. Environment Variable
+> 3. Configuration File
+
+If you deploy multiple applications in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](java-standalone-config.md#connection-string-overrides-preview).
 
 ### [Java native](#tab/java-native)
 
@@ -274,9 +311,45 @@ var loggerFactory = LoggerFactory.Create(builder =>
 
 ### [Java](#tab/java)
 
-To set the cloud role name, see [cloud role name](java-standalone-config.md#cloud-role-name).
+> [!NOTE]
+> If you don't set the cloud role name and cloud role instance, the cloud role name defaults to the name of your Application Insights resource, and the cloud role instance defaults to the machine name.
 
-To set the cloud role instance, see [cloud role instance](java-standalone-config.md#cloud-role-instance).
+Use one of the following three ways to configure the cloud role name and cloud role instance:
+
+* Add the following section to your *applicationinsights.json* config file.
+
+    ```json
+    {
+      "role": {
+        // Set the cloud role name
+        "name": "my cloud role name",
+        // Set the cloud role instance
+        "instance": "my cloud role instance"
+      }
+    }
+    ```
+
+* Set environment variables.
+
+    `APPLICATIONINSIGHTS_ROLE_NAME`
+    `APPLICATIONINSIGHTS_ROLE_INSTANCE`
+
+* Add `applicationinsights.role.name` and `applicationinsights.role.instance` as system properties.
+
+    ```console
+    java -javaagent:/path/to/applicationinsights-agent-3.7.5.jar \
+         -Dapplicationinsights.role.name="my-cloud-role-name" \
+         -Dapplicationinsights.role.instance="my-cloud-role-instance" \
+         -jar myapp.jar
+    ```
+
+> [!NOTE]
+> If you set the cloud role name and cloud role instance in more than one place, the following precedence order applies:
+> 1. System property
+> 2. Environment Variable
+> 3. Configuration File
+
+If you deploy multiple applications in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](java-standalone-config.md#cloud-role-name-overrides-preview).
 
 ### [Java native](#tab/java-native)
 
@@ -346,14 +419,13 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
-> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-tracebased-sampling-for-logs).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
 > * **Metrics** are never sampled.
 
 > [!NOTE]
-> If you're seeing unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
+> If you see unexpected charges or high costs in Application Insights, common causes include high telemetry volume, data ingestion spikes, and misconfigured sampling. To start troubleshooting, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
 
-### Configure sampling using environment variables
-
+### Configure sampling by using environment variables
 
 Use standard OpenTelemetry environment variables to select the sampler and provide its argument. For more information about OpenTelemetry sampler types, see [OTEL_TRACES_SAMPLER](https://opentelemetry.io/docs/languages/sdk-configuration/general/#otel_traces_sampler).
 
@@ -379,7 +451,22 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 #### [Java](#tab/java)
 
-For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+> [!NOTE]
+> * Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
+>
+> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [sampling overrides](java-standalone-config.md#configure-sampling-overrides).
+
+**Fixed-percentage sampling**
+
+* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`** — sampling percentage
+    * Value is a percentage (for example, `33.333` = ~33.333%).
+
+**Rate-limited sampling**
+
+* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** — maximum requests per second
+    * For example, `1.5`.
+
+For configuration options and examples, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 #### [Java native](#tab/java-native)
 
@@ -446,6 +533,9 @@ For configuration options and examples, see [Java sampling](java-standalone-conf
 ---
 
 The following examples show how to configure sampling using environment variables.
+
+> [!NOTE]
+> The following examples aren't valid for Java. For the correct environment variables, see the previous Java tab.
 
 **Fixed-percentage sampling (~10%)**
 
@@ -518,7 +608,7 @@ var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 # [Java](#tab/java)
 
-Starting from 3.4.0, **rate‑limited sampling is the default**. For configuration options and examples, see [Java sampling](java-standalone-config.md#sampling).
+For Java, you can't configure sampling in code.
 
 # [Java native](#tab/java-native)
 
@@ -593,14 +683,103 @@ configure_azure_monitor(
 ---
 
 > [!TIP]
-> When using fixed‑percentage sampling and you aren't sure what to set the sampling rate as, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so we recommend alerting on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
+> When using fixed-percentage sampling and you're not sure what value to set for the sampling rate, start at **5%** (`0.05`). Adjust the rate based on the accuracy of the operations shown in the failures and performance panes. Any sampling reduces accuracy, so alert on [OpenTelemetry metrics](opentelemetry-add-modify.md#add-custom-metrics), which are unaffected by sampling.
 
-### Configure trace‑based sampling for logs
+### Configure sampling in the configuration file
 
-When enabled, log records that belong to **unsampled traces** are dropped so that your logs remain aligned with trace sampling.
+# [ASP.NET Core](#tab/aspnetcore)
 
-* A log record is considered part of a trace when it has a valid `SpanId`.
-* If the associated trace's `TraceFlags` indicate **not sampled**, the log record is **dropped**.
+Configuring sampling in a configuration file isn't supported for ASP.NET Core. To configure sampling, use code or environment variables instead.
+
+# [.NET](#tab/net)
+
+Configuring sampling in a configuration file isn't supported for .NET. To configure sampling, use code or environment variables instead.
+
+# [Java](#tab/java)
+
+> [!NOTE]
+> * Starting with Java agent version 3.4.0, rate-limited sampling is available and is now the default.
+>
+> * Sampling only applies to logs inside of a request. Logs that aren't inside of a request (for example, startup logs) are always collected by default. If you want to sample those logs, use [sampling overrides](java-standalone-config.md#configure-sampling-overrides).
+
+If you don't configure sampling, the default is now rate-limited sampling configured to capture at most (approximately) five requests per second, along with all the dependencies and logs on those requests.
+
+This configuration replaces the prior default, which was to capture all requests. If you still want to capture all requests, use fixed-percentage sampling and set the sampling percentage to 100.
+
+#### Fixed percentage sampling
+
+This example shows how to set the sampling to capture approximately a third of all requests:
+
+```json
+{
+  "sampling": {
+    "percentage": 33.333
+  }
+}
+```
+
+Set the sampling percentage by using the environment variable. It takes precedence over the sampling percentage specified in the JSON configuration.
+
+> [!TIP]
+> For the sampling percentage, choose a percentage that's close to 100/N, where N is an integer. Currently, sampling doesn't support other values.
+
+#### Rate-limited sampling
+
+> [!NOTE]
+> The rate-limited sampling is approximate because internally it must adapt a "fixed" sampling percentage over time to emit accurate item counts on each telemetry record. Internally, the rate-limited sampling is tuned to adapt quickly (0.1 seconds) to new application loads. For this reason, you shouldn't see it exceed the configured rate by much, or for very long.
+
+This example shows how to set the sampling to capture at most (approximately) one request per second:
+
+```json
+{
+  "sampling": {
+    "requestsPerSecond": 1.0
+  }
+}
+```
+
+The `requestsPerSecond` value can be a decimal, so you can configure it to capture less than one request per second if you want. For example, a value of `0.5` means capture at most one request every 2 seconds.
+
+Set the rate limit by using the environment variable. It takes precedence over the rate limit specified in the JSON configuration.
+
+# [Java native](#tab/java-native)
+
+Java native doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
+
+# [Node.js](#tab/nodejs)
+
+Starting from 1.16.0, **rate‑limited sampling is the default**.
+
+Set the sampling configuration in the *applicationinsights.json* file. This file is located under the root folder of the @azure/monitor-opentelemetry package installation folder, such as *node_modules/@azure/monitor-opentelemetry*. All `AzureMonitorOpenTelemetryClient` instances use these configuration values.
+
+#### Fixed percentage sampling
+
+```javascript
+{
+    "samplingRatio": 0.1, // ~10%
+}
+```
+
+#### Rate-limited sampling
+
+```javascript
+{
+    "samplingRatio": 1.5, // ~1.5 traces/sec
+}
+```
+
+# [Python](#tab/python)
+
+Python doesn't support configuring sampling in a configuration file. To configure sampling, use code or environment variables.
+
+---
+
+### Configure trace-based sampling for logs
+
+When you enable this feature, the system drops log records that belong to **unsampled traces** so your logs stay aligned with trace sampling.
+
+* A log record is part of a trace when it has a valid `SpanId`.
+* If the associated trace's `TraceFlags` indicate **not sampled**, the feature **drops** the log record.
 * Log records **without** any trace context **aren't** affected.
 * The feature is **enabled by default**.
 
@@ -690,7 +869,7 @@ This feature isn't available in the Azure Monitor .NET Exporter.
 
 The Live Metrics experience is enabled by default.
 
-For more information on Java configuration, see [Configuration options: Azure Monitor Application Insights for Java](java-standalone-config.md#configuration-options-azure-monitor-application-insights-for-java).
+For more information on Java configuration, see [Configure Azure Monitor Application Insights for Java](java-standalone-config.md).
 
 ### [Java native](#tab/java-native)
 

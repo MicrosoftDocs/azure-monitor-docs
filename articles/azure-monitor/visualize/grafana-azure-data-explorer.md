@@ -3,7 +3,7 @@ title: Use dashboards with Grafana with Azure Data Explorer (ADX)
 description: This article explains how to use Azure Monitor dashboards with Grafana with Azure Data Explorer (ADX).
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 11/03/2025
+ms.date: 04/02/2026
 ---
 
 # Use dashboards with Grafana with Azure Data Explorer (ADX)

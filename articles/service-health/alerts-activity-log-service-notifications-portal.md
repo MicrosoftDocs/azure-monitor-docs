@@ -2,7 +2,7 @@
 title: Create Service Health alerts for Azure service notifications
 description: Learn how to use the Azure portal to set up Service Health alerts.
 ms.topic: quickstart
-ms.date: 03/17/2026
+ms.date: 03/31/2026
 
 ---
 
@@ -21,14 +21,14 @@ When your alerts are created, you can view them on the Health alerts page. For m
 To create or edit an alert rule, you must have the following permissions:
 
 - Read permission on the target resource of the alert rule.
-- Write permission on the resource group in which the alert rule is created.
+- Write permission on the resource group in which you create the alert rule.
 - Read permission on any action group associated to the alert rule, if applicable.
 
-For more information about Roles and access permissions, read [Roles, permissions and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
+For more information about roles and access permissions, see [Roles, permissions, and security in Azure Monitor](/azure/azure-monitor/fundamentals/roles-permissions-security).
 
 ## Service Health alerts overview
 
-Alerts are based on the type of notification, affected subscription, tenant directories, services, and regions. They're created using the Azure portal’s Service Health interface.
+Create alerts in the Azure portal by using the Service Health interface. The alerts are based on the type of notification, affected subscription, tenant directories, services, and regions.
 
 You receive an alert when Azure sends Service Health notifications to your Azure subscription or tenant directory. You can configure the alert based on:
 
@@ -46,25 +46,25 @@ You receive an alert when Azure sends Service Health notifications to your Azure
 For information on how to configure Service Health notification alerts by using Azure Resource Manager templates, see [Resource Manager templates](../azure-monitor/alerts/alerts-activity-log.md).
 
 ## How to create a Service Health alert
-1. In the [portal](https://portal.azure.com/), select **Service Health**.
+1. In the [Azure portal](https://portal.azure.com/), select **Service Health**.
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/home-service-health.png"alt-text="A screenshot of Azure portal with link to open Service Health."Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
+   :::image type="content" source="media/alerts-activity-log-service-notifications/home-service-health.png" alt-text="A screenshot of Azure portal with link to open Service Health." Lightbox="media/alerts-activity-log-service-notifications/home-service-health.png":::
 
-2. In the **Service Issues** panel, select **Create service health alert** to open a new window where you fill in the information required to create the alert. 
+1. In the **Service Issues** panel, select **Create service health alert**. A new window opens where you enter the information required to create the alert. 
 
-:::image type="content"source="media/alerts-activity-log-service-notifications/service-health-blades.png"alt-text="A screenshot of the Health alerts tab."Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
+   :::image type="content" source="media/alerts-activity-log-service-notifications/service-health-blades.png" alt-text="A screenshot of the Health alerts tab." Lightbox="media/alerts-activity-log-service-notifications/service-health-blades.png":::
 
-On this panel you set up:
+On this panel, set up the following values:
 
 - **Scope** - select the scope level by *subscription*.
 - **Condition** - select the *Services*, *Regions*, and *Event types* from the drop-down menus.
 - **Details** - select the *Resource group* and then create an *Alert rule name*.
-- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role* and if needed, the *Azure mobile app notification*.
+- **Notify me by** - enter the email address to send the alerts to, select the *Email Azure Resource Manager Role*, and if needed, the *Azure mobile app notification*.
     
 >[!TIP]
-> We recommend selecting **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
+> Select **all Services and all Regions** when configuring Service Health alerts. Service Health only triggers alerts when events affect the regions where your services are running. As a result, selecting everything doesn't result in alerts for unused services or regions.
 
-3. Select **Create** to finish the alert, or if you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
+1. Select **Create** to finish the alert. If you want to add more detailed information for the service health alert, select **Advanced Options** to add more information to your alert.
 
 
 > [!NOTE]
@@ -75,7 +75,7 @@ On this panel you set up:
 The *Advanced Options* section lets you add more details and adjust how a Service Health alert works.
 These settings don't change the Service Health events that Microsoft publishes. Instead, they control which events you're notified about and how you receive those notifications.
 
-Use Advanced Options to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
+Use *Advanced Options* to choose the event types, services, regions, and notification actions for your alert. This section includes all the available settings you can use to customize alert behavior.
 
 #### Scope
 When you select **Advanced options**, the Scope tab opens first. 
@@ -131,14 +131,14 @@ Here you can select **Advanced options** to set up your own *Custom properties* 
 
 #### Tags
 
-On the **Tags** tab, you can select tags and then assign a value for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
+On the **Tags** tab, select tags and then assign values for them. For more information, see [Learn about tags](/azure/azure-resource-manager/management/tag-resources?wt.mc_id=azuremachinelearning_inproduct_portal_utilities-tags-tab).
 
-:::image type="content"source="media/create-alerts/service-health-alert-tags.png"alt-text="Screenshot of the Tags tab."Lightbox="media/create-alerts/service-health-alert-tags.png":::
+:::image type="content" source="media/create-alerts/service-health-alert-tags.png" alt-text="Screenshot of the Tags tab." Lightbox="media/create-alerts/service-health-alert-tags.png":::
 
 #### Review + create
-The **Review + Create** tab lets you review everything you selected. When you’re done, select *Create* to finish and create the alert.
+The **Review + Create** tab lets you review everything you selected. When you're ready, select *Create* to finish and create the alert.
 
-:::image type="content"source="media/create-alerts/service-health-alert-final.png"alt-text="Screenshot of the Review and create tab."Lightbox="media/create-alerts/service-health-alert-final.png":::
+:::image type="content" source="media/create-alerts/service-health-alert-final.png" alt-text="Screenshot of the Review and create tab." Lightbox="media/create-alerts/service-health-alert-final.png":::
 
 
 

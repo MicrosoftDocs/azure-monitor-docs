@@ -32,10 +32,11 @@ Application Insights .NET SDK 3.x provides these NuGet packages:
 - `Microsoft.ApplicationInsights.Web` for ASP.NET apps on .NET Framework
 - `Microsoft.ApplicationInsights.NLogTarget` for NLog integration (beta)
 
-Use the repository documentation for code examples and OpenTelemetry integration details:
+Use the repository documentation for code examples and detailed migration guidance:
 
 - [ApplicationInsights-dotnet README](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/Readme.md)
 - [SDK concepts](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/docs/concepts.md)
+- [Migration guidance: Application Insights 2.x to 3.x](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md)
 
 ## Upgrade to 3.x
 
@@ -55,7 +56,7 @@ Remove these packages because they aren't compatible with SDK 3.x:
 - `Microsoft.ApplicationInsights.EtwCollector`
 - `Microsoft.ApplicationInsights.EventSourceListener`
 
-SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead.
+SDK 3.x doesn't publish 3.x versions of these packages. Use the supported 3.x packages listed in [Application Insights .NET SDK 3.x overview](#application-insights-net-sdk-3x-overview) instead. The following sections describe the intended replacements for these packages. In some cases, the functionality is built into the supported 3.x packages or replaced by OpenTelemetry APIs.
 
 > [!NOTE]
 > This list includes only Microsoft packages. If you use third-party packages that depend on `Microsoft.ApplicationInsights` 2.x (for example, `Serilog.Sinks.ApplicationInsights`), verify those packages support SDK 3.x before upgrading. Follow guidance from the package maintainers.
@@ -69,34 +70,32 @@ Upgrade any remaining supported Application Insights packages to the latest 3.x 
 
 ### Step 3: Update code and configuration for breaking changes
 
-Review the breaking changes reference and remove or replace APIs and settings that are no longer supported.
+Review both the breaking changes reference and the detailed migration guidance. Most applications need to update code or configuration in one or more of the following areas:
 
 - [Breaking changes: Application Insights 2.x to 3.x](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/BreakingChanges.md)
+- [Migration guidance: Application Insights 2.x to 3.x](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md)
 
-The most common changes include:
-
-- Remove `TrackPageView` calls.
-- Update `Track*` calls to remove the custom metrics parameter.
-- Replace instrumentation key configuration with a full connection string by using `TelemetryConfiguration.ConnectionString`.
-- Replace `TelemetryModule`, `TelemetryInitializer`, and `TelemetryProcessor` customizations with OpenTelemetry processors, instrumentation libraries, and resource detectors. The `ApplicationInsightsServiceOptions` class includes `EnableQuickPulseMetricStream`, `EnablePerformanceCounterCollectionModule`, `EnableDependencyTrackingTelemetryModule`, and `EnableRequestTrackingTelemetryModule`. These `ApplicationInsightsServiceOptions` settings configure exporter behavior and don't use `TelemetryModule` implementations.
-- Replace adaptive sampling (`EnableAdaptiveSampling`) with `TracesPerSecond` or `SamplingRatio`.
-- Target .NET Framework 4.6.2 or later for ASP.NET apps that use `Microsoft.ApplicationInsights.Web`.
+| 2.x API, setting, or pattern | 3.x guidance |
+| --- | --- |
+| `TrackPageView` | Remove `TrackPageView` calls. Page view tracking is removed in the .NET 3.x SDK. |
+| `TrackEvent`, `TrackException`, and `TrackAvailability` overloads that include `IDictionary<string, double> metrics` | Remove the custom metrics parameter. Track metrics separately by using `TrackMetric()`. |
+| `GetMetric` overloads that use `MetricConfiguration` or `MetricAggregationScope` | Use the simplified `GetMetric` overloads. Metrics configuration and aggregation are managed internally in SDK 3.x. |
+| `InstrumentationKey` configuration or `TelemetryClient.InstrumentationKey` | Use `TelemetryConfiguration.ConnectionString` and provide a connection string instead of an instrumentation key. SDK 3.x requires a connection string and can fail at startup if one isn't configured. For test scenarios, you can use a dummy connection string such as `InstrumentationKey=00000000-0000-0000-0000-000000000000`. |
+| `TelemetryClient()` or `TelemetryConfiguration.Active` | Create a configuration explicitly by using `TelemetryConfiguration.CreateDefault()`, and pass it to `new TelemetryClient(config)`. |
+| `TelemetryModule`, `TelemetryInitializer`, or `TelemetryProcessor` customization | Custom initializers or processors should be migrated to OpenTelemetry-based processors. References to built-in 2.x processors, initializers, and modules should be removed. For more information, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md). |
+| `ITelemetryChannel` or `TelemetryConfiguration.TelemetryChannel` | The classic channel abstraction is removed because 3.x internally incorporates the Azure Monitor exporter. For tests, use OpenTelemetry-friendly validation such as an in-memory exporter. |
+| `EnableAdaptiveSampling` | Replace adaptive sampling with `TracesPerSecond` or `SamplingRatio`. |
+| `Microsoft.ApplicationInsights.Web` targeting .NET Framework 4.5.2 | Target .NET Framework 4.6.2 or later. |
+| Metric name and namespace conventions | To follow OpenTelemetry instrument naming syntax, update the `name`, `metricId`, and `metricNamespace` values used with `TrackMetric()`, `GetMetric()`, and `MetricIdentifier`. Metric names and namespaces must start with a letter and can contain only letters, digits, `_`, `.`, `-`, or `/`. Spaces aren't allowed. |
 
 ## Replace removed extensibility points
 
-Application Insights .NET SDK 2.x provides Application Insights-specific extensibility types such as telemetry modules, initializers, and processors. Application Insights .NET SDK 3.x uses OpenTelemetry extensibility instead.
+Application Insights .NET SDK 2.x provided Application Insights-specific extensibility types such as telemetry modules, initializers, processors, and channels. Application Insights .NET SDK 3.x uses OpenTelemetry extensibility instead.
 
-- Use OpenTelemetry instrumentation and configuration options to control automatic collection.
-- Use OpenTelemetry processors to enrich or filter telemetry.
+For detailed guidance on replacing 2.x extensibility points, including edge cases, see [migration guidance](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/MigrationGuidance.md).
 
-SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these properties on individual telemetry items:
-
-| Context            | Properties                               |
-| ------------------ | ---------------------------------------- |
-| `User`             | `Id`, `AuthenticatedUserId`, `UserAgent` |
-| `Operation`        | `Name`                                   |
-| `Location`         | `Ip`                                     |
-| `GlobalProperties` | (dictionary)                             |
+> [!TIP]
+> Resource-based values such as role metadata can flow through OpenTelemetry resource mappings instead of appearing on every telemetry item. If you need a key-value pair on every telemetry item, use `GlobalProperties` or a custom processor.
 
 ## Configure sampling
 
@@ -115,11 +114,13 @@ You can set `SamplingRatio`, `TracesPerSecond`, and `EnableTraceBasedLogsSampler
 
 Use these steps to validate telemetry during an upgrade to SDK 3.x:
 
+- Confirm that a full connection string is configured before startup. If you validate telemetry in tests without a real resource, use a dummy connection string.
 - Collect Application Insights self-diagnostics logs to identify configuration errors and exporter failures.
 - Add the OpenTelemetry console exporter to verify that traces, metrics, and logs emit as expected before you rely on Azure Monitor ingestion.
-- If you previously unit tested telemetry by mocking `ITelemetryChannel`, switch to OpenTelemetry-friendly validation (for example: in-memory exporters or extra test exporters in nonproduction environments).
+- If you previously unit tested telemetry by mocking `ITelemetryChannel`, switch to OpenTelemetry-friendly validation such as in-memory exporters or other test exporters in nonproduction environments.
 - Confirm that sampling settings behave as expected by validating parent-child trace decisions.
-- Validate resource attributes such as service name, role name, and environment to ensure correct attribution in Application Insights.
+- Validate resource attributes such as service name, role name, role instance, and environment to ensure correct attribution in Application Insights.
+- If you migrated custom enrichment, verify that your properties appear where you expect. Resource-based mappings can differ from 2.x behavior.
 
 For detailed troubleshooting guidance and examples, use the following resources:
 
@@ -136,12 +137,12 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 | 2.x dependency | Action | Remarks |
 |----------------|--------|---------|
 | `applicationinsights-core` | Update the version to `3.4.3` or later | |
-| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter your `web.xml` file. | |
+| `applicationinsights-web` | Update the version to `3.4.3` or later, and remove the Application Insights web filter from your `web.xml` file. | |
 | `applicationinsights-web-auto` | Replace with `3.4.3` or later of `applicationinsights-web` | |
-| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 1.2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | No longer needed since Log4j 2 is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | No longer needed since Logback is autoinstrumented in the 3.x Java agent. |
-| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [3.x configuration docs](./java-standalone-config.md#cloud-role-name). |
+| `applicationinsights-logging-log4j1_2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 1.2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 1.2. |
+| `applicationinsights-logging-log4j2` | Remove the dependency and remove the Application Insights appender from your Log4j configuration. | Log4j 2 appender isn't needed since the 3.x Java agent autoinstruments Log4j 2. |
+| `applicationinsights-logging-logback` | Remove the dependency and remove the Application Insights appender from your Logback configuration. | Logback appender isn't needed since the 3.x Java agent autoinstruments Logback. |
+| `applicationinsights-spring-boot-starter` | Replace with `3.4.3` or later of `applicationinsights-web` | The cloud role name no longer defaults to `spring.application.name`. To learn how to configure the cloud role name, see the [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance). |
 
 ## Step 2: Add the 3.x Java agent
 
@@ -158,7 +159,7 @@ If you're using the Application Insights 2.x Java agent, just replace your exist
 
 ## Step 3: Configure your Application Insights connection string
 
-See [configuring the connection string](./java-standalone-config.md#connection-string).
+See [Configure Azure Monitor OpenTelemetry](./opentelemetry-configuration.md#connection-string).
 
 ## Other notes
 
@@ -166,11 +167,11 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryInitializers
 
-2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attribute-preview).
+2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attributes-preview).
 
 ## TelemetryProcessors
 
-2.x SDK TelemetryProcessors don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by configuring [sampling overrides](./java-standalone-config.md#sampling-overrides).
+TelemetryProcessors from the 2.x SDK don't run when you use the 3.x agent. Many of the use cases that previously required writing a `TelemetryProcessor` can be solved in Application Insights Java 3.x by [configuring sampling overrides](./java-standalone-config.md#configure-sampling-overrides).
 
 ## Multiple applications in a single JVM
 
