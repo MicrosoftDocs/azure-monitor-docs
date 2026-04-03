@@ -477,26 +477,30 @@ By default, predefined threshold values are used to determine when resource usag
 
 Threshold settings allow you to configure custom values for supported resource signals so that insights are generated only when usage deviates from the expected operating range of your workload. For example, if a virtual machine is expected to run at sustained CPU utilization, you can increase the configured CPU threshold so that insights are generated only when usage exceeds that level.
 
-You can configure threshold values for the following resource signals for both continuous and on-demand diagnostics.
+Configure threshold values for the following resource signals for both continuous and on-demand diagnostics. Available categories depend on the VM operating system.
 
 | Category | Threshold | Description | Continuous default | On-demand default |
 |:---|:---|:---|:---:|:---:|
 | CPU | Aggregate CPU (%) | Average CPU usage across all logical processors. Considered high when this value is exceeded. | 30 | 30 |
 | CPU | Per-core CPU (%) | CPU usage of any individual processor core. Considered high when this value is exceeded for any core. | 80 | 90 |
 | Memory | Available Memory (%) | Percentage of free system memory. Considered low when below this value. | 10 | 10 |
-| Memory | Commit in Use (%) | Percentage of committed memory in use. Considered high when this value is exceeded. | 90 | 90 |
-| Disk | IOPS Write (%) | Percentage of write I/O operations on a disk. Considered high when this value is exceeded for any disk. | 30 | 30 |
-| Disk | IOPS Read (%) | Percentage of read I/O operations on a disk. Considered high when this value is exceeded for any disk. | 40 | 40 |
+| Memory (Windows)| Commit in Use (%) | Percentage of committed memory in use. Considered high when this value is exceeded. | 90 | 90 |
+| Disk (Windows)| IOPS Write (%) | Percentage of write I/O operations on a disk. Considered high when this value is exceeded for any disk. | 30 | 30 |
+| Disk (Windows)| IOPS Read (%) | Percentage of read I/O operations on a disk. Considered high when this value is exceeded for any disk. | 40 | 40 |
+| Disk (Linux)| Latency (ms) | Latency is the time taken for a disk operation to complete, measured in milliseconds. Considered high when this value is exceeded for any disk | 200 | 200 |
 
-You can select **View or edit diagnostic settings** under **Threshold settings (Preview)** when installing Performance Diagnostics, running on-demand diagnostics, or enabling continuous diagnostics to configure threshold values.
+Select **View or edit diagnostic settings** under **Threshold settings (Preview)** when you do the following:
+- install Performance Diagnostics
+- run on-demand diagnostics
+- enable continuous diagnostics to configure threshold values
 
 Threshold values remain in effect until they're updated again.
 
-<!-- TODO: Insert thresholds screen screenshot from Pooja -->
+::image type="content" source="media/performance-diagnostics-run/threshold-settings.png" alt-text="Screenshot of the Performance Diagnostics threshold settings screen where you can configure threshold values." lightbox="media/performance-diagnostics-run/threshold-settings.png":::
 
-You can also view the default and currently configured threshold values under the **Settings** page in Performance Diagnostics, and insights include the threshold values that were used to generate them.
+View the default and currently configured threshold values under the **Settings** page in Performance Diagnostics. The insights shown are generated based on the current threshold values.
 
-<!-- TODO: Insert settings screen screenshot from Pooja -->
+:::image type="content" source="media/performance-diagnostics-run/threshold-values-insights.png" alt-text="Screenshot of the Performance Diagnostics insights screen that shows the threshold values that were used to generate insights." lightbox="media/performance-diagnostics-run/threshold-values-insights.png":::
 
 ## Uninstall Performance Diagnostics
 
