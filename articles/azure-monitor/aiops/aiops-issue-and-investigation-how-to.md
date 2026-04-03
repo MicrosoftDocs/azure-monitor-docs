@@ -70,9 +70,10 @@ Authorization: Bearer <bearerToken>
 
 Create an issue when you want to persist the results of an investigation. Each issue is saved in an Azure Monitor Workspace (AMW).
 
-:::image type="content" source="media/observability-agent-overview/investigation-results.png" alt-text="Screenshot of Azure Monitor investigation results with the Create Issue button visible." lightbox="media/observability-agent-overview/investigation-results.png":::
-
 After the Azure Copilot observability agent completes an investigation, select **Create issue** to create an issue that tracks the operational problem.
+
+:::image type="content" source="media/issue-investigation-how-to/investigation-details-page.png" alt-text="Screenshot of Azure Monitor investigation results with the Create Issue button visible." lightbox="media/issue-investigation-how-to/investigation-details-page.png":::
+
 
 In the **Create issue** box:
 
@@ -110,7 +111,7 @@ An issue can include one or more investigations. The **Investigation** tab conta
 
 You can continue interacting with the observability agent from this tab to further explore the problem. For more information about the observability agent, see [Azure Copilot observability agent overview](observability-agent-overview.md).
 
-:::image type="content" source="media/issue-investigation-how-to/investigation-details-page.png" alt-text="Screenshot of Azure Monitor issue showing the Investigation tab with chat pane and findings." lightbox="media/issue-investigation-how-to/investigation-details-page.png":::
+:::image type="content" source="media/issue-investigation-how-to/investigation-results-follow-up.png" alt-text="Screenshot of Azure Monitor issue showing the Investigation tab with chat pane and findings." lightbox="media/issue-investigation-how-to/investigation-results-follow-up.png":::
 
 ## View the resources and alerts included in an issue
 

@@ -15,8 +15,6 @@ An issue helps your team manage and resolve operational problems by bringing tog
 
 Issues combine AI-powered investigations from the Azure Copilot observability agent, correlated alerts, and enriched observability data to ensure clarity and alignment throughout the resolution process.
 
-:::image type="content" source="media/issue-investigation-overview/issue-investigation-tab.png" alt-text="Screenshot of an Azure Monitor issue showing the Investigation tab with findings and supporting data." lightbox="media/issue-investigation-overview/issue-investigation-tab.png":::
-
 ## Create issues
 
 Create an issue when you want to persist the results of an investigation. Each issue is saved under an Azure Monitor Workspace (AMW).
