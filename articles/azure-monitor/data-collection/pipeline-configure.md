@@ -159,14 +159,14 @@ Before you begin, make sure you create the following resources:
 
 ### Identify the virtual network and subnet for the private endpoint
 
-Create the private endpoint in a customer-managed Azure virtual network that is reachable from the Kubernetes cluster.
+Create the private endpoint in a customer-managed Azure virtual network that the Kubernetes cluster can reach.
 
 #### Supported scenarios
 
 - **AKS** - Use the AKS node virtual network.
 - **Azure Arc-enabled Kubernetes** - Use:
-  - An Azure VNet connected via VPN or ExpressRoute, or
-  - A peered VNet accessible from the cluster
+  - An Azure VNet connected through VPN or ExpressRoute, or
+  - A peered VNet that the cluster can access
 
 #### Requirements for the subnet
 
@@ -183,7 +183,7 @@ az network vnet subnet update \
 
 ### Create a private endpoint for Azure Monitor
 
-Create a private endpoint in the selected Azure virtual network subnet and associate it with the Azure Monitor Private Link scope.
+Create a private endpoint in the chosen Azure virtual network subnet and associate it with the Azure Monitor Private Link scope.
 
 ```azurecli
 az network private-endpoint create \
@@ -207,9 +207,9 @@ az network private-endpoint show \
 
 ### Configure private DNS zones
 
-Link the [private DNS zones](/azure/azure-monitor/logs/private-link-configure#review-your-endpoints-dns-settings) to the Azure virtual network hosting the private endpoint, not necessarily the Kubernetes cluster itself.
+Link the [private DNS zones](/azure/azure-monitor/logs/private-link-configure#review-your-endpoints-dns-settings) to the Azure virtual network that hosts the private endpoint, not necessarily the Kubernetes cluster itself.
 
-Make sure the following zones exist and are linked to the VNet:
+Make sure the following zones exist and are linked to the virtual network:
 
 - `privatelink.monitor.azure.com`
 - `privatelink.oms.opinsights.azure.com`
