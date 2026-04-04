@@ -14,6 +14,9 @@ This guide provides step-by-step instructions to migrate applications from using
 
 Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
+> [!TIP]
+> To review archived .NET or Node.js classic API SDK information, see [API 2.x](/previous-versions/azure/azure-monitor/app/classic-api).
+
 # [.NET](#tab/dotnet)
 
 Use Application Insights .NET software development kit (SDK) 3.x to upgrade from Application Insights .NET SDK 2.x to an OpenTelemetry (OTel)-based implementation. The 3.x SDK keeps most `TelemetryClient` and `TelemetryConfiguration` application programming interfaces (APIs) and uses the Azure Monitor OpenTelemetry Exporter to send telemetry to Application Insights.

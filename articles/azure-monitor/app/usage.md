@@ -81,8 +81,6 @@ appInsights.trackEvent({name: "incrementCount"});
 
 You can also log server-side custom events using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
 
-To learn how to use custom events with the Application Insights SDK (Classic API), see [custom events](api-custom-events-metrics.md#trackevent) and [properties](api-custom-events-metrics.md#properties).
-
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your application from the start.
 
@@ -176,9 +174,7 @@ Clicking **View More Insights** displays the following information:
 
 If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
 
-To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span). 
-
-If you're using the Application Insights SDK (Classic API), use a telemetry initializer instead. For more information, see [custom events](api-filtering-sampling.md#addmodify-properties-itelemetryinitializer).
+To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span).
 
 After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 

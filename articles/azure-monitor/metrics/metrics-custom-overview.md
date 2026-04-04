@@ -28,9 +28,6 @@ In general, there's no cost to ingest standard metrics (platform metrics) into a
 
 Custom metrics are retained for the [same amount of time as platform metrics](data-platform-metrics.md#retention-of-metrics).
 
-> [!NOTE]
-> To provide a better experience, custom metrics sent to Azure Monitor from the Application Insights Classic API Software Development Kits (SDKs) are always stored in both Log Analytics and the Metrics Store. Your cost to store these metrics is only based on the volume ingested by Log Analytics. There's no extra cost for data stored in the Metrics Store.
-
 ## Custom metric definitions
 
 Each metric data point published contains a namespace, name, and dimension information. The first time a custom metric is emitted to Azure Monitor, a metric definition is automatically created. This new metric definition is then discoverable on any resource that the metric is emitted from via the metric definitions. You don't need to predefine a custom metric in Azure Monitor before you emit it.
