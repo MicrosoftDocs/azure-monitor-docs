@@ -174,7 +174,7 @@ Clicking **View More Insights** displays the following information:
 
 If you're unsure which feature variant is more successful, run an A/B test and let different users access each variant.
 
-To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, this can be done by adding a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span).
+To set up an A/B test, attach unique property values to all the telemetry sent by each variant. With OpenTelemetry, add a custom property to a span. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#add-a-custom-property-to-a-span).
 
 After the A/B test, filter and split your data on the property values so that you can compare the different versions. Measure each version's success, then transition to a unified version.
 
