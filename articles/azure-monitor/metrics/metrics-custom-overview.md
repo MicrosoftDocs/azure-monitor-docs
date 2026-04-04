@@ -30,7 +30,7 @@ Custom metrics are retained for the [same amount of time as platform metrics](da
 
 ## Custom metric definitions
 
-Each metric data point published contains a namespace, name, and dimension information. The first time a custom metric is emitted to Azure Monitor, a metric definition is automatically created. This new metric definition is then discoverable on any resource that the metric is emitted from via the metric definitions. You don't need to predefine a custom metric in Azure Monitor before you emit it.
+Each metric data point you publish contains a namespace, name, and dimension information. The first time you emit a custom metric to Azure Monitor, the service automatically creates a metric definition. You can discover this new metric definition on any resource that the metric is emitted from via the metric definitions. You don't need to predefine a custom metric in Azure Monitor before you emit it.
 
 > [!NOTE]
 > Application Insights and the InfluxData Telegraf agent are already configured to emit metric values against the correct regional endpoint and carry all the preceding properties in each emission.
