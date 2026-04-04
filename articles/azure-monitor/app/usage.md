@@ -79,7 +79,7 @@ Events can be logged from the client side of the application using either the [C
 appInsights.trackEvent({name: "incrementCount"});
 ```
 
-You can also log server-side custom events using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
+You can also log server-side custom events by using the Azure Monitor OpenTelemetry Distro. For more information, see [Add and modify Azure Monitor OpenTelemetry for .NET, Java, Node.js, and Python applications](opentelemetry-add-modify.md#send-custom-events).
 
 > [!TIP]
 > When you design each feature of your app, consider how you're going to measure its success with your users. Decide what business events you need to record, and code the tracking calls for those events into your application from the start.
