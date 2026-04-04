@@ -174,6 +174,9 @@ After you complete the setup for your scenario, run your app and wait a few minu
 > [!IMPORTANT]
 > If you're still using Application Insights Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
 
+> [!TIP]
+> To review archived .NET or Node.js classic API SDK information, see [API 2.x](/previous-versions/azure/azure-monitor/app/classic-api).
+
 ## Other OpenTelemetry integrations on Azure
 
 Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:

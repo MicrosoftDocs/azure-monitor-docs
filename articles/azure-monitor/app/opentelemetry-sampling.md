@@ -10,7 +10,7 @@ ms.date: 12/10/2025
 [Application Insights](./app-insights-overview.md) includes a custom sampler and integrates with [OpenTelemetry](./opentelemetry-enable.md) to reduce telemetry volume, lower costs, and retain the diagnostic data you care about.
 
 > [!IMPORTANT]
-> For information on sampling when using the Application Insights Classic API Software Development Kits (SDKs), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+> For information on sampling when using the [Application Insights Classic API Software Development Kits (SDKs)](/previous-versions/azure/azure-monitor/app/classic-api), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ## Prerequisites
 
