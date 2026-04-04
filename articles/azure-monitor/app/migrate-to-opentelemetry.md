@@ -12,7 +12,10 @@ ms.custom:
 
 This guide provides step-by-step instructions to migrate applications from using Application Insights SDKs (Classic API) to Azure Monitor OpenTelemetry.
 
-Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+You get a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+
+> [!TIP]
+> To review archived .NET or Node.js classic API SDK information, see [API 2.x](/previous-versions/azure/azure-monitor/app/classic-api).
 
 # [.NET](#tab/dotnet)
 

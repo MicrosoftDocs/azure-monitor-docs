@@ -52,7 +52,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * [ASP.NET Core Application](/aspnet/core/introduction-to-aspnet-core) using an officially supported version of [.NET](https://dotnet.microsoft.com/download/dotnet)
 
 > [!Tip]
-> If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-dotnet-migrate.md).
+> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-dotnet-migrate.md).
 
 #### [.NET](#tab/net)
 
@@ -60,7 +60,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * Application using a [supported version](https://dotnet.microsoft.com/platform/support/policy) of [.NET](https://dotnet.microsoft.com/download/dotnet) or [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) 4.6.2 and later.
 
 > [!Tip]
-> If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-dotnet-migrate.md).
+> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-dotnet-migrate.md).
 
 #### [Java](#tab/java)
 
@@ -83,7 +83,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro.
 
 > [!Tip]
-> If you're migrating from the Application Insights Classic API, see our [migration documentation](./opentelemetry-nodejs-migrate.md).
+> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-nodejs-migrate.md).
 
 #### [Python](#tab/python)
 
