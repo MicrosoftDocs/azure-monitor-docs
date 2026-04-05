@@ -44,13 +44,13 @@ The following table represents the currently supported custom telemetry types:
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
-| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           |                |              |            |            |          |        |
+| &nbsp;&nbsp;&nbsp;AI [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) | Yes           |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Logback, `Log4j`, JUL   |               |                |              | Yes        |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Micrometer Metrics      |               | Yes            |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
+| &nbsp;&nbsp;&nbsp;AI [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
 |                                           |               |                |              |            |            |          |        |
 | **Node.js**                               |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |

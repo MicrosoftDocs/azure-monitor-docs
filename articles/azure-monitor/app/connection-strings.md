@@ -163,7 +163,7 @@ For end-to-end guidance, including CORS and APIM policies, see: [Using Azure API
 
 ### Code samples
 
-| Language | Classic API | OpenTelemetry |
+| Language | [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) | OpenTelemetry |
 |-----------------|-------------|---------------|
 | ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
 | .NET Framework | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |

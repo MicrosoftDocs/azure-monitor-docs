@@ -352,7 +352,7 @@ AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OS
 
 ### Can AKS autoinstrumentation coexist with manual instrumentation?
 
-AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
+AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights [classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK and OpenTelemetry Distro.
 
 It always prevents duplicate data and ensures custom metrics work.
 
