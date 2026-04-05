@@ -11,6 +11,19 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
 
+### March 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Application Insights|[Application Insights overview](../app/app-insights-overview.md)|Reorganized the Application Insights overview to make the OpenTelemetry setup path easier to navigate.|
+|Application Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md?tabs=portal)|Added a simplified "Enable Application Insights" path that brings together [resource creation](../app/create-workspace-resource.md?tabs=portal), [OpenTelemetry setup](../app/opentelemetry-enable.md?tabs=aspnetcore), and browser monitoring with the [JavaScript SDK](../app/javascript-sdk.md?tabs=javascriptwebsdkloaderscript).|
+|Application Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Improved .NET Application Insights 3.x upgrade guidance with clearer migration steps and decision points.|
+|Application Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md?tabs=aspnetcore)|Split OpenTelemetry guidance into dedicated articles for [automatic collection and add/modify](../app/opentelemetry-collect-detect.md?tabs=aspnetcore) and [adding or modifying telemetry](../app/opentelemetry-add-modify.md?tabs=aspnetcore).|
+|Application Insights|[OpenTelemetry troubleshooting and support](../app/opentelemetry-enable.md?tabs=aspnetcore#troubleshooting-feedback-and-support)|Standardized troubleshooting and next-steps guidance across the OpenTelemetry documentation so setup help and follow-up resources are easier to find.|
+|Containers|[Ingest OTLP data with OTel Collector (Preview)](../containers/opentelemetry-protocol-ingestion.md)|Moved OTLP ingestion with OTel Collector to public preview, focused the article on the collector-based path, and updated the stream names to `Microsoft-OTLP-Logs` and `Microsoft-OTLP-Traces`.|
+|Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
+|Virtual Machines|[Monitor virtual machines with Azure Monitor](../vm/monitor-vm.md)|Overhauled VM monitoring guidance to highlight common onboarding paths, introduce the [metrics-based OpenTelemetry experience (preview)](../vm/metrics-opentelemetry-guest.md), and clearly mark the older [Map feature](../vm/vminsights-maps.md) and [Dependency Agent](../vm/vminsights-dependency-agent.md) guidance as legacy. Updated the [onboarding tutorial](../vm/tutorial-enable-monitoring.md) to match the new experience. Removed the "VM insights" branding from most articles.|
+
 ### February 2026
 
 |Subservice | Article | Description |
