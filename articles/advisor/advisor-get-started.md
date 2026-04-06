@@ -73,7 +73,7 @@ You can view recommendation details, such as the recommended actions and affecte
 
 1. You can postpone the recommendation.
 
-To manage a recommendation's status, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
+To manage recommendation statuses, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
 
 You need certain privileges to dismiss the recommendation. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
 
