@@ -26,7 +26,7 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app
 
 ## Add a community instrumentation library
 
-For an overview of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see []().
+For an overview of all instrumentation libraries included with the Azure Monitor OpenTelemetry distro, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#included-instrumentation-libraries).
 
 You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
 
@@ -76,7 +76,8 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 ```
 
 ### [Java](#tab/java)
-You can't extend the Java Distro with community instrumentation libraries. To request inclusion of other instrumentation libraries, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
+You can't extend the Java Distro with community instrumentation libraries. To request inclusion of other instrumentation libraries, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
+
 You can't extend the Java Distro with community instrumentation libraries. To request for other instrumentation library to be included, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
 
 ### [Java native](#tab/java-native)
@@ -112,7 +113,7 @@ To add a community instrumentation library (not officially supported or included
 
 
 > [!NOTE]
-> Don't manually instrument a [supported instrumentation library](#included-instrumentation-libraries) by using `instrument()` and the distro `configure_azure_monitor()`. This approach isn't supported and could cause undesired behavior for your telemetry.
+> Don't manually instrument a [supported instrumentation library](opentelemetry-collect-detect.md#included-instrumentation-libraries) by using `instrument()` and the distro `configure_azure_monitor()`. This approach isn't supported and could cause undesired behavior for your telemetry.
 
 
 ```python

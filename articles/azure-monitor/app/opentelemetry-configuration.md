@@ -415,22 +415,22 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 
 ## Set resource attributes
 
-Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](collect-detect.md#resource-detectors).
+Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#resource-detectors).
 
 For manual setups, set resource attributes directly with standard OpenTelemetry options:
 
-    ```bash
-    # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
-    export OTEL_SERVICE_NAME="my-service"
-    export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
-    ```
+```bash
+# Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
+export OTEL_SERVICE_NAME="my-service"
+export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+```
 
-    On Windows PowerShell:
+On Windows PowerShell:
 
-    ```powershell
-    $Env:OTEL_SERVICE_NAME="my-service"
-    $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
-    ```
+```powershell
+$Env:OTEL_SERVICE_NAME="my-service"
+$Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+```
 
 ## Enable sampling
 
