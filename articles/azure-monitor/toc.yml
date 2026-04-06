@@ -33,8 +33,6 @@ items:
     href: fundamentals/best-practices-performance.md
 - name: Monitoring scenarios
   items:
-  - name: Create service level indicators
-    href: fundamentals/create-service-level-indicators.md
   - name: Monitor applications with Application Insights
     items:
     - name: Application Insights overview
@@ -601,6 +599,8 @@ items:
       href: scom-manage-instance/migration-faq-scom-manage-instance.yml
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
+  - name: Create service level indicators
+    href: fundamentals/create-service-level-indicators.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
