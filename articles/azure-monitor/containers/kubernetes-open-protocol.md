@@ -184,7 +184,7 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 ## 5. View application signals in Container Insights
 
-Explore application performance in the context of your cluster using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
+Explore application performance in the context of your cluster by using Container Insights. From **Monitor** in the AKS resource, open **Controllers** and then select a controller to review request failures, slow operations, and suggested investigations.
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="A screenshot of the controller view showing performance metrics.":::
 
