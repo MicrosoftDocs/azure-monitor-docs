@@ -117,7 +117,7 @@ Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let 
 |-------------------------------------------|------------------------------------------------------------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
 
-#### Classic API
+#### [Classic API](/previous-versions/azure/azure-monitor/app/classic-api)
 
 The following example shows how to configure `TelemetryConfiguration` by using .NET Core:
 
@@ -205,7 +205,7 @@ Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let 
 |-------------------------------------------|------------------------------------------------------------------------|
 | APPLICATIONINSIGHTS_AUTHENTICATION_STRING | `Authorization=AAD;ClientId={Client id of the User-Assigned Identity}` |
 
-#### Classic API
+#### [Classic API](/previous-versions/azure/azure-monitor/app/classic-api)
 
 The following example shows how to manually create and configure `TelemetryConfiguration` by using .NET:
 

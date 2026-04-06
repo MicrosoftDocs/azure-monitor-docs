@@ -1,7 +1,7 @@
 ---
 ms.service: advisor
 ms.topic: include
-ms.date: 09/03/2025
+ms.date: 11/11/2025
 
 ---
 
@@ -32,11 +32,10 @@ ms.date: 09/03/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Automation account | Best Practices | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Automation account | Best Practices | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Automation account | State Configuration (DSC) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Flow Log | NSG Flow Logs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Front Door Profile | Standard from Microsoft (classic) | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Kubernetes - Azure Arc | Open Service Mesh add-on | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Load balancer | Inbound NAT rule V1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | SQL database | Data Sync | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Flow Log | NSG Flow Logs | [!INCLUDE [Available](../../includes/inline-reusable-text/not-available-option.md)] |
-

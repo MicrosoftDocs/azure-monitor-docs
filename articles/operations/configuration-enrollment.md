@@ -44,19 +44,24 @@ If you're using a Log Analytics workspace or Azure Monitor workspace in a differ
 
 Essential machine management enables a standard set of features and allows you to optionally enable additional security features.
 
-> [!NOTE]
-> During public preview, the essential tier core services are available at no additional cost. Customers will still pay for the log ingestion rates from Change Tracking and Inventory. 
-
 ### Essentials tier
 
 The following features are part of the essentials tier. 
 
 | Feature | Description |
 |:---|:---|
-| Azure Monitor | Monitors and provides insights into VM performance and health. |
-| Update manager | Automates the deployment of operating system updates to VMs. Configure recommended alerts. |
-| Change tracking and inventory | Tracks changes to VM configurations and maintains an inventory of resources. |
-| Machine configuration | Audits the Azure security baseline policy |
+| [Azure Monitor](/azure/azure-monitor/vm/monitor-vm) | Monitors and provides insights into VM performance and health. Configures metric-based recommended alerts. |
+| [Azure Update Manager](/azure/update-manager/overview) | Automates the deployment of operating system updates to VMs. |
+| [Azure Machine Configuration](/azure/governance/machine-configuration/overview/01-overview-concepts) | Audits the Azure security baseline policy |
+| [Azure Change Tracking and Inventory](/azure/azure-change-tracking-inventory/overview-monitoring-agent) | Tracks changes to VM configurations and maintains an inventory of resources. |
+
+#### Essentials tier pricing
+> [!NOTE]
+> During the initial phase of public preview, the Essential Machine Management features are provided at no extra charge. Logs generated from Change Tracking and Inventory incur a separate charge for both Azure Virtual Machines and Arc-enabled servers.
+- For Azure Virtual Machines only, capabilities enabled by Essential Machine Management are provided at no extra charge. 
+- For Azure Arc-enabled servers with Windows Server Software Assurance, Windows Server PayGo, and Windows Server Extended Security Updates, capabilities enabled by Essential Machine Management are provided at no extra charge. 
+- For all other Arc-enabled servers, Essential Machine Management will be priced at $9 per server per month once billing is enabled at a future date. An announcement and documentation update will be posted when billing begins.
+
 
 ### Security tier
 
@@ -157,9 +162,10 @@ The following table describes the specific configuration applied to each VM when
 
 | Feature | Configuration details |
 |:---|:---|
-| Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Configures recommended alerts |
-| Azure update manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
-| Change tracking and inventory | - Install extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
+| Azure Monitor | - Installs Azure Monitor agent<br>- Collects standard set of performance counters.<br>- Configures metric-based recommended alerts |
+| Azure Update Manager |- Installs extension (`Microsoft.CPlat.Core.LinuxPatchExtension` or `Microsoft.CPlat.Core.WindowsPatchExtension`)<br>- [Periodic assessment](/azure/update-manager/assessment-options#periodic-assessment) enabled. |
+| Azure Machine Configuration |- Installs extension (`Microsoft.GuestConfiguration.ConfigurationforLinux` or `Microsoft.GuestConfiguration.ConfigurationforWindows`)<br>- Applies the [Linux security baseline](/azure/governance/policy/samples/guest-configuration-baseline-linux) and [Windows security baseline](/azure/governance/policy/samples/guest-configuration-baseline-windows) in **Audit only** mode. |
+| Azure Change Tracking and Inventory | - Installs extension (`Microsoft.Azure.ChangeTrackingAndInventory.<br>ChangeTracking-Windows` or `Microsoft.Azure.ChangeTrackingAndInventory.ChangeTracking-Linux`)<br>- Uses Log Analytics workspace specified in onboarding.<br>- Collects basic files and registry keys. |
 | [Defender CSPM](/azure/defender-for-cloud/concept-cloud-security-posture-management#cspm-plans) | - All settings on by default. |
 
 

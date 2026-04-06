@@ -13,7 +13,7 @@ ms.reviewer: vdiec
 Use one of the following methods to enable the recommended alert rules for your cluster. You can enable both Prometheus and platform metric alert rules for the same cluster.
 
 >[!NOTE]
-> Recommended alerts for Arc-enabled Kubernetes clusters are in Preview and do not support Platform metric alert rules.
+> Arc-enabled Kubernetes clusters do not support Platform metric recommended alert rules. Instead, equivalent Prometheus-based alert rules are provided for these clusters.
 
 ### [Azure portal](#tab/portal)
 Using the Azure portal, the Prometheus rule group will be created in the same region as the cluster.

@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.DBforPostgreSQL/serversv2
 description: Reference for Microsoft.DBforPostgreSQL/serversv2 in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 03/31/2026
 ms.custom: Microsoft.DBforPostgreSQL/serversv2, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 

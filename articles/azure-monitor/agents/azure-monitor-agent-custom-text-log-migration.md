@@ -1,6 +1,6 @@
 ---
 title: Migrate from custom text log version 1 to DCR agent custom text logs
-description: Steps that you must perform when migrating from custom text log v1 to DCR based AMA custom text logs
+description: Learn the steps to migrate from custom text log version 1 to DCR-based Azure Monitor Agent custom text logs.
 ms.topic: upgrade-and-migration-article
 ms.date: 01/22/2025
 ---

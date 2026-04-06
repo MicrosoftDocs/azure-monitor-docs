@@ -2,9 +2,9 @@
 title: 'Smart detection rule settings: Application Insights'
 description: Automate management and configuration of Application Insights smart detection rules with Azure Resource Manager templates.
 ms.topic: how-to
-ms.custom: devx-track-arm-template
-ms.date: 04/01/2024
 ms.reviewer: yagil
+ms.date: 4/24/2026
+ms.custom: references_regions, devx-track-arm-template
 ---
 
 # Manage Application Insights smart detection rules by using Azure Resource Manager templates

@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/app/classic-api.md",
+      "redirect_url": "/previous-versions/azure/azure-monitor/app/classic-api",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/vm/tutorial-vm-enable-monitoring.md",
       "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
       "redirect_document_id": false

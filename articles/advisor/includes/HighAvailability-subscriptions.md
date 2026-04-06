@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2026
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -32,23 +32,7 @@ Subcategory: MonitoringAndAlerting
 
 
 
-<!--e210fd0a-ed91-42ba-b7bb-790649176d4f_begin-->
 
-#### Azure Data Studio is retiring  
-  
-To streamline development efforts and improve the user experience in Visual Studio Code (VS Code), Azure Data Studio is retiring. VS Code is the recommended cross-platform tool for developers building backend databases.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** High
-  
-For more information, see [What's Happening to Azure Data Studio? - Azure Data Studio](/azure-data-studio/whats-happening-azure-data-studio?tabs=dev)  
-
-ResourceType: microsoft.subscriptions/subscriptions  
-Recommendation ID: e210fd0a-ed91-42ba-b7bb-790649176d4f  
-Subcategory: undefined
-
-<!--e210fd0a-ed91-42ba-b7bb-790649176d4f_end-->
 
 <!--badb6a09-d33e-4e2a-82d8-8ed668db0aad_begin-->
 
@@ -85,5 +69,23 @@ Recommendation ID: d63e646e-752a-40c0-aa76-b744a6b6949a
 Subcategory: undefined
 
 <!--d63e646e-752a-40c0-aa76-b744a6b6949a_end-->
+
+<!--ee60d00e-823e-439d-971f-644fce1f1cb4_begin-->
+
+#### Azure Sphere is being retired  
+  
+Azure Sphere OS and cloud services are being retired, including the first generation MT3620 microcontroller based platform. Migrate to a new hardware and connectivity stack.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Retirement - Azure Sphere](https://aka.ms/AzureSphereRetirement)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: ee60d00e-823e-439d-971f-644fce1f1cb4  
+Subcategory: undefined
+
+<!--ee60d00e-823e-439d-971f-644fce1f1cb4_end-->
 
 <!--articleBody-->

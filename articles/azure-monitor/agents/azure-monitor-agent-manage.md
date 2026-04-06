@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 02/14/2025
+ms.date: 02/18/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 

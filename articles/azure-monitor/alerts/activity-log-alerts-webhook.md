@@ -1,9 +1,10 @@
 ---
 title: Configure a webhook to get activity log alerts
 description: Learn about the schema of the JSON that's posted to a webhook URL when an activity log alert activates.
-ms.reviewer: yagil
 ms.topic: how-to
-ms.date: 03/17/2026
+ms.reviewer: yagil
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # Configure a webhook to get activity log alerts

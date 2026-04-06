@@ -12,7 +12,7 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | Cognitive Service | Computer Vision API v1.0, v2.0, v2.1, v3.0. v3.1 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
-##### September 14 2026
+##### September 14, 2026
 
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
@@ -34,7 +34,7 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Azure Maps Account | Render v1 APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Maps Account | Render V1 APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### September 19, 2026
 
@@ -55,10 +55,8 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Availability test | Single URL Ping Test | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Availability test | Single URL Ping Test | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure API for FHIR | Entire service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Azure FXT Edge Filer | Entire service | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure Maps | Web SDK v2 Subversion (v2.0 - v2.0.32) | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Container registry | 2017-01-01-(GA) API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Kubernetes service | Azure Network Policy Manager (NPM) For Windows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Kubernetes service | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
@@ -73,6 +71,4 @@ ms.date: 11/11/2025
 > | Virtual machine | NVv3-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual network gateway | Non-AZ VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | VPN Gateway | Non-availability zones VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Workspace | Azure Machine Learning - Data Labeling | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-
