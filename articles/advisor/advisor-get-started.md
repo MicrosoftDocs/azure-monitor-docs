@@ -89,7 +89,7 @@ You can exclude subscriptions or resources, such as test resources, from Advisor
 > [!NOTE]
 > To change subscriptions or Advisor compute rules, you must be a subscription owner. If you don't have the required permissions, the option is disabled in the user interface. For information on permissions, see [Permissions in Azure Advisor](permissions.md). For details on right-sizing VMs, see [Reduce service costs by using Azure Advisor](advisor-cost-recommendations.md).
 
-From any Azure Advisor page, select **Configuration** in the left pane. The Advisor configuration page opens with the **Resources** tab selected, by default.
+From any Azure Advisor page, select **Configuration** in the left pane. The Advisor configuration page opens with the **Resources** tab selected by default.
 
 Use the **Resources** tab to select or unselect subscriptions for Advisor recommendations. When you're ready, select **Apply**. The page refreshes.
 
