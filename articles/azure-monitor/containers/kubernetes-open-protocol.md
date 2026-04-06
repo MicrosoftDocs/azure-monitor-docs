@@ -209,24 +209,41 @@ To participate in the limited public preview of Autoinstrumentation for .NET or 
 Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights through the Azure Monitor Agent on the cluster. It doesn't place any SDK on the pod.
 
 - **Namespace-wide**: Set the **Instrumentation** custom resource with an empty platforms list.
-  ```yaml
+  ```yml
+  apiVersion: monitor.azure.com/v1
+  kind: Instrumentation
+  metadata:
+    name: cr1
+    namespace: mynamespace1
   spec:
     settings:
       autoInstrumentationPlatforms: []
+    destination: # required
+      applicationInsightsConnectionString: "InstrumentationKey=11111111-1111-1111-1111-111111111111;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/"
   ```
 - **Per-deployment**: Add the annotation to the deployment and reference your instrumentation custom resource (replace `cr1` with your resource name).
-  ```yaml
-  metadata:
-    annotations:
-      instrumentation.opentelemetry.io/inject-configuration: "cr1"
+  ```yml
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-nodejs: "cr1"
   ```
 
 When you use the `inject-configuration` annotation, the `spec.settings.autoInstrumentationPlatforms` setting on the referenced custom resource is ignored and the deployment is configured to send OTLP data to the connection string defined in `applicationInsightsConnectionString`. Use the annotation value `"false"` to exclude a deployment from Autoconfiguration.
-```yaml
-metadata:
-  annotations:
-    instrumentation.opentelemetry.io/inject-configuration: "false"
-```
+  ```yml
+  apiVersion: apps/v1
+  kind: Deployment
+  ...
+  spec:
+    template:
+      metadata:
+        annotations:
+          instrumentation.opentelemetry.io/inject-nodejs: "false"
+  ```
 
 ## Limitations
 
