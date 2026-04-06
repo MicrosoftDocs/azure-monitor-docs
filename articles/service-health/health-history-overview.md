@@ -31,7 +31,7 @@ This pane contains the following information:
 - Last updated
 - Scope (Subscription or Tenant ID)
 
->[!Note]
+>[!NOTE]
 >Service health history events are displayed in the panel for 90 days and then they are stored in the backend API for up to a year.<br>
 >This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
 
