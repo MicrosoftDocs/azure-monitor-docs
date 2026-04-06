@@ -2,7 +2,7 @@
 title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/06/2026
 ms.reviewer: kaprince
 ---
 
@@ -27,7 +27,7 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 Telemetry flows to **Application Insights**, where you analyze application performance in context with Container Insights.
 
 > [!IMPORTANT]
-> Unsupported node pools: **Windows (any architecture)** and **Linux Arm64**.
+> Unsupported node pools: **Windows (any architecture)**.
 
 ## Roles and responsibilities
 
@@ -72,6 +72,8 @@ Use the following guidance to separate platform (cluster) responsibilities from 
 > The Azure Kubernetes Service (AKS) preview APIs are designed to allow you to test and provide feedback on new features before they become generally available. You need to install this `aks-preview` extension before you can register the AzureMonitorAppMonitoringPreview feature flag.
 
 ## 1. Register the preview features
+
+When you register the preview features, enable the feature flag on the subscription where you create the Application Insights resource and on the subscription that hosts the AKS cluster.
 
 1. Sign in and select the target subscription:
    ```bash
@@ -154,7 +156,7 @@ If you don't enable OTLP, Application Insights uses Azure Monitor autoinstrument
 
 ### 4.3 Restart deployments to apply changes
 
-Perform a rollout restart for deployments in the target namespace from **Run command** in the portal or from your terminal:
+Restart deployments in the target namespace from **Run command** in the portal or from your terminal:
 
 ```bash
 kubectl rollout restart deployment -n <your-namespace>
@@ -173,9 +175,9 @@ Return to **Application Monitoring (Preview)** for the namespace. Expand **Deplo
 
 
 > [!IMPORTANT]
-> Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+> Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 >
-> When using AKS auto-instrumentation or auto-configuration, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. No additional user configuration is required.
+> When you use AKS auto-instrumentation or auto-configuration, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. You don't need to provide any extra configuration.
 >
 > For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
 
@@ -228,15 +230,13 @@ metadata:
 
 ## Limitations
 
-During the preview, the feature supports the following Azure regions:
+During the preview, the feature is available in all public cloud regions except:
 
-* West Central US
-* East Asia
-* UK South
-* East US
-* Australia East
-* Brazil South
-* Canada Central
+- Israel Central
+- Israel North West
+- Qatar Central
+- UAE North
+- UAE Central
 
 If you need programmatic names for these regions, see [Azure regions list](/azure/reliability/regions-list?tabs=all#azure-regions-list-1).
 
