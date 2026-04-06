@@ -33,7 +33,7 @@ This pane contains the following information:
 
 >[!NOTE]
 > The panel displays service health history events for 90 days. After that, the backend API stores them for up to a year.<br>
->This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
+> This storage includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
 
 
 
