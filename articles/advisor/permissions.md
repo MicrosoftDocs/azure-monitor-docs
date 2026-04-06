@@ -49,7 +49,7 @@ To learn more about built-in roles, see [Azure built-in roles](/azure/role-based
 
 ## Available actions to build custom roles
 
-If your organization requires roles that don't match the Azure built-in roles, create your own custom role. A custom role works like a built-in role and allow you to assign it to users, groups, and service principals at management group, subscription, and resource group scopes. Use the following actions to create your custom role.
+If your organization requires roles that don't match the Azure built-in roles, create your own custom role. A custom role works like a built-in role and you can assign it to users, groups, and service principals at management group, subscription, and resource group scopes. Use the following actions to create your custom role.
 
 | Action | Details |
 |:--- |:--- |
