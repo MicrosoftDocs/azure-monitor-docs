@@ -76,7 +76,7 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 
 ### [Java](#tab/java)
 
-You can't extend the Java Distro with community instrumentation libraries. To request that we include another instrumentation library, open an issue on our GitHub page. You can find a link to our GitHub page in [Next Steps](#next-steps).
+You can't extend the Java Distro with community instrumentation libraries. To request for other instrumentation library to be included, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
 
 ### [Java native](#tab/java-native)
 
