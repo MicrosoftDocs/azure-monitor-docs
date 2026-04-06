@@ -35,7 +35,7 @@ By default, the tiles on the Advisor **Overview** page show the different catego
 To filter the display, use the buttons at the top of the page:
 
 * **Subscription**: Select **All** for Advisor recommendations on all subscriptions. Alternatively, select specific subscriptions. Apply changes by selecting a value outside of the button.
-* **Recommendation Status**: **Active** (the default, recommendations not postponed or dismissed), **Postponed**, or **Dismissed**. Apply changes by selecting a value outside of the button.
+* **Recommendation Status**: **Active** (the default, recommendations not postponed or dismissed), **Postponed**, **Complete**, or **Dismissed**. Apply changes by selecting a value outside of the button.
 
 * **Resource Group**: Select **All** (the default) or specific resource groups. Apply changes by selecting a value outside of the button.
 
