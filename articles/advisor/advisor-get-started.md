@@ -71,7 +71,7 @@ You can view recommendation details, such as the recommended actions and affecte
   
    To help you understand the recommendation before you act, select **Learn more** on the **Recommended action** page or at the top of the **Recommendation details** page.
 
-1. You can postpone the recommendation.
+1. You can manage recommendation statuses.
 
 To manage recommendation statuses, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
 
