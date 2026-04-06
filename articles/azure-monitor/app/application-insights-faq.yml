@@ -227,7 +227,7 @@ sections:
  
           * [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
           * [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
-          * Application Insights SDKs (Classic API)
+          * Application Insights SDKs ([Classic API](/previous-versions/azure/azure-monitor/app/classic-api))
 
           The three main purposes of this data collection are:
 
@@ -249,7 +249,7 @@ sections:
           | **Non-essential metrics** |      |      |            |         |        |
           | Disk I/O failure          | ❌   | ✅  | ❌         | ❌     | ❌     |
 
-          \* Not supported with Classic API or autoinstrumentation (*OTel only*)
+          \* Not supported with [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) or autoinstrumentation (*OTel only*)
 
           #### Supported EU regions
 
@@ -1774,7 +1774,7 @@ sections:
           |-----------------------------|--------------------------------|---------------------------------------------|--------------------------------------------------------------------------|
           | Head-based                  | Before a span starts           | Low latency, minimal overhead               | May sample out desired traces including failures                         |
           | Tail-based                  | After spans are buffered based on time or volume thresholds | Allows highly selective trace sampling criteria | Higher cost and added processing delay  |
-          | App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and Classic API compatibility                  |
+          | App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) compatibility                  |
 
       - question: Can I sample dependencies, requests, or other telemetry types at different rates?
         answer: |
@@ -1816,7 +1816,7 @@ sections:
           * It's vendor-neutral and provides consistent APIs/SDKs across languages.
           * Over time, we believe OpenTelemetry will enable Azure Monitor customers to observe applications written in languages beyond our [supported languages](../app/app-insights-overview.md#getting-started).
           * It expands the types of data you can collect through a rich set of [instrumentation libraries](https://opentelemetry.io/docs/concepts/components/#instrumentation-libraries).
-          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights Classic API SDKs.
+          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs.
           * OpenTelemetry aligns with Microsoft's strategy to [embrace open source](https://opensource.microsoft.com/).
 
       - question: What's the status of OpenTelemetry?
@@ -1854,14 +1854,14 @@ sections:
         answer: |
           We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
           
-          OpenTelemetry provides advantages over the Application Insights Classic API SDKs, including:
+          OpenTelemetry provides advantages over the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs, including:
 
           - Better standardization across platforms
           - A wider ecosystem of instrumentation libraries
           - Greater flexibility in data collection and processing
           - Improved vendor neutrality, though Azure Monitor OpenTelemetry Distro is still optimized for Azure.
 
-           If you're using .NET or Node.js Classic API SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](.\migrate-to-opentelemetry.md).
+           If you're using .NET or Node.js [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](.\migrate-to-opentelemetry.md).
           
       - question: When should I use the Azure Monitor OpenTelemetry exporter?
         answer: |
@@ -1873,7 +1873,7 @@ sections:
 
       - question: What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
         answer: |
-          The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights Classic API SDKs.
+          The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs.
           
           For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
