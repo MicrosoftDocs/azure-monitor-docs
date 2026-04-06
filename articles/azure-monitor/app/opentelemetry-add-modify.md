@@ -24,6 +24,122 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app
 
 <!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
 
+## Add a community instrumentation library
+
+For an overview of all instrumentation libraries included with the Azure Monitor OpenTelemetry Distro, see []().
+
+You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
+
+[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
+
+### [ASP.NET Core](#tab/aspnetcore)
+
+To add a community library, use the `ConfigureOpenTelemetryMeterProvider` or `ConfigureOpenTelemetryTracerProvider` methods,
+after adding the NuGet package for the library.
+
+The following example demonstrates how to add the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) to collect extra metrics:
+
+
+```dotnetcli
+dotnet add package OpenTelemetry.Instrumentation.Runtime 
+```
+
+```csharp
+// Create a new ASP.NET Core web application builder.
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure the OpenTelemetry meter provider to add runtime instrumentation.
+builder.Services.ConfigureOpenTelemetryMeterProvider((sp, builder) => builder.AddRuntimeInstrumentation());
+
+// Add the Azure Monitor telemetry service to the application.
+// This service will collect and send telemetry data to Azure Monitor.
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
+
+// Build the ASP.NET Core web application.
+var app = builder.Build();
+
+// Start the ASP.NET Core web application.
+app.Run();
+```
+
+### [.NET](#tab/net)
+
+The following example demonstrates how the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) can be added to collect extra metrics:
+
+```csharp
+// Create a new OpenTelemetry meter provider and add runtime instrumentation and the Azure Monitor metric exporter.
+// It is important to keep the MetricsProvider instance active throughout the process lifetime.
+var metricsProvider = Sdk.CreateMeterProviderBuilder()
+	.AddRuntimeInstrumentation()
+	.AddAzureMonitorMetricExporter();
+```
+
+### [Java](#tab/java)
+
+You can't extend the Java Distro with community instrumentation libraries. To request that we include another instrumentation library, open an issue on our GitHub page. You can find a link to our GitHub page in [Next Steps](#next-steps).
+
+### [Java native](#tab/java-native)
+
+You can't use community instrumentation libraries with GraalVM Java native applications.
+
+### [Node.js](#tab/nodejs)
+
+```typescript
+export class RegisterExpressInstrumentationSample {
+  static async run() {
+	// Dynamically import Azure Monitor and Express instrumentation
+	const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
+	const { registerInstrumentations } = await import("@opentelemetry/instrumentation");
+	const { ExpressInstrumentation } = await import("@opentelemetry/instrumentation-express");
+
+	// Initialize Azure Monitor (uses env var if set)
+	const monitor = useAzureMonitor();
+
+	// Register the Express instrumentation
+	registerInstrumentations({
+	  instrumentations: [new ExpressInstrumentation()],
+	});
+
+	console.log("Express instrumentation registered");
+  }
+}
+```
+
+### [Python](#tab/python)
+
+To add a community instrumentation library (not officially supported or included in the Azure Monitor Distro), instrument directly with the instrumentations. You can find the list of community instrumentation libraries on [GitHub](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
+
+
+> [!NOTE]
+> Don't manually instrument a [supported instrumentation library](#included-instrumentation-libraries) by using `instrument()` and the distro `configure_azure_monitor()`. This approach isn't supported and could cause undesired behavior for your telemetry.
+
+
+```python
+# Import the `configure_azure_monitor()`, `SQLAlchemyInstrumentor`, `create_engine`, and `text` functions from the appropriate packages.
+from azure.monitor.opentelemetry import configure_azure_monitor
+from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
+from sqlalchemy import create_engine, text
+
+# Configure OpenTelemetry to use Azure Monitor.
+configure_azure_monitor()
+
+# Create a SQLAlchemy engine.
+engine = create_engine("sqlite:///:memory:")
+
+# SQLAlchemy instrumentation is not officially supported by this package, however, you can use the OpenTelemetry `instrument()` method manually in conjunction with `configure_azure_monitor()`.
+SQLAlchemyInstrumentor().instrument(
+	engine=engine,
+)
+
+# Database calls using the SQLAlchemy library will be automatically captured.
+with engine.connect() as conn:
+	result = conn.execute(text("select 'hello world'"))
+	print(result.all())
+
+```
+
+---
+
 ## Collect custom telemetry
 
 This section explains how to collect custom telemetry from your application.
@@ -44,13 +160,13 @@ The following table represents the currently supported custom telemetry types:
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
-| &nbsp;&nbsp;&nbsp;AI [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) | Yes           |                |              |            |            |          |        |
+| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Logback, `Log4j`, JUL   |               |                |              | Yes        |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Micrometer Metrics      |               | Yes            |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;AI [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
+| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
 |                                           |               |                |              |            |            |          |        |
 | **Node.js**                               |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
@@ -1916,6 +2032,371 @@ The Python [logging](https://docs.python.org/3/howto/logging.html) library is [a
 logger.warning("WARNING: Warning log with properties", extra={"key1": "value1"})
 ...
 
+```
+
+---
+
+
+### Override request error status for HTTP 4xx responses
+
+You can prevent Application Insights from counting 4xx responses as errors.
+
+#### [ASP.NET Core](#tab/aspnetcore)
+
+The following code shows a custom activity processor that marks HTTP 4xx responses as successful.
+
+**Processor:**
+
+```C#
+public class Http4xxSuccessProcessor : BaseProcessor<Activity>
+{
+	public override void OnEnd(Activity activity)
+	{
+		if (activity.Kind == ActivityKind.Server)
+		{
+			var statusCodeTag = activity.GetTagItem("http.response.status_code");
+			if (statusCodeTag is int statusCode && statusCode >= 400 && statusCode < 500)
+			{
+				// Set status to Ok to bypass the Azure Monitor exporter's default logic
+				// which treats any HTTP 4xx as failure when status is Unset.
+				// The response code tag (e.g., 400) remains unchanged — only the
+				// success field in Application Insights is affected.
+				activity.SetStatus(ActivityStatusCode.Ok);
+			}
+		}
+
+		base.OnEnd(activity);
+	}
+}
+```
+
+**Registration:**
+
+```C#
+builder.Services.AddOpenTelemetry()
+	.UseAzureMonitor(options =>
+	{
+		options.ConnectionString = "<your-connection-string>";
+	})
+	.WithTracing(tracing =>
+	{
+		// Add custom processor to mark 4xx responses as successful
+		tracing.AddProcessor<Http4xxSuccessProcessor>();
+	});
+```
+
+#### [.NET](#tab/net)
+
+The following code is for a custom activity processor that marks HTTP 4xx responses as successful.
+
+**Processor:**
+
+```C#
+public class Http4xxSuccessProcessor : BaseProcessor<Activity>
+{
+	public override void OnEnd(Activity activity)
+	{
+		if (activity.Kind == ActivityKind.Server)
+		{
+			var statusCodeTag = activity.GetTagItem("http.response.status_code");
+			if (statusCodeTag is int statusCode && statusCode >= 400 && statusCode < 500)
+			{
+				// Set status to Ok to bypass the Azure Monitor exporter's default logic
+				// which treats any HTTP 4xx as failure when status is Unset.
+				// The response code tag (e.g., 400) remains unchanged — only the
+				// success field in Application Insights is affected.
+				activity.SetStatus(ActivityStatusCode.Ok);
+			}
+		}
+
+		base.OnEnd(activity);
+	}
+}
+```
+
+**Registration:**
+
+```C#
+using System.Diagnostics;
+using OpenTelemetry;
+using OpenTelemetry.Trace;
+
+using var tracerProvider = Sdk.CreateTracerProviderBuilder()
+	// Add the processor before the exporter
+	.AddProcessor(new Http4xxSuccessProcessor())
+	.AddAzureMonitorTraceExporter(options =>
+	{
+		options.ConnectionString = "<your-connection-string>";
+	})
+	.Build();
+```
+
+#### [Java](#tab/java)
+
+> [!NOTE]
+> This feature is available starting with Java agent version 3.3.0.
+
+By default, the agent captures HTTP server requests that result in 4xx response codes as errors. You can change this behavior to capture them as success:
+
+```json
+{
+  "preview": {
+	"captureHttpServer4xxAsError": false
+  }
+}
+```
+
+#### [Java native](#tab/java-native)
+
+**Processor:**
+
+```java
+import io.opentelemetry.api.common.AttributeKey;
+import io.opentelemetry.api.trace.SpanKind;
+import io.opentelemetry.api.trace.StatusCode;
+import io.opentelemetry.context.Context;
+import io.opentelemetry.sdk.common.CompletableResultCode;
+import io.opentelemetry.sdk.trace.ReadWriteSpan;
+import io.opentelemetry.sdk.trace.ReadableSpan;
+import io.opentelemetry.sdk.trace.internal.ExtendedSpanProcessor;
+
+import java.util.Set;
+
+public final class Http4xxAsSuccessProcessor implements ExtendedSpanProcessor {
+
+	private static final AttributeKey<Long> HTTP_RESPONSE_STATUS_CODE =
+		AttributeKey.longKey("http.response.status_code");
+
+	// Deprecated semconv attribute that some libraries may still emit
+	private static final AttributeKey<Long> HTTP_STATUS_CODE =
+		AttributeKey.longKey("http.status_code");
+
+	private static final AttributeKey<Boolean> MODIFIED_FLAG =
+		AttributeKey.booleanKey("ai.modified.http4xx.success");
+
+	private final Set<Long> keepAsFailure = Set.of(429L);
+
+	@Override
+	public void onStart(Context parentContext, ReadWriteSpan span) {
+		// No-op
+	}
+
+	@Override
+	public boolean isStartRequired() {
+		return false;
+	}
+
+	@Override
+	public void onEnding(ReadWriteSpan span) {
+		if (span.getKind() != SpanKind.SERVER) {
+			return;
+		}
+
+		Long statusCode = span.getAttribute(HTTP_RESPONSE_STATUS_CODE);
+		if (statusCode == null) {
+			statusCode = span.getAttribute(HTTP_STATUS_CODE);
+		}
+
+		if (statusCode != null
+			&& statusCode >= 400
+			&& statusCode < 500
+			&& !keepAsFailure.contains(statusCode)) {
+
+			// Keep the HTTP status code attribute unchanged, but mark the span as OK
+			// so downstream backends such as Application Insights don't count it as a failure.
+			span.setStatus(StatusCode.OK);
+			span.setAttribute(MODIFIED_FLAG, true);
+		}
+	}
+
+	@Override
+	public boolean isOnEndingRequired() {
+		return true;
+	}
+
+	@Override
+	public void onEnd(ReadableSpan span) {
+		// No-op
+	}
+
+	@Override
+	public boolean isEndRequired() {
+		return false;
+	}
+
+	@Override
+	public CompletableResultCode shutdown() {
+		return CompletableResultCode.ofSuccess();
+	}
+
+	@Override
+	public CompletableResultCode forceFlush() {
+		return CompletableResultCode.ofSuccess();
+	}
+}
+```
+
+**Registration (Spring Boot):**
+
+```java
+import com.azure.monitor.opentelemetry.autoconfigure.AzureMonitorAutoConfigure;
+import io.opentelemetry.api.OpenTelemetry;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdk;
+import io.opentelemetry.sdk.autoconfigure.AutoConfiguredOpenTelemetrySdkBuilder;
+
+public class TelemetryConfiguration {
+	public static OpenTelemetry configureOpenTelemetry() {
+		AutoConfiguredOpenTelemetrySdkBuilder sdkBuilder = AutoConfiguredOpenTelemetrySdk.builder();
+
+		AzureMonitorAutoConfigure.customize(sdkBuilder, "<your-connection-string>");
+
+		sdkBuilder.addTracerProviderCustomizer(
+			(tracerProviderBuilder, configProperties) ->
+				tracerProviderBuilder.addSpanProcessor(new Http4xxAsSuccessProcessor())
+		);
+
+		return sdkBuilder.build().getOpenTelemetrySdk();
+	}
+}
+```
+
+**Registration (Quarkus):**
+
+```java
+import jakarta.enterprise.context.ApplicationScoped;
+
+@ApplicationScoped
+public class Http4xxAsSuccessProcessor extends Http4xxAsSuccessProcessorBase {
+}
+```
+
+#### [Node.js](#tab/nodejs)
+
+```TypeScript
+import { SpanKind, SpanStatusCode } from "@opentelemetry/api";
+import { SpanProcessor, ReadableSpan } from "@opentelemetry/sdk-trace-base";
+import { ATTR_HTTP_RESPONSE_STATUS_CODE } from "@opentelemetry/semantic-conventions";
+
+// Deprecated semconv attribute; not exported from the stable entry point.
+const ATTR_HTTP_STATUS_CODE = "http.status_code";
+
+export class Http4xxAsSuccessProcessor implements SpanProcessor {
+  private keepAsFailure = new Set<number>(/* [429] */);
+
+  onStart(): void {}
+
+  onEnd(span: ReadableSpan): void {
+	if (span.kind !== SpanKind.SERVER) return;
+
+	const attrs = span.attributes;
+	const sc =
+	  (attrs[ATTR_HTTP_RESPONSE_STATUS_CODE] as number | undefined) ??
+	  (attrs[ATTR_HTTP_STATUS_CODE] as number | undefined);
+
+	if (
+	  typeof sc === "number" &&
+	  sc >= 400 &&
+	  sc < 500 &&
+	  !this.keepAsFailure.has(sc)
+	) {
+	  // By onEnd the span is ended, so setStatus()/setAttribute() are no-ops.
+	  // Directly mutate the backing fields so the exporter sees the change.
+	  (span as any).status = { code: SpanStatusCode.OK };
+	  (span as any).attributes = {
+		...attrs,
+		"ai.modified.http4xx.success": true,
+	  };
+	  console.log(`[Processor] Rewrote ${sc} span to OK`);
+	}
+  }
+
+  shutdown(): Promise<void> {
+	return Promise.resolve();
+  }
+  forceFlush(): Promise<void> {
+	return Promise.resolve();
+  }
+}
+```
+
+#### [Python](#tab/python)
+
+**Processor:**
+
+```python
+from __future__ import annotations
+
+from typing import Iterable, Optional
+
+from opentelemetry.trace import SpanKind, Status, StatusCode
+from opentelemetry.sdk.trace import ReadableSpan, SpanProcessor
+
+# Current HTTP semconv attribute
+ATTR_HTTP_RESPONSE_STATUS_CODE = "http.response.status_code"
+
+# Older / deprecated attribute that some instrumentations may still emit
+ATTR_HTTP_STATUS_CODE = "http.status_code"
+
+
+class Http4xxAsSuccessProcessor(SpanProcessor):
+
+	def __init__(self, keep_as_failure: Optional[Iterable[int]] = None) -> None:
+		# Example: keep 429 as a failure if you want throttling to remain visible
+		# self._keep_as_failure = set(keep_as_failure or {429})
+
+	def on_start(self, span, parent_context=None) -> None:
+		# No-op
+		return
+
+	def on_end(self, span: ReadableSpan) -> None:
+		if span.kind is not SpanKind.SERVER:
+			return
+
+		attrs = span.attributes
+		status_code = attrs.get(
+			ATTR_HTTP_RESPONSE_STATUS_CODE,
+			attrs.get(ATTR_HTTP_STATUS_CODE),
+		)
+
+		if (
+			isinstance(status_code, int)
+			and 400 <= status_code < 500
+			and status_code not in self._keep_as_failure
+		):
+			# ReadableSpan.status is read-only, so in current released SDKs
+			# we mutate the private backing field that the exporter reads.
+			span._status = Status(StatusCode.OK)  # pylint: disable=protected-access
+
+			# Optional diagnostic marker so you can tell the processor rewrote it.
+			# ReadableSpan.attributes returns a read-only MappingProxyType, so we
+			# update the private backing store instead.
+			if getattr(span, "_attributes", None) is None:
+				span._attributes = {}  # pylint: disable=protected-access
+
+			try:
+				span._attributes["ai.modified.http4xx.success"] = True  # pylint: disable=protected-access
+			except TypeError:
+				# Fallback if the backing store is not directly writable
+				span._attributes = dict(span.attributes)  # pylint: disable=protected-access
+				span._attributes["ai.modified.http4xx.success"] = True  # pylint: disable=protected-access
+
+	def shutdown(self) -> None:
+		return
+
+	def force_flush(self, timeout_millis: int = 30000) -> bool:
+		return True
+```
+
+
+**Registration:**
+
+```python
+from azure.monitor.opentelemetrgit  import configure_azure_monitor
+
+configure_azure_monitor(
+	connection_string="<your-connection-string>",
+	span_processors=[Http4xxAsSuccessProcessor()],
+)
 ```
 
 ---

@@ -413,6 +413,25 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 
 ---
 
+## Set resource attributes
+
+Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](collect-detect.md#resource-detectors).
+
+For manual setups, set resource attributes directly with standard OpenTelemetry options:
+
+    ```bash
+    # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
+    export OTEL_SERVICE_NAME="my-service"
+    export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
+    On Windows PowerShell:
+
+    ```powershell
+    $Env:OTEL_SERVICE_NAME="my-service"
+    $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
+    ```
+
 ## Enable Sampling
 
 Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
