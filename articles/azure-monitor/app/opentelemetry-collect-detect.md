@@ -245,7 +245,7 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-winston)
 
 > [!IMPORTANT]
-> Bunyan and Winston *are not* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
+> Bunyan and Winston *aren't* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
 
 To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
 
@@ -339,7 +339,7 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 
 * Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
 
-* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
+* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
 
 [!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
