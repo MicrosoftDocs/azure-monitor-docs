@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 02/09/2026
+ms.date: 04/06/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -21,8 +21,17 @@ This article lists significant changes to Azure Monitor documentation.
 |Application Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md?tabs=aspnetcore)|Split OpenTelemetry guidance into dedicated articles for [automatic collection and add/modify](../app/opentelemetry-collect-detect.md?tabs=aspnetcore) and [adding or modifying telemetry](../app/opentelemetry-add-modify.md?tabs=aspnetcore).|
 |Application Insights|[OpenTelemetry troubleshooting and support](../app/opentelemetry-enable.md?tabs=aspnetcore#troubleshooting-feedback-and-support)|Standardized troubleshooting and next-steps guidance across the OpenTelemetry documentation so setup help and follow-up resources are easier to find.|
 |Containers|[Ingest OTLP data with OTel Collector (Preview)](../containers/opentelemetry-protocol-ingestion.md)|Moved OTLP ingestion with OTel Collector to public preview, focused the article on the collector-based path, and updated the stream names to `Microsoft-OTLP-Logs` and `Microsoft-OTLP-Traces`.|
-|Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
 |Virtual Machines|[Monitor virtual machines with Azure Monitor](../vm/monitor-vm.md)|Overhauled VM monitoring guidance to highlight common onboarding paths, introduce the [metrics-based OpenTelemetry experience (preview)](../vm/metrics-opentelemetry-guest.md), and clearly mark the older [Map feature](../vm/vminsights-maps.md) and [Dependency Agent](../vm/vminsights-dependency-agent.md) guidance as legacy. Updated the [onboarding tutorial](../vm/tutorial-enable-monitoring.md) to match the new experience. Removed the "VM insights" branding from most articles.|
+|Virtual Machines|[Performance Diagnostics](../vm/performance-diagnostics.md)|Added outbound network access as a prerequisite for running Performance Diagnostics reports.|
+|Data Collection|[Azure Monitor pipeline configuration](../data-collection/pipeline-configure.md)|Updated Azure Monitor pipeline configuration guidance with certificate management details and a corrected Traefik CRD command for the Kubernetes gateway.|
+|Logs|[Log Analytics workspace overview](../logs/log-analytics-workspace-overview.md)|Added a clarification note to help customers resolve a common workspace configuration question more quickly.|
+|Logs|[Log ingestion time in Azure Monitor](../logs/data-ingestion-time.md)|Updated ingestion latency guidance with refreshed measurements, tab-based comparisons, and links to related articles on diagnostic settings, resource logs, activity log, and metrics.|
+|Logs|[Best practices for Azure Monitor Logs](../logs/best-practices-logs.md)|Refreshed best practices and dedicated cluster guidance for query performance, cluster sizing, and cost management.|
+|Logs|[Tables feature support](../logs/tables-feature-support.md)|Added 89 more tables that support transformations and refreshed the supported tables list for the Logs Ingestion API.|
+|Logs|[Audit queries in Azure Monitor Logs](../logs/query-audit.md)|Documented support for obfuscating string literals in Log Analytics query audit logs.|
+|Logs|[Set up a table with the Auxiliary plan](../logs/create-custom-table-auxiliary.md)|Updated Auxiliary plan guidance to match the renamed portal experience and custom log creation terminology.|
+|Logs|[Customer-managed keys](../logs/customer-managed-keys.md)|Removed outdated CLI workaround guidance after the underlying issue was fixed.|
+|Platform|[Azure Monitor activity log](../platform/activity-log.md)|Consolidated Activity Log REST API guidance into the main article, added examples, and clarified event descriptions.|
 
 ### February 2026
 
