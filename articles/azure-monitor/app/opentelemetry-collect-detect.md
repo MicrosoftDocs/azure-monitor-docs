@@ -1,6 +1,6 @@
 ---
 title: Data Collection and Resource Detectors for Azure Monitor OpenTelemetry
-description: Learn how Azure Monitor OpenTelemetry automatically collects telemetry and how to configure resource detectors so your .NET, Java, Node.js, and Python telemetry is enriched with consistent service, host, and cloud metadata in Application Insights.
+description: Learn how Azure Monitor OpenTelemetry automatically collects telemetry and how resource detectors enrich telemetry with consistent service, host, and cloud metadata in Application Insights.
 ms.topic: how-to
 ms.date: 03/27/2026
 ms.devlang: csharp
@@ -13,10 +13,7 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python, refer
 
 # Automatic data collection and resource detectors for Azure Monitor OpenTelemetry
 
-This article explains how Azure Monitor OpenTelemetry collects telemetry automatically, how you can add community instrumentation libraries, and how to configure resource detectors to enrich that telemetry with consistent metadata. You learn what signals are collected by default and how resource detectors populate attributes like service identity and environment details so your Application Insights data is easier to filter, correlate, and troubleshoot across .NET, Java, Node.js, and Python applications.
-
-This article provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md).
-
+This article explains how Azure Monitor OpenTelemetry collects telemetry automatically and how resource detectors enrich telemetry with consistent metadata. You learn what signals are collected by default and how resource detectors populate attributes like service identity and environment details so your Application Insights data is easier to filter, correlate, and troubleshoot across .NET, Java, Node.js, and Python applications.
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app-insights-overview.md).
 
