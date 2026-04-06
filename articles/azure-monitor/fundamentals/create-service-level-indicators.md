@@ -2,7 +2,7 @@
 title: Create service level indicators in Azure Monitor
 description: Learn how to create service level indicators in Azure Monitor, define baselines, and track error budgets and burn rates for a service group.
 ms.topic: how-to
-ms.date: 03/19/2026
+ms.date: 04/06/2026
 ai-usage: ai-assisted
 ---
 
@@ -37,17 +37,19 @@ Create SLIs from the service group that represents the application or workload y
 1. In the Azure portal, open your service group.
 1. Select **Monitoring**.
 1. In the **SLI** card, select **Create SLIs**.
-1. On the **Basics** tab, select the SLI type.
-1. Enter a name and description for the SLI.
-1. Select **Next**.
 
 :::image type="content" source="media/create-service-level-indicators/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button.":::
 
 The **Create SLIs** action opens the **Basics** tab, where you choose the indicator type and provide identifying details for the new SLI.
 
-:::image type="content" source="media/create-service-level-indicators/create-sli-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
+1. On the **Basics** tab, select the SLI type.
+1. Choose the SLI type:
+   * Choose **Availability** when you want to measure whether requests or time windows meet a success condition.
+   * Choose **Latency** when you want to measure whether requests or time windows stay within a latency threshold.
+1. Enter a name and description for the SLI.
+1. Select **Next**.
 
-Choose **Availability** when you want to measure whether requests or time windows meet a success condition. Choose **Latency** when you want to measure whether requests or time windows stay within a latency threshold.
+:::image type="content" source="media/create-service-level-indicators/create-sli-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
 
 ## Choose the evaluation type
 
@@ -96,16 +98,15 @@ Request-based SLIs require two signals:
 * A **good signal** that represents successful requests.
 * A **total signal** that represents all eligible requests.
 
+:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI details area with separate Good signal and Total signal sections.":::
+
 1. Under **Good Signal**, select the metric that represents successful requests.
 1. Add any dimensions, filters, and temporal aggregations that are required for the metric.
 1. If needed, add a spatial aggregation to combine multiple time series after temporal aggregation.
+1. After the signal sections are available, add the metric logic, filters, and any formulas that combine multiple metrics into the numerator or denominator.
 1. Repeat the process under **Total Signal** to select the metric that represents all requests.
 1. If either signal requires multiple metrics, use **Formula** to combine them.
 1. Select **Show Preview charts** to confirm that the query returns the expected results.
-
-:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI details area with separate Good signal and Total signal sections.":::
-
-After the signal sections are available, add the metric logic, filters, and any formulas that combine multiple metrics into the numerator or denominator.
 
 :::image type="content" source="media/create-service-level-indicators/formula-builder.png" alt-text="Screenshot of a request-based SLI query with metric filters, aggregations, and signal formulas configured.":::
 
@@ -136,7 +137,7 @@ Azure Monitor stores the evaluated SLI results in a destination workspace so you
 
 :::image type="content" source="media/create-service-level-indicators/destination-workspace.png" alt-text="Screenshot of the identity and data storage location section for selecting a managed identity and destination workspace.":::
 
-## Set the baseline
+## Baseline and alerts
 
 On the **Baseline** tab, define the target and lookback period that Azure Monitor should use to evaluate compliance.
 
@@ -147,18 +148,24 @@ On the **Baseline** tab, define the target and lookback period that Azure Monito
 
 The baseline is the service level objective (SLO) for the SLI. Azure Monitor uses it to determine whether current performance is within the allowed error budget.
 
+Once you set the baseline, you can choose to use the baseline target for alerting. Azure SLI supports these alert types:
+
+* **Baseline-based**: Uses the static threshold you entered as the baseline target.
+* **Burn rate-based**: Uses error-budget consumption speed, with **slow burn** and **fast burn** options.
+
 ## View and manage SLIs
 
 After you create an SLI, Azure Monitor displays it on the **Monitoring** page for the service group.
 
 1. Open the service group, and then select **Monitoring**.
 1. To view all SLIs for the service group, open the SLI management page.
-1. Select an SLI to view its trend, error budget, and burn rate charts.
-1. Edit or delete the SLI if you need to adjust the definition.
 
 :::image type="content" source="media/create-service-level-indicators/service-group-sli-list.png" alt-text="Screenshot of the service group Monitoring page showing the SLI card after several SLIs have been created.":::
 
 Select **View all SLIs** to open the management experience, where you can compare each definition and review its current compliance state.
+
+1. Select an SLI to view its trend, error budget, and burn rate charts.
+1. Edit or delete the SLI if you need to adjust the definition.
 
 :::image type="content" source="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
 
@@ -179,6 +186,26 @@ After the SLI starts evaluating, use the error budget and burn rate to understan
 * **Burn rate** shows how quickly the error budget is being consumed over the selected period.
 
 Use fast-burn alerts when you want to detect sudden degradation quickly. Use slow-burn alerts when you want to identify a persistent trend that could exhaust the error budget before the end of the compliance period.
+
+## How SLI is calculated
+
+### Service level indicator (SLI)
+
+A service level indicator (SLI) represents the proportion of successful events relative to the total number of events over a defined time window. In this context, successful events are events that meet a predefined user experience condition. Total events include all observed events during the measurement period.
+
+### Error budget
+
+When you define an SLO target, for example 99.9% availability, the error budget represents the allowable margin of failure within that objective.
+
+`Error budget = 100% - SLO target`
+
+This value is the maximum acceptable unreliability while still meeting your service objective.
+
+### Burn rate
+
+Burn rate is a unitless metric that indicates how quickly your error budget is being consumed compared to the intended pace defined by your SLO. Burn rate alerts evaluate the recent error rate, the ratio of observed failures to expected allowable failures over a specific period, to determine whether the service is degrading faster than planned.
+
+You can interpret burn rate as a multiplier of your ideal error rate. For example, for a 99.95% baseline (SLO) measured over 30 days, a burn rate of 6 means the service is consuming its error budget six times faster than expected.
 
 ## Next steps
 
