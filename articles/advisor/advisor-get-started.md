@@ -91,7 +91,7 @@ You can exclude subscriptions or resources, such as test resources, from Advisor
 
 From any Azure Advisor page, select **Configuration** in the left pane. The Advisor configuration page opens with the **Resources** tab selected by default.
 
-Use the **Resources** tab to select or unselect subscriptions for Advisor recommendations. When you're ready, select **Apply**. The page refreshes.
+Use the **Resources** tab to select or clear subscriptions for Advisor recommendations. When you're ready, select **Apply**. The page refreshes.
 
 :::image type="content" source="./media/advisor-get-started/advisor-configure-resources.png" alt-text="Screenshot that shows an Advisor configuration option for resources." lightbox="./media/advisor-get-started/advisor-configure-resources.png":::
 
