@@ -64,7 +64,8 @@ app.Run();
 
 ### [.NET](#tab/net)
 
-The following example shows how to add the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) to collect extra metrics:
+The following example shows how to add the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) to collect extra metrics:
+
 
 ```csharp
 // Create a new OpenTelemetry meter provider and add runtime instrumentation and the Azure Monitor metric exporter.
@@ -75,7 +76,7 @@ var metricsProvider = Sdk.CreateMeterProviderBuilder()
 ```
 
 ### [Java](#tab/java)
-
+You can't extend the Java Distro with community instrumentation libraries. To request inclusion of other instrumentation libraries, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
 You can't extend the Java Distro with community instrumentation libraries. To request for other instrumentation library to be included, open an issue on the GitHub page. You can find a link to the GitHub page in [Next Steps](#next-steps).
 
 ### [Java native](#tab/java-native)
