@@ -31,9 +31,9 @@ This pane contains the following information:
 - Last updated
 - Scope (Subscription or Tenant ID)
 
->[!Note]
->The History tab shows Service health events that have been resolved or have passed their mitigation end time. These events will remain visible in your History for 90 days before automatically expiring.<br>
->This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
+>[!NOTE]
+> The panel displays service health history events for 90 days. After that, the backend API stores them for up to a year.<br>
+>This storage includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
 
 
 
