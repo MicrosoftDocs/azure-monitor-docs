@@ -3953,6 +3953,8 @@ items:
             href: queries/SecurityEvent.md
           - name: SentinelAudit
             href: queries/SentinelAudit.md
+          - name: SentinelImpervaWAFCloudV2Logs
+            href: queries/SentinelImpervaWAFCloudV2Logs.md
           - name: SignalRServiceDiagnosticLogs
             href: queries/SignalRServiceDiagnosticLogs.md
           - name: SigninLogs
