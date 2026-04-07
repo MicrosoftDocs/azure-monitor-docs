@@ -48,8 +48,6 @@ Select the **Issue name** link to open the tabs where you can view the informati
 
 >[!NOTE]
 >Planned maintenance events appear in the panel for 90 days if they're still active and if the `impactMitigationTime` or `endtime` is set in the future. After that, the events move to the health history panel where they're displayed for 90 days.
->[!NOTE]
->Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `impactMitigationTime` or `endtime` is set in the future. After that they are moved to the health history panel where they are displayed for 90 days.
 
 
 >[!TIP]
