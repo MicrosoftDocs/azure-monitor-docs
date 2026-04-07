@@ -21,7 +21,7 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 > ADX clusters that have firewall rules or network security group (NSG) restrictions enabled aren't supported as DCR destinations. Ensure your ADX cluster allows public network access before configuring it as a destination.
 
 > [!NOTE]
-> This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/), and the following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2 and Qatar.
+> This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/), and the following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2, and Qatar.
 
 ## Permissions
 
