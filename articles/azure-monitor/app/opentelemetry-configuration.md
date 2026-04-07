@@ -417,7 +417,7 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 
 Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#resource-detectors).
 
-For manual setups, set resource attributes directly with standard OpenTelemetry options:
+For manual setups, set resource attributes directly by using standard OpenTelemetry options:
 
 ```bash
 # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
