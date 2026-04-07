@@ -53,7 +53,7 @@ Select the **Issue name** link to open the tabs where you can view the informati
 
 
 >[!TIP]
->The field `impactmitigationtime` is the API field name, and `end time` is the name on the user interface (UI).
+>The field `impactMitigationTime` is the API field name, and `end time` is the name on the user interface (UI).
 
 
 For more information about planned maintenance events that use ARG queries, see:
