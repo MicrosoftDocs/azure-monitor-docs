@@ -3,7 +3,7 @@ title: Troubleshoot Azure Log Analytics Linux Agent
 description: Describe the symptoms, causes, and resolution for the most common issues with the Log Analytics agent for Linux in Azure Monitor.
 ms.topic: troubleshooting-general
 ms.custom: linux-related-content
-ms.date: 03/14/2026
+ms.date: 04/07/2026
 ms.reviewer: luki, mattmcinnes
 ai-usage: ai-assisted
 ---
