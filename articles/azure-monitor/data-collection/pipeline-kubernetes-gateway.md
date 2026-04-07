@@ -59,7 +59,7 @@ TLS-enabled:
 
 TLS-disabled:
   Client ── TCP ──▶ Traefik ── TCP ──▶ Pipeline Service:514
----
+```
 
 
 > [!IMPORTANT]
