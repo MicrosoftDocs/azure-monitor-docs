@@ -15,7 +15,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension was deprecated on **March 31, 2026** and is no longer supported. New deployments of the extension aren't recommended.
+> Azure Diagnostics extension was deprecated on **March 31, 2026** and is no longer supported. Don't use new deployments of the extension.
 > 
 > To ensure continued support and access to new features, migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
 > 
