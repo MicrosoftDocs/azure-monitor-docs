@@ -2,7 +2,7 @@
 title: Send data to Fabric and Azure Data Explorer (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Data Explorer and Fabric.
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 04/07/2026
 ms.reviewer: aprilbadger
 # Customer intent: As a Azure architect or administrator, I want to send VM data to Azure Data Explorer and Fabric for advanced analytics and real-time event processing.
 ---
