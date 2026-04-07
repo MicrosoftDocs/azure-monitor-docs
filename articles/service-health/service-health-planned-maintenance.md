@@ -54,7 +54,7 @@ Select the **Issue name** link to open the tabs where you can view the informati
 >The field `impactmitigationtime` is the API field name, and `end time` is the name on the user interface (UI).
 
 
-For more information about Planned maintenance events using ARG queries, see:
+For more information about planned maintenance events that use ARG queries, see:
 - [Resource graph sample queries](resource-graph-health-samples.md) 
 - [Service Health graph sample queries](resource-graph-samples.md)
 - [Impacted resources graph sample queries](resource-graph-impacted-samples.md)<br>
