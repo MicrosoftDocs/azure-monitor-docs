@@ -17,6 +17,9 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 - A [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for the DCR to authenticate with the destination.
 - The DCR region must match the region of the ADX cluster or Fabric eventhouse destination.
 
+> [!IMPORTANT]
+> ADX clusters that have firewall rules or network security group (NSG) restrictions enabled aren't supported as DCR destinations. Ensure your ADX cluster allows public network access before configuring it as a destination.
+
 > [!NOTE]
 > This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/), and the following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2 and Qatar.
 
@@ -98,3 +101,4 @@ For more information, see [Transformations in Azure Monitor](../data-collection/
 
 - [Fabric eventhouse overview](/fabric/real-time-intelligence/eventhouse)
 - [Azure Data Explorer overview](/azure/data-explorer/data-explorer-overview)
+
