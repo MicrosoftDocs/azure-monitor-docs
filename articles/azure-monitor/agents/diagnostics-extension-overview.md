@@ -35,7 +35,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > 
 > :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
-## Migration Guidance
+## Migration guidance
 
 Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
  
