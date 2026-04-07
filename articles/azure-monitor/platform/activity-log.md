@@ -56,7 +56,6 @@ Add `resourceGroupName` to the filter to scope results to a specific resource gr
 # [Azure CLI](#tab/azure-cli)
 
 ```azurecli
-az rest --method get \
 method="GET"
 subscription="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 resourcePath="/providers/Microsoft.Insights/eventtypes/management/values"
