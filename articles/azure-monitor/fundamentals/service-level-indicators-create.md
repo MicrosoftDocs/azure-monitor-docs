@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 Use this article to create a service level indicator (SLI) for a [service group](/azure/governance/service-groups/overview) in the Azure portal.
 
-For SLI concepts, including SLI type selection and metric details design, see [Service level indicator concepts in Azure Monitor](service-level-indicators-concepts.md).
+For SLI concepts, including SLI type selection and metric details design, see [Service level indicator concepts in Azure Monitor](service-level-indicators.md).
 
 ## Prerequisites
 
@@ -33,7 +33,7 @@ The default data collection rule for the destination workspace is stored in the 
 
 ## Before you begin
 
-Review [Service level indicator concepts in Azure Monitor](service-level-indicators-concepts.md) to choose your SLI type, signal design, and workspace strategy before you configure the portal flow.
+Review [Service level indicator concepts in Azure Monitor](service-level-indicators.md) to choose your SLI type, signal design, and workspace strategy before you configure the portal flow.
 
 ## Create an SLI in the portal
 
@@ -98,7 +98,7 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 
 ## Next steps
 
-* Review [Service level indicator concepts in Azure Monitor](service-level-indicators-concepts.md).
+* Review [Service level indicator concepts in Azure Monitor](service-level-indicators.md).
 * Review [Azure Monitor overview](overview.md).
 * Learn more about [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md).
 * Create alert notifications by using [action groups in Azure Monitor](../alerts/action-groups.md).

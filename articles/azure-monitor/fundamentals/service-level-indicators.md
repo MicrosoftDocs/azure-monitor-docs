@@ -101,6 +101,6 @@ Before creating an SLI, decide:
 
 ## Next steps
 
-* Create an SLI by using [Create service level indicators in Azure Monitor](create-service-level-indicators.md).
+* Create an SLI by using [Create service level indicators in Azure Monitor](service-level-indicators-create.md).
 * Learn more about [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md).
 * Review [Azure Monitor overview](overview.md).
