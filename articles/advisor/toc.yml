@@ -1,6 +1,6 @@
 - name: Azure Advisor Documentation
   href: index.yml
-- name: Overview 
+- name: Overview
   items:
   - name: What is Azure Advisor?
     href: advisor-overview.md
@@ -16,8 +16,6 @@
     href: ./advisor-score.md
   - name: Customize your view
     href: advisor-customize-view.md
-  - name: Dismiss and postpone
-    href: advisor-dismiss-postpone.md
   - name: Configuration
     href: view-recommendations.md
   - name: Alerts
@@ -31,7 +29,7 @@
       displayName: Resource Manager
       href: advisor-alerts-arm.md
   - name: Digests
-    href: advisor-recommendations-digest.md      
+    href: advisor-recommendations-digest.md
 - name: How-to guides
   items:
   - name: Advisor data in Azure Resource Graph
@@ -115,7 +113,7 @@
     href: ./advisor-workbook-reliability.md
   - name: Service Retirement workbook
     href: ./advisor-workbook-service-retirement.md
-- name: Samples 
+- name: Samples
   items:
   - name: Azure Resource Graph queries
     href: ./resource-graph-samples.md

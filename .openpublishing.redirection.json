@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/advisor/advisor-dismiss-postpone.md",
+      "redirect_url": "/previous-versions/azure/advisor/advisor-dismiss-postpone",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/azure-monitor/app/classic-api.md",
       "redirect_url": "/previous-versions/azure/azure-monitor/app/classic-api",
       "redirect_document_id": false

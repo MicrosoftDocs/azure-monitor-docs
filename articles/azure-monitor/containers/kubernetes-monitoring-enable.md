@@ -123,8 +123,6 @@ az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <
 ### Use custom log configuration file
 az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --data-collection-settings dataCollectionSettings.json
 
-### Use legacy authentication
-az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --enable-msi-auth-for-monitoring false
 ```
 
 **Example**
