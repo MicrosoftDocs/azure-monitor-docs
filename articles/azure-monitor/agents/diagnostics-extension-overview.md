@@ -2,8 +2,9 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: concept-article
-ms.date: 11/17/2025
+ms.date: 04/07/2026
 ms.reviewer: shseth
+ai-usage: ai-assisted
 
 ---
 
@@ -14,9 +15,9 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension will be deprecated on **March 31, 2026**. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
+> Azure Diagnostics extension was deprecated on **March 31, 2026** and is no longer supported. New deployments of the extension aren't recommended.
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [following migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
+> To ensure continued support and access to new features, migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
 > 
 > To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
@@ -36,7 +37,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 
 ## Migration Guidance
 
-To ensure continued support after March 31, 2026 and access to new features, migrate using the following options based on the data destination: 
+Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
  
 | Destination | Migration Options |   
 |-------------|----------------------------------------------------------------------|
@@ -51,11 +52,11 @@ Use Azure Diagnostics extension if you need to:
 * Send data to Azure Storage for archiving or to analyze it with tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
 * Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze it with [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
 * Send data to third-party tools by using [Azure Event Hubs](./diagnostics-extension-stream-event-hubs.md).
-* Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot issues.
+* Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot issues. Boot diagnostics is a native VM feature and doesn't require the Azure Diagnostics extension. Use Microsoft-managed storage for boot diagnostics to avoid dependencies on customer-managed storage accounts and SAS tokens.
 
 Limitations of Azure Diagnostics extension:
 
-* It will be deprecated on March 31, 2026.
+* It was deprecated on March 31, 2026.
 * It can only be used with Azure resources.
 * It has limited ability to send data to Azure Monitor Logs.
 
