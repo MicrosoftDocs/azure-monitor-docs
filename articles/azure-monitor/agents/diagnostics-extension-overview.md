@@ -37,7 +37,7 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 
 ## Migration guidance
 
-Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
+The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
  
 | Destination | Migration Options |   
 |-------------|----------------------------------------------------------------------|
