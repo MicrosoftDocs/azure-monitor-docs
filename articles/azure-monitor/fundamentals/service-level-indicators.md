@@ -2,15 +2,15 @@
 title: Service level indicator concepts in Azure Monitor
 description: Learn core service level indicator concepts in Azure Monitor, including SLI types, metric details, baseline targets, error budgets, and burn rates.
 ms.topic: concept
-ms.date: 04/06/2026
+ms.date: 04/07/2026
 ai-usage: ai-assisted
 ---
 
 # Service level indicator concepts in Azure Monitor
 
-Service level indicators (SLIs) in Azure Monitor quantify reliability for a [service group](/azure/governance/service-groups/overview). An SLI tracks whether your service behavior meets a defined reliability expectation over time.
+Service level indicators (SLIs) in Azure Monitor quantify reliability and performance for a [service group](/azure/governance/service-groups/overview) against a defined baseline target. SLIs help you track compliance over time, understand how much failure you can still absorb, and see how quickly reliability risk is increasing.
 
-Use SLIs to move from reactive incident response to objective reliability management. Instead of only checking whether an alert fired, you can evaluate compliance against a target and track how quickly reliability risk is increasing.
+A service group represents a collection of resources for a common application or workload. Azure Monitor creates SLIs for that service group so you can evaluate the reliability of the service as a whole instead of looking at individual signals in isolation.
 
 ## What an SLI measures
 
@@ -22,6 +22,11 @@ In Azure Monitor:
 * Window-based SLI: good windows divided by total windows.
 
 An SLI on its own is a measured value. You compare that value to a target to determine whether reliability is acceptable.
+
+Typical reliability requirements look like these examples:
+
+* Latency can exceed 300 milliseconds in only 5 percent of requests during a rolling 30-day period.
+* The service must maintain 99 percent availability during a calendar week.
 
 ## Baseline target, error budget, and burn rate
 
@@ -36,6 +41,19 @@ For a baseline target of 99.9%, the error budget is 0.1%:
 `Error budget = 100% - baseline target`
 
 A higher burn rate means your service is consuming allowable failure faster than planned.
+
+Error budgets help you decide when to prioritize new feature work and when to focus on reliability improvements. As failures accumulate, the remaining error budget tells you how much room is left before the service misses its target.
+
+## Use error budget alerts
+
+When you configure alerting, you can use burn rate to detect whether the service is consuming its error budget too quickly.
+
+Use these alert patterns:
+
+* Fast-burn alert: Detects a sudden increase in failures that could exhaust the error budget soon if the condition persists.
+* Slow-burn alert: Detects sustained error-budget consumption that is less urgent but still likely to miss the target before the end of the compliance period.
+
+Together, these alerts help you respond to both sharp reliability regressions and slower trends that would otherwise be easy to miss.
 
 ## Choose the right SLI type
 
@@ -78,6 +96,8 @@ Core elements include:
 
 If numerator and denominator aggregations are inconsistent in request-based SLIs, the resulting SLI can be misleading.
 
+For request-based SLIs, the good signal acts as the numerator and the total signal acts as the denominator. For window-based SLIs, Azure Monitor evaluates whether each time window meets the threshold that you define.
+
 ## Source and destination workspace strategy
 
 Azure Monitor reads input metrics from a source workspace and writes evaluated SLI results to a destination workspace.
@@ -98,6 +118,7 @@ Before creating an SLI, decide:
 1. Signal design: good and total signals, or window threshold criteria.
 1. Baseline target and compliance period.
 1. Workspace strategy: same workspace or separate source and destination workspaces.
+1. Alerting strategy: whether you need fast-burn, slow-burn, or both alert types.
 
 ## Next steps
 
