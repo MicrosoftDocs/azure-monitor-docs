@@ -8,117 +8,122 @@ ai-usage: ai-assisted
 
 # Service level indicator concepts in Azure Monitor
 
-Service level indicators (SLIs) in Azure Monitor quantify reliability and performance for a [service group](/azure/governance/service-groups/overview) against a defined baseline target. SLIs help you track compliance over time, understand how much failure you can still absorb, and see how quickly reliability risk is increasing.
+Service level indicators (SLIs) in Azure Monitor are measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a defined compliance period so you can see whether a service is meeting its reliability objective.
 
-A service group represents a collection of resources for a common application or workload. Azure Monitor creates SLIs for that service group so you can evaluate the reliability of the service as a whole instead of looking at individual signals in isolation.
+Azure Monitor treats an SLI as a first-class object for the service group rather than as a single standalone metric. That model helps you evaluate the reliability of the application or workload as a whole, track remaining error budget, and understand whether current conditions are consuming that budget too quickly.
 
-## What an SLI measures
+The service group monitoring experience shows each SLI as a tracked reliability object with its own status, evaluation method, type, and remaining error budget.
 
-An SLI is a ratio of good outcomes to total outcomes across a measurement period.
+:::image type="content" source="media/create-service-level-indicators/service-group-sli-list.png" alt-text="Screenshot of the service group Monitoring experience listing multiple SLIs with status, evaluation method, SLI type, and error budget remaining.":::
 
-In Azure Monitor:
+## What an SLI includes
 
-* Request-based SLI: good requests divided by total requests.
-* Window-based SLI: good windows divided by total windows.
+Every SLI in Azure Monitor combines a small set of concept choices that determine what reliability means for your service.
 
-An SLI on its own is a measured value. You compare that value to a target to determine whether reliability is acceptable.
+| Element | What it defines |
+|:---|:---|
+| Service group | The application or workload boundary that the SLI represents. |
+| SLI type | Whether you measure availability or latency. |
+| Evaluation method | Whether Azure Monitor evaluates individual requests or time windows. |
+| Signal design | The metrics, filters, aggregations, and formulas that define good and bad outcomes. |
+| Baseline target | The service level objective (SLO) that the measured result is compared against. |
+| Compliance period | The time horizon over which Azure Monitor evaluates performance against the target. |
 
-Typical reliability requirements look like these examples:
+Taken together, these elements define both the measured value and the reliability target. An SLI is useful because it connects raw telemetry to an explicit expectation for the service.
 
-* Latency can exceed 300 milliseconds in only 5 percent of requests during a rolling 30-day period.
-* The service must maintain 99 percent availability during a calendar week.
+## SLI types
 
-## Baseline target, error budget, and burn rate
+Azure Monitor supports two SLI types.
 
-Use these concepts together:
+| Type | What it measures | Example |
+|:---|:---|:---|
+| Availability | Whether requests or time windows satisfy a success condition. | 99.99% of read and write requests were successful during the measurement period. |
+| Latency | Whether requests or time windows stay within a latency threshold. | 95% of requests completed in less than 300 milliseconds during the measurement period. |
 
-* Baseline target (SLO): The reliability objective, such as 99.9%.
-* Error budget: Allowable unreliability before you miss the target.
-* Burn rate: How quickly the error budget is being consumed.
+The SLI type defines the reliability question that you're asking. Availability asks whether the service is working. Latency asks whether the service is responding quickly enough to satisfy the experience that you want to protect.
+
+## How Azure Monitor evaluates an SLI
+
+The **Metric details** area in the portal captures the evaluation method, the identity used to read metrics, and the source workspace that provides the input data.
+
+:::image type="content" source="media/create-service-level-indicators/metric-details.png" alt-text="Screenshot of the Metric details and Identity and data source sections showing the evaluation method selector, managed identity selection, and source workspace selection.":::
+
+Azure Monitor provides two evaluation methods.
+
+| Evaluation method | How it works | Typical fit |
+|:---|:---|:---|
+| Request-based | Evaluates the ratio of good requests to total requests. Each request contributes to the result. | Use when reliability should reflect per-request success or failure, especially when traffic volume changes over time. |
+| Window-based | Evaluates whether each time window is good or bad based on a threshold. The SLI is the ratio of good windows to total windows. | Use when you care about interval-level behavior, such as whether each 1-minute or 5-minute window met a quality threshold. |
+
+The choice between these models changes how you interpret reliability. A request-based SLI emphasizes the experience of individual requests. A window-based SLI emphasizes whether the service stayed within an acceptable operating envelope for each interval.
+
+## How signal design works
+
+Signal design is the part of the SLI that turns telemetry into a reliability measurement. In Azure Monitor, that design can include metrics, dimensions, filters, temporal aggregation, spatial aggregation, and formulas.
+
+The portal surfaces these concepts as separate configuration areas so that you can see how the measured signal is constructed before the SLI is saved.
+
+### Request-based evaluation
+
+In a request-based SLI, Azure Monitor uses two queries:
+
+* **Good signal** is the numerator. It represents the requests that met the success condition.
+* **Total signal** is the denominator. It represents the full request volume that the SLI should evaluate.
+
+:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI configuration showing separate Good signal and Total signal sections, each with options to add metrics and formulas.":::
+
+This model is the most direct way to express outcomes such as successful requests, requests under a latency threshold, or requests that satisfy a specific dimension filter. You can combine multiple metrics with formulas when one metric alone doesn't represent the workload behavior that you want to measure.
+
+Consistent aggregation matters in this model. If the good signal and total signal use incompatible aggregations or filters, the resulting ratio can misrepresent the true request experience.
+
+### Window-based evaluation
+
+In a window-based SLI, Azure Monitor evaluates one or more signals against a threshold for each window. Instead of explicitly defining numerator and denominator queries, you define what a good window looks like.
+
+:::image type="content" source="media/create-service-level-indicators/window-based-sli.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings.":::
+
+This model is useful when uptime is better represented as threshold compliance per interval. For example, a 5-minute window might be considered good only when 99th percentile latency stays below a target. Short spikes can still matter, but the service is judged at the level of the defined window rather than at the level of each request.
+
+In both evaluation methods, preview charts help validate that the selected metrics, filters, and formulas represent the intended workload slice before the SLI is created.
+
+## Identities, data sources, and storage location
+
+Azure Monitor uses managed identities and workspaces for two distinct purposes in the SLI model.
+
+* A managed identity and source Azure Monitor workspace are used to read the telemetry that feeds the SLI.
+* A managed identity and destination Azure Monitor workspace are used to store the evaluated SLI results.
+
+:::image type="content" source="media/create-service-level-indicators/destination-workspace.png" alt-text="Screenshot of the Identity and data storage location section showing managed identity and destination workspace selection.":::
+
+You can use the same workspace for both source telemetry and evaluated SLI results, or you can separate them. A single workspace simplifies access and operations. Separate workspaces can help when you want to isolate raw telemetry from evaluated reliability data for governance or operational reasons.
+
+This separation is also visible on the SLI details page, where Azure Monitor shows both the data source and the storage location as part of the SLI metadata.
+
+## Baseline targets, error budget, and burn rate
+
+An SLI is a measured value. A baseline target defines whether that value is acceptable. In reliability engineering terms, this target is your service level objective (SLO).
+
+Examples of baseline targets include the following scenarios:
+
+* Latency can exceed 300 milliseconds in only 5% of requests during a rolling 30-day period.
+* The service must maintain 99% availability during a calendar week.
+
+Once you define the target, Azure Monitor can calculate the remaining margin for failure.
+
+* **Error budget** is the amount of unreliability that the service can still absorb before it misses the baseline target.
+* **Burn rate** is the speed at which the service is consuming that error budget.
 
 For a baseline target of 99.9%, the error budget is 0.1%:
 
 `Error budget = 100% - baseline target`
 
-A higher burn rate means your service is consuming allowable failure faster than planned.
+Error budget helps you reason about tradeoffs between feature velocity and reliability work. Burn rate adds urgency by showing whether recent conditions are consuming the budget at a sustainable pace or at a rate that is likely to cause a miss before the end of the compliance period.
 
-Error budgets help you decide when to prioritize new feature work and when to focus on reliability improvements. As failures accumulate, the remaining error budget tells you how much room is left before the service misses its target.
+The SLI details view brings these concepts together by showing the measured SLI trend, error budget remaining, and burn rate alongside metadata such as the evaluation method, baseline, SLI type, data source, and storage location.
 
-## Use error budget alerts
+:::image type="content" source="media/create-service-level-indicators/sli-details.png" alt-text="Screenshot of an SLI details page showing metadata for the SLI and charts for SLI performance, error budget remaining, and burn rate.":::
 
-When you configure alerting, you can use burn rate to detect whether the service is consuming its error budget too quickly.
-
-Use these alert patterns:
-
-* Fast-burn alert: Detects a sudden increase in failures that could exhaust the error budget soon if the condition persists.
-* Slow-burn alert: Detects sustained error-budget consumption that is less urgent but still likely to miss the target before the end of the compliance period.
-
-Together, these alerts help you respond to both sharp reliability regressions and slower trends that would otherwise be easy to miss.
-
-## Choose the right SLI type
-
-Select the SLI type that matches your reliability question.
-
-### Request-based SLI
-
-Use request-based SLIs when each request should contribute equally to the result.
-
-This model is a good fit when:
-
-* Traffic volume varies over time.
-* Reliability should reflect per-request success or failure.
-* You want direct numerator and denominator logic.
-
-### Window-based SLI
-
-Use window-based SLIs when each time interval should be evaluated as good or bad.
-
-This model is a good fit when:
-
-* You care about interval-level behavior, such as 1-minute or 5-minute windows.
-* You want to smooth short spikes.
-* Reliability is based on threshold compliance per interval.
-
-## Understand metric details
-
-The **Metric details** configuration determines how Azure Monitor evaluates your SLI.
-
-Core elements include:
-
-* Evaluation model: Request-based or window-based.
-* Source identity and workspace: The managed identity and Azure Monitor workspace used for metric reads.
-* Signal logic:
-  * Request-based: define **Good signal** and **Total signal**.
-  * Window-based: define a signal and window threshold criteria.
-* Dimensions and filters: Scope the metric to the intended workload slice.
-* Aggregation and formulas: Use consistent temporal and spatial aggregation and combine metrics when needed.
-* Preview charts: Validate that your query returns expected behavior before saving the SLI.
-
-If numerator and denominator aggregations are inconsistent in request-based SLIs, the resulting SLI can be misleading.
-
-For request-based SLIs, the good signal acts as the numerator and the total signal acts as the denominator. For window-based SLIs, Azure Monitor evaluates whether each time window meets the threshold that you define.
-
-## Source and destination workspace strategy
-
-Azure Monitor reads input metrics from a source workspace and writes evaluated SLI results to a destination workspace.
-
-You can use either of these approaches:
-
-* Same workspace for source and destination: Simpler management and consolidated access.
-* Separate workspaces: Separation of raw telemetry and evaluated SLI results.
-
-Choose the approach that matches your operational and governance requirements.
-
-## Plan your SLI definition
-
-Before creating an SLI, decide:
-
-1. Indicator type: **Availability** or **Latency**.
-1. Evaluation model: **Request-based** or **Window-based**.
-1. Signal design: good and total signals, or window threshold criteria.
-1. Baseline target and compliance period.
-1. Workspace strategy: same workspace or separate source and destination workspaces.
-1. Alerting strategy: whether you need fast-burn, slow-burn, or both alert types.
+When you alert on SLIs, burn rate is especially useful because it highlights both sudden regressions and slower reliability erosion. Fast-burn conditions show that the service is consuming budget much faster than planned. Slow-burn conditions show sustained degradation that might still cause the service to miss its target over time.
 
 ## Next steps
 
