@@ -2,8 +2,9 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: concept-article
-ms.date: 11/17/2025
+ms.date: 04/07/2026
 ms.reviewer: shseth
+ai-usage: ai-assisted
 
 ---
 
@@ -14,9 +15,9 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
 > 
-> Azure Diagnostics extension will be deprecated on **March 31, 2026**. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension. 
+> Azure Diagnostics extension was deprecated on **March 31, 2026** and is no longer supported. Don't use new deployments of the extension.
 > 
-> To ensure continued support and access to new features, you should migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [following migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
+> To ensure continued support and access to new features, migrate from Azure Diagnostics extensions for Linux (LAD) and Windows (WAD) to alternative solutions following the [migration guidance](#migration-guidance). Remove LAD or WAD after you configure Azure Monitor Agent to avoid duplicate data.
 > 
 > To check which extensions are installed on a single VM, select **Extensions + applications** under **Settings** on your VM. To review the extensions installed on all virtual machines in subscriptions where you have access, use the following query in [Azure Resource Graph](/azure/governance/resource-graph/first-query-portal):
 >
@@ -34,29 +35,29 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 > 
 > :::image type="content" source="media/diagnostics-extension-overview/query-results.png" lightbox="media/diagnostics-extension-overview/query-results.png" alt-text="Screenshot showing the results of a sample Azure Resource Graph Query.":::
 
-## Migration Guidance
+## Migration guidance
 
-To ensure continued support after March 31, 2026 and access to new features, migrate using the following options based on the data destination: 
+The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure continued support and access to new features, migrate using the following options based on the data destination: 
  
-| Destination | Migration Options |   
+| Destination | Migration options |   
 |-------------|----------------------------------------------------------------------|
-| Azure Storage blobs | If you're using WAD/LAD agents to send data to storage for longer term storage and/or lower costs, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md). Then you can send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics | 
-| Azure Event Hubs | If you're using WAD/LAD agents to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md) to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> |
+| Azure Storage blobs | If you're using WAD or LAD agents to send data to storage for longer term storage and lower costs, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md). Then you can send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics | 
+| Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md) to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> |
 | Azure Monitor metrics | For VM Guest OS Perf Counter scenarios, migrate to using AMW as a destination for [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md). For custom metric scenarios, migrate to using AMW as a destination for [OpenTelemetry metrics](../app/opentelemetry.md). |
 
 ## Primary scenarios
 
-Use Azure Diagnostics extension if you need to:
+Use the Azure Diagnostics extension if you need to:
 
-* Send data to Azure Storage for archiving or to analyze it with tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
-* Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze it with [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
+* Send data to Azure Storage for archiving or to analyze it by using tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
+* Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze it by using [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
 * Send data to third-party tools by using [Azure Event Hubs](./diagnostics-extension-stream-event-hubs.md).
-* Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot issues.
+* Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot problems. Boot diagnostics is a native VM feature and doesn't require the Azure Diagnostics extension. Use Microsoft-managed storage for boot diagnostics to avoid dependencies on customer-managed storage accounts and SAS tokens.
 
 Limitations of Azure Diagnostics extension:
 
-* It will be deprecated on March 31, 2026.
-* It can only be used with Azure resources.
+* It's deprecated on March 31, 2026.
+* It works only with Azure resources.
 * It has limited ability to send data to Azure Monitor Logs.
 
 ## Costs

@@ -2,8 +2,9 @@
 title: Send data from Azure Diagnostics extension to Azure Monitor Logs
 description: Azure Monitor can read the logs for Azure services that write diagnostics to Azure Table Storage or IIS logs written to Azure Blob Storage.
 ms.topic: how-to
-ms.date: 11/14/2024
-ms.reviewer: luki
+ms.date: 04/07/2026
+ms.reviewer: shseth
+ai-usage: ai-assisted
 
 ---
 
@@ -14,6 +15,9 @@ Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-over
 [!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data types
+
+> [!NOTE]
+> The following data types apply to the retired Azure Diagnostics extension's legacy storage schema and are provided for reference only. For equivalent data collection and analysis capabilities, use the [recommended alternatives](diagnostics-extension-overview.md#migration-guidance).
 
 Azure Diagnostics extension stores data in an Azure Storage account. For Azure Monitor Logs to collect this data, it must be in the following locations:
 
@@ -36,7 +40,10 @@ The following data types aren't supported:
 
 ## Enable Azure Diagnostics extension
 
-For information on how to install and configure the diagnostics extension, see [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md) or [Use Azure Diagnostics extension for Linux to monitor metrics and logs](/azure/virtual-machines/extensions/diagnostics-linux). You can specify the storage account and configure collection of the data that you want to forward to Azure Monitor Logs.
+> [!WARNING]
+> Installing or configuring the Azure Diagnostics extension is not supported after the March 31, 2026 retirement. For collecting guest OS logs and metrics, migrate to the recommended monitoring agents and pipelines described in the [Azure Diagnostics extension overview migration guidance](diagnostics-extension-overview.md#migration-guidance).
+
+For historical reference, see [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md) or [Use Azure Diagnostics extension for Linux to monitor metrics and logs](/azure/virtual-machines/extensions/diagnostics-linux).
 
 ## Collect logs from Azure Storage
 
