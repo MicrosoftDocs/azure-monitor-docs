@@ -57,7 +57,7 @@ Use Azure Diagnostics extension if you need to:
 Limitations of Azure Diagnostics extension:
 
 * It's deprecated on March 31, 2026.
-* It can only be used with Azure resources.
+* It works only with Azure resources.
 * It has limited ability to send data to Azure Monitor Logs.
 
 ## Costs
