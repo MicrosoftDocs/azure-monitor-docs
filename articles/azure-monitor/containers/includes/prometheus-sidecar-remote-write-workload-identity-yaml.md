@@ -29,4 +29,18 @@ prometheus:
         value: '8081'
       - name: IDENTITY_TYPE
         value: workloadIdentity
+      # Required for non-public clouds.
+      # Supported CLOUD values: AZURE_PUBLIC (default), AZURE_GOVERNMENT, AZURE_CHINA, AZURE_CUSTOM.
+      # For Azure Government, uncomment CLOUD and INGESTION_AAD_AUDIENCE.
+      # - name: CLOUD
+      #   value: AZURE_GOVERNMENT
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: https://monitor.azure.us/.default
+      # For air-gapped/sovereign clouds (e.g. USNat, USSec), use AZURE_CUSTOM and also set AAD_HOST_ENDPOINT.
+      # - name: CLOUD
+      #   value: AZURE_CUSTOM
+      # - name: AAD_HOST_ENDPOINT
+      #   value: <authority-host-url-for-your-cloud>
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: <audience-url-for-your-cloud>/.default
 ```
