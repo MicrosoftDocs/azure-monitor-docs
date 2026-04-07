@@ -39,7 +39,7 @@ You can also access activity log events by using the following methods:
 
 ### Retrieve activity log events by using the REST API
 
-Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period. The maximum timeout period for the activity log REST API is 75 seconds. Add the `Prefer: wait=75` header to explicitly set the maximum time your client waits for a response before timing out. 
+Use the [Activity Logs REST API](/rest/api/monitor/activity-logs) to query activity log events programmatically. Include the `$filter` parameter, and it must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window unless you configure a longer retention period. The maximum timeout period for the activity log REST API is 75 seconds. Add the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header) to explicitly set the maximum time your client waits for a response before timing out. 
 
 | Supported `$filter` patterns | Details |
 |---|----|
@@ -57,8 +57,14 @@ Add `resourceGroupName` to the filter to scope results to a specific resource gr
 
 ```azurecli
 az rest --method get \
-  --uri "/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&\$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'" \
-  --headers "Prefer: wait=75"
+method="GET"
+subscription="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourcePath="/providers/Microsoft.Insights/eventtypes/management/values"
+apiVersion="api-version=2015-04-01"
+filter="\$filter=eventTimestamp ge '2026-03-01T00:00:00Z'"
+select="\$select=eventName,operationName"
+uri="/subscriptions/$subscription/$resourcePath?$apiVersion&$filter&$select"
+az rest --method $method --uri "$uri" --headers "Prefer=wait=75"
 ```
 
 # [REST API](#tab/rest-api)
