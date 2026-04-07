@@ -2,7 +2,7 @@
 title: Data field differences between MMA and AMA 
 description: Learn about the data field differences between the Log Analytics agent (MMA) and Azure Monitor Agent to prepare for migration.
 ms.topic: reference
-ms.date: 11/14/2024
+ms.date: 04/07/2026
 Customer intent: As an azure administrator, I want to understand which Log Analytics Workspace queries I may need to update after AMA migration.
 ---
 
