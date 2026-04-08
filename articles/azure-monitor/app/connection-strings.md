@@ -136,7 +136,7 @@ To learn about setting a connection string, see [OpenTelemetry Configuration](op
 
 ## Next steps
 
-To review frequently asked questions (FAQ): 
+To review frequently asked questions (FAQ), see: 
 
 * [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
 
