@@ -259,7 +259,7 @@ If you need programmatic names for these regions, see [Azure regions list](/azur
 
 ### Limits
 
-- The feature accepts only **OTLP/HTTP** with **binary Protobuf**. It doesn't support JSON payloads or **OTLP/gRPC**. You need to configure your OTLP exporter accordingly.
+- The feature accepts only **OTLP/HTTP** with **binary Protobuf**. It doesn't support JSON payloads or **OTLP/gRPC**. You need to configure your OTLP exporter accordingly when using autoconfiguration with the open-source, vendor-neutral SDKs.
 - The feature supports up to **30** Data Collection Rule (DCR) associations per AKS cluster.
 - The tested scale for logs and traces is **50,000 events per second (EPS)**. You can expect approximately **250 MiB** extra memory usage and **0.5 vCPU** per cluster for this feature.
 
