@@ -51,7 +51,7 @@ You can access Advisor through the [Azure portal](https://aka.ms/azureadvisordas
 ### What permissions do I need to access Advisor?
 
 You can access Advisor recommendations as the Owner, Contributor, or Reader of a subscription, resource group, or resource.
-For more information see: [Roles and Permissions](https://learn.microsoft.com/azure/advisor/permissions)
+For more information, see: [Roles and Permissions](https://learn.microsoft.com/azure/advisor/permissions)
 ### What resources does Advisor provide recommendations for?
 
 Advisor provides recommendations for the following services:
