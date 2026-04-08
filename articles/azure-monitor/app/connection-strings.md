@@ -57,7 +57,7 @@ A connection string consists of a list of settings represented as key-value pair
 
 * `EndpointSuffix` (for example, applicationinsights.azure.cn). Setting the endpoint suffix tells the SDK which Azure cloud to connect to. The SDK assembles the rest of the endpoint for individual services.
 
-* Explicit endpoints. Any service can be explicitly overridden in the connection string:
+* Explicit endpoints. You can explicitly override any service in the connection string:
     * `IngestionEndpoint` (for example, `https://dc.applicationinsights.azure.com`)
     * `LiveEndpoint` (for example, `https://live.applicationinsights.azure.com`)
     * `ProfilerEndpoint` (for example, `https://profiler.monitor.azure.com`)
