@@ -1,0 +1,69 @@
+<mxfile host="65bd71144e">
+    <diagram id="pipeline-setup-flow" name="Page-1">
+        <mxGraphModel dx="1461" dy="999" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="1400" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="verify" value="Verify prerequisites" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F8F8;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="100" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="cert" value="Install cert-manager&amp;nbsp;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F8F8F8;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="200" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="2" value="" style="edgeStyle=none;html=1;" edge="1" parent="1" source="cert" target="portal">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="portal" value="Deploy pipeline using &lt;br&gt;Azure portal or &lt;br&gt;CLI / ARM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="310" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="gateway" value="Configure Kubernetes gateway" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="745" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="clients" value="Configure clients" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="840" width="200" height="70" as="geometry"/>
+                </mxCell>
+                <mxCell id="tls" value="Configure TLS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="590" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" style="edgeStyle=none;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="transformChoice" target="3">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="transformChoice" value="Filter or &lt;br&gt;modify &lt;br&gt;data?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4CE;strokeColor=#C19C00;fontSize=13;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="470" y="410" width="140" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="transform" value="Add pipeline transformations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F3F2F1;strokeColor=#605E5C;fontSize=13;" parent="1" vertex="1">
+                    <mxGeometry x="680" y="440" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="done" value="Setup complete" style="ellipse;whiteSpace=wrap;html=1;fillColor=#DFF6DD;strokeColor=#107C10;fontSize=14;fontStyle=1;" parent="1" vertex="1">
+                    <mxGeometry x="425" y="1530" width="190" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#605E5C;" parent="1" source="verify" target="cert" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#605E5C;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="portal" target="transformChoice" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="550" y="450" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="e15" value="Yes" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;strokeColor=#605E5C;" parent="1" source="transformChoice" target="transform" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Yes" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3" target="tls">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" style="edgeStyle=none;html=1;" edge="1" parent="1" source="3" target="7">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Encrypted &lt;br&gt;ingestion?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4CE;strokeColor=#C19C00;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="470" y="560" width="140" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" style="edgeStyle=none;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="7" target="gateway">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Encrypted &lt;br&gt;ingestion?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF4CE;strokeColor=#C19C00;fontSize=13;fontStyle=1;" vertex="1" parent="1">
+                    <mxGeometry x="475" y="720" width="135" height="120" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

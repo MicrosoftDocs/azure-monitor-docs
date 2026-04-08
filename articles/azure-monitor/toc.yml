@@ -890,6 +890,8 @@ items:
         - name: Configure with CLI or ARM templates
           displayName: Azure Monitor pipeline
           href: data-collection/pipeline-configure-cli.md
+      - name: Monitor
+        href: data-collection/pipeline-monitor.md
       - name: Transformations
         href: data-collection/pipeline-transformations.md
       - name: Configure a Kubernetes gateway

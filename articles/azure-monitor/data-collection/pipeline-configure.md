@@ -20,10 +20,14 @@ Complete deployment of a Azure Monitor pipeline includes the following steps:
 1. Complete deployment of the pipeline using either of the following methods:
    - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
-1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
-1. If you need encrypted ingestion, configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md#add-a-new-client-to-an-existing-receiver).
-1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
+1. If you need to filter, aggregate, or reshape incoming data:
+    1. Add [pipeline transformations](./pipeline-transformations.md).
+1. If clients need access from outside the cluster:
+    1. Expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
+    1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md#add-a-new-client-to-an-existing-receiver).
+1. If you need encrypted ingestion:
+    1. Configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+
 
 ## Prerequisites
 
