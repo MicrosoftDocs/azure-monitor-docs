@@ -109,7 +109,7 @@ All manual state changes start from the **Active recommendations** view. Use the
 1. Open **Azure Advisor** in the Azure portal.
 1. Select a recommendation **category**.
 1. From the **Viewing** drop-down, select **Active** to display active recommendations.
-1. Select a recommendation from the list of recommendations.
+1. Select a recommendation from the list of recommendations.
 1. Select a recommendation from the list to change its state.
 
 ### Postpone a recommendation
@@ -171,7 +171,7 @@ You can reactivate a recommendation that you previously postponed, dismissed, or
 
 1. On the Recommendation Details page, in the resources table, select the checkboxes next to each resource for all resources you want to postpone, dismiss, or mark as complete.
 
-1. In the resources table header, select __Postpone__, __Dismiss__, or __Completed__.
+1. In the resources table header, select **Postpone**, **Dismiss**, or **Completed**.
 
 
 > [!TIP]
@@ -210,17 +210,17 @@ This page displays a table with the following columns:
 - __Completion progress__: Percent of resources impacted by this recommendation that are completed. Dismissed resources are excluded from the calculations.
 
 
-- __Recommended action__: Link to available action.
+- __Recommended action__: Link to available action.
 
 
-- Other category specific columns.
+- Other category specific columns.
 
 
 ### Completed recommendation page
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s completed
+- __Recommendation__: System identified recommendation that's completed.
 
 - __Impact__: Impact level, High, Medium, Low
 
