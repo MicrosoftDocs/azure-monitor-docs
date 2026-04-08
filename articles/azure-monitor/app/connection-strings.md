@@ -15,7 +15,7 @@ Connection strings specify to which Application Insights resource your instrumen
 > [!IMPORTANT]
 > The connection string contains an instrumentation key (ikey) and an ApplicationId.
 > 
->The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
+> The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
 > Connection strings are enhanced by adding the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
 > To protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
