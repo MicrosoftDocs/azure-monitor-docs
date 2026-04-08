@@ -37,13 +37,13 @@ Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.m
 
 ## Obtain logs locally
 
-If you need to troubleshoot issues that aren't visible in the Azure portal, collect pipeline logs directly from the Kubernetes cluster. Use the following command to retrieve logs from the pipeline pods:
+To troubleshoot problems that you can't see in the Azure portal, collect pipeline logs directly from the Kubernetes cluster. Use the following command to get logs from the pipeline pods:
 
 ```bash
 kubectl logs <pod-name> -n <namespace>
 ```
 
-Replace `<pod-name>` with the name of the pipeline pod and `<namespace>` with the namespace where the pipeline is deployed.
+Replace `<pod-name>` with the name of the pipeline pod and `<namespace>` with the namespace where you deployed the pipeline.
 
 ## Related articles
 

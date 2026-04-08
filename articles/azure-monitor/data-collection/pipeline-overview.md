@@ -10,7 +10,7 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 # What is Azure Monitor pipeline?
 
-Telemetry from on-premises, edge, and multicloud environments where direct-to-cloud collection can create challenges with scale, cost, and reliability. Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion in these scenarios. It lets you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud, helping you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
+Telemetry from on-premises, edge, and multicloud environments can create challenges with scale, cost, and reliability when you use direct-to-cloud collection. Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion in these scenarios. It helps you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This process helps you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
 
 This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
@@ -35,14 +35,14 @@ Azure Monitor pipeline currently receives and processes the following data sourc
 | Common Event Format (CEF) | Generally available |
 | OpenTelemetry Protocol (OTLP) | Preview |
 
-The pipeline collects Syslog and CEF data from network devices and local servers. OTLP data comes from applications instrumented with OpenTelemetry SDKs. You can configure custom ports and add additional receivers as needed through pipeline transformations and extensions.
+The pipeline collects Syslog and CEF data from network devices and local servers. OTLP data comes from applications instrumented with OpenTelemetry SDKs. You can configure custom ports and add extra receivers as needed through pipeline transformations and extensions.
 
 ## How Azure Monitor pipeline works
 
 The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your datacenter, edge location, or another cloud provider. It's built on open-source technologies from the OpenTelemetry ecosystem and includes the components needed to receive telemetry from local clients, process that telemetry, and send it to Azure Monitor.
 
 > [!NOTE]
-> Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but customers are responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows customers to retain control over their local infrastructure.
+> Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but you're responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows you to retain control over your local infrastructure.
 
 In a typical deployment:
 
