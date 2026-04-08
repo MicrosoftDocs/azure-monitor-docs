@@ -34,7 +34,7 @@ You can find your connection string in the **Overview** section of your Applicat
 
 ## Schema
 
-Schema elements are explained in the following sections.
+The following sections explain the schema elements.
 
 ### Max length
 
