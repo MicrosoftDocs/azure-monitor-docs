@@ -95,7 +95,7 @@ Advisor also includes your recommendations from [Microsoft Defender for Cloud](/
 When a recommendation is active, you can manually update its state to manage your work:
 - **Postponed** – Temporarily hide the recommendation and review it later.
 - **Dismissed** – Indicate that the recommendation isn't relevant.
-- Completed – Indicate that you have taken the recommended action.
+- **Completed** – Indicate that you took the recommended action.
 
 You can continue to change states between Active, Postponed, Dismissed, and Completed, or reactivate a recommendation, until Azure Advisor performs system verification and Marks a recommendation as Completed. Recommendations manually marked as completed are indicated as “Marked completed”. 
 
