@@ -46,7 +46,7 @@ A connection string consists of a list of settings represented as key-value pair
 `key1=value1;key2=value2;key3=value3`
 
 > [!TIP]
-> Configurable key-value pairs are covered in this document. Some key-value pairs aren't configurable and are set automatically, such as `ApplicationId`. These pairs can be safely ignored if they're observed in your environment.
+> This document covers configurable key-value pairs. Some key-value pairs aren't configurable and are set automatically, such as `ApplicationId`. You can safely ignore these pairs if you see them in your environment.
 
 ### Syntax
 
