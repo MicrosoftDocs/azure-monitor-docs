@@ -8,23 +8,27 @@ ai-usage: ai-assisted
 
 # Service level indicator concepts in Azure Monitor
 
-Service level indicators (SLIs) in Azure Monitor are measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a defined compliance period so you can see whether a service is meeting its reliability objective.
+Service level indicators (SLIs) in Azure Monitor are measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a defined compliance period. This helps you evaluate the reliability of the application or workload represented by the service group, track remaining error budget, and understand whether current conditions are consuming that budget too quickly.
 
-Azure Monitor treats an SLI as a first-class object for the service group rather than as a single standalone metric. That model helps you evaluate the reliability of the application or workload as a whole, track remaining error budget, and understand whether current conditions are consuming that budget too quickly.
+The service group monitoring experience shows each SLI as a tracked reliability object with its own status, evaluation method, type, and remaining error budget. 
 
-The service group monitoring experience shows each SLI as a tracked reliability object with its own status, evaluation method, type, and remaining error budget.
+:::image type="content" source="media/create-service-level-indicators/manage-slis.png" lightbox="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the service group Monitoring experience listing multiple SLIs with status, evaluation method, SLI type, and error budget remaining.":::
 
-:::image type="content" source="media/create-service-level-indicators/service-group-sli-list.png" alt-text="Screenshot of the service group Monitoring experience listing multiple SLIs with status, evaluation method, SLI type, and error budget remaining.":::
+Drill into a single SLI to see details about the SLI design, the measured performance, and the error budget burn rate.
 
-## What an SLI includes
+:::image type="content" source="media/create-service-level-indicators/sli-details.png" lightbox="media/create-service-level-indicators/sli-detail.png" alt-text="Screenshot of the service group Monitoring experience listing multiple SLIs with status, evaluation method, SLI type, and error budget remaining.":::
 
-Every SLI in Azure Monitor combines a small set of concept choices that determine what reliability means for your service.
+
+
+## Element of an SLI
+
+Each SLI in Azure Monitor is defined by the following elements.
 
 | Element | What it defines |
 |:---|:---|
 | Service group | The application or workload boundary that the SLI represents. |
-| SLI type | Whether you measure availability or latency. |
-| Evaluation method | Whether Azure Monitor evaluates individual requests or time windows. |
+| SLI type | Specifies whether the metric in the SLI will measure availability or latency as described in [SLI types](#sli-types). |
+| Evaluation method | Specifies whether the SLI evaluates individual requests or time windows as described in [](). |
 | Signal design | The metrics, filters, aggregations, and formulas that define good and bad outcomes. |
 | Baseline target | The service level objective (SLO) that the measured result is compared against. |
 | Compliance period | The time horizon over which Azure Monitor evaluates performance against the target. |
@@ -52,8 +56,8 @@ Azure Monitor provides two evaluation methods.
 
 | Evaluation method | How it works | Typical fit |
 |:---|:---|:---|
-| Request-based | Evaluates the ratio of good requests to total requests. Each request contributes to the result. | Use when reliability should reflect per-request success or failure, especially when traffic volume changes over time. |
-| Window-based | Evaluates whether each time window is good or bad based on a threshold. The SLI is the ratio of good windows to total windows. | Use when you care about interval-level behavior, such as whether each 1-minute or 5-minute window met a quality threshold. |
+| Request-based | Evaluates the ratio of good requests to total requests. received. A good outcome is when this ratio meets or exceeds the defined target during the compliance period. | Use when reliability should reflect per-request success or failure regardless of traffic spikes or uneven load distribution over time. This is the most common evaluation method. |
+| Window-based | Measures reliability using a custom condition over a metric timeseries. Evaluates the ratio of time intervals meeting a defined quality threshold to the total number of intervals in the compliance period. | Use when you want to mask short bursts of poor performance since compliance is averaged over intervals. |
 
 The choice between these models changes how you interpret reliability. A request-based SLI emphasizes the experience of individual requests. A window-based SLI emphasizes whether the service stayed within an acceptable operating envelope for each interval.
 
@@ -61,7 +65,7 @@ The choice between these models changes how you interpret reliability. A request
 
 Signal design is the part of the SLI that turns telemetry into a reliability measurement. In Azure Monitor, that design can include metrics, dimensions, filters, temporal aggregation, spatial aggregation, and formulas.
 
-The portal surfaces these concepts as separate configuration areas so that you can see how the measured signal is constructed before the SLI is saved.
+
 
 ### Request-based evaluation
 

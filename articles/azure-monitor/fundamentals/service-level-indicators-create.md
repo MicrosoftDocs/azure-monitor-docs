@@ -14,11 +14,9 @@ For SLI concepts, including SLI type selection and metric details design, see [S
 
 ## Prerequisites
 
-* An existing service group.
-* A source [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) that contains the metrics you want to evaluate.
-* A destination [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) where Azure Monitor stores the evaluated SLI results.
-* The source and destination can be the same workspace if that fits your design.
-* A user-assigned managed identity. For guidance, see [Manage user-assigned managed identities using the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
+* Existing service group.
+* Source [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) that contains the metrics you want to evaluate and a destination Azure Monitor workspace where Azure Monitor stores the evaluated SLI results. You can use the same workspace for both source and destination.
+* User-assigned managed identity that's used to access the workspaces. For guidance, see [Manage user-assigned managed identities using the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
 * Access to the source workspace, destination workspace, and destination workspace default data collection rule.
 
 If you have **Contributor** access at the subscription level for both workspaces, you typically don't need any additional role assignments. Otherwise, assign the following minimum roles.
@@ -37,25 +35,66 @@ Review [Service level indicator concepts in Azure Monitor](service-level-indicat
 
 ## Create an SLI in the portal
 
-After you decide the concept choices in the previous sections, complete the portal flow.
-
-1. In the Azure portal, open your service group.
-1. Select **Monitoring**.
-1. In the **SLI** card, select **Create SLIs**.
+In the Azure portal, open your service group and select **Monitoring**. In the **SLI** card, select **Create SLIs**.
 
 :::image type="content" source="media/create-service-level-indicators/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button.":::
 
 ### Basics tab
-
-1. Select an SLI type: **Availability** or **Latency**.
-1. Enter an SLI name and description.
-1. Select **Next**.
+The **Basics** tab lets you provide a name and description for the SLI in addition to the SLI type. 
 
 :::image type="content" source="media/create-service-level-indicators/create-sli-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
 
-### SLI tab
+The SLI type defines the reliability question that you're asking. Availability asks whether the service is working. Latency asks whether the service is responding quickly enough to satisfy the experience that you want to protect.
 
-The **SLI** tab has three main sections: **Metric details**, **SLI details**, and **Identity and data storage location**.
+| Type | Description | Example |
+|:---|:---|:---|
+| Availability | Measures the uptime of the service, whether requests or time windows satisfy a success condition. | 99.99% of read and write requests were successful during the measurement period. |
+| Latency | Measures performance of the service. Whether requests or time windows stay within a latency threshold. | 95% of requests completed in less than 300 milliseconds during the measurement period. |
+
+
+
+### SLI tab
+The **SLI** tab lets you define the metrics that are used for the SLI and how they're evaluated.
+
+### Metrics details
+
+| Evaluation method | How it works | Typical fit |
+|:---|:---|:---|
+| Request-based | Evaluates the ratio of good requests to total requests. received. A good outcome is when this ratio meets or exceeds the defined target during the compliance period. | Use when reliability should reflect per-request success or failure regardless of traffic spikes or uneven load distribution over time. This is the most common evaluation method. |
+| Window-based | Measures reliability using a custom condition over a metric timeseries. Evaluates the ratio of time intervals meeting a defined quality threshold to the total number of intervals in the compliance period. | Use when you want to mask short bursts of poor performance since compliance is averaged over intervals. |
+
+### Identity and data source
+
+Select the Azure Monitor workspace that contains the metrics you want to use for the SLI and the user-assigned managed identity that has access to that workspace.
+
+### SLI details
+
+The SLI details define the metrics or formulas to use for the SLI evaluation. This will vary based on the SLI type.
+
+**Request-based evaluation**
+
+In a request-based SLI, Azure Monitor uses two queries:
+
+* **Good signal** is the numerator. It represents the requests that met the success condition.
+* **Total signal** is the denominator. It represents the full request volume that the SLI should evaluate.
+
+This model is the most direct way to express outcomes such as successful requests, requests under a latency threshold, or requests that satisfy a specific dimension filter. You can combine multiple metrics with formulas when one metric alone doesn't represent the workload behavior that you want to measure.
+
+In the following example, the good signal is defined as the count of requests with a 200 status code, and the total signal is defined as the count of all requests. The resulting SLI will measure the ratio of successful requests to total requests.
+
+:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI configuration showing separate Good signal and Total signal sections, each with options to add metrics and formulas.":::
+
+
+
+Consistent aggregation matters in this model. If the good signal and total signal use incompatible aggregations or filters, the resulting ratio can misrepresent the true request experience.
+
+
+### Identity and data storage location
+
+Select the Azure Monitor workspace that will store the SLI metric values and the user-assigned managed identity that has access to that workspace.
+
+
+
 
 1. Under **Metric details**, select **Request-based** or **Window-based**.
 1. Select the user-assigned managed identity for metric reads, and then select the source workspace.
