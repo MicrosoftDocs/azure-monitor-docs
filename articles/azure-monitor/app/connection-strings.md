@@ -140,7 +140,7 @@ When organizations disable local authentication on Application Insights to enfor
 
 A practical pattern is to route browser telemetry through Azure API Management (APIM), which:
 
-* Authenticates to Application Insights using a managed identity, and
+* Authenticates to Application Insights by using a managed identity.
 * Forwards requests to the regional ingestion endpoint on your behalf.
 
 With this setup, your connection string continues to identify the destination Application Insights resource, but the IngestionEndpoint points to your APIM proxy URL.
