@@ -40,7 +40,6 @@ Select a category to display the list of recommendations for that category. Sele
 
 Select the recommended action for a recommendation to implement the recommendation. A simple interface opens that enables you to implement the recommendation. It also might refer you to documentation that assists you with implementation. After you implement a recommendation, it can take up to a day for Advisor to recognize the action.
 
-If you don't intend to take immediate action on a recommendation, you can postpone it for a specified time period. You can also dismiss it. If you don't want to receive recommendations for a specific subscription or resource group, you can configure Advisor to only generate recommendations for specified subscriptions and resource groups.
 
 ## Frequently asked questions
 
