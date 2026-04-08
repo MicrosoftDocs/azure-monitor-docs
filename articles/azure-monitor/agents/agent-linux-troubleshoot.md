@@ -123,7 +123,7 @@ Error code | Meaning
   num_threads 5
   buffer_chunk_limit 5m
   buffer_type file
-  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
+  buffer_path /var/opt/microsoft/omsagent/{workspace id}/state/out_oms*.buffer
   buffer_queue_limit 10
   flush_interval 20s
   retry_limit 10
