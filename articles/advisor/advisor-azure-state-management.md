@@ -20,7 +20,8 @@ By using Azure Advisor recommendation state management, you can track and manage
 > [!NOTE]
 >Azure Advisor recommendation state management is currently in preview. Preview features are provided for evaluation purposes and might change before general availability.
 
-By using Azure Advisor recommendation state management, you can track and manage new and existing recommendations through their state lifecycle. 
+By using Azure Advisor recommendation state management, you can track and manage new and existing recommendations through their state lifecycle. 
+
 
 :::image type="content" source="./media/advisor-get-started/state_management.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state_management.png":::
 
@@ -61,20 +62,26 @@ You can continue to change states between **Active**, **Postponed**, **Dismissed
 
 ## System verification
 
-Azure Advisor automatically verifies the system every 24 hours to check whether a recommendation is addressed or no longer applies to the resource.
+Azure Advisor automatically verifies the system every 24 hours to check whether a recommendation is addressed or no longer applies to the resource.
 
-- If Azure Advisor verifies that you applied the recommended action or that the recommendation no longer applies, it marks the recommendation as **Completed** and indicates it with **System-verified**.
 
-- If you previously marked a recommendation as **Completed** manually (**Marked by user**), and Azure Advisor later verifies it during system verification, the status automatically changes to **System verified**.
+- If Azure Advisor verifies that you applied the recommended action or that the recommendation no longer applies, it marks the recommendation as **Completed** and indicates it with **System-verified**.
+
+
+- If you previously marked a recommendation as **Completed** manually (**Marked by user**), and Azure Advisor later verifies it during system verification, the status automatically changes to **System verified**.
+
 
 - Once a recommendation is **System verified**, the state becomes final and **can’t be changed or reactivated**.
 
-- System‑verified completed recommendations remain available for viewing for __six months__, after which the system automatically removes them.
+- System‑verified completed recommendations remain available for viewing for __six months__, after which the system automatically removes them.
+
 
 > [!NOTE]
-> Azure Advisor doesn't require you to manually mark a recommendation as completed for it to be system verified. Advisor continuously performs automatic detection of remediation for all recommendations. Advisor automatically marks a recommendation as __Completed (system verified)__ when the issue is resolved or no longer applies to a resource.
+> Azure Advisor doesn't require you to manually mark a recommendation as completed for it to be system verified. Advisor continuously performs automatic detection of remediation for all recommendations. Advisor automatically marks a recommendation as __Completed (system verified)__ when the issue is resolved or no longer applies to a resource.
 
-You can mark a recommendation as completed manually for personal tracking or when your solution differs from the recommended steps. You can edit and reactivate manually completed recommendations until Azure Advisor completes system verification.
+
+You can mark a recommendation as completed manually for personal tracking or when your solution differs from the recommended steps. You can edit and reactivate manually completed recommendations until Azure Advisor completes system verification.
+
 
 ## Completed vs. Dismissed
 
@@ -104,14 +111,16 @@ All manual state changes start from the **Active recommendations** view. Use the
 1. Select a recommendation **category**.
 
 1. From the **Viewing** drop-down, select **Active** to display active recommendations.
-
+1. Select a recommendation from the list of recommendations.
 1. Select a recommendation from the list to change its state.
 
 ### Postpone a recommendation
 
-When you postpone a recommendation, you temporarily hide it. After the selected time elapses, the recommendation automatically returns to the __Active__ state.
+When you postpone a recommendation, you temporarily hide it. After the selected time elapses, the recommendation automatically returns to the __Active__ state.
 
-1. Select a recommendation from the list of recommendations.
+
+1. Select a recommendation from the list of recommendations.
+
 
 
 1. Choose the recommendations you want to postpone and select **Postpone**.
@@ -150,16 +159,17 @@ You can reactivate a recommendation that you previously postponed, dismissed, or
 1. Open [Advisor](https://aka.ms/azureadvisordashboard).
 
 1. Change the filter on the __Overview__ pane to __Postponed__. Advisor then displays postponed or dismissed recommendations.
-
+1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
 1. Select a category to see __Postponed__ and __Dismissed__ recommendations.
 
 1. Select a recommendation from the list of recommendations. This action opens recommendations with the __Postponed & Dismissed__ tab already selected to show the resources for which this recommendation was postponed or dismissed.
 
 1. Select __Activate__ at the end of the row. The recommendation is now active for that resource and removed from the table. The recommendation is visible on the __Active__ tab.
 
-### Postpone, dismiss, or mark as complete multiple resources for a single recommendation
+### Postpone, dismiss, or mark as complete multiple resources for a single recommendation
 
-1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
+
+1. In the resources table header, select **Postpone**, **Dismiss**, or **Completed**.
 
 1. Select a recommendation category to view your recommendations.
 
