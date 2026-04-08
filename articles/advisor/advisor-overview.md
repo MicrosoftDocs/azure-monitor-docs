@@ -92,7 +92,7 @@ Advisor also includes your recommendations from [Microsoft Defender for Cloud](/
 
 ### Can I change recommendation status?
 
-When a recommendation is Active, you can manually update its state to manage your work:
+When a recommendation is active, you can manually update its state to manage your work:
 - Postponed – Temporarily hide the recommendation and review it later.
 - Dismissed – Indicate that the recommendation is not relevant.
 - Completed – Indicate that you have taken the recommended action.
