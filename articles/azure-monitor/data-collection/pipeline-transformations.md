@@ -9,15 +9,9 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Azure Monitor pipeline transformations
 
-Azure Monitor pipeline data transformations let you filter and manipulate log data before sending it to Azure Monitor in the cloud. Transformations help you structure incoming data according to your analytics needs, ensuring that only relevant information is sent to Azure Monitor and that it's in an appropriate format for processing.
+If you need to reduce the volume of data sent to Azure Monitor, clean up incoming records, or change data into a format that works better for analysis, transform the data before it leaves your cluster. Azure Monitor pipeline transformations let you filter, aggregate, and modify incoming log data in the pipeline before sending it to the cloud.
 
-Benefits of using pipeline transformations include:
-
-- **Lower costs:** Filter and aggregate data to reduce ingestion volume which lowers ingestion costs.
-- **Better analytics:** Standardized schemas for faster queries and cleaner dashboards.
-- **Future-proof:** Built-in schema validation helps prevent surprises during deployment.
-
-Azure Monitor pipeline transformations address the challenges of high ingestion costs and complex analytics by reducing data volume before ingestion. Your data is clean, structured, and optimized before it even reaches your Log Analytics Workspace. 
+This article shows how to configure transformations in the Azure portal or in ARM templates. It also explains how aggregations work and which KQL operators Azure Monitor pipeline transformations support.
 
 
 ## Basic query structure
