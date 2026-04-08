@@ -143,7 +143,7 @@ A practical pattern is to route browser telemetry through Azure API Management (
 * Authenticates to Application Insights by using a managed identity.
 * Forwards requests to the regional ingestion endpoint on your behalf.
 
-With this setup, your connection string continues to identify the destination Application Insights resource, but the IngestionEndpoint points to your APIM proxy URL.
+With this setup, your connection string continues to identify the destination Application Insights resource, but the `IngestionEndpoint` points to your APIM proxy URL.
 
 For end-to-end guidance, including CORS and APIM policies, see: [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
 
