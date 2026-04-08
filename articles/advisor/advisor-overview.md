@@ -90,9 +90,16 @@ Advisor provides recommendations for the following services:
 
 Advisor also includes your recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), which might include recommendations for other resource types.
 
-### Can I postpone or dismiss a recommendation?
+### Can I change recommendation status?
 
-To postpone or dismiss a recommendation, select **Postpone** or **Dismiss**. The recommendation is moved to the **Postponed/Dismissed** tab on the recommendation list page.
+When a recommendation is Active, you can manually update its state to manage your work:
+- Postponed – Temporarily hide the recommendation and review it later.
+- Dismissed – Indicate that the recommendation is not relevant.
+- Completed – Indicate that you have taken the recommended action.
+
+You can continue to change states between Active, Postponed, Dismissed, and Completed, or reactivate a recommendation, until Azure Advisor performs system verification and Marks a recommendation as Completed. Recommendations manually marked as completed are indicated as “Marked completed”. 
+
+For more information, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md)
 
 ## Related articles
 
