@@ -38,7 +38,7 @@ The following sections explain the schema elements.
 
 ### Max length
 
-The connection has a maximum supported length of 4,096 characters.
+The connection supports up to 4,096 characters.
 
 ### Key-value pairs
 
