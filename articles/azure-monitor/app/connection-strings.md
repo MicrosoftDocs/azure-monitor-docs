@@ -136,7 +136,7 @@ To learn about setting a connection string, see [OpenTelemetry Configuration](op
 
 ## Authenticated browser telemetry using connection strings
 
-When organizations disable local authentication on Application Insights to enforce Microsoft Entra ID, browser-based telemetry sent by the JavaScript SDK can no longer authenticate directly and may stop flowing.
+When organizations disable local authentication on Application Insights to enforce Microsoft Entra ID, the JavaScript SDK can't authenticate directly for browser-based telemetry, and telemetry might stop flowing.
 
 A practical pattern is to route browser telemetry through Azure API Management (APIM), which:
 
