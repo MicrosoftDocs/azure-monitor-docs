@@ -53,7 +53,7 @@ A connection string consists of a list of settings represented as key-value pair
 * `InstrumentationKey` (for example, 00000000-0000-0000-0000-000000000000).
   `InstrumentationKey` is a *required* field.
 
-* `Authorization` (for example, ikey). This setting is optional because today we only support ikey authorization.
+* `Authorization` (for example, ikey). This setting is optional because today the SDK only supports ikey authorization.
 
 * `EndpointSuffix` (for example, applicationinsights.azure.cn). Setting the endpoint suffix tells the SDK which Azure cloud to connect to. The SDK assembles the rest of the endpoint for individual services.
 
