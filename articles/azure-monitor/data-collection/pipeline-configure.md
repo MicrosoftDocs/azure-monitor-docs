@@ -9,15 +9,15 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline
 
-Use this article for initial setup for [Azure Monitor pipeline](./pipeline-overview.md). It prepares your Arc-enabled Kubernetes cluster for the pipeline by validating prerequisites, installing cert-manager, and routing you to the correct configuration method for your deployment.
+This article describes the overall setup process for [Azure Monitor pipeline](./pipeline-overview.md) and provides details for the initial common setup to prepare your Arc-enabled Kubernetes cluster for the pipeline. 
 
-## Use the shared setup flow
+## Complete setup flow
 
-For a new deployment, use this sequence:
+Complete deployment of a Azure Monitor pipeline includes the following steps:
 
-1. Complete the prerequisites in this article.
-1. Install cert-manager on the Arc-enabled Kubernetes cluster.
-1. Choose a configuration method:
+1. Verify the [prerequisites](#prerequisites).
+1. [Install cert-manager](#install-cert-manager-for-arc-enabled-kubernetes) on your Arc-enabled Kubernetes cluster.
+1. Complete deployment of the pipeline using either of the following methods:
    - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If clients need access from outside the cluster, expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
@@ -27,14 +27,13 @@ For a new deployment, use this sequence:
 
 ## Prerequisites
 
-- An [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
-- Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
-- An Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
+- Azure subscription with the following resource providers registered. See [Azure resource providers and types](/azure/azure-resource-manager/management/resource-providers-and-types).
   - `Microsoft.Insights`
   - `Microsoft.Monitor`
-- A Log Analytics workspace in Azure Monitor to receive data from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
-- A DCR and DCE is required. These resources are created automatically when you create a pipeline and dataflow using the Azure portal. [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md) includes steps to create these resources.
-- (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md).
+- [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
+- Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
+- Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
+  - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md).
 
 ## Install cert-manager for Arc-enabled Kubernetes
 
@@ -123,99 +122,27 @@ To retrieve the heartbeat records, use a log query as shown in the following exa
 
 :::image type="content" source="./media/pipeline-configure/heartbeat-records.png" lightbox="./media/pipeline-configure/heartbeat-records.png" alt-text="Screenshot of log query that returns heartbeat records for Azure Monitor pipeline.":::
 
-## Set up Private Link
+## Configure private link
+Configure [Azure Private Link](../fundamentals/private-link-security.md) to connect to Azure Monitor using a private endpoint. See [Configure private link for Azure Monitor](../fundamentals/private-link-configure.md) for details on creating an Azure Monitor Private link scope and connecting it to a Log Analytics workspace.
 
-When you enable Private Link, keep in mind the following key points about the architecture:
+When you use private link with Azure Monitor pipeline, keep in mind the following key points about the architecture:
 
-- Pipeline instances run inside a Kubernetes cluster ([AKS](/azure/aks/intro-kubernetes) or Azure Arc-enabled Kubernetes).
+- Pipeline instances run inside an Azure Arc-enabled Kubernetes cluster.
 - The cluster connects to an Azure virtual network that hosts a [private endpoint](/azure/private-link/private-endpoint-overview).
-- The pipeline exports telemetry privately to Azure Monitor by using:
+- Disable public network access on the data collection endpoint (DCE). The pipeline exports telemetry privately to Azure Monitor by using:
   - [Azure Monitor Private Link Scope (AMPLS)](/azure/azure-monitor/logs/private-link-security)
   - A private endpoint in the customer-managed virtual network
-- You disable public network access on the data collection endpoint (DCE).
 
 > [!NOTE]
-> Clients can still send telemetry to the pipeline's public, internal, or load-balancer endpoint. Private Link secures the cluster-to-Azure Monitor leg only.
+> Clients can still send telemetry to the pipeline's public, internal, or load-balancer endpoint. Private Link only secures the connection from the cluster to Azure Monitor.
 
-### Prerequisites for Private Link
+### Create virtual network and subnet for the private endpoint
 
-Before you begin, make sure you create the following resources:
-
-- A Kubernetes cluster:
-  - [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes), or
-  - A Kubernetes cluster connected by using Azure Arc-enabled Kubernetes
-- Network connectivity from the cluster to an Azure virtual network
-- A Log Analytics workspace
-- A data collection endpoint (DCE)
-- A deployed Azure Monitor pipeline that exports to the DCE
-- Azure CLI (latest version)
-- Azure permissions to create:
-  - Private endpoints
-  - [Private DNS zones](/azure/dns/private-dns-overview)
-  - [Azure Monitor Private Link Scopes](/azure/azure-monitor/logs/private-link-security)
-
-> [!NOTE]
-> For Azure Arc-enabled Kubernetes, create the private endpoint in an Azure virtual network reachable from the cluster, for example, via VPN, ExpressRoute, or a peered VNet.
-
-### Identify the virtual network and subnet for the private endpoint
-
-Create the private endpoint in a customer-managed Azure virtual network that the Kubernetes cluster can reach.
-
-#### Supported scenarios
-
-- **AKS** - Use the AKS node virtual network.
-- **Azure Arc-enabled Kubernetes** - Use:
-  - An Azure VNet connected through VPN or ExpressRoute, or
-  - A peered VNet that the cluster can access
-
-#### Requirements for the subnet
-
-- The subnet must allow private endpoints.
-- You must disable private endpoint network policies on the subnet.
-
-Disable private endpoint network policies:
-
-```azurecli
-az network vnet subnet update \
-  --ids <subnet-id> \
-  --disable-private-endpoint-network-policies true
-```
-
-### Create a private endpoint for Azure Monitor
-
-Create a private endpoint in the chosen Azure virtual network subnet and associate it with the Azure Monitor Private Link scope.
-
-```azurecli
-az network private-endpoint create \
-  --name <private-endpoint-name> \
-  --resource-group <resource-group> \
-  --location <region> \
-  --subnet <subnet-id> \
-  --private-connection-resource-id <ampls-id> \
-  --group-id azuremonitor \
-  --connection-name <connection-name>
-```
-
-Retrieve the private endpoint IP address (used for validation):
-
-```azurecli
-az network private-endpoint show \
-  --name <private-endpoint-name> \
-  --resource-group <resource-group> \
-  --query "networkInterfaces[0].id" -o tsv
-```
+[Create the private endpoint](../fundamentals/private-link-configure.md) in a customer-managed Azure virtual network that the Kubernetes cluster can reach.
 
 ### Configure private DNS zones
 
-Link the [private DNS zones](/azure/azure-monitor/logs/private-link-configure#review-your-endpoints-dns-settings) to the Azure virtual network that hosts the private endpoint, not necessarily the Kubernetes cluster itself.
-
-Make sure the following zones exist and are linked to the virtual network:
-
-- `privatelink.monitor.azure.com`
-- `privatelink.oms.opinsights.azure.com`
-- `privatelink.ods.opinsights.azure.com`
-- `privatelink.agentsvc.azure-automation.net`
-- `privatelink.blob.core.windows.net`
+Link the [private DNS zones](../fundamentals/private-link-configure.md) to the Azure virtual network that hosts the private endpoint, not necessarily the Kubernetes cluster itself. Make sure each of the zones exist and are linked to the virtual network.
 
 > [!NOTE]
 > Kubernetes clusters (including Azure Arc-enabled clusters) must be able to resolve these names through the virtual network DNS configuration.
