@@ -28,7 +28,7 @@ Connection strings specify which Application Insights resource your instrumented
 
 ## Find your connection string
 
-Your connection string appears in the **Overview** section of your Application Insights resource.
+You can find your connection string in the **Overview** section of your Application Insights resource.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
