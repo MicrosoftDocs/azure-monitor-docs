@@ -81,15 +81,35 @@ A clean reinstall of the agent fixes most problems. This task might be the first
  Performance, Nagios, Zabbix, Log Analytics output, and general agent | `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`
  Extra configurations | `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/*.conf`
 
- > [!NOTE]
- > If you configure the collection from the [data collection configuration](../vm/data-collection.md#add-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
+> [!NOTE]
+> If you configure the collection from the [data collection configuration](../vm/data-collection.md#add-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
 >
 > `sudo /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --disable && sudo rm /etc/opt/omi/conf/omsconfig/configuration/Current.mof* /etc/opt/omi/conf/omsconfig/configuration/Pending.mof*`
 
 ## Installation error codes
 
-```
-Error code | Meaning
+| Error code | Meaning |
+| --- | --- |
+| NOT_DEFINED | The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd. |
+| 2 | Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
+| 3 | No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
+| 4 | Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings. |
+| 5 | The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`. |
+| 6 | Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). |
+| 17 | Installation of OMS package failed. Look through the command output for the root failure. |
+| 18 | Installation of OMSConfig package failed. Look through the command output for the root failure. |
+| 19 | Installation of OMI package failed. Look through the command output for the root failure. |
+| 20 | Installation of SCX package failed. Look through the command output for the root failure. |
+| 21 | Installation of Provider kits failed. Look through the command output for the root failure. |
+| 22 | Installation of bundled package failed. Look through the command output for the root failure. |
+| 23 | SCX or OMI package already installed. Use `--upgrade` instead of `--install` to install the shell bundle. |
+| 30 | Internal bundle error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
+| 55 | Unsupported openssl version *or* can't connect to Azure Monitor *or* dpkg is locked *or* missing curl program. |
+| 61 | Missing Python ctypes library. Install the Python ctypes library or package (python-ctypes). |
+| 62 | Missing tar program. Install tar. |
+| 63 | Missing sed program. Install sed. |
+| 64 | Missing curl program. Install curl. |
+| 65 | Missing gpg program. Install gpg. |
 
 ## Onboarding error codes
 
@@ -108,7 +128,6 @@ Error code | Meaning
 | 33 | Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
 | 34 | Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`. |
 
-## Enable debug logging
 
 ### OMS output plug-in debug
 
@@ -148,18 +167,18 @@ Instead of using the OMS output plug-in, you can send data items directly to `st
 In the Log Analytics general agent configuration file at `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, comment out the OMS output plug-in by adding a `#` in front of each line:
 
 ```
-# <match oms.** docker.**>
-#   type out_oms
-#   log_level info
-#   num_threads 5
-#   buffer_chunk_limit 5m
-#   buffer_type file
-#   buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
-#   buffer_queue_limit 10
-#   flush_interval 20s
-#   retry_limit 10
-#   retry_wait 30s
-# /match>
+<match oms.** docker.**>
+   type out_oms
+   log_level info
+   num_threads 5
+   buffer_chunk_limit 5m
+   buffer_type file
+   buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
+   buffer_queue_limit 10
+   flush_interval 20s
+   retry_limit 10
+   retry_wait 30s
+</match>
 ```
 
 Below the output plug-in, uncomment the following section by removing the `#` in front of each line:
