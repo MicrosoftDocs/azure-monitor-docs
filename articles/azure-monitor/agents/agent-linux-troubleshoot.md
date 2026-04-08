@@ -148,18 +148,18 @@ Instead of using the OMS output plug-in, you can send data items directly to `st
 In the Log Analytics general agent configuration file at `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, comment out the OMS output plug-in by adding a `#` in front of each line:
 
 ```
-#<match oms.** docker.**>
-#  type out_oms
-#  log_level info
-#  num_threads 5
-#  buffer_chunk_limit 5m
-#  buffer_type file
-#  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
-#  buffer_queue_limit 10
-#  flush_interval 20s
-#  retry_limit 10
-#  retry_wait 30s
-#</match>
+# <match oms.** docker.**>
+#   type out_oms
+#   log_level info
+#   num_threads 5
+#   buffer_chunk_limit 5m
+#   buffer_type file
+#   buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
+#   buffer_queue_limit 10
+#   flush_interval 20s
+#   retry_limit 10
+#   retry_wait 30s
+# /match>
 ```
 
 Below the output plug-in, uncomment the following section by removing the `#` in front of each line:
