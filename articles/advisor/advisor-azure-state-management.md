@@ -107,11 +107,9 @@ Azure Advisor provides personalized best-practice recommendations to help you op
 All manual state changes start from the **Active recommendations** view. Use the same process to manage recommendations across supported states based on the recommendation state lifecycle.
 
 1. Open **Azure Advisor** in the Azure portal.
-
 1. Select a recommendation **category**.
-
 1. From the **Viewing** drop-down, select **Active** to display active recommendations.
-1. Select a recommendation from the list of recommendations.
+1. Select a recommendation from the list of recommendations.
 1. Select a recommendation from the list to change its state.
 
 ### Postpone a recommendation
@@ -120,22 +118,15 @@ When you postpone a recommendation, you temporarily hide it. After the selected 
 
 
 1. Select a recommendation from the list of recommendations.
-
-
-
 1. Choose the recommendations you want to postpone and select **Postpone**.
-
 1. Choose how long to postpone the recommendation and then confirm.
-
 
 ### Dismiss a recommendation
 
 When you dismiss a recommendation, it disappears from view until you choose to reactivate it. Dismissed recommendations aren't included when calculating completion progress.
 
-1. Select a recommendation from the list of recommendations
-
+1. Select a recommendation from the list of recommendations.
 1. Choose the recommendations you want to dismiss and select **Dismiss**.
-
 1. Select a __Reason for Dismissal__, and then confirm.
 
 ### Complete a recommendation
@@ -143,7 +134,6 @@ When you dismiss a recommendation, it disappears from view until you choose to r
 Mark a recommendation as complete when you take the recommended action or when the recommendation no longer applies.
 
 1. Select a recommendation from the list of active recommendations.
-
 1. Select **Complete** for the recommendation you want to manually mark as completed.
 
 
@@ -159,7 +149,8 @@ You can reactivate a recommendation that you previously postponed, dismissed, or
 1. Open [Advisor](https://aka.ms/azureadvisordashboard).
 
 1. Change the filter on the __Overview__ pane to __Postponed__. Advisor then displays postponed or dismissed recommendations.
-1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
+1. Open [Azure Advisor](https://aka.ms/azureadvisordashboard) in the Azure portal.
+
 1. Select a category to see __Postponed__ and __Dismissed__ recommendations.
 
 1. Select a recommendation from the list of recommendations. This action opens recommendations with the __Postponed & Dismissed__ tab already selected to show the resources for which this recommendation was postponed or dismissed.
@@ -169,7 +160,8 @@ You can reactivate a recommendation that you previously postponed, dismissed, or
 ### Postpone, dismiss, or mark as complete multiple resources for a single recommendation
 
 
-1. In the resources table header, select **Postpone**, **Dismiss**, or **Completed**.
+1. In the resources table header, select **Postpone**, **Dismiss**, or **Completed**.
+
 
 1. Select a recommendation category to view your recommendations.
 
@@ -228,7 +220,7 @@ This page displays a table with the following columns:
 
 This page displays a table with the following columns:
 
-- __Recommendation__: System identified recommendation in that’s new or completed
+- __Recommendation__: System identified recommendation in that’s completed
 
 - __Impact__: Impact level, High, Medium, Low
 
