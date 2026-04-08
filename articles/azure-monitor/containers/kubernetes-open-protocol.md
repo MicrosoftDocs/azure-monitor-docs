@@ -2,7 +2,7 @@
 title: Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview
 description: Enable application monitoring for Azure Kubernetes Service (AKS) namespaces and deployments and send OpenTelemetry Protocol (OTLP) telemetry to Application Insights using Azure Monitor.
 ms.topic: how-to
-ms.date: 04/06/2026
+ms.date: 04/08/2026
 ms.reviewer: kaprince
 ---
 
@@ -119,7 +119,7 @@ Create or select an Application Insights resource that supports OTLP and uses **
 
 > [!IMPORTANT]
 > - Use an **Azure Monitor workspace** that's **different** from the workspace used for infrastructure metrics in step 2.
-> - Managed workspaces create a separate Azure Monitor workspace for Application Insights application telemetry; use a distinct workspace from the one used for infrastructure metrics.
+> - Managed workspaces create a separate Azure Monitor workspace for Application Insights application telemetry using a distinct workspace from the one used for infrastructure metrics.
 
 ## 4. Onboard applications to Application Insights
 
@@ -136,7 +136,7 @@ You can onboard **all deployments in a namespace** or target **individual deploy
 
 When you enable OTLP, Application Insights adds support for open-source, vendor-neutral OpenTelemetry SDKs and OTLP endpoints, and stores metrics in an Azure Monitor workspace.
 
-If you don't enable OTLP, Application Insights uses Azure Monitor autoinstrumentation and legacy custom ingestion.
+If you don't enable OTLP, Application Insights only uses Azure Monitor autoinstrumentation and classic ingestion.
 
 1. Select **Application Monitoring (Preview)**.
 1. Choose the Application Insights resource with OTLP enabled that you created previously in [step 3](#3-create-an-application-insights-resource-with-otlp-support). If you select or create an Application Insights resource without OTLP by using the **Create New** option, you won't see the **Instrumentation Type** option in the next step.
@@ -145,9 +145,9 @@ If you don't enable OTLP, Application Insights uses Azure Monitor autoinstrument
       - Autoconfiguration sets environment variables so existing SDKs export telemetry to Application Insights
       - Each deployment must already have autoinstrumentation annotations or manual instrumentation. For more information, see [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     - **Java autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Java applications.  
-      - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+      - All deployments in the namespace use Java autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     - **NodeJs autoinstrumentation for all deployments** for automatic injection of the Azure Monitor OpenTelemetry distribution into Node.js applications.  
-       - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md).
+       - All deployments in the namespace use Node.js autoinstrumentation by default. Use annotations to change the language or exclude a deployment. For more information, see [Automatic instrumentation](../app/codeless-overview.md) and [Per deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding).
     > [!NOTE]
     > The Azure portal only allows you to apply autoinstrumentation OR autoconfiguration to a single namespace. If you need to use both options, see [per-deployment onboarding options](kubernetes-codeless.md#onboard-deployments).
 1. Leave **Perform rollout restart of all deployments** unchecked. You perform the restart manually in the next step.
@@ -188,9 +188,9 @@ Explore application performance in the context of your cluster by using Containe
 
 :::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-view.png" alt-text="A screenshot of the controller view showing performance metrics.":::
 
-:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" alt-text="A screenshot of the controller view showing failed requests.":::
-
 To drill down to Container Insights, select an application component node in the Application Map.
+
+:::image type="content" source="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" lightbox="./media/kubernetes-open-protocol/azure-controller-performance-alternate-view.png" alt-text="A screenshot of the controller view showing failed requests.":::
 
 Select the node and then **Investigate Pods** in the AKS monitoring tile.
 
@@ -283,4 +283,4 @@ If you need programmatic names for these regions, see [Azure regions list](/azur
 
 ## Support
 
-If documentation and the steps in this article don't resolve your issue, email the Azure Monitor OpenTelemetry team at [otel@microsoft.com](mailto:otel@microsoft.com).
+If documentation and the steps in this article don't resolve your issue or you want to provide feedback, email the Azure Monitor OpenTelemetry team at [otel@microsoft.com](mailto:otel@microsoft.com).
