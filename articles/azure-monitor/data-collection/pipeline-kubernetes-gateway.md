@@ -63,7 +63,7 @@ TLS-disabled:
 
 
 > [!IMPORTANT]
-> Even though only one pipeline is being used, the instructions below include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). This prepares the gateway for future multi-pipeline scenarios and avoids a disruptive Helm upgrade later. If a second pipeline is added in the future with its own dedicated gateway, label selectors ensure each Traefik instance only processes routes intended for its own pipeline.
+> Even though you're using only one pipeline, the following instructions include **label selectors** (`providers.kubernetesCRD.labelSelector` in the Helm values and matching `traefik-instance` labels on the routing resources). This configuration prepares the gateway for future multi-pipeline scenarios and avoids a disruptive Helm upgrade later. If you add a second pipeline in the future with its own dedicated gateway, label selectors ensure each Traefik instance only processes routes intended for its own pipeline.
 
 ### Install Traefik custom resource definitions (CRDs)
 
@@ -139,7 +139,7 @@ Skip this step. The gateway doesn't need a client certificate when the pipeline 
 
 When the pipeline uses TLS, create both a `ServersTransportTCP` resource and an `IngressRouteTCP` resource. The label selector prepares the gateway for future multi-pipeline scenarios without requiring a disruptive Helm change later.
 
-Save the following as `routing.yaml`.
+Save the following code as `routing.yaml`.
 ```yaml
 # routing.yaml
 # Create one copy of each resource per receiver/port combination.
@@ -204,9 +204,9 @@ kubectl apply -f routing.yaml
 
 #### [TLS disabled](#tab/tls-disabled)
 
-When the pipeline does not use TLS, create only the `IngressRouteTCP` resource.
+When the pipeline doesn't use TLS, create only the `IngressRouteTCP` resource.
 
-Save the following as `routing.yaml`:
+Save the following code as `routing.yaml`:
 
 ```yaml
 # routing.yaml
@@ -243,7 +243,7 @@ kubectl apply -f routing.yaml
 
 ### Install Traefik
 
-Deploy Traefik in the same namespace as the pipeline. This keeps the trust bundle ConfigMap and, when TLS is enabled, the gateway client certificate in the same namespace as the routing resources. This command is the same whether TLS is enabled or not.
+Deploy Traefik in the same namespace as the pipeline. This deployment keeps the trust bundle ConfigMap and, when TLS is enabled, the gateway client certificate in the same namespace as the routing resources. Use the same command whether TLS is enabled or not.
 
 ```bash
 helm install traefik-<pipeline-name> traefik/traefik \
@@ -273,7 +273,7 @@ helm install traefik-<pipeline-name> traefik/traefik \
    kubectl get pods -n <pipeline-namespace> -l app.kubernetes.io/name=traefik
    ```
 
-2. Get the external IP for the gateway service to validate it's provisioned successfully.
+1. Get the external IP for the gateway service to validate it's provisioned successfully.
 
    ```bash
    GATEWAY_IP=$(kubectl get svc traefik-<pipeline-name> \
@@ -289,11 +289,11 @@ External clients use this gateway IP `$GATEWAY_IP:<receiver-port>` to send data 
 The gateway requires two pieces of TLS material to establish mTLS with the pipeline backend:
 
 - **Client certificate** (`gateway-client-tls` Secret) — presented by Traefik
-  to the pipeline. Must be trusted by the pipeline's client CA.
+  to the pipeline. The pipeline's client CA must trust this certificate.
 - **Server CA** (`rootCAs` in `ServersTransportTCP`) — used by Traefik to
   verify the pipeline's server certificate.
 
-See inline comments in `certificates.yaml` and `routing.yaml` above for how to configure these for default (automated) TLS vs [BYOC](pipeline-tls-custom.md).
+See the inline comments in `certificates.yaml` and `routing.yaml` for how to configure these certificates for default (automated) TLS versus [BYOC](pipeline-tls-custom.md).
 
 ### Troubleshooting
 
@@ -351,7 +351,7 @@ If the external IP remains pending, verify that the cluster supports `LoadBalanc
 </details>
 
 ## Add a new receiver to an existing pipeline group
-The existing pipeline group is configured with a new receiver. For example, an OTLP receiver on port 4317 is added alongside an existing Syslog receiver on 514. The gateway must expose the new port.
+You can configure the existing pipeline group with a new receiver. For example, you can add an OTLP receiver on port 4317 alongside an existing Syslog receiver on 514. The gateway must expose the new port.
 
 
 ### Create routing resources for the new receiver
@@ -388,7 +388,7 @@ helm upgrade traefik-<pipeline-name> traefik/traefik \
 ```
 
 > [!WARNING]
-> This `helm upgrade` triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this during a maintenance window.
+> This `helm upgrade` triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this action during a maintenance window.
 
 #### Verify
 
@@ -400,9 +400,9 @@ kubectl get ingressroutetcp -n <pipeline-namespace>
 Confirm the service now exposes both ports (514 and 4317). Clients can connect to `$GATEWAY_IP:4317` for OTLP traffic.
 
 ## Add a new client to an existing receiver
-An additional client needs to send data to the same receiver on the same port. For example, this could be a second network switch sending syslog to port 514.
+An additional client needs to send data to the same receiver on the same port. For example, this client could be a second network switch sending syslog to port 514.
 
-In this case, no changes are required to the gateway or the pipeline group. The new client connects to the same gateway external IP and port used by the existing client:
+In this case, the gateway and the pipeline group require no changes. The new client connects to the same gateway external IP and port used by the existing client:
 
 ```text
 Existing Client → GATEWAY_IP:514 → Traefik → pipeline-service:514
@@ -417,18 +417,18 @@ GATEWAY_IP=$(kubectl get svc traefik-<pipeline-name> \
   -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
 echo "Gateway IP: $GATEWAY_IP"
 ```
-Point the new client at `$GATEWAY_IP:514`. No Helm upgrade, no routing changes, and no certificate changes are needed.
+Point the new client at `$GATEWAY_IP:514`. No Helm upgrade, routing changes, or certificate changes are needed.
 
 ## New pipeline group instance
-A completely new pipeline group is being deployed alongside an existing one on the same cluster.
+Deploy a new pipeline group alongside an existing pipeline group on the same cluster.
 
-Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. This provides full isolation between the existing and new pipelines, including independent scaling, independent upgrades, and no shared failure domain.
+Deploy a new dedicated gateway for the new pipeline, one gateway per pipeline. This approach provides full isolation between the existing and new pipelines, including independent scaling, independent upgrades, and no shared failure domain.
 
-Follow the procedure above for [Single gateway for new pipeline group](#single-gateway-for-a-new-pipeline-group) adjusting the following values for the new pipeline:
+Follow the preceding procedure for [Single gateway for new pipeline group](#single-gateway-for-a-new-pipeline-group), adjusting the following values for the new pipeline:
 
 | Task | Guidance |
 |---|---|
-| Install Traefik CRDs | Skip this task if CRDs were already installed during the first gateway deployment. |
+| Install Traefik CRDs | Skip this task if you already installed CRDs during the first gateway deployment. |
 | Create the gateway client certificate | Apply `certificates.yaml` with `namespace` set to the new pipeline's namespace. You can reuse the same certificate spec because only the namespace changes. Skip this task for TLS-disabled ingestion. |
 | Configure Traefik routing | Apply `routing.yaml` with the new pipeline name, namespace, receiver port, and entrypoint name. The `traefik-instance` label value must be unique. |
 | Install Traefik | Use a distinct Helm release name, such as `traefik-<new-pipeline-name>`. The `labelSelector` must match the label set in the previous task. |
@@ -440,7 +440,7 @@ Client B → 20.x.x.2:514 → Traefik instance 2 → [mTLS] → pipeline-2-servi
 ```
 
 > [!NOTE]
-> Adding a new pipeline with its own gateway does not affect the existing gateway or its clients. No `helm upgrade` is required on the existing Traefik instance.
+> Adding a new pipeline with its own gateway doesn't affect the existing gateway or its clients. The existing Traefik instance doesn't require a `helm upgrade`.
 
 ## Related articles
 
