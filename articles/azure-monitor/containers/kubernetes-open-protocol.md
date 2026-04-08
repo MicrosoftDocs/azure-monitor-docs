@@ -4,6 +4,7 @@ description: Enable application monitoring for Azure Kubernetes Service (AKS) na
 ms.topic: how-to
 ms.date: 04/08/2026
 ms.reviewer: kaprince
+ms.custom: references_regions
 ---
 
 # Monitor AKS applications with OTLP and Azure Monitor (Preview)

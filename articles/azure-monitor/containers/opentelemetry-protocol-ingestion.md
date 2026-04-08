@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/08/2026
 ai-usage: ai-assisted
 ---
 
@@ -117,7 +117,7 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. To use the system-assigned identity, leave the `managed_identity` section blank in your collector configuration .
+1. To use the system-assigned identity, leave the `managed_identity` section blank in your collector configuration.
 
 **For non-Azure environments:**
 
