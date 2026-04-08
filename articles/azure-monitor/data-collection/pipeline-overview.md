@@ -10,20 +10,20 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 # What is Azure Monitor pipeline?
 
-Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion across on-premises, edge, and multicloud environments. It lets you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud, helping you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments. 
+Telemetry from on-premises, edge, and multicloud environments where direct-to-cloud collection can create challenges with scale, cost, and reliability. Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion in these scenarios. It lets you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud, helping you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
 
 This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
 ## Why use Azure Monitor pipeline?
 
-Use Azure Monitor pipeline when you need Azure Monitor data collection to work beyond a direct cloud-connected model.
+Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your security, scale, cost, or resiliency requirements.
 
 | Need | How the pipeline helps |
 |:---|:---|
-| Telemetry originates outside Azure | Enables centralized ingestion into Azure Monitor from on-premises, edge, and multicloud environments. |
-| Bandwidth or ingestion cost constraints | Filters and aggregates telemetry before sending it to Azure Monitor, reducing network usage and ingestion costs. |
-| High telemetry volume | Collects and processes data locally at scale before cloud ingestion. |
-| Intermittent or restricted connectivity | Buffers data locally in configured persistent storage and backfills to Azure Monitor when connectivity returns. |
+| Telemetry originates outside Azure | Centralizes ingestion from on-premises, edge, and multicloud sources into Azure Monitor with one consistent control point. |
+| Bandwidth or ingestion cost constraints | Filters and aggregates data before cloud ingestion so you reduce network transfer and pay to ingest higher-value telemetry. |
+| High telemetry volume | Processes data locally at scale to handle sustained high-throughput scenarios before sending to Azure Monitor. |
+| Intermittent or restricted connectivity | Buffers data in persistent storage during disruptions and backfills automatically when connectivity returns. |
 
 ## Supported data sources
 
@@ -67,11 +67,7 @@ Azure Monitor pipeline and [Azure Monitor Agent (AMA)](/azure/azure-monitor/agen
 
 Many architectures use both together. AMA handles Azure-connected resources, and Azure Monitor pipeline serves as a central ingestion gateway for edge and multicloud telemetry.
 
-## Before you begin
-
-Complete the shared prerequisites and cluster preparation steps in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites). That article also installs cert-manager before you choose the Azure portal or CLI and ARM configuration path. For help choosing the right cluster size based on your expected throughput, see [Best practices for sizing Azure Monitor pipeline](./pipeline-sizing.md).
-
-## Recommended setup sequence
+## Setup sequence
 
 Use the following sequence for a new deployment:
 
