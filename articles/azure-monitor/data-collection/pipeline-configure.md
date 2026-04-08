@@ -13,11 +13,11 @@ This article describes the overall setup process for [Azure Monitor pipeline](./
 
 ## Complete setup flow
 
-Complete deployment of a Azure Monitor pipeline includes the following steps:
+Complete deployment of an Azure Monitor pipeline includes the following steps:
 
 1. Verify the [prerequisites](#prerequisites).
 1. [Install cert-manager](#install-cert-manager-for-arc-enabled-kubernetes) on your Arc-enabled Kubernetes cluster.
-1. Complete deployment of the pipeline using either of the following methods:
+1. Complete deployment of the pipeline by using either of the following methods:
    - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If you need to filter, aggregate, or reshape incoming data:
@@ -146,7 +146,7 @@ When you use private link with Azure Monitor pipeline, keep in mind the followin
 
 ### Configure private DNS zones
 
-Link the [private DNS zones](../fundamentals/private-link-configure.md) to the Azure virtual network that hosts the private endpoint, not necessarily the Kubernetes cluster itself. Make sure each of the zones exist and are linked to the virtual network.
+Link the [private DNS zones](../fundamentals/private-link-configure.md) to the Azure virtual network that hosts the private endpoint, not necessarily the Kubernetes cluster itself. Make sure each of the zones exists and is linked to the virtual network.
 
 > [!NOTE]
 > Kubernetes clusters (including Azure Arc-enabled clusters) must be able to resolve these names through the virtual network DNS configuration.

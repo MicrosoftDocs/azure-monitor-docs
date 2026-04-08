@@ -93,7 +93,7 @@ Per-vCPU throughput for CEF Fully Formed: about 6,500 logs/sec.
 
 ## Factors that might affect throughput
 
-The baselines in this article were measured under controlled conditions. The following factors might reduce throughput in your environment and aren't yet reflected in the baselines:
+The baselines in this article are measured under controlled conditions. The following factors might reduce throughput in your environment and aren't yet reflected in the baselines:
 
 - **External ingress (gateway)**: Sending traffic through a gateway like Traefik adds network hops and potential TLS termination overhead compared to in-cluster delivery.
 - **TLS enabled**: Enabling TLS or mTLS adds encryption overhead per connection.
