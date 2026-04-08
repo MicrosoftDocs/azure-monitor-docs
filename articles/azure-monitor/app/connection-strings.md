@@ -10,7 +10,7 @@ ms.custom:
 
 # Connection strings in Application Insights
 
-Connection strings specify to which Application Insights resource your instrumented application should send telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
+Connection strings specify which Application Insights resource your instrumented application should send telemetry data to. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
 > The connection string contains an instrumentation key (ikey) and an ApplicationId.
