@@ -29,4 +29,17 @@ prometheus:
         value: '8081'
       - name: IDENTITY_TYPE
         value: workloadIdentity
+      # Required for non-public clouds.
+      # Supported CLOUD values: AZUREPUBLIC (default), AZUREGOVERNMENT, AZURECHINA, AZURECUSTOM.
+      # For Azure Government, uncomment CLOUD and INGESTION_AAD_AUDIENCE.
+      # - name: CLOUD
+      #   value: AZUREGOVERNMENT
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: https://monitor.azure.us/.default
+      # For other sovereign or custom clouds, use AZURECUSTOM.
+      # The workload identity webhook automatically injects the authority host.
+      # - name: CLOUD
+      #   value: AZURECUSTOM
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: <audience-url-for-your-cloud>/.default
 ```

@@ -192,6 +192,37 @@ az ad app federated-credential create --id ${APPLICATION_OBJECT_ID} --parameters
     | `<CONTAINER-IMAGE-VERSION>` | [!INCLUDE [version](includes/prometheus-remotewrite-image-version.md)]<br>The remote write container image version.| 
     | `<INGESTION-URL>` | The value for **Metrics ingestion endpoint** from the **Overview** page for the Azure Monitor workspace. |
    
+   > [!IMPORTANT]
+   > For non-public clouds, add the following environment variables in the `env` section of the YAML file.
+   >
+   > **Azure Government:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZUREGOVERNMENT
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: https://monitor.azure.us/.default
+   > ```
+   >
+   > **Azure China:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZURECHINA
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: <audience-url-for-azure-china>/.default
+   > ```
+   >
+   > **Other sovereign or custom clouds:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZURECUSTOM
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: <audience-url-for-your-cloud>/.default
+   > ```
+   >
+   > The supported `CLOUD` values are `AZUREPUBLIC` (default), `AZUREGOVERNMENT`, `AZURECHINA`, and `AZURECUSTOM`. Use `AZURECUSTOM` for sovereign or custom clouds that don't have built-in support. When using workload identity with `AZURECUSTOM`, the mutating admission webhook automatically injects the required authority host configuration. The `INGESTION_AAD_AUDIENCE` value must include the `/.default` suffix, or token acquisition fails.
 
 1. Use Helm to apply the YAML file and update your Prometheus configuration:
 

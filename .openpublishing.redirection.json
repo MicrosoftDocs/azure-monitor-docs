@@ -1,14 +1,9 @@
 {
   "redirections": [
     {
-      "source_path": "articles/azure-monitor/fundamentals/create-service-level-indicators.md",
-      "redirect_url": "/azure/azure-monitor/fundamentals/service-level-indicators-create",
-      "redirect_document_id": true
-    },
-    {
-      "source_path": "articles/azure-monitor/fundamentals/service-level-indicators-concepts.md",
-      "redirect_url": "/azure/azure-monitor/fundamentals/service-level-indicators",
-      "redirect_document_id": true
+      "source_path": "articles/advisor/advisor-dismiss-postpone.md",
+      "redirect_url": "/previous-versions/azure/advisor/advisor-dismiss-postpone",
+      "redirect_document_id": false
     },
     {
       "source_path": "articles/azure-monitor/app/classic-api.md",
