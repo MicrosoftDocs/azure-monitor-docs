@@ -62,7 +62,7 @@ Execution placement rules are applied immediately when you create or update your
 
 ## Automatic pod labeling
 
-A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` is configured. You don't need to manually label pods since this process is handled automatically.
+A pipeline label is automatically added to all pods with the value set to the `pipelineGroup` name. This label is used internally for anti-affinity enforcement when `maxInstancesPerHost: 1` configured. You don't need to manually label pods since this process is handled automatically.
 
 ## Configuration examples
 
