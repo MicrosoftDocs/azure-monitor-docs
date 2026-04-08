@@ -21,9 +21,21 @@ Use Azure Monitor pipeline when you need Azure Monitor data collection to work b
 | Need | How the pipeline helps |
 |:---|:---|
 | Telemetry originates outside Azure | Enables centralized ingestion into Azure Monitor from on-premises, edge, and multicloud environments. |
+| Bandwidth or ingestion cost constraints | Filters and aggregates telemetry before sending it to Azure Monitor, reducing network usage and ingestion costs. |
 | High telemetry volume | Collects and processes data locally at scale before cloud ingestion. |
 | Intermittent or restricted connectivity | Buffers data locally in configured persistent storage and backfills to Azure Monitor when connectivity returns. |
-| Bandwidth or ingestion cost constraints | Filters and aggregates telemetry before sending it to Azure Monitor, reducing network usage and ingestion costs. |
+
+## Supported data sources
+
+Azure Monitor pipeline currently receives and processes the following data source types:
+
+| Data source | Status |
+|:---|:---|
+| Syslog | Generally available |
+| Common Event Format (CEF) | Generally available |
+| OpenTelemetry Protocol (OTLP) | Preview |
+
+The pipeline collects Syslog and CEF data from network devices and local servers. OTLP data comes from applications instrumented with OpenTelemetry SDKs. You can configure custom ports and add additional receivers as needed through pipeline transformations and extensions.
 
 ## How Azure Monitor pipeline works
 
