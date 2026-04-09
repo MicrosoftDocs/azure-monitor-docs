@@ -54,7 +54,7 @@ Use this option when you need to use your own certificates or integrate with you
 - Provide your own CA for client certificate validation
 - Integrate with Azure Key Vault for certificate storage
 
-For more information about how this works and how to set it up, see [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
+For more information about how this works and how to set up, see [TLS configuration - Using your own certificate management](./pipeline-tls-custom.md).
 
 ## Option 3: Disable TLS and mTLS
 

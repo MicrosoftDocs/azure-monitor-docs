@@ -86,7 +86,7 @@ If the pipeline uses mTLS, the gateway needs a client certificate so it can auth
 > a `gateway-client-tls` Secret (with `tls.crt` and `tls.key` signed by your
 > BYOC client CA) exists in the pipeline namespace.
 
-Save the following as `certificates.yaml`:
+Save the following code as `certificates.yaml`:
 
 ```yaml
 # certificates.yaml
@@ -388,7 +388,7 @@ helm upgrade traefik-<pipeline-name> traefik/traefik \
 ```
 
 > [!WARNING]
-> This `helm upgrade` triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this action during a maintenance window.
+> This `helm upgrade` command triggers a pod restart. Existing client connections (including those on the syslog port) are briefly interrupted. Perform this action during a maintenance window.
 
 #### Verify
 
