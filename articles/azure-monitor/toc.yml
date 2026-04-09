@@ -914,6 +914,8 @@ items:
       - name: Extension versions
         displayName: Azure Monitor pipeline extension versions
         href: data-collection/pipeline-extension-versions.md
+      - name: Troubleshoot
+        href: data-collection/pipeline-troubleshoot.md
   - name: Custom metrics in Azure Monitor (preview)
     href: metrics/metrics-custom-overview.md
   - name: Custom metrics ingestion using REST
