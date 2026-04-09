@@ -8,7 +8,8 @@ ai-usage: ai-assisted
 
 ---
 
-# Send data from Azure Diagnostics extension to Azure Monitor Logs by using Azure Diagnostics extension
+# Send data from Azure Diagnostics extension to Azure Monitor Logs by using Azure Diagnostics extension
+
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources, including virtual machines. This article describes how to collect data that the diagnostics extension gathers from Azure Storage to Azure Monitor Logs.
 
@@ -55,7 +56,7 @@ To enable collection of diagnostics extension data from an Azure Storage account
 1. The value for **Source** is automatically populated based on the data type.
 1. Select **OK** to save the configuration.
 1. Repeat for more data types.
-
+In approximately 30 minutes, you see data from the storage account in the Log Analytics workspace. You only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
 In approximately 30 minutes, you'll see data from the storage account in the Log Analytics workspace. You'll only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
 
 > [!NOTE]
