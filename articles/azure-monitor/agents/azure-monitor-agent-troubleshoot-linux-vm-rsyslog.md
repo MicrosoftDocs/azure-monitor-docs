@@ -2,7 +2,7 @@
 title: Syslog troubleshooting guide for Azure Monitor Agent for Linux
 description: Guidance for troubleshooting rsyslog issues on Linux virtual machines, scale sets with Azure Monitor Agent, and data collection rules.
 ms.topic: troubleshooting-general
-ms.date: 07/02/2025
+ms.date: 04/09/2026
 ms.custom: references_region, linux-related-content
 ms.reviewer: shseth
 ---
