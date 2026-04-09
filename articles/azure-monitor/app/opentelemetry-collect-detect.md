@@ -44,8 +44,6 @@ The Azure Monitor Distros automatically collect data by bundling OpenTelemetry i
 
 * `ILogger`
 
-To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
-
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
 #### [.NET](#tab/net)
@@ -77,8 +75,6 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 	})
     .Build();
 ```
-
-To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
 
 #### [Java](#tab/java)
 
@@ -131,8 +127,6 @@ To reduce or increase the number of logs sent to Azure Monitor, configure loggin
 * JBoss Logging (including MDC properties) ¹
 * java.util.logging ¹
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
 **Default collection**
 
 Telemetry emitted by the following Azure SDKs is automatically collected by default:
@@ -164,27 +158,6 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
-```
-[//]: # "Azure Cosmos DB 4.22.0+ due to https://github.com/Azure/azure-sdk-for-java/pull/25571"
-[//]: # "the remaining above names and links scraped from https://azure.github.io/azure-sdk/releases/latest/java.html"
-[//]: # "and version synched manually against the oldest version in maven central built on azure-core 1.14.0"
-[//]: # ""
-[//]: # "var table = document.querySelector('#tg-sb-content > div > table')"
-[//]: # "var str = ''"
-[//]: # "for (var i = 1, row; row = table.rows[i]; i++) {"
-[//]: # "  var name = row.cells[0].getElementsByTagName('div')[0].textContent.trim()"
-[//]: # "  var stableRow = row.cells[1]"
-[//]: # "  var versionBadge = stableRow.querySelector('.badge')"
-[//]: # "  if (!versionBadge) {"
-[//]: # "    continue"
-[//]: # "  }"
-[//]: # "  var version = versionBadge.textContent.trim()"
-[//]: # "  var link = stableRow.querySelectorAll('a')[2].href"
-[//]: # "  str += '* [' + name + '](' + link + ') ' + version + '\n'"
-[//]: # "}"
-[//]: # "console.log(str)"
-```
-
 #### [Java native](#tab/java-native)
 
 **Requests for Spring Boot native applications**
@@ -209,17 +182,14 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 
 * Logback
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
 For Quartz native applications, see the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
-
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
 #### [Node.js](#tab/nodejs)
 
 > [!TIP]
-> **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
+> **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev
 
 The Azure Monitor Application Insights Distro includes the following OpenTelemetry Instrumentation libraries. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
@@ -229,12 +199,12 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 
 **Dependencies**
 
-* Supports [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mongodb)
-* Supports [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mysql)
-* Supports [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-pg)
-* Supports [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis)
-* Supports [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis-4)
-* Supports [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
+* [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mongodb)
+* [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mysql)
+* [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-pg)
+* [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis)
+* [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis-4)
+* [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
 
 **Logs**
 
@@ -244,9 +214,9 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 > [!IMPORTANT]
 > Bunyan and Winston *aren't* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
-You can configure instrumentations by using `AzureMonitorOpenTelemetryOptions`:
+<br>
+<details>
+<summary><b>Expand to view a code sample that shows how to configure instrumentations by using AzureMonitorOpenTelemetryOptions.</b></summary>
 
 ```typescript
 import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
@@ -275,6 +245,8 @@ logger.warn({ requestId: "abc-123" }, "Slow response detected");
 logger.error(new Error("Something failed"), "Unhandled error");
 ```
 
+</details>
+
 #### [Python](#tab/python)
 
 **Requests**
@@ -294,8 +266,6 @@ logger.error(new Error("Something failed"), "Unhandled error");
 
 * [Python logging library](https://docs.python.org/3/howto/logging.html)
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
 Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
 Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
@@ -309,9 +279,10 @@ Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [co
 
 > [!NOTE]
 > The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
+> All OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights *custom metrics* for billing purposes. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
 
 > [!TIP]
-> All OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights "custom metrics" for billing purposes. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
+> To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `WARNING` and `ERROR` logs to Azure Monitor.
 
 ## Resource detectors
 
