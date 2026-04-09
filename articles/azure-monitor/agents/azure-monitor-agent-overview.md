@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Overview
 description: Get an overview of the Azure Monitor Agent. Learn how you can use the Azure Monitor Agent to collect monitoring data from the guest operating system of virtual machines.
 ms.topic: concept-article
-ms.date: 01/29/2025
+ms.date: 04/09/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 
