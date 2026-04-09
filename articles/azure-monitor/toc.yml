@@ -879,6 +879,8 @@ items:
     items:
       - name: Overview
         href: data-collection/pipeline-overview.md
+      - name: FAQ
+        href: data-collection/pipeline-faq
       - name: Configure
         items:
         - name: Configure Azure Monitor pipeline

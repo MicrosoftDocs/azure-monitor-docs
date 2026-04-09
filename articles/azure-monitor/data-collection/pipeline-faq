@@ -1,4 +1,14 @@
-# Azure Monitor pipeline – FAQs
+---
+title: Azure Monitor pipeline FAQ
+description: Frequently asked questions for Azure Monitor pipeline, including architecture, deployment, data collection, and configuration.
+ai-usage: ai-assisted
+ms.topic: overview
+ms.date: 03/20/2026
+ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
+---
+
+
+# Azure Monitor pipeline FAQ
 
 ## Overview & Concepts
 
