@@ -59,4 +59,18 @@ prometheus:
       # Optional parameter
       - name: CLUSTER
         value: <CLUSTER-NAME>
+      # Required for non-public clouds.
+      # Supported CLOUD values: AZUREPUBLIC (default), AZUREGOVERNMENT, AZURECHINA, AZURECUSTOM.
+      # For Azure Government, uncomment CLOUD and INGESTION_AAD_AUDIENCE.
+      # - name: CLOUD
+      #   value: AZUREGOVERNMENT
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: https://monitor.azure.us/.default
+      # For other sovereign or custom clouds, use AZURECUSTOM and also set AAD_HOST_ENDPOINT.
+      # - name: CLOUD
+      #   value: AZURECUSTOM
+      # - name: AAD_HOST_ENDPOINT
+      #   value: <authority-host-url-for-your-cloud>
+      # - name: INGESTION_AAD_AUDIENCE
+      #   value: <audience-url-for-your-cloud>/.default
 ```
