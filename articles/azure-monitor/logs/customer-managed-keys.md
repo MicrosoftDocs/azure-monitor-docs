@@ -3,8 +3,9 @@ title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 03/10/2026
+ms.date: 04/09/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+ai-usage: ai-assisted
 
 ---
 
@@ -22,7 +23,7 @@ To control the key lifecycle and revoke access to data, encrypt data by using yo
 
 Data ingested to dedicated clusters is [encrypted twice](/azure/security/fundamentals/double-encryption) - at the service level by using Microsoft-managed keys or customer-managed keys, and at the infrastructure level by using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. Double encryption protects against a scenario where one of the encryption algorithms or keys is compromised. Dedicated clusters also let you protect data by using [Lockbox](#customer-lockbox).
 
-Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. Azure Monitor encrypts SSD data by using Microsoft-managed keys regardless of whether you configure customer-managed keys, but your control over SSD access adheres to [key revocation](#key-revocation).
+Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. Azure Monitor encrypts hot-cache data by using Microsoft-managed infrastructure keys regardless of whether you configure customer-managed keys. Access to hot-cache data remains governed by the state of your customer-managed key—if you [revoke access to the key](#key-revocation), hot-cache data is deleted and becomes inaccessible.
 
 > [!IMPORTANT]
 > Dedicated clusters use a [commitment tier pricing model](./logs-dedicated-clusters.md#cluster-pricing-model) of at least 100 GB per day.
@@ -63,6 +64,18 @@ The following rules apply:
 - When you configure the customer-managed **KEK** in your cluster, the cluster storage sends `wrap` and `unwrap` requests to your Key Vault for **AEK** encryption and decryption.
 - Your **KEK** never leaves your Key Vault. If you store your key in an Azure Key Vault Managed HSM, it never leaves that hardware either.
 - Azure Storage uses the managed identity associated with the cluster for authentication. It accesses Azure Key Vault through Microsoft Entra ID.
+
+### Operational key protection
+
+The encryption model used by Log Analytics dedicated clusters follows [envelope encryption](/azure/security/fundamentals/encryption-atrest#envelope-encryption-with-a-key-hierarchy) principles. Customer-managed keys stored in Azure Key Vault or Managed HSM protect the service-level encryption keys (**AEK**) used by the cluster. These service-level keys aren't persisted in storage on the cluster itself.
+
+During normal operation, the dedicated cluster storage caches the **AEK** in service runtime memory for active cryptographic operations and periodically contacts Key Vault to `unwrap` the key. Cached operational keys are protected by the following measures:
+
+- **Managed identity authentication** - The cluster authenticates to Key Vault by using its [managed identity](/azure/active-directory/managed-identities-azure-resources/overview), ensuring that only the authorized cluster can access the key.
+- **Azure platform compute isolation** - Dedicated clusters operate on Azure compute infrastructure that provides hypervisor-enforced tenant isolation, host-level memory protections, and VM boundary enforcement. For more information about Azure platform isolation, see [Isolation in the Azure Public Cloud](/azure/security/fundamentals/isolation-choices).
+- **Encrypted infrastructure storage** - Data on the cluster is encrypted at the infrastructure level by using [platform-managed keys](/azure/security/fundamentals/double-encryption).
+
+Transient operational caching is an availability mechanism. It allows the cluster to continue ingestion and query operations during temporary Key Vault connectivity disruptions (such as transient network errors or DNS failures). Operational key caching doesn't replace or weaken the protection provided by the customer-managed key in Key Vault. Access to encrypted data, including the [hot-cache](#how-customer-managed-keys-work-in-azure-monitor), remains governed by CMK state—if you [revoke access to the key](#key-revocation), encrypted data becomes inaccessible to the service.
 
 ## Required permissions
 
@@ -486,6 +499,8 @@ To learn more, see [Customer Lockbox for Microsoft Azure](/azure/security/fundam
   - During normal ingestion operation, the dedicated cluster storage caches **AEK** for short periods of time and goes back to Key Vault to `unwrap` periodically.
     
   - During Key Vault connection errors, the dedicated cluster storage handles transient errors (timeouts, connection failures, DNS failures) by keeping keys in the cache during the issue to overcome blips and intermittent availability. The query and ingestion capabilities continue without interruption.
+
+  - There's no published specific duration for how long a cluster can operate without Key Vault access during a transient connectivity disruption. Cluster access to encrypted data remains governed by [CMK revocation policy](#key-revocation).
     
 - Key Vault access rate - the frequency with which the cluster storage accesses Key Vault for `wrap` and `unwrap` operations is between 6 to 60 seconds.
 
@@ -517,6 +532,48 @@ To learn more, see [Customer Lockbox for Microsoft Azure](/azure/security/fundam
 
   **Cluster Get**
   -  404 - Cluster not found. The cluster might have been deleted. If you try to create a cluster with that name and get a conflict, the cluster is in the deletion process.
+
+## CMK security frequently asked questions
+
+This section addresses common security questions about how customer-managed keys protect data in Log Analytics dedicated clusters.
+
+### Does CMK protect hot-cache data?
+
+Hot-cache data (SSD-backed) is encrypted by using Microsoft-managed infrastructure keys. Access to hot-cache data remains governed by CMK state. When you [revoke the customer-managed key](#key-revocation), hot-cache data is deleted and becomes inaccessible. CMK ensures that even though the hot cache uses a different encryption mechanism, you retain control over data accessibility.
+
+### What happens during a temporary Key Vault outage vs. intentional key revocation?
+
+It's important to distinguish between a temporary Key Vault connectivity disruption and intentional key revocation:
+
+- **Temporary Key Vault outage** - During transient connection errors (network timeouts, DNS failures), the cluster uses cached operational keys to maintain ingestion and query availability. The cluster periodically attempts to contact Key Vault, and normal operations resume when connectivity is restored. This behavior is an availability mechanism.
+- **Intentional key revocation** - When you deliberately [disable the key or remove the access policy](#key-revocation), the cluster storage becomes unavailable within an hour or sooner. New data ingested to linked workspaces is dropped and unrecoverable. Hot-cache data is deleted. Previously ingested data remains inaccessible until key access is restored.
+
+Transient operational caching doesn't bypass or weaken key revocation controls.
+
+### Is the cached operational key (AEK) a replacement for Key Vault protection?
+
+No. Azure Key Vault or Managed HSM protects the root encryption key (KEK). The [Account Encryption Key (AEK)](#encryption-key-types) is a service-level encryption key that is derived and used transiently to perform cryptographic `wrap` and `unwrap` operations. The AEK isn't persisted as customer-accessible key material and exists only in service runtime memory during active operations. The purpose of transient operational caching is availability—it allows the cluster to continue operating during temporary connectivity disruptions while encrypted data access remains governed by CMK revocation.
+
+### What protection measures are applied to cached operational keys?
+
+Operational encryption keys (AEK) are protected by the following measures:
+
+- **Not persisted on disk** - Operational keys exist only within service runtime memory.
+- **Managed identity authentication** - Access to Key Vault is controlled through the cluster's [managed identity](/azure/active-directory/managed-identities-azure-resources/overview), ensuring only the authorized cluster can retrieve keys.
+- **Azure platform compute isolation** - Dedicated clusters operate on Azure compute infrastructure that provides hypervisor-enforced tenant isolation, host-level memory protections, and VM boundary enforcement. These protections are part of the [Azure platform security model](/azure/security/fundamentals/isolation-choices) applied to all compute workloads.
+- **Encrypted infrastructure storage** - Data at rest on the cluster is protected by [double encryption](/azure/security/fundamentals/double-encryption) using both customer-managed and platform-managed keys at separate layers.
+
+### Is there a published maximum duration the cluster can operate without Key Vault access?
+
+There's no published specific duration for CMK availability tolerance during a transient Key Vault connectivity disruption. Cluster access to encrypted data remains governed by [CMK revocation policy](#key-revocation). For information on Key Vault access frequency, see [Troubleshooting](#troubleshooting).
+
+### What additional protective measures secure data on the cluster?
+
+Log Analytics dedicated clusters support multiple layers of data protection:
+
+- **[Double encryption](#considerations-and-limits)** - Data is encrypted at both the service level (using customer-managed or Microsoft-managed keys) and the infrastructure level (using platform-managed keys), with separate keys from independent key hierarchies.
+- **[Customer Lockbox](#customer-lockbox)** - Enables you to approve or reject Microsoft engineer requests to access your data during support engagements.
+- **Managed identity authentication** - All Key Vault access is authenticated through the cluster's managed identity via Microsoft Entra ID.
 
 ## Related content
 
