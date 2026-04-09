@@ -46,7 +46,7 @@ The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes
 > [!NOTE]
 > Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but you're responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows you to retain control over your local infrastructure.
 
-A typical deployment is shown in the image above and includes the following:
+A typical deployment is shown in the preceding image and includes the following components:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog (including CEF) data to the pipeline on TCP port 514 by default.
@@ -61,7 +61,7 @@ A typical deployment is shown in the image above and includes the following:
 
 ## Azure Monitor pipeline compared to Azure Monitor Agent
 
-Azure Monitor pipeline and [Azure Monitor Agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) address different telemetry ingestion needs but are often complementary.
+Azure Monitor pipeline and [Azure Monitor Agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) address different telemetry ingestion needs but often work well together.
 
 | Capability | Azure Monitor pipeline | Azure Monitor Agent |
 |:---|:---|:---|
