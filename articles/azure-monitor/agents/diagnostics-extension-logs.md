@@ -56,7 +56,7 @@ To enable collection of diagnostics extension data from an Azure Storage account
 1. The value for **Source** is automatically populated based on the data type.
 1. Select **OK** to save the configuration.
 1. Repeat for more data types.
-In approximately 30 minutes, you see data from the storage account in the Log Analytics workspace. You only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
+In approximately 30 minutes, you see data from the storage account in the Log Analytics workspace. You only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
 In approximately 30 minutes, you'll see data from the storage account in the Log Analytics workspace. You'll only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
 
 > [!NOTE]
