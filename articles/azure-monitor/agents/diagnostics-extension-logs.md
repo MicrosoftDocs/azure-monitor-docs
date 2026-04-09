@@ -8,7 +8,7 @@ ai-usage: ai-assisted
 
 ---
 
-# Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
+# Send data from Azure Diagnostics extension to Azure Monitor Logs by using Azure Diagnostics extension
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources, including virtual machines. This article describes how to collect data that the diagnostics extension gathers from Azure Storage to Azure Monitor Logs.
 
