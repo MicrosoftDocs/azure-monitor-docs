@@ -46,12 +46,16 @@ The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes
 
 In a typical deployment:
 
-- The pipeline runs on an Arc-enabled Kubernetes cluster.
-- Clients send Syslog (including CEF) data to the pipeline.
-- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline (this feature is in Preview).
+- The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
+- Clients send Syslog (including CEF) data to the pipeline on TCP port 514 by default.
+- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
+- The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor.
+- Once data is collected, it's available to any Azure Monitor feature that accesses that workspace.
+
+:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
 ## Azure Monitor pipeline compared to Azure Monitor Agent
 
@@ -89,20 +93,6 @@ Use the following sequence for a new deployment:
 | - Canonical<br>- Cluster API Provider for Azure<br>- K3<br>- Rancher Kubernetes Engine<br>- VMware Tanzu Kubernetes Grid | - Canada Central<br>- East US<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
 
 For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
-
-## Sample architecture
-
-The following diagram shows a typical Azure Monitor pipeline deployment.
-
-- You deploy the pipeline in third-party clouds, and any physical locations with devices and applications to collect data from.
-- You deploy the pipeline on an Arc-enabled Kubernetes cluster at each location and in each third-party cloud provider.
-- Data sources include the following sources:
-    - Syslog collected from sources such as network devices and agents running on local servers. It's collected by default on TCP port 514.
-    - OpenTelemetry (OTLP) collected from applications. It's collected by default on TCP port 4317.
-- The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor. 
-- Once data is collected from the pipeline, it's available to any Azure Monitor features accessing that data.
-
-:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
 ## Related articles
 
