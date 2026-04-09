@@ -10,7 +10,58 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 This article provides guidance for common issues encountered when deploying and using Azure Monitor pipeline.
 
-## Deployment and configuration issues
+## Monitor pipeline health and performance
+
+Track the health and performance of your pipeline deployment using Azure Monitor metrics and logs.
+
+### View metrics in the Azure portal
+
+In the Azure portal, open your Azure Monitor pipeline resource and select **Monitoring**. The following metrics are available:
+
+| Metric name | Display name | Description | Dimensions |
+|:---|:---|:---|:---|
+| `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
+| `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
+| `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
+| `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
+
+### View metrics through Prometheus scraping
+
+You can also scrape pipeline metrics using Prometheus. For more information, see [Collect Prometheus metrics from an Arc-enabled Kubernetes cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-and-grafana).
+
+### View logs in the Azure portal
+
+Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. After you configure diagnostic settings, you can view logs for your Azure Monitor pipeline instance in the `AzureMonitorPipelineLogErrors` table in your Log Analytics workspace.
+
+### Collect logs from cluster pods
+
+To investigate issues not visible in the Azure portal, collect logs directly from pipeline pods on your Kubernetes cluster.
+
+**Retrieve pod logs:**
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+**Retrieve logs from a previous pod instance** (if the pod crashed and restarted):
+```bash
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+**Stream logs in real time:**
+```bash
+kubectl logs <pod-name> -n <namespace> -f
+```
+
+**Retrieve logs from all pipeline pods:**
+```bash
+kubectl logs -n mon -l app.kubernetes.io/name=collector -f
+```
+
+These logs often contain detailed error messages and stack traces that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
+
+## Common issues
+
+### Deployment and configuration issues
 
 <details>
 <summary><b>Pipeline pods are in CrashLoopBackOff status</b></summary>
@@ -73,7 +124,7 @@ This article provides guidance for common issues encountered when deploying and 
 
 </details>
 
-## Data collection issues
+### Data collection issues
 
 <details>
 <summary><b>Pipeline not receiving telemetry data from clients</b></summary>
@@ -128,7 +179,7 @@ This article provides guidance for common issues encountered when deploying and 
 
 </details>
 
-## Connectivity and reliability issues
+### Connectivity and reliability issues
 
 <details>
 <summary><b>Buffered data not being backfilled after connectivity is restored</b></summary>
@@ -192,7 +243,7 @@ This article provides guidance for common issues encountered when deploying and 
 
 </details>
 
-## Performance and resource issues
+### Performance and resource issues
 
 <details>
 <summary><b>High memory or CPU usage on pipeline pods</b></summary>
@@ -219,32 +270,6 @@ This article provides guidance for common issues encountered when deploying and 
    - Scale horizontally: Add more pipeline replicas
 
 </details>
-
-## Collect logs from cluster pods
-
-To investigate issues not visible in the Azure portal, collect logs directly from pipeline pods on your Kubernetes cluster.
-
-**Retrieve pod logs:**
-```bash
-kubectl logs <pod-name> -n <namespace>
-```
-
-**Retrieve logs from a previous pod instance** (if the pod crashed and restarted):
-```bash
-kubectl logs <pod-name> -n <namespace> --previous
-```
-
-**Stream logs in real time:**
-```bash
-kubectl logs <pod-name> -n <namespace> -f
-```
-
-**Retrieve logs from all pipeline pods:**
-```bash
-kubectl logs -n mon -l app.kubernetes.io/name=collector -f
-```
-
-These logs often contain detailed error messages and stack traces that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
 
 ## Still need help?
 
