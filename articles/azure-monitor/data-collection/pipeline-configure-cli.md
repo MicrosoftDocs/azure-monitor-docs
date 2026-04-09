@@ -21,6 +21,7 @@ Use CLI or ARM templates when you need a repeatable deployment process or more c
 | Advanced configuration | Configure custom tables, persistent volumes for buffering, and more detailed resource settings. |
 | Infrastructure as code | Store and review configuration in templates and deployment pipelines. |
 | Repeatable deployments | Standardize pipeline deployments for testing and production environments. |
+|
 
 ## Configuration workflow
 
