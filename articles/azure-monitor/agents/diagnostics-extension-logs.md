@@ -8,11 +8,12 @@ ai-usage: ai-assisted
 
 ---
 
-# Send data from Azure Diagnostics extension to Azure Monitor Logs using Azure Diagnostics extension
+# Send data from Azure Diagnostics extension to Azure Monitor Logs by using Azure Diagnostics extension
 
-Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes how to collect data collected by the diagnostics extension from Azure Storage to Azure Monitor Logs.
+Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources, including virtual machines. This article describes how to collect data that the diagnostics extension gathers from Azure Storage to Azure Monitor Logs.
 
-[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
+> [!WARNING]
+> The Azure Diagnostics extension no longer collects any log types from Azure Storage accounts to send to Log Analytics workspaces since the retirement March 31, 2026. Installing or configuring the Azure Diagnostics extension is no longer supported. Migrate to the recommended Azure Storage blobs solution by using the [Azure Monitor Agent](azure-monitor-agent-migration-wad-lad.md) described in [Azure Diagnostics extension overview migration guidance](diagnostics-extension-overview.md#migration-guidance).
 
 ## Supported data types
 
@@ -40,9 +41,6 @@ The following data types aren't supported:
 
 ## Enable Azure Diagnostics extension
 
-> [!WARNING]
-> Installing or configuring the Azure Diagnostics extension is not supported after the March 31, 2026 retirement. For collecting guest OS logs and metrics, migrate to the recommended monitoring agents and pipelines described in the [Azure Diagnostics extension overview migration guidance](diagnostics-extension-overview.md#migration-guidance).
-
 For historical reference, see [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md) or [Use Azure Diagnostics extension for Linux to monitor metrics and logs](/azure/virtual-machines/extensions/diagnostics-linux).
 
 ## Collect logs from Azure Storage
@@ -58,7 +56,7 @@ To enable collection of diagnostics extension data from an Azure Storage account
 1. Select **OK** to save the configuration.
 1. Repeat for more data types.
 
-In approximately 30 minutes, you'll see data from the storage account in the Log Analytics workspace. You'll only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
+In approximately 30 minutes, you see data from the storage account in the Log Analytics workspace. You only see data that's written to storage after the configuration is applied. The workspace doesn't read the preexisting data from the storage account.
 
 > [!NOTE]
 > The portal doesn't validate that the source exists in the storage account or if new data is being written.
