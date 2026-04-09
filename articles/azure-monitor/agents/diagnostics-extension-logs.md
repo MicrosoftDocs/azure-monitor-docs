@@ -12,7 +12,8 @@ ai-usage: ai-assisted
 
 Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes how to collect data collected by the diagnostics extension from Azure Storage to Azure Monitor Logs.
 
-[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
+> [!WARNING]
+> The Azure Diagnostics extension no longer collects any log types from Azure Storage accounts to send to Log Analytics workspaces since the retirement March 31, 2026. Installing or configuring the Azure Diagnostics extension is no longer supported. Migrate to the recommended Azure Storage blobs solution using the [Azure Monitor Agent](azure-monitor-agent-migration-wad-lad.md) described in [Azure Diagnostics extension overview migration guidance](diagnostics-extension-overview.md#migration-guidance).
 
 ## Supported data types
 
@@ -39,9 +40,6 @@ The following data types aren't supported:
 * IIS logs from Azure websites
 
 ## Enable Azure Diagnostics extension
-
-> [!WARNING]
-> Installing or configuring the Azure Diagnostics extension is not supported after the March 31, 2026 retirement. For collecting guest OS logs and metrics, migrate to the recommended monitoring agents and pipelines described in the [Azure Diagnostics extension overview migration guidance](diagnostics-extension-overview.md#migration-guidance).
 
 For historical reference, see [Install and configure Azure Diagnostics extension for Windows (WAD)](../agents/diagnostics-extension-windows-install.md) or [Use Azure Diagnostics extension for Linux to monitor metrics and logs](/azure/virtual-machines/extensions/diagnostics-linux).
 
