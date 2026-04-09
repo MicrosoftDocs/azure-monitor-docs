@@ -12,6 +12,8 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 Telemetry from on-premises, edge, and multicloud environments can create challenges with scale, cost, and reliability when you use direct-to-cloud collection. Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion in these scenarios. It helps you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This process helps you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
 
+:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
+
 This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
 ## Why use Azure Monitor pipeline?
@@ -44,7 +46,7 @@ The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes
 > [!NOTE]
 > Azure provides Azure Monitor pipeline with management and integration to Azure Monitor, but you're responsible for operating and maintaining the Kubernetes environment where the pipeline runs. This shared responsibility model allows you to retain control over your local infrastructure.
 
-In a typical deployment:
+A typical deployment is shown in the image above and includes the following:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog (including CEF) data to the pipeline on TCP port 514 by default.
@@ -55,7 +57,7 @@ In a typical deployment:
 - The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor.
 - Once data is collected, it's available to any Azure Monitor feature that accesses that workspace.
 
-:::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
+
 
 ## Azure Monitor pipeline compared to Azure Monitor Agent
 
