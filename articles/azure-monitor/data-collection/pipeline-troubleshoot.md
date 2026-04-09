@@ -12,7 +12,8 @@ This article provides guidance for common issues encountered when deploying and 
 
 ## Deployment and configuration issues
 
-### Pipeline pods are in CrashLoopBackOff status
+<details>
+<summary><b>Pipeline pods are in CrashLoopBackOff status</b></summary>
 
 **Symptoms**: Pipeline operator or collector pods continuously restart with `CrashLoopBackOff` status.
 
@@ -40,7 +41,10 @@ This article provides guidance for common issues encountered when deploying and 
 
 4. Review the pipeline configuration for missing required fields. See [Configure Azure Monitor pipeline](./pipeline-configure.md) for valid configuration.
 
-### Heartbeat records not appearing in Log Analytics workspace
+</details>
+
+<details>
+<summary><b>Heartbeat records not appearing in Log Analytics workspace</b></summary>
 
 **Symptoms**: No heartbeat records in the `Heartbeat` table even after several minutes.
 
@@ -67,9 +71,12 @@ This article provides guidance for common issues encountered when deploying and 
    kubectl logs -n mon -l app.kubernetes.io/name=collector -f
    ```
 
+</details>
+
 ## Data collection issues
 
-### Pipeline not receiving telemetry data from clients
+<details>
+<summary><b>Pipeline not receiving telemetry data from clients</b></summary>
 
 **Symptoms**: No data arriving at the pipeline despite clients attempting to send data.
 
@@ -95,7 +102,10 @@ This article provides guidance for common issues encountered when deploying and 
    - Syslog/CEF: TCP port 514 (default)
    - OTLP: TCP port 4317 (default, Preview)
 
-### Data arriving late or inconsistently
+</details>
+
+<details>
+<summary><b>Data arriving late or inconsistently</b></summary>
 
 **Symptoms**: Telemetry is received but with delays or gaps.
 
@@ -116,9 +126,12 @@ This article provides guidance for common issues encountered when deploying and 
 
 4. Review buffering configuration and adjust retention settings as needed.
 
+</details>
+
 ## Connectivity and reliability issues
 
-### Buffered data not being backfilled after connectivity is restored
+<details>
+<summary><b>Buffered data not being backfilled after connectivity is restored</b></summary>
 
 **Symptoms**: Data is buffered during outages but not sent to Azure Monitor after reconnection.
 
@@ -149,7 +162,10 @@ This article provides guidance for common issues encountered when deploying and 
    kubectl logs -n mon -l app.kubernetes.io/name=collector -f | grep -i buffer
    ```
 
-### TLS/mTLS certificate issues
+</details>
+
+<details>
+<summary><b>TLS/mTLS certificate issues</b></summary>
 
 **Symptoms**: Connection errors mentioning certificates or TLS handshake failures.
 
@@ -174,9 +190,12 @@ This article provides guidance for common issues encountered when deploying and 
 
 4. For customer-managed certificates, ensure certificates are properly imported and configured. See [Customer-managed certificates (BYOC)](./pipeline-tls-custom.md).
 
+</details>
+
 ## Performance and resource issues
 
-### High memory or CPU usage on pipeline pods
+<details>
+<summary><b>High memory or CPU usage on pipeline pods</b></summary>
 
 **Symptoms**: Pipeline pods consuming high memory or CPU resources, affecting cluster performance.
 
@@ -198,6 +217,34 @@ This article provides guidance for common issues encountered when deploying and 
 4. Increase cluster resources or add additional pipeline replicas:
    - Scale vertically: Use larger node sizes
    - Scale horizontally: Add more pipeline replicas
+
+</details>
+
+## Collect logs from cluster pods
+
+To investigate issues not visible in the Azure portal, collect logs directly from pipeline pods on your Kubernetes cluster.
+
+**Retrieve pod logs:**
+```bash
+kubectl logs <pod-name> -n <namespace>
+```
+
+**Retrieve logs from a previous pod instance** (if the pod crashed and restarted):
+```bash
+kubectl logs <pod-name> -n <namespace> --previous
+```
+
+**Stream logs in real time:**
+```bash
+kubectl logs <pod-name> -n <namespace> -f
+```
+
+**Retrieve logs from all pipeline pods:**
+```bash
+kubectl logs -n mon -l app.kubernetes.io/name=collector -f
+```
+
+These logs often contain detailed error messages and stack traces that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
 
 ## Still need help?
 
