@@ -32,15 +32,15 @@ Use one of the following three ways to configure the connection string:
 
     ```csharp
         var builder = WebApplication.CreateBuilder(args);
-    
+
         // Add the OpenTelemetry telemetry service to the application.
         // This service will collect and send telemetry data to Azure Monitor.
         builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
             options.ConnectionString = "<YOUR-CONNECTION-STRING>";
         });
-    
+
         var app = builder.Build();
-    
+
         app.Run();
     ```
 
@@ -82,7 +82,7 @@ Use one of the following two methods to configure the connection string:
                 options.ConnectionString = "<YOUR-CONNECTION-STRING>";
             })
             .Build();
-    
+
         // Create a new OpenTelemetry meter provider.
         // It is important to keep the MetricsProvider instance active throughout the process lifetime.
         var metricsProvider = Sdk.CreateMeterProviderBuilder()
@@ -91,7 +91,7 @@ Use one of the following two methods to configure the connection string:
                 options.ConnectionString = "<YOUR-CONNECTION-STRING>";
             })
             .Build();
-    
+
         // Create a new logger factory.
         // It is important to keep the LoggerFactory instance active throughout the process lifetime.
         var loggerFactory = LoggerFactory.Create(builder =>
@@ -131,7 +131,7 @@ Use one of the following three ways to configure the connection string:
     ```
 
     You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
-    
+
     ```json
     {
       "connectionString": "${file:connection-string-file.txt}"
@@ -221,7 +221,7 @@ Use one of the following two ways to configure the connection string:
     ```python
     # Import the `configure_azure_monitor()` function from the `azure.monitor.opentelemetry` package.
     from azure.monitor.opentelemetry import configure_azure_monitor
-    
+
     # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
     # Replace `<YOUR-CONNECTION-STRING>` with the connection string of your Azure Monitor Application Insights resource.
     configure_azure_monitor(
@@ -1195,19 +1195,19 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
     ```csharp
     // Create a new ASP.NET Core web application builder.
     var builder = WebApplication.CreateBuilder(args);
-    
+
     // Add the OpenTelemetry telemetry service to the application.
     // This service will collect and send telemetry data to Azure Monitor.
     builder.Services.AddOpenTelemetry().UseAzureMonitor();
-    
+
     // Add the OpenTelemetry OTLP exporter to the application.
     // This exporter will send telemetry data to an OTLP receiver, such as Prometheus
     builder.Services.AddOpenTelemetry().WithTracing(builder => builder.AddOtlpExporter());
     builder.Services.AddOpenTelemetry().WithMetrics(builder => builder.AddOtlpExporter());
-    
+
     // Build the ASP.NET Core web application.
     var app = builder.Build();
-    
+
     // Start the ASP.NET Core web application.
     app.Run();
     ```
@@ -1229,7 +1229,7 @@ You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside th
             .AddAzureMonitorTraceExporter()
             .AddOtlpExporter()
             .Build();
-    
+
         // Create a new OpenTelemetry meter provider and add the Azure Monitor metric exporter and the OTLP metric exporter.
         // It is important to keep the MetricsProvider instance active throughout the process lifetime.
         var metricsProvider = Sdk.CreateMeterProviderBuilder()
@@ -1266,12 +1266,12 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
         const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
         const { BatchSpanProcessor } = await import("@opentelemetry/sdk-trace-base");
         const { OTLPTraceExporter } = await import("@opentelemetry/exporter-trace-otlp-http");
-    
+
         // Create an OTLP trace exporter (set 'url' if your collector isn't on the default endpoint).
         const otlpExporter = new OTLPTraceExporter({
           // url: "http://localhost:4318/v1/traces",
         });
-    
+
         // Configure Azure Monitor and add the OTLP exporter as an additional span processor.
         const options = {
           azureMonitorExporterOptions: {
@@ -1280,7 +1280,7 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
           },
           spanProcessors: [new BatchSpanProcessor(otlpExporter)],
         };
-    
+
         const monitor = useAzureMonitor(options);
         console.log("Azure Monitor initialized (OTLP exporter added)");
       }
@@ -1299,26 +1299,26 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
         from opentelemetry import trace
         from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
         from opentelemetry.sdk.trace.export import BatchSpanProcessor
-    
+
         # Configure OpenTelemetry to use Azure Monitor with the specified connection string.
         # Replace `<YOUR-CONNECTION-STRING>` with the connection string to your Azure Monitor Application Insights resource.
         configure_azure_monitor(
             connection_string="<YOUR-CONNECTION-STRING>",
         )
-        
+
         # Get the tracer for the current module.
-        tracer = trace.get_tracer(__name__) 
-        
+        tracer = trace.get_tracer(__name__)
+
         # Create an OTLP span exporter that sends spans to the specified endpoint.
         # Replace `http://localhost:4317` with the endpoint of your OTLP collector.
         otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317")
-        
+
         # Create a batch span processor that uses the OTLP span exporter.
         span_processor = BatchSpanProcessor(otlp_exporter)
-        
+
         # Add the batch span processor to the tracer provider.
         trace.get_tracer_provider().add_span_processor(span_processor)
-        
+
         # Start a new span with the name "test".
         with tracer.start_as_current_span("test"):
             print("Hello world!")
@@ -1368,7 +1368,7 @@ For Quarkus native applications, review the [Quarkus OpenTelemetry documentation
 
 # [Node.js](#tab/nodejs)
 
-For more information about OpenTelemetry SDK configuration, see the [OpenTelemetry documentation](https://opentelemetry.io/docs/concepts/sdk-configuration). 
+For more information about OpenTelemetry SDK configuration, see the [OpenTelemetry documentation](https://opentelemetry.io/docs/concepts/sdk-configuration).
 
 # [Python](#tab/python)
 
@@ -1383,7 +1383,7 @@ To redact URL query strings, turn off query string collection. This setting is r
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-When you use the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, it includes both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries. 
+When you use the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, it includes both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries.
 The distro package sets query string redaction off by default.
 
 To change this behavior, set an environment variable to either `true` or `false`.

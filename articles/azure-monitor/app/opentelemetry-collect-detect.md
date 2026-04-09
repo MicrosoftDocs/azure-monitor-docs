@@ -28,7 +28,7 @@ The Azure Monitor Distros automatically collect data by bundling OpenTelemetry i
 
 ### Included instrumentation libraries
 
-#### [ASP.NET Core](#tab/aspnetcore)
+# [ASP.NET Core](#tab/aspnetcore)
 
 **Requests**
 
@@ -46,11 +46,11 @@ The Azure Monitor Distros automatically collect data by bundling OpenTelemetry i
 
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
-#### [.NET](#tab/net)
+# [.NET](#tab/net)
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
 
-To collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk), use the following code sample to manually subscribe to the source.
+To collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk), use the following code sample to manually subscribe to the source.
 
 ```csharp
 // Create an OpenTelemetry tracer provider builder.
@@ -76,7 +76,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-#### [Java](#tab/java)
+# [Java](#tab/java)
 
 **Requests**
 
@@ -158,7 +158,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
-#### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
 **Requests for Spring Boot native applications**
 
@@ -186,7 +186,7 @@ For Quartz native applications, see the [Quarkus documentation](https://quarkus.
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
-#### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
 > [!TIP]
 > **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev
@@ -247,7 +247,7 @@ logger.error(new Error("Something failed"), "Unhandled error");
 
 </details>
 
-#### [Python](#tab/python)
+# [Python](#tab/python)
 
 **Requests**
 
