@@ -280,7 +280,7 @@ You can use the following population tags for the geo-location attribute when yo
 |                                          | China North 2                          | mc-cnn2-azr         |
 
 > [!IMPORTANT]
-> **China East (`mc-cne-azr`) and China North (`mc-cnn-azr`) are retiring as availability test locations on July 1, 2026.** After this date, you can't create or update availability tests that use these locations. Existing tests stop executing once the underlying infrastructure is decommissioned. Migrate your tests to use **China East 2** (`mc-cne2-azr`) or **China North 2** (`mc-cnn2-azr`) before the retirement date.
+> **China East (`mc-cne-azr`) and China North (`mc-cnn-azr`) retire as availability test locations on July 1, 2026.** After this date, you can't create or update availability tests that use these locations. Existing tests stop executing once the underlying infrastructure is decommissioned. Migrate your tests to use **China East 2** (`mc-cne2-azr`) or **China North 2** (`mc-cnn2-azr`) before the retirement date.
 
 ### Enable alerts
 
