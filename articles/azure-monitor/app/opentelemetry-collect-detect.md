@@ -266,7 +266,7 @@ logger.error(new Error("Something failed"), "Unhandled error");
 
 * [Python logging library](https://docs.python.org/3/howto/logging.html)
 
-Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
+You can find examples of using the Python logging library on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
 Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
 
@@ -279,7 +279,7 @@ Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [co
 
 > [!NOTE]
 > The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
-> All OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights *custom metrics* for billing purposes. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
+> For billing purposes, all OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights *custom metrics*. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
 
 > [!TIP]
 > To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `WARNING` and `ERROR` logs to Azure Monitor.

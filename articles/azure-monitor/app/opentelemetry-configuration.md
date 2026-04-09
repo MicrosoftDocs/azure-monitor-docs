@@ -22,7 +22,7 @@ This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Appl
 
 ## Connection string
 
-A connection string in Application Insights defines the target location for sending telemetry data.
+In Application Insights, a connection string defines the target location for sending telemetry data.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -63,12 +63,12 @@ Use one of the following three ways to configure the connection string:
 > [!NOTE]
 > If you set the connection string in more than one place, we adhere to the following precedence:
 > 1. Code
-> 2. Environment Variable
-> 3. Configuration File
+> 1. Environment variable
+> 1. Configuration file
 
 # [.NET](#tab/net)
 
-Use one of the following two ways to configure the connection string:
+Use one of the following two methods to configure the connection string:
 
 * Add the Azure Monitor Exporter to each OpenTelemetry signal in application startup.
 
@@ -235,7 +235,7 @@ For [supported languages](application-insights-faq.yml#what-s-the-current-releas
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+Set the Cloud Role Name and the Cloud Role Instance through [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, but it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
 ```csharp
 // Setting role name and role instance
@@ -415,7 +415,7 @@ export OTEL_SERVICE_NAME="my-helloworld-service"
 
 ## Set resource attributes
 
-Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#resource-detectors).
+Automatic instrumentation and the Azure Monitor distros enable resource detection when running in Azure environments where supported. For more information, see [Automatic data collection and resource detectors for Azure Monitor OpenTelemetry](opentelemetry-collect-detect.md#resource-detectors).
 
 For manual setups, set resource attributes directly by using standard OpenTelemetry options:
 
@@ -882,7 +882,7 @@ builder.Services.AddOpenTelemetry().UseAzureMonitor(options => {
 This feature isn't available in the Azure Monitor .NET Exporter.
 
 > [!NOTE]
-> We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for console and worker service applications, which doesn't include live metrics.
+> For console and worker service applications, use the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), which doesn't include live metrics.
 
 # [Java](#tab/java)
 
@@ -892,7 +892,7 @@ For more information on Java configuration, see [Configure Azure Monitor Applica
 
 # [Java native](#tab/java-native)
 
-The Live Metrics aren't available today for GraalVM native applications.
+Live Metrics isn't available for GraalVM native applications.
 
 # [Node.js](#tab/nodejs)
 
@@ -954,19 +954,19 @@ configure_azure_monitor(
 
 You might want to enable Microsoft Entra authentication for a more secure connection to Azure, which prevents unauthorized telemetry from being ingested into your subscription.
 
-For more information, see our dedicated Microsoft Entra authentication page linked for each supported language.
+For more information, see the dedicated Microsoft Entra authentication page linked for each supported language.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=aspnetcore)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=aspnetcore).
 
 # [.NET](#tab/net)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=net)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=net).
 
 # [Java](#tab/java)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=java)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=java).
 
 # [Java native](#tab/java-native)
 
@@ -974,17 +974,17 @@ Microsoft Entra ID authentication isn't available for GraalVM Native application
 
 # [Node.js](#tab/nodejs)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=nodejs)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=nodejs).
 
 # [Python](#tab/python)
 
-For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=python)
+For information on configuring Entra ID authentication, see [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md?tabs=python).
 
 ---
 
 ## Offline Storage and Automatic Retries
 
-Azure Monitor OpenTelemetry-based offerings cache telemetry when an application disconnects from Application Insights and retries sending for up to 48 hours. For data handling recommendations, see [Export and delete private data](../logs/personal-data-mgmt.md#export-delete-or-purge-personal-data). High-load applications occasionally drop telemetry for two reasons: exceeding the allowable time or exceeding the maximum file size. When necessary, the product prioritizes recent events over old ones.
+Azure Monitor OpenTelemetry-based offerings cache telemetry when an application disconnects from Application Insights and retry sending for up to 48 hours. For data handling recommendations, see [Export and delete private data](../logs/personal-data-mgmt.md#export-delete-or-purge-personal-data). High-load applications occasionally drop telemetry for two reasons: exceeding the allowable time or exceeding the maximum file size. When necessary, the product prioritizes recent events over old ones.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -1021,7 +1021,7 @@ var app = builder.Build();
 app.Run();
 ```
 
-To disable this feature, you should set `AzureMonitorOptions.DisableOfflineStorage = true`.
+To disable this feature, set `AzureMonitorOptions.DisableOfflineStorage = true`.
 
 # [.NET](#tab/net)
 
@@ -1077,13 +1077,13 @@ var loggerFactory = LoggerFactory.Create(builder =>
 });
 ```
 
-To disable this feature, you should set `AzureMonitorExporterOptions.DisableOfflineStorage = true`.
+To disable this feature, set `AzureMonitorExporterOptions.DisableOfflineStorage = true`.
 
 # [Java](#tab/java)
 
 When the agent can't send telemetry to Azure Monitor, it stores telemetry files on disk. The files are saved in a `telemetry` folder under the directory specified by the `java.io.tmpdir` system property. Each file name starts with a timestamp and ends with the `.trn` extension. This offline storage mechanism helps ensure telemetry is retained during temporary network outages or ingestion failures.
 
-The agent stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config.md#recovery-from-ingestion-failures). Attempts to send stored telemetry are made periodically. Telemetry files older than 48 hours are deleted and the oldest events are discarded when the storage limit is reached.
+The agent stores up to 50 MB of telemetry data by default and allows [configuration of the storage limit](./java-standalone-config.md#recovery-from-ingestion-failures). The agent periodically attempts to send stored telemetry. Telemetry files older than 48 hours are deleted, and the oldest events are discarded when the storage limit is reached.
 
 For a full list of available configurations, see [Configuration options](./java-standalone-config.md).
 
@@ -1174,7 +1174,7 @@ configure_azure_monitor(
 You might want to enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure Monitor Exporter to send your telemetry to two locations.
 
 > [!NOTE]
-> The OTLP Exporter is shown for convenience only. We don't officially support the OTLP Exporter or any components or third-party experiences downstream of it.
+> The OTLP Exporter is shown for convenience only. Microsoft doesn't officially support the OTLP Exporter or any components or third-party experiences downstream of it.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -1322,7 +1322,7 @@ You can't enable the OpenTelemetry Protocol (OTLP) Exporter alongside the Azure 
 
 ## OpenTelemetry configurations
 
-The following OpenTelemetry configurations can be accessed through environment variables while using the Azure Monitor OpenTelemetry Distros.
+You can access the following OpenTelemetry configurations through environment variables when using the Azure Monitor OpenTelemetry Distros.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -1330,8 +1330,8 @@ The following OpenTelemetry configurations can be accessed through environment v
 |----------------------|-------------|
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
 | `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set it to `true` to opt out of internal metrics collection. |
-| `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to be used as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
-| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, then `OTEL_SERVICE_NAME` takes precedence. |
+| `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to use as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
+| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_SERVICE_NAME` takes precedence. |
 
 # [.NET](#tab/net)
 
@@ -1370,12 +1370,12 @@ For more information about OpenTelemetry SDK configuration, see the [OpenTelemet
 
 ## Redact URL Query Strings
 
-To redact URL query strings, turn off query string collection. We recommend this setting if you call Azure storage using a SAS token.
+To redact URL query strings, turn off query string collection. This setting is recommended if you call Azure storage by using a SAS token.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-When you're using the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries are included. 
-Our distro package sets Query String Redaction off by default.
+When you use the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, it includes both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries. 
+The distro package sets query string redaction off by default.
 
 To change this behavior, you must set an environment variable to either `true` or `false`.
 
@@ -1387,8 +1387,8 @@ To change this behavior, you must set an environment variable to either `true` o
 
 # [.NET](#tab/net)
 
-When using the [Azure.Monitor.OpenTelemetry.Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), you must manually include either the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) or [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries in your OpenTelemetry configuration.
-These Instrumentation libraries have QueryString Redaction enabled by default.
+When you use the [Azure.Monitor.OpenTelemetry.Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), you must manually include either the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) or [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries in your OpenTelemetry configuration.
+These Instrumentation libraries have query string redaction enabled by default.
 
 To change this behavior, you must set an environment variable to either `true` or `false`.
 
@@ -1435,11 +1435,11 @@ Add the following to the `applicationinsights.json` configuration file:
 
 # [Java native](#tab/java-native)
 
-We're actively working in the OpenTelemetry community to support redaction.
+The OpenTelemetry community is actively working to support redaction.
 
 # [Node.js](#tab/nodejs)
 
-When you're using the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, query strings can be redacted via creating and applying a span processor to the distro configuration.
+When you use the [Azure Monitor OpenTelemetry distro](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry) package, you can redact query strings by creating and applying a span processor to the distro configuration.
 
 ```typescript
 export class RedactQueryStringsSample {
