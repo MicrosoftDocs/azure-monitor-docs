@@ -61,7 +61,8 @@ Use one of the following three ways to configure the connection string:
     ```
 
 > [!NOTE]
-> If you set the connection string in more than one place, the following precedence order applies:
+> If you set the connection string in more than one place, the following precedence order applies:
+
 > 1. Code
 > 1. Environment variable
 > 1. Configuration file
@@ -114,7 +115,8 @@ Use one of the following two methods to configure the connection string:
 > [!NOTE]
 > If you set the connection string in more than one place, we adhere to the following precedence:
 > 1. Code
-> 1. Environment variable
+> 1. Environment variable
+
 
 # [Java](#tab/java)
 
@@ -266,7 +268,8 @@ app.Run();
 
 # [.NET](#tab/net)
 
-Set the Cloud Role Name and the Cloud Role Instance through [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, but it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+Set the Cloud Role Name and the Cloud Role Instance through [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, but it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+
 
 ```csharp
 // Setting role name and role instance
@@ -952,7 +955,8 @@ configure_azure_monitor(
 
 ## Enable Microsoft Entra ID (formerly Azure AD) authentication
 
-To create a more secure connection to Azure, enable Microsoft Entra authentication. This authentication method prevents unauthorized telemetry from being ingested into your subscription.
+To create a more secure connection to Azure, enable Microsoft Entra authentication. This authentication method prevents unauthorized telemetry from being ingested into your subscription.
+
 
 For more information, see the dedicated Microsoft Entra authentication page linked for each supported language.
 
@@ -982,7 +986,8 @@ For information on configuring Entra ID authentication, see [Microsoft Entra aut
 
 ---
 
-## Offline storage and automatic retries
+## Offline storage and automatic retries
+
 
 Azure Monitor OpenTelemetry-based offerings cache telemetry when an application disconnects from Application Insights and retry sending for up to 48 hours. For data handling recommendations, see [Export and delete private data](../logs/personal-data-mgmt.md#export-delete-or-purge-personal-data). High-load applications occasionally drop telemetry for two reasons: exceeding the allowable time or exceeding the maximum file size. When necessary, the product prioritizes recent events over old ones.
 
@@ -1025,7 +1030,8 @@ To disable this feature, set `AzureMonitorOptions.DisableOfflineStorage = true`.
 
 # [.NET](#tab/net)
 
-By default, the AzureMonitorExporter uses one of the following locations for offline storage, listed in order of precedence:
+By default, the AzureMonitorExporter uses one of the following locations for offline storage, listed in order of precedence:
+
 
 * Windows
     * %LOCALAPPDATA%\Microsoft\AzureMonitor
@@ -1328,8 +1334,8 @@ You can access the following OpenTelemetry configurations through environment va
 
 | Environment variable | Description |
 |----------------------|-------------|
-| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set this variable to the connection string for your Application Insights resource. |
-| `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set this variable to `true` to opt out of internal metrics collection. |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set this variable to the connection string for your Application Insights resource. |
+| `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set this variable to `true` to opt out of internal metrics collection. |
 | `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to use as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
 | `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_SERVICE_NAME` takes precedence. |
 
@@ -1337,10 +1343,12 @@ You can access the following OpenTelemetry configurations through environment va
 
 | Environment variable | Description |
 |----------------------|-------------|
-| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
-| `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set it to `true` to opt out of internal metrics collection. |
-| `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to use as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
-| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_SERVICE_NAME` takes precedence. |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set this variable to the connection string for your Application Insights resource. |
+| `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set this variable to `true` to opt out of internal metrics collection. |
+| `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to use as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
+
+| `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_SERVICE_NAME` takes precedence. |
+
 
 # [Java](#tab/java)
 
@@ -1350,7 +1358,7 @@ For more information about Java, see the [Java supplemental documentation](java-
 
 | Environment variable | Description |
 |----------------------|-------------|
-| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set it to the connection string for your Application Insights resource. |
+| `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set this variable to the connection string for your Application Insights resource. |
 
 For Spring Boot native applications, the [OpenTelemetry Java SDK configurations](https://opentelemetry.io/docs/languages/java/configuration/) are available.
 
@@ -1368,7 +1376,8 @@ For more information about OpenTelemetry SDK configuration, see the [OpenTelemet
 
 ---
 
-## Redact URL query strings
+## Redact URL query strings
+
 
 To redact URL query strings, turn off query string collection. This setting is recommended if you call Azure storage by using a SAS token.
 
@@ -1377,7 +1386,8 @@ To redact URL query strings, turn off query string collection. This setting is r
 When you use the [Azure.Monitor.OpenTelemetry.AspNetCore](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore) distro package, it includes both the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries. 
 The distro package sets query string redaction off by default.
 
-To change this behavior, set an environment variable to either `true` or `false`.
+To change this behavior, set an environment variable to either `true` or `false`.
+
 
 * ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is disabled by default. To enable, set this environment variable to `false`.
