@@ -50,7 +50,7 @@ For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
 
-You can collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
+To collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk), use the following code sample to manually subscribe to the source.
 
 ```csharp
 // Create an OpenTelemetry tracer provider builder.

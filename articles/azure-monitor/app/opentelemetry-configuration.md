@@ -113,7 +113,7 @@ Use one of the following two methods to configure the connection string:
     ```
 
 > [!NOTE]
-> If you set the connection string in more than one place, we adhere to the following precedence:
+> If you set the connection string in more than one place, the following precedence order applies:
 > 1. Code
 > 1. Environment variable
 
@@ -365,7 +365,7 @@ To set the cloud role name:
 
 # [Node.js](#tab/nodejs)
 
-Set the Cloud Role Name and the Cloud Role Instance via [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, although it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
+Set the Cloud Role Name and the Cloud Role Instance through [Resource](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/resource/sdk.md#resource-sdk) attributes. Cloud Role Name uses `service.namespace` and `service.name` attributes, but it falls back to `service.name` if `service.namespace` isn't set. Cloud Role Instance uses the `service.instance.id` attribute value. For information on standard attributes for resources, see [OpenTelemetry Semantic Conventions](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/README.md).
 
 ```typescript
 export class CloudRoleSample {
@@ -1400,7 +1400,7 @@ To change this behavior, set an environment variable to either `true` or `false`
 When you use the [Azure.Monitor.OpenTelemetry.Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter), you must manually include either the [ASP.NET Core](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore/) or [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http/) Instrumentation libraries in your OpenTelemetry configuration.
 These Instrumentation libraries have query string redaction enabled by default.
 
-To change this behavior, you must set an environment variable to either `true` or `false`.
+To change this behavior, set an environment variable to either `true` or `false`.
 
 * ASP.NET Core Instrumentation: `OTEL_DOTNET_EXPERIMENTAL_ASPNETCORE_DISABLE_URL_QUERY_REDACTION`
     Query String Redaction is enabled by default. To disable, set this environment variable to `true`.
@@ -1494,7 +1494,7 @@ export class RedactQueryStringsSample {
 
 # [Python](#tab/python)
 
-We're actively working in the OpenTelemetry community to support redaction.
+The OpenTelemetry community is actively working on supporting redaction.
 
 ---
 
