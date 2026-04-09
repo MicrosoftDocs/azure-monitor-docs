@@ -300,7 +300,7 @@ There's not currently a UI experience for creating a data collection rule (DCR) 
     "contentVersion": "1.0.0.0", 
     "parameters": { 
         "location": { 
-        "type": "string", 
+        "type": "String", 
         "defaultValue": "[resourceGroup().location]", 
         "metadata": { 
             "description": "Location for all resources." 
