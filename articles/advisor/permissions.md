@@ -15,7 +15,7 @@ Advisor uses the built-in roles provided by Azure role-based access control (Azu
 
 Review the following section to learn more about each role and the associated access.
 
-### Roles to view, dismiss, and postpone recommendations
+### Roles to go manage recommendation lifestyle
 
 | Role | View recommendations | Manage recommendation status |
 |:---|:--- |:--- |
