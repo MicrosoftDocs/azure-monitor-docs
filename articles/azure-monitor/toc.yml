@@ -600,11 +600,7 @@ items:
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
   - name: Service level indicators
-    items:
-    - name: Concepts
-      href: fundamentals/service-level-indicators.md
-    - name: Create service level indicators
-      href: fundamentals/service-level-indicators-create.md
+    href: fundamentals/service-level-indicators-create.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture

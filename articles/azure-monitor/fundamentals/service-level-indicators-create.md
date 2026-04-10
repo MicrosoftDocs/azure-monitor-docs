@@ -2,15 +2,30 @@
 title: Create service level indicators in Azure Monitor
 description: Learn how to create service level indicators in Azure Monitor, configure signals and baselines, and review SLI status for a service group.
 ms.topic: how-to
-ms.date: 04/07/2026
+ms.date: 04/10/2026
 ai-usage: ai-assisted
 ---
 
-# Create service level indicators in Azure Monitor
+# Service level indicators in Azure Monitor
 
-Use this article to create a service level indicator (SLI) for a [service group](/azure/governance/service-groups/overview) in the Azure portal. You select the source metrics, define how Azure Monitor evaluates good and bad outcomes, and choose where to store the evaluated SLI results.
+Service level indicators (SLIs) in Azure Monitor are measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a compliance period so you can tell whether the service is meeting the expectation you set.
 
-Before you start, review [Service level indicator concepts in Azure Monitor](service-level-indicators.md) for guidance on SLI types, evaluation methods, and signal design.
+This article shows you how to create and manage an SLI in the Azure portal. It also explains the key design choices you make during setup, including SLI type, evaluation method, signal design, and how Azure Monitor tracks error budget and burn rate.
+
+## Understand SLI basics
+
+Each SLI combines a few design choices that determine what Azure Monitor measures and how it evaluates the result.
+
+| Element | What it defines |
+|:---|:---|
+| Service group | The application or workload boundary that the SLI represents. |
+| SLI type | Whether the SLI measures availability or latency. |
+| Evaluation method | Whether Azure Monitor evaluates individual requests or time windows. |
+| Signal design | The metrics, filters, aggregations, and formulas that define good and bad outcomes. |
+| Baseline target | The service level objective (SLO) that the measured result is compared against. |
+| Compliance period | The time horizon over which Azure Monitor evaluates performance against the target. |
+
+Azure Monitor shows each SLI as a tracked reliability object with its own status, evaluation method, type, and remaining error budget. After you create an SLI, you can open its details to review the measured trend, error budget remaining, and burn rate.
 
 ## Prerequisites
 
@@ -73,7 +88,7 @@ On the **SLI** tab, select the evaluation method, choose the identity and worksp
 1. Select the source Azure Monitor workspace that contains the metrics you want to evaluate.
 1. Select the destination Azure Monitor workspace where Azure Monitor stores the evaluated SLI results.
 
-You can use the same workspace for both source and destination, or you can use separate workspaces.
+Azure Monitor uses the source workspace to read telemetry and the destination workspace to store the evaluated SLI results. You can use the same workspace for both source and destination, or you can use separate workspaces. Separate workspaces can help when you want to isolate raw telemetry from evaluated reliability data.
 
 :::image type="content" source="media/create-service-level-indicators/destination-workspace.png" alt-text="Screenshot of the Identity and data storage location section showing managed identity and destination workspace selection.":::
 
@@ -104,13 +119,21 @@ In the following example, the good signal is defined as the count of requests wi
 
 If you need more than one metric to define a signal, select **Add Metric** for each metric you need, and then select **Formula** to combine them. For example, you can use a formula such as `MetricA + MetricB`. You can also use a formula for a single metric, such as `MetricA * MetricA`.
 
+Use compatible aggregations and filters for the good and total signals. Otherwise, the resulting ratio might not represent the actual request experience.
+
 **Window-based evaluation**
 
 With this model, you don't explicitly provide good and total signals. For each window, Azure Monitor compares the metric value with a defined threshold to determine whether the window is good or bad.
 
 Use metrics, filters, and formulas in the same way as the request-based model to define the signal that you want to evaluate. Then define the evaluation criteria that determines uptime.
 
+Use request-based evaluation when reliability should reflect the experience of individual requests. Use window-based evaluation when reliability should reflect whether the service stayed within an acceptable operating range for each interval.
+
+For example, a five-minute window might be considered good only when 99th percentile latency stays below a defined threshold.
+
 :::image type="content" source="media/create-service-level-indicators/window-based-sli.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings.":::
+
+Preview charts help you validate that the selected metrics, filters, and formulas represent the intended workload before you create the SLI.
 
 After you finish the configuration on the **SLI** tab, select **Create**.
 
@@ -122,15 +145,33 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 1. Open the service group, and then select **Monitoring**.
 1. Select **View all SLIs** to open the management experience.
 1. Review the SLI status and remaining error budget in the list.
-1. Select an SLI to review trend, error budget, and burn rate charts. To learn how Azure Monitor calculates these values, see [Service level indicator concepts in Azure Monitor](service-level-indicators.md#baseline-targets-error-budget-and-burn-rate).
+1. Select an SLI to review trend, error budget, and burn rate charts.
 1. Edit or delete the SLI as needed.
 
 :::image type="content" source="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
 
+## Understand baseline target, error budget, and burn rate
+
+An SLI is a measured value. The baseline target defines whether that value is acceptable. In reliability engineering terms, this target is your service level objective.
+
+For example, you might set a target so that 95% of requests complete in less than 300 milliseconds, or so that the service maintains 99% availability during a calendar week.
+
+Azure Monitor uses the baseline target to calculate the remaining margin for failure.
+
+- **Error budget** is the amount of unreliability that the service can still absorb before it misses the baseline target.
+- **Burn rate** is the speed at which the service is consuming that error budget.
+
+For a baseline target of 99.9%, the error budget is 0.1%.
+
+`Error budget = 100% - baseline target`
+
+Use error budget to understand how much room for failure remains. Use burn rate to see whether current conditions are consuming that budget at a sustainable pace or at a rate that's likely to cause a miss before the end of the compliance period.
+
+Fast-burn conditions usually indicate sudden regressions. Slow-burn conditions indicate sustained degradation that can still cause the service to miss its target over time.
+
 
 ## Next steps
 
-- Review [Service level indicator concepts in Azure Monitor](service-level-indicators.md).
 - Review [Azure Monitor overview](overview.md).
 - Learn more about [Azure Monitor workspaces](../metrics/azure-monitor-workspace-overview.md).
 - Create alert notifications by using [action groups in Azure Monitor](../alerts/action-groups.md).
