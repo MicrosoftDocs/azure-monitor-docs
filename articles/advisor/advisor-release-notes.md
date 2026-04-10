@@ -11,7 +11,7 @@ Learn about the latest updates and changes in Azure Advisor with the items in th
 
 ## April 2026
 
-### Advisor Lifecycle Management (Preview)
+### Advisor State Management (Preview)
 
 With Azure Advisor recommendation state management capability, you can track and manage new and existing recommendations through their state lifecycle: active, postponed, dismissed, and completed.
 
