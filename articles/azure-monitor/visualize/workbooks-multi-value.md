@@ -2,7 +2,7 @@
 title: Azure Workbooks multi-value parameters
 description: Learn about adding multi-value parameters to your workbook.
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr
 ---
 

@@ -10,17 +10,14 @@ ms.custom:
 
 # Connection strings in Application Insights
 
-Connection strings specify to which Application Insights resource your instrumented application should send telemetry data. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
+Connection strings specify which Application Insights resource your instrumented application should send telemetry data to. A connection string is composed of multiple settings, each represented as a key-value pair and separated by semicolons. This consolidated configuration method simplifies the setup process by eliminating the need for multiple proxy settings.
 
 > [!IMPORTANT]
 > The connection string contains an instrumentation key (ikey) and an ApplicationId.
 > 
->The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
->Connection strings are enhanced by adding the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
-> If you want to protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
-
-
-[!INCLUDE [azure-monitor-instrumentation-key-deprecation](~/reusable-content/ce-skilling/azure/includes/azure-monitor-instrumentation-key-deprecation.md)]
+> The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
+> To enhance connection strings, add the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
+> To protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
 ## Connection string capabilities
 
@@ -31,17 +28,17 @@ Connection strings specify to which Application Insights resource your instrumen
 
 ## Find your connection string
 
-Your connection string appears in the **Overview** section of your Application Insights resource.
+You can find your connection string in the **Overview** section of your Application Insights resource.
 
 :::image type="content" source="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png" alt-text="Screenshot that shows the Application Insights overview and connection string." lightbox="media/migrate-from-instrumentation-keys-to-connection-strings/migrate-from-instrumentation-keys-to-connection-strings.png":::
 
 ## Schema
 
-Schema elements are explained in the following sections.
+The following sections explain the schema elements.
 
 ### Max length
 
-The connection has a maximum supported length of 4,096 characters.
+The connection supports up to 4,096 characters.
 
 ### Key-value pairs
 
@@ -49,18 +46,18 @@ A connection string consists of a list of settings represented as key-value pair
 `key1=value1;key2=value2;key3=value3`
 
 > [!TIP]
-> Configurable key-value pairs are covered in this document. Some key-value pairs aren't configurable and are set automatically, such as `ApplicationId`. These pairs can be safely ignored if they're observed in your environment.
+> This document covers configurable key-value pairs. Some key-value pairs aren't configurable and are set automatically, such as `ApplicationId`. You can safely ignore these pairs if you see them in your environment.
 
 ### Syntax
 
 * `InstrumentationKey` (for example, 00000000-0000-0000-0000-000000000000).
   `InstrumentationKey` is a *required* field.
 
-* `Authorization` (for example, ikey). This setting is optional because today we only support ikey authorization.
+* `Authorization` (for example, ikey). This setting is optional because today the SDK only supports ikey authorization.
 
 * `EndpointSuffix` (for example, applicationinsights.azure.cn). Setting the endpoint suffix tells the SDK which Azure cloud to connect to. The SDK assembles the rest of the endpoint for individual services.
 
-* Explicit endpoints. Any service can be explicitly overridden in the connection string:
+* Explicit endpoints. You can explicitly override any service in the connection string:
     * `IngestionEndpoint` (for example, `https://dc.applicationinsights.azure.com`)
     * `LiveEndpoint` (for example, `https://live.applicationinsights.azure.com`)
     * `ProfilerEndpoint` (for example, `https://profiler.monitor.azure.com`)
@@ -135,46 +132,24 @@ To list available regions, run the following command in the [Azure CLI](/cli/azu
 
 ## Set a connection string
 
-All our OpenTelemetry offerings and the following SDK versions onwards support connection strings:
-
-* .NET v2.12.0
-* JavaScript v2.3.0
-* NodeJS v1.5.0
-* Java v3.1.1
-
-You can set a connection string in code, by using an environment variable, or a configuration file.
-
-### Environment variable
-
-Connection string: `APPLICATIONINSIGHTS_CONNECTION_STRING`
+To learn about setting a connection string, see [OpenTelemetry Configuration](opentelemetry-configuration.md#connection-string) and [Microsoft Entra authentication for Application Insights](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
 
 ## Authenticated browser telemetry using connection strings
 
-When organizations disable local authentication on Application Insights to enforce Microsoft Entra ID, browser-based telemetry sent by the JavaScript SDK can no longer authenticate directly and may stop flowing.
+When organizations disable local authentication on Application Insights to enforce Microsoft Entra ID, the JavaScript SDK can't authenticate directly for browser-based telemetry, and telemetry might stop flowing.
 
 A practical pattern is to route browser telemetry through Azure API Management (APIM), which:
 
-* Authenticates to Application Insights using a managed identity, and
+* Authenticates to Application Insights by using a managed identity.
 * Forwards requests to the regional ingestion endpoint on your behalf.
 
-With this setup, your connection string continues to identify the destination Application Insights resource, but the IngestionEndpoint points to your APIM proxy URL.
+With this setup, your connection string continues to identify the destination Application Insights resource, but the `IngestionEndpoint` points to your APIM proxy URL.
 
 For end-to-end guidance, including CORS and APIM policies, see: [Using Azure API Management as a proxy for Application Insights Telemetry](https://techcommunity.microsoft.com/blog/azureobservabilityblog/using-azure-api-management-as-a-proxy-for-application-insights-telemetry/4422236).
 
-### Code samples
-
-| Language | Classic API | OpenTelemetry |
-|-----------------|-------------|---------------|
-| ASP.NET Core | [Application Insights SDK](asp-net-core.md#enable-application-insights-server-side-telemetry-no-visual-studio) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=aspnetcore#connection-string) |
-| .NET Framework | [Application Insights SDK](asp-net.md#add-application-insights-manually-no-visual-studio) | [AzMon Exporter](opentelemetry-configuration.md?tabs=net#connection-string) |
-| Java | [N/A](java-standalone-upgrade-from-2x.md) | [Java agent](opentelemetry-configuration.md?tabs=java#connection-string) |
-| JavaScript | [JavaScript (Web) SDK Loader Script](./javascript-sdk.md?tabs=javascriptwebsdkloaderscript#add-the-javascript-code) | [N/A](application-insights-faq.yml#can-opentelemetry-be-used-for-web-browsers) |
-| Node.js | [Application Insights SDK](nodejs.md#basic-usage) | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=nodejs#connection-string) |
-| Python | *The OpenCensus Python SDK has been retired.* | [AzMon OTel Distro](opentelemetry-configuration.md?tabs=python#connection-string) |
-
 ## Next steps
 
-To review frequently asked questions (FAQ): 
+To review frequently asked questions (FAQ), see: 
 
 * [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
 

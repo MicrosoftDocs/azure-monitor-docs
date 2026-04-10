@@ -9018,6 +9018,16 @@
    "source_path": "articles/azure-monitor/platform/rest-activity-log.md",
    "redirect_url": "/azure/azure-monitor/platform/activity-log#retrieve-activity-log-events-by-using-the-rest-api",
    "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-domainnames-slots-roles-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
   }
  ]
 }

@@ -3,7 +3,7 @@ title: Copy an Azure Monitor dashboard to Azure Managed Grafana
 description: Learn how to copy a saved dashboard from Azure Monitor dashboards with Grafana to an existing or new Azure Managed Grafana instance.
 ms.topic: how-to
 ms.reviewer: kayodeprinceMS
-ms.date: 03/04/2026
+ms.date: 04/02/2026
 ai-usage: ai-assisted
 ---
 

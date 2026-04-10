@@ -8,11 +8,14 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry
+# Migrate from Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs to Azure Monitor OpenTelemetry
 
-This guide provides step-by-step instructions to migrate applications from using Application Insights SDKs (Classic API) to Azure Monitor OpenTelemetry.
+This guide provides step-by-step instructions to migrate applications from using Application Insights SDKs ([Classic API](/previous-versions/azure/azure-monitor/app/classic-api)) to Azure Monitor OpenTelemetry.
 
-Expect a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+You get a similar experience with Azure Monitor OpenTelemetry instrumentation as with the Application Insights SDKs. For more information and a feature-by-feature comparison, see [release state of features](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
+
+> [!TIP]
+> To review archived .NET or Node.js classic API SDK information, see [API 2.x](/previous-versions/azure/azure-monitor/app/classic-api).
 
 # [.NET](#tab/dotnet)
 
@@ -96,15 +99,6 @@ For detailed guidance on replacing 2.x extensibility points, including edge case
 
 > [!TIP]
 > Resource-based values such as role metadata can flow through OpenTelemetry resource mappings instead of appearing on every telemetry item. If you need a key-value pair on every telemetry item, use `GlobalProperties` or a custom processor.
-
-SDK 3.x keeps only a subset of `TelemetryContext` properties. You can set these properties on individual telemetry items:
-
-| Context            | Properties                               |
-| ------------------ | ---------------------------------------- |
-| `User`             | `Id`, `AuthenticatedUserId`, `UserAgent` |
-| `Operation`        | `Name`                                   |
-| `Location`         | `Ip`                                     |
-| `GlobalProperties` | (dictionary)                             |
 
 ## Configure sampling
 
@@ -284,7 +278,7 @@ This [Java 2.x SDK project](https://github.com/Azure-Samples/ApplicationInsights
 This guide provides two options to upgrade from the Application Insights Node.js SDK 2.X to OpenTelemetry.
 
 * **Clean install** the [Node.js Azure Monitor OpenTelemetry Distro](https://github.com/microsoft/opentelemetry-azure-monitor-js).
-    * Remove dependencies on the Application Insights classic API.
+    * Remove dependencies on the Application Insights [classic API](/previous-versions/azure/azure-monitor/app/classic-api).
     * Familiarize yourself with OpenTelemetry APIs and terms.
     * Position yourself to use all that OpenTelemetry offers now and in the future.
 

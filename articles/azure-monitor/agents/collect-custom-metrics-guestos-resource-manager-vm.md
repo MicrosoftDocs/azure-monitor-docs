@@ -4,7 +4,7 @@ description: Send guest OS metrics to the Azure Monitor metric database store by
 ms.reviewer: shijain
 ms.topic: how-to
 ms.custom: devx-track-arm-template
-ms.date: 08/26/2024
+ms.date: 02/24/2026
 ---
 
 # Send Windows VM guest OS metrics to the Azure Monitor metrics store using an ARM template and Windows Diagnostic Extension
