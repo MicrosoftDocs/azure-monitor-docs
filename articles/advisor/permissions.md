@@ -29,6 +29,18 @@ Review the following section to learn more about each role and the associated ac
 | Resource Contributor | X | X |
 | Resource Owner | X | X |
 
+### Roles to manage access to Advisor personalized recommendations
+| Role | View reviews | View review recommendations | Manage recommendation statuses |
+|:---|:--- |:--- |:--- |
+| Advisor Reviews Reader/Advisor Reviews Contributor | X |  |  |
+| Advisor Recommendations Contributor (Assessments and Reviews) |  | X | X |
+| Subscription Reader | X | X |  |
+| Subscription Contributor | X | X | X |
+| Subscription Owner | X | X | X |
+| Resource Reader | X | X |  |
+| Resource Contributor | X | X | X |
+| Resource Owner | X | X | X |
+
 ### Roles to edit rules and configurations
 
 | Role | Edit rules | Edit subscription configuration | Edit resource group configuration |
