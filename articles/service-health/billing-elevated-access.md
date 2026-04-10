@@ -2,7 +2,7 @@
 title: Billing updates overview
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 04/06/2026
+ms.date: 04/10/2026
 ---
 
 # Billing updates
