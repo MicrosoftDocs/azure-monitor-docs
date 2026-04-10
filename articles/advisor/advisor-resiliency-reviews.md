@@ -128,9 +128,6 @@ On **Recommendations** > **Reliability**, view the **Active** review recommendat
 
 The recommendations are grouped by type.
 
-> [!NOTE]
-> If none of your resiliency review recommendations are in the **Accepted** state, the **Reviews** tab is hidden.
-
 :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendations pane of accepted recommendations." lightbox="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" source="./media/resiliency-reviews/resiliency-review-recommendation-list-accepted.png" type="content":::
 
 You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
