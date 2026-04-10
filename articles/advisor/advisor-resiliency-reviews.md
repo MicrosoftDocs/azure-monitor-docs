@@ -166,7 +166,7 @@ Recommendation status helps you decide what action to take. Review each availabl
 
 ## Review maintenance
 
-The engineers on your Microsoft account team keep track of the results of your actions on resiliency reviews and continue to refine the recommendation reviews accordingly.
+The engineers on your Microsoft account team track the results of your actions on resiliency reviews and continue to refine the recommendation reviews accordingly.
 
 ## Related articles
 
