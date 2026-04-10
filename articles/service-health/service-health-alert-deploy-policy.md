@@ -86,7 +86,7 @@ By default, the alert rules and action groups are configured to email subscripti
 - **Alert rule event types**:<br> The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions.
 
 - **Alert rule custom properties**:<br> This option allows the user to set key value pairs to be added to the alerts notification payload. These properties can be used in the actions that the action group calls, such as by a webhook, Azure function, or logic app action.<br> 
->[!Warning]  If you manually change alert rules or action groups that were created by a policy, those changes may be overwritten later. To avoid losing your changes, don't edit these alerts directly. Instead, make updates in the policy itself and then run remediation to apply the changes. 
+>[!NOTE]  If you manually change alert rules or action groups that were created by a policy, those changes may be overwritten later. To avoid losing your changes, don't edit these alerts directly. Instead, make updates in the policy itself and then run remediation to apply the changes. 
 
 - **Existing action group resource ids**:<br> Enter the resource IDs of existing action groups within the management group or subscription (based on the policy’s scope) that should be used to send alerts. This action group can be used to alert across subscriptions.<br>For more information, see [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
