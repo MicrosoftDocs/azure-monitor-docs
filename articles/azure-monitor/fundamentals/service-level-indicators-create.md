@@ -97,7 +97,7 @@ Azure Monitor uses the source workspace to read telemetry and the destination wo
 
 The SLI details define the metrics or formulas that Azure Monitor uses for the SLI evaluation. The configuration depends on the evaluation method you selected.
 
-**Request-based evaluation**
+### Request-based evaluation
 
 In a request-based SLI, Azure Monitor uses two values to evaluate reliability:
 
@@ -115,7 +115,7 @@ Optional: Specify an aggregation across multiple time series after temporal aggr
 
 If you need more than one metric to define a signal, select **Add Metric** for each metric you need, and then select **Formula** to combine them. For example, you can use a formula such as `MetricA + MetricB`. You can also use a formula for a single metric, such as `MetricA * MetricA`.
 
-**Window-based evaluation**
+### Window-based evaluation
 
 With this model, you don't explicitly provide good and total signals. For each window, Azure Monitor compares the metric value with a defined threshold to determine whether the window is good or bad.
 
@@ -125,11 +125,10 @@ Use metrics, filters, and formulas in the same way as the request-based model to
 
 Preview charts help you validate that the selected metrics, filters, and formulas represent the intended workload before you create the SLI.
 
-After you finish the configuration on the **SLI** tab, select **Create**.
 
 ## Baseline and alerts
 
-On the **Baseline + Alert** tab, set the target that the SLI should meet, choose how Azure Monitor evaluates compliance, and optionally configure alert notifications.
+On the **Baseline + Alert** tab, set the target that the SLI should meet, choose how Azure Monitor evaluates compliance, and optionally configure alert notifications. An SLI is a measured value. The baseline target defines whether that value is acceptable. In reliability engineering terms, this target is your service level objective.
 
 :::image type="content" source="media/create-service-level-indicators/baseline-alert.png" alt-text="Screenshot of the Baseline + Alert tab for creating an SLI, showing baseline, evaluation period, alert options, and action group selection.":::
 
@@ -157,8 +156,6 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 :::image type="content" source="media/create-service-level-indicators/manage-service-level-indicators.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
 
 ## Understand baseline target, error budget, and burn rate
-
-An SLI is a measured value. The baseline target defines whether that value is acceptable. In reliability engineering terms, this target is your service level objective.
 
 For example, you might set a target so that 95% of requests complete in less than 300 milliseconds, or so that the service maintains 99% availability during a calendar week.
 
