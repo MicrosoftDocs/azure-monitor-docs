@@ -122,10 +122,11 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 1. Open the service group, and then select **Monitoring**.
 1. Select **View all SLIs** to open the management experience.
 1. Review the SLI status and remaining error budget in the list.
-1. Select an SLI to review trend, error budget, and burn rate charts.
+1. Select an SLI to review trend, error budget, and burn rate charts. To learn how Azure Monitor calculates these values, see [Service level indicator concepts in Azure Monitor](service-level-indicators.md#baseline-targets-error-budget-and-burn-rate).
 1. Edit or delete the SLI as needed.
 
 :::image type="content" source="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
+
 
 ## Next steps
 
