@@ -122,7 +122,7 @@ The priority of a recommendation is based on the impact value and urgency of the
 
 For details on permissions to act on recommendations, see [Roles and permissions](./permissions.md "Roles and permissions | Azure Advisor | Microsoft Learn").
 
-### Access accepted review recommendations
+### Access review recommendations
 
 On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
 
