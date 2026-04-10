@@ -63,77 +63,42 @@ The **SLI** tab lets you define the metrics that are used for the SLI and how th
 | Request-based | Evaluates the ratio of good requests to total requests. received. A good outcome is when this ratio meets or exceeds the defined target during the compliance period. | Use when reliability should reflect per-request success or failure regardless of traffic spikes or uneven load distribution over time. This is the most common evaluation method. |
 | Window-based | Measures reliability using a custom condition over a metric timeseries. Evaluates the ratio of time intervals meeting a defined quality threshold to the total number of intervals in the compliance period. | Use when you want to mask short bursts of poor performance since compliance is averaged over intervals. |
 
-### Identity and data source
+### Identity and workspaces
+Two Azure Monitor workspaces must be specified for the SLI: a source workspace that contains the metrics to evaluate and a destination workspace where Azure Monitor stores the evaluated SLI results. You can use the same workspace for both source and destination or use separate workspaces.
 
-Select the Azure Monitor workspace that contains the metrics you want to use for the SLI and the user-assigned managed identity that has access to that workspace.
 
 ### SLI details
 
 The SLI details define the metrics or formulas to use for the SLI evaluation. This will vary based on the SLI type.
 
 **Request-based evaluation**
+This model is the most direct way to express outcomes such as successful requests, requests under a latency threshold, or requests that satisfy a specific dimension filter. 
 
-In a request-based SLI, Azure Monitor uses two queries:
+In a request-based SLI, Azure Monitor uses two values to evaluate reliability: 
 
 * **Good signal** is the numerator. It represents the requests that met the success condition.
 * **Total signal** is the denominator. It represents the full request volume that the SLI should evaluate.
 
-This model is the most direct way to express outcomes such as successful requests, requests under a latency threshold, or requests that satisfy a specific dimension filter. You can combine multiple metrics with formulas when one metric alone doesn't represent the workload behavior that you want to measure.
+If you can use a single metric for your SLI, then select that metric and method to aggregate the value over the given time period. This is referred to as the temporal aggregation. For example, you may want to use an average of the value over that time, the maximum value measured, or use a count of the number of requests that meet a certain condition. 
+
+Add filters to the metric, such as a status code or dimension value, to limit the values used for the calculation. For example, you can filter the good signal to only count requests with a 200 status code, and filter the total signal to count all requests regardless of status code. You'll typically use filters for the good value and may use fewer or no filters for the total value depending on the scenario. 
+
+Optionally, specify an aggregation across multiple time series after temporal aggregation. This is known as the spatial aggregation. 
 
 In the following example, the good signal is defined as the count of requests with a 200 status code, and the total signal is defined as the count of all requests. The resulting SLI will measure the ratio of successful requests to total requests.
 
 :::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI configuration showing separate Good signal and Total signal sections, each with options to add metrics and formulas.":::
 
 
+If you need more than one metric to define a signal, then select **Add Metric** to define each metric to use and then select **Formula** to add an operation to stitch the specified metrics. For example, you may specify a formula such as `MetricA + MetricB`. You may also use a formula for a single metric, such as `MetricA * MetricA`. 
 
-Consistent aggregation matters in this model. If the good signal and total signal use incompatible aggregations or filters, the resulting ratio can misrepresent the true request experience.
+**Windows-based evaluation**
+With this model, you don’t explicitly provide good and total signal. For each window, the value of the metric is compared to a defined threshold to determine if the window is "good" (uptime) or "bad" (downtime). 
 
+Use metrics, filters, and formulas in the same way as the request-based model to define the signal that you want to evaluate. Then, define the evaluation criteria that determines uptime. 
 
-### Identity and data storage location
+:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI configuration showing separate Good signal and Total signal sections, each with options to add metrics and formulas.":::
 
-Select the Azure Monitor workspace that will store the SLI metric values and the user-assigned managed identity that has access to that workspace.
-
-
-
-
-1. Under **Metric details**, select **Request-based** or **Window-based**.
-1. Select the user-assigned managed identity for metric reads, and then select the source workspace.
-1. Configure the query logic for your evaluation model by selecting metrics, dimensions, filters, aggregations, and formulas as needed.
-1. For request-based SLIs, configure **Good signal** and **Total signal**. For window-based SLIs, configure the signal, window duration, and threshold that determine whether a window is good or bad.
-1. Select **Show Preview charts** to validate results.
-
-Use these guidelines while you build the signal:
-
-* For request-based SLIs, the good signal is the numerator and the total signal is the denominator.
-* Use temporal and spatial aggregations that match how you want the signal to be evaluated.
-* Add filters when you need to scope the signal to a specific workload slice, such as a status code or dimension value.
-* Use formulas when you need to combine multiple metrics into one signal.
-
-Request-based SLIs are usually the best choice when each request should contribute equally to the result. Window-based SLIs are useful when you want to evaluate whether each interval meets a threshold and smooth short bursts of poor performance.
-
-:::image type="content" source="media/create-service-level-indicators/sli-tab-overview.png" alt-text="Screenshot of the SLI tab with metric details, signal configuration, and destination settings for a request-based SLI.":::
-
-### Identity and data storage location
-
-1. Select the user-assigned managed identity for writes.
-1. Select the destination Azure Monitor workspace.
-1. Confirm required access to the destination workspace and its default data collection rule.
-1. Select **Next**.
-
-You can use the same workspace for both source and destination, or use separate workspaces. Azure Monitor stores the evaluated SLI results in the destination workspace so you can review the SLI later.
-
-:::image type="content" source="media/create-service-level-indicators/destination-workspace.png" alt-text="Screenshot of the identity and data storage location section for selecting a managed identity and destination workspace.":::
-
-### Baseline tab
-
-1. Enter the baseline target.
-1. Select the lookback window.
-1. Select the compliance period.
-1. Review the configuration and create the SLI.
-
-The baseline is your SLO target. Azure Monitor uses this value to calculate error budget and evaluate compliance over the lookback window and compliance period that you choose.
-
-When alerting is enabled, use baseline-based alerts for static threshold checks and burn rate-based alerts for error-budget consumption velocity.
 
 ## View and manage SLIs
 
