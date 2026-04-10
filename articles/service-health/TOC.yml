@@ -88,12 +88,14 @@
   
 - name: How-to Guides
   items:
-    - name: How to create Service health alerts
-      href: ./alerts-activity-log-service-notifications-portal.md
     - name: How to report an impact
       href: report-issue.md
-    - name: How to send Service health alerts
+    - name: How to create and send Service health alerts
       items:
+        - name: How to create Service health alerts
+          href: ./alerts-activity-log-service-notifications-portal.md
+        - name: Deploy Service Health alert rules at scale using Azure Policy 
+          href: service-health-alert-deploy-policy.md
         - name: Send alerts to outside systems via webhook
           href: service-health-alert-webhook-guide.md
         - name: Send alerts with ServiceNow
@@ -113,8 +115,7 @@
          href: alerts-activity-log-service-notifications-bicep.md
        - name: Create activity log alerts using ARM template
          href: alerts-activity-log-service-notifications-arm.md
-       - name: Deploy Service Health alert rules at scale using Azure Policy 
-         href: service-health-alert-deploy-policy.md
+       
        
     - name: How to use Resource Graph queries
       items:
