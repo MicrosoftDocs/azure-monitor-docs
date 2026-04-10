@@ -60,7 +60,7 @@ On the **Basics** tab, enter the SLI identity and select the SLI type.
 1. Optional: Enter a description.
 1. Select the SLI type.
 
-:::image type="content" source="media/create-service-level-indicators/create-sli-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
+:::image type="content" source="media/create-service-level-indicators/create-service-level-indicator-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
 
 The SLI type defines the reliability question you're asking. Availability asks whether the service is working. Latency asks whether the service is responding quickly enough to protect the experience you want to measure.
 
@@ -73,9 +73,11 @@ The SLI type defines the reliability question you're asking. Availability asks w
 
 On the **SLI** tab, select the evaluation method, choose the identity and workspaces, and define the signals that Azure Monitor uses to evaluate the SLI.
 
-:::image type="content" source="media/create-service-level-indicators/metric-details.png" alt-text="Screenshot of the Metric details and Identity and data source sections showing the evaluation method selector, managed identity selection, and source workspace selection.":::
+:::image type="content" source="media/create-service-level-indicators/service-level-indicator-tab-metrics-details-managed-identity.png" alt-text="Screenshot of the SLI tab showing evaluation method dropdown, managed identity selection, data source, and metric configuration fields." lightbox="media/create-service-level-indicators/service-level-indicator-tab-metrics-details-managed-identity.png":::
 
 ### Metrics details
+
+The evaluation method determines how Azure Monitor interprets the telemetry for your SLI. Choose the method that best matches the way you want to measure reliability for the service.
 
 | Evaluation method | How it works | Typical fit |
 |:---|:---|:---|
@@ -90,16 +92,12 @@ On the **SLI** tab, select the evaluation method, choose the identity and worksp
 
 Azure Monitor uses the source workspace to read telemetry and the destination workspace to store the evaluated SLI results. You can use the same workspace for both source and destination, or you can use separate workspaces. Separate workspaces can help when you want to isolate raw telemetry from evaluated reliability data.
 
-:::image type="content" source="media/create-service-level-indicators/destination-workspace.png" alt-text="Screenshot of the Identity and data storage location section showing managed identity and destination workspace selection.":::
-
 
 ### SLI details
 
 The SLI details define the metrics or formulas that Azure Monitor uses for the SLI evaluation. The configuration depends on the evaluation method you selected.
 
 **Request-based evaluation**
-
-Use this model to measure outcomes such as successful requests, requests under a latency threshold, or requests that satisfy a specific dimension filter.
 
 In a request-based SLI, Azure Monitor uses two values to evaluate reliability:
 
@@ -112,14 +110,10 @@ Add filters such as a status code or dimension value to limit the values used fo
 
 Optional: Specify an aggregation across multiple time series after temporal aggregation. This setting is the spatial aggregation.
 
-In the following example, the good signal is defined as the count of requests with a 200 status code, and the total signal is defined as the count of all requests. The resulting SLI will measure the ratio of successful requests to total requests.
-
-:::image type="content" source="media/create-service-level-indicators/request-based-sli.png" alt-text="Screenshot of the request-based SLI configuration showing separate Good signal and Total signal sections, each with options to add metrics and formulas.":::
+:::image type="content" source="media/create-service-level-indicators/request-based-service-level-indicator-good-total-signal-configuration.png" alt-text="Screenshot of request-based SLI setup showing Good signal and Total signal sections with metric selection, filters, and Add Metric buttons.":::
 
 
 If you need more than one metric to define a signal, select **Add Metric** for each metric you need, and then select **Formula** to combine them. For example, you can use a formula such as `MetricA + MetricB`. You can also use a formula for a single metric, such as `MetricA * MetricA`.
-
-Use compatible aggregations and filters for the good and total signals. Otherwise, the resulting ratio might not represent the actual request experience.
 
 **Window-based evaluation**
 
@@ -127,15 +121,27 @@ With this model, you don't explicitly provide good and total signals. For each w
 
 Use metrics, filters, and formulas in the same way as the request-based model to define the signal that you want to evaluate. Then define the evaluation criteria that determines uptime.
 
-Use request-based evaluation when reliability should reflect the experience of individual requests. Use window-based evaluation when reliability should reflect whether the service stayed within an acceptable operating range for each interval.
-
-For example, a five-minute window might be considered good only when 99th percentile latency stays below a defined threshold.
-
-:::image type="content" source="media/create-service-level-indicators/window-based-sli.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings.":::
+:::image type="content" source="media/create-service-level-indicators/window-based-service-level-indicator.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings.":::
 
 Preview charts help you validate that the selected metrics, filters, and formulas represent the intended workload before you create the SLI.
 
 After you finish the configuration on the **SLI** tab, select **Create**.
+
+## Baseline and alerts
+
+On the **Baseline + Alert** tab, set the target that the SLI should meet, choose how Azure Monitor evaluates compliance, and optionally configure alert notifications.
+
+:::image type="content" source="media/create-service-level-indicators/baseline-alert.png" alt-text="Screenshot of the Baseline + Alert tab for creating an SLI, showing baseline, evaluation period, alert options, and action group selection.":::
+
+1. In **Baseline (SLO)**, enter the target percentage that the SLI should meet.
+1. In **Evaluation period**, select the time window that Azure Monitor uses to evaluate compliance.
+1. Optional: Turn on **Enable Alert** if you want Azure Monitor to create alerts for this SLI.
+1. Optional: Keep **Baseline alert** selected to be notified when the SLI falls below the target for the selected evaluation period.
+1. Optional: Configure **Fast burn rate** to detect rapid error budget consumption over a short lookback period.
+1. Optional: Configure **Slow burn rate** to detect sustained error budget consumption over a longer lookback period.
+1. In **Action groups**, select one or more action groups to define who gets notified and what actions run when an alert fires.
+
+Use the baseline alert when you want to know that the SLI is out of compliance. Use burn-rate alerts when you want earlier warning that current conditions are consuming the error budget too quickly.
 
 
 ## View and manage SLIs
@@ -148,7 +154,7 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 1. Select an SLI to review trend, error budget, and burn rate charts.
 1. Edit or delete the SLI as needed.
 
-:::image type="content" source="media/create-service-level-indicators/manage-slis.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
+:::image type="content" source="media/create-service-level-indicators/manage-service-level-indicators.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
 
 ## Understand baseline target, error budget, and burn rate
 
