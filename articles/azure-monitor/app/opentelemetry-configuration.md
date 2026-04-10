@@ -62,7 +62,6 @@ Use one of the following three ways to configure the connection string:
 
 > [!NOTE]
 > If you set the connection string in more than one place, the following precedence order applies:
-
 > 1. Code
 > 1. Environment variable
 > 1. Configuration file
