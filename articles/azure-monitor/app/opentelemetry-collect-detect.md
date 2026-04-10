@@ -20,13 +20,9 @@ To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
-<!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
-
-## Automatic data collection
+## Included instrumentation libraries
 
 The Azure Monitor Distros automatically collect data by bundling OpenTelemetry instrumentation libraries.
-
-### Included instrumentation libraries
 
 # [ASP.NET Core](#tab/aspnetcore)
 
