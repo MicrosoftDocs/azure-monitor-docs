@@ -59,11 +59,11 @@ A typical deployment is shown in the preceding image and includes the following 
 
 
 
-## Azure Monitor pipeline compared to Azure Monitor Agent
+## Azure Monitor pipeline compared to Azure Monitor agent
 
-Azure Monitor pipeline and [Azure Monitor Agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) address different telemetry ingestion needs but often work well together.
+Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) address different telemetry ingestion needs but often work well together.
 
-| Capability | Azure Monitor pipeline | Azure Monitor Agent |
+| Capability | Azure Monitor pipeline | Azure Monitor agent |
 |:---|:---|:---|
 | Ingestion model | Gateway-based, resilient, scalable | Agent-based, direct to cloud |
 | Best for | Edge, hybrid, and multicloud environments with high volume or restricted connectivity | Azure and Arc-enabled resources with reliable cloud connectivity |
@@ -72,21 +72,6 @@ Azure Monitor pipeline and [Azure Monitor Agent (AMA)](/azure/azure-monitor/agen
 | Scale | High-throughput telemetry at scale | Moderate telemetry volumes |
 
 Many architectures use both together. AMA handles Azure-connected resources, and Azure Monitor pipeline serves as a central ingestion gateway for edge and multicloud telemetry.
-
-## Setup sequence
-
-Use the following sequence for a new deployment:
-
-1. Complete the shared cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md) to prepare the cluster.
-1. Consider [pod placement](./pipeline-pod-placement.md) for the pipeline.
-1. Choose a configuration method for the pipeline:
-     - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
-     - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
-1. Expose the pipeline through a gateway so that external clients can reach the pipeline receivers to send data to them. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
-1. If you need encrypted ingestion, configure TLS. See [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. Configure connections for your clients to the cluster. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
-1. If you need to filter, aggregate, or reshape incoming data, add [pipeline transformations](./pipeline-transformations.md).
-1. After the core flow is working, review [Extension versions](./pipeline-extension-versions.md) for version details.
 
 ## Supported configurations
 
@@ -98,6 +83,6 @@ For more information, see [Product availability by region](https://azure.microso
 
 ## Related articles
 
-- Complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
+- Complete the cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Review encryption options in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).

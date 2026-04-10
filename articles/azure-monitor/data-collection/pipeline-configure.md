@@ -27,6 +27,10 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
     1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md#add-a-new-client-to-an-existing-receiver).
 1. If you need encrypted ingestion:
     1. Configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+1. If default scheduling behavior doesn't meet your performance, isolation, or compliance needs:
+    1. Configure [pod placement](./pipeline-pod-placement.md) for the pipeline.
+
+:::image type="content" source="media/pipeline-configure/pipeline-setup-flow.png" alt-text="Diagram of Azure Monitor pipeline setup flow with steps for prerequisites, cert-manager, deployment, and decision points for data, TLS, clients, and scheduling.":::
 
 
 ## Prerequisites

@@ -17,7 +17,7 @@ sections:
     questions:
       - question: What is Azure Monitor pipeline?
         answer: |
-          The Azure Monitor pipeline extends enterprise-grade telemetry ingestion to any environment, providing a **single point of control** to securely ingest data, optimize data before ingestion, optimize costs, and ensure consistent delivery to the cloud.
+          Azure Monitor pipeline extends enterprise-grade telemetry ingestion to any environment, providing a **single point of control** to securely ingest data, optimize data before ingestion, optimize costs, and ensure consistent delivery to the cloud.
 
           It runs on Azure Arc–enabled Kubernetes clusters and uses open-source technologies from the **OpenTelemetry ecosystem**, enabling portability and interoperability across environments.
 

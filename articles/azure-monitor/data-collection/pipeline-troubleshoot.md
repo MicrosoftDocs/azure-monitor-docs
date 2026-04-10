@@ -59,9 +59,7 @@ kubectl logs -n mon -l app.kubernetes.io/name=collector -f
 
 These logs often contain detailed error messages and stack traces that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
 
-## Common issues
-
-### Deployment and configuration issues
+## Deployment and configuration issues
 
 <details>
 <summary><b>Pipeline pods are in CrashLoopBackOff status</b></summary>
@@ -124,7 +122,7 @@ These logs often contain detailed error messages and stack traces that can help 
 
 </details>
 
-### Data collection issues
+## Data collection issues
 
 <details>
 <summary><b>Pipeline not receiving telemetry data from clients</b></summary>
@@ -179,7 +177,7 @@ These logs often contain detailed error messages and stack traces that can help 
 
 </details>
 
-### Connectivity and reliability issues
+## Connectivity and reliability issues
 
 <details>
 <summary><b>Buffered data not being backfilled after connectivity is restored</b></summary>
@@ -243,7 +241,7 @@ These logs often contain detailed error messages and stack traces that can help 
 
 </details>
 
-### Performance and resource issues
+## Performance and resource issues
 
 <details>
 <summary><b>High memory or CPU usage on pipeline pods</b></summary>
