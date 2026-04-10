@@ -2,16 +2,16 @@
 title: Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
 description: Introduces Azure Performance Diagnostics VM Extension for Windows.
 ms.topic: troubleshooting
-ms.date: 11/19/2025
+ms.date: 04/03/2026
 ---
 # Azure Performance Diagnostics (PerfInsights) VM extension for Windows
 
 **Applies to:** :heavy_check_mark: Windows VMs
 
-[Performance Diagnostics](performance-diagnostics.md) is a troubleshooting tool that helps you identify and resolve performance issues on Azure virtual machines (VMs). This article describes the VM extension that enables Performance Diagnostics on Windows VMs and alternate methods on how to install it.
+[Performance diagnostics](performance-diagnostics.md) is a troubleshooting tool that helps you identify and resolve performance problems on Azure virtual machines (VMs). This article describes the VM extension that enables performance diagnostics on Windows VMs and alternate methods for installing it.
 
 > [!NOTE]
-> See [Run Performance Diagnostics reports on Azure virtual machines](performance-diagnostics-run.md) for details on enabling the tool using the Azure portal and how to run reports.
+> For details on enabling the tool by using the Azure portal and how to run reports, see [Run performance diagnostics reports on Azure virtual machines](performance-diagnostics-run.md).
 
 
 ## Extension schema
@@ -41,7 +41,37 @@ Specify the authentication type in the JSON file. If no authentication type is s
         "xperfTrace": "[parameters('xperfTrace')]",
         "storPortTrace": "[parameters('storPortTrace')]",         
         "requestTimeUtc":  "[parameters('requestTimeUtc')]",
-        "resourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+        "resourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]",
+        "Overrides": {
+          "AlwaysOnThresholdConfigs": {
+            "HighCPURule": {
+              "CpuPercentageThresholdAllCore": "[parameters('alwaysOnCpuAllCoreThreshold')]",
+              "CpuPercentageThresholdAnyCore": "[parameters('alwaysOnCpuAnyCoreThreshold')]"
+            },
+            "HighMemoryRule": {
+              "AvailablePhysicalMemoryPercentageThreshold": "[parameters('alwaysOnAvailableMemoryThreshold')]",
+              "CommitInUsePercentageThreshold": "[parameters('alwaysOnCommitMemoryThreshold')]"
+            },
+            "HighDiskRule": {
+              "DiskIopsWritePercentageThreshold": "[parameters('alwaysOnDiskWriteThreshold')]",
+              "DiskIopsReadPercentageThreshold": "[parameters('alwaysOnDiskReadThreshold')]"
+            }
+          },
+          "OnDemandThresholdConfigs": {
+            "HighCPURule": {
+              "CpuPercentageThresholdAllCore": "[parameters('onDemandCpuAllCoreThreshold')]",
+              "CpuPercentageThresholdAnyCore": "[parameters('onDemandCpuAnyCoreThreshold')]"
+            },
+            "HighMemoryRule": {
+              "AvailablePhysicalMemoryPercentageThreshold": "[parameters('onDemandAvailableMemoryThreshold')]",
+              "CommitInUsePercentageThreshold": "[parameters('onDemandCommitMemoryThreshold')]"
+            },
+            "HighDiskRule": {
+              "DiskIopsWritePercentageThreshold": "[parameters('onDemandDiskWriteThreshold')]",
+              "DiskIopsReadPercentageThreshold": "[parameters('onDemandDiskReadThreshold')]"
+            }
+          }
+        }
       },
     "protectedSettings": {
         "authenticationType": "[parameters('authenticationType')]",                         "storageAccountKey": "[parameters('storageAccountKey')]",
@@ -60,19 +90,20 @@ Specify the authentication type in the JSON file. If no authentication type is s
 | type | AzurePerformanceDiagnostics | The type of the VM extension. |
 | typeHandlerVersion | 1.0 | The version of the extension handler. |
 | performanceScenario | basic | The performance scenario for which to capture data. Valid values are: **basic**, **vmslow**, **azurefiles**, and **custom**. |
-| enableContinuousDiagnostics | True | Enable continuous diagnostics. Valid values are **true** or **false**. To enable Continuous Performance Diagnostics, you need to provide this property. |
+| enableContinuousDiagnostics | True | Enable continuous diagnostics. Valid values are **true** or **false**. To enable continuous performance diagnostics, provide this property. |
 | traceDurationInSeconds | 300 | The duration of the traces, if any of the trace options are selected. |
-| perfCounterTrace | p | Option to enable Performance Counter Trace. Valid values are **p** or empty value. If you do not want to capture this trace, leave the value as empty. |
-| networkTrace | n | Option to enable Network Trace. Valid values are **n** or empty value. If you do not want to capture this trace, leave the value as empty. |
-| xperfTrace | x | Option to enable XPerf Trace. Valid values are **x** or empty value. If you do not want to capture this trace, leave the value as empty. |
-| storPortTrace | s | Option to enable StorPort Trace. Valid values are **s** or empty value. If you do not want to capture this trace, leave the value as empty. |
+| perfCounterTrace | p | Option to enable Performance Counter Trace. Valid values are **p** or empty value. If you don't want to capture this trace, leave the value as empty. |
+| networkTrace | n | Option to enable Network Trace. Valid values are **n** or empty value. If you don't want to capture this trace, leave the value as empty. |
+| xperfTrace | x | Option to enable XPerf Trace. Valid values are **x** or empty value. If you don't want to capture this trace, leave the value as empty. |
+| storPortTrace | s | Option to enable StorPort Trace. Valid values are **s** or empty value. If you don't want to capture this trace, leave the value as empty. |
 | srNumber | 123452016365929 | The support ticket number, if available. Leave the value as empty if you don't have it. |
-| requestTimeUtc | 2017-09-28T22:08:53.736Z | Current Date Time in Utc. If you are using the portal to install this extension, you do not need to provide this value. |
+| requestTimeUtc | 2017-09-28T22:08:53.736Z | Current date and time in UTC. If you're using the portal to install this extension, you don't need to provide this value. |
 | resourceId | /subscriptions/{subscriptionId}<br>/resourceGroups/{resourceGroupName}<br>/providers/{resourceProviderNamespace}<br>/{resourceType}/{resourceName} | The unique identifier of a VM. |
 | storageAccountName | mystorageaccount | The name of the storage account to store the diagnostics logs and results. |
 | storageAccountKey | aB1cD2eF-3gH4iJ5kL6-mN7oP8qR= | The key for the storage account. |
-|authenticationType|systemmanagedidentity|The authentication type used to connect to the storage account. Valid values are `systemmanagedidentity`, `usermanagedidentity`, and `storagekeys`.|
-|managedIdentityClientId|00001111-aaaa-2222-bbbb-3333cccc4444|The client ID of the user-managed identity to be used for authenticating to the storage account.|
+| authenticationType | systemmanagedidentity | The authentication type used to connect to the storage account. Valid values are `systemmanagedidentity`, `usermanagedidentity`, and `storagekeys`. |
+| managedIdentityClientId | 00001111-aaaa-2222-bbbb-3333cccc4444 | The client ID of the user-managed identity to use for authenticating to the storage account. |
+| Overrides | `"Overrides": { "AlwaysOnThresholdConfigs": { "HighCPURule": { "CpuPercentageThresholdAllCore": 80 } } }` | (Optional) Specifies user-defined threshold values that performance diagnostics uses to evaluate CPU, memory, and disk utilization during continuous or on-demand diagnostics runs. If you don't specify this property, default threshold values are used. Specify only the thresholds that you want to override. |
 
 
 ## Remove the extension
@@ -82,8 +113,8 @@ Specify the authentication type in the JSON file. If no authentication type is s
 
 To remove the extension from a virtual machine, follow these steps:
 
-1. Sign in to the [Azure portal](https://portal.azure.com), select the virtual machine from which you want to remove this extension, and then select the **Extensions + applications** blade.
-2. Select the Performance Diagnostics Extension, and then select **Uninstall**.
+1. Sign in to the [Azure portal](https://portal.azure.com). Select the virtual machine from which you want to remove this extension, and then select the **Extensions + applications** blade.
+1. Select the **AzurePerformanceDiagnostics** extension, and then select **Uninstall**.
 
      :::image type="content" source="media/performance-diagnostics-extension/uninstall-extension.png" alt-text="Screenshot of Extensions blade, with Uninstall highlighted.":::
 
@@ -146,12 +177,12 @@ Azure virtual machine extensions can be deployed with Azure Resource Manager tem
      "defaultValue": "10/2/2017 11:06:00 PM"
    },
    "authenticationType": {
-	 "type": "string",
-	 "defaultValue": "SystemManagedIdentity"
+     "type": "string",
+     "defaultValue": "SystemManagedIdentity"
    },
    "managedIdentityClientId": {
-	 "type": "string",
-		 "defaultValue": ""
+     "type": "string",
+         "defaultValue": ""
    }      
  },
  "resources": [
@@ -175,7 +206,8 @@ Azure virtual machine extensions can be deployed with Azure Resource Manager tem
          "xperfTrace": "[parameters('xperfTrace')]",
          "storPortTrace": "[parameters('storPortTrace')]",         
          "requestTimeUtc":  "[parameters('requestTimeUtc')]",
-         "resourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]"
+         "resourceId": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vmName'))]",
+         "Overrides": "[parameters('overrides')]"
        },
        "protectedSettings": {
            "storageAccountKey": "[parameters('storageAccountKey')]"
@@ -221,11 +253,11 @@ Use the `Set-AzVMExtension` command to deploy Azure Performance Diagnostics VM E
 
 ## Troubleshoot and support
 
-* Extension deployment status (in the notification area) might show "Deployment in progress" even though the extension is successfully provisioned. This issue can be safely ignored, as long as the extension status indicates that the extension is successfully provisioned.
+* The extension deployment status (in the notification area) might show *Deployment in progress* even though the extension is successfully provisioned. Ignore this issue as long as the extension status indicates that the extension is successfully provisioned.
   
-* You can address some issues during installation by using the extension logs. Extension execution output is logged to files found in `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Performance.Diagnostics.AzurePerformanceDiagnostics\<version>`.
+* Use the extension logs to address some issues during installation. The extension execution output is logged to files found in `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Performance.Diagnostics.AzurePerformanceDiagnostics\<version>`.
 
-* If you see the following errors in the Azure portal or Performance Diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), this usually means the HTTPS certificate chain is broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
+* If you see the following errors in the Azure portal or performance diagnostics extension logs (*AzPerfDiagExtension.log* or *PerfInsights.log*), the HTTPS certificate chain is usually broken. To resolve the errors, ensure that you don't have a Network Security Group (NSG) blocking access to the Certificate Authority URLs described in [Azure Certificate Authority details](/azure/security/fundamentals/tls-certificate-changes#will-this-change-affect-me). Or ensure that you don't have any SSL inspection tool in your Network Virtual Appliance or firewall.
 
     - Provisioning Failed - message: Failed to upload the PerfInsights result to Azure storage account.
     - PerfInsights process exited with code 1700.
