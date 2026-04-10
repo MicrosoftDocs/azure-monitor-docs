@@ -1,9 +1,9 @@
 ---
-title: Supported log categories - Microsoft.HealthcareApis/services
-description: Reference for Microsoft.HealthcareApis/services in Azure Monitor Logs.
+title: Supported log categories - Microsoft.Discovery/bookshelves
+description: Reference for Microsoft.Discovery/bookshelves in Azure Monitor Logs.
 ms.topic: generated-reference
 ms.date: 04/06/2026
-ms.custom: Microsoft.HealthcareApis/services, naam
+ms.custom: Microsoft.Discovery/bookshelves, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
@@ -12,16 +12,12 @@ ms.custom: Microsoft.HealthcareApis/services, naam
 
 
 
-# Supported logs for Microsoft.HealthcareApis/services  
-The following table lists the types of logs available for the Microsoft.HealthcareApis/services resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/services](../supported-metrics/microsoft-healthcareapis-services-metrics.md)  
+# Supported logs for Microsoft.Discovery/bookshelves  
+The following table lists the types of logs available for the Microsoft.Discovery/bookshelves resource type.
   
 
   
-[!INCLUDE [Microsoft.HealthcareApis/services](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-services-logs-include.md)]  
+[!INCLUDE [Microsoft.Discovery/bookshelves](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-discovery-bookshelves-logs-include.md)]  
   
 
 ## Next Steps

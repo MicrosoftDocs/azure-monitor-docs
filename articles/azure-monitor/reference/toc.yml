@@ -63,10 +63,6 @@ items:
             href: supported-metrics/microsoft-cdn-edgeactions-metrics.md
           - name: Microsoft.Cdn/profiles
             href: supported-metrics/microsoft-cdn-profiles-metrics.md
-          - name: Microsoft.ClassicCompute/domainNames/slots/roles
-            href: supported-metrics/microsoft-classiccompute-domainnames-slots-roles-metrics.md
-          - name: Microsoft.ClassicCompute/virtualMachines
-            href: supported-metrics/microsoft-classiccompute-virtualmachines-metrics.md
           - name: Microsoft.ClassicStorage/storageAccounts
             href: supported-metrics/microsoft-classicstorage-storageaccounts-metrics.md
           - name: Microsoft.ClassicStorage/storageAccounts/blobServices
@@ -795,6 +791,15 @@ items:
           - name: Microsoft.DigitalTwins/digitalTwinsInstances
             href: supported-logs/microsoft-digitaltwins-digitaltwinsinstances-logs.md
             displayName: DataHistoryOperation,DigitalTwinsOperation,EventRoutesOperation,ModelsOperation,QueryOperation,ResourceProviderOperation
+          - name: Microsoft.Discovery/bookshelves
+            href: supported-logs/microsoft-discovery-bookshelves-logs.md
+            displayName: Audit Logs
+          - name: Microsoft.Discovery/supercomputers
+            href: supported-logs/microsoft-discovery-supercomputers-logs.md
+            displayName: Audit Logs
+          - name: Microsoft.Discovery/workspaces
+            href: supported-logs/microsoft-discovery-workspaces-logs.md
+            displayName: Audit Logs
           - name: Microsoft.DocumentDB/cassandraClusters
             href: supported-logs/microsoft-documentdb-cassandraclusters-logs.md
             displayName: CassandraAudit,CassandraLogs
