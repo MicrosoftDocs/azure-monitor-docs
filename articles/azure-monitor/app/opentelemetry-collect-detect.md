@@ -1,6 +1,6 @@
 ---
 title: Data Collection and Resource Detectors for Azure Monitor OpenTelemetry
-description: Learn how Azure Monitor OpenTelemetry automatically collects telemetry and how to configure resource detectors so your .NET, Java, Node.js, and Python telemetry is enriched with consistent service, host, and cloud metadata in Application Insights.
+description: Learn how Azure Monitor OpenTelemetry automatically collects telemetry and how resource detectors enrich telemetry with consistent service, host, and cloud metadata in Application Insights.
 ms.topic: how-to
 ms.date: 03/27/2026
 ms.devlang: csharp
@@ -11,26 +11,20 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python, refer
 
 ---
 
-# Configure automatic data collection and resource detectors for Azure Monitor OpenTelemetry
+# Automatic data collection and resource detectors for Azure Monitor OpenTelemetry
 
-This article explains how Azure Monitor OpenTelemetry collects telemetry automatically, how you can add community instrumentation libraries, and how to configure resource detectors to enrich that telemetry with consistent metadata. You learn what signals are collected by default and how resource detectors populate attributes like service identity and environment details so your Application Insights data is easier to filter, correlate, and troubleshoot across .NET, Java, Node.js, and Python applications.
-
-This article provides instructions on integrating and customizing OpenTelemetry (OTel) instrumentation within [Azure Monitor Application Insights](app-insights-overview.md).
+This article explains how Azure Monitor OpenTelemetry collects telemetry automatically and how resource detectors enrich telemetry with consistent metadata. You learn what signals are collected by default and how resource detectors populate attributes like service identity and environment details so your Application Insights data is easier to filter, correlate, and troubleshoot across .NET, Java, Node.js, and Python applications.
 
 To learn more about OpenTelemetry concepts, see the [OpenTelemetry overview](app-insights-overview.md).
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
 
-<!---NOTE TO CONTRIBUTORS: PLEASE DO NOT SEPARATE OUT JAVASCRIPT AND TYPESCRIPT INTO DIFFERENT TABS.--->
-
-## Automatic data collection
+## Included instrumentation libraries
 
 The Azure Monitor Distros automatically collect data by bundling OpenTelemetry instrumentation libraries.
 
-### Included instrumentation libraries
-
-#### [ASP.NET Core](#tab/aspnetcore)
+# [ASP.NET Core](#tab/aspnetcore)
 
 **Requests**
 
@@ -46,15 +40,13 @@ The Azure Monitor Distros automatically collect data by bundling OpenTelemetry i
 
 * `ILogger`
 
-To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
-
 For more information about `ILogger`, see [Logging in C# and .NET](/dotnet/core/extensions/logging) and [code examples](https://github.com/open-telemetry/opentelemetry-dotnet/tree/main/docs/logs).
 
-#### [.NET](#tab/net)
+# [.NET](#tab/net)
 
 The Azure Monitor Exporter doesn't include any instrumentation libraries.
 
-You can collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk) using the following code sample to manually subscribe to the source.
+To collect dependencies from the [Azure Software Development Kits (SDKs)](https://github.com/Azure/azure-sdk), use the following code sample to manually subscribe to the source.
 
 ```csharp
 // Create an OpenTelemetry tracer provider builder.
@@ -80,9 +72,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .Build();
 ```
 
-To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `Warning` and `Error` logs to OpenTelemetry/Azure Monitor. OpenTelemetry doesn't control log routing or filtering - your `ILogger` configuration makes these decisions. For more information on configuring `ILogger`, see [Configure logging](/dotnet/core/extensions/logging#configure-logging).
-
-#### [Java](#tab/java)
+# [Java](#tab/java)
 
 **Requests**
 
@@ -133,8 +123,6 @@ To reduce or increase the number of logs sent to Azure Monitor, configure loggin
 * JBoss Logging (including MDC properties) ¹
 * java.util.logging ¹
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
 **Default collection**
 
 Telemetry emitted by the following Azure SDKs is automatically collected by default:
@@ -166,28 +154,7 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 * [Azure Storage - Queues](/java/api/overview/azure/storage-queue-readme) 12.9.0+
 * [Azure Text Analytics](/java/api/overview/azure/ai-textanalytics-readme) 5.0.4+
 
-```
-[//]: # "Azure Cosmos DB 4.22.0+ due to https://github.com/Azure/azure-sdk-for-java/pull/25571"
-[//]: # "the remaining above names and links scraped from https://azure.github.io/azure-sdk/releases/latest/java.html"
-[//]: # "and version synched manually against the oldest version in maven central built on azure-core 1.14.0"
-[//]: # ""
-[//]: # "var table = document.querySelector('#tg-sb-content > div > table')"
-[//]: # "var str = ''"
-[//]: # "for (var i = 1, row; row = table.rows[i]; i++) {"
-[//]: # "  var name = row.cells[0].getElementsByTagName('div')[0].textContent.trim()"
-[//]: # "  var stableRow = row.cells[1]"
-[//]: # "  var versionBadge = stableRow.querySelector('.badge')"
-[//]: # "  if (!versionBadge) {"
-[//]: # "    continue"
-[//]: # "  }"
-[//]: # "  var version = versionBadge.textContent.trim()"
-[//]: # "  var link = stableRow.querySelectorAll('a')[2].href"
-[//]: # "  str += '* [' + name + '](' + link + ') ' + version + '\n'"
-[//]: # "}"
-[//]: # "console.log(str)"
-```
-
-#### [Java native](#tab/java-native)
+# [Java native](#tab/java-native)
 
 **Requests for Spring Boot native applications**
 
@@ -211,16 +178,14 @@ Telemetry emitted by the following Azure SDKs is automatically collected by defa
 
 * Logback
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
-For Quartz native applications, see the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
+For Quartz native applications, see the [Quarkus documentation](https://quarkus.io/guides/opentelemetry).
 
 [!INCLUDE [quarkus-support](./includes/quarkus-support.md)]
 
-#### [Node.js](#tab/nodejs)
+# [Node.js](#tab/nodejs)
 
 > [!TIP]
-> **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src
+> **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev
 
 The Azure Monitor Application Insights Distro includes the following OpenTelemetry Instrumentation libraries. For more information, see [Azure SDK for JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/monitor/monitor-opentelemetry/README.md#instrumentation-libraries).
 
@@ -230,12 +195,12 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 
 **Dependencies**
 
-* Supports [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mongodb)
-* Supports [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mysql)
-* Supports [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-pg)
-* Supports [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis)
-* Supports [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis-4)
-* Supports [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
+* [MongoDB](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mongodb)
+* [MySQL](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-mysql)
+* [Postgres](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-pg)
+* [Redis](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis)
+* [Redis-4](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-redis-4)
+* [Azure SDK](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/instrumentation/opentelemetry-instrumentation-azure-sdk)
 
 **Logs**
 
@@ -243,11 +208,11 @@ The Azure Monitor Application Insights Distro includes the following OpenTelemet
 * [Winston](https://github.com/open-telemetry/opentelemetry-js-contrib/tree/main/packages/instrumentation-winston)
 
 > [!IMPORTANT]
-> Bunyan and Winston *are not* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
+> Bunyan and Winston *aren't* enabled by default. You can enable instrumentation libraries by setting `enabled: true` in the instrumentation options.
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
-You can configure instrumentations by using `AzureMonitorOpenTelemetryOptions`:
+<br>
+<details>
+<summary><b>Expand to view a code sample that shows how to configure instrumentations by using AzureMonitorOpenTelemetryOptions.</b></summary>
 
 ```typescript
 import { useAzureMonitor, AzureMonitorOpenTelemetryOptions } from "@azure/monitor-opentelemetry";
@@ -276,7 +241,9 @@ logger.warn({ requestId: "abc-123" }, "Slow response detected");
 logger.error(new Error("Something failed"), "Unhandled error");
 ```
 
-#### [Python](#tab/python)
+</details>
+
+# [Python](#tab/python)
 
 **Requests**
 
@@ -295,9 +262,7 @@ logger.error(new Error("Something failed"), "Unhandled error");
 
 * [Python logging library](https://docs.python.org/3/howto/logging.html)
 
-To reduce or increase the number of logs that Azure Monitor collects, first set the desired logging level (such as `WARNING` or `ERROR`) in the application's logging library.
-
-Examples of using the Python logging library can be found on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
+You can find examples of using the Python logging library on [GitHub](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry/samples/logging).
 
 Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [collected](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/monitor/azure-monitor-opentelemetry/README.md#officially-supported-instrumentations) by default.
 
@@ -310,122 +275,10 @@ Telemetry emitted by Azure Software Development Kits (SDKs) is automatically [co
 
 > [!NOTE]
 > The Azure Monitor OpenTelemetry Distros include custom mapping and logic to automatically emit [Application Insights standard metrics](standard-metrics.md).
+> For billing purposes, all OpenTelemetry metrics, whether automatically collected from instrumentation libraries or manually collected from custom coding, are currently considered Application Insights *custom metrics*. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
 
 > [!TIP]
-> All OpenTelemetry metrics whether automatically collected from instrumentation libraries or manually collected from custom coding are currently considered Application Insights "custom metrics" for billing purposes. [Learn more](pre-aggregated-metrics-log-metrics.md#custom-metrics-dimensions-and-preaggregation).
-
-### Add a community instrumentation library
-
-You can collect more data automatically when you include instrumentation libraries from the OpenTelemetry community.
-
-[!INCLUDE [azure-monitor-app-insights-opentelemetry-support](includes/azure-monitor-app-insights-opentelemetry-community-library-warning.md)]
-
-#### [ASP.NET Core](#tab/aspnetcore)
-
-To add a community library, use the `ConfigureOpenTelemetryMeterProvider` or `ConfigureOpenTelemetryTracerProvider` methods,
-after adding the NuGet package for the library.
-
-The following example demonstrates how to add the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) to collect extra metrics:
-
-```dotnetcli
-dotnet add package OpenTelemetry.Instrumentation.Runtime 
-```
-
-```csharp
-// Create a new ASP.NET Core web application builder.
-var builder = WebApplication.CreateBuilder(args);
-
-// Configure the OpenTelemetry meter provider to add runtime instrumentation.
-builder.Services.ConfigureOpenTelemetryMeterProvider((sp, builder) => builder.AddRuntimeInstrumentation());
-
-// Add the Azure Monitor telemetry service to the application.
-// This service will collect and send telemetry data to Azure Monitor.
-builder.Services.AddOpenTelemetry().UseAzureMonitor();
-
-// Build the ASP.NET Core web application.
-var app = builder.Build();
-
-// Start the ASP.NET Core web application.
-app.Run();
-```
-
-#### [.NET](#tab/net)
-
-The following example demonstrates how the [Runtime Instrumentation](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Runtime) can be added to collect extra metrics:
-
-```csharp
-// Create a new OpenTelemetry meter provider and add runtime instrumentation and the Azure Monitor metric exporter.
-// It is important to keep the MetricsProvider instance active throughout the process lifetime.
-var metricsProvider = Sdk.CreateMeterProviderBuilder()
-    .AddRuntimeInstrumentation()
-    .AddAzureMonitorMetricExporter();
-```
-
-#### [Java](#tab/java)
-
-You can't extend the Java Distro with community instrumentation libraries. To request that we include another instrumentation library, open an issue on our GitHub page. You can find a link to our GitHub page in [Next Steps](#next-steps).
-
-#### [Java native](#tab/java-native)
-
-You can't use community instrumentation libraries with GraalVM Java native applications.
-
-#### [Node.js](#tab/nodejs)
-
-```typescript
-export class RegisterExpressInstrumentationSample {
-  static async run() {
-    // Dynamically import Azure Monitor and Express instrumentation
-    const { useAzureMonitor } = await import("@azure/monitor-opentelemetry");
-    const { registerInstrumentations } = await import("@opentelemetry/instrumentation");
-    const { ExpressInstrumentation } = await import("@opentelemetry/instrumentation-express");
-
-    // Initialize Azure Monitor (uses env var if set)
-    const monitor = useAzureMonitor();
-
-    // Register the Express instrumentation
-    registerInstrumentations({
-      instrumentations: [new ExpressInstrumentation()],
-    });
-
-    console.log("Express instrumentation registered");
-  }
-}
-```
-
-#### [Python](#tab/python)
-
-To add a community instrumentation library (not officially supported or included in the Azure Monitor Distro), instrument directly with the instrumentations. You can find the list of community instrumentation libraries on [GitHub](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation).
-
-
-> [!NOTE]
-> Don't manually instrument a [supported instrumentation library](#included-instrumentation-libraries) by using `instrument()` and the distro `configure_azure_monitor()`. This approach isn't supported and could cause undesired behavior for your telemetry.
-
-
-```python
-# Import the `configure_azure_monitor()`, `SQLAlchemyInstrumentor`, `create_engine`, and `text` functions from the appropriate packages.
-from azure.monitor.opentelemetry import configure_azure_monitor
-from opentelemetry.instrumentation.sqlalchemy import SQLAlchemyInstrumentor
-from sqlalchemy import create_engine, text
-
-# Configure OpenTelemetry to use Azure Monitor.
-configure_azure_monitor()
-
-# Create a SQLAlchemy engine.
-engine = create_engine("sqlite:///:memory:")
-
-# SQLAlchemy instrumentation is not officially supported by this package, however, you can use the OpenTelemetry `instrument()` method manually in conjunction with `configure_azure_monitor()`.
-SQLAlchemyInstrumentor().instrument(
-    engine=engine,
-)
-
-# Database calls using the SQLAlchemy library will be automatically captured.
-with engine.connect() as conn:
-    result = conn.execute(text("select 'hello world'"))
-    print(result.all())
-
-```
-
----
+> To reduce or increase the number of logs sent to Azure Monitor, configure logging to set the appropriate log level or apply filters. For example, you can choose to send only `WARNING` and `ERROR` logs to Azure Monitor.
 
 ## Resource detectors
 
@@ -444,31 +297,13 @@ Resource detectors discover environment metadata at startup and populate OpenTel
 | Azure Kubernetes Service (AKS) | Use the OpenTelemetry Collector `k8sattributes` processor to add Kubernetes metadata | Recommended for all languages running in AKS. |
 | Azure Container Apps | Detectors map environment variables and resource identifiers when available | You can also set `OTEL_RESOURCE_ATTRIBUTES` to fill gaps. |
 
-### Manual and automatic instrumentation
-
-* Automatic instrumentation and the Azure Monitor Distros enable resource detection when running in Azure environments where supported.
-
-* For manual setups, set resource attributes directly with standard OpenTelemetry options:
-
-
-    ```bash
-    # Applies to .NET (ASP.NET/ASP.NET Core), Java, Node.js, and Python
-    export OTEL_SERVICE_NAME="my-service"
-    export OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
-    ```
-
-    On Windows PowerShell:
-
-    ```powershell
-    $Env:OTEL_SERVICE_NAME="my-service"
-    $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.resource_id=/subscriptions/<SUB>/resourceGroups/<RG>/providers/Microsoft.Web/sites/<APP>"
-    ```
-
 ### OTLP ingestion considerations
-* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
+
+* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
+
 * Application Insights uses `service.name` to derive Cloud Role Name. Choose a stable name per service to avoid fragmented nodes in Application Map.
 
-* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences may not show the Azure resource that produced the data.
+* `cloud.resource_id` improves compute linking to Azure resources. If this attribute is missing, some experiences might not show the Azure resource that produced the data.
 
 [!INCLUDE [Help, feedback, and support](includes/opentelemetry-help-feedback-support.md)]
 
