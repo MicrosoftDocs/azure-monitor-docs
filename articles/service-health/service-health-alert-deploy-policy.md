@@ -18,7 +18,7 @@ See the permissions and roles required to run Azure Policy in Role-Based Access 
 
 Service Health Alert rules can be deployed on a single subscription, or across all subscriptions in a management group by running the **Configure subscriptions to enable Service Health Monitoring Alert Rules** built-in policy.
 
->[!NOTE]  
+>[!IMPORTANT]  
 >If you manually change alert rules or action groups that were created by a policy, those changes may be overwritten later. To avoid losing your changes, don't edit these alerts directly. Instead, make updates in the policy itself and then run remediation to apply the changes.
 
 1. From the Azure portal, navigate to **Home > Policy**. 
