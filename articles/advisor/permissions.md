@@ -65,33 +65,34 @@ If your organization requires roles that don't match the Azure built-in roles, c
 
 | Action | Details |
 |:--- |:--- |
-| `Microsoft./generateRecommendations/action` | Create a Recommendation. |
-| `Microsoft./register/action` | Register with the Provider. |
-| `Microsoft./unregister/action` | Unregister with the Provider. |
-| `Microsoft./Score/read` | Gets  score. |
+| `Microsoft.Advisor/recommendations/available/action` | Displays vailable action |
+| `Microsoft./generateRecommendations/action` | Create a Recommendation |
+| `Microsoft./register/action` | Register with the Provider |
+| `Microsoft./unregister/action` | Unregister with the Provider |
+| `Microsoft./Score/read` | Gets Advisor score |
 | `Microsoft./configurations/read` | Read Configurations. |
-| `Microsoft.Advisor/configurations/write` | Create or update Configuration. |
-| `Microsoft.Advisor/generateRecommendations/read` | Get status of `generateRecommendations` action. |
-| `Microsoft.Advisor/metadata/read` | Read Metadata. |
-| `Microsoft.Advisor/operations/read` | Get operations. |
-| `Microsoft.Advisor/recommendations/read` | Read recommendations. |
+| `Microsoft.Advisor/configurations/write` | Create or update Configuration |
+| `Microsoft.Advisor/generateRecommendations/read` | Get status of `generateRecommendations` action |
+| `Microsoft.Advisor/metadata/read` | Read Metadata |
+| `Microsoft.Advisor/operations/read` | Get operations |
+| `Microsoft.Advisor/recommendations/read` | Read recommendations |
 | `Microsoft.Advisor/recommendations/write` | Create recommendations. |
-| `Microsoft.Advisor/recommendations/available/action` | New recommendation is available. |
-| `Microsoft.Advisor/recommendations/suppressions/read` | Read Suppressions. |
-| `Microsoft.Advisor/recommendations/suppressions/write` | Create or update Suppressions. |
-| `Microsoft.Advisor/recommendations/suppressions/delete` | Delete Suppression. |
-| `Microsoft.Advisor/suppressions/read` | Read Suppressions. |
-| `Microsoft.Advisor/suppressions/write` | Create or update Suppressions. |
-| `Microsoft.Advisor/suppressions/delete` | Delete Suppression. |
-| `Microsoft.Advisor/assessmentTypes/read` | Reads `AssessmentTypes`. |
-| `Microsoft.Advisor/assessments/read` | Reads Assessments. |
-| `Microsoft.Advisor/assessments/write` | Create Assessments. |
-| `Microsoft.Advisor/resiliencyReviews/read` | Reads `resiliencyReviews`. |
-| `Microsoft.Advisor/triageRecommendations/read` | Reads `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/approve/action` | Approves `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/reject/action` | Rejects `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/reset/action` | Resets `triageRecommendations`. |
-| `Microsoft.Advisor/workloads/read` | Reads workloads. |
+| `Microsoft.Advisor/recommendations/available/action` | New recommendation is available.|
+| `Microsoft.Advisor/recommendations/suppressions/read` | Read Suppressions |
+| `Microsoft.Advisor/recommendations/suppressions/write` | Create or update Suppressions |
+| `Microsoft.Advisor/recommendations/suppressions/delete` | Delete Suppression |
+| `Microsoft.Advisor/suppressions/read` | Read Suppressions |
+| `Microsoft.Advisor/suppressions/write` | Create or update Suppressions |
+| `Microsoft.Advisor/suppressions/delete` | Delete Suppression |
+| `Microsoft.Advisor/assessmentTypes/read` | Reads `AssessmentTypes` |
+| `Microsoft.Advisor/assessments/read` | Reads Assessments |
+| `Microsoft.Advisor/assessments/write` | Create Assessments |
+| `Microsoft.Advisor/resiliencyReviews/read` | Reads `resiliencyReviews` |
+| `Microsoft.Advisor/triageRecommendations/read` | Reads `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/approve/action` | Approves `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/reject/action` | Rejects `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/reset/action` | Resets `triageRecommendations` |
+| `Microsoft.Advisor/workloads/read` | Reads workloads |
 
 > [!NOTE]
 > For example, you must have a sufficient permission level for a virtual machine (VM) to view recommendations associated with the VM.
