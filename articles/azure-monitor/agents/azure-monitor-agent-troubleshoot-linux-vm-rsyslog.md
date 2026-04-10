@@ -26,6 +26,44 @@ Azure Monitor Agent parses incoming Syslog messages according to **RFC3164** and
 > 
 > * If Azure Monitor Agent fails to upload events it received from **rsyslog** or **syslog-ng**, it queues them in `/var/opt/microsoft/azuremonitoragent/events` using its local persistence mechanism.
 
+## Why Azure Monitor Agent can't upload syslog data to a Log Analytics workspace
+
+If Azure Monitor Agent successfully receives syslog events from `rsyslog` or `syslog-ng`, but the data doesn't appear in the Log Analytics workspace, the most common causes are related to connectivity, configuration, or authentication—not local disk usage.
+
+Common causes include:
+
+- **The Data Collection Rule (DCR) isn't associated with the machine**  
+  If no DCR is associated (or the wrong DCR is associated), Azure Monitor Agent doesn't know where to send the data.
+
+- **The DCR doesn't include a syslog data source or the facility/severity doesn't match**  
+  In this case, Azure Monitor Agent drops the events after receiving them.
+
+- **The machine can't reach the Azure Monitor ingestion endpoints**  
+  This is commonly caused by:
+  - outbound firewall restrictions
+  - proxy misconfiguration
+  - missing service tags or required endpoints in restricted networks
+
+- **TLS or proxy configuration prevents outbound connections**  
+  If a proxy is required and isn't configured for Azure Monitor Agent, upload attempts fail.
+
+- **The managed identity or Azure credentials used by the agent can't authenticate**  
+  This can occur if the agent extension isn't provisioned correctly.
+
+To troubleshoot upload and connectivity issues, see the following guidance:
+
+- [Troubleshoot the Azure Monitor agent on Linux virtual machines and scale sets](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-troubleshoot-linux-vm)
+
+- [How to use the Linux Azure Monitor Agent troubleshooter](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/troubleshooter-ama-linux)    
+
+- [Required network endpoints for Azure Monitor Agent](https://learn.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-network-configuration)
+
+If Azure Monitor Agent is receiving syslog events but can't upload them, errors related to connectivity or authentication are typically logged in:
+
+```text
+/var/opt/microsoft/azuremonitoragent/log/mdsd.err
+```
+
 ## Issues
 
 You might encounter the following issues:
