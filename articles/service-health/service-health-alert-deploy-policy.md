@@ -2,7 +2,7 @@
 title: Deploy Service Health alert rules at scale using Azure Policy 
 description: This article details a process by which users can deploy Service Health alerts across subscriptions via Azure policy.
 ms.topic: how-to
-ms.date: 7/21/2025
+ms.date: 04/10/2026
 ---
 
 # Deploy Service Health alerts at scale using Azure Policy
@@ -83,7 +83,10 @@ By default, the alert rules and action groups are configured to email subscripti
 
 - **Alert rule name**:<br> The name of the alert rule the policy creates. The policy doesn’t check the rule’s name, it only looks at the alert conditions, state, and whether it links to an action group. <br>If a rule already exists that meets these requirements, the policy doesn't create a new one, even if the name is different. Changing the name doesn't remove any existing alert rules.
 
-- **Alert rule event types**:<br> The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions. 
+- **Alert rule event types**:<br> The [Service Health Event Types](./service-health-portal-update.md#service-health-events) the alert rule checks for. This alert rule can be used to update the alerting condition across subscriptions.
+
+- **Alert rule custom properties**:<br> This option allows the user to set key value pairs to be added to the alerts notification payload. These properties can be used in the actions that the action group calls, such as by a webhook, Azure function, or logic app action.<br> 
+>[!Warning]  If you manually change alert rules or action groups that were created by a policy, those changes may be overwritten later. To avoid losing your changes, don't edit these alerts directly. Instead, make updates in the policy itself and then run remediation to apply the changes. 
 
 - **Existing action group resource ids**:<br> Enter the resource IDs of existing action groups within the management group or subscription (based on the policy’s scope) that should be used to send alerts. This action group can be used to alert across subscriptions.<br>For more information, see [Action Groups](/azure/azure-monitor/alerts/action-groups). 
 
