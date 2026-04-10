@@ -1,7 +1,7 @@
 ---
 title: Enable Monitoring for Azure Kubernetes Service (AKS) Clusters
 description: Learn how to enable monitoring for Azure Kubernetes Service (AKS) cluster with Azure Monitor.
-ms.service: azure-monitor, azure-kubernetes-service
+ms.service: azure-monitor
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
