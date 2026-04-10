@@ -45,7 +45,7 @@ To learn more about built-in roles, see [Azure built-in roles](/azure/role-based
 
 [!INCLUDE [View and manage assessments](./includes/advisor-permissions-review-recommendations.md)]
 
-[!INCLUDE [Reviews and personalized recommendations](./includes/-permissions-waf-assessments.md)]
+[!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-waf-assessments.md)]
 
 ## Available actions to build custom roles
 
