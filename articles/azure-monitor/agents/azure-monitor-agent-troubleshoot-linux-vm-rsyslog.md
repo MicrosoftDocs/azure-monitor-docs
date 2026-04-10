@@ -43,9 +43,9 @@ Common causes include:
 
 - **The machine can't reach the Azure Monitor ingestion endpoints**  
   This condition is commonly caused by:
-  - outbound firewall restrictions
-  - proxy misconfiguration
-  - missing service tags or required endpoints in restricted networks
+  - Outbound firewall restrictions
+  - Proxy misconfiguration
+  - Missing service tags or required endpoints in restricted networks
 
 - **TLS or proxy configuration prevents outbound connections**  
   If a proxy is required and isn't configured for Azure Monitor Agent, upload attempts fail.
