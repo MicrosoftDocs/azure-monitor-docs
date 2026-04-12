@@ -16,22 +16,23 @@ Track the health and performance of your pipeline deployment using Azure Monitor
 
 ### View metrics in the Azure portal
 
-In the Azure portal, open your Azure Monitor pipeline resource and select **Monitoring**. The following metrics are available:
+In the Azure portal, open your Azure Monitor pipeline resource and select **Monitoring** and then **Metrics**. The following metrics are available:
 
-| Metric name | Display name | Description | Dimensions |
-|:---|:---|:---|:---|
-| `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
-| `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
-| `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
-| `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
+| Component | Metric name | Display name | Description | Dimensions |
+|:---|:---|:---|:---|:---|
+| Engine | `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
+| Engine | `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
+| Pipeline | `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
+| Exporter | `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
+| Exporter | `exporter_send_failed_log_records` | Failed log exports (preview) | Number of log records that the exporter couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
 
 ### View metrics through Prometheus scraping
 
 You can also scrape pipeline metrics using Prometheus. For more information, see [Collect Prometheus metrics from an Arc-enabled Kubernetes cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-and-grafana).
 
-### View logs in the Azure portal
+### Collect and vew logs
 
-Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. After you configure diagnostic settings, you can view logs for your Azure Monitor pipeline instance in the `AzureMonitorPipelineLogErrors` table in your Log Analytics workspace.
+Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. If you select Log Analytics workspace as a destination, you can view logs for your Azure Monitor pipeline instance in the `AzureMonitorPipelineLogErrors` table in your Log Analytics workspace.
 
 ### Collect logs from cluster pods
 
@@ -40,24 +41,36 @@ To investigate issues not visible in the Azure portal, collect logs directly fro
 **Retrieve pod logs:**
 ```bash
 kubectl logs <pod-name> -n <namespace>
+
+#Example:
+kubectl logs my-pipeline -n my-ns
 ```
 
-**Retrieve logs from a previous pod instance** (if the pod crashed and restarted):
+**Retrieve logs from a previous pod instance** (useful if determining why a pod crashed):
 ```bash
 kubectl logs <pod-name> -n <namespace> --previous
+
+# Example:
+kubectl logs my-pipeline -n my-ns --previous
 ```
 
 **Stream logs in real time:**
 ```bash
 kubectl logs <pod-name> -n <namespace> -f
+
+# Example:
+kubectl logs my-pipeline -n my-ns -f
 ```
 
 **Retrieve logs from all pipeline pods:**
 ```bash
 kubectl logs -n mon -l app.kubernetes.io/name=collector -f
+
+# Example:
+kubectl logs -n mon -l app.kubernetes.io/name=collector -fs
 ```
 
-These logs often contain detailed error messages and stack traces that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
+These logs often contain detailed error messages that can help identify the root cause of deployment, configuration, data collection, or connectivity issues.
 
 ## Deployment and configuration issues
 
@@ -140,14 +153,14 @@ These logs often contain detailed error messages and stack traces that can help 
    kubectl get svc -n mon
    ```
 
-2. Test connectivity from a client pod:
+2. Test connectivity from a client pod (assuming port 514):
    ```bash
    kubectl run -it --image=mcr.microsoft.com/alpine:latest --restart=Never -- nc -zv <pipeline-ip> 514
    ```
 
 3. Verify the gateway configuration. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
-4. Check firewall and network security group rules to ensure required ports are open:
+4. Check firewall and network security group rules to ensure required ports are open (assuming default ports)):
    - Syslog/CEF: TCP port 514 (default)
    - OTLP: TCP port 4317 (default, Preview)
 

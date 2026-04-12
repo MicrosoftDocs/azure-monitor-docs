@@ -22,12 +22,12 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
 1. If you need to filter, aggregate, or reshape incoming data:
     1. Add [pipeline transformations](./pipeline-transformations.md).
-1. If clients need access from outside the cluster:
+1. If client data sources are outside the cluster:
     1. Expose the pipeline through a gateway. See [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
     1. Configure your external clients to connect to the right gateway IP and port. See [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md#add-a-new-client-to-an-existing-receiver).
 1. If you need encrypted ingestion:
     1. Configure TLS. Start with [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
-1. If default scheduling behavior doesn't meet your performance, isolation, or compliance needs:
+1. If default pod placement behavior doesn't meet your performance, isolation, or compliance needs:
     1. Configure [pod placement](./pipeline-pod-placement.md) for the pipeline.
 
 :::image type="content" source="media/pipeline-configure/pipeline-setup-flow.png" alt-text="Diagram of Azure Monitor pipeline setup flow with steps for prerequisites, cert-manager, deployment, and decision points for data, TLS, clients, and scheduling.":::
@@ -47,10 +47,7 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 
 This section describes how to install cert-manager as an Azure Arc extension. You need to install cert-manager for the Azure Monitor pipeline. When you install cert-manager as a cluster managed extension (CME), it registers the `cert-manager` and `trust-manager` services on your cluster.
 
-Supported Kubernetes distributions for the cert-manager extension on Arc-enabled Kubernetes include the following versions:
-- VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11
-- SUSE Rancher K3s v1.33.3+k3s1
-- AKS Arc v1.32.7
+For the currently supported Kubernetes distributions and regions, see [Supported configurations](./pipeline-overview.md#supported-configurations).
 
 
 ### Remove existing cert-manager and trust-manager instances
@@ -155,7 +152,6 @@ Link the [private DNS zones](../fundamentals/private-link-configure.md) to the A
 > [!NOTE]
 > Kubernetes clusters (including Azure Arc-enabled clusters) must be able to resolve these names through the virtual network DNS configuration.
 
-### Validate Private Link
 
 After configuration:
 

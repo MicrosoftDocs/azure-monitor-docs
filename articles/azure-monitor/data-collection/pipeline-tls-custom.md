@@ -99,6 +99,9 @@ When you bring your own server certificate:
 - **Certificate and Private Key**: Provide both together.
 - **DNS Subject Alternative Names (SANs)**: The certificate must include appropriate SANs that match the service endpoints.
 
+> [!IMPORTANT]
+> Azure Monitor pipeline only supports PEM format. All certificates and keys must be converted to PEM before use.
+
 The server certificate must include the service FQDN at minimum:
 
 ```ini

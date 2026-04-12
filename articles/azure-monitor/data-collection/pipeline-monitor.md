@@ -18,12 +18,13 @@ Use Azure Monitor metrics and logs to monitor the health of your pipeline deploy
 
 In the Azure portal, open your Azure Monitor pipeline resource and select **Monitoring**. The following metrics are available:
 
-| Metric name | Display name | Description | Dimensions | Supported aggregation types |
-|:---|:---|:---|:---|:---|
-| `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID | Average, Minimum, Maximum |
-| `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID | Average, Minimum, Maximum |
-| `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID | Maximum |
-| `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name | Total |
+| Component | Metric name | Display name | Description | Dimensions | Supported aggregation types |
+|:---|:---|:---|:---|:---|:---|
+| Engine | `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID | Average, Minimum, Maximum |
+| Engine | `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID | Average, Minimum, Maximum |
+| Pipeline | `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID | Maximum |
+| Exporter | `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name | Total |
+| Exporter | `exporter_send_failed_log_records` | Failed log exports (preview) | Number of log records that the exporter couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name | Total |
 
 <!-- Metric visualization workbook screenshots will be added when available. -->
 
