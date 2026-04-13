@@ -142,7 +142,7 @@
       ],
       "uhfHeaderId": "azure",
       "ms.suite": "office",
-      "zone_pivot_group_filename": "azure-monitor/zone-pivot-groups.json"
+      "zone_pivot_group_filename": "zone-pivots/azure-monitor/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "adobe-target": {
