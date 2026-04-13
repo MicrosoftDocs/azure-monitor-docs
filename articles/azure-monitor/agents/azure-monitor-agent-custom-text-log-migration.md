@@ -37,7 +37,8 @@ You should follow the steps only if the following criteria are true:
     # [REST](#tab/rest)
     
     ```rest
-    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
+    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
+    Authorization: Bearer <access-token>
     ```
 
     # [CLI](#tab/cli)
@@ -47,7 +48,7 @@ You should follow the steps only if the following criteria are true:
     resourceGroupName="myResourceGroup"
     workspaceName="myWorkspace"
     tableName="myTable"
-    apiVersion="2021-12-01-preview"
+    apiVersion="2025-07-01"
     providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate"
     resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
     
@@ -57,29 +58,24 @@ You should follow the steps only if the following criteria are true:
     # [PowerShell](#tab/powershell)
 
     ```powershell
-    $subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    $resourceGroupName="myResourceGroup"
-    $workspaceName="myWorkspace"
-    $tableName="myTable"
-    $apiVersion="2021-12-01-preview"
-    
-    $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate?api-version=$apiVersion"
-    
-    Invoke-AzRestMethod -Method POST -Path $path
+    Invoke-AzOperationalInsightsMigrateTable `
+      -ResourceGroupName "myResourceGroup" `
+      -WorkspaceName "myWorkspace" `
+      -TableName "myTable"
     ```
 
     ---
 
     | Variable | Example value | Purpose |
     |----------|---------------|---------|
-    | $host | management.azure.com | Implicit ARM endpoint |
-    | $subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-    | $resourceGroupName | myResourceGroup | User input |
-    | $workspaceName | myWorkspace | User input |
-    | $tableName | myTable | User input |
-    | $apiVersion | 2021-12-01-preview | API-specific |
-    | $providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
-    | $resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
+    | host | management.azure.com | Implicit ARM endpoint |
+    | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+    | resourceGroupName | myResourceGroup | User input |
+    | workspaceName | myWorkspace | User input |
+    | tableName | myTable | User input |
+    | apiVersion | 2025-07-01 | API-specific |
+    | providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
+    | resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
 
 1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
