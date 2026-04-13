@@ -1,14 +1,14 @@
 ---
-title: Create service level indicators in Azure Monitor
+title: Create service level indicators in Azure Monitor (preview)
 description: Learn how to create service level indicators in Azure Monitor, configure signals and baselines, and review SLI status for a service group.
 ms.topic: how-to
 ms.date: 04/10/2026
 ai-usage: ai-assisted
 ---
 
-# Service level indicators in Azure Monitor
+# Service level indicators in Azure Monitor (preview)
 
-Service level indicators (SLIs) in Azure Monitor are measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a compliance period so you can tell whether the service is meeting the expectation you set.
+Service level indicators (SLIs) in Azure Monitor provide measurements of reliability and performance for a [service group](/azure/governance/service-groups/overview). An SLI compares observed behavior with a baseline target over a compliance period so you can tell whether the service is meeting the expectation you set.
 
 This article shows you how to create and manage an SLI in the Azure portal. It also explains the key design choices you make during setup, including SLI type, evaluation method, signal design, and how Azure Monitor tracks error budget and burn rate.
 
@@ -29,7 +29,7 @@ Azure Monitor shows each SLI as a tracked reliability object with its own status
 
 ## Prerequisites
 
-- An existing service group.
+- An existing service group. For details, see [Quickstart: Create a service group (preview) in the portal](/azure/governance/service-groups/create-service-group-portal).
 - A source [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) that has the metrics you want to evaluate, and a destination Azure Monitor workspace where Azure Monitor stores the evaluated SLI results. You can use the same workspace for both source and destination.
 - A user-assigned managed identity that can access the workspaces. For guidance, see [Manage user-assigned managed identities by using the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
 - Access to the source workspace, destination workspace, and destination workspace default data collection rule.
@@ -46,9 +46,7 @@ The default data collection rule for the destination workspace is stored in the 
 
 ## Create an SLI in the portal
 
-1. In the Azure portal, open your service group.
-1. Select **Monitoring**.
-1. In the **SLI** card, select **Create SLIs**.
+In the Azure portal, open your service group, select **Monitoring**, and then select **Create SLIs** in the **SLI** card.
 
 :::image type="content" source="media/create-service-level-indicators/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button.":::
 
@@ -56,9 +54,7 @@ The default data collection rule for the destination workspace is stored in the 
 
 On the **Basics** tab, enter the SLI identity and select the SLI type.
 
-1. Enter a name for the SLI.
-1. Optional: Enter a description.
-1. Select the SLI type.
+Enter a name for the SLI, optionally enter a description, and then select the SLI type.
 
 :::image type="content" source="media/create-service-level-indicators/create-service-level-indicator-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
 
@@ -86,9 +82,7 @@ The evaluation method determines how Azure Monitor interprets the telemetry for 
 
 ### Identity and workspaces
 
-1. Select the user-assigned managed identity that Azure Monitor uses to read the source metrics.
-1. Select the source Azure Monitor workspace that contains the metrics you want to evaluate.
-1. Select the destination Azure Monitor workspace where Azure Monitor stores the evaluated SLI results.
+Select the user-assigned managed identity that Azure Monitor uses to read the source metrics. Then select the source Azure Monitor workspace that contains the metrics you want to evaluate and the destination Azure Monitor workspace where Azure Monitor stores the evaluated SLI results.
 
 Azure Monitor uses the source workspace to read telemetry and the destination workspace to store the evaluated SLI results. You can use the same workspace for both source and destination, or you can use separate workspaces. Separate workspaces can help when you want to isolate raw telemetry from evaluated reliability data.
 
@@ -132,13 +126,7 @@ On the **Baseline + Alert** tab, set the target that the SLI should meet, choose
 
 :::image type="content" source="media/create-service-level-indicators/baseline-alert.png" alt-text="Screenshot of the Baseline + Alert tab for creating an SLI, showing baseline, evaluation period, alert options, and action group selection.":::
 
-1. In **Baseline (SLO)**, enter the target percentage that the SLI should meet.
-1. In **Evaluation period**, select the time window that Azure Monitor uses to evaluate compliance.
-1. Optional: Turn on **Enable Alert** if you want Azure Monitor to create alerts for this SLI.
-1. Optional: Keep **Baseline alert** selected to be notified when the SLI falls below the target for the selected evaluation period.
-1. Optional: Configure **Fast burn rate** to detect rapid error budget consumption over a short lookback period.
-1. Optional: Configure **Slow burn rate** to detect sustained error budget consumption over a longer lookback period.
-1. In **Action groups**, select one or more action groups to define who gets notified and what actions run when an alert fires.
+In **Baseline (SLO)**, enter the target percentage that the SLI should meet, and in **Evaluation period**, select the time window that Azure Monitor uses to evaluate compliance. If you want Azure Monitor to create alerts for this SLI, turn on **Enable Alert**. You can keep **Baseline alert** selected to be notified when the SLI falls below the target for the selected evaluation period, configure **Fast burn rate** to detect rapid error budget consumption over a short lookback period, and configure **Slow burn rate** to detect sustained error budget consumption over a longer lookback period. In **Action groups**, select one or more action groups to define who gets notified and what actions run when an alert fires.
 
 Use the baseline alert when you want to know that the SLI is out of compliance. Use burn-rate alerts when you want earlier warning that current conditions are consuming the error budget too quickly.
 
@@ -147,11 +135,7 @@ Use the baseline alert when you want to know that the SLI is out of compliance. 
 
 After you create an SLI, Azure Monitor displays it on the **Monitoring** page for the service group.
 
-1. Open the service group, and then select **Monitoring**.
-1. Select **View all SLIs** to open the management experience.
-1. Review the SLI status and remaining error budget in the list.
-1. Select an SLI to review trend, error budget, and burn rate charts.
-1. Edit or delete the SLI as needed.
+Open the service group and select **Monitoring**. Then select **View all SLIs** to open the management experience, review the SLI status and remaining error budget in the list, and select an SLI to review trend, error budget, and burn rate charts. Edit or delete the SLI as needed.
 
 :::image type="content" source="media/create-service-level-indicators/manage-service-level-indicators.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
 
