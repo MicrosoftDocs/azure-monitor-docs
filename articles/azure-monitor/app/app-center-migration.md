@@ -271,12 +271,7 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 - **Storage and query** in Azure Monitor Logs and Application Insights.
 - **Azure Monitor experiences** such as Logs, Workbooks, and Alerts.
 
-Use these support resources:
-
-- [Microsoft Forum](/answers/tags/20/azure-monitor)
-- [Azure support request](https://azure.microsoft.com/support/create-ticket)
-
-## Troubleshooting
+#### How to reach out to Microsoft support
 
 1. In the Azure portal, select **Help + Support** (**?**) from the top navigation bar.
 
@@ -304,19 +299,19 @@ Use these support resources:
 
 1. In the **New support request** pane, complete the following steps:
 
-    a. On the **Problem description** tab, enter a summary of the issue. For **Problem type**, select **Deprecated features**. For **Problem subtype**, select **Migrating from App Center to Azure Monitor**. Select **Next**.
+    1. On the **Problem description** tab, enter a summary of the issue. For **Problem type**, select **Deprecated features**. For **Problem subtype**, select **Migrating from App Center to Azure Monitor**. Select **Next**.
 
-    :::image type="content" source="media/app-center-migration/new-support-request.png" lightbox="media/app-center-migration/new-support-request.png" alt-text="A screenshot showing the 'New support request' pane.'":::
+        :::image type="content" source="media/app-center-migration/new-support-request.png" lightbox="media/app-center-migration/new-support-request.png" alt-text="A screenshot showing the 'New support request' pane.'":::
 
-    b. On the **Recommended solutions** tab, review the suggested solutions. If the suggested solutions don't resolve the issue, select **Return to support request**, then select **Next**.
+    1. On the **Recommended solutions** tab, review the suggested solutions. If the suggested solutions don't resolve the issue, select **Return to support request**, then select **Next**.
 
-    :::image type="content" source="media/app-center-migration/recommended-solutions.png" lightbox="media/app-center-migration/recommended-solutions.png" alt-text="A screenshot showing 'Recommended solutions' tab'.":::
+        :::image type="content" source="media/app-center-migration/recommended-solutions.png" lightbox="media/app-center-migration/recommended-solutions.png" alt-text="A screenshot showing 'Recommended solutions' tab'.":::
     
-    c. On the **Additional details** tab, provide the date the problem started, a description, any related files, diagnostic log collection permissions, and the required support severity.
+    1. On the **Additional details** tab, provide the date the problem started, a description, any related files, diagnostic log collection permissions, and the required support severity.
 
-    :::image type="content" source="media/app-center-migration/additional-details.png" lightbox="media/app-center-migration/additional-details.png" alt-text="A screenshot showing the 'Additional details' tab.":::
+        :::image type="content" source="media/app-center-migration/additional-details.png" lightbox="media/app-center-migration/additional-details.png" alt-text="A screenshot showing the 'Additional details' tab.":::
 
-    d. On the **Review + create** tab, review your request. Make any required changes, then select **Create**.
+    1. On the **Review + create** tab, review your request. Make any required changes, then select **Create**.
 
 To learn more, see [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) and [Manage an Azure support request - Azure portal | Microsoft Learn](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
 
