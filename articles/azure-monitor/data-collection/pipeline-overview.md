@@ -23,10 +23,10 @@ Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your sec
 
 | Need | How the pipeline helps |
 |:---|:---|
-| Telemetry originates outside Azure | Centralizes ingestion from on-premises, edge, and multicloud sources into Azure Monitor with one consistent control point. |
-| Bandwidth or ingestion cost constraints | Filters and aggregates data before cloud ingestion so you reduce network transfer and pay to ingest higher-value telemetry. |
+| Bandwidth or ingestion cost constraints | Filters and aggregates data before cloud ingestion to reduce your network bandwidth requirements. |
 | High telemetry volume | Processes data locally at scale to handle sustained high-throughput scenarios before sending to Azure Monitor. |
 | Intermittent or restricted connectivity | Buffers data in persistent storage during disruptions and backfills automatically when connectivity returns. |
+| Formatting of telemetry | Auto-schematizes Syslog and CEF data to standard tables. |
 
 ## Supported data sources
 
@@ -36,6 +36,17 @@ Azure Monitor pipeline currently receives and processes the following data sourc
 |:---|:---|:---|
 | Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
 | OpenTelemetry Protocol (OTLP) | Supports OTLP ingestion for OpenTelemetry-enabled clients. | Preview |
+
+## Key capabilities
+
+Azure Monitor pipeline includes a set of capabilities that help address common ingestion challenges in hybrid and multicloud environments.
+
+- Secure ingestion endpoints support TLS and optional mutual TLS (mTLS), so you can encrypt telemetry in transit and restrict ingestion to trusted clients.
+- Local processing can filter, aggregate, and reshape telemetry before it reaches Azure Monitor, which helps reduce ingestion cost and keep cloud analytics focused on higher-value data.
+- Supported Syslog and CEF data can be auto-schematized for Azure Monitor tables such as `Syslog` and `CommonSecurityLog`, which helps reduce downstream parsing effort.
+- Local buffering in persistent storage helps prevent data loss during connectivity interruptions and automatically backfills data when connectivity returns.
+- Built-in monitoring exposes health and performance signals for the pipeline itself, so you can see whether it is receiving, processing, and forwarding telemetry.
+- Sizing guidance helps you plan the Kubernetes infrastructure for your expected telemetry volume and workload characteristics.
 
 ## How Azure Monitor pipeline works
 
@@ -59,17 +70,17 @@ A typical deployment is shown in the preceding image and includes the following 
 
 ## Azure Monitor pipeline compared to Azure Monitor agent
 
-Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) address different telemetry ingestion needs but often work well together.
+Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) use different collection models and often work well together. AMA is installed on individual resources and collects telemetry from those resources for Azure Monitor. Azure Monitor pipeline is deployed centrally and receives, processes, and forwards telemetry from multiple local sources before cloud ingestion.
 
-| Capability | Azure Monitor pipeline | Azure Monitor agent |
+| Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Ingestion model | Gateway-based, resilient, scalable | Agent-based, direct to cloud |
-| Best for | Edge, hybrid, and multicloud environments with high volume or restricted connectivity | Azure and Arc-enabled resources with reliable cloud connectivity |
-| Persistent storage | Persistent storage with configurable retention (up to 48 hours), backfills when connectivity returns | Configurable disk cache (4 GB to 1 TB), data exceeding cache is lost |
-| Pre-ingestion transformations | Filters, aggregates, and reshapes data locally before cloud ingestion | KQL transformations via data collection rules |
-| Scale | High-throughput telemetry at scale | Moderate telemetry volumes |
+| Ingestion model | Agent-based | Gateway-based |
+| Deployment model | Installed on individual virtual machines or Kubernetes clusters | Deployed centrally on an Arc-enabled Kubernetes cluster |
+| Primary role | Collect telemetry from the resource where the agent runs | Receive, process, and route telemetry from multiple sources before sending it to Azure Monitor |
+| Typical fit | Resources where you can install and manage an agent and send data directly to Azure | Scenarios that need centralized ingestion, preprocessing, or buffering before sending data to Azure |
+| Scale model | Per-resource collection with local caching | Aggregated ingestion with centralized buffering and processing |
 
-Many architectures use both together. AMA handles Azure-connected resources, and Azure Monitor pipeline serves as a central ingestion gateway for edge and multicloud telemetry.
+Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for scenarios where customers need to receive telemetry from remote sources or apply control before the data reaches Azure.
 
 ## Supported configurations
 
@@ -86,3 +97,6 @@ For more information, see [Product availability by region](https://azure.microso
 - Complete the cluster setup in [Configure Azure Monitor pipeline](./pipeline-configure.md).
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Review encryption options in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
+- Review data shaping options in [Transform data with Azure Monitor pipeline](./pipeline-transformations.md).
+- Monitor pipeline health in [Monitor Azure Monitor pipeline](./pipeline-monitor.md).
+- Plan deployment capacity in [Size Azure Monitor pipeline](./pipeline-sizing.md).
