@@ -55,7 +55,7 @@ For more information, see [az account get-access-token](/cli/azure/account#az-ac
 
 One of the quickest ways to get an authentication token for Azure SDKs is to use the `DefaultAzureCredential` class, but it introduces certain tradeoffs. 
 
-For more information, see [Best practices for Azure SDK authentication](/azure/sdk/authentication/best-practices?tabs=aspdotnet#use-deterministic-credentials-in-production-environments).
+For more information, see [Best practices for Azure SDK authentication](/dotnet/azure/sdk/authentication/best-practices?tabs=aspdotnet#use-deterministic-credentials-in-production-environments).
 
 * C# 
 * NodeJS
