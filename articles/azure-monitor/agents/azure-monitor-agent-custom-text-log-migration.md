@@ -6,32 +6,73 @@ ms.date: 04/07/2026
 ---
 
 # Migrate from MMA custom text table to AMA DCR based custom text table
+
 This article describes the steps to migrate a [MMA Custom text log](data-sources-custom-logs.md) table so you can use it as a destination for a new [AMA custom text logs](data-collection-log-text.md) DCR. If you're creating a new AMA custom text table, then this article doesn't pertain to you.
 
 ## Background
+
 You must configure MMA custom text logs to support new DCR features that allow AMA agents to write to it. Take the following actions:
+
 - Your table is reconfigured to enable all DCR-based custom logs features.
 - Your AMA agents can write data to any column in the table. 
 - Your MMA Custom text log will lose the ability to write to the custom log.
+
 To continue to write you custom data from both MMA and AMA each must have its own custom table. Your data queries in LA that process your data must join the two tables until the migration is complete at which point you can remove the join. 
   
 ## Migration
-You should follow the steps only if the following criteria are true:  
+
+You should follow the steps only if the following criteria are true:
+
 - You created the original table using the Custom Log Wizard.
 - You're going to preserve the existing data in the table.
 - You do not need MMA agents to send data to the existing table
 - You're going to exclusively write new data using and [AMA custom text log DCR](data-collection-log-text.md) and possibly configure an [ingestion time transformation](azure-monitor-agent-transformation.md).
 
 ## Procedure
-1. Configure your data collection rule (DCR) following procedures at [collect text logs with Azure Monitor Agent](data-collection-log-text.md) 
-2. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA. 
 
-```rest
-POST
-https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
-```
-3. Discontinue MMA custom text log collection and start using the AMA custom text log.
+1. Configure your data collection rule (DCR) following procedures at [collect text logs with Azure Monitor Agent](data-collection-log-text.md).
+
+1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
+
+    # [REST](#tab/rest)
+    
+    ```rest
+    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
+    ```
+
+    # [CLI](#tab/cli)
+
+    ```azurecli
+    subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+    resourceGroupName="myResourceGroup"
+    workspaceName="myWorkspace"
+    tableName="myTable"
+    apiVersion="2021-12-01-preview"
+    providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate"
+    resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
+    
+    az rest --method post --uri "$resourceId?api-version=$apiVersion"
+    ```
+    
+    # [PowerShell](#tab/powershell)
+
+    ```powershell
+    $subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+    $resourceGroupName="myResourceGroup"
+    $workspaceName="myWorkspace"
+    $tableName="myTable"
+    $apiVersion="2021-12-01-preview"
+    
+    $path = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate?api-version=$apiVersion"
+    
+    Invoke-AzRestMethod -Method POST -Path $path
+    ```
+
+    ---
+
+1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
 ## Next steps
+
 - [Walk through a tutorial sending custom logs using the Azure portal.](data-collection-log-text.md)
 - [Create an ingestion time transform for your custom text data](azure-monitor-agent-transformation.md)
