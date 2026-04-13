@@ -70,6 +70,17 @@ You should follow the steps only if the following criteria are true:
 
     ---
 
+    | Variable | Example value | Purpose |
+    |----------|---------------|---------|
+    | $host | management.azure.com | Implicit ARM endpoint |
+    | $subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+    | $resourceGroupName | myResourceGroup | User input |
+    | $workspaceName | myWorkspace | User input |
+    | $tableName | myTable | User input |
+    | $apiVersion | 2021-12-01-preview | API-specific |
+    | $providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
+    | $resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
+
 1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
 ## Next steps
