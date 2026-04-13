@@ -12,18 +12,3 @@ groups:
     title: ARM template
   - id: bicep
     title: Bicep
-# Owner: schaffererin
-- id: kubernetes-monitoring-enable
-  title: Interaction type
-  prompt: Select how you want to interact with Azure
-  pivots:
-  - id: azure-cli
-    title: Azure CLI
-  - id: bicep-arm
-    title: Bicep/ARM
-  - id: terraform
-    title: Terraform
-  - id: azure-portal
-    title: Azure portal
-  - id: azure-policy
-    title: Azure Policy
