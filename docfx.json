@@ -20,6 +20,13 @@
         ],
         "src": "breadcrumb/azure-monitor",
         "dest": "breadcrumb/azure-monitor"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-monitor/"
       }
     ],
     "resource": [
@@ -134,7 +141,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "azure-monitor/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "adobe-target": {
