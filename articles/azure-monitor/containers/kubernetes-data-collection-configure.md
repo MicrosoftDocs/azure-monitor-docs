@@ -45,7 +45,7 @@ Some settings can be configured with both ConfigMap and DCR, but there are impor
 
 
 ## ConfigMap configuration
-Separate ConfigMaps are provided for logs and metrics as described below. Both logs and metrics have a default configuration applied when you [enable monitoring for your cluster](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). Use these ConfigMaps to modify the default configuration to meet your requirements.
+Separate ConfigMaps are provided for logs and metrics as described below. Both logs and metrics have a default configuration applied when you [enable monitoring for your cluster](./kubernetes-monitoring-enable.md). Use these ConfigMaps to modify the default configuration to meet your requirements.
 
 | Data | Description |
 |:---|:---|
