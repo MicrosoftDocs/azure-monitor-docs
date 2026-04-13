@@ -55,7 +55,7 @@ Separate ConfigMaps are provided for logs and metrics as described below. Both l
 
 
 ## DCR configuration
-When you enable log collection for your cluster, separate DCRs are automatically created for logs and metrics that include the settings that you specified in the [onboarding process](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging). See [DCRs and related resources](#dcrs-and-related-resources) below for details of the DCRs and related objects that are created during onboarding.
+When you enable log collection for your cluster, separate DCRs are automatically created for logs and metrics that include the settings that you specified in the [onboarding process](./kubernetes-monitoring-enable.md). See [DCRs and related resources](#dcrs-and-related-resources) below for details of the DCRs and related objects that are created during onboarding.
 
 
 | Data | Description |
