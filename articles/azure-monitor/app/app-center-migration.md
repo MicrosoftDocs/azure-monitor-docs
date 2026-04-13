@@ -276,6 +276,50 @@ Use these support resources:
 - [Microsoft Forum](/answers/tags/20/azure-monitor)
 - [Azure support request](https://azure.microsoft.com/support/create-ticket)
 
+## Troubleshooting
+
+1. In the Azure portal, select **Help + Support** (**?**) from the top navigation bar.
+
+    :::image type="content" source="media/app-center-migration/help-and-support-top.png" lightbox="media/app-center-migration/help-and-support-top.png" alt-text="A screenshot of the top navigation bar with 'Help & Support' highlighted.":::
+
+    Alternatively, open your Application Insights resource and select **Help + Support** from the left-hand resource menu.
+
+1. In the **Help + Support** pane, describe your issue. For example, search for "Issue with application logs" and select **Go**.
+
+    :::image type="content" source="media/app-center-migration/support-pane-search.png" lightbox="media/app-center-migration/support-pane-search.png" alt-text="A screenshot of the support pane with the search bar highlighted.":::
+
+1. Under **Which service are you having an issue with?**, select **Application Insights**, then select **Next**.
+
+1. Under **Which resource are you having an issue with?**, select your subscription and Application Insights resource from the drop-down menus, then select **Next**.
+
+    :::image type="content" source="media/app-center-migration/select-resource.png" lightbox="media/app-center-migration/select-resource.png" alt-text="A screenshot of the support pane showing subscription and resource fields.":::
+
+1. Under **Are you having one of the following issues?**, select **None of the above**. For **Problem type**, select **Deprecated features** and for **Problem subtype**, select  **Migrating from App Center to Azure Monitor**, then select **Next**.
+
+    :::image type="content" source="media/app-center-migration/select-problem-type.png" lightbox="media/app-center-migration/select-subscription-and-resource.png" alt-text="A screenshot of the support pane with the problem type fields highlighted.":::
+
+1. Scroll to the bottom of the page and select **Contact support**. In the **Help + Support** card, select **Create a support request**.
+
+    :::image type="content" source="media/app-center-migration/create-support-request.png" lightbox="media/app-center-migration/create-support-request.png" alt-text="A screenshot showing the 'Help + Support' tile with 'Creatre a support request' highlighted.":::
+
+1. In the **New support request** pane, complete the following steps:
+
+    a. On the **Problem description** tab, enter a summary of the issue. For **Problem type**, select **Deprecated features**. For **Problem subtype**, select **Migrating from App Center to Azure Monitor**. Select **Next**.
+
+        :::image type="content" source="media/app-center-migration/new-support-request.png" lightbox="media/app-center-migration/new-support-request.png" alt-text="A screenshot showing the 'New support request' pane.'":::
+
+    b. On the **Recommended solutions** tab, review the suggested solutions. If the suggested solutions don't resolve the issue, select **Return to support request**, then select **Next**.
+
+        :::image type="content" source="media/app-center-migration/recommended-solutions.png" lightbox="media/app-center-migration/recommended-solutions.png" alt-text="A screenshot showing 'Recommended solutions' tab'.":::
+    
+    c. On the **Additional details** tab, provide the date the problem started, a description, any related files, diagnostic log collection permissions, and the required support severity.
+
+        :::image type="content" source="media/app-center-migration/additional-details.png" lightbox="media/app-center-migration/additional-details.png" alt-text="A screenshot showing the 'Additional details' tab.":::
+
+    d. On the **Review + create** tab, review your request. Make any required changes, then select **Create**.
+
+To learn more, see [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) and [Manage an Azure support request - Azure portal | Microsoft Learn](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
+
 ## Next steps
 
 > [!div class="nextstepaction"]
