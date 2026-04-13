@@ -296,7 +296,7 @@ Use these support resources:
 
 1. Under **Are you having one of the following issues?**, select **None of the above**. For **Problem type**, select **Deprecated features** and for **Problem subtype**, select  **Migrating from App Center to Azure Monitor**, then select **Next**.
 
-    :::image type="content" source="media/app-center-migration/select-problem-type.png" lightbox="media/app-center-migration/select-subscription-and-resource.png" alt-text="A screenshot of the support pane with the problem type fields highlighted.":::
+    :::image type="content" source="media/app-center-migration/select-problem-type.png" lightbox="media/app-center-migration/select-problem-type.png" alt-text="A screenshot of the support pane with the problem type fields highlighted.":::
 
 1. Scroll to the bottom of the page and select **Contact support**. In the **Help + Support** card, select **Create a support request**.
 
