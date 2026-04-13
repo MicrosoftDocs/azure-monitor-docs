@@ -10,11 +10,12 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 # What is Azure Monitor pipeline?
 
-Telemetry from on-premises, edge, and multicloud environments can create challenges with scale, cost, and reliability when you use direct-to-cloud collection. Azure Monitor pipeline provides a single point of control for enterprise telemetry ingestion in these scenarios. It helps you collect, transform, route, and buffer telemetry before sending it to Azure Monitor in the cloud. This process helps you optimize data before ingestion and reduce costs. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
+Azure Monitor can already collect telemetry from on-premises, edge, and multicloud environments. In many enterprise environments, sending large volumes of telemetry directly to the cloud can increase ingestion costs, introduce reliability risks during connectivity loss, and limit your control over what data is collected. Azure Monitor pipeline builds on existing Azure Monitor collection capabilities for these scenarios.
+
+Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, buffer, and route telemetry before it's sent to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on open-source technologies from the OpenTelemetry ecosystem, the pipeline is portable and interoperable across environments.
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
-This article is the starting point for Azure Monitor pipeline. Use it to understand when to use the pipeline and the recommended sequence for setting up end-to-end data collection.
 
 ## Why use Azure Monitor pipeline?
 
@@ -31,13 +32,10 @@ Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your sec
 
 Azure Monitor pipeline currently receives and processes the following data source types:
 
-| Data source | Status |
-|:---|:---|
-| Syslog | Generally available |
-| Common Event Format (CEF) | Generally available |
-| OpenTelemetry Protocol (OTLP) | Preview |
-
-The pipeline collects Syslog and CEF data from network devices and local servers. OTLP data comes from applications instrumented with OpenTelemetry SDKs. You can configure custom ports and add extra receivers as needed through pipeline transformations and extensions.
+| Data source | Details | Status |
+|:---|:---|:---|
+| Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
+| OpenTelemetry Protocol (OTLP) | Supports OTLP ingestion for OpenTelemetry-enabled clients. | Preview |
 
 ## How Azure Monitor pipeline works
 
@@ -49,12 +47,12 @@ The pipeline is a containerized solution that runs on an [Arc-enabled Kubernetes
 A typical deployment is shown in the preceding image and includes the following components:
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
-- Clients send Syslog (including CEF) data to the pipeline on TCP port 514 by default.
+- Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
 - Clients send OpenTelemetry Protocol (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
-- The pipeline forwards data across local firewalls to Log Analytics workspaces in Azure Monitor.
+- The pipeline forwards data across local firewalls to a Log Analytics workspace in Azure Monitor.
 - Once data is collected, it's available to any Azure Monitor feature that accesses that workspace.
 
 
@@ -67,7 +65,7 @@ Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agen
 |:---|:---|:---|
 | Ingestion model | Gateway-based, resilient, scalable | Agent-based, direct to cloud |
 | Best for | Edge, hybrid, and multicloud environments with high volume or restricted connectivity | Azure and Arc-enabled resources with reliable cloud connectivity |
-| Buffering | Persistent storage with configurable retention (up to 48 hours), backfills when connectivity returns | Configurable disk cache (4 GB to 1 TB), data exceeding cache is lost |
+| Persistent storage | Persistent storage with configurable retention (up to 48 hours), backfills when connectivity returns | Configurable disk cache (4 GB to 1 TB), data exceeding cache is lost |
 | Pre-ingestion transformations | Filters, aggregates, and reshapes data locally before cloud ingestion | KQL transformations via data collection rules |
 | Scale | High-throughput telemetry at scale | Moderate telemetry volumes |
 

@@ -17,7 +17,7 @@ sections:
     questions:
       - question: What is Azure Monitor pipeline?
         answer: |
-          Azure Monitor pipeline extends enterprise-grade telemetry ingestion to any environment, providing a **single point of control** to securely ingest data, optimize data before ingestion, optimize costs, and ensure consistent delivery to the cloud.
+          Azure Monitor pipeline extends enterprise-grade telemetry collection to any environment, providing a **single point of control** to securely ingest data, optimize data before ingestion, optimize costs, and ensure consistent delivery to the cloud.
 
           It runs on Azure Arc–enabled Kubernetes clusters and uses open-source technologies from the **OpenTelemetry ecosystem**, enabling portability and interoperability across environments.
 
@@ -33,10 +33,11 @@ sections:
           | Very high telemetry volume | Collects and processes data locally at scale before cloud ingestion |
           | Intermittent or restricted connectivity | Buffers data locally in configured persistent storage and backfills to Azure Monitor once connectivity is restored |
           | Bandwidth or ingestion cost constraints | Filters and aggregates telemetry before sending data to Azure Monitor |
+          | Data formatting | Auto-schematizes Syslog and CEF data for easier analysis in Azure Monitor |
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#why-use-azure-monitor-pipeline)
 
-      - question: How is Azure Monitor pipeline different from Azure Monitor Agent (AMA)?
+      - question: How is Azure Monitor pipeline different from Azure Monitor agent (AMA)?
         answer: |
           Azure Monitor pipeline and Azure Monitor Agent (AMA) address **different telemetry ingestion needs** and are often **complementary**.
 
@@ -53,7 +54,7 @@ sections:
           - You need local buffering, high-throughput ingestion, or pre-ingestion filtering and transformations
           - Clients can't send data directly to Azure Monitor
 
-          In short: AMA provides agent-based, direct ingestion, while Azure Monitor pipeline provides gateway-based, resilient, scalable ingestion. Many architectures use **both together**—AMA for Azure-connected resources, and Azure Monitor pipeline as a **central ingestion gateway** for edge and multicloud telemetry.
+          In short: AMA uses an agent-based model, where each deployed agent collects telemetry from the same host or resource where it's installed and sends it to Azure Monitor. Azure Monitor pipeline uses a gateway-based model, where a centralized deployment can accept telemetry from remote sources anywhere that network connectivity is available. Many architectures use **both together**: AMA for Azure-connected resources that support agent-based collection, and Azure Monitor pipeline as a **central ingestion gateway** for remote, edge, and multicloud telemetry.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#azure-monitor-pipeline-compared-to-azure-monitor-agent)
 
@@ -68,6 +69,12 @@ sections:
       - question: Where does Azure Monitor pipeline run?
         answer: |
           Azure Monitor pipeline runs as containerized components on an Azure Arc–enabled Kubernetes cluster. This enables deployment close to data sources in on‑premises data centers, edge locations, and other cloud environments.
+
+          [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)
+
+      - question: Do I need to deploy Azure Monitor pipeline on every client resource?
+        answer: |
+          No. You don't deploy Azure Monitor pipeline on each client resource. You deploy Azure Monitor pipeline on an Azure Arc-enabled Kubernetes cluster and then configure your clients to send telemetry to the ports exposed by the pipeline instance. The pipeline acts as a centralized component that receives telemetry from multiple resources in your environment and forwards it to Azure Monitor.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)
 
@@ -89,7 +96,7 @@ sections:
     questions:
       - question: What types of data can Azure Monitor pipeline collect?
         answer: |
-          Azure Monitor pipeline collects telemetry data from local or external clients and delivers it to Azure Monitor.
+          Azure Monitor pipeline currently collects Syslog and OTLP logs (preview) from local or external clients.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#supported-data-sources)
 
@@ -101,7 +108,7 @@ sections:
 
       - question: How does Azure Monitor pipeline help reduce network usage?
         answer: |
-          By filtering or aggregating telemetry before sending it to Azure, Azure Monitor pipeline reduces network bandwidth usage. This is especially valuable in bandwidth-constrained or cost-sensitive environments.
+          Azure Monitor pipeline compresses telemetry before sending it to the cloud. Network bandwidth is further reduced by filtering or aggregating the collected data. This is especially valuable in bandwidth-constrained or cost-sensitive environments.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-transformations)
 
@@ -123,6 +130,6 @@ sections:
 
       - question: Is Azure Monitor pipeline fully managed by Azure?
         answer: |
-          Azure provides management and integration with Azure Monitor. However, customers are responsible for operating and maintaining the environment where the pipeline runs. This shared responsibility model allows customers to retain control over their local infrastructure.
+          Azure provides a centralized control plane to manage pipeline configuration and integration with Azure Monitor. The service also provides operational benefits such as out-of-band authentication from the pipeline to Log Analytics by using managed identity, the cert-manager extension for certificate management, automated certificate rotation, and zero-downtime TLS rotation. The customer is still responsible for operating and maintaining the environment where the pipeline runs. This shared responsibility model allows customers to retain control over their local infrastructure.
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#how-azure-monitor-pipeline-works)

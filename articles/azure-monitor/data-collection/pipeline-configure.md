@@ -30,7 +30,7 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 1. If default pod placement behavior doesn't meet your performance, isolation, or compliance needs:
     1. Configure [pod placement](./pipeline-pod-placement.md) for the pipeline.
 
-:::image type="content" source="media/pipeline-configure/pipeline-setup-flow.png" alt-text="Diagram of Azure Monitor pipeline setup flow with steps for prerequisites, cert-manager, deployment, and decision points for data, TLS, clients, and scheduling.":::
+:::image type="content" source="media/pipeline-configure/pipeline-setup-flow.png" lightbox="media/pipeline-configure/pipeline-setup-flow.png" alt-text="Diagram of Azure Monitor pipeline setup flow with steps for prerequisites, cert-manager, deployment, and decision points for data, TLS, clients, and scheduling." border="false":::
 
 
 ## Prerequisites
@@ -41,7 +41,7 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 - [Arc-enabled Kubernetes cluster](/azure/azure-arc/kubernetes/overview) in your environment with an external IP address. To connect a cluster to Azure Arc, see [Connect an existing Kubernetes cluster to Azure Arc](/azure/azure-arc/kubernetes/quickstart-connect-cluster).
 - Custom locations enabled on the Arc-enabled Kubernetes cluster. See [Create and manage custom locations on Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/custom-locations#enable-custom-locations-on-your-cluster).
 - Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
-  - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md).
+  - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.
 
 ## Install cert-manager for Arc-enabled Kubernetes
 

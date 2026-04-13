@@ -79,7 +79,7 @@ For more details and examples of the processor configuration file, see [Configur
 ## Aggregations
 An aggregation in KQL summarizes data from multiple records into a single record based on specified criteria. For example, you can aggregate log entries to calculate the average value of a numeric property or count the number of occurrences of specific events over a defined time period. Aggregations help reduce data volume and provide insights by condensing large datasets into meaningful summaries.
 
-Azure Monitor retrieves and processes data in batches of one-minute intervals by default. Aggregations form in a pipeline transformation over each batch of data, so the process creates an aggregated record each minute. To change this time window, configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure-cli.md#create-the-pipeline-configuration). You can't change the time interval by using the Azure portal.
+Azure Monitor pipeline retrieves and processes data in batches of one-minute intervals by default. Aggregations form in a pipeline transformation over each batch of data, so the process creates an aggregated record each minute. To change this time window, configure the `Batch` processor in the pipeline configuration as described in [Pipeline configuration](./pipeline-configure-cli.md#create-the-pipeline-configuration). You can't change the time interval by using the Azure portal.
 
 Define aggregations by using the [`summarize`](/kusto/query/summarize-operator) operator in KQL. Specify the aggregation functions and the grouping criteria. For example, the following query counts the number of events collected over the past minute grouped by `DestinationIP` and `DestinationPort`:
 
@@ -100,10 +100,10 @@ source
 
 ### Aggregation notes
 
-- When you use the `summarize` operator for aggregation, batching in the pipeline introduces an automatic latency of up to five minutes before you see the results in the UI.
+- When you use the `summarize` operator for aggregation, batching in the pipeline introduces an automatic latency of up to five minutes.
 - You always need a [batch processor](./pipeline-configure-cli.md#create-the-pipeline-configuration) to perform aggregations. Modify the batch processor to change the aggregation interval. Avoid using batch processor to send data with minimum latency. 
 - If an aggregation includes `bin()`, you might receive multiple records for the same time interval. This result occurs because of batching and the streaming nature of data ingestion.
-- Transformations work on fully formed Syslog or CEF data. If the transformation alters the schema, send the data to a custom table. When you create the transformation by using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
+- If the transformation alters the schema of Syslog or CEF data, send the data to a custom table. When you create the transformation by using the Azure portal, the only columns exposed are `SeverityText`, `Body`, and `TimeGenerated`.
 
 
 

@@ -24,9 +24,9 @@ Three pipeline configurations were tested, each representing a different level o
 
 - **Syslog Basic** — Minimal processing. The raw syslog message is passed through to a custom Log Analytics table with just 3 columns: `TimeGenerated`, `Body` (the full syslog message as-is), and `SeverityText`. No parsing of the syslog header or payload.
 
-- **Syslog Fully Formed** — The pipeline parses the RFC 5424 syslog header and maps it into the standard [Syslog](https://learn.microsoft.com/azure/azure-monitor/reference/tables/syslog) table schema with structured columns: `EventTime`, `Facility`, `SeverityLevel`, `Computer`, `HostName`, `HostIP`, `ProcessName`, `ProcessID`, `SyslogMessage`, etc.
+- **Syslog Fully Formed** — The pipeline parses the RFC 5424 syslog header and maps it into the standard [Syslog](/azure/azure-monitor/reference/tables/syslog) table schema with structured columns: `EventTime`, `Facility`, `SeverityLevel`, `Computer`, `HostName`, `HostIP`, `ProcessName`, `ProcessID`, `SyslogMessage`, etc.
 
-- **CEF Fully Formed** — The pipeline parses both the syslog header and the CEF payload inside it, mapping into the standard [CommonSecurityLog](https://learn.microsoft.com/azure/azure-monitor/reference/tables/commonsecuritylog) table schema with 90+ columns: `DeviceVendor`, `DeviceProduct`, `Activity`, `SourceIP`, `DestinationIP`, `DeviceAction`, `Protocol`, `RequestURL`, and many more.
+- **CEF Fully Formed** — The pipeline parses both the syslog header and the CEF payload inside it, mapping into the standard [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog) table schema with 90+ columns: `DeviceVendor`, `DeviceProduct`, `Activity`, `SourceIP`, `DestinationIP`, `DeviceAction`, `Protocol`, `RequestURL`, and many more.
 
 ## Measured Throughput
 
