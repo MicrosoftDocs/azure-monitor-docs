@@ -14,7 +14,7 @@ This article shows you how to create and manage an SLI in the Azure portal. It a
 
 ## Understand SLI basics
 
-Each SLI combines a several elements that determine what Azure Monitor measures and how it evaluates the result.
+Each SLI combines several elements that determine what Azure Monitor measures and how it evaluates the result.
 
 | Element | What it defines |
 |:---|:---|
@@ -47,13 +47,13 @@ The default data collection rule for the destination workspace is stored in the 
 
 In the Azure portal, open your service group, select **Monitoring**, and then select **Create SLIs** in the **SLI** card.
 
-:::image type="content" source="media/create-service-level-indicators/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button.":::
+:::image type="content" source="media/service-level-indicators-create/service-group-monitoring.png" alt-text="Screenshot of the Monitoring page for a service group with the SLI card and the Create SLIs button." lightbox="media/service-level-indicators-create/service-group-monitoring.png":::
 
 ## Configure the Basics tab
 
 On the **Basics** tab, enter a name for the SLI, optionally enter a description, and then select the SLI type.
 
-:::image type="content" source="media/create-service-level-indicators/create-service-level-indicator-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options.":::
+:::image type="content" source="media/service-level-indicators-create/create-service-level-indicator-entry.png" alt-text="Screenshot of the Basics tab when you create a new SLI, showing availability and latency options." lightbox="media/service-level-indicators-create/create-service-level-indicator-entry.png":::
 
 The SLI type defines the reliability question you're asking. Availability asks whether the service is working. Latency asks whether the service is responding quickly enough.
 
@@ -66,7 +66,7 @@ The SLI type defines the reliability question you're asking. Availability asks w
 
 On the **SLI** tab, select the evaluation method, choose the identity and workspaces, and define the signals that Azure Monitor uses to evaluate the SLI.
 
-:::image type="content" source="media/create-service-level-indicators/service-level-indicator-tab-metrics-details-managed-identity.png" alt-text="Screenshot of the SLI tab showing evaluation method dropdown, managed identity selection, data source, and metric configuration fields." lightbox="media/create-service-level-indicators/service-level-indicator-tab-metrics-details-managed-identity.png":::
+:::image type="content" source="media/service-level-indicators-create/service-level-indicator-tab-metrics-details-managed-identity.png" alt-text="Screenshot of the SLI tab showing evaluation method dropdown, managed identity selection, data source, and metric configuration fields." lightbox="media/service-level-indicators-create/service-level-indicator-tab-metrics-details-managed-identity.png":::
 
 ### Metrics details
 
@@ -100,7 +100,7 @@ Add filters such as a status code or dimension value to limit the values used fo
 
 Optionally specify an aggregation across multiple time series after temporal aggregation. This setting is the *spatial aggregation*.
 
-:::image type="content" source="media/create-service-level-indicators/request-based-service-level-indicator-good-total-signal-configuration.png" alt-text="Screenshot of request-based SLI setup showing Good signal and Total signal sections with metric selection, filters, and Add Metric buttons.":::
+:::image type="content" source="media/service-level-indicators-create/request-based-service-level-indicator-good-total-signal-configuration.png" alt-text="Screenshot of request-based SLI setup showing Good signal and Total signal sections with metric selection, filters, and Add Metric buttons." lightbox="media/service-level-indicators-create/request-based-service-level-indicator-good-total-signal-configuration.png":::
 
 
 If you need more than one metric to define a signal, select **Add Metric** for each metric you need, and then select **Formula** to combine them. For example, you can use a formula such as `MetricA + MetricB`. You can also use a formula for a single metric, such as `MetricA * MetricA`.
@@ -111,7 +111,7 @@ With this model, you don't explicitly provide good and total signals. For each w
 
 Use metrics, filters, and formulas in the same way as the request-based model to define the signal that you want to evaluate. Then define the evaluation criteria that determines uptime.
 
-:::image type="content" source="media/create-service-level-indicators/window-based-service-level-indicator.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings.":::
+:::image type="content" source="media/service-level-indicators-create/window-based-service-level-indicator.png" alt-text="Screenshot of the window-based SLI configuration showing a signal section, SLI evaluation criteria, and identity and data storage location settings." lightbox="media/service-level-indicators-create/window-based-service-level-indicator.png":::
 
 Preview charts help you validate that the selected metrics, filters, and formulas represent the intended workload before you create the SLI.
 
@@ -120,7 +120,7 @@ Preview charts help you validate that the selected metrics, filters, and formula
 
 On the **Baseline + Alert** tab, set the target that the SLI should meet, choose how Azure Monitor evaluates compliance, and optionally configure alert notifications. An SLI is a measured value. The baseline target defines whether that value is acceptable. In reliability engineering terms, this target is your service level objective.
 
-:::image type="content" source="media/create-service-level-indicators/baseline-alert.png" alt-text="Screenshot of the Baseline + Alert tab for creating an SLI, showing baseline, evaluation period, alert options, and action group selection.":::
+:::image type="content" source="media/service-level-indicators-create/baseline-alert.png" alt-text="Screenshot of the Baseline + Alert tab for creating an SLI, showing baseline, evaluation period, alert options, and action group selection." lightbox="media/service-level-indicators-create/baseline-alert.png":::
 
 In **Baseline (SLO)**, enter the target percentage that the SLI should meet, and in **Evaluation period**, select the time window that Azure Monitor uses to evaluate compliance. 
 
@@ -135,11 +135,11 @@ After you create an SLI, Azure Monitor displays it on the **Monitoring** page fo
 
 Open the service group and select **Monitoring**. Then select **View all SLIs** to open the management experience, review the SLI status and remaining error budget in the list, and select an SLI to review trend, error budget, and burn rate charts. Edit or delete the SLI as needed.
 
-:::image type="content" source="media/create-service-level-indicators/manage-service-level-indicators.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget.":::
+:::image type="content" source="media/service-level-indicators-create/manage-service-level-indicators.png" alt-text="Screenshot of the Manage SLIs page listing SLIs with evaluation method, status, and remaining error budget." lightbox="media/service-level-indicators-create/manage-service-level-indicators.png":::
 
 When you drill into a single SLI, Azure Monitor opens a detailed view that shows its current status, measured trend, remaining error budget, and burn rate over time. Use this view to investigate whether the SLI is tracking toward its target and to understand how quickly current conditions are consuming the error budget.
 
-:::image type="content" source="media/create-service-level-indicators/service-level-indicator-details.png" alt-text="Screenshot of the SLI details view showing status, trend, remaining error budget, and burn rate charts for a single service level indicator.":::
+:::image type="content" source="media/service-level-indicators-create/service-level-indicator-details.png" alt-text="Screenshot of the SLI details view showing status, trend, remaining error budget, and burn rate charts for a single service level indicator.":::
 
 
 
