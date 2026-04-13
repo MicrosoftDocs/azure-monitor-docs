@@ -62,7 +62,7 @@ Choose the destination table based on the data that you want to collect.
 
 ### Add transformations
 
-If you specify a transformation, select **Check KQL syntax** before saving the dataflow. For Syslog and CEF data, the validator also checks whether the transformed output matches the destination table schema. If the transformation renames columns or adds columns as part of an aggregation, send the data to a custom table instead.
+If you specify a transformation, select **Check KQL syntax** before saving the dataflow. For Syslog and CEF data, the validator also checks whether the transformed output matches the destination table schema. If the transformation renames columns or adds columns as part of an aggregation, send the data to a custom table instead. See [Azure Monitor pipeline transformations](./pipeline-transformations.md) for details on transformations.
 
 :::image type="content" source="./media/pipeline-configure/check-syntax.gif" lightbox="./media/pipeline-configure/check-syntax.gif" alt-text="Screenshot of the KQL syntax checker and a typical error message.":::
 
@@ -75,11 +75,7 @@ For `Syslog` and `CommonSecurityLog`, the transformation has access to the appro
 
 ## Review and create
 
-After you configure the basics and dataflows:
-
-1. Review the configuration on the **Review + create** tab.
-1. Resolve any validation errors.
-1. Select **Create**.
+After you configure the basics and dataflows, review the configuration on the **Review + create** tab. Select **Create**.
 
 Deployment typically takes several minutes while Azure installs the extension, creates the pipeline instance, and applies the dataflow configuration.
 

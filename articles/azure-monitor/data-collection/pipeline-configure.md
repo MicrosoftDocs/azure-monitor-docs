@@ -117,7 +117,6 @@ In the Azure portal, go to the **Kubernetes services** menu and select your Azur
 
 :::image type="content" source="./media/pipeline-configure/pipeline-cluster-components.png" lightbox="./media/pipeline-configure/pipeline-cluster-components.png" alt-text="Screenshot of cluster components supporting Azure Monitor pipeline."::: 
 
-Select the entry for **\<pipeline name\>-external-service** and note the IP address and port in the **Endpoints** column. This IP address and port is the external address that your clients send data to. For more information, see [Configure a Kubernetes gateway for Azure Monitor pipeline](./pipeline-kubernetes-gateway.md).
 
 ### Verify heartbeat
 
