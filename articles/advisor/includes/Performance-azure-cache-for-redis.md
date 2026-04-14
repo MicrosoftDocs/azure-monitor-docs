@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cache for Redis
@@ -36,17 +36,18 @@ Recommendation ID: a5ab10c5-424a-4818-9fba-ddca1eee531a
   
 Cache instances perform best when not running under high server load which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce the server load or scale to a different size or sku with more capacity.  
   
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
+**Potential benefits**: Ensure optimal performance and high availability  
 
 **Impact:** High
   
-For more information, see [Troubleshoot connectivity in Azure Cache for Redis - Azure Cache for Redis](https://aka.ms/redis/recommendations/connections)  
+For more information, see [Troubleshoot connectivity - Azure Cache for Redis](https://aka.ms/redis/recommendations/connections)  
 
 ResourceType: microsoft.cache/redis  
 Recommendation ID: e34f1fd6-7d4b-4030-9c1a-0b413675cb40  
 
 
 <!--e34f1fd6-7d4b-4030-9c1a-0b413675cb40_end-->
+
 
 <!--a25fccfd-854d-4c1a-9fae-aa0597a45e27_begin-->
 
@@ -108,17 +109,18 @@ Recommendation ID: 16d0cf25-463d-4a20-8f18-d8d71edf92e3
   
 Cache instances perform best when not running under high memory pressure which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce used memory or scale to a different size or sku with more capacity.  
   
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
+**Potential benefits**: Ensure optimal performance and high availability  
 
 **Impact:** High
   
-For more information, see [Troubleshoot Azure Cache for Redis server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/memory)  
+For more information, see [Troubleshoot server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/memory)  
 
 ResourceType: microsoft.cache/redis  
 Recommendation ID: 64dce138-80d7-48ad-934b-025a425386a7  
 
 
 <!--64dce138-80d7-48ad-934b-025a425386a7_end-->
+
 
 <!--b1184137-cf30-4a62-87bd-5e287b911a46_begin-->
 

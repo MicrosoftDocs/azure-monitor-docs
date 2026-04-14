@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/24/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -149,5 +149,41 @@ Recommendation ID: 78a8bb04-6f10-4112-8b1e-ac0fd88c67a2
 Subcategory: undefined
 
 <!--78a8bb04-6f10-4112-8b1e-ac0fd88c67a2_end-->
+
+<!--7bd8494e-7c51-456b-86a1-0cab4fe0516b_begin-->
+
+#### Migrate from Elastic query using Shard_Map_Manager mode  
+  
+Elastic query using Shard_Map_Manager external data source type reaches end of support. Existing workloads can continue to run using Azure SQL Elastic query - Shard_Map_Manager mode but will no longer receive updates or support from Microsoft.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558086)  
+
+ResourceType: microsoft.sql/servers  
+Recommendation ID: 7bd8494e-7c51-456b-86a1-0cab4fe0516b  
+Subcategory: undefined
+
+<!--7bd8494e-7c51-456b-86a1-0cab4fe0516b_end-->
+
+<!--fe62c79b-21e2-43fe-82b7-f7ec3b76c2aa_begin-->
+
+#### Enable zone redundancy for Azure SQL Database to achieve high availability and resiliency  
+  
+By default, Azure SQL Database Premium tier creates multiple replicas in the same region for high availability. To protect against zone-level failures, enable zone redundancy to spread replicas across availability zones within the region.  
+  
+**Potential benefits**: Improved availability and reliability.  
+
+**Impact:** High
+  
+For more information, see [Availability Through Local and Zone Redundancy - Azure SQL Database](https://aka.ms/learnmore_sql_servers)  
+
+ResourceType: microsoft.sql/servers/databases  
+Recommendation ID: fe62c79b-21e2-43fe-82b7-f7ec3b76c2aa  
+Subcategory: undefined
+
+<!--fe62c79b-21e2-43fe-82b7-f7ec3b76c2aa_end-->
 
 <!--articleBody-->

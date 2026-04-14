@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Cost Azure Cosmos DB
@@ -50,7 +50,7 @@ Recommendation ID: 4a993d7c-9d83-4d85-b5a9-7cce0b136378
 
 <!--a4255ba5-b07e-45ae-99ca-25e6c2079e3c_begin-->
 
-#### Consider taking action on your idle Azure Cosmos DB containers  
+#### Consider taking action on the idle Azure Cosmos DB containers  
   
 We haven't detected any activity over the past 30 days on one or more of your Azure Cosmos DB containers. Consider lowering their throughput, or deleting them if you don't plan on using them.  
   
@@ -58,7 +58,7 @@ We haven't detected any activity over the past 30 days on one or more of your Az
 
 **Impact:** Medium
   
-For more information, see [Provision container throughput in Azure Cosmos DB for NoSQL ](/azure/cosmos-db/how-to-provision-container-throughput)  
+For more information, see [Provision Container Throughput - Azure Cosmos DB](/azure/cosmos-db/how-to-provision-container-throughput)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: a4255ba5-b07e-45ae-99ca-25e6c2079e3c  
@@ -66,23 +66,25 @@ Recommendation ID: a4255ba5-b07e-45ae-99ca-25e6c2079e3c
 
 <!--a4255ba5-b07e-45ae-99ca-25e6c2079e3c_end-->
 
+
 <!--ceb9372d-60f6-4564-8033-a8b1ead4fa76_begin-->
 
-#### Migrate your Azure Cosmos DB API for MongoDB account to v4.2 to save on query/storage costs and utilize new features  
+#### Upgrade the Azure Cosmos DB for MongoDB API to version 4.2 for reduced query and storage costs  
   
-Migrate your database account to a new database account to take advantage of Azure Cosmos DB's API for MongoDB v4.2. Upgrading to v4.20 can reduce your storage costs by up to 55% and your query costs by up to 45% by leveraging a new storage format. Numerous other features such as multi-document transactions are also included in v4.2. When upgrading, you must also migrate the data in your existing account to a new account created using version 4.2. Azure Data Factory or Studio 3T can assist you in migrating your data.  
+Migrate the data in the existing database account to a new database account created using Azure Cosmos DB for MongoDB API version 4.2. It uses a new storage format to reduce storage costs up to 55% and query costs up to 45%. It provides other features including multi-document transactions.  
   
-**Potential benefits**: Improved reliability, query/storage efficiency, performance, and new feature capabilities  
+**Potential benefits**: Improved query and storage cost efficiency.  
 
 **Impact:** Medium
   
-For more information, see [4.2 server version supported features and syntax in Azure Cosmos DB for MongoDB ](/azure/cosmos-db/mongodb/feature-support-42)  
+For more information, see [4.2 Supported Features and Syntax - Azure Cosmos DB for MongoDB](/azure/cosmos-db/mongodb/feature-support-42)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: ceb9372d-60f6-4564-8033-a8b1ead4fa76  
 
 
 <!--ceb9372d-60f6-4564-8033-a8b1ead4fa76_end-->
+
 
 <!--57a36b11-140b-4276-a162-9919ca4e9462_begin-->
 
