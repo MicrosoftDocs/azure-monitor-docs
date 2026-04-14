@@ -48,7 +48,9 @@ Advisor displays your overall Advisor score and a breakdown for Advisor categori
 
 *   Potential score increase refers to the estimated score increase from adopting the recommendation. Use it as one of the factors to help you prioritize recommendations.
 
-*   If any Advisor recommendations aren't relevant for an individual resource, postpone or dismiss the recommendations. The postponed or dismissed recommendations are excluded from the score calculation with the next refresh. Advisor also uses the input as feedback to improve the model.
+*   If any Advisor recommendations aren't relevant for an individual resource, postpone or dismiss the recommendations. The postponed or dismissed recommendations are excluded from the score calculation with the next refresh.
+  
+*   If a recommendation is manually marked as complete, it is assumed that the customer has addressed the resource’s health through an alternative approach; therefore, it is treated as a healthy resource in the score calculation.
 
 ## Calculation of Advisor score
 
