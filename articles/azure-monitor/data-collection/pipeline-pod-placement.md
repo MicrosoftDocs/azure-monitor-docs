@@ -52,7 +52,7 @@ The `distribution` field contains the distribution policy for controlling how ma
 
 | Property | Type | Required | Description |
 |:---|:---|:---|:---|
-| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1` which indicates strict isolation. If you don't specify a value, there's no limit per host. |
+| `maxInstancesPerHost` | integer | No | Maximum instances per node for this specific pipelineGroup. The only currently allowed value is `1`, which indicates strict isolation. If you don't specify a value, there's no limit per host. |
 
 The maximum instances per node applies only to replicas of the same pipeline group. Different pipelineGroups can share the same node.
 
@@ -242,7 +242,7 @@ To identify problems when your pipeline instances stay in a pending state, try t
     - Confirm operator and values are correct.
     - Check for typos in label names or values.
 
-1.  If you use `maxInstancesPerHost: 1`, make sure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. Run `kubectl get nodes -l <your-label-selector>` to count eligible nodes.
+1.  If you use `maxInstancesPerHost: 1`, make sure you have enough eligible nodes for all replicas. You need at least as many eligible nodes as your replica count. To count eligible nodes, run `kubectl get nodes -l <your-label-selector>`.
 
 
 ## Common issues
