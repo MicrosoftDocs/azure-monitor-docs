@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -48,41 +48,9 @@ Recommendation ID: 37a054b6-21dc-4f5c-bdfe-360c0827205f
 
 <!--37a054b6-21dc-4f5c-bdfe-360c0827205f_end-->
 
-<!--6641760c-2bf8-41df-bac9-177af4a6b6b9_begin-->
-
-#### Expired ETCD cert  
-  
-Expired ETCD cert, please update.  
-  
-**Potential benefits**: Your cluster will work correctly  
-
-**Impact:** Medium
-  
-For more information, see [Update or rotate the credentials for an Azure Kubernetes Service (AKS) cluster - Azure Kubernetes Service](https://aka.ms/AKSUpdateCredentials)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: 6641760c-2bf8-41df-bac9-177af4a6b6b9  
 
 
-<!--6641760c-2bf8-41df-bac9-177af4a6b6b9_end-->
 
-<!--dccd771b-3484-4a41-bdbf-00b35103d5bb_begin-->
-
-#### Enable Container Insights  
-  
-Enable container insights to monitor your AKS cluster health and performance metrics. Container Insights will collect logs and events to help you debug your cluster.  
-  
-**Potential benefits**: Use Container Insights to monitor your AKS cluster's health and performance to ensure nodes and containers are performing as expected  
-
-**Impact:** Medium
-  
-For more information, see [Monitor your Kubernetes cluster performance with Container insights - Azure Monitor](/azure/azure-monitor/containers/container-insights-analyze)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: dccd771b-3484-4a41-bdbf-00b35103d5bb  
-
-
-<!--dccd771b-3484-4a41-bdbf-00b35103d5bb_end-->
 
 <!--deb97441-d830-49f6-b9a5-9d04306abde9_begin-->
 
@@ -112,13 +80,14 @@ The cluster uses the Free tier and has more than 10 nodes. The Kubernetes Contro
 
 **Impact:** High
   
-For more information, see [Azure Kubernetes Service (AKS) Free, Standard, and Premium pricing tiers for cluster management - Azure Kubernetes Service](/azure/aks/free-standard-pricing-tiers)  
+For more information, see [Azure Kubernetes Service (AKS) Free, Standard, and Premium Pricing Tiers - Azure Kubernetes Service](/azure/aks/free-standard-pricing-tiers)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: e32c5e70-515f-45aa-90e7-94fb4fdb1b6c  
 
 
 <!--e32c5e70-515f-45aa-90e7-94fb4fdb1b6c_end-->
+
 
 <!--c2f34a5d-2742-4c3d-9247-e0a8b85c3e51_begin-->
 
@@ -191,5 +160,23 @@ Recommendation ID: cc62fec4-24e5-4fc4-bf99-2b83d0702549
 
 
 <!--cc62fec4-24e5-4fc4-bf99-2b83d0702549_end-->
+
+<!--89e238d9-56e5-4f05-bd9a-295ebd55711d_begin-->
+
+#### Use Fleet Manager auto-upgrade profiles to replace cluster auto-upgrades  
+  
+Use Azure Kubernetes Fleet Manager auto-upgrade profiles to safely update multiple member clusters in a defined order.  
+  
+**Potential benefits**: Safely automate the update of multiple clusters  
+
+**Impact:** Medium
+  
+For more information, see [Automate Upgrades of Kubernetes and Node Images Across Multiple Clusters using Azure Kubernetes Fleet Manager](https://aka.ms/kubernetes-fleet/auto-upgrade)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 89e238d9-56e5-4f05-bd9a-295ebd55711d  
+
+
+<!--89e238d9-56e5-4f05-bd9a-295ebd55711d_end-->
 
 <!--articleBody-->
