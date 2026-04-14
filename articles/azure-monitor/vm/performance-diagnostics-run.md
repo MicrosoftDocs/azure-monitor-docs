@@ -117,7 +117,7 @@ Each option is described in the following table.
 | **Run on-demand diagnostics** | Runs an on-demand report when the installation is complete. You can choose to run any of these reports later. See the list of reports and their description at [On-demand diagnostics](./performance-diagnostics.md#on-demand-diagnostics). |
 | **Storage account** | Specify a storage account if you want to use a single account for multiple VMs. Otherwise the default diagnostics storage account or creates a new storage account. See [view and manage storage account and stored data](performance-diagnostics-run.md#view-and-manage-storage-account). |
 |[Authentication method](#authentication-methods)| Authentication method to use as described in [Authentication methods](#authentication-methods). |
-| **Threshold settings (Preview)** | Specify optional user-defined threshold values that override the default thresholds used by performance diagnostics to generate insights based on workload-specific resource usage patterns. |
+| [Threshold settings (Preview)](#threshold-settings-preview) | Specify optional user-defined threshold values that override the default thresholds used by performance diagnostics to generate insights based on workload-specific resource usage patterns. |
 
 
 A notification is displayed as performance diagnostics starts to install, and you receive a second notification when it completes. This process typically takes about a minute. If you selected the **Run on-demand diagnostics** option, the selected performance analysis scenario runs for the specified duration.
