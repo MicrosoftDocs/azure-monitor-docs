@@ -3,7 +3,7 @@ title: Create workbook parameters
 description: Learn how to add parameters to your workbook to collect input from the consumers and reference it in other parts of the workbook.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ---
 
 # Workbook parameters

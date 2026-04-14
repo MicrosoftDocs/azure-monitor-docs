@@ -1,11 +1,12 @@
 ---
 title: Azure Monitor issues (preview)
-description: Learn how Azure Monitor issues provide persistent context for troubleshooting investigations and help you analyze and retain troubleshooting data.
+description: Learn how Azure Monitor issues help you manage and resolve operational problems by consolidating observability data, investigations, and alerts in one workflow.
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
-ms.date: 02/24/2026
+ms.date: 04/03/2026
+ms.custom: references_regions
 # Customer intent: As an Azure Monitor user, I want to understand what Azure Monitor issues are, how they relate to investigations, and how to use them to retain troubleshooting insights over time.
 ---
 
@@ -17,41 +18,87 @@ Issues combine AI-powered investigations from the Azure Copilot observability ag
 
 ## Create issues
 
-Issues are created when you choose to persist the results of an investigation. Each issue is saved under an Azure Monitor Workspace (AMW).
-Creating an issue requires the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the Azure Monitor Workspace. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+Create an issue when you want to persist the results of an investigation. Each issue is saved under an Azure Monitor Workspace (AMW).
+
+You need the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the Azure Monitor Workspace to create an issue. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ## View issues
 
 You can view a list of issues in the following locations:
 
-- **Azure Monitor** - Shows issues across all AMWs under the selected subscriptions.
-- **Azure Monitor Workspace** - Shows issues that are stored within a specific AMW.
+- **Azure Monitor** — Shows issues across all Azure Monitor Workspaces (AMWs) under the selected subscriptions.
+- **Azure Monitor Workspace** — Shows issues that are stored within a specific AMW.
 
 ## Azure Monitor Workspace as an issue container
 
-Azure Monitor Workspaces act as the container for issues.
+Azure Monitor Workspaces (AMWs) act as containers for issues.
 
-You can configure an AMW as the default container for all issues in a subscription. When a default AMW is set, issues created while investigating alerts fired on resources in that subscription are saved in the same workspace. Saving them in the same workspace helps ensure that all related issues are stored and managed in a consistent location.
+You can configure an AMW as the default container for all issues in a subscription. When you set a default AMW, the investigation process saves issues in the same workspace when alerts fire on resources in that subscription. Saving them in the same workspace helps ensure that all related issues are stored and managed in a consistent location.
 
 :::image type="content" source="media/issue-investigation-overview/issue-details.png" alt-text="Screenshot of Azure Monitor issue overview with summary, supporting data, and related alerts." lightbox="media/issue-investigation-overview/issue-details.png":::
 
-## Initial workflow example for an issue and investigation
+## Supported regions
 
-1. An alert triggers in Azure Monitor. You can access the alert from an alert notification, such as an email, or directly from the Azure portal.
-1. You select **Investigate** to open a chat-based troubleshooting session with the observability agent.
-1. You invoke investigation capabilities within the conversation to analyze the detected problem.
-1. The observability agent analyzes telemetry data and produces analysis based on anomaly detection and data correlation.
-1. After the investigation is complete, you can optionally create an issue by selecting **Create Issue**.
-    - When you create an issue, you save and retain the investigation in the context of the issue.
-    - When you don't create an issue, the system temporarily makes the investigation available and later deletes it.
-1. When you create an issue, the **Issue** page provides:
-    - An overview summarizing the investigation results and key supporting data.
-    - Detailed analysis, including summaries, suggested actions, and supporting evidence.
-    - More context such as related alerts and affected resources.
+Azure Monitor issues are currently available in the following Azure regions:
+
+:::row:::
+    :::column:::
+        - Australia Central
+        - Australia East
+        - Australia Southeast
+        - Brazil South
+        - Canada Central
+        - Canada East
+        - Central India
+        - Central US
+        - Chile Central
+        - East Asia
+        - East US
+    :::column-end:::
+    :::column:::
+        - East US 2
+        - France Central
+        - Germany West Central
+        - Indonesia Central
+        - Israel Central
+        - Italy North
+        - Japan East
+        - Japan West
+        - Korea Central
+        - Korea South
+        - Malaysia West
+    :::column-end:::
+    :::column:::
+        - Mexico Central
+        - New Zealand North
+        - North Central US
+        - North Europe
+        - Norway East
+        - Poland Central
+        - South Africa North
+        - South Central US
+        - South India
+        - Southeast Asia
+        - Spain Central
+    :::column-end:::
+    :::column:::
+        - Sweden Central
+        - Sweden South
+        - Switzerland North
+        - UAE North
+        - UK South
+        - UK West
+        - West Central US
+        - West Europe
+        - West US
+        - West US 2
+        - West US 3
+    :::column-end:::
+:::row-end:::
 
 ## Related content
 
 - [Azure Copilot observability agent](observability-agent-overview.md)
-- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
+- [Use Azure Monitor issues](aiops-issue-and-investigation-how-to.md)
 - [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
 - [Azure Copilot observability agent troubleshooting](observability-agent-troubleshooting.md)

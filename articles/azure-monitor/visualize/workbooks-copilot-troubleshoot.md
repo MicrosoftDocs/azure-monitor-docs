@@ -2,7 +2,7 @@
 title: Troubleshoot Copilot for Azure Workbooks (preview)
 description: Find solutions to common errors and known limitations when using Copilot with Azure Workbooks.
 ms.topic: troubleshooting-general
-ms.date: 02/09/2026
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr
 ai-usage: ai-assisted
 ---

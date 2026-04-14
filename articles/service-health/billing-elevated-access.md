@@ -2,7 +2,7 @@
 title: Billing updates overview
 description: This article describes how to view and use in-portal Billing communications
 ms.topic: overview
-ms.date: 03/27/2026
+ms.date: 04/10/2026
 ---
 
 # Billing updates
@@ -30,7 +30,8 @@ The **Billing updates** pane includes billing communication types such as:
 - Foreign exchange rate changes
 - Price changes
 
-You can view up to three months of billing updates in the user interface and retrieve up to 12 months through the API. Billing communication events are available through the Service Health portal and the API.
+>[!Note]
+>You can view up to two months of billing updates in the user interface and retrieve up to 12 months through the API. Billing communication events are available through the Service Health portal and the API.
 
 **Requirements:**
 
@@ -42,8 +43,8 @@ You can view up to three months of billing updates in the user interface and ret
 
 The detail pages for billing communication event types appear in the **Billing updates** pane in [Service Health](service-health-portal-update.md).
 
->![NOTE] 
->Only users with elevated access can open the pane.
+>[!NOTE] 
+> Only users with elevated access can open the pane.
 
 To view the **Billing updates** pane, you need to have access as one of the following roles:
 

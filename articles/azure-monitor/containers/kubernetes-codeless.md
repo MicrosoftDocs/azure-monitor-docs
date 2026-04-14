@@ -3,7 +3,7 @@ title: Monitor applications on AKS with Azure Monitor Application Insights (Prev
 description: Azure Monitor integrates seamlessly with your application running on Azure Kubernetes Service and allows you to spot the problems with your apps quickly.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
-ms.date: 04/03/2025
+ms.date: 04/08/2026
 ---
 
 # Autoinstrumentation for Azure Kubernetes Service (Preview)
@@ -352,7 +352,7 @@ AKS autoinstrumentation can disrupt the telemetry sent to third parties by an OS
 
 ### Can AKS autoinstrumentation coexist with manual instrumentation?
 
-AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights classic API SDK and OpenTelemetry Distro.
+AKS autoinstrumentation is designed to coexist with both manual instrumentation options: the Application Insights [classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK and OpenTelemetry Distro.
 
 It always prevents duplicate data and ensures custom metrics work.
 

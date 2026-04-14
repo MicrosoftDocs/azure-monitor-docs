@@ -2,7 +2,7 @@
 title: Migrate to Azure Monitor Agent from Log Analytics agent 
 description: Learn how to migrate from the Log Analytics agent (MMA) to Azure Monitor Agent, including planning guidance, migration tools, and best practices.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 02/19/2026
 
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the MMA agent to the AMA agent.
 
