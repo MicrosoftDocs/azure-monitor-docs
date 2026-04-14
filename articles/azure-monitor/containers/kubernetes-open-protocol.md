@@ -100,8 +100,8 @@ When you register the preview features, enable the feature flag on the subscript
 
 ## 2. Prepare the cluster
 
-1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [**Enable monitoring for AKS clusters**](kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) in Azure Monitor (Application Insights isn't required yet).
-1. Turn on **Enable support for Autoinstrumentation** and **Enable support for data collection from vendor neutral OpenTelemetry SDKs (Preview)**, and then select **Review + enable**.
+1. Ensure the cluster is onboarded to Azure Monitor metrics and logs. Use [**Enable monitoring for AKS clusters**](kubernetes-monitoring-enable.md) in Azure Monitor (Application Insights isn't required yet).
+2. Turn on **Enable support for Autoinstrumentation** and **Enable support for data collection from vendor neutral OpenTelemetry SDKs (Preview)**, and then select **Review + enable**.
 
 If you didn't previously onboard the cluster, you can enable Managed Prometheus, Container Logs, and application monitoring at the same time.
 
