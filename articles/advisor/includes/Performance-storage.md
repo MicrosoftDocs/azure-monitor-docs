@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Storage
@@ -34,7 +34,7 @@ Recommendation ID: c6b94711-f1f5-4e7e-9c89-c17ed4190969
 
 #### No Snapshots Detected  
   
-We observed that there are no snapshots of your file shares. This means you aren't protected from accidental file deletion or file corruption scenarios. Enable snapshots to protect your data. To enable snapshots, you can use Azure Portal or Azure Backup or 3rd party solutions.  
+We observed that there are no snapshots of your file shares. This means you aren't protected from accidental file deletion or file corruption scenarios. Enable snapshots to protect your data. To enable snapshots, you can use Azure portal or Azure Backup or 3rd party solutions.  
   
 **Potential benefits**: Schedule snapshots of your file shares to protect yourself from accidental file deletion or data corruption like ransomware.  
 
@@ -109,16 +109,17 @@ Recommendation ID: 6708739d-5221-4d53-9960-698cd2fd9628
   
 Your requests for premium file share are throttled as the I/O operations per second (IOPS) or throughput limits for the file share reached the share limits. To prevent your requests from being throttled, increase the provision size of the premium file share.  
   
-**Potential benefits**: Boost performance of premium file share by increasing provisioned size  
+**Potential benefits**: Boost performance of premium file share by increasing size  
 
 **Impact:** High
   
-For more information, see [Create an Azure file share - Azure Files](https://aka.ms/azurefiles/advisor/expandfileshare)  
+For more information, see [Create a classic file share - Azure Files](https://aka.ms/azurefiles/advisor/expandfileshare)  
 
 ResourceType: microsoft.storage/storageaccounts  
 Recommendation ID: d05351cc-1014-4a6c-9173-bec1bcc48849  
 
 
 <!--d05351cc-1014-4a6c-9173-bec1bcc48849_end-->
+
 
 <!--articleBody-->

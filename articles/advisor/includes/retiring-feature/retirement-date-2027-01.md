@@ -11,3 +11,4 @@ ms.date: 09/03/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Azure Batch | HPC Pack 2016 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Batch account | Azure Batch - Windows Server 2016 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

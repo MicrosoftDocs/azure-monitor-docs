@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 03/07/2025
+ms.date: 01/16/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -47,6 +47,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Amazon Linux 2023                                           | ✓ |
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
+| Debian 13                                                   | ✓ |
 | Debian 12                                                   | ✓ |
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |

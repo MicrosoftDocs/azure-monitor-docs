@@ -3,7 +3,7 @@ title: Azure Workbooks data sources | Microsoft docs
 description: Simplify complex reporting with prebuilt and custom parameterized workbooks built from multiple data sources.
 ms.topic: how-to
 ms.custom: devx-track-arm-template
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr
 ---
 

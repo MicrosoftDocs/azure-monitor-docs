@@ -2,7 +2,8 @@
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
-ms.date: 05/08/2025
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # What are Azure Monitor alerts?
@@ -37,6 +38,11 @@ Alerts consist of:
      - Webhooks.
      - Event hubs.
 - **Alert conditions**: These conditions are set by the system. When an alert fires, the alert condition is set to **fired**. After the underlying condition that caused the alert to fire clears, the alert condition is set to **resolved**.
+
+> [!NOTE]
+> Fired alert instances in Azure Monitor are read-only and cannot be edited. Configuration changes apply only to future alerts.
+
+
 - **User response**: The response is set by the user and doesn't change until the user changes it. The User response can be **New**, **Acknowledged**, or **Closed**. 
 - **Alert processing rules**: You can use alert processing rules to make modifications to triggered alerts as they're being fired. You can use alert processing rules to add or suppress action groups, apply filters, or have the rule processed on a predefined schedule.
 ## Types of alerts

@@ -2,12 +2,14 @@
 title: Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
 description: Configure diagnostics extension in Azure Monitor to send data to Azure Event Hubs so you can forward it to locations outside of Azure.
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 02/24/2026
 ---
 
 # Send data from Microsoft Azure diagnostics extension to Azure Event Hubs
 
 Azure diagnostics extension is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure virtual machines and other compute resources. This article describes how to send data from the Microsoft Azure Diagnostic (WAD) extension to [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/) so you can forward to locations outside of Azure.
+
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Supported data
 

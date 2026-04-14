@@ -2,7 +2,7 @@
 title: Security advisories overview
 description: This article describes the Security advisories pane and that users are required to obtain elevated access roles in order to view Security advisory details.
 ms.topic: concept-article
-ms.date: 01/16/2026
+ms.date: 03/27/2026
 ---
 
 
@@ -110,16 +110,17 @@ Users assigned only **Reader** or **Monitoring Reader** roles:
 |Tenant‑level sensitive data |Tenant exposure views                       |Tenant administrator roles        |
 
  
-**More information**
-For more information about role requirements to view impacted resources and sensitive details, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
-For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
+- To read more information about role requirements to view impacted resources and sensitive details, see [Viewing impacted resource and sensitive details from Azure security incidents](impacted-resources-security.md).
 
-For information on how to access Security advisories through API endpoint, see [Access Security advisories through API endpoint](access-service-advisories-api.md).
+- For guidance on configuring subscription‑ or tenant‑level access to Security Advisories, see [Configure subscriptions for Security Advisories](security-advisories-add-subscription.md).
+
+- For more information on how to access Security advisories through API endpoint, see [Access Security advisories through API endpoint](access-service-advisories-api.md).
 
 
-## More information
-* Read [Keep informed about Azure security events](stay-informed-security.md)
-* Read [Resource impact from Azure security incidents](impacted-resources-security.md)
-* Read [Resource Health frequently asked questions](resource-health-faq.yml)
-* Read [Service Health frequently asked questions](service-health-faq.yml)
+## For more information
+- Read [How to report an impact (Preview)](report-issue.md)
+- Read [Keep informed about Azure security events](stay-informed-security.md)
+- Read [Resource impact from Azure security incidents](impacted-resources-security.md)
+- Read [Resource Health frequently asked questions](resource-health-faq.yml)
+- Read [Service Health frequently asked questions](service-health-faq.yml)

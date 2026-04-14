@@ -2,14 +2,14 @@
 title: Health history overview
 description: Overview of the features and information found on the Health history pane.
 ms.topic: concept-article
-ms.date: 12/09/2025
+ms.date: 03/30/2026
 ---
 
 # Health history
 
-The Health history pane in Azure Service Health is an archive of past health events (such as service issues, planned maintenance, health advisories, and security notices) that move out of the active view. Use this pane to review and manage the historical health events of your Azure resources.
+The Health history pane in Azure Service Health is an archive of past health events, such as service problems, planned maintenance, health advisories, and security notices, that move out of the active view. Use this pane to review and manage the historical health events of your Azure resources.
 
-Users with *owner*, *contributor*, or *reader* roles on the subscription can view information on the Health history pane. For sensitive events like security advisories, you should have Role-based Access Control (RBAC) permissions.
+Users with *owner*, *contributor*, or *reader* roles on the subscription can view information on the Health history pane. For sensitive events like security advisories, you need Role-based Access Control (RBAC) permissions. For more information, see [RBAC permissions](/azure/role-based-access-control/overview).
 
 ## Get started with Health history
 
@@ -31,10 +31,17 @@ This pane contains the following information:
 - Last updated
 - Scope (Subscription or Tenant ID)
 
+>[!NOTE]
+> The panel displays service health history events for 90 days. After that, the backend API stores them for up to a year.<br>
+>This storage includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
 
+
+
+
+<!--
 >[!Note]
->Service health history events are displayed in the panel for 90 days and then they are stored in the backend API for up to a year.<br>
->This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.
+> The History tab shows Service health events that have been resolved or have passed their mitigation end time. These events will remain visible in your History for 90 days before automatically expiring.<br>
+>This includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues. -->
 
 
 
@@ -75,6 +82,7 @@ The Health history pane can help you manage your resources more effectively by p
 
 ## More information
 
+- [How to report an impact](report-issue.md)
 - [Azure Service Health portal](service-health-portal-update.md)
 - [Resource Health FAQs](resource-health-faq.yml)
 - [Service Health FAQs](service-health-faq.yml)

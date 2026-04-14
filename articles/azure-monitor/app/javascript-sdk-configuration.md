@@ -2,9 +2,11 @@
 title: Microsoft Azure Monitor Application Insights JavaScript SDK configuration
 description: Microsoft Azure Monitor Application Insights JavaScript SDK configuration.
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 03/06/2026
 ms.devlang: javascript
-ms.custom: devx-track-js
+ms.custom:
+  - devx-track-js
+  - sfi-ropc-nochange
 ---
 
 # Microsoft Azure Monitor Application Insights JavaScript SDK configuration

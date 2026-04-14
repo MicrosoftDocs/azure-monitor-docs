@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 11/14/2025
+ms.date: 03/26/2026
 ---
 
 # Health advisories 
@@ -31,6 +31,8 @@ Select the **Issue name** link to open the tabs with the information you need.
 
 - Users with a [Subscription Reader role](/azure/role-based-access-control/built-in-roles#reader) or higher, can view issues affecting their Azure subscription scope.
 - Users with [Tenant admin access](admin-access-reference.md) can view issues affecting their Azure tenant scope.
+ 
+For more information about Subscription and Tenant access see [Subscription and Tenant access](subscription-vs-tenant.md).
 
 ### Filtering and sorting
 At the top of each tab, there are several options of how to view the information on this page.
@@ -38,7 +40,7 @@ At the top of each tab, there are several options of how to view the information
 - **Download as a PDF**: Select to download and open a PDF with the information about this event.
 - **Track issue on mobile**: Select to open and point your mobile phone camera at the QR code.
 - **Create a support request**: See [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request).
-- **Create a service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
+- **Create service health alert**: See [Create Service Health alerts in the Azure portal](alerts-activity-log-service-notifications-portal.md).
 
 
  :::image type="content"source="./media/service-health-advisories/health-advisories-tool-bar.png"alt-text="A screenshot of tools and filtering options."Lightbox="./media/service-health-advisories/health-advisories-tool-bar.png":::
@@ -63,11 +65,11 @@ When you open the Health advisories pane, you see a list of relevant notificatio
 
 ### Impacted Services tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-impacted-services.png"alt-text="A screenshot of the health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
+:::image type="content" source="./media/service-health-advisories/health-advisories-impacted-services.png" alt-text="A screenshot of the health advisories Impacted Services tab." Lightbox="./media/service-health-advisories/health-advisories-impacted-services.png":::
 
-The Impacted Services section in Azure Service Health advisories outlines how a given advisory can affect the specific Azure services. It typically includes the following information:
+The Impacted Services section in Azure Service Health advisories outlines how an advisory can affect specific Azure services. It typically includes the following information:
 
-- **Service Names**: Lists the specific Azure services affected by the advisory (for example, Azure Synapse, Azure SQL, etc.).
+- **Service Names**: Lists the specific Azure services affected by the advisory, such as Azure Synapse, Azure SQL, and more.
 - **Regions**: Indicates the geographic regions where the services are impacted.
 - **Scope of Impact**: It might include whether the impact is global, regional, or limited to specific subscriptions or tenants.
 - **Service Categories**: Sometimes grouped by service type (for example, compute, storage, networking).
@@ -75,18 +77,19 @@ The Impacted Services section in Azure Service Health advisories outlines how a 
 
 ### Issue Updates tab
 
-:::image type="content"source="./media/service-health-advisories/health-advisories-issue-updates.png"alt-text="A screenshot of Health advisories Issue Updates tab."Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
+:::image type="content" source="./media/service-health-advisories/health-advisories-issue-updates.png" alt-text="A screenshot of Health advisories Issue Updates tab." Lightbox="./media/service-health-advisories/health-advisories-issue-updates.png":::
 
 The Issue Updates section in the Health advisories pane provides detailed, time-stamped progress reports and contextual updates about nonincident issues that could affect your Azure environment. It typically includes the following information:
-- **Chronological Updates**: These updates track the progression of the advisory—detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
+- **Chronological Updates**: These updates track the progression of the advisory - detailing when it was initially identified, any modifications in scope or severity, and the point at which it was resolved or mitigated.
 - **Contextual Details**: Clarifications about the root cause, mitigation steps, or any changes in the recommended actions.
-- **Status Transitions**: Updates on whether the advisory is moved from “Active” to “Resolved” or “Scheduled.”
+- **Status Transitions**: Updates on whether the advisory is moved from **Active** to **Resolved** or **Scheduled**.
 
 
 
 
-### More information
+### For more information
 
+- [How to report an impact (Preview)](report-issue.md)
 - [Resource Health overview](resource-health-overview.md)
 - [Service Health FAQs](service-health-faq.yml)
 - [How to create Service Health alerts](alerts-activity-log-service-notifications-portal.md)

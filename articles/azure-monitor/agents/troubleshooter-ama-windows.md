@@ -1,8 +1,8 @@
 ---
-title: How to use the Windows operating system (OS) Azure Monitor Agent Troubleshooter
+title: Azure Monitor Agent troubleshooter for Windows
 description: Detailed instructions on using the Windows agent troubleshooter tool to diagnose potential issues.
 ms.topic: troubleshooting-general
-ms.date: 11/14/2024
+ms.date: 04/09/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 

@@ -2,12 +2,18 @@
 title: Best practices for Azure Monitor Logs
 description: Provides a template for a Well-Architected Framework (WAF) article specific to Log Analytics workspaces in Azure Monitor.
 ms.topic: best-practice
-ms.date: 08/29/2025
+ms.date: 02/03/2026
 ---
 
 # Best practices for Azure Monitor Logs
 
 This article provides architectural best practices for Azure Monitor Logs. The guidance is based on the five pillars of architecture excellence described in [Azure Well-Architected Framework](/azure/architecture/framework/).
+
+- [**Reliability**](#reliability)
+- [**Security**](#security) 
+- [**Cost Optimization**](#cost-optimization) 
+- [**Operational Excellence**](#operational-excellence) 
+- [**Performance Efficiency**](#performance-efficiency)
 
 ## Reliability
 
@@ -38,7 +44,7 @@ This article provides architectural best practices for Azure Monitor Logs. The g
 
 ## Performance efficiency
 
-[Performance efficiency](/azure/well-architected/scalability/overview) is the ability of your workload to scale to meet the demands placed on it by users in an efficient manner. Use the following information to ensure that your Log Analytics workspaces and log queries are configured for maximum performance.
+[Performance efficiency](/azure/well-architected/performance-efficiency/principles) is about effective use of workload resources. Use the following information to ensure that your Log Analytics workspaces and log queries are configured for maximum performance.
 
 [!INCLUDE [waf-logs-performance](includes/waf-logs-performance.md)]
 

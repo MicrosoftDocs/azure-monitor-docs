@@ -11,7 +11,7 @@ ms.reviewer: aul
 Kubernetes clusters generate a large amount of data that's collected by Azure Monitor. Since you're charged for the ingestion and retention of this data, you can significantly reduce your monitoring costs by filtering out data that you don't need. This article describes how to use a [ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/) to configure and filter the collection of container logs and environment variables from your cluster. You can also use a ConfigMap to enable collection of platform logs from system Kubernetes namespaces and to enable annotation-based filtering for workloads.
 
 > [!TIP]
-> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
+> Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
 
 ## Prerequisites 
 - The minimum agent version supported to collect stdout, stderr, and environmental variables from container workloads is **ciprod06142019** or later. 
@@ -99,7 +99,7 @@ Edit the `log_collection_settings` section of the ConfigMap to configure the col
 ```
 
 > [!NOTE]
-> You can also configure namespace filtering in the [log profile for the cluster](./kubernetes-monitoring-enable.md#enable-prometheus-metrics-and-container-logging), but this doesn't apply to data sent to ContainerLogV2. This data can only be filtered using the ConfigMap.
+> You can also configure namespace filtering in the [log profile for the cluster](./kubernetes-monitoring-enable.md), but this doesn't apply to data sent to ContainerLogV2. This data can only be filtered using the ConfigMap.
 
 ## Platform log filtering (System Kubernetes namespaces)
 By default, container logs from the system namespace are excluded from collection to minimize the Log Analytics cost. Container logs of system containers can be critical though in specific troubleshooting scenarios. This feature is restricted to the following system namespaces:  

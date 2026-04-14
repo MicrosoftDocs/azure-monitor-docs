@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Event Hubs
@@ -29,6 +29,8 @@ Recommendation ID: 36901a23-7263-44cb-9986-d60513ad97af
 Subcategory: DisasterRecovery
 
 <!--36901a23-7263-44cb-9986-d60513ad97af_end-->
+
+
 
 <!--e1e0d94e-4805-42e6-b6b4-3bbcb4909c78_begin-->
 

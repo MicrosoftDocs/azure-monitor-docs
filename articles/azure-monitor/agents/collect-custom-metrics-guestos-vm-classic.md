@@ -1,9 +1,9 @@
 ---
 title: Send classic Windows VM metrics to Azure Monitor metrics database
-description: Send Guest OS metrics to the Azure Monitor data store for a Windows virtual machine (classic)
+description: Send Guest OS metrics to the Azure Monitor data store for a Windows virtual machine (classic).
 ms.reviewer: shijain
 ms.topic: how-to
-ms.date: 05/31/2024
+ms.date: 02/24/2026
 ---
 
 # Send Guest OS metrics to the Azure Monitor metrics database for a Windows virtual machine (classic)
@@ -11,6 +11,8 @@ ms.date: 05/31/2024
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]
 
 The Azure Monitor [Diagnostics extension](diagnostics-extension-overview.md) (known as "WAD" or "Diagnostics") allows you to collect metrics and logs from the guest operating system (Guest OS) running as part of a virtual machine, cloud service, or Service Fabric cluster. The extension can send telemetry to [many different locations.](../fundamentals/data-platform.md?toc=%2fazure%2fazure-monitor%2ftoc.json)
+
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 This article describes the process for sending Guest OS performance metrics for a Windows virtual machine (classic) to the Azure Monitor metric database. Starting with Diagnostics version 1.11, you can write metrics directly to the Azure Monitor metrics store, where standard platform metrics are already collected. 
 

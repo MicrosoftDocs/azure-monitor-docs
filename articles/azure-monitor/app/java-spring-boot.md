@@ -4,7 +4,9 @@ description: How to configure Azure Monitor Application Insights for Spring Boot
 ms.topic: how-to
 ms.date: 09/26/2025
 ms.devlang: java
-ms.custom: devx-track-java, devx-track-extended-java
+ms.custom:
+  - devx-track-java, devx-track-extended-java
+  - sfi-ropc-nochange
 ---
 
 # Using Azure Monitor Application Insights with Spring Boot
@@ -93,8 +95,7 @@ public static void main(String[] args) {
 > Spring's `application.properties` or `application.yaml` files are not supported as
 > sources for Application Insights Java configuration.
 
-See [configuration file path configuration options](./java-standalone-config.md#json-configuration-set-up)
-to change the location for a file outside the classpath.
+See [configuration file path configuration options](./java-standalone-config.md#json-configuration-source) to change the location for a file outside the classpath.
 
 To programmatically configure a file outside the classpath:
 ```java

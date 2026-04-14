@@ -2,7 +2,7 @@
 title: Azure Activity Log event schema
 description: Describes the event schema for each category in the Azure Activity log.
 ms.topic: reference
-ms.date: 05/21/2025
+ms.date: 03/17/2026
 ---
 
 # Azure Activity Log event schema
@@ -19,11 +19,11 @@ The schema varies depending on how you access the log:
 Each entry in the activity log has a severity level. Severity level can have one of the following values:
 
 | Severity | Description |
-|----------|-------------|
-|Critical | Events that demand the immediate attention of a system administrator. Might indicate that an application or system failed or stopped responding. |
-|Error | Events that indicate a problem, but don't require immediate attention. |
-|Warning | Events that provide forewarning of potential problems, although not an actual error. Indicate that a resource isn't in an ideal state and may degrade later into showing errors or critical events. |
-|Information or Informational | Events that pass noncritical information to the administrator. Similar to a note that says: "For your information". |
+| -------- | ----------- |
+| Critical | Events that demand the immediate attention of a system administrator. Might indicate that an application or system failed or stopped responding. |
+| Error | Events that indicate a problem, but don't require immediate attention. |
+| Warning | Events that provide forewarning of potential problems, although not an actual error. Indicate that a resource isn't in an ideal state and may degrade later into showing errors or critical events. |
+| Information or Informational | Events that pass noncritical information to the administrator. Similar to a note that says: "For your information". |
 
 The developers of each resource provider choose the severity levels of their resource entries. As a result, the actual severity to you can vary depending on how your application is built. For example, items that are "critical" to a particular resource taken in isolation might not be as important as "errors" in a resource type that is central to your Azure application. Be sure to consider this fact when deciding what events to alert on.
 
@@ -31,11 +31,11 @@ The developers of each resource provider choose the severity levels of their res
 Each event in the Activity Log has a particular category that is described in the following table. See the sections below for more detail on each category and its schema when you access the Activity log from the portal, PowerShell, CLI, and REST API. The schema is different when you [stream the Activity log to storage or Event Hubs](./diagnostic-settings.md). A mapping of the properties to the [resource logs schema](./resource-logs-schema.md) is provided in the last section of the article.
 
 | Category | Description |
-|:---------|:------------|
+| --------- | ------------- |
 | [Administrative](#administrative-category) | Contains the record of all create, update, delete, and action operations performed through Resource Manager. Examples of Administrative events include _create virtual machine_ and _delete network security group_.<br><br>Every action taken by a user or application using Resource Manager is modeled as an operation on a particular resource type. If the operation type is _Write_, _Delete_, or _Action_, the records of both the start and success or fail of that operation are recorded in the Administrative category. Administrative events also include any changes to Azure role-based access control in a subscription. |
-| [Service Health](#service-health-category) | Contains the record of any service health incidents that occurred in Azure. An example of a Service Health event _SQL Azure in East US is experiencing downtime_. <br><br>Service Health events come in Six varieties: _Action Required_, _Assisted Recovery_, _Incident_, _Maintenance_, _Information_, or _Security_. These events are only created if you have a resource in the subscription impacted by the event.
+| [Service Health](#service-health-category) | Contains the record of any service health incidents that occurred in Azure. An example of a Service Health event _SQL Azure in East US is experiencing downtime_. <br><br>Service Health events come in Six varieties: _Action Required_, _Assisted Recovery_, _Incident_, _Maintenance_, _Information_, or _Security_. These events are only created if you have a resource in the subscription impacted by the event. |
 | [Resource Health](#resource-health-category) | Contains the record of any resource health events that occurred to your Azure resources. An example of a Resource Health event is _Virtual Machine health status changed to unavailable_.<br><br>Resource Health events can represent one of four health statuses: _Available_, _Unavailable_, _Degraded_, and _Unknown_. Additionally, Resource Health events can be categorized as being _Platform Initiated_ or _User Initiated_. |
-| [Alert](#alert-category) | Contains the record of activations for Azure alerts. An example of an Alert event is _CPU % on myVM above 80 for the past 5 minutes_.|
+| [Alert](#alert-category) | Contains the record of activations for Azure alerts. An example of an Alert event is _CPU % on myVM above 80 for the past 5 minutes_. |
 | [Autoscale](#autoscale-category) | Contains the record of any events related to the operation of the autoscale engine based on any autoscale settings you defined in your subscription. An example of an Autoscale event is _Autoscale scale up action failed_. |
 | [Recommendation](#recommendation-category) | Contains recommendation events from Azure Advisor. |
 | [Security](#security-category) | Contains the record of any alerts generated by Microsoft Defender for Cloud. An example of a Security event is _Suspicious double extension file executed_. |
@@ -60,24 +60,24 @@ This category contains the record of all create, update, delete, and action oper
     "channels": "Operation",
     "claims": {
         "aud": "https://management.core.windows.net/",
-        "iss": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
+        "iss": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
         "iat": "1234567890",
         "nbf": "1234567890",
         "exp": "1234567890",
         "_claim_names": "{\"groups\":\"src1\"}",
-        "_claim_sources": "{\"src1\":{\"endpoint\":\"https://graph.microsoft.com/1114444b-7467-4144-a616-e3a5d63e147b/users/f409edeb-4d29-44b5-9763-ee9348ad91bb/getMemberObjects\"}}",
+        "_claim_sources": "{\"src1\":{\"endpoint\":\"https://graph.microsoft.com/aaaabbbb-0000-cccc-1111-dddd2222eeee/users/bbbbbbbb-1111-2222-3333-cccccccccccc/getMemberObjects\"}}",
         "http://schemas.microsoft.com/claims/authnclassreference": "1",
         "aio": "A3GgTJdwK4vy7Fa7l6DgJC2mI0GX44tML385OpU1Q+z+jaPnFMwB",
         "http://schemas.microsoft.com/claims/authnmethodsreferences": "rsa,mfa",
         "appid": "00001111-aaaa-2222-bbbb-3333cccc4444",
         "appidacr": "2",
-        "http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier": "10845a4d-ffa4-4b61-a3b4-e57b9b31cdb5",
+        "http://schemas.microsoft.com/2012/01/devicecontext/claims/identifier": "cccccccc-2222-3333-4444-dddddddddddd",
         "e_exp": "262800",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Robertson",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "Rob",
         "ipaddr": "111.111.1.111",
         "name": "Rob Robertson",
-        "http://schemas.microsoft.com/identity/claims/objectidentifier": "f409edeb-4d29-44b5-9763-ee9348ad91bb",
+        "http://schemas.microsoft.com/identity/claims/objectidentifier": "bbbbbbbb-1111-2222-3333-cccccccccccc",
         "onprem_sid": "S-1-5-21-4837261184-168309720-1886587427-18514304",
         "puid": "18247BBD84827C6D",
         "http://schemas.microsoft.com/identity/claims/scope": "user_impersonation",
@@ -101,7 +101,7 @@ This category contains the record of all create, update, delete, and action oper
     "eventTimestamp": "2018-01-29T20:42:31.3810679Z",
     "id": "/subscriptions/<subscription ID>/resourcegroups/myResourceGroup/providers/Microsoft.Network/networkSecurityGroups/myNSG/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636528553513810679",
     "level": "Informational",
-    "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
+    "operationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "operationName": {
         "value": "Microsoft.Network/networkSecurityGroups/write",
         "localizedValue": "Microsoft.Network/networkSecurityGroups/write"
@@ -128,7 +128,7 @@ This category contains the record of all create, update, delete, and action oper
     "subscriptionId": "<subscription ID>",
     "properties": {
         "statusCode": "Created",
-        "serviceRequestId": "a4c11dbd-697e-47c5-9663-12362307157d",
+        "serviceRequestId": "ffff5555-aa66-7777-88bb-999999cccccc",
         "responseBody": "",
         "requestbody": ""
     },
@@ -139,7 +139,7 @@ This category contains the record of all create, update, delete, and action oper
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | authorization | Blob of Azure RBAC properties of the event. Usually includes the `action`, `role` and `scope` properties. |
 | caller | Email address of the user who has performed the operation, UPN claim, or SPN claim based on availability. |
 | channels | One of the following values: `Admin`, `Operation` |
@@ -149,8 +149,8 @@ This category contains the record of all create, update, delete, and action oper
 | eventDataId | Unique identifier of an event. |
 | eventName | Friendly name of the Administrative event. |
 | category | Always `Administrative` |
-| httpRequest | Blob describing the Http Request. Usually includes the `clientRequestId`, `clientIpAddress` and `method` (HTTP method. For example, PUT). |
-| level | [Severity level](#severity-level) of the event.  |
+| httpRequest | Blob describing the Http Request. Usually includes the `clientRequestId`, `clientIpAddress` and `method` (HTTP method. For example, PUT). This property isn't included when you view an event in the Azure portal since raw HTTP request details may include sensitive information. |
+| level | [Severity level](#severity-level) of the event. |
 | resourceGroupName | Name of the resource group for the impacted resource. |
 | resourceProviderName | Name of the resource provider for the impacted resource |
 | resourceType | The type of resource affected by an Administrative event. |
@@ -225,7 +225,7 @@ This category contains the record of any service health incidents that occurred 
 }
 ```
 
-Refer to the [service health notifications](../../service-health/service-notifications.md) article for documentation about the values in the properties.
+Refer to the [service health notifications](../../service-health/service-health-notifications-properties.md) article for documentation about the values in the properties.
 
 ## Resource health category
 
@@ -305,14 +305,14 @@ The following resource health transitions aren't recorded in the activity log:
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | channels | Always `Admin`, `Operation` |
 | correlationId | A GUID in the string format. |
 | description | Static text description of the alert event. |
 | eventDataId | Unique identifier of the alert event. |
 | category | Always `ResourceHealth` |
 | eventTimestamp | Timestamp when the event was generated by the Azure service processing the request corresponding the event. |
-| level |[Severity level](#severity-level) of the event. |
+| level | [Severity level](#severity-level) of the event. |
 | operationId | A GUID shared among the events that correspond to a single operation. |
 | operationName | Name of the operation. |
 | resourceGroupName | Name of the resource group that contains the resource. |
@@ -323,7 +323,7 @@ The following resource health transitions aren't recorded in the activity log:
 | subStatus | Usually null for alerts. |
 | submissionTimestamp | Timestamp when the event became available for querying. |
 | subscriptionId | Azure Subscription ID. |
-| properties | Set of `<Key, Value>` pairs (that is, a Dictionary) describing the details of the event.|
+| properties | Set of `<Key, Value>` pairs (that is, a Dictionary) describing the details of the event. |
 | properties.title | A user-friendly string that describes the health status of the resource. |
 | properties.details | A user-friendly string that describes further details about the event. |
 | properties.currentHealthStatus | The current health status of the resource. One of the following values: `Available`, `Unavailable`, `Degraded`, and `Unknown`. |
@@ -400,7 +400,7 @@ This category contains the record of all activations of classic Azure alerts. An
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | caller | Always Microsoft.Insights/alertRules |
 | channels | Always `Admin`, `Operation` |
 | claims | JSON blob with the SPN (service principal name), or resource type, of the alert engine. |
@@ -428,19 +428,19 @@ The properties field contains different values depending on the source of the al
 #### Properties for Activity Log alerts
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | properties.subscriptionId | The subscription ID from the activity log event that caused this activity log alert rule to be activated. |
 | properties.eventDataId | The event data ID from the activity log event that caused this activity log alert rule to be activated. |
 | properties.resourceGroup | The resource group from the activity log event that caused this activity log alert rule to be activated. |
 | properties.resourceId | The resource ID from the activity log event that caused this activity log alert rule to be activated. |
 | properties.eventTimestamp | The event timestamp of the activity log event that caused this activity log alert rule to be activated. |
 | properties.operationName | The operation name from the activity log event that caused this activity log alert rule to be activated. |
-| properties.status | The status from the activity log event that caused this activity log alert rule to be activated.|
+| properties.status | The status from the activity log event that caused this activity log alert rule to be activated. |
 
 #### Properties for metric alerts
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | properties.RuleUri | Resource ID of the metric alert rule itself. |
 | properties.RuleName | The name of the metric alert rule. |
 | properties.RuleDescription | The description of the metric alert rule (as defined in the alert rule). |
@@ -466,7 +466,7 @@ This category contains the record of any events related to the operation of the 
   },
   "correlationId": "dddd3333-ee44-5555-66ff-777777aaaaaa",
   "description": "The autoscale engine attempting to scale resource '/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/Microsoft.ClassicCompute/domainNames/myResourceGroup/slots/Production/roles/myResource' from 3 instances count to 2 instances count.",
-  "eventDataId": "eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c",
+  "eventDataId": "aaaa6666-bb77-8888-99cc-000000dddddd",
   "eventName": {
     "value": "AutoscaleAction",
     "localizedValue": "AutoscaleAction"
@@ -475,7 +475,7 @@ This category contains the record of any events related to the operation of the 
     "value": "Autoscale",
     "localizedValue": "Autoscale"
   },
-  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/eeee4efe-ff5f-aa6a-bb7b-cccccc8c8c8c/ticks/636361956518681572",
+  "id": "/subscriptions/<subscription ID>/resourceGroups/myResourceGroup/providers/microsoft.insights/autoscalesettings/myResourceGroup-Production-myResource-myResourceGroup/events/aaaa6666-bb77-8888-99cc-000000dddddd/ticks/636361956518681572",
   "level": "Informational",
   "resourceGroupName": "myResourceGroup",
   "resourceProviderName": {
@@ -515,7 +515,7 @@ This category contains the record of any events related to the operation of the 
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | caller | Always `Microsoft.Insights/autoscaleSettings` |
 | channels | Always `Admin`, `Operation` |
 | claims | JSON blob with the SPN (service principal name), or resource type, of the autoscale engine. |
@@ -607,7 +607,7 @@ This category contains the record any alerts generated by Microsoft Defender for
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | channels | Always `Operation` |
 | correlationId | A GUID in the string format. |
 | description | Static text description of the security event. |
@@ -615,7 +615,7 @@ This category contains the record any alerts generated by Microsoft Defender for
 | eventName | Friendly name of the security event. |
 | category | Always `Security` |
 | ID | Unique resource identifier of the security event. |
-| level | [Severity level](#severity-level) of the event.|
+| level | [Severity level](#severity-level) of the event. |
 | resourceGroupName | Name of the resource group for the resource. |
 | resourceProviderName | Name of the resource provider for Microsoft Defender for Cloud. Always `Microsoft.Security`. |
 | resourceType | The type of resource that generated the security event, such as `Microsoft.Security/locations/alerts` |
@@ -691,15 +691,15 @@ This category contains the record of any new recommendations that are generated 
 ### Property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | channels | Always `Operation` |
 | correlationId | A GUID in the string format. |
 | description | Static text description of the recommendation event |
 | eventDataId | Unique identifier of the recommendation event. |
 | category | Always `Recommendation` |
 | ID | Unique resource identifier of the recommendation event. |
-| level | [Severity level](#severity-level) of the event.|
-| operationName | Name of the operation.  Always `Microsoft.Advisor/generateRecommendations/action`|
+| level | [Severity level](#severity-level) of the event. |
+| operationName | Name of the operation.  Always `Microsoft.Advisor/generateRecommendations/action` |
 | resourceGroupName | Name of the resource group for the resource. |
 | resourceProviderName | Name of the resource provider for the resource that this recommendation applies to, such as "MICROSOFT.COMPUTE" |
 | resourceType | Name of the resource type for the resource that this recommendation applies to, such as `MICROSOFT.COMPUTE/virtualmachines` |
@@ -707,11 +707,11 @@ This category contains the record of any new recommendations that are generated 
 | status | Always `Active` |
 | submissionTimestamp | Timestamp when the event became available for querying. |
 | subscriptionId | Azure Subscription ID. |
-| properties | Set of `<Key, Value>` pairs (that is, a Dictionary) describing the details of the recommendation.|
-| properties.recommendationSchemaVersion| Schema version of the recommendation properties published in the Activity Log entry |
+| properties | Set of `<Key, Value>` pairs (that is, a Dictionary) describing the details of the recommendation. |
+| properties.recommendationSchemaVersion | Schema version of the recommendation properties published in the Activity Log entry |
 | properties.recommendationCategory | Category of the recommendation. Possible values are `High Availability`, `Performance`, `Security`, and `Cost` |
-| properties.recommendationImpact| Impact of the recommendation. Possible values are `High`, `Medium`, `Low` |
-| properties.recommendationRisk| Risk of the recommendation. Possible values are `Error`, `Warning`, `None` |
+| properties.recommendationImpact | Impact of the recommendation. Possible values are `High`, `Medium`, `Low` |
+| properties.recommendationRisk | Risk of the recommendation. Possible values are `Error`, `Warning`, `None` |
 
 ## Policy category
 
@@ -725,19 +725,19 @@ This category contains records of all effect action operations performed by [Azu
         "action": "Microsoft.Resources/checkPolicyCompliance/read",
         "scope": "/subscriptions/<subscriptionID>"
     },
-    "caller": "33a68b9d-63ce-484c-a97e-94aef4c89648",
+    "caller": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "channels": "Operation",
     "claims": {
         "aud": "https://management.azure.com/",
-        "iss": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
+        "iss": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
         "iat": "1234567890",
         "nbf": "1234567890",
         "exp": "1234567890",
         "aio": "A3GgTJdwK4vy7Fa7l6DgJC2mI0GX44tML385OpU1Q+z+jaPnFMwB",
         "appid": "1d78a85d-813d-46f0-b496-dd72f50a3ec0",
         "appidacr": "2",
-        "http://schemas.microsoft.com/identity/claims/identityprovider": "https://sts.windows.net/1114444b-7467-4144-a616-e3a5d63e147b/",
-        "http://schemas.microsoft.com/identity/claims/objectidentifier": "f409edeb-4d29-44b5-9763-ee9348ad91bb",
+        "http://schemas.microsoft.com/identity/claims/identityprovider": "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/",
+        "http://schemas.microsoft.com/identity/claims/objectidentifier": "bbbbbbbb-1111-2222-3333-cccccccccccc",
         "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier": "b-24Jf94A3FH2sHWVIFqO3-RSJEiv24Jnif3gj7s",
         "http://schemas.microsoft.com/identity/claims/tenantid": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
         "uti": "IdP3SUJGtkGlt7dDQVRPAA",
@@ -757,7 +757,7 @@ This category contains records of all effect action operations performed by [Azu
     "eventTimestamp": "2019-01-15T13:19:56.1227642Z",
     "id": "/subscriptions/<subscriptionID>/resourceGroups/myResourceGroup/providers/Microsoft.Sql/servers/contososqlpolicy/events/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/ticks/636831551961227642",
     "level": "Warning",
-    "operationId": "04e575f8-48d0-4c43-a8b3-78c4eb01d287",
+    "operationId": "eeee4444-ff55-6666-77aa-888888bbbbbb",
     "operationName": {
         "value": "Microsoft.Authorization/policies/audit/action",
         "localizedValue": "Microsoft.Authorization/policies/audit/action"
@@ -787,8 +787,8 @@ This category contains records of all effect action operations performed by [Azu
         "resourceLocation": "westus2",
         "ancestors": "72f988bf-86f1-41af-91ab-2d7cd011db47",
         "policies": "[{\"policyDefinitionId\":\"/subscriptions/<subscriptionID>/providers/Microsoft.
-            Authorization/policyDefinitions/5775cdd5-d3d3-47bf-bc55-bb8b61746506/\",\"policyDefiniti
-            onName\":\"5775cdd5-d3d3-47bf-bc55-bb8b61746506\",\"policyDefinitionEffect\":\"Deny\",\"
+            Authorization/policyDefinitions/ffff5555-aa66-7777-88bb-999999cccccc/\",\"policyDefiniti
+            onName\":\"ffff5555-aa66-7777-88bb-999999cccccc\",\"policyDefinitionEffect\":\"Deny\",\"
             policyAssignmentId\":\"/subscriptions/<subscriptionID>/providers/Microsoft.Authorization
             /policyAssignments/991a69402a6c484cb0f9b673/\",\"policyAssignmentName\":\"991a69402a6c48
             4cb0f9b673\",\"policyAssignmentScope\":\"/subscriptions/<subscriptionID>\",\"policyAssig
@@ -801,7 +801,7 @@ This category contains records of all effect action operations performed by [Azu
 ### Policy event property descriptions
 
 | Element Name | Description |
-|--------------|-------------|
+| -------------- | ------------- |
 | authorization | Array of Azure RBAC properties of the event. For new resources, this is the action and scope of the request that triggered evaluation. For existing resources, the action is "Microsoft.Resources/checkPolicyCompliance/read". |
 | caller | For new resources, the identity that initiated a deployment. For existing resources, the GUID of the Microsoft Azure Policy Insights RP. |
 | channels | Policy events use only the "Operation" channel. |
@@ -840,25 +840,25 @@ When streaming the Azure Activity log to a storage account or event hub, the dat
 
 
 | Resource logs schema property | Activity Log REST API schema property | Notes |
-|-------------------------------|---------------------------------------|-------|
-| time | eventTimestamp |  |
+| ------------------------------- | --------------------------------------- | ------- |
+| time | eventTimestamp | |
 | resourceId | resourceId | subscriptionId, resourceType, resourceGroupName are all inferred from the resourceId. |
-| operationName | operationName.value |  |
+| operationName | operationName.value | |
 | category | Part of operation name | Always "Administrative" |
 | resultType | status.value | |
 | resultSignature | substatus.value | |
-| resultDescription | description |  |
+| resultDescription | description | |
 | durationMs | N/A | Always 0 |
-| callerIpAddress | httpRequest.clientIpAddress |  |
-| correlationId | correlationId |  |
-| identity | claims and authorization properties |  |
-| Level | Level |  |
-| location | N/A | Location of where the event was processed. *This isn't the location of the resource, but rather where the event was processed. This property will be removed in a future update.* |
-| Properties | properties.eventProperties |  |
+| callerIpAddress | httpRequest.clientIpAddress | |
+| correlationId | correlationId | |
+| identity | claims and authorization properties | |
+| Level | Level | |
+| location | N/A | Location of where the event was processed. _This isn't the location of the resource, but rather where the event was processed. This property will be removed in a future update._ |
+| Properties | properties.eventProperties | |
 | properties.eventCategory | category | If properties.eventCategory isn't present, category is "Administrative" |
-| properties.eventName | eventName |  |
-| properties.operationId | operationId |  |
-| properties.eventProperties | properties |  |
+| properties.eventName | eventName | |
+| properties.operationId | operationId | |
+| properties.eventProperties | properties | |
 
 Following is an example of an event using this schema:
 
@@ -890,12 +890,12 @@ Following is an example of an event using this schema:
                },
                 "claims": {
                     "aud": "https://management.core.windows.net/",
-                    "iss": "https://sts.windows.net/abcde123-86f1-41af-91ab-abcde1234567/",
+                    "iss": "https://sts.windows.net/bbbbcccc-1111-dddd-2222-eeee3333ffff/",
                     "iat": "1421876371",
                     "nbf": "1421876371",
                     "exp": "1421880271",
                     "ver": "1.0",
-                    "http://schemas.microsoft.com/identity/claims/tenantid": "ffffffff-eeee-dddd-cccc-bbbbbbbbbbb0",
+                    "http://schemas.microsoft.com/identity/claims/tenantid": "ccccdddd-2222-eeee-3333-ffff4444aaaa",
                     "http://schemas.microsoft.com/claims/authnmethodsreferences": "pwd",
                     "http://schemas.microsoft.com/identity/claims/objectidentifier": "123abc45-8211-44e3-95xq-85137af64708",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/upn": "admin@contoso.com",
@@ -904,7 +904,7 @@ Following is an example of an event using this schema:
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname": "John",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname": "Smith",
                     "name": "John Smith",
-                    "groups": "12345678-cacfe77c-e058-4712-83qw-f9b08849fd60,12345678-4c41-4b23-99d2-d32ce7aa621c,12345678-0578-4ea0-9gdc-e66cc564d18c",
+                    "groups": "00aa00aa-bb11-cc22-dd33-44ee44ee44ee,11bb11bb-cc22-dd33-ee44-55ff55ff55ff,22cc22cc-dd33-ee44-ff55-66aa66aa66aa",
                     "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": " admin@contoso.com",
                     "appid": "11112222-bbbb-3333-cccc-4444dddd5555",
                     "appidacr": "2",
@@ -916,7 +916,7 @@ Following is an example of an event using this schema:
             "location": "global",
             "properties": {
                 "statusCode": "Created",
-                "serviceRequestId": "12345678-8ca0-47ad-9b80-6cde2207f97c"
+                "serviceRequestId": "eeeeeeee-4444-5555-6666-ffffffffffff"
             }
         }
     ]

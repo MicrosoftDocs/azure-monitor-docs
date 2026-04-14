@@ -79,7 +79,7 @@ Advisor provides recommendations for the following services:
 - Azure Key Vault
 - Azure Kubernetes Service
 - Log Analytics
-- Azure Cache for Redis server
+- Azure Cache for Redis server (deprecated)
 - SQL Server
 - Azure Storage account
 - Azure Traffic Manager profile

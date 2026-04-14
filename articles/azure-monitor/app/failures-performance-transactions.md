@@ -2,7 +2,9 @@
 title: Investigate failures, performance, and transactions with Application Insights | Microsoft Docs
 description: Monitor and investigate application performance, failures, and transactions with Application Insights.
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 03/15/2026
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Investigate failures, performance, and transactions with Application Insights
@@ -101,13 +103,13 @@ You can select which event types to view from the **Event types** dropdown menu,
 
 * **Dependency** - Outbound calls from your application to external services such as REST APIs, databases, or message queues.
 
-* **Exception** - Captured exceptions, including server-side errors and exceptions explicitly recorded using `TrackException()`.
+* **Exception** - Captured exceptions, including server-side errors and exceptions explicitly recorded by your instrumentation.
 
 * **Page View** - [Telemetry sent by the web client](javascript-sdk.md) to create page view reports.
 
 * **Request** - HTTP requests to your server application, including API calls, web pages, and assets. These events are used to create the request and response overview charts.
 
-* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-add-modify.md#included-instrumentation-libraries).
+* **Trace** - Diagnostic log data captured through logging frameworks included in the [Azure Monitor OpenTelemetry Distro](opentelemetry-collect-detect.md#included-instrumentation-libraries).
 
 If you want to restore the filters later, select **Reset** from the top navigation bar.
 
@@ -172,9 +174,9 @@ You can use the following search expressions:
 | `apple NOT banana`                     | Find events that contain one word but not the other.                                |
 
 > [!NOTE]
-> If your app generates significant telemetry and uses ASP.NET SDK version 2.0.0-beta3 or later, it automatically reduces the volume sent to the portal through adaptive sampling. This module sends only a representative fraction of events. It selects or deselects events related to the same request as a group, allowing you to navigate between related events.
+> If sampling is enabled, portal experiences such as **Failures**, **Performance**, **Search**, and **End-to-end transaction details** show the telemetry that was retained after sampling rather than every item your application emitted.
 >
-> Learn about [sampling](sampling.md).
+> Suggested samples and correlated views try to preserve related telemetry for the same operation when correlation data is available. Learn more about [sampling](sampling.md).
 
 ---
 
@@ -210,6 +212,9 @@ To investigate the root cause of an error or exception, you can drill into the p
 	> [!NOTE]
 	> The **Suggested** samples contain related telemetry from all components, even if sampling is in effect in any of them.
 
+	> [!TIP]
+	> If you need the call stack for a failure, open the related exception in **End-to-end transaction details** or the **Exceptions** tab. Stack traces are shown only when exception telemetry was captured for that operation.
+
 ### [Performance view](#tab/performance-view)
 
 To investigate the root cause of a performance issue, you can drill into the problematic operation for a detailed end-to-end transaction details view that includes dependencies and exception details.
@@ -243,7 +248,10 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
     This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
-1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determining whether there are performance issues related to particular types of clients.
+    > [!TIP]
+    > For single-page applications (SPAs), turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) or call [trackPageView()](api-custom-events-metrics.md#page-views) on route changes so that each logical page creates its own page view and operation. Otherwise, multiple route changes can be correlated to a single operation and some page view durations can appear as `0`.
+
+1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determine whether there are performance issues related to particular types of clients.
 
     :::image type="content" source="media/failures-performance-transactions/transaction-view-page-view-properties.png" lightbox="media/failures-performance-transactions/transaction-view-page-view-properties.png" alt-text="Screenshot showing the 'End-to-end transaction details' view with the 'Page View Properties' section highlighted.":::
 
@@ -572,7 +580,7 @@ This behavior is by design. All the related items, across all components, are al
 
 The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is created and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that the system creates a page view each time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) so that the system creates a page view each time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 </details>
 
 <br>
@@ -590,7 +598,7 @@ If all calls were instrumented, in process is the likely root cause for the time
 <details>
 <summary><b>What if I see the message "Error retrieving data" while navigating Application Insights in the Azure portal?</b></summary>
 
-This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate Domain Name System (DNS) or other network related issues from the client machine where the API calls are failing. If the portal error continues, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected behavior. Then open a support case from the Azure portal.
+This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser InPrivate window and disable any browser extensions that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate Domain Name System (DNS) or other network related issues from the client machine where the API calls are failing. If the portal error continues, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected behavior. Then open a support case from the Azure portal.
 
 </details>
 
@@ -620,7 +628,7 @@ This behavior is by design. All the related items, across all components, are al
 
 The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 
 #### Why do transaction detail durations not add up to the top-request duration?
 
@@ -630,7 +638,7 @@ If all calls were instrumented, in process is the likely root cause for the time
 
 #### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
 
-This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs to be investigated further, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
+This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-aaaa0000-bb11-2222-33cc-444444dddddd) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-bbbb1111-cc22-3333-44dd-555555eeeeee) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs to be investigated further, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
 -->
 
 ## Next steps

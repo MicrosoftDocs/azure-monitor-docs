@@ -4,7 +4,7 @@ description: Create a custom table with the Auxiliary table plan in your Log Ana
 ms.reviewer: adi.biran
 ms.custom: references_regions
 ms.topic: how-to 
-ms.date: 01/23/2026
+ms.date: 03/05/2026
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -32,6 +32,22 @@ To create a custom table and collect log data, you need:
 > Auxiliary logs are generally available (GA) for all public cloud regions except for Qatar Central, and not available for Azure Government or China clouds.
 
 ## Create a custom table with the Auxiliary plan
+
+# [Portal](#tab/azure-portal-1)
+
+To create a custom table with the Auxiliary plan in the Azure portal:
+
+1. From the **Log Analytics workspaces** menu, select **Tables**.
+
+1. Select **Create**.
+
+1. On the **Basics** tab, specify a name and, optionally, a description for the table. The portal automatically adds the *_CL* suffix to the table name.
+
+1. Under **Table plan**, select **Auxiliary / Lake**.
+
+1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
+
+# [API](#tab/api-1)
 
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
@@ -75,6 +91,8 @@ Provide this payload as the body of your request. Update the table name and adju
 > * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (microseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
 > * Tables with the Auxiliary plan don't support columns with dynamic data.
 
+---
+
 ## Send data to a table with the Auxiliary plan
 
 There are multiple ways to ingest data to a custom table with the Auxiliary plan. 
@@ -95,82 +113,172 @@ For more information on how to use the AMA, see the following articles:
 This method closely follows the steps described in [Tutorial: Send data to Azure Monitor using Logs ingestion API](tutorial-logs-ingestion-api.md).
 
 1. [Create a custom table with the Auxiliary plan](#create-a-custom-table-with-the-auxiliary-plan) as described in this article.
-1. [Create a Microsoft Entra application](tutorial-logs-ingestion-api.md#create-microsoft-entra-application).
-1. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample ARM template for `kind`: `Direct`. This type of DCR doesn't require a DCE since it includes a `logsIngestion` endpoint.
-   * `myworkspace` is the name of your Log Analytics workspace.
-   * `tablename_CL` is the name of your table.
-   * `columns` includes the same columns you set in the creation of the table.
 
-        ```json
-        {
-            "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
-            "contentVersion": "1.0.0.0",
-            "parameters": {
-                "dataCollectionRuleName": {
-                    "type": "string",
-                    "metadata": {"description": "Specifies the name of the data collection rule to create."}
-                },
-                "location": {
-                    "type": "string",
-                    "metadata": {"description": "Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace."}
-                },
-                "workspaceResourceId": {
-                    "type": "string",
-                    "metadata": {"description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."}
-                }
+1. [Create a Microsoft Entra application](tutorial-logs-ingestion-api.md#create-microsoft-entra-application).
+
+1. [Create a data collection rule](tutorial-logs-ingestion-api.md#create-data-collection-rule). Here's a sample ARM template for `kind`: `Direct`. This type of DCR doesn't require a DCE since it includes a `logsIngestion` endpoint.
+
+    * `myworkspace` is the name of your Log Analytics workspace.
+    * `tablename_CL` is the name of your table.
+    * `columns` includes the same columns you set in the creation of the table.
+
+    # [ARM (JSON)](#tab/arm)
+    
+    ```json
+    {
+        "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "dataCollectionRuleName": {
+                "type": "string",
+                "metadata": {"description": "Specifies the name of the data collection rule to create."}
             },
-            "resources": [
-                {
-                    "type": "Microsoft.Insights/dataCollectionRules",
-                    "name": "[parameters('dataCollectionRuleName')]",
-                    "location": "[parameters('location')]",
-                    "apiVersion": "2023-03-11",
-                    "kind": "Direct",
-                    "properties": {
-                        "streamDeclarations": {
-                            "Custom-tablename": {
-                                "columns": [
-                                    {"name": "TimeGenerated",
-                                     "type": "datetime"},
-                                    {"name": "StringProperty",
-                                     "type": "string"},
-                                    {"name": "IntProperty",
-                                     "type": "int"},
-                                    {"name": "LongProperty",
-                                     "type": "long"},
-                                    {"name": "RealProperty",
-                                     "type": "real"},
-                                    {"name": "BooleanProperty",
-                                     "type": "boolean"},
-                                    {"name": "GuidProperty",
-                                     "type": "guid"},
-                                    {"name": "DateTimeProperty",
-                                     "type": "datetime"}]
-                                        }
-                                    },
-                        "destinations": {
-                            "logAnalytics": [
-                                {"workspaceResourceId": "[parameters('workspaceResourceId')]",
-                                 "name": "myworkspace"}]
-                        },
-                        "dataFlows": [
-                            {
-                                "streams": ["Custom-tablename"],
-                                "transformKql": "source",
-                                "destinations": ["myworkspace"],
-                                "outputStream": "Custom-tablename_CL"
-                            }]
-                    }
-                }],
-            "outputs": {
-                "dataCollectionRuleId": {
-                    "type": "string",
-                    "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
+            "location": {
+                "type": "string",
+                "metadata": {"description": "Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace."}
+            },
+            "workspaceResourceId": {
+                "type": "string",
+                "metadata": {"description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."}
+            }
+        },
+        "resources": [
+            {
+                "type": "Microsoft.Insights/dataCollectionRules",
+                "name": "[parameters('dataCollectionRuleName')]",
+                "location": "[parameters('location')]",
+                "apiVersion": "2023-03-11",
+                "kind": "Direct",
+                "properties": {
+                    "streamDeclarations": {
+                        "Custom-tablename": {
+                            "columns": [
+                                {"name": "TimeGenerated",
+                                    "type": "datetime"},
+                                {"name": "StringProperty",
+                                    "type": "string"},
+                                {"name": "IntProperty",
+                                    "type": "int"},
+                                {"name": "LongProperty",
+                                    "type": "long"},
+                                {"name": "RealProperty",
+                                    "type": "real"},
+                                {"name": "BooleanProperty",
+                                    "type": "boolean"},
+                                {"name": "GuidProperty",
+                                    "type": "guid"},
+                                {"name": "DateTimeProperty",
+                                    "type": "datetime"}]
+                                    }
+                                },
+                    "destinations": {
+                        "logAnalytics": [
+                            {"workspaceResourceId": "[parameters('workspaceResourceId')]",
+                                "name": "myworkspace"}]
+                    },
+                    "dataFlows": [
+                        {
+                            "streams": ["Custom-tablename"],
+                            "transformKql": "source",
+                            "destinations": ["myworkspace"],
+                            "outputStream": "Custom-tablename_CL"
+                        }]
                 }
+            }],
+        "outputs": {
+            "dataCollectionRuleId": {
+                "type": "string",
+                "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
             }
         }
-        ```
+    }
+    ```
+    
+    # [Bicep](#tab/bicep)
+    
+    ```bicep
+    @description('Specifies the name of the data collection rule to create.')
+    param dataCollectionRuleName string
+    
+    @description('Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace.')
+    param location string
+    
+    @description('The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
+    param workspaceResourceId string
+    
+    resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
+    name: dataCollectionRuleName
+    location: location
+    kind: 'Direct'
+    properties: {
+        streamDeclarations: {
+        'Custom-tablename': {
+            columns: [
+            {
+                name: 'TimeGenerated'
+                type: 'datetime'
+            }
+            {
+                name: 'StringProperty'
+                type: 'string'
+            }
+            {
+                name: 'IntProperty'
+                type: 'int'
+            }
+            {
+                name: 'LongProperty'
+                type: 'long'
+            }
+            {
+                name: 'RealProperty'
+                type: 'real'
+            }
+            {
+                name: 'BooleanProperty'
+                type: 'boolean'
+            }
+            {
+                name: 'GuidProperty'
+                type: 'guid'
+            }
+            {
+                name: 'DateTimeProperty'
+                type: 'datetime'
+            }
+            ]
+        }
+        }
+        destinations: {
+        logAnalytics: [
+            {
+            workspaceResourceId: workspaceResourceId
+            name: 'myworkspace'
+            }
+        ]
+        }
+        dataFlows: [
+        {
+            streams: [
+            'Custom-tablename'
+            ]
+            transformKql: 'source'
+            destinations: [
+            'myworkspace'
+            ]
+            outputStream: 'Custom-tablename_CL'
+        }
+        ]
+    }
+    }
+    
+    output dataCollectionRuleId string = dataCollectionRule.id
+    ```
+    
+    ---
+
 1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
+
 1. Send data using [sample code](tutorial-logs-ingestion-code.md).
 
 > [!WARNING]

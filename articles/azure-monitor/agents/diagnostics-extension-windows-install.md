@@ -2,7 +2,7 @@
 title: Install and configure the Azure Diagnostics extension for Windows (WAD)
 description: Learn about installing and configuring the Azure Diagnostics extension for Windows and how the data is stored in an Azure Storage account.
 ms.topic: install-set-up-deploy
-ms.date: 11/14/2024
+ms.date: 02/24/2026
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
 ms.reviewer: luki
@@ -10,6 +10,8 @@ ms.reviewer: luki
 # Install and configure the Azure Diagnostics extension for Windows (WAD)
 
 The [Azure Diagnostics extension](diagnostics-extension-overview.md) is an agent in Azure Monitor that collects monitoring data from the guest operating system and workloads of Azure virtual machines and other compute resources. This article provides information on how to install and configure the Azure Diagnostics extension for Windows and describes how the data is stored in an Azure Storage account.
+
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 The diagnostics extension is implemented as a [virtual machine extension](/azure/virtual-machines/extensions/overview) in Azure. It supports the same installation options by using Azure Resource Manager templates, PowerShell, and the Azure CLI. For information on how to install and maintain virtual machine extensions, see [Virtual machine extensions and features for Windows](/azure/virtual-machines/extensions/features-windows).
 

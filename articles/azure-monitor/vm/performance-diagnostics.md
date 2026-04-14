@@ -1,30 +1,30 @@
 ---
 title: Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance issues
-description: Use the Performance Diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
+description: Use the performance diagnostics tool to identify and troubleshoot performance issues on your Azure virtual machine (VM).
 ms.topic: troubleshooting
-ms.date: 06/10/2025
+ms.date: 04/03/2026
 ms.reviewer: poharjan
 
-# Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share Performance Diagnostics information with Microsoft Support.
+# Customer intent: As a VM administrator or a DevOps engineer, I want to analyze and troubleshoot performance issues on my Azure virtual machine so that I can resolve these issues myself or share performance diagnostics information with Microsoft Support.
 ---
 
-# Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance issues
+# Use performance diagnostics in Azure Monitor to troubleshoot VM performance problems
 
 **Applies to:** :heavy_check_mark: Linux VMs :heavy_check_mark: Windows VMs
 
-Performance Diagnostics (PerfInsights) helps identify and troubleshoot performance issues on Azure virtual machines. It provides insights into high resource usage such as high CPU, memory, and disk usage, and helps you understand the root cause of performance issues. 
+Performance diagnostics (PerfInsights) helps you identify and troubleshoot performance problems on Azure virtual machines. It provides insights into high resource usage, such as high CPU, memory, and disk usage, and helps you understand the root cause of performance problems.
 
-Run Performance Diagnostics directly from the Azure portal where you can review insights and reports about logs, configuration, and diagnostics data for the VM. Use this information to diagnose your issue before contacting Microsoft Support.
+Run performance diagnostics directly from the Azure portal where you can review insights and reports about logs, configuration, and diagnostics data for the VM. Use this information to diagnose your problem before contacting Microsoft Support.
 
-Performance Diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs.
+Performance diagnostics stores all insights and reports in a storage account that you can configure for short data retention to minimize costs. The virtual machine must have outbound network access to the storage account so that performance diagnostics can upload diagnostics data, insights, and reports. For more information, see [Default outbound access in Azure](/azure/virtual-network/ip-services/default-outbound-access).
 
-## Performance Diagnostics modes
+## Performance diagnostics modes
 Performance diagnostics operates in one of the following two modes:
 
 * **Continuous diagnostics** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
 * **On-demand diagnostics** helps you troubleshoot an ongoing performance issue by providing more in-depth data, insights, and recommendations that are based on data that's collected at a single moment. On-demand diagnostics is supported on both Windows and Linux.
 
-The following table compares the data provided by Continuous and On-demand Performance Diagnostics. For a complete list of all the collected diagnostics data, see [Data collected](#data-collected).
+The following table compares the data provided by continuous and on-demand performance diagnostics. For a complete list of all the collected diagnostics data, see [Data collected](#data-collected).
 
 | | Continuous | On-demand |
 |:---|:---|:---|
@@ -38,7 +38,7 @@ The following sections describe common scenarios for using continuous and on-dem
 
 ### Continuous diagnostics
 
-Continuous Performance diagnostics lets you identify high resource usage by monitoring your VM regularly for:
+Continuous performance diagnostics helps you identify high resource usage by regularly monitoring your VM for:
 
 - High CPU usage: Detects high CPU usage periods, and shows the top CPU usage consumers during those periods.
 - High memory usage: Detects high memory usage periods, and shows the top memory usage consumers during those periods.
@@ -72,7 +72,7 @@ On-demand diagnostics provides different information between Windows and Linux V
 
 ### [Windows](#tab/windows)
 
-Performance Diagnostics collected the information in the following table from Windows machines depending on the performance scenario you're using.
+Performance diagnostics collects the information in the following table from Windows machines, depending on the performance scenario you use.
 
 | Data collected | Quick performance analysis | Benchmarking | Performance analysis | Azure Files analysis | Advanced performance analysis |
 |:---|:---:|:---:|:---:|:---:|:---:|
@@ -170,10 +170,10 @@ Information about the Linux virtual machine, operating system, block devices, hi
 
 ## Performance impact
 
-The following table shows the results of running 12-hour tests of continuous Performance Diagnostics on a range of Windows OS versions, Azure VMs of sizes, and CPU loads. These results show a minimal effect on system resources.
+The following table shows the results of running 12-hour tests of continuous performance diagnostics on a range of Windows OS versions, Azure VMs of sizes, and CPU loads. These results show a minimal effect on system resources.
 
 | OS version | VM size | CPU load | Average CPU usage | 90th percentile CPU usage | 99th percentile CPU usage | Memory usage |
-||:---|:---|:---|:---|:---|:---|
+|:---|:---|:---|:---|:---|:---|:---|
 | Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
 | Windows Server 2016 SQL | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
 | Windows Server 2019     | B2s, A4V2, D5v2 | 20%, 50%, 80% | <0.5% | 2% | 3% | 42-43 MB |
@@ -197,9 +197,9 @@ Azure VMs, and related network and storage resources, can be moved across region
 
 ## Sharing diagnostics data with Microsoft Support
 
-When you open a support ticket with Microsoft, it's important to share the Performance Diagnostics report from an on-demand Performance Diagnostics run. The Microsoft Support contact provides the option to upload the on-demand Performance Diagnostics report to a workspace. Use either of the following methods to download the on-demand Performance Diagnostics report:
+When you open a support ticket with Microsoft, share the performance diagnostics report from an on-demand performance diagnostics run. The Microsoft Support contact provides the option to upload the on-demand performance diagnostics report to a workspace. Use either of the following methods to download the on-demand performance diagnostics report:
 
-- Download the report from the Performance Diagnostics blade or storage account, as described in [Analyze Performance Diagnostics insights and reports](./performance-diagnostics-analyze.md).
+- Download the report from the **Performance diagnostics** blade or storage account, as described in [Analyze performance diagnostics insights and reports](./performance-diagnostics-analyze.md).
 
 
 

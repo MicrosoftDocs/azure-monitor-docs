@@ -1,49 +1,55 @@
 ---
 title: Best practices for monitoring Kubernetes with Azure Monitor
-description: Provides a template for a Well-Architected Framework (WAF) article specific to monitoring Kubernetes with Azure Monitor.
+description: Explore Azure Monitor best practices for Kubernetes clusters, including AKS and Azure Arc. Get guidance on reliability, security, cost, and performance.
 ms.topic: best-practice
 ms.date: 03/29/2023
 ms.reviewer: bwren
+ai-usage: ai-assisted
+
+#customer intent: As a Kubernetes administrator, I want to understand best practices for monitoring my clusters with Azure Monitor so that I can ensure reliability, security, cost efficiency, and performance.
+
 ---
 
 # Best practices for monitoring Kubernetes with Azure Monitor
 
-This article provides best practices for monitoring the health and performance of your [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters. The guidance is based on the five pillars of architecture excellence described in [Azure Well-Architected Framework](/azure/architecture/framework/).
+Azure Monitor provides a [set of services](kubernetes-monitoring-overview.md) for monitoring the health and performance of your [Azure Kubernetes Service (AKS)](/azure/aks/intro-kubernetes) and [Azure Arc-enabled Kubernetes](/azure/azure-arc/kubernetes/overview) clusters. Without proper configuration, your monitoring setup might miss critical issues or collect unnecessary data, leading to gaps in visibility or increased costs.
 
-## Reliability
+This article provides best practices based on the five pillars of architecture excellence in the [Azure Well-Architected Framework](/azure/architecture/framework/) to help you configure reliable, secure, and cost-effective monitoring for your Kubernetes clusters.
 
-In the cloud, we acknowledge that failures happen. Instead of trying to prevent failures altogether, the goal is to minimize the effects of a single failing component. Use the following information to ensure the reliability of your Kubernetes clusters and monitoring environment.
+## Reliability best practices for Kubernetes monitoring
+
+Ensure the reliability of your Azure Kubernetes Service (AKS) and Azure Arc-enabled Kubernetes cluster monitoring by enabling Prometheus metrics, Container insights, control plane diagnostic settings, and alert rules. These recommendations help you detect and respond to failures in your cluster and its monitoring components.
 
 [!INCLUDE [waf-containers-reliability](includes/waf-containers-reliability.md)]
 
-## Security
+## Security best practices for Kubernetes monitoring
 
-Security is one of the most important aspects of any architecture. Azure Monitor provides features to employ both the principle of least privilege and defense-in-depth. Use the following information to monitor your Kubernetes clusters and ensure that only authorized users access collected data.
+Azure Monitor supports least privilege access and defense-in-depth for Kubernetes clusters. These security recommendations cover managed identity authentication, private link connectivity, network observability, and Log Analytics workspace security.
 
 [!INCLUDE [waf-containers-security](includes/waf-containers-security.md)]
 
-## Cost optimization
+## Cost optimization for Kubernetes monitoring
 
-Cost optimization refers to ways to reduce unnecessary expenses and improve operational efficiencies. You can significantly reduce your cost for Azure Monitor by understanding your different configuration options and opportunities to reduce the amount of data that it collects. See [Azure Monitor cost and usage](../fundamentals/cost-usage.md) to understand the different ways that Azure Monitor charges and how to view your monthly bill.
+Reduce your Azure Monitor costs for Kubernetes monitoring by optimizing data collection, configuring appropriate pricing tiers, and eliminating redundant metric collection. See [Azure Monitor cost and usage](../fundamentals/cost-usage.md) to learn how Azure Monitor charges and how to view your monthly bill.
 
 > [!NOTE]
 > See [Optimize costs in Azure Monitor](../fundamentals/best-practices-cost.md) for cost optimization recommendations across all features of Azure Monitor.
 
 [!INCLUDE [waf-containers-cost](includes/waf-containers-cost.md)]
 
-## Operational excellence
+## Operational excellence for Kubernetes monitoring
 
-Operational excellence refers to operations processes required keep a service running reliably in production. Use the following information to minimize the operational requirements for monitoring your Kubernetes clusters.
+Streamline the operational management of your Kubernetes cluster monitoring with Azure Monitor. These recommendations cover monitoring guidance for all Kubernetes layers, Azure Arc integration for hybrid clusters, managed cloud-native tools, and automated policy-based data collection.
 
 [!INCLUDE [waf-containers-operation](includes/waf-containers-operation.md)]
 
-## Performance efficiency
+## Performance efficiency for Kubernetes monitoring
 
-Performance efficiency is the ability of your workload to scale to meet the demands placed on it by users in an efficient manner. Use the following information to monitor the performance of your Kubernetes clusters and ensure they're configured for maximum performance.
+Track Kubernetes cluster performance with Azure Monitor by enabling Prometheus metrics collection, Container insights, and performance alert rules. These recommendations help you identify performance bottlenecks and scale your clusters efficiently.
 
 [!INCLUDE [waf-containers-performance](includes/waf-containers-performance.md)]
 
-## Next step
+## Related content
 
-* See [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md) to enable Managed Prometheus and log collection on your cluster.
-* Learn more about [getting started with Azure Monitor](../fundamentals/getting-started.md).
+- [Enable monitoring for Kubernetes clusters](kubernetes-monitoring-enable.md)
+- [Getting started with Azure Monitor](../fundamentals/getting-started.md)

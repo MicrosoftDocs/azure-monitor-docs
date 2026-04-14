@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -107,9 +107,10 @@ For more information, see [Configure policy-based backups for Azure NetApp Files
 
 ResourceType: microsoft.netapp/netappaccounts  
 Recommendation ID: c70fc854-2814-4b03-9b93-8ad7b918bfcf  
-Subcategory: DisasterRecovery
+Subcategory: undefined
 
 <!--c70fc854-2814-4b03-9b93-8ad7b918bfcf_end-->
+
 
 
 
@@ -153,20 +154,39 @@ Subcategory: DisasterRecovery
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
 
-#### End of Support for increase to IP route limit for Basic network features  
+#### New volume creation for basic networking will be upgraded to standard  
   
-An Azure NetApp Files volume using Basic network features is subject to an IP route limit of 1600. IP route limits aren't adjustable. To prevent the IP route limit, migrate volumes to Standard network features from Basic network features.  
+From May 31, all new Azure NetApp Files volumes will use Standard Networking. Requests specifying Basic Networking (via portal, CLI, ARM, or Terraform) will be automatically upgraded. Existing volumes are unaffected, and charges apply only if billable Standard Networking features are used.  
   
-**Potential benefits**: Increase the number of IP routes.  
+**Potential benefits**: Increases the number of IP addresses.  
 
 **Impact:** High
   
-For more information, see [Configure network features for an Azure NetApp Files volume](https://aka.ms/standardnetwork)  
+For more information, see [Guidelines for Azure NetApp Files network planning](/azure/azure-netapp-files/azure-netapp-files-network-topologies#considerations)  
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe  
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_end-->
+
+
+<!--2c3230cf-e6a3-4479-8a82-b8031b991b24_begin-->
+
+#### Configure backup policy for Azure NetApp Files volume  
+  
+Configure a backup policy to enable scheduled backup protection. Azure NetApp File volumes have no scheduled backups by default, increasing risk of data loss and longer recovery. Using this feature will incur additional backup charges.  
+  
+**Potential benefits**: Add data protection for the Azure NetApp Files volume.  
+
+**Impact:** Medium
+  
+For more information, see [Manage backup policies for Azure NetApp Files](/azure/azure-netapp-files/backup-manage-policies)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 2c3230cf-e6a3-4479-8a82-b8031b991b24  
+Subcategory: undefined
+
+<!--2c3230cf-e6a3-4479-8a82-b8031b991b24_end-->
 
 <!--articleBody-->

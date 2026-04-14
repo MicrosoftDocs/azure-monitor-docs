@@ -2,16 +2,16 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 01/15/2026
+ms.date: 03/25/2026
 ---
 
 # Azure Service Health portal
 
 The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues) is part of the [Service Health service](overview.md). The portal provides you with a customizable dashboard that tracks the health of your Azure services in the regions where you use them.
 
-By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates. For more information about the portal elements and controls, see [Azure portal overview](/azure/azure-portal/azure-portal-overview).
+By using the Azure Service Health portal, you can engage with service events and manage actions and alerts to maintain the business continuity of affected applications. In this dashboard, you can track active events like ongoing service issues, upcoming planned maintenance, relevant health advisories, and billing updates.<br> For more information about the portal elements and controls, see [Azure portal overview](/azure/azure-portal/azure-portal-overview).
 
-You can use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues are affecting you.
+Use the Service Health dashboard to create and manage Service Health alerts, which proactively notify you when service issues affect you.
 
 ## Service Health events
 
@@ -50,7 +50,10 @@ This section provides an overview of each pane in the Service Health portal.
 
 Select **Service issues** on the left menu to see a map with all user services across the world. This information can help you find services that could be affected from an outage, based on your subscription or tenant admin access.<br> For more information, see [Service issues overview](service-issues-blade.md).
 
+
 :::image type="content" source="media/service-health-portal-update/services-issue-window-1.png" alt-text="A screenshot of the Service issues user interface." lightbox="media/service-health-portal-update/services-issue-window-1.png":::
+
+For information on how to report an impact, see [How to report an impact (preview)](report-issue.md).
 
 ## See Planned maintenance events
 
@@ -79,31 +82,35 @@ Select **Security advisories** from the left menu to see all the current securit
 
 ## See all Billing updates
 
-Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. For more information, see [In-portal billing](billing-elevated-access.md).
+Select **Billing updates** from the left menu to see billing updates. Only users with subscription owner or contributor permissions can access this information. <br> For more information, see [Billing updates](billing-elevated-access.md).
 
 :::image type="content" source="media/service-health-portal-update/in-portal-billing-blade.png" alt-text="A screenshot of the Billing updates window." lightbox="media/service-health-portal-update/in-portal-billing-blade.png":::
 
 
 ## View the history of all your Service Health events
 
-Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents and configure alerts. For more information, see [Health history overview](health-history-overview.md).
+Select **Health history** from the left menu to see a detailed view of the health status of your Azure services and resources. You can monitor outages, track incidents, and configure alerts. 
+
+For more information, see [Health history overview](health-history-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-health-history.png" alt-text="A screenshot of the health history window." lightbox="media/service-health-portal-update/services-issue-health-history.png":::
 
 
 ## See and manage your Resource health
 
-Select **Resource health** from the left menu to find out if your resource is running as expected. You can select links that open directly to information about the health of your selected resource. For more information, see [Resource health overview](resource-health-overview.md).
+Select **Resource health** from the left menu to find out if your resource is running as expected. You can select links that open directly to information about the health of your selected resource. 
+
+For more information, see [Resource health overview](resource-health-overview.md).
 
 :::image type="content" source="media/service-health-portal-update/services-issue-resource-health-1.png" alt-text="A screenshot of the Resource health window." lightbox="media/service-health-portal-update/services-issue-resource-health-1.png":::
 
-## View and sort Health alerts
+## View and sort health alerts
 
 Select **Health alerts** from the left menu to search for and sort your alert rules by name. You can also group alert rules by subscription and status.
 
-You can configure your alerts so that an alert is triggered when specified conditions are met. Select any alert rule to see more information, including the alert firing history. You can also select the link of any alert to see more details. 
+You can configure your alerts so that an alert triggers when specified conditions are met. Select any alert rule to see more information, including the alert firing history. You can also select the link of any alert to see more details. 
 
-- For more information on Service Health Alerts, see [Configure Service Health alerts by using the Azure portal](alerts-activity-log-service-notifications-portal.md).
+- For more information on Service Health alerts, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 - Learn how to deploy alerts at scale through [Deploy Service health alerts at scale using Azure Policy](service-health-alert-deploy-policy.md).
 
 :::image type="content" source="media/service-health-portal-update/health-alerts-filter.png" alt-text="Screenshot that shows Health alerts filters." lightbox="media/service-health-portal-update/health-alerts-filter.png":::
@@ -119,7 +126,7 @@ For more information, see [Subscription vs. tenant access](subscription-vs-tenan
 
 This distinction ensures that users can effectively manage and monitor Azure services based on their roles and the scope of their responsibilities.
 
-The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels. For more information about roles, see [Role-Based Access Control (RBAC) for security advisory resource impact](impacted-resources-security.md).  
+The **Service issues**, **Health advisories**, **Security advisories**, and **Health history** panes show events at both the **Tenant** and **Subscription** levels.<br> For more information about roles, see [Role-Based Access Control (RBAC) for security advisory resource impact](impacted-resources-security.md).  
 
 :::image type="content" source="media/service-health-portal-update/service-issue-window-2.png" alt-text="A screenshot of the Service issues user interface that highlights Tenant and Subscription checkboxes." lightbox="media/service-health-portal-update/service-issue-window-2.png":::
 
@@ -131,3 +138,14 @@ The **Service issues**, **Health advisories**, **Security advisories**, and **He
 On the **Service issues** pane, you can filter by **Scope**. The **Scope** column indicates when an event is affecting the **Tenant** level or **Subscription** level.
 
 :::image type="content" source="media/service-health-portal-update/services-issue-window-3.png" alt-text="A screenshot of the Service issues user interface that highlights the Scope column." lightbox="media/service-health-portal-update/services-issue-window-3.png":::
+
+
+## For more information
+
+- [Service Health Frequently asked Questions](service-health-faq.yml)
+- [View Service Health notifications from the portal](service-health-notifications-properties.md)
+- [View and access Security advisories](security-advisories-elevated-access.md)
+- [Service Health event tags](service-health-event-tags.md)
+- [Service Health data transitions](service-health-notification-transitions.md)
+- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+- [How to report an impact](report-issue.md)

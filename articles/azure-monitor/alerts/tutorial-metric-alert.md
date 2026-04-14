@@ -1,9 +1,10 @@
 ---
 title: Tutorial - Create a metric alert for an Azure resource
 description: Learn how to create a metric chart with Azure metrics explorer.
-ms.reviewer: harelbr
 ms.topic: tutorial
-ms.date: 12/12/2024
+ms.reviewer: harelbr
+ms.date: 04/24/2026
+ms.custom: references_regions
 ---
 
 # Tutorial: Create a metric alert for an Azure resource

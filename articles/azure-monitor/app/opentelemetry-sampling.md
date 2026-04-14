@@ -10,13 +10,13 @@ ms.date: 12/10/2025
 [Application Insights](./app-insights-overview.md) includes a custom sampler and integrates with [OpenTelemetry](./opentelemetry-enable.md) to reduce telemetry volume, lower costs, and retain the diagnostic data you care about.
 
 > [!IMPORTANT]
-> For information on sampling when using the Application Insights Classic API Software Development Kits (SDKs), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
+> For information on sampling when using the [Application Insights Classic API Software Development Kits (SDKs)](/previous-versions/azure/azure-monitor/app/classic-api), see [Classic API Sampling](/previous-versions/azure/azure-monitor/app/sampling-classic-api).
 
 ## Prerequisites
 
 > [!div class="checklist"]
 > Before you continue, make sure you have:
-> * A basic understanding of [data collection](./opentelemetry-overview.md) methods.
+> * A basic understanding of [data collection](./app-insights-overview.md) methods.
 > * A basic understanding of [OpenTelemetry sampling concepts](https://opentelemetry.io/docs/concepts/sampling/).
 > * An application instrumented with [OpenTelemetry](./opentelemetry-enable.md).
 
@@ -34,7 +34,7 @@ Sampling is **not enabled by default** in Application Insights OpenTelemetry dis
 The Azure Monitor OpenTelemetry-based distro includes a custom sampler.
 
 * Application Insights relies on this sampler to show you complete traces and avoid broken ones.
-* Live Metrics and the Application Insights classic API SDKs require this sampler for compatibility.
+* Live Metrics and the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs require this sampler for compatibility.
 
 ### Sampling options
 
@@ -48,7 +48,7 @@ Application Insights supports two sampling strategies:
 
     Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
-An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. This feature is on by default if sampling is enabled.
+An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. This feature is on by default if sampling is enabled.
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
@@ -61,11 +61,11 @@ For more detailed information and sampling edge cases, see [Frequently Asked Que
 
 ## General sampling guidance
 
-Use the following general guidance if you’re unsure where to start.
+Use the following general guidance if you're unsure where to start.
 
-- **Metrics:** [Metrics](metrics-overview.md) aren’t sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
+- **Metrics:** [Metrics](metrics-overview.md) aren't sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
-- **Logs:** Configure app logging to export only ERROR logs. Add WARN only when actionable. [Trace‑based sampling for logs](opentelemetry-configuration.md#configure-tracebased-sampling-for-logs) is on by default and drops logs tied to unsampled traces.
+- **Logs:** Configure app logging to export only `ERROR` logs. Add `WARN` only when actionable. [Trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) is on by default and drops logs tied to unsampled traces.
 
 - **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#enable-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 
@@ -84,6 +84,18 @@ To configure ingestion sampling:
 1. Go to **Application Insights** > **Usage and estimated costs**.
 1. Select **Data Sampling**.
 1. Choose the percentage of data to retain.
+
+## Validate sampling is enabled
+
+Use a [Log Analytics query](../logs/log-query-overview.md) to find the sampling rate.
+
+```kusto
+union requests,dependencies,pageViews,browserTimings,exceptions,traces
+| where timestamp > ago(1d)
+| summarize RetainedPercentage = 100/avg(itemCount) by bin(timestamp, 1h), itemType
+```
+
+If you see that `RetainedPercentage` for any type is less than 100, then that type of telemetry is being sampled.
 
 ## Set a daily cap
 

@@ -2,14 +2,14 @@
 title: Azure Status Overview
 description: Learn how to use the Azure status page to get a global view into the health of Azure services.
 ms.topic: overview
-ms.date: 11/05/2025
+ms.date: 03/17/2026
 
 ---
 # Azure status overview
 
-The [Azure status](https://azure.status.microsoft/) page provides you with a global view of the health of Azure services and regions, along with service availability.
+The [Azure status](https://azure.status.microsoft/) page provides you with a global view of the health of Azure services and regions, along with all service availability.
 
-Anyone can visit the **Azure status** page and view incidents related to all services that report service health and incidents with wide-ranging impact. However, we strongly encourage current Azure users to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth) as it includes all the outages, upcoming planned maintenance activities, and service advisories.
+Anyone can visit the **Azure status** page and view incidents related to all services that report service health and incidents with wide-ranging impact. However, we strongly encourage you to use the personalized experience in [Azure Service Health](https://aka.ms/azureservicehealth) as it includes all the outages, upcoming planned maintenance activities, and service advisories.
 
 :::image type="content"source="./media/azure-status-overview/azure-status.png"alt-text="Screenshot of the top-level Azure status page."Lightbox="./media/azure-status-overview/azure-status.png":::
 
@@ -27,7 +27,7 @@ The status banner on the **Azure status** page highlights active incidents that 
 
 ## Current Impact tab
 
-The **Current Impact** tab displays active events that affect the entirety of Azure. Use [Service Health](service-health-overview.md) to view other issues that might be affecting your services.  
+The **Current Impact** tab displays active events that affect the entirety of Azure. Use [Service Health](service-health-portal-update.md) to view other issues that might be affecting your services.  
 
 :::image type="content"source="./media/azure-status-overview/current-impact.png"alt-text="Screenshot of the Azure status Current Impact tab."Lightbox="./media/azure-status-overview/current-impact.png":::
 

@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 01/22/2026
+ms.date: 02/19/2026
 
 ---
 # Azure Resource Graph tables overview

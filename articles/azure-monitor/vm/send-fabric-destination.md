@@ -2,7 +2,7 @@
 title: Send data to Fabric and Azure Data Explorer (Preview)
 description: This article describes how to use Azure Monitor Agent to upload data to Azure Data Explorer and Fabric.
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 04/07/2026
 ms.reviewer: aprilbadger
 # Customer intent: As a Azure architect or administrator, I want to send VM data to Azure Data Explorer and Fabric for advanced analytics and real-time event processing.
 ---
@@ -16,9 +16,7 @@ This article describes how to create data collection rules (DCRs) for the Azure 
 - Each VM resource must have the [AMA installed](../agents/azure-monitor-agent-manage.md) with a minimum [version](../agents/azure-monitor-agent-extension-versions.md#version-details) of 1.39.0 for Windows and 1.38.0 for Linux.
 - A [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/how-manage-user-assigned-managed-identities) for the DCR to authenticate with the destination.
 - The DCR region must match the region of the ADX cluster or Fabric eventhouse destination.
-
-> [!NOTE]
-> This feature is in [public preview](https://azure.microsoft.com/support/legal/preview-supplemental-terms/), and the following regions are blocked due to capacity constraints: WCUS, SouthIndia, ItalyNorth, IsraelCentral, WestUS3, WestUS2, EUS, EUS2 and Qatar.
+- Public network access. ADX clusters and Fabric eventhouse workspaces that have firewall rules or network security group (NSG) restrictions enabled aren't supported as DCR destinations. Ensure your destination allows public network access before configuring it with a DCR.
 
 ## Permissions
 
@@ -33,7 +31,7 @@ The DCR creation process gives the required user-assigned managed identity the [
 ## Create a data collection rule
 
 1. In the Azure portal, on the **Monitor** menu, select **Data Collection Rules** > **Create** to open the DCR creation pane.
-1. Select the option presented by the informational banner to preview the [new Data Collection Rule creation experience](../vm/data-collection.md?tabs=preview#create-a-data-collection-rule).
+1. Select the option presented by the informational banner to preview the [new Data Collection Rule creation experience](../vm/data-collection.md#create-data-collection-rule-dcr).
 
    :::image type="content" source="./media/send-fabric-destination/preview-experience.png" alt-text="Screenshot of the informational banner to click in order to preview the new Data Collection Rule creation experience.":::
 
@@ -98,3 +96,4 @@ For more information, see [Transformations in Azure Monitor](../data-collection/
 
 - [Fabric eventhouse overview](/fabric/real-time-intelligence/eventhouse)
 - [Azure Data Explorer overview](/azure/data-explorer/data-explorer-overview)
+
