@@ -271,10 +271,31 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 - **Storage and query** in Azure Monitor Logs and Application Insights.
 - **Azure Monitor experiences** such as Logs, Workbooks, and Alerts.
 
-Use these support resources:
+#### How to reach out to Microsoft support
 
-- [Microsoft Forum](/answers/tags/20/azure-monitor)
-- [Azure support request](https://azure.microsoft.com/support/create-ticket)
+1. In the Azure portal, go to **Support + Troubleshooting**, search and select Application Insights, then select **Next**. For more information, see [Create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request#open-a-support-request-from-the-global-header).
+
+1. Under **Which resource are you having an issue with?**, select your subscription and Application Insights resource from the drop-down menus, then select **Next**.
+
+1. Under **Are you having one of the following issues?**, select **None of the above**. For **Problem type**, select **Deprecated features** and for **Problem subtype**, select  **Migrating from App Center to Azure Monitor**, then select **Next**.
+
+    :::image type="content" source="media/app-center-migration/select-problem-type.png" lightbox="media/app-center-migration/select-problem-type.png" alt-text="A screenshot of the support pane with the problem type fields highlighted.":::
+
+1. Scroll to the bottom of the page and select **Contact support**. In the **Help + Support** card, select **Create a support request**.
+
+    :::image type="content" source="media/app-center-migration/create-support-request.png" lightbox="media/app-center-migration/create-support-request.png" alt-text="A screenshot showing the 'Help + Support' tile with 'Create a support request' highlighted.":::
+
+1. In the **New support request** pane, complete the following steps:
+
+    1. On the **Problem description** tab, enter a summary of the issue. For **Problem type**, select **Deprecated features**. For **Problem subtype**, select **Migrating from App Center to Azure Monitor**. Select **Next**.
+
+        :::image type="content" source="media/app-center-migration/new-support-request.png" lightbox="media/app-center-migration/new-support-request.png" alt-text="A screenshot showing the 'New support request' pane.'":::
+
+    1. On the **Recommended solutions** tab, review the suggested solutions. If the suggested solutions don't resolve the issue, select **Return to support request**, then select **Next**.
+    
+    1. On the **Additional details** tab, provide the date the problem started, a description, any related files, diagnostic log collection permissions, and the required support severity.
+
+    1. On the **Review + create** tab, review your request. Make any required changes, then select **Create**.
 
 ## Next steps
 
