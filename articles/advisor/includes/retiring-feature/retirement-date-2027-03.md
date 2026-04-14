@@ -32,6 +32,7 @@ ms.date: 11/11/2025
 > | Cloud Service | Extended Support | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Data factory | Memory Optimized Data Flows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Front Door Web Application Firewall policy | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | SQL server | Elastic query - Shard map manager mode | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | Standard_M192idms_v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | Standard_M192ids_v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | Standard_M192ims_v2 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

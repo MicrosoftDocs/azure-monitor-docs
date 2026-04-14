@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -170,13 +170,14 @@ Availability Zones (AZ) in Azure help protect your applications and data from da
 
 **Impact:** High
   
-For more information, see [Tutorial - Move Azure single instance Virtual Machines from regional to zonal availability zones - Azure Virtual Machines](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
+For more information, see [Move Azure single-instance virtual machines from regional to zonal availability - Azure Virtual Machines](/azure/virtual-machines/move-virtual-machines-regional-zonal-portal)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 066a047a-9ace-45f4-ac50-6325840a6b00  
 Subcategory: undefined
 
 <!--066a047a-9ace-45f4-ac50-6325840a6b00_end-->
+
 
 
 <!--2b5cf6e5-2792-49b2-9ec0-0e901be6488b_begin-->
@@ -377,23 +378,7 @@ Subcategory: undefined
 
 
 
-<!--1670c0af-6536-4cbf-872f-152c91a51a80_begin-->
 
-#### Use Azure Capacity Reservation for virtual machine (VM)  
-  
-Use Azure Capacity Reservation for virtual machine (VM) that runs critical workloads. Azure Capacity Reservations reserve compute capacity in a specific region or availability zone.  
-  
-**Potential benefits**: Guaranteed compute capacity in constrained region or zone.  
-
-**Impact:** High
-  
-For more information, see [On-demand capacity reservation in Azure - Azure Virtual Machines](https://aka.ms/ReserveComputeCapacity)  
-
-ResourceType: microsoft.compute/virtualmachines  
-Recommendation ID: 1670c0af-6536-4cbf-872f-152c91a51a80  
-Subcategory: undefined
-
-<!--1670c0af-6536-4cbf-872f-152c91a51a80_end-->
 
 
 
@@ -784,5 +769,60 @@ Recommendation ID: 69e994b4-9b84-4581-930b-edcf9cc81582
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--69e994b4-9b84-4581-930b-edcf9cc81582_end-->
+
+<!--851ac46b-6ac2-4074-9ba2-447bb8754cb6_begin-->
+
+#### Migrate HBv2 to latest HPC Virtual machine families  
+  
+Microsoft is retiring following HBv2-series virtual machine (VMs) sizes: Standard_HB120rs_v2, Standard_HB120-96rs_v2, Standard_HB120-64rs_v2, Standard_HB120-32rs_v2, and Standard_HB120-16rs_v2. To ensure continuity and improved performance, transition to current generation Azure HPC VM families.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=548525)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 851ac46b-6ac2-4074-9ba2-447bb8754cb6  
+Subcategory: undefined
+
+<!--851ac46b-6ac2-4074-9ba2-447bb8754cb6_end-->
+
+<!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_begin-->
+
+#### Migrate HCv1 to latest HPC Virtual machine families  
+  
+HC-series virtual machine (VMs) sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=548543)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c  
+Subcategory: undefined
+
+<!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
+
+<!--ac992ddf-2bbf-4049-b142-a30d6236291e_begin-->
+
+#### NP-series virtual machines are retiring  
+  
+NP-series virtual machines are retiring. To ensure continuity and optimal performance, transition to latest GPU VM families. e.g. 
+NDv2 VMs, NDv2 VMs, NCasT4_v3.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=548497)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: ac992ddf-2bbf-4049-b142-a30d6236291e  
+Subcategory: undefined
+
+<!--ac992ddf-2bbf-4049-b142-a30d6236291e_end-->
 
 <!--articleBody-->
