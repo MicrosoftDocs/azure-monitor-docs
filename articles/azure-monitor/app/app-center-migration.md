@@ -283,7 +283,7 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 
 1. Scroll to the bottom of the page and select **Contact support**. In the **Help + Support** card, select **Create a support request**.
 
-    :::image type="content" source="media/app-center-migration/create-support-request.png" lightbox="media/app-center-migration/create-support-request.png" alt-text="A screenshot showing the 'Help + Support' tile with 'Creatre a support request' highlighted.":::
+    :::image type="content" source="media/app-center-migration/create-support-request.png" lightbox="media/app-center-migration/create-support-request.png" alt-text="A screenshot showing the 'Help + Support' tile with 'Create a support request' highlighted.":::
 
 1. In the **New support request** pane, complete the following steps:
 
