@@ -154,7 +154,7 @@ Use these `union withsource = tt *` queries sparingly as scans across data types
 
 
 ## \_IsBillable
-The **\_IsBillable** column specifies whether ingested data is considered billable. Data with **\_IsBillable** equal to `false` does not incur data ingestion, retention or archive charges. 
+The **\_IsBillable** column specifies whether ingested data is considered billable. Data with **\_IsBillable** equal to `false` does not incur data ingestion, retention, workspace replication, or archive charges. 
 
 ### Examples
 To get a list of computers sending billed data types, use the following query:

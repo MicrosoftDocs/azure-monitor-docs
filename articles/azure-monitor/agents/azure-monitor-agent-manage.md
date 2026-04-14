@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 02/14/2025
+ms.date: 02/18/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -19,6 +19,9 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent supported operating systems and environments](./azure-monitor-agent-supported-operating-systems.md)
 * [Azure Monitor Agent requirements](./azure-monitor-agent-requirements.md)
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
+
+> [!IMPORTANT]
+> If the agent is going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 
 > [!IMPORTANT]
 > Installing, upgrading, or uninstalling the Azure Monitor Agent doesn't require a machine restart.

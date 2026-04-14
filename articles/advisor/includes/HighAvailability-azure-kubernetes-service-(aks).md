@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/27/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -81,7 +81,7 @@ Subcategory: undefined
 
 #### Create a dedicated system node pool  
   
-A cluster without a dedicated system node pool is less reliable. We recommend you dedicate system node pools to only serve critical system pods, preventing resource starvation between system and competing user pods. Enforce this behavior with the CriticalAddonsOnly=true:NoSchedule taint on the pool.  
+Your cluster doesn't have a dedicated system node pool. It's recommended to dedicate system node pools to only serve critical system pods. This prevents resource starvation between system and competing user pods. Enforce this behavior with the CriticalAddonsOnly=true:NoSchedule taint on the pool.  
   
 **Potential benefits**: Prevents resource scarcity for core system pods  
 
@@ -94,6 +94,7 @@ Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98
 Subcategory: undefined
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
+
 
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
@@ -224,23 +225,7 @@ Subcategory: undefined
 
 <!--0e15044d-e326-4281-bbe1-1e35b32308ec_end-->
 
-<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_begin-->
 
-#### Migrate to Azure Linux 3.0  
-  
-Transition to Azure Linux 3.0 before the retirement date to receive future kernel updates, receive future security improvements, and avoid scaling failures.  
-  
-**Potential benefits**: Avoid service disruptions and unsupported configurations  
-
-**Impact:** High
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=500645)  
-
-ResourceType: microsoft.containerservice/managedclusters  
-Recommendation ID: cc59372b-bd3d-415f-91c1-6c596b5de2fc  
-Subcategory: undefined
-
-<!--cc59372b-bd3d-415f-91c1-6c596b5de2fc_end-->
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_begin-->
 
@@ -259,5 +244,23 @@ Recommendation ID: 91594754-953c-4eda-ac71-7b8e2e9b0e74
 Subcategory: undefined
 
 <!--91594754-953c-4eda-ac71-7b8e2e9b0e74_end-->
+
+<!--40985a2e-6876-4a4c-902e-c85d06272935_begin-->
+
+#### Migrate from NGINX Ingress with Application Routing Add On  
+  
+Managed NGINX Ingress via the AKS Application Routing add-on is retiring. Plan migrations to alternative solutions like Application Gateway for Containers (AGC) or Istio-based service mesh.  
+  
+**Potential benefits**: Avoid service interruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=555839)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 40985a2e-6876-4a4c-902e-c85d06272935  
+Subcategory: undefined
+
+<!--40985a2e-6876-4a4c-902e-c85d06272935_end-->
 
 <!--articleBody-->

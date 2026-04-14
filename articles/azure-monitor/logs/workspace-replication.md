@@ -98,7 +98,7 @@ These region groups and regions are currently supported:
 | South America | Brazil South <br> Brazil Southeast | Brazil South <br> Brazil Southeast |
 | Europe | France Central <br> France South <br> Germany North <br> Germany West Central <br> Italy North <br> North Europe <br> Norway East <br> Norway West <br> Poland Central <br> South UK <br> Spain Central <br> Sweden Central <br> Sweden South <br> Switzerland North <br> Switzerland West <br> West Europe <br> West UK | France Central <br> Germany West Central <br> North Europe <br> South UK <br> West Europe <br> West UK |
 | Middle East | Qatar Central <br> UAE Central <br> UAE North | Qatar Central <br> UAE Central <br> UAE North |
-| India | Central India <br> Jio India Central <br> Jio India West <br> South India | Central India <br> Jio India West <br> South India |
+| India | Central India <br> Jio India Central <br> Jio India West <br> South India | Central India <br> Jio India Central <br> Jio India West <br> South India |
 | Asia Pacific | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Korea South <br> Southeast Asia | East Asia <br> Japan East <br> Japan West <br> Korea Central <br> Southeast Asia |
 | Oceania | Australia Central <br> Australia Central 2 <br> Australia East <br> Australia Southeast | Australia Central <br> Australia East <br> Australia Southeast |
 | Africa | South Africa North <br> South Africa West | South Africa North <br> South Africa West |
@@ -120,7 +120,7 @@ Some Azure Monitor experiences, including Application Insights and VM Insights, 
 
 ## Pricing model
 
-When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace. 
+When you enable workspace replication, you're charged for the replication of all data you ingest to your workspace, except data with [_IsBillable](log-standard-columns.md#_isbillable) = false. 
 
 > [!IMPORTANT]
 > If you send data to your workspace using the Azure Monitor Agent, the Logs Ingestion API, Azure Event Hubs, or other data sources that use data collection rules, make sure you [associate your data collection rules with your workspace's data collection endpoint](#associate-data-collection-rules-with-the-workspace-data-collection-endpoint). This association ensures that the data you ingest is replicated to your secondary workspace. If you don't associate your data collection rules with the workspace data collection endpoint, you're still charged for all the data you ingest to your workspace, even though the data isn't replicated.
@@ -145,7 +145,27 @@ Once cross-region replication is enabled, proceed to enable replication for one 
 > [!IMPORTANT]
 > Once cluster replication is enabled, changing the replication destination requires disabling replication and re-enabling it against a different location.
 
-To enable replication on your dedicated cluster, use the following PUT command. This call returns 202. It's a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
+To enable replication on your dedicated cluster, use the following command. Enabling replication on the cluster is a long running operation which might take time to complete, and you can track its exact state as explained in [Check cluster provisioning state](#check-cluster-provisioning-state).
+
+# [Azure CLI](#tab/azure-cli)
+
+To enable cluster replication, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+
+```azurecli
+az rest --method put \
+  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/clusters/<cluster_name>?api-version=2025-02-01" \
+  --body '{
+    "properties": {
+      "replication": {
+        "enabled": true,
+        "location": "<secondary_region>"
+      }
+    },
+    "location": "<primary_region>"
+  }'
+```
+
+# [REST API](#tab/rest-api)
 
 To enable cluster replication, use this `PUT` command: 
 
@@ -156,15 +176,17 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": true,
-            "location": "<secondary_region>"
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<secondary_region>"
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
+
+---
 
 Where:
 
@@ -176,6 +198,19 @@ Where:
 
 ### Check cluster provisioning state
 
+# [Azure CLI](#tab/azure-cli)
+
+To check the provisioning state of your cluster, use the [az monitor log-analytics cluster show](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-show) Azure CLI command:
+
+```azurecli
+az monitor log-analytics cluster show \
+  --resource-group <resourcegroup_name> \
+  --cluster-name <cluster_name> \
+  --query "replication.provisioningState"
+```
+
+# [REST API](#tab/rest-api)
+
 To check the provisioning state of your cluster, run this `GET` command:
 
 ```http
@@ -184,18 +219,40 @@ GET
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/clusters/<cluster_name>?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your cluster
 * `<resourcegroup_name>`: The resource group that contains your Log Analytics cluster resource
 * `<cluster_name>`: The name of your Log Analytics cluster
  
-Use the `GET` command to verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+Use the command verify that the cluster provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
 > When you enable cluster replication, a new cluster is being provisioned on the secondary location. This process can take 1-2 hours.
 
 ### Enable workspace replication
+
+# [Azure CLI](#tab/azure-cli)
+
+To enable replication on your Log Analytics workspace, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command to invoke the Azure Resource Manager REST API:
+
+```azurecli
+az rest --method put \
+  --uri "/subscriptions/<subscription_id>/resourcegroups/<resourcegroup_name>/providers/microsoft.operationalinsights/workspaces/<workspace_name>?api-version=2025-02-01" \
+  --body '{
+    "properties": {
+      "replication": {
+        "enabled": true,
+        "location": "<secondary_region>"
+      }
+    },
+    "location": "<primary_region>"
+  }'
+```
+
+# [REST API](#tab/rest-api)
 
 To enable replication on your Log Analytics workspace, use this `PUT` command:
 
@@ -206,15 +263,17 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": true,
-            "location": "<secondary_region>"
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": true,
+      "location": "<secondary_region>"
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
+
+---
 
 Where:
 
@@ -224,14 +283,27 @@ Where:
 * `<primary_region>`: The primary region for your Log Analytics workspace
 * `<secondary_region>`: The region in which Azure Monitor creates the secondary workspace
 
-For the supported `location` values, see [Supported regions](#supported-regions).
+For the supported region values, see [Supported regions](#supported-regions).
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The enable workspace replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If your workspace is linked to a dedicated cluster, first enable replication on the cluster. Also note that the secondary location of your workspace must be identical to the secondary location of its dedicated cluster.
 
 ### Check workspace provisioning state
+
+# [Azure CLI](#tab/azure-cli)
+
+To check the provisioning state of your workspace, use the [az monitor log-analytics workspace show](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-show) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace show \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name> \
+  --query "replication.provisioningState"
+```
+
+# [REST API](#tab/rest-api)
 
 To check the provisioning state of your workspace, run this `GET` command:
 
@@ -241,13 +313,15 @@ GET
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace.
 * `<resourcegroup_name>`: The resource group that contains your Log Analytics workspace resource.
 * `<workspace_name>`: The name of your Log Analytics workspace.
  
-Use the `GET` command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
+Use the command to verify that the workspace provisioning state changes from `Updating` to `Succeeded`, and the secondary region is set as expected.
 
 > [!NOTE]
 > When you enable replication for workspaces that interact with Sentinel, it can take up to 12 days to fully replicate Watchlist and Threat Intelligence data to the secondary workspace.
@@ -303,6 +377,19 @@ To replicate data you collect using data collection rules, associate your data c
 
 ### Disable workspace replication
 
+# [Azure CLI](#tab/azure-cli)
+
+To disable replication for a workspace, use the [az monitor log-analytics workspace update](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-update) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace update \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name> \
+  --replication-enabled false
+```
+
+# [REST API](#tab/rest-api)
+
 To disable replication for a workspace, use this `PUT` command:
 
 ```http
@@ -312,14 +399,16 @@ https://management.azure.com/subscriptions/<subscription_id>/resourcegroups/<res
 
 body:
 {
-    "properties": {
-        "replication": {
-            "enabled": false
-        }
-    },
-    "location": "<primary_region>"
+  "properties": {
+    "replication": {
+      "enabled": false
+    }
+  },
+  "location": "<primary_region>"
 }
 ```
+
+---
 
 Where:
 
@@ -328,7 +417,7 @@ Where:
 * `<workspace_name>`: The name of your workspace.
 * `<primary_region>`: The primary region for your workspace.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The disable replication command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!IMPORTANT]
 > If you're using a dedicated cluster, you should disable cluster replication after disabling replication for each workspace linked to this cluster.
@@ -336,7 +425,21 @@ The `PUT` command is a long running operation that can take some time to complet
 ### Disable cluster replication
 
 Disabling cluster replication can be done only after disabling replication for all workspaces linked to this cluster (if previously enabled).
-To disable replication for a workspace, use this `PUT` command:
+
+# [Azure CLI](#tab/azure-cli)
+
+To disable replication for a cluster, use the [az monitor log-analytics cluster update](/cli/azure/monitor/log-analytics/cluster#az-monitor-log-analytics-cluster-update) Azure CLI command:
+
+```azurecli
+az monitor log-analytics cluster update \
+  --resource-group <resourcegroup_name> \
+  --cluster-name <cluster_name> \
+  --replication-enabled false
+```
+
+# [REST API](#tab/rest-api)
+
+To disable replication for a cluster, use this `PUT` command:
 
 ```http
 PUT 
@@ -354,6 +457,8 @@ body:
 }
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your cluster.
@@ -361,7 +466,7 @@ Where:
 * `<workspace_name>`: The name of your cluster.
 * `<primary_region>`: The primary region for your cluster.
 
-The `PUT` command is a long running operation that can take some time to complete. A successful call returns a `200` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 > [!NOTE]
 > Once replication is disabled and the replicated cluster is purged, the replicated logs are deleted and are unable to access again. Their original copy on your primary location isn't changed in this process.
@@ -425,12 +530,26 @@ Before you switch regions during switchover, your secondary workspace needs to c
 
 Before you switch over, [confirm that the workspace replication operation completed successfully](#check-workspace-provisioning-state). Switchover only succeeds when the secondary workspace is configured correctly. 
 
+# [Azure CLI](#tab/azure-cli)
+
+To switch over to your secondary workspace, use the [az monitor log-analytics workspace failover](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failover) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace failover \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name> \
+  --location <secondary_region>
+```
+
+# [REST API](#tab/rest-api)
+
 To switch over to your secondary workspace, use this `POST` command:
 
 ```http
 POST 
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/locations/<secondary_region>/workspaces/<workspace_name>/failover?api-version=2025-02-01
 ```
+---
 
 Where:
 
@@ -439,7 +558,7 @@ Where:
 * `<secondary_region>`: The region to switch to during switchover.
 * `<workspace_name>`: The name of the workspace to switch to during switchover.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ### What to check if switchover (failover) fails
 
@@ -479,6 +598,18 @@ Before you switch back, confirm the [Primary workspace health](#primary-workspac
 
 The switchback process updates your DNS records. After the DNS records update, it can take time for all clients to receive the updated DNS settings and resume routing to the primary workspace.
 
+# [Azure CLI](#tab/azure-cli)
+
+To switch back to your primary workspace, use the [az monitor log-analytics workspace failback](/cli/azure/monitor/log-analytics/workspace#az-monitor-log-analytics-workspace-failback) Azure CLI command:
+
+```azurecli
+az monitor log-analytics workspace failback \
+  --resource-group <resourcegroup_name> \
+  --workspace-name <workspace_name>
+```
+
+# [REST API](#tab/rest-api)
+
 To switch back to your primary workspace, use this `POST` command:
 
 ```http
@@ -487,13 +618,15 @@ POST
 https://management.azure.com/subscriptions/<subscription_id>/resourceGroups/<resourcegroup_name>/providers/Microsoft.OperationalInsights/workspaces/<workspace_name>/failback?api-version=2025-02-01
 ```
 
+---
+
 Where:
 
 * `<subscription_id>`: The subscription ID related to your workspace.
 * `<resourcegroup_name>` : The resource group that contains your workspace resource.
 * `<workspace_name>`: The name of the workspace to switch to during switchback.
 
-The `POST` command is a long running operation that can take some time to complete. A successful call returns a `202` status code. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
+The command is a long running operation that can take some time to complete. You can track the provisioning state of your request, as described in [Check workspace provisioning state](#check-workspace-provisioning-state).
 
 ## Audit the inactive workspace
 
@@ -502,6 +635,8 @@ By default, your workspace's active region is the region where you create the wo
 When you trigger failover, this switches – the secondary region is activated, and primary region becomes inactive. We say it's inactive because it's not the direct target of log ingestion and query requests.
 
 It's useful to query the inactive region before you switch between regions to verify that the workspace in the inactive region has the logs you expect to see there.
+
+To interact with the inactive region, you need to use the Azure Monitor Log Analyics API. For more information, including how to authenticate, see [Access the Azure Monitor Log Analytics API](./api/access-api.md).
 
 ### Query inactive region
 

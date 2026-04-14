@@ -1,8 +1,8 @@
 ---
 title: Migrate to Azure Monitor Agent from Log Analytics agent 
-description: Guidance for migrating to Azure Monitor Agent from MMA
+description: Learn how to migrate from the Log Analytics agent (MMA) to Azure Monitor Agent, including planning guidance, migration tools, and best practices.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 02/19/2026
 
 # Customer intent: As an azure administrator, I want to understand the process of migrating from the MMA agent to the AMA agent.
 
@@ -16,13 +16,12 @@ Migration is a complex task. Start planning your migration to Azure Monitor Agen
 
 > [!IMPORTANT]
 > The Log Analytics agent was [retired on **August 31, 2024**](https://azure.microsoft.com/updates/were-retiring-the-log-analytics-agent-in-azure-monitor-on-31-august-2024/). This deprecation doesn't apply to MMA agent connected exclusively to an on-premises System Center Operations Manager installation.
-> 
+>
 > You can expect the following when you use the MMA or OMS agent after August 31, 2024.
-> - **Data upload:** Cloud ingestion services will gradually reduce support for MMA agents, which will result in loss of ingestion support and potential compatibility issues for MMA agents over time. Upload capabilities aren't deployed to new regions
-> - **Installation:** The ability to install the legacy agents was removed from the Azure portal and installation policies for legacy agents was removed. You can still install the MMA agents extension and perform offline installations.
-> - **Customer Support:** You can't get support for legacy agent issues.
-> - **OS Support:** Support for new Linux or Windows distros, including service packs, aren't available after the deprecation of the legacy agents.
-> - Log Analytics Agent can coexist with Azure Monitor Agent. Expect to see duplicate data if both agents are collecting the same data.
+> - **Data upload:** Cloud ingestion services will be shut down by Microsoft at any time after March 2, 2026. There will be no additional communications after March 2. 
+> - **Installation:** The ability to install the legacy agents has been removed from the Azure portal and installation policies for legacy agents has been removed. You can still install the MMA agent’s extension and perform offline installations.
+> - **Customer Support:** There is no support for legacy agent.
+> - **OS Support:** New MMA/OMS distros, including service packs, will not be created.
 
 ## Before you begin
 

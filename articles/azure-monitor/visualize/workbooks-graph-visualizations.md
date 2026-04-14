@@ -3,7 +3,7 @@ title: Azure Workbooks graph visualizations
 description: Learn about all the Azure Workbooks graph visualizations.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ---
 
 # Graph visualizations

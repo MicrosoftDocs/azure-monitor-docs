@@ -2,13 +2,13 @@
 title: Query map data from VM Insights
 description: VM Insights solution collects metrics and log data to and this article describes the records and includes sample queries.
 ms.topic: how-to
-ms.date: 10/29/2024
+ms.date: 02/17/2026
 ---
 
 # Query map data from VM Insights
 
 > [!IMPORTANT]
->  The Dependency Agent and the Map experience in VM Insights will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details.
+>  The Dependency Agent and the Map experience in VM Insights has been deprecated and will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
 > 
 When you [enable processes and dependencies](vminsights-enable-portal.md#enable-vm-insights-using-the-azure-portal), in VM insights, computer and process inventory data is collected to support the map feature. In addition to analyzing this data with the map, you can query it directly with Log Analytics. This article describes the available data and provides sample queries.
 

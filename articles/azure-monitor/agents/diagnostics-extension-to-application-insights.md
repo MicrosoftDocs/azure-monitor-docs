@@ -2,7 +2,7 @@
 title: Send Azure Diagnostics data to Application Insights
 description: Update the Azure Diagnostics public configuration to send data to Application Insights.
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 02/24/2026
 ms.reviewer: JeffWo
 ---
 
@@ -11,6 +11,8 @@ ms.reviewer: JeffWo
 Cloud services, Virtual Machines, Virtual Machine Scale Sets and Service Fabric all use the Azure Diagnostics extension to collect data. Azure diagnostics sends data to Azure Storage tables. However, you can also pipe all or a subset of the data to other locations using Azure Diagnostics extension 1.5 or later.
 
 This article describes how to send data from the Azure Diagnostics extension to Application Insights.
+
+[!INCLUDE [diagnostics-extension-deprecation](includes/diagnostics-extension-deprecation.md)]
 
 ## Diagnostics configuration explained
 

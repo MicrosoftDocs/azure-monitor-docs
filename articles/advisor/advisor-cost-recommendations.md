@@ -1,28 +1,18 @@
 ---
-title: Reduce service costs using Azure Advisor
-description: Use Azure Advisor to optimize the cost of your Azure deployments.
+title: Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
+description: Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances.
 ms.topic: how-to
-ms.date: 11/08/2023
+ms.date: 2/18/2026
 
 ---
 
-# Reduce service costs by using Azure Advisor
-
-Azure Advisor helps you optimize and reduce your overall Azure spend by identifying idle and underutilized resources. You can get cost recommendations from the **Cost** tab on the Advisor dashboard.
-
-1. Sign in to the [**Azure portal**](https://portal.azure.com).
-
-1. Search for and select [**Advisor**](https://aka.ms/azureadvisordashboard) from any page.
-
-1. On the **Advisor** dashboard, select the **Cost** tab.
-
-## Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
+# Optimize virtual machine (VM) or virtual machine scale set (VMSS) spend by resizing or shutting down underutilized instances
 
 Although certain application scenarios can result in low utilization by design, you can often save money by managing the size and number of your virtual machines or virtual machine scale sets.
 
 Advisor uses machine-learning algorithms to identify low utilization and to identify the ideal recommendation to ensure optimal usage of virtual machines and virtual machine scale sets. The recommended actions are shut down or resize, specific to the resource being evaluated.
 
-### Shutdown recommendations
+## Shutdown recommendations
 
 Advisor identifies resources that weren't used at all over the last seven days and makes a recommendation to shut them down.
 
@@ -37,7 +27,7 @@ Advisor identifies resources that weren't used at all over the last seven days a
   * P100 of average CPU in last 3 days (sum over all cores) <= 2%
   * Outbound Network utilization is less than 2% over a seven-day period
 
-### Resize SKU recommendations
+## Resize SKU recommendations
 
 Advisor recommends resizing virtual machines when it's possible to fit the current load on a more appropriate SKU, which is less expensive (based on retail rates). On virtual machine scale sets, Advisor recommends resizing when it's possible to fit the current load on a more appropriate cheaper SKU, or a lower number of instances of the same SKU.
 
@@ -48,13 +38,13 @@ Advisor recommends resizing virtual machines when it's possible to fit the curre
 * Metrics are sampled every 30 seconds, aggregated to 1 minute, and then further aggregated to 30 minutes (taking the max of average values while aggregating to 30 minutes). On virtual machine scale sets, the metrics from individual virtual machines are aggregated using the average of the metrics for instance count recommendations, and aggregated using the max of the metrics for SKU change recommendations.
 
 * An appropriate SKU (for virtual machines) or instance count (for virtual machine scale set resources) is determined based on the following criteria:
-  * Performance of the workloads on the new SKU won't be impacted.
+  * Performance of the workloads on the new SKU isn't impacted.
     * Target for user-facing workloads:
       * P95 of CPU and Outbound Network utilization at 40% or lower on the recommended SKU
-      * P100 of Memory utilization at 60% or lower on the recommended SKU
+      * P99 of Memory utilization at 60% or lower on the recommended SKU
     * Target for non user-facing workloads:
       * P95 of the CPU and Outbound Network utilization at 80% or lower on the new SKU
-      * P100 of Memory utilization at 80% or lower on the new SKU
+      * P99 of Memory utilization at 80% or lower on the new SKU
   * The new SKU, if applicable, has the same Accelerated Networking and Premium Storage capabilities
   * The new SKU, if applicable, is supported in the current region of the Virtual Machine with the recommendation
   * The new SKU, if applicable, is less expensive
@@ -65,7 +55,7 @@ Advisor recommends resizing virtual machines when it's possible to fit the curre
 
 * For virtual machine scale set resources, Advisor prioritizes instance count recommendations over SKU change recommendations because instance count changes are easily actionable, resulting in faster savings.
 
-### Burstable recommendations
+## Burstable recommendations
 
 We evaluate if workloads are eligible to run on specialized SKUs called **Burstable SKUs** that support variable workload performance requirements and are less expensive than general purpose SKUs. Learn more about burstable SKUs here: [B-series burstable - Azure Virtual Machines](/azure/virtual-machines/sizes-b-series-burstable).
 
@@ -95,7 +85,7 @@ In some cases recommendations can't be adopted or might not be applicable, such 
 
 In such cases, simply use the Dismiss/Postpone options associated with the recommendation.
 
-### Limitations
+## Limitations
 
 * The savings associated with the recommendations are based on retail rates and don't take into account any temporary or long-term discounts that might apply to your account. As a result, the listed savings might be higher than actually possible.  
 

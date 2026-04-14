@@ -2,13 +2,12 @@
 title: Application map in Azure Application Insights
 description: Discover how to monitor distributed systems with Application map in Azure Application Insights. Gain insights into dependencies, failures, and performance.
 ms.topic: how-to
-ms.date: 02/19/2026
-author: AarDavMax
-ms.author: aaronmax
-ms.reviewer: aaronmax
+ms.date: 03/06/2026
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
-ms.custom: devx-track-csharp
+ms.custom:
+  - devx-track-csharp
+  - sfi-ropc-nochange
 
 #customer intent: As a developer, I want use the Application map and Intelligent view features in Azure Monitor so that I can monitor complex application topologies.
 ---
@@ -160,7 +159,7 @@ To learn how to manually change the cloud role name and cloud role instance, see
 * OpenTelemetry Distro: [Configure Azure Monitor OpenTelemetry](opentelemetry-configuration.md#set-the-cloud-role-name-and-the-cloud-role-instance).
 * Client-side JavaScript SDK: [Configure JavaScript SDK](javascript-sdk-configuration.md#add-a-cloud-role-name-and-cloud-role-instance)
 =======
-* Application Insights SDK (Classic API): [.NET](classic-api.md?tabs=dotnet#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](classic-api.md?tabs=nodejs#add-a-cloud-role-name-and-cloud-role-instance)
+* Application Insights SDK ([Classic API](/previous-versions/azure/azure-monitor/app/classic-api)): [.NET](classic-api.md?tabs=dotnet#add-a-cloud-role-name-and-cloud-role-instance) and [Node.js](classic-api.md?tabs=nodejs#add-a-cloud-role-name-and-cloud-role-instance)
 >>>>>>> 97ad23c8af7f802867eff6f7e0345f5a51f508dc
 
 > [!NOTE]

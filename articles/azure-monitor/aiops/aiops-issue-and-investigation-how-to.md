@@ -1,37 +1,39 @@
 ---
-title:  Use Azure Monitor issues and investigations (preview)
-description: This article guides you through getting started with Azure Monitor issues and investigations. It shows how to trigger the observability agent to investigate issues, identify resource problems, explain why an alert fired, and provide next steps to mitigate and resolve problems with Azure resources.
+title: Use Azure Monitor issues (preview)
+description: Get started with Azure Monitor issues. Learn how to create, view, configure, and interact with issues that track operational problems in Azure Monitor.
 ms.topic: how-to
-ms.servce: azure-monitor
-ms.reviewer: enauerman
-ms.date: 09/04/2025
+ms.service: azure-monitor
+ms.collection: ce-skilling-ai-copilot
+ms.reviewer: enauerman, yalavi
+ms.date: 04/03/2026
 ---
 
-# Use Azure Monitor issues and investigations (preview)
+# Use Azure Monitor issues (preview)
 
-This article guides you through getting started with Azure Monitor issues and investigations. It shows how to trigger the [observability agent](observability-agent-overview.md) to investigate issues, identify resource problems, explain why an alert fired, and provide next steps to mitigate and resolve problems with Azure resources.
+Issues help teams manage and resolve operational problems by providing a centralized way to track them over time. This article helps you get started with Azure Monitor issues. It shows how to create, manage, and work with issues.
 
 ## Prerequisites
 
-- Read the [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md).
+- Read the [Azure Monitor issues overview](aiops-issue-and-investigation-overview.md).
 - Learn about the [Azure Copilot observability agent](observability-agent-overview.md).
 - Learn about the [responsible use](observability-agent-responsible-use.md) of Azure Monitor investigations.
-- Be sure that the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
-- Be sure that you or the person investigating has either the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the AMW you're investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+- Ensure the subscription containing the investigated resource is associated with an Azure Monitor Workspace (AMW).
+- Ensure you have either the *Contributor*, *Monitoring Contributor*, or *Issue Contributor* role on the AMW you're investigating. For more information about role management, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Associate an AMW in the Azure portal
-> [!NOTE]
-> This setup is required once for each subscription you want to investigate. A user with the Contributor role on the subscription should perform this setup.
 
-Associating a subscription with an Azure Monitor Workspace is required to create issues and run observability agent investigations:
+> [!NOTE]
+> You need to perform this setup once for each subscription you want to investigate. A user with the Contributor role on the subscription should perform this setup.
+
+To create issues and run observability agent investigations, associate a subscription with an Azure Monitor Workspace:
 
 1. If the alert's target resource subscription isn't already linked to an AMW, you see a message indicating that an Azure Monitor Workspace is required. The **Select an Azure Monitor workspace** screen appears.
 1. Select an existing Azure Monitor Workspace or create a new one as needed.
-1. After confirming your selection, the Issue page reloads and the observability agent automatically starts investigating.
+1. After you confirm your selection, the **Issue** page reloads. The observability agent automatically starts an investigation.
 
-### Associate an AMW via REST API
+### Associate an AMW through REST API
 
-You can create, update, view, and delete an AMW association to a subscription using the following REST API commands.
+You can create, update, view, and delete an AMW association to a subscription by using the following REST API commands.
 
 #### Create or update an association
 
@@ -46,7 +48,6 @@ Authorization: Bearer <bearerToken>
     "defaultAzureMonitorWorkspace": "<amw_id>"
   }
 }
-
 ```
 
 #### View an association
@@ -65,63 +66,60 @@ Host: management.azure.com
 Authorization: Bearer <bearerToken>
 ```
 
-## Ways to start an observability agent investigation on an alert
+## Create issues
 
-There are two ways to start an observability agent investigation on an alert:
+Create an issue when you want to persist the results of an investigation. Each issue is saved in an Azure Monitor Workspace (AMW).
 
-- From the home page in the Azure portal:
-    1. From the home page in the [Azure portal](https://portal.azure.com/), select **Monitor** \> **Alerts**.
-    1. From the **Alerts** page, select the alert that you want to investigate.
-    1. In the alert details pane, select **Investigate (preview)**.
-    
-    :::image type="content" source="media/investigate-an-alert.png" alt-text="Screenshot of alerts screen with investigate an alert link." lightbox="media/investigate-an-alert.png":::
+After the Azure Copilot observability agent completes an investigation, select **Create issue** to create an issue that tracks the operational problem.
 
-- From the alert email notification: Alternatively, you can select **Investigate** from the email notification about an alert. An issue is created, and the observability agent begins investigating.
+:::image type="content" source="media/issue-investigation-how-to/investigation-details-page.png" alt-text="Screenshot of Azure Monitor investigation results with the Create Issue button visible." lightbox="media/issue-investigation-how-to/investigation-details-page.png":::
 
-When the observability agent completes its investigation, a set of findings is displayed. For next steps, see the [Working with investigation findings](#work-with-investigation-findings) section of this article.
+
+In the **Create issue** box:
+
+1. Keep or replace the **Issue name**.
+1. Select or keep the **Issue severity**.
+1. Select or keep the **Impact time**.
+1. Optionally, change the **Azure Monitor Workspace** name where the issue data gets stored. If you have more than one workspace associated with the subscription, select the workspace that you want to use for this issue.
+1. Select the **I understand** box, and then select **Create**.
+
+:::image type="content" source="media/issue-investigation-how-to/create-issue-box.png" alt-text="Screenshot of the Create issue box with Issue name, severity, impact time, and Azure Monitor Workspace fields." lightbox="media/issue-investigation-how-to/create-issue-box.png":::
+
+After you create the issue, it appears on the **Issues (preview)** page. From there, you can open the issue details page to update issue parameters, interact with the Azure Copilot observability agent, and share a link to the issue, as described in the following sections.
+
+You can also access issues directly from an Azure Monitor Workspace, which shows the issues stored in that specific workspace.
 
 ## Change the parameters of an issue
 
-You can change the parameters of an issue using the dropdowns on the overview tab of the issue page.
+Change the parameters of an issue by using the dropdown lists on the **Overview** tab of the issue page.
 
-- **Severity.** The severity of an issue can be verbose, informational, error, warning or critical.
-- **Status.** The status of an issue can be New, In-Progress, Mitigated, Resolved, Closed, Canceled or On-Hold.
-- **Impact time.** You can change the impact time of the issue. Changing the impact time automatically initiates a new observability agent investigation using the updated time.
+- **Severity** - Set the severity of an issue to **Critical**, **Error**, **Warning**, **Informational**, or **Verbose**.
+- **Status** - Set the status of an issue to **New**, **In Progress**, **Mitigated**, **Resolved**, **Closed**, **Canceled**, or **On-Hold**.
+- **Impact time** - Change the impact time of the issue. Changing the impact time automatically initiates a new observability agent investigation by using the updated time.
 
 ## Share a link to the issue
 
-You can share a link to the issue by selecting Share link. The link to the issue is copied to your clipboard. Make sure that permissions for viewing the issue are given to the recipients.
+Select **Copy link** to share a link to the issue. The link to the issue is copied to your clipboard. Make sure that recipients have permissions to view the issue.
 
 ## View the issue background
 
-The issue background provides information about the alerts associated with the issue. Select Issue background.
+The issue background provides information about the alerts associated with the issue. Select **Issue background**.
 
-## Work with investigation findings
+## The Investigation tab
 
-The observability agent presents findings based on the data it analyzed. To review the findings:
+An issue can include one or more investigations. The **Investigation** tab contains the Azure Copilot observability agent, which presents the investigation associated with the issue. The agent highlights what was observed, the suspected cause, and suggested next steps related to the issue.
 
-1. Select the **Investigation tab** of the issue page.
-1. Select the finding. Every finding has an observability agent summary.
-1. Read the **observability agent summary**. The summary includes a *What happened* section, a *Possible cause* section and a *What can be done next* section.
-1. Select the **See cause + next steps** button to see the full summary.
-1. Select **Click to expand** to view more details about the data presented in the Evidence for summary section of the investigation. To understand the evidence types used in an investigation, see [Evidence types](link to overview goes here) in the Issues and investigation overview article.
+You can continue interacting with the observability agent from this tab to further explore the problem. For more information about the observability agent, see [Azure Copilot observability agent overview](observability-agent-overview.md).
 
-## Scope the investigation
+:::image type="content" source="media/issue-investigation-how-to/investigation-results-follow-up.png" alt-text="Screenshot of Azure Monitor issue showing the Investigation tab with chat pane and findings." lightbox="media/issue-investigation-how-to/investigation-results-follow-up.png":::
 
-### Change the impact time of the investigation
+## View the resources and alerts included in an issue
 
-1.  Select the **Overview** tab.
-1.  Select **impact time** and adjust it. Changing the time automatically triggers the observability agent to start a new investigation.
-
-### Change the resources included in the investigation
-
-1.  Select the **Resources** tab.
-1.  Select **Edit resources**.
-1.  Select the other resources you want the observability agent to include in the investigation. A new investigation begins.
+Select the **Resources** or **Alerts** tab to see the resources and alerts associated with the issue.
 
 ## Related content
 
 - [Azure Copilot observability agent overview](observability-agent-overview.md)
-- [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
+- [Azure Monitor issues overview](aiops-issue-and-investigation-overview.md)
 - [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
 - [Azure Copilot observability agent troubleshooting](observability-agent-troubleshooting.md)

@@ -2,6 +2,7 @@
 title: Monitor Azure Monitor workspace metrics ingestion
 description: How to monitor Azure Monitor workspace metrics ingestion and set up an alert on Azure Monitor Workspace ingestion limits
 ms.topic: how-to
+ms.custom: references_regions
 ms.date: 10/06/2024
 ---
 
@@ -22,27 +23,27 @@ Azure Monitor Workspace exposes a set of metrics that provide insight into inges
 You can **set up recommended alerts** for Azure Monitor Workspace to monitor the ingestion limits, you can either [enable recommended out-of-the-box alerts](../alerts/alerts-overview.md#recommended-alert-rules) rules, or manually [create new alert rules](#query-and-alert-on-workspace-ingestion-metrics). The following alerts get created when you set up recommended alerts for the Azure Monitor Workspace.
 
 | Alert name | Description | Default threshold | Timeframe (minutes) |
-|:---|:---|:---:|:---:|
+|:-----------|:------------|:-----------------:|:-------------------:|
 | AMW Is Approaching Event Ingestion Limit | The Events per min Ingestion utilization is above 75% of the current limit | >75% | 5 |
 | AMW Is Approaching Active TimeSeries Ingestion Limit | The TimeSeries Ingestion utilization is above 75% of the current limit. | >75% | 5 |
-| AMW Is At High Risk Of Exceeding Event Ingestion Limit  | The Events per min Ingestion utilization is above 95% of the current limit, and is at risk of getting throttled. Request for an increase [here](https://go.microsoft.com/fwlink/?linkid=2270124) | >95% | 5 |
+| AMW Is At High Risk Of Exceeding Event Ingestion Limit | The Events per min Ingestion utilization is above 95% of the current limit, and is at risk of getting throttled. Request for an increase [here](https://go.microsoft.com/fwlink/?linkid=2270124) | >95% | 5 |
 | AMW Is At High Risk Of Exceeding Active TimeSeries Ingestion Limit | The TimeSeries Ingestion utilization is above 95% of the current limit, and is at risk of getting throttled. Request for an increase [here](https://go.microsoft.com/fwlink/?linkid=2270124) | >95% | 5 |
 
-
-### [Azure portal](#tab/azure-portal)
+### [Azure portal](#tab/portal)
 
 To enable the recommended alert rules, navigate to the Azure Monitor Workspace in Azure portal.
 1. In the Monitoring section, select **Alerts** > **Set up recommended alerts**. The **Set up recommended alert rules** pane opens with a list of recommended alert rules for your Azure Monitor workspace.  
-        
-   :::image type="content" source="media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-recommended-alerts.png" lightbox="media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-recommended-alerts.png" alt-text="Screenshot of Azure Monitor Workspace recommended alert rules pane.":::
+
+    :::image type="content" source="media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-recommended-alerts.png" lightbox="media/azure-monitor-workspace-monitor-ingest-limits/azure-monitor-workspace-recommended-alerts.png" alt-text="Screenshot of Azure Monitor Workspace recommended alert rules pane.":::
 
 1. In the **Select Alert rules** section, select all of the rules you want to enable. 
 1. In the **Notify me by** section, select the way you want to be notified if an alert is triggered.
 1. Select **Use an existing action group**, and enter the details of the existing action group if you want to use an action group that already exists.
 1. Select **Save**.
 
-### [Resource Manager](#tab/resource-manager)
-To enable the recommended alert rules, use the following Resource Manager template and parameters files  with any of the [standard deployment options](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
+### [ARM (JSON)](#tab/arm)
+
+To enable the recommended alert rules, use the following ARM (JSON) template and parameters files with any of the [standard deployment options](../fundamentals/resource-manager-samples.md#deploy-the-sample-templates).
 
 **Template File**:
 
@@ -71,7 +72,7 @@ To enable the recommended alert rules, use the following Resource Manager templa
         {
             "name": "[concat('AMW Is Approaching Event Ingestion Limit - ', variables('amwName'))]",
             "type": "Microsoft.Insights/metricAlerts",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "2024-03-01-preview",
             "location": "global",
             "tags": {
                 "alertRuleCreatedWithAlertsRecommendations": "true"
@@ -100,16 +101,16 @@ To enable the recommended alert rules, use the following Resource Manager templa
                 "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "actions": [
-                {
-                    "actionGroupId": "[parameters('actionGroupResourceId')]"
-                }
-            ]
-        }
-    },
-    {
+                    {
+                        "actionGroupId": "[parameters('actionGroupResourceId')]"
+                    }
+                ]
+            }
+        },
+        {
             "name": "[concat('AMW Is Approaching Active TimeSeries Ingestion Limit - ', variables('amwName'))]",
             "type": "Microsoft.Insights/metricAlerts",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "2024-03-01-preview",
             "location": "global",
             "tags": {
                 "alertRuleCreatedWithAlertsRecommendations": "true"
@@ -138,16 +139,16 @@ To enable the recommended alert rules, use the following Resource Manager templa
                 "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "actions": [
-                {
-                    "actionGroupId": "[parameters('actionGroupResourceId')]"
-                }
-            ]
-        }
-    },
-    {
+                    {
+                        "actionGroupId": "[parameters('actionGroupResourceId')]"
+                    }
+                ]
+            }
+        },
+        {
             "name": "[concat('AMW Is At High Risk Of Exceeding Event Ingestion Limit - ', variables('amwName'))]",
             "type": "Microsoft.Insights/metricAlerts",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "2024-03-01-preview",
             "location": "global",
             "tags": {
                 "alertRuleCreatedWithAlertsRecommendations": "true"
@@ -176,16 +177,16 @@ To enable the recommended alert rules, use the following Resource Manager templa
                 "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "actions": [
-                {
-                    "actionGroupId": "[parameters('actionGroupResourceId')]"
-                }
-            ]
-        }
-    },
+                    {
+                        "actionGroupId": "[parameters('actionGroupResourceId')]"
+                    }
+                ]
+            }
+        },
         {
             "name": "[concat('AMW Is At High Risk Of Exceeding Active TimeSeries Ingestion Limit - ', variables('amwName'))]",
             "type": "Microsoft.Insights/metricAlerts",
-            "apiVersion": "2018-03-01",
+            "apiVersion": "2024-03-01-preview",
             "location": "global",
             "tags": {
                 "alertRuleCreatedWithAlertsRecommendations": "true"
@@ -214,78 +215,268 @@ To enable the recommended alert rules, use the following Resource Manager templa
                 "odata.type": "Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria"
                 },
                 "actions": [
-                {
-                    "actionGroupId": "[parameters('actionGroupResourceId')]"
-                }
-            ]
+                    {
+                        "actionGroupId": "[parameters('actionGroupResourceId')]"
+                    }
+                ]
+            }
         }
-    }
-  ]
+    ]
 }
 ```
 
-
-**Parameter file**: Update the Parameters.json file with the *Resource Id of the Azure Monitor Workspace* and the *Resource ID of the Action Group*
+**Parameters file**: Update `<ResourceId of the Azure Monitor Workspace>` and `<ResourceId of the Action Group>` in the *Parameters.json* file.
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "azureMonitorWorkspaceResourceId": {
-      "value": "<<ResourceID of the Azure Monitor Workspace>>"
-    },
-    "actionGroupResourceId": {
-      "value": "<<ResourceID of the Action Group>>"
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "azureMonitorWorkspaceResourceId": {
+            "value": "<ResourceId of the Azure Monitor Workspace>"
+        },
+        "actionGroupResourceId": {
+            "value": "<ResourceId of the Action Group>"
+        }
     }
-  }
 }
 ```
 
 Run the below commands to execute the Resource Manager template deployment:
 
-For Azure CLI:
+**Azure CLI**
 
 ```azurecli
 az login
 az account set --subscription <subscriptionId>
-az deployment group create --name AMWRecAlerts --resource-group <resourceGroupName> --template-file <<template-file-as-above.json>> --parameters <<parameter-file-from-above.json>>
+az deployment group create --name AMWRecAlerts --resource-group <resourceGroupName> --template-file <template-file-as-above.json> --parameters <parameters-file-as-above.json>
 ```
 
-For Azure PowerShell:
+**Azure PowerShell**
 
-```
+```powershell
 Connect-AzAccount
-New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName  <resourceGroupName> -TemplateFile <<template-file-as-above.json>> -TemplateParameterFile <<parameter-file-from-above.json>>
+New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName <resourceGroupName> -TemplateFile <template-file-as-above.json> -TemplateParameterFile <parameters-file-as-above.json>
 ```
----
 
+### [Bicep](#tab/bicep)
+
+To enable the recommended alert rules, use the Bicep template and parameters file.
+
+**Template File**:
+
+```bicep
+@description('Action Group ResourceId')
+param actionGroupResourceId string
+
+@description('ResourceId of Azure Monitor Workspace (AMW) to associate to')
+param azureMonitorWorkspaceResourceId string
+
+var amwName = last(split(azureMonitorWorkspaceResourceId, '/'))
+
+resource AMW_Is_Approaching_Event_Ingestion_Limit_amw 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+    name: 'AMW Is Approaching Event Ingestion Limit - ${amwName}'
+    location: 'global'
+    tags: {
+        alertRuleCreatedWithAlertsRecommendations: 'true'
+    }
+    properties: {
+        description: 'AMW Is Approaching Event Ingestion Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124'
+        severity: 3
+        enabled: true
+        scopes: [
+            azureMonitorWorkspaceResourceId
+        ]
+        evaluationFrequency: 'PT5M'
+        windowSize: 'PT30M'
+        criteria: {
+            allOf: [
+                {
+                    threshold: 75
+                    name: 'EventsCriteria'
+                    metricName: 'EventsPerMinuteIngestedPercentUtilization'
+                    operator: 'GreaterThan'
+                    timeAggregation: 'Average'
+                    criterionType: 'StaticThresholdCriterion'
+                }
+            ]
+            'odata.type': 'Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria'
+        }
+        actions: [
+            {
+                actionGroupId: actionGroupResourceId
+            }
+        ]
+    }
+}
+
+resource AMW_Is_Approaching_Active_TimeSeries_Ingestion_Limit_amw 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+    name: 'AMW Is Approaching Active TimeSeries Ingestion Limit - ${amwName}'
+    location: 'global'
+    tags: {
+        alertRuleCreatedWithAlertsRecommendations: 'true'
+    }
+    properties: {
+        description: 'AMW Is Approaching Active Timeseries Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124'
+        severity: 3
+        enabled: true
+        scopes: [
+            azureMonitorWorkspaceResourceId
+        ]
+        evaluationFrequency: 'PT5M'
+        windowSize: 'PT30M'
+        criteria: {
+            allOf: [
+                {
+                    threshold: 85
+                    name: 'TimeSeriesCriteria'
+                    metricName: 'ActiveTimeSeriesPercentUtilization'
+                    operator: 'GreaterThan'
+                    timeAggregation: 'Average'
+                    criterionType: 'StaticThresholdCriterion'
+                }
+            ]
+          'odata.type': 'Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria'
+        }
+        actions: [
+            {
+                actionGroupId: actionGroupResourceId
+            }
+        ]
+    }
+}
+
+resource AMW_Is_At_High_Risk_Of_Exceeding_Event_Ingestion_Limit_amw 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+    name: 'AMW Is At High Risk Of Exceeding Event Ingestion Limit - ${amwName}'
+    location: 'global'
+    tags: {
+        alertRuleCreatedWithAlertsRecommendations: 'true'
+    }
+    properties: {
+        description: 'AMW Is At High Risk Of Exceeding Event Ingestion Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124'
+        severity: 2
+        enabled: true
+        scopes: [
+            azureMonitorWorkspaceResourceId
+        ]
+        evaluationFrequency: 'PT5M'
+        windowSize: 'PT30M'
+        criteria: {
+            allOf: [
+                {
+                    threshold: 95
+                    name: 'EventsCriteria'
+                    metricName: 'EventsPerMinuteIngestedPercentUtilization'
+                    operator: 'GreaterThan'
+                    timeAggregation: 'Average'
+                    criterionType: 'StaticThresholdCriterion'
+                }
+            ]
+            'odata.type': 'Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria'
+        }
+        actions: [
+            {
+                actionGroupId: actionGroupResourceId
+            }
+        ]
+    }
+}
+
+resource AMW_Is_At_High_Risk_Of_Exceeding_Active_TimeSeries_Ingestion_Limit_amw 'Microsoft.Insights/metricAlerts@2024-03-01-preview' = {
+    name: 'AMW Is At High Risk Of Exceeding Active TimeSeries Ingestion Limit - ${amwName}'
+    location: 'global'
+    tags: {
+        alertRuleCreatedWithAlertsRecommendations: 'true'
+    }
+    properties: {
+        description: 'AMW Is At High Risk Of Exceeding Active TimeSeries Limit - Request for an increase https://go.microsoft.com/fwlink/?linkid=2270124'
+        severity: 2
+        enabled: true
+        scopes: [
+            azureMonitorWorkspaceResourceId
+        ]
+        evaluationFrequency: 'PT5M'
+        windowSize: 'PT30M'
+        criteria: {
+            allOf: [
+                {
+                    threshold: 95
+                    name: 'TimeSeriesCriteria'
+                    metricName: 'ActiveTimeSeriesPercentUtilization'
+                    operator: 'GreaterThan'
+                    timeAggregation: 'Average'
+                    criterionType: 'StaticThresholdCriterion'
+                }
+            ]
+            'odata.type': 'Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria'
+        }
+        actions: [
+            {
+                actionGroupId: actionGroupResourceId
+            }
+        ]
+    }
+}
+```
+
+**Parameters file**: Update `<ResourceId of the Azure Monitor Workspace>` and `<ResourceId of the Action Group>` in the *parameters.bicepparam* file.
+
+```bicep
+// Save as: parameters.bicepparam
+// Update the path in `using` to point to your Bicep template file.
+using '<template-file-as-above.bicep>'
+
+param azureMonitorWorkspaceResourceId string = '<ResourceId of the Azure Monitor Workspace>'
+param actionGroupResourceId string = '<ResourceId of the Action Group>'
+```
+
+Run the below commands to execute the Bicep template deployment:
+
+**Azure CLI**
+
+```azurecli
+az login
+az account set --subscription <subscriptionId>
+az deployment group create --name AMWRecAlerts --resource-group <resourceGroupName> --template-file <template-file-as-above.bicep> --parameters <parameters-file-as-above.bicepparam>
+```
+
+**Azure PowerShell**
+
+```powershell
+Connect-AzAccount
+New-AzResourceGroupDeployment -Name AMWRecAlerts -ResourceGroupName <resourceGroupName> -TemplateFile <template-file-as-above.bicep> -TemplateParameterFile <parameters-file-as-above.bicepparam>
+```
+
+---
 
 ## Request for an increase in ingestion limits (Preview)
 
 Request for an increase in ingestion limits using Azure Resource Manager API. This API is in Preview and below conditions apply with this API:
 
-- Request for an increase in limit from the default 1 Million events/min or active Timeseries to up to 20 Million events/min or active Timeseries with an API update through cli or through ARM update. For limits above 20 Million, create a support ticket.
-  - For limit increase request up to 2 Million, request is autoapproved.
-  - For limit increase request above 2 Million, current ingestion usage should be at 50% of desired limit, that is, if the current limit is 5 Million, they can request for increase upto 10 Million. You can request up to 20 Million.
-  - For requests beyond 20 Million, create a support ticket.
-- Creation of an Azure Monitor Workspace always applies the default limits. **Creating** an Azure Monitor Workspace with custom limits is not supported.
+* Request for an increase in limit from the default 1 Million events/min or active Timeseries to up to 20 Million events/min or active Timeseries with an API update through cli or through ARM update. For limits above 20 Million, create a support ticket.
+    * For limit increase request up to 2 Million, request is autoapproved.
+    * For limit increase request above 2 Million, current ingestion usage should be at 50% of desired limit, that is, if the current limit is 5 Million, they can request for increase upto 10 Million. You can request up to 20 Million.
+    * For requests beyond 20 Million, create a support ticket.
+* Creation of an Azure Monitor Workspace always applies the default limits. **Creating** an Azure Monitor Workspace with custom limits is not supported.
 
 This document explains how to use the ARM API to update the data ingestion limits of your Azure Monitor Workspaces. 
 
 ### Prerequisites
 
-- A command-line tool to run the ARM template commands, such as Azure PowerShell, or Azure CLI
+A command-line tool to run the ARM template commands, such as Azure PowerShell, or Azure CLI.
 
 ### Step 1: Download the ARM templates and update the parameters
 
-Download the ARM template files ([AMWLimitIncrease-Template.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Template.json) and [AMWLimitIncrease-Parameters.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Parameters.json) and update the Parameters.json file with the *subscription id*, *name of the resource group where the AMW is in*, *Name of the AMW*, *location of the AMW*, and required ingestion limits (maximum is 20000000).
+> [!NOTE]
+> If you prefer Bicep over ARM (JSON), you can decompile the following template and parameters files. For more information, see [Decompile a JSON Azure Resource Manager template to Bicep](/azure/azure-resource-manager/bicep/decompile?tabs=azure-cli).
+
+Download the ARM template files ([AMWLimitIncrease-Template.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Template.json) and [AMWLimitIncrease-Parameters.json](https://github.com/Azure/prometheus-collector/blob/main/internal/docs/AMWLimitIncrease-Parameters.json)) and update the Parameters.json file with the *subscription id*, *name of the resource group where the AMW is in*, *Name of the AMW*, *location of the AMW*, and required ingestion limits (maximum is 20000000).
 
 ### Step 2: Execute the ARM update
 
 Run the below commands from the downloaded ARM templates folder:
 
-For Azure CLI:
+**Azure CLI**
 
 ```azurecli
 az login
@@ -293,11 +484,11 @@ az account set --subscription <subscriptionId>
 az deployment group create --name AmwLimits --resource-group <resourceGroupName> --template-file AMWLimitIncrease-Template.json --parameters AMWLimitIncrease-Parameters.json
 ```
 
-For Azure PowerShell:
+**Azure PowerShell**
 
 ```
 Connect-AzAccount
-New-AzResourceGroupDeployment -Name AmwLimits -ResourceGroupName  <resourceGroupName> -TemplateFile AMWLimitIncrease-Template.json -TemplateParameterFile AMWLimitIncrease-Parameters.json
+New-AzResourceGroupDeployment -Name AmwLimits -ResourceGroupName <resourceGroupName> -TemplateFile AMWLimitIncrease-Template.json -TemplateParameterFile AMWLimitIncrease-Parameters.json
 ```
 
 ### Step 3: Verify if the limits are updated
@@ -308,9 +499,9 @@ To verify if the limits are updated successfully, you can go to the Azure portal
 
 If you see an error when using the API to request for a limit increase, check the error response to find the cause of the error.
 
--	Requested limit is above 20 Million: "ActiveTimeSeries quota requested exceeds the maximum limit of {MaxAutoApprovedActiveTimeSeries}": This error occurs when you request for a limit of 20 Million or more events/min or Active Timeseries. Currently the API only supports an increase up to 20M. You can request for more ingestion limit by creating a support ticket.
--	Usage is less compared to requested limit: The current utilization does not meet the criteria for MaxTimeSeries quota requested. This error occurs when your current ingestion is less than 50% of the requested limit. Reach the required usage threshold of 50% of desired limit before requesting an increase, or request a limit increase of up to 200% of your current usage. To check the current usage, go to the Azure portal, navigate to the Azure Monitor Workspace -> Metrics explorer -> In the Metric dropdown, select "View standard metrics with the builder," and then select "Active Time Series % Utilization" and "Events per minute received % Utilization".
+* Requested limit is above 20 Million: "ActiveTimeSeries quota requested exceeds the maximum limit of {MaxAutoApprovedActiveTimeSeries}": This error occurs when you request for a limit of 20 Million or more events/min or Active Timeseries. Currently the API only supports an increase up to 20M. You can request for more ingestion limit by creating a support ticket.
 
+* Usage is less compared to requested limit: The current utilization does not meet the criteria for MaxTimeSeries quota requested. This error occurs when your current ingestion is less than 50% of the requested limit. Reach the required usage threshold of 50% of desired limit before requesting an increase, or request a limit increase of up to 200% of your current usage. To check the current usage, go to the Azure portal, navigate to the Azure Monitor Workspace -> Metrics explorer -> In the Metric dropdown, select "View standard metrics with the builder," and then select "Active Time Series % Utilization" and "Events per minute received % Utilization".
 
 ## Request for an increase in ingestion limits through support ticket
 

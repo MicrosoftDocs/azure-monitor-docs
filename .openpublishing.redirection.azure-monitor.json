@@ -1,6 +1,16 @@
 {
  "redirections": [
   {
+   "source_path": "articles/azure-monitor/app/codeless-app-service.md",
+   "redirect_url": "/azure/app-service/monitor-app-service",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-overview.md",
+   "redirect_url": "/azure/azure-monitor/app/app-insights-overview#getting-started",
+   "redirect_document_id": false
+  },
+  {
    "source_path_from_root": "/articles/azure-monitor/change/change-analysis-troubleshoot.md",
    "redirect_url": "/azure/governance/resource-graph/changes/resource-graph-changes",
    "redirect_document_id": false
@@ -5152,12 +5162,12 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-faq.md",
-   "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
   },
   {
    "source_path_from_root": "/articles/azure-monitor/app/opentelemetry-troubleshooting.md",
-   "redirect_url": "/azure/azure-monitor/app/opentelemetry-help-support-feedback",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
    "redirect_document_id": false
   },
   {
@@ -8246,7 +8256,7 @@
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-extensions.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-extensions",
+   "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
    "redirect_document_id": false
   },
   {
@@ -8261,12 +8271,27 @@
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-vscode-extension.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-vscode-extension",
+   "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
    "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/insights/code-optimizations-vs-extension.md",
-   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-vs-extension",
+   "redirect_url": "/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code?tabs=one-click",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-extensions.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-vscode-extension.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/optimization-insights/code-optimizations-vs-extension.md",
+   "redirect_url": "/azure/azure-monitor/optimization-insights/code-optimizations-profiler-overview",
    "redirect_document_id": false
   },
   {
@@ -8341,7 +8366,7 @@
   },
   {
    "source_path": "articles/azure-monitor/essentials/rest-activity-log.md",
-   "redirect_url": "/azure/azure-monitor/platform/rest-activity-log",
+   "redirect_url": "/azure/azure-monitor/platform/activity-log#retrieve-activity-log-events-by-using-the-rest-api",
    "redirect_document_id": false
   },
   {
@@ -8695,6 +8720,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/app/kubernetes-codeless.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-codeless",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/metrics/prometheus-remote-write-virtual-machines.md",
    "redirect_url": "/azure/azure-monitor/metrics/prometheus-remote-write",
    "redirect_document_id": false
@@ -8766,7 +8796,7 @@
   },
   {
    "source_path": "articles/azure-monitor/data-collection/data-collection-metrics.md",
-   "redirect_url": "/azure/azure-monitor/data-collection/metrics-export-create.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/metrics-export-create",
    "redirect_document_id": false
   },
   {
@@ -8802,7 +8832,7 @@
   {
    "source_path": "articles/azure-monitor/reference/tables/llmactivity.md",
    "redirect_url": "/azure/azure-monitor/reference",
-      "redirect_document_id": false
+   "redirect_document_id": false
   },
   {
    "source_path": "articles/azure-monitor/app/opentelemetry-dotnet-migrate.md",
@@ -8822,6 +8852,161 @@
   {
    "source_path": "articles/azure-monitor/app/java-standalone-upgrade-from-2x.md",
    "redirect_url": "/azure/azure-monitor/app/migrate-to-opentelemetry",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/statsbeat.md",
+   "redirect_url": "/azure/azure-monitor/app/application-insights-faq",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/private-link-configure.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-configure",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/private-link-design.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-design",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/kubernetes-monitoring-private-link.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-vm-kubernetes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/private-link-security.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-security",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/agents/azure-monitor-agent-private-link.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-vm-kubernetes",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/metrics/azure-monitor-workspace-private-endpoint.md",
+   "redirect_url": "/azure/azure-monitor/fundamentals/private-link-azure-monitor-workspace",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry.md",
+   "redirect_url": "../app/app-insights-overview#getting-started",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/kubernetes-open-protocol.md",
+   "redirect_url": "../containers/kubernetes-open-protocol",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/collect-use-observability-data.md",
+   "redirect_url": "../containers/collect-use-observability-data",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/monitor-functions.md",
+   "redirect_url": "/azure/azure-functions/opentelemetry-howto",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/fundamentals/opentelemetry-protocol-ingestion.md",
+   "redirect_url": "../containers/opentelemetry-protocol-ingestion",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/application-insights-asp-net-agent.md",
+   "redirect_url": "../app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/azure-vm-vmss-apps.md",
+   "redirect_url": "../app/classic-api",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-resourcebuilder-workspaces-pipelines-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-recommended.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-alert-availability.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-enable-insights.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/tutorial-monitor-vm-guest.md",
+   "redirect_url": "/azure/azure-monitor/vm/tutorial-collect-logs",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-enable.md",
+   "redirect_url": "/azure/azure-monitor/vm/vm-enable-monitoring",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/vm/vminsights-overview.md",
+   "redirect_url": "/azure/azure-monitor/vm/monitor-vm",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/containers/kubernetes-monitoring-quickstart.md",
+   "redirect_url": "/azure/azure-monitor/containers/kubernetes-monitoring-tutorial",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/metrics/metrics-opentelemetry-guest.md",
+   "redirect_url": "/azure/azure-monitor/vm/metrics-opentelemetry-guest",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/opentelemetry-help-support-feedback.md",
+   "redirect_url": "/azure/azure-monitor/app/opentelemetry-enable#troubleshooting",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-jmx-metrics-configuration.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#java-management-extensions-jmx-metrics",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-sampling-overrides.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#sampling-overrides",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-telemetry-processors.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processors-preview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/app/java-standalone-telemetry-processors-examples.md",
+   "redirect_url": "/azure/azure-monitor/app/java-standalone-config#telemetry-processors-preview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/platform/rest-activity-log.md",
+   "redirect_url": "/azure/azure-monitor/platform/activity-log#retrieve-activity-log-events-by-using-the-rest-api",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-domainnames-slots-roles-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }
  ]

@@ -1,7 +1,7 @@
 ---
 ms.topic: include
-ms.date: 12/23/2024
+ms.date: 04/07/2026
 ---
 
 > [!IMPORTANT]
-> Azure Diagnostics extension will be deprecated on March 31, 2026. After this date, Microsoft will no longer provide support for the Azure Diagnostics extension and the scenario of collecting logs from Azure Storage. We recommend using [Azure Monitor Agent](/azure/azure-monitor/agents/azure-monitor-agent-overview), which ingests telemetry directly to Azure Monitor Logs. 
+> Azure Diagnostics extension was **deprecated on March 31, 2026** and is no longer supported. New deployments of the extension aren't recommended. To ensure continued support and access to new features, **migrate to the alternative solutions recommended [here](/azure/azure-monitor/agents/diagnostics-extension-overview)**.

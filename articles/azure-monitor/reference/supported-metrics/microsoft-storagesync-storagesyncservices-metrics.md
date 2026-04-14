@@ -2,8 +2,8 @@
 title: Supported metrics - Microsoft.StorageSync/storageSyncServices
 description: Reference for Microsoft.StorageSync/storageSyncServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.StorageSync/storageSyncServices, arm
+ms.date: 03/02/2026
+ms.custom: Microsoft.StorageSync/storageSyncServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 

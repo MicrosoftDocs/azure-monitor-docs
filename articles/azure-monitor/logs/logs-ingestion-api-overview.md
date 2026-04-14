@@ -41,7 +41,7 @@ The DCR logs ingestion endpoint is generated when you create a DCR for direct in
 
 :::image type="content" source="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png" alt-text="Screenshot that shows log ingestion endpoint in a DCR." lightbox="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png":::
 
-A DCE is only required when you're connecting to a Log Analytics workspace using [private link](private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
+A DCE is only required when you're connecting to a Log Analytics workspace using [private link](../fundamentals/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
 
 > [!NOTE]
 > The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints can't be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
@@ -190,6 +190,10 @@ Data sent to the ingestion API can be sent to the following tables:
 |:-------|:------------|
 | Custom tables | Any custom table that you create in your Log Analytics workspace. The target table must exist before you can send data to it. Custom tables must have the `_CL` suffix. |
 | Azure tables | The following Azure tables are currently supported. Other tables may be added to this list as support for them is implemented.<br><br>
+* [ABAPAuditLog](/azure/azure-monitor/reference/tables/abapauditlog)<br>
+* [ABAPAuthorizationDetails](/azure/azure-monitor/reference/tables/abapauthorizationdetails)<br>
+* [ABAPChangeDocsLog](/azure/azure-monitor/reference/tables/abapchangedocslog)<br>
+* [ABAPUserDetails](/azure/azure-monitor/reference/tables/abapuserdetails)<br>
 * [ADAssessmentRecommendation](/azure/azure-monitor/reference/tables/adassessmentrecommendation)<br>
 * [ADSecurityAssessmentRecommendation](/azure/azure-monitor/reference/tables/adsecurityassessmentrecommendation)<br>
 * [Anomalies](/azure/azure-monitor/reference/tables/anomalies)<br>
@@ -197,28 +201,87 @@ Data sent to the ingestion API can be sent to the following tables:
 * [ASimAuthenticationEventLogs](/azure/azure-monitor/reference/tables/asimauthenticationeventlogs)<br>
 * [ASimDhcpEventLogs](/azure/azure-monitor/reference/tables/asimdhcpeventlogs)<br>
 * [ASimDnsActivityLogs](/azure/azure-monitor/reference/tables/asimdnsactivitylogs)<br>
-* ASimDnsAuditLogs<br>
 * [ASimFileEventLogs](/azure/azure-monitor/reference/tables/asimfileeventlogs)<br>
 * [ASimNetworkSessionLogs](/azure/azure-monitor/reference/tables/asimnetworksessionlogs)<br>
 * [ASimProcessEventLogs](/azure/azure-monitor/reference/tables/asimprocesseventlogs)<br>
 * [ASimRegistryEventLogs](/azure/azure-monitor/reference/tables/asimregistryeventlogs)<br>
 * [ASimUserManagementActivityLogs](/azure/azure-monitor/reference/tables/asimusermanagementactivitylogs)<br>
 * [ASimWebSessionLogs](/azure/azure-monitor/reference/tables/asimwebsessionlogs)<br>
+* [AWSALBAccessLogs](/azure/azure-monitor/reference/tables/awsalbaccesslogs)<br>
 * [AWSCloudTrail](/azure/azure-monitor/reference/tables/awscloudtrail)<br>
 * [AWSCloudWatch](/azure/azure-monitor/reference/tables/awscloudwatch)<br>
+* AWSEKS<br>
+* [AWSELBFlowLogs](/azure/azure-monitor/reference/tables/awselbflowlogs)<br>
 * [AWSGuardDuty](/azure/azure-monitor/reference/tables/awsguardduty)<br>
+* [AWSNetworkFirewallAlert](/azure/azure-monitor/reference/tables/awsnetworkfirewallalert)<br>
+* [AWSNetworkFirewallFlow](/azure/azure-monitor/reference/tables/awsnetworkfirewallflow)<br>
+* [AWSNetworkFirewallTls](/azure/azure-monitor/reference/tables/awsnetworkfirewalltls)<br>
+* [AWSNLBAccessLogs](/azure/azure-monitor/reference/tables/awsnlbaccesslogs)<br>
+* [AWSRoute53Resolver](/azure/azure-monitor/reference/tables/awsroute53resolver)<br>
+* [AWSS3ServerAccess](/azure/azure-monitor/reference/tables/awss3serveraccess)<br>
+* [AWSSecurityHubFindings](/azure/azure-monitor/reference/tables/awssecurityhubfindings)<br>
 * [AWSVPCFlow](/azure/azure-monitor/reference/tables/awsvpcflow)<br>
+* [AWSWAF](/azure/azure-monitor/reference/tables/awswaf)<br>
 * [AzureAssessmentRecommendation](/azure/azure-monitor/reference/tables/azureassessmentrecommendation)<br>
+* [AzureMetricsV2](/azure/azure-monitor/reference/tables/azuremetricsv2)<br>
 * [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)<br>
+* [CrowdStrikeAlerts](/azure/azure-monitor/reference/tables/crowdstrikealerts)<br>
+* CrowdStrikeAPIActivityAudit<br>
+* CrowdStrikeAuthActivityAudit<br>
+* [CrowdStrikeCases](/azure/azure-monitor/reference/tables/crowdstrikecases)<br>
+* CrowdStrikeCSPMIOAStreaming<br>
+* CrowdStrikeCSPMSearchStreaming<br>
+* CrowdStrikeCustomerIOC<br>
+* [CrowdStrikeDetections](/azure/azure-monitor/reference/tables/crowdstrikedetections)<br>
+* [CrowdStrikeHosts](/azure/azure-monitor/reference/tables/crowdstrikehosts)<br>
+* [CrowdStrikeIncidents](/azure/azure-monitor/reference/tables/crowdstrikeincidents)<br>
+* CrowdStrikeReconNotificationSummary<br>
+* CrowdStrikeRemoteResponseSessionEnd<br>
+* CrowdStrikeRemoteResponseSessionStart<br>
+* CrowdStrikeScheduledReportNotification<br>
+* CrowdStrikeUserActivityAudit<br>
+* [CrowdStrikeVulnerabilities](/azure/azure-monitor/reference/tables/crowdstrikevulnerabilities)<br>
 * [DeviceTvmSecureConfigurationAssessmentKB](/azure/azure-monitor/reference/tables/devicetvmsecureconfigurationassessmentkb)<br>
 * [DeviceTvmSoftwareVulnerabilitiesKB](/azure/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilitieskb)<br>
+* [DnsAuditEvents](/azure/azure-monitor/reference/tables/dnsauditevents)<br>
+* [Event](/azure/azure-monitor/reference/tables/event)<br>
 * [ExchangeAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeassessmentrecommendation)<br>
 * [ExchangeOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/exchangeonlineassessmentrecommendation)<br>
+* [GCPApigee](/azure/azure-monitor/reference/tables/gcpapigee)<br>
 * [GCPAuditLogs](/azure/azure-monitor/reference/tables/gcpauditlogs)<br>
+* [GCPCDN](/azure/azure-monitor/reference/tables/gcpcdn)<br>
+* [GCPCloudRun](/azure/azure-monitor/reference/tables/gcpcloudrun)<br>
+* [GCPCloudSQL](/azure/azure-monitor/reference/tables/gcpcloudsql)<br>
+* [GCPComputeEngine](/azure/azure-monitor/reference/tables/gcpcomputeengine)<br>
+* [GCPDNS](/azure/azure-monitor/reference/tables/gcpdns)<br>
+* [GCPFirewallLogs](/azure/azure-monitor/reference/tables/gcpfirewalllogs)<br>
+* [GCPIAM](/azure/azure-monitor/reference/tables/gcpiam)<br>
+* [GCPIDS](/azure/azure-monitor/reference/tables/gcpids)<br>
+* [GCPMonitoring](/azure/azure-monitor/reference/tables/gcpmonitoring)<br>
+* [GCPNAT](/azure/azure-monitor/reference/tables/gcpnat)<br>
+* [GCPNATAudit](/azure/azure-monitor/reference/tables/gcpnataudit)<br>
+* [GCPResourceManager](/azure/azure-monitor/reference/tables/gcpresourcemanager)<br>
+* [GCPVPCFlow](/azure/azure-monitor/reference/tables/gcpvpcflow)<br>
+* [GKEAPIServer](/azure/azure-monitor/reference/tables/gkeapiserver)<br>
+* [GKEApplication](/azure/azure-monitor/reference/tables/gkeapplication)<br>
+* [GKEAudit](/azure/azure-monitor/reference/tables/gkeaudit)<br>
+* [GKEControllerManager](/azure/azure-monitor/reference/tables/gkecontrollermanager)<br>
+* [GKEHPADecision](/azure/azure-monitor/reference/tables/gkehpadecision)<br>
+* [GKEScheduler](/azure/azure-monitor/reference/tables/gkescheduler)<br>
 * [GoogleCloudSCC](/azure/azure-monitor/reference/tables/googlecloudscc)<br>
+* [GoogleWorkspaceReports](/azure/azure-monitor/reference/tables/googleworkspacereports)<br>
+* [IlumioInsights](/azure/azure-monitor/reference/tables/ilumioinsights)<br>
+* [OTelLogs](/azure/azure-monitor/reference/tables/otellogs)<br>
+* [QualysKnowledgeBase](/azure/azure-monitor/reference/tables/qualysknowledgebase)<br>
+* [Rapid7InsightVMCloudAssets](/azure/azure-monitor/reference/tables/rapid7insightvmcloudassets)<br>
+* [Rapid7InsightVMCloudVulnerabilities](/azure/azure-monitor/reference/tables/rapid7insightvmcloudvulnerabilities)<br>
 * [SCCMAssessmentRecommendation](/azure/azure-monitor/reference/tables/sccmassessmentrecommendation)<br>
 * [SCOMAssessmentRecommendation](/azure/azure-monitor/reference/tables/scomassessmentrecommendation)<br>
 * [SecurityEvent](/azure/azure-monitor/reference/tables/securityevent)<br>
+* SentinelAlibabaCloudAPIGatewayLogs<br>
+* SentinelAlibabaCloudVPCFlowLogs<br>
+* SentinelAlibabaCloudWAFLogs<br>
+* SentinelTheHiveData<br>
 * [SfBAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbassessmentrecommendation)<br>
 * [SfBOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sfbonlineassessmentrecommendation)<br>
 * [SharePointOnlineAssessmentRecommendation](/azure/azure-monitor/reference/tables/sharepointonlineassessmentrecommendation)<br>
@@ -230,6 +293,9 @@ Data sent to the ingestion API can be sent to the following tables:
 * StorageInsightsMonthlyMetrics<br>
 * StorageInsightsWeeklyMetrics<br>
 * [Syslog](/azure/azure-monitor/reference/tables/syslog)<br>
+* [ThreatIntelIndicators](/azure/azure-monitor/reference/tables/threatintelindicators)<br>
+* [ThreatIntelligenceIndicator](/azure/azure-monitor/reference/tables/threatintelligenceindicator)<br>
+* [ThreatIntelObjects](/azure/azure-monitor/reference/tables/threatintelobjects)<br>
 * [UCClient](/azure/azure-monitor/reference/tables/ucclient)<br>
 * [UCClientReadinessStatus](/azure/azure-monitor/reference/tables/ucclientreadinessstatus)<br>
 * [UCClientUpdateStatus](/azure/azure-monitor/reference/tables/ucclientupdatestatus)<br>

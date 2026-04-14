@@ -16,7 +16,7 @@ ms.custom: Performance Azure Health Data Services de-identification service
 
 #### Upgrade to latest API Version for Azure Health De-Identification  
   
-Upgrading to the latest API Version for Azure Health De-Identification ensures maximal performance. If using the Health De-Identification SDK, upgrade to the most recent package version. Alternatively, you can use the Azure Portal to create/manage Health De-Identification resources.  
+Upgrading to the latest API Version for Azure Health De-Identification ensures maximal performance. If using the Health De-Identification SDK, upgrade to the most recent package version. Alternatively, you can use the Azure portal to create/manage Health De-Identification resources.  
   
 **Potential benefits**: Improved reliability and performance  
 

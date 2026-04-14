@@ -3,6 +3,8 @@ title: Application Insights availability tests
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
 ms.date: 02/27/2026
+ms.custom:
+  - sfi-ropc-nochange
 ---
 
 # Application Insights availability tests
@@ -272,10 +274,13 @@ You can use the following population tags for the geo-location attribute when yo
 |                                          | USDoD East                             | usgov-ddeast-azr    |
 |                                          | USDoD Central                          | usgov-ddcentral-azr |
 | **Microsoft Azure operated by 21Vianet** |                                        |                     |
-|                                          | China East                             | mc-cne-azr          |
+|                                          | China East *(retiring July 1, 2026)*   | mc-cne-azr          |
 |                                          | China East 2                           | mc-cne2-azr         |
-|                                          | China North                            | mc-cnn-azr          |
+|                                          | China North *(retiring July 1, 2026)*  | mc-cnn-azr          |
 |                                          | China North 2                          | mc-cnn2-azr         |
+
+> [!IMPORTANT]
+> **China East (`mc-cne-azr`) and China North (`mc-cnn-azr`) retire as availability test locations on July 1, 2026.** After this date, you can't create or update availability tests that use these locations. Existing tests stop executing once the underlying infrastructure is decommissioned. Migrate your tests to use **China East 2** (`mc-cne2-azr`) or **China North 2** (`mc-cnn2-azr`) before the retirement date.
 
 ### Enable alerts
 
@@ -512,7 +517,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 ### Disconnected or no ingress scenarios
 
-1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../logs/private-link-security.md).
+1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../fundamentals/private-link-security.md).
 
 1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
 

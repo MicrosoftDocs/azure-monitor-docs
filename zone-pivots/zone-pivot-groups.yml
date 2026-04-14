@@ -1,0 +1,14 @@
+### YamlMime:ZonePivotGroups
+groups:
+- id: azure-monitor-vm-deployment
+  title: Deployment method
+  prompt: Choose a deployment method
+  pivots:
+  - id: azure-cli
+    title: Azure CLI
+  - id: azure-powershell
+    title: PowerShell
+  - id: azure-resource-manager
+    title: ARM template
+  - id: bicep
+    title: Bicep

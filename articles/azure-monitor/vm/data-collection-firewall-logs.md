@@ -2,7 +2,7 @@
 title: Collect Firewall logs with Azure Monitor Agent
 description: Configure collection of Windows Firewall logs on virtual machines with Azure Monitor Agent.
 ms.topic: how-to
-ms.date: 03/03/2025
+ms.date: 03/03/2026
 ms.reviewer: jeffwo
 
 ---

@@ -129,9 +129,38 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
     | `<CLUSTER-NAME>` | Name of the cluster that Prometheus is running on. |
 
    > [!IMPORTANT]
-   > For Azure Government cloud, add the following environment variables in the `env` section of the YAML file:
+   > For non-public clouds, add the following environment variables in the `env` section of the YAML file.
    >
-   > `- name: INGESTION_AAD_AUDIENCE value: https://monitor.azure.us/`
+   > **Azure Government:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZUREGOVERNMENT
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: https://monitor.azure.us/.default
+   > ```
+   >
+   > **Azure China:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZURECHINA
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: <audience-url-for-azure-china>/.default
+   > ```
+   >
+   > **Other sovereign or custom clouds:**
+   >
+   > ```yaml
+   > - name: CLOUD
+   >   value: AZURECUSTOM
+   > - name: AAD_HOST_ENDPOINT
+   >   value: <authority-host-url-for-your-cloud>
+   > - name: INGESTION_AAD_AUDIENCE
+   >   value: <audience-url-for-your-cloud>/.default
+   > ```
+   >
+   > The supported `CLOUD` values are `AZUREPUBLIC` (default), `AZUREGOVERNMENT`, `AZURECHINA`, and `AZURECUSTOM`. Use `AZURECUSTOM` for sovereign or custom clouds that don't have built-in support. When `CLOUD` is set to `AZURECUSTOM`, you must also set `AAD_HOST_ENDPOINT` to the Microsoft Entra authority host URL for your cloud. The `INGESTION_AAD_AUDIENCE` value must include the `/.default` suffix, or token acquisition fails.
 
 1. Open Azure Cloud Shell and upload the YAML file.
 1. Use Helm to apply the YAML file and update your Prometheus configuration:

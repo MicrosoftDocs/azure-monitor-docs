@@ -3,7 +3,7 @@ title: Troubleshoot the Azure Log Analytics VM extension
 description: Describe the symptoms, causes, and resolution for the most common issues with the Log Analytics VM extension for Windows and Linux Azure VMs.
 ms.topic: troubleshooting-general
 ms.custom: linux-related-content
-ms.date: 11/14/2024
+ms.date: 04/09/2026
 ---
 
 # Troubleshoot the Log Analytics VM extension in Azure Monitor

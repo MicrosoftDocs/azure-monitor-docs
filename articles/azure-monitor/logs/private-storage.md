@@ -44,7 +44,7 @@ When you connect to Azure Monitor over a private link, Azure Monitor Agent can o
 * Connect it to your workspaces.
 * Connect the AMPLS to your network over a private link.
 
-For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](./private-link-security.md).
+For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](../fundamentals/private-link-security.md).
 
 ### Storage account requirements for private link
 When you connect to Azure Monitor over a private link, the storage account must be accessible over a private link. This requirement means you should:
@@ -75,7 +75,7 @@ The storage account and the key vault must be in the same region. They don't nee
 
 | Special case | Remediation |
 |---|---|
-| When a storage account is linked for queries, existing saved queries and functions in the workspace are deleted permanently for privacy and moved to a table in storage account. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). You can unlink the storage account for queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don’t show up in the Azure Portal after the operation. |
+| When a storage account is linked for queries, existing saved queries and functions in the workspace are deleted permanently for privacy and moved to a table in storage account. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). You can unlink the storage account for queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don’t show up in the Azure portal after the operation. |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
 | A single StorageV2 storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|
@@ -184,5 +184,5 @@ You're charged for storage accounts based on the volume of stored data, the type
 
 ## Next steps
 
-- Learn about [using Private Link to securely connect networks to Azure Monitor](private-link-security.md).
+- Learn about [using Private Link to securely connect networks to Azure Monitor](../fundamentals/private-link-security.md).
 - Learn about [Azure Monitor customer-managed keys](../logs/customer-managed-keys.md).

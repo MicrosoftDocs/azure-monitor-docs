@@ -20,6 +20,13 @@
         ],
         "src": "breadcrumb/azure-monitor",
         "dest": "breadcrumb/azure-monitor"
+      },
+      {
+        "files": [
+          "zone-pivot-groups.yml"
+        ],
+        "src": "zone-pivots",
+        "dest": "zone-pivots/azure-monitor/"
       }
     ],
     "resource": [
@@ -134,7 +141,8 @@
         "Certification"
       ],
       "uhfHeaderId": "azure",
-      "ms.suite": "office"
+      "ms.suite": "office",
+      "zone_pivot_group_filename": "zone-pivots/azure-monitor/zone-pivot-groups.json"
     },
     "fileMetadata": {
       "adobe-target": {
@@ -226,7 +234,7 @@
         "articles/azure-monitor/**/*": "azure-monitor",
         "articles/chaos-studio/**/**/*": "azure-chaos-studio",
         "articles/service-health/**/*": "azure-service-health",
-        "articles/operations/**/*": "azure-monitor"
+        "articles/operations/**/*": "azure"
       },
       "ms.reviewer": {
         "articles/advisor/**/*": "ikhapova"
@@ -247,8 +255,7 @@
         "articles/azure-monitor/profiler/**/*": "profiler",
         "articles/azure-monitor/snapshot-debugger/**/*": "snapshot-debugger",
         "articles/azure-monitor/visualize/**/*": "visualizations",
-        "articles/azure-monitor/vm/**/*": "virtual-machines",
-        "articles/operations/**/*": "operations"
+        "articles/azure-monitor/vm/**/*": "virtual-machines"
       },
       "searchScope": {
         "articles/advisor/**/*.md": [

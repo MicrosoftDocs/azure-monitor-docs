@@ -26,7 +26,7 @@ The tables in the following sections specify proxy and firewall configuration in
 
  If you use private links, only add the [private data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce). The containerized agent doesn't use the nonprivate endpoints shown in the previous table.
 
-If you use the Azure Monitor agent with Azure Monitor Private Link Scope (AMPLS), all of your data collection rules must use data collection endpoints. You must add those DCEs to the AMPLS configuration by using a [private link](../logs/private-link-configure.md#connect-resources-to-the-ampls).
+If you use the Azure Monitor agent with Azure Monitor Private Link Scope (AMPLS), all of your data collection rules must use data collection endpoints. You must add those DCEs to the AMPLS configuration by using a [private link](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls).
 
 A combination of HTTPS proxy and private cluster isn't currently supported.
 

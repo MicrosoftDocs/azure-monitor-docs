@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 03/24/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Application Gateway
@@ -110,7 +110,7 @@ Recommendation ID: ea000e01-b053-4076-a61b-e4cc58e9db07
 
 #### Upgrade to the latest DRS rule set in Application Gateway WAF  
   
-WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version will provide enhanced engine performance, better protection, and a reduction in false positives. It's recommended to use the latest DRS rule set version.  
+WAF rule sets are constantly updated to guard against new attacks. Upgrading to the latest DRS version provides enhanced engine performance, improved protection, and reduced false positives. CRS rule sets are legacy versions, older than DRS; it's recommended to use the latest DRS version (DRS 2.2).  
   
 **Potential benefits**: Ensure increased efficiency and better protection  
 
@@ -123,6 +123,7 @@ Recommendation ID: 7aaefe5a-5b88-4790-9a3d-5106722f7c34
 
 
 <!--7aaefe5a-5b88-4790-9a3d-5106722f7c34_end-->
+
 
 <!--aa60b18a-feab-4857-8d9a-e4f6a8d3ef0e_begin-->
 
@@ -256,19 +257,20 @@ Recommendation ID: 7c27d589-c7ed-47e1-8fe9-fe12ea81634a
 
 #### Upgrade from network security group flow log to Virtual Network flow log  
   
-Upgrade from a network security group flow log to a Virtual Network flow log. A Virtual Network flow log allows recording of IP traffic flow in a virtual network.  
+Upgrade from Network Security Group flow log to powerful Virtual Network Flow Logs to capture IP Traffic across Virtual networks including gateways where NSG’s are unavailable.  
   
-**Potential benefits**: Improved coverage, observability, and accuracy.  
+**Potential benefits**: Broader network coverage with enhanced traffic visibility.  
 
 **Impact:** High
   
-For more information, see [Virtual network flow logs - Azure Network Watcher](https://aka.ms/vnetflowlogs)  
+For more information, see [Virtual Network Flow Logs - Azure Network Watcher](https://aka.ms/vnetflowlogs)  
 
 ResourceType: microsoft.network/networkwatchers/flowlogs  
 Recommendation ID: 6f087e7e-afdf-4a3d-a1de-41d70404b9cb  
 
 
 <!--6f087e7e-afdf-4a3d-a1de-41d70404b9cb_end-->
+
 
 <!--dedaaba3-b5aa-4e91-a12e-6886ba0b2f6d_begin-->
 

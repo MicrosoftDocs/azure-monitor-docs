@@ -2,7 +2,7 @@
 title: Performance in Forwarding to Azure Monitor Agent
 description: Learn about performance benchmark data for the Azure Monitor Agent running in a gateway event forwarding scenario.
 ms.topic: concept-article
-ms.date: 11/14/2024
+ms.date: 04/09/2026
 ms.reviewer: jeffwo
 # Customer intent: As a deployment engineer, I can scope the resources required to scale my gateway data collectors the use the Azure Monitor Agent. 
 ---

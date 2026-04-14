@@ -1,8 +1,8 @@
 ---
 title: Azure Monitor Agent Configuration
-description: Learn options for changing Azure Monitor Agent configurations.
+description: Learn how to change Azure Monitor Agent configuration settings, including proxy, performance, and logging options on Azure VMs and Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 11/11/2025
+ms.date: 04/07/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 

@@ -180,5 +180,5 @@ If you need help with updating Azure policies, contact your organization's polic
 - [Migrate classic resources to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 - [Create and configure Application Insights resources](./create-workspace-resource.md).
 - [Manage connection strings in Application Insights](./connection-strings.md).
-- [Learn how data collection works](./opentelemetry-overview.md).
+- [Learn how data collection works](./app-insights-overview.md).
 - [Read the Application Insights overview](./app-insights-overview.md).

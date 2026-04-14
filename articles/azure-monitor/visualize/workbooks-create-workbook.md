@@ -2,7 +2,7 @@
 title: Create or edit an Azure Workbook
 description: Learn how to create an Azure Workbook.
 ms.topic: how-to
-ms.date: 09/17/2024
+ms.date: 04/02/2026
 ms.reviewer: gardnerjr
 ---
 

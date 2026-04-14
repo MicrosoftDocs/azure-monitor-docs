@@ -70,7 +70,7 @@ A subset of the availability zones that support data resilience currently also s
 | Qatar Central	| | :white_check_mark: | |
 | UAE North	| :white_check_mark: | :white_check_mark: | |
 
-<sup>1</sup> [Ingestion from Event Hubs](./ingest-logs-event-hub.md) feature is not resilient to zonal outages in these regions.
+<sup>1</sup> [Ingestion from Event Hubs](./ingest-logs-event-hub.md) feature is not resilient to zone outages in these regions.
 
 
 ## Migrate a Log Analytics workspace to availability zone support

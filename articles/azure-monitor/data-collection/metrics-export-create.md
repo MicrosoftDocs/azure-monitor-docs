@@ -24,13 +24,12 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 > [!NOTE]
 > Use metrics export with DCRs for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Data plane Metrics Batch API query versus Metrics export](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
 
-
 ## Export destinations
 
 Metrics can be exported to the following destinations.
 
 | Destination type | Details |
-|:---|:---|
+|:-----------------|:--------|
 | Log Analytics workspaces | Exporting to Log Analytics workspaces can be across regions. The Log Analytics workspace and the DCR must be in the same region but resources that are being monitored can be in any region. Metrics sent to a log analytics workspace are stored in the `AzureMetricsV2` table. |
 | Azure storage accounts |  The storage account, the DCR, and the resources being monitored must all be in the same region. |
 | Event Hubs | The Event Hubs, the DCR, and the resources being monitored must all be in the same region. |
@@ -382,10 +381,9 @@ https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 
 ```
 
-### [ARM template](#tab/arm)
+### [ARM (JSON)](#tab/arm)
 
 ### Create a data collection rule using ARM templates
-
 
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
 
@@ -400,6 +398,12 @@ Use the following template to create a DCR. For more information, see [Microsoft
             "type": "string",
             "metadata": {
                 "description": "Specifies the name of the Data Collection Rule to create."
+            }
+        },
+        "workspaceId": {
+            "type": "string",
+            "metadata": {
+                "description": "Specifies the Log Analytics workspace."
             }
         },
         "location": {
@@ -475,7 +479,6 @@ Use the following template to create a DCR. For more information, see [Microsoft
         }
     }
 }
-
 ```
 
 ### Sample DCR template
@@ -535,9 +538,138 @@ Use the following template to create a DCR. For more information, see [Microsoft
 }
 ```
 
+### [Bicep)](#tab/bicep)
+
+### Create a data collection rule using Bicep templates
+
+Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
+
+### Template file
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the Log Analytics workspace.')
+param workspaceId string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
+    name: dataCollectionRuleName
+    kind: 'PlatformTelemetry'
+    identity: {
+        type: 'userassigned' | 'systemAssigned'
+        userAssignedIdentities: {
+            type: 'string'
+        }
+    }
+    location: location
+    properties: {
+        dataSources: {
+            platformTelemetry: [
+                {
+                    streams: [
+                        '<resourcetype>:<metric name> | Metrics-Group-All'
+                    ]
+                    name: 'myPlatformTelemetryDataSource'
+                }
+            ]
+        }
+        destinations: {
+            logAnalytics: [
+                {
+                    workspaceResourceId: workspaceId
+                    name: 'myDestination'
+                }
+            ]
+        }
+        dataFlows: [
+            {
+                streams: [
+                    '<resourcetype>:<metric name> | Metrics-Group-All'
+                ]
+                destinations: [
+                    'myDestination'
+                ]
+            }
+        ]
+    }
+}
+```
+
+### Parameters file
+
+```bicep
+using './<template-name>.bicep'
+
+param dataCollectionRuleName = 'metrics-dcr-001'
+
+param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/azuremonitorworkspaceinsights/providers/microsoft.operationalinsights/workspaces/amw-insight-ws'
+
+param location = 'eastus'
+```
+
+### Sample DCR template
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the Log Analytics workspace.')
+param workspaceId string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
+    name: dataCollectionRuleName
+    location: location
+    kind: 'PlatformTelemetry'
+    identity: {
+        type: 'SystemAssigned'
+    }
+    properties: {
+        dataSources: {
+            platformTelemetry: [
+                {
+                    streams: [
+                        'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+                        'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+                        'Microsoft.Cache/redis:Metrics-Group-All'
+                        'Microsoft.keyvault/vaults:Metrics-Group-All'
+                    ]
+                    name: 'myPlatformTelemetryDataSource'
+                }
+            ]
+        }
+        destinations: {
+            logAnalytics: [
+                {
+                    workspaceResourceId: workspaceId
+                    name: 'myDestination'
+                }
+            ]
+        }
+        dataFlows: [
+            {
+                streams: [
+                    'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+                    'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+                    'Microsoft.Cache/redis:Metrics-Group-All'
+                    'Microsoft.keyvault/vaults:Metrics-Group-All'
+                ]
+                destinations: [
+                    'myDestination'
+                ]
+            }
+        ]
+    }
+}
+```
+
 ---
-
-
 
 After creating the DCR, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
 
@@ -604,11 +736,7 @@ The following example shows a metric exported to Event Hubs.
       "PartitionId": 0,
       "EventEnqueuedUtcTime": "2024-08-22T13:46:04.5570000Z"
     }
-
 ```
-
-
-
 
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 
