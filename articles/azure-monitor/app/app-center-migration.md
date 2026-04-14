@@ -297,8 +297,6 @@ Microsoft support covers Azure Monitor functionality after telemetry reaches Azu
 
     1. On the **Review + create** tab, review your request. Make any required changes, then select **Create**.
 
-To learn more, see [How to create an Azure support request](/azure/azure-portal/supportability/how-to-create-azure-support-request) and [Manage an Azure support request - Azure portal | Microsoft Learn](/azure/azure-portal/supportability/how-to-manage-azure-support-request).
-
 ## Next steps
 
 > [!div class="nextstepaction"]
