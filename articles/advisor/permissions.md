@@ -19,6 +19,7 @@ Review the following section to learn more about each role and the associated ac
 
 | Role | View recommendations | Manage recommendation status |
 |:---|:--- |:--- |
+| Advisor Recommendations Contributor (Assessments and Reviews | X | X |
 | Subscription Reader | X |  |
 | Subscription Contributor | X | X |
 | Subscription Owner | X | X |
