@@ -21,7 +21,6 @@ Use CLI or ARM templates when you need a repeatable deployment process or more c
 | Advanced configuration | Configure custom tables, persistent volumes for buffering, and more detailed resource settings. |
 | Infrastructure as code | Store and review configuration in templates and deployment pipelines. |
 | Repeatable deployments | Standardize pipeline deployments for testing and production environments. |
-|
 
 ## Configuration workflow
 
@@ -61,7 +60,7 @@ Use the following tasks to configure the Azure Monitor pipeline resources on you
 
 ### Add the pipeline extension
 
-Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster.
+Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster. Use the same namespace for the pipeline extension and the Azure Monitor pipeline instance that you deploy later in this article. The `releaseNamespace` that you specify for the extension must match the namespace used by the pipeline instance.
 
 ### [CLI](#tab/cli)
 

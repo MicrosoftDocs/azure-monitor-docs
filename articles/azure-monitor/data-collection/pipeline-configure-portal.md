@@ -31,6 +31,8 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Resource group | Resource group where the service creates the pipeline instance. |
 | Cluster name | Arc-enabled Kubernetes cluster where you install the pipeline. |
 | Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you optionally select another custom location on the cluster. |
+| Enable transport security (TLS) | Deploy the pipeline endpoints with TLS enabled so incoming traffic is encrypted in transit. This setting configures the deployment mode only. After deployment, complete the TLS configuration to choose the certificate management approach and TLS mode. For more information, see [Configure TLS](./pipeline-tls.md). |
+| Require client authentication within cluster | Require gateway and cluster-local clients to present client certificates when they connect to the pipeline. Use this option when you want mutual TLS (mTLS) for in-cluster or gateway-to-pipeline connections. |
 
 When you're done, select **Next: Dataflows**.
 
@@ -46,7 +48,7 @@ On the **Dataflows** tab, create one or more dataflows for the pipeline instance
 | Source type | Type of data to collect. Supported values are `Syslog` and `OTLP` (Preview). |
 | Port | Port that the pipeline listens on for incoming data. If two dataflows use the same port, they both receive and process the data. |
 | Protocol<br>(Syslog only) | Whether the dataflow collects TCP or UDP traffic. |
-| RFC<br>(Syslog only) | Syslog message format to collect. `5424` is the newer structured format. `3164` is the older, less structured format. |
+| Format<br>(Syslog only) | Syslog message formats to collect. `5424` is the newer structured format. `3164` is the older, less structured format. |
 | Collect messages with PRI header<br>(Syslog only) | Collect Syslog messages that don't include the PRI header. |
 | Log Analytics workspace | Log Analytics workspace that receives the data. |
 | Table<br>(Syslog only) | Destination table. Select [Syslog](/azure/azure-monitor/reference/tables/syslog), [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog), or a custom table. |

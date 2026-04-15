@@ -26,10 +26,6 @@ In the Azure portal, open your Azure Monitor pipeline resource and select **Moni
 | Exporter | `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
 | Exporter | `exporter_send_failed_log_records` | Failed log exports (preview) | Number of log records that the exporter couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
 
-### View metrics through Prometheus scraping
-
-You can also scrape pipeline metrics using Prometheus. For more information, see [Collect Prometheus metrics from an Arc-enabled Kubernetes cluster](/azure/azure-monitor/containers/kubernetes-monitoring-enable#enable-prometheus-and-grafana).
-
 ### Collect and view logs
 
 Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. If you select Log Analytics workspace as a destination, you can view logs for your Azure Monitor pipeline instance in the `AzureMonitorPipelineLogErrors` table in your Log Analytics workspace.
