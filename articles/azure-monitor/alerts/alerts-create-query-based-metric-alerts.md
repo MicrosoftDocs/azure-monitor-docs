@@ -42,6 +42,8 @@ Content-Type: application/json
 
 # [Azure CLI](#tab/cli)
 
+[!INCLUDE [Azure CLI using az rest](includes/cmd-using-rest-az.md)]
+
 ```azurecli
 subscription="{{subscription}}"
 resourceGroup="{{resource_name}}"
@@ -62,6 +64,8 @@ az rest \
 ```
 
 # [PowerShell](#tab/powershell)
+
+[!INCLUDE [Azure PowerShell using Invoke-RestMethod](includes/cmd-using-rest-ps.md)]
 
 ```azurepowershell
 $subscriptionId = "{{subscription}}"
