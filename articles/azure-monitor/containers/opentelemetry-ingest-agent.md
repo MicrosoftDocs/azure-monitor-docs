@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with AMA (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data to Azure Monitor using Azure Monitor Agent on VMs, Scale Sets, and Arc-enabled servers.
 ms.topic: how-to
-ms.date: 04/01/2026
+ms.date: 04/15/2026
 ms.reviewer: kaprince
 ai-usage: ai-assisted
 ---
@@ -124,20 +124,26 @@ For programmatic association, see [Manage data collection rule associations](../
 
 Set the following configuration in your application environment:
 
-1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`).
+1. Add the `microsoft.applicationId` resource attribute with the Application Insights connection string application ID (the GUID portion after `InstrumentationKey=`). This attribute is required if Application Insights creates the DCR in use. It's also required if you include the Application Insights ID in the manually created DCR to separate ingested data per Application Insights resource.
 
 1. Configure the OpenTelemetry SDK to send data to localhost by using these ports:
 
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
 
+You might need to alter your OTLP exporter to separate metrics versus logs and traces data across these ports.
+
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
-Example environment variable configuration:
+#### Example environment variable configuration
+
+Here's an example configuration for setting environment variables. `microsoft.applicationId` is required if using App Insights based DCR.
 
 ```bash
-export OTEL_EXPORTER_OTLP_ENDPOINT="http://localhost:4317"
+export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT="http://localhost:4317"
+export OTEL_EXPORTER_OTLP_TRACES_ENDPOINT="http://localhost:4319"
+export OTEL_EXPORTER_OTLP_LOGS_ENDPOINT="http://localhost:4319"
 export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
 export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
 export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
@@ -148,9 +154,17 @@ export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponentia
 
 ### Configure Microsoft Entra authentication
 
-1. Enable system-assigned managed identity on your compute resource.
-1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. Leave the `managed_identity` section blank in your collector configuration to use the system-assigned identity.
+You must enable system-assigned managed identity on your compute resource. Assign the **Monitoring Metrics Publisher** role to the managed identity. The managed identity AMA uses needs permission to write data to your DCR.
+
+1. Go to your DCR in the Azure portal.
+1. In the left navigation, select **Access control (IAM)**.
+1. Select **Add** > **Add role assignment**.  
+    :::image type="content" source="./media/opentelemetry-ingest-agent/data-collection-rule-access-control.png" lightbox="./media/opentelemetry-ingest-agent/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
+1. Select **Monitoring Metrics Publisher** and select **Next**.  
+    :::image type="content" source="./media/opentelemetry-ingest-agent/role-assignment-metrics-publisher.png" lightbox="./media/opentelemetry-ingest-agent/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
+1. For **Assign access to**, select **Managed Identity**.
+1. Next to **Members**, select **+ Select members** and choose your managed identity.
+1. Select **Review + assign** to save the role assignment.
 
 > [!IMPORTANT]
 > - Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
