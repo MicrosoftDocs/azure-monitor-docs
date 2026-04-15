@@ -96,7 +96,7 @@ The following metrics are collected by default from each default target. All oth
 - `kubelet_volume_stats_available_bytes`
 - `kubelet_volume_stats_inodes_used`
 - `kubelet_volume_stats_inodes`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### coredns
 
@@ -118,7 +118,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### cadvisor
 
@@ -141,7 +141,7 @@ The following metrics are collected by default from each default target. All oth
 - `container_memory_swap`
 - `container_cpu_cfs_throttled_periods_total`
 - `container_cpu_cfs_periods_total`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### kubeproxy
 - `kubeproxy_sync_proxy_rules_duration_seconds` `kubeproxy_sync_proxy_rules_duration_seconds_bucket` `kubeproxy_sync_proxy_rules_duration_seconds_sum` `kubeproxy_sync_proxy_rules_duration_seconds_count` `kubeproxy_network_programming_duration_seconds`
@@ -150,7 +150,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### apiserver
 -  `apiserver_request_duration_seconds` `apiserver_request_duration_seconds_bucket` `apiserver_request_duration_seconds_sum` `apiserver_request_duration_seconds_count` 
@@ -160,7 +160,7 @@ The following metrics are collected by default from each default target. All oth
 -  `process_resident_memory_bytes`
 -  `process_cpu_seconds_total`
 -  `go_goroutines`
--  `kubernetes_build_info"`
+-  `kubernetes_build_info`
 
 #### kube-state
 
@@ -237,7 +237,7 @@ The following metrics are collected by default from each default target. All oth
 - `node_disk_io_time_weighted_seconds_total`
 - `node_exporter_build_info`
 - `node_time_seconds`
-- `node_uname_info"`
+- `node_uname_info`
 
 
 #### windowsexporter
