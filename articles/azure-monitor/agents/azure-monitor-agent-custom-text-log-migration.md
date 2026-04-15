@@ -32,52 +32,56 @@ You should follow the steps only if the following criteria are true:
 
 1. Configure your data collection rule (DCR) following procedures at [collect text logs with Azure Monitor Agent](data-collection-log-text.md).
 
-1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
+2. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
 
-    # [REST](#tab/rest)
-    
-    ```rest
-    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
-    Authorization: Bearer <access-token>
-    ```
+# [REST](#tab/rest)
 
-    # [CLI](#tab/cli)
+```rest
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
+Authorization: Bearer <access-token>
+```
 
-    ```azurecli
-    subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    resourceGroupName="myResourceGroup"
-    workspaceName="myWorkspace"
-    tableName="myTable"
-    apiVersion="2025-07-01"
-    providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate"
-    resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
-    
-    az rest --method post --uri "$resourceId?api-version=$apiVersion"
-    ```
-    
-    # [PowerShell](#tab/powershell)
+# [CLI](#tab/cli)
 
-    ```powershell
-    Invoke-AzOperationalInsightsMigrateTable `
-      -ResourceGroupName "myResourceGroup" `
-      -WorkspaceName "myWorkspace" `
-      -TableName "myTable"
-    ```
+[!INCLUDE [Azure CLI using az rest](includes/cmd-using-rest-az.md)]
 
-    ---
+```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroup"
+workspaceName="myWorkspace"
+tableName="myTable"
+apiVersion="2025-07-01"
+providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate"
+resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
 
-    | Variable | Example value | Purpose |
-    |----------|---------------|---------|
-    | host | management.azure.com | Implicit ARM endpoint |
-    | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-    | resourceGroupName | myResourceGroup | User input |
-    | workspaceName | myWorkspace | User input |
-    | tableName | myTable | User input |
-    | apiVersion | 2025-07-01 | API-specific |
-    | providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
-    | resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
+az rest --method post --uri "$resourceId?api-version=$apiVersion"
+```
 
-1. Discontinue MMA custom text log collection and start using the AMA custom text log.
+# [PowerShell](#tab/powershell)
+
+```powershell
+Invoke-AzOperationalInsightsMigrateTable `
+	-ResourceGroupName "myResourceGroup" `
+	-WorkspaceName "myWorkspace" `
+	-TableName "myTable"
+```
+
+---
+
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| host | management.azure.com | Implicit ARM endpoint |
+| subscriptionId \* | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | **User input** |
+| resourceGroupName | myResourceGroup | **User input** |
+| workspaceName | myWorkspace | **User input** |
+| tableName | myTable | **User input** |
+| apiVersion | 2025-07-01 | API-specific |
+| providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
+| resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
+
+\* When you use a dedicated Azure CLI command or Azure PowerShell cmdlet, you typically don't need to include the subscription ID in the command itself, because the command uses your current Azure subscription. If you need to target a different subscription, switch the active subscription first by using `az account set --subscription <subscription>` or `Set-AzContext -Subscription <subscription>`.
+
+3. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
 ## Next steps
 

@@ -22,11 +22,9 @@ This article explains how to create query-based metric alert rules in Azure Moni
 
 ## Enable workspace resource-centric stamping and access
 
-You can enable resource-centric stamping and access for a Workspace in one of two ways:
+You can enable resource-centric stamping and access for a workspace using one of the following methods:
 
-### Use a PUT request
-
-Use a PUT request.
+# [REST](#tab/rest)
 
 ```
 PUT https://management.azure.com/subscriptions/{{subscription}}/resourcegroups/{{resource_name}}/providers/microsoft.monitor/accounts/{{account_name}}?api-version=2025-05-03-preview
@@ -41,6 +39,69 @@ Content-Type: application/json
   }
 }
 ```
+
+# [Azure CLI](#tab/cli)
+
+```azurecli
+subscription="{{subscription}}"
+resourceGroup="{{resource_name}}"
+accountName="{{account_name}}"
+
+az rest \
+  --method put \
+  --url "https://management.azure.com/subscriptions/${subscription}/resourceGroups/${resourceGroup}/providers/Microsoft.Monitor/accounts/${accountName}?api-version=2025-05-03-preview" \
+  --headers "Content-Type=application/json" \
+  --body '{
+    "location": "eastus",
+    "properties": {
+      "metrics": {
+        "enableAccessUsingResourcePermissions": true
+      }
+    }
+  }'
+```
+
+# [PowerShell](#tab/powershell)
+
+```azurepowershell
+$subscriptionId = "{{subscription}}"
+$resourceGroup  = "{{resource_name}}"
+$accountName    = "{{account_name}}"
+
+$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.Monitor/accounts/$accountName?api-version=2025-05-03-preview"
+
+$body = @{
+    location   = "eastus"
+    properties = @{
+        metrics = @{
+            enableAccessUsingResourcePermissions = $true
+        }
+    }
+} | ConvertTo-Json -Depth 10
+
+Invoke-RestMethod `
+  -Method Put `
+  -Uri $uri `
+  -Headers @{
+      Authorization = "Bearer $token"
+      "Content-Type" = "application/json"
+  } `
+  -Body $body
+```
+
+---
+
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| host | management.azure.com | Implicit ARM endpoint |
+| subscription | mySubscription | API-specific |
+| resource_name | myResource_name | API-specific |
+| account_name | myAccount_name | API-specific |
+| apiVersion | 2025-05-03-preview | API-specific |
+| providers | microsoft.monitor/accounts/{$account_name} | Readability |
+| resourceId | /subscriptions/{$subscription}/resourcegroups/{$resource_name}/providers/$providers	 | Readability |
 
 ## Deploy a query-based metric alert
 
@@ -258,7 +319,7 @@ Edit it to include your specific scope, location, query, action groups, and othe
 
 To modify an existing rule in your subscription, edit the template file and repeat the deployment procedure.
 
-## [CLI](#tab/cli)
+## [CLI](#tab/cli-1)
 
 You can deploy a metric alert template using the CLI.
 
