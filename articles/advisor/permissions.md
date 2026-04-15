@@ -30,7 +30,7 @@ Review the following section to learn more about each role and the associated ac
 | Resource Contributor | X | X |
 | Resource Owner | X | X |
 
-### Roles to manage access to Advisor personalized recommendations
+### Roles to manage access to Advisor personalized or review recommendations
 | Role | View reviews | View review recommendations | Manage recommendation statuses |
 |:---|:--- |:--- |:--- |
 | Advisor Reviews Reader/Advisor Reviews Contributor | X |  |  |
