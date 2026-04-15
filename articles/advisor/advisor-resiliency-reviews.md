@@ -41,7 +41,6 @@ The following table defines the responsible parties for Advisor actions.
 |:--- |:--- |
 | Request a resiliency review | Customer using your Customer Success Account Manager or aligned Cloud Solution Architect. |
 | Analyze workload configuration, perform the review using the Well Architected Reliability Assessment, and prepare recommendations | Microsoft account team. Team members include Account Managers, Engineers, and Cloud Solution Architects. |
-
 | Manage recommendation status | Customer. Set the status of recommendation as: `Completed`, `Postponed`, or `Dismissed`. |
 | Implement recommendations | Customer. Engineers responsible for managing resources and the configuration. |
 | Facilitate implementation | Microsoft account team using your support contract. |
@@ -110,11 +109,8 @@ The priority of a recommendation is based on the impact value and urgency of the
 | Priority | Detail |
 |:--- |:--- |
 | Critical | The most important recommendations that can have a significant impact value on your Azure resources. Address these recommendations as soon as possible to avoid potential issues such as security breaches, data loss, or service outages. |
-
 | High | Recommendations that can improve the performance, reliability, or cost efficiency of your Azure resources. Address these recommendations in a timely manner to optimize your Azure deployments. |
-
 | Medium | Recommendations that can enhance the operational excellence or user experience of your Azure resources. Consider and implement these recommendations if they align with your business goals and requirements. |
-
 | Low | Recommendations that can provide extra benefits or insights for your Azure resources. Review and implement these recommendations if they're relevant and feasible for your scenario. |
 | Informational | Recommendations that can help you learn more about the features and capabilities of Azure. These recommendations don't require any action, but they help you discover new ways to use Azure. |
 
@@ -166,7 +162,8 @@ Recommendation status helps you decide what action to take. Review each availabl
 
 ## Review maintenance
 
-The engineers on your Microsoft account team track the results of your actions on resiliency reviews and continue to refine the recommendation reviews accordingly.
+The engineers on your Microsoft account team track the results of your actions on resiliency reviews and continue to refine the recommendation reviews accordingly.
+
 
 ## Related articles
 
