@@ -166,9 +166,14 @@ The following metrics are collected by default from each default target. All oth
 
 - `kube_job_status_succeeded`
 - `kube_job_spec_completions`
+- `kube_daemonset_status_current_number_scheduled`
 - `kube_daemonset_status_desired_number_scheduled`
+- `kube_daemonset_status_number_misscheduled`
 - `kube_daemonset_status_number_ready`
 - `kube_deployment_status_replicas_ready`
+- `kube_persistentvolumeclaim_access_mode`
+- `kube_persistentvolumeclaim_labels`
+- `kube_persistentvolume_status_phase`
 - `kube_pod_container_status_last_terminated_reason`
 - `kube_pod_container_status_waiting_reason`
 - `kube_pod_container_status_restarts_total`
@@ -202,6 +207,7 @@ The following metrics are collected by default from each default target. All oth
 - `kube_pod_container_info`
 - `kube_resource_labels` (ex - kube_pod_labels, kube_deployment_labels)
 - `kube_resource_annotations` (ex - kube_pod_annotations, kube_deployment_annotations)
+- `kubelet_volume_stats_inodes_free`
 
 #### nodeexporter
 
