@@ -25,7 +25,7 @@ OTel is a vendor-neutral, open-source standard for collecting and exporting tele
 ## App Center retirement timeline
 
 - **March 31, 2025**: App Center end of support (except Analytics & Diagnostics).
-- **June 30, 2026**: App Center Analytics & Diagnostics end of support (telemetry ingestion).
+- **March 31, 2027**: App Center Analytics & Diagnostics end of support (telemetry ingestion).
 
 ## Migrate to Azure Monitor
 
