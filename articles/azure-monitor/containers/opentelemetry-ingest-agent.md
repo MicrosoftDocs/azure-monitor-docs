@@ -136,9 +136,9 @@ You might need to alter your OTLP exporter to separate metrics versus logs and t
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
-Example environment variable configuration:
+#### Example environment variable configuration
 
-`microsoft.applicationId` is required if using App Insights based DCR.
+Here's an example configuration for setting environment variables. `microsoft.applicationId` is required if using App Insights based DCR.
 
 ```bash
 export OTEL_EXPORTER_OTLP_METRICS_ENDPOINT="http://localhost:4317"
