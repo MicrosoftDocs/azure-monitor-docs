@@ -43,7 +43,7 @@ Authorization: Bearer <access-token>
 
 # [CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using az rest](includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using az rest](../fundamentals/includes/cmd-using-rest-az.md)]
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"

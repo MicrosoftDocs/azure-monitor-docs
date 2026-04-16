@@ -42,7 +42,7 @@ Content-Type: application/json
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using az rest](includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using az rest](../fundamentals/includes/cmd-using-rest-az.md)]
 
 ```azurecli
 subscription="{{subscription}}"
@@ -65,7 +65,7 @@ az rest \
 
 # [PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using Invoke-RestMethod](includes/cmd-using-rest-ps.md)]
+[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../fundamentals/includes/cmd-using-rest-ps.md)]
 
 ```azurepowershell
 $subscriptionId = "{{subscription}}"
@@ -159,7 +159,7 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
 
 ## Deploy a query-based metric alert
 
-## [Portal](#tab/portal-1)
+# [Portal](#tab/portal-1)
 
 > [!NOTE]
 > You can only select one resource type at a time in the Azure portal. For example, you can't select virtual machines and Kubernetes services.
@@ -192,7 +192,7 @@ From the *Create an alert rule* page:
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
 
-## [Azure CLI](#tab/cli-1)
+# [Azure CLI](#tab/cli-1)
 
 You can deploy a metric alert template using the CLI.
 
@@ -242,7 +242,7 @@ You can deploy a metric alert template using the PowerShell.
 
     `Get-AzResource -ResourceId "/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>"`
 
-# [Bicep & ARM (JSON)](#tab/templates-1)
+# [ARM (JSON) & Bicep](#tab/templates-1)
 
 You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
 
@@ -292,8 +292,8 @@ This feature simplifies the process of granting permissions to your managed iden
 
 For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
 
-* *Owner* 
-* *User Access Administrator* 
+* *Owner*
+* *User Access Administrator*
 * A custom role with *Microsoft.Authorization/roleAssignments/write* permission
 * [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
 
@@ -328,9 +328,9 @@ A new System Assigned MI is created with the rule.
 
 To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
 
-To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property. 
+To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
 
-The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired. 
+The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired.
 
 > [!NOTE]
 > The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
@@ -370,7 +370,7 @@ The system locates the Workspace where the resource metrics reside. The rule que
 
 You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
-For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list. Example: 
+For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list. Example:
 
 * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
 * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
@@ -413,7 +413,7 @@ You can view query-based metric alert rules in the Azure portal together with al
 ## Modify a query-based alert
 
 > [!NOTE]
-> * To modify an existing rule in your subscription using Azure CLI or PowerShell, run the command or cmdlet again. 
+> * To modify an existing rule in your subscription using Azure CLI or PowerShell, run the command or cmdlet again.
 > * To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
 
 edit the template file and repeat the deployment procedure.
@@ -424,5 +424,5 @@ To edit a query-based metric alert rule in the Azure portal:
 1. Select **Alerts**. A listing of all the alerts you have access to appears.
 1. Select the alert you want to work with. The alert properties screen appears.
 1. Select **Go to alert rule**. The alert rule screen appears.
-1. Select **Edit**. The alert editing screen appears. 
+1. Select **Edit**. The alert editing screen appears.
 1. Continue as you would while creating a new alert rule.
