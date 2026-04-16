@@ -27,8 +27,8 @@ You can enable resource-centric stamping and access for a workspace using one of
 # [REST](#tab/rest)
 
 ```
-PUT https://management.azure.com/subscriptions/{{subscription}}/resourcegroups/{{resource_name}}/providers/microsoft.monitor/accounts/{{account_name}}?api-version=2025-05-03-preview
-Authorization: Bearer {{token}}
+PUT https://management.azure.com/subscriptions/{subscription}/resourcegroups/{resource_name}/providers/microsoft.monitor/accounts/{account_name}?api-version=2025-05-03-preview
+Authorization: Bearer {token}
 Content-Type: application/json
 {
   "location": "eastus",
@@ -42,12 +42,12 @@ Content-Type: application/json
 
 # [Azure CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using az rest](../fundamentals/includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
 
 ```azurecli
-subscription="{{subscription}}"
-resourceGroup="{{resource_name}}"
-accountName="{{account_name}}"
+subscription="{subscription}"
+resourceGroup="{resource_name}"
+accountName="{account_name}"
 
 az rest \
   --method put \
@@ -65,34 +65,36 @@ az rest \
 
 # [PowerShell](#tab/powershell)
 
-[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../fundamentals/includes/cmd-using-rest-ps.md)]
+[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
 
 ```azurepowershell
-$subscriptionId = "{{subscription}}"
-$resourceGroup  = "{{resource_name}}"
-$accountName    = "{{account_name}}"
+$subscription = "{subscription}"
+$resource_name = "{resource_name}"
+$account_name = "{account_name}"
+$token = "{token}"
+$api_version = "2025-10-03-preview"
 
-$token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
+$uri = "https://management.azure.com/subscriptions/$subscription/resourceGroups/$resource_name/providers/Microsoft.Monitor/accounts/$account_name?api-version=$api_version"
 
-$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.Monitor/accounts/$accountName?api-version=2025-05-03-preview"
+$headers = @{
+    Authorization = "Bearer $token"
+    "Content-Type" = "application/json"
+}
 
 $body = @{
-    location   = "eastus"
+    location = "eastus"
     properties = @{
         metrics = @{
             enableAccessUsingResourcePermissions = $true
         }
     }
-} | ConvertTo-Json -Depth 10
+} | ConvertTo-Json -Depth 5
 
 Invoke-RestMethod `
-  -Method Put `
-  -Uri $uri `
-  -Headers @{
-      Authorization = "Bearer $token"
-      "Content-Type" = "application/json"
-  } `
-  -Body $body
+    -Method Put `
+    -Uri $uri `
+    -Headers $headers `
+    -Body $body
 ```
 
 # [ARM (JSON) & Bicep](#tab/templates)

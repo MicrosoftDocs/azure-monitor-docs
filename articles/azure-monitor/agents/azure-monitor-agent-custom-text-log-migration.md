@@ -43,7 +43,7 @@ Authorization: Bearer <access-token>
 
 # [CLI](#tab/cli)
 
-[!INCLUDE [Azure CLI using az rest](../fundamentals/includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -79,7 +79,7 @@ Invoke-AzOperationalInsightsMigrateTable `
 | providers | Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate | Readability |
 | resourceId | /subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers | Readability |
 
-\* When you use a dedicated Azure CLI command or Azure PowerShell cmdlet, you typically don't need to include the subscription ID in the command itself, because the command uses your current Azure subscription. If you need to target a different subscription, switch the active subscription first by using `az account set --subscription <subscription>` or `Set-AzContext -Subscription <subscription>`.
+\* When you use a dedicated Azure CLI command or Azure PowerShell cmdlet, you typically don't need to include the subscription ID in the command itself, because the command uses your current Azure subscription. If you need to target a different subscription, switch the active subscription first by using `az account set --subscription <subscription>` in CLI or `Set-AzContext -Subscription <subscription>` using PowerShell.
 
 3. Discontinue MMA custom text log collection and start using the AMA custom text log.
 

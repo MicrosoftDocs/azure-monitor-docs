@@ -47,7 +47,7 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 
 1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
 
-# [API](#tab/api-1)
+# [REST](#tab/rest-1)
 
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
@@ -58,7 +58,41 @@ PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/
 Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
 
 ```json
- {
+{
+    "properties": {
+        "schema": {
+            "name": "table_name_CL",
+            "columns": [
+                {"name": "TimeGenerated",
+                 "type": "datetime"},
+                {"name": "StringProperty",
+                 "type": "string"},
+                {"name": "IntProperty",
+                 "type": "int"},
+                {"name": "LongProperty",
+                 "type": "long"},
+                {"name": "RealProperty",
+                 "type": "real"},
+                {"name": "BooleanProperty",
+                 "type": "boolean"},
+                {"name": "GuidProperty",
+                 "type": "guid"},
+                {"name": "DateTimeProperty",
+                 "type": "datetime"}
+            ]
+        },
+        "totalRetentionInDays": 365,
+        "plan": "Auxiliary"
+    }
+}
+```
+
+**Example:**
+
+```rest
+PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{tablename_CL}?api-version={api-version}
+Authorization: Bearer {token}
+{
     "properties": {
         "schema": {
             "name": "table_name_CL",
@@ -91,7 +125,257 @@ Provide this payload as the body of your request. Update the table name and adju
 > * The `TimeGenerated` column only supports the ISO 8601 format with 6 decimal places for precision (microseconds). For more information, see [supported ISO 8601 datetime format](/azure/data-explorer/kusto/query/scalar-data-types/datetime#iso-8601).
 > * Tables with the Auxiliary plan don't support columns with dynamic data.
 
+# [Azure CLI](#tab/cli-1)
+
+```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroup"
+workspaceName="myWorkspace"
+tablename_CL="myTablename_CL"
+apiVersion="{api-version}"
+providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tablename_CL"
+resourceId="PUT https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+
+az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @tables.json
+
+// tables.json
+```json
+{
+  "properties": {
+    "schema": {
+      "name": "table_name_CL",
+      "columns": [
+        {
+          "name": "TimeGenerated",
+          "type": "datetime"
+        },
+        {
+          "name": "StringProperty",
+          "type": "string"
+        },
+        {
+          "name": "IntProperty",
+          "type": "int"
+        },
+        {
+          "name": "LongProperty",
+          "type": "long"
+        },
+        {
+          "name": "RealProperty",
+          "type": "real"
+        },
+        {
+          "name": "BooleanProperty",
+          "type": "boolean"
+        },
+        {
+          "name": "GuidProperty",
+          "type": "guid"
+        },
+        {
+          "name": "DateTimeProperty",
+          "type": "datetime"
+        }
+      ]
+    },
+    "totalRetentionInDays": 365,
+    "plan": "Auxiliary"
+  }
+}
+```
+
+# [PowerShell](#tab/powershell-1)
+
+```powershell
+$body = @'
+{
+  "properties": {
+    "schema": {
+      "name": "{table_name_CL}",
+      "columns": [
+        {
+          "name": "TimeGenerated",
+          "type": "datetime"
+        },
+        {
+          "name": "StringProperty",
+          "type": "string"
+        },
+        {
+          "name": "IntProperty",
+          "type": "int"
+        },
+        {
+          "name": "LongProperty",
+          "type": "long"
+        },
+        {
+          "name": "RealProperty",
+          "type": "real"
+        },
+        {
+          "name": "BooleanProperty",
+          "type": "boolean"
+        },
+        {
+          "name": "GuidProperty",
+          "type": "guid"
+        },
+        {
+          "name": "DateTimeProperty",
+          "type": "datetime"
+        }
+      ]
+    },
+    "totalRetentionInDays": 365,
+    "plan": "Auxiliary"
+  }
+}
+'@
+
+Invoke-RestMethod `
+  -Method PUT `
+  -Uri 'https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name_CL}?api-version=2025-07-01' `
+  -Headers @{
+    Authorization = "Bearer $((Get-AzAccessToken -ResourceUrl 'https://management.azure.com/').Token)"
+    'Content-Type' = 'application/json'
+  } `
+  -Body $body
+```
+
+# [ARM (JSON) & Bicep](#tab/templates-1)
+
+**ARM (JSON)**
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspace_name": {
+      "type": "string",
+      "defaultValue": "{workspace_name}"
+    },
+    "table_name_CL": {
+      "type": "string",
+      "defaultValue": "{table_name_CL}"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/tables",
+      "apiVersion": "2025-07-01",
+      "name": "[format('{0}/{1}', parameters('workspace_name'), parameters('table_name_CL'))]",
+      "properties": {
+        "plan": "Auxiliary",
+        "totalRetentionInDays": 365,
+        "schema": {
+          "name": "[parameters('table_name_CL')]",
+          "columns": [
+            {
+              "name": "TimeGenerated",
+              "type": "dateTime"
+            },
+            {
+              "name": "StringProperty",
+              "type": "string"
+            },
+            {
+              "name": "IntProperty",
+              "type": "int"
+            },
+            {
+              "name": "LongProperty",
+              "type": "long"
+            },
+            {
+              "name": "RealProperty",
+              "type": "real"
+            },
+            {
+              "name": "BooleanProperty",
+              "type": "boolean"
+            },
+            {
+              "name": "GuidProperty",
+              "type": "guid"
+            },
+            {
+              "name": "DateTimeProperty",
+              "type": "dateTime"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
+```
+
+**Bicep**
+
+```bicep
+resource workspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
+  name: '{workspace_name}'
+}
+
+resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
+  parent: workspace
+  name: '{table_name_CL}'
+  properties: {
+    plan: 'Auxiliary'
+    totalRetentionInDays: 365
+    schema: {
+      name: '{table_name_CL}'
+      columns: [
+        {
+          name: 'TimeGenerated'
+          type: 'dateTime'
+        }
+        {
+          name: 'StringProperty'
+          type: 'string'
+        }
+        {
+          name: 'IntProperty'
+          type: 'int'
+        }
+        {
+          name: 'LongProperty'
+          type: 'long'
+        }
+        {
+          name: 'RealProperty'
+          type: 'real'
+        }
+        {
+          name: 'BooleanProperty'
+          type: 'boolean'
+        }
+        {
+          name: 'GuidProperty'
+          type: 'guid'
+        }
+        {
+          name: 'DateTimeProperty'
+          type: 'dateTime'
+        }
+      ]
+    }
+  }
+}
+```
+
 ---
+
+| Variable | Example value |
+|----------|---------------|
+| subscriptionId \* | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
+| resourceGroupName | myResourceGroup |
+| workspaceName | myWorkspace |
+| tableName_CL | myTable_CL |
+| apiVersion | {api-version} |
 
 ## Send data to a table with the Auxiliary plan
 
