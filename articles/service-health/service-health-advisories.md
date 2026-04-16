@@ -2,7 +2,7 @@
 title: Service Health advisories
 description: This article describes how to view and use the Health advisories pane in Azure Service Health
 ms.topic: how-to
-ms.date: 03/26/2026
+ms.date: 04/16/2026
 ---
 
 # Health advisories 
@@ -22,9 +22,15 @@ These advisories are communicated at least 90 days in advance, except in urgent 
 
 Select the **Issue name** link to open the tabs with the information you need.
 
+<!--
 >[!Note]
 >Service Health advisories are displayed in the pane for up to 28 days if they are still active and if the `impactMitigationTime` is in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
 >For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
+-->
+
+>[!NOTE]
+> The panel displays service health history events for 90 days. After it meets the criteria of `complete`, `resolved`, or `past due`, it's moved to the Health history tab. This storage includes active problems, scheduled activities, notifications about changes requiring user attention, and alerts related to vulnerabilities or compliance issues.<br>
+>For retirements the data is stored for 4.5 years and can be accessed through REST API. For more information regarding Service health advisories from ARG, see [Resource graph sample queries](resource-graph-samples.md). This resource provides guidance on how to utilize the available queries.
 
 
 ## Who can view Health advisories
