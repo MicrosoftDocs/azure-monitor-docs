@@ -95,6 +95,56 @@ Invoke-RestMethod `
   -Body $body
 ```
 
+# [ARM (JSON) & Bicep](#tab/templates)
+
+**ARM (JSON)**
+
+```json
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "accountName": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Monitor/accounts",
+      "apiVersion": "2025-05-03-preview",
+      "name": "[parameters('accountName')]",
+      "location": "[parameters('location')]",
+      "properties": {
+        "metrics": {
+          "enableAccessUsingResourcePermissions": true
+        }
+      }
+    }
+  ]
+}
+```
+
+**Bicep**
+
+```bicep
+param accountName string
+param location string = resourceGroup().location
+
+resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
+  name: accountName
+  location: location
+  properties: {
+    metrics: {
+      enableAccessUsingResourcePermissions: true
+    }
+  }
+}
+```
+
 ---
 
 | Variable | Example value | Purpose |
@@ -109,7 +159,7 @@ Invoke-RestMethod `
 
 ## Deploy a query-based metric alert
 
-## [Azure portal](#tab/portal)
+## [Portal](#tab/portal-1)
 
 > [!NOTE]
 > You can only select one resource type at a time in the Azure portal. For example, you can't select virtual machines and Kubernetes services.
@@ -142,35 +192,57 @@ From the *Create an alert rule* page:
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
 
-## View query-based alerts in the Azure portal
+## [Azure CLI](#tab/cli-1)
 
-### View fired query-based metric alerts
+You can deploy a metric alert template using the CLI.
 
-You can view fired and resolved query-based metric alerts in the Azure portal together with all other alert types:
+1. Open a terminal or command prompt.
 
-1.	On the Monitor menu in the Azure portal, select **Alerts**.
-1.	If *Monitor service* doesn't appear as a filter option, select **Add Filter** and add it.
-1.	Set the **Monitor service filter** to *Metric query*.
-1.	Select the **alert name** to view the details of a specific fired or resolved alert.
+1. Sign in / authenticate to Azure.
 
-You can also view alerts fired for a specific resource. On the resource  menu in the Azure portal, select Alerts. You can then filter for the Metric Query monitoring service.
+1. Set the subscription to the one you want to use, either with the subscription name or the ID.
 
-### View alert rule details in the Azure portal
+    * Change the active subscription using the subscription name.
+        `az account set --subscription "My Demos"`
 
-You can view query-based metric alert rules in the Azure portal together with all other alert rules. Filter for only query-based metric rules, and set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
+    * Change the active subscription using the subscription ID.
+        `az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
 
-## Edit a rule in the Azure portal
+1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
 
-To edit a query-based metric alert rule in the Azure portal:
+    `az deployment group create --name ExampleDeployment --resource-group ExampleGroup --template-file <path-to-template> --parameters storageAccountType=Standard_GRS`
 
-1. From the home screen in the Azure portal, search for or select **Monitor**. The Azure Monitor home screen appears.
-1. Select **Alerts**. A listing of all the alerts you have access to appears.
-1. Select the alert you want to work with. The alert properties screen appears.
-1. Select **Go to alert rule**. The alert rule screen appears.
-1. Select **Edit**. The alert editing screen appears. 
-1. Continue as you would while creating a new alert rule.
+1. (Optional) Check updated rule using the name you set in the template.
 
-## [ARM & Bicep templates](#tab/arm)
+    `az resource show --ids /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>`
+
+# [PowerShell](#powershell-1)
+
+You can deploy a metric alert template using the PowerShell.
+
+1. Open a PowerShell session.
+
+1. Sign in / authenticate to Azure.
+
+    `Connect-AzAccount`
+
+1. Set the subscription to the one you want to use, either with the subscription name or the ID.
+
+    * Change the active subscription using the subscription name.
+        `Set-AzContext -Subscription "My Demos"`
+
+    * Change the active subscription using the subscription ID.
+        `Set-AzContext -Subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
+
+1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
+
+    `New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleGroup -TemplateFile <path-to-template> -TemplateParameterObject @{ storageAccountType = 'Standard_GRS' }`
+
+1. (Optional) Check updated rule using the name you set in the template.
+
+    `Get-AzResource -ResourceId "/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>"`
+
+# [Bicep & ARM (JSON)](#tab/templates-1)
 
 You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
 
@@ -209,7 +281,7 @@ Create and configure the user-assigned managed identity with permissions before 
 }
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
 
 ### System assigned managed identity
@@ -222,7 +294,7 @@ For automatic role assignment to succeed, you must have one of the following rol
 
 * *Owner* 
 * *User Access Administrator* 
-* A custom role with *Microsoft.Authorization/roleAssignments/write* permission 
+* A custom role with *Microsoft.Authorization/roleAssignments/write* permission
 * [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
 
 > [!NOTE]
@@ -254,7 +326,7 @@ A new System Assigned MI is created with the rule.
 
 ## Query-based rule conditions
 
-To configure a Query-based metric alert rules, the condition property `odata.type`  should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
 
 To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property. 
 
@@ -271,23 +343,23 @@ Query-based metric alert rule support two types of query scope:
 
 You can query metrics emitted to any Workspace by:
 
-* a specific Azure resource, or by multiple resources from the same subscription or 
-* a resource group such as Azure Kubernetes clusters (AKS) or 
+* a specific Azure resource, or by multiple resources from the same subscription or
+* a resource group such as Azure Kubernetes clusters (AKS) or
 * a Virtual Machine (VM).
 
 For resource-centric rules, the following scope options are supported:
 
-* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list. Example: 
+* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
     * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
 
-* A resource group - include the resource group ID in the Scopes[] list. Example: 
+* A resource group - include the resource group ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
     * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
 
-* A subscription - include the subscription ID in the Scopes[] list. Example: 
+* A subscription - include the subscription ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>"]`
     * Bicep: `scopes: ['/subscriptions/<subscription-id>']`
@@ -305,7 +377,7 @@ For workspace scope, include the Workspace Azure Resource Manager ID in the Scop
 
 The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 
-### ARM & Bicep template examples
+### ARM (JSON) & Bicep template examples
 
 The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
 
@@ -319,36 +391,38 @@ Edit it to include your specific scope, location, query, action groups, and othe
 
 [!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
 
-## Modify a query-based alert
-
-To modify an existing rule in your subscription, edit the template file and repeat the deployment procedure.
-
-## [CLI](#tab/cli-1)
-
-You can deploy a metric alert template using the CLI.
-
-1.	Open a terminal or command prompt.
-
-1.	Sign in /authenticate to Azure.
-
-1.	Set the subscription to the one you want to use, either with the subscription name or the ID.
-
-    * Change the active subscription using the subscription name.
-        `az account set --subscription "My Demos"`
-
-    * Change the active subscription using the subscription ID.
-        `az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
-
-1.	[Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
-
-    `az deployment group create --name ExampleDeployment --resource-group ExampleGroup --template-file <path-to-template> --parameters storageAccountType=Standard_GRS`
-
-1.	Check updated rule (Optional. Use the name you set in the template).
-
-    `az resource show --ids /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>`
-
 ---
 
-## View or modify query-based metric alerts in the portal
+## View query-based alerts in the Azure portal
 
-To view or modify query-based metric alerts in the Azure portal, see the [Azure portal tab](#view-query-based-alerts-in-the-azure-portal) of this document.
+### View fired query-based metric alerts
+
+You can view fired and resolved query-based metric alerts in the Azure portal together with all other alert types:
+
+1. On the Monitor menu in the Azure portal, select **Alerts**.
+1. If *Monitor service* doesn't appear as a filter option, select **Add Filter** and add it.
+1. Set the **Monitor service filter** to *Metric query*.
+1. Select the **alert name** to view the details of a specific fired or resolved alert.
+
+You can also view alerts fired for a specific resource. On the resource menu in the Azure portal, select Alerts. You can then filter for the Metric Query monitoring service.
+
+### View alert rule details in the Azure portal
+
+You can view query-based metric alert rules in the Azure portal together with all other alert rules. Filter for only query-based metric rules, and set the **Signal types** filter to *Metrics* to see all metric alert rules, including query-based rules.
+
+## Modify a query-based alert
+
+> [!NOTE]
+> * To modify an existing rule in your subscription using Azure CLI or PowerShell, run the command or cmdlet again. 
+> * To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
+
+edit the template file and repeat the deployment procedure.
+
+To edit a query-based metric alert rule in the Azure portal:
+
+1. From the home screen in the Azure portal, search for or select **Monitor**. The Azure Monitor home screen appears.
+1. Select **Alerts**. A listing of all the alerts you have access to appears.
+1. Select the alert you want to work with. The alert properties screen appears.
+1. Select **Go to alert rule**. The alert rule screen appears.
+1. Select **Edit**. The alert editing screen appears. 
+1. Continue as you would while creating a new alert rule.
