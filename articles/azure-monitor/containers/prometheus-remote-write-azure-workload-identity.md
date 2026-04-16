@@ -7,15 +7,15 @@ ms.date: 09/18/2025
 ms.reviewer: rapadman
 ---
 
-# Send Prometheus data to Azure Monitor using Microsoft Entra Workload ID authentication
+# Send Prometheus data to Azure Monitor by using Microsoft Entra Workload ID authentication
 
 > [!IMPORTANT]
-> You can use remote write with workload identity by configuring Prometheus using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). 
+> You can use remote write with workload identity by configuring Prometheus by following the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). Effective March 31, 2027, Azure Monitor will deprecate the sidecar-based remote-write solution for sending Prometheus metrics to Azure Monitor Workspace.
 
-This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster using Microsoft Entra Workload ID authentication using the Azure Monitor sidecar container.
+This article describes how to set up [remote write](../metrics/prometheus-metrics-overview.md) to send data from your Azure Monitor managed Prometheus cluster by using Microsoft Entra Workload ID authentication and using the Azure Monitor sidecar container.
 
 > [!NOTE]
-> If you are using the workload identity, we recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using user-workload identity](../metrics/prometheus-remote-write.md) to learn more. The steps below use the Azure Monitor sidecar container, which is not needed if you directly configure Prometheus remote-write.
+> If you're using the workload identity, configure Prometheus running on your Kubernetes cluster to remote-write directly into Azure Monitor Workspace. To learn more, see [Send Prometheus data to Azure Monitor using user-workload identity](../metrics/prometheus-remote-write.md) to learn more. The steps in this article use the Azure Monitor sidecar container, which isn't needed if you directly configure Prometheus remote-write. The sidecar will not be supported after March 31, 2027.
 
 ## Prerequisites
 
