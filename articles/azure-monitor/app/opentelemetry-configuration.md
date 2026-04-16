@@ -177,7 +177,7 @@ Use one of the following two ways to configure the connection string:
 # [Node.js](#tab/nodejs)
 
 > [!TIP]
-> * **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://learn.microsoft.com/en-us/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript/
+> * **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://learn.microsoft.com/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript/
 
 Use one of the following two ways to configure the connection string:
 
