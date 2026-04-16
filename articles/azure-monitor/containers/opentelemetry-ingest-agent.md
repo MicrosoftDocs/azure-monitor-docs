@@ -95,8 +95,9 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. In the Azure portal, search for **Deploy a custom template** and select it.
 1. Select **Build your own template in the editor**.
 1. Copy the template content from the [Azure Monitor Community repository](https://github.com/microsoft/AzureMonitorCommunity/blob/master/Azure%20Services/Azure%20Monitor/OpenTelemetry/OTLP_DCE_DCR_ARM_Template.txt).
-1. Paste the template into the editor and update the parameters with your workspace resource IDs and (optionally) Application Insights resource ID.
-1. In this example, the stream name from the community DCR template is used to create the URL. You can optionally change the stream name in the DCR definition and match it when creating the DCE name. The stream name should start with `Custom-Metrics-` followed by a letter and then any combination of alphanumeric characters, `-`, and `_`.
+1. Paste the template into the editor and update the parameters with your workspace resource IDs and (optionally) Application Insights resource ID.  
+    > [!NOTE]
+    > The stream name from the community DCR template is used to create the URL. You can *optionally* change the stream name in the DCR definition and match it when creating the DCE name. The stream name should start with `Custom-Metrics-` followed by a letter and then any combination of alphanumeric characters, `-`, and `_`.
 1. Set the location to match your workspace region.
 1. Review and create the deployment.
 1. After deployment completes, go to the created DCR and copy its resource ID from the **Overview** page.
