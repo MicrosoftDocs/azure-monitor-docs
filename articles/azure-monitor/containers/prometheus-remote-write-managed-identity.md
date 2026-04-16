@@ -224,4 +224,5 @@ Use PromQL queries in Grafana and verify that the results return expected data. 
 
 ## Troubleshoot remote write 
 
-If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshoot remote write](../containers/prometheus-remote-write-troubleshooting.md) for common issues and solutions. 
+If remote data isn't appearing in your Azure Monitor workspace, see [Troubleshooting remote write](/azure/azure-monitor/containers/prometheus-remote-write-troubleshooting) and [Azure Monitor managed service for Prometheus remote write](../metrics/prometheus-remote-write.md#troubleshoot).
+
