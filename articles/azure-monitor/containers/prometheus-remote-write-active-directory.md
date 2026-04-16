@@ -6,15 +6,15 @@ ms.custom: devx-track-azurecli
 ms.date: 09/2/2025
 ---
 
-# Send Prometheus data to Azure Monitor using Microsoft Entra authentication
+# Send Prometheus data to Azure Monitor by using Microsoft Entra authentication
 
 > [!IMPORTANT]
-> This article describes how to set up [remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md) using Entra ID authentication and a side car container provided by Azure Monitor. You can use remote write with Entra ID without using a sidecar using the guidance at [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md).
+> This article describes how to set up [remote write in Azure Monitor managed service for Prometheus](../metrics/prometheus-metrics-overview.md) by using Entra ID authentication and a sidecar container provided by Azure Monitor. To use remote write with Entra ID without using a sidecar, see [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md). Effective March 31, 2027, Azure Monitor will deprecate the sidecar-based remote-write solution for sending Prometheus metrics to Azure Monitor Workspace.
 
-This article describes how to set up [remote write](../metrics/prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using Microsoft Entra authentication and a side car container that Azure Monitor provides. Note that you can also directly configure remote-write in the Prometheus configuration for the same.
+This article describes how to set up [remote write](../metrics/prometheus-remote-write.md) to send data from a self-managed Prometheus server running in your Azure Kubernetes Service (AKS) cluster or Azure Arc-enabled Kubernetes cluster by using Microsoft Entra authentication and a sidecar container that Azure Monitor provides. You can also directly configure remote write in the Prometheus configuration for the same.
 
 > [!NOTE]
-> We recommend that you directly configure Prometheus running on your Kubernetes cluster to remote-write into Azure Monitor Workspace. See [Send Prometheus data to Azure Monitor using Microsoft Entra ID authentication](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write) to learn more. The steps below use the Azure Monitor side car container.
+> Configure Prometheus running on your Kubernetes cluster to remote write directly into Azure Monitor Workspace. For more information, see [Send Prometheus data to Azure Monitor using Microsoft Entra ID authentication](../essentials/prometheus-remote-write-virtual-machines.md#set-up-authentication-for-remote-write) to learn more. The steps in this article use the Azure Monitor sidecar container, which will no longer be supported after March 31, 2027.
 
 ## Cluster configurations
 
