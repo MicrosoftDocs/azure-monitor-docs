@@ -2,7 +2,7 @@
 title: Configuring OpenTelemetry in Application Insights
 description: Learn how to configure OpenTelemetry (OTel) settings in Application Insights for .NET, Java, Node.js, and Python applications, including connection strings and sampling options.
 ms.topic: how-to
-ms.date: 12/10/2025
+ms.date: 04/08/2026
 ms.devlang: csharp
 # ms.devlang: csharp, javascript, typescript, python
 ms.custom:
@@ -129,7 +129,7 @@ Use one of the following three ways to configure the connection string:
     }
     ```
 
-    You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.5.jar` is located.
+    You can also set the connection string by specifying a file to load it from. *The file should contain only the connection string and nothing else.* If you specify a relative path, it resolves relative to the directory where `applicationinsights-agent-3.7.8.jar` is located.
 
     ```json
     {
@@ -145,7 +145,7 @@ Use one of the following three ways to configure the connection string:
 * Add `applicationinsights.connection.string` as a system property.
 
     ```console
-    java -javaagent:/path/to/applicationinsights-agent-3.7.5.jar \
+    java -javaagent:/path/to/applicationinsights-agent-3.7.8.jar \
          -Dapplicationinsights.connection.string="<YOUR-CONNECTION-STRING>" \
          -jar myapp.jar
     ```
@@ -339,7 +339,7 @@ Use one of the following three ways to configure the cloud role name and cloud r
 * Add `applicationinsights.role.name` and `applicationinsights.role.instance` as system properties.
 
     ```console
-    java -javaagent:/path/to/applicationinsights-agent-3.7.5.jar \
+    java -javaagent:/path/to/applicationinsights-agent-3.7.8.jar \
          -Dapplicationinsights.role.name="my-cloud-role-name" \
          -Dapplicationinsights.role.instance="my-cloud-role-instance" \
          -jar myapp.jar
@@ -452,22 +452,22 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** â€” sampler type
+    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
+    * `microsoft.rate_limited` â€” cap traces per second.
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 # [.NET](#tab/net)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** â€” sampler type
+    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
+    * `microsoft.rate_limited` â€” cap traces per second.
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 # [Java](#tab/java)
@@ -479,19 +479,19 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 **Fixed-percentage sampling**
 
-* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`** — sampling percentage
+* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`** â€” sampling percentage
     * Value is a percentage (for example, `33.333` = ~33.333%).
 
 **Rate-limited sampling**
 
-* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** — maximum requests per second
+* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** â€” maximum requests per second
     * For example, `1.5`.
 
 For configuration options and examples, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 # [Java native](#tab/java-native)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
+* **`OTEL_TRACES_SAMPLER`** â€” sampler type
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -499,19 +499,19 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 # [Node](#tab/nodejs)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** â€” sampler type
+    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
+    * `microsoft.rate_limited` â€” cap traces per second.
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -519,21 +519,21 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 # [Python](#tab/python)
 
-* **`OTEL_TRACES_SAMPLER`** — sampler type
-    * `microsoft.fixed_percentage` — sample a fraction of traces.
-    * `microsoft.rate_limited` — cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** â€” sampler type
+    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
+    * `microsoft.rate_limited` â€” cap traces per second.
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -541,15 +541,15 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 ---
 
@@ -641,7 +641,7 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 # [Node.js](#tab/nodejs)
 
-Starting from 1.16.0, **rate‑limited sampling is the default**.
+Starting from 1.16.0, **rateâ€‘limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -674,7 +674,7 @@ const monitor = useAzureMonitor({
 
 # [Python](#tab/python)
 
-Starting from 1.8.6, **rate‑limited sampling is the default**.
+Starting from 1.8.6, **rateâ€‘limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -769,7 +769,7 @@ Java native doesn't support configuring sampling in a configuration file. To con
 
 # [Node.js](#tab/nodejs)
 
-Starting from 1.16.0, **rate‑limited sampling is the default**.
+Starting from 1.16.0, **rateâ€‘limited sampling is the default**.
 
 Set the sampling configuration in the *applicationinsights.json* file. This file is located under the root folder of the @azure/monitor-opentelemetry package installation folder, such as *node_modules/@azure/monitor-opentelemetry*. All `AzureMonitorOpenTelemetryClient` instances use these configuration values.
 

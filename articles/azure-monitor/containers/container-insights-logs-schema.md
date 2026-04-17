@@ -43,6 +43,9 @@ The following table highlights the key differences between using ContainerLogV2 
 ## Enable the ContainerLogV2 schema
 Enable the **ContainerLogV2** schema for a cluster either using the cluster's [log profile](./kubernetes-monitoring-enable.md) or [ConfigMap](./kubernetes-data-collection-configmap.md#configmap-settings). If both settings are enabled, the ConfigMap takes precedence. The `ContainerLog` table is used only when both are explicitly set to off.
 
+> [!IMPORTANT]
+> The ContainerLogV2 setting does not control whether data is collected or not. It only specifies which table the data is sent to when it's collected.
+
 Before you enable the **ContainerLogsV2** schema, you should assess whether you have any alert rules that rely on the **ContainerLog** table. Any such alerts need to be updated to use the new table. Run the following Azure Resource Graph query to scan for alert rules that reference the `ContainerLog` table.
 
 ```Kusto
