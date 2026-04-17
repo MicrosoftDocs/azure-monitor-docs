@@ -28,6 +28,13 @@ There are three resource types available for querying under Advisor resources. H
 
 These resource types are listed under a new table named as *AdvisorResources*, which you can also query in the Resource Graph Explorer in the Azure portal.
 
+## Recommendation state fields
+The `advisorresources` table includes fields that represent the lifecycle state of each recommendation. Use the following **consolidated state fields** when querying recommendation status:
+
+| Field | Description | Example values |
+| :-- | :-- | :-- |
+| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | New, Completed |
+
 ## Examples
 
 ### Get active cost recommendations
