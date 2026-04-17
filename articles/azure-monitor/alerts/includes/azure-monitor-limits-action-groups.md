@@ -3,7 +3,7 @@ ms.topic: include
 ms.date: 04/25/2023
 ---
 
-You can have an unlimited number of action groups in a subscription. (ARM resource group limits still apply [See more](azure/azure-resource-manager/management/resources-without-resource-group-limit)).
+You can have an unlimited number of action groups in a subscription. (ARM resource group limits still apply [See more](/azure/azure-resource-manager/management/resources-without-resource-group-limit)).
 
 | Resource | Default limit | Maximum limit |
 |----------|---------------|---------------|
@@ -21,7 +21,7 @@ You can have an unlimited number of action groups in a subscription. (ARM resour
 | Webhook | 10 webhook actions in an action group.<br>Maximum number of webhook calls is 1500 per minute per subscription. | Same as Default |
 
 #### Avoiding rate limits
-1. Deploy action groups across multiple regions - Regional limits apply per region. Distributing action groups across East US, West Europe, and Southeast Asia triples available capacity. ([All Action Group supported regions](azure/azure-monitor/alerts/action-groups#:~:text=live%2Dsite%20incidents.-,Regional,-The%20action%20group))
+1. Deploy action groups across multiple regions - Regional limits apply per region. Distributing action groups across East US, West Europe, and Southeast Asia triples available capacity. ([All Action Group supported regions](/azure/azure-monitor/alerts/action-groups#:~:text=live%2Dsite%20incidents.-,Regional,-The%20action%20group))
 2. Consolidate alert rules - Use multi-resource alerts instead of creating duplicate rules per resource.
 3. Use stateful alerts - Reduces notifications by alerting only on state changes.
 4. Tune evaluation frequency - Use longer intervals (5+ minutes) for non-critical alerts.
