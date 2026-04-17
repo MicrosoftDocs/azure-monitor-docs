@@ -145,7 +145,6 @@ The baselines in this article are measured under controlled conditions. The foll
 - The load generator runs in the same cluster but uses minimal resources (< 2 cores, < 2 GB memory), so the cluster capacity is effectively dedicated to pipeline pods.
 - Each test run scrapes the pipeline's internal Prometheus metrics to measure exact receive and export counts, and queries Log Analytics to verify end-to-end delivery. Pipeline received = exported = LA received (99.6–100%).
 - Memory figures are **working set** as reported by `kubectl top pods`.
-- Azure Monitor Pipeline config used is in [MyPipelineConfig.json](./MyPipelineConfig.json).
 
 <details>
 <summary>Sample syslog message (generic, used for Syslog Basic and Syslog Fully Formed)</summary>
