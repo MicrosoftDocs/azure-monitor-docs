@@ -52,7 +52,9 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
 
 ```http
-PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{tablename_CL}?api-version={api-version}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
+Authorization: Bearer {token}
+Content-Type: application/json
 ```
 
 Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
@@ -61,7 +63,7 @@ Provide this payload as the body of your request. Update the table name and adju
 {
     "properties": {
         "schema": {
-            "name": "table_name_CL",
+            "name": "myTable_CL",
             "columns": [
                 {"name": "TimeGenerated",
                  "type": "datetime"},
@@ -90,12 +92,13 @@ Provide this payload as the body of your request. Update the table name and adju
 **Example:**
 
 ```rest
-PUT https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{tablename_CL}?api-version={api-version}
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
 Authorization: Bearer {token}
+Content-Type: application/json
 {
     "properties": {
         "schema": {
-            "name": "table_name_CL",
+            "name": "myTable_CL",
             "columns": [
                 {"name": "TimeGenerated",
                  "type": "datetime"},
@@ -127,23 +130,26 @@ Authorization: Bearer {token}
 
 # [Azure CLI](#tab/cli-1)
 
+[!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
+
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 resourceGroupName="myResourceGroup"
 workspaceName="myWorkspace"
-tablename_CL="myTablename_CL"
-apiVersion="{api-version}"
-providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tablename_CL"
-resourceId="PUT https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+tableName_CL="myTable_CL"
+apiVersion="2025-07-01"
+providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
+resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
 
-az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @tables.json
+az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.json
+```
 
-// tables.json
 ```json
+// table.json
 {
   "properties": {
     "schema": {
-      "name": "table_name_CL",
+      "name": "myTable_CL",
       "columns": [
         {
           "name": "TimeGenerated",
@@ -187,12 +193,31 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @tables.
 
 # [PowerShell](#tab/powershell-1)
 
+[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
+
 ```powershell
-$body = @'
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$resourceGroupName = "myResourceGroup"
+$workspaceName = "myWorkspace"
+$tableName_CL = "myTable_CL"
+$apiVersion = "2025-07-01"
+$providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
+$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+
+Set-AzContext -Subscription $subscriptionId
+
+Invoke-AzRestMethod `
+  -Path "$resourceId?api-version=$apiVersion" `
+  -Method PUT `
+  -Payload (Get-Content -Path "./table.json" -Raw)
+```
+
+```json
+// table.json
 {
   "properties": {
     "schema": {
-      "name": "{table_name_CL}",
+      "name": "myTable_CL",
       "columns": [
         {
           "name": "TimeGenerated",
@@ -232,46 +257,26 @@ $body = @'
     "plan": "Auxiliary"
   }
 }
-'@
-
-Invoke-RestMethod `
-  -Method PUT `
-  -Uri 'https://management.azure.com/subscriptions/{subscription_id}/resourceGroups/{resource_group}/providers/Microsoft.OperationalInsights/workspaces/{workspace_name}/tables/{table_name_CL}?api-version=2025-07-01' `
-  -Headers @{
-    Authorization = "Bearer $((Get-AzAccessToken -ResourceUrl 'https://management.azure.com/').Token)"
-    'Content-Type' = 'application/json'
-  } `
-  -Body $body
 ```
 
-# [ARM (JSON) & Bicep](#tab/templates-1)
-
-**ARM (JSON)**
+# [ARM (JSON)](#tab/arm-1)
 
 ```json
 {
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
-  "parameters": {
-    "workspace_name": {
-      "type": "string",
-      "defaultValue": "{workspace_name}"
-    },
-    "table_name_CL": {
-      "type": "string",
-      "defaultValue": "{table_name_CL}"
-    }
+  "variables": {
+    "workspaceName": "myWorkspace",
+    "tableName_CL": "myTable_CL"
   },
   "resources": [
     {
       "type": "Microsoft.OperationalInsights/workspaces/tables",
       "apiVersion": "2025-07-01",
-      "name": "[format('{0}/{1}', parameters('workspace_name'), parameters('table_name_CL'))]",
+      "name": "[format('{0}/{1}', variables('workspaceName'), variables('tableName_CL'))]",
       "properties": {
-        "plan": "Auxiliary",
-        "totalRetentionInDays": 365,
         "schema": {
-          "name": "[parameters('table_name_CL')]",
+          "name": "[variables('tableName_CL')]",
           "columns": [
             {
               "name": "TimeGenerated",
@@ -306,28 +311,31 @@ Invoke-RestMethod `
               "type": "dateTime"
             }
           ]
-        }
+        },
+        "totalRetentionInDays": 365,
+        "plan": "Auxiliary"
       }
     }
   ]
 }
 ```
 
-**Bicep**
+# [Bicep](#tab/bicep)
 
 ```bicep
+var workspaceName = 'myWorkspace'
+var tableName_CL = 'myTable_CL'
+
 resource workspace 'Microsoft.OperationalInsights/workspaces@2025-07-01' existing = {
-  name: '{workspace_name}'
+  name: workspaceName
 }
 
 resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   parent: workspace
-  name: '{table_name_CL}'
+  name: tableName_CL
   properties: {
-    plan: 'Auxiliary'
-    totalRetentionInDays: 365
     schema: {
-      name: '{table_name_CL}'
+      name: tableName_CL
       columns: [
         {
           name: 'TimeGenerated'
@@ -363,19 +371,22 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
         }
       ]
     }
+    totalRetentionInDays: 365
+    plan: 'Auxiliary'
   }
 }
 ```
 
 ---
 
-| Variable | Example value |
-|----------|---------------|
-| subscriptionId \* | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e |
-| resourceGroupName | myResourceGroup |
-| workspaceName | myWorkspace |
-| tableName_CL | myTable_CL |
-| apiVersion | {api-version} |
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| host | management.azure.com | Implicit ARM endpoint |
+| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+| resourceGroupName | myResourceGroup | User input |
+| workspaceName | myWorkspace | User input |
+| tableName_CL | myTable_CL | User input |
+| apiVersion | 2025-07-01 | [Recent version](/rest/api/loganalytics/tables/create-or-update) |
 
 ## Send data to a table with the Auxiliary plan
 

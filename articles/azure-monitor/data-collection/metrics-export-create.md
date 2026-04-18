@@ -20,7 +20,6 @@ Using DCRs to export metrics provides the following advantages over diagnostic s
 * DCRs are more flexible and scalable compared to diagnostic settings.
 * End to end latency for DCRs is within 3 minutes, while diagnostic settings export latency is 6-10 minutes.
 
-
 > [!NOTE]
 > Use metrics export with DCRs for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Data plane Metrics Batch API query versus Metrics export](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
 

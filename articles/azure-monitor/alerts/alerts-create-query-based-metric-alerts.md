@@ -27,7 +27,7 @@ You can enable resource-centric stamping and access for a workspace using one of
 # [REST](#tab/rest)
 
 ```
-PUT https://management.azure.com/subscriptions/{subscription}/resourcegroups/{resource_name}/providers/microsoft.monitor/accounts/{account_name}?api-version=2025-05-03-preview
+PUT https://management.azure.com/subscriptions/{mySubscriptionId}/resourcegroups/{myResourceName}/providers/microsoft.monitor/accounts/{myAccountName}?api-version=2025-05-03-preview
 Authorization: Bearer {token}
 Content-Type: application/json
 {
@@ -208,7 +208,7 @@ You can deploy a metric alert template using the CLI.
         `az account set --subscription "My Demos"`
 
     * Change the active subscription using the subscription ID.
-        `az account set --subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
+        `az account set --subscription "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"`
 
 1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
 
@@ -218,7 +218,7 @@ You can deploy a metric alert template using the CLI.
 
     `az resource show --ids /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>`
 
-# [PowerShell](#powershell-1)
+# [PowerShell](#tab/powershell-1)
 
 You can deploy a metric alert template using the PowerShell.
 
@@ -234,7 +234,7 @@ You can deploy a metric alert template using the PowerShell.
         `Set-AzContext -Subscription "My Demos"`
 
     * Change the active subscription using the subscription ID.
-        `Set-AzContext -Subscription "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"`
+        `Set-AzContext -Subscription "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"`
 
 1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
 
@@ -255,33 +255,7 @@ Some of the required parameters are discussed in the following sections, and the
 
 ### User-assigned managed identity
 
-Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`, as in the following example:
-
-**ARM (JSON)**
-
-```json
-{
-    "identity": {
-        "type": "UserAssigned",
-        "userAssignedIdentities": {
-            "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>": {}
-        }
-    },
-}
-```
-
-**Bicep**
-
-```bicep
-{
-    identity: {
-        type: 'UserAssigned'
-        userAssignedIdentities: {
-            '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user-assigned-mi-name>': {}
-        }
-    }
-}
-```
+Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`.
 
 > [!NOTE]
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
@@ -300,31 +274,9 @@ For automatic role assignment to succeed, you must have one of the following rol
 * [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
 
 > [!NOTE]
-> If you try to create a rule using system-assigned AI and you don’t have permissions for automatic role assignment, the rule creation fails.
+> If you try to create a rule using system-assigned MI and you don’t have permissions for automatic role assignment, the rule creation fails.
 
-Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
-
-**ARM (JSON)**
-
-```json
-{
-    "identity": {
-        "type": "SystemAssigned"
-      }
-}
-```
-
-**Bicep**
-
-```bicep
-{
-    identity: {
-        type: 'SystemAssigned'
-      }
-}
-```
-
-A new System Assigned MI is created with the rule.
+Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned MI is created with the rule.
 
 ## Query-based rule conditions
 
@@ -354,16 +306,19 @@ For resource-centric rules, the following scope options are supported:
 * A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
+
     * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
 
 * A resource group - include the resource group ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
+
     * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
 
 * A subscription - include the subscription ID in the Scopes[] list. Example:
 
     * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>"]`
+
     * Bicep: `scopes: ['/subscriptions/<subscription-id>']`
 
 The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
