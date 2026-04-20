@@ -80,7 +80,7 @@ sections:
 
       - question: What infrastructure is required to deploy Azure Monitor pipeline?
         answer: |
-          Azure Monitor pipeline is designed to scale with your telemetry needs. You deploy it on an **Arc-enabled Kubernetes cluster**, and the size and configuration of the cluster depend on expected data volume, throughput, and resiliency requirements.
+          Azure Monitor pipeline is designed to scale with your telemetry needs. You deploy it on an Arc-enabled Kubernetes cluster, and the size and configuration of the cluster depend on expected data volume, throughput, and resiliency requirements.
 
           Using Azure Monitor pipeline sizing guidance, you can start with a small footprint for modest ingestion needs and scale up predictably as volume grows.
 

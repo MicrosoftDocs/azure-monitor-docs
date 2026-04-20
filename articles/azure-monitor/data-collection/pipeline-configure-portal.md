@@ -30,7 +30,7 @@ On the **Basics** tab, provide the following information to deploy the extension
 | Subscription | Azure subscription where the service creates the pipeline instance. |
 | Resource group | Resource group where the service creates the pipeline instance. |
 | Cluster name | Arc-enabled Kubernetes cluster where you install the pipeline. |
-| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is auto-populated if a custom location is created for the cluster, or you optionally select another custom location on the cluster. |
+| Custom location | Custom location for the Arc-enabled Kubernetes cluster. This value is autopopulated if a custom location is created for the cluster, or you optionally select another custom location on the cluster. |
 | Enable transport security (TLS) | Deploy the pipeline endpoints with TLS enabled so incoming traffic is encrypted in transit. This setting configures the deployment mode only. After deployment, complete the TLS configuration to choose the certificate management approach and TLS mode. For more information, see [Configure TLS](./pipeline-tls.md). |
 | Require client authentication within cluster | Require gateway and cluster-local clients to present client certificates when they connect to the pipeline. Use this option when you want mutual TLS (mTLS) for in-cluster or gateway-to-pipeline connections. |
 

@@ -22,11 +22,11 @@ Use these baselines alongside the [Azure Monitor pipeline overview](./pipeline-o
 
 Three pipeline configurations were tested, each representing a different level of processing:
 
-- **Syslog Basic** — Minimal processing. The raw syslog message is passed through to a custom Log Analytics table with just 3 columns: `TimeGenerated`, `Body` (the full syslog message as-is), and `SeverityText`. No parsing of the syslog header or payload.
+- **Syslog Basic.** Minimal processing. The raw syslog message is passed through to a custom Log Analytics table with just three columns: `TimeGenerated`, `Body` (the full syslog message as-is), and `SeverityText`. No parsing of the syslog header or payload.
 
-- **Syslog Fully Formed** — The pipeline parses the RFC 5424 syslog header and maps it into the standard [Syslog](/azure/azure-monitor/reference/tables/syslog) table schema with structured columns: `EventTime`, `Facility`, `SeverityLevel`, `Computer`, `HostName`, `HostIP`, `ProcessName`, `ProcessID`, `SyslogMessage`, etc.
+- **Syslog Fully Formed.** The pipeline parses the RFC 5424 syslog header and maps it into the standard [Syslog](/azure/azure-monitor/reference/tables/syslog) table schema with structured columns: `EventTime`, `Facility`, `SeverityLevel`, `Computer`, `HostName`, `HostIP`, `ProcessName`, `ProcessID`, `SyslogMessage`, etc.
 
-- **CEF Fully Formed** — The pipeline parses both the syslog header and the CEF payload inside it, mapping into the standard [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog) table schema with 90+ columns: `DeviceVendor`, `DeviceProduct`, `Activity`, `SourceIP`, `DestinationIP`, `DeviceAction`, `Protocol`, `RequestURL`, and many more.
+- **CEF Fully Formed.** The pipeline parses both the syslog header and the CEF payload inside it, mapping into the standard [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog) table schema with 90+ columns: `DeviceVendor`, `DeviceProduct`, `Activity`, `SourceIP`, `DestinationIP`, `DeviceAction`, `Protocol`, `RequestURL`, and many more.
 
 ## Measured Throughput
 
@@ -52,7 +52,7 @@ Since throughput scales linearly with CPU, the per-vCPU rate is the simplest way
 | Syslog Fully Formed | **~13K logs/sec**   |
 | CEF Fully Formed    | **~6K logs/sec**    |
 
-Multiply by cores per node to get per-replica throughput. Add 20–30% buffer for production workloads. To scale beyond a single node, add more replicas — each replica handles traffic independently.
+Multiply by cores per node to get per-replica throughput. Add 20–30% buffer for production workloads. To scale beyond a single node, add more replicas. Each replica handles traffic independently.
 
 ## Per-vCPU throughput baselines
 
@@ -167,12 +167,12 @@ The baselines in this article are measured under controlled conditions. The foll
 
 ## Known Limitations
 
-The following scenarios have not yet been measured and may affect throughput:
+The following scenarios haven't yet been measured and may affect throughput:
 
-- **TLS**: Current tests run with TLS disabled. Enabling TLS will add encryption overhead.
+- **TLS**: Current tests run with TLS disabled. Enabling TLS adds encryption overhead.
 - **Durable buffering**: Current tests run without disk-backed buffers. Enabling durable buffers adds disk I/O overhead but improves reliability.
-- **UDP transport**: The load generator could not saturate the pipeline over UDP, so UDP throughput numbers are not yet available.
-- **OTLP (gRPC)**: The load generator could not saturate the pipeline over OTLP either. Measured throughput was ≥29–33K logs/sec with pipeline CPU well below capacity.
+- **UDP transport**: The load generator couldn't saturate the pipeline over UDP, so UDP throughput numbers aren't yet available.
+- **OTLP (gRPC)**: The load generator couldn't saturate the pipeline over OTLP either. Measured throughput was ≥29–33K logs/sec with pipeline CPU well below capacity.
 
 
 ## Related articles
