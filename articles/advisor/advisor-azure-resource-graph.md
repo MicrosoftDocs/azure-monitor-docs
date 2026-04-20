@@ -33,7 +33,45 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 
 | Field | Description | Example values |
 | :-- | :-- | :-- |
-| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | New, Completed |
+| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | `New, Completed` |
+| `properties.completionType` | How the recommendation was resolved or completed. Only populated when `recommendationStatus` is `Completed`. | `SystemVerified`|
+| `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
+
+> [!IMPORTANT] Important: The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used by customers. Always use
+> `recommendationStatus` as the single source of truth for a recommendation's current state.
+
+### Example A: Query active (new) recommendations
+
+```advisorresources
+| where type =~ 'microsoft.advisor/recommendations'
+| where properties.recommendationStatus == 'New'
+| project
+    id,
+    subscriptionId,
+    resourceGroup,
+    category = tostring(properties.category),
+    impact = tostring(properties.impact),
+    description = tostring(properties.shortDescription.solution),
+    recommendationStatus = tostring(properties.recommendationStatus),
+    lastUpdated = todatetime(properties.lastUpdated)
+```
+### Example B: Query completed recommendations
+
+```advisorresources
+| where type =~ 'microsoft.advisor/recommendations'
+| where properties.recommendationStatus == 'Completed'
+| project
+    id,
+    subscriptionId,
+    resourceGroup,
+    category = tostring(properties.category),
+    description = tostring(properties.shortDescription.solution),
+    recommendationStatus = tostring(properties.recommendationStatus),
+    completionType = tostring(properties.completionType),
+    lastUpdated = todatetime(properties.lastUpdated)
+| order by lastUpdated desc
+```
+
 
 ## Examples
 
