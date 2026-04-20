@@ -24,10 +24,10 @@ This article explains how to create query-based metric alert rules in Azure Moni
 
 You can enable resource-centric stamping and access for a workspace using one of the following methods:
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 ```
-PUT https://management.azure.com/subscriptions/{mySubscriptionId}/resourcegroups/{myResourceName}/providers/microsoft.monitor/accounts/{myAccountName}?api-version=2025-05-03-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version=2025-05-03-preview
 Authorization: Bearer {token}
 Content-Type: application/json
 {
@@ -40,66 +40,66 @@ Content-Type: application/json
 }
 ```
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 [!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
 
 ```azurecli
-subscription="{subscription}"
-resourceGroup="{resource_name}"
-accountName="{account_name}"
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroup"
+accountName="myAccountName"
+apiVersion="2025-05-03-preview"
+providers="microsoft.monitor/accounts/$accountName"
+resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
 
-az rest \
-  --method put \
-  --url "https://management.azure.com/subscriptions/${subscription}/resourceGroups/${resourceGroup}/providers/Microsoft.Monitor/accounts/${accountName}?api-version=2025-05-03-preview" \
-  --headers "Content-Type=application/json" \
-  --body '{
-    "location": "eastus",
-    "properties": {
-      "metrics": {
-        "enableAccessUsingResourcePermissions": true
-      }
-    }
-  }'
+az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @accounts.json
 ```
 
-# [PowerShell](#tab/powershell)
+```json
+// accounts.json
+{
+  "location": "eastus",
+  "properties": {
+    "metrics": {
+      "enableAccessUsingResourcePermissions": true
+    }
+  }
+}
+```
+
+# [PowerShell](#tab/powershell-1)
 
 [!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
 
 ```azurepowershell
-$subscription = "{subscription}"
-$resource_name = "{resource_name}"
-$account_name = "{account_name}"
-$token = "{token}"
-$api_version = "2025-10-03-preview"
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$resourceGroupName = "myResourceGroup"
+$accountName = "myAccountName"
+$apiVersion = "2025-05-03-preview"
+$providers = "microsoft.monitor/accounts/$accountName"
+$resourceId = "/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
 
-$uri = "https://management.azure.com/subscriptions/$subscription/resourceGroups/$resource_name/providers/Microsoft.Monitor/accounts/$account_name?api-version=$api_version"
+Set-AzContext -Subscription $subscriptionId
 
-$headers = @{
-    Authorization = "Bearer $token"
-    "Content-Type" = "application/json"
-}
-
-$body = @{
-    location = "eastus"
-    properties = @{
-        metrics = @{
-            enableAccessUsingResourcePermissions = $true
-        }
-    }
-} | ConvertTo-Json -Depth 5
-
-Invoke-RestMethod `
-    -Method Put `
-    -Uri $uri `
-    -Headers $headers `
-    -Body $body
+Invoke-AzRestMethod `
+  -Path "$resourceId?api-version=$apiVersion" `
+  -Method PUT `
+  -Payload (Get-Content -Path "./accounts.json" -Raw)
 ```
 
-# [ARM (JSON) & Bicep](#tab/templates)
+```json
+// accounts.json
+{
+  "location": "eastus",
+  "properties": {
+    "metrics": {
+      "enableAccessUsingResourcePermissions": true
+    }
+  }
+}
+```
 
-**ARM (JSON)**
+# [ARM (JSON)](#tab/arm-1)
 
 ```json
 {
@@ -107,11 +107,12 @@ Invoke-RestMethod `
   "contentVersion": "1.0.0.0",
   "parameters": {
     "accountName": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "myAccountName"
     },
     "location": {
       "type": "string",
-      "defaultValue": "[resourceGroup().location]"
+      "defaultValue": "eastus"
     }
   },
   "resources": [
@@ -128,13 +129,14 @@ Invoke-RestMethod `
     }
   ]
 }
+
 ```
 
-**Bicep**
+# [Bicep](#tab/bicep-1)
 
 ```bicep
-param accountName string
-param location string = resourceGroup().location
+param accountName string = 'myAccountName'
+param location string = 'eastus'
 
 resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
   name: accountName
@@ -152,16 +154,14 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
 | Variable | Example value | Purpose |
 |----------|---------------|---------|
 | host | management.azure.com | Implicit ARM endpoint |
-| subscription | mySubscription | API-specific |
-| resource_name | myResource_name | API-specific |
-| account_name | myAccount_name | API-specific |
+| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+| resourceGroupName | myResourceGroup | User input |
+| accountName | myAccountName | User input |
 | apiVersion | 2025-05-03-preview | API-specific |
-| providers | microsoft.monitor/accounts/{$account_name} | Readability |
-| resourceId | /subscriptions/{$subscription}/resourcegroups/{$resource_name}/providers/$providers	 | Readability |
 
 ## Deploy a query-based metric alert
 
-# [Portal](#tab/portal-1)
+# [Portal](#tab/portal-2)
 
 > [!NOTE]
 > You can only select one resource type at a time in the Azure portal. For example, you can't select virtual machines and Kubernetes services.
@@ -194,7 +194,7 @@ From the *Create an alert rule* page:
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
 
-# [Azure CLI](#tab/cli-1)
+# [Azure CLI](#tab/cli-2)
 
 You can deploy a metric alert template using the CLI.
 
@@ -218,7 +218,7 @@ You can deploy a metric alert template using the CLI.
 
     `az resource show --ids /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>`
 
-# [PowerShell](#tab/powershell-1)
+# [PowerShell](#tab/powershell-2)
 
 You can deploy a metric alert template using the PowerShell.
 
@@ -244,7 +244,98 @@ You can deploy a metric alert template using the PowerShell.
 
     `Get-AzResource -ResourceId "/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>"`
 
-# [ARM (JSON) & Bicep](#tab/templates-1)
+# [ARM (JSON)](#tab/arm-2)
+
+You can use an ARM (JSON) template to create and configure query-based metric alert rules. Here are the steps:
+
+1. Add environment-specific parameters to the template as needed.
+1. Deploy the template using any deployment method, such as Azure CLI, Azure PowerShell, or Azure Resource Manager Rest APIs.
+
+Some of the required parameters are discussed in the following sections, and there's a template example you can start with.
+
+### User-assigned managed identity
+
+Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`.
+
+> [!NOTE]
+> If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
+
+### System assigned managed identity
+
+Metric alert rules support automatic role assignment for system-assigned managed identities.
+
+This feature simplifies the process of granting permissions to your managed identities and allows your alert rule to be operational immediately after being created.
+
+For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
+
+* *Owner*
+* *User Access Administrator*
+* A custom role with *Microsoft.Authorization/roleAssignments/write* permission
+* [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
+
+> [!NOTE]
+> If you try to create a rule using system-assigned MI and you don’t have permissions for automatic role assignment, the rule creation fails.
+
+Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned MI is created with the rule.
+
+## Query-based rule conditions
+
+To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+
+To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
+
+The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired.
+
+> [!NOTE]
+> The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
+
+## Resource-centric and workspace-centric rule scope types
+
+Query-based metric alert rule support two types of query scope:
+
+### Resource scope (resource-centric rules)
+
+You can query metrics emitted to any Workspace by:
+
+* a specific Azure resource, or by multiple resources from the same subscription or
+* a resource group such as Azure Kubernetes clusters (AKS) or
+* a Virtual Machine (VM).
+
+For resource-centric rules, the following scope options are supported:
+
+* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list.
+
+    Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
+
+* A resource group - include the resource group ID in the Scopes[] list.
+
+    Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
+
+* A subscription - include the subscription ID in the Scopes[] list.
+
+    Example:`"scopes": ["/subscriptions/<subscription-id>"]`
+
+The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
+
+### Azure Monitor Workspace scope (workspace-centric rules)
+
+You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
+
+For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
+
+Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
+
+The rule query can refer to any metrics stored in the Azure Monitor Workspace.
+
+### ARM template example
+
+The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
+
+Edit it to include your specific scope, location, query, action groups, and other parameters.
+
+[!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
+
+# [Bicep](#tab/bicep-2)
 
 You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
 
@@ -303,23 +394,17 @@ You can query metrics emitted to any Workspace by:
 
 For resource-centric rules, the following scope options are supported:
 
-* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list. Example:
+* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list.
 
-    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
+    Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
 
-    * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
+* A resource group - include the resource group ID in the Scopes[] list.
 
-* A resource group - include the resource group ID in the Scopes[] list. Example:
+    Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
 
-    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
+* A subscription - include the subscription ID in the Scopes[] list.
 
-    * Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
-
-* A subscription - include the subscription ID in the Scopes[] list. Example:
-
-    * ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>"]`
-
-    * Bicep: `scopes: ['/subscriptions/<subscription-id>']`
+    Example: `scopes: ['/subscriptions/<subscription-id>']`
 
 The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
 
@@ -327,24 +412,17 @@ The system locates the Workspace where the resource metrics reside. The rule que
 
 You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
-For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list. Example:
+For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
 
-* ARM (JSON): `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
-* Bicep: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
+Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
 
 The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 
-### ARM (JSON) & Bicep template examples
+### Bicep template example
 
 The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
 
 Edit it to include your specific scope, location, query, action groups, and other parameters.
-
-**ARM (JSON)**
-
-[!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
-
-**Bicep**
 
 [!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
 
@@ -372,8 +450,6 @@ You can view query-based metric alert rules in the Azure portal together with al
 > [!NOTE]
 > * To modify an existing rule in your subscription using Azure CLI or PowerShell, run the command or cmdlet again.
 > * To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
-
-edit the template file and repeat the deployment procedure.
 
 To edit a query-based metric alert rule in the Azure portal:
 

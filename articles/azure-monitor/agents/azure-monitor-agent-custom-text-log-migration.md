@@ -32,7 +32,7 @@ You should follow the steps only if the following criteria are true:
 
 1. Configure your data collection rule (DCR) following procedures at [collect text logs with Azure Monitor Agent](data-collection-log-text.md).
 
-2. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
+1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
 
     # [REST](#tab/rest)
     
@@ -42,7 +42,7 @@ You should follow the steps only if the following criteria are true:
     Content-Type: application/json
     ```
     
-    # [CLI](#tab/cli)
+    # [Azure CLI](#tab/cli)
     
     [!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
     
@@ -80,7 +80,7 @@ You should follow the steps only if the following criteria are true:
     | tableName | myTable | User input |
     | apiVersion | 2025-07-01 | [Recent version](/rest/api/loganalytics/tables/migrate) |
 
-3. Discontinue MMA custom text log collection and start using the AMA custom text log.
+1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
 ## Next steps
 

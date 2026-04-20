@@ -296,7 +296,7 @@ New-AzDataCollectionRuleAssociation
         -DataCollectionRuleId /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/vaultsDCR001
 ```
 
-### [API](#tab/api)
+### [REST](#tab/rest)
 
 ### Create a data collection rule using the REST API
 
