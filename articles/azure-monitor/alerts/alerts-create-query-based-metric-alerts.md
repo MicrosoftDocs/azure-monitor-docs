@@ -42,7 +42,7 @@ Content-Type: application/json
 
 # [Azure CLI](#tab/cli-1)
 
-[!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -69,7 +69,7 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @account
 
 # [PowerShell](#tab/powershell-1)
 
-[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
+[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
 
 ```azurepowershell
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"

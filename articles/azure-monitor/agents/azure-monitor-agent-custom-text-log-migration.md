@@ -43,31 +43,44 @@ You should follow the steps only if the following criteria are true:
     ```
     
     # [Azure CLI](#tab/cli)
-    
-    [!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
-    
+
     ```azurecli
     subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     resourceGroupName="myResourceGroup"
     workspaceName="myWorkspace"
     tableName="myTable"
-    apiVersion="2025-07-01"
-    providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName/migrate"
-    resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
     
-    az rest --method post --uri "$resourceId?api-version=$apiVersion"
-    ```
+    az account set --subscription "${subscriptionId}"
     
-    # [PowerShell](#tab/powershell)
-    
-    ```powershell
-    Invoke-AzOperationalInsightsMigrateTable `
-    	-ResourceGroupName "myResourceGroup" `
-    	-WorkspaceName "myWorkspace" `
-    	-TableName "myTable"
+    az monitor log-analytics workspace table migrate \
+      --resource-group "${resourceGroupName}" \
+      --workspace-name "${workspaceName}" \
+      --table-name "${tableName}"
     ```
 
-    [!INCLUDE [PowerShell default endpoint](../includes/default-endpoint-ps.md)]
+    This Azure CLI example uses the [az monitor log-analytics workspace table](/cli/azure/monitor/log-analytics/workspace/table) command group.
+
+    [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+  
+    # [PowerShell](#tab/powershell)
+    
+    ```azurepowershell
+    $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+    $resourceGroupName = "myResourceGroup"
+    $workspaceName = "myWorkspace"
+    $tableName = "myTable"
+    
+    Set-AzContext -Subscription ${subscriptionId}
+    
+    Invoke-AzOperationalInsightsMigrateTable `
+      -ResourceGroupName ${resourceGroupName} `
+      -WorkspaceName ${workspaceName} `
+      -TableName ${tableName}
+    ```
+
+    This PowerShell example uses the [Az.OperationalInsights Module](/powershell/module/az.operationalinsights).
+
+    [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
     
     ---
     
@@ -78,7 +91,7 @@ You should follow the steps only if the following criteria are true:
     | resourceGroupName | myResourceGroup | User input |
     | workspaceName | myWorkspace | User input |
     | tableName | myTable | User input |
-    | apiVersion | 2025-07-01 | [Recent version](/rest/api/loganalytics/tables/migrate) |
+    | apiVersion | 2025-07-01 | [Current version](/rest/api/loganalytics/tables/migrate) |
 
 1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 

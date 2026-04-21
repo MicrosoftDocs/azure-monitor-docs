@@ -47,49 +47,10 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 
 1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
 
+> [!NOTE]
+> This sample lists all the supported column data types.
+
 # [REST](#tab/rest-1)
-
-To create a custom table, call the [Tables - Create API](/rest/api/loganalytics/tables/create-or-update) by using this command:
-
-```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
-Authorization: Bearer {token}
-Content-Type: application/json
-```
-
-Provide this payload as the body of your request. Update the table name and adjust the columns based on your table schema. This sample lists all the supported column data types.
-
-```json
-{
-    "properties": {
-        "schema": {
-            "name": "myTable_CL",
-            "columns": [
-                {"name": "TimeGenerated",
-                 "type": "datetime"},
-                {"name": "StringProperty",
-                 "type": "string"},
-                {"name": "IntProperty",
-                 "type": "int"},
-                {"name": "LongProperty",
-                 "type": "long"},
-                {"name": "RealProperty",
-                 "type": "real"},
-                {"name": "BooleanProperty",
-                 "type": "boolean"},
-                {"name": "GuidProperty",
-                 "type": "guid"},
-                {"name": "DateTimeProperty",
-                 "type": "datetime"}
-            ]
-        },
-        "totalRetentionInDays": 365,
-        "plan": "Auxiliary"
-    }
-}
-```
-
-**Example:**
 
 ```rest
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
@@ -130,7 +91,7 @@ Content-Type: application/json
 
 # [Azure CLI](#tab/cli-1)
 
-[!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
+[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -144,6 +105,9 @@ resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/pro
 az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.json
 ```
 
+<br>
+<details>
+<summary>Expand to view the table content</summary>
 ```json
 // table.json
 {
@@ -190,28 +154,28 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.j
   }
 }
 ```
+</details>
 
 # [PowerShell](#tab/powershell-1)
 
-[!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
+[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
 
-```powershell
+```azurepowershell
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 $resourceGroupName = "myResourceGroup"
 $workspaceName = "myWorkspace"
 $tableName_CL = "myTable_CL"
-$apiVersion = "2025-07-01"
 $providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
 $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
 
-Set-AzContext -Subscription $subscriptionId
+$payload = Get-Content -Raw -Path ".\tables.json"
 
-Invoke-AzRestMethod `
-  -Path "$resourceId?api-version=$apiVersion" `
-  -Method PUT `
-  -Payload (Get-Content -Path "./table.json" -Raw)
+Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=2025-07-01" -Payload $payload
 ```
 
+<br>
+<details>
+<summary>Expand to view the table content</summary>
 ```json
 // table.json
 {
@@ -258,6 +222,7 @@ Invoke-AzRestMethod `
   }
 }
 ```
+</details>
 
 # [ARM (JSON)](#tab/arm-1)
 
@@ -268,17 +233,11 @@ Invoke-AzRestMethod `
   "parameters": {
     "workspaceName": {
       "type": "string",
-      "defaultValue": "myWorkspace",
-      "metadata": {
-        "description": "The name of the Log Analytics workspace."
-      }
+      "defaultValue": "myWorkspace"
     },
     "tableName_CL": {
       "type": "string",
-      "defaultValue": "myTable_CL",
-      "metadata": {
-        "description": "The name of the custom table."
-      }
+      "defaultValue": "myTable_CL"
     }
   },
   "resources": [
@@ -331,6 +290,8 @@ Invoke-AzRestMethod `
   ]
 }
 ```
+
+This ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/tables](https://learn.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type.
 
 # [Bicep](#tab/bicep-1)
 
@@ -389,6 +350,8 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
 }
 ```
 
+This Bicep example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type.
+
 ---
 
 | Variable | Example value | Purpose |
@@ -398,7 +361,7 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
 | resourceGroupName | myResourceGroup | User input |
 | workspaceName | myWorkspace | User input |
 | tableName_CL | myTable_CL | User input |
-| apiVersion | 2025-07-01 | [Recent version](/rest/api/loganalytics/tables/create-or-update) |
+| apiVersion | 2025-07-01 | [Current version](/rest/api/loganalytics/tables/create-or-update) |
 
 ## Send data to a table with the Auxiliary plan
 
@@ -509,14 +472,22 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     # [Azure CLI](#tab/cli-2)
 
-    [!INCLUDE [Azure CLI using az rest](../includes/cmd-using-rest-az.md)]
+    [!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
     
     ```azurecli
-    apiVersion="2024-03-11"
-    providers="Microsoft.Insights/dataCollectionRules/myDataCollectionRule"
-    resourceId="/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/$providers"
+    subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+    location="eastus"
+    resourceGroupName="myResourceGroup"
+    dataCollectionRuleName="myDataCollectionRule"
     
-    az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @myDataCollectionRule.json
+    az account set --subscription "$subscriptionId"
+    az extension add --name monitor-control-service
+    
+    az monitor data-collection rule create \
+      --resource-group "$resourceGroupName" \
+      --location "$location" \
+      --name "$dataCollectionRuleName" \
+      --rule-file "myDataCollectionRule.json"
     ```
     
     ```json
@@ -566,7 +537,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
           "logAnalytics": [
             {
               "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myworkspace"
+              "name": "myWorkspace"
             }
           ]
         },
@@ -577,7 +548,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
             ],
             "transformKql": "source",
             "destinations": [
-              "myworkspace"
+              "myWorkspace"
             ],
             "outputStream": "Custom-myTable_CL"
           }
@@ -588,20 +559,19 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     # [PowerShell](#tab/powershell-2)
 
-    [!INCLUDE [Azure PowerShell using Invoke-RestMethod](../includes/cmd-using-rest-ps.md)]
+    [!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
 
     ```azurepowershell
     $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-    $apiVersion = "2024-03-11"
-    $providers = "Microsoft.Insights/dataCollectionRules/myDataCollectionRule"
-    $resourceId = "/subscriptions/$subscriptionId/resourceGroups/myResourceGroup/providers/$providers"
+    $resourceGroupName = "myResourceGroup"
+    $dataCollectionRuleName = "myDataCollectionRule"
     
-    Set-AzContext -Subscription $subscriptionId
+    Select-AzSubscription -SubscriptionId $subscriptionId
     
-    Invoke-AzRestMethod `
-      -Path "$resourceId?api-version=$apiVersion" `
-      -Method PUT `
-      -Payload (Get-Content -Path "./myDataCollectionRule.json" -Raw)
+    New-AzDataCollectionRule `
+      -Name $dataCollectionRuleName `
+      -ResourceGroupName $resourceGroupName `
+      -JsonFilePath ".\myDataCollectionRule.json"
     ```
 
     ```json
@@ -651,7 +621,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
           "logAnalytics": [
             {
               "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myworkspace"
+              "name": "myWorkspace"
             }
           ]
         },
@@ -662,7 +632,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
             ],
             "transformKql": "source",
             "destinations": [
-              "myworkspace"
+              "myWorkspace"
             ],
             "outputStream": "Custom-myTable_CL"
           }
@@ -675,105 +645,75 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     
     ```json
     {
-      "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "dataCollectionRuleName": {
-          "type": "string",
-          "metadata": {
-            "description": "Specifies the name of the data collection rule to create."
-          }
-        },
-        "location": {
-          "type": "string",
-          "metadata": {
-            "description": "Specifies the region in which to create the data collection rule. This must be the same region as the destination Log Analytics workspace."
-          }
-        },
-        "workspaceResourceId": {
-          "type": "string",
-          "metadata": {
-            "description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."
-          }
-        }
-      },
-      "resources": [
-        {
-          "type": "Microsoft.Insights/dataCollectionRules",
-          "name": "[parameters('dataCollectionRuleName')]",
-          "location": "[parameters('location')]",
-          "apiVersion": "2024-03-11",
-          "kind": "Direct",
-          "properties": {
-            "streamDeclarations": {
-              "Custom-myTable": {
-                "columns": [
-                  {
-                    "name": "TimeGenerated",
-                    "type": "datetime"
-                  },
-                  {
-                    "name": "StringProperty",
-                    "type": "string"
-                  },
-                  {
-                    "name": "IntProperty",
-                    "type": "int"
-                  },
-                  {
-                    "name": "LongProperty",
-                    "type": "long"
-                  },
-                  {
-                    "name": "RealProperty",
-                    "type": "real"
-                  },
-                  {
-                    "name": "BooleanProperty",
-                    "type": "boolean"
-                  },
-                  {
-                    "name": "GuidProperty",
-                    "type": "guid"
-                  },
-                  {
-                    "name": "DateTimeProperty",
-                    "type": "datetime"
-                  }
-                ]
-              }
+        "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+            "dataCollectionRuleName": {
+                "type": "string",
+                "metadata": {"description": "Specifies the name of the data collection rule to create."}
             },
-            "destinations": {
-              "logAnalytics": [
-                {
-                  "workspaceResourceId": "[parameters('workspaceResourceId')]",
-                  "name": "myworkspace"
+            "location": {
+                "type": "string",
+                "metadata": {"description": "Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace."}
+            },
+            "workspaceResourceId": {
+                "type": "string",
+                "metadata": {"description": "The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan."}
+            }
+        },
+        "resources": [
+            {
+                "type": "Microsoft.Insights/dataCollectionRules",
+                "name": "[parameters('dataCollectionRuleName')]",
+                "location": "[parameters('location')]",
+                "apiVersion": "2024-03-11",
+                "kind": "Direct",
+                "properties": {
+                    "streamDeclarations": {
+                        "Custom-tablename": {
+                            "columns": [
+                                {"name": "TimeGenerated",
+                                    "type": "datetime"},
+                                {"name": "StringProperty",
+                                    "type": "string"},
+                                {"name": "IntProperty",
+                                    "type": "int"},
+                                {"name": "LongProperty",
+                                    "type": "long"},
+                                {"name": "RealProperty",
+                                    "type": "real"},
+                                {"name": "BooleanProperty",
+                                    "type": "boolean"},
+                                {"name": "GuidProperty",
+                                    "type": "guid"},
+                                {"name": "DateTimeProperty",
+                                    "type": "datetime"}]
+                                    }
+                                },
+                    "destinations": {
+                        "logAnalytics": [
+                            {"workspaceResourceId": "[parameters('workspaceResourceId')]",
+                                "name": "myWorkspace"}]
+                    },
+                    "dataFlows": [
+                        {
+                            "streams": ["Custom-tableName"],
+                            "transformKql": "source",
+                            "destinations": ["myWorkspace"],
+                            "outputStream": "Custom-tableName_CL"
+                        }]
                 }
-              ]
-            },
-            "dataFlows": [
-              {
-                "streams": [
-                  "Custom-myTable"
-                ],
-                "transformKql": "source",
-                "destinations": [
-                  "myworkspace"
-                ],
-                "outputStream": "Custom-myTable_CL"
-              }
-            ]
-          }
+            }],
+        "outputs": {
+            "dataCollectionRuleId": {
+                "type": "string",
+                "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
+            }
         }
-      ],
-      "outputs": {
-        "dataCollectionRuleId": {
-          "type": "string",
-          "value": "[resourceId('Microsoft.Insights/dataCollectionRules', parameters('dataCollectionRuleName'))]"
-        }
-      }
     }
     ```
+
+    This ARM (JSON) example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
     
     # [Bicep](#tab/bicep-2)
     
@@ -781,80 +721,84 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     @description('Specifies the name of the data collection rule to create.')
     param dataCollectionRuleName string
     
-    @description('Specifies the region in which to create the data collection rule. This must be the same region as the destination Log Analytics workspace.')
+    @description('Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace.')
     param location string
     
     @description('The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
     param workspaceResourceId string
     
     resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
-      name: dataCollectionRuleName
-      location: location
-      kind: 'Direct'
-      properties: {
+    name: dataCollectionRuleName
+    location: location
+    kind: 'Direct'
+    properties: {
         streamDeclarations: {
-          'Custom-myTable': {
+        'Custom-tablename': {
             columns: [
-              {
+            {
                 name: 'TimeGenerated'
                 type: 'datetime'
-              }
-              {
+            }
+            {
                 name: 'StringProperty'
                 type: 'string'
-              }
-              {
+            }
+            {
                 name: 'IntProperty'
                 type: 'int'
-              }
-              {
+            }
+            {
                 name: 'LongProperty'
                 type: 'long'
-              }
-              {
+            }
+            {
                 name: 'RealProperty'
                 type: 'real'
-              }
-              {
+            }
+            {
                 name: 'BooleanProperty'
                 type: 'boolean'
-              }
-              {
+            }
+            {
                 name: 'GuidProperty'
                 type: 'guid'
-              }
-              {
+            }
+            {
                 name: 'DateTimeProperty'
                 type: 'datetime'
-              }
+            }
             ]
-          }
+        }
         }
         destinations: {
-          logAnalytics: [
+        logAnalytics: [
             {
-              workspaceResourceId: workspaceResourceId
-              name: 'myworkspace'
+            workspaceResourceId: workspaceResourceId
+            name: 'myWorkspace'
             }
-          ]
+        ]
         }
         dataFlows: [
-          {
+        {
             streams: [
-              'Custom-myTable'
+            'Custom-tableName'
             ]
             transformKql: 'source'
             destinations: [
-              'myworkspace'
+            'myWorkspace'
             ]
-            outputStream: 'Custom-myTable_CL'
-          }
+            outputStream: 'Custom-tableName_CL'
+        }
         ]
-      }
+    }
     }
     
     output dataCollectionRuleId string = dataCollectionRule.id
     ```
+    
+    ---
+
+    This Bicep example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
 
     ---
 
@@ -870,6 +814,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 ### Use a workspace transformation
 
 For more information, see the following articles:
+
 * [Overview of workspace transformation DCRs](../data-collection/data-collection-transformations.md#workspace-transformation-dcr)
 * [How-to create a workspace transformation](../data-collection/data-collection-transformations-create.md#create-workspace-transformation-dcr)
 
