@@ -36,7 +36,7 @@ You should follow the steps only if the following criteria are true:
 
     # [REST](#tab/rest)
     
-    ```rest
+    ```REST
     POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
     Authorization: Bearer {token}
     Content-Type: application/json
