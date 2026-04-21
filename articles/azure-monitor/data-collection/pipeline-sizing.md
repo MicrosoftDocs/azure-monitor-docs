@@ -18,7 +18,7 @@ Use these baselines alongside the [Azure Monitor pipeline overview](./pipeline-o
 > [!NOTE]
 > The performance data in this article was collected using pipeline version [v0.158](./pipeline-extension-versions.md#version-v01580---mar-2026-preview) in March 2026 with TCP transport, ~1.2 KB payloads, and TLS disabled. Your results might vary based on payload size, TLS configuration, and cluster workload.
 
-## Pipeline Types Tested
+## Pipeline types tested
 
 Three pipeline configurations were tested, each representing a different level of processing:
 
@@ -28,7 +28,7 @@ Three pipeline configurations were tested, each representing a different level o
 
 - **CEF Fully Formed.** The pipeline parses both the syslog header and the CEF payload inside it, mapping into the standard [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog) table schema with 90+ columns: `DeviceVendor`, `DeviceProduct`, `Activity`, `SourceIP`, `DestinationIP`, `DeviceAction`, `Protocol`, `RequestURL`, and many more.
 
-## Measured Throughput
+## Measured throughput
 
 All numbers are from a single replica under sustained full load for 5 minutes, averaged across 3 consecutive runs. Each message has randomized fields (IPs, ports, session IDs, etc.) to reflect realistic payloads.
 
@@ -42,7 +42,7 @@ All numbers are from a single replica under sustained full load for 5 minutes, a
 
 The pipeline automatically uses all available CPU cores on the node. No configuration changes are needed when scaling.
 
-## Capacity Planning
+## Capacity planning
 
 Since throughput scales linearly with CPU, the per-vCPU rate is the simplest way to estimate capacity for any node size:
 
@@ -137,7 +137,7 @@ The baselines in this article are measured under controlled conditions. The foll
 - **Durable buffering**: Enabling disk-backed buffers adds I/O overhead but improves reliability during connectivity gaps.
 - **Transformations**: Complex KQL transformations applied to data before export add processing overhead per message.
 
-## Test Setup
+## Test setup
 
 - **Node tested**: `Standard_D4as_v6` (4 vCPU, 16 GB)
 - **Transport**: TCP
@@ -165,7 +165,7 @@ The baselines in this article are measured under controlled conditions. The foll
 </details>
 
 
-## Known Limitations
+## Known limitations
 
 The following scenarios haven't yet been measured and may affect throughput:
 

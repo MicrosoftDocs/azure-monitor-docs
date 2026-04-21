@@ -13,7 +13,7 @@ summary: |
   Frequently asked questions for Azure Monitor pipeline, including architecture, deployment, data collection, and configuration.
 
 sections:
-  - name: Overview & Concepts
+  - name: Overview and concepts
     questions:
       - question: What is Azure Monitor pipeline?
         answer: |
@@ -64,7 +64,7 @@ sections:
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#supported-configurations)
 
-  - name: Deployment & Architecture
+  - name: Deployment and architecture
     questions:
       - question: Where does Azure Monitor pipeline run?
         answer: |
@@ -92,7 +92,7 @@ sections:
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#supported-configurations)
 
-  - name: Data Collection & Processing
+  - name: Data collection and processing
     questions:
       - question: What types of data can Azure Monitor pipeline collect?
         answer: |
@@ -112,7 +112,7 @@ sections:
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-transformations)
 
-  - name: Reliability, Scale & Connectivity
+  - name: Reliability, scale, and connectivity
     questions:
       - question: How does Azure Monitor pipeline handle connectivity interruptions?
         answer: |
@@ -120,7 +120,7 @@ sections:
 
           [Learn more](/azure/azure-monitor/data-collection/pipeline-overview#why-use-azure-monitor-pipeline)
 
-  - name: Configuration & Management
+  - name: Configuration and management
     questions:
       - question: How is Azure Monitor pipeline configured?
         answer: |

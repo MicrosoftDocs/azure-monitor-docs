@@ -103,7 +103,7 @@ This is the **most common area for mistakes**. The exporter must specify three t
 
 **Common mistake:** Using the DCR resource name instead of its immutable ID.
 
-### Example: Correct Exporter Configuration
+### Example: Correct exporter configuration
 
 ```json
 {
@@ -136,7 +136,7 @@ The `recordMap` in the exporter's `api.schema` must:
   - Multi-level dot notation like `attributes.foo.bar` is **not supported**. Use bracket notation: `attributes['foo.bar']`.
 - **Map `to` fields that exist in the destination table** — Column names must match the DCR/table schema.
 
-### Validate the Custom Table Schema
+### Validate the custom table schema
 
 ```kql
 // Check if the custom table exists and has expected columns
@@ -153,7 +153,7 @@ In the `service.pipelines` array, confirm:
 - **All defined components are referenced** in at least one pipeline — orphaned receivers/exporters are rejected.
 - **Pipeline type matches the data** — Use `"Logs"` for log data flowing to Log Analytics.
 
-### Example: Correct Pipeline Wiring
+### Example: Correct pipeline wiring
 
 ```json
 {
@@ -178,7 +178,7 @@ In the `service.pipelines` array, confirm:
 - **Firewall or NSG rules**: Ensure the source (application, syslog forwarder, OTLP client) can reach the receiver endpoint on the Arc-connected Kubernetes cluster.
 - **For Syslog receivers**: Verify `transportProtocol` is `"tcp"` or `"udp"` (not `"http"`), and `allowedFormats` includes the format your source sends (e.g., `syslogRfc5424`, `cefRfc3164`).
 
-### Supported Receiver Types
+### Supported receiver types
 
 | Type | Protocol | Example Endpoint |
 |---|---|---|
@@ -186,7 +186,7 @@ In the `service.pipelines` array, confirm:
 | Syslog | TCP or UDP | `0.0.0.0:514` |
 | UDP | UDP | `0.0.0.0:5557` |
 
-### Test Connectivity from Source
+### Test connectivity from source
 
 ```bash
 # For TCP syslog
@@ -205,7 +205,7 @@ Even if the pipeline is configured correctly, the DCR/DCE layer can block ingest
 - **DCE must be accessible** from the Kubernetes cluster — check firewall/private endpoint configuration.
 - **For private link setups**: Confirm the DCE is added to the Azure Monitor Private Link Scope (AMPLS) and DNS resolves correctly.
 
-### Check DCR Ingestion Health
+### Check DCR ingestion health
 
 ```kql
 _LogOperation
@@ -221,7 +221,7 @@ Log Analytics enforces a daily ingestion cap. Once hit, **all data collection st
 1. Go to your Log Analytics workspace → **Usage and Estimated Costs** → **Daily Cap**.
 2. Check if the cap was reached. If so, increase it or reduce ingestion volume.
 
-#### Check Current Ingestion Volume
+#### Check current ingestion volume
 
 ```kql
 Usage
