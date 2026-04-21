@@ -1,60 +1,66 @@
 ---
-title: Configure Azure Monitor pipeline using CLI or ARM templates
-description: Use CLI or ARM templates to configure Azure Monitor pipeline which extends Azure Monitor data collection into your data center.
+title: Configure Azure Monitor pipeline with CLI or ARM templates
+description: Learn how to configure Azure Monitor pipeline with CLI or ARM templates for automation and advanced scenarios.
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 01/15/2026
+ms.date: 03/20/2026
 ms.custom: references_regions, devx-track-azurecli
 ---
 
-# Configure Azure Monitor pipeline using CLI or ARM templates
+# Configure Azure Monitor pipeline with CLI or ARM templates
 
-The [Azure Monitor pipeline](./pipeline-overview.md) extends the data collection capabilities of Azure Monitor to edge and multicloud environments. This article provides details on enabling and configuring the Azure Monitor pipeline in your environment. Depending on the method you use, you may not require all the details in this article. 
+Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, buffering, and other advanced scenarios.
 
-## Prerequisites
+## When to use this method
 
-See the prerequisites in [Configure Azure Monitor pipeline](./pipeline-configure.md#prerequisites) for details on the requirements for enabling and configuring the Azure Monitor pipeline.
+Use CLI or ARM templates when you need a repeatable deployment process or more control over the pipeline resources. If you want the fastest guided experience for a standard deployment, use [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md).
 
-## Components
+| Need | Why use CLI or ARM templates |
+|:-----|:-----------------------------|
+| Automation | Deploy the same configuration across multiple clusters. |
+| Advanced configuration | Configure custom tables, persistent volumes for buffering, and more detailed resource settings. |
+| Infrastructure as code | Store and review configuration in templates and deployment pipelines. |
+| Repeatable deployments | Standardize pipeline deployments for testing and production environments. |
 
-The following diagram shows the components of the Azure Monitor pipeline. The pipeline itself runs on an Arc-enabled Kubernetes cluster in your environment. One or more data flows running in the pipeline listen for incoming data from clients, and the pipeline extension forwards the data to the cloud.
+## Configuration workflow
 
-:::image type="content" source="./media/pipeline-configure/components.png" lightbox="./media/pipeline-configure/components.png" alt-text="Overview diagram of the components making up Azure Monitor pipeline." border="false"::: 
+Follow these tasks to configure a pipeline by using CLI or ARM templates.
 
-The following table identifies the components required to enable the Azure Monitor pipeline. If you use the Azure portal to configure the pipeline, then each of these components is created for you. With other methods, you need to configure each one.
+| Step | Purpose | Output |
+|:-----|:--------|:-------|
+| Prepare workspace tables | Create destination tables in Log Analytics workspace. | Tables ready for incoming data |
+| Add the pipeline extension | Enable Azure Monitor pipeline support on the cluster. | Pipeline extension resource |
+| Create a custom location | Make the Arc-enabled Kubernetes cluster targetable by Azure resources. | Custom location resource |
+| Create a data collection endpoint | Define the ingestion endpoint in Azure Monitor. | DCE resource and logs ingestion URL |
+| Create a data collection rule | Define the schema, routing, and optional transformations in Azure Monitor. | DCR resource and immutable ID |
+| Give the pipeline access to the DCR | Allow the pipeline extension to send data to the DCR. | Role assignment |
+| Create the pipeline configuration | Deploy the pipeline instance and dataflows. | Running pipeline instance |
+| Configure clients | Point your data sources to the pipeline endpoint. | Data flowing through the pipeline |
 
-| Component | Description |
-|:----------|:------------|
-| Pipeline controller extension | Extension added to your Arc-enabled Kubernetes cluster to support pipeline functionality - `microsoft.monitor.pipelinecontroller`. |
-| Pipeline controller instance | Instance of the pipeline running on your Arc-enabled Kubernetes cluster. |
-| Data flow | Combination of receivers and exporters that run on the pipeline controller instance. Receivers accept data from clients, and exporters to deliver that data to Azure Monitor. |
-| Pipeline configuration | Configuration file that defines the data flows for the pipeline instance. Each data flow includes a receiver, processors, and an exporter. The receiver listens for incoming data, and the exporter sends the data to the destination. Processors can convert the data structure and apply a transformation. |
-| Data collection endpoint (DCE) | Endpoint where the data is sent to Azure Monitor in the cloud. The pipeline configuration includes a property for the URL of the DCE so the pipeline instance knows where to send the data. |
-| Data collection rule (DCR) | [DCR](./data-collection-rule-overview.md#using-a-dcr) used by Azure Monitor in the cloud to define how the data is received and where it's sent. The DCR can also include a transformation to filter or modify the data before it's sent to the destination. |
 
+## Prepare workspace tables
 
-## Log Analytics workspace tables
-
-Before you configure the data collection process for the pipeline, any destination tables in the Log Analytics workspace must already exist. The Azure Monitor pipeline can send data to the following tables.
+Before you configure the data collection process for the pipeline, confirm or create the destination tables in the Log Analytics workspace. The Azure Monitor pipeline supports sending data to the following tables:
 
 - [Syslog](/azure/azure-monitor/reference/tables/syslog)
 - [CommonSecurityLog](/azure/azure-monitor/reference/tables/commonsecuritylog)
-- Any custom table created in the Log Analytics workspace
+- Any custom table in the Log Analytics workspace
 
 
-If you're sending data to a custom table, then you need to create that table before you can create any data flows that send to it. The schema of the table must match the data that it receives. There are multiple steps in the collection process where you can modify the incoming data, so the table schema doesn't need to match the source data that you're collecting. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
+If you're sending data to a new custom table, create that table before you create any data flows that send to it. The schema of the table must match the data that it receives but not necessarily the schema of the source data that you're collecting from. Multiple steps in the collection process allow you to modify the incoming data before it's received. The only requirement for the table in the Log Analytics workspace is that it has a `TimeGenerated` column.
 
-See [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md) for details on different methods for creating a table. For example, use the CLI command below to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
+For details on different methods for creating a table, see [Add or delete tables and columns in Azure Monitor Logs](../logs/create-custom-table.md). For example, use the following CLI command to create a table with the three columns called `Body`, `TimeGenerated`, and `SeverityText`.
 
 ```azurecli
 az monitor log-analytics workspace table create --workspace-name my-workspace --resource-group my-resource-group --name OTelLogs_CL --columns TimeGenerated=datetime Body=string SeverityText=string
 ```
 
-## Enable pipeline 
-Use the following steps to enable and configure the Azure Monitor pipeline on your cluster.
+## Create pipeline resources
+Use the following tasks to configure the Azure Monitor pipeline resources on your cluster.
 
-### Add pipeline extension to cluster
+### Add the pipeline extension
 
-Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster.
+Start by adding the pipeline extension to your Arc-enabled Kubernetes cluster. Use the same namespace for the pipeline extension and the Azure Monitor pipeline instance that you deploy later in this article. The `releaseNamespace` that you specify for the extension must match the namespace used by the pipeline instance.
 
 ### [CLI](#tab/cli)
 
@@ -100,8 +106,8 @@ az k8s-extension create --name my-pipeline --extension-type microsoft.monitor.pi
 
 ---
 
-### Create custom location
-An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc–enabled Kubernetes clusters as targetable locations for Azure resources.
+### Create a custom location
+An [Azure custom location](/azure/azure-arc/kubernetes/custom-locations) lets Azure treat the Arc-enabled Kubernetes clusters as targetable locations for Azure resources.
 
 ### [CLI](#tab/cli)
 
@@ -137,7 +143,7 @@ az customlocation create --name my-cluster-custom-location --resource-group my-r
 
 ---
 
-### Create data collection endpoint (DCE)
+### Create a data collection endpoint (DCE)
 
 Use the following command to create the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) required for the pipeline to connect to the cloud. You can use an existing DCE if you already have one in the same region.
 
@@ -176,26 +182,24 @@ az monitor data-collection endpoint create --name <dce-name> --resource-group <r
 
 ---
 
-## Data collection rule (DCR)
-The DCR is stored in Azure Monitor and defines how the data will be processed when it's received from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that will process the data. 
+## Create a data collection rule (DCR)
+Azure Monitor stores the DCR and defines how to process the received data from the pipeline. The pipeline configuration specifies the `immutable ID` of this DCR and the `stream` in the DCR that processes the data.
 
 
-### Create DCR
-The DCR needs to be created before you can create the pipeline configuration since the pipeline configuration needs the immutable ID of the DCR which is automatically generated when the DCR is created.
-
-DCRs are defined in JSON. Start with the sample DCR below and update the sections outlined in the following table. Then create the DCR using one of the methods below.
+### Define the DCR
+You need to create the DCR before you can create the pipeline configuration. The pipeline configuration needs the immutable ID of the DCR, which is automatically generated when you create the DCR. Define DCRs in JSON. Start with the following sample DCR and update the sections outlined in the table. Then create the DCR by using one of the following methods.
 
 | Parameter | Description |
 |:----------|:------------|
 | `name` | Name of the DCR. Must be unique for the subscription. |
 | `location` | Location of the DCR. Must match the location of the DCE. |
 | `dataCollectionEndpointId` | Resource ID of the DCE that you previously created. |
-| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the samples below should be used for the OLTP and Syslog data flows. If the schema for your destination table is different, then you can modify it using a transformation defined in the `transformKql` parameter. |
-| `destinations` | Details of one or more Log Analytics workspaces where the data will be sent.
+| `streamDeclarations` | Schema of the data being received. One stream is required for each dataflow in the pipeline configuration. The name must be unique in the DCR and must begin with *Custom-*. The `column` sections in the following samples should be used for the OTLP and Syslog data flows. If the schema for your destination table is different, modify it by using a transformation defined in the `transformKql` parameter. |
+| `destinations` | Details of one or more Log Analytics workspaces where the data is sent.
 | `dataFlows` | One or more data flows that each match a set of streams and destinations. The data flow can include an optional transformation to modify the data before it's sent to the destination. The output stream specifies the destination table in the Log Analytics workspace. The table must already exist in the workspace. For custom tables, prefix the table name with *Custom-*. For Azure tables, prefix the table name with *Microsoft-*.  |
 
 ### [CLI](#tab/cli)
-Replace the properties in the sample template and save them in a json file before running the CLI command to create the DCR. See [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md) for further details on the structure of a DCR.
+Replace the properties in the sample template and save them in a JSON file before running the CLI command to create the DCR. For more information about the structure of a DCR, see [Structure of a data collection rule in Azure Monitor](data-collection-rule-overview.md).
 
 ```azurecli
 az monitor data-collection rule create --name 'myDCRName' --location <location> --resource-group <resource-group> --rule-file '<dcr-file-path.json>'
@@ -389,11 +393,11 @@ az monitor data-collection rule create --name my-pipeline-dcr --location westus2
 
 
 
-### Give DCR access to pipeline extension
+## Give the pipeline access to the DCR
 
 The Arc-enabled Kubernetes cluster must have access to the DCR to send data to the cloud. Provide this access by assigning the **Monitoring Metrics Publisher** role to the System Assigned Identity of the pipeline extension on your cluster.
 
-You'll require the object ID of your cluster's System Assigned Identity. Retrieve the Azure portal or using the following CLI command:
+You need the object ID of your cluster's System Assigned Identity. Get it from the Azure portal or use the following CLI command:
 
 ```azurecli
 az k8s-extension show --name <extension-name> --cluster-name <cluster-name> --resource-group <resource-group> --cluster-type connectedClusters --query "identity.principalId" -o tsv 
@@ -407,7 +411,7 @@ az k8s-extension show --name my-pipeline-extension --cluster-name my-cluster --r
 
 ### [CLI](#tab/cli)
 
-Use the output from this command as input to the following command to give Azure Monitor pipeline the authority to send its telemetry to the DCR.
+Use the output from this command as input to the following command. It gives Azure Monitor pipeline the authority to send its telemetry to the DCR.
 
 ```azurecli
 az role assignment create --assignee "<extension principal ID>" --role "Monitoring Metrics Publisher" --scope "/subscriptions/<subscription-id>/resourceGroups/<resource-group>/providers/Microsoft.Insights/dataCollectionRules/<dcr-name>" 
@@ -440,12 +444,12 @@ az role assignment create --assignee "aaaaaaaa-bbbb-cccc-1111-222222222222" --ro
 
 ---
 
-## Pipeline configuration
+## Create the pipeline configuration
 
-The pipeline configuration defines the details of the pipeline instance and deploy the data flows necessary to receive and send telemetry to the cloud. The configuration is formatted in JSON, similar to the structure of a DCR. It can only be installed using an ARM template.
+The pipeline configuration defines the details of the pipeline instance and deploys the data flows necessary to receive and send telemetry to the cloud. Format the configuration in JSON, similar to the structure of a DCR. You can only install it by using an ARM template.
 
 #### Data sources
-To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown below. The incoming data is automatically converted to the appropriate format. 
+To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSecurityLog` processors shown in the following samples. The incoming data is automatically converted to the appropriate format.
 
 <br>
 
@@ -476,10 +480,10 @@ To collect Syslog and CEF data, use the `MicrosoftSyslog` or `MicrosoftCommonSec
 </details>
 
 #### Destinations
-To send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This will output all columns for the table without requiring any record mapping. The samples below include complete record mappings for sample purposes, but these can be omitted if you're sending to the Azure tables.
+To send data to the Azure `Syslog` and `CommonSecurityLog` tables, use either `Microsoft-Syslog-FullyFormed` or `Microsoft-CommonSecurityLog-FullyFormed` for the `stream`. This outputs all columns for the table without requiring any record mapping. The following samples include complete record mappings for sample purposes, but you can omit them if you're sending to the Azure tables.
 
 
-The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files below the table for the structure of each section.
+The following table describes the sections of the pipeline configuration and critical properties. See the sample configuration files that follow the table for the structure of each section.
 
 | Property | Description |
 |:---------|:------------|
@@ -487,10 +491,9 @@ The following table describes the sections of the pipeline configuration and cri
 | `location` | Location of the pipeline instance. |
 | `extendedLocation` | The `name` property includes the resource ID of the custom location created above. The `type` property is always `CustomLocation`.  |
 | `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
-| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Specifies the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation, and you can customize the aggregation interval using the batch processor.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
-| `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the cache. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
-| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if caching is enabled. |
-
+| `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Specifies the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation and customize its interval.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
+| `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the persistent volume. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
+| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if buffering is enabled. |
 
 <br>
 
@@ -508,9 +511,9 @@ The following table describes the sections of the pipeline configuration and cri
         {
             "type": "Microsoft.monitor/pipelineGroups",
             "location": "eastus2euap",
-            "apiVersion": "2025-03-01-preview",
+            "apiVersion": "2026-04-01",
             "extendedLocation": {
-                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resouce-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
             },
             "name": "my-pipeline-eastus2euap",
@@ -650,7 +653,7 @@ The following table describes the sections of the pipeline configuration and cri
         {
             "type": "Microsoft.monitor/pipelineGroups",
             "location": "eastus2",
-            "apiVersion": "2025-03-01-preview",
+            "apiVersion": "2026-04-01",
             "extendedLocation": {
                 "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
                 "type": "CustomLocation"
@@ -1367,22 +1370,177 @@ The following table describes the sections of the pipeline configuration and cri
 </details>
 
 
-## Enable cache
+## Enable buffering to persistent storage
 
-Edge devices in some environments may experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to cache data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this will vary based on your particular environment, but the configuration must meet the following requirements:
+Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to buffer data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
 
 * Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
 * Access mode must support `ReadWriteMany`.
 
-Once the volume is created in the appropriate namespace, configure it using parameters in the pipeline configuration file. Data is retrieved from the cache using first-in-first-out (FIFO). Any data older than 48 hours will be discarded.
+| Buffering elements | Default value and units | Max value |
+|---|---|---|
+| persistence.RetentionPeriod (optional) | 2880 minutes (48 hours) | 2880 |
+| persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
+
+After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline retrieves data from the cache by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
 
 > [!CAUTION]
-> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud will prevent that data from being backfilled when connectivity is restored.
+> Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.
 
 
+<details>
+<summary><b>Expand for buffering sample using the previous Syslog configuration</b></summary>
 
+``` json
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "metadata": {
+        "description": "This template deploys an edge pipeline with a persistent volume for Azure Monitor."
+    },
+    "resources": [
+        {
+            "type": "Microsoft.monitor/pipelineGroups",
+            "location": "eastus2",
+            "apiVersion": "2026-04-01",
+            "extendedLocation": {
+                "name": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.ExtendedLocation/customLocations/my-customlocation-eastus2",
+                "type": "CustomLocation"
+            },
+            "name": "my-pipeline-eastus2",
+            "properties": {
+                "receivers": [
+                    {
+                        "type": "Syslog",
+                        "name": "syslog-receiver",
+                        "syslog": {
+                            "endpoint": "0.0.0.0:514"
+                        }
+                    }
+                ],
+                "processors": [
+                    {
+                        "type": "MicrosoftSyslog",
+                        "name": "ms-syslog-processor"
+                    },
+                    {
+                        "type": "Batch",
+                        "name": "batch-processor",
+                        "batch": {
+                            "timeout": 60000
+                        }
+                    },
+                    {
+                        "type": "TransformLanguage",
+                        "name": "my-transform",
+                        "transformLanguage": {
+                            "transformStatement": "source"
+                        }
+                    }
+                ],
+                "exporters": [
+                    {
+                        "type": "AzureMonitorWorkspaceLogs",
+                        "name": "syslog-eus2",
+                        "azureMonitorWorkspaceLogs": {
+                            "api": {
+                                "dataCollectionEndpointUrl": "https://my-dce-eastus2-t9si.eastus2-1.ingest.monitor.azure.com",
+                                "dataCollectionRule": "dcr-00000000000000000000000000000000",
+                                "stream": "Custom-MyTableRawData_CL",
+                                "schema": {
+                                    "recordMap": [
+                                        {
+                                            "from": "attributes.CollectorHostName",
+                                            "to": "CollectorHostName"
+                                        },
+                                        {
+                                            "from": "attributes.Computer",
+                                            "to": "Computer"
+                                        },
+                                        {
+                                            "from": "attributes.EventTime",
+                                            "to": "EventTime"
+                                        },
+                                        {
+                                            "from": "attributes.Facility",
+                                            "to": "Facility"
+                                        },
+                                        {
+                                            "from": "attributes.HostIP",
+                                            "to": "HostIP"
+                                        },
+                                        {
+                                            "from": "attributes.HostName",
+                                            "to": "HostName"
+                                        },
+                                        {
+                                            "from": "attributes.ProcessID",
+                                            "to": "ProcessID"
+                                        },
+                                        {
+                                            "from": "attributes.ProcessName",
+                                            "to": "ProcessName"
+                                        },
+                                        {
+                                            "from": "attributes.SeverityLevel",
+                                            "to": "SeverityLevel"
+                                        },
+                                        {
+                                            "from": "attributes.SourceSystem",
+                                            "to": "SourceSystem"
+                                        },
+                                        {
+                                            "from": "attributes.SyslogMessage",
+                                            "to": "SyslogMessage"
+                                        },
+                                        {
+                                            "from": "attributes.TimeGenerated",
+                                            "to": "TimeGenerated"
+                                        }
+                                    ]
+                                }
+                            },
+                            "persistence": {
+                              "maxStorageUsage": 100,
+                              "retentionPeriod": 10
+                            }
+                        }
+                    }
+                ],
+                "service": {
+                    "pipelines": [
+                        {
+                            "name": "syslog-pipeline",
+                            "receivers": [
+                                "syslog-receiver"
+                            ],
+                            "processors": [
+                                "ms-syslog-processor",
+                                "batch-processor",
+                                "my-transform"
+                            ],
+                            "exporters": [
+                                "syslog-eus2"
+                            ],
+                            "type": "Logs"
+                        }
+                    ],
+                    "persistence": {
+                        "persistentVolumeName": "my-pv"
+                    }
+                }
+            }
+        }
+    ]
+}
+```
 
-## Next steps
+</details>
 
-* [Configure clients](./pipeline-configure-clients.md) to use the pipeline.
-* Modify data before it's sent to the cloud using [pipeline transformations](./pipeline-transformations.md).
+## Related articles
+
+- [Configure a Kubernetes gateway](./pipeline-kubernetes-gateway.md) to expose the pipeline to external clients.
+- [Configure TLS](./pipeline-tls.md) to encrypt incoming traffic.
+- [Modify data before it's sent to the cloud](./pipeline-transformations.md).
+- [Set up a gateway](./pipeline-kubernetes-gateway.md) for clients outside the cluster.
+- [Configure Azure Monitor pipeline with the Azure portal](./pipeline-configure-portal.md) if you want a simpler guided experience.
