@@ -52,10 +52,11 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 
 # [REST](#tab/rest-1)
 
-```rest
+```REST
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
 Authorization: Bearer {token}
 Content-Type: application/json
+
 {
     "properties": {
         "schema": {
@@ -154,6 +155,7 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.j
   }
 }
 ```
+
 </details>
 
 # [PowerShell](#tab/powershell-1)
@@ -222,6 +224,7 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=2025-07-01" -Payl
   }
 }
 ```
+
 </details>
 
 # [ARM (JSON)](#tab/arm-1)
@@ -361,7 +364,7 @@ This Bicep example uses the [Microsoft.OperationalInsights workspaces/tables](/a
 | resourceGroupName | myResourceGroup | User input |
 | workspaceName | myWorkspace | User input |
 | tableName_CL | myTable_CL | User input |
-| apiVersion | 2025-07-01 | [Current version](/rest/api/loganalytics/tables/create-or-update) |
+| apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## Send data to a table with the Auxiliary plan
 
@@ -394,12 +397,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     * `myTable_CL` is the name of your table.
     * `columns` includes the same columns you set in the creation of the table.
 
-    > [!NOTE]
-    > In the DCR JSON, streams and outputStream are shown as fixed sample values rather than parameterized values. It uses Custom-myTable for the input stream and Custom-myTable_CL for the output stream.
-
     # [REST](#tab/rest-2)
     
-    ```rest
+    ```REST
     PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule?api-version=2024-03-11
     Authorization: Bearer {token}
     Content-Type: application/json
@@ -471,8 +471,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     ```
 
     # [Azure CLI](#tab/cli-2)
-
-    [!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
     
     ```azurecli
     subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -489,7 +487,11 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
       --name "$dataCollectionRuleName" \
       --rule-file "myDataCollectionRule.json"
     ```
-    
+
+    <br>
+    <details>
+    <summary>Expand to view the myDataCollectionRule.json file.</summary>
+
     ```json
     {
       "location": "eastus",
@@ -557,9 +559,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     }
     ```
 
-    # [PowerShell](#tab/powershell-2)
+    </details>
 
-    [!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+    # [PowerShell](#tab/powershell-2)
 
     ```azurepowershell
     $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -574,6 +576,10 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
       -JsonFilePath ".\myDataCollectionRule.json"
     ```
 
+    <br>
+    <details>
+    <summary>Expand to view the myDataCollectionRule.json file.</summary>
+
     ```json
     {
       "location": "eastus",
@@ -640,6 +646,8 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
       }
     }
     ```
+
+    </details>
 
     # [ARM (JSON)](#tab/arm-2)
     
@@ -670,7 +678,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 "kind": "Direct",
                 "properties": {
                     "streamDeclarations": {
-                        "Custom-tablename": {
+                        "Custom-tableName": {
                             "columns": [
                                 {"name": "TimeGenerated",
                                     "type": "datetime"},
@@ -733,7 +741,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     kind: 'Direct'
     properties: {
         streamDeclarations: {
-        'Custom-tablename': {
+        'Custom-tableName': {
             columns: [
             {
                 name: 'TimeGenerated'
@@ -795,12 +803,21 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     
     output dataCollectionRuleId string = dataCollectionRule.id
     ```
-    
-    ---
 
     This Bicep example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
 
     ---
+
+    | Variable | Example value | Purpose |
+    |----------|---------------|---------|
+    | host | management.azure.com | Implicit ARM endpoint |
+    | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+    | resourceGroupName | myResourceGroup | User input |
+    | dataCollectionRuleName | myDataCollectionRule | User input |
+    | workspaceResourceId |  | User input |
+    | streams | Custom-myTable | User input |
+    | outputStream | Custom-tableName_CL | User input |
+    | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
 

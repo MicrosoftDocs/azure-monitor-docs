@@ -91,7 +91,7 @@ You should follow the steps only if the following criteria are true:
     | resourceGroupName | myResourceGroup | User input |
     | workspaceName | myWorkspace | User input |
     | tableName | myTable | User input |
-    | apiVersion | 2025-07-01 | [Current version](/rest/api/loganalytics/tables/migrate) |
+    | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 1. Discontinue MMA custom text log collection and start using the AMA custom text log.
 
