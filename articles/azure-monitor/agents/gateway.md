@@ -53,7 +53,7 @@ The following diagram shows data flow from an Operations Manager management grou
 Computers designated to run the Log Analytics gateway must have the following configuration:
 
 * Windows 10, Windows 8.1, or Windows 7
-* Windows Server 2025, 2022, 2022 core, 2019, 2019 core, 2016, 2016 core, Windows Server 2012 R2 with and ESU agreement
+* Windows Server 2025, 2022, 2022 core, 2019, 2019 core, 2016, 2016 core, Windows Server 2012 R2 with and ESU agreement.
 * Microsoft .NET Framework 4.5
 * At least a 4-core processor and 8 GB of memory 
 * An [Azure Monitor agent](azure-monitor-agent-overview.md) installed with [data collection rules](../vm/data-collection.md) configured, or the [Log Analytics agent for Windows](agent-windows.md) configured to report to the same workspace as the agents that communicate through the gateway
