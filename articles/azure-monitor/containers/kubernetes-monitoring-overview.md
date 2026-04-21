@@ -60,7 +60,50 @@ Azure Monitor provides multiple tools to analyze the data collected by other fea
 
 :::image type="content" source="media/kubernetes-monitoring-overview/containers-insights-experience.png" lightbox="media/kubernetes-monitoring-overview/containers-insights-experience.png" alt-text="Screenshots of Container insights single and multiple cluster views." border="false":::
 
-
+## Deploy monitoring for AKS using Terraform
+You can configure Azure Monitor for Kubernetes clusters using Terraform. The following example creates a resource group, a Log Analytics workspace, and an AKS cluster with Azure Monitor Container Insights enabled.
+```terraform
+terraform {
+ required_providers {
+   azurerm = {
+     source  = "hashicorp/azurerm"
+     version = "~> 3.0"
+   }
+ }
+}
+provider "azurerm" {
+ features {}
+}
+resource "azurerm_resource_group" "example" {
+ name     = "rg-aks-monitoring"
+ location = "East US"
+}
+resource "azurerm_log_analytics_workspace" "example" {
+ name                = "aks-monitoring-law"
+ location            = azurerm_resource_group.example.location
+ resource_group_name = azurerm_resource_group.example.name
+ sku                 = "PerGB2018"
+ retention_in_days   = 30
+}
+resource "azurerm_kubernetes_cluster" "example" {
+ name                = "aks-monitoring-cluster"
+ location            = azurerm_resource_group.example.location
+ resource_group_name = azurerm_resource_group.example.name
+ dns_prefix          = "aksmonitor"
+ default_node_pool {
+   name       = "systempool"
+   node_count = 1
+   vm_size    = "Standard_DS2_v2"
+ }
+ identity {
+   type = "SystemAssigned"
+ }
+ oms_agent {
+   log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
+ }
+}
+```
+This configuration connects the AKS cluster to Azure Monitor through a Log Analytics workspace so that you can collect container logs and metrics.
 
 ## Next steps
 
