@@ -98,5 +98,4 @@ For more information, see [Product availability by region](https://azure.microso
 - Review gateway guidance in [Azure Monitor pipeline - Gateway for Kubernetes deployment](./pipeline-kubernetes-gateway.md).
 - Review encryption options in [Azure Monitor pipeline TLS configuration](./pipeline-tls.md).
 - Review data shaping options in [Transform data with Azure Monitor pipeline](./pipeline-transformations.md).
-- Monitor pipeline health in [Monitor Azure Monitor pipeline](./pipeline-monitor.md).
 - Plan deployment capacity in [Size Azure Monitor pipeline](./pipeline-sizing.md).
