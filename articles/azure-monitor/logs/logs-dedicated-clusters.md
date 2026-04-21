@@ -3,8 +3,9 @@ title: Azure Monitor Logs Dedicated Clusters
 description: Customers meeting the minimum commitment tier could use dedicated clusters
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 02/02/2026
+ms.date: 04/09/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+ai-usage: ai-assisted
 ---
 
 # Create and manage a dedicated cluster in Azure Monitor Logs 
@@ -22,6 +23,7 @@ Azure Monitor Logs is a fully managed, cloud‑scale service designed to automat
 - **Cost optimization** - Link workspaces in the same region to the cluster, and enjoy a commitment tier discount for data ingested from all linked workspaces.
 - **[Availability zones](/azure/reliability/availability-zones-overview)** - Protect your data with datacenters in different physical locations, equipped with independent power, cooling, and networking. [Azure Monitor availability zones](./availability-zones.md#supported-regions) extends your Azure Monitor resilience automatically. Azure Monitor enables dedicated clusters for availability zones (`isAvailabilityZonesEnabled`: 'true') by default in all regions that support availability zones. [Availability zone supported regions](./availability-zones.md#supported-regions) include support for dedicated clusters and shared clusters.
 - **[Ingest from Azure Event Hubs](../logs/ingest-logs-event-hub.md)** - Lets you ingest data directly from Event Hubs into a Log Analytics workspace.  
+- **Cluster metrics and monitoring** - Monitor cluster performance through Azure Monitor, including ingestion volume, query performance, and capacity commitment utilization across all linked workspaces.
 
 > [!NOTE]
 > Dedicated clusters aren't a general way to make all queries faster. As with any large analytical system, running queries across very large datasets requires extra compute resources and might impact query performance. For better query performance beyond the cross-workspace optimization of dedicated clusters, [optimize your queries](query-optimization.md). This strategy is especially effective with large datasets and when querying over long time ranges.

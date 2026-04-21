@@ -2,7 +2,7 @@
 title: Migrate Application Insights Classic API Software Development Kits (SDKs) to Azure Monitor OpenTelemetry
 description: This article provides guidance on how to migrate .NET, Java, Node.js, and Python applications from the Application Insights Classic API SDKs to Azure Monitor OpenTelemetry.
 ms.topic: how-to
-ms.date: 03/06/2026
+ms.date: 04/08/2026
 ms.custom:
   - devx-track-dotnet, devx-track-java, devx-track-extended-java, devx-track-js, devx-track-python
   - sfi-ropc-nochange
@@ -152,7 +152,7 @@ There are typically no code changes when upgrading to 3.x. The 3.x SDK dependenc
 Add the 3.x Java agent to your Java Virtual Machine (JVM) command-line args, for example:
 
 ```
--javaagent:path/to/applicationinsights-agent-3.7.5.jar
+-javaagent:path/to/applicationinsights-agent-3.7.8.jar
 ```
 
 If you're using the Application Insights 2.x Java agent, just replace your existing `-javaagent:...` with the previous example.

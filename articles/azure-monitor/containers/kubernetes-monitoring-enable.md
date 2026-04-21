@@ -1,20 +1,21 @@
 ---
-title: Enable monitoring for AKS clusters
+title: Enable Monitoring for Azure Kubernetes Service (AKS) Clusters
 description: Learn how to enable monitoring for Azure Kubernetes Service (AKS) cluster with Azure Monitor.
+ms.service: azure-monitor
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
 ms.date: 08/25/2025
 ---
 
-# Enable monitoring for AKS clusters
+# Enable monitoring for Azure Kubernetes Service (AKS) clusters
+
 As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring-overview.md), multiple features of Azure Monitor work together to provide complete monitoring of your Azure Kubernetes Service (AKS) clusters. This article describes how to enable the following features for AKS clusters:
 
 - Prometheus metrics
 - Managed Grafana
 - Container logging
 - Control plane logs
-
 
 ## Prerequisites
 
@@ -25,57 +26,108 @@ As described in [Kubernetes monitoring in Azure Monitor](./kubernetes-monitoring
 > [!IMPORTANT]
 > If your clusters connect to the Azure Monitor workspace or Log Analytics workspace by using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 
-
 ## Create workspaces
 
-The following table describes the workspaces that are required to support the Azure Monitor features enabled in this article. If you don't already have an existing workspace of each type, you can create them as part of the onboarding process.  See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed. 
+The following table describes the workspaces that are required to support the Azure Monitor features enabled in this article. If you don't already have an existing workspace of each type, you can create them as part of the onboarding process. See [Design a Log Analytics workspace architecture](../logs/workspace-design.md) for guidance on how many workspaces to create and where they should be placed.
 
 | Feature | Workspace | Notes |
-|:---|:---|:---|
-| Managed Prometheus | [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) | If you don't specify an existing Azure Monitor workspace when onboarding, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` will be created in a resource group with the name `DefaultRG-<cluster_region>`.<br><br>`Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You will need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
-| Container logging<br>Control plane logs | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the *Microsoft.ContainerService* resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>If you don't specify an existing Log Analytics workspace, the default workspace for the resource group will be used. If a default workspace doesn't already exist in the cluster's region, one will be created with a name in the format `DefaultWorkspace-<GUID>-<Region>`.<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
+| ------- | --------- | ----- |
+| Managed Prometheus | [Azure Monitor workspace](../metrics/azure-monitor-workspace-overview.md) | If you don't specify an existing Azure Monitor workspace when onboarding, the default workspace for the resource group is used. If a default workspace doesn't already exist in the cluster's region, one with a name in the format `DefaultAzureMonitorWorkspace-<mapped_region>` is created in a resource group with the name `DefaultRG-<cluster_region>`.<br><br>`Contributor` permission is enough for enabling the addon to send data to the Azure Monitor workspace. You need `Owner` level permission to link your Azure Monitor Workspace to view metrics in Azure Managed Grafana. This is required because the user executing the onboarding step, needs to be able to give the Azure Managed Grafana System Identity `Monitoring Reader` role on the Azure Monitor Workspace to query the metrics. |
+| Container logging<br>Control plane logs<br>Container insights | [Log Analytics workspace](../logs/log-analytics-workspace-overview.md) | You can attach a cluster to a Log Analytics workspace in a different Azure subscription in the same Microsoft Entra tenant, but you must use the Azure CLI or an Azure Resource Manager template. You can't currently perform this configuration with the Azure portal.<br><br>If you're connecting an existing cluster to a Log Analytics workspace in another subscription, the _Microsoft.ContainerService_ resource provider must be registered in the subscription with the Log Analytics workspace. For more information, see [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).<br><br>If you don't specify an existing Log Analytics workspace, the default workspace for the resource group is used. If a default workspace doesn't already exist in the cluster's region, one is created with a name in the format `DefaultWorkspace-<GUID>-<Region>`.<br><br>For a list of the supported mapping pairs to use for the default workspace, see [Region mappings supported by Container insights](container-insights-region-mapping.md). See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) for guidance on how to configure the workspace with network security perimeter. |
 | Managed Grafana | [Azure Managed Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal#create-an-azure-managed-grafana-workspace) | [Link your Grafana workspace to your Azure Monitor workspace](/azure/managed-grafana/how-to-connect-azure-monitor-workspace) to make the Prometheus metrics collected from your cluster available to Grafana dashboards. |
 
+## Prometheus metrics and container insights
 
-## Enable Prometheus metrics and container logging
-
-> [!NOTE] 
+> [!NOTE]
 > Using Application insights to monitor the applications running on your AKS cluster by using the OpenTelemetry Protocol (OTLP) for instrumentation and data collection is now in public preview. See [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Limited Preview](../app/kubernetes-open-protocol.md).
 
-
-When you enable Prometheus and container logging on a cluster, a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed in the cluster. You can configure these features at the same time on a new or existing cluster, or enable each feature separately. 
+When you enable Prometheus and container insights on a cluster, a containerized version of the [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) is installed in the cluster. You can configure these features at the same time on a new or existing cluster, or enable each feature separately.
 
 Enable Managed Grafana for your cluster at the same time that you enable scraping of Prometheus metrics. See [Link a Grafana workspace](/azure/managed-grafana/quickstart-managed-grafana-portal) for options to connect your Azure Monitor workspace and Azure Managed Grafana workspace.
 
-
 ### Prerequisites
+
+#### [Azure CLI](#tab/azure-cli)
 
 - The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
 - The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
-    - Microsoft.ContainerService
-    - Microsoft.Insights
-    - Microsoft.AlertsManagement
-    - Microsoft.Monitor
+  - Microsoft.ContainerService
+  - Microsoft.Insights
+  - Microsoft.AlertsManagement
+  - Microsoft.Monitor
 - The following resource providers must be registered in the subscription of the Grafana workspace subscription:
-    - Microsoft.Dashboard
-
-
-
-### [CLI](#tab/cli)
-
-### Prerequisites
-
+  - Microsoft.Dashboard
 - Managed identity authentication is default in CLI version 2.49.0 or higher.
-- The aks-preview extension must be [uninstalled from AKS clusters](/cli/azure/azure-cli-extensions-overview) by using the command `az extension remove --name aks-preview`. 
+- The `aks-preview` extension must be [uninstalled from AKS clusters](/cli/azure/azure-cli-extensions-overview) using the command `az extension remove --name aks-preview`.
 
+#### [Bicep/ARM](#tab/bicep-arm)
 
-### Prometheus metrics
+- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
+- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
+  - Microsoft.ContainerService
+  - Microsoft.Insights
+  - Microsoft.AlertsManagement
+  - Microsoft.Monitor
+- The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+  - Microsoft.Dashboard
+- The Azure Monitor workspace and Azure Managed Grafana instance must already be created.
+- The template must be deployed in the same resource group as the Azure Managed Grafana instance.
+- If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor workspace subscription, register the Azure Monitor workspace subscription with the `Microsoft.Dashboard` resource provider using the guidance at [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+- Users with the `User Access Administrator` role in the subscription of the AKS cluster can enable the `Monitoring Reader` role directly by deploying the template.
 
-Use the `-enable-azure-monitor-metrics` option with [az aks create](/cli/azure/aks#az-aks-create) or [az aks update](/cli/azure/aks#az-aks-update) depending whether you're creating a new cluster or updating an existing cluster to install the metrics add-on that scrapes Prometheus metrics. This will use the configuration described in [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md). To modify this configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
+> [!NOTE]
+> Currently in Bicep, there's no way to explicitly scope the `Monitoring Reader` role assignment on a string parameter "resource ID" for an Azure Monitor workspace like in an ARM template. Bicep expects a value of type `resource | tenant`. There's also no REST API [spec](https://github.com/Azure/azure-rest-api-specs) for an Azure Monitor workspace.
+>
+> Therefore, the default scoping for the `Monitoring Reader` role is on the resource group. The role is applied on the same Azure Monitor workspace by inheritance, which is the expected behavior. After you deploy this Bicep template, the Grafana instance is given `Monitoring Reader` permissions for all the Azure Monitor workspaces in that resource group.
 
-See the following examples.
+#### [Terraform](#tab/terraform)
 
-```azurecli
+- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
+- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
+  - Microsoft.ContainerService
+  - Microsoft.Insights
+  - Microsoft.AlertsManagement
+  - Microsoft.Monitor
+- The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+  - Microsoft.Dashboard
+- The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
+- The template needs to be deployed in the same resource group as the Azure Managed Grafana workspace.
+- Users with the User Access Administrator role in the subscription of the AKS cluster can enable the Monitoring Reader role directly by deploying the template.
+- If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor Workspaces subscription, register the Azure Monitor Workspace subscription with the `Microsoft.Dashboard` resource provider by following [this documentation](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
+
+#### [Azure portal](#tab/azure-portal)
+
+- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
+- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
+  - Microsoft.ContainerService
+  - Microsoft.Insights
+  - Microsoft.AlertsManagement
+  - Microsoft.Monitor
+- The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+  - Microsoft.Dashboard
+
+#### [Azure Policy](#tab/azure-policy)
+
+- The cluster must use [managed identity authentication](/azure/aks/use-managed-identity).
+- The following resource providers must be registered in the subscription of the cluster and the Azure Monitor workspace:
+  - Microsoft.ContainerService
+  - Microsoft.Insights
+  - Microsoft.AlertsManagement
+  - Microsoft.Monitor
+- The following resource providers must be registered in the subscription of the Grafana workspace subscription:
+  - Microsoft.Dashboard
+
+---
+
+## Enable Prometheus metrics on an AKS cluster
+
+### [Azure CLI](#tab/azure-cli)
+
+Enable Prometheus metrics on an AKS cluster using the `--enable-azure-monitor-metrics` option with the [`az aks create`](/cli/azure/aks#az-aks-create) command for a new cluster or the [`az aks update`](/cli/azure/aks#az-aks-update) command for an existing cluster. This option uses the configuration described in [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md). To modify this configuration, see [Customize scraping of Prometheus metrics in Azure Monitor managed service for Prometheus](./prometheus-metrics-scrape-configuration.md).
+
+Example commands:
+
+```azurecli-interactive
 ### Use default Azure Monitor workspace
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group>
 
@@ -89,92 +141,24 @@ az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --reso
 az aks create/update --enable-azure-monitor-metrics --name <cluster-name> --resource-group <cluster-resource-group> --ksm-metric-labels-allow-list "namespaces=[k8s-label-1,k8s-label-n]" --ksm-metric-annotations-allow-list "pods=[k8s-annotation-1,k8s-annotation-n]"
 ```
 
-**Example**
+### Optional parameters
 
-```azurecli
-az aks create/update --enable-azure-monitor-metrics --name "my-cluster" --resource-group "my-resource-group" --azure-monitor-workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/microsoft.monitor/accounts/my-workspace"
-```
+The example commands allow the following optional parameters. The parameter name is different for each, but their use is the same.
 
-#### Optional parameters
-Each of the commands above allow the following optional parameters. The parameter name is different for each, but their use is the same.
-
-| Parameter | Name and Description |
-|:---|:---|
+| Parameter | Name and description |
+| --------- | -------------------- |
 | Annotation keys | `--ksm-metric-annotations-allow-list`<br><br>Comma-separated list of Kubernetes annotations keys used in the resource's `kube_resource_annotations` metric. For example, kube_pod_annotations is the annotations metric for the pods resource. By default, this metric contains only name and namespace labels. To include more annotations, provide a list of resource names in their plural form and Kubernetes annotation keys that you want to allow for them. A single `*` can be provided for each resource to allow any annotations, but this has severe performance implications. For example, `pods=[kubernetes.io/team,...],namespaces=[kubernetes.io/team],...`. |
 | Label keys | `--ksm-metric-labels-allow-list`<br><br>Comma-separated list of more Kubernetes label keys that is used in the resource's kube_resource_labels metric kube_resource_labels metric. For example, kube_pod_labels is the labels metric for the pods resource. By default this metric contains only name and namespace labels. To include more labels, provide a list of resource names in their plural form and Kubernetes label keys that you want to allow for them A single `*` can be provided for each resource to allow any labels, but i this has severe performance implications. For example, `pods=[app],namespaces=[k8s-label-1,k8s-label-n,...],...`. |
 | Recording rules | `--enable-windows-recording-rules`<br><br>Lets you enable the recording rule groups required for proper functioning of the Windows dashboards. |
 
 > [!NOTE]
-> Note that the parameters set using - ksm-metric-annotations-allow-list and ksm-metric-labels-allow-list can be overridden or alternatively set using the [ama-metrics-settings-configmap](../containers/prometheus-metrics-scrape-configuration.md#kube-state-metrics)
+> The parameters set using `--ksm-metric-annotations-allow-list` and `--ksm-metric-labels-allow-list` can be overridden or alternatively set using the [ama-metrics-settings-configmap](../containers/prometheus-metrics-scrape-configuration.md#kube-state-metrics).
 
-#### Container logs
+### [Bicep/ARM](#tab/bicep-arm)
 
-Use the `--addon monitoring` option with [az aks create](/cli/azure/aks#az-aks-create) for a new cluster or [az aks enable-addon](/cli/azure/aks#az-aks-enable-addons) to update an existing cluster to enable collection of container logs. See below to modify the log collection settings.
+### Retrieve required values for Grafana resource
 
-See the following examples.
-
-```azurecli
-### Use default Log Analytics workspace
-az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name>
-
-### Use existing Log Analytics workspace
-az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id>
-
-### Use custom log configuration file
-az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --data-collection-settings dataCollectionSettings.json
-
-```
-
-**Example**
-
-```azurecli
-az aks enable-addons --addon monitoring --name "my-cluster" --resource-group "my-resource-group" --workspace-resource-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/my-resource-group/providers/Microsoft.OperationalInsights/workspaces/my-workspace"
-```
-
-#### Log configuration file
-
-To customize log collection settings for the cluster, you can provide the configuration as a JSON file using the following format. If you don't provide a configuration file, the default settings identified in the table below are used.
-
-```json
-{
-  "interval": "1m",
-  "namespaceFilteringMode": "Include",
-  "namespaces": ["kube-system"],
-  "enableContainerLogV2": true, 
-  "streams": ["Microsoft-Perf", "Microsoft-ContainerLogV2"]
-}
-```
-
-Each of the settings in the configuration is described in the following table.
-
-| Name | Description |
-|:---|:---|
-| `interval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals If the value is outside the allowed range, then it defaults to *1 m*.<br><br>Default: 1m.  |
-| `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.<br><br>Default: Off |
-| `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
-|  `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
-| `streams` | An array of table streams to collect. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: Microsoft-ContainerInsights-Group-Default |
-
-
-
-### [BICEP/ARM](#tab/arm)
-
-### Prerequisites
-
-- The Azure Monitor workspace and Azure Managed Grafana instance must already be created.
-- The template must be deployed in the same resource group as the Azure Managed Grafana instance.
-- If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor workspace subscription, register the Azure Monitor workspace subscription with the `Microsoft.Dashboard` resource provider using the guidance at [Register resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
-- Users with the `User Access Administrator` role in the subscription of the AKS cluster can enable the `Monitoring Reader` role directly by deploying the template.
-
-> [!NOTE]
-> Currently in Bicep, there's no way to explicitly scope the `Monitoring Reader` role assignment on a string parameter "resource ID" for an Azure Monitor workspace like in an ARM template. Bicep expects a value of type `resource | tenant`. There is also no REST API [spec](https://github.com/Azure/azure-rest-api-specs) for an Azure Monitor workspace.
-> 
-> Therefore, the default scoping for the `Monitoring Reader` role is on the resource group. The role is applied on the same Azure Monitor workspace by inheritance, which is the expected behavior. After you deploy this Bicep template, the Grafana instance is given `Monitoring Reader` permissions for all the Azure Monitor workspaces in that resource group.
-
-### Prometheus metrics
-
-#### Retrieve required values for Grafana resource
-If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template or it will be overwritten. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which will look similar to the sample below. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
+If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template or it will be overwritten. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which looks similar to the following sample. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
 
 ```json
 "properties": {
@@ -191,7 +175,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 }
 ```
 
-#### Download and edit template and parameter file
+### Download and edit template and parameter file
 
 1. Download the required files.
 
@@ -208,13 +192,10 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     - Template file: [https://aka.ms/azureprometheus-enable-arm-template](https://aka.ms/azureprometheus-enable-arm-template)
     - Parameter file: [https://aka.ms/azureprometheus-enable-arm-template-parameters](https://aka.ms/azureprometheus-enable-arm-template-parameters)
 
-
-
-2. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
-
+1. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
 
     | Parameter | Value |
-    |:---|:---|
+    | --------- | ----- |
     | `azureMonitorWorkspaceResourceId` | Resource ID for the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `azureMonitorWorkspaceLocation` | Location of the Azure Monitor workspace. Retrieve from the **JSON view** on the **Overview** page for the Azure Monitor workspace. |
     | `clusterResourceId` | Resource ID for the AKS cluster. Retrieve from the **JSON view** on the **Overview** page for the cluster. |
@@ -222,12 +203,10 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     | `metricLabelsAllowlist` | Comma-separated list of Kubernetes labels keys to be used in the resource's labels metric. |
     | `metricAnnotationsAllowList` | Comma-separated list of more Kubernetes label keys to be used in the resource's annotations metric. |
     | `grafanaResourceId` | Resource ID for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. |
-    | `grafanaLocation`   | Location for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. |
-    | `grafanaSku`        | SKU for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. Use the **sku.name**. |
+    | `grafanaLocation` | Location for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. |
+    | `grafanaSku` | SKU for the managed Grafana instance. Retrieve from the **JSON view** on the **Overview** page for the Grafana instance. Use the **sku.name**. |
 
-
-
-3. Open the template file and update the `grafanaIntegrations` property at the end of the file with the values that you retrieved from the Grafana instance. This will look similar to the following samples. In these samples, `full_resource_id_1` and `full_resource_id_2` were already in the Azure Managed Grafana resource JSON. The final `azureMonitorWorkspaceResourceId` entry is already in the template and is used to link to the Azure Monitor workspace resource ID provided in the parameters file.
+1. Open the template file and update the `grafanaIntegrations` property at the end of the file with the values that you retrieved from the Grafana instance. This looks similar to the following samples. In these samples, `full_resource_id_1` and `full_resource_id_2` were already in the Azure Managed Grafana resource JSON. The final `azureMonitorWorkspaceResourceId` entry is already in the template and is used to link to the Azure Monitor workspace resource ID provided in the parameters file.
 
     **Bicep**
 
@@ -288,63 +267,13 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     }
     ```
 
-
-4. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
-
-### Container logs
-
-#### Prerequisites
- 
-- The template must be deployed in the same resource group as the cluster.
-
-#### Download and install template
-
-1. Download and edit template and parameter file.
-
-    **Bicep**
-    - Template file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-template](https://aka.ms/enable-monitoring-msi-syslog-bicep-template)
-    - Parameter file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
-    - Template file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-template](https://aka.ms/enable-monitoring-msi-bicep-template)
-    - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-parameters](https://aka.ms/enable-monitoring-msi-bicep-parameters)
-  
-    **ARM**
-   - Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
-   - Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
-
-
-2. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
-
-    | Parameter | Description |
-    |:---|:---|
-    | `aksResourceId`  | Resource ID of the cluster. |
-    | `aksResourceLocation` | Location of the cluster. |
-    | `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
-    | `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
-    | `enableRetinaNetworkFlowLogs` | Flag to indicate whether to enable Retina Network Flow Logs. |
-    | `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are sent to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are sent to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
-    | `enableSyslog` | Specifies whether Syslog collection should be enabled. |
-    | `syslogLevels` | If Syslog collection is enabled, specifies the log levels to collect. |
-    | `dataCollectionInterval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. If the value is outside the allowed range, then it defaults to *1 m*. |
-    | `namespaceFilteringModeForDataCollection` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.
-    | `namespacesForDataCollection` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored. |
-    | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.  |
-    | `useAzureMonitorPrivateLinkScope` | Specifies whether to use private link for the cluster connection to Azure Monitor. |
-    | `azureMonitorPrivateLinkScopeResourceId` | If private link is used, resource ID of the private link scope.  |
-
-3. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
-
+1. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
 
 ### [Terraform](#tab/terraform)
 
-#### Prerequisites
+### Retrieve required values for Grafana resource
 
-- The Azure Monitor workspace and Azure Managed Grafana workspace must already be created.
-- The template needs to be deployed in the same resource group as the Azure Managed Grafana workspace.
-- Users with the User Access Administrator role in the subscription of the AKS cluster can enable the Monitoring Reader role directly by deploying the template.
-- If the Azure Managed Grafana instance is in a subscription other than the Azure Monitor Workspaces subscription, register the Azure Monitor Workspace subscription with the `Microsoft.Dashboard` resource provider by following [this documentation](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider).
-
-#### Retrieve required values for Grafana resource
-If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template or it will be overwritten. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which will look similar to the sample below. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
+If the Azure Managed Grafana instance is already linked to an Azure Monitor workspace, then you must include this list in the template or it will be overwritten. On the **Overview** page for the Azure Managed Grafana instance in the Azure portal, select **JSON view**, and copy the value of `azureMonitorWorkspaceIntegrations` which looks similar to the following sample. If it doesn't exist, then the instance hasn't been linked with any Azure Monitor workspace.
 
 ```json
 "properties": {
@@ -361,85 +290,30 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 }
 ```
 
-Update the `azure_monitor_workspace_integrations` block in `main.tf` with the list of grafana integrations.
+Update the `azure_monitor_workspace_integrations` block in `main.tf` with the list of Grafana integrations.
 
-```.tf
+```Terraform
   azure_monitor_workspace_integrations {
     resource_id  = var.monitor_workspace_id[var.monitor_workspace_id1, var.monitor_workspace_id2]
   }
 ```
 
-#### Download and edit templates
+### Download and edit templates
 
 **New AKS cluster**
 
 1. Download all files under [AddonTerraformTemplate](https://aka.ms/AAkm357).
-2. Edit the variables in variables.tf file with the correct parameter values.
-3. Run `terraform init -upgrade` to initialize the Terraform deployment.
-4. Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
-5. Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
+1. Edit the variables in variables.tf file with the correct parameter values.
+1. Run `terraform init -upgrade` to initialize the Terraform deployment.
+1. Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
+1. Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
 
-
-Note: Pass the variables for `annotations_allowed` and `labels_allowed` keys in main.tf only when those values exist. These are optional blocks.
+Pass the variables for `annotations_allowed` and `labels_allowed` keys in main.tf only when those values exist. These blocks are optional.
 
 > [!NOTE]
 > Edit the main.tf file appropriately before running the terraform template. Add in any existing azure_monitor_workspace_integrations values to the grafana resource before running the template. Else, older values get deleted and replaced with what is there in the template during deployment. Users with 'User Access Administrator' role in the subscription  of the AKS cluster can enable 'Monitoring Reader' role directly by deploying the template. Edit the grafanaSku parameter if you're using a nonstandard SKU and finally run this template in the Grafana Resource's resource group.
 
-
-#### Container logs
-
-**New AKS cluster**
-
-1.	Download Terraform template file depending on whether you want to enable Syslog collection.
-
-    - Syslog: [https://aka.ms/enable-monitoring-msi-syslog-terraform](https://aka.ms/enable-monitoring-msi-syslog-terraform)
-    - No Syslog: [https://aka.ms/enable-monitoring-msi-terraform](https://aka.ms/enable-monitoring-msi-terraform)
-
-2.	Adjust the `azurerm_kubernetes_cluster` resource in *main.tf* based on your cluster settings.
-3.	Update parameters in *variables.tf* to replace values in "<>"
-
-    | Parameter | Description |
-    |:---|:---|
-    | `aks_resource_group_name` | Use the values on the AKS Overview page for the resource group. |
-    | `resource_group_location` | Use the values on the AKS Overview page for the resource group. |
-    | `cluster_name` | Define the cluster name that you would like to create. |
-    | `workspace_resource_id` | Use the resource ID of your Log Analytics workspace. |
-    | `workspace_region` | Use the location of your Log Analytics workspace. |
-    | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will match `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
-    | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
-    | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
-    | `streams` | Streams for data collection. See [Stream values](#stream-values).  |
-    | `use_azure_monitor_private_link_scope`  | Flag to indicate whether to configure Azure Monitor Private Link Scope.  |
-    | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
-    
-
-
-4.	Run `terraform init -upgrade` to initialize the Terraform deployment.
-5.	Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
-6.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
-
-
-**Existing AKS cluster**
-1.	Import the existing cluster resource first with the command: ` terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`
-2.	Add the oms_agent add-on profile to the existing azurerm_kubernetes_cluster resource.
-    ```
-    oms_agent {
-        log_analytics_workspace_id = var.workspace_resource_id
-        msi_auth_for_monitoring_enabled = true
-      }
-    ```
-3.	Copy the DCR and DCRA resources from the Terraform templates
-4.	Run `terraform plan -out main.tfplan` and make sure the change is adding the oms_agent property. Note: If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster will get destroyed and recreated.
-5.	Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
-
-> [!TIP]
-> - Edit the `main.tf` file appropriately before running the terraform template
-> - Data will start flowing after 10 minutes since the cluster needs to be ready first
-> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`
-> - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan
-
-
-### [Azure portal](#tab/portal)
+### [Azure portal](#tab/azure-portal)
 
 You can enable Prometheus metrics and container logs when you create a new AKS cluster or on an existing cluster in the Azure portal. In both cases, the configuration experience is the same.
 
@@ -449,6 +323,223 @@ When you create a new AKS cluster in the Azure portal, configure monitoring in t
 
 :::image type="content" source="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
+### Existing cluster
+
+Navigate to your cluster in the Azure portal. In the service menu, select **Monitor** and then **Monitor Settings**.
+
+:::image type="content" source="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for existing AKS cluster.":::
+
+### Configuration options
+
+Configuration options are the same for both new and existing clusters. The only difference is you might need to select **Advanced settings** to view all options for an existing cluster.
+
+:::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of monitoring configuration for AKS cluster.":::
+
+Prometheus metrics, Grafana, and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you. Select **Advanced settings** if you want to select alternate workspaces or create new ones.
+
+For container logs, you must select a logging profile, which defines which logs are collected and at what frequency. The available profiles are listed in the following table.
+
+:::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
+
+| Cost preset | Collection frequency | Namespace filters | Syslog collection | Collected data |
+| --- | --- | --- | --- | --- |
+| Logs and Events (Default) | 1m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
+| Syslog | 1m | None | Enabled by default | All standard container insights tables |
+| Standard | 1m | None | Not enabled | All standard container insights tables |
+| Cost-optimized | 5m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
+
+If you want to customize the settings, select **Edit collection settings**. Each of these settings is described in the following table.
+
+:::image type="content" source="media/container-insights-cost-config/advanced-collection-settings.png" alt-text="Screenshot that shows the collection settings options." lightbox="media/container-insights-cost-config/advanced-collection-settings.png" :::
+
+| Name | Description |
+| ---- | ----------- |
+| Collection frequency | Determines how often the agent collects data. Valid values are _1m_ - _30m_ in _1m_ intervals The default value is _1m_. This option can't be configured through the ConfigMap. |
+| Namespace filtering | _Off_: Collects data on all namespaces.<br>_Include_: Collects only data from the values in the _namespaces_ field.<br>_Exclude_: Collects data from all namespaces except for the values in the _namespaces_ field.<br><br>Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_. For example, _namespaces = ["kube-system", "default"]_ with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_.  |
+| Collected Data | Defines which Container insights tables to collect. See the next table for a description of each grouping. |
+| Enable ContainerLogV2 | Boolean flag to enable [ContainerLogV2 schema](./container-insights-logs-schema.md). If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. Unchecking this setting does not disable data collection. It only specifies which table collected data is sent to. |
+| Enable Syslog collection | Enables Syslog collection from the cluster. |
+
+The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios.
+
+:::image type="content" source="media/container-insights-cost-config/collected-data-options.png" alt-text="Screenshot that shows the collected data options." lightbox="media/container-insights-cost-config/collected-data-options.png" :::
+
+| Grouping | Tables | Notes |
+| ------- | ------- | ----- |
+| All (Default) | All standard container insights tables | Required for enabling the default Container insights visualizations |
+| Performance | Perf, InsightsMetrics | |
+| Logs and events | ContainerLog or ContainerLogV2, KubeEvents, KubePodInventory | Recommended if you have enabled managed Prometheus metrics |
+| Workloads, Deployments, and HPAs | InsightsMetrics, KubePodInventory, KubeEvents, ContainerInventory, ContainerNodeInventory, KubeNodeInventory, KubeServices | |
+| Persistent Volumes | InsightsMetrics, KubePVInventory | |
+
+### [Azure Policy](#tab/azure-policy)
+
+1. Download Azure Policy template and parameter files.
+
+   - Template file: [https://aka.ms/AddonPolicyMetricsProfile](https://aka.ms/AddonPolicyMetricsProfile)
+   - Parameter file: [https://aka.ms/AddonPolicyMetricsProfile.parameters](https://aka.ms/AddonPolicyMetricsProfile.parameters)
+
+1. Create the policy definition using the following CLI command:
+
+    ```azurecli-interactive
+    az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
+    ```
+
+1. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+1. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
+
+After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
+
+---
+
+## Enable container insights and logging on an AKS cluster
+
+### [Azure CLI](#tab/azure-cli)
+
+Enable container insights and container logging on an AKS cluster using the `--addon monitoring` option with the [`az aks create`](/cli/azure/aks#az-aks-create) command for a new cluster or the [`az aks enable-addon`](/cli/azure/aks#az-aks-enable-addons) command to update an existing cluster.
+
+Example commands:
+
+```azurecli-interactive
+### Use default Log Analytics workspace
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name>
+
+### Use existing Log Analytics workspace
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id>
+
+### Use custom log configuration file
+az aks enable-addons --addon monitoring --name <cluster-name> --resource-group <cluster-resource-group-name> --workspace-resource-id <workspace-resource-id> --data-collection-settings dataCollectionSettings.json
+```
+
+### Log configuration file
+
+To customize log collection settings for the cluster, you can provide the configuration as a JSON file using the following format. If you don't provide a configuration file, the default settings identified in the table are used.
+
+```json
+{
+  "interval": "1m",
+  "namespaceFilteringMode": "Include",
+  "namespaces": ["kube-system"],
+  "enableContainerLogV2": true, 
+  "streams": ["Microsoft-Perf", "Microsoft-ContainerLogV2"]
+}
+```
+
+The following table describes each of the settings in the log configuration file:
+
+| Name | Description |
+| ---- | ----------- |
+| `interval` | Determines how often the agent collects data. Valid values are _1m_ - _30m_ in _1m_ intervals If the value is outside the allowed range, then it defaults to _1m_.<br><br>Default: 1m. |
+| `namespaceFilteringMode` | _Include_: Collects only data from the values in the _namespaces_ field.<br>_Exclude_: Collects data from all namespaces except for the values in the _namespaces_ field.<br>_Off_: Ignores any _namespace_ selections and collect data on all namespaces.<br><br>Default: Off |
+| `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, _namespaces = ["kube-system", "default"]_ with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
+| `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
+| `streams` | An array of table streams to collect. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: Microsoft-ContainerInsights-Group-Default |
+
+### [Bicep/ARM](#tab/bicep-arm)
+
+> [!IMPORTANT]
+> The template must be deployed in the same resource group as the cluster.
+
+### Download and install template
+
+1. Download and edit template and parameter file.
+
+    **Bicep**
+
+    - Template file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-template](https://aka.ms/enable-monitoring-msi-syslog-bicep-template)
+    - Parameter file (Syslog): [https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters](https://aka.ms/enable-monitoring-msi-syslog-bicep-parameters)
+    - Template file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-template](https://aka.ms/enable-monitoring-msi-bicep-template)
+    - Parameter file (No Syslog): [https://aka.ms/enable-monitoring-msi-bicep-parameters](https://aka.ms/enable-monitoring-msi-bicep-parameters)
+  
+    **ARM**
+
+   - Template file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-file)
+   - Parameter file: [https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file](https://aka.ms/aks-enable-monitoring-msi-onboarding-template-parameter-file)
+
+1. Edit the following values in the parameter file. The same set of values are used for both the ARM and Bicep templates. Retrieve the resource ID of the resources from the **JSON View** of their **Overview** page.
+
+    | Parameter | Description |
+    | --------- | ----------- |
+    | `aksResourceId` | Resource ID of the cluster. |
+    | `aksResourceLocation` | Location of the cluster. |
+    | `workspaceResourceId` | Resource ID of the Log Analytics workspace. |
+    | `resourceTagValues` | Tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name will be `MSCI-<clusterName>-<clusterRegion>` and this resource created in an AKS clusters resource group. For first time onboarding, you can set arbitrary tag values. |
+    | `enableRetinaNetworkFlowLogs` | Flag to indicate whether to enable Retina Network Flow Logs. |
+    | `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are sent to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are sent to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
+    | `enableSyslog` | Specifies whether Syslog collection should be enabled. |
+    | `syslogLevels` | If Syslog collection is enabled, it specifies the log levels to collect. |
+    | `dataCollectionInterval` | Determines how often the agent collects data. Valid values are _1m_ - _30m_ in _1m_ intervals The default value is _1m_. If the value is outside the allowed range, then it defaults to _1m_. |
+    | `namespaceFilteringModeForDataCollection` | _Include_: Collects only data from the values in the _namespaces_ field. <br> _Exclude_: Collects data from all namespaces except for the values in the _namespaces_ field. <br> _Off_: Ignores any _namespace_ selections and collects data on all namespaces. |
+    | `namespacesForDataCollection` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, _namespaces = ["kube-system", "default"]_ with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored. |
+    | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables. |
+    | `useAzureMonitorPrivateLinkScope` | Specifies whether to use private link for the cluster connection to Azure Monitor. |
+    | `azureMonitorPrivateLinkScopeResourceId` | If private link is used, resource ID of the private link scope. |
+
+1. Deploy the template with the parameter file by using any valid method for deploying Resource Manager templates. For examples of different methods, see [Deploy the sample templates](../resource-manager-samples.md#deploy-the-sample-templates).
+
+### [Terraform](#tab/terraform)
+
+**New AKS cluster**
+
+1. Download Terraform template file depending on whether you want to enable Syslog collection.
+
+   - Syslog: [https://aka.ms/enable-monitoring-msi-syslog-terraform](https://aka.ms/enable-monitoring-msi-syslog-terraform)
+   - No Syslog: [https://aka.ms/enable-monitoring-msi-terraform](https://aka.ms/enable-monitoring-msi-terraform)
+
+1. Adjust the `azurerm_kubernetes_cluster` resource in _main.tf_ based on your cluster settings.
+1. Update parameters in _variables.tf_ to replace values in "<>":
+
+    | Parameter | Description |
+    | --------- | ----------- |
+    | `aks_resource_group_name` | Use the values on the AKS Overview page for the resource group. |
+    | `resource_group_location` | Use the values on the AKS Overview page for the resource group. |
+    | `cluster_name` | Define the cluster name that you would like to create. |
+    | `workspace_resource_id` | Use the resource ID of your Log Analytics workspace. |
+    | `workspace_region` | Use the location of your Log Analytics workspace. |
+    | `resource_tag_values` | Match the existing tag values specified for the existing Container insights extension data collection rule (DCR) of the cluster and the name of the DCR. The name matches `MSCI-<clusterName>-<clusterRegion>` and this resource is created in the same resource group as the AKS clusters. For first time onboarding, you can set the arbitrary tag values. |
+    | `enabledContainerLogV2` | Set this parameter value to be true to use the default recommended ContainerLogV2. |
+    | Cost optimization parameters | Refer to [Data collection parameters](container-insights-cost-config.md#data-collection-parameters) |
+    | `streams` | Streams for data collection. See [Stream values](#stream-values). |
+    | `use_azure_monitor_private_link_scope` | Flag to indicate whether to configure Azure Monitor Private Link Scope. |
+    | `azure_monitor_private_link_scope_resource_id` | Azure Resource ID of the Azure Monitor Private Link Scope. |
+
+1. Run `terraform init -upgrade` to initialize the Terraform deployment.
+1. Run `terraform plan -out main.tfplan` to initialize the Terraform deployment.
+1. Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
+
+**Existing AKS cluster**
+
+1. Import the existing cluster resource first with the command: `terraform import azurerm_kubernetes_cluster.k8s <aksResourceId>`.
+1. Add the oms_agent add-on profile to the existing azurerm_kubernetes_cluster resource.
+
+    ```Terraform
+    oms_agent {
+        log_analytics_workspace_id = var.workspace_resource_id
+        msi_auth_for_monitoring_enabled = true
+      }
+    ```
+
+1. Copy the DCR and DCRA resources from the Terraform templates.
+1. Run `terraform plan -out main.tfplan` and make sure the change is adding the oms_agent property. Note: If the `azurerm_kubernetes_cluster` resource defined is different during terraform plan, the existing cluster gets destroyed and recreated.
+1. Run `terraform apply main.tfplan` to apply the execution plan to your cloud infrastructure.
+
+> [!TIP]
+>
+> - Edit the `main.tf` file appropriately before running the terraform template.
+> - Data will start flowing after 10 minutes since the cluster needs to be ready first.
+> - WorkspaceID needs to match the format `/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/example-resource-group/providers/Microsoft.OperationalInsights/workspaces/workspaceValue`.
+> - If resource group already exists, run `terraform import azurerm_resource_group.rg /subscriptions/<Subscription_ID>/resourceGroups/<Resource_Group_Name>` before terraform plan.
+
+### [Azure portal](#tab/azure-portal)
+
+You can enable Prometheus metrics and container logs when you create a new AKS cluster or on an existing cluster in the Azure portal. In both cases, the configuration experience is the same.
+
+### New AKS cluster
+
+When you create a new AKS cluster in the Azure portal, configure monitoring in the **Monitoring** tab.
+
+:::image type="content" source="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/new-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for new AKS cluster.":::
 
 ### Existing cluster
 
@@ -457,85 +548,64 @@ Navigate to your cluster in the Azure portal. In the service menu, select **Moni
 :::image type="content" source="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" lightbox="media/kubernetes-monitoring-enable/existing-cluster-monitoring-tab.png" alt-text="Screenshot of Monitoring tab for existing AKS cluster.":::
 
 ### Configuration options
-Configuration options are the same for both new and existing clusters. The only difference is you may need to select **Advanced settings** to view all options for an existing cluster.
+
+Configuration options are the same for both new and existing clusters. The only difference is you might need to select **Advanced settings** to view all options for an existing cluster.
 
 :::image type="content" source="media/prometheus-metrics-enable/aks-integrations.png" lightbox="media/prometheus-metrics-enable/aks-integrations.png" alt-text="Screenshot of monitoring configuration for AKS cluster.":::
 
-Prometheus metrics, Grafana and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you. Select **Advanced settings** if you want to select alternate workspaces or create new ones. 
+Prometheus metrics, Grafana, and Container Logs and events are selected for you. If you have existing Azure Monitor workspace, Grafana workspace and Log Analytics workspace, then they're selected for you. Select **Advanced settings** if you want to select alternate workspaces or create new ones.
 
-For container logs, you must select a logging profile, which defines which logs will be collected and at what frequency. The available profiles are listed in the following table. 
+For container logs, you must select a logging profile, which defines which logs are collected and at what frequency. The available profiles are listed in the following table.
 
 :::image type="content" source="media/container-insights-cost-config/cost-settings-onboarding.png" alt-text="Screenshot that shows the onboarding options." lightbox="media/container-insights-cost-config/cost-settings-onboarding.png" :::
 
 | Cost preset | Collection frequency | Namespace filters | Syslog collection | Collected data |
 | --- | --- | --- | --- | --- |
-| Logs and Events (Default) | 1 m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
-| Syslog | 1 m | None | Enabled by default | All standard container insights tables |
-| Standard | 1 m | None | Not enabled | All standard container insights tables |
-| Cost-optimized | 5 m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
+| Logs and Events (Default) | 1m | None | Not enabled | ContainerLogV2<br>KubeEvents<br>KubePodInventory |
+| Syslog | 1m | None | Enabled by default | All standard container insights tables |
+| Standard | 1m | None | Not enabled | All standard container insights tables |
+| Cost-optimized | 5m | Excludes kube-system, gatekeeper-system, azure-arc | Not enabled | All standard container insights tables |
 
-If you want to customize the settings, click **Edit collection settings**. Each of these settings is described in the following table.
+If you want to customize the settings, select **Edit collection settings**. Each of these settings is described in the following table.
 
 :::image type="content" source="media/container-insights-cost-config/advanced-collection-settings.png" alt-text="Screenshot that shows the collection settings options." lightbox="media/container-insights-cost-config/advanced-collection-settings.png" :::
 
 | Name | Description |
-|:---|:---|
-| Collection frequency | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. This option can't be configured through the ConfigMap.|
-| Namespace filtering | *Off*: Collects data on all namespaces.<br>*Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br><br>Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_. For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_.  |
-| Collected Data | Defines which Container insights tables to collect. See below for a description of each grouping.  |
+| ---- | ----------- |
+| Collection frequency | Determines how often the agent collects data. Valid values are _1m_ - _30m_ in _1m_ intervals The default value is _1m_. This option can't be configured through the ConfigMap. |
+| Namespace filtering | _Off_: Collects data on all namespaces.<br>_Include_: Collects only data from the values in the _namespaces_ field.<br>_Exclude_: Collects data from all namespaces except for the values in the _namespaces_ field.<br><br>Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_. For example, _namespaces = ["kube-system", "default"]_ with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_.  |
+| Collected Data | Defines which Container insights tables to collect. See the next table for a description of each grouping. |
 | Enable ContainerLogV2 | Boolean flag to enable [ContainerLogV2 schema](./container-insights-logs-schema.md). If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2. |
 | Enable Syslog collection | Enables Syslog collection from the cluster. |
 
-
-The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios. 
+The **Collected data** option allows you to select the tables that are populated for the cluster. The tables are grouped by the most common scenarios.
 
 :::image type="content" source="media/container-insights-cost-config/collected-data-options.png" alt-text="Screenshot that shows the collected data options." lightbox="media/container-insights-cost-config/collected-data-options.png" :::
 
 | Grouping | Tables | Notes |
-| --- | --- | --- |
+| ------- | ------- | ----- |
 | All (Default) | All standard container insights tables | Required for enabling the default Container insights visualizations |
 | Performance | Perf, InsightsMetrics | |
 | Logs and events | ContainerLog or ContainerLogV2, KubeEvents, KubePodInventory | Recommended if you have enabled managed Prometheus metrics |
 | Workloads, Deployments, and HPAs | InsightsMetrics, KubePodInventory, KubeEvents, ContainerInventory, ContainerNodeInventory, KubeNodeInventory, KubeServices | |
 | Persistent Volumes | InsightsMetrics, KubePVInventory | |
 
-### [Azure Policy](#tab/policy)
-
-#### Prometheus metrics
-
-1. Download Azure Policy template and parameter files.
-
-   - Template file: [https://aka.ms/AddonPolicyMetricsProfile](https://aka.ms/AddonPolicyMetricsProfile)
-   - Parameter file: [https://aka.ms/AddonPolicyMetricsProfile.parameters](https://aka.ms/AddonPolicyMetricsProfile.parameters)
-
-2. Create the policy definition using the following CLI command:
-
-    ```azurecli
-    az policy definition create --name "Prometheus Metrics addon" --display-name "Prometheus Metrics addon" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules AddonPolicyMetricsProfile.rules.json --params AddonPolicyMetricsProfile.parameters.json`
-    ```
-
-4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
-6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
-
-After the policy is assigned to the subscription, whenever you create a new cluster without Prometheus enabled, the policy will run and deploy to enable Prometheus monitoring.
-
-#### Container logging
+### [Azure Policy](#tab/azure-policy)
 
 1. Download Azure Policy template and parameter files.
 
    - Template file: [https://aka.ms/enable-monitoring-msi-azure-policy-template](https://aka.ms/enable-monitoring-msi-azure-policy-template)
    - Parameter file: [https://aka.ms/enable-monitoring-msi-azure-policy-parameters](https://aka.ms/enable-monitoring-msi-azure-policy-parameters)
 
+1. Create the policy definition using the following CLI command:
 
-2. Create the policy definition using the following CLI command:
-
-    ```azurecli
+    ```azurecli-interactive
     az policy definition create --name "AKS-Monitoring-Addon-MSI" --display-name "AKS-Monitoring-Addon-MSI" --mode Indexed --metadata version=1.0.0 category=Kubernetes --rules azure-policy.rules.json --params azure-policy.parameters.json
     ```
-4. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
-5. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
-6. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
+
+1. After you create the policy definition, in the Azure portal, select **Policy** and then **Definitions**. Select the policy definition you created.
+1. Select **Assign** and fill in the details on the **Parameters** tab. Select **Review + Create**.
+1. If you want to apply the policy to an existing cluster, create a **Remediation task** for that cluster resource from **Policy Assignment**.
 
 ---
 
@@ -544,49 +614,50 @@ After the policy is assigned to the subscription, whenever you create a new clus
 [!INCLUDE [data-collection-rule-streams](./includes/data-collection-rule-streams.md)]
 
 ### Applicable tables and metrics
-The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each. 
+
+The settings for **collection frequency** and **namespace filtering** don't apply to all log data. The following tables list the tables in the Log Analytics workspace along with the settings that apply to each.
 
 | Table name | Interval? | Namespaces? | Remarks |
-|:---|:---:|:---:|:---|
+| ---------- | --------- | ----------- | ------- |
 | ContainerInventory | Yes | Yes | |
 | ContainerNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable since Kubernetes Node isn't a namespace scoped resource |
 | KubeNodeInventory | Yes | No | Data collection setting for namespaces isn't applicable Kubernetes Node isn't a namespace scoped resource |
-| KubePodInventory | Yes | Yes ||
+| KubePodInventory | Yes | Yes | |
 | KubePVInventory | Yes | Yes | |
 | KubeServices | Yes | Yes | |
 | KubeEvents | No | Yes | Data collection setting for interval isn't applicable for the Kubernetes Events |
 | Perf | Yes | Yes | Data collection setting for namespaces isn't applicable for the Kubernetes Node related metrics since the Kubernetes Node isn't a namespace scoped object. |
-| InsightsMetrics| Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: container.azm.ms/kubestate, container.azm.ms/pv and container.azm.ms/gpu |
+| InsightsMetrics | Yes | Yes | Data collection settings are only applicable for the metrics collecting the following namespaces: `container.azm.ms/kubestate`, `container.azm.ms/pv`, and `container.azm.ms/gpu`. |
 
 > [!NOTE]
-> Namespace filtering does not apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container will still be ingested. 
+> Namespace filtering doesn't apply to ama-logs agent records. As a result, even if the kube-system namespace is listed among excluded namespaces, records associated to ama-logs agent container are still ingested.
 
 | Metric namespace | Interval? | Namespaces? | Remarks |
-|:---|:---:|:---:|:---|
-| Insights.container/nodes| Yes | No | Node isn't a namespace scoped resource |
-|Insights.container/pods | Yes | Yes| |
+| ---------------- | --------- | ----------- | ------- |
+| Insights.container/nodes | Yes | No | Node isn't a namespace scoped resource |
+| Insights.container/pods | Yes | Yes | |
 | Insights.container/containers | Yes | Yes | |
 | Insights.container/persistentvolumes | Yes | Yes | |
 
 ### Special scenarios
-Check the references below for configuration requirements for particular scenarios.
- 
+
+Use the following resources for configuration requirements for particular scenarios:
+
 - If you're using private link, see [Enable private link for Kubernetes monitoring in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 - To enable container logging with network security perimeter see [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md) to configure your Log Analytics workspace.
-- To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
+- To enable high scale mode, follow the onboarding process at [Enable high scale mode for Monitoring add-on](./container-insights-high-scale.md#enable-high-scale-mode-for-monitoring-add-on). You must also update the ConfigMap as described in [Update ConfigMap](./container-insights-high-scale.md#update-configmap), and the DCR stream needs to be changed from `Microsoft-ContainerLogV2` to `Microsoft-ContainerLogV2-HighScale`.
 
+## Enable control plane logs on an AKS cluster
 
-## Enable control plane logs
 Control plane logs are implemented as [resource logs](../platform/resource-logs.md) in Azure Monitor. To collect these logs, create a [diagnostic setting](../platform/diagnostic-settings.md) for the cluster. Send them to the same Log Analytics workspace as your container logs.
 
+### [Azure CLI](#tab/azure-cli)
 
-### [CLI](#tab/cli)
-
-Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
+Use the [`az monitor diagnostic-settings create`](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting with the [Azure CLI](/cli/azure/monitor). See the documentation for this command for descriptions of its parameters.
 
 The following example creates a diagnostic setting that sends all Kubernetes categories to a Log Analytics workspace. This includes [resource-specific mode](../platform/resource-logs.md#resource-specific) to send the logs to specific tables listed in [Supported resource logs for Microsoft.ContainerService/fleets](/azure/aks/monitor-aks-reference#resource-logs).
 
-```azurecli
+```azurecli-interactive
 az monitor diagnostic-settings create \
 --name 'Collect control plane logs' \
 --resource  /subscriptions/<subscription ID>/resourceGroups/<resource group name>/providers/Microsoft.ContainerService/managedClusters/<cluster-name> \
@@ -597,7 +668,8 @@ az monitor diagnostic-settings create \
 --export-to-resource-specific true
 ```
 
-### [BICEP/ARM](#tab/arm)
+### [Bicep/ARM](#tab/bicep-arm)
+
 Following are sample template and parameter files to create a diagnostic setting for control plane logs. Modify the templates to collect different categories or to send the logs to a different destination.
 
 **Bicep**
@@ -648,7 +720,6 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
   }
 }
 ```
-
 
 **JSON**
 
@@ -731,9 +802,8 @@ resource setting 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 }
 ```
 
-
-
 ### [Terraform](#tab/terraform)
+
 Use the following template to create a diagnostic setting for control plane logs. Modify the template to collect different categories or to send the logs to a different destination.
 
 ```terraformprovider "azurerm" {
@@ -797,73 +867,74 @@ resource "azurerm_monitor_diagnostic_setting" "aks" {
 }
 ```
 
+### [Azure portal](#tab/azure-portal)
 
-### [Azure portal](#tab/portal)
 Select **Diagnostic settings** from the **Monitoring** section of the menu for the cluster. Then select **+ Add diagnostic setting**.
 
 :::image type="content" source="media/kubernetes-monitoring-enable/diagnostic-setting-new.png" alt-text="Screenshot that shows creation of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable/diagnostic-setting-new.png" :::
 
-Select **Send to Log Analytics workspace** and select the same workspace where you send your container logs. Then select the different **Categories** that you want to collect. Give the **Diagnostic setting name** a descriptive name such as *Collect Control Plane Logs*.
+Select **Send to Log Analytics workspace** and select the same workspace where you send your container logs. Then select the different **Categories** that you want to collect. Give the **Diagnostic setting name** a descriptive name such as _Collect Control Plane Logs_.
 
 :::image type="content" source="media/kubernetes-monitoring-enable/diagnostic-setting-details.png" alt-text="Screenshot that shows details of a new diagnostic setting." lightbox="media/kubernetes-monitoring-enable/diagnostic-setting-details.png" :::
 
-### Verify deployment
 Within a few minutes after enabling monitoring, you should be able to use the following methods to verify that the monitoring features are enabled.
 
 - The cluster should move from the **Unmonitored clusters** view to the **Monitored clusters** view in Container insights multi-cluster view.
 - The **Monitor** view for the cluster should start to populate with data and no longer provide an option to enable monitoring. This includes the **Nodes**, **Workloads**, and **Containers** tabs.
 
-### [Azure Policy](#tab/policy) 
-See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
+### [Azure Policy](#tab/azure-policy)
 
+See [Create diagnostic settings at scale using built-in Azure Policies](../platform/diagnostic-settings-policy.md) for details about using Azure Policy to create diagnostic settings at scale.
 
 ---
 
 ## Enable Windows metrics (Preview)
+
 Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
 
 > [!NOTE]
-> There's no CPU/Memory limit in `windows-exporter-daemonset.yaml` so it may over-provision the Windows nodes. For details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
->   
+> There's no CPU/Memory limit in `windows-exporter-daemonset.yaml` so it might overprovision the Windows nodes. For details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
+>
 > As you deploy workloads, set resource memory and CPU limits on containers. This also subtracts from NodeAllocatable and helps the cluster-wide scheduler in determining which pods to place on which nodes.
-> Scheduling pods without limits may over-provision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
+> Scheduling pods without limits might overprovision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
 
 ### Install Windows exporter
 
 Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
 
-* `[defaults]`
-   * `container`
-   * `memory`
-   * `process`
-   * `cpu_info`
-   
- 
+- `[defaults]`
+  - `container`
+  - `memory`
+  - `process`
+  - `cpu_info`
+
 Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
 
-  ```bash
+```bash
 kubectl apply -f windows-exporter-daemonset.yaml
 ```
 
 ### Enable Windows metrics
+
 Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metrics settings ConfigMap and apply it to the cluster. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
 
 ### Enable recording rules
 
 Enable the recording rules that are required for the out-of-the-box dashboards:
 
-* If onboarding using CLI, include the option `--enable-windows-recording-rules`.
- * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
- * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
+- If onboarding using CLI, include the option `--enable-windows-recording-rules`.
+- If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
+- If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
 
 ## Verify deployment
+
 Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.
 
 ### Managed Prometheus
 
 **Verify that the DaemonSet was deployed properly on the Linux node pools**
 
-```AzureCLI
+```bash
 kubectl get ds ama-metrics-node --namespace=kube-system
 ```
 
@@ -877,7 +948,7 @@ ama-metrics-node   1         1         1       1            1           <none>  
 
 **Verify that Windows nodes were deployed properly**
 
-```AzureCLI
+```bash
 kubectl get ds ama-metrics-win-node --namespace=kube-system
 ```
 
@@ -891,7 +962,7 @@ ama-metrics-win-node   3         3         3       3            3           <non
 
 **Verify that the two ReplicaSets were deployed for Prometheus**
 
-```AzureCLI
+```bash
 kubectl get rs --namespace=kube-system
 ```
 
@@ -904,12 +975,11 @@ ama-metrics-5c974985b8          1         1         1       11h
 ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
 ```
 
-
-### Container logging
+### Container insights and logging
 
 **Verify that the DaemonSets were deployed properly on the Linux node pools**
 
-```AzureCLI
+```bash
 kubectl get ds ama-logs --namespace=kube-system
 ```
 
@@ -923,7 +993,7 @@ ama-logs   2         2         2         2            2           <none>        
 
 **Verify that Windows nodes were deployed properly**
 
-```
+```bash
 kubectl get ds ama-logs-windows --namespace=kube-system
 ```
 
@@ -935,10 +1005,9 @@ NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NO
 ama-logs-windows           2         2         2         2            2       <none>            1d
 ```
 
-
 **Verify deployment of the container logging solution**
 
-```
+```bash
 kubectl get deployment ama-logs-rs --namespace=kube-system
 ```
 
@@ -954,11 +1023,11 @@ ama-logs-rs   1/1     1            1           24d
 
 Use the `aks show` command to find out whether the solution is enabled, the Log Analytics workspace resource ID, and summary information about the cluster.
 
-```azurecli
+```azurecli-interactive
 az aks show --resource-group <resourceGroupofAKSCluster> --name <nameofAksCluster>
 ```
 
-The command will return JSON-formatted information about the solution. The `addonProfiles` section should include information on the `omsagent` as in the following example:
+The command returns JSON-formatted information about the solution. The `addonProfiles` section should include information on the `omsagent` as in the following example:
 
 ```output
 "addonProfiles": {
@@ -973,12 +1042,7 @@ The command will return JSON-formatted information about the solution. The `addo
 }
 ```
 
+## Related content
 
-
-
-
-## Next steps
-
-* If you experience issues attempting to onboard, review the [Troubleshooting guide](container-insights-troubleshoot.md).
-* Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.
-
+- If you experience issues attempting to onboard, review the [Troubleshooting guide](container-insights-troubleshoot.md).
+- Learn how to [Analyze Kubernetes monitoring data in the Azure portal](container-insights-analyze.md) Container insights.

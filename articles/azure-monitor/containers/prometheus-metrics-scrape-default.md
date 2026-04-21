@@ -96,7 +96,7 @@ The following metrics are collected by default from each default target. All oth
 - `kubelet_volume_stats_available_bytes`
 - `kubelet_volume_stats_inodes_used`
 - `kubelet_volume_stats_inodes`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### coredns
 
@@ -118,7 +118,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### cadvisor
 
@@ -141,7 +141,7 @@ The following metrics are collected by default from each default target. All oth
 - `container_memory_swap`
 - `container_cpu_cfs_throttled_periods_total`
 - `container_cpu_cfs_periods_total`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### kubeproxy
 - `kubeproxy_sync_proxy_rules_duration_seconds` `kubeproxy_sync_proxy_rules_duration_seconds_bucket` `kubeproxy_sync_proxy_rules_duration_seconds_sum` `kubeproxy_sync_proxy_rules_duration_seconds_count` `kubeproxy_network_programming_duration_seconds`
@@ -150,7 +150,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### apiserver
 -  `apiserver_request_duration_seconds` `apiserver_request_duration_seconds_bucket` `apiserver_request_duration_seconds_sum` `apiserver_request_duration_seconds_count` 
@@ -160,15 +160,20 @@ The following metrics are collected by default from each default target. All oth
 -  `process_resident_memory_bytes`
 -  `process_cpu_seconds_total`
 -  `go_goroutines`
--  `kubernetes_build_info"`
+-  `kubernetes_build_info`
 
 #### kube-state
 
 - `kube_job_status_succeeded`
 - `kube_job_spec_completions`
+- `kube_daemonset_status_current_number_scheduled`
 - `kube_daemonset_status_desired_number_scheduled`
+- `kube_daemonset_status_number_misscheduled`
 - `kube_daemonset_status_number_ready`
 - `kube_deployment_status_replicas_ready`
+- `kube_persistentvolumeclaim_access_mode`
+- `kube_persistentvolumeclaim_labels`
+- `kube_persistentvolume_status_phase`
 - `kube_pod_container_status_last_terminated_reason`
 - `kube_pod_container_status_waiting_reason`
 - `kube_pod_container_status_restarts_total`
@@ -202,6 +207,7 @@ The following metrics are collected by default from each default target. All oth
 - `kube_pod_container_info`
 - `kube_resource_labels` (ex - kube_pod_labels, kube_deployment_labels)
 - `kube_resource_annotations` (ex - kube_pod_annotations, kube_deployment_annotations)
+- `kubelet_volume_stats_inodes_free`
 
 #### nodeexporter
 
@@ -231,7 +237,7 @@ The following metrics are collected by default from each default target. All oth
 - `node_disk_io_time_weighted_seconds_total`
 - `node_exporter_build_info`
 - `node_time_seconds`
-- `node_uname_info"`
+- `node_uname_info`
 
 
 #### windowsexporter

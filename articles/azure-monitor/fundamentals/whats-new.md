@@ -106,7 +106,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Application-Insights|[Troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation)| We're rapidly growing and updating our list of Application Insights troubleshooting content.|
 |Application-Insights|[Resource detectors](../app/opentelemetry-collect-detect.md#resource-detectors)| New information is available on OpenTelemetry resource detectors.|
-|Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src).|
+|Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript).|
 |Data Collection|[DCR visualizer](../data-collection/data-collection-rule-view.md)| Published new article for viewing DCRs to deliver content for new DCR Visualizer.|
 |Fundamentals|[VM agents troubleshooting](best-practices-security.md#recommended-action)| Published self-service steps for identifying and remediating VM agents still outdated TLS.|
 |Logs|[New transforms tables](../logs/tables-feature-support.md)|New tables supported for transforms.|

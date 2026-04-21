@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Kubernetes Service (AKS)
@@ -60,12 +60,13 @@ Unsupported Kubernetes version is detected. Ensure Kubernetes cluster runs with 
 
 **Impact:** Medium
   
-For more information, see [Supported Kubernetes versions in Azure Kubernetes Service (AKS). - Azure Kubernetes Service](https://aka.ms/aks-supported-versions)  
+For more information, see [Supported Kubernetes Versions in Azure Kubernetes Service (AKS) - Azure Kubernetes Service](https://aka.ms/aks-supported-versions)  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 462b5f77-4a65-4287-885b-01a0f471743f  
 
 
 <!--462b5f77-4a65-4287-885b-01a0f471743f_end-->
+
 
 <!--articleBody-->

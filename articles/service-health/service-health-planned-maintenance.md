@@ -3,7 +3,7 @@ title: Planned maintenance overview
 description: Overview of the features and information found on the Planned maintenance pane. 
 ms.topic: concept-article
 
-ms.date: 03/27/2026
+ms.date: 04/20/2026
 ---
 
 # Planned maintenance
@@ -44,13 +44,17 @@ Each event includes the following information:
 - Event tags
 
 
-Select the **Issue name** link to open the tabs with the information you need.
+Select the **Issue name** link to open the tabs where you can view the information you need.
 
->[!Note]
->Planned maintenance events are displayed in the panel for 90 days if they are still active and if the `impactMitigationTime/endtime` is set in the future. After that they are moved to the health history panel where they are displayed for 90 days. 
+>[!NOTE]
+>Planned maintenance events appear in the panel for 90 days if they're still active and if the `impactMitigationTime` or `endtime` is set in the future. After that, the events move to the health history panel where they're displayed for 90 days.
 
 
-For more information about Planned maintenance events using ARG queries, see:
+>[!TIP]
+>The field `impactMitigationTime` is the API field name, and `end time` is the name on the user interface (UI).
+
+
+For more information about planned maintenance events that use ARG queries, see:
 - [Resource graph sample queries](resource-graph-health-samples.md) 
 - [Service Health graph sample queries](resource-graph-samples.md)
 - [Impacted resources graph sample queries](resource-graph-impacted-samples.md)<br>

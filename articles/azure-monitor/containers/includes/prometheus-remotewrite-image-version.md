@@ -1,5 +1,5 @@
 ---
 ms.topic: include
-ms.date: 05/21/2025
+ms.date: 04/14/2026
 ---
-`mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-remote-write/images:prom-remotewrite-20260226.1`
+`mcr.microsoft.com/azuremonitor/containerinsights/ciprod/prometheus-remote-write/images:prom-remotewrite-20260414.1`
