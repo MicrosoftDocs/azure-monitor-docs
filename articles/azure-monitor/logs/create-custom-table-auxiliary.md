@@ -107,9 +107,9 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.j
 
 <br>
 <details>
-<summary>Expand to view the table content</summary>
+<summary>Expand to view the table.json file.</summary>
+
 ```json
-// table.json
 {
   "properties": {
     "schema": {
@@ -175,9 +175,9 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=2025-07-01" -Payl
 
 <br>
 <details>
-<summary>Expand to view the table content</summary>
+<summary>Expand to view the table.json file.</summary>
+
 ```json
-// table.json
 {
   "properties": {
     "schema": {
