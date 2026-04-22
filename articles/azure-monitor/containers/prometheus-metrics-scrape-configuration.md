@@ -20,10 +20,12 @@ The following ConfigMap is used to configure scrape configuration and other sett
 
 Modify the settings in the ConfigMap based on the guidance below and then apply it using the following command. AMA-Metrics pods will pick them up and restart in 2-3 minutes to apply the configuration settings specified. 
 
+> [!NOTE]
+> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics allowing separate control of ingestion volume for cluster-level targets and control plane targets. If you are migrating from v1, replace the configurations to the corresponding sections within cluster-metrics and controlplane-metrics.
+
 ```bash
 kubectl apply -f .\ama-metrics-settings-configmap.yaml
 ```
-
 
 ## Enable and disable default targets
 [Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md) lists the default targets and metrics that are collected by default from your Kubernetes cluster. To enable/disable scraping of any of these targets, update the setting for the target in the `cluster-metrics.default-targets-scrape-enabled` or `controlplane-metrics.default-targets-scrape-enabled` section of the ConfigMap to `true` or `false`.
@@ -60,8 +62,9 @@ Add annotations to the pods in your cluster to scrape application pods without c
 For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace`:
 
 ```yaml
-pod-annotation-based-scraping: |-
-    podannotationnamespaceregex = "kube-system|my-namespace"
+cluster-metrics: |-
+    pod-annotation-based-scraping: |-
+        podannotationnamespaceregex = "kube-system|my-namespace"
 ```
 
 Add annotations to the `metadata` section of the ConfigMap. `prometheus.io/scrape: "true"` is required for the pod to be scraped, while `prometheus.io/path` and `prometheus.io/port` indicate the path and port that the metrics are hosted at on the pod. The following sample defines annotations for a pod that is hosting metrics at `<pod IP>:8080/metrics`.
