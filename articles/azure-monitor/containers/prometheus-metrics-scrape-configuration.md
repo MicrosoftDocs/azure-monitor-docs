@@ -43,7 +43,7 @@ cluster-metrics: |-
 ```
 
 ## Scrape interval settings
-The default scrape interval for all default targets is 30 seconds. To modify this interval for any target, you can update the setting in the `default-targets-scrape-interval-settings` section of the ConfigMap.
+The default scrape interval for all default targets is 30 seconds. To modify this interval for any target, you can update the setting in the `default-targets-scrape-interval-settings` within `cluster-metrics` or `controlplane-metrics` section of the ConfigMap.
 
 For example, to change the scrape interval for `kubelet` to 60 seconds, update the setting as follows:
 
@@ -80,12 +80,11 @@ metadata:
 > Scraping the pod annotations from many namespaces can generate a very large volume of metrics depending on the number of pods that have annotations.
 
 ## Customize metrics collected by default targets
-Only minimal metrics are collected for default targets as described in [Minimal ingestion profile for Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, set `minimalingestionprofile` to `false` in the `default-targets-metrics-keep-list` section of the ConfigMap. 
+Only minimal metrics are collected for default targets as described in [Minimal ingestion profile for Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, set `minimalingestionprofile` to `false` in the `default-targets-metrics-keep-list` within `cluster-metrics` or `controlplane-metrics` section of the ConfigMap. 
 
 ```yaml
 minimalingestionprofile = false
 ```
-
 Alternatively, you can add metrics to be collected for any default target by updating its keep-lists under `default-targets-metrics-keep-list`.
 
 For example, `kubelet` is the metric filtering setting for the default target kubelet. Use the following script to filter in metrics collected for the default targets by using regex-based filtering.
@@ -112,13 +111,16 @@ The last part of the cluster's resource ID is appended to every time series to u
     cluster_alias = ""
 ```
 
-
 ### Debug mode
 
 To view every metric that's being scraped for debugging purposes, the metrics add-on agent can be configured to run in debug mode by updating the setting `enabled` to `true` under the `debug-mode` setting 
 
 > [!WARNING]
 > This mode can affect performance and should only be enabled for a short time for debugging purposes.
+
+### Control Plane metrics
+
+For more details on customizing targets for control plane metrics, see [customize control plane metrics](/azure/aks/control-plane-metrics-monitor).
 
 ### Kube-state-metrics
 
