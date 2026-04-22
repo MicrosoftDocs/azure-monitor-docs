@@ -39,7 +39,7 @@ The following targets are enabled by default.
 - `kube-state-metrics`
 - `networkobservabilityRetina`
 
-Th following targets are enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
+Th following targets are enabled when [control plane metrics (preview)](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
 - `controlplane-apiserver`
 - `controlplane-etcd` 
