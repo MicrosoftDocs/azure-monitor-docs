@@ -10,9 +10,12 @@ ms.reviewer: aul
 When you enable Prometheus metrics collection in Azure Monitor from your Kubernetes cluster, it uses a default configuration for targets, dashboards, and recording rules. This article describes the default configuration and the scenarios where you may choose to customize it for your specific requirements.
 
 ## Minimal ingestion profile
-**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume.
+**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume. Minimal ingestion is configured independently for cluster-metrics and controlplane-metrics by using the minimal-ingestion-profile section under each group (cluster-metris and controlplane-metrics). This allows separate control of ingestion volume for cluster-level targets and control plane targets.
 
 You can change the minimal ingestion profile setting by modifying the metrics setting ConfigMap as described in [Customize scraping of Prometheus metrics in Azure Monitor using ConfigMap](./prometheus-metrics-scrape-configuration.md).
+
+> [!NOTE]
+> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics. If you are migrating from v1, replace minimalingestionprofile = true|false with the corresponding minimal-ingestion-profile.enabled = true|false values in each section.
 
 ## Customization scenarios
 You may choose to use the default configuration or customize collection for your particular requirements. The following table lists the four potential collection scenarios and the recommended method to achieve each.
@@ -26,7 +29,7 @@ You may choose to use the default configuration or customize collection for your
 
 
 ## Targets scraped by default
-Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they're enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
+Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they're enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets. If you're using an older ConfigMap schema (v1), control plane targets were configured using prefixed keys such as controlplane-apiserver and controlplane-etcd. In schema version v2, these targets are now configured under the controlplane-metrics section using target names without the controlplane- prefix, such as apiserver and etcd.
 
 The following targets are enabled by default.
 
@@ -36,7 +39,7 @@ The following targets are enabled by default.
 - `kube-state-metrics`
 - `networkobservabilityRetina`
 
-Th following targets are enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled.
+Th following targets are enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
 - `controlplane-apiserver`
 - `controlplane-etcd` 
