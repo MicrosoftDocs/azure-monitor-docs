@@ -39,7 +39,7 @@ To report an impact, follow these steps.
 
 2. Select **Single resource**.
 
-*Choose this option if the problem seems to be isolated to one resource*
+*Choose this option if the problem seems to be isolated to one resource*.
 
 :::image type="content" source="media/report-issue/report-an-impact-specific.png" alt-text="Screenshot of the screen to select single resource." lightbox="media/report-issue/report-an-impact-specific.png":::
 
@@ -91,26 +91,23 @@ We review your report, and if an outage is confirmed, it appears on the Service 
 
 For more information about reporting, see [Azure Impact reporting](/azure/azure-impact-reporting/view-impact-insights).
 
-## How to view the impacted you created reports for
+## How to view the reported service impacts
 
 You can see a list of all your reported impacts on the following panel.
 
-The list of all the impacts you reported are available on the main panel.
 
 :::image type="content" source="media/report-issue/report-impact-main.png" alt-text="Screenshot of the list of service impacts that you report." lightbox="media/report-issue/report-impact-main.png":::
 
 
-Select a reported impact to see the details of what was impacted.
+You also have the option to see the details of what was impacted in a report.
 
-:::image type="content" source="media/report-issue/report-impact-detail.png" alt-text="Screenshot of the list of service impacts that you report." lightbox="media/report-issue/report-impact-detail.png":::
+:::image type="content" source="media/report-issue/report-impact-detail.png" alt-text="Screenshot of the details of the service impact you reported." lightbox="media/report-issue/report-impact-detail.png":::
 
-- This page shows all reports on subscriptions where they have the necessary access. This means they can see reports from other people submitted on their subscriptions.
-- This page also shows reports made programmatically via the Create Workload Impacts API. For more information, see [Workload Impacts](/rest/api/impact/workload-impacts/create?view=rest-impact-2025-01-01-preview&tabs=HTTP).
+- This page shows all reports on subscriptions where you have the necessary access. This means you can see reports from other people submitted on their subscriptions.
+- This page also shows reports made programmatically via the Create Workload Impacts API. For more information, see [Workload Impacts-Create-REST API](/rest/api/impact/workload-impacts/create?view=rest-impact-2025-01-01-preview&tabs=HTTP).
 
 >[!NOTE]
-> Reports created in April 2026 or earlier may not appear on this page, but those reports were still processed successfully. Because of updates to the **Report an Impact form preview**, some older details can’t be shown here.
-
-
+> Reports created in April 2026 or earlier might not appear on this page, but those reports were still processed successfully. Because of updates to the **Report an Impact form preview**, some older details can’t be shown here.
 
 
 
