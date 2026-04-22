@@ -16,7 +16,7 @@ The following ConfigMap is used to configure scrape configuration and other sett
 
 | ConfigMap | Description |
 |:---|:---|
-| [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap) | Includes the following basic settings.<br>- Cluster alias. Changes the value of the `cluster` label in every metric ingested from the cluster.<br>- Enable/disable default scrape targets. <br>- Enable pod annotation based scraping per namespace.<br>- Metric keep lists. Controls which metrics are allowed from each default target.<br>- Scrape intervals for predefined targets.<br>- Debug mode to identify missing metric issues. See [troubleshooting](prometheus-metrics-troubleshoot.md#debug-mode). |
+| [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap) | Includes the following basic settings.<br>- Cluster alias. Changes the value of the `cluster` label in every metric ingested from the cluster.<br>- Enable/disable default scrape targets. <br>- Enable pod annotation based scraping per namespace.<br>- Metric keep lists. Controls which metrics are allowed from each default target.<br>- Scrape intervals for predefined targets.<br>- Separate controls for cluster-metrics targets and controlplane-metrics targets<br>- Debug mode to identify missing metric issues. See [troubleshooting](prometheus-metrics-troubleshoot.md#debug-mode). |
 
 Modify the settings in the ConfigMap based on the guidance below and then apply it using the following command. AMA-Metrics pods will pick them up and restart in 2-3 minutes to apply the configuration settings specified. 
 
@@ -26,17 +26,18 @@ kubectl apply -f .\ama-metrics-settings-configmap.yaml
 
 
 ## Enable and disable default targets
-[Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md) lists the default targets and metrics that are collected by default from your Kubernetes cluster. To enable/disable scraping of any of these targets, update the setting for the target in the `default-scrape-settings-enabled` section of the ConfigMap to `true` or `false`.
+[Default Prometheus metrics configuration in Azure Monitor](./prometheus-metrics-scrape-default.md) lists the default targets and metrics that are collected by default from your Kubernetes cluster. To enable/disable scraping of any of these targets, update the setting for the target in the `cluster-metrics.default-targets-scrape-enabled` or `controlplane-metrics.default-targets-scrape-enabled` section of the ConfigMap to `true` or `false`.
 
 For example, to enable scraping of `coredns` which is disabled by default, update the setting as follows:
 
 ```yaml
-default-scrape-settings-enabled: |-
-    kubelet = true
-    coredns = true
-    cadvisor = true
-    kubeproxy = false
-    ...
+cluster-metrics: |-
+    default-scrape-settings-enabled: |-
+        kubelet = true
+        coredns = true
+        cadvisor = true
+        kubeproxy = false
+        ...
 ```
 
 ## Scrape interval settings
@@ -45,11 +46,12 @@ The default scrape interval for all default targets is 30 seconds. To modify thi
 For example, to change the scrape interval for `kubelet` to 60 seconds, update the setting as follows:
 
 ```yaml
-default-targets-scrape-interval-settings: |-
-    kubelet = "60s"
-    coredns = "30s"
-    cadvisor = "30s"
-    ...
+cluster-metrics: |-
+    default-targets-scrape-interval-settings: |-
+        kubelet = "60s"
+        coredns = "30s"
+        cadvisor = "30s"
+        ...
 ```
 
 ## Enable pod annotation-based scraping
