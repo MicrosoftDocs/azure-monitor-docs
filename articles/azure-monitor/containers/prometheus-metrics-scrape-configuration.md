@@ -124,7 +124,7 @@ For more details on customizing targets for control plane metrics, see [customiz
 
 ### Kube-state-metrics
 
-To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap-v2.yaml#L103C3-L118C18).
+To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L103C3-L118C18).
 
 The settings in the configmap for labels_allow_list and annotations_allow_list override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](../containers/kubernetes-monitoring-enable.md#optional-parameters)
 
