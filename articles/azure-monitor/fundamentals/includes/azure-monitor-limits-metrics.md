@@ -1,13 +1,6 @@
 ---
-title: "include file" 
-description: "include file" 
-services: azure-monitor
-author: rboucher
-ms.prod: devops
-ms.topic: "include"
+ms.topic: include
 ms.date: 05/21/2025
-ms.author: bwren
-ms.custom: "include file"
 ---
 
 ### Ingestion
@@ -22,7 +15,7 @@ The following limits apply to the Azure Monitor workspace ingesting your Prometh
 | Events per minute ingested. | 1,000,000<br>You can request an increase. |
 
 
-The following limits apply to the data collection rule (DCR) and data collection endpoint (DCE) sending Prometheus metrics data to your Azure Monitor workspace.
+The following limits apply to the data collection rule (DCR) sending Prometheus metrics data to your Azure Monitor workspace.
 
 | Limit | Value |
 |:---|:---|
