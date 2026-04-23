@@ -2,7 +2,7 @@
 title: Report an impact in Azure Service Health 
 description: Learn how to access and report an impact in Azure Service Health.
 ms.topic: overview
-ms.date: 04/22/2026
+ms.date: 04/23/2026
 ---
 
 # How to report an impact in Azure Service Health (Preview)
@@ -70,7 +70,6 @@ If you get this error, it means you don’t have permission.
 
 ## How to report service impacts
 
-The steps to report service impacts are the same as reporting a single resource impact. The difference is that you don’t need the same permission.
 
 1. Select **Multiple resources / entire service**.
 
