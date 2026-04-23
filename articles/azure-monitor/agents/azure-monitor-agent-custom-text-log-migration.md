@@ -14,11 +14,11 @@ This article describes the steps to migrate a [MMA Custom text log](data-sources
 You must configure MMA custom text logs to support new DCR features that allow AMA agents to write to it. Take the following actions:
 
 - Your table is reconfigured to enable all DCR-based custom logs features.
-- Your AMA agents can write data to any column in the table. 
+- Your AMA agents can write data to any column in the table.
 - Your MMA Custom text log will lose the ability to write to the custom log.
 
-To continue to write you custom data from both MMA and AMA each must have its own custom table. Your data queries in LA that process your data must join the two tables until the migration is complete at which point you can remove the join. 
-  
+To continue to write you custom data from both MMA and AMA each must have its own custom table. Your data queries in LA that process your data must join the two tables until the migration is complete at which point you can remove the join.
+
 ## Migration
 
 You should follow the steps only if the following criteria are true:
@@ -35,13 +35,13 @@ You should follow the steps only if the following criteria are true:
 1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
 
     # [REST](#tab/rest)
-    
+
     ```REST
     POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
     Authorization: Bearer {token}
     Content-Type: application/json
     ```
-    
+
     # [Azure CLI](#tab/cli)
 
     ```azurecli
@@ -49,9 +49,9 @@ You should follow the steps only if the following criteria are true:
     resourceGroupName="myResourceGroup"
     workspaceName="myWorkspace"
     tableName="myTable"
-    
+
     az account set --subscription "${subscriptionId}"
-    
+
     az monitor log-analytics workspace table migrate \
       --resource-group "${resourceGroupName}" \
       --workspace-name "${workspaceName}" \
@@ -61,17 +61,17 @@ You should follow the steps only if the following criteria are true:
     This Azure CLI example uses the [az monitor log-analytics workspace table](/cli/azure/monitor/log-analytics/workspace/table) command group.
 
     [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-  
+
     # [PowerShell](#tab/powershell)
-    
+
     ```azurepowershell
     $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     $resourceGroupName = "myResourceGroup"
     $workspaceName = "myWorkspace"
     $tableName = "myTable"
-    
+
     Set-AzContext -Subscription ${subscriptionId}
-    
+
     Invoke-AzOperationalInsightsMigrateTable `
       -ResourceGroupName ${resourceGroupName} `
       -WorkspaceName ${workspaceName} `
@@ -81,12 +81,12 @@ You should follow the steps only if the following criteria are true:
     This PowerShell example uses the [Az.OperationalInsights Module](/powershell/module/az.operationalinsights).
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
-    
+
     ---
-    
+
     | Variable | Example value | Purpose |
     |----------|---------------|---------|
-    | host | management.azure.com | Implicit ARM endpoint |
+    | host | *management.azure.com* | Implicit ARM endpoint |
     | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
     | resourceGroupName | myResourceGroup | User input |
     | workspaceName | myWorkspace | User input |

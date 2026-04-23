@@ -78,7 +78,7 @@ You can create a DCR for metrics export in any region, but the resources that yo
 * West Europe
 * UK South
 
-## Create a data collection rule (DCR) for metrics export 
+## Create a data collection rule (DCR) for metrics export
 
 This article describes how to create a [data collection rule (DCR)](data-collection-rule-overview.md) for metrics export using the Azure portal, Azure CLI, PowerShell, API, or ARM templates.
 
@@ -111,7 +111,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect metrics from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the metrics collected for it. By default, all available metrics for the resource are collected.
 
-    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page."::: 
+    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
 
 1. Select **Next Destinations** to move to the **Destinations** tab.
 
@@ -124,39 +124,111 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 1. Select **Save** , then select **Review + create**.
 
-### [CLI](#tab/CLI)
+### [REST](#tab/rest)
+
+Creating a data collection rule for metrics requires the following steps:
+
+1. Create the data collection rule.
+1. Grant permissions for the rule's managed entity to write to the destination.
+1. Create a data collection rule association.
+
+### Create the data collection rule
+
+To create a DCR using the REST API, you must make an authenticated request using a bearer token. For more information on authenticating with Azure Monitor, see [Authenticate Azure Monitor requests](/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests).
+
+Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
+
+```http
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version=2023-03-11
+```
+
+**Example:**
+
+``` http
+https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-001?api-version=2023-03-11
+```
+
+The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
+
+### Grant write permissions to the managed entity
+
+The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs.
+To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
+
+The following table shows the roles required for each destination type:
+
+| Destination type | Role |
+|------------------|------|
+| Log Analytics workspace | not required |
+| Azure storage account | `Storage Blob Data Contributor` |
+| Event Hubs | `Azure Event Hubs Data Sender` |
+
+For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
+
+To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
+
+## Create a data collection rule association
+
+### Create a data collection rule using an ARM template
+
+After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
+
+To create a DCRA using the REST API, use the following endpoint and payload:
+
+```HTTP
+PUT https://management.azure.com/{resourceUri}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version=2022-06-0
+```
+
+**Body:**
+
+```JSON
+{
+        "properties":
+        {
+          "description": "<DCRA description>",
+          "dataCollectionRuleId": "/subscriptions/{subscriptionId}/resourceGroups/{resource group name}/providers/Microsoft.Insights/dataCollectionRules/{DCR name}"
+        }
+}
+```
+
+**Example:**
+
+```HTTP
+https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachines/vm002/providers/Microsoft.Insights/dataCollectionRuleAssociations/dcr-la-ws-vm002?api-version=2023-03-11
+
+{
+        "properties":
+        {
+          "description": "Association of platform telemetry DCR with VM vm002",
+          "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-la-ws"
+        }
+}
+
+```
+
+### [Azure CLI](#tab/CLI)
 
 ### Create a data collection rule using Azure CLI
 
 Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > The rule file has the same format as used for PowerShell and the REST API, however the file must not contain `identity`, the `location`, or `kind`. These parameters are specified in the `az monitor data-collection rule create` command.
 
 Use the following command to create a data collection rule for metrics using the Azure CLI.
 
 ```azurecli
-az monitor data-collection rule create 
-        --name 
-        --resource-group 
-        --location
-        --kind PlatformTelemetry 
-        --rule-file
-        [--identity "{type:'SystemAssigned'}" ]
-```
-For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
-
-**Example:**
-
-```azurecli
  az monitor data-collection rule create
-    --name cli-dcr-001 
-    --resource-group rg-001 
-    --location centralus 
-    --kind PlatformTelemetry 
-    --identity "{type:'SystemAssigned'}" 
+    --name cli-dcr-001
+    --resource-group rg-001
+    --location centralus
+    --kind PlatformTelemetry
+    --identity "{type:'SystemAssigned'}"
     --rule-file cli-dcr.json
 ```
+
+> [!NOTE]
+> For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
 
 Copy the `id` and the `principalId` of the DCR to use in assigning the role to create an association between the DCR and a resource.
 
@@ -171,7 +243,7 @@ Copy the `id` and the `principalId` of the DCR to use in assigning the role to c
 
 ### Grant write permissions to the managed entity
 
-The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed entity, assign the appropriate role to the entity. 
+The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
 
 The following table shows the roles required for each destination type:
 
@@ -181,7 +253,8 @@ The following table shows the roles required for each destination type:
 | Azure storage account | `Storage Blob Data Contributor` |
 | Event Hubs | `Azure Event Hubs Data Sender` |
 
-For more information on assigning roles, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity). 
+For more information on assigning roles, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
+
 To assign a role to a managed identity using CLI, use `az role assignment create`. For more information, see [Role Assignments - Create](/cli/azure/role/assignment).
 
 Assign the appropriate role to the managed identity of the DCR.
@@ -207,9 +280,9 @@ After you create the data collection rule, create a data collection rule associa
 Use `az monitor data-collection rule association create` to create an association between a data collection rule and a resource.
 
 ```azurecli
-az monitor data-collection rule association create --name 
-                                                  --rule-id 
-                                                  --resource 
+az monitor data-collection rule association create --name
+                                                  --rule-id
+                                                  --resource
 ```
 
 The following example creates an association between a data collection rule and a Key Vault.
@@ -227,15 +300,15 @@ az monitor data-collection rule association create --name "keyValut-001" \
 Create a JSON file containing the collection rule specification. For more information, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample JSON files, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
 Use the `New-AzDataCollectionRule` command to create a data collection rule for metrics using PowerShell. For more information, see [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule).
- 
+
 ```powershell
-New-AzDataCollectionRule -Name 
-                         -ResourceGroupName 
-                         -JsonFilePath 
+New-AzDataCollectionRule -Name
+                         -ResourceGroupName
+                         -JsonFilePath
 ```
 For example,
 ```powershell
- New-AzDataCollectionRule -Name dcr-powershell-hub -ResourceGroupName rg-001 -JsonFilePath dcr-storage-account.json 
+ New-AzDataCollectionRule -Name dcr-powershell-hub -ResourceGroupName rg-001 -JsonFilePath dcr-storage-account.json
 ```
 
 Copy the `id` and the `IdentityPrincipalId` of the DCR to use in assigning the role to create an association between the DCR and a resource.resource.
@@ -252,7 +325,7 @@ IdentityUserAssignedIdentity              : {
 ### Grant write permissions to the managed entity
 
 The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs.
-To grant permissions for the rule's managed entity, assign the appropriate role to the entity. 
+To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
 
 The following table shows the roles required for each destination type:
 
@@ -290,94 +363,10 @@ New-AzDataCollectionRuleAssociation
 The following example creates an association between a data collection rule and a Key Vault.
 
 ```powershell
-New-AzDataCollectionRuleAssociation 
+New-AzDataCollectionRuleAssociation
         -AssociationName keyVault-001-association
-        -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001 
+        -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001
         -DataCollectionRuleId /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/vaultsDCR001
-```
-
-### [REST](#tab/rest)
-
-### Create a data collection rule using the REST API
-
-Creating a data collection rule for metrics requires the following steps:
-
-1. Create the data collection rule.
-1. Grant permissions for the rule's managed entity to write to the destination 
-1. Create a data collection rule association.
-
-### Create the data collection rule
-
-To create a DCR using the REST API, you must make an authenticated request using a bearer token. For more information on authenticating with Azure Monitor, see [Authenticate Azure Monitor requests](/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests).
-
-Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
-
-```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version=2023-03-11
-```
-
-**Example:**
-
-``` http
-https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-001?api-version=2023-03-11
-```
-
-The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
-
-### Grant write permissions to the managed entity
-
-The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs.
-To grant permissions for the rule's managed entity, assign the appropriate role to the entity. 
-
-The following table shows the roles required for each destination type:
-
-| Destination type | Role |
-|------------------|------|
-| Log Analytics workspace | not required |
-| Azure storage account | `Storage Blob Data Contributor` |
-| Event Hubs | `Azure Event Hubs Data Sender` |
-
-For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
-
-To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
-
-## Create a data collection rule association
-
-### Create a data collection rule using an ARM template
-
-After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
-
-To create a DCRA using the REST API, use the following endpoint and payload:
-
-```HTTP
-PUT https://management.azure.com/{resourceUri}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version=2022-06-0
-```
-
-**Body:**
-
-```JSON
-{ 
-        "properties":
-        { 
-          "description": "<DCRA description>", 
-          "dataCollectionRuleId": "/subscriptions/{subscriptionId}/resourceGroups/{resource group name}/providers/Microsoft.Insights/dataCollectionRules/{DCR name}" 
-        } 
-}
-```
-
-**Example:**
-
-```HTTP
-https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachines/vm002/providers/Microsoft.Insights/dataCollectionRuleAssociations/dcr-la-ws-vm002?api-version=2023-03-11
-
-{ 
-        "properties":
-        { 
-          "description": "Association of platform telemetry DCR with VM vm002", 
-          "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-la-ws" 
-        } 
-} 
-
 ```
 
 ### [ARM (JSON)](#tab/arm)
@@ -418,8 +407,8 @@ Use the following template to create a DCR. For more information, see [Microsoft
             "name": "[parameters('dataCollectionRuleName')]",
             "kind": "PlatformTelemetry",
               "identity": {
-                 "type": "userassigned" | "systemAssigned", 
-                 "userAssignedIdentities": { 
+                 "type": "userassigned" | "systemAssigned",
+                 "userAssignedIdentities": {
 		        			 "type": "string"
                    }
                  },
@@ -537,7 +526,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
 }
 ```
 
-### [Bicep)](#tab/bicep)
+### [Bicep](#tab/bicep)
 
 ### Create a data collection rule using Bicep templates
 
@@ -690,7 +679,7 @@ For example:
 
 The following example shows data exported to a storage account:
 
-```JSON
+```json
 {
     "Average": "31.5",
     "Count": "2",

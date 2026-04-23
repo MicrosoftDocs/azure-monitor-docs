@@ -26,10 +26,11 @@ You can enable resource-centric stamping and access for a workspace using one of
 
 # [REST](#tab/rest-1)
 
-```
+```REST
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version=2025-05-03-preview
 Authorization: Bearer {token}
 Content-Type: application/json
+
 {
   "location": "eastus",
   "properties": {
@@ -129,8 +130,9 @@ Invoke-AzRestMethod `
     }
   ]
 }
-
 ```
+
+This ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-arm-template) resource type.
 
 # [Bicep](#tab/bicep-1)
 
@@ -148,6 +150,8 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
   }
 }
 ```
+
+This Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
 
 ---
 
