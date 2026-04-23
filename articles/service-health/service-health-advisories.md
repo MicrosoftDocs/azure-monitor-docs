@@ -59,15 +59,15 @@ At the top of each tab, there are several options of how to view the information
 When you open the Health advisories pane, you see a list of relevant notifications tailored to your subscriptions, services, and regions. Each advisory includes:
 
 
-|Field  |Description |
-|---------|---------|
-|Status   |Whether the advisory is active, resolved, or scheduled         |
-|Start/End time    |The period during which the advisory was, or is active.         |
-|Impacted services | The Azure services affected by the advisory       |
-|Impacted regions  |The geographic regions where the advisory applies         |
-|Event level  | Tags to help users quickly assess the severity and urgency of the advisory <br> - Informational <br>- Warning     |
-|Event tags   | Tags to define the categorization of the advisory <br>- Action recommended        |
-|Last update  | Information entered to provide information as it is gathered        |
+|Field             |Description                                                                                                    |
+|------------------|---------------------------------------------------------------------------------------------------------------|
+|Status            |Whether the advisory is active, resolved, or scheduled                                                         |
+|Start/End time    |The period during which the advisory was, or is active.                                                        |
+|Impacted services | The Azure services affected by the advisory                                                                   |
+|Impacted regions  |The geographic regions where the advisory applies                                                              |
+|Event level       | Tags to help users quickly assess the severity and urgency of the advisory <br> - Informational <br>- Warning |
+|Event tags        | Tags to define the categorization of the advisory <br>- Action recommended                                    |
+|Last update       | Information entered to provide information as it is gathered                                                  |
 
 ### Impacted Services tab
 
