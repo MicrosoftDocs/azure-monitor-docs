@@ -31,7 +31,7 @@ Following is an example of a transformation that performs several functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
 * Evaluates a calculated column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator. The `extend` operator computes a value in the transformation output but doesn't modify the target table schema. The column must already exist in the target table.
-* Formats the output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
+* Formats the transformation output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
 source
