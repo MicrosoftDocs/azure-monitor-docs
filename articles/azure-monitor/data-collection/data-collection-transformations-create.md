@@ -24,14 +24,11 @@ The output of the query must match the schema of the target table with the follo
 * Make sure to exclude any columns that aren't included in the output table. The data will be accepted without error, but you'll be charged for the ingestion of the extra data even though it's not stored.
 * The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, you can add it in the transformation with `extend` or `project`.
 
-> [!IMPORTANT]
-> The `extend` operator in a transformation computes column values in the query output. It doesn't create or modify columns in the target table schema. Any columns referenced by `extend` must already exist in the target table before the transformation can populate them. To add a custom column, first update the table schema and then use `extend` in your transformation to compute values for that column.
-
 Following is an example of a transformation that performs several functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
-* Evaluates a calculated column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator. The `extend` operator computes a value in the transformation output but doesn't modify the target table schema. The column must already exist in the target table.
-* Formats the transformation output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
+* Parses the incoming `property` column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator to separate its JSON values into a temporary column `Properties`.
+* Formats the transformation output to exactly match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
 source
