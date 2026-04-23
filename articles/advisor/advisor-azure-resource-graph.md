@@ -33,8 +33,8 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 
 | Field | Description | Example values |
 | :-- | :-- | :-- |
-| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | `New, Completed` |
-| `properties.completionType` | How the recommendation was resolved or completed. Only populated when `recommendationStatus` is `Completed`. | `SystemVerified`|
+| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | `New, InProgress, Completed, Postponed, Dismissed` |
+| `properties.completionType` | How the recommendation was resolved or completed. Only populated when `recommendationStatus` is `Completed`. | `MarkedByUser, SystemVerified`|
 | `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
 
 > [!IMPORTANT] Important: The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used by customers. Always use
