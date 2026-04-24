@@ -97,7 +97,7 @@ This table lists all the properties you can use in your Service Health and Impac
 |`BillingId`                      | Identifier used to associate the event with a billing account or transaction |
 |`EventTags`                      | Metadata tags used to categorize or filter events (for example, Security, Maintenance, Outage)  |     
 |`duration`                       | Descriptive label or title for the event                                     |
-|`description`                    | Full description of the event                                                |
+|`Description`                    | Full description of the event                                                |
 
 
 
