@@ -2,7 +2,7 @@
 title: Connect computers by using the Log Analytics gateway
 description: Connect your devices and Operations Manager-monitored computers by using the Log Analytics gateway to send data to the Azure Automation and Log Analytics service when they don't have internet access.
 ms.topic: how-to
-ms.date: 11/14/2024
+ms.date: 04/22/2026
 ms.reviewer: luki
 ms.custom:
   - sfi-ropc-nochange
@@ -53,7 +53,7 @@ The following diagram shows data flow from an Operations Manager management grou
 Computers designated to run the Log Analytics gateway must have the following configuration:
 
 * Windows 10, Windows 8.1, or Windows 7
-* Windows Server 2019, Windows Server 2016, Windows Server 2012 R2, Windows Server 2012, Windows Server 2008 R2, or Windows Server 2008
+* Windows Server 2025, 2022, 2022 core, 2019, 2019 core, 2016, 2016 core, Windows Server 2012 R2 with and ESU agreement.
 * Microsoft .NET Framework 4.5
 * At least a 4-core processor and 8 GB of memory 
 * An [Azure Monitor agent](azure-monitor-agent-overview.md) installed with [data collection rules](../vm/data-collection.md) configured, or the [Log Analytics agent for Windows](agent-windows.md) configured to report to the same workspace as the agents that communicate through the gateway
@@ -344,8 +344,8 @@ An error in step 3 means that the module wasn't imported. The error might occur 
 | `Get-OMSGatewayRelayProxy` | | Gets the address of relay (upstream) proxy | `Get-OMSGatewayRelayProxy` |
 | `Set-OMSGatewayRelayProxy` | Address<br> Username<br> Password (secure string) | Sets the address (and credential) of relay (upstream) proxy |1. Set a relay proxy and credential:<br> `Set-OMSGatewayRelayProxy`<br>`-Address http://www.myproxy.com:8080`<br>`-Username user1 -Password 123` <br><br> 2. Set a relay proxy that doesn't need authentication: `Set-OMSGatewayRelayProxy`<br> `-Address http://www.myproxy.com:8080` <br><br> 3. Clear the relay proxy setting:<br> `Set-OMSGatewayRelayProxy` <br> `-Address ""` |
 | `Get-OMSGatewayAllowedHost` | | Gets the currently allowed host (only the locally configured allowed host, not automatically downloaded allowed hosts) | `Get-OMSGatewayAllowedHost` |
-| `Add-OMSGatewayAllowedHost` | Host (required) |Adds the host to the allowed list | `Add-OMSGatewayAllowedHost -Host www.test.com` |
-| `Remove-OMSGatewayAllowedHost` | Host (required) |Removes the host from the allowed list | `Remove-OMSGatewayAllowedHost`<br> `-Host www.test.com` |
+| `Add-OMSGatewayAllowedHost` | Host (required) |Adds the host to the allowed list | `Add-OMSGatewayAllowedHost -Host {URL}` |
+| `Remove-OMSGatewayAllowedHost` | Host (required) |Removes the host from the allowed list | `Remove-OMSGatewayAllowedHost`<br> `-Host {URL}` |
 | `Add-OMSGatewayAllowedClientCertificate` | Subject (required) |Adds the client certificate subject to the allowed list | `Add-OMSGatewayAllowed`<br>`ClientCertificate` <br> `-Subject mycert` |
 | `Remove-OMSGatewayAllowedClientCertificate` | Subject (required) |Removes the client certificate subject from the allowed list | `Remove-OMSGatewayAllowed` <br> `ClientCertificate` <br> `-Subject mycert` |
 | `Get-OMSGatewayAllowedClientCertificate` | | Gets the currently allowed client certificate subjects (only the locally configured allowed subjects, not automatically downloaded allowed subjects) |`Get-`<br>`OMSGatewayAllowed`<br>`ClientCertificate` |

@@ -3,7 +3,7 @@ title: Monitor applications on AKS with Azure Monitor Application Insights (Prev
 description: Azure Monitor integrates seamlessly with your application running on Azure Kubernetes Service and allows you to spot the problems with your apps quickly.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
-ms.date: 04/03/2025
+ms.date: 04/08/2026
 ---
 
 # Autoinstrumentation for Azure Kubernetes Service (Preview)

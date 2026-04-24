@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Service Bus
@@ -70,23 +70,7 @@ Subcategory: DisasterRecovery
 
 
 
-<!--d45d2fe8-866c-43d6-8045-a5997dd61e05_begin-->
 
-#### Migrate the Azure Service Bus SDK to the latest version  
-  
-Migrate to latest version of Azure Service Bus SDK. The WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus, and com.microsoft.azure.servicebus libraries in Azure Service Bus SDK are retiring.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates?id=retirement-notice-update-your-azure-service-bus-sdk-libraries-by-30-september-2026)  
-
-ResourceType: microsoft.servicebus/namespaces  
-Recommendation ID: d45d2fe8-866c-43d6-8045-a5997dd61e05  
-Subcategory: undefined
-
-<!--d45d2fe8-866c-43d6-8045-a5997dd61e05_end-->
 
 <!--55bd2c8e-da67-4e38-9af7-eb2123b0ca5e_begin-->
 

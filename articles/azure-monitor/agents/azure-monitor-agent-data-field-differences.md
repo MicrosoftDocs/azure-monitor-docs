@@ -2,7 +2,7 @@
 title: Data field differences between MMA and AMA 
 description: Learn about the data field differences between the Log Analytics agent (MMA) and Azure Monitor Agent to prepare for migration.
 ms.topic: reference
-ms.date: 11/14/2024
+ms.date: 04/07/2026
 Customer intent: As an azure administrator, I want to understand which Log Analytics Workspace queries I may need to update after AMA migration.
 ---
 
@@ -19,7 +19,7 @@ Each of the data changes was carefully considered and the rational for each chan
 This table collects log data from the Internet Information Service on Window systems.
 
 | LAW Field | Difference | Reason | Additional Information |
-|-----------|------------|--------|------------------------|
+| --- | --- | --- | ---|
 | sSiteName | Not be populated | depends on customer data collection configuration | The MMA agent could turn on collection by default, but by principle is restricted from making configuration changes in other services.<p>Enable the `Service Name (s-sitename)` field in W3C logging of IIS. See [Select W3C Fields to Log](/iis/manage/provisioning-and-managing-iis/configure-logging-in-iis#select-w3c-fields-to-log).|
 | Fileuri | No longer populated | not required for MMA parity | MMA doesn't collect this field. This field was only populated for IIS logs collected from Azure Cloud Services through the Azure Diagnostics Extension. |
 
@@ -28,15 +28,15 @@ This table collects log data from the Internet Information Service on Window sys
 This table collects Events from the Windows Event log. There are two other tables that are used to store Windows events, the SecurityEvent and Event tables.
 
 | LAW Field | Difference | Reason | Additional Information |
-|-----------|------------|--------|------------------------|
+| --- | --- | --- | --- |
 | UserName | MMA enriches the event with the username before sending the event for ingestion. AMA doesn't do the same enrichment. | The AMA enrichment isn't implemented yet. | AMA principles dictate that the event data should remain unchanged by default. Adding and enriched field adds possible processing errors and extra costs for storage. In this case, the customer demand for the field is very high and work is underway to add the username. |
 
 ### Perf table for performance counters
 
 The perf table collects performance counters from Windows and Linux agents. It offers valuable insights into the performance of hardware components, operating systems, and applications. The following table shows key differences in how data is reported between OMS and Azure Monitor Agent (AMA).
 
-| LAW Field    | Difference | Reason | Additional Information |
-|--------------|------------|--------|------------------------|
+| LAW Field | Difference | Reason | Additional Information |
+| --- | --- | --- | --- |
 | InstanceName | Reported as **_Total** by OMS<br>Reported as **total** by AMA | | Where `ObjectName` is **"Logical Disk"** and `CounterName` is **"% Used Space"**, the `InstanceName` value is reported as **_Total** for records ingested by the OMS agent, and as **total** for records ingested by the Azure Monitor Agent (AMA).\* |
 | CounterValue | Is rounded to the nearest whole number by OMS but not rounded by AMA | | Where `ObjectName` is **"Logical Disk"** and `CounterName` is **"% Used Space"**, the `CounterValue` value is rounded to the nearest whole number for records ingested by the OMS agent but not rounded for records ingested by the Azure Monitor Agent (AMA).\* |
 

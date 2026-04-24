@@ -3,7 +3,7 @@ title: Troubleshoot Azure Log Analytics Linux Agent
 description: Describe the symptoms, causes, and resolution for the most common issues with the Log Analytics agent for Linux in Azure Monitor.
 ms.topic: troubleshooting-general
 ms.custom: linux-related-content
-ms.date: 03/13/2026
+ms.date: 04/07/2026
 ms.reviewer: luki, mattmcinnes
 ai-usage: ai-assisted
 ---
@@ -81,8 +81,8 @@ A clean reinstall of the agent fixes most problems. This task might be the first
  Performance, Nagios, Zabbix, Log Analytics output, and general agent | `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`
  Extra configurations | `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.d/*.conf`
 
- > [!NOTE]
- > If you configure the collection from the [data collection configuration](../vm/data-collection.md#add-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
+> [!NOTE]
+> If you configure the collection from the [data collection configuration](../vm/data-collection.md#add-data-sources) in the Azure portal for your workspace, it overwrites any edits to configuration files for performance counters and Syslog. To disable configuration for all agents, disable collection from **Legacy agents management**. For a single agent, run the following script:
 >
 > `sudo /opt/microsoft/omsconfig/Scripts/OMS_MetaConfigHelper.py --disable && sudo rm /etc/opt/omi/conf/omsconfig/configuration/Current.mof* /etc/opt/omi/conf/omsconfig/configuration/Pending.mof*`
 
@@ -128,7 +128,6 @@ A clean reinstall of the agent fixes most problems. This task might be the first
 | 33 | Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
 | 34 | Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`. |
 
-## Enable debug logging
 
 ### OMS output plug-in debug
 
@@ -143,7 +142,7 @@ A clean reinstall of the agent fixes most problems. This task might be the first
   num_threads 5
   buffer_chunk_limit 5m
   buffer_type file
-  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
+  buffer_path /var/opt/microsoft/omsagent/{workspace id}/state/out_oms*.buffer
   buffer_queue_limit 10
   flush_interval 20s
   retry_limit 10
@@ -168,18 +167,18 @@ Instead of using the OMS output plug-in, you can send data items directly to `st
 In the Log Analytics general agent configuration file at `/etc/opt/microsoft/omsagent/<workspace id>/conf/omsagent.conf`, comment out the OMS output plug-in by adding a `#` in front of each line:
 
 ```
-#<match oms.** docker.**>
-#  type out_oms
-#  log_level info
-#  num_threads 5
-#  buffer_chunk_limit 5m
-#  buffer_type file
-#  buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
-#  buffer_queue_limit 10
-#  flush_interval 20s
-#  retry_limit 10
-#  retry_wait 30s
-#</match>
+<match oms.** docker.**>
+   type out_oms
+   log_level info
+   num_threads 5
+   buffer_chunk_limit 5m
+   buffer_type file
+   buffer_path /var/opt/microsoft/omsagent/<workspace id>/state/out_oms*.buffer
+   buffer_queue_limit 10
+   flush_interval 20s
+   retry_limit 10
+   retry_wait 30s
+</match>
 ```
 
 Below the output plug-in, uncomment the following section by removing the `#` in front of each line:

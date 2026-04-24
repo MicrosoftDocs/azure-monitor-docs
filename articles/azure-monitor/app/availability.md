@@ -274,10 +274,13 @@ You can use the following population tags for the geo-location attribute when yo
 |                                          | USDoD East                             | usgov-ddeast-azr    |
 |                                          | USDoD Central                          | usgov-ddcentral-azr |
 | **Microsoft Azure operated by 21Vianet** |                                        |                     |
-|                                          | China East                             | mc-cne-azr          |
+|                                          | China East *(retiring July 1, 2026)*   | mc-cne-azr          |
 |                                          | China East 2                           | mc-cne2-azr         |
-|                                          | China North                            | mc-cnn-azr          |
+|                                          | China North *(retiring July 1, 2026)*  | mc-cnn-azr          |
 |                                          | China North 2                          | mc-cnn2-azr         |
+
+> [!IMPORTANT]
+> **China East (`mc-cne-azr`) and China North (`mc-cnn-azr`) retire as availability test locations on July 1, 2026.** This retirement is part of the [Azure-wide retirement of the China East and China North regions](https://azure.microsoft.com/updates?id=494297). After this date, you can't create or update availability tests that use these locations. Existing tests stop executing once the underlying infrastructure is decommissioned. For availability tests specifically, migrate your tests to use **China East 2** (`mc-cne2-azr`) or **China North 2** (`mc-cnn2-azr`) before the retirement date.
 
 ### Enable alerts
 
