@@ -3,7 +3,7 @@ metadata:
   title: Azure Service Health Frequently asked Questions
   description: Overview of Azure Resource Health
   ms.topic: faq
-  ms.date: 03/05/2026
+  ms.date: 04/24/2026
 title: Azure Service Health FAQ
 summary: Learn the answers to common questions about Azure Service Health.
 
@@ -49,7 +49,7 @@ sections:
         answer: |
           In Azure Service Health, a subscription refers to a billing and resource management boundary that contains your Azure resources. 
           A tenant represents your entire Azure Active Directory organization.
-          - Subscription-level accounts can view service health events that affect specific resources within that subscription, such as outages or maintenance.
+          - **Subscription-level** accounts can view service health events that affect specific resources within that subscription, such as outages or maintenance.
           - Tenant-level accounts can access broader, organization-wide events like security advisories or global service disruptions. 
           Only users with tenant-level roles (for example, Global Administrator) can view tenant-scoped events, and they aren't accessible via Azure Resource Graph. For more information, read [Subscription vs Tenant](subscription-vs-tenant.md) and [Roles with tenant admin access](admin-access-reference.md).
       - question: |
@@ -78,7 +78,7 @@ sections:
       - question: |
             What should I do if my resource is marked as healthy but I'm experiencing issues?
         answer: |
-          If your resource is marked as healthy but you're still experiencing issues, it could be due to problems outside the scope of what Azure Resource Health monitors, such as application errors, misconfigurations, or network issues. In such cases, review your application logs and configuration, and consider opening a support ticket if the issue persists.
+          If your resource is marked as healthy but you're still experiencing issues, it could be due to problems outside the scope of what Azure Resource Health monitors, such as application errors, misconfigurations, or network issues. In such cases, review your application logs and configuration, and consider opening a support ticket if the issue persists.<br> For more information, see [How to report an impact](report-issue.md).
       - question: |
             When should I open a support ticket versus relying on Service Health updates?
         answer: |
