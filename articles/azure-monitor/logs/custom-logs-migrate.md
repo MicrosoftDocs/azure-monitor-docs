@@ -33,6 +33,8 @@ The migration procedure described in this article assumes you have:
 
 ## Permissions required
 
+The Logs Ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and DCR-scoped RBAC. Assign permissions to the DCR and use the DCE endpoint for ingestion requests to align with Microsoft Sentinel connector patterns.
+
 | Action | Permissions required |
 |:-------|:---------------------|
 | Create a data collection endpoint. | `Microsoft.Insights/dataCollectionEndpoints/write` permissions as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
@@ -48,6 +50,8 @@ The Log Ingestion API requires you to create two new types of resources, which t
 * [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), from which the data you collect is ingested into the pipeline for processing.
 * [Data collection rules](../data-collection/data-collection-rule-overview.md), which define [data transformations](../data-collection/data-collection-transformations.md) and the destination table to which the data is ingested.
 
+Microsoft Sentinel CCF (Codeless Connector Framework) connectors available via Content Hub use DCR/DCE with the Logs Ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API.
+
 ## Migrate existing custom tables or create new tables
 
 If you have an existing custom table to which you currently send data using the Data Collector API, you can: 
@@ -59,6 +63,12 @@ If you have an existing custom table to which you currently send data using the 
   
 > [!TIP]
 > To identify which tables use the Data Collector API, [view table properties](../logs/manage-logs-tables.md#view-table-properties). The **Type** property of tables that use the Data Collector API is set to **Custom table (classic)**. Note that tables that ingest data using the legacy Log Analytics agent (MMA) also have the **Type** property set to **Custom table (classic)**. Be sure to migrate from Log Analytics agent to Azure Monitor Agent before converting MMA tables. Otherwise, you'll stop ingesting data into custom fields in these tables after the table conversion.
+
+## Microsoft Sentinel considerations
+
+Microsoft Sentinel connectors are transitioning from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF (Codeless Connector Framework) connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs Ingestion API. Migration can introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors may temporarily coexist during the transition period.
+
+When migrating Sentinel connectors, dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) must be updated to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
 
 This table summarizes considerations to keep in mind for each option:
 
