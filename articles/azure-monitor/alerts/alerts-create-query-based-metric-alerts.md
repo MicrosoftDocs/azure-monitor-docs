@@ -283,7 +283,7 @@ Edit it to include your specific scope, location, query, action groups, and othe
 
 [!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
 
-This ARM (JSON) example uses the [Microsoft.Insights metricAlerts](s/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+This ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
 
 # [Bicep](#tab/bicep-2)
 
