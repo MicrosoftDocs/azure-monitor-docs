@@ -178,7 +178,7 @@ From the *Create an alert rule* page:
 
 1. From the **Subscription** dropdown list, select one or more subscriptions checkboxes. All resource groups within that chosen subscription appear.
 
-1. From the Resource types dropdown list, filter for *Virtual machines*,  *Azure Monitor workspaces*, *Kubernetes services* or choose an entire resource group or subscription.
+1. From the Resource types dropdown list, filter for *Virtual machines*,  *Azure Monitor Workspaces*, *Kubernetes services* or choose an entire resource group or subscription.
 
 1. Select the checkbox next to the resources you want to use.
 
@@ -198,56 +198,6 @@ From the *Create an alert rule* page:
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
 
-# [Azure CLI](#tab/cli-2)
-
-You can deploy a metric alert template using the CLI.
-
-1. Open a terminal or command prompt.
-
-1. Sign in / authenticate to Azure.
-
-1. Set the subscription to the one you want to use, either with the subscription name or the ID.
-
-    * Change the active subscription using the subscription name.
-        `az account set --subscription "My Demos"`
-
-    * Change the active subscription using the subscription ID.
-        `az account set --subscription "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"`
-
-1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
-
-    `az deployment group create --name ExampleDeployment --resource-group ExampleGroup --template-file <path-to-template> --parameters storageAccountType=Standard_GRS`
-
-1. (Optional) Check updated rule using the name you set in the template.
-
-    `az resource show --ids /subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>`
-
-# [PowerShell](#tab/powershell-2)
-
-You can deploy a metric alert template using the PowerShell.
-
-1. Open a PowerShell session.
-
-1. Sign in / authenticate to Azure.
-
-    `Connect-AzAccount`
-
-1. Set the subscription to the one you want to use, either with the subscription name or the ID.
-
-    * Change the active subscription using the subscription name.
-        `Set-AzContext -Subscription "My Demos"`
-
-    * Change the active subscription using the subscription ID.
-        `Set-AzContext -Subscription "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"`
-
-1. [Deploy the template](/azure/azure-resource-manager/templates/deploy-cli#deploy-local-template).
-
-    `New-AzResourceGroupDeployment -Name ExampleDeployment -ResourceGroupName ExampleGroup -TemplateFile <path-to-template> -TemplateParameterObject @{ storageAccountType = 'Standard_GRS' }`
-
-1. (Optional) Check updated rule using the name you set in the template.
-
-    `Get-AzResource -ResourceId "/subscriptions/<subscriptionId>/resourceGroups/<resource group name>/providers/Microsoft.Insights/metricAlerts/<rule name>"`
-
 # [ARM (JSON)](#tab/arm-2)
 
 You can use an ARM (JSON) template to create and configure query-based metric alert rules. Here are the steps:
@@ -264,7 +214,7 @@ Create and configure the user-assigned managed identity with permissions before 
 > [!NOTE]
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
 
-### System assigned managed identity
+### System-assigned managed identity
 
 Metric alert rules support automatic role assignment for system-assigned managed identities.
 
@@ -284,7 +234,7 @@ Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned
 
 ## Query-based rule conditions
 
-To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`.
 
 To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
 
@@ -299,7 +249,7 @@ Query-based metric alert rule support two types of query scope:
 
 ### Resource scope (resource-centric rules)
 
-You can query metrics emitted to any Workspace by:
+You can query metrics emitted to any workspace by:
 
 * a specific Azure resource, or by multiple resources from the same subscription or
 * a resource group such as Azure Kubernetes clusters (AKS) or
@@ -307,25 +257,19 @@ You can query metrics emitted to any Workspace by:
 
 For resource-centric rules, the following scope options are supported:
 
-* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list.
+| Scope | Example |
+|-------|---------|
+| Single resource | `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]` |
+| Resource group | `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]` |
+| Subscription | `"scopes": ["/subscriptions/<subscription-id>"]` |
 
-    Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]`
-
-* A resource group - include the resource group ID in the Scopes[] list.
-
-    Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]`
-
-* A subscription - include the subscription ID in the Scopes[] list.
-
-    Example:`"scopes": ["/subscriptions/<subscription-id>"]`
-
-The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
+The system locates the workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
 
 ### Azure Monitor Workspace scope (workspace-centric rules)
 
 You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
-For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
+For workspace scope, include the workspace Azure Resource Manager ID in the Scopes[] list.
 
 Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
 
@@ -338,6 +282,8 @@ The following template creates a resource-centric, query-based metric alert rule
 Edit it to include your specific scope, location, query, action groups, and other parameters.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
+
+This ARM (JSON) example uses the [Microsoft.Insights metricAlerts](s/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
 
 # [Bicep](#tab/bicep-2)
 
@@ -355,7 +301,7 @@ Create and configure the user-assigned managed identity with permissions before 
 > [!NOTE]
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
 
-### System assigned managed identity
+### System-assigned managed identity
 
 Metric alert rules support automatic role assignment for system-assigned managed identities.
 
@@ -375,7 +321,7 @@ Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned
 
 ## Query-based rule conditions
 
-To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`.
 
 To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
 
@@ -390,7 +336,7 @@ Query-based metric alert rule support two types of query scope:
 
 ### Resource scope (resource-centric rules)
 
-You can query metrics emitted to any Workspace by:
+You can query metrics emitted to any workspace by:
 
 * a specific Azure resource, or by multiple resources from the same subscription or
 * a resource group such as Azure Kubernetes clusters (AKS) or
@@ -398,25 +344,19 @@ You can query metrics emitted to any Workspace by:
 
 For resource-centric rules, the following scope options are supported:
 
-* A single resource - include a single Azure Resource Manager resource ID in the Scopes[] list.
+| Scope | Example |
+|-------|---------|
+| Single resource | `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']` |
+| Resource group | `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']` |
+| Subscription | `scopes: ['/subscriptions/<subscription-id>']` |
 
-    Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']`
-
-* A resource group - include the resource group ID in the Scopes[] list.
-
-    Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']`
-
-* A subscription - include the subscription ID in the Scopes[] list.
-
-    Example: `scopes: ['/subscriptions/<subscription-id>']`
-
-The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
+The system locates the workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
 
 ### Azure Monitor Workspace scope (workspace-centric rules)
 
 You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
-For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
+For workspace scope, include the workspace Azure Resource Manager ID in the Scopes[] list.
 
 Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
 
@@ -429,6 +369,8 @@ The following template creates a resource-centric, query-based metric alert rule
 Edit it to include your specific scope, location, query, action groups, and other parameters.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
+
+This Bicep example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
 
 ---
 
@@ -452,8 +394,7 @@ You can view query-based metric alert rules in the Azure portal together with al
 ## Modify a query-based alert
 
 > [!NOTE]
-> * To modify an existing rule in your subscription using Azure CLI or PowerShell, run the command or cmdlet again.
-> * To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
+> To modify an existing rule in your subscription using ARM (JSON) or Bicep templates, edit the template file and repeat the deployment procedure.
 
 To edit a query-based metric alert rule in the Azure portal:
 

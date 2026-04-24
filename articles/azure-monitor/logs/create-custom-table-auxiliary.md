@@ -295,7 +295,7 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=$apiVersion" -Pay
 }
 ```
 
-This ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/tables](https://learn.microsoft.com/en-us/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type.
+This ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type.
 
 # [Bicep](#tab/bicep-1)
 

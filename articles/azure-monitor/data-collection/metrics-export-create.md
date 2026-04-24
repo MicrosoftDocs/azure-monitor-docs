@@ -138,14 +138,15 @@ To create a DCR using the REST API, you must make an authenticated request using
 
 Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
 
-```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version=2023-03-11
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version=2024-03-11
 ```
 
 **Example:**
 
-``` http
-https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-001?api-version=2023-03-11
+```REST
+PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule?api-version=2024-03-11
+
 ```
 
 The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
@@ -169,41 +170,38 @@ To assign a role to a managed identity using REST, see [Role Assignments - Creat
 
 ## Create a data collection rule association
 
-### Create a data collection rule using an ARM template
-
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
 
 To create a DCRA using the REST API, use the following endpoint and payload:
 
-```HTTP
-PUT https://management.azure.com/{resourceUri}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version=2022-06-0
+```REST
+PUT https://management.azure.com/{resourceUri}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{dataCollectionRuleAssociationName}?api-version=2024-03-11
 ```
 
 **Body:**
 
-```JSON
+```json
 {
-        "properties":
-        {
-          "description": "<DCRA description>",
-          "dataCollectionRuleId": "/subscriptions/{subscriptionId}/resourceGroups/{resource group name}/providers/Microsoft.Insights/dataCollectionRules/{DCR name}"
-        }
+    "properties":
+    {
+        "description": "<DCRA description>",
+        "dataCollectionRuleId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}"
+    }
 }
 ```
 
 **Example:**
 
-```HTTP
-https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-001/providers/Microsoft.Compute/virtualMachines/vm002/providers/Microsoft.Insights/dataCollectionRuleAssociations/dcr-la-ws-vm002?api-version=2023-03-11
+```REST
+PUT https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine/providers/Microsoft.Insights/dataCollectionRuleAssociations/myDataCollectionRuleAssociation?api-version=2024-03-11
 
 {
-        "properties":
-        {
-          "description": "Association of platform telemetry DCR with VM vm002",
-          "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-la-ws"
-        }
+    "properties":
+    {
+        "description": "Association of platform telemetry DCR with VM myVirtualMachine",
+        "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule"
+    }
 }
-
 ```
 
 ### [Azure CLI](#tab/CLI)
@@ -218,27 +216,35 @@ Create a JSON file containing the collection rule specification. For more inform
 Use the following command to create a data collection rule for metrics using the Azure CLI.
 
 ```azurecli
- az monitor data-collection rule create
-    --name cli-dcr-001
-    --resource-group rg-001
-    --location centralus
-    --kind PlatformTelemetry
-    --identity "{type:'SystemAssigned'}"
-    --rule-file cli-dcr.json
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroup"
+dataCollectionRuleName="myDataCollectionRule"
+location="eastus"
+ruleFilePath="cli-dcr.json"
+
+az account set --subscription "$subscriptionId"
+
+az monitor data-collection rule create \
+  --name "$dataCollectionRuleName" \
+  --resource-group "$resourceGroupName" \
+  --location "$location" \
+  --kind PlatformTelemetry \
+  --identity "{type:'SystemAssigned'}" \
+  --rule-file "$ruleFilePath"
 ```
 
 > [!NOTE]
 > For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
 
-Copy the `id` and the `principalId` of the DCR to use in assigning the role to create an association between the DCR and a resource.
+Copy the `id` and the `principalId` of the DCR from the following output to use in assigning the role to create an association between the DCR and a resource.
 
 ```json
-  "id": "/subscriptions/bbbb1b1b-cc2c-dd3d-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/cli-dcr-001",
-  "identity": {
-    "principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
-    "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
-    "type": "systemAssigned"
-  },
+"id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule",
+"identity": {
+"principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
+"tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+"type": "systemAssigned"
+},
 ```
 
 ### Grant write permissions to the managed entity
@@ -269,8 +275,8 @@ The following example assigns the `Storage Blob Data Contributor` role to the ma
 
 ```azurecli
 az role assignment create --assignee eeeeeeee-ffff-aaaa-5555-666666666666 \
-    --role "Storage Blob Data Contributor" \
-    --scope /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/ed-rg-DCRTest/providers/Microsoft.Storage/storageAccounts/metricsexport001
+                          --role "Storage Blob Data Contributor" \
+                          --scope /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Storage/storageAccounts/myStorageAccount
 ```
 
 ## Create a data collection rule association
@@ -280,17 +286,17 @@ After you create the data collection rule, create a data collection rule associa
 Use `az monitor data-collection rule association create` to create an association between a data collection rule and a resource.
 
 ```azurecli
-az monitor data-collection rule association create --name
-                                                  --rule-id
-                                                  --resource
+az monitor data-collection rule association create --name \
+                                                   --rule-id \
+                                                   --resource
 ```
 
 The following example creates an association between a data collection rule and a Key Vault.
 
 ```azurecli
-az monitor data-collection rule association create --name "keyValut-001" \
-    --rule-id "/subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/dcr-cli-001" \
-    --resource "/subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001"
+az monitor data-collection rule association create --name "myDataCollectionRuleAssociation" \
+    --rule-id "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule" \
+    --resource "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.KeyVault/vaults/myKeyVault"
 ```
 
 ### [PowerShell](#tab/powershell)
@@ -301,20 +307,33 @@ Create a JSON file containing the collection rule specification. For more inform
 
 Use the `New-AzDataCollectionRule` command to create a data collection rule for metrics using PowerShell. For more information, see [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule).
 
-```powershell
-New-AzDataCollectionRule -Name
-                         -ResourceGroupName
-                         -JsonFilePath
-```
-For example,
-```powershell
- New-AzDataCollectionRule -Name dcr-powershell-hub -ResourceGroupName rg-001 -JsonFilePath dcr-storage-account.json
+```azurepowershell
+New-AzDataCollectionRule `
+  -Name `
+  -ResourceGroupName `
+  -JsonFilePath
 ```
 
-Copy the `id` and the `IdentityPrincipalId` of the DCR to use in assigning the role to create an association between the DCR and a resource.resource.
+**Example:**
+
+```azurepowershell
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$resourceGroupName = "myResourceGroup"
+$dataCollectionRuleName = "myDataCollectionRule"
+$jsonFilePath = "./dcr-storage-account.json"
+
+Set-AzContext -Subscription $subscriptionId
+
+New-AzDataCollectionRule `
+  -Name $dataCollectionRuleName `
+  -ResourceGroupName $resourceGroupName `
+  -JsonFilePath $jsonFilePath
+```
+
+Copy the `id` and the `IdentityPrincipalId` of the DCR from the following output to use in assigning the role to create an association between the DCR and a resource.
 
 ```powershell
-Id                                        : /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-001/providers/Microsoft.Insights/dataCollectionRules/dcr-powershell-hub
+Id                                        : /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule
 IdentityPrincipalId                       : eeeeeeee-ffff-aaaa-5555-666666666666
 IdentityTenantId                          : 0000aaaa-11bb-cccc-dd22-eeeeee333333
 IdentityType                              : systemAssigned
@@ -339,34 +358,41 @@ For more information, see [Assign Azure roles to a managed identity](/azure/role
 
 Assign the appropriate role to the managed identity of the DCR using `New-AzRoleAssignment`.
 
-```powershell
-New-AzRoleAssignment -ObjectId <objectId> -RoleDefinitionName <roleName> -Scope /subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/<providerName>/<resourceType>/<resourceSubType>/<resourceName>
-```
-
 The following example assigns the `Azure Event Hubs Data Sender` role to the managed identity of the DCR at the subscription level.
 
-```powershell
-New-AzRoleAssignment -ObjectId eeeeeeee-ffff-aaaa-5555-666666666666 -RoleDefinitionName "Azure Event Hubs Data Sender" -Scope /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f
+```azurepowershell
+$objectId = "eeeeeeee-ffff-aaaa-5555-666666666666"
+$roleDefinitionName = "Azure Event Hubs Data Sender"
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+
+$scope = "/subscriptions/$subscriptionId"
+
+New-AzRoleAssignment `
+  -ObjectId $objectId `
+  -RoleDefinitionName $roleDefinitionName `
+  -Scope $scope
 ```
 
 ## Create a data collection rule association
 
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. Use `New-AzDataCollectionRuleAssociation` to create an association between a data collection rule and a resource. For more information, see [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-azdatacollectionruleassociation).
 
-```powershell
-New-AzDataCollectionRuleAssociation
-    -AssociationName <String>
-    -ResourceUri <String>
-    -DataCollectionRuleId <String>
-```
-
 The following example creates an association between a data collection rule and a Key Vault.
 
-```powershell
-New-AzDataCollectionRuleAssociation
-        -AssociationName keyVault-001-association
-        -ResourceUri /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.KeyVault/vaults/keyVault-001
-        -DataCollectionRuleId /subscriptions/bbbb1b1b-cc2c-DD3D-ee4e-ffffff5f5f5f/resourceGroups/rg-dcr/providers/Microsoft.Insights/dataCollectionRules/vaultsDCR001
+```azurepowershell
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$resourceGroupName = "myResourceGroup"
+$associationName = "myDataCollectionRuleAssociation"
+$keyVaultName = "myKeyVault"
+$dataCollectionRuleName = "myDataCollectionRule"
+
+$resourceUri = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName"
+$dataCollectionRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dataCollectionRuleName"
+
+New-AzDataCollectionRuleAssociation `
+  -AssociationName $associationName `
+  -ResourceUri $resourceUri `
+  -DataCollectionRuleId $dataCollectionRuleId
 ```
 
 ### [ARM (JSON)](#tab/arm)
@@ -413,7 +439,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
                    }
                  },
             "location": "[parameters('location')]",
-            "apiVersion": "2023-03-11",
+            "apiVersion": "2024-03-11",
             "properties": {
                 "dataSources": {
                     "platformTelemetry": [
@@ -457,10 +483,10 @@ Use the following template to create a DCR. For more information, see [Microsoft
     "contentVersion": "1.0.0.0",
     "parameters": {
         "dataCollectionRuleName": {
-            "value": "metrics-dcr-001"
+            "value": "myDataCollectionRule"
         },
         "workspaceId": {
-            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/azuremonitorworkspaceinsights/providers/microsoft.operationalinsights/workspaces/amw-insight-ws"
+            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace"
         },
         "location": {
             "value": "eastus"
@@ -478,7 +504,7 @@ Use the following template to create a DCR. For more information, see [Microsoft
     "resources": [
         {
             "type": "Microsoft.Insights/dataCollectionRules",
-            "apiVersion": "2023-03-11",
+            "apiVersion": "2024-03-11",
             "name": "[parameters('dataCollectionRuleName')]",
             "location": "[parameters('location')]",
             "kind": "PlatformTelemetry",
@@ -544,7 +570,7 @@ param workspaceId string
 @description('Specifies the location in which to create the Data Collection Rule.')
 param location string
 
-resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
     name: dataCollectionRuleName
     kind: 'PlatformTelemetry'
     identity: {
@@ -592,9 +618,9 @@ resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' 
 ```bicep
 using './<template-name>.bicep'
 
-param dataCollectionRuleName = 'metrics-dcr-001'
+param dataCollectionRuleName = 'myDataCollectionRule'
 
-param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/azuremonitorworkspaceinsights/providers/microsoft.operationalinsights/workspaces/amw-insight-ws'
+param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace'
 
 param location = 'eastus'
 ```
@@ -611,7 +637,7 @@ param workspaceId string
 @description('Specifies the location in which to create the Data Collection Rule.')
 param location string
 
-resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2023-03-11' = {
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
     name: dataCollectionRuleName
     location: location
     kind: 'PlatformTelemetry'
