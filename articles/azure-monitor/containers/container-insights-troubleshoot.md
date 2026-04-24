@@ -2,14 +2,14 @@
 title: Troubleshoot collection of container logs in Azure Monitor
 description: This article describes how you can troubleshoot and resolve issues with Container insights.
 ms.topic: troubleshooting-general
-ms.date: 04/24/2026
+ms.date: 01/29/2025
 ms.reviewer: aul
 
 ---
 
 # Troubleshoot collection of container logs in Azure Monitor
 
-Use this article to troubleshoot common issues when you use Container insights to monitor your Kubernetes cluster.
+This article discusses some common issues and troubleshooting steps when using Container insights to monitor your Kubernetes cluster. 
 
 ## Duplicate alerts are being created
 You might have enabled Prometheus alert rules without disabling Container insights recommended alerts. See [Migrate from Container insights recommended alerts to Prometheus recommended alert rules (preview)](container-insights-metric-alerts.md#migrate-from-metric-rules-to-prometheus-rules-preview).
@@ -47,66 +47,10 @@ During the onboarding or update process, an attempt is made to assign the **Moni
 ### Can't upgrade a cluster
 If you can't upgrade Container insights on an AKS cluster after it's been installed, the Log Analytics workspace where the cluster was sending its data may have been deleted. [Disable monitoring](kubernetes-monitoring-disable.md) for the cluster and [enable Container insights](kubernetes-monitoring-enable.md) again using another workspace.
 
-### Log Analytics workspace isn't updated after you use `az aks update`
-After you use `az aks update --enable-addons monitoring --workspace-resource-id {new-workspace}` to switch the Log Analytics workspace for an AKS cluster that is already enabled for monitoring, logs continue flowing to the old workspace instead of the new one.
-
-#### Disable and reenable monitoring (recommended)
-This is the most reliable approach. The CLI will create or update the DCR with the correct workspace.
-
-Disable monitoring with the following command:
-
-```azurecli
-az aks disable-addons -a monitoring -g {resource-group} -n {cluster-name}
-```
-
-Reenable monitoring with the following command:
-
-```azurecli
-az aks enable-addons -a monitoring -g {resource-group} -n {cluster-name} \
-    --workspace-resource-id {new-workspace-resource-id}
-```
-
-> [!IMPORTANT]
-> This will cause a brief gap in monitoring data collection during the disable/re-enable window.
-
-#### Manually update the DCR destination (alternate option)
-
-If you cannot afford any monitoring downtime, manually update the DCR to point to the new workspace.
-
-Find the DCR name from the association with the following command:
-
-```azurecli
-DCR_ID=$(az monitor data-collection rule association list \
-    --resource "/subscriptions/{sub}/resourcegroups/{rg}/providers/\
-        Microsoft.ContainerService/managedClusters/{cluster}" \
-    --query "[0].dataCollectionRuleId" -o tsv)
-```
-
-Update the DCR destination to the new workspace with the following command:
-
-```azurecli
-az monitor data-collection rule update \
-    --rule-id "$DCR_ID" \
-    --log-analytics name="la-workspace" resource-id="{new-workspace-resource-id}"
-```
-
-#### Verification
-
-After updating, verify logs are flowing to the new workspace by running a query in the new Log Analytics workspace after approximately 15 minutes:
-
-```kusto
-ContainerLogV2 | take 10
-```
-
-#### Additional notes
-- When using disable/re-enable, the CLI may create a new DCR (named based on the workspace region) rather than updating the existing one. Old DCRs from previous configurations are not automatically cleaned up and should be deleted manually to avoid confusion.
-- The DCR naming convention follows the pattern: `MSCI-{workspace-region}-{cluster-name}`.
-- DCR associations are properly updated during disable/re-enable, but orphaned DCRs may remain.
-
 ### Installation of Azure Monitor Containers extension fails
 The error `manifests contain a resource that already exists` indicates that resources of the Container insights agent already exist on an Azure Arc-enabled Kubernetes cluster, which means that the Container insights agent is already installed. Solve this issue by cleaning up the existing resources of the Container insights agent and then enable the Azure Monitor Containers Extension.
 
-#### AKS clusters
+##### AKS clusters
 Run the following commands and look for the Azure Monitor Agent add-on profile to verify whether the AKS Monitoring Add-on is enabled:
 
 ```azurecli
@@ -119,7 +63,7 @@ If the output includes an Azure Monitor Agent add-on profile config with a Log A
 az aks disable-addons -a monitoring -g <clusterResourceGroup> -n <clusterName>
 ```
 
-#### Non-AKS clusters
+##### Non-AKS clusters
 Run the following command against the cluster to verify whether the `azmon-containers-release-1` Helm chart release exists.
 
 ```bash
@@ -140,20 +84,10 @@ It may take up to 15 minutes for data to appear after you enable Container insig
 The error message `Error retrieving data` might occur if the Log Analytics workspace where the cluster was sending its data has been deleted. If this is the case, [disable](kubernetes-monitoring-disable.md) monitoring for the cluster and [enable](kubernetes-monitoring-enable.md) Container insights again using another workspace. 
 
 ### Local authentication disabled
-Check whether the Log Analytics workspace is configured for local authentication by using the following Azure CLI command:
-
-```azurecli
-az resource show --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]"
-```
-
-If `disableLocalAuth = true`, run the following command:
-
-```azurecli
-az resource update --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]" --api-version "2021-06-01" --set properties.features.disableLocalAuth=False
-```
+Check if the Log Analytics workspace is configured for local authentication with the following CLI command.<br><br> `az resource show  --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]"`<br><br>If `disableLocalAuth = true`, then run the following command.<br><br>`az resource update --ids "/subscriptions/[Your subscription ID]/resourcegroups/[Your resource group]/providers/microsoft.operationalinsights/workspaces/[Your workspace name]" --api-version "2021-06-01" --set properties.features.disableLocalAuth=False` |
 
 ### Daily cap met
-When the daily cap is met for a Log Analytics workspace, data collection stops until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
+When the daily cap is limit is met for a Log Analytics workspace, it will stop collecting data until the reset time. See [Log Analytics Daily Cap](../logs/daily-cap.md).
 
 ### DCR not deployed with Terraform
 If Container insights is enabled using Terraform and `msi_auth_for_monitoring_enabled` is set to `true`, ensure that DCR and DCRA resources are also deployed to enable log collection. See [Enable Container insights using Terraform](./kubernetes-monitoring-enable.md).
@@ -259,7 +193,7 @@ Use the following steps if you can't view status information or no results are r
         kubernetes.azure.com/managedby: aks
         ```
 
-### Performance charts don't show CPU or memory for nodes and containers on a non-Azure cluster
+### Performance charts don't show CPU or memory of nodes and containers on a non-Azure cluster
 
 Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
 
@@ -302,9 +236,9 @@ To enable collection of these fields so you don't have to modify your queries, e
 If you registered your cluster and/or configured Insights for Azure Local before November 2023, features that use the Azure Monitor agent on Azure Local, such as Arc for Servers Insights, VM Insights, Container Insights, Defender for Cloud, or Microsoft Sentinel might not be collecting logs and event data properly. See [Repair AMA agent for Azure Local](/azure/azure-local/manage/monitor-hci-single?tabs=22h2-and-later#repair-ama-for-azure-stack-hci) for steps to reconfigure the agent and Insights for Azure Local.
 
 ### Missing data on large clusters
-If data is missing from any of the following tables, the likely issue is related to parsing large payloads because of a large number of pods or nodes. This issue is known in the Ruby plugin that parses the large JSON payload because of the default `PODS_CHUNK_SIZE`, which is 1000.
+If data is missing from any of the following tables, the likely issue is related to parsing of the large payloads because of a large number of pods or nodes. This is known issue in the ruby plugin to parse the large JSON payload  because of the default PODS_CHUNK_SIZE, which is 1000.
 
-There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value to address this issue.
+There are plans to adjust the default PODS_CHUNK_SIZE value to smaller value to address this issue.
 
 - KubePodInventory
 - KubeNodeInventory
@@ -323,7 +257,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
 
     # If it's configured, the output will be similar to "Using config map value: PODS_CHUNK_SIZE = 10"
     ```
-2. If the cluster is already configured for a smaller `PODS_CHUNK_SIZE` value, you need to enable the cluster for large-cluster support.
+2. If the cluster is already configured for a smaller `PODS_CHUNK_SIZE` value, then you need to enable the cluster for large cluster.
 
 3. If the cluster is using the default `PODS_CHUNK_SIZE=1000`, then check if the cluster has a large number of pods or nodes.
 
@@ -351,7 +285,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
     
 ## Agent OOM killed
 
-### DaemonSet container getting OOM killed
+### Daemonset container getting OOM killed
 
 1. Start by identifying which container is getting OOM killed using the following commands. This will identify `ama-logs`, `ama-logs-prometheus`, or both.
 
@@ -365,7 +299,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
     # from the result of above command, find out which ama-logs pod instance getting OOM killed
     kubectl describe pod <ama-logs-pod> -n kube-system
 
-    # review the output of the above command to find out which ama-logs container is getting OOM killed
+    # review the output of the above command to findout which ama-logs container is getting OOM killed
     ```
 
 2. Check if there are network errors in `mdsd.err` log file using the following commands.
@@ -385,9 +319,9 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
 5. If there are no errors, then this may be related to log scale. See [High scale logs collection in Container Insights (Preview)](./container-insights-high-scale.md).
 
 
-### ReplicaSet container getting OOM killed
+### Replicaset container getting OOM killed
 
-1. Identify how frequently the `ama-logs-rs` pod is getting OOM killed with the following commands.
+1. Identify how frequently `ama-logs-rs` pod getting OOM killed with the following commands.
 
     ```bash
     # verify if kube context being set for right cluster
@@ -402,7 +336,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
     # review the output of the above command to confirm the OOM kill
     ```
 
-2. If `ama-logs-rs` is getting OOM killed, check if there are network errors with the following commands.
+2. If ama-logs-rs getting OOM killed, then check if there are network errors with the following commands.
 
     ```bash
      mkdir log
@@ -415,12 +349,12 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
 
 4. If errors are because of missing Data collection endpoint (DCE) or Data Collection rule (DCR), then reenable Container insights using the guidance at [Enable monitoring for Kubernetes clusters](./kubernetes-monitoring-enable.md).
 
-5. If there are no network errors, check whether cluster-level Prometheus scraping is enabled by reviewing the `[prometheus_data_collection_settings.cluster]` settings in the configmap.
+5. If there are no network errors, check if the cluster level prometheus scraping is enabled by reviewing the  [prometheus_data_collection_settings.cluster] settings in configmap.
 
     ```bash
     # Check if the cluster has container-azm-ms-agentconfig configmap in kube-system namespace
     kubectl get cm -n kube-system | grep container-azm-ms-agentconfig
-    # If there is no existing container-azm-ms-agentconfig configmap, that means cluster-level Prometheus data collection isn't enabled
+    # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection not enabled
     ```
 6. Check the cluster size in terms of the nodes and pods count.
 
@@ -431,7 +365,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
     PodCount=$(kubectl get pods -A -o wide | wc -l)
     echo "Total number of pods: ${PodCount}"
     
-    # If there is no existing container-azm-ms-agentconfig configmap, that means cluster-level Prometheus data collection isn't enabled.
+    # If there is no existing container-azm-ms-agentconfig configmap, then means cluster level prometheus data collection is not enabled.
     ```
 
 7. If you determine the issue is related to scale of the cluster, then ama-logs-rs memory limit needs to be increased. Open a support case with Microsoft to make this request.
@@ -440,7 +374,7 @@ There are plans to adjust the default `PODS_CHUNK_SIZE` value to a smaller value
 ## Latency issues
 By default Container insights collects monitoring data every 60 seconds unless you configure data collection settings or add a [transformation](../essentials/data-collection-transformations.md). See [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md) for detailed information on latency and expected ingestion times in a Log Analytics workspace.
 
-Check latency for the table and time window in the Log Analytics workspace associated with the cluster by using the following query.
+Check the  latencies for the reported table and time window in the log analytics workspace associated to the clusters using the following query.
 
 ```kusto
 let clusterResourceId = "/subscriptions/<subscriptionId>/resourceGroups/<rgName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>";
@@ -455,7 +389,7 @@ KubePodInventory #Update this table name to the one you want to check
 | project Computer, max_AgentLatency, max_ingestionLatency = (max_E2EIngestionLatency -  max_AgentLatency),max_E2EIngestionLatency
 ```
 
-If you're seeing high agent latencies, check whether you configured a log collection interval other than the default of 60 seconds in the Container insights DCR.
+If you're seeing high agent latencies, check if you configured a different log collection interval than default of 60 seconds in the Container Insights DCR.
 
 ``` sh
 # set the subscriptionId of the cluster
@@ -468,12 +402,12 @@ az monitor data-collection rule show  --ids  <dataCollectionRuleResourceIdFromAb
 ```
 
 ## Multiline logging issues
-[Multi-line log feature](./container-insights-logs-schema.md#multi-line-logging) can be enabled with a configmap and supports the following scenarios:
+[Multi-line log feature](./container-insights-logs-schema.md#multi-line-logging) can be enabled with configmap and supports the following scenarios.
 
 - Supports log messages up to 64KB instead of the default limit of 16KB.
-- Stitches exception call stack traces for supported languages: .NET, Go, Python, and Java.
+- Stitches exception call stack traces for supported languages .NET, Go, Python and Java.
 
-Verify that the multiline feature and `ContainerLogV2` schema are enabled by using the following commands.
+Verify that the multiline feature and ContainerLogV2 schema are enabled with the following commands.
 
 ``` bash
     # get the list of ama-logs and these pods should be in Running state
