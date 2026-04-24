@@ -20,15 +20,15 @@ In the Azure portal, open your Azure Monitor pipeline resource and select **Moni
 
 | Component | Metric name | Display name | Description | Dimensions |
 |:---|:---|:---|:---|:---|
-| Engine | `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
-| Engine | `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
-| Pipeline | `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
+| Pipeline group process | `process_cpu_utilization` | CPU utilization (preview) | The percentage of CPU utilized by the pipeline group process, normalized across all cores. | Instance ID |
+| Pipeline group process | `process_memory_usage` | Memory used (preview) | Total physical memory (resident set size) used by the pipeline group process. | Instance ID |
+| Pipeline group process | `process_uptime` | Process uptime (preview) | Uptime of the pipeline group process since last start. | Instance ID |
 | Exporter | `exporter_sent_log_records` | Logs exported (preview) | Number of log records successfully sent by the exporter to the destination. | Instance ID, Pipeline name, Component name |
 | Exporter | `exporter_send_failed_log_records` | Failed log exports (preview) | Number of log records that the exporter couldn't deliver after exhausting its own retries, if any. The same logs might be counted more than once if an upstream retry or buffering mechanism resubmits them. A nonzero value indicates export issues but not necessarily data loss because the pipeline might still retry successfully. | Instance ID, Pipeline name, Component name |
 
 ### Collect and view logs
 
-Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. If you select Log Analytics workspace as a destination, you can view logs for your Azure Monitor pipeline instance in the `AzureMonitorPipelineLogErrors` table in your Log Analytics workspace.
+Create a [diagnostic setting in Azure Monitor](../platform/diagnostic-settings.md) to collect resource logs for the pipeline. You can send these logs to a Log Analytics workspace, a storage account, an event hub, or a partner solution. If you send logs to a Log Analytics workspace, you can query them in the `AzureMonitorPipelineLogErrors` table.
 
 ### Collect logs from cluster pods
 
