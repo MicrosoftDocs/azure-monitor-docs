@@ -20,9 +20,6 @@ This article describes [Reliability](/azure/architecture/framework/reliability/)
 
 ## Azure Monitor Logs
 
-> [!TIP]
-> For a comprehensive reliability guide that covers availability zones, workspace replication, regional considerations, and disaster recovery for Log Analytics workspaces, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
-
 [!INCLUDE [waf-logs-reliability](../logs/includes/waf-logs-reliability.md)]
 
 ## Alerts
