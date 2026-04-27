@@ -24,6 +24,11 @@ Create the DCR using the process in [Collect data from virtual machine client wi
 
 [!INCLUDE [configure-syslog-ama](~/reusable-content/ce-skilling/azure/includes/azure-monitor/agents/configure-syslog-ama.md)]
 
+> [!IMPORTANT]
+> The **Linux Syslog** data source page in the Azure portal DCR editor is an authoring form, not a status view. Only the facilities whose **checkbox is selected** are written to the DCR and collected by Azure Monitor Agent. The **Minimum log level** value displayed next to an *unchecked* facility is a default placeholder rendered by the form; it isn't part of the saved configuration and doesn't indicate that the facility is being collected.
+>
+> To verify the configuration that's actually applied, open the DCR and select **Overview** > **JSON View**, or run `az monitor data-collection rule show --ids <dcr-id> --query "properties.dataSources.syslog"`. A facility is collected only if it appears in `properties.dataSources.syslog[*].facilityNames`.
+
 
 >[!Note]
 >When ingesting syslog data using a log forwarder, inconsistencies may arise between the TimeGenerated and EventTime fields.
