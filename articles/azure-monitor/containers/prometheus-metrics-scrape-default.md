@@ -10,7 +10,7 @@ ms.reviewer: aul
 When you enable Prometheus metrics collection in Azure Monitor from your Kubernetes cluster, it uses a default configuration for targets, dashboards, and recording rules. This article describes the default configuration and the scenarios where you may choose to customize it for your specific requirements.
 
 ## Minimal ingestion profile
-**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume. Minimal ingestion is configured independently for cluster-metrics and controlplane-metrics by using the minimal-ingestion-profile section under each group (cluster-metris and controlplane-metrics). This allows separate control of ingestion volume for cluster-level targets and control plane targets.
+**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume. Minimal ingestion is configured independently for cluster-metrics and controlplane-metrics by using the minimal-ingestion-profile section under each group (cluster-metrics and controlplane-metrics). This allows separate control of ingestion volume for cluster-level targets and control plane targets.
 
 You can change the minimal ingestion profile setting by modifying the metrics setting ConfigMap as described in [Customize scraping of Prometheus metrics in Azure Monitor using ConfigMap](./prometheus-metrics-scrape-configuration.md).
 
@@ -39,7 +39,7 @@ The following targets are enabled by default.
 - `kube-state-metrics`
 - `networkobservabilityRetina`
 
-Th following targets are enabled when [control plane metrics (preview)](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
+The following targets are enabled when [control plane metrics (preview)](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
 - `controlplane-apiserver`
 - `controlplane-etcd` 
