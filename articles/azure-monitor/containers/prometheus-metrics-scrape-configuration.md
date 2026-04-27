@@ -21,7 +21,10 @@ The following ConfigMap is used to configure scrape configuration and other sett
 Modify the settings in the ConfigMap based on the guidance below and then apply it using the following command. AMA-Metrics pods will pick them up and restart in 2-3 minutes to apply the configuration settings specified. 
 
 > [!NOTE]
-> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics allowing separate control of ingestion volume for cluster-level targets and control plane targets. If you are migrating from v1, replace the configurations to the corresponding sections within cluster-metrics and controlplane-metrics.
+> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics allowing separate control of ingestion volume for cluster-level targets and control plane targets. If you are migrating from v1, replace the configurations to the corresponding sections within cluster-metrics and controlplane-metrics, also note the following:
+> - Modify the key name from 'default-scrape-settings-enabled' to 'default-targets-scrape-enabled'
+> - For targets within controlplane-metrics section, drop the "controlplane-" prefix
+> - Modify minimalingestionprofile = true in the keep-list to minimal-ingestion-profile: |- / enabled = true as its own section
 
 ```bash
 kubectl apply -f .\ama-metrics-settings-configmap.yaml
@@ -34,7 +37,7 @@ For example, to enable scraping of `coredns` which is disabled by default, updat
 
 ```yaml
 cluster-metrics: |-
-    default-scrape-settings-enabled: |-
+    default-targets-scrape-enabled: |-
         kubelet = true
         coredns = true
         cadvisor = true
@@ -83,7 +86,9 @@ metadata:
 Only minimal metrics are collected for default targets as described in [Minimal ingestion profile for Prometheus metrics in Azure Monitor](prometheus-metrics-scrape-configuration-minimal.md). To collect all metrics from default targets, set `minimalingestionprofile` to `false` in the `default-targets-metrics-keep-list` within `cluster-metrics` or `controlplane-metrics` section of the ConfigMap. 
 
 ```yaml
-minimalingestionprofile = false
+cluster-metrics: |-
+    minimal-ingestion-profile: |-
+      enabled = false
 ```
 Alternatively, you can add metrics to be collected for any default target by updating its keep-lists under `default-targets-metrics-keep-list`.
 
