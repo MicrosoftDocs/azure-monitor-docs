@@ -94,7 +94,6 @@ See [Metrics export using data collection rules](./metrics-export-create.md) for
 ### Direct ingestion
 With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using Logs ingestion API. Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
-The Azure Monitor Logs Ingestion API requires both a Data Collection Rule (DCR) and a Data Collection Endpoint (DCE). Ingestion uses Azure AD (Microsoft Entra ID) OAuth-based authentication via the endpoint, and the DCR defines the schema and transformation. For more information, see [Data collection endpoints](data-collection-endpoint-overview.md).
 
 See [Logs ingestion API](../logs/logs-ingestion-api-overview.md) for details.
 
@@ -111,9 +110,6 @@ See [Workspace transformation DCR](../data-collection/data-collection-transforma
 
 [Transformations](data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) included in a DCR that run against each record received. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination. You may filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information.
 
-> [!NOTE]
-> When migrating integrations to DCR-backed ingestion, new or updated destination table names and schemas may be introduced. Verify that dependent artifacts such as queries, workbooks, and alerts are updated to match the target table schema defined by the DCR to avoid ingestion or query issues.
-
 :::image type="content" source="media/data-collection-rule-overview/transformations.png" lightbox="media/data-collection-rule-overview/transformations.png" alt-text="Diagram that shows the basic concept of a transformation." border="false":::
 
 ## DCR regions
@@ -129,5 +125,5 @@ For more information on how to work with DCRs, see:
 * [Data collection rule structure](data-collection-rule-structure.md) for a description of the JSON structure of DCRs and the different elements used for different workflows.
 * [Sample data collection rules (DCRs)](data-collection-rule-samples.md) for sample DCRs for different data collection scenarios.
 * [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for different methods to create DCRs for different data collection scenarios.
-* [Data collection endpoints (DCE) overview](data-collection-endpoint-overview.md) for the full context required for direct ingestion using the Logs Ingestion API.
+* [Data collection endpoints (DCE) overview](data-collection-endpoint-overview.md#logs-ingestion-api) for the full context required for direct ingestion using the Logs Ingestion API.
 * [Azure Monitor service limits](../fundamentals/service-limits.md#data-collection-rules) for limits that apply to each DCR.

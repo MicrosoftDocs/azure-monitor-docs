@@ -27,9 +27,6 @@ Each Log Analytics workspace contains multiple tables in which Azure Monitor Log
 
 Azure Monitor Logs automatically creates tables required to store monitoring data you collect from your Azure environment. You [create custom tables](create-custom-table.md) to store data you collect from non-Azure resources and applications, based on the data model of the log data you collect and how you want to store and use the data.
 
-> [!NOTE]
-> When migrating ingestion pipelines to DCR/DCE-backed workflows, new or updated table names and schemas may be introduced. Validate that dependent content (queries, workbooks, alerts) is updated to match the target tables and schema when changing ingestion methods.
-
 Table management settings let you control access to specific tables, and manage the data model, retention, and cost of data in each table. For more information, see [Manage tables in a Log Analytics workspace](manage-logs-tables.md). 
 
 :::image type="content" source="media/data-platform-logs/logs-structure.png" lightbox="media/data-platform-logs/logs-structure.png" alt-text="Diagram that shows the Azure Monitor Logs structure.":::
@@ -86,4 +83,4 @@ For considerations related to creating multiple workspaces, see [Design a Log An
 * [Create a new Log Analytics workspace](quick-create-workspace.md).
 * See [Design a Log Analytics workspace configuration](workspace-design.md) for considerations on creating multiple workspaces.
 * [Learn about log queries to retrieve and analyze data from a Log Analytics workspace](./log-query-overview.md).
-* [Use the Azure Monitor Logs Ingestion API](logs-ingestion-api-overview.md) to build DCR/DCE-based ingestion pipelines for custom integrations.
+* [Use the Azure Monitor Logs Ingestion API](logs-ingestion-api-overview.md) to build DCR-based ingestion for custom integrations.
