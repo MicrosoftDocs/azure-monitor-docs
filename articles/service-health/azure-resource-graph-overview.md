@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 04/27/2026
 
 ---
 # Azure Resource Graph tables overview
@@ -71,17 +71,17 @@ These fields are used together to track, filter, and analyze service health even
 This table lists all the properties you can use in your Service Health and Impacted Resources queries.
 
 
-|Property                         |Description                                                                   |
-|---------------------------------|------------------------------------------------------------------------------|
-|`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)       |
-|`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling        |
+|Property                         |Description                                                                                      |
+|---------------------------------|-------------------------------------------------------------------------------------------------|
+|`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)                                                                                      |
+|`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling                                                                                |
 |`Status`                         | Current status of the event: Active or Resolved                              |
 |`EventLevel`                     | Severity: Informational, Warning, Critical, Error                            |
 |`Level`                          | Often mirrors EventLevel and is used for UI rendering                        |
 |`EventSource`                    | Indicates the source system that generated the event as ServiceHealthResources or HealthResources |
 |`TrackingId`                     | Unique identifier for the event                                              |
 |`Title`                          | Title of the event                                                           |
-|`Summary`                        | Description of the event <br>*At this time to get full text of the description, you can use either Service Health API (description property) or the Activity Log (communication property)*.         |
+|`Summary`                        | Description of the event <br>*The full summary of the event is in the `description` field*.         |
 |`Priority`                       | Priority level assigned to the event                                         |
 |`ImpactStartTime`                | When the event causing the impact began                                      |
 |`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
@@ -97,6 +97,7 @@ This table lists all the properties you can use in your Service Health and Impac
 |`BillingId`                      | Identifier used to associate the event with a billing account or transaction |
 |`EventTags`                      | Metadata tags used to categorize or filter events (for example, Security, Maintenance, Outage)  |     
 |`duration`                       | Descriptive label or title for the event                                     |
+|`Description`                    | Full description of the event                                                |
 
 
 
