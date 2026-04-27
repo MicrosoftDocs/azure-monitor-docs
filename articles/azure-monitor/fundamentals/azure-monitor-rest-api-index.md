@@ -64,7 +64,7 @@ Organized by subject area.
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
 | [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
 
-## Data Collection Endpoints*** |  |
+## Data Collection Endpoints
 
 | [Data collection endpoints](/rest/api/monitor/data-collection-endpoints) | Create and manage a data collection endpoint and retrieve the data collection endpoints within a resource group or subscription. |
 
