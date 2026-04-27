@@ -15,6 +15,8 @@ A Log Analytics workspace is a data store into which you can collect any type of
 * Other Azure services, such as [Microsoft Sentinel](/azure/sentinel/overview), [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), and [Logic Apps](/azure/connectors/connectors-azure-monitor-logs)
 * Microsoft tools, such as [Power BI](log-powerbi.md) and [Excel](log-excel.md)
 * Integration with custom and third-party applications
+   * [Logs ingestion API](logs-ingestion-api-overview.md) for OAuth-based ingestion using [data collection rule (DCRs)](../data-collection/data-collection-rule-overview.md)
+   * [Logs query API](api/overview.md) for OAuth-based queries of your data
 
 This article provides an overview of concepts related to Log Analytics workspaces.
 
@@ -55,6 +57,8 @@ For more information, see [Manage access to log data and workspaces in Azure Mon
 
 ## Transform data you ingest into your Log Analytics workspace
 
+The Azure Monitor Logs Ingestion API with data collection rules (DCRs) and data collection endpoints (DCEs) is the recommended method for custom and third-party ingestion into Log Analytics. It supersedes the legacy HTTP Data Collector API, providing OAuth-based authentication, DCR-governed schema control and transformations, and improved reliability, scalability, and long-term platform support. For more information, see [Logs Ingestion API](logs-ingestion-api-overview.md).
+
 [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that define data coming into Azure Monitor can include transformations that allow you to filter and transform data before it's ingested into the workspace. Since all data sources don't yet support DCRs, each workspace can have a [workspace transformation DCR](../essentials/data-collection-transformations.md#workspace-transformation-dcr).
 
 [Transformations](../essentials/data-collection-transformations.md) in the workspace transformation DCR are defined for each table in a workspace and apply to all data sent to that table, even if sent from multiple sources. These transformations only apply to workflows that don't already use a DCR. For example, [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) uses a DCR to define data collected from virtual machines. This data won't be subject to any ingestion-time transformations defined in the workspace.
@@ -81,3 +85,4 @@ For considerations related to creating multiple workspaces, see [Design a Log An
 * [Create a new Log Analytics workspace](quick-create-workspace.md).
 * See [Design a Log Analytics workspace configuration](workspace-design.md) for considerations on creating multiple workspaces.
 * [Learn about log queries to retrieve and analyze data from a Log Analytics workspace](./log-query-overview.md).
+* [Use the Azure Monitor Logs Ingestion API](logs-ingestion-api-overview.md) to build DCR-based ingestion for custom integrations.
