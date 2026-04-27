@@ -20,15 +20,6 @@ The data sent by your application to the API must be formatted in JSON and match
 
 :::image type="content" source="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" lightbox="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" alt-text="Diagram that shows an overview of logs ingestion API." border="false":::
 
-## Migration considerations from legacy HTTP Data Collector API
-
-The Logs Ingestion API replaces the legacy HTTP Data Collector API and provides several key differences:
-
-- **Authentication**: Uses OAuth-based authentication (client credentials with `https://monitor.azure.com` or cloud-specific audience) instead of workspace keys, providing improved security.
-- **Schema governance**: DCR-governed schema and transformations allow you to control data format and structure.
-- **Endpoint configuration**: Uses DCR/DCE endpoints instead of the legacy Data Collector API endpoint.
-- **Adoption in Microsoft services**: Services like Microsoft Sentinel are transitioning to the Logs Ingestion API. When moving existing integrations, plan for these authentication and configuration differences.
-
 ## Configuration
 
 The following table describes each component in Azure that you must configure before you can use the Logs Ingestion API.
@@ -51,8 +42,6 @@ The DCR logs ingestion endpoint is generated when you create a DCR for direct in
 :::image type="content" source="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png" alt-text="Screenshot that shows log ingestion endpoint in a DCR." lightbox="media/logs-ingestion-api-overview/logs-ingestion-endpoint.png":::
 
 A DCE is only required when you're connecting to a Log Analytics workspace using [private link](../fundamentals/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
-
-If you're migrating from the legacy HTTP Data Collector API, plan for using either DCR logs ingestion endpoints or DCE (for private link). Old and new ingestion paths can temporarily coexist during migration. Validate each data source's endpoint choice and update application configuration to the chosen endpoint.
 
 > [!NOTE]
 > The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints can't be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
@@ -322,8 +311,6 @@ Data sent to the ingestion API can be sent to the following tables:
 > [!NOTE]
 > Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
 
-Connectors or integrations migrating to the Logs Ingestion API (for example, those built on Microsoft Sentinel's Codeless Connector Framework) may introduce new table names or updated schemas. Verify the destination table name and column mapping in the DCR, and adjust KQL queries and dependent content accordingly.
-
 ## Limits and restrictions
 
 For limits related to the Logs Ingestion API, see [Azure Monitor service limits](../fundamentals/service-limits.md#logs-ingestion-api).
@@ -333,4 +320,4 @@ For limits related to the Logs Ingestion API, see [Azure Monitor service limits]
 * [Walk through a tutorial sending data to Azure Monitor Logs with Logs ingestion API on the Azure portal](tutorial-logs-ingestion-portal.md)
 * [Walk through a tutorial sending custom logs using Resource Manager templates and REST API](tutorial-logs-ingestion-api.md)
 * Get guidance on using the client libraries for the Logs ingestion API for [.NET](/dotnet/api/overview/azure/Monitor.Ingestion-readme), [Java](/java/api/overview/azure/monitor-ingestion-readme), [JavaScript](/javascript/api/overview/azure/monitor-ingestion-readme), or [Python](/python/api/overview/azure/monitor-ingestion-readme).
-* For readers migrating existing integrations, review your DCR and table configurations and test updated KQL queries against the new tables created by your ingestion setup.
+* [Migrate from the HTTP Data Collector API to the Logs Ingestion API](custom-logs-migrate.md)
