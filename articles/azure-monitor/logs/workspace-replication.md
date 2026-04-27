@@ -13,6 +13,9 @@ ms.custom: references_regions
 
 Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
 
+> [!TIP]
+> Workspace replication is a paid, configurable feature that protects against region-wide incidents. For free, transparent in-region protection against datacenter failures, see [Enhance data and service resilience in Azure Monitor Logs with availability zones](availability-zones.md). For a comprehensive overview of all resiliency options for Azure Monitor Logs, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
+
 Here's a video that provides a quick overview of how Log Analytics workspace replication works:
 
 >[!VIDEO https://www.youtube.com/embed/9t7T7D4oVMk?cc_load_policy=1&cc_lang_pref=auto]
