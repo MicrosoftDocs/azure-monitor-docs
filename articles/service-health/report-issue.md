@@ -2,7 +2,7 @@
 title: Report an impact in Azure Service Health 
 description: Learn how to access and report an impact in Azure Service Health.
 ms.topic: overview
-ms.date: 04/23/2026
+ms.date: 04/27/2026
 ---
 
 # How to report an impact in Azure Service Health (Preview)
