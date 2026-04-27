@@ -2,7 +2,7 @@
 title: Report an impact in Azure Service Health 
 description: Learn how to access and report an impact in Azure Service Health.
 ms.topic: overview
-ms.date: 02/04/2026
+ms.date: 04/27/2026
 ---
 
 # How to report an impact in Azure Service Health (Preview)
@@ -13,9 +13,9 @@ When you submit an impact, if an outage is identified you see it on the Azure Se
 
 ## Access permission
 
-You don’t need to be a subscription owner or an administrator to report service-level impacts.
 
-To generate resource-level impact reports, ensure the following prerequisites are met:
+
+To generate impact reports, ensure the following prerequisites are met:
 
 - **Register the Microsoft.Impact resource provider** in your Azure subscription.
 - **Role assignment**: If you're not a subscription administrator, the Impact Reporter role must be assigned to you on the subscription where the resource is located.
@@ -28,6 +28,10 @@ To report a single impact, you must have the correct permission.
 
 ## How to report a resource-level impact
 
+Both service-level and resource-level reports have the same requirements:
+- The start time is within the last 10 days. 
+- You need to have admin access or an Impact reporter role on the subscription.
+
 To report an impact, follow these steps.
 1. Select **Report an impact**.
 
@@ -35,12 +39,14 @@ To report an impact, follow these steps.
 
 2. Select **Single resource**.
 
-*Choose this option if the problem seems to be isolated to one resource*
+*Choose this option if the problem seems to be isolated to one resource*.
 
 :::image type="content" source="media/report-issue/report-an-impact-specific.png" alt-text="Screenshot of the screen to select single resource." lightbox="media/report-issue/report-an-impact-specific.png":::
 
->[!NOTE]
->The Impact start time and Impact end time fields use your local timezone, not UTC.
+The *Start* time requirement is the same for both service and resource impacts.
+
+>[!TIP]
+>The Impact *start* time and *end* time fields use your local timezone, not UTC.
 
 3. Fill out the required fields.
     - Subscription
@@ -49,7 +55,7 @@ To report an impact, follow these steps.
     - Impact start date and time.
 
 >[!NOTE]
-> For resource-level impacts the start time must be within the last 10 days.
+> The start time must be within the last 10 days.
 
 4. Select **Submit**.
 
@@ -64,7 +70,6 @@ If you get this error, it means you don’t have permission.
 
 ## How to report service impacts
 
-The steps to report service impacts are the same as reporting a single resource impact. The difference is that you don’t need the same permission.
 
 1. Select **Multiple resources / entire service**.
 
@@ -78,10 +83,32 @@ The steps to report service impacts are the same as reporting a single resource 
 When your issue is reported, you should see this message. 
 :::image type="content" source="media/report-issue/report-an-issue-success-service-level.png" alt-text="Screenshot of the message your service impact report is a success." lightbox="media/report-issue/report-an-issue-success-service-level.png":::
 
+The *Submit* state is the same for both service and resource impacts.
+
 ## What to expect after you submit an impact
 We review your report, and if an outage is confirmed, it appears on the Service Issues page in Azure Service Health.
 
 For more information about reporting, see [Azure Impact reporting](/azure/azure-impact-reporting/view-impact-insights).
+
+## How to view the reported service impacts
+
+You can see a list of all your reported impacts on the following panel.
+
+
+:::image type="content" source="media/report-issue/report-impact-main.png" alt-text="Screenshot of the list of service impacts that you report." lightbox="media/report-issue/report-impact-main.png":::
+
+
+You also have the option to see the details of what was impacted in a report.
+
+:::image type="content" source="media/report-issue/report-impact-detail.png" alt-text="Screenshot of the details of the service impact you reported." lightbox="media/report-issue/report-impact-detail.png":::
+
+- This page shows all reports on subscriptions where you have the necessary access. This means you can see reports from other people submitted on their subscriptions.
+- This page also shows reports made programmatically via the Create Workload Impacts API. For more information, see [Workload Impacts-Create-REST API](/rest/api/impact/workload-impacts/create?view=rest-impact-2025-01-01-preview&tabs=HTTP).
+
+>[!NOTE]
+> Reports created in April 2026 or earlier might not appear on this page, but those reports were still processed successfully. Because of updates to the **Report an Impact form preview**, some older details can’t be shown here.
+
+
 
 ## For more information
 
