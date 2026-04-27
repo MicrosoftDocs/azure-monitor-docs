@@ -14,7 +14,9 @@ A Log Analytics workspace is a data store into which you can collect any type of
 * Azure Monitor features, such as built-in [insights experiences](../insights/insights-overview.md), [alerts](../alerts/alerts-create-log-alert-rule.md), and [automatic actions](../autoscale/autoscale-overview.md)
 * Other Azure services, such as [Microsoft Sentinel](/azure/sentinel/overview), [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), and [Logic Apps](/azure/connectors/connectors-azure-monitor-logs)
 * Microsoft tools, such as [Power BI](log-powerbi.md) and [Excel](log-excel.md)
-* Integration with custom and third-party applications using the [Azure Monitor Logs Ingestion API](logs-ingestion-api-overview.md) with [data collection rules (DCRs)](../data-collection/data-collection-rule-overview.md) and [data collection endpoints (DCEs)](../data-collection/data-collection-endpoint-overview.md) for OAuth-based, DCR-governed schema ingestion with improved reliability, scalability, and long-term platform alignment
+* Integration with custom and third-party applications
+   * [Logs ingestion API](logs-ingestion-api-overview.md) for OAuth-based ingestion using [data collection rule (DCRs)](../data-collection/data-collection-rule-overview.md)
+   * [Logs query API](api/overview.md) for OAuth-based queries of your data
 
 This article provides an overview of concepts related to Log Analytics workspaces.
 
