@@ -18,9 +18,6 @@ Data can be sent to the Logs Ingestion API from any application that can make a 
 
 The data sent by your application to the API must be formatted in JSON and match the structure expected by the DCR. It doesn't necessarily need to match the structure of the target table because the DCR can include a [transformation](../data-collection/data-collection-transformations.md) to convert the data to match the table's structure. You can modify the target table and workspace by modifying the DCR without any change to the API call or source data.
 
-> [!NOTE]
-> When replacing legacy ingestion mechanisms, DCR transformations are the supported method to align incoming payloads to target table schemas. Schema evolution can be managed in the DCR without changing client code, which is a common requirement during connector migrations.
-
 :::image type="content" source="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" lightbox="media/logs-ingestion-api-overview/overview-log-ingestion-api.png" alt-text="Diagram that shows an overview of logs ingestion API." border="false":::
 
 ## Migration considerations from legacy HTTP Data Collector API
@@ -55,8 +52,7 @@ The DCR logs ingestion endpoint is generated when you create a DCR for direct in
 
 A DCE is only required when you're connecting to a Log Analytics workspace using [private link](../fundamentals/private-link-security.md) or if your DCR doesn't include the logs ingestion endpoint. This may be the case if you're using an older DCR or if you created the DCR without the `"kind": "Direct"` parameter. See [Data collection rule (DCR)](#data-collection-rule-dcr) below for more details.
 
-> [!NOTE]
-> Integrations moving from the legacy API should plan for using either DCR logs ingestion endpoints or DCE (for private link). Old and new ingestion paths can temporarily coexist during migration. Validate each data source's endpoint choice and update application configuration to the chosen endpoint.
+If you're migrating from the legacy HTTP Data Collector API, plan for using either DCR logs ingestion endpoints or DCE (for private link). Old and new ingestion paths can temporarily coexist during migration. Validate each data source's endpoint choice and update application configuration to the chosen endpoint.
 
 > [!NOTE]
 > The `logsIngestion` property was added on March 31, 2024. Prior to this date, a DCE was required for the Logs ingestion API. Endpoints can't be added to an existing DCR, but you can keep using any existing DCRs with existing DCEs. If you want to move to a DCR endpoint, then you must create a new DCR to replace the existing one. A DCR with endpoints can also use a DCE. In this case, you can choose whether to use the DCE or the DCR endpoints for each of the clients that use the DCR.
@@ -326,8 +322,7 @@ Data sent to the ingestion API can be sent to the following tables:
 > [!NOTE]
 > Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names. Custom columns you add to an Azure table must have the suffix `_CF`.
 
-> [!IMPORTANT]
-> Connectors or integrations migrating to the Logs Ingestion API (for example, those built on Microsoft Sentinel's Codeless Connector Framework) may introduce new table names or updated schemas. Verify the destination table name (Custom-\<name\>_CL or Microsoft-\<name\>) and column mapping in the DCR, and adjust KQL queries and dependent content accordingly.
+Connectors or integrations migrating to the Logs Ingestion API (for example, those built on Microsoft Sentinel's Codeless Connector Framework) may introduce new table names or updated schemas. Verify the destination table name and column mapping in the DCR, and adjust KQL queries and dependent content accordingly.
 
 ## Limits and restrictions
 
