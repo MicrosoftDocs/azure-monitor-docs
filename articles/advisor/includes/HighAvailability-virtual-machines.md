@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -368,13 +368,14 @@ Migrate production workload from A-series or B-series virtual machine (VM) to D-
 
 **Impact:** High
   
-For more information, see [Virtual machine sizes overview - Azure Virtual Machines](https://aka.ms/MigrateToHighPerfVMs)  
+  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
 Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
 
 
 
@@ -697,23 +698,7 @@ Subcategory: undefined
 
 <!--98680ff0-2723-4c8b-9af4-54ce8a3a82d1_end-->
 
-<!--5e2403d5-c39a-4701-a4d5-2181b0d3e426_begin-->
 
-#### Desired State Configuration Extension for Azure Virtual Machines is retiring  
-  
-Migrate Desired State Configuration Extension for Azure Virtual Machines to Azure Machine Configuration in Azure Resource Manager. Desired State Configuration Extension for Azure Virtual Machines is retiring.  
-  
-**Potential benefits**: Avoid potential disruptions  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485828)  
-
-ResourceType: microsoft.compute/virtualmachines/extensions  
-Recommendation ID: 5e2403d5-c39a-4701-a4d5-2181b0d3e426  
-Subcategory: undefined
-
-<!--5e2403d5-c39a-4701-a4d5-2181b0d3e426_end-->
 
 <!--6885dc91-c4d1-4695-be6f-f64be575769f_begin-->
 
