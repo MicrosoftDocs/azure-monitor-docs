@@ -9,7 +9,7 @@ ms.custom: references_regions, devx-track-azurecli
 
 # Configure Azure Monitor pipeline with CLI or ARM templates
 
-Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, buffering, and other advanced scenarios.
+Use this article after you complete the shared setup in [Configure Azure Monitor pipeline](./pipeline-configure.md). This method is best for automation, custom tables, persistent storage, and other advanced scenarios.
 
 ## When to use this method
 
@@ -18,7 +18,7 @@ Use CLI or ARM templates when you need a repeatable deployment process or more c
 | Need | Why use CLI or ARM templates |
 |:-----|:-----------------------------|
 | Automation | Deploy the same configuration across multiple clusters. |
-| Advanced configuration | Configure custom tables, persistent volumes for buffering, and more detailed resource settings. |
+| Advanced configuration | Configure custom tables, persistent storage, and more detailed resource settings. |
 | Infrastructure as code | Store and review configuration in templates and deployment pipelines. |
 | Repeatable deployments | Standardize pipeline deployments for testing and production environments. |
 
@@ -493,7 +493,7 @@ The following table describes the sections of the pipeline configuration and cri
 | `receivers` | One entry for each receiver in the pipeline. Each receiver specifies the type of data being received, the port it will listen on, and a unique name that will be used in the `pipelines` section of the configuration. |
 | `processors` | Processors modify the data in some way before it's sent to the cloud. This section should be empty if no processors are used. Valid processors include the following:<br><br>`MicrosoftSyslog`<br>Converts data to Syslog format.<br><br>`MicrosoftCommonSecurityLog`<br>Converts data to CEF format.<br><br>`Batch`<br>Specifies the batch time in milliseconds. Default is one minute if this processor isn't specified. A batch processor is required to perform aggregation and customize its interval.  Avoid using batch processor in all other scenarios if you want to send data with minimum latency.<br><br>`TransformLanguage`<br>Specifies a transformation applied to the data before it's sent to the cloud. See [Azure Monitor pipeline transformations](./pipeline-transformations.md). |
 | `exporters` | Includes the details of the DCR that the pipeline will send data to. Includes the following properties.<br><br>`dataCollectionEndpointUrl`<br>Locate this in the Azure portal by navigating to the DCE and copying the **Logs Ingestion** value.<br><br>`dataCollectionRule`<br>Immutable ID of the DCR that defines the data collection in the cloud. From the JSON view of your DCR in the Azure portal, copy the value of the **immutable ID** in the **General** section.<br><br>`stream`<br>Name of the stream in your DCR that will accept the data.<br><br>`maxStorageUsage`<br> Capacity of the persistent volume. When 80% of this capacity is reached, the oldest data is pruned to make room for more data.<br><br>`retentionPeriod`<br> Retention period in minutes. Data is pruned after this amount of time.<br>`schema`: Schema of the data being sent to the cloud. This must match the schema defined in the stream in the DCR. The schema used in the example is valid for both Syslog and OTLP. |
-| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if buffering is enabled. |
+| `service` | `pipelines`<br>Includes one entry for each pipeline instance. Each entry matches a `receiver` with an `exporter`, including any `processors` that should be used.<br><br>`persistence`<br>Specifies the name of the persistent volume if persistent storage is enabled. |
 
 <br>
 
@@ -1370,26 +1370,26 @@ The following table describes the sections of the pipeline configuration and cri
 </details>
 
 
-## Enable buffering to persistent storage
+## Enable persistent storage
 
-Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to buffer data by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
+Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to write data to durable local storage by creating a [persistent volume](https://kubernetes.io) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
 
 * Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
 * Access mode must support `ReadWriteMany`.
 
-| Buffering elements | Default value and units | Max value |
+| Persistent storage elements | Default value and units | Max value |
 |---|---|---|
 | persistence.RetentionPeriod (optional) | 2880 minutes (48 hours) | 2880 |
 | persistence.MaxStorageUsage (optional) | no limit (in GB)  | no max |
 
-After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline retrieves data from the cache by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
+After you create the volume in the appropriate namespace, configure it by using parameters in the pipeline configuration file. The pipeline reads data from persistent storage by using first-in-first-out (FIFO). The pipeline discards any data that's older than the maximum retention period.
 
 > [!CAUTION]
 > Each replica of the pipeline stores data in a location in the persistent volume specific to that replica. Decreasing the number of replicas while the cluster is disconnected from the cloud prevents that data from being backfilled when connectivity is restored.
 
 
 <details>
-<summary><b>Expand for buffering sample using the previous Syslog configuration</b></summary>
+<summary><b>Expand for persistent storage sample using the previous Syslog configuration</b></summary>
 
 ``` json
 {
