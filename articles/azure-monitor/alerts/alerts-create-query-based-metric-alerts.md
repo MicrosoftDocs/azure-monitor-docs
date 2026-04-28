@@ -1,9 +1,9 @@
 ---
 title: Create Query-Based Metric Alerts
-description: "This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal."
+description: This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal.
 ms.topic: how-to
 ms.date: 10/11/2025
-ms.custom: references_regions
+ms.custom: ai-assisted
 ---
 
 # Create query-based metric alerts (preview)
@@ -15,9 +15,9 @@ This article explains how to create query-based metric alert rules in Azure Moni
 > [!div class="checklist"]
 > * Read the [query based metric alerts overview](alerts-query-based-metric-alerts-overview.md).
 > * A system-assigned or user-assigned managed identity. To use a user-assigned managed identity with your query-based metric alert rules, create the managed identity in advance and configure it with *Monitoring Reader* role (or equivalent permissions) on the rule scope. For more information about creating and using managed identities, see [Azure managed identities](/entra/identity/managed-identities-azure-resources/overview).
-> * A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, ARC servers or ARC-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported.
->     * See [Enable Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#enable-azure-monitor-managed-service-for-prometheus).
->     * See [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana) for details.
+> * A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, ARC servers or ARC-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported. For more information, see:
+>     * [Enable Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#enable-azure-monitor-managed-service-for-prometheus).
+>     * [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana) for details.
 > * To create resource-centric alert rules, your Azure Monitor Workspace must be [enabled for resource-centric stamping and access](#enable-workspace-resource-centric-stamping-and-access).
 
 ## Enable workspace resource-centric stamping and access
@@ -53,11 +53,13 @@ apiVersion="2025-05-03-preview"
 providers="microsoft.monitor/accounts/$accountName"
 resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
 
-az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @accounts.json
+az account set --subscription $subscriptionId
+
+az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @./enable-stamping.json
 ```
 
 ```json
-// accounts.json
+// enable-stamping.json
 {
   "location": "eastus",
   "properties": {
@@ -85,11 +87,11 @@ Set-AzContext -Subscription $subscriptionId
 Invoke-AzRestMethod `
   -Path "$resourceId?api-version=$apiVersion" `
   -Method PUT `
-  -Payload (Get-Content -Path "./accounts.json" -Raw)
+  -Payload (Get-Content -Path "./enable-stamping.json" -Raw)
 ```
 
 ```json
-// accounts.json
+// enable-stamping.json
 {
   "location": "eastus",
   "properties": {
@@ -101,6 +103,8 @@ Invoke-AzRestMethod `
 ```
 
 # [ARM (JSON)](#tab/arm-1)
+
+The following ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-arm-template) resource type.
 
 ```json
 {
@@ -132,9 +136,9 @@ Invoke-AzRestMethod `
 }
 ```
 
-This ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-arm-template) resource type.
-
 # [Bicep](#tab/bicep-1)
+
+The following Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
 
 ```bicep
 param accountName string = 'myAccountName'
@@ -151,19 +155,21 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
 }
 ```
 
-This Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
-
 ---
 
 | Variable | Example value | Purpose |
 |----------|---------------|---------|
-| host | management.azure.com | Implicit ARM endpoint |
+| host | *management.azure.com* | Implicit ARM endpoint |
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
 | resourceGroupName | myResourceGroup | User input |
 | accountName | myAccountName | User input |
-| apiVersion | 2025-05-03-preview | API-specific |
+| apiVersion | 2025-05-03-preview | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## Deploy a query-based metric alert
+
+You can create and configure query-based metric alert rules by using the Azure portal or one of the programmatic approaches in this section. The REST, Azure CLI, and Azure PowerShell examples use direct REST requests to create or update the alert rule, while the ARM (JSON) and Bicep examples use template-based deployments.
+
+The examples in this section create a resource-centric, query-based metric alert rule that uses an Azure Kubernetes Service (AKS) cluster as its scope and a user-assigned managed identity. The following sections describe some of the required properties and configuration options. Edit the examples to use your own scope, location, query, action groups, and other values.
 
 # [Portal](#tab/portal-2)
 
@@ -198,110 +204,284 @@ From the *Create an alert rule* page:
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
 
+# [REST](#tab/rest-2)
+
+```REST
+
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version=2024-03-01-preview
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "location": "eastus",
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{userAssignedMiName}": {}
+    }
+  },
+  "properties": {
+    "enabled": true,
+    "description": "Sample query-based metric alert rule",
+    "severity": 3,
+    "targetResourceType": "microsoft.monitor/accounts",
+    "scopes": [
+      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}"
+    ],
+    "evaluationFrequency": "PT1M",
+    "criteria": {
+      "allOf": [
+        {
+          "name": "KubeContainerOOMKilledCount",
+          "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
+          "criterionType": "StaticThresholdCriterion"
+        }
+      ],
+      "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
+      "failingPeriods": {
+        "for": "PT5M"
+      }
+    },
+    "resolveConfiguration": {
+      "autoResolved": true,
+      "timeToResolve": "PT2M"
+    },
+    "actions": [
+      {
+        "actionGroupId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/actionGroups/{actionGroupName}"
+      }
+    ],
+    "actionProperties": {
+      "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    },
+    "customProperties": {
+      "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    }
+  }
+}
+```
+
+# [Azure CLI](#tab/cli-2)
+
+[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
+
+```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroup"
+ruleName="Sample query based alert rule"
+userAssignedMiName="myUserAssignedIdentity"
+clusterName="myCluster"
+actionGroupName="myActionGroup"
+apiVersion="2024-03-01-preview"
+
+resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
+
+az account set --subscription $subscriptionId
+
+az rest \
+  --method put \
+  --uri "https://management.azure.com$resourceId?api-version=$apiVersion" \
+  --body @./query-based-metric-alert.json
+```
+
+> [!NOTE]
+> Azure CLI doesn't support deployment-style parameters in JSON payload files for `az rest`. Because the JSON file is used directly as the request body, this example includes example values in the file.
+
+```json
+// query-based-metric-alert.json
+{
+  "location": "eastus",
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity": {}
+    }
+  },
+  "properties": {
+    "enabled": true,
+    "description": "Sample query-based metric alert rule",
+    "severity": 3,
+    "targetResourceType": "microsoft.monitor/accounts",
+    "scopes": [
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"
+    ],
+    "evaluationFrequency": "PT1M",
+    "criteria": {
+      "allOf": [
+        {
+          "name": "KubeContainerOOMKilledCount",
+          "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
+          "criterionType": "StaticThresholdCriterion"
+        }
+      ],
+      "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
+      "failingPeriods": {
+        "for": "PT5M"
+      }
+    },
+    "resolveConfiguration": {
+      "autoResolved": true,
+      "timeToResolve": "PT2M"
+    },
+    "actions": [
+      {
+        "actionGroupId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/actionGroups/myActionGroup"
+      }
+    ],
+    "actionProperties": {
+      "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    },
+    "customProperties": {
+      "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    }
+  }
+}
+```
+
+# [PowerShell](#tab/powershell-2)
+
+[!INCLUDE [Azure PowerShell using REST](../includes/powershell-using-rest.md)]
+
+```azurepowershell
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$resourceGroupName = "myResourceGroup"
+$ruleName = "Sample query based alert rule"
+$userAssignedMiName = "myUserAssignedIdentity"
+$clusterName = "myCluster"
+$actionGroupName = "myActionGroup"
+$apiVersion = "2024-03-01-preview"
+
+$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
+
+Set-AzContext -Subscription $subscriptionId
+
+Invoke-AzRestMethod `
+  -Path "$resourceId?api-version=$apiVersion" `
+  -Method PUT `
+  -Payload (Get-Content -Path "./query-based-metric-alert.json" -Raw)
+```
+
+> [!NOTE]
+> Azure PowerShell doesn't support deployment-style parameters in JSON payload files for Invoke-AzRestMethod. Because the JSON file is used directly as the request body, this example includes example values in the file.
+
+```json
+// query-based-metric-alert.json
+{
+  "location": "eastus",
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUserAssignedIdentity": {}
+    }
+  },
+  "properties": {
+    "enabled": true,
+    "description": "Sample query-based metric alert rule",
+    "severity": 3,
+    "targetResourceType": "microsoft.monitor/accounts",
+    "scopes": [
+      "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.ContainerService/managedClusters/myCluster"
+    ],
+    "evaluationFrequency": "PT1M",
+    "criteria": {
+      "allOf": [
+        {
+          "name": "KubeContainerOOMKilledCount",
+          "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
+          "criterionType": "StaticThresholdCriterion"
+        }
+      ],
+      "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
+      "failingPeriods": {
+        "for": "PT5M"
+      }
+    },
+    "resolveConfiguration": {
+      "autoResolved": true,
+      "timeToResolve": "PT2M"
+    },
+    "actions": [
+      {
+        "actionGroupId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/actionGroups/myActionGroup"
+      }
+    ],
+    "actionProperties": {
+      "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    },
+    "customProperties": {
+      "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    }
+  }
+}
+```
+
 # [ARM (JSON)](#tab/arm-2)
 
-You can use an ARM (JSON) template to create and configure query-based metric alert rules. Here are the steps:
-
-1. Add environment-specific parameters to the template as needed.
-1. Deploy the template using any deployment method, such as Azure CLI, Azure PowerShell, or Azure Resource Manager Rest APIs.
-
-Some of the required parameters are discussed in the following sections, and there's a template example you can start with.
-
-### User-assigned managed identity
-
-Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`.
-
-> [!NOTE]
-> If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
-
-### System-assigned managed identity
-
-Metric alert rules support automatic role assignment for system-assigned managed identities.
-
-This feature simplifies the process of granting permissions to your managed identities and allows your alert rule to be operational immediately after being created.
-
-For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
-
-* *Owner*
-* *User Access Administrator*
-* A custom role with *Microsoft.Authorization/roleAssignments/write* permission
-* [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
-
-> [!NOTE]
-> If you try to create a rule using system-assigned MI and you don’t have permissions for automatic role assignment, the rule creation fails.
-
-Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned MI is created with the rule.
-
-## Query-based rule conditions
-
-To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`.
-
-To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
-
-The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired.
-
-> [!NOTE]
-> The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
-
-## Resource-centric and workspace-centric rule scope types
-
-Query-based metric alert rule support two types of query scope:
-
-### Resource scope (resource-centric rules)
-
-You can query metrics emitted to any workspace by:
-
-* a specific Azure resource, or by multiple resources from the same subscription or
-* a resource group such as Azure Kubernetes clusters (AKS) or
-* a Virtual Machine (VM).
-
-For resource-centric rules, the following scope options are supported:
-
-| Scope | Example |
-|-------|---------|
-| Single resource | `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>"]` |
-| Resource group | `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>"]` |
-| Subscription | `"scopes": ["/subscriptions/<subscription-id>"]` |
-
-The system locates the workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
-
-### Azure Monitor Workspace scope (workspace-centric rules)
-
-You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
-
-For workspace scope, include the workspace Azure Resource Manager ID in the Scopes[] list.
-
-Example: `"scopes": ["/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>"]`
-
-The rule query can refer to any metrics stored in the Azure Monitor Workspace.
-
-### ARM template example
-
-The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
-
-Edit it to include your specific scope, location, query, action groups, and other parameters.
+The following ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
 
-This ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
-
 # [Bicep](#tab/bicep-2)
 
-You can use an ARM (JSON) or Bicep template to create and configure query-based metric alert rules. Here are the steps:
+The following Bicep example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
 
-1. Add environment-specific parameters to the template as needed.
-1. Deploy the template using any deployment method, such as Azure CLI, Azure PowerShell, or Azure Resource Manager Rest APIs.
+[!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
 
-Some of the required parameters are discussed in the following sections, and there's a template example you can start with.
+---
+
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| host | *management.azure.com* | Implicit ARM endpoint |
+| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+| location | eastus | User input |
+| resourceGroupName | myResourceGroup | User input |
+| ruleName | myRule | User input |
+| userAssignedMiName | myUserAssignedIdentity | User input |
+| clusterName | myCluster | User input |
+| actionGroupName | myActionGroup | User input |
+| apiVersion | 2024-03-01-preview | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+
+## Query-based metric alert configuration details
+
+> [!NOTE]
+> In the following sections, the JSON examples apply to ARM (JSON) templates and to the JSON request bodies used by REST, Azure CLI with `az rest`, and Azure PowerShell with `Invoke-AzRestMethod`. The Bicep examples show the equivalent configuration in Bicep syntax.
 
 ### User-assigned managed identity
 
-Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`.
+Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`, as in the following example:
 
-> [!NOTE]
+# [JSON](#tab/json-3)
+
+```json
+{
+    "identity": {
+        "type": "UserAssigned",
+        "userAssignedIdentities": {
+            "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
+        }
+    },
+}
+```
+
+# [Bicep](#tab/bicep-3)
+
+```bicep
+{
+    identity: {
+        type: 'UserAssigned'
+        userAssignedIdentities: {
+            '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
+        }
+    }
+}
+```
+
+---
+
+> [!NOTE] 
 > If the managed identity isn't configured correctly with the needed permissions/role, the alert rule might be created successfully but alert evaluations fail since access to the metrics isn't possible.
 
-### System-assigned managed identity
+### System assigned managed identity
 
 Metric alert rules support automatic role assignment for system-assigned managed identities.
 
@@ -309,70 +489,102 @@ This feature simplifies the process of granting permissions to your managed iden
 
 For automatic role assignment to succeed, you must have one of the following roles on the rule scope:
 
-* *Owner*
-* *User Access Administrator*
-* A custom role with *Microsoft.Authorization/roleAssignments/write* permission
+* *Owner* 
+* *User Access Administrator* 
+* A custom role with *Microsoft.Authorization/roleAssignments/write* permission 
 * [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
 
 > [!NOTE]
-> If you try to create a rule using system-assigned MI and you don’t have permissions for automatic role assignment, the rule creation fails.
+> If you try to create a rule using system-assigned AI and you don’t have permissions for automatic role assignment, the rule creation fails.
 
-Set the `identity` -> `type` property to `SystemAssigned`. A new System Assigned MI is created with the rule.
+Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
 
-## Query-based rule conditions
+# [JSON](#tab/json-3)
 
-To configure a Query-based metric alert rules, the condition property `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`.
+```json
+{
+    "identity": {
+        "type": "SystemAssigned"
+      }
+}
+```
 
-To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property.
+# [Bicep](#tab/bicep-3)
 
-The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired.
+```bicep
+{
+    identity: {
+        type: 'SystemAssigned'
+      }
+}
+```
+
+---
+
+A new System Assigned MI is created with the rule.
+
+### Query-based rule conditions
+
+To configure a Query-based metric alert rules, the condition property `odata.type`  should be set to `Microsoft.Azure.Monitor.PromQLCriteria`
+
+To create a query-based rule condition, `odata.type` should be set to `Microsoft.Azure.Monitor.PromQLCriteria`. In this case, the condition is defined using a PromQL expression in the new query property. 
+
+The optional property `for` causes the alert rule to wait for a certain duration after the first time the condition is met before an alert is fired. For example, if `for` is set to 10 minutes, the alert rule condition must be met during each evaluation for 10 minutes before the alert is eventually fired. 
 
 > [!NOTE]
 > The metric alert rule query and for properties are equivalent to the Prometheus alert rule expression and for clauses, respectively.
 
-## Resource-centric and workspace-centric rule scope types
+### Resource-centric and workspace-centric rule scope types
 
 Query-based metric alert rule support two types of query scope:
 
-### Resource scope (resource-centric rules)
+#### Resource scope (resource-centric rules)
 
-You can query metrics emitted to any workspace by:
+You can query metrics emitted to any Workspace by:
 
-* a specific Azure resource, or by multiple resources from the same subscription or
-* a resource group such as Azure Kubernetes clusters (AKS) or
+* a specific Azure resource, or by multiple resources from the same subscription or 
+* a resource group such as Azure Kubernetes clusters (AKS) or 
 * a Virtual Machine (VM).
 
 For resource-centric rules, the following scope options are supported:
 
+# [JSON](#tab/json-3)
+
 | Scope | Example |
 |-------|---------|
-| Single resource | `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.containerservice/managedclusters/<myClusterName>']` |
-| Resource group | `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>']` |
-| Subscription | `scopes: ['/subscriptions/<subscription-id>']` |
+| Single resource | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>"]` |
+| Resource group | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>"]` |
+| Subscription | `"scopes": ["/subscriptions/<subscriptionId>"]` |
 
-The system locates the workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
+# [Bicep](#tab/bicep-3)
 
-### Azure Monitor Workspace scope (workspace-centric rules)
+| Scope | Example |
+|-------|---------|
+| Single resource | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>']` |
+| Resource group | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>']` |
+| Subscription | `scopes: ['/subscriptions/<subscriptionId>']` |
+
+---
+
+The system locates the Workspace where the resource metrics reside. The rule query must refer only to metrics emitted by the scoped resource.
+
+#### Azure Monitor Workspace scope (workspace-centric rules)
 
 You can query metrics emitted to a specific Azure Monitor Workspace, regardless of the emitting resources.
 
-For workspace scope, include the workspace Azure Resource Manager ID in the Scopes[] list.
+For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
 
-Example: `scopes: ['/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/microsoft.monitor/accounts/<myAMWName>']`
+# [JSON](#tab/json-3)
 
-The rule query can refer to any metrics stored in the Azure Monitor Workspace.
+Example: `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>"]`
 
-### Bicep template example
+# [Bicep](#tab/bicep-3)
 
-The following template creates a resource-centric, query-based metric alert rule with an Azure Kubernetes Service (AKS) as its scope, using a user-assigned managed identity.
-
-Edit it to include your specific scope, location, query, action groups, and other parameters.
-
-[!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
-
-This Bicep example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
+Example: `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>']`
 
 ---
+
+The rule query can refer to any metrics stored in the Azure Monitor Workspace.
 
 ## View query-based alerts in the Azure portal
 

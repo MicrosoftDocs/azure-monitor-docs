@@ -1,10 +1,11 @@
 ---
 title: Set up a table with the Auxiliary plan for low-cost data ingestion and retention in your Log Analytics workspace
 description: Create a custom table with the Auxiliary table plan in your Log Analytics workspace for low-cost ingestion and retention of log data.
-ms.reviewer: adi.biran
-ms.custom: references_regions
 ms.topic: how-to
+ms.reviewer: adi.biran
 ms.date: 03/05/2026
+ms.custom: ai-assisted
+
 # Customer intent: As a Log Analytics workspace administrator, I want to create a custom table with the Auxiliary table plan, so that I can ingest and retain data at a low cost for auditing and compliance.
 ---
 
@@ -102,8 +103,14 @@ tableName_CL="myTable_CL"
 apiVersion="2025-07-01"
 providers="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
 resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+payloadFile="./my-table.json"
 
-az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.json
+az account set --subscription $subscriptionId
+
+az rest \
+  --method put \
+  --uri "$resourceId?api-version=$apiVersion" \
+  --body @"$payloadFile"
 ```
 
 <br>
@@ -111,6 +118,7 @@ az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @table.j
 <summary>Expand to view the table.json file.</summary>
 
 ```json
+// my-table.json
 {
   "properties": {
     "schema": {
@@ -170,10 +178,14 @@ $tableName_CL = "myTable_CL"
 $apiVersion = "2025-07-01"
 $providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
 $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
+$payload = Get-Content -Raw -Path "./my-table.json"
 
-$payload = Get-Content -Raw -Path ".\table.json"
+Set-AzContext -Subscription $subscriptionId
 
-Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=$apiVersion" -Payload $payload
+Invoke-AzRestMethod `
+  -Method PUT `
+  -Path "$resourceId?api-version=$apiVersion" `
+  -Payload $payload
 ```
 
 <br>
@@ -181,6 +193,7 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=$apiVersion" -Pay
 <summary>Expand to view the table.json file.</summary>
 
 ```json
+// my-table.json
 {
   "properties": {
     "schema": {
@@ -229,6 +242,8 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=$apiVersion" -Pay
 </details>
 
 # [ARM (JSON)](#tab/arm-1)
+
+The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type.
 
 ```json
 {
@@ -295,9 +310,9 @@ Invoke-AzRestMethod -Method PUT -Path "$resourceId?api-version=$apiVersion" -Pay
 }
 ```
 
-This ARM (JSON) example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-arm-template) resource type.
-
 # [Bicep](#tab/bicep-1)
+
+The following Bicep example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type.
 
 ```bicep
 param workspaceName string = 'myWorkspace'
@@ -353,8 +368,6 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
   }
 }
 ```
-
-This Bicep example uses the [Microsoft.OperationalInsights workspaces/tables](/azure/templates/microsoft.operationalinsights/workspaces/tables?pivots=deployment-language-bicep) resource type.
 
 ---
 
@@ -473,6 +486,8 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     # [Azure CLI](#tab/cli-2)
 
+    The following Azure CLI example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group.
+
     ```azurecli
     subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     resourceGroupName="myResourceGroup"
@@ -484,16 +499,15 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     az monitor data-collection rule create \
       --resource-group "$resourceGroupName" \
       --name "$dataCollectionRuleName" \
-      --rule-file "myDataCollectionRule.json"
+      --rule-file "./my-dcr.json"
     ```
-
-    This Azure CLI example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group.
 
     <br>
     <details>
     <summary>Expand to view the myDataCollectionRule.json file.</summary>
 
     ```json
+    // my-dcr.json
     {
       "location": "eastus",
       "kind": "Direct",
@@ -576,7 +590,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     New-AzDataCollectionRule `
       -Name $dataCollectionRuleName `
       -ResourceGroupName $resourceGroupName `
-      -JsonFilePath ".\myDataCollectionRule.json"
+      -JsonFilePath "./my-dcr.json"
     ```
 
     This PowerShell example uses the [Az.Monitor Module](/powershell/module/az.monitor).
@@ -586,6 +600,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     <summary>Expand to view the myDataCollectionRule.json file.</summary>
 
     ```json
+  // my-dcr.json
     {
       "location": "eastus",
       "kind": "Direct",
