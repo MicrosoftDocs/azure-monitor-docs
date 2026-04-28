@@ -15,7 +15,7 @@ When you enable Prometheus metrics collection in Azure Monitor from your Kuberne
 You can change the minimal ingestion profile setting by modifying the metrics setting ConfigMap as described in [Customize scraping of Prometheus metrics in Azure Monitor using ConfigMap](./prometheus-metrics-scrape-configuration.md).
 
 > [!NOTE]
-> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics. If you are migrating from v1, replace minimalingestionprofile = true|false with the corresponding minimal-ingestion-profile.enabled = true|false values in each section.
+> Schema v2 change: The configuration for targets is now separately under cluster-metrics and controlplane-metrics. If you are migrating from v1, replace minimalingestionprofile = true|false with the corresponding minimal-ingestion-profile.enabled = true|false values in each section.
 
 ## Customization scenarios
 You may choose to use the default configuration or customize collection for your particular requirements. The following table lists the four potential collection scenarios and the recommended method to achieve each.
@@ -472,7 +472,7 @@ The following recording rules are automatically deployed to support Prometheus v
 - `ux:node_network_receive_drop_total:sum_irate`
 - `ux:node_network_transmit_drop_total:sum_irate`
 
-The following recording rules are required for Windows support. They're deployed automitcally but aren't enabled by default. See [enabling and disabling rule groups](../essentials/prometheus-rule-groups.md#disable-and-enable-rule-groups) to enable them. 
+The following recording rules are required for Windows support. They're deployed automatically but aren't enabled by default. See [enabling and disabling rule groups](../essentials/prometheus-rule-groups.md#disable-and-enable-rule-groups) to enable them. 
 
 - `ux:node_cpu_usage_windows:sum_irate`
 - `ux:node_memory_usage_windows:sum`
