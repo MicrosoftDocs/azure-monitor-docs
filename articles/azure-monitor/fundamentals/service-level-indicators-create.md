@@ -139,7 +139,7 @@ Open the service group and select **Monitoring**. Then select **View all SLIs** 
 
 When you drill into a single SLI, Azure Monitor opens a detailed view that shows its current status, measured trend, remaining error budget, and burn rate over time. Use this view to investigate whether the SLI is tracking toward its target and to understand how quickly current conditions are consuming the error budget.
 
-:::image type="content" source="media/service-level-indicators-create/service-level-indicator-details.png" alt-text="Screenshot of the SLI details view showing status, trend, remaining error budget, and burn rate charts for a single service level indicator.":::
+:::image type="content" source="media/service-level-indicators-create/service-level-indicator-details.png" lightbox="media/service-level-indicators-create/service-level-indicator-details.png" alt-text="Screenshot of the SLI details view showing status, trend, remaining error budget, and burn rate charts for a single service level indicator.":::
 
 
 
