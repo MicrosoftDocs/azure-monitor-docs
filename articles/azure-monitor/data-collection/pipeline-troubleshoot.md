@@ -70,7 +70,7 @@ These logs often contain detailed error messages that can help identify the root
 
 ## No data arriving in Azure Monitor
 
-If data isn't appearing in your Log Analytics workspace from Azure Monitor pipeline, the issue might be at any stage in the collection process. An Azure Monitor pipeline group follows an OpenTelemetry Collector pattern:
+If data isn't appearing in your Log Analytics workspace from Azure Monitor pipeline, the issue might be at any stage in the collection process. An Azure Monitor pipeline group processes data through the following stages:
 
 ```
 Receiver → Processor → Exporter → Data Collection Endpoint → Data Collection Rule → Log Analytics Workspace
