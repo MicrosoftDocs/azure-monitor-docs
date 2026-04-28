@@ -16,12 +16,12 @@ The following ConfigMap is used to configure scrape configuration and other sett
 
 | ConfigMap | Description |
 |:---|:---|
-| [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap) | Includes the following basic settings.<br>- Cluster alias. Changes the value of the `cluster` label in every metric ingested from the cluster.<br>- Enable/disable default scrape targets. <br>- Enable pod annotation based scraping per namespace.<br>- Metric keep lists. Controls which metrics are allowed from each default target.<br>- Scrape intervals for predefined targets.<br>- Separate controls for cluster-metrics targets and controlplane-metrics targets<br>- Debug mode to identify missing metric issues. See [troubleshooting](prometheus-metrics-troubleshoot.md#debug-mode). |
+| [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap) | Includes the following basic settings.<br>- Cluster alias. Changes the value of the `cluster` label in every metric ingested from the cluster.<br>- Enable/disable default scrape targets. <br>- Enable pod annotation based scraping per namespace.<br>- Metric keep lists. Controls which metrics are allowed from each default target.<br>- Scrape intervals for predefined targets.<br>- Separate controls for cluster-metrics targets and controlplane-metrics targets.<br>- Debug mode to identify missing metric issues. See [troubleshooting](prometheus-metrics-troubleshoot.md#debug-mode). |
 
 Modify the settings in the ConfigMap based on the guidance below and then apply it using the following command. AMA-Metrics pods will pick them up and restart in 2-3 minutes to apply the configuration settings specified. 
 
 > [!NOTE]
-> Schema v2 change: The configuration for targets are now separately under cluster-metrics and controlplane-metrics allowing separate control of ingestion volume for cluster-level targets and control plane targets. If you are migrating from v1, replace the configurations to the corresponding sections within cluster-metrics and controlplane-metrics, also note the following:
+> Schema v2 change: The configuration for targets is now separately under cluster-metrics and controlplane-metrics allowing separate control of ingestion volume for cluster-level targets and control plane targets. If you are migrating from v1, replace the configurations to the corresponding sections within cluster-metrics and controlplane-metrics, also note the following:
 > - Modify the key name from 'default-scrape-settings-enabled' to 'default-targets-scrape-enabled'
 > - For targets within controlplane-metrics section, drop the "controlplane-" prefix
 > - Modify minimalingestionprofile = true in the keep-list to minimal-ingestion-profile: |- / enabled = true as its own section
@@ -60,7 +60,7 @@ cluster-metrics: |-
 ```
 
 ## Enable pod annotation-based scraping
-Add annotations to the pods in your cluster to scrape application pods without creating a custom Prometheus config. To enable scraping pods with specific annotations, add the regex for the namespace(s) of the pods with annotations you want to scrape to `podannotationnamespaceregex` in the `podannotationnamespaceregex` section of the ConfigMap . 
+Add annotations to the pods in your cluster to scrape application pods without creating a custom Prometheus config. To enable scraping pods with specific annotations, add the regex for the namespace(s) of the pods with annotations you want to scrape to `podannotationnamespaceregex` in the `podannotationnamespaceregex` section of the ConfigMap. 
 
 For example, the following setting scrapes pods with annotations only in the namespaces `kube-system` and `my-namespace`:
 
@@ -129,7 +129,7 @@ For more details on customizing targets for control plane metrics, see [customiz
 
 ### Kube-state-metrics
 
-To override the default startup paramaters(resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L103C3-L118C18).
+To override the default startup parameters (resources, metric-labels-allowlist and metric-annotations-allowlist) of kube-state-metrics deployment (ama-metrics-ksm) that is installed as a part of Managed Prometheus enablement, use the [ama-metrics-settings-configmap](https://github.com/Azure/prometheus-collector/blob/0ca49133ef65150e759fad8fe21e46c132f789e9/otelcollector/configmaps/ama-metrics-settings-configmap.yaml#L103C3-L118C18).
 
 The settings in the configmap for labels_allow_list and annotations_allow_list override the parameters that are set during onboarding for [ksm-metrics-labels-allow-list and ksm-metrics-annotations-allow-list](../containers/kubernetes-monitoring-enable.md#optional-parameters)
 
