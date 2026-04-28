@@ -59,7 +59,7 @@ A typical deployment is shown in the preceding image and includes the following 
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
-- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
+- Clients send OpenTelemetry logs (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
@@ -74,7 +74,7 @@ Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agen
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Ingestion model | Agent-based | Gateway-based |
+| Ingestion model | Agent-based | Forwarder + Gateway -based |
 | Deployment model | Installed on individual virtual machines or Kubernetes clusters | Deployed centrally on an Arc-enabled Kubernetes cluster |
 | Primary role | Collect telemetry from the resource where the agent runs | Receive, process, and route telemetry from multiple sources before sending it to Azure Monitor |
 | Typical fit | Resources where you can install and manage an agent and send data directly to Azure | Scenarios that need centralized ingestion, preprocessing, or buffering before sending data to Azure |
@@ -86,11 +86,10 @@ Many architectures use both together. AMA handles per-resource collection for su
 
 Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
-| Supported Kubernetes distributions | Supported locations |
+| Supported Kubernetes distributions | 
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Canada Central<br>- East US<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
-
-For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | 
+Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 ## Related articles
 
