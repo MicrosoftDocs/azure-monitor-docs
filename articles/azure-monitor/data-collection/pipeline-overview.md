@@ -35,7 +35,7 @@ Azure Monitor pipeline currently receives and processes the following data sourc
 | Data source | Details | Status |
 |:---|:---|:---|
 | Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
-| OpenTelemetry Protocol (OTLP) | Supports OTLP ingestion for OpenTelemetry-enabled clients. | Preview |
+| OpenTelemetry logs (OTLP) | Supports ingestion of OpenTelemetry logs from clients to Azure Monitor. | Preview |
 
 ## Key capabilities
 
