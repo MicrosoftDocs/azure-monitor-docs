@@ -50,7 +50,7 @@ ROBOTS: NOINDEX
 > | Destination | Alternatives |   
 > |-------------|----------------------------------------------------------------------|
 > | Azure Storage blobs | If you're using AMA to send data to storage for longer term storage and/or lower costs, update existing AMA configurations to send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics. | 
-> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export) to send to Event Hub(s). There is no replacement available for AMA directly uploading to Event Hubs. | 
+> | Azure Event Hubs | If you're using AMA to send data to Event Hubs, update existing AMA configuration to send data to Azure Monitor Logs and leverage the [data export capability](../logs/logs-data-export.md) to send to Event Hub(s). There is no replacement available for AMA directly uploading to Event Hubs. | 
 
 
 ## Supported data types
