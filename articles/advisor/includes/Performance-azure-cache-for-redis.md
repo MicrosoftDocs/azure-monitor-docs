@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cache for Redis
@@ -146,16 +146,17 @@ Recommendation ID: b1184137-cf30-4a62-87bd-5e287b911a46
   
 Cache instances perform best when not running under high memory pressure which may cause them to become unresponsive, experience data loss, or become unavailable. Apply best practices to reduce used memory or scale to a different size or sku with more capacity.  
   
-**Potential benefits**: Ensure optimal performance and high availability through best practices  
+**Potential benefits**: Ensure optimal performance and high availability  
 
 **Impact:** High
   
-For more information, see [Troubleshoot Azure Cache for Redis server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/memory)  
+For more information, see [Troubleshoot server issues - Azure Cache for Redis](https://aka.ms/redis/recommendations/memory)  
 
 ResourceType: microsoft.cache/redis  
 Recommendation ID: 2adfe155-4639-4d83-9814-15ce7454fa25  
 
 
 <!--2adfe155-4639-4d83-9814-15ce7454fa25_end-->
+
 
 <!--articleBody-->

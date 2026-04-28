@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Kubernetes Service (AKS)
@@ -117,13 +117,14 @@ This cluster isn't using ephemeral OS disks which can provide lower read/write l
 
 **Impact:** Low
   
-For more information, see [Ephemeral OS disks - Azure Virtual Machines](/azure/virtual-machines/ephemeral-os-disks)  
+  
 
 ResourceType: microsoft.containerservice/managedclusters  
 Recommendation ID: 79dd48e7-cd34-4f35-a8be-a7d483353c1c  
 
 
 <!--79dd48e7-cd34-4f35-a8be-a7d483353c1c_end-->
+
 
 <!--d1e9f4a0-926e-4480-a4e4-3ea94877370c_begin-->
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/10/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -178,5 +178,23 @@ Subcategory: undefined
 <!--ced5fa9f-b5bf-4982-9f25-8190fb36dfca_end-->
 
 
+
+<!--7be41487-135c-4bee-901f-b4e8cd5e9180_begin-->
+
+#### Migrate to Standard endpoints for blob storage account  
+  
+AzureDnsZone endpoints (preview) for Azure Blob storage accounts is retiring. Transition to Standard endpoints for all new and existing blob storage account deployments.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558276)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 7be41487-135c-4bee-901f-b4e8cd5e9180  
+Subcategory: undefined
+
+<!--7be41487-135c-4bee-901f-b4e8cd5e9180_end-->
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -87,5 +87,23 @@ Recommendation ID: ee60d00e-823e-439d-971f-644fce1f1cb4
 Subcategory: undefined
 
 <!--ee60d00e-823e-439d-971f-644fce1f1cb4_end-->
+
+<!--2d6324ac-055e-4657-a42c-a7ef571d4aad_begin-->
+
+#### Set a minimum node count greater than zero on Microsoft Discovery Supercomputer nodepools  
+  
+When a nodepool's minNodeCount is 0, the autoscaler can scale it to zero. Workloads dispatched while no nodes exist face cold-start delays or failures. Setting a minimum of at least 1 keeps baseline capacity available, reducing job latency and preventing timeouts for time-sensitive workflows.  
+  
+**Potential benefits**: Prevent timeouts for time-sensitive scientific workflows  
+
+**Impact:** High
+  
+For more information, see [Sign in to your account](https://aka.ms/discovery/supercomputer)  
+
+ResourceType: microsoft.subscriptions/subscriptions  
+Recommendation ID: 2d6324ac-055e-4657-a42c-a7ef571d4aad  
+Subcategory: undefined
+
+<!--2d6324ac-055e-4657-a42c-a7ef571d4aad_end-->
 
 <!--articleBody-->
