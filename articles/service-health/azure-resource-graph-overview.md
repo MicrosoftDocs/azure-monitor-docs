@@ -30,7 +30,7 @@ This table shows the core fields in the ARG table for the Service Health, Impact
 
 |Field Name      |Description                                                                                                                        |
 |----------------|-----------------------------------------------------------------------------------------------------------------------------------|
-|id              | Full Azure resource ID (for example, /subscriptions/<`subscription-id`>/providers/Microsoft.ResourceHealth/events/<`tracking-id`>)|
+|ID              | Full Azure resource ID (for example, /subscriptions/<`subscription-id`>/providers/Microsoft.ResourceHealth/events/<`tracking-id`>)|
 |name            | Name of the resource                                                                                                              |
 |type            | Resource type (for example, Microsoft.Compute/virtualMachines)                                                                    |
 |tenantId        | ID of tenant the resource belongs to                                                                                              |
