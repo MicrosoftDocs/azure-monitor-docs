@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Orbital Ground Station
@@ -14,15 +14,15 @@ ms.custom: OperationalExcellence Azure Orbital Ground Station
   
 <!--cfdd653f-53d8-498d-8310-16da6d1b95b1_begin-->
 
-#### Deprecated Microsoft Planetary Computer ARM API version usage found  
+#### Deprecated Microsoft Planetary Computer ARM API version detected  
   
-Deprecated Microsoft Planetary Computer ARM API version 2024-01-31-preview usage found. Using these APIs can cause operations failures. It's recommended to use latest API version '2026-04-15'.  
+Deprecated Microsoft Planetary Computer ARM API preview version detected. Using this version may lead to operation failures. Upgrade to the latest API version 2026-04-15 to ensure reliability and support.  
   
 **Potential benefits**: Avoid potential failures and support issues  
 
 **Impact:** High
   
-For more information, see [Microsoft Planetary Computer Pro API Usage Guide](/azure/planetary-computer/api-tutorial)  
+For more information, see [GeoCatalogs - REST API (Azure Planetary Computer)](/rest/api/planetarycomputer/resource-manager/geocatalogs?view=rest-planetarycomputer-resource-manager-2026-04-15)  
 
 ResourceType: microsoft.orbital/geocatalogs  
 Recommendation ID: cfdd653f-53d8-498d-8310-16da6d1b95b1  
@@ -32,15 +32,15 @@ Recommendation ID: cfdd653f-53d8-498d-8310-16da6d1b95b1
 
 <!--b7e3affb-e367-4b6b-ada0-ad40197a9ad3_begin-->
 
-#### Deprecated Microsoft Planetary Computer API version usage found.  
+#### Deprecated Microsoft Planetary Computer API version detected.  
   
-Deprecated Microsoft Planetary Computer ARM API preview version usage found. Using these APIs can cause operations failures. It's recommended to use latest API version '2026-04-15'.  
+Deprecated Microsoft Planetary Computer API preview version detected. Using this version may lead to operation failures. Upgrade to the latest API version 2026-04-15 to ensure reliability and support.  
   
 **Potential benefits**: Avoid potential failures and support issues  
 
 **Impact:** High
   
-For more information, see [Microsoft Planetary Computer Pro API Usage Guide](/azure/planetary-computer/api-tutorial)  
+For more information, see [Data Plane](/rest/api/planetarycomputer/data-plane/operation-groups?view=rest-planetarycomputer-data-plane-2026-04-15)  
 
 ResourceType: microsoft.orbital/geocatalogs  
 Recommendation ID: b7e3affb-e367-4b6b-ada0-ad40197a9ad3  

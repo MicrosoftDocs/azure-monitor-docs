@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -265,5 +265,23 @@ Recommendation ID: e30a6464-0e05-4d48-b604-741074db3aa3
 Subcategory: undefined
 
 <!--e30a6464-0e05-4d48-b604-741074db3aa3_end-->
+
+<!--46a2ac77-9b96-4741-a036-76155cc3616c_begin-->
+
+#### Transition some Azure AI Language features to Foundry-based models  
+  
+Key Phrase Extraction, Sentiment Analysis & Opinion Mining, Custom Text Classification, Conversational Language Understanding (CLU), Custom Question Answering (CQA), Orchestration Workflow, Summarization, and Entity Linking are being retired.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557394)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 46a2ac77-9b96-4741-a036-76155cc3616c  
+Subcategory: undefined
+
+<!--46a2ac77-9b96-4741-a036-76155cc3616c_end-->
 
 <!--articleBody-->
