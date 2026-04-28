@@ -1579,6 +1579,8 @@ items:
             href: tables/microsoft-securityinsights_alerteventnormalized.md
           - name: microsoft.securityinsights/asimtables
             href: tables/microsoft-securityinsights_asimtables.md
+          - name: microsoft.securityinsights/assetentitynormalized
+            href: tables/microsoft-securityinsights_assetentitynormalized.md
           - name: microsoft.securityinsights/auditeventnormalized
             href: tables/microsoft-securityinsights_auditeventnormalized.md
           - name: microsoft.securityinsights/authenticationevent
@@ -1654,6 +1656,8 @@ items:
             href: tables/aacaudit.md
           - name: AACHttpRequest
             href: tables/aachttprequest.md
+          - name: AADAgentRiskEvents
+            href: tables/aadagentriskevents.md
           - name: AADB2CRequestLogs
             href: tables/aadb2crequestlogs.md
           - name: AADCustomSecurityAttributeAuditLogs
@@ -1684,6 +1688,8 @@ items:
             href: tables/aadnoninteractiveusersigninlogs.md
           - name: AADProvisioningLogs
             href: tables/aadprovisioninglogs.md
+          - name: AADRiskyAgents
+            href: tables/aadriskyagents.md
           - name: AADRiskyServicePrincipals
             href: tables/aadriskyserviceprincipals.md
           - name: AADRiskyUsers
@@ -1878,6 +1884,8 @@ items:
             href: tables/akscontrolplane.md
           - name: ALBHealthEvent
             href: tables/albhealthevent.md
+          - name: AMAHealth
+            href: tables/amahealth.md
           - name: AMSKeyDeliveryRequests
             href: tables/amskeydeliveryrequests.md
           - name: AMSLiveEventOperations
@@ -1918,6 +1926,8 @@ items:
             href: tables/asrv2replicationvaults.md
           - name: ASimAlertEventLogs
             href: tables/asimalerteventlogs.md
+          - name: ASimAssetEntityLogs
+            href: tables/asimassetentitylogs.md
           - name: ASimAuditEventLogs
             href: tables/asimauditeventlogs.md
           - name: ASimAuthenticationEventLogs
@@ -2288,8 +2298,14 @@ items:
             href: tables/chaosstudioexperimenteventlogs.md
           - name: CloudAppEvents
             href: tables/cloudappevents.md
+          - name: CloudAuditEvents
+            href: tables/cloudauditevents.md
           - name: CloudHsmServiceOperationAuditLogs
             href: tables/cloudhsmserviceoperationauditlogs.md
+          - name: CloudProcessEvents
+            href: tables/cloudprocessevents.md
+          - name: CloudStorageAggregatedEvents
+            href: tables/cloudstorageaggregatedevents.md
           - name: CommonSecurityLog
             href: tables/commonsecuritylog.md
           - name: CommunicationComplianceActivity
@@ -2736,8 +2752,12 @@ items:
             href: tables/heartbeat.md
           - name: HuntingBookmark
             href: tables/huntingbookmark.md
+          - name: IdentityAccountInfo
+            href: tables/identityaccountinfo.md
           - name: IdentityDirectoryEvents
             href: tables/identitydirectoryevents.md
+          - name: IdentityEvents
+            href: tables/identityevents.md
           - name: IdentityInfo
             href: tables/identityinfo.md
           - name: IdentityLogonEvents
@@ -2780,6 +2800,10 @@ items:
             href: tables/lasummarylogs.md
           - name: LIATrackingEvents
             href: tables/liatrackingevents.md
+          - name: LedgerTransactionLogs
+            href: tables/ledgertransactionlogs.md
+          - name: LedgerUserDefinedLogs
+            href: tables/ledgeruserdefinedlogs.md
           - name: LogicAppWorkflowRuntime
             href: tables/logicappworkflowruntime.md
           - name: MAApplication
@@ -2868,6 +2892,12 @@ items:
             href: tables/mcasshadowitreporting.md
           - name: MeshControlPlane
             href: tables/meshcontrolplane.md
+          - name: MessageEvents
+            href: tables/messageevents.md
+          - name: MessagePostDeliveryEvents
+            href: tables/messagepostdeliveryevents.md
+          - name: MessageUrlInfo
+            href: tables/messageurlinfo.md
           - name: MicrosoftAzureBastionAuditLogs
             href: tables/microsoftazurebastionauditlogs.md
           - name: MicrosoftDataShareReceivedSnapshotLog
@@ -2878,6 +2908,8 @@ items:
             href: tables/microsoftdatasharesharelog.md
           - name: MicrosoftGraphActivityLogs
             href: tables/microsoftgraphactivitylogs.md
+          - name: MicrosoftGraphPolicyLogs
+            href: tables/microsoftgraphpolicylogs.md
           - name: MicrosoftHealthcareApisAuditLogs
             href: tables/microsofthealthcareapisauditlogs.md
           - name: MicrosoftPurviewInformationProtection
@@ -2926,6 +2958,8 @@ items:
             href: tables/ntaipdetails.md
           - name: NTANetAnalytics
             href: tables/ntanetanalytics.md
+          - name: NTANspRuleRecommendation
+            href: tables/ntansprulerecommendation.md
           - name: NTARuleRecommendation
             href: tables/ntarulerecommendation.md
           - name: NTATopologyDetails
@@ -2950,6 +2984,8 @@ items:
             href: tables/networksessions.md
           - name: NginxUpstreamUpdateLogs
             href: tables/nginxupstreamupdatelogs.md
+          - name: OAuthAppInfo
+            href: tables/oauthappinfo.md
           - name: OEPAirFlowTask
             href: tables/oepairflowtask.md
           - name: OEPAuditLogs
@@ -3048,6 +3084,14 @@ items:
             href: tables/purviewsecuritylogs.md
           - name: QualysKnowledgeBase
             href: tables/qualysknowledgebase.md
+          - name: QuantumProviderAccountJobAuditLogs
+            href: tables/quantumprovideraccountjobauditlogs.md
+          - name: QuantumProviderAccountQueueAuditLogs
+            href: tables/quantumprovideraccountqueueauditlogs.md
+          - name: QuantumProviderAccountTargetAuditLogs
+            href: tables/quantumprovideraccounttargetauditlogs.md
+          - name: QuantumWorkspaceJobAuditLogs
+            href: tables/quantumworkspacejobauditlogs.md
           - name: REDConnectionEvents
             href: tables/redconnectionevents.md
           - name: Rapid7InsightVMCloudAssets
@@ -3078,6 +3122,10 @@ items:
             href: tables/svmpoolexecutionlog.md
           - name: SVMPoolRequestLog
             href: tables/svmpoolrequestlog.md
+          - name: SalesforceAuditTrail
+            href: tables/salesforceaudittrail.md
+          - name: SalesforceLoginHistory
+            href: tables/salesforceloginhistory.md
           - name: SecureScoreControls
             href: tables/securescorecontrols.md
           - name: SecureScores
@@ -3088,6 +3136,8 @@ items:
             href: tables/securitybaseline.md
           - name: SecurityBaselineSummary
             href: tables/securitybaselinesummary.md
+          - name: SecurityCaseEvent
+            href: tables/securitycaseevent.md
           - name: SecurityDetection
             href: tables/securitydetection.md
           - name: SecurityEvent
@@ -3152,6 +3202,8 @@ items:
             href: tables/storagefilelogs.md
           - name: StorageMalwareScanningResults
             href: tables/storagemalwarescanningresults.md
+          - name: StorageMoverAuditLogs
+            href: tables/storagemoverauditlogs.md
           - name: StorageMoverCopyLogsFailed
             href: tables/storagemovercopylogsfailed.md
           - name: StorageMoverCopyLogsTransferred
@@ -3536,6 +3588,8 @@ items:
             href: queries/ASRReplicatedItems.md
           - name: ASimAlertEventLogs
             href: queries/ASimAlertEventLogs.md
+          - name: ASimAssetEntityLogs
+            href: queries/ASimAssetEntityLogs.md
           - name: ASimDnsActivityLogs
             href: queries/ASimDnsActivityLogs.md
           - name: ATCExpressRouteCircuitIpfix
@@ -3952,8 +4006,14 @@ items:
             href: queries/SVMPoolExecutionLog.md
           - name: SVMPoolRequestLog
             href: queries/SVMPoolRequestLog.md
+          - name: SalesforceAuditTrail
+            href: queries/SalesforceAuditTrail.md
+          - name: SalesforceLoginHistory
+            href: queries/SalesforceLoginHistory.md
           - name: SecurityAttackPathData
             href: queries/SecurityAttackPathData.md
+          - name: SecurityCaseEvent
+            href: queries/SecurityCaseEvent.md
           - name: SecurityEvent
             href: queries/SecurityEvent.md
           - name: SentinelAudit
