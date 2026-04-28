@@ -42,7 +42,7 @@ The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure cont
 | Destination | Migration options |   
 |-------------|----------------------------------------------------------------------|
 | Azure Storage blobs | If you're using WAD or LAD agents to send data to storage for longer term storage and lower costs, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md). Then you can send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics | 
-| Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs, migrate to using [Azure Monitor Logs data export capability](../logs/logs-data-export) to send logs to Event Hub(s). | 
+| Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs, migrate to using [Azure Monitor Logs data export capability](../logs/logs-data-export.md) to send logs to Event Hub(s). | 
 | Azure Monitor metrics | For VM Guest OS Perf Counter scenarios, migrate to using AMW as a destination for [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md). For custom metric scenarios, migrate to using AMW as a destination for [OpenTelemetry metrics](../app/opentelemetry.md). |
 
 ## Primary scenarios
