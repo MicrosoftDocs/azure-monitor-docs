@@ -14,13 +14,9 @@ Azure Monitor has a wide assortment of APIs. This index separates them into thre
 >
 > For more information, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
 
-| Operation groups | Description |
-|------------------|-------------|
-| [Operations](/rest/api/monitor/) | Lists the available REST API operations for Azure Monitor. |
-
 ## Azure Monitor APIs
 
-The following APIs are resource management APIs for various Azure Monitor features.
+The following APIs are resource manager (control plane) APIs for various Azure Monitor features. See the [Azure Monitor section](/rest/api/monitor/) of the Azure REST APIs documentation to find the latest API versions for these operation groups.
 
 ### Activity Log
 
@@ -55,14 +51,11 @@ The following APIs are resource management APIs for various Azure Monitor featur
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
 | [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
 
-### Data Collection Endpoints
-
-| [Data collection endpoints](/rest/api/monitor/data-collection-endpoints) | Create and manage a data collection endpoint and retrieve the data collection endpoints within a resource group or subscription. |
-
-### Data Collection Rules
+### Data Collection
 
 | Operation groups | Description |
 |------------------|-------------|
+| [Data collection endpoints](/rest/api/monitor/data-collection-endpoints) | Create and manage a data collection endpoint and retrieve the data collection endpoints within a resource group or subscription. |
 | [Data collection rule associations](/rest/api/monitor/data-collection-rule-associations) | Create and manage a data collection rule association and retrieve the data collection rule associations for a data collection endpoint, resource, or data collection rule. |
 | [Data collection rules](/rest/api/monitor/data-collection-rules) | Create and manage a data collection rule and retrieve the data collection rules within a resource group or subscription. |
 
@@ -103,25 +96,27 @@ The following APIs are resource management APIs for various Azure Monitor featur
 
 Azure Monitor Logs has three distinct API groups for ingestion, querying and management.
 
-### Logs ingestion API
+### Logs ingestion
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Logs Ingestion](../logs/logs-ingestion-api-overview.md) | Lets you send data to a Log Analytics workspace using either a [REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call) or [client libraries](../logs/logs-ingestion-api-overview.md#client-libraries). |
+| [Upload](/rest/api/ingestion/upload) | Lets you send data to a Log Analytics workspace using either a [REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call) or [client libraries](../logs/logs-ingestion-api-overview.md#client-libraries). |
 
-### Logs query API
+### Logs query
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Data Access](../logs/api/overview.md) | Query Log Analytics data. |
+| [Query](/rest/api/logsquery/query) | Query Log Analytics data using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
+| [Metadata](/rest/api/logsquery/metadata) | Retrieve the metadata information for a Log Analytics workspace. |
 
-### Logs management API
+### Logs management
+
+These are the control plane APIs for managing Log Analytics workspaces and related resources. 
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Available service tiers](/rest/api/loganalytics/available-service-tiers) | Retrieve the available service tiers for a Log Analytics workspace. |
 | [Clusters](/rest/api/loganalytics/clusters) | Manage Log Analytics clusters. |
-| Data Collector Logs (Preview) | Delete or retrieve a data collector log tables for a Log Analytics workspace and retrieve all data collector log tables for a Log Analytics workspace. |
 | [Data exports](/rest/api/loganalytics/data-exports) | Manage a data export for a Log Analytics workspace or retrieve the data export instances within a Log Analytics workspace. |
 | [Data Sources](/rest/api/loganalytics/data-sources) | Create or update data sources. |
 | [Deleted workspaces](/rest/api/loganalytics/deleted-workspaces) | Retrieve the recently deleted workspaces within a subscription or resource group. |
@@ -130,19 +125,17 @@ Azure Monitor Logs has three distinct API groups for ingestion, querying and man
 | [Linked Services](/rest/api/loganalytics/linked-services) | Create or update linked services. |
 | [Linked Storage Accounts](/rest/api/loganalytics/linked-storage-accounts) | Manage a link relation between a workspace and storage accounts and retrieve all linked storage accounts associated with a workspace. |
 | [Management Groups](/rest/api/loganalytics/management-groups) | Retrieve all management groups connected to a Log Analytics workspace. |
-| [Metadata](/azure/azure-monitor/logs/api/overview) | Retrieve the metadata information for a Log Analytics workspace. |
 | [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running azure asynchronous operation. |
 | [Operations](/rest/api/loganalytics/operations) | Retrieve all of the available OperationalInsights Rest API operations. |
-| [Query](/azure/azure-monitor/logs/api/overview) | Query the full set of data collected by Azure Monitor logs using KQL. |
 | [Query pack queries](/rest/api/monitor/query-pack-queries) | Manage a query defined within a Log Analytics QueryPack and retrieve or search the list of queries defined within a Log Analytics QueryPack. |
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
 | [Saved Searches](/rest/api/loganalytics/saved-searches) | Create or update saved searches. |
 | [Storage Insights](/rest/api/loganalytics/storage-insights) | Create or update storage insights. |
 | [Tables](/rest/api/loganalytics/tables) | Manage Log Analytics workspace tables. |
 | [Workspace purge](/rest/api/loganalytics/workspace-purge) | Retrieve the status of an ongoing purge operation or purge the data in a Log Analytics workspace. |
-| Workspace schema | Retrieves the schema for a Log Analytics workspace. |
-| Workspace shared keys | Retrieve or regenerate the shared keys for a Log Analytics workspace. |
-| Workspace usages | Retrieve the usage metrics for a Log Analytics workspace. |
+| [Workspace schema](/rest/api/loganalytics/schema) | Retrieves the schema for a Log Analytics workspace. |
+| [Workspace shared keys](/rest/api/loganalytics/shared-keys) | Retrieve or regenerate the shared keys for a Log Analytics workspace. |
+| [Workspace usages](/rest/api/loganalytics/usages) | Retrieve the usage metrics for a Log Analytics workspace. |
 | [Workspaces](/rest/api/loganalytics/workspaces) | Manage Log Analytics workspaces. |
 
 ## Retired or being retired
@@ -151,4 +144,4 @@ Azure Monitor Logs has three distinct API groups for ingestion, querying and man
 |------------------|-------------|
 | [Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](../alerts/alerts-classic.overview.md). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](../essentials/platform-logs-overview.md). |
 | [Alert (classic) rules](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](../alerts/alerts-classic.overview.md) rules. |
-| [Data Collector](/rest/api/loganalytics/create-request) | Data Collector API Reference. |
+| [Data Collector](../logs/custom-logs-migrate.md) | Legacy HTTP Data Collector API reference and how to migrate to the Logs ingestion API. |
