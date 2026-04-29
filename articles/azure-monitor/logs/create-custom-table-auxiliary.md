@@ -607,7 +607,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     <summary>Expand to view the my-dcr.json file.</summary>
 
     ```json
-  // my-dcr.json
+    // my-dcr.json
     {
       "location": "eastus",
       "kind": "Direct",
