@@ -42,27 +42,6 @@ The following table summarizes the resources the script creates and the permissi
 | Contributor | DCE resource group | Manage data collection endpoints |
 
 ## PowerShell script 
-The script creates these resources, if they don't already exist:
-
-- A Log Analytics workspace and a resource group for the Log Analytics workspace. 
-    
-    You probably already have a Log Analytics workspace, in which case, provide the workspace details so the script sets up the other resources in the same region as the workspace. 
-
-- A Microsoft Entra application to authenticate against the API and:
-    - A service principal on the Microsoft Entra application
-    - A secret for the Microsoft Entra application
-- A data collection endpoint (DCE) and a resource group for the data collection endpoint, in same region as Log Analytics workspace, to receive data. 
-- A resource group for data collection rules (DCR) in the same region as the Log Analytics workspace.
-
-The script also grants the app `Contributor` permissions to:
-
-- The Log Analytics workspace  
-- The resource group for data collection rules 
-- The resource group for data collection endpoints
-
-## PowerShell script
-
-
 
 ```powershell
 #------------------------------------------------------------------------------------------------------------
