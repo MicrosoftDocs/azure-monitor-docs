@@ -4,7 +4,7 @@ description: Run a PowerShell script to set up all resources required to send da
 ms.reviewer: ivankh
 ms.topic: tutorial
 ms.custom: devx-track-azurepowershell
-ms.date: 08/12/2024
+ms.date: 04/29/2026
 ---
 
 # Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API
@@ -14,28 +14,34 @@ This article provides a PowerShell script that sets up all of the resources you 
 > [!NOTE]
 > As a Microsoft MVP, [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to and provided material feedback for this article. For an example of how you can automate the setup and ongoing use of the Log Ingestion API, see Morten's [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
 
-## Create resources and permissions 
-The script creates these resources, if they don't already exist:
+## Prerequisites
 
-- A Log Analytics workspace and a resource group for the Log Analytics workspace. 
-    
-    You probably already have a Log Analytics workspace, in which case, provide the workspace details so the script sets up the other resources in the same region as the workspace. 
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- The **Az** and **Microsoft.Graph** PowerShell modules installed. The script installs them automatically if they're missing.
+- Permissions to create Microsoft Entra ID app registrations and assign roles on your subscription.
+- A [Log Analytics workspace](quick-create-workspace.md). You can use an existing workspace or let the script create one.
 
-- A Microsoft Entra application to authenticate against the API and:
-    - A service principal on the Microsoft Entra application
-    - A secret for the Microsoft Entra application
-- A data collection endpoint (DCE) and a resource group for the data collection endpoint, in same region as Log Analytics workspace, to receive data. 
-- A resource group for data collection rules (DCR) in the same region as the Log Analytics workspace.
+## Resources and permissions summary
 
-The script also grants the app `Contributor` permissions to:
+The following table summarizes the resources the script creates and the permissions it assigns.
 
-- The Log Analytics workspace  
-- The resource group for data collection rules 
-- The resource group for data collection endpoints
+| Resource | Purpose |
+|----------|---------|
+| Microsoft Entra ID app registration | Authenticates API calls to the Logs Ingestion API |
+| Service principal | Identity for the app registration |
+| App secret | Credential for the service principal |
+| Data collection endpoint (DCE) | Receives data from the Logs Ingestion API |
+| Resource group for DCE | Contains the data collection endpoint |
+| Resource group for DCRs | Contains data collection rules |
 
-## PowerShell script
+| Permission | Scope | Purpose |
+|------------|-------|---------|
+| Contributor | Log Analytics workspace | Table management |
+| Contributor | DCR resource group | Create and manage data collection rules |
+| Monitoring Metrics Publisher | DCR resource group | Send data via the Logs Ingestion API |
+| Contributor | DCE resource group | Manage data collection endpoints |
 
-
+## PowerShell script 
 
 ```powershell
 #------------------------------------------------------------------------------------------------------------
@@ -80,7 +86,7 @@ $AzureAppName                          = "Log-Ingestion-App"
 $AzAppSecretName                       = "Log-Ingestion-App secret"
 
 # Log Analytics workspace
-$LogAnalyticsSubscription              = "<Log Analytics workspace ID>"
+$LogAnalyticsSubscription              = "<Azure subscription ID>"
 $LogAnalyticsResourceGroup             = "<Log Analytics workspace resource group>"
 $LoganalyticsWorkspaceName             = "<Log Analytics workspace name>"
 $LoganalyticsLocation                  = "<Log Analytics workspace location>"
@@ -102,8 +108,8 @@ $VerbosePreference                     = "SilentlyContinue"  # "Continue"
     Connect-AzAccount -Tenant $TenantId -WarningAction SilentlyContinue
 
     # Get access token
-    $AccessToken = Get-AzAccessToken -ResourceUrl https://management.azure.com/
-    $AccessToken = $AccessToken.Token
+    $SecureToken = (Get-AzAccessToken -ResourceUrl https://management.azure.com/).Token
+    $AccessToken = [System.Net.NetworkCredential]::new('', $SecureToken).Password
 
     # Build headers for Azure REST API with access token
     $Headers = @{
@@ -328,7 +334,7 @@ $VerbosePreference                     = "SilentlyContinue"  # "Continue"
             }
     
     #-------------------------------------------------------------------------------------
-    # Sleeping 1 min to let Azure AD replicate before delegation
+    # Sleeping 1 min to let Microsoft Entra ID replicate before delegation
     #-------------------------------------------------------------------------------------
 
         # Write-Output "Sleeping 1 min to let Azure AD replicate before doing delegation"
@@ -531,4 +537,4 @@ $VerbosePreference                     = "SilentlyContinue"  # "Continue"
 ## Next steps
 
 - [Learn more about data collection rules](../essentials/data-collection-rule-overview.md)
-- [Learn more about writing transformation queries](../essentials//data-collection-transformations.md)
+- [Learn more about writing transformation queries](../essentials/data-collection-transformations.md)
