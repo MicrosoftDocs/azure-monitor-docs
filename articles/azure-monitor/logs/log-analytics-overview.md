@@ -2,7 +2,7 @@
 title: Overview of Log Analytics in Azure Monitor
 description: This overview describes Log Analytics, which is a tool in the Azure portal used to edit and run log queries for analyzing data in Azure Monitor logs.
 ms.topic: concept-article
-ms.date: 05/03/2025
+ms.date: 04/29/2026
 ---
 
 # Overview of Log Analytics in Azure Monitor
@@ -173,6 +173,7 @@ This section describes more tools available above the query area of the screen, 
 | **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
 | **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
 | **Search job mode** | [Run a search job](../logs/search-jobs.md). |
+| **Observability Agent** | [Chat with your data](../aiops/observability-agent-overview.md#chat-with-your-data) using natural language to explore logs, find common errors, analyze anomalies, and surface insights without writing KQL. |
 | **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data.<br><br>*See screenshot below.* |
 | **Queries hub** | Open the example queries dialog that appears when you first open Log Analytics. |
 
