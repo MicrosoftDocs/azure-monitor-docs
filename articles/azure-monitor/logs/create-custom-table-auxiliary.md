@@ -413,6 +413,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     # [REST](#tab/rest-2)
 
+    > [!NOTE]
+    > The following REST call uses example values.
+
     ```REST
     PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule?api-version=2024-03-11
     Authorization: Bearer {token}
@@ -503,6 +506,8 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
       --rule-file "$ruleFile"
     ```
 
+    [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+
     <br>
     <details>
     <summary>Expand to view the my-dcr.json file.</summary>
@@ -576,8 +581,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     ```
 
     </details>
-
-    [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
     # [PowerShell](#tab/powershell-2)
 
