@@ -114,7 +114,7 @@ These Azure Monitor Logs APIs have three distinct API groups for ingestion, quer
 
 ### Logs ingestion
 
-This is the data plane API to ingest data to a Log Analytics workspace.
+This is the Azure Monitor Logs data plane API to ingest data into a Log Analytics workspace.
 
 API endpoint is either the data collection endpoint (DCE) or the DCR logs ingestion endpoint. For more information see [Logs ingestion API endpoints](../logs/logs-ingestion-api-overview.md#endpoint).
 
@@ -126,7 +126,7 @@ Scope is `https://monitor.azure.com/.default`.
 
 ### Logs query
 
-These are data plane APIs for querying data in your Log Analytics workspaces.
+These are the Azure Monitor Logs data plane APIs for querying data in your Log Analytics workspaces.
 
 API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
 
