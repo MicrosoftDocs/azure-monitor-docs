@@ -25,9 +25,9 @@ In addition, there might be costs to export some categories of resource logs to 
 
 Following table lists metrics and log categories available for each resource type.
 
-  | Resource Provider | Metrics | Log Categories |
-  |---|---|---|
-  |Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
+| Resource Provider | Metrics | Log Categories |
+|---|---|---|
+|Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
 |Microsoft.AgFoodPlatform <a name="microsoftagfoodplatform"></a>|N/A|[farmBeats](./supported-logs/Microsoft-AgFoodPlatform-farmBeats-logs.md)<br>|
 |Microsoft.AnalysisServices <a name="microsoftanalysisservices"></a>|[servers](./supported-metrics/Microsoft-AnalysisServices-servers-metrics.md)<br>|[servers](./supported-logs/Microsoft-AnalysisServices-servers-logs.md)<br>|
 |Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[gateways](./supported-metrics/Microsoft-ApiManagement-gateways-metrics.md)<br>[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>[service/workspaces](./supported-logs/Microsoft-ApiManagement-service-workspaces-logs.md)<br>|
