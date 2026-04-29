@@ -52,10 +52,14 @@ accountName="myAccountName"
 apiVersion="2025-05-03-preview"
 providers="microsoft.monitor/accounts/$accountName"
 resourceId="/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
+payloadFile="./enable-stamping.json"
 
-az account set --subscription $subscriptionId
+az account set --subscription "$subscriptionId"
 
-az rest --method put --uri "$resourceId?api-version=$apiVersion" --body @./enable-stamping.json
+az rest \
+  --method put \
+  --uri "$resourceId?api-version=$apiVersion" \
+  --body @"$payloadFile"
 ```
 
 ```json
@@ -81,13 +85,14 @@ $accountName = "myAccountName"
 $apiVersion = "2025-05-03-preview"
 $providers = "microsoft.monitor/accounts/$accountName"
 $resourceId = "/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
+$payloadFile = ".\enable-stamping.json"
 
 Set-AzContext -Subscription $subscriptionId
 
 Invoke-AzRestMethod `
   -Path "$resourceId?api-version=$apiVersion" `
   -Method PUT `
-  -Payload (Get-Content -Path "./enable-stamping.json" -Raw)
+  -Payload (Get-Content -Path $payloadFile -Raw)
 ```
 
 ```json
@@ -273,15 +278,15 @@ userAssignedMiName="myUserAssignedIdentity"
 clusterName="myCluster"
 actionGroupName="myActionGroup"
 apiVersion="2024-03-01-preview"
-
 resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
+payloadFile=./query-based-metric-alert.json
 
 az account set --subscription $subscriptionId
 
 az rest \
   --method put \
   --uri "https://management.azure.com$resourceId?api-version=$apiVersion" \
-  --body @./query-based-metric-alert.json
+  --body @$payloadFile
 ```
 
 > [!NOTE]
@@ -350,15 +355,15 @@ $userAssignedMiName = "myUserAssignedIdentity"
 $clusterName = "myCluster"
 $actionGroupName = "myActionGroup"
 $apiVersion = "2024-03-01-preview"
-
 $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
+$payloadFile = ".\query-based-metric-alert.json"
 
 Set-AzContext -Subscription $subscriptionId
 
 Invoke-AzRestMethod `
   -Path "$resourceId?api-version=$apiVersion" `
   -Method PUT `
-  -Payload (Get-Content -Path "./query-based-metric-alert.json" -Raw)
+  -Payload (Get-Content -Path $payloadFile -Raw)
 ```
 
 > [!NOTE]

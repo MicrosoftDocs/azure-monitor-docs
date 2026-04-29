@@ -178,14 +178,14 @@ $tableName_CL = "myTable_CL"
 $apiVersion = "2025-07-01"
 $providers = "Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName_CL"
 $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/$providers"
-$payload = Get-Content -Raw -Path "./my-table.json"
+$payloadFile = ".\my-table.json"
 
 Set-AzContext -Subscription $subscriptionId
 
 Invoke-AzRestMethod `
   -Method PUT `
   -Path "$resourceId?api-version=$apiVersion" `
-  -Payload $payload
+  -Payload (Get-Content -Path $payloadFile -Raw)
 ```
 
 <br>
@@ -492,19 +492,20 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     resourceGroupName="myResourceGroup"
     dataCollectionRuleName="myDataCollectionRule"
-
+    ruleFile="./my-dcr.json"
+    
     az account set --subscription "$subscriptionId"
     az extension add --name monitor-control-service
-
+    
     az monitor data-collection rule create \
       --resource-group "$resourceGroupName" \
       --name "$dataCollectionRuleName" \
-      --rule-file "./my-dcr.json"
+      --rule-file "$ruleFile"
     ```
 
     <br>
     <details>
-    <summary>Expand to view the myDataCollectionRule.json file.</summary>
+    <summary>Expand to view the my-dcr.json file.</summary>
 
     ```json
     // my-dcr.json
@@ -580,24 +581,27 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     # [PowerShell](#tab/powershell-2)
 
+    The following PowerShell example uses the [New-AzDataCollectionRule](/powershell/module/az.monitor/new-azdatacollectionrule) cmdlet.
+
     ```azurepowershell
     $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
     $resourceGroupName = "myResourceGroup"
     $dataCollectionRuleName = "myDataCollectionRule"
-
+    $jsonFilePath = ".\my-dcr.json"
+    
     Select-AzSubscription -SubscriptionId $subscriptionId
-
+    
     New-AzDataCollectionRule `
       -Name $dataCollectionRuleName `
       -ResourceGroupName $resourceGroupName `
-      -JsonFilePath "./my-dcr.json"
+      -JsonFilePath $jsonFilePath
     ```
 
-    This PowerShell example uses the [Az.Monitor Module](/powershell/module/az.monitor).
+    [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
     <br>
     <details>
-    <summary>Expand to view the myDataCollectionRule.json file.</summary>
+    <summary>Expand to view the my-dcr.json file.</summary>
 
     ```json
   // my-dcr.json
@@ -669,9 +673,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
 
     </details>
 
-    [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
-
     # [ARM (JSON)](#tab/arm-2)
+
+    The following ARM (JSON) example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
 
     ```json
     {
@@ -778,9 +782,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     }
     ```
 
-    This ARM (JSON) example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template) resource type.
-
     # [Bicep](#tab/bicep-2)
+
+    The following Bicep example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
 
     ```bicep
     @description('Specifies the name of the data collection rule to create.')
@@ -861,17 +865,14 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     output dataCollectionRuleId string = dataCollectionRule.id
     ```
 
-    This Bicep example uses the [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-bicep) resource type.
-
     ---
 
     | Variable | Example value | Purpose |
     |----------|---------------|---------|
-    | host | management.azure.com | Implicit ARM endpoint |
+    | host | *management.azure.com* | Implicit ARM endpoint |
     | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
     | resourceGroupName | myResourceGroup | User input |
     | dataCollectionRuleName | myDataCollectionRule | User input |
-    | workspaceResourceId |  | User input |
     | streams | Custom-myTable | User input |
     | outputStream | Custom-myTable_CL | User input |
     | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |

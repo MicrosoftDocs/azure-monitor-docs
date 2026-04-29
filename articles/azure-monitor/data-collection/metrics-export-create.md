@@ -170,11 +170,11 @@ To create a DCRA using the REST API, use the following endpoint and payload:
 PUT https://management.azure.com//subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/myResourceGroup/providers/Microsoft.Compute/virtualMachines/myVirtualMachine/providers/Microsoft.Insights/dataCollectionRuleAssociations/myDataCollectionRuleAssociation?api-version=2024-03-11
 
 {
-    "properties":
-    {
-        "description": "Association of platform telemetry DCR with VM myVirtualMachine",
-        "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule"
-    }
+  "properties":
+  {
+    "description": "Association of platform telemetry DCR with VM myVirtualMachine",
+    "dataCollectionRuleId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule"
+  }
 }
 ```
 
@@ -247,8 +247,9 @@ resourceGroupName="myResourceGroup"
 storageAccountName="myStorageAccount"
 principalId="eeeeeeee-ffff-aaaa-5555-666666666666"
 roleDefinitionName="Storage Blob Data Contributor"
-
 scope="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Storage/storageAccounts/$storageAccountName"
+
+az account set --subscription "$subscriptionId"
 
 az role assignment create \
   --assignee "$principalId" \
@@ -270,9 +271,10 @@ resourceGroupName="myResourceGroup"
 dataCollectionRuleAssociationName="myDataCollectionRuleAssociation"
 dataCollectionRuleName="myDataCollectionRule"
 keyVaultName="myKeyVault"
-
 dataCollectionRuleId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dataCollectionRuleName"
 resourceUri="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName"
+
+az account set --subscription "$subscriptionId"
 
 az monitor data-collection rule association create \
   --name "$dataCollectionRuleAssociationName" \
@@ -292,7 +294,7 @@ Create a JSON file containing the collection rule specification. For more inform
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 $resourceGroupName = "myResourceGroup"
 $dataCollectionRuleName = "myDataCollectionRule"
-$jsonFilePath = "./dcr-storage-account.json"
+$jsonFilePath = ".\dcr-storage-account.json"
 
 Set-AzContext -Subscription $subscriptionId
 
@@ -336,8 +338,9 @@ Assign the appropriate role to the managed identity of the DCR using `New-AzRole
 $objectId = "eeeeeeee-ffff-aaaa-5555-666666666666"
 $roleDefinitionName = "Azure Event Hubs Data Sender"
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-
 $scope = "/subscriptions/$subscriptionId"
+
+Set-AzContext -Subscription $subscriptionId
 
 New-AzRoleAssignment `
   -ObjectId $objectId `
@@ -359,9 +362,10 @@ $resourceGroupName = "myResourceGroup"
 $dataCollectionRuleassociationName = "myDataCollectionRuleAssociation"
 $keyVaultName = "myKeyVault"
 $dataCollectionRuleName = "myDataCollectionRule"
-
 $resourceUri = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName"
 $dataCollectionRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dataCollectionRuleName"
+
+Set-AzContext -Subscription $subscriptionId
 
 New-AzDataCollectionRuleAssociation `
   -dataCollectionRuleassociationName $associationName `
