@@ -19,7 +19,7 @@ Request submitted using the Azure Monitor API use the Azure Resource Manager aut
 
 ### Retrieve a token
 
-Once you've created a service principal, retrieve an access token. Specify `resource=https://management.azure.com` in the token request.
+Once you've created a service principal, retrieve an access token. Use `https://management.azure.com/.default` as the `scope` in the token request.
 
 [!INCLUDE [Get a token](../fundamentals/includes/get-authentication-token.md)]
 
