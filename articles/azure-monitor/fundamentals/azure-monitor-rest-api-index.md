@@ -16,11 +16,13 @@ Azure Monitor has a wide assortment of APIs. This index separates them into thre
 
 ## Azure Monitor APIs
 
-The following APIs are resource manager (control plane) APIs for various Azure Monitor features. See the [Azure Monitor section](/rest/api/monitor/) of the Azure REST APIs documentation to find the latest API versions for these operation groups.
+These APIs are part of the Azure Resource Manager (ARM) control plane APIs for various Azure Monitor features. See the [Azure Monitor section](/rest/api/monitor/) of the Azure REST APIs documentation to find the latest API versions for these operation groups.
+
+The endpoints for all of these Azure Monitor ARM APIs are under the `https://management.azure.com/` base URL, which is the standard endpoint for ARM APIs.
 
 ### Activity Log
 
-Retrieve and manage activity logs.
+These Azure Monitor APIs retrieve and manage activity logs.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -31,7 +33,7 @@ Retrieve and manage activity logs.
 
 ### Alerts Management and Action Groups
 
-Create and manage alert rules, action groups, and alert processing rules.
+These Azure Monitor APIs create and manage alert rules, action groups, and alert processing rules.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -50,7 +52,7 @@ Create and manage alert rules, action groups, and alert processing rules.
 
 ### Autoscale
 
-Manage autoscale settings and retrieve predictive metric data.
+These Azure Monitor APIs manage autoscale settings and retrieve predictive metric data.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -59,7 +61,7 @@ Manage autoscale settings and retrieve predictive metric data.
 
 ### Data Collection
 
-Manage data collection rules, data collection endpoints, and their associations.
+These Azure Monitor APIs manage data collection rules, data collection endpoints, and their associations.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -69,7 +71,7 @@ Manage data collection rules, data collection endpoints, and their associations.
 
 ### Diagnostic Settings
 
-Manage diagnostic settings that control routing of metric data and diagnostic logs.
+These Azure Monitor APIs manage diagnostic settings that control routing of metric data and diagnostic logs.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -78,22 +80,22 @@ Manage diagnostic settings that control routing of metric data and diagnostic lo
 | [Management group diagnostic settings](/rest/api/monitor/management-group-diagnostic-settings) | Manage the management group diagnostic settings for a resource and retrieve the management group diagnostic settings list for a management group. |
 | [Subscription diagnostic settings](/rest/api/monitor/subscription-diagnostic-settings) | Manage the subscription diagnostic settings for a resource and retrieve the subscription diagnostic settings list for a subscriptionId. |
 
-### Metrics
+### Resource metrics
 
-Retrieve metric definitions, values, and manage Azure Monitor workspaces.
+These Azure Monitor APIs retrieve resource metric definitions, values, and manage Azure Monitor workspaces used for storing Prometheus metrics.
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Azure Monitor Workspaces](/rest/api/monitor/azure-monitor-workspaces) | Manage an Azure Monitor workspace and retrieve the Azure Monitor workspaces within a resource group or subscription. |
 | [Metric definitions](/rest/api/monitor/metric-definitions) | Lists the metric definitions available for the resource. That is, what [specific metrics](/azure/azure-monitor/reference/supported-metrics/metrics-index) can you collect. |
 | [Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../essentials/metrics-custom-overview.md). |
-| [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. |
+| [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. This requires the `https://<region>.metrics.monitor.azure.com` endpoint. |
 | [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
 
 ## Application Insights APIs
 
-Application Insights APIs include both control plane APIs for managing Application Insights resources and data plane APIs for querying telemetry data. See the [Application Insights section](/rest/api/application-insights/) of the Azure REST APIs documentation for the latest API versions.
+These Application Insights APIs include both control plane APIs for managing Application Insights resources and data plane APIs for querying telemetry data. See the [Application Insights section](/rest/api/application-insights/) of the Azure REST APIs documentation for the latest API versions.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -108,11 +110,15 @@ Application Insights APIs include both control plane APIs for managing Applicati
 
 ## Azure Monitor Logs APIs
 
-Azure Monitor Logs has three distinct API groups for ingestion, querying and management.
+These Azure Monitor Logs APIs have three distinct API groups for ingestion, querying and management.
 
 ### Logs ingestion
 
 This is the data plane API to ingest data to a Log Analytics workspace.
+
+API endpoint is either the data collection endpoint (DCE) or the DCR logs ingestion endpoint. For more information see [Logs ingestion API endpoints](../logs/logs-ingestion-api-overview.md#endpoint).
+
+Scope is `https://monitor.azure.com/.default`.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -122,6 +128,8 @@ This is the data plane API to ingest data to a Log Analytics workspace.
 
 These are data plane APIs for querying data in your Log Analytics workspaces.
 
+API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
+
 | Operation groups | Description |
 |------------------|-------------|
 | [Query](/rest/api/logsquery/query) | Query Log Analytics data using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
@@ -129,7 +137,9 @@ These are data plane APIs for querying data in your Log Analytics workspaces.
 
 ### Logs management
 
-These are the resource manager (control plane) APIs for managing Log Analytics workspaces and related resources. 
+These Azure Monitor Logs APIs are part of the Azure Resource Manager (ARM) control plane and allow you to create, update, delete, and retrieve Log Analytics workspaces and related resources such as clusters, data exports, and linked services.
+
+API endpoint is `management.azure.com`.
 
 | Operation groups | Description |
 |------------------|-------------|
