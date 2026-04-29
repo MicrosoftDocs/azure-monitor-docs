@@ -3,7 +3,7 @@ title: Get started with log queries in Azure Monitor Logs
 description: This article provides a tutorial for getting started writing log queries in Azure Monitor Logs.
 ms.topic: tutorial
 ms.reviewer: ilanawaitser
-ms.date: 01/08/2025
+ms.date: 04/29/2026
 
 ---
 
@@ -18,6 +18,8 @@ This article explains the fundamentals of using log queries in [Azure Monitor Lo
 * **Simple mode** provides a user-friendly interface where you select a table and apply filters to build queries.
 
     :::image type="content" source="media/get-started-queries/simple-mode-ribbon.png" alt-text="Screenshot shows the Simple mode ribbon.":::
+
+You can also use the [Observability Agent](../aiops/observability-agent-overview.md#chat-with-your-data) to explore your log data using natural language instead of writing queries.
 
 For a more detailed comparison between KQL mode and Simple mode, see [Overview of Log Analytics in Azure Monitor](log-analytics-overview.md).
 
