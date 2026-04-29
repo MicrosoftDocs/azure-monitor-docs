@@ -187,7 +187,7 @@ For manually orchestrated resources, construct the endpoint URLs:
 
     **Metrics endpoint:**
     ```
-    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-Otel/otlp/v1/metrics
+    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-OTEL/otlp/v1/metrics
     ```
     
     **Logs endpoint:**
