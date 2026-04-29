@@ -1,7 +1,7 @@
 ---
 title: Azure Monitor REST API index
 description: Lists the operation groups for the Azure Monitor REST API, which includes Application Insights, Log Analytics, and Monitor.
-ms.date: 12/11/2025
+ms.date: 04/29/2026
 ms.topic: reference
 ---
 
@@ -142,6 +142,6 @@ These are the control plane APIs for managing Log Analytics workspaces and relat
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](../alerts/alerts-classic.overview.md). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](../essentials/platform-logs-overview.md). |
+| [Alerts (classic) rule incidents](/rest/api/monitor/alert-rule-incidents) | [Retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Older classic alerts functions. Gets an incident associated to a [classic metric alert rule](../alerts/alerts-classic.overview.md). When an alert rule fires because the threshold is crossed in the up or down direction, an incident is created and an entry added to the [Activity Log](../essentials/platform-logs-overview.md). |
 | [Alert (classic) rules](/previous-versions/azure/azure-monitor/alerts/alerts-classic.overview) | [Being retired in 2019](/previous-versions/azure/azure-monitor/alerts/monitoring-classic-retirement) in the public cloud. Provides operations for managing [classic alert](../alerts/alerts-classic.overview.md) rules. |
 | [Data Collector](../logs/custom-logs-migrate.md) | Legacy HTTP Data Collector API reference and how to migrate to the Logs ingestion API. |
