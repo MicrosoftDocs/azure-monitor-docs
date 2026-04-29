@@ -86,7 +86,7 @@ Many architectures use both together. AMA handles per-resource collection for su
 
 Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
-| Supported Kubernetes distributions | 
+| Supported Kubernetes distributions | Supported regions |
 |:---|:---|
 | - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | 
 Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
