@@ -79,7 +79,7 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 | [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
 | [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
 
-## Application Insights
+## Application Insights APIs
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -92,17 +92,21 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 | [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint's availability and responsiveness. |
 | [Workbooks](/rest/api/application-insights/workbooks) | Manage Azure workbooks for an Application Insights component resource and retrieve workbooks within resource group or subscription by category. |
 
-## Azure Monitor Logs
+## Azure Monitor Logs APIs
 
 Azure Monitor Logs has three distinct API groups for ingestion, querying and management.
 
 ### Logs ingestion
+
+This is the data plane API to ingest data to a Log Analytics workspace.
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Upload](/rest/api/ingestion/upload) | Lets you send data to a Log Analytics workspace using either a [REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call) or [client libraries](../logs/logs-ingestion-api-overview.md#client-libraries). |
 
 ### Logs query
+
+These are data plane APIs for querying data in your Log Analytics workspaces.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -111,7 +115,7 @@ Azure Monitor Logs has three distinct API groups for ingestion, querying and man
 
 ### Logs management
 
-These are the control plane APIs for managing Log Analytics workspaces and related resources. 
+These are the resource manager (control plane) APIs for managing Log Analytics workspaces and related resources. 
 
 | Operation groups | Description |
 |------------------|-------------|
