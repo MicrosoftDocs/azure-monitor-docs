@@ -46,7 +46,7 @@ For information about using Azure Resource Graph queries to create reports on yo
 
 To help you stay ahead of potential disruptions, Azure categorizes Service Health events into six types. Each one indicates a different type of situation. Some event types are *actionable* (meaning that you need to do something) and others are purely *informational*.
 
-Here's a breakdown of each notification type, what it means, and how you can access and retain these updates.
+Here's a breakdown of each notification type, what it means, and how you can access and retain these updates:
 
 - **Action required**: Actionable
 
