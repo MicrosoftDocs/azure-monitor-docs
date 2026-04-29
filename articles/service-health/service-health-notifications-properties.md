@@ -22,7 +22,7 @@ For information on how long Service Health notifications stay active in the port
 
 After you sign in to Azure, access Service Health notifications in one of three ways:
 
-- **Azure portal via Service Health**: In the Azure portal, select **Service Health** to open a personalized dashboard that shows any active notifications for your subscriptions. The dashboard organizes the notifications into categories that correspond to the types of notifications, such as Incidents and Maintenance.
+- **Azure portal via Service Health**: In the Azure portal, select **Service Health** to open a personalized dashboard that shows any active notifications for your subscriptions. The dashboard organizes the notifications into categories that correspond to the types of notifications, such as incidents and maintenance.
 
    A **Health history** section shows information about past events. For example, active service outages are listed under **Incidents**, and planned maintenance is listed under **Maintenance**. From this interface, you can select a notification to read its details, including impact, status updates, and resolution.
 
@@ -34,7 +34,7 @@ After you sign in to Azure, access Service Health notifications in one of three 
 
   For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log).
 
-- **Alerts**: Within the Service Health portal pane, you can also set up activity log alerts to notify you when new Service Health events occur. Messages are delivered via email, short messaging service (SMS), or other actions. For instance, you might create an alert to get an email whenever there's a new Incident or a Security advisory. In this way, you don't have to constantly check the portal because Azure proactively sends you a notification through the channel that you selected.
+- **Alerts**: Within the Service Health portal pane, you can also set up activity log alerts to notify you when new Service Health events occur. Messages are delivered via email, short messaging service (SMS), or other actions. For instance, you might create an alert to get an email whenever there's a new incident or a security advisory. In this way, you don't have to constantly check the portal because Azure proactively sends you a notification through the channel that you selected.
 
    For more information on how to create alerts, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 
@@ -56,7 +56,7 @@ Here's a breakdown of each notification type, what it means, and how you can acc
 
 - **Incident**: Informational (urgent service issue)
  
-    This notification type represents a service outage or degradation (an unplanned event) that currently affects one or more of your Azure resources. Essentially, an Incident notification means that Azure is experiencing a problem (for example, a datacenter issue) that affects you. The notification describes the issue and keeps you updated on its status. Although Incidents are labeled informational, they're critical to know about. You usually don't fix them, but you might activate your contingency plans.<br>
+    This notification type represents a service outage or degradation (an unplanned event) that currently affects one or more of your Azure resources. Essentially, an **Incident** notification means that Azure is experiencing a problem (for example, a datacenter issue) that affects you. The notification describes the issue and keeps you updated on its status. Although **Incident** notifications are labeled informational, they're critical to know about. You usually don't fix them, but you might activate your contingency plans.<br>
 
    You typically see these notifications in the **Service issues** pane for active outages.
 
@@ -64,7 +64,7 @@ Here's a breakdown of each notification type, what it means, and how you can acc
 
     This notification type is for planned maintenance activities that might affect your resources. Azure uses these notifications to inform you of upcoming maintenance windows, such as infrastructure upgrades or patches that could cause a brief downtime or performance impact. The notification includes the schedule and scope of the maintenance so that you can prepare.<br>
 
-   Maintenance notifications appear in the **Planned maintenance** pane in the portal.
+   **Maintenance** notifications appear in the **Planned maintenance** pane in the portal.
 
 - **Information**: Informational (advisory)
 

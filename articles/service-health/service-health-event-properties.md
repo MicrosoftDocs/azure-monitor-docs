@@ -8,10 +8,10 @@ ms.date: 03/26/2026
 
 # Service Health notifications data properties
 
-Azure Service Health notifications include different data properties depending on the event type (such as Service Issue, Planned Maintenance, Security Advisory, or Health Advisory) and its incident type (the specific scenario within that event). There are two ways to check the metadata of Service Health:
+Azure Service Health notifications include different data properties depending on the event type (such as service issue, planned maintenance, security advisory, or health advisory) and its incident type (the specific scenario within that event). There are two ways to check the metadata of Service Health:
 
-- The activity log
-- Azure Resource Graph
+- Use the activity log.
+- Use Azure Resource Graph.
 
 Each type of notification serves a specific purpose and comes with its own metadata. This metadata helps you understand what's happening to your resources and what level of attention the issue requires. For example:
 
@@ -45,11 +45,11 @@ Use the *status* and *timestamps* to gauge whether the event is ongoing or resol
 
 For more information on how long service health notifications are available, see [Service Health data transition](service-health-notification-transitions.md). 
 -->
-The following table lists and describes some representative properties found in a Service health event in the activity log.
+The following table lists and describes some representative properties found in a service health event in the activity log.
 
 Key properties include:
 
-- **Type of Incident**: From `properties.incidentType`, examples are `Incident` or `Maintenance`.
+- **Type of incident**: From `properties.incidentType`, examples are `Incident` or `Maintenance`.
 - **Status**: Examples are `Active` or `Resolved`.
 - **Timestamps**: Examples are `properties.impactStartTime` and `properties.impactMitigationTime`.
 
@@ -91,7 +91,7 @@ The `properties.incidentType` field in Azure Service Health identifies the categ
 - *Security*
 - *Informational*
 
-Each type signals a different scenario, for example, *Incident* means an unplanned outage or degradation, while *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes needing your intervention.
+Each type signals a different scenario, for example, *Incident* means an unplanned outage or degradation, *Maintenance* indicates scheduled work, and *ActionRequired* alerts you to changes that need your intervention.
 
 You can use this property to filter and prioritize notifications in the Azure portal, Resource Graph queries, or alert rules. For instance, you might configure alerts only for Incident and Security types to focus on critical issues, or query Maintenance events to plan for downtime. This information helps automate monitoring and ensures timely responses to events that matter most.
 
