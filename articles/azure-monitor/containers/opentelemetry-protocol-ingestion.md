@@ -162,7 +162,7 @@ The identity your collector uses needs permission to write data to your DCR:
 
 If you created your resources by using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
 
-You can optionally change the stream name in the Data Collection Rule (DCR) definition, but the stream name used in the DCR must exactly match the stream name used when constructing the Data Collection Endpoint (DCE) URL. The stream name must start with `Custom-Metrics-`, followed by a letter, and then any combination of alphanumeric characters, hyphens (`-`), or underscores (`_`). If you change the stream name, you must update all references to the stream name in the DCR template and ensure the DCE URL uses the same value.
+You can optionally change the stream name in the Data Collection Rule (DCR) definition, but the stream name used in the DCR must exactly match the stream name used when constructing the Data Collection Endpoint (DCE) URL, and this match is case-sensitive. The stream name must start with `Custom-Metrics-`, followed by a letter, and then any combination of alphanumeric characters, hyphens (`-`), or underscores (`_`). If you change the stream name, you must update all references to the stream name in the DCR template and ensure the DCE URL uses the same value.
 
 For manually orchestrated resources, construct the endpoint URLs:
 
@@ -187,7 +187,7 @@ For manually orchestrated resources, construct the endpoint URLs:
 
     **Metrics endpoint:**
     ```
-    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-OTel/otlp/v1/metrics
+    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-Otel/otlp/v1/metrics
     ```
     
     **Logs endpoint:**
