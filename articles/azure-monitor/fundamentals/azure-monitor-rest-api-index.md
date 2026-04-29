@@ -7,18 +7,22 @@ ms.topic: reference
 
 # Azure Monitor REST API index
 
+Azure Monitor has a wide assortment of APIs. This index separates them into three primary sections, Azure Monitor, Application Insights, and Azure Monitor Logs.
+
 > [!NOTE]
-> This page lists APIs for native Azure Monitor features, including *Managed Prometheus*. Other managed services, such as *Azure Managed Grafana* and *Azure Monitor SCOM Managed Instance*, use their own REST APIs and aren't included in this index.
+> The Azure Monitor section does include the managed service *Managed Prometheus*, but other managed services such as *Azure Managed Grafana* and *Azure Monitor SCOM Managed Instance* use their own REST APIs and aren't included in this index.
 >
 > For more information, see [Azure Managed Grafana REST API Reference](/rest/api/managed-grafana/) and [System Center Operations Manager REST API Reference](/rest/operationsmanager/).
-
-Organized by subject area.
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Operations](/rest/api/monitor/) | Lists the available REST API operations for Azure Monitor. |
 
-## Activity Log
+## Azure Monitor APIs
+
+The following APIs are resource management APIs for various Azure Monitor features.
+
+### Activity Log
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -27,7 +31,7 @@ Organized by subject area.
 | [Activity log profiles](/rest/api/monitor/log-profiles) | Operations to manage [activity log profiles](../essentials/platform-logs-overview.md) so you can route activity log events to other locations. |
 | [Activity log tenant events](/rest/api/monitor/tenant-activity-logs) | Gets the [Activity Log](../essentials/platform-logs-overview.md) event entries for a specific tenant. |
 
-## Alerts Management and Action Groups
+### Alerts Management and Action Groups
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -44,6 +48,44 @@ Organized by subject area.
 | [Scheduled query rules - 2021-08-01](/rest/api/monitor/scheduled-query-rules?view=rest-monitor-2021-08-01&preserve-view=true) | Manages and lists [log search alert rules](../alerts/alerts-types.md#log-alerts). |
 | Smart Detector alert rules | Manages and lists [smart detection alert rules](../alerts/alerts-types.md#smart-detection-alerts). |
 
+### Autoscale
+
+| Operation groups | Description |
+|------------------|-------------|
+| [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
+| [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
+
+### Data Collection Endpoints
+
+| [Data collection endpoints](/rest/api/monitor/data-collection-endpoints) | Create and manage a data collection endpoint and retrieve the data collection endpoints within a resource group or subscription. |
+
+### Data Collection Rules
+
+| Operation groups | Description |
+|------------------|-------------|
+| [Data collection rule associations](/rest/api/monitor/data-collection-rule-associations) | Create and manage a data collection rule association and retrieve the data collection rule associations for a data collection endpoint, resource, or data collection rule. |
+| [Data collection rules](/rest/api/monitor/data-collection-rules) | Create and manage a data collection rule and retrieve the data collection rules within a resource group or subscription. |
+
+### Diagnostic Settings
+
+| Operation groups | Description |
+|------------------|-------------|
+| [Diagnostic settings](/rest/api/monitor/diagnostic-settings) | Operations to create, update, and retrieve the [diagnostic settings](../essentials/platform-logs-overview.md) for a resource. Controls the routing of metric data and diagnostic logs. |
+| [Diagnostic settings category](/rest/api/monitor/diagnostic-settings-category) | Relates to the [possible categories](../essentials/resource-logs-schema.md) for a given resource. |
+| [Management group diagnostic settings](/rest/api/monitor/management-group-diagnostic-settings) | Manage the management group diagnostic settings for a resource and retrieve the management group diagnostic settings list for a management group. |
+| [Subscription diagnostic settings](/rest/api/monitor/subscription-diagnostic-settings) | Manage the subscription diagnostic settings for a resource and retrieve the subscription diagnostic settings list for a subscriptionId. |
+
+### Metrics
+
+| Operation groups | Description |
+|------------------|-------------|
+| [Azure Monitor Workspaces](/rest/api/monitor/azure-monitor-workspaces) | Manage an Azure Monitor workspace and retrieve the Azure Monitor workspaces within a resource group or subscription. |
+| [Metric definitions](/rest/api/monitor/metric-definitions) | Lists the metric definitions available for the resource. That is, what [specific metrics](/azure/azure-monitor/reference/supported-metrics/metrics-index) can you collect. |
+| [Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../essentials/metrics-custom-overview.md). |
+| [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. |
+| [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
+| [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
+
 ## Application Insights
 
 | Operation groups | Description |
@@ -57,46 +99,23 @@ Organized by subject area.
 | [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint's availability and responsiveness. |
 | [Workbooks](/rest/api/application-insights/workbooks) | Manage Azure workbooks for an Application Insights component resource and retrieve workbooks within resource group or subscription by category. |
 
-## Autoscale Settings
+## Azure Monitor Logs
 
-| Operation groups | Description |
-|------------------|-------------|
-| [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
-| [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
+Azure Monitor Logs has three distinct API groups for ingestion, querying and management.
 
-## Data Collection Endpoints
-
-| [Data collection endpoints](/rest/api/monitor/data-collection-endpoints) | Create and manage a data collection endpoint and retrieve the data collection endpoints within a resource group or subscription. |
-
-## Data Collection Rules
-
-| Operation groups | Description |
-|------------------|-------------|
-| [Data collection rule associations](/rest/api/monitor/data-collection-rule-associations) | Create and manage a data collection rule association and retrieve the data collection rule associations for a data collection endpoint, resource, or data collection rule. |
-| [Data collection rules](/rest/api/monitor/data-collection-rules) | Create and manage a data collection rule and retrieve the data collection rules within a resource group or subscription. |
-
-## Diagnostic Settings
-
-| Operation groups | Description |
-|------------------|-------------|
-| [Diagnostic settings](/rest/api/monitor/diagnostic-settings) | Operations to create, update, and retrieve the [diagnostic settings](../essentials/platform-logs-overview.md) for a resource. Controls the routing of metric data and diagnostic logs. |
-| [Diagnostic settings category](/rest/api/monitor/diagnostic-settings-category) | Relates to the [possible categories](../essentials/resource-logs-schema.md) for a given resource. |
-| [Management group diagnostic settings](/rest/api/monitor/management-group-diagnostic-settings) | Manage the management group diagnostic settings for a resource and retrieve the management group diagnostic settings list for a management group. |
-| [Subscription diagnostic settings](/rest/api/monitor/subscription-diagnostic-settings) | Manage the subscription diagnostic settings for a resource and retrieve the subscription diagnostic settings list for a subscriptionId. |
-
-## Logs Ingestion API
+### Logs ingestion API
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Logs Ingestion](../logs/logs-ingestion-api-overview.md) | Lets you send data to a Log Analytics workspace using either a [REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call) or [client libraries](../logs/logs-ingestion-api-overview.md#client-libraries). |
 
-## Logs query API
+### Logs query API
 
 | Operation groups | Description |
 |------------------|-------------|
 | [Data Access](../logs/api/overview.md) | Query Log Analytics data. |
 
-## Manage Log Analytics workspaces and related resources
+### Logs management API
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -125,17 +144,6 @@ Organized by subject area.
 | Workspace shared keys | Retrieve or regenerate the shared keys for a Log Analytics workspace. |
 | Workspace usages | Retrieve the usage metrics for a Log Analytics workspace. |
 | [Workspaces](/rest/api/loganalytics/workspaces) | Manage Log Analytics workspaces. |
-
-## Metrics
-
-| Operation groups | Description |
-|------------------|-------------|
-| [Azure Monitor Workspaces](/rest/api/monitor/azure-monitor-workspaces) | Manage an Azure Monitor workspace and retrieve the Azure Monitor workspaces within a resource group or subscription. |
-| [Metric definitions](/rest/api/monitor/metric-definitions) | Lists the metric definitions available for the resource. That is, what [specific metrics](/azure/azure-monitor/reference/supported-metrics/metrics-index) can you collect. |
-| [Metric namespaces](/rest/api/monitor/metric-namespaces) | Lists the metric namespaces. Most relevant when using [custom metrics](../essentials/metrics-custom-overview.md). |
-| [Metrics Batch](/rest/api/monitor/metrics-batch) | List the metric values for multiple resources. |
-| [Metrics](/rest/api/monitor/metrics) | Lists the metric values for a resource you identify. |
-| [Metrics – Custom](/rest/api/monitor/metrics-custom) | Post the metric values for a resource. |
 
 ## Retired or being retired
 
