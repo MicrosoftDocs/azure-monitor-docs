@@ -92,6 +92,9 @@ You can control when the rule applies. The rule is always active, by default. Yo
 
 ## Configure an alert processing rule
 
+> [!NOTE]
+> After you create or update an alert processing rule, it can take up to 30 minutes for the rule to take effect and start processing newly fired alerts. Alerts that fire during this propagation period might not be affected by the rule.
+
 ### [Portal](#tab/portal)
 
 You can access alert processing rules by going to the **Alerts** home page in Azure Monitor. Then you can select **Alert processing rules** to see and manage your existing rules. You can also select **Create** > **Alert processing rules** to open the new alert processing rule wizard.
