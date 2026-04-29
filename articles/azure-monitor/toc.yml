@@ -599,6 +599,8 @@ items:
       href: scom-manage-instance/migration-faq-scom-manage-instance.yml
   - name: Monitoring coverage
     href: fundamentals/monitoring-coverage.md
+  - name: Service level indicators
+    href: fundamentals/service-level-indicators-create.md
   - name: Multicloud monitoring
     href: fundamentals/best-practices-multicloud.md
   - name: Enterprise architecture
