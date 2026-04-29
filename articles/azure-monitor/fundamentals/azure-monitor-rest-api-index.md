@@ -20,6 +20,8 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 
 ### Activity Log
 
+Retrieve and manage activity logs.
+
 | Operation groups | Description |
 |------------------|-------------|
 | [Activity log(s)](/rest/api/monitor/activity-logs) | Get a list of event entries in the [activity log](../essentials/platform-logs-overview.md). |
@@ -28,6 +30,8 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 | [Activity log tenant events](/rest/api/monitor/tenant-activity-logs) | Gets the [Activity Log](../essentials/platform-logs-overview.md) event entries for a specific tenant. |
 
 ### Alerts Management and Action Groups
+
+Create and manage alert rules, action groups, and alert processing rules.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -46,12 +50,16 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 
 ### Autoscale
 
+Manage autoscale settings and retrieve predictive metric data.
+
 | Operation groups | Description |
 |------------------|-------------|
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
 | [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
 
 ### Data Collection
+
+Manage data collection rules, data collection endpoints, and their associations.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -61,6 +69,8 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 
 ### Diagnostic Settings
 
+Manage diagnostic settings that control routing of metric data and diagnostic logs.
+
 | Operation groups | Description |
 |------------------|-------------|
 | [Diagnostic settings](/rest/api/monitor/diagnostic-settings) | Operations to create, update, and retrieve the [diagnostic settings](../essentials/platform-logs-overview.md) for a resource. Controls the routing of metric data and diagnostic logs. |
@@ -69,6 +79,8 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 | [Subscription diagnostic settings](/rest/api/monitor/subscription-diagnostic-settings) | Manage the subscription diagnostic settings for a resource and retrieve the subscription diagnostic settings list for a subscriptionId. |
 
 ### Metrics
+
+Retrieve metric definitions, values, and manage Azure Monitor workspaces.
 
 | Operation groups | Description |
 |------------------|-------------|
@@ -81,12 +93,14 @@ The following APIs are resource manager (control plane) APIs for various Azure M
 
 ## Application Insights APIs
 
+Application Insights APIs include both control plane APIs for managing Application Insights resources and data plane APIs for querying telemetry data. See the [Application Insights section](/rest/api/application-insights/) of the Azure REST APIs documentation for the latest API versions.
+
 | Operation groups | Description |
 |------------------|-------------|
 | [Components](/rest/api/application-insights/components) | Enables you to manage components that contain Application Insights data. |
 | [Data Access](../logs/api/overview.md) | Query Application Insights data. |
-| [Events](/rest/api/application-insights/events) | Retrieve the data for a single event or multiple events by event type and retrieve the Odata EDMX metadata for an application. |
-| [Metadata](/rest/api/application-insights/metadata) | Retrieve and export the metadata information for an application. |
+| [Events](/rest/api/application-insights/events) | Retrieve the data for a single event or multiple events by event type and retrieve the OData EDMX metadata for an application. |
+| [Metadata](/rest/api/application-insights/metadata) | Retrieve and export metadata information for an Application Insights application. |
 | [Metrics](/rest/api/application-insights/metrics) | Retrieve or export the metric data for an application and retrieve the metadata describing the available metrics for an application. |
 | [Query](/rest/api/application-insights/query) | The Query operation group, which includes Execute and Get operations, enables running analytics queries on resources and retrieving the results, even for large data sets that require extended processing time. |
 | [Web Tests](/rest/api/application-insights/web-tests) | Set up web tests to monitor a web endpoint's availability and responsiveness. |
@@ -111,7 +125,7 @@ These are data plane APIs for querying data in your Log Analytics workspaces.
 | Operation groups | Description |
 |------------------|-------------|
 | [Query](/rest/api/logsquery/query) | Query Log Analytics data using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
-| [Metadata](/rest/api/logsquery/metadata) | Retrieve the metadata information for a Log Analytics workspace. |
+| [Metadata](/rest/api/logsquery/metadata) | Retrieve metadata information for a Log Analytics workspace, including table schemas and functions. |
 
 ### Logs management
 
@@ -129,7 +143,7 @@ These are the resource manager (control plane) APIs for managing Log Analytics w
 | [Linked Services](/rest/api/loganalytics/linked-services) | Create or update linked services. |
 | [Linked Storage Accounts](/rest/api/loganalytics/linked-storage-accounts) | Manage a link relation between a workspace and storage accounts and retrieve all linked storage accounts associated with a workspace. |
 | [Management Groups](/rest/api/loganalytics/management-groups) | Retrieve all management groups connected to a Log Analytics workspace. |
-| [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running azure asynchronous operation. |
+| [Operation Statuses](/rest/api/loganalytics/operation-statuses) | Retrieve the status of a long running asynchronous operation. |
 | [Operations](/rest/api/loganalytics/operations) | Retrieve all of the available OperationalInsights Rest API operations. |
 | [Query pack queries](/rest/api/monitor/query-pack-queries) | Manage a query defined within a Log Analytics QueryPack and retrieve or search the list of queries defined within a Log Analytics QueryPack. |
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
@@ -142,7 +156,9 @@ These are the resource manager (control plane) APIs for managing Log Analytics w
 | [Workspace usages](/rest/api/loganalytics/usages) | Retrieve the usage metrics for a Log Analytics workspace. |
 | [Workspaces](/rest/api/loganalytics/workspaces) | Manage Log Analytics workspaces. |
 
-## Retired or being retired
+## Retired and deprecated APIs
+
+The following APIs have been retired or are scheduled for retirement. They're listed here for reference. See the linked documentation for migration guidance.
 
 | Operation groups | Description |
 |------------------|-------------|
