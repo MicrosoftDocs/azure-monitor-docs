@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for request for access events in Databricks.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for request for access events in Databricks.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksrfa](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksrfa-include.md)]

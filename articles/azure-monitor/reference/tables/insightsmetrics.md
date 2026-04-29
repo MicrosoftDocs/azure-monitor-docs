@@ -11,8 +11,7 @@ ms.date: 03/11/2026
 
 # InsightsMetrics
 
-Table that stores metrics. 'Perf' table also stores many metrics and over time they all will converge to InsightsMetrics for Azure Monitor Solutions 
-
+Table that stores metrics. 'Perf' table also stores many metrics and over time they all will converge to InsightsMetrics for Azure Monitor Solutions
 
 ## Table attributes
 
@@ -26,8 +25,6 @@ Table that stores metrics. 'Perf' table also stores many metrics and over time t
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/insightsmetrics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [insightsmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/insightsmetrics-include.md)]

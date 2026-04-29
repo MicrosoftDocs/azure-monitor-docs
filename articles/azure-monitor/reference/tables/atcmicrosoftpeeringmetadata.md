@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table has Microsoft Peering public IP metadata.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table has Microsoft Peering public IP metadata.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [atcmicrosoftpeeringmetadata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/atcmicrosoftpeeringmetadata-include.md)]

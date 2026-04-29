@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Office 365 attached emails information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Office 365 attached emails information.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/emailattachmentinfo)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [emailattachmentinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/emailattachmentinfo-include.md)]

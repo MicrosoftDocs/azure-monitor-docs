@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Data Share consumer side synchronization logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Data Share consumer side synchronization logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/microsoftdatasharereceivedsnapshotlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftdatasharereceivedsnapshotlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftdatasharereceivedsnapshotlog-include.md)]

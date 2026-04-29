@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Email Communication Services logs for send operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Email Communication Services logs for send operations.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acsemailsendmailoperational)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acsemailsendmailoperational](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acsemailsendmailoperational-include.md)]

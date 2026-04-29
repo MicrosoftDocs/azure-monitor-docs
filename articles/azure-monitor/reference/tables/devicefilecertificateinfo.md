@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Certificate information of signed files obtained from certificate verification events on endpoints.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Certificate information of signed files obtained from certificate verification e
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicefilecertificateinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicefilecertificateinfo-include.md)]

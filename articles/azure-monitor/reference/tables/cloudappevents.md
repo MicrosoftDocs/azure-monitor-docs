@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about activities in various cloud apps and services covered by Microsoft Cloud App Security.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about activities in various cloud apps and services covered by Micro
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/cloudappevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cloudappevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudappevents-include.md)]

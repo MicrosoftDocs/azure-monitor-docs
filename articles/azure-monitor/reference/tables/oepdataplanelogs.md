@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains logs for HTTP requests & responses for the Indexer Service API, in OSDU Data Platform, and Microsoft Energy Data Services. The Indexer service, indexes the metadata store to support search. The indexer service will automatically take items that are newly added to storage and index the attributes from the schema associated with the kind attribute.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains logs for HTTP requests & responses for the Indexer Service API, in OSDU
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/oepdataplanelogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oepdataplanelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oepdataplanelogs-include.md)]

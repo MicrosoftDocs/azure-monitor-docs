@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.EventGrid/namespaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.EventGrid/namespaces  
+# Supported logs for Microsoft.EventGrid/namespaces
 The following table lists the types of logs available for the Microsoft.EventGrid/namespaces resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/namespaces](../supported-metrics/microsoft-eventgrid-namespaces-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.EventGrid/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-eventgrid-namespaces-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/namespaces](../supported-metrics/microsoft-eventgrid-namespaces-metrics.md)
+
+[!INCLUDE [Microsoft.EventGrid/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-eventgrid-namespaces-logs-include.md)]
 
 ## Next Steps
 

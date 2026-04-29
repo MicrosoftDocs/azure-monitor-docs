@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated when app service content is modified.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated when app service content is modified.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appservicefileauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appservicefileauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appservicefileauditlogs-include.md)]

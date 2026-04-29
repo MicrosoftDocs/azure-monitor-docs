@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/28/2025
 ms.custom: Microsoft.Network/natgateways, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Network/natgateways  
+# Supported logs for Microsoft.Network/natgateways
 The following table lists the types of logs available for the Microsoft.Network/natgateways resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/natgateways](../supported-metrics/microsoft-network-natgateways-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/natgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-natgateways-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/natgateways](../supported-metrics/microsoft-network-natgateways-metrics.md)
+
+[!INCLUDE [Microsoft.Network/natgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-natgateways-logs-include.md)]
 
 ## Next Steps
 

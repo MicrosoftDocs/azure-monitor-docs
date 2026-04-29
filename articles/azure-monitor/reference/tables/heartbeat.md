@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Records logged by Log Analytics agents once per minute to report on agent health.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Records logged by Log Analytics agents once per minute to report on agent health
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/heartbeat)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [heartbeat](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/heartbeat-include.md)]

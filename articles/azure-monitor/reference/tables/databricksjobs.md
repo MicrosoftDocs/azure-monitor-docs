@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Databricks Jobs audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks Jobs audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksjobs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksjobs-include.md)]

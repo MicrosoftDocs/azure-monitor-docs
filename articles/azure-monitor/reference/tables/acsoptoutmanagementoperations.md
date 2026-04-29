@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Communication Services logs of opt-out operations independently from other SMS services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Communication Services logs of opt-out operations independently from other SMS s
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acsoptoutmanagementoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acsoptoutmanagementoperations-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel normalized alert events table. Stores events associated with security events and alerts, ensuring consistent and efficient analysis across different data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel normalized alert events table. Stores events associated with 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asimalerteventlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimalerteventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimalerteventlogs-include.md)]

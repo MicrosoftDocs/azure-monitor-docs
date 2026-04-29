@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 01/20/2026
 ms.custom: Microsoft.ZeroTrustSegmentation/segmentationManagers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ZeroTrustSegmentation/segmentationManagers  
+# Supported logs for Microsoft.ZeroTrustSegmentation/segmentationManagers
 The following table lists the types of logs available for the Microsoft.ZeroTrustSegmentation/segmentationManagers resource type.
-  
 
-  
-[!INCLUDE [Microsoft.ZeroTrustSegmentation/segmentationManagers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.ZeroTrustSegmentation/segmentationManagers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs-include.md)]
 
 ## Next Steps
 

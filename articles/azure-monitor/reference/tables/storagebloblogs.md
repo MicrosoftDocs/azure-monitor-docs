@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Storage Blob Service Logs Schema
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Storage Blob Service Logs Schema
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/storagebloblogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagebloblogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagebloblogs-include.md)]

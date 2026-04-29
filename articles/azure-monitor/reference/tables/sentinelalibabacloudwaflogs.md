@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Alibaba Cloud WAF Logs data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Alibaba Cloud WAF Logs data.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelalibabacloudwaflogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelalibabacloudwaflogs-include.md)]

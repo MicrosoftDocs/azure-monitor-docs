@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs related to User Defined Functions and User Defined Endpoints.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs related to User Defined Functions and User Defined Endpoints.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acluserdefinedlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acluserdefinedlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acluserdefinedlogs-include.md)]

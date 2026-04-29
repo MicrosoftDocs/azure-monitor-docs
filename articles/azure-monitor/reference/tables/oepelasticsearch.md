@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostic logs for Elasticsearch cluster. It could be slow logs, server logs or deprecation logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostic logs for Elasticsearch cluster. It could be slow logs, server logs or
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oepelasticsearch](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oepelasticsearch-include.md)]

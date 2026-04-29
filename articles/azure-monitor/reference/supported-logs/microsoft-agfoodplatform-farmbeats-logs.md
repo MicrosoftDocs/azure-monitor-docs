@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.AgFoodPlatform/farmBeats, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.AgFoodPlatform/farmBeats  
+# Supported logs for Microsoft.AgFoodPlatform/farmBeats
 The following table lists the types of logs available for the Microsoft.AgFoodPlatform/farmBeats resource type.
-  
 
-  
-[!INCLUDE [Microsoft.AgFoodPlatform/farmBeats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-agfoodplatform-farmbeats-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.AgFoodPlatform/farmBeats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-agfoodplatform-farmbeats-logs-include.md)]
 
 ## Next Steps
 

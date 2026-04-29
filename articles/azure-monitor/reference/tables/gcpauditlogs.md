@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform (GCP) audit logs, ingested from Sentinel's connector, enable you to capture three types of audit logs: admin activity logs, data access logs, and access transparency logs. Google cloud audit Logs record a trail that practitioners can use to monitor access and detect potential threats across Google Cloud Platform (GCP) resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform (GCP) audit logs, ingested from Sentinel's connector, 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/gcpauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpauditlogs-include.md)]

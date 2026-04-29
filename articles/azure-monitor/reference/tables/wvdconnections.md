@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop Connection Activity.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop Connection Activity.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wvdconnections)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdconnections](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdconnections-include.md)]

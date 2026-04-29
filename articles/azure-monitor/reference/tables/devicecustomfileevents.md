@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Microsoft Defender for Endpoints (MDE) file events table for the Custom Collection scenario. This table contains file creation, modification, and other file system events for anything explicitly requested by the customer for collection.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) file events table for the Custom Collecti
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicecustomfileevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicecustomfileevents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Data Explorer table usage statistics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Data Explorer table usage statistics.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adxtableusagestatistics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adxtableusagestatistics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adxtableusagestatistics-include.md)]

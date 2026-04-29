@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from attestation requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from attestation requests.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azureattestationdiagnostics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azureattestationdiagnostics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azureattestationdiagnostics-include.md)]

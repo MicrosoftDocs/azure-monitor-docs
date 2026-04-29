@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 JMX metrics from HBase clusters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ JMX metrics from HBase clusters.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthbasemetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthbasemetrics-include.md)]

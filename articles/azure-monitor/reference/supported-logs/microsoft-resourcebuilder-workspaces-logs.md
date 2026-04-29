@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Microsoft.ResourceBuilder/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ResourceBuilder/workspaces  
+# Supported logs for Microsoft.ResourceBuilder/workspaces
 The following table lists the types of logs available for the Microsoft.ResourceBuilder/workspaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.ResourceBuilder/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-resourcebuilder-workspaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.ResourceBuilder/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-resourcebuilder-workspaces-logs-include.md)]
 
 ## Next Steps
 

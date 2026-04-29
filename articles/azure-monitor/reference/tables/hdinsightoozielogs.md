@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All logs from Oozie component.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All logs from Oozie component.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightoozielogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightoozielogs-include.md)]

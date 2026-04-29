@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform (GCP) GCPLoadBalancer logs, enable you to capture network inbound activity from the load balancer and Web Application Firewall (WAF) to monitor access and detect potential threats across Google Cloud Platform (GCP) resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform (GCP) GCPLoadBalancer logs, enable you to capture netw
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcploadbalancer](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcploadbalancer-include.md)]

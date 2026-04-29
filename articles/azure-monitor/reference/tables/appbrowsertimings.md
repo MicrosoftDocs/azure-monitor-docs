@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights browser timings.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights browser timings.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appbrowsertimings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appbrowsertimings-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Provides information about jobs executions (e.g. Export Job) within Log Analytics workspace. Including job status, duration, and errors.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Provides information about jobs executions (e.g. Export Job) within Log Analytic
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/lajoblogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [lajoblogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/lajoblogs-include.md)]

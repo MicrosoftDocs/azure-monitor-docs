@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated through your application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated through your application.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appserviceapplogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceapplogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceapplogs-include.md)]

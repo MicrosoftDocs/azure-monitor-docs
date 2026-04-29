@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 03/31/2026
 ms.custom: Microsoft.DBforPostgreSQL/servers, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.DBforPostgreSQL/servers  
+# Supported logs for Microsoft.DBforPostgreSQL/servers
 The following table lists the types of logs available for the Microsoft.DBforPostgreSQL/servers resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.DBforPostgreSQL/servers](../supported-metrics/microsoft-dbforpostgresql-servers-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.DBforPostgreSQL/servers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbforpostgresql-servers-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.DBforPostgreSQL/servers](../supported-metrics/microsoft-dbforpostgresql-servers-metrics.md)
+
+[!INCLUDE [Microsoft.DBforPostgreSQL/servers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbforpostgresql-servers-logs-include.md)]
 
 ## Next Steps
 

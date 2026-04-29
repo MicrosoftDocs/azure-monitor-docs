@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details all control plane operations executed on the account, which include modifications to the regional failover policy, indexing policy, IAM role assignments, backup/restore policies, VNet and firewall rules, private links as well as updates and deletes of the account.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details all control plane operations executed on the account, which i
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbcontrolplanerequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbcontrolplanerequests-include.md)]

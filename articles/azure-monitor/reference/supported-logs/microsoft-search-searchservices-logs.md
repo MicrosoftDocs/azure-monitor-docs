@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Search/searchServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Search/searchServices  
+# Supported logs for Microsoft.Search/searchServices
 The following table lists the types of logs available for the Microsoft.Search/searchServices resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Search/searchServices](../supported-metrics/microsoft-search-searchservices-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Search/searchServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-search-searchservices-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Search/searchServices](../supported-metrics/microsoft-search-searchservices-metrics.md)
+
+[!INCLUDE [Microsoft.Search/searchServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-search-searchservices-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Rapid7InsightVMCloudAssets table contains asset information from Rapid7 InsightVM Cloud.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Rapid7InsightVMCloudAssets table contains asset information from Rapid7 InsightV
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/rapid7insightvmcloudassets)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [rapid7insightvmcloudassets](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/rapid7insightvmcloudassets-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Kubernetes persistent volumes and their properties.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Kubernetes persistent volumes and their properties.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [kubepvinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/kubepvinventory-include.md)]

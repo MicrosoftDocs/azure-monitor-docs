@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SCOPE job state change event.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SCOPE job state change event.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsescopepoolscopejobsstatechange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsescopepoolscopejobsstatechange-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains details of Azure Site Recovery (ASR) replicated items, such as associated vault, policy, replication health, failover readiness. etc. Data is pushed once a day to this table for all replicated items, to provide the latest information for each item.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains details of Azure Site Recovery (ASR) replicated items, such 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asrreplicateditems)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asrreplicateditems](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrreplicateditems-include.md)]

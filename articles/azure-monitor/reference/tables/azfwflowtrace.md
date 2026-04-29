@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Flow logs across Azure Firewall instances. Log contains flow information, flags and the time period when the flows were recorded. Please follow the documentation to enable flow trace logging and details on how it is recorded.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Flow logs across Azure Firewall instances. Log contains flow information, flags 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwflowtrace)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwflowtrace](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwflowtrace-include.md)]

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Cdn/cdnwebapplicationfirewallpolicies, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Cdn/cdnwebapplicationfirewallpolicies  
+# Supported logs for Microsoft.Cdn/cdnwebapplicationfirewallpolicies
 The following table lists the types of logs available for the Microsoft.Cdn/cdnwebapplicationfirewallpolicies resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/cdnwebapplicationfirewallpolicies](../supported-metrics/microsoft-cdn-cdnwebapplicationfirewallpolicies-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Cdn/cdnwebapplicationfirewallpolicies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-cdnwebapplicationfirewallpolicies-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/cdnwebapplicationfirewallpolicies](../supported-metrics/microsoft-cdn-cdnwebapplicationfirewallpolicies-metrics.md)
+
+[!INCLUDE [Microsoft.Cdn/cdnwebapplicationfirewallpolicies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-cdnwebapplicationfirewallpolicies-logs-include.md)]
 
 ## Next Steps
 

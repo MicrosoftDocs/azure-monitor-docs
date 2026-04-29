@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Containerized application logs from Nexus clusters to gain insight onto the container orchestration platform.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Containerized application logs from Nexus clusters to gain insight onto the cont
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncckuberneteslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncckuberneteslogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Query Store runtime statistics related to query execution information of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Query Store runtime statistics related to query execution information of an Azur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlquerystoreruntime)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlquerystoreruntime](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlquerystoreruntime-include.md)]

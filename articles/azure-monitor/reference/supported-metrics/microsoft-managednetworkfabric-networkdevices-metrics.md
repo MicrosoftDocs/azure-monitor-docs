@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.ManagedNetworkFabric/networkDevices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.ManagedNetworkFabric/networkDevices
-  
-The following table lists the metrics available for the Microsoft.ManagedNetworkFabric/networkDevices resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.ManagedNetworkFabric/networkDevices](../supported-logs/microsoft-managednetworkfabric-networkdevices-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.ManagedNetworkFabric/networkDevices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-managednetworkfabric-networkdevices-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.ManagedNetworkFabric/networkDevices resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.ManagedNetworkFabric/networkDevices](../supported-logs/microsoft-managednetworkfabric-networkdevices-logs.md)
+
+[!INCLUDE [Microsoft.ManagedNetworkFabric/networkDevices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-managednetworkfabric-networkdevices-metrics-include.md)]
 
 ## Next steps
 

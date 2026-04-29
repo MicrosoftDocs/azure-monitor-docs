@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Cluster Manager logs to track the deployment or upgrade of Nexus cluster.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Cluster Manager logs to track the deployment or upgrade of Nexus cluster.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncmclusteroperationslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncmclusteroperationslogs-include.md)]

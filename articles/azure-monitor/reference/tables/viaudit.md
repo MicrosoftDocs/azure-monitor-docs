@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs from Video Indexer.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs from Video Indexer.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/viaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [viaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/viaudit-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Metric data emitted by Azure services that measure their health and performance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Metric data emitted by Azure services that measure their health and performance.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azuremetrics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azuremetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuremetrics-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AWS Platform Firewall TLS logs, ingested from Sentinel's connector, enabling real-time analysis and correlation with other security data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The AWS Platform Firewall TLS logs, ingested from Sentinel's connector, enabling
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsnetworkfirewalltls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewalltls-include.md)]

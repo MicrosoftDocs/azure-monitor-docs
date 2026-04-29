@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Ingestion logs for Microsoft Planetary Computer Pro.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Ingestion logs for Microsoft Planetary Computer Pro.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mpcingestionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mpcingestionlogs-include.md)]

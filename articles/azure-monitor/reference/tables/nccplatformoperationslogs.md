@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from the Nexus undercloud platform to gain insight onto the container orchestration platform.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from the Nexus undercloud platform to gain insight onto the container orche
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nccplatformoperationslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nccplatformoperationslogs-include.md)]

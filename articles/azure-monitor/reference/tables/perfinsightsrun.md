@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains information about PerfInsights runs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains information about PerfInsights runs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [perfinsightsrun](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perfinsightsrun-include.md)]

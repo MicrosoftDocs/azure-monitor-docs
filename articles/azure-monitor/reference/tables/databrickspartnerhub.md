@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Audit logs for Databricks partner hub service.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks partner hub service.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickspartnerhub](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickspartnerhub-include.md)]

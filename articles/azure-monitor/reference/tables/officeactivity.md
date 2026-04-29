@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Office 365 tenants collected by Azure Sentinel. Including Exchange, SharePoint and Teams logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Office 365 tenants collected by Azure Sentinel. Including Exchang
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/officeactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [officeactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/officeactivity-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Threat Intelligence table that contains STIX indicators.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Threat Intelligence table that contains STIX indicators.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [threatintelindicators](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/threatintelindicators-include.md)]

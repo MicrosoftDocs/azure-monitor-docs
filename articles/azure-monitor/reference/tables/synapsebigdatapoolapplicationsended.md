@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about ended Apache Spark applications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about ended Apache Spark applications.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsebigdatapoolapplicationsended](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsebigdatapoolapplicationsended-include.md)]

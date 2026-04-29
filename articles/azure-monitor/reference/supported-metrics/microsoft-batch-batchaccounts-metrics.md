@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Batch/batchaccounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Batch/batchaccounts
-  
-The following table lists the metrics available for the Microsoft.Batch/batchaccounts resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Batch/batchaccounts](../supported-logs/microsoft-batch-batchaccounts-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.Batch/batchaccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-batch-batchaccounts-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Batch/batchaccounts resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.Batch/batchaccounts](../supported-logs/microsoft-batch-batchaccounts-logs.md)
+
+[!INCLUDE [Microsoft.Batch/batchaccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-batch-batchaccounts-metrics-include.md)]
 
 ## Next steps
 

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 02/02/2026
 ms.custom: Microsoft.Network/networkSecurityPerimeters, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Network/networkSecurityPerimeters  
+# Supported logs for Microsoft.Network/networkSecurityPerimeters
 The following table lists the types of logs available for the Microsoft.Network/networkSecurityPerimeters resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/networkSecurityPerimeters](../supported-metrics/microsoft-network-networksecurityperimeters-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/networkSecurityPerimeters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networksecurityperimeters-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/networkSecurityPerimeters](../supported-metrics/microsoft-network-networksecurityperimeters-metrics.md)
+
+[!INCLUDE [Microsoft.Network/networkSecurityPerimeters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networksecurityperimeters-logs-include.md)]
 
 ## Next Steps
 

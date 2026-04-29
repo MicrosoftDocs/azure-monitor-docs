@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Azure native platform metrics that can help to measure health and performance. AzureMetricsV2 includes metric categories and dimensions, improving upon legacy AzureMetrics table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure native platform metrics that can help to measure health and performance. A
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azuremetricsv2](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuremetricsv2-include.md)]

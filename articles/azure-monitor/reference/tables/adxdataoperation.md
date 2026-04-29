@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Data Explorer data operation summary.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Data Explorer data operation summary.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adxdataoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adxdataoperation-include.md)]

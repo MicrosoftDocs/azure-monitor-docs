@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Graph Activity Logs provide details of API requests made to Microsoft Graph for resources in the tenant.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Graph Activity Logs provide details of API requests made to Microsoft 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/microsoftgraphactivitylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftgraphactivitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftgraphactivitylogs-include.md)]

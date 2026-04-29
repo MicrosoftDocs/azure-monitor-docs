@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 01/20/2026
 ms.custom: Microsoft.CognitiveServices/accounts/projects, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.CognitiveServices/accounts/projects
-  
-The following table lists the metrics available for the Microsoft.CognitiveServices/accounts/projects resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.CognitiveServices/accounts/projects](../supported-logs/microsoft-cognitiveservices-accounts-projects-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.CognitiveServices/accounts/projects](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cognitiveservices-accounts-projects-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.CognitiveServices/accounts/projects resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.CognitiveServices/accounts/projects](../supported-logs/microsoft-cognitiveservices-accounts-projects-logs.md)
+
+[!INCLUDE [Microsoft.CognitiveServices/accounts/projects](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-cognitiveservices-accounts-projects-metrics-include.md)]
 
 ## Next steps
 

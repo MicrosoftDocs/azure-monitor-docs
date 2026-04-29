@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) behaviors table. Contains information about entities (file, process, device, user, and others) that are involved in a behavior or observation, including detected threats.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) behaviors table. Contains information abo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [behaviorentities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/behaviorentities-include.md)]

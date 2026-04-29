@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP User details, such as roles and profiles assigned.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SAP User details, such as roles and profiles assigned.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [abapuserdetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapuserdetails-include.md)]

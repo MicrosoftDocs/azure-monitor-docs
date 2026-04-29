@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Knowledge base of publicly disclosed vulnerabilities, including whether exploit code is publicly available.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Knowledge base of publicly disclosed vulnerabilities, including whether exploit 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicetvmsoftwarevulnerabilitieskb](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilitieskb-include.md)]

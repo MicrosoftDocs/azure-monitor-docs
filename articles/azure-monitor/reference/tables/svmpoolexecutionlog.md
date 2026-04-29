@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Execution Logs for a StandbyVirtualMachinePool, which can be used for audit and troubleshooting.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Execution Logs for a StandbyVirtualMachinePool, which can be used for a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/svmpoolexecutionlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [svmpoolexecutionlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/svmpoolexecutionlog-include.md)]

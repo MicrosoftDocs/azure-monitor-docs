@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains records of Azure Site Recovery v2 (ASRv2) protected item related events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains records of Azure Site Recovery v2 (ASRv2) protected item rel
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asrv2protecteditems](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2protecteditems-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs related to digestion of files added to the input storage account. These can be used to verify that data is being successfully passed through to enrichment, or to troubleshoot issues with processing the raw data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs related to digestion of files added to the input storage account. These can
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aoidigestion)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aoidigestion](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aoidigestion-include.md)]

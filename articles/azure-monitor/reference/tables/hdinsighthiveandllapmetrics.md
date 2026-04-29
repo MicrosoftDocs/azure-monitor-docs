@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 JMX metrics from Hive and LLAP clusters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ JMX metrics from Hive and LLAP clusters.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthiveandllapmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthiveandllapmetrics-include.md)]

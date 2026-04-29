@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Audit logs for Databricks clamav scan service
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks clamav scan service
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksclamavscan](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksclamavscan-include.md)]

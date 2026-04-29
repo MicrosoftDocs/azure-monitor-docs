@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Logic/IntegrationAccounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Logic/IntegrationAccounts  
+# Supported logs for Microsoft.Logic/IntegrationAccounts
 The following table lists the types of logs available for the Microsoft.Logic/IntegrationAccounts resource type.
-  
 
-  
-[!INCLUDE [Microsoft.Logic/IntegrationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-logic-integrationaccounts-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.Logic/IntegrationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-logic-integrationaccounts-logs-include.md)]
 
 ## Next Steps
 

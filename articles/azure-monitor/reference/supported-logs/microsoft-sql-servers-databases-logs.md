@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Sql/servers/databases, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Sql/servers/databases  
+# Supported logs for Microsoft.Sql/servers/databases
 The following table lists the types of logs available for the Microsoft.Sql/servers/databases resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Sql/servers/databases](../supported-metrics/microsoft-sql-servers-databases-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Sql/servers/databases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-sql-servers-databases-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Sql/servers/databases](../supported-metrics/microsoft-sql-servers-databases-metrics.md)
+
+[!INCLUDE [Microsoft.Sql/servers/databases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-sql-servers-databases-logs-include.md)]
 
 ## Next Steps
 

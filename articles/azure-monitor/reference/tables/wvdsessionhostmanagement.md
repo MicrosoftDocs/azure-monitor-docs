@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop session host management data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop session host management data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdsessionhostmanagement](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdsessionhostmanagement-include.md)]

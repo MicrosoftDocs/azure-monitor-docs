@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop Host Registration Activity
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop Host Registration Activity
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdhostregistrations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdhostregistrations-include.md)]

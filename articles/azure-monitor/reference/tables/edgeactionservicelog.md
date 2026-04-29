@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Service logs emitted by the Edge Action platform.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Service logs emitted by the Edge Action platform.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/edgeactionservicelog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [edgeactionservicelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/edgeactionservicelog-include.md)]

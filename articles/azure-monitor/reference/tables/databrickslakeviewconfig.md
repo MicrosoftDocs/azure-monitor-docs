@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for the Lakeview configuration service in Databricks.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for the Lakeview configuration service in Databricks.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickslakeviewconfig](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickslakeviewconfig-include.md)]

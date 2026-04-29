@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 03/27/2026
 ms.custom: microsoft.deviceregistry/namespaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for microsoft.deviceregistry/namespaces
-  
-The following table lists the metrics available for the microsoft.deviceregistry/namespaces resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [microsoft.deviceregistry/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-deviceregistry-namespaces-metrics-include.md)]  
+The following table lists the metrics available for the microsoft.deviceregistry/namespaces resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [microsoft.deviceregistry/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-deviceregistry-namespaces-metrics-include.md)]
 
 ## Next steps
 

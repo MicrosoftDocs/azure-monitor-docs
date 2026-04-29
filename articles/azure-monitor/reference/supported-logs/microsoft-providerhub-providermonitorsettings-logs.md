@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.ProviderHub/providerMonitorSettings, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ProviderHub/providerMonitorSettings  
+# Supported logs for Microsoft.ProviderHub/providerMonitorSettings
 The following table lists the types of logs available for the Microsoft.ProviderHub/providerMonitorSettings resource type.
-  
 
-  
-[!INCLUDE [Microsoft.ProviderHub/providerMonitorSettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-providerhub-providermonitorsettings-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.ProviderHub/providerMonitorSettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-providerhub-providermonitorsettings-logs-include.md)]
 
 ## Next Steps
 

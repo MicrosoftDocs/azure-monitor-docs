@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Connection Monitor path result records.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connection Monitor path result records.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/nwconnectionmonitorpathresult)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nwconnectionmonitorpathresult](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nwconnectionmonitorpathresult-include.md)]

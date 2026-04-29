@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Health logs for operations performed by Microsoft Sentinel resources such as Data Connectors, Analytic Rules and more. These logs can be used to monitor the health of your Microsoft Sentinel resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Health logs for operations performed by Microsoft Sentinel resources such as Dat
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelhealth](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelhealth-include.md)]

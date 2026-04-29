@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AWS Platform Firewall Flow logs, ingested from Sentinel's connector, enabling real-time analysis and correlation with other security data sources like Detection alerts, firewall events network traffic logs, and more.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The AWS Platform Firewall Flow logs, ingested from Sentinel's connector, enablin
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsnetworkfirewallflow](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewallflow-include.md)]

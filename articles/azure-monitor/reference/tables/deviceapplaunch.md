@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # DeviceAppLaunch
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [deviceapplaunch](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/deviceapplaunch-include.md)]

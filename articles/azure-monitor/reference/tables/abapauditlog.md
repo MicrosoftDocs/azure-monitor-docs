@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP security audit log is used to keep records of important user transactions and system events within an SAP system. This table stores information such as who accessed the system, which transactions were executed, and when. It provides a useful tool for monitoring activity and detecting potential security breaches.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SAP security audit log is used to keep records of important user transactions an
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/abapauditlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [abapauditlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapauditlog-include.md)]

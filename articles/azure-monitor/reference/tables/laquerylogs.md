@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for queries executed in Log Analytics Workspaces.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for queries executed in Log Analytics Workspaces.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/laquerylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [laquerylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/laquerylogs-include.md)]

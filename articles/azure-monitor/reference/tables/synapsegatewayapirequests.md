@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Synapse gateway API requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Synapse gateway API requests.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsegatewayapirequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsegatewayapirequests-include.md)]

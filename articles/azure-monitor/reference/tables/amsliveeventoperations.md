@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains logs related to a Live Event. Logs are sent when an encoder connects, disconnects, or if there is a discontinuity in the media data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains logs related to a Live Event. Logs are sent when an encoder connects, d
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amsliveeventoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amsliveeventoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amsliveeventoperations-include.md)]

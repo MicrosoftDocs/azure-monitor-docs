@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Databricks web terminal audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks web terminal audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickswebterminal](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickswebterminal-include.md)]

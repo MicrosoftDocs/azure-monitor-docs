@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains your Microsoft Project audit logs in order to track your Project activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains your Microsoft Project audit logs in order to track your Project activi
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/projectactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [projectactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/projectactivity-include.md)]

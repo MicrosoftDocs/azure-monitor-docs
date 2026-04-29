@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 SAP NetWeaver Application Server ABAP logs changes to tables. This log stores information about the changes made to selected tables, including the user who made the change, the date and time of the change, and the type of change that was made.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SAP NetWeaver Application Server ABAP logs changes to tables. This log stores in
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [abaptabledatalog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abaptabledatalog-include.md)]

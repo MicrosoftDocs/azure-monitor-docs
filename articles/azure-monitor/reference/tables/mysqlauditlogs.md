@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit Logs for Azure Database for MySQL Flexible Servers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit Logs for Azure Database for MySQL Flexible Servers.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mysqlauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mysqlauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mysqlauditlogs-include.md)]

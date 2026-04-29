@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 ADF Airflow task logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ ADF Airflow task logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adfairflowtasklogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adfairflowtasklogs-include.md)]

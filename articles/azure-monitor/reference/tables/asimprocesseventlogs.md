@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Microsoft Sentinel process events normalized table stores events using the Process Event ASIM normalized schema associated with creation or termination of a process. Such events are reported by operating systems and security systems, such as EDR (End Point Detection and Response) systems.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Microsoft Sentinel process events normalized table stores events using the P
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimprocesseventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimprocesseventlogs-include.md)]

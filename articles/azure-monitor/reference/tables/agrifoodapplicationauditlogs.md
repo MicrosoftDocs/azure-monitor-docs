@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for privileged actions such as data-plane resource create, update, delete and subscription management operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for privileged actions such as data-plane resource create, update, delete a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agrifoodapplicationauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodapplicationauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodapplicationauditlogs-include.md)]

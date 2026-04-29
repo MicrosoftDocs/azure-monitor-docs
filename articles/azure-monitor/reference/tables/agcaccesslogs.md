@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains details of client requests made to Application Gateway for Containers. Each client request creats a log entry that can be used to identify slow requests, determine error rates, and correlate logs with backend services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains details of client requests made to Application Gateway for Containers. 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agcaccesslogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agcaccesslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agcaccesslogs-include.md)]

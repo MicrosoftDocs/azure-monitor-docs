@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Succeeded ingestion operations logs provide information about successfully completed ingest operations. Logs include data source details that together with `Failed ingestion operations` logs can be used for tracking the process of ingestion of each data source. Ingestion logs are supported for queued ingestion to the ingestion endpoint using SDKs, data connections, and connectors.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Succeeded ingestion operations logs provide information about successfully compl
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/succeededingestion)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [succeededingestion](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/succeededingestion-include.md)]

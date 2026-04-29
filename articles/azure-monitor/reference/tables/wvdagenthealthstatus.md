@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Virtual Desktop agent health status.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Virtual Desktop agent health status.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wvdagenthealthstatus)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdagenthealthstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdagenthealthstatus-include.md)]

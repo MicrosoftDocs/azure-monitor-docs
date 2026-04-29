@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Identity and Network Access, which contains Network Traffic Connection Events. These logs can be leveraged for security, and traffic management, as well as to monitor users experience.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Identity and Network Access, which contains Network Traffi
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [networkaccessconnectionevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/networkaccessconnectionevents-include.md)]

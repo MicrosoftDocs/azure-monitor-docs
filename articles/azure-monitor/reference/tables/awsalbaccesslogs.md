@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This connector allows you to ingest AWS Elastic Load Balancer (ALB, NLB and GLB) logs into Microsoft Sentinel. These logs contain detailed records for requests handled by your load balancers, including client IPs, latencies, request paths, and status codes. These logs are useful for monitoring traffic patterns, investigating anomalies, and ensuring security compliance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This connector allows you to ingest AWS Elastic Load Balancer (ALB, NLB and GLB)
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsalbaccesslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsalbaccesslogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - Update Event that comes directly from the service-side, and only tells the "service-side" of the story, for one device (client), and one update, in one deployment. As such, this event is stripped of certain fields in favor of being able to show data in near real-time.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - Update Event that comes directly from the service-side, and 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucserviceupdatestatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucserviceupdatestatus-include.md)]

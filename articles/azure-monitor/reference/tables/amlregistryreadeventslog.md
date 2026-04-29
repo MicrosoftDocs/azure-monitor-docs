@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure ML Registry Read events log. It keeps records of Read operations with regi
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlregistryreadeventslog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlregistryreadeventslog-include.md)]

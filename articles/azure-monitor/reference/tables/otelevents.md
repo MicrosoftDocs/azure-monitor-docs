@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Span Events emitted by an OpenTelemetry source.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Span Events emitted by an OpenTelemetry source.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/otelevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [otelevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/otelevents-include.md)]

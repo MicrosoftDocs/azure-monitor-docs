@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Includes changes to network group membership of network resources like a virtual network.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Includes changes to network group membership of network resources like a virtual
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/avnmnetworkgroupmembershipchange)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [avnmnetworkgroupmembershipchange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/avnmnetworkgroupmembershipchange-include.md)]

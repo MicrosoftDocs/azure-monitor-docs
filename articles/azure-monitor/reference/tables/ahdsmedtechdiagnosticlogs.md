@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Actionable logs generated from your MedTech application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Actionable logs generated from your MedTech application.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ahdsmedtechdiagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ahdsmedtechdiagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ahdsmedtechdiagnosticlogs-include.md)]

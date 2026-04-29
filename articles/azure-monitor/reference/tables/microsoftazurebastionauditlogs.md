@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Azure Bastion Audit Logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Azure Bastion Audit Logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftazurebastionauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftazurebastionauditlogs-include.md)]

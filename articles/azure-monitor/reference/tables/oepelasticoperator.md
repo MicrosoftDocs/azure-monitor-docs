@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostic logs for elastic operator. Elastic operator manages all the elasticsearch clusters in the oak instance. These logs can be helpful in identifing what operations are performed by the operator on the cluster. It could be upgrades, reconciliation, resource update etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostic logs for elastic operator. Elastic operator manages all the elasticse
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oepelasticoperator](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oepelasticoperator-include.md)]

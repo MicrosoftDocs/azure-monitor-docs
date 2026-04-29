@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for events related to creation, modification etc. of Databricks cluster global init scripts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for events related to creation, modification etc. of Databricks clust
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksglobalinitscripts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksglobalinitscripts-include.md)]

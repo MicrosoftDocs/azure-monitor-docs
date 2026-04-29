@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all data plane packets that were matched with one or more IDPS signatures.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all data plane packets that were matched with one or more IDPS signatur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwidpssignature)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwidpssignature](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwidpssignature-include.md)]

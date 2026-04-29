@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: microsoft.videoindexer/accounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.videoindexer/accounts  
+# Supported logs for microsoft.videoindexer/accounts
 The following table lists the types of logs available for the microsoft.videoindexer/accounts resource type.
-  
 
-  
-[!INCLUDE [microsoft.videoindexer/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-videoindexer-accounts-logs-include.md)]  
-  
+[!INCLUDE [microsoft.videoindexer/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-videoindexer-accounts-logs-include.md)]
 
 ## Next Steps
 

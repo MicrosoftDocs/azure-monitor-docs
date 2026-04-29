@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop connection graphics data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop connection graphics data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdconnectiongraphicsdatapreview](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdconnectiongraphicsdatapreview-include.md)]

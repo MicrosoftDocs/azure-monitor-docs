@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures operations related to customer-managed key.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures operations related to customer-managed key.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmscustomermanagedkeyuserlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmscustomermanagedkeyuserlogs-include.md)]

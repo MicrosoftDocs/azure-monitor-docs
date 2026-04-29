@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for job-related operations performed on Azure Quantum Workspace resources, including job creation, updates, and cancellations. Used to track who performed which job operation and when.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for job-related operations performed on Azure Quantum Workspace resou
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [quantumworkspacejobauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/quantumworkspacejobauditlogs-include.md)]

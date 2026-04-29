@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Data plane audit logs of privileged actions made against Azure Health Data Services de-identificiation service, such as initiating a de-identification job.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Data plane audit logs of privileged actions made against Azure Health Data Servi
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ahdsdeidauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ahdsdeidauditlogs-include.md)]

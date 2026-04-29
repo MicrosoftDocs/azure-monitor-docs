@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details data plane operations, specifically for Mongo API accounts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details data plane operations, specifically for Mongo API accounts.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbmongorequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbmongorequests-include.md)]

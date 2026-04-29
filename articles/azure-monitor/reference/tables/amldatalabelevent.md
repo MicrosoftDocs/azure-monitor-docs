@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when data label(s) or its projects is accessed (read, created, or deleted).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when data label(s) or its projects is accessed (read, created, or deleted
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amldatalabelevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amldatalabelevent-include.md)]

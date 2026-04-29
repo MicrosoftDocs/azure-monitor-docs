@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is for collecting events in the Common Event Format, that are most often sent from different security appliances such as Check Point, Palo Alto and more.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is for collecting events in the Common Event Format, that are most of
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/commonsecuritylog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [commonsecuritylog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/commonsecuritylog-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Office communication compliance audit logs. Used for monitoring policy compliance violation.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Office communication compliance audit logs. Used for monitoring policy complianc
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/communicationcomplianceactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [communicationcomplianceactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/communicationcomplianceactivity-include.md)]

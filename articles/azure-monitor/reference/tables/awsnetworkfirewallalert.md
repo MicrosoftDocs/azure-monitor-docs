@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AWS Platform Firewall Alert logs , ingested from Sentinel's connector, enabling real-time analysis and correlation with other security data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The AWS Platform Firewall Alert logs , ingested from Sentinel's connector, enabl
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsnetworkfirewallalert](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewallalert-include.md)]

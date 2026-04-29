@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from HDInsight Hadoop Clusters and YARN-related logs such as ResourceManager, NodeManager, and TimelineServer logs from all cluster types that use YARN.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from HDInsight Hadoop Clusters and YARN-related logs such as ResourceManage
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthadoopandyarnlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthadoopandyarnlogs-include.md)]

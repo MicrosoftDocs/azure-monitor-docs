@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Identity and Network Access, which contains Network Access Alerts. These Alerts can be leveraged for knowing the state of your network access.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Identity and Network Access, which contains Network Access
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [networkaccessalerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/networkaccessalerts-include.md)]

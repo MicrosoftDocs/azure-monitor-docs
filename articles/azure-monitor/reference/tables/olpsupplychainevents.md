@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The events table captures every event that was dispatched from the Open Logistics Platform workspace. Events can be a result of a data plane API call (e.g. Shipment Created, Item Deleted, Notification sent, etc.) or a long running job operation completion (e.g. Data ingestion results in NewDataAvailable event).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The events table captures every event that was dispatched from the Open Logistic
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [olpsupplychainevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/olpsupplychainevents-include.md)]

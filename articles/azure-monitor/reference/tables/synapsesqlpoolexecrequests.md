@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about SQL requests or queries in an Azure Synapse dedicated SQL pool.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about SQL requests or queries in an Azure Synapse dedicated SQL pool
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsesqlpoolexecrequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsesqlpoolexecrequests-include.md)]

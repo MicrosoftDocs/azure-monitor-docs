@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Audit logs for actions taken on cluster libraries in Databricks.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for actions taken on cluster libraries in Databricks.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksclusterlibraries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksclusterlibraries-include.md)]

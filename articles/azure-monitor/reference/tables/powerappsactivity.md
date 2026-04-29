@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Microsoft Power Apps activity logs that track events like creation, deletion, updates, permission changes, and app launches.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Microsoft Power Apps activity logs that track events like creation, del
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/powerappsactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerappsactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerappsactivity-include.md)]

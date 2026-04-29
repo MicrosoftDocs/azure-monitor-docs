@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated during Logic Apps workflow runtime.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated during Logic Apps workflow runtime.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/logicappworkflowruntime)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [logicappworkflowruntime](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/logicappworkflowruntime-include.md)]

@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Traffic Analytics NSP rule recommendations based on flow data for Network Security Perimeter resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic Analytics NSP rule recommendations based on flow data for Network Securi
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ntansprulerecommendation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntansprulerecommendation-include.md)]

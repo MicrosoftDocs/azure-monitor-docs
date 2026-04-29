@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Spring Cloud ingress logs, currently it is nginx access logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Spring Cloud ingress logs, currently it is nginx access logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appplatformingresslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appplatformingresslogs-include.md)]

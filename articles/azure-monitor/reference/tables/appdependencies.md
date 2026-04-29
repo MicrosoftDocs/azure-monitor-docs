@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights dependencies.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights dependencies.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appdependencies)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appdependencies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appdependencies-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for Azure HPC Cache API requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for Azure HPC Cache API requests.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/storagecacheoperationevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagecacheoperationevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagecacheoperationevents-include.md)]

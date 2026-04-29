@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostics logs provide information about the media transfers that occur in a call. Every log corresponds to an individual media stream and contains information about the emitting endpoint (e.g. the user sending the stream).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostics logs provide information about the media transfers that occur in a c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscalldiagnosticsupdates)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscalldiagnosticsupdates](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscalldiagnosticsupdates-include.md)]

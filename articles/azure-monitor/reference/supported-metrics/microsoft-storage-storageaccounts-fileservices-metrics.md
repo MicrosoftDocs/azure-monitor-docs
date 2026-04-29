@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Storage/storageAccounts/fileServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Storage/storageAccounts/fileServices
-  
-The following table lists the metrics available for the Microsoft.Storage/storageAccounts/fileServices resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Storage/storageAccounts/fileServices](../supported-logs/microsoft-storage-storageaccounts-fileservices-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.Storage/storageAccounts/fileServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storage-storageaccounts-fileservices-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Storage/storageAccounts/fileServices resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.Storage/storageAccounts/fileServices](../supported-logs/microsoft-storage-storageaccounts-fileservices-logs.md)
+
+[!INCLUDE [Microsoft.Storage/storageAccounts/fileServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storage-storageaccounts-fileservices-metrics-include.md)]
 
 ## Next steps
 

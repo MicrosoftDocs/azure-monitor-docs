@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table of events related to the availability and health of a load balancer resource.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table of events related to the availability and health of a load balancer resour
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/albhealthevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [albhealthevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/albhealthevent-include.md)]

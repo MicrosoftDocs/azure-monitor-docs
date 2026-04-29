@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs the connection events when client connects to redis enterprise database.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs the connection events when client connects to redis enterprise database.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/redconnectionevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [redconnectionevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/redconnectionevents-include.md)]

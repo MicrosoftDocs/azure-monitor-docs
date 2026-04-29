@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure ML Registry Write events log. It keeps records of Write operations with re
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlregistrywriteeventslog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlregistrywriteeventslog-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Security Center regulatory compliance assessments state.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Security Center regulatory compliance assessments state.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securityregulatorycompliance](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securityregulatorycompliance-include.md)]

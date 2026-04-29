@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Ended Azure Synapse built-in serverless SQL requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Ended Azure Synapse built-in serverless SQL requests.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsebuiltinsqlpoolrequestsended](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsebuiltinsqlpoolrequestsended-include.md)]

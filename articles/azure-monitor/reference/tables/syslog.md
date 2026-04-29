@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Syslog events on Linux computers using the Log Analytics agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Syslog events on Linux computers using the Log Analytics agent.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/syslog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [syslog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/syslog-include.md)]

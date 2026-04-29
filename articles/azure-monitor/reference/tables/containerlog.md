@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log lines collected from stdout and stderr streams for containers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log lines collected from stdout and stderr streams for containers.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containerlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerlog-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all the logs to view the requests that are logged through either detection or prevention mode of an application gateway that is configured with the web application firewall.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all the logs to view the requests that are logged through either detect
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agwfirewalllogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agwfirewalllogs-include.md)]

@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # IntuneAuditLogs
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [intuneauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/intuneauditlogs-include.md)]

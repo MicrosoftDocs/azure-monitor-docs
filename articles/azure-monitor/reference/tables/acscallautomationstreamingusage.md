@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Communication Services Call Automation Media Streaming features usage information. Every entry corresponds to a streaming session between a Start and Stop operation for MediaStreaming or Transcription and records information about the session such as session start time, duration, sessionId, etc. In unmixed streaming cases, participantId of the stream being billed is also included.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Communication Services Call Automation Media Streaming features usage informatio
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallautomationstreamingusage)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallautomationstreamingusage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallautomationstreamingusage-include.md)]

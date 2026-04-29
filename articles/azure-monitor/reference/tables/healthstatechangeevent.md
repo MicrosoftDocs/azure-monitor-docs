@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Workload Monitor Health. This data represents state transitions of a health monitor.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Workload Monitor Health. This data represents state transitions of a health moni
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [healthstatechangeevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/healthstatechangeevent-include.md)]

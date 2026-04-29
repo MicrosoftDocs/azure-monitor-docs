@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostic Logs for API Management Developer Portal API.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostic Logs for API Management Developer Portal API.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apimdevportalauditdiagnosticlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimdevportalauditdiagnosticlog-include.md)]

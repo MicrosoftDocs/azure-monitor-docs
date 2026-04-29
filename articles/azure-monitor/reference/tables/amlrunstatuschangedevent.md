@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Machine Learning services run status event logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Machine Learning services run status event logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlrunstatuschangedevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlrunstatuschangedevent-include.md)]

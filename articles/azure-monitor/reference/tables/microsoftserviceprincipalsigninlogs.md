@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft applications' service principal sign-in logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft applications' service principal sign-in logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftserviceprincipalsigninlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftserviceprincipalsigninlogs-include.md)]

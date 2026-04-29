@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 10/31/2025
 ms.custom: Microsoft.Web/serverfarms, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Web/serverfarms  
+# Supported logs for Microsoft.Web/serverfarms
 The following table lists the types of logs available for the Microsoft.Web/serverfarms resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Web/serverfarms](../supported-metrics/microsoft-web-serverfarms-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-web-serverfarms-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Web/serverfarms](../supported-metrics/microsoft-web-serverfarms-metrics.md)
+
+[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-web-serverfarms-logs-include.md)]
 
 ## Next Steps
 

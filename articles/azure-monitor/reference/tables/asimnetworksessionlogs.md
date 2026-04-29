@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Microsoft Sentinel network session normalization schema represents an IP network activity, such as network connections and network sessions. Such events are reported, for example, by operating systems, routers, firewalls, and intrusion prevention systems.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Microsoft Sentinel network session normalization schema represents an IP net
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimnetworksessionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimnetworksessionlogs-include.md)]

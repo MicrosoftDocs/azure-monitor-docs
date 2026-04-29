@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Data Share Share Log
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Data Share Share Log
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftdatasharesharelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftdatasharesharelog-include.md)]

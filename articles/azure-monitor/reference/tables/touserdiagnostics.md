@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all Toolchain orchestrator API Server user diagnostics logs. These events are useful for diagnose failed requests on Toolchain orchestrator. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all Toolchain orchestrator API Server user diagnostics logs. These even
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/touserdiagnostics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [touserdiagnostics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/touserdiagnostics-include.md)]

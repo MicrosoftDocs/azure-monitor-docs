@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AD Replication Status solution regularly monitors your Active Directory environment for any replication failures.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The AD Replication Status solution regularly monitors your Active Directory envi
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adreplicationresult](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adreplicationresult-include.md)]

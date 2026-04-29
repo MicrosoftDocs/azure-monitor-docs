@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Rapid7InsightVMCloudVulnerabilities table contains vulnerability information from Rapid7 InsightVM Cloud.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Rapid7InsightVMCloudVulnerabilities table contains vulnerability information fro
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/rapid7insightvmcloudvulnerabilities)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [rapid7insightvmcloudvulnerabilities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/rapid7insightvmcloudvulnerabilities-include.md)]

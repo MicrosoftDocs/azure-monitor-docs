@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create and get operations for AI/ML model inference jobs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create and get operations for AI/ML model inference jobs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodmodelinferencelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodmodelinferencelogs-include.md)]

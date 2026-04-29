@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The ASIM DHCP schema represents DHCP server activity, including serving requests for DHCP IP address leased from client systems and updating a DNS server with the leases granted.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The ASIM DHCP schema represents DHCP server activity, including serving requests
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimdhcpeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimdhcpeventlogs-include.md)]

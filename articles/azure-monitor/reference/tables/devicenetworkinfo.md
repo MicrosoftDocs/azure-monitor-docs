@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) device network information table. This table contains Network properties of machines, including adapters, IP and MAC addresses, as well as connected networks and domains.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) device network information table. This ta
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicenetworkinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicenetworkinfo-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark Events Log.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark Events Log.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightjupyternotebookevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightjupyternotebookevents-include.md)]

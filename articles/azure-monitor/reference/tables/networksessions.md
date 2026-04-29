@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Network connections or sessions such as those logged by firewalls, Wire Data, NSG, Netflow, proxy systems and web security gateways.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Network connections or sessions such as those logged by firewalls, Wire Data, NS
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/networksessions)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [networksessions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/networksessions-include.md)]

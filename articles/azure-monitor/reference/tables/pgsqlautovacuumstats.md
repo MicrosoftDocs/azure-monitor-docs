@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information related to autovacuum and schema level statistics of an Azure Database for PostgreSQL Flexible Servers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information related to autovacuum and schema level statistics of an Azure Databa
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlautovacuumstats)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlautovacuumstats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlautovacuumstats-include.md)]

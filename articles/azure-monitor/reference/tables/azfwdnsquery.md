@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all DNS Proxy events log data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all DNS Proxy events log data.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwdnsquery)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwdnsquery](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwdnsquery-include.md)]

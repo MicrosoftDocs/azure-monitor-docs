@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Data plane audit logs of privileged actions made against Azure Health Data DICOM service. For example, storing a DICOM instance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Data plane audit logs of privileged actions made against Azure Health Data DICOM
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ahdsdicomauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ahdsdicomauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ahdsdicomauditlogs-include.md)]

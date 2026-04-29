@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Virtual Desktop MultiLink Add Activity.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Virtual Desktop MultiLink Add Activity.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdmultilinkadd](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdmultilinkadd-include.md)]

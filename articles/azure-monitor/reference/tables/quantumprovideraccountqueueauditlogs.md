@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for queue dispatch management operations performed on Azure Quantum Provider Account resources, such as enabling or disabling target dispatch for a queue. Used to track changes to queue routing configuration.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for queue dispatch management operations performed on Azure Quantum P
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [quantumprovideraccountqueueauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/quantumprovideraccountqueueauditlogs-include.md)]

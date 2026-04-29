@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Inventory data for servers collected by the Service Map and VM Insights solutions using the Dependency agent and Log analytics agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Inventory data for servers collected by the Service Map and VM Insights solution
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [vmcomputer](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/vmcomputer-include.md)]

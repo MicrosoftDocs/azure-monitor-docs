@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks data rooms.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks data rooms.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksdatarooms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksdatarooms-include.md)]

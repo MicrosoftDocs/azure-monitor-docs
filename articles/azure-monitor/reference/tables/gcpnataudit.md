@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform NAT data connector provides the capability to ingest Cloud NAT Audit logs and Cloud NAT Traffic logs into Microsoft Sentinel using the Compute Engine API. Refer the [Product overview](https://cloud.google.com/nat/docs/overview) document for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform NAT data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpnataudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpnataudit-include.md)]

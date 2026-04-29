@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: microsoft.keyvault/managedhsms, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.keyvault/managedhsms  
+# Supported logs for microsoft.keyvault/managedhsms
 The following table lists the types of logs available for the microsoft.keyvault/managedhsms resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - microsoft.keyvault/managedhsms](../supported-metrics/microsoft-keyvault-managedhsms-metrics.md)  
-  
 
-  
-[!INCLUDE [microsoft.keyvault/managedhsms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-keyvault-managedhsms-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - microsoft.keyvault/managedhsms](../supported-metrics/microsoft-keyvault-managedhsms-metrics.md)
+
+[!INCLUDE [microsoft.keyvault/managedhsms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-keyvault-managedhsms-logs-include.md)]
 
 ## Next Steps
 

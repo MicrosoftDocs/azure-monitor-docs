@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about query distributions of the steps of SQL requests/queries in an Azure Synapse dedicated SQL pool.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about query distributions of the steps of SQL requests/queries in an
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsesqlpoolsqlrequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsesqlpoolsqlrequests-include.md)]

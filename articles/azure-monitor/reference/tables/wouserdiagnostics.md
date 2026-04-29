@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Contains all workload orchestration API Server user diagnostics logs. These events are useful for diagnose failed requests on workload orchestration. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all workload orchestration API Server user diagnostics logs. These even
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wouserdiagnostics)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wouserdiagnostics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wouserdiagnostics-include.md)]

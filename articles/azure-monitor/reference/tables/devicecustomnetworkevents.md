@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Microsoft Defender for Endpoints (MDE) device network events table for the Custom Collection scenario. This table contains contains information about network connections and related events initiated by processes running on the endpoint for anything explicitly requested by the customer for collection..
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) device network events table for the Custo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicecustomnetworkevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicecustomnetworkevents-include.md)]

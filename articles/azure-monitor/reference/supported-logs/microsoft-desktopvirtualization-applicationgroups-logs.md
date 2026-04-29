@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.DesktopVirtualization/applicationgroups, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.DesktopVirtualization/applicationgroups  
+# Supported logs for Microsoft.DesktopVirtualization/applicationgroups
 The following table lists the types of logs available for the Microsoft.DesktopVirtualization/applicationgroups resource type.
-  
 
-  
-[!INCLUDE [Microsoft.DesktopVirtualization/applicationgroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-applicationgroups-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.DesktopVirtualization/applicationgroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-applicationgroups-logs-include.md)]
 
 ## Next Steps
 

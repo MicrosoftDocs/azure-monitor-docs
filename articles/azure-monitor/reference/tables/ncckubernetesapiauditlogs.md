@@ -13,7 +13,6 @@ ms.date: 03/16/2026
 
 Kubernetes API audit logs from Nexus clusters to track all the requests made.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Kubernetes API audit logs from Nexus clusters to track all the requests made.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ncckubernetesapiauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncckubernetesapiauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncckubernetesapiauditlogs-include.md)]

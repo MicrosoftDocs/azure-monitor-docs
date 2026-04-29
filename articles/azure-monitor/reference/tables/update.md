@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Details for update schedule run. Includes information such as which updates where available and which were installed.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Details for update schedule run. Includes information such as which updates wher
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/update)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [update](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/update-include.md)]

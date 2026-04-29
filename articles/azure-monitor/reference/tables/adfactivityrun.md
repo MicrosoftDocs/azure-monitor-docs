@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # ADFActivityRun
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adfactivityrun)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adfactivityrun](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adfactivityrun-include.md)]

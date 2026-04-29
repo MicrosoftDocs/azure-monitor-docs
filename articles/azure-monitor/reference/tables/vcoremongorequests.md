@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details data plane requests for MongoDB (vCore).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details data plane requests for MongoDB (vCore).
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/vcoremongorequests)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [vcoremongorequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/vcoremongorequests-include.md)]

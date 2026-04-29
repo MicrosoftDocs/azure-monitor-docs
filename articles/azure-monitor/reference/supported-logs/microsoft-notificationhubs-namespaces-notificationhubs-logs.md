@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NotificationHubs/namespaces/notificationHubs, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NotificationHubs/namespaces/notificationHubs  
+# Supported logs for Microsoft.NotificationHubs/namespaces/notificationHubs
 The following table lists the types of logs available for the Microsoft.NotificationHubs/namespaces/notificationHubs resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.NotificationHubs/namespaces/notificationHubs](../supported-metrics/microsoft-notificationhubs-namespaces-notificationhubs-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.NotificationHubs/namespaces/notificationHubs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-notificationhubs-namespaces-notificationhubs-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.NotificationHubs/namespaces/notificationHubs](../supported-metrics/microsoft-notificationhubs-namespaces-notificationhubs-metrics.md)
+
+[!INCLUDE [Microsoft.NotificationHubs/namespaces/notificationHubs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-notificationhubs-namespaces-notificationhubs-logs-include.md)]
 
 ## Next Steps
 

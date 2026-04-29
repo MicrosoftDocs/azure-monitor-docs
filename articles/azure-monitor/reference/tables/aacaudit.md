@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure App Configuration audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure App Configuration audit logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aacaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aacaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aacaudit-include.md)]

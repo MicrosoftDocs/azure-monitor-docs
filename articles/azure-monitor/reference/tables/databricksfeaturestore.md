@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for events related to Databricks ML Feature Store operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for events related to Databricks ML Feature Store operations.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksfeaturestore](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksfeaturestore-include.md)]

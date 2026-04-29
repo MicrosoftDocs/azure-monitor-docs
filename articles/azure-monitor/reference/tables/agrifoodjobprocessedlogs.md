@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs indicating success or failure of job runs for farmOperationDataIngestionJob, farmOperationPeriodicJob, farmOperationEventHandlingJob,satelliteDataIngestionJob, weatherDataIngestionJob etc. These logs also contain reasons for failure of these jobs if any.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs indicating success or failure of job runs for farmOperationDataIngestionJob
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agrifoodjobprocessedlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodjobprocessedlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodjobprocessedlogs-include.md)]

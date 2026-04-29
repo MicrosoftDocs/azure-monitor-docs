@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 QualysKnowledgeBase table contains vulnerabilities from Qualys KnowledgeBase.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ QualysKnowledgeBase table contains vulnerabilities from Qualys KnowledgeBase.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/qualysknowledgebase)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [qualysknowledgebase](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/qualysknowledgebase-include.md)]

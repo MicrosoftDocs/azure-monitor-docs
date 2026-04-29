@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Microsoft PowerBI audit logs. It's typically used to track PowerBI activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Microsoft PowerBI audit logs. It's typically used to track PowerBI acti
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/powerbiactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerbiactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerbiactivity-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Gateway Logs related to language models for API Management Language.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Gateway Logs related to language models for API Management Language.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apimanagementgatewayllmlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimanagementgatewayllmlog-include.md)]

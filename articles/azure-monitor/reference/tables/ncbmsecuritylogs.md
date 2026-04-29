@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Security log events on Nexus Baremetal Machines to monitor and detect user access to the system.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Security log events on Nexus Baremetal Machines to monitor and detect user acces
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncbmsecuritylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncbmsecuritylogs-include.md)]

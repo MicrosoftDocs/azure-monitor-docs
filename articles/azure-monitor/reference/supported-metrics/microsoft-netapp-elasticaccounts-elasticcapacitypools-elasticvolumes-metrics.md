@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 10/31/2025
 ms.custom: Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes
-  
-The following table lists the metrics available for the Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-elasticvolumes-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.NetApp/elasticAccounts/elasticCapacityPools/elasticVolumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-elasticaccounts-elasticcapacitypools-elasticvolumes-metrics-include.md)]
 
 ## Next steps
 

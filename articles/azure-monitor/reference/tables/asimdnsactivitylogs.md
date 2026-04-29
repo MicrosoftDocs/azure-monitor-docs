@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The ASim DNS activity schema represents DNS protocol activity, which may be logged either by a DNS server or by a device sending DNS requests to a DNS server. The DNS protocol activity includes DNS queries, DNS server updates, and DNS bulk data transfers. Since the schema represents protocol activity, it is governed by RFCs and officially assigned parameter lists. The DNS activity schema does not represent DNS server audit events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The ASim DNS activity schema represents DNS protocol activity, which may be logg
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asimdnsactivitylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimdnsactivitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimdnsactivitylogs-include.md)]

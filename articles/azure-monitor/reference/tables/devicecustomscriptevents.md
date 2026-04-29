@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Microsoft Defender for Endpoints (MDE) script execution events table for the Custom Collection scenario. This table contains information about script execution and related process details for anything explicitly requested by the customer for collection.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) script execution events table for the Cus
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicecustomscriptevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicecustomscriptevents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SQL Advanced Threat Protection status log. The logs allows identifying machines connected to the workspace with SQL ATP and the protection status on each instance on those machines.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SQL Advanced Threat Protection status log. The logs allows identifying machines 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sqlatpstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sqlatpstatus-include.md)]

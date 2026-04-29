@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Usage records across all modes of Communication Services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Usage records across all modes of Communication Services.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acsbillingusage)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acsbillingusage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acsbillingusage-include.md)]

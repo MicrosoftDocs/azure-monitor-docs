@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark SQL Execution Events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark SQL Execution Events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparksqlexecutionevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparksqlexecutionevents-include.md)]

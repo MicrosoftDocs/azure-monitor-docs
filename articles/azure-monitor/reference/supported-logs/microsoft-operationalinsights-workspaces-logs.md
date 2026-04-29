@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.OperationalInsights/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.OperationalInsights/workspaces  
+# Supported logs for Microsoft.OperationalInsights/workspaces
 The following table lists the types of logs available for the Microsoft.OperationalInsights/workspaces resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.OperationalInsights/workspaces](../supported-metrics/microsoft-operationalinsights-workspaces-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.OperationalInsights/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-operationalinsights-workspaces-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.OperationalInsights/workspaces](../supported-metrics/microsoft-operationalinsights-workspaces-metrics.md)
+
+[!INCLUDE [Microsoft.OperationalInsights/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-operationalinsights-workspaces-logs-include.md)]
 
 ## Next Steps
 

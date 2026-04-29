@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Schema for Azure Digital Twins' Digital Twin operations. The Digital Twins Operation category tracks all customer requests to manage a digital twin, including CRUD on Twins and Relationships.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Schema for Azure Digital Twins' Digital Twin operations. The Digital Twins Opera
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adtdigitaltwinsoperation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adtdigitaltwinsoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adtdigitaltwinsoperation-include.md)]

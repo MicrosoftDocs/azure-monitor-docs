@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Communication Services logs of incoming requests to SMS operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Communication Services logs of incoming requests to SMS operations.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acssmsincomingoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acssmsincomingoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acssmsincomingoperations-include.md)]

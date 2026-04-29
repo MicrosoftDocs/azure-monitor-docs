@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Sentinel Watchlist contains imported data from CSV files that can be used to join or filter as an alert/incident condition.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Sentinel Watchlist contains imported data from CSV files that can be used 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/watchlist)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [watchlist](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/watchlist-include.md)]

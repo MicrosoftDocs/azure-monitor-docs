@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from the data collection services of the defender for serverless apps. Used to detect security issues and provide alerts and recommendations on how to mitigate/fix them.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from the data collection services of the defender for serverless apps. Used
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceserverlesssecurityplugindata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceserverlesssecurityplugindata-include.md)]

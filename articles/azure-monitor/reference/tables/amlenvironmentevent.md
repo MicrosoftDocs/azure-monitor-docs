@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when ML environments are accessed (read, created, or deleted).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when ML environments are accessed (read, created, or deleted).
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlenvironmentevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlenvironmentevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlenvironmentevent-include.md)]

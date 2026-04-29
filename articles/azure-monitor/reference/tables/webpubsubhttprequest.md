@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Http request logs provide detailed information for the http requests received by Azure Web PubSub. For example, status code and url of the request and is helpful to troubleshoot request-related issues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Http request logs provide detailed information for the http requests received by
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [webpubsubhttprequest](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/webpubsubhttprequest-include.md)]

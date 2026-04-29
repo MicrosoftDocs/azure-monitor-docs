@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Audit logs for Databricks service capsule8-alerts-dataplane.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks service capsule8-alerts-dataplane.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickscapsule8dataplane](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickscapsule8dataplane-include.md)]

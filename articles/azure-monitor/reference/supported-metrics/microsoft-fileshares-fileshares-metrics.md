@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 01/20/2026
 ms.custom: Microsoft.FileShares/fileShares, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.FileShares/fileShares
-  
-The following table lists the metrics available for the Microsoft.FileShares/fileShares resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.FileShares/fileShares](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-fileshares-fileshares-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.FileShares/fileShares resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.FileShares/fileShares](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-fileshares-fileshares-metrics-include.md)]
 
 ## Next steps
 

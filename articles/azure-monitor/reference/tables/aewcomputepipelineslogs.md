@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AEWComputePipelines Events for the Experiment Workspace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AEWComputePipelines Events for the Experiment Workspace.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aewcomputepipelineslogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewcomputepipelineslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewcomputepipelineslogs-include.md)]

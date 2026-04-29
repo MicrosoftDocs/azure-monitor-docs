@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Contains information about process events in multicloud hosted environments such as Azure Kubernetes Service, Amazon Elastic Kubernetes Service, and Google Kubernetes Engine as protected by the organization's Microsoft Defender for Cloud.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains information about process events in multicloud hosted environments such
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cloudprocessevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudprocessevents-include.md)]

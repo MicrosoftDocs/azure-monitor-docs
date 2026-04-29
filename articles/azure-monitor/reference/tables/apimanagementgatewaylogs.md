@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure ApiManagement gateway logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure ApiManagement gateway logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/apimanagementgatewaylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apimanagementgatewaylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimanagementgatewaylogs-include.md)]

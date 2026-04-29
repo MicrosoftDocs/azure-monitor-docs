@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) device network events table. This table contains contains information about network connections and related events initiated by processes running on the endpoint.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) device network events table. This table c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicenetworkevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicenetworkevents-include.md)]

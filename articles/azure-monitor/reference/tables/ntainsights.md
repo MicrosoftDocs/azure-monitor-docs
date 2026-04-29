@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic Analytics insights are provided for flow data which shows anomalies in data pattern.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic Analytics insights are provided for flow data which shows anomalies in d
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ntainsights](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntainsights-include.md)]

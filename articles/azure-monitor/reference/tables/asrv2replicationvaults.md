@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains records of Azure Site Recovery v2 (ASRv2) replication vault related events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains records of Azure Site Recovery v2 (ASRv2) replication vault 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asrv2replicationvaults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2replicationvaults-include.md)]

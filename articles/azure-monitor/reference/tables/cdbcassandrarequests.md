@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details data plane operations, specifically for Cassandra API accounts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details data plane operations, specifically for Cassandra API account
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbcassandrarequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbcassandrarequests-include.md)]

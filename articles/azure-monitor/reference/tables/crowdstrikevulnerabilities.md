@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CrowdStrikeVulnerabilities table contains logs from the CrowdStrike Vulnerabilities API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CrowdStrikeVulnerabilities table contains logs from the CrowdStrike Vulnerab
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [crowdstrikevulnerabilities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikevulnerabilities-include.md)]

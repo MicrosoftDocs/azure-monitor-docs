@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Security Center Secure Score per control. A control is a logical group of related security recommendations, its secure score reflects the security posture per the control.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Security Center Secure Score per control. A control is a logical group of 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securescorecontrols](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securescorecontrols-include.md)]

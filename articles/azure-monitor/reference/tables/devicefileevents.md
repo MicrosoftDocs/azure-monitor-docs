@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Microsoft Defender for Endpoints with Azure Sentinel. This table contains file creation, modification, and other file system events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Microsoft Defender for Endpoints with Azure Sentinel. This
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicefileevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicefileevents-include.md)]

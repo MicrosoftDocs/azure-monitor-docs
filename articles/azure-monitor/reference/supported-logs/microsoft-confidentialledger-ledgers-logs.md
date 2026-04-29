@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 08/28/2025
 ms.custom: Microsoft.ConfidentialLedger/Ledgers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ConfidentialLedger/Ledgers  
+# Supported logs for Microsoft.ConfidentialLedger/Ledgers
 The following table lists the types of logs available for the Microsoft.ConfidentialLedger/Ledgers resource type.
-  
 
-  
-[!INCLUDE [Microsoft.ConfidentialLedger/Ledgers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-confidentialledger-ledgers-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.ConfidentialLedger/Ledgers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-confidentialledger-ledgers-logs-include.md)]
 
 ## Next Steps
 

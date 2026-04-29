@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Ingress category tracks errors that occur in the ingress pipeline. This category includes errors that occur when receiving events (such as failures to connect to an Event Source) and processing events (such as errors when parsing an event payload).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Ingress category tracks errors that occur in the ingress pipeline. This cate
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/tsiingress)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [tsiingress](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/tsiingress-include.md)]

@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Storage/storageAccounts/queueServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Storage/storageAccounts/queueServices
-  
-The following table lists the metrics available for the Microsoft.Storage/storageAccounts/queueServices resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Storage/storageAccounts/queueServices](../supported-logs/microsoft-storage-storageaccounts-queueservices-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.Storage/storageAccounts/queueServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storage-storageaccounts-queueservices-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Storage/storageAccounts/queueServices resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.Storage/storageAccounts/queueServices](../supported-logs/microsoft-storage-storageaccounts-queueservices-logs.md)
+
+[!INCLUDE [Microsoft.Storage/storageAccounts/queueServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storage-storageaccounts-queueservices-metrics-include.md)]
 
 ## Next steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google ApigeeX data connector provides the capability to ingest Audit logs into Microsoft Sentinel using the Google Apigee API. Refer to [Google Apigee API](https://cloud.google.com/apigee/docs/reference/apis/apigee/rest/?apix=true) documentation for more information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google ApigeeX data connector provides the capability to ingest Audit logs i
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpapigee](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpapigee-include.md)]

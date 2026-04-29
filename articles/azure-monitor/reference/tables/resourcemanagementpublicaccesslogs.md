@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Resource management private link analysis events such as the operations that are already blocked due to private link present at the scope or operations that would be blocked. Contains information from the entire tenant.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Resource management private link analysis events such as the operations
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/resourcemanagementpublicaccesslogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [resourcemanagementpublicaccesslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/resourcemanagementpublicaccesslogs-include.md)]

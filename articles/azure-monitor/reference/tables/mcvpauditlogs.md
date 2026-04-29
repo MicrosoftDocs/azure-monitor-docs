@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The MCVP audit logs. This table will include audit logs for MCVP service transactions.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The MCVP audit logs. This table will include audit logs for MCVP service transac
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mcvpauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mcvpauditlogs-include.md)]

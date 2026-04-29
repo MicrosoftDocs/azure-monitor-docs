@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: microsoft.loadtestservice/loadtests, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.loadtestservice/loadtests  
+# Supported logs for microsoft.loadtestservice/loadtests
 The following table lists the types of logs available for the microsoft.loadtestservice/loadtests resource type.
-  
 
-  
-[!INCLUDE [microsoft.loadtestservice/loadtests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-loadtestservice-loadtests-logs-include.md)]  
-  
+[!INCLUDE [microsoft.loadtestservice/loadtests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-loadtestservice-loadtests-logs-include.md)]
 
 ## Next Steps
 

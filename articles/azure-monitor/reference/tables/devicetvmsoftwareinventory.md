@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Inventory of software installed on devices, including their version information and end-of-support status.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Inventory of software installed on devices, including their version information 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devicetvmsoftwareinventory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicetvmsoftwareinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicetvmsoftwareinventory-include.md)]

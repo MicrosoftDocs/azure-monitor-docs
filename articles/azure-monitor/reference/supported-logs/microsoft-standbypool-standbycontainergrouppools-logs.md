@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.StandbyPool/standbycontainergrouppools, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.StandbyPool/standbycontainergrouppools  
+# Supported logs for Microsoft.StandbyPool/standbycontainergrouppools
 The following table lists the types of logs available for the Microsoft.StandbyPool/standbycontainergrouppools resource type.
-  
 
-  
-[!INCLUDE [Microsoft.StandbyPool/standbycontainergrouppools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-standbypool-standbycontainergrouppools-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.StandbyPool/standbycontainergrouppools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-standbypool-standbycontainergrouppools-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all Toolchain orchestrator API Server audit logs including the events generated as a result of interactions with any external system or toolchain. These events are useful for monitoring all the interactions with the Toolchain orchestrator API server and between Toolchain orchestrator and external orchestrated targets, e.g. Kubernetes. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all Toolchain orchestrator API Server audit logs including the events g
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/touseraudits)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [touseraudits](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/touseraudits-include.md)]

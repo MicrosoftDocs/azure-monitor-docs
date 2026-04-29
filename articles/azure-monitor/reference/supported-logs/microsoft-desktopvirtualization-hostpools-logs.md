@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.DesktopVirtualization/hostpools, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.DesktopVirtualization/hostpools  
+# Supported logs for Microsoft.DesktopVirtualization/hostpools
 The following table lists the types of logs available for the Microsoft.DesktopVirtualization/hostpools resource type.
-  
 
-  
-[!INCLUDE [Microsoft.DesktopVirtualization/hostpools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-hostpools-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.DesktopVirtualization/hostpools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-desktopvirtualization-hostpools-logs-include.md)]
 
 ## Next Steps
 

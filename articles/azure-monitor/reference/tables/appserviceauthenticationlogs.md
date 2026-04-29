@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated through App Service Authentication for your application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated through App Service Authentication for your application.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appserviceauthenticationlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceauthenticationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceauthenticationlogs-include.md)]

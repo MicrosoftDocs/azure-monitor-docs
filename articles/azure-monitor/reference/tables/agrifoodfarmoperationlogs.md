@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create, update, delete and get operations for FarmOperations such as data ingestion job, ApplicationData, PlantingData, HarvestingData, TillageData etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create, update, delete and get operations for FarmOperations such as da
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodfarmoperationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodfarmoperationlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Hourly usage data for each table in the workspace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Hourly usage data for each table in the workspace.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/usage)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [usage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/usage-include.md)]

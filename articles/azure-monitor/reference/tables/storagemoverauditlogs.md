@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for storage mover and its child resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for storage mover and its child resources.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagemoverauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagemoverauditlogs-include.md)]

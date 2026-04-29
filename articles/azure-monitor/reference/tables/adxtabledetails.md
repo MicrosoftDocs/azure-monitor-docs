@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Data Explorer table details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Data Explorer table details.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adxtabledetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adxtabledetails-include.md)]

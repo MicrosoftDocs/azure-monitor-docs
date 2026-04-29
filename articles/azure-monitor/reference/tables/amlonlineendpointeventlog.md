@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure ML online endpoints event logs. It provides event logs regarding the inference-server container's life cycle.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure ML online endpoints event logs. It provides event logs regarding the infer
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlonlineendpointeventlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlonlineendpointeventlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlonlineendpointeventlog-include.md)]

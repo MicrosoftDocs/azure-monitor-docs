@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.MachineLearningServices/workspaces/onlineEndpoints, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.MachineLearningServices/workspaces/onlineEndpoints  
+# Supported logs for Microsoft.MachineLearningServices/workspaces/onlineEndpoints
 The following table lists the types of logs available for the Microsoft.MachineLearningServices/workspaces/onlineEndpoints resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.MachineLearningServices/workspaces/onlineEndpoints](../supported-metrics/microsoft-machinelearningservices-workspaces-onlineendpoints-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.MachineLearningServices/workspaces/onlineEndpoints](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-machinelearningservices-workspaces-onlineendpoints-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.MachineLearningServices/workspaces/onlineEndpoints](../supported-metrics/microsoft-machinelearningservices-workspaces-onlineendpoints-metrics.md)
+
+[!INCLUDE [Microsoft.MachineLearningServices/workspaces/onlineEndpoints](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-machinelearningservices-workspaces-onlineendpoints-logs-include.md)]
 
 ## Next Steps
 

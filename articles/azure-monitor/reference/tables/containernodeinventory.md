@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table that stores Container host/node information
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table that stores Container host/node information
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containernodeinventory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containernodeinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containernodeinventory-include.md)]

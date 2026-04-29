@@ -10,8 +10,6 @@ ms.date: 04/28/2026
 ---
 
 # Azure Monitor Log Analytics log tables organized by category
-  
-
 
 ### Applications
 - [ACLUserDefinedLogs](./tables/acluserdefinedlogs.md)
@@ -42,7 +40,6 @@ ms.date: 04/28/2026
 - [OTelSpans](./tables/otelspans.md)
 - [OTelTraces](./tables/oteltraces.md)
 - [OTelTracesAgent](./tables/oteltracesagent.md)
-
 
 ### Audit
 - [AACAudit](./tables/aacaudit.md)
@@ -234,7 +231,6 @@ ms.date: 04/28/2026
 - [Windows365AuditLogs](./tables/windows365auditlogs.md)
 - [ZTSRequest](./tables/ztsrequest.md)
 
-
 ### Azure Monitor
 - [ALBHealthEvent](./tables/albhealthevent.md)
 - [AMWMetricsUsageDetails](./tables/amwmetricsusagedetails.md)
@@ -250,7 +246,6 @@ ms.date: 04/28/2026
 - [SVMPoolExecutionLog](./tables/svmpoolexecutionlog.md)
 - [Usage](./tables/usage.md)
 - [WorkloadDiagnosticLogs](./tables/workloaddiagnosticlogs.md)
-
 
 ### Azure Resources
 - [AACHttpRequest](./tables/aachttprequest.md)
@@ -664,7 +659,6 @@ ms.date: 04/28/2026
 - [WebPubSubMessaging](./tables/webpubsubmessaging.md)
 - [ZTSRequest](./tables/ztsrequest.md)
 
-
 ### Azure Virtual Desktop
 - [WVDAutoscaleEvaluationPooled](./tables/wvdautoscaleevaluationpooled.md)
 - [WVDCheckpoints](./tables/wvdcheckpoints.md)
@@ -677,7 +671,6 @@ ms.date: 04/28/2026
 - [WVDManagement](./tables/wvdmanagement.md)
 - [WVDMultiLinkAdd](./tables/wvdmultilinkadd.md)
 - [WVDSessionHostManagement](./tables/wvdsessionhostmanagement.md)
-
 
 ### Containers
 - [AKSAudit](./tables/aksaudit.md)
@@ -706,7 +699,6 @@ ms.date: 04/28/2026
 - [MeshControlPlane](./tables/meshcontrolplane.md)
 - [Perf](./tables/perf.md)
 - [RetinaNetworkFlowLogs](./tables/retinanetworkflowlogs.md)
-
 
 ### Desktop Analytics
 - [DHAppReliability](./tables/dhappreliability.md)
@@ -765,7 +757,6 @@ ms.date: 04/28/2026
 - [WaaSInsiderStatus](./tables/waasinsiderstatus.md)
 - [WaaSUpdateStatus](./tables/waasupdatestatus.md)
 
-
 ### IT & Management Tools
 - [AddonAzureBackupAlerts](./tables/addonazurebackupalerts.md)
 - [AddonAzureBackupJobs](./tables/addonazurebackupjobs.md)
@@ -790,7 +781,6 @@ ms.date: 04/28/2026
 - [Update](./tables/update.md)
 - [UpdateRunProgress](./tables/updaterunprogress.md)
 - [W3CIISLog](./tables/w3ciislog.md)
-
 
 ### Network
 - [AGCAccessLogs](./tables/agcaccesslogs.md)
@@ -825,7 +815,6 @@ ms.date: 04/28/2026
 - [NetworkMonitoring](./tables/networkmonitoring.md)
 - [RemoteNetworkHealthLogs](./tables/remotenetworkhealthlogs.md)
 - [ZTSRequest](./tables/ztsrequest.md)
-
 
 ### Security
 - [AADB2CRequestLogs](./tables/aadb2crequestlogs.md)
@@ -1047,7 +1036,6 @@ ms.date: 04/28/2026
 - [WindowsFirewall](./tables/windowsfirewall.md)
 - [WireData](./tables/wiredata.md)
 
-
 ### Virtual Machines
 - [AutoscaleEvaluationsLog](./tables/autoscaleevaluationslog.md)
 - [AutoscaleScaleActionsLog](./tables/autoscalescaleactionslog.md)
@@ -1071,7 +1059,6 @@ ms.date: 04/28/2026
 - [W3CIISLog](./tables/w3ciislog.md)
 - [WVDAgentHealthStatus](./tables/wvdagenthealthstatus.md)
 - [WireData](./tables/wiredata.md)
-
 
 ### Workloads
 - [ADAssessmentRecommendation](./tables/adassessmentrecommendation.md)

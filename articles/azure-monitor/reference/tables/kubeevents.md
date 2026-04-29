@@ -11,8 +11,7 @@ ms.date: 03/11/2026
 
 # KubeEvents
 
-Table that stores Kubernetes events 
-
+Table that stores Kubernetes events
 
 ## Table attributes
 
@@ -26,8 +25,6 @@ Table that stores Kubernetes events
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/kubeevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [kubeevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/kubeevents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Spring Cloud System Logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Spring Cloud System Logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appplatformsystemlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appplatformsystemlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appplatformsystemlogs-include.md)]

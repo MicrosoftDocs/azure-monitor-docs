@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for events of reading and writing Databricks MLflow ACLed artifacts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for events of reading and writing Databricks MLflow ACLed artifacts.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksmlflowacledartifact](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksmlflowacledartifact-include.md)]

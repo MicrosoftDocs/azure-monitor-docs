@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Storage Queue Service Logs Schema
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Storage Queue Service Logs Schema
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagequeuelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagequeuelogs-include.md)]

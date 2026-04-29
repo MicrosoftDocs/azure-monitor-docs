@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures auto-inflate operations done on an Event Hubs namespace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures auto-inflate operations done on an Event Hubs namespace.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsautoscalelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsautoscalelogs-include.md)]

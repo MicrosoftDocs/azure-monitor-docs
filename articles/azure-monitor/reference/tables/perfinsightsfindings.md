@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains information about individual PerfInsights findings.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains information about individual PerfInsights findings.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [perfinsightsfindings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perfinsightsfindings-include.md)]

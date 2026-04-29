@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for on Databricks workspace files.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for on Databricks workspace files.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksworkspacefiles](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksworkspacefiles-include.md)]

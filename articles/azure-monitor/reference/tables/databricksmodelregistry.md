@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Databricks model registry audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks model registry audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksmodelregistry](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksmodelregistry-include.md)]

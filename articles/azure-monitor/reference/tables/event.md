@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events from Windows Event Log on Windows computers using the Log Analytics agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events from Windows Event Log on Windows computers using the Log Analytics agent
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/event)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [event](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/event-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Console logs generated from application or container.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Console logs generated from application or container.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appserviceconsolelogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceconsolelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceconsolelogs-include.md)]

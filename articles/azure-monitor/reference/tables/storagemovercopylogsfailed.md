@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The result logs generated during the execution of Storage Mover job runs where the transfer result is 'Failed'. The logs include the details of the scanned items and their transfer result.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The result logs generated during the execution of Storage Mover job runs where t
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagemovercopylogsfailed](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagemovercopylogsfailed-include.md)]

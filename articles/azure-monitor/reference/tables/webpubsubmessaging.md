@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Messaging logs provide tracing information for the Azure Web PubSub hub messages received and sent via Azure Web PubSub service. For example, tracing ID and message type of the message. Typically the message is recorded when it arrives at or leaves from service and is helpful for troubleshooting message-related issues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Messaging logs provide tracing information for the Azure Web PubSub hub messages
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [webpubsubmessaging](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/webpubsubmessaging-include.md)]

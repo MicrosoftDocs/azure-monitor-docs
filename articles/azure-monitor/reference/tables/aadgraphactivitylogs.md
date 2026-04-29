@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 AAD Graph Activity Logs provide details of legacy API requests made to Azure Active Directory Graph for resources in the tenant.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AAD Graph Activity Logs provide details of legacy API requests made to Azure Act
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aadgraphactivitylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aadgraphactivitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aadgraphactivitylogs-include.md)]

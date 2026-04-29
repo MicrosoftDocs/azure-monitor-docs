@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs pertaining to the provisioning agent resources for a Managed DevOps Pool.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs pertaining to the provisioning agent resources for a Managed DevOps Pool.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdpresourcelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdpresourcelog-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Threat & vulnerability management assessment events, indicating the status of various security configurations on devices.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Threat & vulnerability management assessment events, indicating the status of va
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devicetvmsecureconfigurationassessment)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicetvmsecureconfigurationassessment](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicetvmsecureconfigurationassessment-include.md)]

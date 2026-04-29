@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 K8s process events. This table is collected by the detection team in MDC.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ K8s process events. This table is collected by the detection team in MDC.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdcdetectionprocessv2events](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcdetectionprocessv2events-include.md)]

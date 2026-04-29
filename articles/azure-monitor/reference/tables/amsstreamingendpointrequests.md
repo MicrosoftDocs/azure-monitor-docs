@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains information about requests to streaming endpoints. A streaming endpoint receives HTTP requests needed to stream video content. These requests usually come from video players or from the CDN.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains information about requests to streaming endpoints. A streaming endpoint
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amsstreamingendpointrequests)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amsstreamingendpointrequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amsstreamingendpointrequests-include.md)]

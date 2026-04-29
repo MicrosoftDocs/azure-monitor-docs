@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The results of an Azure Virtual Desktop Autoscale scaling plan evaluation on a hostpool. This includes information on the actions Autoscale took on the sessions hosts, such as starting or deallocating them, and why it took those actions. The column names that start with 'Config' contain the scaling plan configuration values for the current Autoscale schedule phase. If the ResultType column value is 'Failed' then join to the WVDErrors table using the CorrelationId column to get more details. For Autoscale documentation see https://go.microsoft.com/fwlink/?linkid=2169532 .
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The results of an Azure Virtual Desktop Autoscale scaling plan evaluation on a h
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdautoscaleevaluationpooled](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdautoscaleevaluationpooled-include.md)]

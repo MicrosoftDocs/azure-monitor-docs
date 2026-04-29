@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights traces.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights traces.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apptraces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apptraces-include.md)]

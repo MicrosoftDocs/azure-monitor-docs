@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights availability test results.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights availability test results.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appavailabilityresults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appavailabilityresults-include.md)]

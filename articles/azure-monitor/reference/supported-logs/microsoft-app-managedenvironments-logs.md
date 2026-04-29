@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.App/managedEnvironments, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.App/managedEnvironments  
+# Supported logs for Microsoft.App/managedEnvironments
 The following table lists the types of logs available for the Microsoft.App/managedEnvironments resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.App/managedEnvironments](../supported-metrics/microsoft-app-managedenvironments-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.App/managedEnvironments](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-app-managedenvironments-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.App/managedEnvironments](../supported-metrics/microsoft-app-managedenvironments-metrics.md)
+
+[!INCLUDE [Microsoft.App/managedEnvironments](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-app-managedenvironments-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks groups.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks groups.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksgroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksgroups-include.md)]

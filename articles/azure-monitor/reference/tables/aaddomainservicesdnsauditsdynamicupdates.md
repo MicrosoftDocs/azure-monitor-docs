@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 DNS server audit events enable change tracking on the DNS server. This table contains operational audit events for dynamic updates.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ DNS server audit events enable change tracking on the DNS server. This table con
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aaddomainservicesdnsauditsdynamicupdates](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aaddomainservicesdnsauditsdynamicupdates-include.md)]

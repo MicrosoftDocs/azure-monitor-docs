@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks BudgetPolicyCentral.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks BudgetPolicyCentral.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/databricksbudgetpolicycentral)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksbudgetpolicycentral](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksbudgetpolicycentral-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log for disconnected MQTT connections from an Event Grid namespace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log for disconnected MQTT connections from an Event Grid namespace.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/egnmqttdisconnections)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [egnmqttdisconnections](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/egnmqttdisconnections-include.md)]

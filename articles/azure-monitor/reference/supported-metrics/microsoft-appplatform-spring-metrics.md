@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.AppPlatform/spring, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.AppPlatform/spring
-  
-The following table lists the metrics available for the Microsoft.AppPlatform/spring resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.AppPlatform/spring](../supported-logs/microsoft-appplatform-spring-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.AppPlatform/spring](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-appplatform-spring-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.AppPlatform/spring resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.AppPlatform/spring](../supported-logs/microsoft-appplatform-spring-logs.md)
+
+[!INCLUDE [Microsoft.AppPlatform/spring](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-appplatform-spring-metrics-include.md)]
 
 ## Next steps
 

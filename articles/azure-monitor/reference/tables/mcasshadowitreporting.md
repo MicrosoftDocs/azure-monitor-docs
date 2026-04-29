@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 McasShadowItReporting
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ McasShadowItReporting
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mcasshadowitreporting](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mcasshadowitreporting-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Databricks Cloud Storage Metadata logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Databricks Cloud Storage Metadata logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickscloudstoragemetadata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickscloudstoragemetadata-include.md)]

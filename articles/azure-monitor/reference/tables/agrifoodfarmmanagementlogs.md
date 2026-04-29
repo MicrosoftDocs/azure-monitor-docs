@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create, update, delete and get operations on FarmBeats resources such as Farmer, Farm, Field, Boundary, Seasonal Field, Crop, CropVariety, Season, Attachment, Prescription Maps, Prescriptions, Management Zones, Zones, Plant Tissue Analysis, Nutrient Analysis etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create, update, delete and get operations on FarmBeats resources such a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agrifoodfarmmanagementlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodfarmmanagementlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodfarmmanagementlogs-include.md)]

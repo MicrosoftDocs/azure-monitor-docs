@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Schema for Azure DevOps audit logs, which can be used to track the many changes that occur within your Azure DevOps organization(s). Some examples include changes to security policies, pipelines, billing, and projects. For a full list of events, see aka.ms/azdev-audit-events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Schema for Azure DevOps audit logs, which can be used to track the many changes 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azuredevopsauditing](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuredevopsauditing-include.md)]

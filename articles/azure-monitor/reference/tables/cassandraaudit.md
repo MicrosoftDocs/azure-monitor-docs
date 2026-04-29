@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Detailed audit records for CQL operations and login attempts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Detailed audit records for CQL operations and login attempts.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cassandraaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cassandraaudit-include.md)]

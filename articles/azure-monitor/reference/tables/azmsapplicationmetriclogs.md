@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures application metrics(incoming/outgoing, successful/failed, etc. message delivery) for Azure Event Hubs and Azure Service Bus.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures application metrics(incoming/outgoing, successful/failed, etc. message 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsapplicationmetriclogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsapplicationmetriclogs-include.md)]

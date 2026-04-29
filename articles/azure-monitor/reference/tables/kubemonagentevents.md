@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table that stores events from the Kubernetes cluster monitoring agent [Azure Monitor Agent]
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table that stores events from the Kubernetes cluster monitoring agent [Azure Mon
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/kubemonagentevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [kubemonagentevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/kubemonagentevents-include.md)]

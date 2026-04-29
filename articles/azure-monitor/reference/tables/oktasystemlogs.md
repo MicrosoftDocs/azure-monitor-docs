@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Okta System Logs data connector provides the capability to ingest audit and event logs from the Okta Sysem Log API into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform and uses the Okta System Log API to fetch the events. The connector supports DCR-based [ingestion time transformations](https://docs.microsoft.com/azure/azure-monitor/logs/custom-logs-overview) that parses the received security event data into a custom columns so that queries don't need to parse it again, thus resulting in better performance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Okta System Logs data connector provides the capability to ingest audit and even
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/oktasystemlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oktasystemlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oktasystemlogs-include.md)]

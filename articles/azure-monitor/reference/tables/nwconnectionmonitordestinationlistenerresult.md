@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Connection Monitor destination listener result records.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connection Monitor destination listener result records.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nwconnectionmonitordestinationlistenerresult](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nwconnectionmonitordestinationlistenerresult-include.md)]

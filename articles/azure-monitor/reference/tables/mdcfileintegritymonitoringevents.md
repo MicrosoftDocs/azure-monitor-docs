@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 View changes of Windows and Linux Files, as well as of software registry keys. Events from this table are collected by Microsoft Defender for Endpoint (MDE).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ View changes of Windows and Linux Files, as well as of software registry keys. E
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdcfileintegritymonitoringevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcfileintegritymonitoringevents-include.md)]

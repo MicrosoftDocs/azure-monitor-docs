@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All Logs from Nexus storage appliance other than audit & alert logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All Logs from Nexus storage appliance other than audit & alert logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncsstoragelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncsstoragelogs-include.md)]

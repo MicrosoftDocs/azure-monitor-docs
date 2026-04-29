@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Call survey provides information about the call surveys submitted by the participants.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Call survey provides information about the call surveys submitted by the partici
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallsurvey)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallsurvey](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallsurvey-include.md)]

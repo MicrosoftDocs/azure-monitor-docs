@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Microsoft.Quantum/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Quantum/workspaces  
+# Supported logs for Microsoft.Quantum/workspaces
 The following table lists the types of logs available for the Microsoft.Quantum/workspaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.Quantum/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-quantum-workspaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.Quantum/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-quantum-workspaces-logs-include.md)]
 
 ## Next Steps
 

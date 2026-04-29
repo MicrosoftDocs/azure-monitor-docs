@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Data plane audit logs related to your dev center resources. Will display information concerning stop/start/deletes on dev boxes and environments.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Data plane audit logs related to your dev center resources. Will display informa
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devcenterdiagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devcenterdiagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenterdiagnosticlogs-include.md)]

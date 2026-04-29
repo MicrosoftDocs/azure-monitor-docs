@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NotificationHubs/namespaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NotificationHubs/namespaces  
+# Supported logs for Microsoft.NotificationHubs/namespaces
 The following table lists the types of logs available for the Microsoft.NotificationHubs/namespaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.NotificationHubs/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-notificationhubs-namespaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.NotificationHubs/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-notificationhubs-namespaces-logs-include.md)]
 
 ## Next Steps
 

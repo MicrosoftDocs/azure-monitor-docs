@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # IntuneOperationalLogs
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [intuneoperationallogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/intuneoperationallogs-include.md)]

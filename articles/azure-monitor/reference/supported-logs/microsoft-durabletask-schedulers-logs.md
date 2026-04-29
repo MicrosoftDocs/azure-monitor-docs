@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 01/20/2026
 ms.custom: Microsoft.DurableTask/schedulers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.DurableTask/schedulers  
+# Supported logs for Microsoft.DurableTask/schedulers
 The following table lists the types of logs available for the Microsoft.DurableTask/schedulers resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.DurableTask/schedulers](../supported-metrics/microsoft-durabletask-schedulers-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.DurableTask/schedulers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-durabletask-schedulers-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.DurableTask/schedulers](../supported-metrics/microsoft-durabletask-schedulers-metrics.md)
+
+[!INCLUDE [Microsoft.DurableTask/schedulers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-durabletask-schedulers-logs-include.md)]
 
 ## Next Steps
 

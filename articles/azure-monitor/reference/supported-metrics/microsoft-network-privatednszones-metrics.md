@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Network/privateDnsZones, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Network/privateDnsZones
-  
-The following table lists the metrics available for the Microsoft.Network/privateDnsZones resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.Network/privateDnsZones](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-privatednszones-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Network/privateDnsZones resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.Network/privateDnsZones](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-privatednszones-metrics-include.md)]
 
 ## Next steps
 

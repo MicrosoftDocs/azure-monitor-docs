@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Storage Table Service Logs Schema
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Storage Table Service Logs Schema
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagetablelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagetablelogs-include.md)]

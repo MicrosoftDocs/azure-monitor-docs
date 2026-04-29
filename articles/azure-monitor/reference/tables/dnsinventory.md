@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # DnsInventory
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dnsinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dnsinventory-include.md)]

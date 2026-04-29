@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Microsoft.Network/NetworkVirtualAppliances, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Network/NetworkVirtualAppliances  
+# Supported logs for Microsoft.Network/NetworkVirtualAppliances
 The following table lists the types of logs available for the Microsoft.Network/NetworkVirtualAppliances resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/NetworkVirtualAppliances](../supported-metrics/microsoft-network-networkvirtualappliances-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/NetworkVirtualAppliances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networkvirtualappliances-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/NetworkVirtualAppliances](../supported-metrics/microsoft-network-networkvirtualappliances-metrics.md)
+
+[!INCLUDE [Microsoft.Network/NetworkVirtualAppliances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networkvirtualappliances-logs-include.md)]
 
 ## Next Steps
 

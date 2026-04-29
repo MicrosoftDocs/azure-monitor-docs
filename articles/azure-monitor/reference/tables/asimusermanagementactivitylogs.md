@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The ASim User Management schema represents user management activities, such as creating a user or a group, changing user attribute, or adding a user to a group. Such events are reported, for example, by operating systems, directory services, identity management systems, and any other system reporting on its local user management activity.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The ASim User Management schema represents user management activities, such as c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimusermanagementactivitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimusermanagementactivitylogs-include.md)]

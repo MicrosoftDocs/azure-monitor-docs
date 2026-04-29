@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Media Account Health Status. This table captures the Azure Media Services account health status. It can be used to diagnose issues for unhealthy accounts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Media Account Health Status. This table captures the Azure Media Services accoun
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amsmediaaccounthealth)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amsmediaaccounthealth](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amsmediaaccounthealth-include.md)]

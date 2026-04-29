@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Components state updates representing the status changes of ethernet ports, power supply units, fan modules, chassis and device software.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Components state updates representing the status changes of ethernet ports, powe
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mnfdeviceupdates)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mnfdeviceupdates](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mnfdeviceupdates-include.md)]

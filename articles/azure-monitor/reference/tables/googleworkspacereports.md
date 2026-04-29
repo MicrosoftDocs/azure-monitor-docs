@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The [Google Workspace](https://workspace.google.com/) Activities data connector provides the capability to ingest Activity Events from [Google Workspace API](https://developers.google.com/admin-sdk/reports/reference/rest/v1/activities/list) into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The [Google Workspace](https://workspace.google.com/) Activities data connector 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [googleworkspacereports](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/googleworkspacereports-include.md)]

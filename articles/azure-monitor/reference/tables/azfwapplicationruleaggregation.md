@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains aggregated Application rule log data for Policy Analytics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains aggregated Application rule log data for Policy Analytics.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwapplicationruleaggregation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwapplicationruleaggregation-include.md)]

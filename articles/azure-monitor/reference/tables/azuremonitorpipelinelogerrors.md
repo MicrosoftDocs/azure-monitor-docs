@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Errors occurred during Azure Monitor pipeline data collection, transformation, and export.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Errors occurred during Azure Monitor pipeline data collection, transformation, a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azuremonitorpipelinelogerrors)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azuremonitorpipelinelogerrors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azuremonitorpipelinelogerrors-include.md)]

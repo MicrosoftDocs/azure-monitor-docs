@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events generated using the service, for example GET requests or the execution events of a workflow.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events generated using the service, for example GET requests or the execution ev
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/cieventsoperational)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cieventsoperational](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cieventsoperational-include.md)]

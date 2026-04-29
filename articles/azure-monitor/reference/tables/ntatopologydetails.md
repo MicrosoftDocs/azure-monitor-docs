@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic Analytics records for Topology data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic Analytics records for Topology data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ntatopologydetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntatopologydetails-include.md)]

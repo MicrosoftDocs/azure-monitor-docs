@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 These are Audit logs related to ingestion of files on the input storage account.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ These are Audit logs related to ingestion of files on the input storage account.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aoistorage)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aoistorage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aoistorage-include.md)]

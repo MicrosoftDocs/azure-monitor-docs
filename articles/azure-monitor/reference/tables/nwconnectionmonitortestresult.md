@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Connection Monitor test result records.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connection Monitor test result records.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/nwconnectionmonitortestresult)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nwconnectionmonitortestresult](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nwconnectionmonitortestresult-include.md)]

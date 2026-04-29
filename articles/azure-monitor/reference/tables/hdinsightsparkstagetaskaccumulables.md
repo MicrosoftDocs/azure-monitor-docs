@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark Stage Task Accumulables.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark Stage Task Accumulables.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparkstagetaskaccumulables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparkstagetaskaccumulables-include.md)]

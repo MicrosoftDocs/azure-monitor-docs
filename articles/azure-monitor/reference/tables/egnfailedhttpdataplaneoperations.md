@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log for failed HTTP data plane requests to an Event Grid namespace. It can be used for auditing purposes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log for failed HTTP data plane requests to an Event Grid namespace. It can be us
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/egnfailedhttpdataplaneoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [egnfailedhttpdataplaneoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/egnfailedhttpdataplaneoperations-include.md)]

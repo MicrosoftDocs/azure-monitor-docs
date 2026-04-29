@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform Resource Manager data connector provides the capability to ingest Resource Manager [Admin Activity and Data Access Audit logs](https://cloud.google.com/resource-manager/docs/audit-logging) into Microsoft Sentinel using the Cloud Resource Manager API. Refer the [Product overview](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy) document for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform Resource Manager data connector provides the capabilit
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpresourcemanager](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpresourcemanager-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs Microsoft Entra authentication audit events for Azure Cache for Redis.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs Microsoft Entra authentication audit events for Azure Cache for Redis.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acrentraauthenticationauditlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acrentraauthenticationauditlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acrentraauthenticationauditlog-include.md)]

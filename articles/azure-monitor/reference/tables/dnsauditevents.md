@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 DNS server audit events enable change tracking on the DNS server. An audit event is logged each time server, zone, or resource record settings are changed. This includes operational events such as zone transfers, and DNSSEC zone signing and unsigning.  This table captures audit events that are not from dynamic updates.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ DNS server audit events enable change tracking on the DNS server. An audit event
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dnsauditevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dnsauditevents-include.md)]

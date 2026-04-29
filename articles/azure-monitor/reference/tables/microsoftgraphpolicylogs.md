@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Microsoft Graph Policy Logs provide details of resource policy evaluations from Microsoft Graph, including whether policies were applied, denied, or audited for API requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Graph Policy Logs provide details of resource policy evaluations from 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftgraphpolicylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftgraphpolicylogs-include.md)]

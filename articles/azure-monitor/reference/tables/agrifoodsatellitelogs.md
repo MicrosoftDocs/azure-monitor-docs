@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create and get operations for Satellite data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create and get operations for Satellite data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodsatellitelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodsatellitelogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Internet Information Server (IIS) log on Windows computers using the Log Analytics agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Internet Information Server (IIS) log on Windows computers using the Log Analyti
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/w3ciislog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [w3ciislog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/w3ciislog-include.md)]

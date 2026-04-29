@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Event Grid - event delivery failure logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Event Grid - event delivery failure logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aegdeliveryfailurelogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aegdeliveryfailurelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aegdeliveryfailurelogs-include.md)]

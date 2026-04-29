@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Databricks Ingestion logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Databricks Ingestion logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksingestion](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksingestion-include.md)]

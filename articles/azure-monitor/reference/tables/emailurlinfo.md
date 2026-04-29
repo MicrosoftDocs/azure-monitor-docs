@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Office 365 emails URLs information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Office 365 emails URLs information.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/emailurlinfo)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [emailurlinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/emailurlinfo-include.md)]

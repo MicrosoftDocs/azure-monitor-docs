@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Databricks Git credentials audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks Git credentials audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksgitcredentials](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksgitcredentials-include.md)]

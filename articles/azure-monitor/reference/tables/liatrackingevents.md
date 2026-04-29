@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostics data for B2B messages in Azure Logic Apps. After you set up B2B communication between trading partners in your integration account, those partners can exchange messages by using protocols such as AS2, X12, and EDIFACT. To check that this communication works the way you expect, you can enable monitoring in your integration account. These minitoring logs appear here.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostics data for B2B messages in Azure Logic Apps. After you set up B2B comm
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [liatrackingevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/liatrackingevents-include.md)]

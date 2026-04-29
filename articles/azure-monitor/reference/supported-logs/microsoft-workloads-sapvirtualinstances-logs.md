@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: microsoft.workloads/sapvirtualinstances, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.workloads/sapvirtualinstances  
+# Supported logs for microsoft.workloads/sapvirtualinstances
 The following table lists the types of logs available for the microsoft.workloads/sapvirtualinstances resource type.
-  
 
-  
-[!INCLUDE [microsoft.workloads/sapvirtualinstances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-workloads-sapvirtualinstances-logs-include.md)]  
-  
+[!INCLUDE [microsoft.workloads/sapvirtualinstances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-workloads-sapvirtualinstances-logs-include.md)]
 
 ## Next Steps
 

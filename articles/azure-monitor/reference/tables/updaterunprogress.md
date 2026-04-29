@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Breaks down each run of your update schedule by the patches available at the time with details on the installation status of each patch.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Breaks down each run of your update schedule by the patches available at the tim
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/updaterunprogress)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [updaterunprogress](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/updaterunprogress-include.md)]

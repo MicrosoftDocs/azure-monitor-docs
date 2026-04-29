@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This stack integrates Microsoft Sentinel by creating an IAM role with minimal permissions for accessing S3 server access logs stored in a specified S3 bucket and sending log events to an SQS queue.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This stack integrates Microsoft Sentinel by creating an IAM role with minimal pe
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awss3serveraccess](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awss3serveraccess-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains information about resources impacted by an individual PerfInsights finding.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains information about resources impacted by an individual PerfIn
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/perfinsightsimpactedresources)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [perfinsightsimpactedresources](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perfinsightsimpactedresources-include.md)]

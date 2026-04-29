@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Resource attributes emitted by an OpenTelemetry source.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Resource attributes emitted by an OpenTelemetry source.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [otelresources](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/otelresources-include.md)]

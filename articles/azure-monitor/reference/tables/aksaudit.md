@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all Kubernetes API Server audit logs including events with the get and list verbs. These events are useful for monitoring all of the interactions with the Kubernetes API. To limit the scope to modifying operations see the AKSAuditAdmin table. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all Kubernetes API Server audit logs including events with the get and 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aksaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aksaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aksaudit-include.md)]

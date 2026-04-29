@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Compute/cloudServices/roles, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Compute/cloudServices/roles
-  
-The following table lists the metrics available for the Microsoft.Compute/cloudServices/roles resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.Compute/cloudServices/roles](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-compute-cloudservices-roles-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Compute/cloudServices/roles resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.Compute/cloudServices/roles](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-compute-cloudservices-roles-metrics-include.md)]
 
 ## Next steps
 

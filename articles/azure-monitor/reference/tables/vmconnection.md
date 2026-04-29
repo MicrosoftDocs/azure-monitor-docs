@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic for inbound and outbound connections to and from monitored computers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic for inbound and outbound connections to and from monitored computers.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [vmconnection](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/vmconnection-include.md)]

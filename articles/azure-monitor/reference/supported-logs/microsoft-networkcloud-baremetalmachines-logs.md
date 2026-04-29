@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NetworkCloud/bareMetalMachines, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NetworkCloud/bareMetalMachines  
+# Supported logs for Microsoft.NetworkCloud/bareMetalMachines
 The following table lists the types of logs available for the Microsoft.NetworkCloud/bareMetalMachines resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.NetworkCloud/bareMetalMachines](../supported-metrics/microsoft-networkcloud-baremetalmachines-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.NetworkCloud/bareMetalMachines](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkcloud-baremetalmachines-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.NetworkCloud/bareMetalMachines](../supported-metrics/microsoft-networkcloud-baremetalmachines-metrics.md)
+
+[!INCLUDE [Microsoft.NetworkCloud/bareMetalMachines](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkcloud-baremetalmachines-logs-include.md)]
 
 ## Next Steps
 

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Synapse/workspaces/bigDataPools, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Synapse/workspaces/bigDataPools  
+# Supported logs for Microsoft.Synapse/workspaces/bigDataPools
 The following table lists the types of logs available for the Microsoft.Synapse/workspaces/bigDataPools resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Synapse/workspaces/bigDataPools](../supported-metrics/microsoft-synapse-workspaces-bigdatapools-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Synapse/workspaces/bigDataPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-synapse-workspaces-bigdatapools-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Synapse/workspaces/bigDataPools](../supported-metrics/microsoft-synapse-workspaces-bigdatapools-metrics.md)
+
+[!INCLUDE [Microsoft.Synapse/workspaces/bigDataPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-synapse-workspaces-bigdatapools-logs-include.md)]
 
 ## Next Steps
 

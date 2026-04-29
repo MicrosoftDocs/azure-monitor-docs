@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 System session history update events in the Nexus network fabric devices.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ System session history update events in the Nexus network fabric devices.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mnfsystemsessionhistoryupdates)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mnfsystemsessionhistoryupdates](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mnfsystemsessionhistoryupdates-include.md)]

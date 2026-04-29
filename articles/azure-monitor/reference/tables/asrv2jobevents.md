@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains records of Azure Site Recovery v2 (ASRv2) jobs such as replication, migration, etc., with key details for monitoring and diagnostics, such as protected item's information, duration, status, description and so on. Whenever an ASRv2 job is completed (i.e., succeeded or failed), a corresponding record for the job is sent to this table. You can view history of ASRv2 jobs by querying this table over a larger time range, provided your workspace has the required retention configured.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains records of Azure Site Recovery v2 (ASRv2) jobs such as repli
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asrv2jobevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2jobevents-include.md)]

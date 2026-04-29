@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Agent self-reported health data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Agent self-reported health data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amahealth](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amahealth-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures various identity-related events, like password changes, password expiration, and user principal name (UPN) changes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures various identity-related events, like password changes, password expira
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devicetvmsoftwarevulnerabilities)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicetvmsoftwarevulnerabilities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicetvmsoftwarevulnerabilities-include.md)]

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 09/01/2025
 ms.custom: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels  
+# Supported logs for Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
 The following table lists the types of logs available for the Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels](../supported-metrics/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels](../supported-metrics/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md)
+
+[!INCLUDE [Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs-include.md)]
 
 ## Next Steps
 

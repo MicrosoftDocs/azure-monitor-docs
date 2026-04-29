@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Information about Microsoft 365-connected OAuth applications in the organization covered by Microsoft Cloud App Security.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about Microsoft 365-connected OAuth applications in the organization
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oauthappinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oauthappinfo-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) image load events table for the Custom Collection scenario. This table contains contains DLL loading events on the endpoint for anything explicitly requested by the customer for collection.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) image load events table for the Custom Co
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicecustomimageloadevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicecustomimageloadevents-include.md)]

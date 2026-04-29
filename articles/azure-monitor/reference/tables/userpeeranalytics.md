@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This analytics table, for a given user, provides a ranked list of peers. For example, if the user is Jane Smith, Peer Analytics calculates all of Jane's peers based on her mailing list, security groups, etc and provides the top 20 of her peers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This analytics table, for a given user, provides a ranked list of peers. For exa
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [userpeeranalytics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/userpeeranalytics-include.md)]

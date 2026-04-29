@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events that update the content of a Grafana dashboard, such as saving an edit or restoring a previously saved version.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events that update the content of a Grafana dashboard, such as saving an edit or
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agsupdateevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agsupdateevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agsupdateevents-include.md)]

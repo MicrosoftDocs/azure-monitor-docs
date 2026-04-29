@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Microsoft Power Platform Data Loss Prevention (DLP) audit logs. It's typically used to track Power Platform DLP admin activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Microsoft Power Platform Data Loss Prevention (DLP) audit logs. It's ty
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/powerplatformdlpactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerplatformdlpactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerplatformdlpactivity-include.md)]

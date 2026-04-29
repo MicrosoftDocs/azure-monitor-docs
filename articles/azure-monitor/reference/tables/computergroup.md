@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Computer groups that can be used to scope log queries to a set of computers. Includes the computers in each group.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Computer groups that can be used to scope log queries to a set of computers. Inc
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [computergroup](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/computergroup-include.md)]

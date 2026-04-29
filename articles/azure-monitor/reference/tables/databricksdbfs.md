@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Databricks DBFS audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks DBFS audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksdbfs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksdbfs-include.md)]

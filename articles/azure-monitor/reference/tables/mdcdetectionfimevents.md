@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events from this table are collected by the detection team in MDC.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events from this table are collected by the detection team in MDC.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mdcdetectionfimevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdcdetectionfimevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcdetectionfimevents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains status and other information about data sources that were collected as part of DCR datasets.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains status and other information about data sources that were co
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/datasetruns)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [datasetruns](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/datasetruns-include.md)]

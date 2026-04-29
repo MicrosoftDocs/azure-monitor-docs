@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs associated with Storage Mover job runs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs associated with Storage Mover job runs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagemoverjobrunlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagemoverjobrunlogs-include.md)]

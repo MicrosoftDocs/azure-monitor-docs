@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Provides Summary logs rules execution details, including run status, duration and errors. Can be used to view bins executions statuses, identify rules that take a long time to complete, and failures that could be optimized in query, or shorted bin time.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Provides Summary logs rules execution details, including run status, duration an
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/lasummarylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [lasummarylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/lasummarylogs-include.md)]

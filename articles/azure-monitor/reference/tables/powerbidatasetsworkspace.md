@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Analysis Services engine process events such as the start of a batch or transaction e.g. execute query, process partition. Typically used to monitor the performance, health and usage of Power BI's data engine. Contains information from the entire tenant.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Analysis Services engine process events such as the start of a batch or
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerbidatasetsworkspace](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerbidatasetsworkspace-include.md)]

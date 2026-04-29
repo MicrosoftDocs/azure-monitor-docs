@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Incoming HTTP requests on App Service. Use these logs to monitor application health, performance and usage patterns.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Incoming HTTP requests on App Service. Use these logs to monitor application hea
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appservicehttplogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appservicehttplogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appservicehttplogs-include.md)]

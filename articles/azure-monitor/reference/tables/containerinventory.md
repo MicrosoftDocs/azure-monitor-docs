@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Inventory of containers and their attributes that are monitored by the agent
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Inventory of containers and their attributes that are monitored by the agent
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containerinventory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerinventory-include.md)]

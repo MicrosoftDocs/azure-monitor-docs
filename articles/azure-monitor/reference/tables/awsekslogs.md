@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AWS EKS audit logs, which ingested from Sentinel's connector, contain detailed information about API server requests, authentication decisions, and cluster activities from Amazon Elastic Kubernetes Service. These logs provide comprehensive security monitoring and compliance tracking for Kubernetes clusters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AWS EKS audit logs, which ingested from Sentinel's connector, contain detailed i
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsekslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsekslogs-include.md)]

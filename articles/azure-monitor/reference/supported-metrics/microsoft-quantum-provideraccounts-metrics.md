@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 03/27/2026
 ms.custom: Microsoft.Quantum/providerAccounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.Quantum/providerAccounts
-  
-The following table lists the metrics available for the Microsoft.Quantum/providerAccounts resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.Quantum/providerAccounts](../supported-logs/microsoft-quantum-provideraccounts-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.Quantum/providerAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-quantum-provideraccounts-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.Quantum/providerAccounts resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.Quantum/providerAccounts](../supported-logs/microsoft-quantum-provideraccounts-logs.md)
+
+[!INCLUDE [Microsoft.Quantum/providerAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-quantum-provideraccounts-metrics-include.md)]
 
 ## Next steps
 

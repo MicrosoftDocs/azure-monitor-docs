@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Cassandra general logging messages (system.log).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Cassandra general logging messages (system.log).
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/cassandralogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cassandralogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cassandralogs-include.md)]

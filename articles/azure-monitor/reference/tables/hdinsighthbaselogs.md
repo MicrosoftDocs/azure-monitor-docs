@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All logs from HDInsight HBase Logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All logs from HDInsight HBase Logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthbaselogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthbaselogs-include.md)]

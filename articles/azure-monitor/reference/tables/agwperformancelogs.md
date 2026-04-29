@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all the logs to view how Application Gateway instances are performing. This log captures performance information for each instance, including total requests served, throughput in bytes, total requests served, failed request count, and healthy and unhealthy backend instance count.The Performance log is available only for the v1 SKU.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all the logs to view how Application Gateway instances are performing. 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agwperformancelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agwperformancelogs-include.md)]

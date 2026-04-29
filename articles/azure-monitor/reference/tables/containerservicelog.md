@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # ContainerServiceLog
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containerservicelog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerservicelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerservicelog-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows events which are collected and sent by the agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows events which are collected and sent by the agent.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/windowsevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [windowsevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/windowsevent-include.md)]

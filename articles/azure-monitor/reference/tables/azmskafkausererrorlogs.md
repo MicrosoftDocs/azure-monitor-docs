@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures information about kafka APIs called on Event Hubs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures information about kafka APIs called on Event Hubs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmskafkausererrorlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmskafkausererrorlogs-include.md)]

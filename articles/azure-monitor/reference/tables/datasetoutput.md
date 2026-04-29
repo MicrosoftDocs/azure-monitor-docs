@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 The raw collected data from DCR datasets.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The raw collected data from DCR datasets.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/datasetoutput)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [datasetoutput](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/datasetoutput-include.md)]

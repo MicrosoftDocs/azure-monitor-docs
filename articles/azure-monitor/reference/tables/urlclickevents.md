@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events involving URLs clicked, selected, or requested on Microsoft Defender for Office 365.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events involving URLs clicked, selected, or requested on Microsoft Defender for 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/urlclickevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [urlclickevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/urlclickevents-include.md)]

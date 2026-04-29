@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform IDS data connector provides the capability to ingest Cloud IDS logs into Microsoft Sentinel using the Compute Engine API. This enables the detection and response to potential threats within the Google Cloud environment by monitoring network traffic and identifying suspicious activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform IDS data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpids](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpids-include.md)]

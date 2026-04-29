@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks workspaces customer support access events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks workspaces customer support access events.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksgenie](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksgenie-include.md)]

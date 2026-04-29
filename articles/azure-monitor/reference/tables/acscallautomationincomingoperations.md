@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Communication Services logs of incoming requests to Call Automation operations. Every entry corresponds to the result of a call to the Call Automation APIs, e.g. CreateCall, AnswerCall, Play, Recognize, etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Communication Services logs of incoming requests to Call Automation operations. 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallautomationincomingoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallautomationincomingoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallautomationincomingoperations-include.md)]

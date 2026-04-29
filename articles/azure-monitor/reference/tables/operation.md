@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Operational log of important activities affecting workspace. Includes both user-initiated activities and notifications from Log Analytics workspace services such as data-capping.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Operational log of important activities affecting workspace. Includes both user-
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [operation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/operation-include.md)]

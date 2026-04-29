@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark Application Events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark Application Events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparkapplicationevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparkapplicationevents-include.md)]

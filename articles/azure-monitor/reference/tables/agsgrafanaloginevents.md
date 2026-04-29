@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Login events for an instance of Azure Managed Workspace for Grafana including user identity, user Grafana role (in success) and detailed message (in failure).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Login events for an instance of Azure Managed Workspace for Grafana including us
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/agsgrafanaloginevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agsgrafanaloginevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agsgrafanaloginevents-include.md)]

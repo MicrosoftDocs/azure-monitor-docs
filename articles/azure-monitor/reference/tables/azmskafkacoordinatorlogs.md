@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures kafka coordinator operations related to Event Hubs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures kafka coordinator operations related to Event Hubs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmskafkacoordinatorlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmskafkacoordinatorlogs-include.md)]

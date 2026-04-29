@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Antimalware installation info and security health status of the machine:
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Antimalware installation info and security health status of the machine:
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/protectionstatus)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [protectionstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/protectionstatus-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Query Store wait statistics sampled of an Azure Database for PostgreSQL Flexible Server. Wait event types combine different wait events into buckets by similarity.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Query Store wait statistics sampled of an Azure Database for PostgreSQL Flexible
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlquerystorewaits)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlquerystorewaits](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlquerystorewaits-include.md)]

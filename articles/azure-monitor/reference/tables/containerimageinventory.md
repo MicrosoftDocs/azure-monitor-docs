@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Inventory of container images and their attributes that were discovered by the agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Inventory of container images and their attributes that were discovered by the a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containerimageinventory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerimageinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerimageinventory-include.md)]

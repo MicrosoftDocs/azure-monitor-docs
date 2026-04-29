@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs from the Ranger component (only for ESP clusters).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs from the Ranger component (only for ESP clusters).
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightrangerauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightrangerauditlogs-include.md)]

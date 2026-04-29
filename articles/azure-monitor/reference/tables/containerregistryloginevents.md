@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Container Registry Login Auditing Logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Container Registry Login Auditing Logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/containerregistryloginevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerregistryloginevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerregistryloginevents-include.md)]

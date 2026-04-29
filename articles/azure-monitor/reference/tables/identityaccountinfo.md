@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 This table is populated by Azure Sentinel UEBA with all your users account identities information. It can be used to correlate user information and insights with analytics or hunting queries.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is populated by Azure Sentinel UEBA with all your users account ident
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [identityaccountinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identityaccountinfo-include.md)]

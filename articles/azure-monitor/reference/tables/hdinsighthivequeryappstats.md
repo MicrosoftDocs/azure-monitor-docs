@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Hive Query Metrics emitted from the YARN Timeline Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Hive Query Metrics emitted from the YARN Timeline Server.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthivequeryappstats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthivequeryappstats-include.md)]

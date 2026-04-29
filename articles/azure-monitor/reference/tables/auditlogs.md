@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit log for Azure Active Directory. Includes system activity information about user and group management managed applications and directory activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit log for Azure Active Directory. Includes system activity information about
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [auditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/auditlogs-include.md)]

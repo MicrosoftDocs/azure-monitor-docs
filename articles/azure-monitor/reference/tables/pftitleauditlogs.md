@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Provides audit logs for various types of action performed on Azure PlayFab Title.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Provides audit logs for various types of action performed on Azure PlayFab Title
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pftitleauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pftitleauditlogs-include.md)]

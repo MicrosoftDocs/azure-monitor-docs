@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit Logs for Microsoft Energy Data Services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit Logs for Microsoft Energy Data Services.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oepauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oepauditlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 JMX metrics from Hadoop clusters and Yarn JMX metrics from any YARN-based cluster type.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ JMX metrics from Hadoop clusters and Yarn JMX metrics from any YARN-based cluste
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthadoopandyarnmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthadoopandyarnmetrics-include.md)]

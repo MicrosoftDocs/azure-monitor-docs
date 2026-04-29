@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Istiod logs of AppLink operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Istiod logs of AppLink operations.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/meshcontrolplane)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [meshcontrolplane](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/meshcontrolplane-include.md)]

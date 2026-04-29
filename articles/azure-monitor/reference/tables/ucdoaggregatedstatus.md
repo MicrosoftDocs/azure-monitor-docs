@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - aggregates all individual UCDOStatus records across the tenant and summarizes bandwidth savings across all devices enrolled to delivery.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - aggregates all individual UCDOStatus records across the tena
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ucdoaggregatedstatus)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucdoaggregatedstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucdoaggregatedstatus-include.md)]

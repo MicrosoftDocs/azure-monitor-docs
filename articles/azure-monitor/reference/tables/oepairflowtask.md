@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostic logs for AirFlow task execution having task name, task details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostic logs for AirFlow task execution having task name, task details.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/oepairflowtask)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oepairflowtask](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oepairflowtask-include.md)]

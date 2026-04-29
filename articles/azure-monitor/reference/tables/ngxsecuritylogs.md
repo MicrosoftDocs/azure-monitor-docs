@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 NGINX security logs captured by NGINXaaS.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ NGINX security logs captured by NGINXaaS.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ngxsecuritylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ngxsecuritylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ngxsecuritylogs-include.md)]

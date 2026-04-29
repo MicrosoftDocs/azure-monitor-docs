@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table shows files that were identified as malicious by Microsoft Defender for Office 365 in SharePoint Online, OneDrive for Business, and Microsoft Teams.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table shows files that were identified as malicious by Microsoft Defender f
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [filemaliciouscontentinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/filemaliciouscontentinfo-include.md)]

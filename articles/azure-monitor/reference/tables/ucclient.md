@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - This event acts as an individual device's record, containing data like the current build installed, device's name, the OS Edition, active hours (quantitative), and so on.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - This event acts as an individual device's record, containing
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucclient](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucclient-include.md)]
