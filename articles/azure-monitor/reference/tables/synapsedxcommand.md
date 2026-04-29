@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure data explorer synapse command execution summary. Logs include DatabaseName, State, Duration that can be used for monitoring the commands which were invoked on the cluster
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure data explorer synapse command execution summary. Logs include DatabaseName
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsedxcommand](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsedxcommand-include.md)]

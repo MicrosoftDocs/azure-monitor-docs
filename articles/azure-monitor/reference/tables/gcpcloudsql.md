@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The GCP Cloud SQL data connector provides the capability to ingest Audit logs into Microsoft Sentinel using the GCP Cloud SQL API. Refer to [GCP cloud SQL Audit Logs](https://cloud.google.com/sql/docs/mysql/audit-logging) documentation for more information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The GCP Cloud SQL data connector provides the capability to ingest Audit logs in
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpcloudsql](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpcloudsql-include.md)]

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Storage/storageAccounts/fileServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Storage/storageAccounts/fileServices  
+# Supported logs for Microsoft.Storage/storageAccounts/fileServices
 The following table lists the types of logs available for the Microsoft.Storage/storageAccounts/fileServices resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Storage/storageAccounts/fileServices](../supported-metrics/microsoft-storage-storageaccounts-fileservices-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Storage/storageAccounts/fileServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storage-storageaccounts-fileservices-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Storage/storageAccounts/fileServices](../supported-metrics/microsoft-storage-storageaccounts-fileservices-metrics.md)
+
+[!INCLUDE [Microsoft.Storage/storageAccounts/fileServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storage-storageaccounts-fileservices-logs-include.md)]
 
 ## Next Steps
 

@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES  
+# Supported logs for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
 The following table lists the types of logs available for the MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES resource type.
-  
 
-  
-[!INCLUDE [MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-openenergyplatform-energyservices-logs-include.md)]  
-  
+[!INCLUDE [MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-openenergyplatform-energyservices-logs-include.md)]
 
 ## Next Steps
 

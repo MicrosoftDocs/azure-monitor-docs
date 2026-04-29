@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for events related to manipulation of Databricks MLflow experiments.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for events related to manipulation of Databricks MLflow experiments.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksmlflowexperiment](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksmlflowexperiment-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform (GCP) Kubernetes Engine data connector allows you to monitor containerized applications, track performance metrics, and detect potential threats across your GKE environment.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform (GCP) Kubernetes Engine data connector allows you to m
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gkescheduler](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gkescheduler-include.md)]

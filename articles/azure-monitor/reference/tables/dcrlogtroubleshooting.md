@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Logs from DCR-based data collection and transformation to help with troubleshooting of DCR configuration and flow.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from DCR-based data collection and transformation to help with troubleshoot
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dcrlogtroubleshooting](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dcrlogtroubleshooting-include.md)]

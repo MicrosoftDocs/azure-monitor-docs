@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create, update, delete and get operations while ingesting weather data in FarmBeats.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create, update, delete and get operations while ingesting weather data 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodweatherlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodweatherlogs-include.md)]

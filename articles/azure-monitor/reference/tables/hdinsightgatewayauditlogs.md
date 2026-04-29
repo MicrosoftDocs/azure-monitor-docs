@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Authentication audit logs from HDInsight Gateway nodes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Authentication audit logs from HDInsight Gateway nodes.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightgatewayauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightgatewayauditlogs-include.md)]

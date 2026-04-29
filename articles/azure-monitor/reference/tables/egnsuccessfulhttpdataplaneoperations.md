@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log for successful HTTP data plane requests to an Event Grid namespace. It can be used for auditing purposes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log for successful HTTP data plane requests to an Event Grid namespace. It can b
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/egnsuccessfulhttpdataplaneoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [egnsuccessfulhttpdataplaneoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/egnsuccessfulhttpdataplaneoperations-include.md)]

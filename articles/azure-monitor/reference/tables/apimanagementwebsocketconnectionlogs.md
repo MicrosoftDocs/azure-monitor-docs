@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Websocket connection logs provides logs on websocket connection events for API Management Gateway. Logging starts when the request arrives to API Management Gateway for handshake and till the request gets terminated. Every request log can be uniquely identified with CorrelationId.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Websocket connection logs provides logs on websocket connection events for API M
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apimanagementwebsocketconnectionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimanagementwebsocketconnectionlogs-include.md)]

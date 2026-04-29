@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains data classification information provided by Azure Purview and is used to correlate storage resource logs with data sensitivity information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains data classification information provided by Azure Purview and is used t
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dsmdataclassificationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dsmdataclassificationlogs-include.md)]

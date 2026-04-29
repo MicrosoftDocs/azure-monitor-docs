@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all DNAT (Destination Network Address Translation) events log data. Each match between data plane and DNAT rule creates a log entry with the data plane packet and the matched rule's attributes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all DNAT (Destination Network Address Translation) events log data. Eac
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwnatrule)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwnatrule](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwnatrule-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all the DNS proxy data between the client, firewall, and DNS server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all the DNS proxy data between the client, firewall, and DNS server.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwdnsflowtrace](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwdnsflowtrace-include.md)]

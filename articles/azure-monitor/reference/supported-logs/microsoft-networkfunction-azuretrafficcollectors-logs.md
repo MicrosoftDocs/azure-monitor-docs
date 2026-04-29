@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NetworkFunction/azureTrafficCollectors, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NetworkFunction/azureTrafficCollectors  
+# Supported logs for Microsoft.NetworkFunction/azureTrafficCollectors
 The following table lists the types of logs available for the Microsoft.NetworkFunction/azureTrafficCollectors resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.NetworkFunction/azureTrafficCollectors](../supported-metrics/microsoft-networkfunction-azuretrafficcollectors-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.NetworkFunction/azureTrafficCollectors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkfunction-azuretrafficcollectors-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.NetworkFunction/azureTrafficCollectors](../supported-metrics/microsoft-networkfunction-azuretrafficcollectors-metrics.md)
+
+[!INCLUDE [Microsoft.NetworkFunction/azureTrafficCollectors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkfunction-azuretrafficcollectors-logs-include.md)]
 
 ## Next Steps
 

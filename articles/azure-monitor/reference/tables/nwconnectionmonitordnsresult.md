@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Connection Monitor DNS result records.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connection Monitor DNS result records.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nwconnectionmonitordnsresult](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nwconnectionmonitordnsresult-include.md)]

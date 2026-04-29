@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table that stores kubernetes cluster's Pod & container information
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table that stores kubernetes cluster's Pod & container information
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/kubepodinventory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [kubepodinventory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/kubepodinventory-include.md)]

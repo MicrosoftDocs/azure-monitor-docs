@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The MCVP Azure monitor logs. This table will include logs for vehicle provision, connection and activities sending command and receiving telemetry messages.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The MCVP Azure monitor logs. This table will include logs for vehicle provision,
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mcvpoperationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mcvpoperationlogs-include.md)]

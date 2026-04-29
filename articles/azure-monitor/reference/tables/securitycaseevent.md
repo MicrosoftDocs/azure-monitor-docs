@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit log table tracking all field-level changes to Case Management entities including cases, tasks, comments, attachments, and relations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit log table tracking all field-level changes to Case Management entities inc
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/securitycaseevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securitycaseevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securitycaseevent-include.md)]

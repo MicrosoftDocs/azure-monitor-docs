@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Databricks unity catalog audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks unity catalog audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksunitycatalog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksunitycatalog-include.md)]

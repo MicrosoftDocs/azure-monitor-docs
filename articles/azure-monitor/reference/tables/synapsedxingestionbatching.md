@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure data explore synapse ingestion batching operations. These logs have detailed statistics of batches ready for ingestion (duration, batch size and blobs count)
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure data explore synapse ingestion batching operations. These logs have detail
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsedxingestionbatching](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsedxingestionbatching-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures aggregated diagnostic information for various data plane access operations (such as send or receive messages) in Azure Event Hubs and Azure Service Bus. Runtime audit logs are currently available only in premium tier.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures aggregated diagnostic information for various data plane access operati
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmsruntimeauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsruntimeauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsruntimeauditlogs-include.md)]

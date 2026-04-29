@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains diagnostic logs for the Kubernetes API Server, Controller Manager, Scheduler, Cluster Autoscaler, Cloud Controller Manager, Guard, and the Azure CSI storage drivers. These diagnostic logs have distinct Category entries corresponding their diagnostic log setting (e.g. kube-apiserver, kube-audit-admin). Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains diagnostic logs for the Kubernetes API Server, Controller Manager, Sche
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [arck8scontrolplane](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/arck8scontrolplane-include.md)]

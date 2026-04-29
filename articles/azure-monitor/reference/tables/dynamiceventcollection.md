@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) table for generic windows events. Fields of the raw events are available as part of the AdditionalFields column.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) table for generic windows events. Fields 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dynamiceventcollection](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dynamiceventcollection-include.md)]

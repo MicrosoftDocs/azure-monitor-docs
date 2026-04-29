@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Status of the scan on the data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Status of the scan on the data sources.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [purviewscanstatuslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/purviewscanstatuslogs-include.md)]

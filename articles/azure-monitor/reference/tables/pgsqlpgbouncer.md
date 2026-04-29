@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 PgBouncer logs of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ PgBouncer logs of an Azure Database for PostgreSQL Flexible Server.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlpgbouncer)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlpgbouncer](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlpgbouncer-include.md)]

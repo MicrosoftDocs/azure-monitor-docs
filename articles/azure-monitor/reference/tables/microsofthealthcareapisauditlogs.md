@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure API for FHIR audit logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure API for FHIR audit logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsofthealthcareapisauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsofthealthcareapisauditlogs-include.md)]

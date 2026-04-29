@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 The CrowdStrikeCases table contains logs from the CrowdStrike Cases API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CrowdStrikeCases table contains logs from the CrowdStrike Cases API that hav
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/crowdstrikecases)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [crowdstrikecases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikecases-include.md)]

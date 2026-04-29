@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/volumes, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.NetApp/netAppAccounts/capacityPools/volumes
-  
-The following table lists the metrics available for the Microsoft.NetApp/netAppAccounts/capacityPools/volumes resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/volumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.NetApp/netAppAccounts/capacityPools/volumes resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/volumes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-netapp-netappaccounts-capacitypools-volumes-metrics-include.md)]
 
 ## Next steps
 

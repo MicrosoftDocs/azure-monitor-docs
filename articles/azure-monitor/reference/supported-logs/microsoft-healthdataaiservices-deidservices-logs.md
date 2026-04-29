@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.HealthDataAIServices/deidServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.HealthDataAIServices/deidServices  
+# Supported logs for Microsoft.HealthDataAIServices/deidServices
 The following table lists the types of logs available for the Microsoft.HealthDataAIServices/deidServices resource type.
-  
 
-  
-[!INCLUDE [Microsoft.HealthDataAIServices/deidServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthdataaiservices-deidservices-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.HealthDataAIServices/deidServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthdataaiservices-deidservices-logs-include.md)]
 
 ## Next Steps
 

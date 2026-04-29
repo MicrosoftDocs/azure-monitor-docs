@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Oracle.Database/autonomousDatabases, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Oracle.Database/autonomousDatabases
-  
-The following table lists the metrics available for the Oracle.Database/autonomousDatabases resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Oracle.Database/autonomousDatabases](../supported-logs/oracle-database-autonomousdatabases-logs.md)  
-  
- 
 
-[!INCLUDE [Oracle.Database/autonomousDatabases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/oracle-database-autonomousdatabases-metrics-include.md)]  
+The following table lists the metrics available for the Oracle.Database/autonomousDatabases resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Oracle.Database/autonomousDatabases](../supported-logs/oracle-database-autonomousdatabases-logs.md)
+
+[!INCLUDE [Oracle.Database/autonomousDatabases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/oracle-database-autonomousdatabases-metrics-include.md)]
 
 ## Next steps
 

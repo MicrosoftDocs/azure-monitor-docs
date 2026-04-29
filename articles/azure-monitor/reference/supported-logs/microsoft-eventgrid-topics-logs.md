@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.EventGrid/topics, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.EventGrid/topics  
+# Supported logs for Microsoft.EventGrid/topics
 The following table lists the types of logs available for the Microsoft.EventGrid/topics resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/topics](../supported-metrics/microsoft-eventgrid-topics-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.EventGrid/topics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-eventgrid-topics-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/topics](../supported-metrics/microsoft-eventgrid-topics-metrics.md)
+
+[!INCLUDE [Microsoft.EventGrid/topics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-eventgrid-topics-logs-include.md)]
 
 ## Next Steps
 

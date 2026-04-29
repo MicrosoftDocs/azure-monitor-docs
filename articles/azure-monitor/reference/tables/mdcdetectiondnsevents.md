@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 DNS Events. This table is collected by the detection team in MDC.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ DNS Events. This table is collected by the detection team in MDC.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mdcdetectiondnsevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdcdetectiondnsevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcdetectiondnsevents-include.md)]

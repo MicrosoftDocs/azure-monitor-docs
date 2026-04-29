@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Includes changes to allocations of an IPAM Pool such as Virtual Networks, static CIDRs, or child pools.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Includes changes to allocations of an IPAM Pool such as Virtual Networks, static
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/avnmipampoolallocationchange)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [avnmipampoolallocationchange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/avnmipampoolallocationchange-include.md)]

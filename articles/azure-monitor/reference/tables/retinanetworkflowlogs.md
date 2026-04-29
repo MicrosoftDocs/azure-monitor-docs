@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Network flow logs for Azure Container Networking Services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Network flow logs for Azure Container Networking Services.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/retinanetworkflowlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [retinanetworkflowlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/retinanetworkflowlogs-include.md)]

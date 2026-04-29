@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Identity and Network Access, which contains Remote Network Health logs. These logs can be leveraged for knowing the state of your remote networks health state.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Identity and Network Access, which contains Remote Network
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [remotenetworkhealthlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/remotenetworkhealthlogs-include.md)]

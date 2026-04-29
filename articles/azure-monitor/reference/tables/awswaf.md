@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AWS WAF logs, collected in AWS S3 buckets, to Microsoft Sentinel. AWS WAF logs are detailed records of traffic that web access control lists (ACLs) analyze, which are essential for maintaining the security and performance of web applications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AWS WAF logs, collected in AWS S3 buckets, to Microsoft Sentinel. AWS WAF logs a
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awswaf](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awswaf-include.md)]

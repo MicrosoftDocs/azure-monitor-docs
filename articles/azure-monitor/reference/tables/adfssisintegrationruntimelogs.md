@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 ADF SSIS integration runtime logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ ADF SSIS integration runtime logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adfssisintegrationruntimelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adfssisintegrationruntimelogs-include.md)]

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.CognitiveServices/accounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.CognitiveServices/accounts  
+# Supported logs for Microsoft.CognitiveServices/accounts
 The following table lists the types of logs available for the Microsoft.CognitiveServices/accounts resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.CognitiveServices/accounts](../supported-metrics/microsoft-cognitiveservices-accounts-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.CognitiveServices/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cognitiveservices-accounts-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.CognitiveServices/accounts](../supported-metrics/microsoft-cognitiveservices-accounts-metrics.md)
+
+[!INCLUDE [Microsoft.CognitiveServices/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cognitiveservices-accounts-logs-include.md)]
 
 ## Next Steps
 

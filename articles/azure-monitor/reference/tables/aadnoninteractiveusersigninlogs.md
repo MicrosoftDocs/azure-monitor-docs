@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Non-interactive Azure Active Directory sign-in logs from user.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Non-interactive Azure Active Directory sign-in logs from user.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aadnoninteractiveusersigninlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aadnoninteractiveusersigninlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aadnoninteractiveusersigninlogs-include.md)]

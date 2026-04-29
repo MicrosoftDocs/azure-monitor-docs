@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about queries performed against Active Directory objects, such as users, groups, devices, and domains.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about queries performed against Active Directory objects, such as us
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/identityqueryevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [identityqueryevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identityqueryevents-include.md)]

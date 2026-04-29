@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CDBDataPlaneRequests5M table consolidates logs for data-plane requests every five minutes. These logs are aggregated based on the columns in the CDBDataPlaneRequests table. For detailed information about the log context, please refer to the CDBDataPlaneRequests table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CDBDataPlaneRequests5M table consolidates logs for data-plane requests every
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbdataplanerequests5m](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbdataplanerequests5m-include.md)]

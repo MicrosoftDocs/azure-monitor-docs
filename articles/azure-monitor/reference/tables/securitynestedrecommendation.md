@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Nested recommendations can be thought of as 'sub' recommendations grouped into a 'parent' recommendation. To view nested recommendations, open the 'parent' from the recommendations page in Security Center. For example, if a vulnerability scan of your SQL databases returns 100 findings, each finding will be available as a nested recommendation within the parent recommendation 'Vulnerabilities on your SQL databases should be remediated'.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Nested recommendations can be thought of as 'sub' recommendations grouped into a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securitynestedrecommendation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securitynestedrecommendation-include.md)]

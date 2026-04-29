@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Container Event Customer Logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Container Event Customer Logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [containerevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/containerevent-include.md)]

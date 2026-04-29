@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform (GCP) VPC Flow Logs enable you to capture network traffic activity at the VPC level, allowing you to monitor access patterns, analyze network performance, and detect potential threats across GCP resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform (GCP) VPC Flow Logs enable you to capture network traf
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpvpcflow](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpvpcflow-include.md)]

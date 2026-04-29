@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights performance counters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights performance counters.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appperformancecounters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appperformancecounters-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Synapse role-based access control (SRBAC) operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Synapse role-based access control (SRBAC) operations.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapserbacoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapserbacoperations-include.md)]

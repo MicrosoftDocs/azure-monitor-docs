@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Includes logs related to application or removal of connectivity configuration, on network resources like a virtual network.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Includes logs related to application or removal of connectivity configuration, o
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/avnmconnectivityconfigurationchange)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [avnmconnectivityconfigurationchange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/avnmconnectivityconfigurationchange-include.md)]

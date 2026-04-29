@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about Synapse Link, including Link status and Link table status.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about Synapse Link, including Link status and Link table status.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/synapselinkevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapselinkevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapselinkevent-include.md)]

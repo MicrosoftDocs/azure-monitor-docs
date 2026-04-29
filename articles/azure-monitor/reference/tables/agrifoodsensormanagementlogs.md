@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for sensors, sensors mappings, sensors events, sensors data models, sensors partner integration, devices, device data models etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for sensors, sensors mappings, sensors events, sensors data models, sensors
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodsensormanagementlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodsensormanagementlogs-include.md)]

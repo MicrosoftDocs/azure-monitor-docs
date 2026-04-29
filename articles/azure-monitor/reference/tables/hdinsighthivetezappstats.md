@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Tez Application Metrics emitted from the YARN Resource Manager.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Tez Application Metrics emitted from the YARN Resource Manager.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsighthivetezappstats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsighthivetezappstats-include.md)]

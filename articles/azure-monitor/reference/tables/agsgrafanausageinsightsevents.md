@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Usage insights events for an instance of Azure Managed Workspace for Grafana.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Usage insights events for an instance of Azure Managed Workspace for Grafana.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agsgrafanausageinsightsevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agsgrafanausageinsightsevents-include.md)]

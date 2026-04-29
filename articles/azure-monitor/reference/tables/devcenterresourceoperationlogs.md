@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Operation logs pertaining to DevCenter resources, including information around resource health status changes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Operation logs pertaining to DevCenter resources, including information around r
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devcenterresourceoperationlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devcenterresourceoperationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenterresourceoperationlogs-include.md)]

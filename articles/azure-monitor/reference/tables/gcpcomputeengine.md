@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform Compute Engine data connector provides the capability to ingest Compute Engine Audit logs into Microsoft Sentinel using the Google Cloud Compute Engine API. Refer to [Cloud Compute Engine API](https://cloud.google.com/compute/docs/reference/rest/v1) documentation for more information.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform Compute Engine data connector provides the capability 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpcomputeengine](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpcomputeengine-include.md)]

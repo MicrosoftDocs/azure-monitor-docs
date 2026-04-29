@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains details of Azure Backup operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains details of Azure Backup operations.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azurebackupoperations)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azurebackupoperations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azurebackupoperations-include.md)]

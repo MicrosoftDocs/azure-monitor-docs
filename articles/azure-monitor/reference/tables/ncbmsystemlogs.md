@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Syslog events on Nexus Baremetal Machines providing critical insights into system activities, errors and anomalies for effecient troubleshooting and monitoring.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Syslog events on Nexus Baremetal Machines providing critical insights into syste
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncbmsystemlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncbmsystemlogs-include.md)]

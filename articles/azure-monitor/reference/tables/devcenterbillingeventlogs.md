@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Billing event related to DevCenter resources. Logs contains information about the quantity and unit charged per meter.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Billing event related to DevCenter resources. Logs contains information about th
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devcenterbillingeventlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devcenterbillingeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenterbillingeventlogs-include.md)]

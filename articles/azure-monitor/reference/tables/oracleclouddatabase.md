@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Oracle Cloud Event logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Oracle Cloud Event logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oracleclouddatabase](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oracleclouddatabase-include.md)]

@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.ConnectedCache/ispCustomers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ConnectedCache/ispCustomers  
+# Supported logs for Microsoft.ConnectedCache/ispCustomers
 The following table lists the types of logs available for the Microsoft.ConnectedCache/ispCustomers resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.ConnectedCache/ispCustomers](../supported-metrics/microsoft-connectedcache-ispcustomers-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.ConnectedCache/ispCustomers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-connectedcache-ispcustomers-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.ConnectedCache/ispCustomers](../supported-metrics/microsoft-connectedcache-ispcustomers-metrics.md)
+
+[!INCLUDE [Microsoft.ConnectedCache/ispCustomers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-connectedcache-ispcustomers-logs-include.md)]
 
 ## Next Steps
 

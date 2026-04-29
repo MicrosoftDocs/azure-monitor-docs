@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AmlCompute Cluster events
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AmlCompute Cluster events
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlcomputeclusterevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlcomputeclusterevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputeclusterevent-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Call closed captions summary logs provide an overview about a closed captions made through ACS. There is one log for every closed captions done, and logs contain information about the duration of the closed captions, start time, spoken language and end reason, as well as the cancel reason of closed captions.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Call closed captions summary logs provide an overview about a closed captions ma
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallclosedcaptionssummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallclosedcaptionssummary-include.md)]

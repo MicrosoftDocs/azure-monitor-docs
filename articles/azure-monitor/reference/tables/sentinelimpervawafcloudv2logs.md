@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Imperva Cloud WAF logs containing web application firewall events and security data from Incapsula WAF, ingested via S3 with SQS notifications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Imperva Cloud WAF logs containing web application firewall events and security d
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/sentinelimpervawafcloudv2logs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelimpervawafcloudv2logs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelimpervawafcloudv2logs-include.md)]

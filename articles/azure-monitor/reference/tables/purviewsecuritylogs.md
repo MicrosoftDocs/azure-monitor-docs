@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table containing audit events for the Purview account, such as role assignments to a collection or creation or deletion of a collection.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table containing audit events for the Purview account, such as role assignments 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/purviewsecuritylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [purviewsecuritylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/purviewsecuritylogs-include.md)]

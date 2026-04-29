@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Office 365 email events, including email delivery and blocking events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Office 365 email events, including email delivery and blocking events.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/emailevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [emailevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/emailevents-include.md)]

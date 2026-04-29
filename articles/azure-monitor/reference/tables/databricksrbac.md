@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for role based access control in Databricks.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for role based access control in Databricks.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksrbac](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksrbac-include.md)]

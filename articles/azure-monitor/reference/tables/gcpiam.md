@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform IAM audit logs, ingested from Sentinel's connector, eAudit logs relating to Identity and Access Management (IAM) activities within Google Cloud.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform IAM audit logs, ingested from Sentinel's connector, eA
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpiam](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpiam-include.md)]

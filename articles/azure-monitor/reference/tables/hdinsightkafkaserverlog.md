@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 HDInsight Kafka Server Log
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ HDInsight Kafka Server Log
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightkafkaserverlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightkafkaserverlog-include.md)]

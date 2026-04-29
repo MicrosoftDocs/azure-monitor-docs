@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks lakehouse apps.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks lakehouse apps.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksapps](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksapps-include.md)]

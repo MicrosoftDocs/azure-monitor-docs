@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All API requests in the context of the Customer Insights instance, for example all user actions while configuring and using the instance. POST|PUT|DELETE|PATCH operations go into this category.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All API requests in the context of the Customer Insights instance, for example a
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/cieventsaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cieventsaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cieventsaudit-include.md)]

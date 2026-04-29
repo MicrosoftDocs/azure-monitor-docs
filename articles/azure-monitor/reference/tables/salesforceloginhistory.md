@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 The Login History table contains login event logs from Salesforce that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Login History table contains login event logs from Salesforce that have been
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/salesforceloginhistory)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [salesforceloginhistory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/salesforceloginhistory-include.md)]

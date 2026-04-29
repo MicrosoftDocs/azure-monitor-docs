@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains the logs generated in the CCF application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains the logs generated in the CCF application.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ccfapplicationlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ccfapplicationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ccfapplicationlogs-include.md)]

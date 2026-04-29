@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spans emitted by an OpenTelemetry source.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spans emitted by an OpenTelemetry source.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/otelspans)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [otelspans](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/otelspans-include.md)]

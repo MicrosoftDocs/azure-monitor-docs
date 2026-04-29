@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.ServiceNetworking/trafficControllers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ServiceNetworking/trafficControllers  
+# Supported logs for Microsoft.ServiceNetworking/trafficControllers
 The following table lists the types of logs available for the Microsoft.ServiceNetworking/trafficControllers resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.ServiceNetworking/trafficControllers](../supported-metrics/microsoft-servicenetworking-trafficcontrollers-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.ServiceNetworking/trafficControllers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-servicenetworking-trafficcontrollers-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.ServiceNetworking/trafficControllers](../supported-metrics/microsoft-servicenetworking-trafficcontrollers-metrics.md)
+
+[!INCLUDE [Microsoft.ServiceNetworking/trafficControllers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-servicenetworking-trafficcontrollers-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Purview Information Protection audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Purview Information Protection audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/microsoftpurviewinformationprotection)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [microsoftpurviewinformationprotection](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoftpurviewinformationprotection-include.md)]

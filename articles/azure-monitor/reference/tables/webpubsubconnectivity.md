@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Connectivity logs provide detailed information for Azure Web PubSub hub connections. For example, basic information (user ID, connection ID, and so on) and event information (connect, disconnect, and abort event, and so on) and can be used to troubleshoot connection-related issues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connectivity logs provide detailed information for Azure Web PubSub hub connecti
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [webpubsubconnectivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/webpubsubconnectivity-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop Feed Activity
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop Feed Activity
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdfeeds](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdfeeds-include.md)]

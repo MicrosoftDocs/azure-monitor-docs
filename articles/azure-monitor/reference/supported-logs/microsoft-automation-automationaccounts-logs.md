@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Automation/automationAccounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Automation/automationAccounts  
+# Supported logs for Microsoft.Automation/automationAccounts
 The following table lists the types of logs available for the Microsoft.Automation/automationAccounts resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Automation/automationAccounts](../supported-metrics/microsoft-automation-automationaccounts-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Automation/automationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-automation-automationaccounts-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Automation/automationAccounts](../supported-metrics/microsoft-automation-automationaccounts-metrics.md)
+
+[!INCLUDE [Microsoft.Automation/automationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-automation-automationaccounts-logs-include.md)]
 
 ## Next Steps
 

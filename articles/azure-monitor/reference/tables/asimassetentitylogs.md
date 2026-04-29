@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Microsoft Sentinel normalized asset entity events table. Stores events associated with security events and alerts, ensuring consistent and efficient analysis across different data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel normalized asset entity events table. Stores events associate
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asimassetentitylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimassetentitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimassetentitylogs-include.md)]

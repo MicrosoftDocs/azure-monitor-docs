@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for Synapse integration trigger runs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for Synapse integration trigger runs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapseintegrationtriggerruns](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapseintegrationtriggerruns-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Microsoft Power Automate audit logs. It's typically used to track Power Automate activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Microsoft Power Automate audit logs. It's typically used to track Power
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/powerautomateactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerautomateactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerautomateactivity-include.md)]

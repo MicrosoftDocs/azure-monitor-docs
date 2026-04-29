@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log for successful MQTT connections to an Event Grid namesapce. This log can be used for auditing purposes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log for successful MQTT connections to an Event Grid namesapce. This log can be 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/egnsuccessfulmqttconnections)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [egnsuccessfulmqttconnections](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/egnsuccessfulmqttconnections-include.md)]

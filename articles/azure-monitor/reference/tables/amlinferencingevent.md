@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events for inference or related operation on AKS or ACI compute type.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events for inference or related operation on AKS or ACI compute type.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlinferencingevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlinferencingevent-include.md)]

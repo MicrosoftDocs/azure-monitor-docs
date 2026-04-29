@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights requests.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights requests.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/apprequests)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apprequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apprequests-include.md)]

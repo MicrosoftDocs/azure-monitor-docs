@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Network data collected by the WireData solution using by the Dependency agent and Log analytics agent.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Network data collected by the WireData solution using by the Dependency agent an
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wiredata)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wiredata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wiredata-include.md)]

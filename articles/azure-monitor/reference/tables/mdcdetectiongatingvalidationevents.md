@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 K8s Gating validation events. This table is collected by the detection team in MDC.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ K8s Gating validation events. This table is collected by the detection team in M
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mdcdetectiongatingvalidationevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mdcdetectiongatingvalidationevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcdetectiongatingvalidationevents-include.md)]

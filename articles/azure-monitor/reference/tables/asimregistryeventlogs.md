@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The ASim Registry Event schema represents Windows activity of creating, modifying, or deleting Windows Registry entities. Registry events are specific to Windows systems, but are reported by different systems that monitor Windows, such as EDR (End Point Detection and Response) systems, Sysmon, or Windows itself.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The ASim Registry Event schema represents Windows activity of creating, modifyin
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimregistryeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimregistryeventlogs-include.md)]

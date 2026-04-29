@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Oracle.Database/autonomousDatabases, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Oracle.Database/autonomousDatabases  
+# Supported logs for Oracle.Database/autonomousDatabases
 The following table lists the types of logs available for the Oracle.Database/autonomousDatabases resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Oracle.Database/autonomousDatabases](../supported-metrics/oracle-database-autonomousdatabases-metrics.md)  
-  
 
-  
-[!INCLUDE [Oracle.Database/autonomousDatabases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-autonomousdatabases-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Oracle.Database/autonomousDatabases](../supported-metrics/oracle-database-autonomousdatabases-metrics.md)
+
+[!INCLUDE [Oracle.Database/autonomousDatabases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-autonomousdatabases-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Advanced Security Information Model (ASIM) File Event normalization schema describes file activity such as creating, modifying, or deleting files or documents.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Advanced Security Information Model (ASIM) File Event normalization schema d
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimfileeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimfileeventlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains web application firewall logs logged through either detection or prevention mode for Application Gateway for Containers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains web application firewall logs logged through either detection or preven
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agcfirewalllogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agcfirewalllogs-include.md)]

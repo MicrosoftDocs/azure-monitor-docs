@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, Microsoft Cloud App Security, and Microsoft Defender for Identity, including severity information and threat categorization.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Alerts from Microsoft Defender for Endpoint, Microsoft Defender for Office 365, 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/alertinfo)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [alertinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/alertinfo-include.md)]

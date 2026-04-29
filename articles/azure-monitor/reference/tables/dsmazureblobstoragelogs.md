@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Blob Storage resource logs enriched with data sensitivity context provided by Azure Purview.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Blob Storage resource logs enriched with data sensitivity context provided
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dsmazureblobstoragelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dsmazureblobstoragelogs-include.md)]

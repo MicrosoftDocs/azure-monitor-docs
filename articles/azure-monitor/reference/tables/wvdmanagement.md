@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop Management Activity
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop Management Activity
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdmanagement](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdmanagement-include.md)]

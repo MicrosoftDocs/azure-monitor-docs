@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CrowdStrikeHosts table contains logs from the CrowdStrike Hosts API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CrowdStrikeHosts table contains logs from the CrowdStrike Hosts API that hav
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [crowdstrikehosts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikehosts-include.md)]

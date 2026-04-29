@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The GCP Cloud Run data connector provides the capability to ingest Cloud Run request logs into Microsoft Sentinel using Pub/Sub. Refer the [Cloud Run Overview](https://cloud.google.com/run/docs/logging) for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The GCP Cloud Run data connector provides the capability to ingest Cloud Run req
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpcloudrun](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpcloudrun-include.md)]

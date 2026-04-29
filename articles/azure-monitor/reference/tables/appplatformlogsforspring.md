@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 App Platform Logs for Spring.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ App Platform Logs for Spring.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appplatformlogsforspring)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appplatformlogsforspring](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appplatformlogsforspring-include.md)]

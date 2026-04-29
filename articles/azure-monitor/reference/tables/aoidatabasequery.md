@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs related to queries run on database, in dataproduct environment.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs related to queries run on database, in dataproduct environment.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aoidatabasequery)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aoidatabasequery](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aoidatabasequery-include.md)]

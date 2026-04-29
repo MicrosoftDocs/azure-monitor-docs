@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for Event Grid data plane requests (publish and options) against a topic/domain/partnernamespace. It can be used for auditing purposes. Logs are aggregated over a minute and displays the total number of requests with specific request properties.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for Event Grid data plane requests (publish and options) against a topic/do
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aegdataplanerequests)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aegdataplanerequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aegdataplanerequests-include.md)]

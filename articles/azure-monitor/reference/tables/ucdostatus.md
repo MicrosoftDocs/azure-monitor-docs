@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - provides information, for a single device, on their bandwidth utilization across content types in the event they use delivery optimization.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - provides information, for a single device, on their bandwidt
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ucdostatus)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucdostatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucdostatus-include.md)]

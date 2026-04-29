@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 03/27/2026
 ms.custom: Microsoft.RedHatOpenShift/hcpOpenShiftClusters, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.RedHatOpenShift/hcpOpenShiftClusters  
+# Supported logs for Microsoft.RedHatOpenShift/hcpOpenShiftClusters
 The following table lists the types of logs available for the Microsoft.RedHatOpenShift/hcpOpenShiftClusters resource type.
-  
 
-  
-[!INCLUDE [Microsoft.RedHatOpenShift/hcpOpenShiftClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-redhatopenshift-hcpopenshiftclusters-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.RedHatOpenShift/hcpOpenShiftClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-redhatopenshift-hcpopenshiftclusters-logs-include.md)]
 
 ## Next Steps
 

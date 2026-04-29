@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Security Center overall Secure Scores per subscription.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Security Center overall Secure Scores per subscription.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securescores](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securescores-include.md)]

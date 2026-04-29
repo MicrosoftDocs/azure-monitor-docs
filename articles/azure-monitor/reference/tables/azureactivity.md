@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Entries from the Azure Activity log that provides insight into any subscription-
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azureactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azureactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azureactivity-include.md)]

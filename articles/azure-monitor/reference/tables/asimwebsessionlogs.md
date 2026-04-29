@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Advanced Security Information Model (ASIM) Web Session normalization schema - describe an IP network activity. For example, IP network activities are reported by web servers, web proxies, and web security gateways.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Advanced Security Information Model (ASIM) Web Session normalization schema 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimwebsessionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimwebsessionlogs-include.md)]

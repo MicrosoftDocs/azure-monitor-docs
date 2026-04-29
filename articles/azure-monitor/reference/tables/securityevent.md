@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Security events collected from windows machines by Azure Security Center or Azure Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Security events collected from windows machines by Azure Security Center or Azur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/securityevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [securityevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/securityevent-include.md)]

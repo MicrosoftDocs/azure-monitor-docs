@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform DNS data connector provides the capability to ingest Cloud DNS Query logs and Cloud DNS Audit logs into Microsoft Sentinel using the Google Cloud DNS API.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform DNS data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpdns](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpdns-include.md)]

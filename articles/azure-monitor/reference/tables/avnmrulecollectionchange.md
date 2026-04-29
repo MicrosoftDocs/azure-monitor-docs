@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Include logs related to application or removal of rule collections, on network resources like a virtual network or a subnet.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Include logs related to application or removal of rule collections, on network r
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/avnmrulecollectionchange)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [avnmrulecollectionchange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/avnmrulecollectionchange-include.md)]

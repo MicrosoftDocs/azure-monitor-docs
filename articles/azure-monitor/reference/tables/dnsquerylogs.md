@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 DNS query logs enable customers to monitor the DNS traffic in their virtual networks and help securing their DNS infrastructure.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ DNS query logs enable customers to monitor the DNS traffic in their virtual netw
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/dnsquerylogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dnsquerylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dnsquerylogs-include.md)]

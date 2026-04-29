@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table that breaks down data quantities and query usage of metrics sent to an Azure Monitor Workspace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table that breaks down data quantities and query usage of metrics sent to an Azu
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amwmetricsusagedetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amwmetricsusagedetails-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all Threat Intelligence events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all Threat Intelligence events.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwthreatintel)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwthreatintel](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwthreatintel-include.md)]

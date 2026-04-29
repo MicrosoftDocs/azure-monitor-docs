@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when ML Compute Instance is accessed (read/write).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when ML Compute Instance is accessed (read/write).
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlcomputeinstanceevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputeinstanceevent-include.md)]

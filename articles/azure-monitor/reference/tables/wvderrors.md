@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop Error Activity
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop Error Activity
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wvderrors)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvderrors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvderrors-include.md)]

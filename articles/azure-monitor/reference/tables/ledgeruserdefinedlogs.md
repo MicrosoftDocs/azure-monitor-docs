@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Logs related to User Defined Functions and User Defined Endpoints on Azure Confidential Ledger.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs related to User Defined Functions and User Defined Endpoints on Azure Confi
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ledgeruserdefinedlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ledgeruserdefinedlogs-include.md)]

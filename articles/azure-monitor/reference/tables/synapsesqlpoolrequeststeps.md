@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about request steps that compose a given SQL request or query in an Azure Synapse dedicated SQL pool.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about request steps that compose a given SQL request or query in an 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsesqlpoolrequeststeps](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsesqlpoolrequeststeps-include.md)]

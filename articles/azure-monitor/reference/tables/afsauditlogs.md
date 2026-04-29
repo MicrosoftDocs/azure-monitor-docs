@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains audit logs retrieved from your Azure Managed Lustre filesystem resource. These logs capture all priviledged operations performed on each Azure Managed Lustre resource. They can be used to monitor events and configure alerts on your resource.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains audit logs retrieved from your Azure Managed Lustre filesyst
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/afsauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [afsauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/afsauditlogs-include.md)]

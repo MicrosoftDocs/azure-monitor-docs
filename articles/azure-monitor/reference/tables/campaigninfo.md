@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table shows information about campaigns identified by Microsoft Defender for Office 365.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table shows information about campaigns identified by Microsoft Defender fo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [campaigninfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/campaigninfo-include.md)]

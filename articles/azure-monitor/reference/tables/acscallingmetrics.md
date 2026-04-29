@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Aggregated Calling metrics in daily bins based on dimensions like SDK Version, OS name, Subcode.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Aggregated Calling metrics in daily bins based on dimensions like SDK Version, O
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallingmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallingmetrics-include.md)]

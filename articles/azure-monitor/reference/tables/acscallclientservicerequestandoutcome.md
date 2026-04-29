@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Service side request and outcome logs from calling SDK like call join, hangup and state updates as outcomes with http request/response payloads in the property bag.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Service side request and outcome logs from calling SDK like call join, hangup an
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallclientservicerequestandoutcome](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallclientservicerequestandoutcome-include.md)]

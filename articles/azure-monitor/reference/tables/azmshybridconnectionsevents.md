@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures all hybrid connection events that are performed on the Azure Relay namespace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures all hybrid connection events that are performed on the Azure Relay name
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmshybridconnectionsevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmshybridconnectionsevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmshybridconnectionsevents-include.md)]

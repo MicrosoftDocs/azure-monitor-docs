@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.AutonomousDevelopmentPlatform/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.AutonomousDevelopmentPlatform/workspaces  
+# Supported logs for Microsoft.AutonomousDevelopmentPlatform/workspaces
 The following table lists the types of logs available for the Microsoft.AutonomousDevelopmentPlatform/workspaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.AutonomousDevelopmentPlatform/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-autonomousdevelopmentplatform-workspaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.AutonomousDevelopmentPlatform/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-autonomousdevelopmentplatform-workspaces-logs-include.md)]
 
 ## Next Steps
 

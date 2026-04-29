@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all internal Firewall FQDN resolution requests that resulted in failure.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all internal Firewall FQDN resolution requests that resulted in failure
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwinternalfqdnresolutionfailure)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwinternalfqdnresolutionfailure](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwinternalfqdnresolutionfailure-include.md)]

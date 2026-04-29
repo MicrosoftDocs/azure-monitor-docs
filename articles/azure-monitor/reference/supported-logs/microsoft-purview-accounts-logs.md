@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: microsoft.purview/accounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.purview/accounts  
+# Supported logs for microsoft.purview/accounts
 The following table lists the types of logs available for the microsoft.purview/accounts resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - microsoft.purview/accounts](../supported-metrics/microsoft-purview-accounts-metrics.md)  
-  
 
-  
-[!INCLUDE [microsoft.purview/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-purview-accounts-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - microsoft.purview/accounts](../supported-metrics/microsoft-purview-accounts-metrics.md)
+
+[!INCLUDE [microsoft.purview/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-purview-accounts-logs-include.md)]
 
 ## Next Steps
 

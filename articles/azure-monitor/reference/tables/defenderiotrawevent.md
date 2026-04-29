@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Table is part of Microsoft Defender for IoT. It contains IoT security raw event properties of new and future events. These logs can be used to monitor your new operational, diagnostic and security raw events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Table is part of Microsoft Defender for IoT. It contains IoT security raw event 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [defenderiotrawevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/defenderiotrawevent-include.md)]

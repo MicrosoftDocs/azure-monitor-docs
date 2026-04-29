@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel normalized audit events table. Stores events associated with the audit trail of information systems and audit trail logs system configuration activities and policy changes. Such changes are often performed by system administrators, but can also be performed by users when configuring the settings of their own applications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel normalized audit events table. Stores events associated with 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimauditeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimauditeventlogs-include.md)]

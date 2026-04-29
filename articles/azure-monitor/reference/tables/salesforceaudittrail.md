@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 The Setup Audit Trail table contains logs from the Salesforce Audit Trail API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Setup Audit Trail table contains logs from the Salesforce Audit Trail API th
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/salesforceaudittrail)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [salesforceaudittrail](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/salesforceaudittrail-include.md)]

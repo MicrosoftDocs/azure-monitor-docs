@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Call client media stats logs provide media statistics about a call made through ACS. These los are used to provide granular timeseries for quality metrics in Call Diagnostics Center. The logs contains information about media stream type, direction, codec as well as bitrate properties (e.g. max, min, average).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Call client media stats logs provide media statistics about a call made through 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallclientmediastatstimeseries)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallclientmediastatstimeseries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallclientmediastatstimeseries-include.md)]

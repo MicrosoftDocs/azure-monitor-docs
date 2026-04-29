@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appevents-include.md)]

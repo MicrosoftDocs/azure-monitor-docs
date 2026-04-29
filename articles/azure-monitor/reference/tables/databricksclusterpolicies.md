@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Databricks cluster policies.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Databricks cluster policies.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksclusterpolicies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksclusterpolicies-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark Environment Events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark Environment Events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparkenvironmentevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparkenvironmentevents-include.md)]

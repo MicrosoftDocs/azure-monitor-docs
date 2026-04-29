@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs emitted to console by the action code.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs emitted to console by the action code.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/edgeactionconsolelog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [edgeactionconsolelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/edgeactionconsolelog-include.md)]

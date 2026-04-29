@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Contains information about cloud audit events for various cloud platforms protected by the organization's Microsoft Defender for Cloud.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains information about cloud audit events for various cloud platforms protec
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cloudauditevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudauditevents-include.md)]

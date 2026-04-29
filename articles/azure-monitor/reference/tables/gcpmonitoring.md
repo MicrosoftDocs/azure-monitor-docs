@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform Cloud Monitoring data connector ingests Monitoring logs from Google Cloud into Microsoft Sentinel using the Google Cloud Monitoring API. Refer to [Cloud Monitoring API](https://cloud.google.com/monitoring/api/v3) documentation for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform Cloud Monitoring data connector ingests Monitoring log
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpmonitoring](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpmonitoring-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Experimet scorecard metadata and insights.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Experimet scorecard metadata and insights.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aewexperimentscorecards)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewexperimentscorecards](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewexperimentscorecards-include.md)]

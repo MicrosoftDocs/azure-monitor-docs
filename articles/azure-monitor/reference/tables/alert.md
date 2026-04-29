@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Alert table contains legacy information that is only logged in older versions of log search alerts. The official method to query all alerts, regardless of version or alert type, is by using Azure Resource Graph (ARG) to query Alerts metadata.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Alert table contains legacy information that is only logged in older version
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [alert](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/alert-include.md)]

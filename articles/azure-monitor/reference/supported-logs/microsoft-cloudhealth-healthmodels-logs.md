@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Microsoft.CloudHealth/healthmodels, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.CloudHealth/healthmodels  
+# Supported logs for Microsoft.CloudHealth/healthmodels
 The following table lists the types of logs available for the Microsoft.CloudHealth/healthmodels resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.CloudHealth/healthmodels](../supported-metrics/microsoft-cloudhealth-healthmodels-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.CloudHealth/healthmodels](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cloudhealth-healthmodels-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.CloudHealth/healthmodels](../supported-metrics/microsoft-cloudhealth-healthmodels-metrics.md)
+
+[!INCLUDE [Microsoft.CloudHealth/healthmodels](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cloudhealth-healthmodels-logs-include.md)]
 
 ## Next Steps
 

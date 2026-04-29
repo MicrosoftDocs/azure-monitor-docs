@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP authorizations details per role.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SAP authorizations details per role.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [abapauthorizationdetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapauthorizationdetails-include.md)]

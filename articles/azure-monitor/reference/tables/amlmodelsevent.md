@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when ML model is accessed (read, created, or deleted). Incudes events when packaging of models and assets happen into a ready-to-build packages.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when ML model is accessed (read, created, or deleted). Incudes events whe
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlmodelsevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlmodelsevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlmodelsevent-include.md)]

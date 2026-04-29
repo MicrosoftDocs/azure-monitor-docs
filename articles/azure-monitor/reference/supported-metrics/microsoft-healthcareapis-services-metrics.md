@@ -5,27 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/06/2026
 ms.custom: Microsoft.HealthcareApis/services, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.HealthcareApis/services
-  
-The following table lists the metrics available for the Microsoft.HealthcareApis/services resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.HealthcareApis/services](../supported-logs/microsoft-healthcareapis-services-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.HealthcareApis/services](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-healthcareapis-services-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.HealthcareApis/services resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+For a list of supported logs, see [Supported log categories - Microsoft.HealthcareApis/services](../supported-logs/microsoft-healthcareapis-services-logs.md)
+
+[!INCLUDE [Microsoft.HealthcareApis/services](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-healthcareapis-services-metrics-include.md)]
 
 ## Next steps
 

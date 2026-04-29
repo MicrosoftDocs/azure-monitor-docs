@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) device process events table. This table contains contains information about process creation and related events on the endpoint.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) device process events table. This table c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [deviceprocessevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/deviceprocessevents-include.md)]

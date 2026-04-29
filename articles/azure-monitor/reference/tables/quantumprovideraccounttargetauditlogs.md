@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for target intake management operations performed on Azure Quantum Provider Account resources, such as enabling or disabling a target's intake of new jobs. Used to track changes to target availability.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for target intake management operations performed on Azure Quantum Pr
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [quantumprovideraccounttargetauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/quantumprovideraccounttargetauditlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Spark Job Events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Spark Job Events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparkjobevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparkjobevents-include.md)]

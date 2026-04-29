@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures aggregated diagnostic information such as client errors , server busy errors and quota exceeded errors for various data plane access operations (such as send or receive messages) in Azure Event Hubs and Azure Service Bus.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures aggregated diagnostic information such as client errors , server busy e
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmsdiagnosticerrorlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsdiagnosticerrorlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsdiagnosticerrorlogs-include.md)]

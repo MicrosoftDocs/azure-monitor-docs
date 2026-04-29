@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 View changes to in-guest configuration data such as Files Software Registry Keys Windows Services and Linux Daemons
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ View changes to in-guest configuration data such as Files Software Registry Keys
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/configurationchange)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [configurationchange](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/configurationchange-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from IDRAC containers of Nexus clusters to gain insight for any hardware failure.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from IDRAC containers of Nexus clusters to gain insight for any hardware fa
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nccidraclogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nccidraclogs-include.md)]

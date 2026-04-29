@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Execution Logs for a StandbyContainerGroupPool, which can be used for audit and troubleshooting.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Execution Logs for a StandbyContainerGroupPool, which can be used for a
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/scgpoolexecutionlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [scgpoolexecutionlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/scgpoolexecutionlog-include.md)]

@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # WaaSUpdateStatus
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/waasupdatestatus)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [waasupdatestatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/waasupdatestatus-include.md)]

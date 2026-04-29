@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Network/applicationgateways, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Network/applicationgateways  
+# Supported logs for Microsoft.Network/applicationgateways
 The following table lists the types of logs available for the Microsoft.Network/applicationgateways resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/applicationgateways](../supported-metrics/microsoft-network-applicationgateways-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/applicationgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-applicationgateways-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/applicationgateways](../supported-metrics/microsoft-network-applicationgateways-metrics.md)
+
+[!INCLUDE [Microsoft.Network/applicationgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-applicationgateways-logs-include.md)]
 
 ## Next Steps
 

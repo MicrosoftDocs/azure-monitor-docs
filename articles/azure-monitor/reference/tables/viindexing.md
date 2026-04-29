@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Indexing logs from Video Indexer.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Indexing logs from Video Indexer.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/viindexing)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [viindexing](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/viindexing-include.md)]

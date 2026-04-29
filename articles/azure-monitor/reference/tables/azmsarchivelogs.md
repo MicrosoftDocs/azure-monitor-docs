@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures information about Event Hubs capture operations, specifically, logs related to capture errors.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures information about Event Hubs capture operations, specifically, logs rel
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsarchivelogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsarchivelogs-include.md)]

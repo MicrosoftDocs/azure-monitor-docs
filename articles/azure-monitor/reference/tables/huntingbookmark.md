@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure sentinel hunting bookmarks audit table
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure sentinel hunting bookmarks audit table
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [huntingbookmark](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/huntingbookmark-include.md)]

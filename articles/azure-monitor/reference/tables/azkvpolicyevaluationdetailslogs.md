@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains details of Azure Policy Evaluation including the outcome and details of what checks were performed.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains details of Azure Policy Evaluation including the outcome and details of
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azkvpolicyevaluationdetailslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azkvpolicyevaluationdetailslogs-include.md)]

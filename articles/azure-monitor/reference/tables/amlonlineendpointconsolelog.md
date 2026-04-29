@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure ML online endpoints console logs. It provides console logs output from user containers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure ML online endpoints console logs. It provides console logs output from use
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlonlineendpointconsolelog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlonlineendpointconsolelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlonlineendpointconsolelog-include.md)]

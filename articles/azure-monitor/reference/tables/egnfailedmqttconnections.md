@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Log for failed MQTT connections to an Event Grid namespace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Log for failed MQTT connections to an Event Grid namespace.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/egnfailedmqttconnections)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [egnfailedmqttconnections](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/egnfailedmqttconnections-include.md)]

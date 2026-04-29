@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Attestation/attestationProviders, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Attestation/attestationProviders  
+# Supported logs for Microsoft.Attestation/attestationProviders
 The following table lists the types of logs available for the Microsoft.Attestation/attestationProviders resource type.
-  
 
-  
-[!INCLUDE [Microsoft.Attestation/attestationProviders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-attestation-attestationproviders-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.Attestation/attestationProviders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-attestation-attestationproviders-logs-include.md)]
 
 ## Next Steps
 

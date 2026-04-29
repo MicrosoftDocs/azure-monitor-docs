@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Kubernetes API Server audit logs excluding events with the get and list verbs. These events are useful for monitoring resource modification requests made to the Kubernetes API. To see all modifying and non-modifying operations see the ArcK8sAudit table. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Kubernetes API Server audit logs excluding events with the get and list
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [arck8sauditadmin](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/arck8sauditadmin-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure date explorer synapse table usage statistics. Logs include DatabaseName, TableName, User that can be used for monitoring cluster's table usage
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure date explorer synapse table usage statistics. Logs include DatabaseName, T
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsedxtableusagestatistics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsedxtableusagestatistics-include.md)]

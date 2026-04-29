@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Databricks Lineage Tracking logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Databricks Lineage Tracking logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databrickslineagetracking](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databrickslineagetracking-include.md)]

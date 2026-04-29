@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 ADF Airflow dag processing logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ ADF Airflow dag processing logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [airflowdagprocessinglogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/airflowdagprocessinglogs-include.md)]

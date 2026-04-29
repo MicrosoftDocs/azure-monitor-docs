@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel behaviors table. Contains information about behaviors, which refers to a conclusion or insight based on one or more raw events, which can provide analysts more context in investigations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel behaviors table. Contains information about behaviors, which 
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelbehaviorinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelbehaviorinfo-include.md)]

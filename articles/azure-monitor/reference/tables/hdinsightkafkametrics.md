@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All metrics from Kafka clusters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All metrics from Kafka clusters.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightkafkametrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightkafkametrics-include.md)]

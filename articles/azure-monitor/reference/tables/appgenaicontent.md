@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Generative AI content captured from an OpenTelemetry source, including input and output messages, system instructions, and tool interactions.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Generative AI content captured from an OpenTelemetry source, including input and
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appgenaicontent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appgenaicontent-include.md)]

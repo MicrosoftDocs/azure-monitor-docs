@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel behaviors table. Contains information about entities (file, process, device, user, and others) that are involved in a behavior or observation, including detected threats.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel behaviors table. Contains information about entities (file, p
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelbehaviorentities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelbehaviorentities-include.md)]

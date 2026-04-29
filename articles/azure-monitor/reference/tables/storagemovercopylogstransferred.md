@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The result logs generated during the execution of Storage Mover job runs where the transfer result is 'Transferred'. The logs include the details of the scanned items and their transfer result.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The result logs generated during the execution of Storage Mover job runs where t
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/storagemovercopylogstransferred)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagemovercopylogstransferred](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagemovercopylogstransferred-include.md)]

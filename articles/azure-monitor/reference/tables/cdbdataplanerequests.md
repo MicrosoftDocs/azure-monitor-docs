@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The DataPlaneRequests table captures every data plane operation for the Cosmos DB account. Data Plane requests are operations executed to create, update, delete or retrieve data within the account.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The DataPlaneRequests table captures every data plane operation for the Cosmos D
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbdataplanerequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbdataplanerequests-include.md)]

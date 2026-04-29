@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Experiment variant assignment summary from feature evaluation events. Used to monitor experiment activities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Experiment variant assignment summary from feature evaluation events. Used to mo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aewexperimentassignmentsummary)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewexperimentassignmentsummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewexperimentassignmentsummary-include.md)]

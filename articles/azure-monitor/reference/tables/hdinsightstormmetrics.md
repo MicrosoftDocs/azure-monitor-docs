@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Cluster Level Metrics from Storm clusters.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Cluster Level Metrics from Storm clusters.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightstormmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightstormmetrics-include.md)]

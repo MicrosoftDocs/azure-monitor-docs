@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Session's data collected from PostgreSQL pg_stat_activity system view of an Azure Database for PostgreSQL Flexible Server. Contains one row per connection referred here as a backend and the data is collected at an interval of 5-minutes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Session's data collected from PostgreSQL pg_stat_activity system view of an Azur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlpgstatactivitysessions)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlpgstatactivitysessions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlpgstatactivitysessions-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Synapse SQL Audit Log.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Synapse SQL Audit Log.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sqlsecurityauditevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sqlsecurityauditevents-include.md)]

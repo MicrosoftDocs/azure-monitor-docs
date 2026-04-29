@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Data Sensitivity information for assets scanned using Purview.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Data Sensitivity information for assets scanned using Purview.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [purviewdatasensitivitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/purviewdatasensitivitylogs-include.md)]

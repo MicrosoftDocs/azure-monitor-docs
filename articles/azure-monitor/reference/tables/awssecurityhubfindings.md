@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AWS Security Hub Findings, which are collected in AWS S3 buckets, into Microsoft Sentinel. AWS Security Hub Finding is a detailed record of a security check or security-related detection, which can originate from various sources like enabled controls, integrations with other AWS services, third-party products, or custom integrations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AWS Security Hub Findings, which are collected in AWS S3 buckets, into Microsoft
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awssecurityhubfindings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awssecurityhubfindings-include.md)]

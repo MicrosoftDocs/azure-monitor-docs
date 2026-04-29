@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Schema for Azure Digital Twins' Query operations. The Query Operation category tracks all customer requests to query their digital twins instance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Schema for Azure Digital Twins' Query operations. The Query Operation category t
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adtqueryoperation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adtqueryoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adtqueryoperation-include.md)]

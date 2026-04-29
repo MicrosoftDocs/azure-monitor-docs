@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/28/2026
 ms.custom: Microsoft.Monitor/pipelineGroups, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Monitor/pipelineGroups  
+# Supported logs for Microsoft.Monitor/pipelineGroups
 The following table lists the types of logs available for the Microsoft.Monitor/pipelineGroups resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Monitor/pipelineGroups](../supported-metrics/microsoft-monitor-pipelinegroups-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Monitor/pipelineGroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-monitor-pipelinegroups-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Monitor/pipelineGroups](../supported-metrics/microsoft-monitor-pipelinegroups-metrics.md)
+
+[!INCLUDE [Microsoft.Monitor/pipelineGroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-monitor-pipelinegroups-logs-include.md)]
 
 ## Next Steps
 

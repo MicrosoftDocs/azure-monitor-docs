@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 CloudTrail logs, which ingested from Sentinel's connector, holds all your data and management events of your Amazon Wev Services account.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ CloudTrail logs, which ingested from Sentinel's connector, holds all your data a
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/awscloudtrail)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awscloudtrail](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awscloudtrail-include.md)]

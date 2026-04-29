@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details the RU (Request Unit) consumption for logical partition keys in each region, within each of their physical partitions. This data can be used to identify hot partitions from a request volume perspective.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details the RU (Request Unit) consumption for logical partition keys 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbpartitionkeyruconsumption](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbpartitionkeyruconsumption-include.md)]

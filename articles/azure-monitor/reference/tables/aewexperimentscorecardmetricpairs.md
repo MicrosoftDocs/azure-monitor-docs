@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Detailed experiment results including metric comparisons and any metric-level derived insights.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Detailed experiment results including metric comparisons and any metric-level de
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aewexperimentscorecardmetricpairs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewexperimentscorecardmetricpairs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewexperimentscorecardmetricpairs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 ADF Airflow scheduler logs
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ ADF Airflow scheduler logs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adfairflowschedulerlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adfairflowschedulerlogs-include.md)]

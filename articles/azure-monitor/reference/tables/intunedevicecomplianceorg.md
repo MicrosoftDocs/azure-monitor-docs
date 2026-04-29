@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Intune device compliance specialist report.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Intune device compliance specialist report.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [intunedevicecomplianceorg](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/intunedevicecomplianceorg-include.md)]

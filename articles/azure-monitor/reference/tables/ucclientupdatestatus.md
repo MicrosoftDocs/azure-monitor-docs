@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - Update Event that combines the latest client-based data with the latest service-based data to create a complete picture for one device (client) and one update.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - Update Event that combines the latest client-based data with
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucclientupdatestatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucclientupdatestatus-include.md)]

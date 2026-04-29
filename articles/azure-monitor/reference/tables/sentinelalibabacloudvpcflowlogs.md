@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Alibaba Cloud VPC Flow Logs data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Alibaba Cloud VPC Flow Logs data.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelalibabacloudvpcflowlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelalibabacloudvpcflowlogs-include.md)]

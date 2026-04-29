@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about workers completing DMS steps in an Azure Synapse dedicated SQL pool.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about workers completing DMS steps in an Azure Synapse dedicated SQL
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsesqlpooldmsworkers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsesqlpooldmsworkers-include.md)]

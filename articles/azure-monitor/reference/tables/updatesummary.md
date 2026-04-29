@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Summary for each update schedule run. Includes information such as how many updates were not installed.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Summary for each update schedule run. Includes information such as how many upda
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/updatesummary)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [updatesummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/updatesummary-include.md)]

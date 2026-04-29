@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table details query operations executed against a SQL API account. By default, the query text and its parameters are obfuscated to avoid logging PII data with full text query logging available by request.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table details query operations executed against a SQL API account. By defau
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbqueryruntimestatistics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbqueryruntimestatistics-include.md)]

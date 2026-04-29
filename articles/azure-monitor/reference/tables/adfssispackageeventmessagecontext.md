@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 ADF SSIS package execution event message context
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ ADF SSIS package execution event message context
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adfssispackageeventmessagecontext](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adfssispackageeventmessagecontext-include.md)]

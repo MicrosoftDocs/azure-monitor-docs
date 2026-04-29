@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table provides outlier logical partition keys that have consumed more storage space than others. Statistics are based on a sub-sampling of partition keys within the collection and hence these are approximate. Partition keys that are below 1GB of storage may not show up in the reported statistics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table provides outlier logical partition keys that have consumed more stora
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cdbpartitionkeystatistics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cdbpartitionkeystatistics-include.md)]

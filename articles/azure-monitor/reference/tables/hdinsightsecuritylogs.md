@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Security related logs including Ambari Audit and Auth Log.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Security related logs including Ambari Audit and Auth Log.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsecuritylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsecuritylogs-include.md)]

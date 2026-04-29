@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 System state message update events in the Nexus network fabric devices.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ System state message update events in the Nexus network fabric devices.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mnfsystemstatemessageupdates)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mnfsystemstatemessageupdates](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mnfsystemstatemessageupdates-include.md)]

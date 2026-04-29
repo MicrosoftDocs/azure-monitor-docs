@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Actionable logs generated from your Azure Health Data DICOM service, including events information like, warning logs per tag per DICOM instance denoting validation issues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Actionable logs generated from your Azure Health Data DICOM service, including e
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ahdsdicomdiagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ahdsdicomdiagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ahdsdicomdiagnosticlogs-include.md)]

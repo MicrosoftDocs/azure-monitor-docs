@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all Network Rule log data. Each match between data plane and network rule creates a log entry with the data plane packet and the matched rule's attributes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all Network Rule log data. Each match between data plane and network ru
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azfwnetworkrule)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwnetworkrule](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwnetworkrule-include.md)]

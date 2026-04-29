@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit log events from Nexus storage appliance providing insight into data and system access.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit log events from Nexus storage appliance providing insight into data and sy
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncsstorageaudits](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncsstorageaudits-include.md)]

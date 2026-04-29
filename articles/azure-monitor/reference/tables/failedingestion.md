@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Failed ingestion operations logs provide detailed information about failed ingest operations. Logs include data source details, as well as error code and failure status (transient or permanent), that can be used for tracking the process of data source ingestion. Users can identify usage errors (permanent bad requests) and handle retries of transient failures. Ingestion logs are supported for queued ingestion to the ingestion endpoint using SDKs, data connections, and connectors.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Failed ingestion operations logs provide detailed information about failed inges
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/failedingestion)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [failedingestion](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/failedingestion-include.md)]

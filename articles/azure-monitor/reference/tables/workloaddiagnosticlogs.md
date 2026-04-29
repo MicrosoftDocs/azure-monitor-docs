@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostic logs from the Workload Monitoring data collection services running on the Monitoring VM. Includes logs from wli and ms-telegraf services. Used to troubleshoot configuration or data collection issues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Diagnostic logs from the Workload Monitoring data collection services running on
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/workloaddiagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [workloaddiagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/workloaddiagnosticlogs-include.md)]

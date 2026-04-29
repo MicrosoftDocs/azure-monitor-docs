@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit, activity and status for the Experiment Workspace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit, activity and status for the Experiment Workspace.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewauditlogs-include.md)]

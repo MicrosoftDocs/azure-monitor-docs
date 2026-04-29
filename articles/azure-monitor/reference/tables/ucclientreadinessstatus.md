@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Update Compliance - Status message for an UC client device, which indicates update readiness of the given device for a specific target version.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Update Compliance - Status message for an UC client device, which indicates upda
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ucclientreadinessstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ucclientreadinessstatus-include.md)]

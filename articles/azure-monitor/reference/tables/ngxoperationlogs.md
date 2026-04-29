@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 NGINX access and error logs captured by NGINXaaS.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ NGINX access and error logs captured by NGINXaaS.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ngxoperationlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ngxoperationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ngxoperationlogs-include.md)]

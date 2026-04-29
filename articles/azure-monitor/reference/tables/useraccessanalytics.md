@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This analytics table, for a given user, provides the direct or transitive access to Azure resources. For example, if the user under investigation is Jane Smith, Access Analytics calculates all the Azure subscriptions that she either can access directly, via groups or serviceprincipals.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This analytics table, for a given user, provides the direct or transitive access
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [useraccessanalytics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/useraccessanalytics-include.md)]

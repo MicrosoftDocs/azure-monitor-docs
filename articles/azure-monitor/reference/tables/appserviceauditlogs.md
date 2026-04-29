@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated when publishing users successfully log on via one of the App Service publishing protocols.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated when publishing users successfully log on via one of the App Serv
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appserviceauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceauditlogs-include.md)]

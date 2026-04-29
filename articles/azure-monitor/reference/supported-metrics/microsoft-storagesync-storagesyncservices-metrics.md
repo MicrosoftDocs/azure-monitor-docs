@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 03/02/2026
 ms.custom: Microsoft.StorageSync/storageSyncServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.StorageSync/storageSyncServices
-  
-The following table lists the metrics available for the Microsoft.StorageSync/storageSyncServices resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.StorageSync/storageSyncServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storagesync-storagesyncservices-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.StorageSync/storageSyncServices resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Microsoft.StorageSync/storageSyncServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-storagesync-storagesyncservices-metrics-include.md)]
 
 ## Next steps
 

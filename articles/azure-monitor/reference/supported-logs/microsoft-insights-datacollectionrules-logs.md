@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Insights/datacollectionrules, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Insights/datacollectionrules  
+# Supported logs for Microsoft.Insights/datacollectionrules
 The following table lists the types of logs available for the Microsoft.Insights/datacollectionrules resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Insights/datacollectionrules](../supported-metrics/microsoft-insights-datacollectionrules-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Insights/datacollectionrules](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-datacollectionrules-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Insights/datacollectionrules](../supported-metrics/microsoft-insights-datacollectionrules-metrics.md)
+
+[!INCLUDE [Microsoft.Insights/datacollectionrules](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-datacollectionrules-logs-include.md)]
 
 ## Next Steps
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights page views.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights page views.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/apppageviews)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [apppageviews](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apppageviews-include.md)]

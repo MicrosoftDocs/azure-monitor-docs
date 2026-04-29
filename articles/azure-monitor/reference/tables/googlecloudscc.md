@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Security Command Center is a comprehensive security and risk management platform for Google Cloud. It offers features such as asset inventory and discovery, vulnerability and threat detection, and risk mitigation and remediation to help you gain insight into your organization's security and data attack surface. This integration enables you to perform tasks related to findings and assets more effectively.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Security Command Center is a comprehensive security and risk management platform
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [googlecloudscc](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/googlecloudscc-include.md)]

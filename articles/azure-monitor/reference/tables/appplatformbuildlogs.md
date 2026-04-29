@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Spring Cloud build logs of user source codes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Spring Cloud build logs of user source codes.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appplatformbuildlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appplatformbuildlogs-include.md)]

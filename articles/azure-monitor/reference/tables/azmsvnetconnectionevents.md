@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures all virtual network and IP filtering logs for Azure Event Hubs and Azure Service Bus. These would only be emitted if namespace allows access from selected networks or from specific IP address (IP Filter rules).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures all virtual network and IP filtering logs for Azure Event Hubs and Azur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmsvnetconnectionevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsvnetconnectionevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsvnetconnectionevents-include.md)]

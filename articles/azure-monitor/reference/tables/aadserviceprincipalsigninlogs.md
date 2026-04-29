@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Service principal Azure Active Directory sign-in logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Service principal Azure Active Directory sign-in logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aadserviceprincipalsigninlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aadserviceprincipalsigninlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aadserviceprincipalsigninlogs-include.md)]

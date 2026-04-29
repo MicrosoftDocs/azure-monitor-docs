@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for Azure HPC Cache warning events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for Azure HPC Cache warning events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/storagecachewarningevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [storagecachewarningevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagecachewarningevents-include.md)]

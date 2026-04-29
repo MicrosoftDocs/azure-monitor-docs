@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Microsoft Defender for Endpoints with Azure Sentinel. This table contains DLL loading events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Microsoft Defender for Endpoints with Azure Sentinel. This
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [deviceimageloadevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/deviceimageloadevents-include.md)]

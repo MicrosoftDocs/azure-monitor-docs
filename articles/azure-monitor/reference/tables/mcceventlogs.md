@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table includes logs for cache events. Can be used for performance metrics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table includes logs for cache events. Can be used for performance metrics.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [mcceventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mcceventlogs-include.md)]

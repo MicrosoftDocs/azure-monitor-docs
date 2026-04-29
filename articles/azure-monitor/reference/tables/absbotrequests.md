@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs of requests made by Azure Bot Service onbehalf of a bot such as requests from channel to bot and to other dependencies.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs of requests made by Azure Bot Service onbehalf of a bot such as requests fr
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/absbotrequests)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [absbotrequests](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/absbotrequests-include.md)]

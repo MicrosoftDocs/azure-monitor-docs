@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows365 Audit Logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows365 Audit Logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [windows365auditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/windows365auditlogs-include.md)]

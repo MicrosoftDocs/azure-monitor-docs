@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table is part of Identity and Network Access, which contains Enriched Microsoft 365 Audit logs. These logs can be leveraged for policy, risk, and traffic management, as well as to monitor users experience.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table is part of Identity and Network Access, which contains Enriched Micro
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [enrichedmicrosoft365auditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/enrichedmicrosoft365auditlogs-include.md)]

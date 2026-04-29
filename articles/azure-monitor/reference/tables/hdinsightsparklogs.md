@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All logs from related to Spark including Jupyter and Livy logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All logs from related to Spark including Jupyter and Livy logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightsparklogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightsparklogs-include.md)]

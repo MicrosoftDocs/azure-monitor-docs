@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 VPC Flow Logs, which ingested from Sentinel's connector, enables you to capture IP traffic going to and from your AWS VPC network interfaces.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ VPC Flow Logs, which ingested from Sentinel's connector, enables you to capture 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/awsvpcflow)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsvpcflow](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsvpcflow-include.md)]

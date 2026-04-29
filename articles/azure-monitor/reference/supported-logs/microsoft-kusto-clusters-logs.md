@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Kusto/clusters, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Kusto/clusters  
+# Supported logs for Microsoft.Kusto/clusters
 The following table lists the types of logs available for the Microsoft.Kusto/clusters resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Kusto/clusters](../supported-metrics/microsoft-kusto-clusters-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Kusto/clusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-kusto-clusters-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Kusto/clusters](../supported-metrics/microsoft-kusto-clusters-metrics.md)
+
+[!INCLUDE [Microsoft.Kusto/clusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-kusto-clusters-logs-include.md)]
 
 ## Next Steps
 

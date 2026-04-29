@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audits of collaborative resources approval and access during pipeline execution.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audits of collaborative resources approval and access during pipeline execution.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acicollaborationaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acicollaborationaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acicollaborationaudit-include.md)]

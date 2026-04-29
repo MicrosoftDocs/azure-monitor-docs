@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Logs related to Ledger transactions on Azure Confidential Ledger.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs related to Ledger transactions on Azure Confidential Ledger.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ledgertransactionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ledgertransactionlogs-include.md)]

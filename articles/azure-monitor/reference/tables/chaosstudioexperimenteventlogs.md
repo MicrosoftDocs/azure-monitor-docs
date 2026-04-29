@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Chao Studio Experiment Orchestration events. Displays Start/Stop events of each Step/Branch/Action in experiment runs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Chao Studio Experiment Orchestration events. Displays Start/Stop events of each 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/chaosstudioexperimenteventlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [chaosstudioexperimenteventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/chaosstudioexperimenteventlogs-include.md)]

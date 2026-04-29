@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Knowledge base of various security configurations used by Threat & Vulnerability Management to assess devices and includes mappings to various standards and benchmarks.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Knowledge base of various security configurations used by Threat & Vulnerability
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devicetvmsecureconfigurationassessmentkb](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devicetvmsecureconfigurationassessmentkb-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP NetWeaver Application Server ABAP logs changes to business data objects in change documents. This table stores information about the changes made to business objects, including the user who made the change, the date and time of the change, and the type of change that was made.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SAP NetWeaver Application Server ABAP logs changes to business data objects in c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [abapchangedocslog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapchangedocslog-include.md)]

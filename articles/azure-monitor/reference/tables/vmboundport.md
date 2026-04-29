@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic for open server ports on the monitored machine.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic for open server ports on the monitored machine.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [vmboundport](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/vmboundport-include.md)]

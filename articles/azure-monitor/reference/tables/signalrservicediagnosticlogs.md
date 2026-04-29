@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure SignalR service diagnostic logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure SignalR service diagnostic logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/signalrservicediagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [signalrservicediagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/signalrservicediagnosticlogs-include.md)]

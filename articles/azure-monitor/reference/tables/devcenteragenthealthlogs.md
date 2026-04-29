@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Agent health logs pertaining to the underlying Azure VM of the dev box.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Agent health logs pertaining to the underlying Azure VM of the dev box.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/devcenteragenthealthlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devcenteragenthealthlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenteragenthealthlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for create, update, delete, cascade delete get and get all for oauth providers. It also has logs for get, get all and cascade delete for oauth tokens.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for create, update, delete, cascade delete get and get all for oauth provid
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodproviderauthlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodproviderauthlogs-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains aggregated Network rule log data for Policy Analytics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains aggregated Network rule log data for Policy Analytics.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azfwnetworkruleaggregation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwnetworkruleaggregation-include.md)]

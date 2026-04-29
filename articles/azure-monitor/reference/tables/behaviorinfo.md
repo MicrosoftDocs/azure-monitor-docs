@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Defender for Endpoints (MDE) behaviors table. Contains information about behaviors, which in the context of Microsoft 365 Defender refers to a conclusion or insight based on one or more raw events, which can provide analysts more context in investigations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Defender for Endpoints (MDE) behaviors table. Contains information abo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [behaviorinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/behaviorinfo-include.md)]

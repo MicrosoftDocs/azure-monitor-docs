@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.ApiManagement/service, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ApiManagement/service  
+# Supported logs for Microsoft.ApiManagement/service
 The following table lists the types of logs available for the Microsoft.ApiManagement/service resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.ApiManagement/service](../supported-metrics/microsoft-apimanagement-service-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.ApiManagement/service](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-apimanagement-service-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.ApiManagement/service](../supported-metrics/microsoft-apimanagement-service-metrics.md)
+
+[!INCLUDE [Microsoft.ApiManagement/service](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-apimanagement-service-logs-include.md)]
 
 ## Next Steps
 

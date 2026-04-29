@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all the log to view Application Gateway access patterns and analyze important information. This includes the caller's IP, requested URL, response latency, return code, and bytes in and out.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains all the log to view Application Gateway access patterns and analyze imp
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agwaccesslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agwaccesslogs-include.md)]

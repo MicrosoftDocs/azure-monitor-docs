@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traces (from Agent) emitted by an OpenTelemetry source.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traces (from Agent) emitted by an OpenTelemetry source.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [oteltracesagent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oteltracesagent-include.md)]

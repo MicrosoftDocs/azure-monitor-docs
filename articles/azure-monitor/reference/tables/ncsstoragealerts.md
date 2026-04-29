@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Alert events logged from Nexus storage appliance providing storage system level alerts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Alert events logged from Nexus storage appliance providing storage system level 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ncsstoragealerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncsstoragealerts-include.md)]

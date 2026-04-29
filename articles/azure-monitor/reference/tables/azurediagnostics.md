@@ -75,7 +75,6 @@ While query best practices such as always filtering by time as the first clause 
 - Use [where](/azure/data-explorer/kusto/query/whereoperator) clauses to reduce the data volume to the smallest possible before writing any complex logic to significantly improve performance. **TimeGenerated** is one column that should always be reduced to the smallest possible window. In the case of **AzureDiagnostics**, an additional filter should always be included at the top of the query around the resource types that are being queried using the **ResourceType** column.
 - When querying large volumes of data, it's sometimes more efficient to do a filter on **AdditionalFields** as a whole rather than parsing it. For example, for large volumes of data, `AzureDiagnostics | where AdditionalFields has "Perf2Sec"` is often more efficient than `AzureDiagnostics | where isnotnull(toint(AdditionalFields.Perf2Sec))`.
 
-
 ## Resources using Azure Diagnostics mode
 
 The following services use Azure diagnostics mode for their resource logs and send data to the Azure Diagnostics table. See [Azure resource logs](/azure/azure-monitor/platform/resource-logs) for details on this configuration.
@@ -133,7 +132,6 @@ The following services use Azure diagnostics mode for their resource logs and se
 |MicrosoftAzureCosmosDB | microsoft.dbforpostgresql/flexibleservers |
 |NetMon | microsoft.network/publicipprefixes |
 |AzureCdn | microsoft.cdn/profiles/endpoints |
-
 
 ### Azure Diagnostics mode or resource-specific mode
 

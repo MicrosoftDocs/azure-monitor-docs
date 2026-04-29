@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures all management operations that are performed on the Azure Event Hubs/Azure Service Bus namespace and its entities.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures all management operations that are performed on the Azure Event Hubs/Az
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmsoperationallogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azmsoperationallogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsoperationallogs-include.md)]

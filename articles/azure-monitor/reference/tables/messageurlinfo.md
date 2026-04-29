@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 This table shows information about messages by Microsoft Defender for Office 365.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table shows information about messages by Microsoft Defender for Office 365
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [messageurlinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/messageurlinfo-include.md)]

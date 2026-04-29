@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Contains fully formed Windows Firewall log messages that already match the WindowsFirewall table format.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains fully formed Windows Firewall log messages that already match the Windo
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [windowsfirewall](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/windowsfirewall-include.md)]

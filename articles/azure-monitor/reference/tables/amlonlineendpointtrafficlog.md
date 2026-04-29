@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic logs for AzureML (machine learning) online endpoints. The table could be used to check the detailed information of the request to an online endpoint. For example, you could use it to check the request duration, the request failure reason, etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic logs for AzureML (machine learning) online endpoints. The table could be
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlonlineendpointtrafficlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlonlineendpointtrafficlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlonlineendpointtrafficlog-include.md)]

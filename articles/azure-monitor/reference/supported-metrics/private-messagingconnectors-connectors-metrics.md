@@ -5,23 +5,17 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Private.MessagingConnectors/connectors, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Private.MessagingConnectors/connectors
-  
-The following table lists the metrics available for the Private.MessagingConnectors/connectors resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Private.MessagingConnectors/connectors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/private-messagingconnectors-connectors-metrics-include.md)]  
+The following table lists the metrics available for the Private.MessagingConnectors/connectors resource type.
 
+[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
 
+[!INCLUDE [Private.MessagingConnectors/connectors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/private-messagingconnectors-connectors-metrics-include.md)]
 
 ## Next steps
 

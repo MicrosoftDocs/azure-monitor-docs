@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Contains information about storage activity and related events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains information about storage activity and related events.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cloudstorageaggregatedevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudstorageaggregatedevents-include.md)]

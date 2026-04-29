@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 10/31/2025
 ms.custom: Microsoft.AppLink/applinks/applinkmembers, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.AppLink/applinks/applinkmembers  
+# Supported logs for Microsoft.AppLink/applinks/applinkmembers
 The following table lists the types of logs available for the Microsoft.AppLink/applinks/applinkmembers resource type.
-  
 
-  
-[!INCLUDE [Microsoft.AppLink/applinks/applinkmembers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-applink-applinks-applinkmembers-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.AppLink/applinks/applinkmembers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-applink-applinks-applinkmembers-logs-include.md)]
 
 ## Next Steps
 

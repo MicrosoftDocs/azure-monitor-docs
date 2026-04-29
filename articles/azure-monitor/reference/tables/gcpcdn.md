@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform CDN data connector provides the capability to ingest Cloud CDN Audit logs and Cloud CDN Traffic logs into Microsoft Sentinel using the Compute Engine API.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The Google Cloud Platform CDN data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [gcpcdn](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpcdn-include.md)]

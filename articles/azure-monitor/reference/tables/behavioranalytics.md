@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table stores the enriched events for Sentinel UEBA, providing behavior analytics over raw data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table stores the enriched events for Sentinel UEBA, providing behavior anal
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [behavioranalytics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/behavioranalytics-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs count of Redis clients connected to a cache instance and their IP addresses, logged at a 10-second interval.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs count of Redis clients connected to a cache instance and their IP addresses
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acrconnectedclientlist)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acrconnectedclientlist](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acrconnectedclientlist-include.md)]

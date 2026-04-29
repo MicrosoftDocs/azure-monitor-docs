@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when a registered or unregistered ML datastore is accessed (read, created, or deleted).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when a registered or unregistered ML datastore is accessed (read, created
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amldatasetevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amldatasetevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amldatasetevent-include.md)]

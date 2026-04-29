@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Information about the wait states encountered during execution of a SQL request/query in an Azure Synapse dedicated SQL pool, including locks and waits on transmission queues.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Information about the wait states encountered during execution of a SQL request/
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsesqlpoolwaits](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsesqlpoolwaits-include.md)]

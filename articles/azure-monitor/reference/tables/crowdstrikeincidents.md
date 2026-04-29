@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CrowdStrikeIncidents table contains logs from the CrowdStrike Incidents API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CrowdStrikeIncidents table contains logs from the CrowdStrike Incidents API 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/crowdstrikeincidents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [crowdstrikeincidents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikeincidents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Managed identity Azure Active Directory sign-in logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Managed identity Azure Active Directory sign-in logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aadmanagedidentitysigninlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aadmanagedidentitysigninlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aadmanagedidentitysigninlogs-include.md)]

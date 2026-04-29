@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Threat Intelligence Generic STIX Object Table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Threat Intelligence Generic STIX Object Table.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [threatintelobjects](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/threatintelobjects-include.md)]

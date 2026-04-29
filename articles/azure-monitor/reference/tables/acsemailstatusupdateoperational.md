@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Email Communication Services logs for message and recipient delivery status update operations.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Email Communication Services logs for message and recipient delivery status upda
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acsemailstatusupdateoperational)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acsemailstatusupdateoperational](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acsemailstatusupdateoperational-include.md)]

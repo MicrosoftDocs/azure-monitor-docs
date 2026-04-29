@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Audit logs from Databricks model serving v2 API service.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs from Databricks model serving v2 API service.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksserverlessrealtimeinference](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksserverlessrealtimeinference-include.md)]

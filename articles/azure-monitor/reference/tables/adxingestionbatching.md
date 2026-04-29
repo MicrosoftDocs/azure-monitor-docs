@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Data Explorer ingestion batching operations. These logs have detailed statistics of batches ready for ingestion (duration, batch size and blobs count).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Data Explorer ingestion batching operations. These logs have detailed stat
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adxingestionbatching)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adxingestionbatching](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adxingestionbatching-include.md)]

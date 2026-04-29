@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated through your application and pushed to Azure Monitoring.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs generated through your application and pushed to Azure Monitoring.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceipsecauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceipsecauditlogs-include.md)]

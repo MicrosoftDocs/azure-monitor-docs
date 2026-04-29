@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs for read operations on FarmBeats resources such as inisghts and inisight-attachments.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs for read operations on FarmBeats resources such as inisghts and inisight-at
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [agrifoodinsightlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agrifoodinsightlogs-include.md)]

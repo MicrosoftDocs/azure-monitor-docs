@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Requests made to the Zero Trust Segmentation service.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Requests made to the Zero Trust Segmentation service.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ztsrequest)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ztsrequest](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ztsrequest-include.md)]

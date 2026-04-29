@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # AADDomainServicesLogonLogoff
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aaddomainserviceslogonlogoff)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aaddomainserviceslogonlogoff](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aaddomainserviceslogonlogoff-include.md)]

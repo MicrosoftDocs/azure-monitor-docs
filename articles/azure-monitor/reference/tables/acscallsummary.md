@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Call summary logs provide an overview about a call made through ACS. There is one log for every participant in the call, and logs contain information about the duration of the call, the duration of the individual participant, the type of participant (e.g. VoIP, PSTN, etc.), as well as the endpoint information like the OS version being used, or the SDK version of the ACS platform.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Call summary logs provide an overview about a call made through ACS. There is on
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallsummary)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallsummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallsummary-include.md)]

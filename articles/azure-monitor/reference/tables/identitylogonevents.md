@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Authentication activities made through your on-premises Active Directory.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Authentication activities made through your on-premises Active Directory.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/identitylogonevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [identitylogonevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identitylogonevents-include.md)]

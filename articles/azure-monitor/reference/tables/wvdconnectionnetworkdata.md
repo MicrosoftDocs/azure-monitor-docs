@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Windows Virtual Desktop connection network data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Windows Virtual Desktop connection network data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wvdconnectionnetworkdata)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [wvdconnectionnetworkdata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdconnectionnetworkdata-include.md)]

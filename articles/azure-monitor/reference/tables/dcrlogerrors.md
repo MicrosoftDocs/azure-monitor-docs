@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Errors registered during DCR-based data collection and transformation.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Errors registered during DCR-based data collection and transformation.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/dcrlogerrors)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dcrlogerrors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dcrlogerrors-include.md)]

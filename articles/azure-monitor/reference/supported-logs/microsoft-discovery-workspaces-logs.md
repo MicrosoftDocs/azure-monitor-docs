@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/06/2026
 ms.custom: Microsoft.Discovery/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.Discovery/workspaces  
+# Supported logs for Microsoft.Discovery/workspaces
 The following table lists the types of logs available for the Microsoft.Discovery/workspaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.Discovery/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-discovery-workspaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.Discovery/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-discovery-workspaces-logs-include.md)]
 
 ## Next Steps
 

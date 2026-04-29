@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 01/20/2026
 ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/caches, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools/caches  
+# Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools/caches
 The following table lists the types of logs available for the Microsoft.NetApp/netAppAccounts/capacityPools/caches resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools/caches](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-caches-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/caches](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-netapp-netappaccounts-capacitypools-caches-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools/caches](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-caches-metrics.md)
+
+[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/caches](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-netapp-netappaccounts-capacitypools-caches-logs-include.md)]
 
 ## Next Steps
 

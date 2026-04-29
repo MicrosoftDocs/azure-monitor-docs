@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Office 365 security events occurred post email delivery to recipient mailbox.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Office 365 security events occurred post email delivery to recipient mailbox.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/emailpostdeliveryevents)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [emailpostdeliveryevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/emailpostdeliveryevents-include.md)]

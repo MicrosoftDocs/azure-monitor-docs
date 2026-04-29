@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Captures various identity-related events, like password changes, password expiration, and user principal name (UPN) changes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Captures various identity-related events, like password changes, password expira
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [identityevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identityevents-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table has Express Route Circuit IPFIX flow records. Flow records are captured and emitted by Azure Traffic Collector (ATC).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table has Express Route Circuit IPFIX flow records. Flow records are captur
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/atcexpressroutecircuitipfix)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [atcexpressroutecircuitipfix](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/atcexpressroutecircuitipfix-include.md)]

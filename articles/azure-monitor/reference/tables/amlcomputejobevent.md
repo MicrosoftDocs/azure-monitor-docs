@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AmlCompute Job events
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ AmlCompute Job events
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlcomputejobevent)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlcomputejobevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputejobevent-include.md)]

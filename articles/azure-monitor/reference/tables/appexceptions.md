@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights exceptions.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights exceptions.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appexceptions)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appexceptions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appexceptions-include.md)]

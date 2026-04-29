@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for Dynamics 365 tenants collected by Azure Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Dynamics 365 tenants collected by Azure Sentinel.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [dynamics365activity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dynamics365activity-include.md)]

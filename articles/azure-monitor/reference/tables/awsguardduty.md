@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Guard Duty Findings, which ingested from Sentinel's connector, represents a potential security issue detected within your network. GuardDuty generates a finding whenever it detects unexpected and potentially malicious activity in your AWS environment.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Guard Duty Findings, which ingested from Sentinel's connector, represents a pote
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/awsguardduty)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awsguardduty](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsguardduty-include.md)]

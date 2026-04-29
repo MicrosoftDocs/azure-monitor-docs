@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NetworkAnalytics/DataProducts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.NetworkAnalytics/DataProducts  
+# Supported logs for Microsoft.NetworkAnalytics/DataProducts
 The following table lists the types of logs available for the Microsoft.NetworkAnalytics/DataProducts resource type.
-  
 
-  
-[!INCLUDE [Microsoft.NetworkAnalytics/DataProducts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkanalytics-dataproducts-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.NetworkAnalytics/DataProducts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkanalytics-dataproducts-logs-include.md)]
 
 ## Next Steps
 

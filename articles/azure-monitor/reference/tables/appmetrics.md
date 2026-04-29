@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Application Insights metrics.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Application Insights metrics.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appmetrics-include.md)]

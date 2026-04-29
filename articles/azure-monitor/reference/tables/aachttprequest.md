@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Incoming requests to Azure App Configuration. The records in this table are aggregated. The 'HitCount' field describes the number of requests that each record accounts for.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Incoming requests to Azure App Configuration. The records in this table are aggr
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aachttprequest)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aachttprequest](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aachttprequest-include.md)]

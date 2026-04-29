@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Summary of each run of your update schedule with details like how many updates were not installed etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Summary of each run of your update schedule with details like how many updates w
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [waasinsiderstatus](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/waasinsiderstatus-include.md)]

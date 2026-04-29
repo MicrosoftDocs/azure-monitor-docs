@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Threat Intelligence Export Operation Logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Threat Intelligence Export Operation Logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [threatintelexportoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/threatintelexportoperation-include.md)]

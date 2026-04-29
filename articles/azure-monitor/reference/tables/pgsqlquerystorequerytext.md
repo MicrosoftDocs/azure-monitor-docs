@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The query text captured by Query Store in Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The query text captured by Query Store in Azure Database for PostgreSQL Flexible
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [pgsqlquerystorequerytext](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlquerystorequerytext-include.md)]

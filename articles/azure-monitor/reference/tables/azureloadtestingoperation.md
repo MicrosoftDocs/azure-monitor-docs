@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Details about the operations which are performed on the Azure Load Testing resource. For example, operations like creation of a Test, Test run etc.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Details about the operations which are performed on the Azure Load Testing resou
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azureloadtestingoperation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [azureloadtestingoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azureloadtestingoperation-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All Logs from Storm cluster nodes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ All Logs from Storm cluster nodes.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [hdinsightstormlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightstormlogs-include.md)]

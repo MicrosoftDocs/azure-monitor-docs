@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when ML pipeline draft or endpoint or module are accessed (read, created, or deleted).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when ML pipeline draft or endpoint or module are accessed (read, created,
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlpipelineevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlpipelineevent-include.md)]

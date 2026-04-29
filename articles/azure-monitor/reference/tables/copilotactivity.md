@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Audit logs for Copilot and other AI workloads. Extensible for future AI audit types.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for Copilot and other AI workloads. Extensible for future AI audit ty
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/copilotactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [copilotactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/copilotactivity-include.md)]

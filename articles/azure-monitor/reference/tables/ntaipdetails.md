@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Traffic Analytics provides WHOIS data and geographic location for all public IPs in the customer's environment. For Malicious IP, it provides DNS domain, threat type and thread descriptions as identified by Microsoft security intelligence solutions. IP Details are published to your Log Analytics Workspace so you can create custom queries and put alerts on them. You can also access pre-populated queries from the traffic analytics dashboard.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic Analytics provides WHOIS data and geographic location for all public IPs
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ntaipdetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntaipdetails-include.md)]

@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.OpenLogisticsPlatform/Workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.OpenLogisticsPlatform/Workspaces  
+# Supported logs for Microsoft.OpenLogisticsPlatform/Workspaces
 The following table lists the types of logs available for the Microsoft.OpenLogisticsPlatform/Workspaces resource type.
-  
 
-  
-[!INCLUDE [Microsoft.OpenLogisticsPlatform/Workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-openlogisticsplatform-workspaces-logs-include.md)]  
-  
+[!INCLUDE [Microsoft.OpenLogisticsPlatform/Workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-openlogisticsplatform-workspaces-logs-include.md)]
 
 ## Next Steps
 

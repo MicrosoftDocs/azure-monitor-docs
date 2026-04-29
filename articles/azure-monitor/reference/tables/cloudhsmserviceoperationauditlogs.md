@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains HSM Commands send to your Azure Cloud HSM resource's HSM partitions. These logs capture all HSM operations performed by Customer over E2E channel on each HSM partition of that Cloud HSM resource. They can be used to monitor events and configure necessary alerts on your Cloud HSM resource.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table contains HSM Commands send to your Azure Cloud HSM resource's HSM par
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/cloudhsmserviceoperationauditlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [cloudhsmserviceoperationauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudhsmserviceoperationauditlogs-include.md)]

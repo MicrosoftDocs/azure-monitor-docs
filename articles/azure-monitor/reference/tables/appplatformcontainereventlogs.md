@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Spring Cloud container event logs of user applications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Spring Cloud container event logs of user applications.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appplatformcontainereventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appplatformcontainereventlogs-include.md)]

@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # MAApplicationInstanceReadiness
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,6 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [maapplicationinstancereadiness](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/maapplicationinstancereadiness-include.md)]

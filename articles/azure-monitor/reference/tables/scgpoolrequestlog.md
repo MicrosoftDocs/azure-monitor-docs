@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Request Logs for a StandbyContainerGroupPool, which can be used for audit and troubleshooting.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Request Logs for a StandbyContainerGroupPool, which can be used for aud
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/scgpoolrequestlog)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [scgpoolrequestlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/scgpoolrequestlog-include.md)]

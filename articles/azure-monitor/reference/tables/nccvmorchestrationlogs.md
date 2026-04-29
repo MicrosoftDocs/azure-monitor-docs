@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs from Virtual Machine Orchestrator of Nexus cluster to track seamless coordination and management of virtual machines.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs from Virtual Machine Orchestrator of Nexus cluster to track seamless coordi
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nccvmorchestrationlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nccvmorchestrationlogs-include.md)]

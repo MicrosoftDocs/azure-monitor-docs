@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Databricks SSH audit logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Databricks SSH audit logs.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [databricksssh](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/databricksssh-include.md)]

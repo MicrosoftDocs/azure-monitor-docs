@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SCOPE ended event including SCOPE job result and Information about the job.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ SCOPE ended event including SCOPE job result and Information about the job.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [synapsescopepoolscopejobsended](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsescopepoolscopejobsended-include.md)]

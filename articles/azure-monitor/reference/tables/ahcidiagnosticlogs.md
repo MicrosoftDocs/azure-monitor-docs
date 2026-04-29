@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Actionable logs generated from your Interoperability application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Actionable logs generated from your Interoperability application.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ahcidiagnosticlogs)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ahcidiagnosticlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ahcidiagnosticlogs-include.md)]

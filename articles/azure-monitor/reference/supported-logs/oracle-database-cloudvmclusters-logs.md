@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Oracle.Database/cloudVmClusters, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Oracle.Database/cloudVmClusters  
+# Supported logs for Oracle.Database/cloudVmClusters
 The following table lists the types of logs available for the Oracle.Database/cloudVmClusters resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Oracle.Database/cloudVmClusters](../supported-metrics/oracle-database-cloudvmclusters-metrics.md)  
-  
 
-  
-[!INCLUDE [Oracle.Database/cloudVmClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-cloudvmclusters-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Oracle.Database/cloudVmClusters](../supported-metrics/oracle-database-cloudvmclusters-metrics.md)
+
+[!INCLUDE [Oracle.Database/cloudVmClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-cloudvmclusters-logs-include.md)]
 
 ## Next Steps
 

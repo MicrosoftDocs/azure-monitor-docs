@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Includes files, IP addresses, URLs, users, or devices associated with alerts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Includes files, IP addresses, URLs, users, or devices associated with alerts.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/alertevidence)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [alertevidence](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/alertevidence-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Traffic Analytics rules are recommended based on flow data for various pre-defined rules.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Traffic Analytics rules are recommended based on flow data for various pre-defin
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ntarulerecommendation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [ntarulerecommendation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntarulerecommendation-include.md)]

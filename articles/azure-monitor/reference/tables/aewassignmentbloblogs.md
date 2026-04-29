@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Assignment blob upload events for the Experiment Workspace.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Assignment blob upload events for the Experiment Workspace.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [aewassignmentbloblogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewassignmentbloblogs-include.md)]

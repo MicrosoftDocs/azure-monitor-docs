@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Events when a model deployment happens on ACI or AKS.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Events when a model deployment happens on ACI or AKS.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amldeploymentevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amldeploymentevent-include.md)]

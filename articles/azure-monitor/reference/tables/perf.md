@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Performance counters from Windows and Linux agents that provide insight into the performance of hardware components operating systems and applications.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Performance counters from Windows and Linux agents that provide insight into the
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/perf)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [perf](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perf-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Audit logs for operations performed on Azure Sentinel resources, such as Data Connectors, Analytic Rules and more. These logs can be used to audit operations on your Sentinel resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Audit logs for operations performed on Azure Sentinel resources, such as Data Co
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/sentinelaudit)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [sentinelaudit](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelaudit-include.md)]

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CloudWatch Logs provide performance and billing data from the AWS CloudWatch service which helps the user better understand and operate the AWS system and application.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ The CloudWatch Logs provide performance and billing data from the AWS CloudWatch
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [awscloudwatch](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awscloudwatch-include.md)]

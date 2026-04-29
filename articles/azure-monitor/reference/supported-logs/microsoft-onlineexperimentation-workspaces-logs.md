@@ -5,20 +5,14 @@ ms.topic: generated-reference
 ms.date: 10/31/2025
 ms.custom: microsoft.onlineexperimentation/workspaces, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for microsoft.onlineexperimentation/workspaces  
+# Supported logs for microsoft.onlineexperimentation/workspaces
 The following table lists the types of logs available for the microsoft.onlineexperimentation/workspaces resource type.
-  
 
-  
-[!INCLUDE [microsoft.onlineexperimentation/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-onlineexperimentation-workspaces-logs-include.md)]  
-  
+[!INCLUDE [microsoft.onlineexperimentation/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-onlineexperimentation-workspaces-logs-include.md)]
 
 ## Next Steps
 

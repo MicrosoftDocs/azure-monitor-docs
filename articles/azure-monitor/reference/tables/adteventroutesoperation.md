@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Schema for Azure Digital Twins' Event Routes operations. The Event Routes Operation category tracks all events being published to endpoints, which are other Azure services.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Schema for Azure Digital Twins' Event Routes operations. The Event Routes Operat
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adteventroutesoperation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adteventroutesoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adteventroutesoperation-include.md)]

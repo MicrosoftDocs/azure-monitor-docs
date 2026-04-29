@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table tracks all data history events being published to time series database connections.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ This table tracks all data history events being published to time series databas
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/adtdatahistoryoperation)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [adtdatahistoryoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/adtdatahistoryoperation-include.md)]

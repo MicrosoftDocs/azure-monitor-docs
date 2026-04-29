@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Communication Services summary logs of Call Automation Media operations. Every entry corresponds to the result of a call to the Call Automation Media APIs. (e.g. Play, Recognize).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Communication Services summary logs of Call Automation Media operations. Every e
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallautomationmediasummary)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [acscallautomationmediasummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallautomationmediasummary-include.md)]

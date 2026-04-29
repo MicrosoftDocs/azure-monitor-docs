@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Report on any discovered virus or infected files that have been uploaded to their site.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Report on any discovered virus or infected files that have been uploaded to thei
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [appserviceantivirusscanauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appserviceantivirusscanauditlogs-include.md)]

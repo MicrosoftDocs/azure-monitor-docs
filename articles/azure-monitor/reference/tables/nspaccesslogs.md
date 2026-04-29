@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP access rules.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Logs of Network Security Perimeter (NSP) inbound access allowed based on NSP acc
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [nspaccesslogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/nspaccesslogs-include.md)]

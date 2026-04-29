@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Azure Machine Learning services CPU and GPU utilizaion logs.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Azure Machine Learning services CPU and GPU utilizaion logs.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlcomputecpugpuutilization)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [amlcomputecpugpuutilization](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputecpugpuutilization-include.md)]

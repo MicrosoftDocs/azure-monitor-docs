@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Microsoft Power Platform administrative activity logs that track events like creation, deletion, updates, to the Microsoft Power Platform environment.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Contains Microsoft Power Platform administrative activity logs that track events
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/powerplatformadminactivity)|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [powerplatformadminactivity](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/powerplatformadminactivity-include.md)]

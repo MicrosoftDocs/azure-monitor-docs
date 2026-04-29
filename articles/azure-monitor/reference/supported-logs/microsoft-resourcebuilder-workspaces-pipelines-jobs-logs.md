@@ -5,24 +5,16 @@ ms.topic: generated-reference
 ms.date: 03/27/2026
 ms.custom: Microsoft.ResourceBuilder/workspaces/pipelines/jobs, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-
-
-
-# Supported logs for Microsoft.ResourceBuilder/workspaces/pipelines/jobs  
+# Supported logs for Microsoft.ResourceBuilder/workspaces/pipelines/jobs
 The following table lists the types of logs available for the Microsoft.ResourceBuilder/workspaces/pipelines/jobs resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.ResourceBuilder/workspaces/pipelines/jobs](../supported-metrics/microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.ResourceBuilder/workspaces/pipelines/jobs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.ResourceBuilder/workspaces/pipelines/jobs](../supported-metrics/microsoft-resourcebuilder-workspaces-pipelines-jobs-metrics.md)
+
+[!INCLUDE [Microsoft.ResourceBuilder/workspaces/pipelines/jobs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-resourcebuilder-workspaces-pipelines-jobs-logs-include.md)]
 
 ## Next Steps
 

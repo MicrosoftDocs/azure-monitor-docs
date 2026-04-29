@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel normalized authentication events table. Stores events associated, for example, with the user authentication, sign-in, and sign-out.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Microsoft Sentinel normalized authentication events table. Stores events associa
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [asimauthenticationeventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimauthenticationeventlogs-include.md)]

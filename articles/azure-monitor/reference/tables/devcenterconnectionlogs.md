@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Connection events which include information around when a dev box was connected to, if the connection was successful and what client was used in connecting.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,6 @@ Connection events which include information around when a dev box was connected 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
+
 [!INCLUDE [devcenterconnectionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenterconnectionlogs-include.md)]
