@@ -19,7 +19,7 @@ This article explains the fundamentals of using log queries in [Azure Monitor Lo
 
     :::image type="content" source="media/get-started-queries/simple-mode-ribbon.png" alt-text="Screenshot shows the Simple mode ribbon.":::
 
-You can also use the [Observability Agent](../aiops/observability-agent-overview.md#chat-with-your-data) to explore your log data using natural language instead of writing queries.
+Use the [Observability Agent](../aiops/observability-agent-overview.md#chat-with-your-data) to explore your log data using natural language instead of writing queries.
 
 For a more detailed comparison between KQL mode and Simple mode, see [Overview of Log Analytics in Azure Monitor](log-analytics-overview.md).
 
