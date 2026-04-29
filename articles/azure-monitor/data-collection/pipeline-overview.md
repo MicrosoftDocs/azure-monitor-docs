@@ -74,14 +74,14 @@ Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agen
 
 AMA runs on individual resources and collects telemetry directly from those resources. It's the right choice when you can install an agent on each data source and send data directly to Azure.
 
-Azure Monitor pipeline runs centrally on an Arc-enabled Kubernetes cluster and receives telemetry from any source over standard protocols. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized processing before cloud ingestion.
+Azure Monitor pipeline runs centrally and receives telemetry from any source over standard protocols. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized processing before cloud ingestion.
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Where it runs | On each individual resource (VM, server, Kubernetes node) | Centrally on an Arc-enabled Kubernetes cluster |
+| Where it runs | On each individual resource (VM, server) | Centrally on an Arc-enabled Kubernetes cluster |
 | How it gets data | Collects from the resource where the agent is installed | Receives from any client that can send data over the network |
 | Best for | Resources where you can install and manage an agent | Sources that can't run an agent, or scenarios that need centralized processing |
-| Scale approach | One agent per resource | Scales independently with multiple replicas behind a cluster load balancer |
+| Scale approach | One agent per resource | A single deployment can serve thousands of sources. [Scales horizontally](./pipeline-sizing.md) with additional replicas behind a cluster load balancer. |
 
 Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for sources that can't run an agent or scenarios that need preprocessing before data reaches Azure.
 
