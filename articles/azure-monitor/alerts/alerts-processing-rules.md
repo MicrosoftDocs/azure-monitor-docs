@@ -77,7 +77,7 @@ Severity |  The rule applies only to alerts with the selected severities. |
   For example, if you set both `resource type = "Virtual Machines"` and `severity = "Sev0"`, then the rule applies only for `Sev0` alerts on virtual machines in the scope.
 * Each filter can include up to five values. There's a logical OR between the values.  
   For example, if your set description contains "this, that" (in the field there's no need to write the apostrophes), then the rule applies only to alerts whose description contains either "this" or "that".
-* Notice that you dont have any spaces (before, after or between) the string that is matched it effects the matching of the filter.
+* Notice that you don't have any spaces (before, after or between) the string that is matched it effects the matching of the filter.
 
 ### What should this rule do?
 
