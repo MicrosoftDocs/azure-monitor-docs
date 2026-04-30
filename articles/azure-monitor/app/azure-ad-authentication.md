@@ -103,7 +103,7 @@ The following Software Development Kits (SDKs) and features are unsupported for 
 
 #### Environment variable configuration
 
-Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-net-core.md) and [Configure monitoring for Azure Functions](/azure/azure-functions/configure-monitoring.md)..
+Use the `APPLICATIONINSIGHTS_AUTHENTICATION_STRING` environment variable to let Application Insights authenticate to Microsoft Entra ID and send telemetry when using [Azure App Services autoinstrumentation](./azure-web-apps-net-core.md) and [Configure monitoring for Azure Functions](/azure/azure-functions/configure-monitoring).
 
 * For system-assigned identity:
 
