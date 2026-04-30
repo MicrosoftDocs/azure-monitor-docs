@@ -12,11 +12,11 @@ This article describes how to migrate a [custom text logs table from the legacy 
 
 ## Background
 
-You must configure Log Analytics agent custom text logs to support new DCR features that allow AMA to write to it. Take the following actions:
+You must configure Log Analytics agent custom text logs to support new DCR features that allow AMA to write to the table. Consider the following:
 
-- Your table is reconfigured to enable all DCR-based custom logs features.
-- Your AMA can write data to any column in the table.
-- Your Log Analytics agent custom text logs will lose the ability to write to the custom log.
+- The table is reconfigured to enable all features for DCR-based custom logs.
+- AMA can write data to any column in the table.
+- Log Analytics agent custom text logs will lose the ability to write to that table.
 
 To continue writing your custom data from both the Log Analytics agent and AMA, each agent must have its own custom table. Your data queries in Log Analytics that process your data must join the two tables until the migration is complete, at which point you can remove the join.
 
@@ -33,7 +33,7 @@ You should follow the steps only if the following criteria are met:
 
 1. Configure your data collection rule (DCR) following the instructions in [collect text logs with AMA](data-collection-log-text.md).
 
-1. Issue the following API call against your existing custom logs table to enable ingestion from a DCR and manage your table in the Azure portal. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to Log Analytics agent.
+1. Issue the following API call against your existing custom logs table to enable ingestion from a DCR and manage your table in the Azure portal. This call only changes the table the first time you run it. Running it again has no effect. Migration is one-way, so you can't migrate the table back to the Log Analytics agent.
 
     # [REST](#tab/rest)
 
@@ -97,7 +97,7 @@ You should follow the steps only if the following criteria are met:
     | tableName | myTable | User input |
     | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
-1. Discontinue Log Analytics agent custom text logs collection and start using the AMA custom text logs.
+1. Discontinue the Log Analytics agent custom text logs collection and start using AMA custom text logs.
 
 ## Next steps
 
