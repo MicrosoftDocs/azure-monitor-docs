@@ -81,7 +81,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 - The maximum number of active rules in a workspace is 100.
 - Summary rules are currently only available in the public cloud.
-- The summary rule processes incoming data and can't be configured on a historical time range. 
+- The summary rule processes incoming data and doesn't allow a historical time range. Data can only be processed from the recent past up to 24 hours. This corresponds to a maximum `binSize` of 1440 minutes when `binStartTime` is set to the full 24-hour window.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 - Using `union *` and `isfuzzy=true` in Summary rules query aren't supported.
