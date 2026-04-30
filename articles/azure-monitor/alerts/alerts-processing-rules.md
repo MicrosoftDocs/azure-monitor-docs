@@ -41,7 +41,7 @@ Alert processing rules allow you to specify that logic in a single rule, instead
 
 ## Add action groups to all alert types
 
-Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and [Azure Stack Hub](/azure-stack/operator/azure-stack-monitor-health?view=azs-2408).
+Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and [Azure Stack Hub](/azure-stack/operator/azure-stack-monitor-health).
 
 For those alert types, you can use alert processing rules to add action groups.
 
@@ -91,6 +91,9 @@ Choose one of the following actions:
 You can control when the rule applies. The rule is always active, by default. You can select a one-time window for this rule to apply, or you can have a recurring window, such as a weekly recurrence.
 
 ## Configure an alert processing rule
+
+> [!NOTE]
+> After you create or update an alert processing rule, it can take up to 30 minutes for the rule to take effect and start processing newly fired alerts. Alerts that fire during this propagation period might not be affected by the rule.
 
 ### [Portal](#tab/portal)
 
