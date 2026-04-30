@@ -1,24 +1,24 @@
 ---
-title: Migrate from custom text log version 1 to DCR agent custom text logs
-description: Learn the steps to migrate from custom text log version 1 to DCR-based Azure Monitor Agent custom text logs.
+title: Migrate from Log Analytics Agent Custom Text Table to Azure Monitor Agent DCR-Based Custom Text Table
+description: Learn the steps to migrate from Log Analytics agent custom text table to Azure Monitor Agent DCR-based custom text table.
 ms.topic: upgrade-and-migration-article
 ms.date: 04/07/2026
 ms.custom: ai-assisted
 ---
 
-# Migrate from MMA custom text table to AMA DCR based custom text table
+# Migrate from Log Analytics agent custom text table to Azure Monitor Agent DCR-based custom text table
 
-This article describes the steps to migrate a [MMA Custom text log](data-sources-custom-logs.md) table so you can use it as a destination for a new [AMA custom text logs](data-collection-log-text.md) DCR. If you're creating a new AMA custom text table, then this article doesn't pertain to you.
+This article describes how to migrate a [custom text log table from the legacy Log Analytics agent](data-sources-custom-logs.md) (also known as Microsoft Monitoring Agent or MMA) so it can be used as the destination for a new [Azure Monitor Agent (AMA) custom text logs](data-collection-log-text.md) data collection rule (DCR).
 
 ## Background
 
-You must configure MMA custom text logs to support new DCR features that allow AMA agents to write to it. Take the following actions:
+You must configure Log Analytics agent custom text logs to support new DCR features that allow AMA agents to write to it. Take the following actions:
 
 - Your table is reconfigured to enable all DCR-based custom logs features.
 - Your AMA agents can write data to any column in the table.
-- Your MMA Custom text log will lose the ability to write to the custom log.
+- Your legacy Log Analytics agent custom text log will lose the ability to write to the custom log.
 
-To continue to write you custom data from both MMA and AMA each must have its own custom table. Your data queries in LA that process your data must join the two tables until the migration is complete at which point you can remove the join.
+To continue to write you custom data from both Log Analytics agent and AMA each must have its own custom table. Your data queries in Log Analytics that process your data must join the two tables until the migration is complete at which point you can remove the join.
 
 ## Migration
 
@@ -26,19 +26,19 @@ You should follow the steps only if the following criteria are true:
 
 - You created the original table using the Custom Log Wizard.
 - You're going to preserve the existing data in the table.
-- You do not need MMA agents to send data to the existing table
+- You don't need Log Analytics agents to send data to the existing table
 - You're going to exclusively write new data using and [AMA custom text log DCR](data-collection-log-text.md) and possibly configure an [ingestion time transformation](azure-monitor-agent-transformation.md).
 
 ## Procedure
 
 1. Configure your data collection rule (DCR) following procedures at [collect text logs with Azure Monitor Agent](data-collection-log-text.md).
 
-1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to MMA.
+1. Issue the following API call against your existing custom logs table to enable ingestion from Data Collection Rule and manage your table from the portal UI. This call is idempotent and future calls have no effect. Migration is one-way, you can't migrate the table back to Log Analytics agent.
 
     # [REST](#tab/rest)
 
     ```REST
-    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-07-01
+    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version={apiVersion}
     Authorization: Bearer {token}
     Content-Type: application/json
     ```
@@ -72,13 +72,16 @@ You should follow the steps only if the following criteria are true:
     $resourceGroupName = "myResourceGroup"
     $workspaceName = "myWorkspace"
     $tableName = "myTable"
-
+    
     Set-AzContext -Subscription $subscriptionId
-
-    Invoke-AzOperationalInsightsMigrateTable `
-      -ResourceGroupName $resourceGroupName `
-      -WorkspaceName $workspaceName `
-      -TableName $tableName
+    
+    $migrateTableParams = @{
+        ResourceGroupName = $resourceGroupName
+        WorkspaceName     = $workspaceName
+        TableName         = $tableName
+    }
+    
+    Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
     ```
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
@@ -94,7 +97,7 @@ You should follow the steps only if the following criteria are true:
     | tableName | myTable | User input |
     | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
-1. Discontinue MMA custom text log collection and start using the AMA custom text log.
+1. Discontinue Log Analytics agent custom text log collection and start using the AMA custom text log.
 
 ## Next steps
 

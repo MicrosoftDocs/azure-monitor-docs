@@ -15,7 +15,7 @@ This article explains how to create query-based metric alert rules in Azure Moni
 > [!div class="checklist"]
 > * Read the [query based metric alerts overview](alerts-query-based-metric-alerts-overview.md).
 > * A system-assigned or user-assigned managed identity. To use a user-assigned managed identity with your query-based metric alert rules, create the managed identity in advance and configure it with *Monitoring Reader* role (or equivalent permissions) on the rule scope. For more information about creating and using managed identities, see [Azure managed identities](/entra/identity/managed-identities-azure-resources/overview).
-> * A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, ARC servers or ARC-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported. For more information, see:
+> * A resource emitting Prometheus or OTel-based metrics to an Azure Monitor Workspace (AMW). The resources currently supported are Azure Kubernetes Service (AKS), Azure virtual machines, Arc-enabled servers or Arc-enabled clusters. Custom OTel metrics emitted directly to AMW by your workload are also supported. For more information, see:
 >     * [Enable Azure Monitor managed service for Prometheus](/azure/azure-monitor/metrics/prometheus-metrics-overview#enable-azure-monitor-managed-service-for-prometheus).
 >     * [Enable Prometheus and Grafana](/azure/azure-monitor/containers/kubernetes-monitoring-enable?tabs=cli#enable-prometheus-and-grafana) for details.
 > * To create resource-centric alert rules, your Azure Monitor Workspace must be [enabled for resource-centric stamping and access](#enable-workspace-resource-centric-stamping-and-access).
@@ -24,15 +24,18 @@ This article explains how to create query-based metric alert rules in Azure Moni
 
 You can enable resource-centric stamping and access for a workspace using one of the following methods:
 
+> [!NOTE]
+> All methods use the preview API version 2025-05-03-preview. The `properties.metrics.enableAccessUsingResourcePermissions` shape is not available in the most recent GA version 2023-04-03.
+
 # [REST](#tab/rest-1)
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version=2025-05-03-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version={apiVersion}
 Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-  "location": "eastus",
+  "location": "{location}",
   "properties": {
     "metrics": {
       "enableAccessUsingResourcePermissions": true
@@ -62,8 +65,9 @@ az rest \
   --body @"$payloadFile"
 ```
 
+**enable-stamping.json payload file:**
+
 ```json
-// enable-stamping.json
 {
   "location": "eastus",
   "properties": {
@@ -89,14 +93,19 @@ $payloadFile = ".\enable-stamping.json"
 
 Set-AzContext -Subscription $subscriptionId
 
-Invoke-AzRestMethod `
-  -Path "$resourceId?api-version=$apiVersion" `
-  -Method PUT `
-  -Payload (Get-Content -Path $payloadFile -Raw)
+$restParams = @{
+    Path    = "$resourceId?api-version=$apiVersion"
+    Method  = "PUT"
+    Payload = Get-Content -Raw -Path $payloadFile
+}
+
+Invoke-AzRestMethod @restParams
+
 ```
 
+**enable-stamping.json payload file:**
+
 ```json
-// enable-stamping.json
 {
   "location": "eastus",
   "properties": {
@@ -212,17 +221,16 @@ From the *Create an alert rule* page:
 # [REST](#tab/rest-2)
 
 ```REST
-
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version=2024-03-01-preview
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version={apiVersion}
 Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-  "location": "eastus",
+  "location": "<location>",
   "identity": {
     "type": "UserAssigned",
     "userAssignedIdentities": {
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{userAssignedMiName}": {}
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
     }
   },
   "properties": {
@@ -231,7 +239,7 @@ Content-Type: application/json
     "severity": 3,
     "targetResourceType": "microsoft.monitor/accounts",
     "scopes": [
-      "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerService/managedClusters/{clusterName}"
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>"
     ],
     "evaluationFrequency": "PT1M",
     "criteria": {
@@ -253,7 +261,7 @@ Content-Type: application/json
     },
     "actions": [
       {
-        "actionGroupId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/actionGroups/{actionGroupName}"
+        "actionGroupId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/actionGroups/<actionGroupName>"
       }
     ],
     "actionProperties": {
@@ -289,11 +297,12 @@ az rest \
   --body @$payloadFile
 ```
 
+**query-based-metric-alert.json payload file:**
+
 > [!NOTE]
 > Azure CLI doesn't support deployment-style parameters in JSON payload files for `az rest`. Because the JSON file is used directly as the request body, this example includes example values in the file.
 
 ```json
-// query-based-metric-alert.json
 {
   "location": "eastus",
   "identity": {
@@ -360,17 +369,22 @@ $payloadFile = ".\query-based-metric-alert.json"
 
 Set-AzContext -Subscription $subscriptionId
 
-Invoke-AzRestMethod `
-  -Path "$resourceId?api-version=$apiVersion" `
-  -Method PUT `
-  -Payload (Get-Content -Path $payloadFile -Raw)
+$restParams = @{
+    Path    = "$resourceId?api-version=$apiVersion"
+    Method  = "PUT"
+    Payload = Get-Content -Raw -Path $payloadFile
+}
+
+Invoke-AzRestMethod @restParams
+
 ```
+
+**query-based-metric-alert.json payload file:**
 
 > [!NOTE]
 > Azure PowerShell doesn't support deployment-style parameters in JSON payload files for Invoke-AzRestMethod. Because the JSON file is used directly as the request body, this example includes example values in the file.
 
 ```json
-// query-based-metric-alert.json
 {
   "location": "eastus",
   "identity": {
@@ -459,12 +473,12 @@ Create and configure the user-assigned managed identity with permissions before 
 
 ```json
 {
-    "identity": {
-        "type": "UserAssigned",
-        "userAssignedIdentities": {
-            "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
-        }
-    },
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
+    }
+  },
 }
 ```
 
@@ -472,12 +486,12 @@ Create and configure the user-assigned managed identity with permissions before 
 
 ```bicep
 {
-    identity: {
-        type: 'UserAssigned'
-        userAssignedIdentities: {
-            '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
-        }
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
     }
+  }
 }
 ```
 
@@ -500,7 +514,7 @@ For automatic role assignment to succeed, you must have one of the following rol
 * [Delegated admin permissions for the target scope](/azure/role-based-access-control/delegate-role-assignments-portal). For creating metric alert rule with system-assigned managed identity, you must be allowed to grant Monitoring Reader role on the target scope.
 
 > [!NOTE]
-> If you try to create a rule using system-assigned AI and you don’t have permissions for automatic role assignment, the rule creation fails.
+> If you try to create a rule using system-assigned managed identity and you don’t have permissions for automatic role assignment, the rule creation fails.
 
 Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
 
@@ -508,9 +522,9 @@ Set the `identity` -> `type` property to `SystemAssigned` as in the following ex
 
 ```json
 {
-    "identity": {
-        "type": "SystemAssigned"
-      }
+  "identity": {
+    "type": "SystemAssigned"
+  }
 }
 ```
 
@@ -518,9 +532,9 @@ Set the `identity` -> `type` property to `SystemAssigned` as in the following ex
 
 ```bicep
 {
-    identity: {
-        type: 'SystemAssigned'
-      }
+  identity: {
+    type: 'SystemAssigned'
+  }
 }
 ```
 

@@ -54,7 +54,7 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 # [REST](#tab/rest-1)
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version=2025-07-01
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_CL}?api-version={apiVersion}
 Authorization: Bearer {token}
 Content-Type: application/json
 
@@ -115,10 +115,9 @@ az rest \
 
 <br>
 <details>
-<summary>Expand to view the table.json file.</summary>
+<summary>Expand to view the my-table.json file.</summary>
 
 ```json
-// my-table.json
 {
   "properties": {
     "schema": {
@@ -182,18 +181,20 @@ $payloadFile = ".\my-table.json"
 
 Set-AzContext -Subscription $subscriptionId
 
-Invoke-AzRestMethod `
-  -Method PUT `
-  -Path "$resourceId?api-version=$apiVersion" `
-  -Payload (Get-Content -Path $payloadFile -Raw)
+$restParams = @{
+    Method  = "PUT"
+    Path    = "$resourceId?api-version=$apiVersion"
+    Payload = Get-Content -Raw -Path $payloadFile
+}
+
+Invoke-AzRestMethod @restParams
 ```
 
 <br>
 <details>
-<summary>Expand to view the table.json file.</summary>
+<summary>Expand to view the my-table.json file.</summary>
 
 ```json
-// my-table.json
 {
   "properties": {
     "schema": {
@@ -417,16 +418,16 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     > The following REST call uses example values.
 
     ```REST
-    PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule?api-version=2024-03-11
+    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
     Authorization: Bearer {token}
     Content-Type: application/json
 
     {
-      "location": "eastus",
+      "location": "<location>",
       "kind": "Direct",
       "properties": {
         "streamDeclarations": {
-          "Custom-myTable": {
+          "<Custom-tableName>": {
             "columns": [
               {
                 "name": "TimeGenerated",
@@ -466,21 +467,21 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
         "destinations": {
           "logAnalytics": [
             {
-              "workspaceResourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace",
-              "name": "myWorkspace"
+              "workspaceResourceId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<workspaceName>",
+              "name": "<workspaceName>"
             }
           ]
         },
         "dataFlows": [
           {
             "streams": [
-              "Custom-myTable"
+              "<Custom-tableName>"
             ],
             "transformKql": "source",
             "destinations": [
               "myWorkspace"
             ],
-            "outputStream": "Custom-myTable_CL"
+            "outputStream": "<Custom-tableName_CL>"
           }
         ]
       }
@@ -513,7 +514,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     <summary>Expand to view the my-dcr.json file.</summary>
 
     ```json
-    // my-dcr.json
     {
       "location": "eastus",
       "kind": "Direct",
@@ -594,10 +594,13 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     
     Select-AzSubscription -SubscriptionId $subscriptionId
     
-    New-AzDataCollectionRule `
-      -Name $dataCollectionRuleName `
-      -ResourceGroupName $resourceGroupName `
-      -JsonFilePath $jsonFilePath
+    $dataCollectionRuleParams = @{
+        Name              = $dataCollectionRuleName
+        ResourceGroupName = $resourceGroupName
+        JsonFilePath      = $jsonFilePath
+    }
+    
+    New-AzDataCollectionRule @dataCollectionRuleParams
     ```
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
@@ -607,7 +610,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     <summary>Expand to view the my-dcr.json file.</summary>
 
     ```json
-    // my-dcr.json
     {
       "location": "eastus",
       "kind": "Direct",
@@ -712,7 +714,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
           "type": "Microsoft.Insights/dataCollectionRules",
           "name": "[parameters('dataCollectionRuleName')]",
           "location": "[parameters('location')]",
-          "apiVersion": "2024-03-11",
+          "apiVersion": "2025-07-01",
           "kind": "Direct",
           "properties": {
             "streamDeclarations": {
@@ -799,7 +801,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     @description('The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
     param workspaceResourceId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace'
 
-    resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
+    resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2025-07-01' = {
       name: dataCollectionRuleName
       location: location
       kind: 'Direct'

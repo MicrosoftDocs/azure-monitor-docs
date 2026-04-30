@@ -129,7 +129,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 Creating a data collection rule for metrics requires the following steps:
 
 1. Create the data collection rule.
-1. Grant permissions for the rule's managed entity to write to the destination.
+1. Grant permissions for the rule's managed identity to write to the destination.
 1. Create a data collection rule association.
 
 ### Create the data collection rule
@@ -139,14 +139,14 @@ To create a DCR using the REST API, you must make an authenticated request using
 Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
 
 ```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version=2024-03-11
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
 ```
 
 The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
 
-### Grant write permissions to the managed entity
+### Grant write permissions to the managed identity
 
-The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
+The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed identity, assign the appropriate role to the entity.
 
 The following table shows the roles required for each destination type:
 
@@ -167,7 +167,7 @@ After you create the data collection rule, create a data collection rule associa
 To create a DCRA using the REST API, use the following endpoint and payload:
 
 ```REST
-PUT https://management.azure.com//subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{virtualMachineName}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{dataCollectionRuleAssociationName}?api-version=2024-03-11
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{virtualMachineName}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
 
 {
   "properties":
@@ -207,25 +207,27 @@ az monitor data-collection rule create \
   --rule-file "$ruleFile"
 ```
 
-[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
-
 > [!NOTE]
-> For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
+> * Azure CLI commands use the Azure Resource Manager endpoint from the current CLI context, so *management.azure.com* doesn't need to be specified in the command syntax.
+> 
+> * For storage account and Event Hubs destinations, you must enable managed identity for the DCR using `--identity "{type:'SystemAssigned'}"`. Identity isn't required for Log Analytics workspaces.
 
 Copy the `id` and the `principalId` of the DCR from the following output to use in assigning the role to create an association between the DCR and a resource.
+
+**Output:**
 
 ```json
 "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule",
 "identity": {
-"principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
-"tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
-"type": "systemAssigned"
+  "principalId": "eeeeeeee-ffff-aaaa-5555-666666666666",
+  "tenantId": "aaaabbbb-0000-cccc-1111-dddd2222eeee",
+  "type": "systemAssigned"
 },
 ```
 
-### Grant write permissions to the managed entity
+### Grant write permissions to the managed identity
 
-The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
+The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed identity, assign the appropriate role to the entity.
 
 The following table shows the roles required for each destination type:
 
@@ -270,7 +272,7 @@ The following example uses the [az monitor data-collection rule association](/cl
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 resourceGroupName="myResourceGroup"
-dataCollectionRuleAssociationName="myDataCollectionRuleAssociation"
+associationName="myAssociation"
 dataCollectionRuleName="myDataCollectionRule"
 keyVaultName="myKeyVault"
 dataCollectionRuleId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/dataCollectionRules/$dataCollectionRuleName"
@@ -279,7 +281,7 @@ resourceUri="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/pr
 az account set --subscription "$subscriptionId"
 
 az monitor data-collection rule association create \
-  --name "$dataCollectionRuleAssociationName" \
+  --name "$associationName" \
   --rule-id "$dataCollectionRuleId" \
   --resource "$resourceUri"
 ```
@@ -300,10 +302,13 @@ $jsonFilePath = ".\dcr-storage-account.json"
 
 Set-AzContext -Subscription $subscriptionId
 
-New-AzDataCollectionRule `
-  -Name $dataCollectionRuleName `
-  -ResourceGroupName $resourceGroupName `
-  -JsonFilePath $jsonFilePath
+$dataCollectionRuleParams = @{
+    Name              = $dataCollectionRuleName
+    ResourceGroupName = $resourceGroupName
+    JsonFilePath      = $jsonFilePath
+}
+
+New-AzDataCollectionRule @dataCollectionRuleParams
 ```
 
 Copy the `id` and the `IdentityPrincipalId` of the DCR from the following output to use in assigning the role to create an association between the DCR and a resource.
@@ -317,10 +322,10 @@ IdentityUserAssignedIdentity              : {
                                             }
 ```
 
-### Grant write permissions to the managed entity
+### Grant write permissions to the managed identity
 
 The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs.
-To grant permissions for the rule's managed entity, assign the appropriate role to the entity.
+To grant permissions for the rule's managed identity, assign the appropriate role to the entity.
 
 The following table shows the roles required for each destination type:
 
@@ -344,10 +349,13 @@ $scope = "/subscriptions/$subscriptionId"
 
 Set-AzContext -Subscription $subscriptionId
 
-New-AzRoleAssignment `
-  -ObjectId $objectId `
-  -RoleDefinitionName $roleDefinitionName `
-  -Scope $scope
+$roleAssignmentParams = @{
+    ObjectId           = $objectId
+    RoleDefinitionName = $roleDefinitionName
+    Scope              = $scope
+}
+
+New-AzRoleAssignment @roleAssignmentParams
 ```
 
 ## Create a data collection rule association
@@ -359,7 +367,7 @@ The following PowerShell example uses the [New-AzDataCollectionRuleAssociation](
 ```azurepowershell
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 $resourceGroupName = "myResourceGroup"
-$dataCollectionRuleassociationName = "myDataCollectionRuleAssociation"
+$associationName = "myDataCollectionRuleAssociation"
 $keyVaultName = "myKeyVault"
 $dataCollectionRuleName = "myDataCollectionRule"
 $resourceUri = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.KeyVault/vaults/$keyVaultName"
@@ -367,10 +375,14 @@ $dataCollectionRuleId = "/subscriptions/$subscriptionId/resourceGroups/$resource
 
 Set-AzContext -Subscription $subscriptionId
 
-New-AzDataCollectionRuleAssociation `
-  -dataCollectionRuleassociationName $associationName `
-  -ResourceUri $resourceUri `
-  -DataCollectionRuleId $dataCollectionRuleId
+$dataCollectionRuleAssociationParams = @{
+    AssociationName      = $associationName
+    ResourceUri          = $resourceUri
+    DataCollectionRuleId = $dataCollectionRuleId
+}
+
+New-AzDataCollectionRuleAssociation @dataCollectionRuleAssociationParams
+
 ```
 
 ### [ARM (JSON)](#tab/arm)
@@ -378,8 +390,6 @@ New-AzDataCollectionRuleAssociation `
 ### Create a data collection rule using ARM templates
 
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
-
-### Template file
 
 ```json
 {
@@ -536,8 +546,6 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
 
-### Template file
-
 ```bicep
 @description('Specifies the name of the Data Collection Rule to create.')
 param dataCollectionRuleName string
@@ -600,7 +608,7 @@ param dataCollectionRuleName = 'myDataCollectionRule'
 
 param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace'
 
-param location = 'eastus'
+param location = 'eastus'd
 ```
 
 ### Sample DCR template
@@ -669,7 +677,7 @@ resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' 
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
 | resourceGroupName | myResourceGroup | User input |
 | dataCollectionRuleName | myDataCollectionRule | User input |
-| dataCollectionRuleAssociationName | myDataCollectionRuleAssociation | User input |
+| associationName | myAssociation | User input |
 | location | eastus | User input |
 | workspaceName | myWorkspace | User input |
 | keyVaultName | myKeyVault | User input |
