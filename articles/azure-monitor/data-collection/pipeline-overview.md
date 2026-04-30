@@ -35,7 +35,7 @@ Azure Monitor pipeline currently receives and processes the following data sourc
 | Data source | Details | Status |
 |:---|:---|:---|
 | Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
-| OpenTelemetry Protocol (OTLP) | Supports OTLP ingestion for OpenTelemetry-enabled clients. | Preview |
+| OpenTelemetry logs (OTLP) | Supports ingestion of OpenTelemetry logs from clients to Azure Monitor. | Preview |
 
 ## Key capabilities
 
@@ -59,7 +59,7 @@ A typical deployment is shown in the preceding image and includes the following 
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
-- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
+- Clients send OpenTelemetry logs (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
@@ -74,7 +74,7 @@ Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agen
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Ingestion model | Agent-based | Gateway-based |
+| Ingestion model | Agent-based | Forwarder + Gateway -based |
 | Deployment model | Installed on individual virtual machines or Kubernetes clusters | Deployed centrally on an Arc-enabled Kubernetes cluster |
 | Primary role | Collect telemetry from the resource where the agent runs | Receive, process, and route telemetry from multiple sources before sending it to Azure Monitor |
 | Typical fit | Resources where you can install and manage an agent and send data directly to Azure | Scenarios that need centralized ingestion, preprocessing, or buffering before sending data to Azure |
@@ -86,11 +86,11 @@ Many architectures use both together. AMA handles per-resource collection for su
 
 Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
-| Supported Kubernetes distributions | Supported locations |
+| Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Canada Central<br>- East US<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
-For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 ## Related articles
 

@@ -16,6 +16,15 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ## Version details
 
+### Version v1.1.1 - April 2026 (General Availability)
+- Added richer pipeline metrics (uptime, throughput, queue depth, processing duration) to help you monitor pipeline health and performance more effectively.
+- Pipeline self-monitoring (telemetry and diagnostics) is now enabled by default for metrics and logs (if diagnostic settings are enabled).
+- Added ARM64 (aarch64) support, enabling deployment on a wider range of infrastructure environments.
+- Optimized processing for common formats like Syslog and CommonSecurityLog for receiver and exporter.
+- Enhanced buffering and processing logic to reduce risk of data inconsistencies under load.
+- Updated dependencies and base images to address known vulnerabilities and maintain compliance.
+- Standardized log attributes such as message, category, and timestamps for better downstream querying and analysis.
+  
 ### Version v0.158.0 - Mar 2026 (Preview)
 - Added change to install and enable the `microsoft.extensiondiagnostics` extension for collection of Microsoft-internal telemetry, such as usage, diagnostic, and performance data to operate, secure, and improve Azure Monitor pipeline. This extension might create additional pods in the `azure-arc` namespace.
 - Fixed all known security vulnerabilities and compliance issues.
