@@ -15,6 +15,9 @@ This move ensures that only ongoing issues remain visible in the **Active** view
 
 In this article, you learn about the lifecycle of Service Health notifications, including the reasons for transitions between the panes, ways to view past records, and how long they're retained.
 
+>[!TIP]
+>The field `impactMitigationTime` is the API field name, and `End time` is the name on the user interface (UI).
+
 ## How notifications move from Active to History status
 
 Each communication category pane (**Incidents**, **Planned maintenance**, **Health advisories**, **Security advisories**, and **Billing updates**) uses distinct logic to determine event transitions. This logic determines when an event moves from its category tab to the **Health history** pane as defined in this table.
