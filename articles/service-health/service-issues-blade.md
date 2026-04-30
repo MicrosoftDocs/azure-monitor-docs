@@ -2,7 +2,7 @@
 title: View Service issues
 description: This article describes how to view and use the Service issues pane
 ms.topic: overview
-ms.date: 03/26/2026
+ms.date: 04/30/2026
 
 ---
 
@@ -36,7 +36,7 @@ For each Service issue listed on this panel, the information includes:
 
 Select the link in the  **Issue name** column to open the tabs and see more detailed information about the issue.
 >[!Note]
->Service issue events are displayed in the panel for 3 days if they are still active or have been updated during that time. After that they are moved to the health history panel where they are displayed for 90 days. 
+>"Service issues are displayed in the panel while active for 90 days after the last update. Both Active and Resolved Service issues can be viewed in the Health history panel for 90 days after the last update. 
 >
 >
 >For more information about Service issue events using ARG queries, see [Resource graph sample queries](resource-graph-samples.md) which provides guidance on how to utilize the available queries.
@@ -70,7 +70,7 @@ The information on this tab includes the following data:
 |Impacted Services      |The Azure services affected by the issue.                                                              |
 |Impacted Regions       |All geographic regions where the issue is occurring.                                                   |
 |Impacted Subscriptions |Your subscriptions that are affected.                                                                  |
-|Impacted Resources     | The resources affected by this service issue. <br>Select the **View details** link to open the Impacted Resources tab for more detailed information. |
+|Impacted Resources     | The resources affected by this service issue. <br>Select the **View details** link to open the Impacted Resources tab for more detailed information.                                                                                                           |
 |Event level            | The severity of the issue (for example, Informational, Warning, Critical).<br> *Each communication for an incident includes its own event level, but the summary tab always shows the highest severity across all affected regions and services.*  |
 |Event tags             | The definition of the nature and status of the event.<br> *The tags are a combination of all communications for the incident.*                                                                                                                      |
 |Last update            | The timestamp of the most recent update from Azure Service Health. <br> Select the **See all updates** link to open the Issue Updates tab for more detailed information.                                                                            |
