@@ -36,7 +36,7 @@ For each Service issue listed on this panel, the information includes:
 
 Select the link in the  **Issue name** column to open the tabs and see more detailed information about the issue.
 >[!Note]
->"Service issues are displayed in the panel while active for 90 days after the last update. Both Active and Resolved Service issues can be viewed in the Health history panel for 90 days after the last update. 
+>Service issues are displayed in the panel while active for 90 days after the last update. Both Active and Resolved Service issues can be viewed in the Health history panel for 90 days after the last update. 
 >
 >
 >For more information about Service issue events using ARG queries, see [Resource graph sample queries](resource-graph-samples.md) which provides guidance on how to utilize the available queries.
