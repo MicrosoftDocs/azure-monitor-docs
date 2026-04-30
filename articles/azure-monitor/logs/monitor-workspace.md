@@ -113,11 +113,8 @@ In some situations, like moving a subscription to a different tenant, the Azure 
 
 Recommended actions:
 
-* If the subscription mentioned in the warning message no longer exists, go to the **Legacy activity log connector** pane under **Classic**. Select the relevant subscription, and then select the **Disconnect** button.
-* If you no longer have access to the subscription mentioned in the warning message:
-  * Follow the preceding step to disconnect the subscription.
-  * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
-* [Create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
+* If the subscription mentioned in the warning message no longer exists, or you no longer have access to it, you must use the [activity log profile REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log) to disconnect the subscription.
+* To re-enable activity log collection, [create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
 
 ## Alert rules
 
