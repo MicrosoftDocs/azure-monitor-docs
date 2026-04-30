@@ -88,7 +88,7 @@ Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both t
 
 | Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 |  | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
 Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
