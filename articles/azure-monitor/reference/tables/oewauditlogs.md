@@ -27,4 +27,26 @@ Audit, activity and status for the Online Experiment Workspace.
 
 ## Columns
 
-[!INCLUDE [oewauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oewauditlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CallerIpAddress | string | The IP address of the caller. |
+| Category | string | The event category. |
+| CorrelationId | string | The correlation Id of the operation. |
+| DurationMs | int | The duration of the operation in milliseconds. |
+| HttpStatusCode | int | The HTTP status code of the operation. |
+| Identity | dynamic | The identity triggering the operation. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Level | string | The log level. |
+| Location | string | The location of the resource. |
+| OperationName | string | The name of the operation. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultDescription | string | The description of the result of the operation. |
+| ResultType | string | The result of the operation. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |
+| URI | string | The URI of the operation. |
+| WorkspaceId | string | The workspace Id of the online experimentation resource. |

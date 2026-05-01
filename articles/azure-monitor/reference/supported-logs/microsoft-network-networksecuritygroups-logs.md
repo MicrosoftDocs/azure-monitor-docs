@@ -10,9 +10,15 @@ ms.custom: Microsoft.Network/networksecuritygroups, arm
 ---
 
 # Supported logs for Microsoft.Network/networksecuritygroups
+
 The following table lists the types of logs available for the Microsoft.Network/networksecuritygroups resource type.
 
-[!INCLUDE [Microsoft.Network/networksecuritygroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networksecuritygroups-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`NetworkSecurityGroupEvent` |Network Security Group Event |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`NetworkSecurityGroupFlowEvent` |Network Security Group Rule Flow Event |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`NetworkSecurityGroupRuleCounter` |Network Security Group Rule Counter |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
 
 ## Next Steps
 

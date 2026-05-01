@@ -10,11 +10,15 @@ ms.custom: Microsoft.DocumentDB/mongoClusters, naam
 ---
 
 # Supported logs for Microsoft.DocumentDB/mongoClusters
+
 The following table lists the types of logs available for the Microsoft.DocumentDB/mongoClusters resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.DocumentDB/mongoClusters](../supported-metrics/microsoft-documentdb-mongoclusters-metrics.md)
 
-[!INCLUDE [Microsoft.DocumentDB/mongoClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-documentdb-mongoclusters-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`vCoreMongoRequests` |vCoreMongoRequests |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdocumentdb)|Yes |
 
 ## Next Steps
 

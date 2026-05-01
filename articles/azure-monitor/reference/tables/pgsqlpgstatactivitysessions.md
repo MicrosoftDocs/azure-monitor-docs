@@ -27,4 +27,33 @@ Session's data collected from PostgreSQL pg_stat_activity system view of an Azur
 
 ## Columns
 
-[!INCLUDE [pgsqlpgstatactivitysessions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlpgstatactivitysessions-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| ApplicationName | string | Name of the application that is connected to this backend. |
+| BackendStartTime | datetime | Time when this process was started. For client backends, this is the time the client connected to the server. |
+| BackendType | string | Type of current backend. |
+| _BilledSize | real | The record size in bytes |
+| ClientIpAddress | string | IP address of the client connected to this backend. If this field is empty, it indicates either that the client is connected via a Unix socket on the server machine or that this is an internal process such as autovacuum. The last octet of the IP is obfuscated. |
+| CollectionTime | datetime | The collection time indicating the time when the information was collected. |
+| DatabaseId | int | ID (OID) of the database this backend is connected to. |
+| DatabaseName | string | Name of the database this backend is connected to. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Location of Azure Database for PostgreSQL Flexible server. |
+| LogicalServerName | string | Logical name of the instance. |
+| OldestTransactionId | long | The oldest transaction ID that a backend is currently seeing. |
+| ProcessId | int | Process ID (PID) of this backend. |
+| QueryStartTime | datetime | Time when the currently active query was started, or if state is not active, when the last query was started. |
+| ReplicaRole | string | Replica role example. Primary or secondary. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| State | string | State of this backend at the collection time. |
+| StateChangeTime | datetime | Time when the state was last changed. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| TransactionId | long | Top-level transaction identifier of this backend, if any. |
+| TransactionStartTime | datetime | Time when this process' current transaction was started, or empty if no transaction is active. |
+| Type | string | The name of the table |
+| UserId | int | ID (OID) of the user logged into this backend. |
+| WaitEvent | string | Wait event name if backend is currently waiting, otherwise empty string. |
+| WaitEventType | string | The type of event for which the backend is waiting, if any, otherwise empty string. |

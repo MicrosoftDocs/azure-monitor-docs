@@ -10,9 +10,14 @@ ms.custom: microsoft.videoindexer/accounts, naam
 ---
 
 # Supported logs for microsoft.videoindexer/accounts
+
 The following table lists the types of logs available for the microsoft.videoindexer/accounts resource type.
 
-[!INCLUDE [microsoft.videoindexer/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-videoindexer-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit |[VIAudit](/azure/azure-monitor/reference/tables/viaudit)<p>Audit logs from Video Indexer.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/viaudit)|Yes |
+|`IndexingLogs` |Indexing Logs |[VIIndexing](/azure/azure-monitor/reference/tables/viindexing)<p>Indexing logs from Video Indexer.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/viindexing)|Yes |
 
 ## Next Steps
 

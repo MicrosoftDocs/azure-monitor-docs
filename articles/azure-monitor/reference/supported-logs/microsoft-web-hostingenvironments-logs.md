@@ -10,11 +10,15 @@ ms.custom: Microsoft.Web/hostingEnvironments, naam
 ---
 
 # Supported logs for Microsoft.Web/hostingEnvironments
+
 The following table lists the types of logs available for the Microsoft.Web/hostingEnvironments resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Web/hostingEnvironments](../supported-metrics/microsoft-web-hostingenvironments-metrics.md)
 
-[!INCLUDE [Microsoft.Web/hostingEnvironments](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-web-hostingenvironments-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AppServiceEnvironmentPlatformLogs` |App Service Environment Platform Logs |[AppServiceEnvironmentPlatformLogs](/azure/azure-monitor/reference/tables/appserviceenvironmentplatformlogs)|No|Yes||No |
 
 ## Next Steps
 

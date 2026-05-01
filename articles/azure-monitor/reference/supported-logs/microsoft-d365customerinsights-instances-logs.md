@@ -10,9 +10,14 @@ ms.custom: Microsoft.D365CustomerInsights/instances, arm
 ---
 
 # Supported logs for Microsoft.D365CustomerInsights/instances
+
 The following table lists the types of logs available for the Microsoft.D365CustomerInsights/instances resource type.
 
-[!INCLUDE [Microsoft.D365CustomerInsights/instances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-d365customerinsights-instances-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit events ||No|No||No |
+|`Operational` |Operational events ||No|No||No |
 
 ## Next Steps
 

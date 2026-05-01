@@ -10,11 +10,21 @@ ms.custom: Oracle.Database/autonomousDatabases, naam
 ---
 
 # Supported logs for Oracle.Database/autonomousDatabases
+
 The following table lists the types of logs available for the Oracle.Database/autonomousDatabases resource type.
 
 For a list of supported metrics, see [Supported metrics - Oracle.Database/autonomousDatabases](../supported-metrics/oracle-database-autonomousdatabases-metrics.md)
 
-[!INCLUDE [Oracle.Database/autonomousDatabases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/oracle-database-autonomousdatabases-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Backup` |Backup Events ||No|No||Yes |
+|`Creation` |Creation Events ||No|No||Yes |
+|`Critical` |Critical Events ||No|No||Yes |
+|`Delete` |Delete Events ||No|No||Yes |
+|`Information` |Information Events |[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||Yes |
+|`Restore` |Restore Events ||No|No||Yes |
+|`Update` |Update Events ||No|No||Yes |
 
 ## Next Steps
 

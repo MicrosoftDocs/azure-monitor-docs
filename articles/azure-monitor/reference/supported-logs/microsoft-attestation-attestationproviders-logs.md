@@ -10,9 +10,15 @@ ms.custom: Microsoft.Attestation/attestationProviders, naam
 ---
 
 # Supported logs for Microsoft.Attestation/attestationProviders
+
 The following table lists the types of logs available for the Microsoft.Attestation/attestationProviders resource type.
 
-[!INCLUDE [Microsoft.Attestation/attestationProviders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-attestation-attestationproviders-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditEvent` |AuditEvent message log category. ||No|No||No |
+|`NotProcessed` |Requests which could not be processed. ||No|No||Yes |
+|`Operational` |Operational message log category. |[AzureAttestationDiagnostics](/azure/azure-monitor/reference/tables/azureattestationdiagnostics)<p>Logs from attestation requests.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/azureattestationdiagnostics)|Yes |
 
 ## Next Steps
 

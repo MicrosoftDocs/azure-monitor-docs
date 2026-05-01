@@ -10,9 +10,13 @@ ms.custom: Microsoft.Quantum/workspaces, naam
 ---
 
 # Supported logs for Microsoft.Quantum/workspaces
+
 The following table lists the types of logs available for the Microsoft.Quantum/workspaces resource type.
 
-[!INCLUDE [Microsoft.Quantum/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-quantum-workspaces-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditEvent` |Audit Logs |[QuantumWorkspaceJobAuditLogs](/azure/azure-monitor/reference/tables/quantumworkspacejobauditlogs)<p>Audit logs for job-related operations performed on Azure Quantum Workspace resources, including job creation, updates, and cancellations. Used to track who performed which job operation and when.|Yes|No||Yes |
 
 ## Next Steps
 

@@ -27,4 +27,37 @@ The AWS Platform Firewall Flow logs, ingested from Sentinel's connector, enablin
 
 ## Columns
 
-[!INCLUDE [awsnetworkfirewallflow](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewallflow-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| Ack | bool | Indicates whether the ACK flag is set in the TCP packet (true/false). |
+| AppProto | string | The application layer protocol detected (e.g., HTTP, HTTPS, DNS). |
+| AvailabilityZone | string | The AWS Availability Zone where the firewall instance is located. |
+| _BilledSize | real | The record size in bytes |
+| DestIp | string | The destination IP address of the packet. |
+| DestPort | string | The destination port to which the packet was sent. |
+| Ecn | bool | Indicates whether the ECN flag is set in the TCP packet (true/false). |
+| EventTimestamp | string | The epoch timestamp of when the event occurred. |
+| EventType | string | The type of event recorded (e.g., flow, alert, drop, pass). |
+| Fin | bool | Indicates whether the FIN flag is set in the TCP packet (true/false). |
+| FirewallName | string | The name of the AWS Network Firewall instance generating the log. |
+| FlowId | string | A unique identifier for the network flow related to this event. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| NetFlowAge | string | The duration of the network flow in seconds. |
+| NetFlowBytes | string | The total number of bytes transferred in the network flow. |
+| NetFlowEnd | datetime | The timestamp when the network flow ended. |
+| NetFlowMaxttl | string | The maximum Time-to-Live (TTL) observed in the network flow. |
+| NetFlowMinttl | string | The minimum Time-to-Live (TTL) observed in the network flow. |
+| NetFlowPkts | string | The number of packets in the network flow. |
+| NetFlowStart | datetime | The timestamp when the network flow started. |
+| Proto | string | The protocol used (e.g., TCP, UDP, ICMP). |
+| Psh | bool | Indicates whether the PSH flag is set in the TCP packet (true/false). |
+| Rst | bool | Indicates whether the RST flag is set in the TCP packet (true/false). |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIp | string | The source IP address of the packet that triggered the event. |
+| SrcPort | string | The source port from which the packet originated. |
+| Syn | bool | Indicates whether the SYN flag is set in the TCP packet (true/false). |
+| TCPFlags | string | The TCP flags observed in the packet  |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log entry was created in AWS Network Firewall. |
+| Timestamp | datetime | The exact timestamp when the event was captured. |
+| Type | string | The name of the table |

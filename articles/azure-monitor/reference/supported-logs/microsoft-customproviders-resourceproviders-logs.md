@@ -10,11 +10,15 @@ ms.custom: Microsoft.CustomProviders/resourceproviders, arm
 ---
 
 # Supported logs for Microsoft.CustomProviders/resourceproviders
+
 The following table lists the types of logs available for the Microsoft.CustomProviders/resourceproviders resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.CustomProviders/resourceproviders](../supported-metrics/microsoft-customproviders-resourceproviders-metrics.md)
 
-[!INCLUDE [Microsoft.CustomProviders/resourceproviders](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-customproviders-resourceproviders-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditLogs` |Audit logs for MiniRP calls ||No|No||No |
 
 ## Next Steps
 

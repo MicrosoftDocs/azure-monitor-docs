@@ -27,4 +27,16 @@ Logs pertaining to the provisioning agent resources for a Managed DevOps Pool.
 
 ## Columns
 
-[!INCLUDE [mdpresourcelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdpresourcelog-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | The location of the Pool. |
+| OperationName | string | Type of Operation (Provisioning, Reimage, Return, etc). |
+| Properties | dynamic | Json object containing the properties of the event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the event was generated. |
+| Type | string | The name of the table |

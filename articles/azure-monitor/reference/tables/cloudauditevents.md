@@ -27,4 +27,24 @@ Contains information about cloud audit events for various cloud platforms protec
 
 ## Columns
 
-[!INCLUDE [cloudauditevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/cloudauditevents-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| ActionType | string | Type of activity that triggered the event, can be: Unknown, Create, Read, Update, Delete, Other |
+| AdditionalFields | dynamic | Additional information about the audit event |
+| _BilledSize | real | The record size in bytes |
+| City | string | City where the client IP address is geolocated |
+| CloudResourceId | string | Unique identifier of the cloud resource accessed |
+| CountryCode | string | Two-letter code indicating the country where the client IP address is geolocated |
+| DataSource | string | Data source for the cloud audit events, can be GCP (for Google Cloud Platform), AWS (for Amazon Web Services), Azure (for Azure Resource Manager), Kubernetes Audit (for Kubernetes), or other cloud platforms |
+| IPAddress | string | The client IP address used to access the cloud resource or control plane |
+| IsAnonymousProxy | bool | Indicates whether the IP address belongs to a known anonymous proxy (1) or no (0) |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Isp | string | Internet service provider (ISP) associated with the IP address |
+| OperationName | string | Audit event operation name as it appears in the record, usually includes both resource type and operation |
+| RawEventData | dynamic | Full raw event information from the data source in JSON format |
+| ReportId | string | Unique identifier for the event |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the record was generated |
+| Type | string | The name of the table |
+| UserAgent | string | User agent information from the web browser or other client application |

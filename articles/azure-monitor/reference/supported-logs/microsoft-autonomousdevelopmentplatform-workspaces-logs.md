@@ -10,9 +10,15 @@ ms.custom: Microsoft.AutonomousDevelopmentPlatform/workspaces, naam
 ---
 
 # Supported logs for Microsoft.AutonomousDevelopmentPlatform/workspaces
+
 The following table lists the types of logs available for the Microsoft.AutonomousDevelopmentPlatform/workspaces resource type.
 
-[!INCLUDE [Microsoft.AutonomousDevelopmentPlatform/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-autonomousdevelopmentplatform-workspaces-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit ||No|No||Yes |
+|`Operational` |Operational ||No|No||Yes |
+|`Request` |Request ||No|No||Yes |
 
 ## Next Steps
 

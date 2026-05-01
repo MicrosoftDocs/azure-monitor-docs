@@ -11,5 +11,6 @@ ms.date: 04/30/2026
 
 # Log Analytics tables for microsoft.eventgrid/domains
 
-[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoft-eventgrid-domains-include.md)]
+<!-- :::tables-by-resource-type-collection::: -->
+<!-- :::tables-by-resource-type-collection-end::: -->
 

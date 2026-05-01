@@ -25,4 +25,18 @@ ms.date: 03/11/2026
 
 ## Columns
 
-[!INCLUDE [mawindowscurrencyassessmentdailycounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mawindowscurrencyassessmentdailycounts-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AggregationTime | datetime |   |
+| _BilledSize | real | The record size in bytes |
+| BuildId | int |   |
+| BuildVersion | string |   |
+| DeviceCount | int |   |
+| FeatureCurrencyLegend | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| ReleaseVersion | string |   |
+| SecurityComplianceLegend | string |   |
+| ServicingChannel | string |   |
+| SnapshotTime | datetime |   |
+| TimeGenerated | datetime |   |
+| Type | string | The name of the table |

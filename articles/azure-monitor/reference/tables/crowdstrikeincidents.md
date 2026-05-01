@@ -27,4 +27,40 @@ The CrowdStrikeIncidents table contains logs from the CrowdStrike Incidents API 
 
 ## Columns
 
-[!INCLUDE [crowdstrikeincidents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikeincidents-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AssignedTo | string | ID of the user assigned to the incident. |
+| AssignedToName | string | Name of the user assigned to handle the incident. |
+| _BilledSize | real | The record size in bytes |
+| Cid | string | Customer ID in the CrowdStrike platform. |
+| Created | datetime | Timestamp when the incident was created. |
+| Description | string | Detailed description of the incident. |
+| EmailState | string | Current state of email notifications for the incident. |
+| End | datetime | Timestamp when the incident was closed or resolved. |
+| EventsHistogram | dynamic | Timeline of events associated with the incident. |
+| FineScore | int | Severity score assigned to the incident. |
+| GroupingIds | dynamic | List of IDs used to group related incidents. |
+| HostIds | dynamic | List of host IDs involved in the incident. |
+| Hosts | dynamic | Detailed information about affected hosts. |
+| IncidentId | string | Unique identifier for the incident. |
+| IncidentType | int | Numerical identifier for the type of incident. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LmHostIds | dynamic | List of host IDs associated with Lightweight Mode. |
+| LmHostsCapped | bool | Indicates if the number of Lightweight Mode hosts was capped. |
+| LmraHostIds | dynamic | List of host IDs associated with LMRA (Lightweight Mode Remote Access). |
+| LmraHostsCapped | bool | Indicates if the number of LMRA hosts was capped. |
+| LmTypes | int | Types of Lightweight Mode configurations. |
+| ModifiedTimestamp | datetime | Timestamp when the incident was last modified. |
+| Name | string | Name or title of the incident. |
+| Objectives | dynamic | List of attacker objectives identified in the incident. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Start | datetime | Timestamp when the incident started. |
+| State | string | Current state of the incident. |
+| Status | int | Numerical status code of the incident. |
+| Tactics | dynamic | List of MITRE ATT&CK tactics identified in the incident. |
+| Tags | dynamic | Custom tags associated with the incident. |
+| Techniques | dynamic | List of MITRE ATT&CK techniques identified in the incident. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the incident data was ingested. |
+| Type | string | The name of the table |
+| Users | dynamic | List of users involved in or affected by the incident. |

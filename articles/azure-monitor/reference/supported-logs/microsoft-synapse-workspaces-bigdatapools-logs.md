@@ -10,11 +10,15 @@ ms.custom: Microsoft.Synapse/workspaces/bigDataPools, naam
 ---
 
 # Supported logs for Microsoft.Synapse/workspaces/bigDataPools
+
 The following table lists the types of logs available for the Microsoft.Synapse/workspaces/bigDataPools resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Synapse/workspaces/bigDataPools](../supported-metrics/microsoft-synapse-workspaces-bigdatapools-metrics.md)
 
-[!INCLUDE [Microsoft.Synapse/workspaces/bigDataPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-synapse-workspaces-bigdatapools-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`BigDataPoolAppsEnded` |Big Data Pool Applications Ended |[SynapseBigDataPoolApplicationsEnded](/azure/azure-monitor/reference/tables/synapsebigdatapoolapplicationsended)<p>Information about ended Apache Spark applications.|No|Yes||No |
 
 ## Next Steps
 

@@ -13,9 +13,28 @@ ms.custom: Microsoft.Sql/servers/jobAgents, naam
 
 The following table lists the metrics available for the Microsoft.Sql/servers/jobAgents resource type.
 
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
+**Table headings**
 
-[!INCLUDE [Microsoft.Sql/servers/jobAgents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-sql-servers-jobagents-metrics-include.md)]
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
+
+
+### Category: Basic
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Elastic Jobs Executions Failed**<br><br>Number of job executions that failed while trying to execute on target |`elastic_jobs_failed` |Count |Total (Sum), Count |\<none\>|PT1M |Yes|
+|**Elastic Jobs Executions Successful**<br><br>Number of job executions that were able to successfully execute on target |`elastic_jobs_successful` |Count |Total (Sum), Count |\<none\>|PT1M |Yes|
+|**Elastic Jobs Executions Timed Out**<br><br>Number of job executions that expired before execution was able to finish on target. |`elastic_jobs_timeout` |Count |Total (Sum), Count |\<none\>|PT1M |Yes|
 
 ## Next steps
 

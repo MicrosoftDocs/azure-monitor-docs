@@ -10,11 +10,15 @@ ms.custom: Microsoft.Network/networkManagers/ipamPools, naam
 ---
 
 # Supported logs for Microsoft.Network/networkManagers/ipamPools
+
 The following table lists the types of logs available for the Microsoft.Network/networkManagers/ipamPools resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Network/networkManagers/ipamPools](../supported-metrics/microsoft-network-networkmanagers-ipampools-metrics.md)
 
-[!INCLUDE [Microsoft.Network/networkManagers/ipamPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networkmanagers-ipampools-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`PoolAllocationChange` |Pool Allocation Change |[AVNMIPAMPoolAllocationChange](/azure/azure-monitor/reference/tables/avnmipampoolallocationchange)<p>Includes changes to allocations of an IPAM Pool such as Virtual Networks, static CIDRs, or child pools.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/avnmipampoolallocationchange)|Yes |
 
 ## Next Steps
 

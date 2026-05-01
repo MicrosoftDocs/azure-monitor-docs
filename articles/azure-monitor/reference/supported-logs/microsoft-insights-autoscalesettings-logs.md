@@ -10,11 +10,16 @@ ms.custom: microsoft.insights/autoscalesettings, naam
 ---
 
 # Supported logs for microsoft.insights/autoscalesettings
+
 The following table lists the types of logs available for the microsoft.insights/autoscalesettings resource type.
 
 For a list of supported metrics, see [Supported metrics - microsoft.insights/autoscalesettings](../supported-metrics/microsoft-insights-autoscalesettings-metrics.md)
 
-[!INCLUDE [microsoft.insights/autoscalesettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-insights-autoscalesettings-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AutoscaleEvaluations` |Autoscale Evaluations |[AutoscaleEvaluationsLog](/azure/azure-monitor/reference/tables/autoscaleevaluationslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscaleevaluationslog)|No |
+|`AutoscaleScaleActions` |Autoscale Scale Actions |[AutoscaleScaleActionsLog](/azure/azure-monitor/reference/tables/autoscalescaleactionslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscalescaleactionslog)|No |
 
 ## Next Steps
 

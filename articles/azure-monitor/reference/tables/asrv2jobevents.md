@@ -27,4 +27,28 @@ This table contains records of Azure Site Recovery v2 (ASRv2) jobs such as repli
 
 ## Columns
 
-[!INCLUDE [asrv2jobevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2jobevents-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AffectedObjectId | string | The affected object Id. |
+| AffectedObjectName | string | The affected object name. |
+| AffectedObjectType | string | The affected object type. |
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the log. |
+| CorrelationId | string | The correlation Id of the event. |
+| EndTime | datetime | The operation end time. |
+| HasErrors | bool | Whether the operation has critical errors logged. |
+| HasInformation | bool | Whether the operation has informational messages logged. |
+| HasWarnings | bool | Whether the operation has warnings logged. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Message | string | The description for the event. |
+| OperationName | string | The name of the operation. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The operation start time. |
+| State | string | The operation state. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the log was generated. |
+| TimeTaken | real | The duration of the operation in milliseconds. |
+| Type | string | The name of the table |
+| Version | string | The version for the event properties. |

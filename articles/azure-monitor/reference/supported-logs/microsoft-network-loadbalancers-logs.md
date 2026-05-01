@@ -10,11 +10,15 @@ ms.custom: Microsoft.Network/loadBalancers, naam
 ---
 
 # Supported logs for Microsoft.Network/loadBalancers
+
 The following table lists the types of logs available for the Microsoft.Network/loadBalancers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Network/loadBalancers](../supported-metrics/microsoft-network-loadbalancers-metrics.md)
 
-[!INCLUDE [Microsoft.Network/loadBalancers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-loadbalancers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`LoadBalancerHealthEvent` |Load Balancer Health Event |[ALBHealthEvent](/azure/azure-monitor/reference/tables/albhealthevent)<p>Table of events related to the availability and health of a load balancer resource.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/albhealthevent)|Yes |
 
 ## Next Steps
 

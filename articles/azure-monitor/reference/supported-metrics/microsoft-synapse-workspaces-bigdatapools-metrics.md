@@ -13,11 +13,31 @@ ms.custom: Microsoft.Synapse/workspaces/bigDataPools, naam
 
 The following table lists the metrics available for the Microsoft.Synapse/workspaces/bigDataPools resource type.
 
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
 
 For a list of supported logs, see [Supported log categories - Microsoft.Synapse/workspaces/bigDataPools](../supported-logs/microsoft-synapse-workspaces-bigdatapools-logs.md)
 
-[!INCLUDE [Microsoft.Synapse/workspaces/bigDataPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-synapse-workspaces-bigdatapools-metrics-include.md)]
+
+### Category: Apache Spark pool
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**vCores allocated**<br><br>Allocated vCores for an Apache Spark Pool |`BigDataPoolAllocatedCores` |Count |Maximum, Minimum, Average |`SubmitterId`|PT1M |No|
+|**Memory allocated (GB)**<br><br>Allocated Memory for Apach Spark Pool (GB) |`BigDataPoolAllocatedMemory` |Count |Maximum, Minimum, Average |`SubmitterId`|PT1M |No|
+|**Active Apache Spark applications**<br><br>Total Active Apache Spark Pool Applications |`BigDataPoolApplicationsActive` |Count |Maximum, Minimum, Average |`JobState`|PT1M |No|
+|**Ended Apache Spark applications**<br><br>Count of Apache Spark pool applications ended |`BigDataPoolApplicationsEnded` |Count |Total (Sum) |`JobType`, `JobResult`|PT1M |No|
 
 ## Next steps
 

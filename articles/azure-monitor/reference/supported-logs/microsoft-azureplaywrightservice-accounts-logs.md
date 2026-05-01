@@ -10,9 +10,13 @@ ms.custom: microsoft.azureplaywrightservice/accounts, naam
 ---
 
 # Supported logs for microsoft.azureplaywrightservice/accounts
+
 The following table lists the types of logs available for the microsoft.azureplaywrightservice/accounts resource type.
 
-[!INCLUDE [microsoft.azureplaywrightservice/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-azureplaywrightservice-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Operational` |Microsoft Playwright Testing Operations ||No|No||Yes |
 
 ## Next Steps
 

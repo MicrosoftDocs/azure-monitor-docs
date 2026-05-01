@@ -10,11 +10,15 @@ ms.custom: microsoft.network/bastionHosts, naam
 ---
 
 # Supported logs for microsoft.network/bastionHosts
+
 The following table lists the types of logs available for the microsoft.network/bastionHosts resource type.
 
 For a list of supported metrics, see [Supported metrics - microsoft.network/bastionHosts](../supported-metrics/microsoft-network-bastionhosts-metrics.md)
 
-[!INCLUDE [microsoft.network/bastionHosts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-bastionhosts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`BastionAuditLogs` |Bastion Audit Logs |[MicrosoftAzureBastionAuditLogs](/azure/azure-monitor/reference/tables/microsoftazurebastionauditlogs)<p>Microsoft Azure Bastion Audit Logs|No|Yes||No |
 
 ## Next Steps
 

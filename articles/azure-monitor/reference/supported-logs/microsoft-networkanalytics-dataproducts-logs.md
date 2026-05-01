@@ -10,9 +10,18 @@ ms.custom: Microsoft.NetworkAnalytics/DataProducts, naam
 ---
 
 # Supported logs for Microsoft.NetworkAnalytics/DataProducts
+
 The following table lists the types of logs available for the Microsoft.NetworkAnalytics/DataProducts resource type.
 
-[!INCLUDE [Microsoft.NetworkAnalytics/DataProducts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkanalytics-dataproducts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DatabaseQuery` |Database Query ||No|No||Yes |
+|`Digestion` |Digestion ||No|No||Yes |
+|`Ingestion` |Ingestion ||No|No||Yes |
+|`IngestionDelete` |Delete ingested file ||No|No||Yes |
+|`IngestionRead` |Read ingested file ||No|No||Yes |
+|`ReadStorage` |Output storage read ||No|No||Yes |
 
 ## Next Steps
 

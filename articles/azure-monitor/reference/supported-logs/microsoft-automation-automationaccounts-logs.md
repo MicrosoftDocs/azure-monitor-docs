@@ -10,11 +10,18 @@ ms.custom: Microsoft.Automation/automationAccounts, naam
 ---
 
 # Supported logs for Microsoft.Automation/automationAccounts
+
 The following table lists the types of logs available for the Microsoft.Automation/automationAccounts resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Automation/automationAccounts](../supported-metrics/microsoft-automation-automationaccounts-metrics.md)
 
-[!INCLUDE [Microsoft.Automation/automationAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-automation-automationaccounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditEvent` |AuditEvent |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftautomation)|Yes |
+|`DscNodeStatus` |DscNodeStatus |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftautomation)|No |
+|`JobLogs` |JobLogs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftautomation)|No |
+|`JobStreams` |JobStreams |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftautomation)|No |
 
 ## Next Steps
 

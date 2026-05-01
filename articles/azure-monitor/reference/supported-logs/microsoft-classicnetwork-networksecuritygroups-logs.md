@@ -10,9 +10,13 @@ ms.custom: Microsoft.ClassicNetwork/networksecuritygroups, arm
 ---
 
 # Supported logs for Microsoft.ClassicNetwork/networksecuritygroups
+
 The following table lists the types of logs available for the Microsoft.ClassicNetwork/networksecuritygroups resource type.
 
-[!INCLUDE [Microsoft.ClassicNetwork/networksecuritygroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-classicnetwork-networksecuritygroups-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Network Security Group Rule Flow Event` |Network Security Group Rule Flow Event ||No|No||No |
 
 ## Next Steps
 

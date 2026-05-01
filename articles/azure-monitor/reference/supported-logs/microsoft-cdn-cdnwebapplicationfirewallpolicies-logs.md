@@ -10,11 +10,15 @@ ms.custom: Microsoft.Cdn/cdnwebapplicationfirewallpolicies, naam
 ---
 
 # Supported logs for Microsoft.Cdn/cdnwebapplicationfirewallpolicies
+
 The following table lists the types of logs available for the Microsoft.Cdn/cdnwebapplicationfirewallpolicies resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/cdnwebapplicationfirewallpolicies](../supported-metrics/microsoft-cdn-cdnwebapplicationfirewallpolicies-metrics.md)
 
-[!INCLUDE [Microsoft.Cdn/cdnwebapplicationfirewallpolicies](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-cdnwebapplicationfirewallpolicies-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`WebApplicationFirewallLogs` |Web Appliation Firewall Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftcdn)|No |
 
 ## Next Steps
 

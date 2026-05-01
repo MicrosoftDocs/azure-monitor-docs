@@ -27,4 +27,102 @@ The Google Cloud Platform IAM audit logs, ingested from Sentinel's connector, eA
 
 ## Columns
 
-[!INCLUDE [gcpiam](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpiam-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AuthenticationInfoPrincipalSubject | string | Subject associated with the authenticated principal in the request. |
+| AuthInfoPrincipalEmail | string | The email address associated with the principal (e.g., user, service account) performing the action. |
+| AuthInfoPrincipalSubject | string | The subject or identifier associated with the principal performing the action. |
+| AuthInfoServiceAccountDelegationInfo | string | Delegation information for a service account. |
+| AuthorizationInfo | string | Information related to the authorization of the request. |
+| _BilledSize | real | The record size in bytes |
+| GCPResourceName | string | The name of the resource involved in the request or logged event. |
+| GCPResourceType | string | The type of resource involved in the request. |
+| InsertId | string | A unique identifier for the log entry, typically used for deduplication. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogName | string | The name of the log in which the entry resides. |
+| MetadataIdentityDelegationChain | string | A chain of delegated identities for the request. |
+| MetadataMappedPrincipal | string | Mapped principal in the metadata. |
+| MetadataType | string | The type of metadata being provided. |
+| MethodName | string | The name of the method being invoked. |
+| NumResponseItems | string | The number of items returned in the response. |
+| OperationFirst | bool | Boolean indicating whether this is the first operation in a sequence. |
+| OperationId | string | A unique identifier for the operation. |
+| OperationLast | bool | Boolean indicating whether this is the last operation in a sequence. |
+| OperationProducer | string | The producer (system or service) that initiated the operation. |
+| PayloadType | string | The type of payload being processed or transmitted. |
+| ReceiveTimestamp | datetime | Timestamp representing the time when the log entry was received by the system. |
+| RequestAccountId | string | Account ID associated with the request. |
+| RequestFullResourceName | string | Full name of the resource requested. |
+| RequestGrantType | string | The grant type associated with the request. |
+| RequestIncludeInactiveApiRoles | bool | Boolean indicating whether inactive API roles should be included in the request. |
+| RequestKeyTypes | string | Types of keys involved in the request. |
+| RequestMetadataCallerIp | string | The IP address from which the request originated. |
+| RequestMetadataCallerSuppliedUserAgent | string | The user-agent String provided by the caller during the request. |
+| RequestMetadataRequestAttributesTime | string | Time-related attributes of the request metadata. |
+| RequestName | string | The name of the request. |
+| RequestOptionsRequestedPolicyVersion | string | The version of the policy requested. |
+| RequestPageSize | string | The size of the page requested in a paginated request. |
+| RequestPageToken | string | Token for pagination in the request. |
+| RequestParent | string | The parent resource of the request. |
+| RequestPolicyAuditConfigs | string | Configuration for auditing in the request policy. |
+| RequestPolicyBindings | string | Binding configurations associated with the request policy. |
+| RequestPolicyEtag | string | The ETag value for the request policy. |
+| RequestPrivateKeyType | string | Type of private key being used in the request. |
+| RequestRemoveDeletedServiceAccounts | bool | Boolean indicating if deleted service accounts should be removed. |
+| RequestRequestedTokenType | string | The type of token requested. |
+| RequestResource | string | The resource being requested. |
+| RequestRoleDescription | string | Description of the role being requested. |
+| RequestRoleId | string | The unique identifier for the role. |
+| RequestRoleIncludedPermissions | string | Permissions included in the role in the request. |
+| RequestRoleTitle | string | Title of the role being requested. |
+| RequestServiceAccountDescription | string | Description of the service account being requested. |
+| RequestServiceAccountDisplayName | string | Display name of the service account being requested. |
+| RequestShowDeleted | bool | Boolean indicating if deleted items should be included in the response. |
+| RequestSkipVisibilityCheck | bool | Boolean indicating whether the visibility check for the request should be skipped. |
+| RequestSubjectTokenType | string | The type of subject token being used in the request. |
+| RequestType | string | The type of request being made. |
+| RequestUpdateMaskPaths | string | The paths to be updated in the request. |
+| RequestView | string | The view or perspective for the request. |
+| ResourceLabelsEmailId | string | Email identifier associated with the resource. |
+| ResourceLabelsLocation | string | The geographical or logical location of the resource. |
+| ResourceLabelsMethod | string | The method associated with the resource, often used for filtering or categorization. |
+| ResourceLabelsProjectId | string | Project ID for the resource being accessed or logged. |
+| ResourceLabelsRoleName | string | The name of the role associated with the resource. |
+| ResourceLabelsService | string | The service to which the resource belongs. |
+| ResourceLabelsTopicId | string | The topic ID associated with the resource. |
+| ResourceLabelsUniqueId | string | A unique identifier for the resource. |
+| ResourceLabelsVersion | string | The version of the resource being logged. |
+| ResponseAuditConfigs | string | Audit configurations in the response. |
+| ResponseBindings | string | The bindings used in the response. |
+| ResponseDescription | string | Description of the response. |
+| ResponseDisplayName | string | Display name associated with the response. |
+| ResponseEmail | string | Email associated with the response. |
+| ResponseEtag | string | The ETag value for the response. |
+| ResponseGroupName | string | The group name for the response. |
+| ResponseGroupTitle | string | The title of the group in the response. |
+| ResponseIncludedPermissions | string | Permissions included in the response. |
+| ResponseKeyAlgorithm | string | The key algorithm used in the response. |
+| ResponseKeyOrigin | string | The origin of the key in the response. |
+| ResponseKeyType | string | The type of key used in the response. |
+| ResponseName | string | Name associated with the response. |
+| ResponseOauth2ClientId | string | OAuth2 client ID associated with the response. |
+| ResponsePrivateKeyType | string | The type of private key used in the response. |
+| ResponseProjectId | string | Project ID associated with the response. |
+| ResponseTitle | string | Title associated with the response. |
+| ResponseType | string | The type of response being returned. |
+| ResponseUniqueId | string | Unique identifier for the response. |
+| ResponseValidAfterTimeSeconds | string | Time in seconds after which the response becomes valid. |
+| ResponseValidBeforeTimeSeconds | string | Time in seconds before the response becomes valid. |
+| ServiceDataPermissionDeltaAddedPermissions | string | Permissions that were added in the service data policy. |
+| ServiceDataPermissionDeltaRemovedPermissions | string | Permissions that were removed in the service data policy. |
+| ServiceDataPolicyDeltaBindingDeltas | string | Changes to policy bindings in the response. |
+| ServiceDataType | string | The type of service data being logged. |
+| ServiceName | string | The name of the service that generated the log entry. |
+| Severity | string | The severity level of the log entry or request. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StatusCode | string | The HTTP or operation status code for the response. |
+| StatusMessage | string | The message associated with the status code. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp representing the time at which the log entry was generated. |
+| Timestamp | datetime | The timestamp when the log entry or event occurred. |
+| Type | string | The name of the table |

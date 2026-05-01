@@ -10,9 +10,16 @@ ms.custom: Microsoft.Sql/managedInstances/databases, naam
 ---
 
 # Supported logs for Microsoft.Sql/managedInstances/databases
+
 The following table lists the types of logs available for the Microsoft.Sql/managedInstances/databases resource type.
 
-[!INCLUDE [Microsoft.Sql/managedInstances/databases](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-sql-managedinstances-databases-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Errors` |Errors |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftsql)|No |
+|`QueryStoreRuntimeStatistics` |Query Store Runtime Statistics |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftsql)|No |
+|`QueryStoreWaitStatistics` |Query Store Wait Statistics |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftsql)|No |
+|`SQLInsights` |SQL Insights |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftsql)|No |
 
 ## Next Steps
 

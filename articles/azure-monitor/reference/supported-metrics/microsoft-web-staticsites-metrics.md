@@ -13,11 +13,38 @@ ms.custom: Microsoft.Web/staticsites, naam
 
 The following table lists the metrics available for the Microsoft.Web/staticsites resource type.
 
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
 
 For a list of supported logs, see [Supported log categories - Microsoft.Web/staticsites](../supported-logs/microsoft-web-staticsites-logs.md)
 
-[!INCLUDE [Microsoft.Web/staticsites](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-web-staticsites-metrics-include.md)]
+
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Data Out**<br><br>BytesSent |`BytesSent` |Bytes |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**CdnPercentageOf4XX**<br><br>CdnPercentageOf4XX |`CdnPercentageOf4XX` |Percent |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**CdnPercentageOf5XX**<br><br>CdnPercentageOf5XX |`CdnPercentageOf5XX` |Percent |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**CdnRequestCount**<br><br>CdnRequestCount |`CdnRequestCount` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**CdnResponseSize**<br><br>CdnResponseSize |`CdnResponseSize` |Bytes |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**CdnTotalLatency**<br><br>CdnTotalLatency |`CdnTotalLatency` |MilliSeconds |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**DataApiErrors**<br><br>DataApiErrors |`DataApiErrors` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**DataApiHits**<br><br>DataApiHits |`DataApiHits` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**FunctionErrors**<br><br>FunctionErrors |`FunctionErrors` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**FunctionHits**<br><br>FunctionHits |`FunctionHits` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**SiteErrors**<br><br>SiteErrors |`SiteErrors` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
+|**SiteHits**<br><br>SiteHits |`SiteHits` |Count |Total (Sum) |\<none\>|PT5M, PT1H, P1D |No|
 
 ## Next steps
 

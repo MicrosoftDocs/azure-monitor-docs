@@ -10,9 +10,15 @@ ms.custom: Microsoft.AutonomousDevelopmentPlatform/accounts, naam
 ---
 
 # Supported logs for Microsoft.AutonomousDevelopmentPlatform/accounts
+
 The following table lists the types of logs available for the Microsoft.AutonomousDevelopmentPlatform/accounts resource type.
 
-[!INCLUDE [Microsoft.AutonomousDevelopmentPlatform/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-autonomousdevelopmentplatform-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit ||No|No||Yes |
+|`Operational` |Operational ||No|No||Yes |
+|`Request` |Request ||No|No||Yes |
 
 ## Next Steps
 

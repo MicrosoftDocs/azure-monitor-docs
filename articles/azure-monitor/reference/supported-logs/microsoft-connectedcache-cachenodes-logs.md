@@ -10,11 +10,15 @@ ms.custom: Microsoft.ConnectedCache/CacheNodes, naam
 ---
 
 # Supported logs for Microsoft.ConnectedCache/CacheNodes
+
 The following table lists the types of logs available for the Microsoft.ConnectedCache/CacheNodes resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.ConnectedCache/CacheNodes](../supported-metrics/microsoft-connectedcache-cachenodes-metrics.md)
 
-[!INCLUDE [Microsoft.ConnectedCache/CacheNodes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-connectedcache-cachenodes-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Events` |Events ||No|No||Yes |
 
 ## Next Steps
 

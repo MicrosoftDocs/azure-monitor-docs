@@ -13,11 +13,32 @@ ms.custom: Microsoft.Network/natgateways, naam
 
 The following table lists the metrics available for the Microsoft.Network/natgateways resource type.
 
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
 
 For a list of supported logs, see [Supported log categories - Microsoft.Network/natgateways](../supported-logs/microsoft-network-natgateways-logs.md)
 
-[!INCLUDE [Microsoft.Network/natgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-natgateways-metrics-include.md)]
+
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Bytes**<br><br>Total number of Bytes transmitted within time period |`ByteCount` |Bytes |Total (Sum) |`Protocol`, `Direction`|PT1M |No|
+|**Datapath Availability**<br><br>NAT Gateway Datapath Availability |`DatapathAvailability` |Count |Average |\<none\>|PT1M |No|
+|**Packets**<br><br>Total number of Packets transmitted within time period |`PacketCount` |Count |Total (Sum) |`Protocol`, `Direction`|PT1M |No|
+|**Dropped Packets**<br><br>Count of dropped packets |`PacketDropCount` |Count |Total (Sum) |\<none\>|PT1M |No|
+|**SNAT Connection Count**<br><br>Total concurrent active connections |`SNATConnectionCount` |Count |Total (Sum) |`Protocol`, `ConnectionState`|PT1M |No|
+|**Total SNAT Connection Count**<br><br>Total number of active SNAT connections |`TotalConnectionCount` |Count |Total (Sum) |`Protocol`|PT1M |No|
 
 ## Next steps
 

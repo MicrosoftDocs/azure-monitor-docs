@@ -27,4 +27,16 @@ Audit logs for storage mover and its child resources.
 
 ## Columns
 
-[!INCLUDE [storagemoverauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/storagemoverauditlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Message | string | Log message. |
+| OperationName | string | Operation name. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResType | string | Resource type that generated the log. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time in UTC when the log was generated on the Storage Mover agent. |
+| Type | string | The name of the table |

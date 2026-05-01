@@ -11,5 +11,6 @@ ms.date: 04/30/2026
 
 # Log Analytics tables for microsoft.eventgrid/systemtopics
 
-[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoft-eventgrid-systemtopics-include.md)]
+<!-- :::tables-by-resource-type-collection::: -->
+<!-- :::tables-by-resource-type-collection-end::: -->
 

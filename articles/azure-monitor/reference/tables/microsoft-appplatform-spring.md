@@ -11,5 +11,6 @@ ms.date: 04/30/2026
 
 # Log Analytics tables for microsoft.appplatform/spring
 
-[!INCLUDE [table](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/microsoft-appplatform-spring-include.md)]
+<!-- :::tables-by-resource-type-collection::: -->
+<!-- :::tables-by-resource-type-collection-end::: -->
 

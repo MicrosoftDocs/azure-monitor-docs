@@ -27,4 +27,37 @@ AmlCompute Job events
 
 ## Columns
 
-[!INCLUDE [amlcomputejobevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputejobevent-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| ClusterId | string | ID of the cluster |
+| ClusterName | string | Name of the Cluster |
+| ClusterResourceGroupName | string | Resource group name of the cluster |
+| CreationApiVersion | string | Api version used to create the job |
+| CustomerSubscriptionId | string | SubscriptionId where Experiment and Job as submitted |
+| ErrorDetails | string | Details of job error |
+| EventType | string | Type of the Job event. For example, JobSubmitted, JobRunning, JobFailed, JobSucceeded. |
+| ExecutionState | string | State of the job (the Run). For example, Queued, Running, Succeeded, Failed |
+| ExperimentId | string | ID of the Experiment |
+| ExperimentName | string | Name of the Experiment |
+| InternalOperationName | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| JobErrorMessage | string | detailed message of Job error |
+| JobId | string | ID of the Job submitted |
+| JobName | string | Name of the Job |
+| NodeId | string | ID of the node created where job is running |
+| OperationName | string | Name of the operation associated with the log event |
+| ProvisioningState | string | State of the Job submission |
+| ResourceGroupName | string | Name of the resource group |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultSignature | string |   |
+| RunInContainer | string | Flag describing if job should be run inside a container |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TFParameterServerCount | string | Count of TF parameter server |
+| TFWorkerCount | string | Count of TF workers |
+| TimeGenerated | datetime | Time when the log entry was generated |
+| ToolType | string | Type of tool used |
+| Type | string | The name of the table |
+| WorkspaceName | string | Name of the machine learning workspace |

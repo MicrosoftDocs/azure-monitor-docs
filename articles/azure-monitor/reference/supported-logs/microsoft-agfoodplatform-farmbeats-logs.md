@@ -10,9 +10,22 @@ ms.custom: Microsoft.AgFoodPlatform/farmBeats, naam
 ---
 
 # Supported logs for Microsoft.AgFoodPlatform/farmBeats
+
 The following table lists the types of logs available for the Microsoft.AgFoodPlatform/farmBeats resource type.
 
-[!INCLUDE [Microsoft.AgFoodPlatform/farmBeats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-agfoodplatform-farmbeats-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ApplicationAuditLogs` |Application Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`FarmManagementLogs` |Farm Management Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`FarmOperationLogs` |Farm Operation Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`InsightLogs` |Insight Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`JobProcessedLogs` |Job Processed Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`ModelInferenceLogs` |Model Inference Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`ProviderAuthLogs` |Provider Auth Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`SatelliteLogs` |Satellite Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`SensorManagementLogs` |Sensor Management Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`WeatherLogs` |Weather Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
 
 ## Next Steps
 

@@ -27,4 +27,26 @@ The CrowdStrikeVulnerabilities table contains logs from the CrowdStrike Vulnerab
 
 ## Columns
 
-[!INCLUDE [crowdstrikevulnerabilities](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikevulnerabilities-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| Aid | string | Agent ID of the system where vulnerability was detected. |
+| App | dynamic | Detailed information about the affected application. |
+| Apps | dynamic | List of affected applications. |
+| _BilledSize | real | The record size in bytes |
+| Cid | string | Customer ID in the CrowdStrike platform. |
+| Confidence | string | Confidence level of the vulnerability detection. |
+| CreatedTimestamp | datetime | Timestamp when the vulnerability was first detected. |
+| Cve | dynamic | Common Vulnerabilities and Exposures (CVE) information. |
+| DataProviders | dynamic | List of data providers that reported this vulnerability. |
+| HostInfo | dynamic | Information about the affected host system. |
+| Id | string | Unique identifier for the vulnerability record. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Remediation | dynamic | Remediation steps or recommendations for the vulnerability. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | Current status of the vulnerability. |
+| SuppressionInfo | dynamic | Information about vulnerability suppression if applied. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the event was ingested. |
+| Type | string | The name of the table |
+| UpdatedTimestamp | datetime | Timestamp when the vulnerability record was last updated. |
+| VulnerabilityId | string | Unique identifier for the specific vulnerability. |

@@ -10,11 +10,17 @@ ms.custom: Microsoft.Storage/storageAccounts/queueServices, naam
 ---
 
 # Supported logs for Microsoft.Storage/storageAccounts/queueServices
+
 The following table lists the types of logs available for the Microsoft.Storage/storageAccounts/queueServices resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Storage/storageAccounts/queueServices](../supported-metrics/microsoft-storage-storageaccounts-queueservices-metrics.md)
 
-[!INCLUDE [Microsoft.Storage/storageAccounts/queueServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storage-storageaccounts-queueservices-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`StorageDelete` |StorageDelete |[StorageQueueLogs](/azure/azure-monitor/reference/tables/storagequeuelogs)<p>Storage Queue Service Logs Schema|Yes|Yes||Yes |
+|`StorageRead` |StorageRead |[StorageQueueLogs](/azure/azure-monitor/reference/tables/storagequeuelogs)<p>Storage Queue Service Logs Schema|Yes|Yes||Yes |
+|`StorageWrite` |StorageWrite |[StorageQueueLogs](/azure/azure-monitor/reference/tables/storagequeuelogs)<p>Storage Queue Service Logs Schema|Yes|Yes||Yes |
 
 ## Next Steps
 

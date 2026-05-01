@@ -10,9 +10,14 @@ ms.custom: Microsoft.PowerBI/tenants, arm
 ---
 
 # Supported logs for Microsoft.PowerBI/tenants
+
 The following table lists the types of logs available for the Microsoft.PowerBI/tenants resource type.
 
-[!INCLUDE [Microsoft.PowerBI/tenants](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-powerbi-tenants-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Engine` |Engine ||No|No||No |
+|`OneLakeData` |OneLakeData ||No|No||Yes |
 
 ## Next Steps
 

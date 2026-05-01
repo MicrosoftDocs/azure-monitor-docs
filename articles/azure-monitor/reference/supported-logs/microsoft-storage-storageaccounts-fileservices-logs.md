@@ -10,11 +10,17 @@ ms.custom: Microsoft.Storage/storageAccounts/fileServices, naam
 ---
 
 # Supported logs for Microsoft.Storage/storageAccounts/fileServices
+
 The following table lists the types of logs available for the Microsoft.Storage/storageAccounts/fileServices resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Storage/storageAccounts/fileServices](../supported-metrics/microsoft-storage-storageaccounts-fileservices-metrics.md)
 
-[!INCLUDE [Microsoft.Storage/storageAccounts/fileServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storage-storageaccounts-fileservices-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`StorageDelete` |StorageDelete |[StorageFileLogs](/azure/azure-monitor/reference/tables/storagefilelogs)<p>Storage File Service Logs Schema|Yes|Yes||Yes |
+|`StorageRead` |StorageRead |[StorageFileLogs](/azure/azure-monitor/reference/tables/storagefilelogs)<p>Storage File Service Logs Schema|Yes|Yes||Yes |
+|`StorageWrite` |StorageWrite |[StorageFileLogs](/azure/azure-monitor/reference/tables/storagefilelogs)<p>Storage File Service Logs Schema|Yes|Yes||Yes |
 
 ## Next Steps
 

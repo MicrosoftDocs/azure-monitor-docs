@@ -10,11 +10,16 @@ ms.custom: Microsoft.DBforMariaDB/servers, arm
 ---
 
 # Supported logs for Microsoft.DBforMariaDB/servers
+
 The following table lists the types of logs available for the Microsoft.DBforMariaDB/servers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.DBforMariaDB/servers](../supported-metrics/microsoft-dbformariadb-servers-metrics.md)
 
-[!INCLUDE [Microsoft.DBforMariaDB/servers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbformariadb-servers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`MySqlAuditLogs` |MariaDB Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbformariadb)|No |
+|`MySqlSlowLogs` |MariaDB Server Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbformariadb)|No |
 
 ## Next Steps
 

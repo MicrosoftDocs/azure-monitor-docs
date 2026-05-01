@@ -10,11 +10,15 @@ ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/caches, naam
 ---
 
 # Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools/caches
+
 The following table lists the types of logs available for the Microsoft.NetApp/netAppAccounts/capacityPools/caches resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools/caches](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-caches-metrics.md)
 
-[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools/caches](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-netapp-netappaccounts-capacitypools-caches-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ANFFileAccess` |ANF Cache Volumes File Access Logs ||No|No||Yes |
 
 ## Next Steps
 

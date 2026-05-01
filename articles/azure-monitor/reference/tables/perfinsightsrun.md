@@ -27,4 +27,24 @@ This table contains information about PerfInsights runs.
 
 ## Columns
 
-[!INCLUDE [perfinsightsrun](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perfinsightsrun-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CommandLine | string | Command line used to run the performance analysis. |
+| DataSetRunId | string | The identifier of the Data Set run for which this data was collected. |
+| EndTimeUtc | datetime | End time of the performance analysis in UTC. |
+| HighImpactFindings | int | Count of high impact findings. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LowImpactFindings | int | Count of low impact findings. |
+| MediumImpactFindings | int | Count of medium impact findings. |
+| PerfInsightsExeFileVersion | string | Version of the PerfInsights executable. |
+| PerfInsightsResourceId | string | Resource URI in PerfInsights format. |
+| ReportId | string | Report Id. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| Scenario | string | The scenario being analyzed. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTimeUtc | datetime | Start time of the performance analysis in UTC. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the log was generated. This column can be used to construct a time series or to filter data to a specific time window. Example: 2014-05-25T08:20:03.123456Z. |
+| Type | string | The name of the table |

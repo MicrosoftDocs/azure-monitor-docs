@@ -10,11 +10,16 @@ ms.custom: Microsoft.AnalysisServices/servers, arm
 ---
 
 # Supported logs for Microsoft.AnalysisServices/servers
+
 The following table lists the types of logs available for the Microsoft.AnalysisServices/servers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.AnalysisServices/servers](../supported-metrics/microsoft-analysisservices-servers-metrics.md)
 
-[!INCLUDE [Microsoft.AnalysisServices/servers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-analysisservices-servers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Engine` |Engine |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
+|`Service` |Service |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 
 ## Next Steps
 

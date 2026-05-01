@@ -10,11 +10,22 @@ ms.custom: Microsoft.DBforPostgreSQL/flexibleServers, naam
 ---
 
 # Supported logs for Microsoft.DBforPostgreSQL/flexibleServers
+
 The following table lists the types of logs available for the Microsoft.DBforPostgreSQL/flexibleServers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.DBforPostgreSQL/flexibleServers](../supported-metrics/microsoft-dbforpostgresql-flexibleservers-metrics.md)
 
-[!INCLUDE [Microsoft.DBforPostgreSQL/flexibleServers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dbforpostgresql-flexibleservers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`PostgreSQLFlexDatabaseXacts` |PostgreSQL remaining transactions |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLFlexPGBouncer` |PostgreSQL PgBouncer Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLFlexQueryStoreRuntime` |PostgreSQL Query Store Runtime |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLFlexQueryStoreWaitStats` |PostgreSQL Query Store Wait Statistics |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLFlexSessions` |PostgreSQL Sessions data |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLFlexTableStats` |PostgreSQL Autovacuum and schema statistics |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
+|`PostgreSQLLogs` |PostgreSQL Server Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|No |
+|`PostgreSQLQueryStoreSqlText` |PostgreSQL Query Store SQL Text |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdbforpostgresql)|Yes |
 
 ## Next Steps
 

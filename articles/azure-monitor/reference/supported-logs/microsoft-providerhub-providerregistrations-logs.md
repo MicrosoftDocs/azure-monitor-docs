@@ -10,9 +10,15 @@ ms.custom: Microsoft.ProviderHub/providerRegistrations, naam
 ---
 
 # Supported logs for Microsoft.ProviderHub/providerRegistrations
+
 The following table lists the types of logs available for the Microsoft.ProviderHub/providerRegistrations resource type.
 
-[!INCLUDE [Microsoft.ProviderHub/providerRegistrations](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-providerhub-providerregistrations-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ProvisioningOperations` |Provisioning Operations ||No|No||Yes |
+|`UserRPHttpIncomingRequests` |UserRP Http Incoming Requests ||No|No||Yes |
+|`UserRPHttpOutgoingRequests` |UserRP Http Outgoing Requests ||No|No||Yes |
 
 ## Next Steps
 

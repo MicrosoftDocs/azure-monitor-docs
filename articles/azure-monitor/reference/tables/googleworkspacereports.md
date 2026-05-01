@@ -27,4 +27,140 @@ The [Google Workspace](https://workspace.google.com/) Activities data connector 
 
 ## Columns
 
-[!INCLUDE [googleworkspacereports](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/googleworkspacereports-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AccountState | string | Deprecated. Use EventParameters column to find the value of this column instead. Parameter to indicate the account state on the device. |
+| ActorApplicationInfoApplicationName | string | Name of the application used to perform the action. |
+| ActorApplicationInfoImpersonation | bool | Whether the application was impersonating a user. |
+| ActorApplicationInfoOauthClientId | string | OAuth client id of the third party application used to perform the action. |
+| ActorCallerType | string | The type of actor. |
+| ActorEmail | string | The primary email address of the actor. May be absent if there is no email address associated with the actor. |
+| ActorIsCollaboratorAccount | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates whether the actor is a collaborator account. |
+| ActorKey | string | Only present when callerType is KEY. Can be the consumer_key of the requestor for OAuth 2LO API requests or an identifier for robot accounts. |
+| ActorProfileId | string | The unique Google Workspace profile ID of the actor. This value might be absent if the actor is not a Google Workspace user, or may be the number 105250506097979753968 which acts as a placeholder ID. |
+| ApiKind | string | Deprecated. Use EventParameters column to find the value of this column instead. The kind of API request made. |
+| ApplicationEdition | string | Deprecated. Use EventParameters column to find the value of this column instead. The Google Workspace edition. |
+| ApplicationName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| AppName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| Billable | bool | Deprecated. Use EventParameters column to find the value of this column instead. Whether this activity is billable. |
+| _BilledSize | real | The record size in bytes |
+| BrowserVersion | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| CalendarId | string | Deprecated. Use EventParameters column to find the value of this column instead. Calendar Id of the relevant calendar in context of this action (for example the calendar that an event is on, or a calendar being subscribed to). Usually takes the form of the user's email address. |
+| ChromeOrgUnitId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ClientId | string | Deprecated. Use EventParameters column to find the value of this column instead. Client ID to which access has been granted / revoked. |
+| ClientType | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentHash | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentRiskLevel | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentSize | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentTransferMethod | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ContentType | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DestinationFolderId | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the destination folder. |
+| DestinationFolderTitle | string | Deprecated. Use EventParameters column to find the value of this column instead. The title of the destination folder. |
+| DestUserUpn | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DeviceId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DeviceName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DevicePlatform | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DeviceType | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DeviceUser | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DocId | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the document. |
+| DocTitle | string | Deprecated. Use EventParameters column to find the value of this column instead. The title of the document. |
+| DocType | string | Deprecated. Use EventParameters column to find the value of this column instead. The type of the document. |
+| DstUserUpn | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| DvcGuid | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the device used. |
+| DvcInterfaceGuid | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the device interface. |
+| DvcModelName | string | Deprecated. Use EventParameters column to find the value of this column instead. The model name of the device used. |
+| DvcModelNumber | string | Deprecated. Use EventParameters column to find the value of this column instead. The model number of the device used. |
+| DvcType | string | Deprecated. Use EventParameters column to find the value of this column instead. The type of the device used. |
+| Etag | string | ETag of the entry. |
+| EventEndTime | string | Deprecated. Use EventParameters column to find the value of this column instead. The end time of the event. |
+| EventGuest | string | Deprecated. Use EventParameters column to find the value of this column instead. The email address of the event guest. |
+| EventId | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the event. |
+| EventMessage | string | Deprecated. Use EventParameters column to find the value of this column instead. The name of the event. |
+| EventName | string | Name of the event. |
+| EventOriginalMessage | string | Deprecated. Use EventParameters column to find the value of this column instead. An array representing a chain of events, where each element is a sub-event. |
+| EventParameters | dynamic | JSON of all parameters that is associated with the Event. |
+| EventProduct | string | Deprecated. Use EventParameters column to find the value of this column instead. The product associated with the event. |
+| EventResourceId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| EventResourceName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| EventResponseStatus | string | Deprecated. Use EventParameters column to find the value of this column instead.The response status of the event. |
+| EventResult | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| EventStartTime | string | Deprecated. Use EventParameters column to find the value of this column instead. The start time of the event. |
+| EventTitle | string | Deprecated. Use EventParameters column to find the value of this column instead. The title of the event. |
+| EventType | string | Type of event. |
+| EventUid | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique identifier of the event. |
+| EventVendor | string | Deprecated. Use EventParameters column to find the value of this column instead. The vendor of the event. |
+| GroupDomain | string | Deprecated. Use EventParameters column to find the value of this column instead. The organizational unit (OU) name (path). |
+| GroupEmail | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| IdApplicationName | string | Application name to which the event belongs. |
+| IdCustomerId | string | The unique identifier for a Google Workspace account. |
+| IdTime | string | Time of occurrence of the activity. This is in UNIX epoch time in seconds. |
+| IdUniqueQualifier | string | Unique qualifier if multiple events have the same time. |
+| IosVendorId | string | Deprecated. Use EventParameters column to find the value of this column instead. The vendor ID for iOS devices. |
+| IosVendorUID | string | Deprecated. Use EventParameters column to find the value of this column instead. The vendor UID for iOS devices. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsSecondFactor | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates if the event involves a second-factor authentication attempt. |
+| IsSuspicious | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates if the event is considered suspicious. |
+| Kind | string | The type of API resource. For an activity report, the value is audit#activity. |
+| LastSyncAuditDate | string | Deprecated. Use EventParameters column to find the value of this column instead. The date of the last synchronization audit. |
+| LoginChallengeMethod | string | Deprecated. Use EventParameters column to find the value of this column instead. The method used for the login challenge. |
+| LoginChallengeStatus | string | Deprecated. Use EventParameters column to find the value of this column instead. The status of the login challenge. |
+| LoginType | string | Deprecated. Use EventParameters column to find the value of this column instead. The type of credentials used to attempt login. |
+| ModuleName | string | Deprecated. Use EventParameters column to find the value of this column instead. The new license for this product name. |
+| NetworkInfoRegionCode | string | ISO 3166-1 alpha-2 region code of the user doing the action. |
+| NetworkInfoSubdivisionCode | string | ISO 3166-2 region code (states and provinces) for countries of the user doing the action. |
+| NetworkIpAsn | dynamic | IP Address of the user doing the action. |
+| NewValue | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| NotificationMessageId | string | Deprecated. Use EventParameters column to find the value of this column instead. The notification message Id. |
+| NotificationMethod | string | Deprecated. Use EventParameters column to find the value of this column instead. The method used for the notification. |
+| NotificationType | string | Deprecated. Use EventParameters column to find the value of this column instead. The type of notification. |
+| OldEventTitle | string | Deprecated. Use EventParameters column to find the value of this column instead. If the title of a calendar event has been changed, this is the previous title of the event. |
+| OldValue | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| OldVisibility | string | Deprecated. Use EventParameters column to find the value of this column instead. Old Visibility of Target File. |
+| OrganizerCalendarId | string | Deprecated. Use EventParameters column to find the value of this column instead. Calendar Id of this Event's organizer. |
+| OrgUnitName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| OriginatingAppId | string | Deprecated. Use EventParameters column to find the value of this column instead. The Google Cloud Project ID of the application that performed the action. |
+| OsProperty | string | Deprecated. Use EventParameters column to find the value of this column instead. Operating System properties. |
+| Owner | string | Deprecated. Use EventParameters column to find the value of this column instead. The owner of the resource involved in the event. |
+| OwnerDomain | string | This is the domain that is affected by the report's event. For example domain of Admin console or the Drive application's document owner. |
+| OwnerEmail | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| OwnerIsSharedDrive | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates if the owner is a shared drive. |
+| OwnerIsTeamDrive | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates if the owner is a team drive. |
+| PrimaryEvent | bool | Deprecated. Use EventParameters column to find the value of this column instead. Indicates if the event is the primary event in a chain of events. |
+| ProcessName | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique name (ID) of the setting that was changed. |
+| ProfileUserName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| RegisterPrivelege | string | Deprecated. Use EventParameters column to find the value of this column instead. Device Policy app's privilege on the user's device. |
+| Resource_Id | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique resource Id of the device. |
+| ResourceDetails | dynamic | Details of the resource on which the action was performed. |
+| RoleName | string | Deprecated. Use EventParameters column to find the value of this column instead. The unique name (ID) of the role assigned to the user. |
+| RuleName | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| ScanId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| Scope | string | Deprecated. Use EventParameters column to find the value of this column instead. The scope of the access request. |
+| ScopeData | string | Deprecated. Use EventParameters column to find the value of this column instead. Additional data related to the scope. |
+| SerialNumber | string | Deprecated. Use EventParameters column to find the value of this column instead. The serial number of the device. |
+| SharedDriveId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| SourceFolderId | string | Deprecated. Use EventParameters column to find the value of this column instead. The ID of the source folder if the document is located in a shared drive. |
+| SourceFolderTitle | string | Deprecated. Use EventParameters column to find the value of this column instead. The title of the source folder if the document is located in a shared drive. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIpAddr | string | IP address of the user doing the action. |
+| TargetCalendarId | string | Deprecated. Use EventParameters column to find the value of this column instead. The ID of the calendar targeted by the event. |
+| TargetDomain | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| TargetUserDomain | string | Deprecated. Use EventParameters column to find the value of this column instead. The domain targeted by the event. |
+| TargetUserName | string | Deprecated. Use EventParameters column to find the value of this column instead. The user targeted by the event. |
+| TeamDriveId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time that the log was generated. |
+| Timestamp | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| TriggerDestination | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| TriggerSource | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| TriggerType | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| Type | string | The name of the table |
+| Url | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| UserAadid | string | Deprecated. Use EventParameters column to find the value of this column instead. This ID helps correlate events and activities to the correct Google Workspace tenant. |
+| UserAgent | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| UserAgentOriginal | string | Deprecated. Use EventParameters column to find the value of this column instead. The user agent from the request that triggered this action. |
+| UserEmail | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| Value | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| VirtualDeviceId | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| Visibility | string | Deprecated. Use EventParameters column to find the value of this column instead. |
+| VisibilityChange | string | Deprecated. Use EventParameters column to find the value of this column instead. |

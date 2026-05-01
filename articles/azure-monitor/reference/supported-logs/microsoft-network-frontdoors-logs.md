@@ -10,11 +10,16 @@ ms.custom: Microsoft.Network/frontdoors, naam
 ---
 
 # Supported logs for Microsoft.Network/frontdoors
+
 The following table lists the types of logs available for the Microsoft.Network/frontdoors resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Network/frontdoors](../supported-metrics/microsoft-network-frontdoors-metrics.md)
 
-[!INCLUDE [Microsoft.Network/frontdoors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-frontdoors-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`FrontdoorAccessLog` |Frontdoor Access Log |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`FrontdoorWebApplicationFirewallLog` |Frontdoor Web Application Firewall Log |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
 
 ## Next Steps
 

@@ -10,11 +10,15 @@ ms.custom: Microsoft.Monitor/pipelineGroups, naam
 ---
 
 # Supported logs for Microsoft.Monitor/pipelineGroups
+
 The following table lists the types of logs available for the Microsoft.Monitor/pipelineGroups resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Monitor/pipelineGroups](../supported-metrics/microsoft-monitor-pipelinegroups-metrics.md)
 
-[!INCLUDE [Microsoft.Monitor/pipelineGroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-monitor-pipelinegroups-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`LogErrors` |Log Errors |[AzureMonitorPipelineLogErrors](/azure/azure-monitor/reference/tables/azuremonitorpipelinelogerrors)<p>Errors occurred during Azure Monitor pipeline data collection, transformation, and export.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/azuremonitorpipelinelogerrors)|Yes |
 
 ## Next Steps
 

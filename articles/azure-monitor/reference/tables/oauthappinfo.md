@@ -27,4 +27,26 @@ Information about Microsoft 365-connected OAuth applications in the organization
 
 ## Columns
 
-[!INCLUDE [oauthappinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/oauthappinfo-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AddedOnTime | datetime | Date and time when the application was registered |
+| AppName | string | The application's display name as exposed by the associated service principal |
+| AppOrigin | string | Specifies whether the app is internal to the organization or registered in an external tenant |
+| AppOwnerTenantId | string | Specifies the ID of the tenant where the app was registered |
+| AppStatus | string | Status of the app; can be: Enabled, DisabledByMicrosoft, DisabledByAppGovernancePolicy, DisabledByUser, Deleted |
+| _BilledSize | real | The record size in bytes |
+| ConsentedUsersCount | int | Count of users who have consented to the app |
+| IsAdminConsented | bool | Value is True if a user has provided admin consent to the app on behalf of all the users in the org, otherwise False |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastModifiedTime | datetime | Timestamp when the app was last modified |
+| LastUsedTime | datetime | Date and time when the app last signed in |
+| OAuthAppId | string | The unique identifier for the app as assigned by Microsoft Entra ID |
+| Permissions | dynamic | Contains an array of permission objects |
+| PrivilegeLevel | string | The privilege level of the app based on the highest classified permission granted to the app |
+| ReportId | string | Unique identifier for the record |
+| ServicePrincipalId | string | The unique identifier for the service principal instance of the application in the tenant |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the record was generated |
+| Type | string | The name of the table |
+| VerifiedPublisher | dynamic | Specifies details about the verified publisher of the application which this service principal represents |

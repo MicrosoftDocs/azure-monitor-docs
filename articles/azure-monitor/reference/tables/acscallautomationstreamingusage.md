@@ -27,4 +27,20 @@ Communication Services Call Automation Media Streaming features usage informatio
 
 ## Columns
 
-[!INCLUDE [acscallautomationstreamingusage](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallautomationstreamingusage-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CallConnectionId | string | Id of the call connection/leg, if available. |
+| CorrelationId | string | The ID for correlated events. Can be used to identify correlated events between multiple tables. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| ParticipantId | string | The participantId of the current participant record for unmixed streaming cases. Will be null for mixed sessions. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StreamingDurationInMs | real | The duration of the streaming session in milliseconds |
+| StreamingModality | string | The modality of streaming being recorded, eg. AudioStreamingMixed, AudioStreamingUnmixed, Transcription. |
+| StreamingSessionId | string | The ID associated with the streaming session belonging to the current record. |
+| StreamingStartTime | datetime | The start time of the streaming session. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

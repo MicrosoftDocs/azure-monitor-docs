@@ -27,4 +27,25 @@ Azure Virtual Desktop MultiLink Add Activity.
 
 ## Columns
 
-[!INCLUDE [wvdmultilinkadd](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wvdmultilinkadd-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the event. |
+| ClientNatIP | string | The public IP address for the client's NAT. |
+| ClientTransportIP | string | The IP address of the client endpoint used for the transport connection to the session host. |
+| ClientTransportType | string | The transport protocol the AVD client is using for an individual link. |
+| ClientTURNIP | string | The IP address of the client side used for connecting to the TURN server. |
+| CorrelationId | string | The correlation ID for the activity. |
+| GatewayRegion | string | The Azure region where the client's connection gateway is located. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LinkId | string | The identifier uses to track of network transport path. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ServerNatIP | string | The public ip address of the session host. |
+| ServerTransportIP | string | The IP address of the session host used for the transport connection. |
+| ServerTransportType | string | The transport protocol the AVD session host is using for an individual link. |
+| ServerTURNIP | string | The IP address of the TURN server that the AVD client connects to. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the report was generated (UTC). |
+| Type | string | The name of the table |

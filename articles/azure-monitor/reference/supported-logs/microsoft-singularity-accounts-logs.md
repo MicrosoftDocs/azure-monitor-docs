@@ -10,11 +10,16 @@ ms.custom: microsoft.singularity/accounts, naam
 ---
 
 # Supported logs for microsoft.singularity/accounts
+
 The following table lists the types of logs available for the microsoft.singularity/accounts resource type.
 
 For a list of supported metrics, see [Supported metrics - microsoft.singularity/accounts](../supported-metrics/microsoft-singularity-accounts-metrics.md)
 
-[!INCLUDE [microsoft.singularity/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-singularity-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Activity` |Activity Logs ||No|No||Yes |
+|`Execution` |Execution Logs ||No|No||Yes |
 
 ## Next Steps
 

@@ -10,11 +10,16 @@ ms.custom: Microsoft.Web/serverfarms, naam
 ---
 
 # Supported logs for Microsoft.Web/serverfarms
+
 The following table lists the types of logs available for the Microsoft.Web/serverfarms resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Web/serverfarms](../supported-metrics/microsoft-web-serverfarms-metrics.md)
 
-[!INCLUDE [Microsoft.Web/serverfarms](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-web-serverfarms-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AppServiceConsoleLogs` |App Service Console Logs |[AppServiceConsoleLogs](/azure/azure-monitor/reference/tables/appserviceconsolelogs)<p>Console logs generated from application or container.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/appserviceconsolelogs)|Yes |
+|`AppServicePlatformLogs` |App Service Platform logs |[AppServicePlatformLogs](/azure/azure-monitor/reference/tables/appserviceplatformlogs)<p>Logs generated through AppService platform for your application.|No|Yes||Yes |
 
 ## Next Steps
 

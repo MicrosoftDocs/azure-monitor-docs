@@ -27,4 +27,90 @@ Non-interactive Azure Active Directory sign-in logs from user.
 
 ## Columns
 
-[!INCLUDE [aadnoninteractiveusersigninlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aadnoninteractiveusersigninlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AADTenantId | string | The AADTenantId GUID that's associated with the logs |
+| Agent | string | Details of agentic sign-in. |
+| AlternateSignInName | string | Provides the on-premises UPN of the user sign-ing into Azure AD.e.g. Phone number sign-in. |
+| AppDisplayName | string | App name displayed in the Azure portal. |
+| AppId | string | Unique GUID representing the app ID in the Azure Active Directory. |
+| AppliedEventListeners | dynamic | Detailed information about the applied event listeners or listeners that are triggered by the corresponding events in an authentication activity. It's called appliedEventListeners in ALP and MSGraph, but use Authentication Events to match name on UX. |
+| AppOwnerTenantId | string | The tenant identifier of the owenr of the application in Azure Active Directory. |
+| AuthenticationContextClassReferences | string | The authentication contexts of the sign-in. |
+| AuthenticationDetails | string | A record of each step of authentication undertaken in the sign-in. |
+| AuthenticationMethodsUsed | string | List of authentication methods used. |
+| AuthenticationProcessingDetails | string | Provides the details associated with authentication processor. |
+| AuthenticationProtocol | string | Lists the protocol type or grant type used in the authentication. The possible values are: none, oAuth2, ropc, wsFederation, saml20, deviceCode, unknownFutureValue. For authentications that use protocols other than the possible values listed, the protocol type is listed as none. |
+| AuthenticationRequirement | string | Type of authentication required for the sign-in. If set to multiFactorAuthentication, an MFA step was required. If set to singleFactorAuthentication, no MFA was required. |
+| AuthenticationRequirementPolicies | string | Set of CA policies that apply to this sign-in, each as CA: policy name, and/or MFA: Per-user. |
+| AuthenticatorAppLocation | string | The location of the authenticator app. |
+| AutonomousSystemNumber | string | Autonomous System Number for the network. |
+| _BilledSize | real | The record size in bytes |
+| Category | string | Category of the sign-in event. |
+| ClientAppUsed | string | Details outlining app auth used (Legacy vs non Legacy) Eg: Modern Browser, Native App, Exchange Activty Sync and Older Clients. |
+| ClientCredentialType | string | The type of client credential used. Examples include client assertion, client secret, etc. |
+| ConditionalAccessAudiences | string | Details of the conditional access audiences being applied for the sign-in. |
+| ConditionalAccessPolicies | string | Details of the conditional access policies being applied for the sign-in. |
+| ConditionalAccessStatus | string | Status of all the conditionalAccess policies related to the sign-in. |
+| CorrelationId | string | ID to provide sign-in trail. |
+| CreatedDateTime | datetime | Datetime of the sign-in activity. |
+| CrossTenantAccessType | string | Describes the type of cross-tenant access used by the actor to access the resource. Possible values are: none, b2bCollaboration, b2bDirectConnect, microsoftSupport, serviceProvider, unknownFutureValue. If the sign in did not cross tenant boundaries, the value is none. |
+| DeviceDetail | string | Details of the device used for the sign-in. |
+| DurationMs | long | The duration of the operation in milliseconds. |
+| FederatedCredentialId | string | Federated Credential Id. |
+| GlobalSecureAccessIpAddress | string | Global secure IP address that user signed in from. |
+| HomeTenantId | string | The home tenant ID for cross-tenant scenarios. |
+| HomeTenantName | string | The tenant name of the external tenant who homes the entitity taking action in the customer's tenant. |
+| Id | string | Unique ID representing the sign-in activity. |
+| Identity | string | The identity from the token that was presented when you made the request. It can be a user account, system account, or service principal. |
+| IncomingTokenType | string | The type of token utilized to signIn (examples: primary refresh token, saml assertion). |
+| IPAddress | string | IP address of the client used to sign in. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsInteractive | bool | Indicates if a sign-in is interactive or not. |
+| IsRisky | bool | Indicates if a sign-in is considered risky or not. |
+| IsTenantRestricted | bool | Indicates if a signIn is under a tenant restrictions policy or not. |
+| IsThroughGlobalSecureAccess | bool | Displays whether or not a user came through Global Secure Access service or not. |
+| Level | string | The severity level of the event. |
+| Location | string | The region of the resource emitting the event. |
+| LocationDetails | string | Details of the sign-in location. |
+| MfaDetail | string | Details of the Multi-factor authentication. |
+| NetworkLocationDetails | string | Provides the details associated with authentication processor. |
+| OperationName | string | For sign-ins, this value is always Sign-in activity. |
+| OperationVersion | string | The REST API version that's requested by the client. |
+| OriginalRequestId | string | The request id of the first request in the authentication sequence. |
+| OriginalTransferMethod | string | Transfer method used to initiate a session throughout all subsequent requests. |
+| ProcessingTimeInMs | string | Request processing time in milliseconds in AD STS. |
+| ResourceDisplayName | string | Name of the resource that the user signed into. |
+| ResourceGroup | string | Resource group for the logs. |
+| ResourceIdentity | string | ID of the resource that the user signed into. |
+| ResourceOwnerTenantId | string | The tenant identifier of the owner of the resource referenced in the sign in. |
+| ResourceServicePrincipalId | string | Service Principal Id of the resource. |
+| ResourceTenantId | string | The resource tenant ID for cross-tenant scenarios. |
+| ResultDescription | string | Provides the error description for the sign-in operation. |
+| ResultSignature | string | Contains the error code, if any, for the sign-in operation. |
+| ResultType | string | The result of the sign-in operation can be Success or Failure. |
+| RiskDetail | string | Risky user state details. |
+| RiskEventTypes | string | The list of risk event types associated with the sign-in. |
+| RiskEventTypes_V2 | string | The list of risk event types associated with the sign-in. These are strings. |
+| RiskLevelAggregated | string | Aggregated risk level. |
+| RiskLevelDuringSignIn | string | Risk level during sign-in. |
+| RiskState | string | Risky user state. |
+| ServicePrincipalId | string | ID of the service principal who initiated the sign-in. |
+| SessionId | string | Id of the session that was generated during the signIn. |
+| SessionLifetimePolicies | string | Policies and settings that applied to the sign-in that enforced or revoked a session lifetime. |
+| SignInEventTypes | string | The types that are associated with the sign-in. Examples include "interactive", "refreshToken", "managedIdentity", "continuousAccessEvaluation" and many more. |
+| SignInIdentifierType | string | The type of sign in identifier. Possible values are: userPrincipalName, phoneNumber, proxyAddress, qrCode, onPremisesUserPrincipalName, unknownFutureValue. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | Details of the sign-in status. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The date and time of the event in UTC. |
+| TokenIssuerName | string | Name of the identity provider (e.g. sts.microsoft.com ). |
+| TokenIssuerType | string | Type of identityProvider (Azure AD, AD Federation Services). |
+| TokenProtectionStatusDetails | string | Token protection creates a cryptographically secure tie between the token and the device it's issued to. This field indicates whether the signin token was bound to the device or not. |
+| Type | string | The name of the table |
+| UniqueTokenIdentifier | string | Unique token identifier for the request. |
+| UserAgent | string | User Agent for the sign-in. |
+| UserDisplayName | string | Display name of the user that initiated the sign-in. |
+| UserId | string | ID of the user that initiated the sign-in. |
+| UserPrincipalName | string | User principal name of the user that initiated the sign-in. |
+| UserType | string | Identifies whether the user is a member or guest in the tenant. Possible values are: member, guest, unknownFutureValue. |

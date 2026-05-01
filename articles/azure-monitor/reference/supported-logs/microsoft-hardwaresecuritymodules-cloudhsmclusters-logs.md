@@ -10,9 +10,13 @@ ms.custom: Microsoft.HardwareSecurityModules/cloudHsmClusters, naam
 ---
 
 # Supported logs for Microsoft.HardwareSecurityModules/cloudHsmClusters
+
 The following table lists the types of logs available for the Microsoft.HardwareSecurityModules/cloudHsmClusters resource type.
 
-[!INCLUDE [Microsoft.HardwareSecurityModules/cloudHsmClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-hardwaresecuritymodules-cloudhsmclusters-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`HsmServiceOperations` |Hsm Service Operations ||No|No||Yes |
 
 ## Next Steps
 

@@ -10,11 +10,16 @@ ms.custom: Microsoft.Relay/namespaces, naam
 ---
 
 # Supported logs for Microsoft.Relay/namespaces
+
 The following table lists the types of logs available for the Microsoft.Relay/namespaces resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Relay/namespaces](../supported-metrics/microsoft-relay-namespaces-metrics.md)
 
-[!INCLUDE [Microsoft.Relay/namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-relay-namespaces-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`HybridConnectionsEvent` |HybridConnections Events |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
+|`VNetAndIPFilteringLogs` |VNet/IP Filtering Connection Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
 
 ## Next Steps
 

@@ -10,9 +10,14 @@ ms.custom: Microsoft.StandbyPool/standbycontainergrouppools, naam
 ---
 
 # Supported logs for Microsoft.StandbyPool/standbycontainergrouppools
+
 The following table lists the types of logs available for the Microsoft.StandbyPool/standbycontainergrouppools resource type.
 
-[!INCLUDE [Microsoft.StandbyPool/standbycontainergrouppools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-standbypool-standbycontainergrouppools-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ContainerGroupExecution` |Standby container group pool updates |[SCGPoolExecutionLog](/azure/azure-monitor/reference/tables/scgpoolexecutionlog)<p>Contains Execution Logs for a StandbyContainerGroupPool, which can be used for audit and troubleshooting.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/scgpoolexecutionlog)|Yes |
+|`ContainerGroupRequest` |Standby container group pool settings updates ||No|No||Yes |
 
 ## Next Steps
 

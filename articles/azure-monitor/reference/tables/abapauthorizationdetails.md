@@ -27,4 +27,27 @@ SAP authorizations details per role.
 
 ## Columns
 
-[!INCLUDE [abapauthorizationdetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapauthorizationdetails-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AgentId | string | Unique agent or integration suite identifier. |
+| Authorization | string | The authorization identifier. |
+| AuthorizationGroup | string | The authorization group. |
+| _BilledSize | real | The record size in bytes |
+| ChildRole | string | The child role name, if the role is a composite one. |
+| ClientId | string | The ClientId is a three-digit number that identifies a specific client within an SAP system. The ClientId is used in various SAP transactions and configuration settings to identify the client and ensure that the correct client is being accessed or configured. |
+| Field | string | The authorization field name. |
+| High | string | The high value of the authorization field. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Low | string | The low value of the authorization field. |
+| Object | string | The authorization object name. |
+| Role | string | The SAP role name. |
+| RoleType | string | Single or composite role |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SystemId | string | The SystemId is a unique identifier for a specific SAP system. It is a three-character alphanumeric code that is used to distinguish between different SAP systems. |
+| SystemRole | string | The SAP system's role. |
+| SystemUniqueId | string | Unique system identifier. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the record was generated |
+| Type | string | The name of the table |
+| TypeOfChange | string | I and J for insert, U for update, D and E for deletion. |
+| UpdatedOn | datetime | The date and time when the role was last updated. |

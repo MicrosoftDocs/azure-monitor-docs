@@ -10,11 +10,15 @@ ms.custom: Microsoft.HealthcareApis/workspaces/iotconnectors, naam
 ---
 
 # Supported logs for Microsoft.HealthcareApis/workspaces/iotconnectors
+
 The following table lists the types of logs available for the Microsoft.HealthcareApis/workspaces/iotconnectors resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/workspaces/iotconnectors](../supported-metrics/microsoft-healthcareapis-workspaces-iotconnectors-metrics.md)
 
-[!INCLUDE [Microsoft.HealthcareApis/workspaces/iotconnectors](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-workspaces-iotconnectors-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DiagnosticLogs` |Diagnostic logs |[AHDSMedTechDiagnosticLogs](/azure/azure-monitor/reference/tables/ahdsmedtechdiagnosticlogs)<p>Actionable logs generated from your MedTech application.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/ahdsmedtechdiagnosticlogs)|Yes |
 
 ## Next Steps
 

@@ -27,4 +27,24 @@ Experiment variant assignment summary from feature evaluation events. Used to mo
 
 ## Columns
 
-[!INCLUDE [aewexperimentassignmentsummary](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewexperimentassignmentsummary-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AllocationId | string | The Id of the allocation used for the feature evaluation. |
+| AssignmentEventCount | long | Total number of assignment events. |
+| _BilledSize | real | The record size in bytes |
+| BinSize | long | The duration of assignment summary time range (in minutes). |
+| BinStartTime | datetime | The bin start time of assignment summary. |
+| FeatureFlagReference | string | The fully qualified Id of the feature flag. |
+| FeatureName | string | The name of the feature flag. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsControlVariant | bool | Whether the feature variant assigned is the control for the experiment. |
+| MaxTimeGenerated | datetime | The timestamp of latest assignment event in time range. |
+| MinTimeGenerated | datetime | The timestamp of earliest assignment event in time range. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The ingestion time of the experiment assignment summary. |
+| Type | string | The name of the table |
+| Variant | string | The Id of the feature variant assigned. |
+| VariantAssignmentPercentage | real | The variant assignment percentage of the feature variant. |

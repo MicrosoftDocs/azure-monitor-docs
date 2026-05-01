@@ -10,11 +10,20 @@ ms.custom: Microsoft.ServiceBus/Namespaces, naam
 ---
 
 # Supported logs for Microsoft.ServiceBus/Namespaces
+
 The following table lists the types of logs available for the Microsoft.ServiceBus/Namespaces resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.ServiceBus/Namespaces](../supported-metrics/microsoft-servicebus-namespaces-metrics.md)
 
-[!INCLUDE [Microsoft.ServiceBus/Namespaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-servicebus-namespaces-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ApplicationMetricsLogs` |Application Metrics Logs(Unused) |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|Yes |
+|`DataDRLogs` |DataDR Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|Yes |
+|`DiagnosticErrorLogs` |Diagnostic Error Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|Yes |
+|`OperationalLogs` |Operational Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|No |
+|`RuntimeAuditLogs` |Runtime Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|Yes |
+|`VNetAndIPFilteringLogs` |VNet/IP Filtering Connection Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftservicebus)|No |
 
 ## Next Steps
 

@@ -10,11 +10,17 @@ ms.custom: Microsoft.StorageCache/caches, naam
 ---
 
 # Supported logs for Microsoft.StorageCache/caches
+
 The following table lists the types of logs available for the Microsoft.StorageCache/caches resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.StorageCache/caches](../supported-metrics/microsoft-storagecache-caches-metrics.md)
 
-[!INCLUDE [Microsoft.StorageCache/caches](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storagecache-caches-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AscCacheOperationEvent` |HPC Cache operation event |[StorageCacheOperationEvents](/azure/azure-monitor/reference/tables/storagecacheoperationevents)<p>Logs for Azure HPC Cache API requests.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecacheoperationevents)|Yes |
+|`AscUpgradeEvent` |HPC Cache upgrade event ||No|No||Yes |
+|`AscWarningEvent` |HPC Cache warning |[StorageCacheWarningEvents](/azure/azure-monitor/reference/tables/storagecachewarningevents)<p>Logs for Azure HPC Cache warning events.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/storagecachewarningevents)|Yes |
 
 ## Next Steps
 

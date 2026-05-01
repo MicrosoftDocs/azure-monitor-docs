@@ -10,11 +10,19 @@ ms.custom: microsoft.network/virtualnetworkgateways, naam
 ---
 
 # Supported logs for microsoft.network/virtualnetworkgateways
+
 The following table lists the types of logs available for the microsoft.network/virtualnetworkgateways resource type.
 
 For a list of supported metrics, see [Supported metrics - microsoft.network/virtualnetworkgateways](../supported-metrics/microsoft-network-virtualnetworkgateways-metrics.md)
 
-[!INCLUDE [microsoft.network/virtualnetworkgateways](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-virtualnetworkgateways-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`GatewayDiagnosticLog` |Gateway Diagnostic Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`IKEDiagnosticLog` |IKE Diagnostic Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`P2SDiagnosticLog` |P2S Diagnostic Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`RouteDiagnosticLog` |Route Diagnostic Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`TunnelDiagnosticLog` |Tunnel Diagnostic Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
 
 ## Next Steps
 

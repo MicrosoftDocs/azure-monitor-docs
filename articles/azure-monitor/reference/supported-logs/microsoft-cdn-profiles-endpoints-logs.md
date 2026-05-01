@@ -10,9 +10,13 @@ ms.custom: Microsoft.Cdn/profiles/endpoints, naam
 ---
 
 # Supported logs for Microsoft.Cdn/profiles/endpoints
+
 The following table lists the types of logs available for the Microsoft.Cdn/profiles/endpoints resource type.
 
-[!INCLUDE [Microsoft.Cdn/profiles/endpoints](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-profiles-endpoints-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`CoreAnalytics` |Gets the metrics of the endpoint, e.g., bandwidth, egress, etc. |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftcdn)|No |
 
 ## Next Steps
 

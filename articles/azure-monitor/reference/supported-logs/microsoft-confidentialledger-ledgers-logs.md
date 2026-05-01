@@ -10,9 +10,14 @@ ms.custom: Microsoft.ConfidentialLedger/Ledgers, naam
 ---
 
 # Supported logs for Microsoft.ConfidentialLedger/Ledgers
+
 The following table lists the types of logs available for the Microsoft.ConfidentialLedger/Ledgers resource type.
 
-[!INCLUDE [Microsoft.ConfidentialLedger/Ledgers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-confidentialledger-ledgers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`transactionlogs` |Azure Confidential Ledger activity Logs with UserId |[ACLTransactionLogs](/azure/azure-monitor/reference/tables/acltransactionlogs)<p>Logs related to transactions.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/acltransactionlogs)|Yes |
+|`userdefinedlogs` |Azure Confidential Ledger UDE/UDF logs |[ACLUserDefinedLogs](/azure/azure-monitor/reference/tables/acluserdefinedlogs)<p>Logs related to User Defined Functions and User Defined Endpoints.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/acluserdefinedlogs)|Yes |
 
 ## Next Steps
 

@@ -10,11 +10,19 @@ ms.custom: Microsoft.DataLakeAnalytics/accounts, naam
 ---
 
 # Supported logs for Microsoft.DataLakeAnalytics/accounts
+
 The following table lists the types of logs available for the Microsoft.DataLakeAnalytics/accounts resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.DataLakeAnalytics/accounts](../supported-metrics/microsoft-datalakeanalytics-accounts-metrics.md)
 
-[!INCLUDE [Microsoft.DataLakeAnalytics/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-datalakeanalytics-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
+|`ConfigurationChange` |Configuration Change Event Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`JobEvent` |Job Event Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`JobInfo` |Job Info Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`Requests` |Request Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 
 ## Next Steps
 

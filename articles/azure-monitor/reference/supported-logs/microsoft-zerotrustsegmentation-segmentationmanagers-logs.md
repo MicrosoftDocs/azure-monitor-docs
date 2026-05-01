@@ -10,9 +10,14 @@ ms.custom: Microsoft.ZeroTrustSegmentation/segmentationManagers, naam
 ---
 
 # Supported logs for Microsoft.ZeroTrustSegmentation/segmentationManagers
+
 The following table lists the types of logs available for the Microsoft.ZeroTrustSegmentation/segmentationManagers resource type.
 
-[!INCLUDE [Microsoft.ZeroTrustSegmentation/segmentationManagers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-zerotrustsegmentation-segmentationmanagers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Request` |Segmentation Manager Request Log |[ZTSRequest](/azure/azure-monitor/reference/tables/ztsrequest)<p>Requests made to the Zero Trust Segmentation service.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/ztsrequest)|Yes |
+|`ZTSJobStatus` |Segmentation Manager Job Status Log ||No|No||Yes |
 
 ## Next Steps
 

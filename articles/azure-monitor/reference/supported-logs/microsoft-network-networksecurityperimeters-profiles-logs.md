@@ -10,9 +10,16 @@ ms.custom: Microsoft.Network/networkSecurityPerimeters/profiles, naam
 ---
 
 # Supported logs for Microsoft.Network/networkSecurityPerimeters/profiles
+
 The following table lists the types of logs available for the Microsoft.Network/networkSecurityPerimeters/profiles resource type.
 
-[!INCLUDE [Microsoft.Network/networkSecurityPerimeters/profiles](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networksecurityperimeters-profiles-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`NSPInboundAccessAllowed` |NSP Inbound Access Allowed. ||No|No||Yes |
+|`NSPInboundAccessDenied` |NSP Inbound Access Denied. ||No|No||Yes |
+|`NSPOutboundAccessAllowed` |NSP Outbound Access Allowed. ||No|No||Yes |
+|`NSPOutboundAccessDenied` |NSP Outbound Access Denied. ||No|No||Yes |
 
 ## Next Steps
 

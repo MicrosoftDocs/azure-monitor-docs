@@ -10,11 +10,16 @@ ms.custom: Microsoft.HealthcareApis/services, naam
 ---
 
 # Supported logs for Microsoft.HealthcareApis/services
+
 The following table lists the types of logs available for the Microsoft.HealthcareApis/services resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/services](../supported-metrics/microsoft-healthcareapis-services-metrics.md)
 
-[!INCLUDE [Microsoft.HealthcareApis/services](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-healthcareapis-services-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditLogs` |Audit logs |[MicrosoftHealthcareApisAuditLogs](/azure/azure-monitor/reference/tables/microsofthealthcareapisauditlogs)<p>Azure API for FHIR audit logs|No|Yes||No |
+|`DiagnosticLogs` |Diagnostic logs ||No|No||Yes |
 
 ## Next Steps
 

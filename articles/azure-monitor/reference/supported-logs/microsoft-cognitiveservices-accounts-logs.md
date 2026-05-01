@@ -10,11 +10,18 @@ ms.custom: Microsoft.CognitiveServices/accounts, naam
 ---
 
 # Supported logs for Microsoft.CognitiveServices/accounts
+
 The following table lists the types of logs available for the Microsoft.CognitiveServices/accounts resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.CognitiveServices/accounts](../supported-metrics/microsoft-cognitiveservices-accounts-metrics.md)
 
-[!INCLUDE [Microsoft.CognitiveServices/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cognitiveservices-accounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
+|`AzureOpenAIRequestUsage` |Azure OpenAI Request Usage |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`RequestResponse` |Request and Response Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
+|`Trace` |Trace Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 
 ## Next Steps
 

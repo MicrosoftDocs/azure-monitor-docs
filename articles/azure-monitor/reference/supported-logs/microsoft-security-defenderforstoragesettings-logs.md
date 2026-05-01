@@ -10,9 +10,13 @@ ms.custom: Microsoft.Security/defenderForStorageSettings, naam
 ---
 
 # Supported logs for Microsoft.Security/defenderForStorageSettings
+
 The following table lists the types of logs available for the Microsoft.Security/defenderForStorageSettings resource type.
 
-[!INCLUDE [Microsoft.Security/defenderForStorageSettings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-security-defenderforstoragesettings-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ScanResults` |AntimalwareScanResults ||No|No||Yes |
 
 ## Next Steps
 

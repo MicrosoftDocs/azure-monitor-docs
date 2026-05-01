@@ -27,4 +27,18 @@ Istiod logs of AppLink operations.
 
 ## Columns
 
-[!INCLUDE [meshcontrolplane](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/meshcontrolplane-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | Service log category describing the service logging the message. |
+| Container | string | Container name emitting this audit event. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Level | string | Level (Fatal, Error, Warning, Info, Debug) of the log message. |
+| Message | string | Log message body. |
+| PodName | string | Name of the pod emitting this audit event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Event generation time. |
+| Type | string | The name of the table |

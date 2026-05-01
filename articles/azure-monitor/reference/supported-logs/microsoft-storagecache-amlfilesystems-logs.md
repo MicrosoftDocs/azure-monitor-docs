@@ -10,11 +10,15 @@ ms.custom: Microsoft.StorageCache/amlFilesystems, naam
 ---
 
 # Supported logs for Microsoft.StorageCache/amlFilesystems
+
 The following table lists the types of logs available for the Microsoft.StorageCache/amlFilesystems resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.StorageCache/amlFilesystems](../supported-metrics/microsoft-storagecache-amlfilesystems-metrics.md)
 
-[!INCLUDE [Microsoft.StorageCache/amlFilesystems](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-storagecache-amlfilesystems-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AmlfsAuditEvent` |Azure Managed Lustre audit event ||No|No||Yes |
 
 ## Next Steps
 

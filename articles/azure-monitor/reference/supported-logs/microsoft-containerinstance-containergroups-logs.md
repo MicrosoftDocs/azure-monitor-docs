@@ -10,11 +10,16 @@ ms.custom: Microsoft.ContainerInstance/containerGroups, naam
 ---
 
 # Supported logs for Microsoft.ContainerInstance/containerGroups
+
 The following table lists the types of logs available for the Microsoft.ContainerInstance/containerGroups resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.ContainerInstance/containerGroups](../supported-metrics/microsoft-containerinstance-containergroups-metrics.md)
 
-[!INCLUDE [Microsoft.ContainerInstance/containerGroups](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-containerinstance-containergroups-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ContainerEvent` |Container events |[ContainerEvent](/azure/azure-monitor/reference/tables/containerevent)<p>Container Event Customer Logs.|No|Yes||Yes |
+|`ContainerInstanceLog` |Standard output logs |[ContainerInstanceLog](/azure/azure-monitor/reference/tables/containerinstancelog)<p>Container Instance Customer Logs.|No|Yes||Yes |
 
 ## Next Steps
 

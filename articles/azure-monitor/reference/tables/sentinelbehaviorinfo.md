@@ -27,4 +27,28 @@ Microsoft Sentinel behaviors table. Contains information about behaviors, which 
 
 ## Columns
 
-[!INCLUDE [sentinelbehaviorinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelbehaviorinfo-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AccountObjectId | string | Unique identifier for the account in Microsoft Entra ID. |
+| AccountUpn | string | User principal name (UPN) of the account. |
+| ActionType | string | Type of behavior. |
+| AdditionalFields | string | Additional information about the entity or event. |
+| AttackTechniques | string | MITRE ATT&CK techniques associated with the activity that triggered the behavior. |
+| BehaviorId | string | Unique identifier for the behavior. |
+| _BilledSize | real | The record size in bytes |
+| Categories | string | Types of threat indicator or breach activity identified by the behavior. |
+| DataSources | string | Products or services that provided information for the behavior. |
+| Description | string | Description of the behavior. |
+| DetectionSource | string | Detection technology or sensor that identified the notable component or activity. |
+| DeviceId | string | Unique identifier for the device in the service. |
+| EndTime | datetime | Date and time of the last activity related to the behavior. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ServiceSource | string | Product or service that provided the behavior. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | Date and time of the first activity related to the behavior. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the record was generated. |
+| Title | string | Title of the behavior. |
+| Type | string | The name of the table |

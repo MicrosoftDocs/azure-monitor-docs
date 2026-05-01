@@ -27,4 +27,117 @@ The Google Cloud Platform CDN data connector provides the capability to ingest C
 
 ## Columns
 
-[!INCLUDE [gcpcdn](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpcdn-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AuthenticationInfoPrincipalEmail | string | The email of the authenticated identity making the request |
+| AuthorizationInfo | string | Authorization details such as permission name, granted status, and resource type |
+| AuthzPolicyInfoPolicies | string | The list of Authorization policies that match the request |
+| AuthzPolicyInfoResult | string | Stores information about the Authorization Policy result |
+| BackendTargetProjectNumber | string | Holds the project number where the backend target-backend service or backend bucket-has been created |
+| _BilledSize | real | The record size in bytes |
+| CacheDecision | string | Indicates caching decisions taken |
+| CacheID | string | Unique identifier for the cache entry associated with this response |
+| EnforcedEdgeSecurityPolicyConfiguredAction | string | The configured action that was evaluated in the edge security policy |
+| EnforcedEdgeSecurityPolicyName | string | The name of the edge security policy that was applied to the request |
+| EnforcedEdgeSecurityPolicyOutcome | string | The outcome of applying the policy |
+| EnforcedEdgeSecurityPolicyPriority | string | The priority value of the rule within the edge security policy that matched the request |
+| ErrorBackendStatusDetails | string | Backend-specific error details when a request fails or is served with an error response |
+| ErrorService | string | Holds the backend service that provided the custom error response |
+| HttpRequestCacheFillBytes | string | Number of bytes written to the cache from this response |
+| HttpRequestCacheHit | bool | Boolean flag indicating whether the response was served from cache |
+| HttpRequestCacheLookup | bool | Boolean flag indicating whether the request attempted a cache lookup before contacting the backend |
+| HttpRequestLatency | string | The latency or total time taken to process the request |
+| HttpRequestRemoteIP | string | The IP address of the client that made the request |
+| HttpRequestRequestMethod | string | HTTP method used for the request |
+| HttpRequestRequestSize | string | Size of the incoming HTTP request in bytes |
+| HttpRequestRequestUrl | string | Full URL that was requested |
+| HttpRequestResponseSize | string | Size of the HTTP response payload sent to the client, in bytes |
+| HttpRequestServerIP | string | IP address of the server (or Google Front End) that processed the request |
+| HttpRequestStatus | string | HTTP status code returned by the server |
+| HttpRequestUserAgent | string | User agent string from the HTTP request header |
+| InsertID | string | A unique identifier for the log entry assigned by the logging system |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| JsonPayloadType | string | The protobuf type URL describing the type of jsonPayload content in the log |
+| LabelsAPIRootTriggerID | string | The root trigger ID identifying the origin request that caused this log entry |
+| LoadBalancingScheme | string | Holds a string that describes which load balancing scheme was used to route the request |
+| LogName | string | The full resource name of the log to which this entry belongs |
+| MethodName | string | The name of the API method invoked |
+| NumResponseItems | string | The number of items returned in a list response |
+| OperationFirst | bool | Boolean flag indicating this log entry is the first record in a long-running operation |
+| OperationID | string | Unique identifier for the operation |
+| OperationLast | bool | Boolean flag indicating this log entry is the final record in a long-running operation |
+| OperationProducer | string | The service that initiated and owns the operation |
+| OverrideResponseCode | string | Holds the override response code applied to the response sent to the client |
+| PayloadType | string | Type URL of the request or response payload |
+| ReceiveTimestamp | datetime | The time the log entry was received by the logging system |
+| RemoteIP | string | The IP address of the client as seen by the load balancer |
+| RequestBackends | string | Configuration for backend groups |
+| RequestCDNPolicyCacheKeyPolicyIncludeHost | bool | Whether the host is included in the cache key |
+| RequestCDNPolicyCacheKeyPolicyIncludeProtocol | bool | Whether protocol is included in the cache key |
+| RequestCDNPolicyCacheKeyPolicyIncludeQueryString | bool | Whether the query string is included in the cache key |
+| RequestCDNPolicyCacheMode | string | Cache mode setting |
+| RequestCDNPolicyClientTtl | string | Time-to-live set on responses for clients |
+| RequestCDNPolicyDefaultTtl | string | Default TTL applied when no caching headers are set |
+| RequestCDNPolicyMaxTtl | string | Maximum allowed TTL for cached responses |
+| RequestCDNPolicyNegativeCaching | bool | Boolean indicating if negative caching is enabled |
+| RequestCDNPolicyServeWhileStale | string | Duration responses are served while stale |
+| RequestCDNPolicySignedUrlCacheMaxAgeSec | string | Cache TTL for signed URLs in seconds |
+| RequestCompressionMode | string | Specifies whether and how compression is applied |
+| RequestConnectionDrainingTimeoutSec | string | Time in seconds for draining connections during backend removal |
+| RequestDescription | string | A custom description associated with the backend service configuration |
+| RequestEnableCDN | bool | Boolean indicating if Cloud CDN is enabled for the backend service |
+| RequestFingerprint | string | Fingerprint of the request configuration, used for optimistic locking |
+| RequestGroup | string | The reference to instance group used by the backend service |
+| RequestHealthChecks | string | List of health check resources attached to the backend service |
+| RequestIPAddressSelectionPolicy | string | Specifies IP address family for the backend |
+| RequestKeyName | string | The name of the key used in the request |
+| RequestLoadBalancingScheme | string | Load balancing scheme used |
+| RequestLocalityLbPolicy | string | Locality-based load balancing strategy |
+| RequestLogConfigEnable | bool | Boolean to enable request logging |
+| RequestLogConfigSampleRate | string | Sampling rate for log entries when logging is enabled |
+| RequestMetadataCallerIP | string | IP address of the request initiator |
+| RequestMetadataCallerSuppliedUserAgent | string | User agent string of the request initiator |
+| RequestMetadataDestinationAttributes | string | Attributes of the destination, often empty in public APIs |
+| RequestMetadataRequestAttributesAuth | string | Authentication metadata for the request |
+| RequestMetadataRequestAttributesReason | string | Encoded reason for the request |
+| RequestMetadataRequestAttributesTime | datetime | Time when the request was initiated |
+| RequestName | string | The name assigned to the resource in the request |
+| RequestPortName | string | The named port of the backend service |
+| RequestProtocol | string | The protocol used |
+| RequestSecurityPolicy | string | The name or full path of the security policy attached to the backend service |
+| RequestSessionAffinity | string | Affinity setting used to keep sessions on the same backend |
+| RequestTimeoutSec | string | Timeout value (in seconds) for the backend service |
+| RequestType | string | Type of the request payload object |
+| ResourceLabelsBackendBucketID | string | Holds the ResourceLabelsBackendBucketID value recorded in the CDN or load balancer log |
+| ResourceLabelsBackendServiceID | string | The unique identifier for the GCE backend service |
+| ResourceLabelsBackendServiceName | string | The name of the backend service |
+| ResourceLabelsForwardingRuleName | string | The name of the forwarding rule object |
+| ResourceLabelsLocation | string | The geographical or regional location of the resource |
+| ResourceLabelsProjectID | string | The identifier of the Google Cloud project associated with this resource |
+| ResourceLabelsTargetProxyName | string | The name of the target proxy object referenced by the forwarding rule |
+| ResourceLabelsUrlMapName | string | The name of the URL map object configured to select a backend service |
+| ResourceLabelsZone | string | The zone in which the load balancer is running |
+| ResourceLocationCurrentLocations | string | Region or location associated with the resource |
+| ResponseID | string | Unique identifier for the response or operation |
+| ResponseInsertTime | datetime | Time when the response operation was created |
+| ResponseName | string | Name assigned to the long-running operation |
+| ResponseOperationType | string | Type of the operation performed |
+| ResponseProgress | string | Progress of the operation in percentage |
+| ResponseSelfLink | string | URI of the operation |
+| ResponseSelfLinkWithID | string | URI of the operation with ID appended |
+| ResponseStartTime | datetime | Time when the operation started |
+| ResponseStatus | string | Status of the operation |
+| ResponseTargetID | string | ID of the target resource affected by the operation |
+| ResponseTargetLink | string | URI of the affected resource |
+| ResponseType | string | Type of the response object returned |
+| ResponseUser | string | User who initiated the operation. |
+| ServiceName | string | The Google service processing the request |
+| Severity | string | Indicates the importance or severity level of the log entry |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SpanID | string | Identifier of the span within a trace |
+| StatusDetails | string | Holds a string that explains why the load balancer returned the HTTP status that it did |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log entry was fetched into Microsoft Sentinel |
+| Timestamp | datetime | The time when the first layer GFE receives the request |
+| Trace | string | Identifier of the trace |
+| Type | string | The name of the table |

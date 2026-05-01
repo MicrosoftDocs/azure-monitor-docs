@@ -10,11 +10,16 @@ ms.custom: Microsoft.Devices/provisioningServices, arm
 ---
 
 # Supported logs for Microsoft.Devices/provisioningServices
+
 The following table lists the types of logs available for the Microsoft.Devices/provisioningServices resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Devices/provisioningServices](../supported-metrics/microsoft-devices-provisioningservices-metrics.md)
 
-[!INCLUDE [Microsoft.Devices/provisioningServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-devices-provisioningservices-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DeviceOperations` |Device Operations |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdevices)|No |
+|`ServiceOperations` |Service Operations |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdevices)|No |
 
 ## Next Steps
 

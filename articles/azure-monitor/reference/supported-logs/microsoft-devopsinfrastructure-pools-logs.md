@@ -10,11 +10,15 @@ ms.custom: Microsoft.DevOpsInfrastructure/pools, naam
 ---
 
 # Supported logs for Microsoft.DevOpsInfrastructure/pools
+
 The following table lists the types of logs available for the Microsoft.DevOpsInfrastructure/pools resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.DevOpsInfrastructure/pools](../supported-metrics/microsoft-devopsinfrastructure-pools-metrics.md)
 
-[!INCLUDE [Microsoft.DevOpsInfrastructure/pools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-devopsinfrastructure-pools-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ProvisioningLogs` |Resource Provisioning Logs |[MDPResourceLog](/azure/azure-monitor/reference/tables/mdpresourcelog)<p>Logs pertaining to the provisioning agent resources for a Managed DevOps Pool.|Yes|Yes||Yes |
 
 ## Next Steps
 

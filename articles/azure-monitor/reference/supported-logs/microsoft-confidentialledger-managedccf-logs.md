@@ -10,9 +10,13 @@ ms.custom: Microsoft.ConfidentialLedger/ManagedCCF, naam
 ---
 
 # Supported logs for Microsoft.ConfidentialLedger/ManagedCCF
+
 The following table lists the types of logs available for the Microsoft.ConfidentialLedger/ManagedCCF resource type.
 
-[!INCLUDE [Microsoft.ConfidentialLedger/ManagedCCF](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-confidentialledger-managedccf-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`applicationlogs` |CCF Application Logs ||No|No||Yes |
 
 ## Next Steps
 

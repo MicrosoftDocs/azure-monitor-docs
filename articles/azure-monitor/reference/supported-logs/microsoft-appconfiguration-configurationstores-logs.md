@@ -10,11 +10,16 @@ ms.custom: Microsoft.AppConfiguration/configurationStores, naam
 ---
 
 # Supported logs for Microsoft.AppConfiguration/configurationStores
+
 The following table lists the types of logs available for the Microsoft.AppConfiguration/configurationStores resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.AppConfiguration/configurationStores](../supported-metrics/microsoft-appconfiguration-configurationstores-metrics.md)
 
-[!INCLUDE [Microsoft.AppConfiguration/configurationStores](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-appconfiguration-configurationstores-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit |[AACAudit](/azure/azure-monitor/reference/tables/aacaudit)<p>Azure App Configuration audit logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/aacaudit)|Yes |
+|`HttpRequest` |HTTP Requests |[AACHttpRequest](/azure/azure-monitor/reference/tables/aachttprequest)<p>Incoming requests to Azure App Configuration. The records in this table are aggregated. The 'HitCount' field describes the number of requests that each record accounts for.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/aachttprequest)|Yes |
 
 ## Next Steps
 

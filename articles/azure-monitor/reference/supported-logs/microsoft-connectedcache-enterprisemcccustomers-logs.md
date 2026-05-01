@@ -10,11 +10,15 @@ ms.custom: Microsoft.ConnectedCache/enterpriseMccCustomers, naam
 ---
 
 # Supported logs for Microsoft.ConnectedCache/enterpriseMccCustomers
+
 The following table lists the types of logs available for the Microsoft.ConnectedCache/enterpriseMccCustomers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.ConnectedCache/enterpriseMccCustomers](../supported-metrics/microsoft-connectedcache-enterprisemcccustomers-metrics.md)
 
-[!INCLUDE [Microsoft.ConnectedCache/enterpriseMccCustomers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-connectedcache-enterprisemcccustomers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Events` |Events ||No|No||Yes |
 
 ## Next Steps
 

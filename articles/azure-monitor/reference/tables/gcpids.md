@@ -27,4 +27,79 @@ The Google Cloud Platform IDS data connector provides the capability to ingest C
 
 ## Columns
 
-[!INCLUDE [gcpids](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpids-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AlertSeverity | string | Severity of the threat. One of INFORMATIONAL, LOW, MEDIUM, HIGH, or CRITICAL. |
+| AlertTime | datetime | Time when the threat was discovered. |
+| Application | string | Suspected traffic's application type-for example, SSH. |
+| AuthenticationInfoPrincipalEmail | string | Email address of the authenticated user or service account initiating the request. |
+| AuthorizationInfo | string | Information about permissions or roles evaluated for the operation. |
+| _BilledSize | real | The record size in bytes |
+| Category | string | Sub-type of the threat. |
+| CVEs | string | A list of CVEs associated with the threat. |
+| DestinationIPAddress | string | Suspected traffic's destination IP address. |
+| DestinationPort | string | Suspected traffic's destination port. |
+| Details | string | Additional information about the type of threat. |
+| Direction | string | Suspected traffic's direction (client-to-server or server-to-client). |
+| ElapsedTime | string | The elapsed time of the session. |
+| InsertId | string | A unique identifier for the log entry. |
+| IPProtocol | string | Suspected traffic's IP protocol. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| JsonPayloadName | string | Threat name. |
+| JsonPayloadType | string | Type of the threat. |
+| LogName | string | The full log name including resource path. |
+| MethodName | string | Name of the API method or function that was invoked. |
+| Network | string |  The network associated with the IDS endpoint. |
+| NumResponseItems | string | Number of items returned in the response, if applicable. |
+| OperationFirst | bool | Indicates if this is the first log entry in a sequence of operations. |
+| OperationId | string | Unique identifier for the operation, useful for tracking and correlating across logs. |
+| OperationLast | bool | Indicates if this is the last log entry in a sequence of operations. |
+| OperationProducer | string | Component or service that generated the operation. |
+| PayloadType | string | Type or format of the payload associated with the request. |
+| ReceiveTimestamp | datetime | Time the log entry was received by Cloud Logging. |
+| RepeatCount | string | The number of sessions with the same source IP, destination IP, application, and type seen within 5 seconds. |
+| RequestEndpointId | string | Unique identifier of the endpoint that handled the request. |
+| RequestEndpointName | string | Name of the endpoint to which the request was sent. |
+| RequestEndpointNetwork | string | Network path or name through which the endpoint was accessed. |
+| RequestEndpointSeverity | string | Severity associated with the endpoint in the context of threat detection or access. |
+| RequestEndpointThreatExceptions | string | Threat exceptions applied to the endpoint for this request, if any. |
+| RequestEndpointTrafficLogs | string | Details or references to traffic logs related to the endpoint request. |
+| RequestMetadataCallerIP | string | IP address of the caller who initiated the request. |
+| RequestMetadataDestinationAttributes | string | Metadata attributes about the destination service or resource. |
+| RequestMetadataRequestAttributesAuth | string | Authentication-related request attributes, such as tokens or auth levels. |
+| RequestMetadataRequestAttributesReason | string | Reason for the request, such as a policy action or user-initiated change. |
+| RequestMetadataRequestAttributesTime | datetime | Timestamp of when the request attributes were recorded. |
+| RequestName | string | Name or identifier of the resource being accessed or modified in the request. |
+| RequestParent | string | Parent resource of the request, indicating hierarchy or context. |
+| RequestType | string | Type of request. |
+| RequestUpdateMaskPaths | string | The paths to be updated in the request. |
+| ResourceLabelsId | string | Unique identifier for the resource involved in the log entry. |
+| ResourceLabelsLocation | string | Geographic or regional location of the resource. |
+| ResourceLabelsMethod | string | The method or operation performed on the resource, often linked to an API call or service method. |
+| ResourceLabelsProjectId | string | Project ID associated with the resource, typically representing the Google Cloud project. |
+| ResourceLabelsResourceContainer | string | Name of the container or logical grouping the resource belongs to (e.g., folder, organization). |
+| ResourceLabelsService | string | Service label indicating which cloud service. |
+| ResourceLocationCurrentLocations | string | Current physical or logical location(s) of the resource at the time of the log entry. |
+| ResponseName | string | Name or ID of the resource returned in the response. |
+| ResponseNetwork | string | Network path or identifier associated with the response. |
+| ResponseSeverity | string | Severity level of the response, especially in the context of errors or alerts. |
+| ResponseState | string | State or result of the response action taken for the detected threat. |
+| ResponseThreatExceptions | string | List of any threat exceptions applied during the response, allowing specific threats to bypass enforcement. |
+| ResponseTrafficLogs | bool | Indicates whether traffic logs were captured for the session or threat response. |
+| ResponseType | string | Type or format of the response returned from the operation. |
+| ServiceName | string | Name of the cloud service associated with the log entry or threat detection. |
+| SessionId | string | An internal numerical identifier applied to each session. |
+| Severity | string | Indicates the severity level of the log entry or event. |
+| SourceIPAddress | string | Suspected traffic's source IP address. |
+| SourcePort | string | The source port of the traffic. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The time of the session start. |
+| Status | string | Status of the operation or request, such as SUCCESS, FAILURE, or ERROR. |
+| TenantId | string | The Log Analytics workspace ID |
+| ThreatId | string | Unique threat identifier. |
+| TimeGenerated | datetime | The timestamp when the log entry was generated and ingested by the logging system. |
+| Timestamp | datetime | The original timestamp of the event as recorded by the source system. |
+| TotalBytes | string | The total number of bytes transferred in the session. |
+| TotalPackets | string | The total number of packets transferred in the session. |
+| Type | string | The name of the table |
+| URIOrFilename | string | URI or filename of the relevant threat, if applicable. |

@@ -27,4 +27,22 @@ K8s Gating validation events. This table is collected by the detection team in M
 
 ## Columns
 
-[!INCLUDE [mdcdetectiongatingvalidationevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mdcdetectiongatingvalidationevents-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| Action | string | The validation action that was performed. |
+| AdmissionControlVersions | dynamic | The gating components versions. |
+| AzureResourceId | string | The resource ID of the K8S cluster resource. |
+| _BilledSize | real | The record size in bytes |
+| EvaluatedResourceDetails | dynamic | The evaluated resource details. |
+| EvaluatedResourceKind | string | The evaluated K8s resource kind. |
+| EvaluatedResourceName | string | The evaluated K8s resource name. |
+| EvaluatedResourceParentKind | string | The evaluated K8s resource's parent kind (Controlled By). |
+| EvaluatedResourceParentName | string | The evaluated K8s resource's parent name (Controlled By). |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Namespace | string | The evaluated K8s resource namespace. |
+| Region | string | The region where the K8S cluster is deployed. |
+| RuleProperties | dynamic | The rule properties that was applied during the validation. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time (UTC) when the monitored entity was created, renamed, modified or deleted. |
+| Type | string | The name of the table |

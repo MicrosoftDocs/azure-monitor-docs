@@ -10,11 +10,15 @@ ms.custom: Microsoft.ConnectedCache/ispCustomers, naam
 ---
 
 # Supported logs for Microsoft.ConnectedCache/ispCustomers
+
 The following table lists the types of logs available for the Microsoft.ConnectedCache/ispCustomers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.ConnectedCache/ispCustomers](../supported-metrics/microsoft-connectedcache-ispcustomers-metrics.md)
 
-[!INCLUDE [Microsoft.ConnectedCache/ispCustomers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-connectedcache-ispcustomers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Events` |Events ||No|No||Yes |
 
 ## Next Steps
 

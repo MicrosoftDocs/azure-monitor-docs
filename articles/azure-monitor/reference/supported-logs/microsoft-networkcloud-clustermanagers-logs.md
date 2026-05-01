@@ -10,11 +10,15 @@ ms.custom: Microsoft.NetworkCloud/clusterManagers, naam
 ---
 
 # Supported logs for Microsoft.NetworkCloud/clusterManagers
+
 The following table lists the types of logs available for the Microsoft.NetworkCloud/clusterManagers resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.NetworkCloud/clusterManagers](../supported-metrics/microsoft-networkcloud-clustermanagers-metrics.md)
 
-[!INCLUDE [Microsoft.NetworkCloud/clusterManagers](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-networkcloud-clustermanagers-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ClusterManagerDeployOrUpgradeLogs` |Cluster Manager Deploy or Upgrade Logs |[NCMClusterOperationsLogs](/azure/azure-monitor/reference/tables/ncmclusteroperationslogs)<p>Cluster Manager logs to track the deployment or upgrade of Nexus cluster.|Yes|Yes||Yes |
 
 ## Next Steps
 

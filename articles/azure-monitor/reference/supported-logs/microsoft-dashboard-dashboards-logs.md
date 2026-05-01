@@ -10,9 +10,13 @@ ms.custom: Microsoft.Dashboard/dashboards, naam
 ---
 
 # Supported logs for Microsoft.Dashboard/dashboards
+
 The following table lists the types of logs available for the Microsoft.Dashboard/dashboards resource type.
 
-[!INCLUDE [Microsoft.Dashboard/dashboards](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-dashboard-dashboards-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`UpdateEvents` |Update Events ||No|No||Yes |
 
 ## Next Steps
 

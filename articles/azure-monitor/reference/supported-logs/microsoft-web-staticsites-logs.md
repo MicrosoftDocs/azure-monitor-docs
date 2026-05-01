@@ -10,11 +10,16 @@ ms.custom: Microsoft.Web/staticsites, naam
 ---
 
 # Supported logs for Microsoft.Web/staticsites
+
 The following table lists the types of logs available for the Microsoft.Web/staticsites resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Web/staticsites](../supported-metrics/microsoft-web-staticsites-metrics.md)
 
-[!INCLUDE [Microsoft.Web/staticsites](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-web-staticsites-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`StaticSiteDiagnosticLogs` |Diagnostic logs ||No|No||Yes |
+|`StaticSiteHttpLogs` |HTTP logs ||No|No||Yes |
 
 ## Next Steps
 

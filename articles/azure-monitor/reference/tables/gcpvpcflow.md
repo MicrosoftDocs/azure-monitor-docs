@@ -27,4 +27,114 @@ The Google Cloud Platform (GCP) VPC Flow Logs enable you to capture network traf
 
 ## Columns
 
-[!INCLUDE [gcpvpcflow](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpvpcflow-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| BytesSent | string | Amount of bytes sent from the source to the destination. |
+| DestGatewayInterconnectName | string | If the type of the gateway is INTERCONNECT_ATTACHMENT, this field is populated with the name of the Cloud Interconnect connection on which the VLAN attachment is configured. |
+| DestGatewayInterconnectProjectNumber | string | If the type of the gateway is INTERCONNECT_ATTACHMENT, this field is populated with the Google Cloud project number of the Cloud Interconnect connection on which the VLAN attachment is configured. |
+| DestGatewayLocation | string | Region of the destination gateway |
+| DestGatewayName | string | Name of the destination gateway |
+| DestGatewayProjectId | string | Google Cloud project ID of the destination gateway |
+| DestGatewayType | string | Type of the destination gateway. Can be INTERCONNECT_ATTACHMENT or VPN_TUNNEL. |
+| DestGatewayVpc | dynamic | VPC network details of the gateway |
+| DestGkeClusterLocation | string | Location of the destination cluster. This can be a zone or a region depending if the cluster is zonal or regional. |
+| DestGkeClusterName | string | Destination GKE cluster name. |
+| DestGkePodName | string | Name of the destination Pod |
+| DestGkePodNamespace | string | Namespace of the destination Pod |
+| DestGkePodWorkloadName | string | Name of the top-level destination workload controller |
+| DestGkePodWorkloadType | string | Type of the top-level destination workload controller. |
+| DestGkeService | dynamic | Destination GKE Service name. |
+| DestGoogleServiceType | string | This field is set to GOOGLE_API if the destination is a Google API service. |
+| DestInstanceGroupName | string | Name of the instance group |
+| DestInstanceGroupRegion | string | If the instance group is regional, this field is populated with the region of the instance group. |
+| DestInstanceGroupZone | string | If the instance group is zonal, this field is populated with the zone of the instance group. |
+| DestInstanceProjectId | string | ID of the Google Cloud project that contains the VM resource |
+| DestInstanceRegion | string | Region of the VM |
+| DestInstanceVmName | string | Instance name of the VM |
+| DestInstanceZone | string | Zone of the VM |
+| DestIp | string | Destination IP address |
+| DestLocationAsn | string | The ASN of the external destination network to which this endpoint belongs. |
+| DestLocationCity | string | City for external destination endpoints. |
+| DestLocationContinent | string | Continent for external destination endpoints. |
+| DestLocationCountry | string | Country for external destination endpoints. |
+| DestLocationRegion | string | Region for external destination endpoints. |
+| DestPort | string | Destination port |
+| DestVpcName | string | Name of the network |
+| DestVpcProjectId | string | ID of the Google Cloud project containing the VPC |
+| DestVpcSubnetworkName | string | Name of the subnet |
+| DestVpcSubnetworkRegion | string | Region of the subnet |
+| EndTime | datetime | Timestamp of the last observed packet during the aggregated time interval. |
+| GCPResourceType | string | Type of the resource (e.g., compute instance, DNS record). |
+| InsertId | string | A unique identifier assigned to each log entry. |
+| InternetRoutingDetailsEgressAsn | string | List of relevant AS paths. If there are multiple AS paths available to the flow, the field might contain more than one AS path. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LbBackendGroupLocation | string | Location of the backend group |
+| LbBackendGroupName | string | Name of the backend group |
+| LbBackendGroupType | string | Type of the backend group |
+| LbBackendServiceName | string | Name of the backend service. |
+| LbForwardingRuleName | string | Name of the forwarding rule |
+| LbForwardingRuleProjectId | string | Google Cloud project ID of the forwarding rule |
+| LbReporter | string | Cloud Load Balancing reporter. Can be either CLIENT or BACKEND |
+| LbScheme | string | Load balancer scheme |
+| LbType | string | Load balancer type. |
+| LbUrlMapName | string | Name of the URL map. Populated if the type of the load balancer is APPLICATION_LOAD_BALANCER. |
+| LbVpc | dynamic | VPC network details of the load balancer |
+| Location | string | Location of the resource. |
+| LogName | string | The name of the log where this entry is stored. |
+| NetworkServiceDscp | string | If the Differentiated Services field is present in packet headers, this field is populated with the DSCP value. |
+| PacketsSent | string | Number of packets sent from the source to the destination. |
+| ProjectId | string | ProjectId of the resource. |
+| Protocol | string | The IANA protocol number |
+| PscAttachmentProjectId | string | Google Cloud project ID of the service attachment |
+| PscAttachmentRegion | string | Region of the service attachment |
+| PscAttachmentVpc | dynamic | VPC network details of the service attachment |
+| PscEndpointConnectionId | string | Private Service Connect connection ID |
+| PscEndpointProjectId | string | Google Cloud project ID of the Private Service Connect endpoint |
+| PscEndpointRegion | string | Region of the endpoint. Not populated if the target service type is GLOBAL_GOOGLE_APIS. |
+| PscEndpointTargetServiceType | string | Target service type. Can be either GLOBAL_GOOGLE_APIS or PUBLISHED_SERVICE. |
+| PscEndpointVpc | dynamic | VPC network details of the Private Service Connect endpoint |
+| ReceiveTimestamp | datetime | Timestamp of the event when it was received by the logging service. |
+| Reporter | string | The side which reported the flow. |
+| Rttmsec | string | The measured latency is the time elapsed between sending a SEQ and receiving a corresponding ACK. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcGatewayInterconnectName | string | If the type of the gateway is INTERCONNECT_ATTACHMENT, this field is populated with the name of the Cloud Interconnect connection on which the VLAN attachment is configured. |
+| SrcGatewayInterconnectProjectNumber | string | If the type of the gateway is INTERCONNECT_ATTACHMENT, this field is populated with the Google Cloud project number of the Cloud Interconnect connection on which the VLAN attachment is configured. |
+| SrcGatewayLocation | string | Region of the gateway |
+| SrcGatewayName | string | Name of the gateway |
+| SrcGatewayProjectId | string | Google Cloud project ID of the gateway |
+| SrcGatewayType | string | Type of the gateway. Can be INTERCONNECT_ATTACHMENT or VPN_TUNNEL. |
+| SrcGatewayVpc | dynamic | VPC network details of the gateway |
+| SrcGkeClusterLocation | string | Location of the source cluster. This can be a zone or a region depending if the cluster is zonal or regional. |
+| SrcGkeClusterName | string | Source GKE cluster name. |
+| SrcGkePodName | string | Name of the source Pod |
+| SrcGkePodNamespace | string | Namespace of the source Pod |
+| SrcGkePodWorkloadName | string | Name of the top-level source workload controller |
+| SrcGkePodWorkloadType | string | Type of the top-level source workload controller. |
+| SrcGkeService | dynamic | Source GKE Service name. |
+| SrcGoogleServiceType | string | This field is set to GOOGLE_API if the source is a Google API service. |
+| SrcInstanceGroupName | string | Name of the source instance group |
+| SrcInstanceGroupRegion | string | If the source instance group is regional, this field is populated with the region of the source instance group. |
+| SrcInstanceGroupZone | string | If the source instance group is zonal, this field is populated with the zone of the source instance group. |
+| SrcInstanceProjectId | string | ID of the Google Cloud project that contains the source VM resource |
+| SrcInstanceRegion | string | Region of the source VM |
+| SrcInstanceVmName | string | Instance name of the source VM |
+| SrcInstanceZone | string | Zone of the source VM |
+| SrcIp | string | Source IP address |
+| SrcLocationAsn | string | The ASN of the external source network to which this endpoint belongs. |
+| SrcLocationCity | string | City for external source endpoints. |
+| SrcLocationContinent | string | Continent for external source endpoints. |
+| SrcLocationCountry | string | Country for external source endpoints. |
+| SrcLocationRegion | string | Region for external source endpoints. |
+| SrcPort | string | Source port |
+| SrcVpcName | string | Name of the source network |
+| SrcVpcProjectId | string | ID of the Google Cloud project containing the VPC |
+| SrcVpcSubnetworkName | string | Name of the source subnet, |
+| SrcVpcSubnetworkRegion | string | Name of the source region |
+| StartTime | datetime | Timestamp of the first observed packet during the aggregated time interval. |
+| SubnetworkId | string | ID of the Google Cloud project containing the VPC |
+| SubnetworkName | string | Name of the subnet |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time the log entry was received by logging. |
+| Timestamp | datetime | Timestamp of the log entry. |
+| Type | string | The name of the table |

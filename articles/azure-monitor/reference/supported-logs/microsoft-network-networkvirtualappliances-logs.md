@@ -10,11 +10,15 @@ ms.custom: Microsoft.Network/NetworkVirtualAppliances, naam
 ---
 
 # Supported logs for Microsoft.Network/NetworkVirtualAppliances
+
 The following table lists the types of logs available for the Microsoft.Network/NetworkVirtualAppliances resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Network/NetworkVirtualAppliances](../supported-metrics/microsoft-network-networkvirtualappliances-metrics.md)
 
-[!INCLUDE [Microsoft.Network/NetworkVirtualAppliances](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-networkvirtualappliances-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ADGSyslogEvent` |ADG Syslog Event ||No|No||Yes |
 
 ## Next Steps
 

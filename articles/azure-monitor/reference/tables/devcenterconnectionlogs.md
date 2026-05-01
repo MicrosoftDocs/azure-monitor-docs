@@ -27,4 +27,26 @@ Connection events which include information around when a dev box was connected 
 
 ## Columns
 
-[!INCLUDE [devcenterconnectionlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenterconnectionlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| ActivityId | string | The activity ID of the event. |
+| _BilledSize | real | The record size in bytes |
+| ClientType | string | The type of the client that is connecting (if available). |
+| ClientVersion | string | The version of the OS of the client. |
+| CloudPcId | string | The cloud pc id of the dev box. |
+| DevBoxName | string | The chosen display name for the dev box. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| NicResourceId | string | The NIC resource ID for the dev box. |
+| OperationName | string | The name of the operation |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SessionHostName | string | Name of underlying Virtual Machine |
+| SessionHostPoolType | string | The type of session host pool - either SharedDesktop or PersonalDesktop. |
+| SessionHostResourceId | string | The ARM path of the session host |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| State | string | The state of the connection attempt |
+| SubnetResourceId | string | The subnet resource id for the network of the dev box. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the report was generated (UTC) |
+| Type | string | The name of the table |
+| UdpType | string | The type of transport used by the RDP connection. |

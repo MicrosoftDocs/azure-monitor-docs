@@ -10,11 +10,16 @@ ms.custom: Microsoft.Batch/batchaccounts, naam
 ---
 
 # Supported logs for Microsoft.Batch/batchaccounts
+
 The following table lists the types of logs available for the Microsoft.Batch/batchaccounts resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Batch/batchaccounts](../supported-metrics/microsoft-batch-batchaccounts-metrics.md)
 
-[!INCLUDE [Microsoft.Batch/batchaccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-batch-batchaccounts-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditLog` |Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftbatch)|Yes |
+|`ServiceLog` |Service Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftbatch)|No |
 
 ## Next Steps
 

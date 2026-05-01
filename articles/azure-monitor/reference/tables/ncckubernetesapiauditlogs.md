@@ -27,4 +27,25 @@ Kubernetes API audit logs from Nexus clusters to track all the requests made.
 
 ## Columns
 
-[!INCLUDE [ncckubernetesapiauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ncckubernetesapiauditlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| AuditId | string | Unique identifier for each audit event. |
+| _BilledSize | real | The record size in bytes |
+| ClusterName | string | Name of the On-prem Nexus cluster. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Azure region where the Nexus cluster is deployed. |
+| ObjectRef | string | Reference to the Kubernetes object being accessed. |
+| RequestReceivedTimestamp | datetime | Timestamp (UTC) when the API request was received. |
+| RequestUri | string | Request URI as sent by the client to the Kubernetes API server. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResponseStatusCode | int | HTTP response status code returned by the API server. |
+| SourceIps | string | Source IP addresses from which the request originated. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Stage | string | Stage of the request. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp (UTC) when the audit stage was completed. |
+| Type | string | The name of the table |
+| User | string | Authenticated user information. |
+| UserAgent | string | User agent string of the client making the request. |
+| Verb | string | Kubernetes API verb associated with the request. |

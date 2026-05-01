@@ -27,4 +27,24 @@ Threat Intelligence Export Operation Logs.
 
 ## Columns
 
-[!INCLUDE [threatintelexportoperation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/threatintelexportoperation-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| DestinationInfo | dynamic | Additional information about the export destination depending on ExportType. |
+| ErrorDetails | string | Additional information when Status is 'Failure' / 'Timeout'. |
+| ExportDuration | int | The total time, in milliseconds, taken to complete the export operation. |
+| ExportedBy | string | The user who initiated the export operation (email address). |
+| ExportId | string | A value that uniquely identifies the Export operation. |
+| ExportType | string | Represents the export destination type. e.g. TAXII |
+| ExternallyExportedId | string | The unique identifier of the exported object. |
+| Id | string | A Sentinel internal unique identifier that identifies a STIX object and can be used with Sentinel APIs. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | Status of the export operation, possible values: 'Success', 'Failure', 'Timeout'. |
+| StixId | string | A globally unique identifier that identifies a STIX object. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeExported | datetime | The time of export to destination (UTC). |
+| TimeGenerated | datetime | The timestamp of when the log entry was generated (UTC). |
+| Type | string | The name of the table |

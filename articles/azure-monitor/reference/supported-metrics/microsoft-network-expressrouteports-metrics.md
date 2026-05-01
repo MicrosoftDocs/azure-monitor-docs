@@ -13,9 +13,31 @@ ms.custom: Microsoft.Network/expressRoutePorts, naam
 
 The following table lists the metrics available for the Microsoft.Network/expressRoutePorts resource type.
 
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]
+**Table headings**
 
-[!INCLUDE [Microsoft.Network/expressRoutePorts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-network-expressrouteports-metrics-include.md)]
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
+
+
+
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**AdminState**<br><br>Admin state of the port |`AdminState` |Count |Average, Minimum, Maximum, Count |`Link`|PT1M |Yes|
+|**FastPathRoutesCount**<br><br>Count of fastpath routes configured on port |`FastPathRoutesCountForDirectPort` |Count |Maximum |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
+|**LineProtocol**<br><br>Line protocol status of the port |`LineProtocol` |Count |Average, Minimum, Maximum, Count |`Link`|PT1M |Yes|
+|**BitsInPerSecond**<br><br>Bits ingressing Azure per second |`PortBitsInPerSecond` |BitsPerSecond |Average, Minimum, Maximum, Count |`Link`|PT1M |No|
+|**BitsOutPerSecond**<br><br>Bits egressing Azure per second |`PortBitsOutPerSecond` |BitsPerSecond |Average, Minimum, Maximum, Count |`Link`|PT1M |No|
+|**RxLightLevel**<br><br>Rx Light level in dBm |`RxLightLevel` |Count |Average, Minimum, Maximum, Count |`Link`, `Lane`|PT1M |Yes|
+|**TxLightLevel**<br><br>Tx light level in dBm |`TxLightLevel` |Count |Average, Minimum, Maximum, Count |`Link`, `Lane`|PT1M |Yes|
 
 ## Next steps
 

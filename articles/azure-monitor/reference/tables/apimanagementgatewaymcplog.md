@@ -27,4 +27,31 @@ Gateway Logs related to MCP requests.
 
 ## Columns
 
-[!INCLUDE [apimanagementgatewaymcplog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimanagementgatewaymcplog-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| ApiType | string | Field denotes the specific API type used for the request, like passthrough or mcp backend. |
+| AuthenticationMethod | string | Field denotes the specific authentication method used for the request (e.g. oauth2 &#124; api_key &#124; cert &#124; none). |
+| _BilledSize | real | The record size in bytes |
+| ClientName | string | Field denotes the specific client name who is making the request. |
+| ClientVersion | string | Field denotes the specific client version who is making the request. |
+| CorrelationId | string | Unique id corresponding with the same field in ApiManagementGatewayLogs. |
+| Error | string | Field denotes error message if any error occurred during the request. |
+| ErrorType | string | Field denotes error type if any error occurred during the request. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| McpServerEndpoint | string | Field denotes the specific endpoint of the MCP server. |
+| Method | string | Field denotes the specific tools call method used for the request (e.g. tools/call, notification). |
+| OperationName | string | Field denotes the specific name or identifier of the operation being performed. |
+| ProtocolVersion | string | Field denotes the specific version of the MCP server. |
+| Region | string | The field indicates the geographical location or data center region within the Azure cloud infrastructure where a specific resource or service is deployed. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ServerName | string | Field denotes the mcp server name handling the request. |
+| ServerVersion | string | Field denotes the mcp server version handling the request. |
+| SessionId | string | Field denotes id from AI conversation / agent chat session. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when request processing started. |
+| ToolCount | int | Field denotes the number of MCP tools discovered by the client. |
+| ToolName | string | Field denotes the name of the MCP tool being used. |
+| TransportType | string | Field denotes the specific transport type used for the request, like SSE or Streamable HTTP. |
+| Type | string | The name of the table |

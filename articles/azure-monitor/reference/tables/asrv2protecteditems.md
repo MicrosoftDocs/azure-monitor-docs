@@ -27,4 +27,30 @@ This table contains records of Azure Site Recovery v2 (ASRv2) protected item rel
 
 ## Columns
 
-[!INCLUDE [asrv2protecteditems](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2protecteditems-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the log. |
+| CorrelationId | string | The correlation Id of the event. |
+| FabricAgentId | string | The fabric agent Id. |
+| FabricId | string | The fabric Id. |
+| FabricObjectId | string | The fabric object Id. |
+| FabricObjectName | string | The fabric object name. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastSuccessfulPlannedFailoverTime | datetime | The time of the last successful failover the protected item. |
+| OperationName | string | The name of the operation. |
+| PolicyName | string | The name of the replication policy. |
+| ProtectionState | string | The current protection state. |
+| ProviderId | string | The replication provider Id. |
+| ReplicationExtensionName | string | The name of the replication extension. |
+| ReplicationHealth | string | The health of the protected item. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceFabricProviderId | string | The source fabric provider Id. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TargetFabricAgentId | string | The target fabric agent Id. |
+| TargetFabricId | string | The target fabric Id. |
+| TargetFabricProviderId | string | The target fabric provider Id. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the log was generated. |
+| Type | string | The name of the table |

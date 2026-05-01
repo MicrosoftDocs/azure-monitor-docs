@@ -10,11 +10,17 @@ ms.custom: Microsoft.Network/publicIPPrefixes, naam
 ---
 
 # Supported logs for Microsoft.Network/publicIPPrefixes
+
 The following table lists the types of logs available for the Microsoft.Network/publicIPPrefixes resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Network/publicIPPrefixes](../supported-metrics/microsoft-network-publicipprefixes-metrics.md)
 
-[!INCLUDE [Microsoft.Network/publicIPPrefixes](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-publicipprefixes-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DDoSMitigationFlowLogs` |Flow logs of DDoS mitigation decisions |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|Yes |
+|`DDoSMitigationReports` |Reports of DDoS mitigations |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|Yes |
+|`DDoSProtectionNotifications` |DDoS protection notifications |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|Yes |
 
 ## Next Steps
 

@@ -10,9 +10,14 @@ ms.custom: Microsoft.Edge/diagnostics, naam
 ---
 
 # Supported logs for Microsoft.Edge/diagnostics
+
 The following table lists the types of logs available for the Microsoft.Edge/diagnostics resource type.
 
-[!INCLUDE [Microsoft.Edge/diagnostics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-edge-diagnostics-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`UserAudits` |Audit Logs ||No|No||Yes |
+|`UserDiagnostics` |Diagnostic Logs ||No|No||Yes |
 
 ## Next Steps
 

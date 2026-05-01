@@ -10,11 +10,15 @@ ms.custom: Microsoft.Logic/Workflows, naam
 ---
 
 # Supported logs for Microsoft.Logic/Workflows
+
 The following table lists the types of logs available for the Microsoft.Logic/Workflows resource type.
 
 For a list of supported metrics, see [Supported metrics - Microsoft.Logic/Workflows](../supported-metrics/microsoft-logic-workflows-metrics.md)
 
-[!INCLUDE [Microsoft.Logic/Workflows](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-logic-workflows-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`WorkflowRuntime` |Workflow runtime diagnostic events |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftlogic)|No |
 
 ## Next Steps
 

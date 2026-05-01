@@ -10,9 +10,13 @@ ms.custom: Microsoft.Discovery/workspaces, naam
 ---
 
 # Supported logs for Microsoft.Discovery/workspaces
+
 The following table lists the types of logs available for the Microsoft.Discovery/workspaces resource type.
 
-[!INCLUDE [Microsoft.Discovery/workspaces](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-discovery-workspaces-logs-include.md)]
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Audit` |Audit Logs ||No|No||Yes |
 
 ## Next Steps
 

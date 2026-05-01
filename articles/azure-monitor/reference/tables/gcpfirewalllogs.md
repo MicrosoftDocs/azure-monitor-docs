@@ -27,4 +27,42 @@ The Google Cloud Platform (GCP) firewall logs, enable you to capture network inb
 
 ## Columns
 
-[!INCLUDE [gcpfirewalllogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpfirewalllogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| Action | string | The Action that of the firewall rule. |
+| _BilledSize | real | The record size in bytes |
+| DestIp | string | the IP address of the target device or service that incoming or outgoing network traffic is trying to reach. |
+| DestPort | string | the Port of the target device or service that incoming or outgoing network traffic is trying to reach. |
+| Direction | string | The direction of that the firewall rule applies. |
+| Disposition | string | the final action taken on network traffic that matches a given rule. |
+| GCPResourceType | string | The identifier of the type associated with this resource, such as 'pubsub_subscription'. |
+| InsertId | string | Optional. Providing a unique identifier for the log entry allows Logging to remove duplicate entries with the same timestamp and insertId in a single query result. |
+| InstanceProjectId | string | the project ID associated with the instance that was involved in the firewall rule event. |
+| InstanceRegion | string | the region associated with the instance that was involved in the firewall rule event. |
+| InstanceVmName | string | the virtual machine name associated with the instance that was involved in the firewall rule event. |
+| InstanceZone | string | the zone associated with the instance that was involved in the firewall rule event. |
+| IpPortInfo | dynamic | The information regarding the rule port and protocol. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogName | string | Information including a suffix identifying the log sub-type (e.g., admin activity, system access, data access) and where in the hierarchy the request was made. |
+| Priority | string | The priority of the rule. |
+| ProjectId | string | The identifier of the Google Cloud Platform (GCP) project associated with this resource, such as "my-project". |
+| Protocol | string | the protocol of the target device or service that incoming or outgoing network traffic is trying to reach. |
+| Referance | string | The rule that triggered the log. |
+| RemoteLocationCity | string | The city name based on the resource location. |
+| RemoteLocationContinent | string | The continent name based on the resource location. |
+| RemoteLocationCountry | string | The country name based on the resource location. |
+| RemoteLocationRegion | string | The region name based on the resource location. |
+| ResourceLocation | string | The resource location information. |
+| ResourceSubnetworkName | string | The resource subnetwork name. |
+| SourceRange | dynamic | The range of the ip addresses that the rule applied to. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIp | string | the IP address of the source device or service that incoming or outgoing network traffic is trying to reach. |
+| SrcPort | string | the Port of the source device or service that incoming or outgoing network traffic is trying to reach. |
+| SubnetworkId | string | The resource subnetwork id. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time the log entry was received by logging. |
+| Timestamp | datetime | The time the event described by the log entry occurred. |
+| Type | string | The name of the table |
+| VpcName | string | The name of the Virtual Private Network(VPC) where the firewall rule applied. |
+| VpcProjectId | string | The project id of the Virtual Private Network(VPC) where the firewall rule applied. |
+| VpcSubnetworkName | string | The Subnetnetwork name of the Virtual Private Network(VPC) where the firewall rule applied. |

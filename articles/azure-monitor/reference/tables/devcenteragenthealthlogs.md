@@ -27,4 +27,26 @@ Agent health logs pertaining to the underlying Azure VM of the dev box.
 
 ## Columns
 
-[!INCLUDE [devcenteragenthealthlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/devcenteragenthealthlogs-include.md)]
+| Column | Type | Description |
+|---|---|---|
+| ActivityId | string | The activity ID of the event. |
+| AgentVersion | string | The version of the WVD Agent running on the Virtual Machine. |
+| _BilledSize | real | The record size in bytes |
+| CloudPcId | string | The cloud pc id of the dev box. |
+| DevBoxName | string | The chosen display name for the dev box. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastHeartBeat | datetime | The time recorded when there was a change in the health status. |
+| NicResourceId | string | The NIC resource ID for the dev box. |
+| OperationName | string | The name of the operation. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SessionHostHealthCheckResult | dynamic | The set of results on health checks. |
+| SessionHostName | string | Name of underlying Virtual Machine. |
+| SessionHostResourceId | string | The ARM path of the session host. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | The current status of the VM, whether its healthy or not. |
+| SubnetResourceId | string | The subnet resource id for the network of the dev box. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the report was generated (UTC). |
+| Type | string | The name of the table |
+| UpgradeState | string | The last known state from a previous update. |
