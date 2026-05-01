@@ -5,20 +5,23 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.DataReplication/replicationVaults, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.DataReplication/replicationVaults
 
-
-
-# Supported logs for Microsoft.DataReplication/replicationVaults  
 The following table lists the types of logs available for the Microsoft.DataReplication/replicationVaults resource type.
-  
 
-  
-[!INCLUDE [Microsoft.DataReplication/replicationVaults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-datareplication-replicationvaults-logs-include.md)]  
-  
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`HealthEvents` |ASRv2 Health Event Data ||No|No||Yes |
+|`JobEvents` |ASRv2 Job Event Data ||No|No||Yes |
+|`ProtectedItems` |ASRv2 Protected Item Data |[ASRv2ProtectedItems](/azure/azure-monitor/reference/tables/asrv2protecteditems)<p>This table contains records of Azure Site Recovery v2 (ASRv2) protected item related events.|Yes|Yes||Yes |
+|`ReplicationExtensions` |ASRv2 Replication Extension Data ||No|No||Yes |
+|`ReplicationPolicies` |ASRv2 Replication Policy Data ||No|No||Yes |
+|`ReplicationVaults` |ASRv2 Replication Vault Data |[ASRv2ReplicationVaults](/azure/azure-monitor/reference/tables/asrv2replicationvaults)<p>This table contains records of Azure Site Recovery v2 (ASRv2) replication vault related events.|Yes|Yes||Yes |
 
 ## Next Steps
 

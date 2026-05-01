@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Agent self-reported health data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,25 @@ Agent self-reported health data.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [amahealth](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amahealth-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AgentHealth | int | Indicates whether the agent is healthy (0), warning (1), or unhealthy (2). |
+| AgentRegion | string | The Azure region in which the VM is located. |
+| AgentType | string | The type of agent reporting the health data. |
+| AgentVersion | string | The version of the agent reporting the health data. |
+| _BilledSize | real | The record size in bytes |
+| DroppedEventsStatus | int | Indicates whether the agent is not dropping events (0), dropping a few events (1), or dropping an unacceptable number of events (2). The dropping of events can occur due to various reasons such as resource constraints, excessive event volume, external environmental issues like connectivity loss, and configuration errors. |
+| EndTime | datetime | The end time in UTC of the interval for which the agent health data was aggregated. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| MaxDiskExceededPercent | real | The percent of the reporting interval for which the disk usage exceeded the established quota. |
+| MaxEventsExceededPercent | real | The percent of the reporting interval for which the log volume exceeded the established quota. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The start time in UTC of the interval for which the agent health data was aggregated. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time the record was created. |
+| Type | string | The name of the table |
+| VMUUID | string | The VM UUID of the virtual machine on which the agent is running. |

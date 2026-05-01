@@ -5,24 +5,21 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Synapse/workspaces/scopePools, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Synapse/workspaces/scopePools
 
-
-
-# Supported logs for Microsoft.Synapse/workspaces/scopePools  
 The following table lists the types of logs available for the Microsoft.Synapse/workspaces/scopePools resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Synapse/workspaces/scopePools](../supported-metrics/microsoft-synapse-workspaces-scopepools-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Synapse/workspaces/scopePools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-synapse-workspaces-scopepools-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Synapse/workspaces/scopePools](../supported-metrics/microsoft-synapse-workspaces-scopepools-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ScopePoolScopeJobsEnded` |Scope Pool Scope Jobs Ended |[SynapseScopePoolScopeJobsEnded](/azure/azure-monitor/reference/tables/synapsescopepoolscopejobsended)<p>SCOPE ended event including SCOPE job result and Information about the job.|No|Yes||Yes |
+|`ScopePoolScopeJobsStateChange` |Scope Pool Scope Jobs State Change ||No|No||Yes |
 
 ## Next Steps
 

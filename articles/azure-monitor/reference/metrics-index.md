@@ -12,7 +12,7 @@ ms.date: 04/28/2026
 
 This article is a list of platform, or automatically collected metrics currently available in Azure Monitor. To query for and access the list of metrics programmatically, use the [2018-01-01 api-version](/rest/api/monitor/metricdefinitions). Other metrics not in this list might be available in the portal or through legacy APIs.
 
-The metrics are organized by resource provider and resource type. For a list of services and the resource providers and types that belong to them, see [Resource providers for Azure services](/azure/azure-resource-manager/management/azure-services-resource-providers).  
+The metrics are organized by resource provider and resource type. For a list of services and the resource providers and types that belong to them, see [Resource providers for Azure services](/azure/azure-resource-manager/management/azure-services-resource-providers).
 
 ## Exporting platform metrics to other locations
 
@@ -26,24 +26,24 @@ Both metrics export via DCRs and diagnostic settings export metrics to the follo
 
 - Azure Storage Accounts.
 - Log Analytics workspaces.
-- Event Hubs, allowing you to further export to non-Microsoft systems.  
+- Event Hubs, allowing you to further export to non-Microsoft systems.
 
 Using diagnostic settings is the easiest way to route the metrics, but there are some limitations:
 
-- **Exportability**. All metrics are exportable through the REST API, but some can't be exported through diagnostic settings because of intricacies in the Azure Monitor backend. The column "Exportable via Diagnostic Settings" in the following tables lists which metrics can be exported in this way.  
+- **Exportability**. All metrics are exportable through the REST API, but some can't be exported through diagnostic settings because of intricacies in the Azure Monitor backend. The column "Exportable via Diagnostic Settings" in the following tables lists which metrics can be exported in this way.
 
 - **Multi-dimensional metrics**. Sending multi-dimensional metrics to other locations is supported by [metrics export via data collection rules (DCRs)](/azure/azure-monitor/essentials/data-collection-metrics?tabs=log-analytics-workspaces). Exporting multiple dimensions via diagnostic settings isn't supported. Metrics with dimensions are exported by diagnostic settings as flattened single-dimensional metrics, aggregated across dimension values.  For example, the *Incoming Messages* metric on an event hub can be explored and charted on a per-queue level. But when the metric is exported via diagnostic settings, it's represented as all incoming messages across all queues in the event hub.
 
 ## Guest OS and host OS metrics
 
-Metrics for the guest operating system (guest OS) that runs in Azure Virtual Machines, Service Fabric, and Cloud Services are *not* listed here. Guest OS metrics must be collected through the Azure Monitor Agent that runs on or as part of the guest operating system. Guest OS metrics include performance counters that track guest CPU percentage or memory usage, both of which are frequently used for autoscaling or alerting.  For a list of guest OS metrics, see [Virtual machine guest performance counters](/azure/azure-monitor/vm/virtual-machine-guest-metrics).  
+Metrics for the guest operating system (guest OS) that runs in Azure Virtual Machines, Service Fabric, and Cloud Services are *not* listed here. Guest OS metrics must be collected through the Azure Monitor Agent that runs on or as part of the guest operating system. Guest OS metrics include performance counters that track guest CPU percentage or memory usage, both of which are frequently used for autoscaling or alerting.  For a list of guest OS metrics, see [Virtual machine guest performance counters](/azure/azure-monitor/vm/virtual-machine-guest-metrics).
 
-Host OS metrics *are* available and listed in the tables. Host OS metrics relate to the Hyper-V session that's hosting your guest OS session. 
+Host OS metrics *are* available and listed in the tables. Host OS metrics relate to the Hyper-V session that's hosting your guest OS session.
 
 > [!TIP]
-> A best practice is to use and configure the Azure Monitor agent to send guest OS performance metrics into the same Azure Monitor metric database where platform metrics are stored. The agent routes guest OS metrics through the [custom metrics](/azure/azure-monitor/essentials/metrics-custom-overview) API. You can then chart, alert, and otherwise use guest OS metrics like platform metrics. 
+> A best practice is to use and configure the Azure Monitor agent to send guest OS performance metrics into the same Azure Monitor metric database where platform metrics are stored. The agent routes guest OS metrics through the [custom metrics](/azure/azure-monitor/essentials/metrics-custom-overview) API. You can then chart, alert, and otherwise use guest OS metrics like platform metrics.
 >
-> Alternatively or in addition, you can send the guest OS metrics to Azure Monitor Logs by using the same agent. There you can query on those metrics in combination with non-metric data by using Log Analytics. Standard [Log Analytics workspace costs](https://azure.microsoft.com/pricing/details/monitor/) would then apply.  
+> Alternatively or in addition, you can send the guest OS metrics to Azure Monitor Logs by using the same agent. There you can query on those metrics in combination with non-metric data by using Log Analytics. Standard [Log Analytics workspace costs](https://azure.microsoft.com/pricing/details/monitor/) would then apply.
 
 The Azure Monitor agent replaces the Azure Diagnostics extension and Logs Analytics agent, which were previously used for guest OS routing. For important additional information, see [Overview of Azure Monitor agents](/azure/azure-monitor/agents/agents-overview).
 
@@ -51,10 +51,9 @@ The Azure Monitor agent replaces the Azure Diagnostics extension and Logs Analyt
 
 Following table lists metrics and log categories available for each resource type.
 
-      
-  | Resource Provider | Metrics | Log Categories |
-  |---|---|---|  
-  |Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
+| Resource Provider | Metrics | Log Categories |
+|---|---|---|
+|Microsoft.AAD <a name="microsoftaad"></a>|[DomainServices](./supported-metrics/Microsoft-AAD-DomainServices-metrics.md)<br>|[DomainServices](./supported-logs/Microsoft-AAD-DomainServices-logs.md)<br>|
 |Microsoft.AgFoodPlatform <a name="microsoftagfoodplatform"></a>|N/A|[farmBeats](./supported-logs/Microsoft-AgFoodPlatform-farmBeats-logs.md)<br>|
 |Microsoft.AnalysisServices <a name="microsoftanalysisservices"></a>|[servers](./supported-metrics/Microsoft-AnalysisServices-servers-metrics.md)<br>|[servers](./supported-logs/Microsoft-AnalysisServices-servers-logs.md)<br>|
 |Microsoft.ApiManagement <a name="microsoftapimanagement"></a>|[gateways](./supported-metrics/Microsoft-ApiManagement-gateways-metrics.md)<br>[service](./supported-metrics/Microsoft-ApiManagement-service-metrics.md)<br>|[service](./supported-logs/Microsoft-ApiManagement-service-logs.md)<br>[service/workspaces](./supported-logs/Microsoft-ApiManagement-service-workspaces-logs.md)<br>|
@@ -201,7 +200,6 @@ Following table lists metrics and log categories available for each resource typ
 |Microsoft.VoiceServices <a name="microsoftvoiceservices"></a>|[CommunicationsGateways](./supported-metrics/Microsoft-VoiceServices-CommunicationsGateways-metrics.md)<br>|N/A|
 |Private.MessagingConnectors <a name="privatemessagingconnectors"></a>|[Private.MessagingConnectors/connectors](./supported-metrics/Private-MessagingConnectors-connectors-metrics.md)<br>|N/A|
 |Wandisco.Fusion <a name="wandiscofusion"></a>|[Wandisco.Fusion/migrators](./supported-metrics/Wandisco-Fusion-migrators-metrics.md)<br>[Wandisco.Fusion/migrators/dataTransferAgents](./supported-metrics/Wandisco-Fusion-migrators-dataTransferAgents-metrics.md)<br>[Wandisco.Fusion/migrators/liveDataMigrations](./supported-metrics/Wandisco-Fusion-migrators-liveDataMigrations-metrics.md)<br>[Wandisco.Fusion/migrators/metadataMigrations](./supported-metrics/Wandisco-Fusion-migrators-metadataMigrations-metrics.md)<br>|N/A|
-
 
 ## Next steps
 

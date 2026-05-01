@@ -5,27 +5,40 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.DataShare/accounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.DataShare/accounts
-  
-The following table lists the metrics available for the Microsoft.DataShare/accounts resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.DataShare/accounts](../supported-logs/microsoft-datashare-accounts-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.DataShare/accounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-datashare-accounts-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.DataShare/accounts resource type.
+
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
 
+For a list of supported logs, see [Supported log categories - Microsoft.DataShare/accounts](../supported-logs/microsoft-datashare-accounts-logs.md)
+
+
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Received Share Failed Snapshots**<br><br>Number of received share failed snapshots in the account |`FailedShareSubscriptionSynchronizations` |Count |Count |\<none\>|PT12H, P1D |Yes|
+|**Sent Share Failed Snapshots**<br><br>Number of sent share failed snapshots in the account |`FailedShareSynchronizations` |Count |Count |\<none\>|PT12H, P1D |Yes|
+|**Sent Shares**<br><br>Number of sent shares in the account |`ShareCount` |Count |Maximum |`ShareName`|PT12H, P1D |Yes|
+|**Received Shares**<br><br>Number of received shares in the account |`ShareSubscriptionCount` |Count |Maximum |`ShareSubscriptionName`|PT12H, P1D |Yes|
+|**Received Share Succeeded Snapshots**<br><br>Number of received share succeeded snapshots in the account |`SucceededShareSubscriptionSynchronizations` |Count |Count |\<none\>|PT12H, P1D |Yes|
+|**Sent Share Succeeded Snapshots**<br><br>Number of sent share succeeded snapshots in the account |`SucceededShareSynchronizations` |Count |Count |\<none\>|PT12H, P1D |Yes|
 
 ## Next steps
 

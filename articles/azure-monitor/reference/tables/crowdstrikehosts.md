@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The CrowdStrikeHosts table contains logs from the CrowdStrike Hosts API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,103 @@ The CrowdStrikeHosts table contains logs from the CrowdStrike Hosts API that hav
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [crowdstrikehosts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/crowdstrikehosts-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AgentLoadFlags | string | Flags indicating the load status of the CrowdStrike agent. |
+| AgentLocalTime | string | Local time of the system where the agent is installed. |
+| AgentVersion | string | Version of the installed CrowdStrike agent. |
+| BaseImageVersion | string | Version of the base operating system image. |
+| _BilledSize | real | The record size in bytes |
+| BiosManufacturer | string | Manufacturer of the system BIOS. |
+| BiosVersion | string | Version of the system BIOS. |
+| BuildNumber | string | Operating system build number. |
+| ChassisType | string | Type of system chassis (numerical identifier). |
+| ChassisTypeDesc | string | Description of the system chassis type. |
+| Cid | string | Cid the CrowdStrike platform. |
+| ConfigIdBase | string | Base configuration ID for the CrowdStrike agent. |
+| ConfigIdBuild | string | Build configuration ID for the CrowdStrike agent. |
+| ConfigIdPlatform | string | Platform-specific configuration ID for the CrowdStrike agent. |
+| ConnectionIp | string | IP address used by the host to connect to CrowdStrike cloud. |
+| ConnectionMacAddress | string | MAC address of the network interface used for CrowdStrike connection. |
+| CpuSignature | string | Unique identifier for the CPU architecture and features. |
+| CpuVendor | string | Manufacturer of the CPU. |
+| DefaultGatewayIp | string | IP address of the default network gateway. |
+| DeploymentType | string | Type of CrowdStrike agent deployment on the host. |
+| DetectionSuppressionStatus | string | Status of detection suppression rules applied to the host. |
+| DeviceId | string | Unique identifier for the device in CrowdStrike platform. |
+| DevicePolicies | dynamic | List of security policies applied to the device. |
+| Email | string | Email address associated with the host or primary user. |
+| ExternalIp | string | External IP address of the host. |
+| FilesystemContainmentStatus | string | Status of filesystem containment feature for the host. |
+| FirstLoginTimestamp | string | Timestamp of the first user login on the host. |
+| FirstSeen | string | Timestamp when the host was first seen by CrowdStrike. |
+| GroupHash | string | Hash identifier for the host's group membership. |
+| Groups | dynamic | List of security groups the host belongs to. |
+| HostHiddenStatus | string | Indicates if the host is hidden from normal visibility. |
+| Hostname | string | Network hostname of the system. |
+| HostUtcOffset | string | UTC time offset for the host's timezone. |
+| InstanceId | string | Cloud instance identifier (if applicable). |
+| InternetExposure | string | Level of internet exposure for the host. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| K8sClusterGitVersion | string | Git version of the Kubernetes cluster deployment. |
+| K8sClusterId | string | Unique identifier for the Kubernetes cluster. |
+| K8sClusterVersion | string | Version of the Kubernetes cluster. |
+| KernelVersion | string | Version of the operating system kernel. |
+| LastLoginTimestamp | string | Timestamp of the most recent user login. |
+| LastLoginUid | string | User ID of the last user to log in. |
+| LastLoginUser | string | Username of the last user to log in. |
+| LastLoginUserSid | string | Security identifier (SID) of the last user to log in. |
+| LastReboot | string | Timestamp of the last system reboot. |
+| LastSeen | string | Timestamp when the host was last seen active by CrowdStrike. |
+| LinuxSensorMode | string | Operating mode of the CrowdStrike sensor on Linux systems. |
+| LocalIp | string | Local/Internal IP address of the host. |
+| MacAddress | string | Primary MAC address of the host. |
+| MachineDomain | string | Domain name the machine is joined to. |
+| MajorVersion | string | Major version number of the operating system. |
+| ManagedApps | dynamic | List of applications managed by CrowdStrike on the host. |
+| Meta | dynamic | Additional metadata about the host. |
+| MigrationCompletedTime | string | Timestamp when agent migration was completed. |
+| MinorVersion | string | Minor version number of the operating system. |
+| ModifiedTimestamp | string | Timestamp when the host record was last modified. |
+| Notes | dynamic | Custom notes or annotations about the host. |
+| OsBuild | string | Build number of the operating system. |
+| OsProductName | string | Product name of the operating system. |
+| OsVersion | string | Version string of the operating system. |
+| Ou | dynamic | Organizational Unit information for the host. |
+| PlatformId | string | Unique identifier for the platform type. |
+| PlatformName | string | Name of the platform. |
+| PodAnnotations | dynamic | Kubernetes pod annotations associated with the host. |
+| PodHostIp4 | string | IPv4 address of the Kubernetes pod host. |
+| PodHostIp6 | string | IPv6 address of the Kubernetes pod host. |
+| PodHostname | string | Hostname of the Kubernetes pod. |
+| PodId | string | Unique identifier for the Kubernetes pod. |
+| PodIp4 | string | IPv4 address assigned to the Kubernetes pod. |
+| PodIp6 | string | IPv6 address assigned to the Kubernetes pod. |
+| PodLabels | dynamic | Labels assigned to the Kubernetes pod. |
+| PodName | string | Name of the Kubernetes pod. |
+| PodNamespace | string | Kubernetes namespace where the pod is deployed. |
+| PodServiceAccountName | string | Name of the Kubernetes service account used by the pod. |
+| PointerSize | string | Memory pointer size of the system architecture (32/64 bit). |
+| Policies | dynamic | List of all security policies applied to the host. |
+| ProductType | string | Type of product or system (numerical identifier). |
+| ProductTypeDesc | string | Description of the product or system type. |
+| ProvisionStatus | string | Current provisioning status of the host. |
+| ReducedFunctionalityMode | string | Indicates if the host is running in reduced functionality mode. |
+| ReleaseGroup | string | Group identifier for software release management. |
+| RtrState | string | State of Real Time Response functionality. |
+| SerialNumber | string | System serial number from BIOS/hardware. |
+| ServicePackMajor | string | Major version of installed service pack. |
+| ServicePackMinor | string | Minor version of installed service pack. |
+| ServiceProvider | string | Cloud service provider hosting the system. |
+| ServiceProviderAccountId | string | Account identifier from the cloud service provider. |
+| SiteName | string | Name of the site where the host is located. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | Current operational status of the host. |
+| SystemManufacturer | string | Manufacturer of the system hardware. |
+| SystemProductName | string | Product name or model of the system. |
+| Tags | dynamic | Custom tags assigned to the host. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the host data was ingested. |
+| Type | string | The name of the table |

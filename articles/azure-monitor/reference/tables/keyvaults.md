@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # KeyVaults
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,46 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [keyvaults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/keyvaults-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CallerIpAddress | string |   |
+| Category | string |   |
+| ClientInfo_s | string |   |
+| Confidence | string |   |
+| CorrelationId | string |   |
+| Description | string |   |
+| DurationMs | long |   |
+| FirstReportedDateTime | string |   |
+| HttpStatusCode_d | real |   |
+| Id_s | string |   |
+| Identity_o | string |   |
+| IndicatorThreatType | string |   |
+| IsActive | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| KeyProperties_o | string |   |
+| LastReportedDateTime | string |   |
+| MaliciousIP | string |   |
+| OperationName | string |   |
+| OperationVersion | string |   |
+| RemoteIPCountry | string |   |
+| RemoteIPLatitude | real |   |
+| RemoteIPLongitude | real |   |
+| RequestUri_s | string |   |
+| Resource | string |   |
+| ResourceGroup | string |   |
+| ResourceId | string |   |
+| ResourceProvider | string |   |
+| ResultDescription | string |   |
+| ResultSignature | string |   |
+| ResultType | string |   |
+| SecretProperties_o | string |   |
+| Severity | int |   |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SubscriptionId | string |   |
+| TimeGenerated | datetime |   |
+| TLPLevel | string |   |
+| Type | string | The name of the table |
+| VaultProperties_o | string |   |

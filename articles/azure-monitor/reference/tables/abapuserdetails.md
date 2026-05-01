@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP User details, such as roles and profiles assigned.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,31 @@ SAP User details, such as roles and profiles assigned.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [abapuserdetails](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapuserdetails-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AgentId | string | Unique agent or integration suite identifier. |
+| _BilledSize | real | The record size in bytes |
+| ChangedOn | datetime | Last changed on date and time. |
+| ClientId | string | The ClientId is a three-digit number that identifies a specific client within an SAP system. The ClientId is used in various SAP transactions and configuration settings to identify the client and ensure that the correct client is being accessed or configured. |
+| CreatedOn | datetime | Day on which user was created. |
+| Email | string | Email address. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastChangedBy | string | Last changed by. |
+| LastSeen | datetime | User last logon. |
+| LockedStatus | string | Locked status: 0: Not Locked, 32: Locked Globally By Administrator, 64: Locked Locally By Administrator, 128: Locked Due To Incorrect Logons. |
+| Profiles | dynamic | List of profiles generated for the user. |
+| Roles | dynamic | List of roles assigned to user. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SystemId | string | The SystemId is a unique identifier for a specific SAP system. It is a three-character alphanumeric code that is used to distinguish between different SAP systems. |
+| SystemRole | string | The SAP system's role. |
+| SystemUniqueId | string | Unique system identifier. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the record was sent to Sentinel. |
+| Timezone | string | User default Time zone. |
+| Type | string | The name of the table |
+| User | string | SAP User. |
+| UserGroup | string | SAP User group. |
+| UserType | string | User Type (dialog, system). |
+| ValidityDate | datetime | Last valid day for login in. |

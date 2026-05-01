@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for job-related operations performed on Azure Quantum Provider Account resources, including job cancellations and priority updates. Used to track who performed which job operation and when.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,29 @@ Audit logs for job-related operations performed on Azure Quantum Provider Accoun
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [quantumprovideraccountjobauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/quantumprovideraccountjobauditlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The log category. Value is AuditEvent for all records in this table. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| JobId | string | The unique identifier of the job that was the target of the operation. |
+| JobResourceGroupName | string | The resource group of the workspace that contains the job. |
+| JobSubscriptionId | string | The Azure subscription ID of the workspace that contains the job. |
+| JobWorkspaceName | string | The name of the Azure Quantum workspace that contains the job. |
+| Location | string | The Azure region where the Provider Account resource resides. |
+| OperationName | string | The name of the audited operation, such as CancelJob or UpdateJobPriority. |
+| OperationParams | dynamic | Additional parameters specific to the operation, represented as a JSON object. For example, UpdateJobPriority includes PriorityOperation and BypassQueueStatus fields. |
+| OperationVersion | string | The API version under which the operation was invoked. |
+| RequesterObjectId | string | The Entra object ID of the identity that performed the operation. |
+| RequesterTenantId | string | The Entra tenant ID of the identity that performed the operation. |
+| RequesterUpn | string | The user principal name (UPN) of the identity that performed the operation. Empty for managed identities and service principals. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultCode | string | The outcome of the operation, such as Success or Failure. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the job operation was recorded. |
+| TraceId | string | The distributed trace identifier for correlating this operation across services. |
+| Type | string | The name of the table |

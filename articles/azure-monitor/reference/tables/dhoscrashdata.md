@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # DHOSCrashData
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,18 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [dhoscrashdata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dhoscrashdata-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Computer | string |   |
+| ComputerID | string |   |
+| DriverName | string |   |
+| DriverVersion | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| KernelModeCrashBugCheckCode | string |   |
+| KernelModeCrashCount | int |   |
+| KernelModeCrashFailureId | string |   |
+| TimeGenerated | datetime |   |
+| Type | string | The name of the table |

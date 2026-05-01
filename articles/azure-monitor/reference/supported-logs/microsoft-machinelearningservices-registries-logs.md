@@ -5,20 +5,19 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.MachineLearningServices/registries, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.MachineLearningServices/registries
 
-
-
-# Supported logs for Microsoft.MachineLearningServices/registries  
 The following table lists the types of logs available for the Microsoft.MachineLearningServices/registries resource type.
-  
 
-  
-[!INCLUDE [Microsoft.MachineLearningServices/registries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-machinelearningservices-registries-logs-include.md)]  
-  
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`RegistryAssetReadEvent` |Registry Asset Read Event |[AmlRegistryReadEventsLog](/azure/azure-monitor/reference/tables/amlregistryreadeventslog)<p>Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes||Yes |
+|`RegistryAssetWriteEvent` |Registry Asset Write Event |[AmlRegistryWriteEventsLog](/azure/azure-monitor/reference/tables/amlregistrywriteeventslog)<p>Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|Yes |
 
 ## Next Steps
 

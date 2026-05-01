@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Traffic Analytics NSP rule recommendations based on flow data for Network Security Perimeter resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,31 @@ Traffic Analytics NSP rule recommendations based on flow data for Network Securi
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [ntansprulerecommendation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntansprulerecommendation-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AdditionalProperties | string | Property bag for any additional properties. |
+| _BilledSize | real | The record size in bytes |
+| DestinationFqdns | string | Comma-separated destination fully qualified domain names for outbound traffic for a given NSP. |
+| EndTime | datetime | The rule evaluation window end time. |
+| IpDetails | string | Whois information of the IP in case of external traffic. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | For external public IPs and malicious IPs: two-letter country code (ISO 3166-1 alpha-2) where the IP is located. |
+| NspProfile | string | NSP Profile. |
+| NspResourceId | string | NSP resource ID. |
+| PaasResourceId | string | Resource ID of the PaaS resource. |
+| ResultAction | string | Indicates if the flow is allowed or denied. Possible values are Allowed, Denied. |
+| ResultDirection | string | Direction of the flow. Possible values are Inbound, Outbound. |
+| ResultType | string | Indicates if the flow is acled by NSP or Resource. |
+| RuleType | string | Type of the rule. Possible values are IP, ServiceTag, Subscription, FQDN. |
+| RuleValue | string | Value for the rule. |
+| ServiceEndpoints | string | Comma-separated service endpoints. Service Endpoint traffic found. |
+| SourceIPs | string | Comma-separated public source IPs in CIDR format for inbound flows. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The rule evaluation windowstart time. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Event generation timestamp. |
+| TrafficAnalyticsResourceId | string | Traffic analytics resource ID. |
+| TrafficType | string | Indicates whether the traffic is internal or external. |
+| Type | string | The name of the table |

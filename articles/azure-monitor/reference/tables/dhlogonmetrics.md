@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # DHLogonMetrics
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,29 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [dhlogonmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dhlogonmetrics-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Computer | string |   |
+| ComputerID | string |   |
+| Country | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Manufacturer | string |   |
+| Model | string |   |
+| ModelFamily | string |   |
+| OSArchitecture | string |   |
+| OSBuildNumber | int |   |
+| OSEdition | string |   |
+| OSRevisionNumber | int |   |
+| OSVersion | string |   |
+| PreferredSignInProviderId | string |   |
+| PreferredSignInProviderName | string |   |
+| ProviderId | string |   |
+| ProviderName | string |   |
+| SignInIndustrySuccessRate | real |   |
+| SignInSuccessRate | real |   |
+| TimeGenerated | datetime |   |
+| TotalDailySignIns | long |   |
+| Type | string | The name of the table |

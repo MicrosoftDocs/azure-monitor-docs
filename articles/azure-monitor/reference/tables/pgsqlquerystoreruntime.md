@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Query Store runtime statistics related to query execution information of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,49 @@ Query Store runtime statistics related to query execution information of an Azur
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlquerystoreruntime)|
 
-
-
 ## Columns
-  
-[!INCLUDE [pgsqlquerystoreruntime](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlquerystoreruntime-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| BlkReadTime | real | Total time the statement spent reading blocks in milliseconds for all calls in this time bucket. Only available if track_io_timing is enabled, otherwise zero. |
+| BlkWriteTime | real | Total time the statement spent writing blocks in milliseconds for all calls in this time bucket. Only available if track_io_timing is enabled, otherwise zero. |
+| Calls | long | Number of times the query executed within this time bucket. |
+| DatabaseId | int | ID (OID) of database in which the statement was executed. |
+| EndTime | datetime | The end time corresponding to the time bucket for this entry. Queries are aggregated by time buckets. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsSystemQuery | bool | Boolean value indicating if the query is run by Azure managed system user. |
+| LocalBlksDirtied | long | Total number of local blocks dirtied by the statement for all calls in this time bucket. |
+| LocalBlksHit | long | Total number of local block cache hits by the statement for all calls in this time bucket. |
+| LocalBlksRead | long | Total number of local blocks read by the statement for all calls in this time bucket. |
+| LocalBlksWritten | long | Total number of local blocks written by the statement for all calls in this time bucket. |
+| Location | string | Location of Azure Database for PostgreSQL Flexible server. |
+| LogicalServerName | string | Logical name of the instance. |
+| MaxExecDurationMs | real | Maximum query execution duration in milliseconds in this time bucket. |
+| MeanExecDurationMs | real | Mean query execution duration in milliseconds in this time bucket. |
+| MinExecDurationMs | real | Minimum query execution duration in milliseconds in this time bucket. |
+| ParametersCaptureStatus | string | Indicates the status of capturing parameters of a parameterized query. |
+| PlanId | long | ID of the plan corresponding to this query if plan store is enabled, otherwise the field is empty. |
+| QueryId | string | Unique query ID of the statement that is an internal hash code, computed from the statement's parse tree. |
+| QueryType | string | Indicates the query type of the statement. Possible values: select, update, insert, delete, utility, nothing, unknown. |
+| ReplicaRole | string | Replica role example. Primary or secondary. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| Rows | long | Total number of rows retrieved or affected by the statement for all calls in this time bucket. |
+| RuntimeStatsEntryId | long | ID of the runtime entry. |
+| SearchPath | string | Value of search_path set at the time the query was captured. |
+| SearchPathCaptureStatus | string | Indicates the status of capturing the search_path. |
+| SharedBlksDirtied | long | Total number of shared blocks dirtied by the statement for all calls in this time bucket. |
+| SharedBlksHit | long | Total number of shared block cache hits by the statement for all calls in this time bucket. |
+| SharedBlksRead | long | Total number of shared blocks read by the statement for all calls in this time bucket. |
+| SharedBlksWritten | long | Total number of shared blocks written by the statement for all calls in this time bucket. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The start time corresponding to the time bucket for this entry. Queries are aggregated by time buckets. |
+| StdDevExecDurationMs | real | Standard deviation of the query execution duration time in milliseconds in this time bucket. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TempBlksRead | long | Total number of temporary file blocks read by the statement for all calls in this time bucket. |
+| TempBlksWritten | long | Total number of temporary file blocks written by the statement for all calls in this time bucket. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| TotalExecDurationMs | real | Total query execution duration in milliseconds for all calls in this time bucket. |
+| Type | string | The name of the table |
+| UserId | int | ID (OID) of the user that executed the statement. |

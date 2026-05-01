@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.EventGrid/systemTopics, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.EventGrid/systemTopics
 
-
-
-# Supported logs for Microsoft.EventGrid/systemTopics  
 The following table lists the types of logs available for the Microsoft.EventGrid/systemTopics resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/systemTopics](../supported-metrics/microsoft-eventgrid-systemtopics-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.EventGrid/systemTopics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-eventgrid-systemtopics-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.EventGrid/systemTopics](../supported-metrics/microsoft-eventgrid-systemtopics-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DeliveryFailures` |Delivery Failure Logs |[AegDeliveryFailureLogs](/azure/azure-monitor/reference/tables/aegdeliveryfailurelogs)<p>Azure Event Grid - event delivery failure logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/aegdeliveryfailurelogs)|No |
 
 ## Next Steps
 

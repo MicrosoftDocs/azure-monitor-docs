@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 The Login History table contains login event logs from Salesforce that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,36 @@ The Login History table contains login event logs from Salesforce that have been
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/salesforceloginhistory)|
 
-
-
 ## Columns
-  
-[!INCLUDE [salesforceloginhistory](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/salesforceloginhistory-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ApiType | string | Indicates the API type, for example Soap Enterprise. |
+| ApiVersion | string | Displays the API version used by the client. |
+| Application | string | The application used to access the organization. |
+| AuthenticationServiceId | string | The 18-character ID for an authentication service for a login event. |
+| AuthMethodReference | string | The authentication method used by a third-party identification provider for an OpenID Connect single sign-on protocol. |
+| _BilledSize | real | The record size in bytes |
+| Browser | string | The current browser version. |
+| CipherSuite | string | The TLS cipher suite used for the login. |
+| ClientVersion | string | Version of the API client. |
+| CountryIso | string | The ISO 3166 code for the country where the user's IP address is physically located. |
+| ForwardedForIp | string | The value in the X-Forwarded-For header of HTTP requests sent by the client. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LoginGeoId | string | The 18-character ID for the record of the geographic location of the user for a successful or unsuccessful login event. |
+| LoginSubType | string | The type of login flow used. |
+| LoginTime | datetime | Time zone is based on GMT. |
+| LoginType | string | The type of login used to access the session. |
+| LoginUrl | string | URL from which the login request is coming. |
+| NetworkId | string | The ID of the Experience Cloud site that the user is logging in to. |
+| OptionsIsGet | bool | The HTTP method used for the session login is a GET request. |
+| OptionsIsPost | bool | The HTTP method used for the session login is a POST request. |
+| Platform | string | Operating system on the login machine. |
+| SourceIp | string | The IP address of the incoming client request that first reaches Salesforce during a login. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | Displays the status of the attempted login. Status is either success or a reason for failure. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (in UTC) when the log entry was generated. |
+| TlsProtocol | string | The TLS protocol used for the login. |
+| Type | string | The name of the table |
+| UserId | string | ID of the user logging in. |

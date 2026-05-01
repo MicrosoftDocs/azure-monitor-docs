@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Microsoft Sentinel normalized alert events table. Stores events associated with security events and alerts, ensuring consistent and efficient analysis across different data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,108 @@ Microsoft Sentinel normalized alert events table. Stores events associated with 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asimalerteventlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [asimalerteventlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimalerteventlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AdditionalFields | dynamic | Additional information, represented using key/value pairs provided by the source which do not map to ASim. |
+| AlertDescription | string | Alias or friendly name for EventMessage field. |
+| AlertId | string | Alias or friendly name for EventUid field. |
+| AlertName | string | Title or name of the alert. |
+| AlertOriginalStatus | string | The status of the alert as reported by the originating system. |
+| AlertStatus | string | Indicates the current state or progress of the alert. |
+| AlertVerdict | string | The final determination or outcome of the alert, indicating whether the alert was confirmed as a threat, deemed suspicious, or resolved as a false positive. |
+| AttackRemediationSteps | string | Recommended actions or steps to mitigate or remediate the identified attack or threat. |
+| AttackTactics | string | The attack tactics (name, ID, or both) associated with the alert. |
+| AttackTechniques | string | The attack techniques (name, ID, or both) associated with the alert. |
+| _BilledSize | real | The record size in bytes |
+| DetectionMethod | string | Provides detailed information about the specific detection method, technology, or data source that contributed to the generation of the alert. |
+| DvcAction | string | For reporting security systems, the action taken by the system. |
+| DvcDescription | string | A descriptive text associated with the device. |
+| DvcDomain | string | The domain of the device reporting the event. |
+| DvcDomainType | string | The type of DvcDomain. |
+| DvcFQDN | string | The hostname of the device on which the event occurred or which reported the event. |
+| DvcHostname | string | The hostname of the device reporting the event. |
+| DvcId | string | The unique ID of the device on which the event occurred or which reported the event. |
+| DvcIdType | string | The type of DvcId. |
+| DvcInterface | string | The network interface on which data was captured. |
+| DvcIpAddr | string | The IP Address of the device reporting the event. |
+| DvcMacAddr | string | The MAC address of the device on which the event occurred or which reported the event. |
+| DvcOriginalAction | string | The original DvcAction as provided by the reporting device. |
+| DvcOs | string | The operating system running on the device on which the event occurred or which reported the event. |
+| DvcOsVersion | string | The version of the operating system on the device on which the event occurred or which reported the event. |
+| DvcScope | string | The cloud platform scope the device belongs to. DvcScope map to a subscription ID on Azure and to an account ID on AWS. |
+| DvcScopeId | string | The cloud platform scope ID the device belongs to. DvcScopeId map to a subscription ID on Azure and to an account ID on AWS. |
+| DvcZone | string | The network on which the event occurred or which reported the event. |
+| EmailMessageId | string | Unique identifier for the email message, associated with the alert. |
+| EmailSubject | string | Subject of the email. |
+| EventCount | int | The number of events described by the record. |
+| EventEndTime | datetime | The time (UTC) in which the event ended. If the source supports aggregation and the record represents multiple events, the time that the last event was generated. If not provided by the source record, this field aliases the TimeGenerated field. |
+| EventMessage | string | A general message or description. |
+| EventOriginalResultDetails | string | The original result details provided by the source. |
+| EventOriginalSeverity | string | The original severity as provided by the reporting device. |
+| EventOriginalSubType | string | The original event subtype or ID, if provided by the source. |
+| EventOriginalType | string | The original event type or ID, if provided by the source. |
+| EventOriginalUid | string | A unique ID of the original record, if provided by the source. |
+| EventOwner | string | The owner of the event, which is usually the department or subsidiary in which it was generated. |
+| EventProduct | string | The product generating the event. |
+| EventProductVersion | string | The version of the product generating the event. |
+| EventReportUrl | string | A URL provided in the event for a resource that provides more information about the event. |
+| EventResult | string | The outcome of the event, represented by one of the following values: Success, Partial, Failure, NA (Not Applicable). The value may not be provided directly by the sources, in which case it is derived from other event fields, for example, the EventResultDetails field. |
+| EventResultDetails | string | Reason or details for the result reported in the EventResult field. |
+| EventSchemaVersion | string | The version of the schema. |
+| EventSeverity | string | The severity of the event. Valid values are: Informational, Low, Medium, or High. |
+| EventStartTime | datetime | The time (UTC) in which the event started. If the source supports aggregation and the record represents multiple events, the time that the first event was generated. If not provided by the source record, this field aliases the TimeGenerated field. |
+| EventSubType | string | Describes a subdivision of the operation reported in the EventType field. |
+| EventType | string | Describes the operation reported by the record. |
+| EventUid | string | A machine-readable, alphanumeric string that uniquely identifies an alert within a system. |
+| EventVendor | string | The vendor of the product generating the event. |
+| FileMD5 | string | MD5 hash of the file. |
+| FileName | string | Name of the file associated with the alert, without path or a location. |
+| FilePath | string | The full, normalized path of the target file, including the folder or location, the file name, and the extension. |
+| FileSHA1 | string | SHA1 hash of the file. |
+| FileSHA256 | string | SHA256 hash of the file. |
+| FileSize | string | Size of the file in bytes. |
+| IndicatorAssociation | string | Specifies whether the indicator is linked to or directly impacted by the threat. |
+| IndicatorType | string | The type or category of the indicator. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| OriginalUserType | string | The user type as reported by the reporting device. |
+| ProcessCommandLine | string | Command line used to start the process. |
+| ProcessFileCompany | string | Company that created the process image file. |
+| ProcessId | string | The process ID (PID) associated with the alert. |
+| ProcessName | string | Name of the process. |
+| RegistryKey | string | The registry key associated with the alert, normalized to standard root key naming conventions. |
+| RegistryValue | string | Registry value. |
+| RegistryValueData | string | Data of the registry value. |
+| RegistryValueType | string | Type of the registry value. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| Rule | string | Either the value of RuleName or the value of RuleNumber. |
+| RuleDescription | string | Description of the rule associated with the alert. |
+| RuleName | string | The name or ID of the rule associated with the alert. |
+| RuleNumber | int | The number of the rule associated with the alert. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| ThreatCategory | string | The category of the threat or malware identified in the alert. |
+| ThreatConfidence | int | The confidence level of the threat identified, normalized to a value between 0 and a 100. |
+| ThreatFirstReportedTime | datetime | Date and time when the threat was first reported. |
+| ThreatId | string | The ID of the threat or malware identified in the alert. |
+| ThreatIsActive | bool | Indicates whether the threat is currently active. |
+| ThreatLastReportedTime | datetime | Date and time when the threat was last reported. |
+| ThreatName | string | The name of the threat or malware identified in the alert. |
+| ThreatOriginalCategory | string | The category of the threat as reported by the originating system. |
+| ThreatOriginalConfidence | string | The confidence level as reported by the originating system. |
+| ThreatOriginalRiskLevel | string | The risk level as reported by the originating system. |
+| ThreatRiskLevel | int | The risk level associated with the threat. The level should be a number between 0 and 100. |
+| TimeGenerated | datetime | The timestamp (UTC) reflecting the time in which the event was generated. |
+| Type | string | The name of the table |
+| Url | string | The URL string captured in the alert. |
+| User | string | Alias or friendly name for Username field. |
+| UserId | string | A machine-readable, alphanumeric, unique representation of the user associated with the alert. |
+| UserIdType | string | The type of the user ID, such as GUID, SID, or Email. |
+| Username | string | Name of the user associated with the alert, including domain information when available. |
+| UsernameType | string | Specifies the type of the user name stored in the Username field. |
+| UserScope | string | The scope, such as Microsoft Entra tenant, in which UserId and Username are defined. |
+| UserScopeId | string | The scope ID, such as Microsoft Entra Directory ID, in which UserId and Username are defined. |
+| UserSessionId | string | The unique ID of the user's session associated with the alert. |
+| UserType | string | The type of the Actor. |

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Traffic Analytics rules are recommended based on flow data for various pre-defined rules.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,37 @@ Traffic Analytics rules are recommended based on flow data for various pre-defin
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ntarulerecommendation)|
 
-
-
 ## Columns
-  
-[!INCLUDE [ntarulerecommendation](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ntarulerecommendation-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AdditionalProperties | string | Placeholder for additional properties related to the recommended rule. |
+| _BilledSize | real | The record size in bytes |
+| DestPortsRanges | string | Comma-separated list of destination port ranges on target resource id. |
+| DestPublicIpCidrs | string | Public destination IPs in CIDR format for outbound flows. |
+| DestServiceTagsList | string | Service tags associated with destination traffic for outbound flows. |
+| DestSubscriptionId | string | Subscription ID of the target resource id receiving the traffic. |
+| EndTime | datetime | End time of the flow observation window. |
+| IpRegionDetails | string | Region information for the involved IP addresses. |
+| IpUrls | string | List of Urls for the malicious Ips. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| L4Protocol | string | Layer 4 protocol used in the traffic. Possible values are TCP, UDP. |
+| PortCategory | string | Indicates the classification of the destination port based on well-known or commonly used port ranges. |
+| RecommendedAction | string | Recommended action on the recommended rule. Possible values are Allow, Block, Advisory. |
+| RecommendedRuleName | string | The name of the rule being recommended. |
+| RuleScope | string | Scope within which the rule applies. Possible values are SubscriptionId, VirtualNetwork. |
+| SchemaVersion | string | Version of the schema used for this record. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcPublicIpCidrs | string | Public source IPs in CIDR format for inbound flows. |
+| SrcServiceTagsList | string | Service tags associated with source traffic for inbound flows. |
+| SrcSubscriptionId | string | Subscription ID of the target resource id sending the traffic. |
+| StartTime | datetime | Start time of the flow observation window. |
+| SummarizationType | string | Indicates how the flows were summarized by time. Possible values are Hourly, Daily. |
+| TargetResourceId | string | The resource targeted by the rule. |
+| TargetResourceIdsList | string | List of all targeted resource IDs covered by the rule. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time when the data gets ingested into the Log Analytics Workspace. |
+| TotalFlowCount | int | Total number of flows observed for this rule. |
+| Type | string | The name of the table |
+| UnecryptedFlowDetails | string | For unencrypted flow, it specifies the encryption level. Possible values are Unencrypted, Unsupported hardware, Software not ready, Drop due to no encryption, Discovery not supported, Destination on same host, Fall back to no encryption. |
+| VirtualNetworkResourceId | string | Virtual network name targeted by rule. |

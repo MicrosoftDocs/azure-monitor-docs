@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 PostgreSQL Server logs of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,34 @@ PostgreSQL Server logs of an Azure Database for PostgreSQL Flexible Server.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlserverlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [pgsqlserverlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlserverlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| BackendType | string | Type of current backend. Available for PostgreSQL 14 and later. |
+| _BilledSize | real | The record size in bytes |
+| ColumnName | string | Name of the column (if applicable). |
+| ConstraintName | string | Name of the constraint (if applicable). |
+| Context | string | Error context (if applicable). |
+| DatatypeName | string | Name of the datatype (if applicable). |
+| Detail | string | Detail log message (if applicable). |
+| DetailLog | string | Extended detail log message (if applicable). |
+| ErrorLevel | string | Logging level, example: LOG, ERROR, NOTICE. |
+| Hint | string | Message hint (if applicable). |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Location of Azure Database for PostgreSQL Flexible server. |
+| LogicalServerName | string | Logical name of the instance. |
+| Message | string | Primary log message. |
+| ProcessId | int | Process ID of the PostgreSQL backend. |
+| Query | string | Internal query that led to the error (if applicable). |
+| ReplicaRole | string | Replica role example. Primary or secondary. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SchemaName | string | Name of the schema (if applicable). |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SqlErrorCode | string | PostgreSQL Error code that follows the SQL standard's conventions for SQLSTATE codes. |
+| Statement | string | Query string (if applicable). |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TableName | string | Name of the table (if applicable). |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

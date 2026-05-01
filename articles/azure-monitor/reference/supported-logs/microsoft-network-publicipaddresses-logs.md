@@ -5,24 +5,22 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Network/publicIPAddresses, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Network/publicIPAddresses
 
-
-
-# Supported logs for Microsoft.Network/publicIPAddresses  
 The following table lists the types of logs available for the Microsoft.Network/publicIPAddresses resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/publicIPAddresses](../supported-metrics/microsoft-network-publicipaddresses-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/publicIPAddresses](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-publicipaddresses-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/publicIPAddresses](../supported-metrics/microsoft-network-publicipaddresses-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`DDoSMitigationFlowLogs` |Flow logs of DDoS mitigation decisions |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`DDoSMitigationReports` |Reports of DDoS mitigations |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
+|`DDoSProtectionNotifications` |DDoS protection notifications |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftnetwork)|No |
 
 ## Next Steps
 
