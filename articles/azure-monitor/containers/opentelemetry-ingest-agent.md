@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with AMA (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data to Azure Monitor using Azure Monitor Agent on VMs, Scale Sets, and Arc-enabled servers.
 ms.topic: how-to
-ms.date: 04/15/2026
+ms.date: 05/01/2026
 ms.reviewer: kaprince
 ai-usage: ai-assisted
 ---
@@ -169,8 +169,6 @@ You must enable system-assigned managed identity on your compute resource. Assig
 
 > [!IMPORTANT]
 > - Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
-> - Add `processors: [cumulativetodelta]` to metrics config if incoming metrics are in cumulative temporality.
-
 
 ## Next steps
 
