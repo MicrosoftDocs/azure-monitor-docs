@@ -170,8 +170,7 @@ To create a DCRA using the REST API, use the following endpoint and payload:
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{virtualMachineName}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
 
 {
-  "properties":
-  {
+  "properties": {
     "description": "Association of platform telemetry DCR with VM myVirtualMachine",
     "dataCollectionRuleId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/dataCollectionRules/<dataCollectionRuleName>"
   }
@@ -313,6 +312,8 @@ New-AzDataCollectionRule @dataCollectionRuleParams
 
 Copy the `id` and the `IdentityPrincipalId` of the DCR from the following output to use in assigning the role to create an association between the DCR and a resource.
 
+**Output:**
+
 ```powershell
 Id                                        : /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.Insights/dataCollectionRules/myDataCollectionRule
 IdentityPrincipalId                       : eeeeeeee-ffff-aaaa-5555-666666666666
@@ -393,73 +394,73 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dataCollectionRuleName": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the name of the Data Collection Rule to create."
-            }
-        },
-        "workspaceId": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the Log Analytics workspace."
-            }
-        },
-        "location": {
-            "type": "string",
-            "metadata": {
-                "description": "Specifies the location in which to create the Data Collection Rule."
-            }
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dataCollectionRuleName": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the name of the Data Collection Rule to create."
+      }
     },
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules",
-            "name": "[parameters('dataCollectionRuleName')]",
-            "kind": "PlatformTelemetry",
-              "identity": {
-                 "type": "UserAssigned" | "SystemAssigned",
-                 "userAssignedIdentities": {
-		        			 "type": "string"
-                   }
-                 },
-            "location": "[parameters('location')]",
-            "apiVersion": "2024-03-11",
-            "properties": {
-                "dataSources": {
-                    "platformTelemetry": [
-                        {
-                            "streams": [
-                                 "<resourceType>:<metricName> | Metrics-Group-All"
-                            ],
-                            "name": "myPlatformTelemetryDataSource"
-                        }
-                    ]
-                },
-                "destinations": {
-                    "logAnalytics": [
-                        {
-                            "workspaceResourceId": "[parameters('workspaceId')]",
-                            "name": "myDestination"
-                        }
-                    ]
-                },
-                "dataFlows": [
-                    {
-                        "streams": [
-                            "<resourceType>:<metricName> | Metrics-Group-All"
-                        ],
-                        "destinations": [
-                            "myDestination"
-                        ]
-                    }
-                ]
-            }
+    "workspaceId": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the Log Analytics workspace."
+      }
+    },
+    "location": {
+      "type": "string",
+      "metadata": {
+        "description": "Specifies the location in which to create the Data Collection Rule."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "name": "[parameters('dataCollectionRuleName')]",
+      "kind": "PlatformTelemetry",
+      "identity": {
+        "type": "UserAssigned" | "SystemAssigned",
+        "userAssignedIdentities": {
+          "type": "string"
         }
-    ]
+      },
+      "location": "[parameters('location')]",
+      "apiVersion": "2024-03-11",
+      "properties": {
+        "dataSources": {
+          "platformTelemetry": [
+            {
+              "streams": [
+                "<resourceType>:<metricName> | Metrics-Group-All"
+              ],
+              "name": "myPlatformTelemetryDataSource"
+            }
+          ]
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "[parameters('workspaceId')]",
+              "name": "myDestination"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "<resourceType>:<metricName> | Metrics-Group-All"
+            ],
+            "destinations": [
+              "myDestination"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
@@ -467,19 +468,19 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {
-        "dataCollectionRuleName": {
-            "value": "myDataCollectionRule"
-        },
-        "workspaceId": {
-            "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace"
-        },
-        "location": {
-            "value": "eastus"
-        }
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dataCollectionRuleName": {
+      "value": "myDataCollectionRule"
+    },
+    "workspaceId": {
+      "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace"
+    },
+    "location": {
+      "value": "eastus"
     }
+  }
 }
 ```
 
@@ -487,56 +488,56 @@ Use the following template to create a DCR. For more information, see [Microsoft
 
 ```json
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "resources": [
-        {
-            "type": "Microsoft.Insights/dataCollectionRules",
-            "apiVersion": "2024-03-11",
-            "name": "[parameters('dataCollectionRuleName')]",
-            "location": "[parameters('location')]",
-            "kind": "PlatformTelemetry",
-            "identity": {
-                "type": "SystemAssigned"
-            },
-            "properties": {
-                "dataSources": {
-                    "platformTelemetry": [
-                        {
-                            "streams": [
-                                "Microsoft.Compute/virtualMachines:Metrics-Group-All",
-                                "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
-                                "Microsoft.Cache/redis:Metrics-Group-All",
-                                "Microsoft.keyvault/vaults:Metrics-Group-All"
-                            ],
-                            "name": "myPlatformTelemetryDataSource"
-                        }
-                    ]
-                },
-                "destinations": {
-                    "logAnalytics": [
-                        {
-                            "workspaceResourceId": "[parameters('workspaceId')]",
-                            "name": "myDestination"
-                        }
-                    ]
-                },
-                "dataFlows": [
-                    {
-                        "streams": [
-                            "Microsoft.Compute/virtualMachines:Metrics-Group-All",
-                            "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
-                            "Microsoft.Cache/redis:Metrics-Group-All",
-                            "Microsoft.keyvault/vaults:Metrics-Group-All"
-                        ],
-                        "destinations": [
-                            "myDestination"
-                        ]
-                    }
-                ]
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "resources": [
+    {
+      "type": "Microsoft.Insights/dataCollectionRules",
+      "apiVersion": "2024-03-11",
+      "name": "[parameters('dataCollectionRuleName')]",
+      "location": "[parameters('location')]",
+      "kind": "PlatformTelemetry",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "dataSources": {
+          "platformTelemetry": [
+            {
+              "streams": [
+                "Microsoft.Compute/virtualMachines:Metrics-Group-All",
+                "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
+                "Microsoft.Cache/redis:Metrics-Group-All",
+                "Microsoft.keyvault/vaults:Metrics-Group-All"
+              ],
+              "name": "myPlatformTelemetryDataSource"
             }
-        }
-    ]
+          ]
+        },
+        "destinations": {
+          "logAnalytics": [
+            {
+              "workspaceResourceId": "[parameters('workspaceId')]",
+              "name": "myDestination"
+            }
+          ]
+        },
+        "dataFlows": [
+          {
+            "streams": [
+              "Microsoft.Compute/virtualMachines:Metrics-Group-All",
+              "Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All",
+              "Microsoft.Cache/redis:Metrics-Group-All",
+              "Microsoft.keyvault/vaults:Metrics-Group-All"
+            ],
+            "destinations": [
+              "myDestination"
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
 ```
 
@@ -557,45 +558,45 @@ param workspaceId string
 param location string
 
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
-    name: dataCollectionRuleName
-    kind: 'PlatformTelemetry'
-    identity: {
-        type: 'UserAssigned' | 'SystemAssigned'
-        userAssignedIdentities: {
-            type: 'string'
-        }
+  name: dataCollectionRuleName
+  kind: 'PlatformTelemetry'
+  identity: {
+    type: 'UserAssigned' | 'SystemAssigned'
+    userAssignedIdentities: {
+      type: 'string'
     }
-    location: location
-    properties: {
-        dataSources: {
-            platformTelemetry: [
-                {
-                    streams: [
-                        '<resourceType>:<metricName> | Metrics-Group-All'
-                    ]
-                    name: 'myPlatformTelemetryDataSource'
-                }
-            ]
+  }
+  location: location
+  properties: {
+    dataSources: {
+      platformTelemetry: [
+        {
+          streams: [
+            '<resourceType>:<metricName> | Metrics-Group-All'
+          ]
+          name: 'myPlatformTelemetryDataSource'
         }
-        destinations: {
-            logAnalytics: [
-                {
-                    workspaceResourceId: workspaceId
-                    name: 'myDestination'
-                }
-            ]
+      ]
+    }
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: workspaceId
+          name: 'myDestination'
         }
-        dataFlows: [
-            {
-                streams: [
-                    '<resourceType>:<metricName> | Metrics-Group-All'
-                ]
-                destinations: [
-                    'myDestination'
-                ]
-            }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: [
+          '<resourceType>:<metricName> | Metrics-Group-All'
         ]
-    }
+        destinations: [
+          'myDestination'
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -608,7 +609,7 @@ param dataCollectionRuleName = 'myDataCollectionRule'
 
 param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace'
 
-param location = 'eastus'd
+param location = 'eastus'
 ```
 
 ### Sample DCR template
@@ -624,48 +625,48 @@ param workspaceId string
 param location string
 
 resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
-    name: dataCollectionRuleName
-    location: location
-    kind: 'PlatformTelemetry'
-    identity: {
-        type: 'SystemAssigned'
+  name: dataCollectionRuleName
+  location: location
+  kind: 'PlatformTelemetry'
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    dataSources: {
+      platformTelemetry: [
+        {
+          streams: [
+            'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+            'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+            'Microsoft.Cache/redis:Metrics-Group-All'
+            'Microsoft.keyvault/vaults:Metrics-Group-All'
+          ]
+          name: 'myPlatformTelemetryDataSource'
+        }
+      ]
     }
-    properties: {
-        dataSources: {
-            platformTelemetry: [
-                {
-                    streams: [
-                        'Microsoft.Compute/virtualMachines:Metrics-Group-All'
-                        'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
-                        'Microsoft.Cache/redis:Metrics-Group-All'
-                        'Microsoft.keyvault/vaults:Metrics-Group-All'
-                    ]
-                    name: 'myPlatformTelemetryDataSource'
-                }
-            ]
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: workspaceId
+          name: 'myDestination'
         }
-        destinations: {
-            logAnalytics: [
-                {
-                    workspaceResourceId: workspaceId
-                    name: 'myDestination'
-                }
-            ]
-        }
-        dataFlows: [
-            {
-                streams: [
-                    'Microsoft.Compute/virtualMachines:Metrics-Group-All'
-                    'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
-                    'Microsoft.Cache/redis:Metrics-Group-All'
-                    'Microsoft.keyvault/vaults:Metrics-Group-All'
-                ]
-                destinations: [
-                    'myDestination'
-                ]
-            }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: [
+          'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+          'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+          'Microsoft.Cache/redis:Metrics-Group-All'
+          'Microsoft.keyvault/vaults:Metrics-Group-All'
         ]
-    }
+        destinations: [
+          'myDestination'
+        ]
+      }
+    ]
+  }
 }
 ```
 
@@ -707,22 +708,22 @@ The following example shows data exported to a storage account:
 
 ```json
 {
-    "Average": "31.5",
-    "Count": "2",
-    "Maximum": "52",
-    "Minimum": "11",
-    "Total": "63",
-    "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
-    "time": "2024-08-20T14:13:00.0000000Z",
-    "unit": "MilliSeconds",
-    "metricName": "ServiceApiLatency",
-    "timeGrain": "PT1M",
-    "dimension": {
-        "ActivityName": "vaultget",
-        "ActivityType": "vault",
-        "StatusCode": "200",
-        "StatusCodeClass": "2xx"
-    }
+  "Average": "31.5",
+  "Count": "2",
+  "Maximum": "52",
+  "Minimum": "11",
+  "Total": "63",
+  "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+  "time": "2024-08-20T14:13:00.0000000Z",
+  "unit": "MilliSeconds",
+  "metricName": "ServiceApiLatency",
+  "timeGrain": "PT1M",
+  "dimension": {
+    "ActivityName": "vaultget",
+    "ActivityType": "vault",
+    "StatusCode": "200",
+    "StatusCodeClass": "2xx"
+  }
 }
 ```
 
@@ -731,25 +732,25 @@ The following example shows data exported to a storage account:
 The following example shows a metric exported to Event Hubs.
 
 ```json
-    {
-      "Average": "1",
-      "Count": "1",
-      "Maximum": "1",
-      "Minimum": "1",
-      "Total": "1",
-      "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
-      "time": "2024-08-22T13:43:00.0000000Z",
-      "unit": "Count",
-      "metricName": "ServiceApiHit",
-      "timeGrain": "PT1M",
-      "dimension": {
-        "ActivityName": "keycreate",
-        "ActivityType": "key"
-      },
-      "EventProcessedUtcTime": "2024-08-22T13:49:17.1233030Z",
-      "PartitionId": 0,
-      "EventEnqueuedUtcTime": "2024-08-22T13:46:04.5570000Z"
-    }
+{
+  "Average": "1",
+  "Count": "1",
+  "Maximum": "1",
+  "Minimum": "1",
+  "Total": "1",
+  "resourceId": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/rg-dcrs/providers/microsoft.keyvault/vaults/dcr-vault",
+  "time": "2024-08-22T13:43:00.0000000Z",
+  "unit": "Count",
+  "metricName": "ServiceApiHit",
+  "timeGrain": "PT1M",
+  "dimension": {
+    "ActivityName": "keycreate",
+    "ActivityType": "key"
+  },
+  "EventProcessedUtcTime": "2024-08-22T13:49:17.1233030Z",
+  "PartitionId": 0,
+  "EventEnqueuedUtcTime": "2024-08-22T13:46:04.5570000Z"
+}
 ```
 
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]

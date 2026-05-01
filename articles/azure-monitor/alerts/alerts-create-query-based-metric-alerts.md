@@ -1,5 +1,5 @@
 ---
-title: Create Query-Based Metric Alerts
+title: Create Query-Based Metric Alerts (Preview)
 description: This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal.
 ms.topic: how-to
 ms.date: 10/11/2025
@@ -65,7 +65,7 @@ az rest \
   --body @"$payloadFile"
 ```
 
-**enable-stamping.json payload file:**
+**Payload file (enable-stamping.json):**
 
 ```json
 {
@@ -100,10 +100,9 @@ $restParams = @{
 }
 
 Invoke-AzRestMethod @restParams
-
 ```
 
-**enable-stamping.json payload file:**
+**Payload file (enable-stamping.json):**
 
 ```json
 {
@@ -177,6 +176,7 @@ resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
 | resourceGroupName | myResourceGroup | User input |
 | accountName | myAccountName | User input |
+| location | eastus | User input |
 | apiVersion | 2025-05-03-preview | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## Deploy a query-based metric alert
@@ -297,7 +297,7 @@ az rest \
   --body @$payloadFile
 ```
 
-**query-based-metric-alert.json payload file:**
+**Payload file (query-based-metric-alert.json):**
 
 > [!NOTE]
 > Azure CLI doesn't support deployment-style parameters in JSON payload files for `az rest`. Because the JSON file is used directly as the request body, this example includes example values in the file.
@@ -376,10 +376,9 @@ $restParams = @{
 }
 
 Invoke-AzRestMethod @restParams
-
 ```
 
-**query-based-metric-alert.json payload file:**
+**Payload file (query-based-metric-alert.json):**
 
 > [!NOTE]
 > Azure PowerShell doesn't support deployment-style parameters in JSON payload files for Invoke-AzRestMethod. Because the JSON file is used directly as the request body, this example includes example values in the file.
@@ -452,9 +451,9 @@ The following Bicep example uses the [Microsoft.Insights metricAlerts](/azure/te
 |----------|---------------|---------|
 | host | *management.azure.com* | Implicit ARM endpoint |
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| location | eastus | User input |
 | resourceGroupName | myResourceGroup | User input |
 | ruleName | myRule | User input |
+| location | eastus | User input |
 | userAssignedMiName | myUserAssignedIdentity | User input |
 | clusterName | myCluster | User input |
 | actionGroupName | myActionGroup | User input |
@@ -478,7 +477,7 @@ Create and configure the user-assigned managed identity with permissions before 
     "userAssignedIdentities": {
       "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
     }
-  },
+  }
 }
 ```
 
@@ -487,7 +486,7 @@ Create and configure the user-assigned managed identity with permissions before 
 ```bicep
 {
   identity: {
-    type: 'UserAssigned'
+    type: 'UserAssigned',
     userAssignedIdentities: {
       '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
     }

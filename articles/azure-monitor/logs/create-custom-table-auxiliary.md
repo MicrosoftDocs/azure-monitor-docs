@@ -59,31 +59,31 @@ Authorization: Bearer {token}
 Content-Type: application/json
 
 {
-    "properties": {
-        "schema": {
-            "name": "{tableName_CL}",
-            "columns": [
-                {"name": "TimeGenerated",
-                 "type": "dateTime"},
-                {"name": "StringProperty",
-                 "type": "string"},
-                {"name": "IntProperty",
-                 "type": "int"},
-                {"name": "LongProperty",
-                 "type": "long"},
-                {"name": "RealProperty",
-                 "type": "real"},
-                {"name": "BooleanProperty",
-                 "type": "boolean"},
-                {"name": "GuidProperty",
-                 "type": "guid"},
-                {"name": "DateTimeProperty",
-                 "type": "dateTime"}
-            ]
-        },
-        "totalRetentionInDays": 365,
-        "plan": "Auxiliary"
-    }
+  "properties": {
+    "schema": {
+      "name": "{tableName_CL}",
+      "columns": [
+        {"name": "TimeGenerated",
+          "type": "dateTime"},
+        {"name": "StringProperty",
+          "type": "string"},
+        {"name": "IntProperty",
+          "type": "int"},
+        {"name": "LongProperty",
+          "type": "long"},
+        {"name": "RealProperty",
+          "type": "real"},
+        {"name": "BooleanProperty",
+          "type": "boolean"},
+        {"name": "GuidProperty",
+          "type": "guid"},
+        {"name": "DateTimeProperty",
+          "type": "dateTime"}
+      ]
+    },
+    "totalRetentionInDays": 365,
+    "plan": "Auxiliary"
+  }
 }
 ```
 
@@ -794,13 +794,13 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     ```bicep
     @description('Specifies the name of the data collection rule to create.')
     param dataCollectionRuleName string = 'myDataCollectionRule'
-
+    
     @description('Specifies the region in which to create the data collection rule. The must be the same region as the destination Log Analytics workspace.')
     param location string = 'eastus'
-
+    
     @description('The Azure resource ID of the Log Analytics workspace in which you created a custom table with the Auxiliary plan.')
     param workspaceResourceId string = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/Microsoft.OperationalInsights/workspaces/myWorkspace'
-
+    
     resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2025-07-01' = {
       name: dataCollectionRuleName
       location: location
@@ -841,7 +841,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 name: 'DateTimeProperty'
                 type: 'dateTime'
               }
-              ]
+            ]
           }
         }
         destinations: {
@@ -866,7 +866,7 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
         ]
       }
     }
-
+    
     output dataCollectionRuleId string = dataCollectionRule.id
     ```
 
@@ -878,8 +878,9 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
     | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
     | resourceGroupName | myResourceGroup | User input |
     | dataCollectionRuleName | myDataCollectionRule | User input |
-    | streams | Custom-myTable | User input |
-    | outputStream | Custom-myTable_CL | User input |
+    | location | eastus | User input |
+    | Custom-tableName | Custom-myTable | User input |
+    | Custom-tableName_CL | Custom-myTable_CL | User input |
     | apiVersion | 2025-07-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 1. [Grant your application permission to use your DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr).
