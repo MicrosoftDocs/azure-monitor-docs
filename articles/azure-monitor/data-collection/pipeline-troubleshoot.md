@@ -238,9 +238,9 @@ If your pipeline uses a `TransformLanguage` processor:
 - When targeting **standard tables** (e.g., `Syslog`, `CommonSecurityLog`), the transform must preserve all required columns — particularly `TimeGenerated`.
 - Invalid transforms produce `InvalidTransformStatement` or `InvalidTransformStatementForStreamSchema` errors.
 
-### Check persistence configuration
+### Check persistent storage configuration
 
-If the exporter has `persistence` or `cache` configured:
+If the exporter has persistent storage configured:
 
 - A `persistentVolumeName` **must** be specified in `service.persistence`. Without it, you'll get `PersistenceRequiredForExporterPersistence`.
 - The `retentionPeriod` must not exceed 2,880 minutes (2 days).
@@ -373,9 +373,9 @@ kubectl logs <pipeline-pod> -n <pipeline-namespace>
 **Symptoms**: Telemetry is received but with delays or gaps.
 
 **Causes**:
-- Buffering enabled with high retention settings
+- Cluster resource constraints (CPU or memory pressure)
 - Transformations taking too long
-- Cluster resource constraints
+- Network latency between the cluster and Azure Monitor
 
 **Resolution**:
 1. Check cluster resource utilization:
@@ -387,16 +387,14 @@ kubectl logs <pipeline-pod> -n <pipeline-namespace>
 
 3. Monitor network latency between cluster and Azure Monitor.
 
-4. Review buffering configuration and adjust retention settings as needed.
-
 </details>
 
 ### Connectivity and reliability issues
 
 <details>
-<summary><b>Buffered data not being backfilled after connectivity is restored</b></summary>
+<summary><b>Data in persistent storage not being backfilled after connectivity is restored</b></summary>
 
-**Symptoms**: Data is buffered during outages but not sent to Azure Monitor after reconnection.
+**Symptoms**: Data written to persistent storage isn't sent to Azure Monitor after reconnection.
 
 **Causes**:
 - Persistent storage configuration issues
