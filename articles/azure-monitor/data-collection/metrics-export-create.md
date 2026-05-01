@@ -1,5 +1,5 @@
 ---
-title: Metrics export using data collection rules (Preview)
+title: Metrics Export Using Data Collection Rules (Preview)
 description: Learn how to create data collection rules for metrics.
 ms.topic: concept-article
 ms.date: 01/20/2026

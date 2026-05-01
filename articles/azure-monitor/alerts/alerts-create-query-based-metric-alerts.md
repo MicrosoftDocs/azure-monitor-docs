@@ -6,7 +6,7 @@ ms.date: 10/11/2025
 ms.custom: ai-assisted
 ---
 
-# Create query-based metric alerts (preview)
+# Create query-based metric alerts (Preview)
 
 This article explains how to create query-based metric alert rules in Azure Monitor using PromQL, covering prerequisites, rule configuration options, managed identity requirements, deployment methods, and how to view and manage alerts in the Azure portal.
 
