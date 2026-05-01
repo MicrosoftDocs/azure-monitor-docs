@@ -1372,7 +1372,7 @@ The following table describes the sections of the pipeline configuration and cri
 
 ## Enable persistent storage
 
-Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to write data to durable storage by creating a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
+Edge devices in some environments might experience intermittent connectivity due to various factors such as network congestion, signal interference, power outage, or mobility. In these environments, you can configure the pipeline to write data to persistent storage by creating a [persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in your cluster. The process for this configuration varies based on your particular environment, but it must meet the following requirements:
 
 * Metadata namespace must be the same as the specified instance of Azure Monitor pipeline.
 * Access mode must support `ReadWriteMany`.
