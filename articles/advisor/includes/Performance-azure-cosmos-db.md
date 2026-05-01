@@ -133,7 +133,7 @@ When CPU usage surpasses 90% within a 12-hour timeframe, users are notified abou
 
 **Impact:** Medium
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/how-to-scale-cluster)  
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/documentdb/how-to-scale-cluster)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52  
