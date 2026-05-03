@@ -151,7 +151,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
     1. **Is the source IP address blocked?**
 
-        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allowlist. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allowlist.
+        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allow list. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allow list.
 
     1. **Does your webhook endpoint work correctly?**
 
