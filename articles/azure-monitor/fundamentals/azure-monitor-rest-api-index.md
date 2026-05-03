@@ -20,7 +20,7 @@ These APIs are part of the Azure Resource Manager (ARM) control plane APIs for v
 
 The endpoints for all of these Azure Monitor ARM APIs are under the `https://management.azure.com/` base URL, which is the standard endpoint for ARM APIs.
 
-### Activity Log
+### Activity log
 
 These Azure Monitor APIs retrieve and manage activity logs.
 
@@ -31,7 +31,7 @@ These Azure Monitor APIs retrieve and manage activity logs.
 | [Activity log profiles](/rest/api/monitor/log-profiles) | Operations to manage [activity log profiles](../essentials/platform-logs-overview.md) so you can route activity log events to other locations. |
 | [Activity log tenant events](/rest/api/monitor/tenant-activity-logs) | Gets the [Activity Log](../essentials/platform-logs-overview.md) event entries for a specific tenant. |
 
-### Alerts Management and Action Groups
+### Alerts management and action groups
 
 These Azure Monitor APIs create and manage alert rules, action groups, and alert processing rules.
 
@@ -59,7 +59,7 @@ These Azure Monitor APIs manage autoscale settings and retrieve predictive metri
 | [Autoscale settings](/rest/api/monitor/autoscale-settings) | Operations to manage autoscale settings. |
 | [Predictive metric](/rest/api/monitor/predictive-metric) | Retrieves predicted autoscale metric data. |
 
-### Data Collection
+### Data collection
 
 These Azure Monitor APIs manage data collection rules, data collection endpoints, and their associations.
 
@@ -69,7 +69,7 @@ These Azure Monitor APIs manage data collection rules, data collection endpoints
 | [Data collection rule associations](/rest/api/monitor/data-collection-rule-associations) | Create and manage a data collection rule association and retrieve the data collection rule associations for a data collection endpoint, resource, or data collection rule. |
 | [Data collection rules](/rest/api/monitor/data-collection-rules) | Create and manage a data collection rule and retrieve the data collection rules within a resource group or subscription. |
 
-### Diagnostic Settings
+### Diagnostic settings
 
 These Azure Monitor APIs manage diagnostic settings that control routing of metric data and diagnostic logs.
 
