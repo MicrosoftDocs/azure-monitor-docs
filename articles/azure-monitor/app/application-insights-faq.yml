@@ -5,7 +5,7 @@ metadata:
   ms.service: azure-monitor
   ms.topic: faq
   ms.custom: references_regions
-  ms.date: 03/19/2026
+  ms.date: 05/03/2026
 
 title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
@@ -929,6 +929,25 @@ sections:
       - question: When do I need to set the environment variable?
         answer: |
           Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` manually in all scenarios where the system doesn't provide it automatically. These scenarios include, but aren't limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
+
+      - question: Should I use a separate Application Insights resource for browser telemetry if I use authenticated server-side ingestion or OTLP?
+        answer: |
+          Not strictly. A single Application Insights resource can receive browser telemetry from the Application Insights JavaScript SDK and server-side telemetry sent by using authenticated ingestion when local authentication remains enabled for browser ingestion. Server-side telemetry can use [Microsoft Entra authenticated ingestion](./azure-ad-authentication.md), and [OTLP ingestion by using the OpenTelemetry Collector](../containers/opentelemetry-protocol-ingestion.md) requires Microsoft Entra authentication. You don't need to avoid OpenTelemetry or OTLP solely because your application also collects browser telemetry.
+
+          The main exception is when you disable local authentication on an Application Insights resource to require Microsoft Entra authentication for all ingestion. In that configuration, the JavaScript SDK can't authenticate directly from the browser and browser telemetry might stop flowing. For browser telemetry in that scenario, use a separate browser telemetry resource with local authentication enabled or route browser telemetry through an authenticated proxy pattern. For more information, see [Authenticated browser telemetry using connection strings](./connection-strings.md#authenticated-browser-telemetry-using-connection-strings).
+
+          Even when a single resource works technically, consider using a separate Application Insights resource for browser/client-side telemetry as a risk-isolation best practice. Browser instrumentation runs in an untrusted client environment, so its connection string is visible to users and can't be treated as a secret. An exposed connection string can potentially be used to send spoofed, irrelevant, or high-volume telemetry to the associated resource, which can pollute dashboards, alerts, troubleshooting queries, and increase ingestion cost.
+
+          A separate browser telemetry resource can help you:
+
+          - Rotate or replace the browser-side connection string without disrupting server-side telemetry.
+          - Contain spoofed, spam, or garbage telemetry to the browser-specific resource.
+          - Protect the quality of server-side telemetry used for diagnostics, alerting, and operational analysis.
+          - Apply different access control, ownership, or governance settings when needed.
+
+          Balance these benefits against the added management overhead of multiple resources, including additional connection strings, RBAC assignments, configuration, and cross-resource investigations. End-to-end correlation can still work across multiple Application Insights resources when the user has access to the relevant resources. For more information, see [Application map](./app-map.md) and [Transaction diagnostics](./failures-performance-transactions.md#transaction-diagnostics-experience).
+
+          Private Link and ingestion authentication are separate controls. Private Link controls network access to Azure Monitor resources; Microsoft Entra authentication controls whether telemetry ingestion is authorized by an identity. Don't use Private Link as a substitute for ingestion authentication, and don't treat resource separation as a requirement for authenticated server-side ingestion.
 
       - question: How do I instrument a global web application to meet regional data compliance requirements?
         answer: |
