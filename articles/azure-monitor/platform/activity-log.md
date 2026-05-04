@@ -7,11 +7,11 @@ ms.reviewer: orens
 # customer intent: As an Azure administrator, I want to view and export activity log data so that I can audit control plane operations and retain logs beyond the default 90-day period.
 ---
 
-# Azure Monitor provides activity logs
+# Activity log in Azure Monitor
 
 Azure Monitor records management operations on your Azure resources through the activity logs feature. For example, activity logs record operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
 
-In contrast to activity logs, which capture control plane operations, [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
+In contrast to the activity log, [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
 
 > [!TIP]
 > If a deployment operation error directs you to this article, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
@@ -99,7 +99,9 @@ Get-AzActivityLog @activityLogParams
 
 ---
 
-### List activity log events for a resource group
+#### List activity log events for a resource group
+
+Add `resourceGroupName` to the `$filter` to scope Azure Monitor activity log results to a specific resource group.
 
 # [Azure Portal](#tab/azure-portal)
 
@@ -333,7 +335,7 @@ The following example shows that the VM changed sizes. The page displays the VM 
 
 ## Activity log insights
 
-Activity log insights is a workbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
+Activity log insights is an Azure Monitor workbook that provides a set of dashboards that monitor the changes to resources and resource groups in a subscription. The dashboards also present data about which users or services performed activities in the subscription and the activities' status. 
 
 To enable activity log insights, export the activity log to a Log Analytics workspace as described in [Export activity log](#export-activity-log). This process sends events to the `AzureActivity` table, which activity log insights uses.
 
@@ -484,7 +486,8 @@ Each event is stored in the PT1H.json file with the following format. This forma
 
 
 ## Export management group activity logs
-When you create a [diagnostic setting log for a management group](/rest/api/monitor/management-group-diagnostic-settings), it exports any events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
+
+When you create a diagnostic setting for a management group, it exports Azure Monitor activity log events for that management group in addition to all management groups under it in the hierarchy. If multiple management groups in the hierarchy have diagnostic settings, you receive duplicate events. You only need a diagnostic setting on the highest level management group to capture all events for the hierarchy.
 
 The management group also collects many of the same events as any subscriptions under it. If the subscription and management group both have diagnostic settings, you receive duplicate events. Azure Resource Manager includes a hierarchy property when writing events, but it's not a required field. Resource providers outside Azure Resource Manager don't populate it, so their events don't propagate up the hierarchy. Because of this, getting duplicate events is better than missing events.
 
