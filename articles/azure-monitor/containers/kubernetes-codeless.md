@@ -1,6 +1,6 @@
 ---
 title: Set up codeless monitoring for AKS with Application Insights
-description: Enable Azure Monitor Application Monitor applications on AKS with Azure Monitor Application InsightsInsights autoinstrumentation for AKS workloads without modifying source code.
+description: Enable codeless application monitoring on AKS by using Azure Monitor Application Insights autoinstrumentation for Java and Node.js workloads.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
 ms.date: 05/04/2026
