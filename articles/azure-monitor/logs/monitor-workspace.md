@@ -3,7 +3,7 @@ title: Monitor operational issues logged in your Azure Monitor Log Analytics wor
 description: The article describes how to monitor the health of your Log Analytics workspace by using data in the Operation table.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 08/29/2025
+ms.date: 05/04/2026
 
 ---
 
@@ -100,24 +100,6 @@ Check the source of the affected data type:
 *    If the data is being sent through the HTTP Data Collector API, you need to change your code\script to split the data before it's ingested.
 *    For custom logs, collected by a Log Analytics agent, change the logging settings of the application or tool.
 *    For any other data type, raise a support case. For more information, see [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate).
-
-### Data collection
-
-The following section provides information on data collection.
-
-#### Operation: Azure Activity Log collection
-
-"Access to the subscription was lost. Ensure that the \<**subscription id**\> subscription is in the \<**tenant id**\> Microsoft Entra tenant. If the subscription is transferred to another tenant, there's no impact to the services, but information for the tenant could take up to an hour to propagate."
-
-In some situations, like moving a subscription to a different tenant, the Azure activity logs might stop flowing into the workspace. In those situations, you need to reconnect the subscription following the process described in this article.
-
-Recommended actions:
-
-* If the subscription mentioned in the warning message no longer exists, go to the **Legacy activity log connector** pane under **Classic**. Select the relevant subscription, and then select the **Disconnect** button.
-* If you no longer have access to the subscription mentioned in the warning message:
-  * Follow the preceding step to disconnect the subscription.
-  * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
-* [Create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
 
 ## Alert rules
 
