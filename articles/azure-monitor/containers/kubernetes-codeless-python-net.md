@@ -29,10 +29,7 @@ This section outlines the process of enabling the limited preview feature. It si
 > For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
 
 1. Review the _Prerequisites_ section at [Autoinstrumentation for Azure Kubernetes Service](kubernetes-codeless.md#prerequisites). The limitations apply to the limited preview except support is added for Python and .NET.
-1. Enable the public preview feature for the entire cluster by following the instructions outlined in the following sections of the article:
-    - [Install the aks-preview Azure CLI extension](kubernetes-codeless.md#install-the-aks-preview-azure-cli-extension)
-    - [Register the AzureMonitorAppMonitoringPreview feature flag](kubernetes-codeless.md#register-the-azuremonitorappmonitoringpreview-feature-flag)
-    - [Prepare a cluster](kubernetes-codeless.md#prepare-a-cluster)
+1. Prepare the cluster by following the instructions at [prepare a cluster](kubernetes-codeless.md#prepare-a-cluster).    
 1. Choose a deployment that you want to instrument and onboard it by following the information at [Per-deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding). The following points explain what you need to do differently for limited preview:
     - Keep in mind that namespace-wide onboarding (described in the previous section) is **_not available_** for limited preview languages.
     - Instead of using public preview annotations for Java and Node.js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use limited preview annotations:
