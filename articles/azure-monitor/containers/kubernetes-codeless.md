@@ -1,12 +1,12 @@
 ---
-title: Monitor applications on AKS with Azure Monitor Application Insights
-description: Enable Azure Monitor Application Insights autoinstrumentation for AKS workloads without modifying source code.
+title: Set up codeless monitoring for AKS with Application Insights
+description: Enable Azure Monitor Application Monitor applications on AKS with Azure Monitor Application InsightsInsights autoinstrumentation for AKS workloads without modifying source code.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
 ms.date: 05/04/2026
 ---
 
-# Monitor applications on AKS with Azure Monitor Application Insights
+# Autoinstrument AKS apps with Azure Monitor Application Insights
 
 This guide shows how to enable Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code.
 
