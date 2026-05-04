@@ -67,10 +67,10 @@ Use the Azure portal for namespace-wide deployment onboarding.
 1. Select **Configure**.  
   :::image type="content" source="media/kubernetes-codeless/configure-monitoring-java-selected.png" alt-text="Screenshot of the Configure Application Monitoring panel with Java selected and the rollout restart checkbox unchecked." lightbox="media/kubernetes-codeless/configure-monitoring-java-selected.png":::
 1. Observe the **Application Monitoring Progress** and wait for it to complete.  
-  > [!NOTE]
-  > * The affected deployments must be restarted before the changes take effect.
-  > * Manually [restart deployments](#restart-deployment) if you observe progress failures.
-  :::image type="content" source="media/kubernetes-codeless/deployments-instrumented-status.png" alt-text="Screenshot of the Deployments section showing the petclinic deployment with Instrumented status." lightbox="media/kubernetes-codeless/deployments-instrumented-status.png":::
+    > [!NOTE]
+    > * The affected deployments must be restarted before the changes take effect.
+    > * Manually [restart deployments](#restart-deployment) if you observe progress failures.  
+      :::image type="content" source="media/kubernetes-codeless/deployments-instrumented-status.png" alt-text="Screenshot of the Deployments section showing the petclinic deployment with Instrumented status." lightbox="media/kubernetes-codeless/deployments-instrumented-status.png":::
 1. Revisit the **Application Monitoring** section.
 1. Verify the "instrumented" status for each namespace in the deployment.  
   :::image type="content" source="media/kubernetes-codeless/configure-monitoring-verify-instrumented.png" alt-text="Screenshot of the Configure Application Monitoring panel with the Deployments section expanded showing Instrumented status." lightbox="media/kubernetes-codeless/configure-monitoring-verify-instrumented.png":::
