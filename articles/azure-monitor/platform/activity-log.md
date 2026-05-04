@@ -9,9 +9,9 @@ ms.reviewer: orens
 
 # Activity log in Azure Monitor
 
-Azure Monitor records management operations on your Azure resources through the activity logs feature. For example, activity logs record operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
+Azure Monitor records management operations for your Azure resources through the activity log feature. The activity log records operations like creating a virtual machine, changing a key vault access policy, or Resource Manager deployment errors. These management operations are also called [*control plane*](/azure/azure-resource-manager/management/control-plane-and-data-plane) operations. Use the activity log to review or audit this information, or create an alert to be proactively notified when an event occurs.
 
-In contrast to the activity log, [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require a [diagnostic setting](./diagnostic-settings.md).
+In contrast to the activity log, [Azure resource logs](resource-logs.md) capture *data plane* operations performed within a resource. For example, these operations include getting a secret from a key vault or making a request to a database. Resource logs aren't collected by default and require configuration with a [diagnostic setting](./diagnostic-settings.md).
 
 > [!TIP]
 > If a deployment operation error directs you to this article, see [Troubleshoot common Azure deployment errors](/azure/azure-resource-manager/troubleshooting/common-deployment-errors).
@@ -28,11 +28,11 @@ Azure retains activity log events for *90 days* and then deletes them. You aren'
 
 ## View and retrieve the activity log
 
-View activity log events for a subscription, resource group, or individual resource by using the Azure portal or programmatically. 
+View activity log events for a subscription, resource group, or an individual resource. Use the Azure portal or programmatically query them by using the [Activity Logs REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). 
 
-The Azure portal provides the **Activity log** blade from most service menus.. Each of these areas also support programmatic access with the [Activity Logs REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). This REST API in turn supports access through specific Azure CLI and Azure PowerShell commands.
+The Azure portal provides the **Activity log** blade from most service menus. Each of these areas also support programmatic access with REST or through specific Azure CLI and Azure PowerShell commands.
 
-To retrieve events by using the REST API, include the `$filter` parameter. It must contain at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window. 
+Specify a time interval of events to retrieve. To retrieve events by using the REST API, you must include the `$filter` parameter along with at least an `eventTimestamp` start value. By default, the activity log retains events for 90 days. Make sure both the start and end of your time range fall within that 90-day window. 
 
 ### Activity log access scenarios
 
