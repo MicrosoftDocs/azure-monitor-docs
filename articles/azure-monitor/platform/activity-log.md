@@ -28,7 +28,7 @@ Azure retains activity log events for *90 days* and then deletes them. You aren'
 
 ## View and retrieve the activity log
 
-View activity log events for a subscription, resource group, or an individual resource. Use the Azure portal or programmatically query them by using the [Activity Logs REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). 
+View activity log events for a subscription, resource group, or an individual resource. Use the Azure portal or programmatically query them by using the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). 
 
 The Azure portal provides the **Activity log** blade from most service menus. Each of these areas also support programmatic access with REST or through specific Azure CLI and Azure PowerShell commands.
 
@@ -74,7 +74,7 @@ az monitor activity-log list --offset 14d --subscription "aaaa0a0a-bb1b-cc2c-dd3
 
 # [REST API](#tab/rest-api)
 
-To list activity log events, use this `GET` request for the [Activity Logs REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
 
 ```http
 GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-14T23:59:59Z'
@@ -112,8 +112,6 @@ The menu you open **Activity log** from determines its initial filter. If you op
 * **Operation** - An action or command, such as create, delete, and write, that affects Azure Resource Manager resources.
 * **Event initiated by** – Filter events by the identity that initiated the event.
 * **Event category** – Filter the event types for certain operations.
-
-:::image type="content" source="media/activity-log/portal-filter-options.png" alt-text="Screenshot showing the filter options available in the Azure portal Activity log blade.":::
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -206,15 +204,15 @@ Get-AzActivityLog @activityLogParams | Select-Object EventName, OperationName, S
 
 #### List tenant-level activity log events
 
-Tenant-level activity logs typically have limited entries but might include important events such as management group or subscription creation. These events are separate from subscription-level activity logs, but might contain duplicate resource management events. 
+Tenant-level activity log events typically have limited entries but might include important events such as management group or subscription creation. These events are separate from subscription-level activity log events, but might contain duplicate resource management events. 
 
-Querying at this scope uses a different REST API than the subscription-level activity logs API. Azure CLI and Azure PowerShell don't provide dedicated commands.
+Querying at this scope uses a different REST API than the subscription-level activity log events API. Azure CLI and Azure PowerShell don't provide dedicated commands.
 
 # [Azure portal](#tab/azure-portal)
 
 Go to **Monitor** > **Activity log** in the Azure portal. Change the **Activity** pull down menu and select **Directory Activity**. 
 
-:::image type="content" source="media/activity-log/directory-activity-logs.png" alt-text="Screenshot showing the Directory Activity option selected in the Activity log blade in the Azure portal.":::
+:::image type="content" source="media/activity-log/directory-activity-logs.png" alt-text="Screenshot showing the Directory Activity option selected in the Activity log blade in the Azure portal." lightbox="media/activity-log/directory-activity-logs.png":::
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -225,12 +223,14 @@ apiVersion="2015-04-01"
 filter="\$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'"
 providers="Microsoft.Insights/eventtypes/management/values"
 
-az rest --method get --uri "/providers/$providers?api-version=$apiVersion&$filter" --headers "Prefer=wait=75"
+az rest --method get \
+  --uri "/providers/$providers?api-version=$apiVersion&$filter" \
+  --headers "Prefer=wait=75"
 ```
 
 # [REST API](#tab/rest-api)
 
-To list tenant-level activity log events, use this `GET` request. Note that this request targets the tenant-level activity logs endpoint, which is different from the subscription-level activity logs API.
+To list tenant-level activity log events, use this `GET` request. Note that this request targets the tenant-level activity log endpoint, which is different from the subscription-level activity log API.
 
 ```http
 GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'
@@ -238,7 +238,7 @@ GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/managem
 
 # [PowerShell](#tab/powershell)
 
-A dedicated PowerShell cmdlet isn't available for tenant-level activity logs. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
+A dedicated PowerShell cmdlet isn't available for tenant-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
 
 ```azurepowershell
 $apiVersion = '2015-04-01'
@@ -259,13 +259,13 @@ Invoke-AzRestMethod @restParams
 
 #### List management group-level activity log events
 
-Management group-level activity logs capture events scoped to a specific management group, such as policy assignments and management group membership changes.
+Management group-level activity log events capture events scoped to a specific management group, such as policy assignments and management group membership changes.
 
 # [Azure portal](#tab/azure-portal)
 
 To view management group-level activity log events in the Azure portal, go to **Management groups** > select a management group > **Activity log**. 
 
-:::image type="content" source="media/activity-log/management-group-scope.png" alt-text="Screenshot showing the Activity log blade for a management group in the Azure portal.":::
+:::image type="content" source="media/activity-log/management-group-scope.png" alt-text="Screenshot showing the Activity log blade for a management group in the Azure portal." lightbox="media/activity-log/management-group-scope.png":::
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -291,7 +291,7 @@ GET https://management.azure.com/providers/Microsoft.Management/managementGroups
 
 # [PowerShell](#tab/powershell)
 
-A dedicated PowerShell cmdlet isn't available for management group-level activity logs. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
+A dedicated PowerShell cmdlet isn't available for management group-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
 
 ```azurepowershell
 $managementGroupId = 'myManagementGroup'
