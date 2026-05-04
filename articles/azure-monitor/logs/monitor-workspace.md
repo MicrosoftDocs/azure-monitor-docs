@@ -91,7 +91,7 @@ Recommended action: For custom tables, you can move to [parsing the data](./pars
 
 "The following fields' values \<**field name**\> of type \<**table name**\> have been trimmed to the max allowed size, \<**field size limit**\> bytes. Please adjust your input accordingly."
 
-A field larger than the limit size was processed by Azure logs. The field was trimmed to the allowed field limit. We don't recommend sending fields larger than the allowed limit because it results in data loss.
+A field larger than the limit size was processed by Azure Monitor Logs. The field was trimmed to the allowed field limit. We don't recommend sending fields larger than the allowed limit because it results in data loss.
 
 Recommended actions:
 
@@ -100,6 +100,24 @@ Check the source of the affected data type:
 *    If the data is being sent through the HTTP Data Collector API, you need to change your code\script to split the data before it's ingested.
 *    For custom logs, collected by a Log Analytics agent, change the logging settings of the application or tool.
 *    For any other data type, raise a support case. For more information, see [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate).
+
+### Legacy data collection
+
+The following section provides remediation information on a legacy data collection error.
+
+#### Operation: Azure Activity Log collection
+
+"Access to the subscription was lost. Ensure that the \<**subscription id**\> subscription is in the \<**tenant id**\> Microsoft Entra tenant. If the subscription is transferred to another tenant, there's no impact to the services, but information for the tenant could take up to an hour to propagate."
+
+In some situations, like moving a subscription to a different tenant, the Azure activity logs might stop flowing into the workspace. In those situations, you need to reconnect the subscription following the process described in this article.
+
+Recommended actions:
+
+* If the subscription mentioned in the warning message no longer exists, disable the legacy data collection using the [Data Sources - Delete API](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
+* If you no longer have access to the subscription mentioned in the warning message:
+  * Follow the preceding step to disconnect the subscription.
+  * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
+* [Create a diagnostic setting](../essentials/activity-log.md#send-to-log-analytics-workspace) to send the activity log to a Log Analytics workspace.
 
 ## Alert rules
 
@@ -129,7 +147,7 @@ The following example creates a Warning alert when the ingestion volume rate has
   - Threshold: 0
   - Period: 5 (minutes)
   - Frequency: 5 (minutes)
-- Alert rule name: Daily data limit reached
+- Alert rule name: Ingestion rate limit warning
 - Severity: Warning (Sev 1)
 
 The following example creates a Warning alert when the data collection has reached the daily limit:
