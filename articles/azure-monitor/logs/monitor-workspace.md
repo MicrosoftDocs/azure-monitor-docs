@@ -3,7 +3,7 @@ title: Monitor operational issues logged in your Azure Monitor Log Analytics wor
 description: The article describes how to monitor the health of your Log Analytics workspace by using data in the Operation table.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 08/29/2025
+ms.date: 05/04/2026
 
 ---
 
@@ -91,7 +91,7 @@ Recommended action: For custom tables, you can move to [parsing the data](./pars
 
 "The following fields' values \<**field name**\> of type \<**table name**\> have been trimmed to the max allowed size, \<**field size limit**\> bytes. Please adjust your input accordingly."
 
-A field larger than the limit size was processed by Azure logs. The field was trimmed to the allowed field limit. We don't recommend sending fields larger than the allowed limit because it results in data loss.
+A field larger than the limit size was processed by Azure Monitor Logs. The field was trimmed to the allowed field limit. We don't recommend sending fields larger than the allowed limit because it results in data loss.
 
 Recommended actions:
 
@@ -101,9 +101,9 @@ Check the source of the affected data type:
 *    For custom logs, collected by a Log Analytics agent, change the logging settings of the application or tool.
 *    For any other data type, raise a support case. For more information, see [Azure Monitor service limits](../service-limits.md#data-ingestion-volume-rate).
 
-### Data collection
+### Legacy data collection
 
-The following section provides information on data collection.
+The following section provides remediation information on a legacy data collection error.
 
 #### Operation: Azure Activity Log collection
 
@@ -113,7 +113,7 @@ In some situations, like moving a subscription to a different tenant, the Azure 
 
 Recommended actions:
 
-* If the subscription mentioned in the warning message no longer exists, go to the **Legacy activity log connector** pane under **Classic**. Select the relevant subscription, and then select the **Disconnect** button.
+* If the subscription mentioned in the warning message no longer exists, disable the legacy data collection using the [Data Sources - Delete API](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
 * If you no longer have access to the subscription mentioned in the warning message:
   * Follow the preceding step to disconnect the subscription.
   * To continue collecting logs from this subscription, contact the subscription owner to fix the permissions and re-enable activity log collection.
@@ -147,7 +147,7 @@ The following example creates a Warning alert when the ingestion volume rate has
   - Threshold: 0
   - Period: 5 (minutes)
   - Frequency: 5 (minutes)
-- Alert rule name: Daily data limit reached
+- Alert rule name: Ingestion rate limit warning
 - Severity: Warning (Sev 1)
 
 The following example creates a Warning alert when the data collection has reached the daily limit:
