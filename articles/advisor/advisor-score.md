@@ -276,16 +276,6 @@ For more information about Azure Advisor, see the following articles.
 
 *   [Introduction to Azure Advisor](./advisor-overview.md "Introduction to Azure Advisor | Azure Advisor | Microsoft Learn")
 
+*   [Advisor Score API](https://learn.microsoft.com/en-us/rest/api/advisor/advisor-scores/)
+
 *   [Azure Advisor REST API](/rest/api/advisor "Azure Advisor REST API | Microsoft Learn")
-
-For more information about specific Advisor recommendations, see the following articles.
-
-*   [Reliability recommendations](./advisor-reference-reliability-recommendations.md "Reliability recommendations | Azure Advisor | Microsoft Learn")
-
-*   [Cost recommendations](./advisor-reference-cost-recommendations.md "Cost recommendations | Azure Advisor | Microsoft Learn")
-
-*   [Performance recommendations](./advisor-reference-performance-recommendations.md "Performance recommendations | Azure Advisor | Microsoft Learn")
-
-*   [Review security recommendations](/azure/defender-for-cloud/review-security-recommendations "Review security recommendations | Defender for Cloud | Microsoft Learn")
-
-*   [Operational excellence recommendations](./advisor-reference-operational-excellence-recommendations.md "Operational excellence recommendations] | Azure Advisor | Microsoft Learn")
