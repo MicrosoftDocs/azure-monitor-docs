@@ -48,13 +48,13 @@ In Azure Service Health, users with subscription access can view and manage vari
 
 Here are some key points about what a subscription access includes:
 
-* **View Service Health events:** Users with subscription access can view Service Health events such as service issues, planned maintenance, health advisories, and security advisories. These events are specific to the resources within the subscription.
+* **Viewing Service Health events:** Users with subscription access can view Service Health events such as service issues, planned maintenance, health advisories, and security advisories. These events are specific to the resources within the subscription.
 
-* **Create Service Health alerts:** Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure activity logs.
+* **Creating Service Health alerts:** Users can create Service Health alerts to receive notifications about Service Health events. The permissions required to create these alerts are like those for Azure activity logs.
 
 * **Role-based access control:** Manage subscription access through role-based access control. Users must be granted the Reader role on a subscription to view Service Health events. For sensitive information, such as security advisories, elevated access is required. For more information, see [Elevated access for viewing security advisories](security-advisories-elevated-access.md) and [Resource impact from Azure security advisories](impacted-resources-security.md).
 
-* **Filter and sort events:** In the Service Health portal, users can filter and sort events by subscription scope. With these filters, users can see service issues, health advisories, security advisories, and health history at the subscription level. For more information, see [Azure Service Health portal](service-health-portal-update.md).
+* **Filtering and sorting events:** In the Service Health portal, users can filter and sort events by subscription scope. With these filters, users can see service issues, health advisories, security advisories, and health history at the subscription level. For more information, see [Azure Service Health portal](service-health-portal-update.md).
 
 * **Access to specific endpoints:** There are specific endpoints for accessing detailed information about Service Health events. For example, the `events/{trackingId}/fetchEventDetails` endpoint provides detailed properties of a particular event, including sensitive information for security advisory events.
 
