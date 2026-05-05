@@ -3,7 +3,7 @@ title: Ingest events from Azure Event Hubs into Azure Monitor Logs (Preview)
 description: Ingest logs from Event Hubs into Azure Monitor Logs 
 ms.reviewer: ilanawaitser
 ms.topic: tutorial 
-ms.date: 08/29/2025
+ms.date: 05/05/2026
 ms.custom: references_regions 
 
 # Customer intent: As a DevOps engineer, I want to ingest data from an event hub into a Log Analytics workspace so that I can monitor logs that I send to Azure Event Hubs.
@@ -129,7 +129,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 
 ## Create a data collection endpoint
 
-To collect data with a data collection rule, you need an endpoint. This tutorial step walks through the creation of a data collection endpoint (DCE). An optional approach not covered here is to use a [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview#logs-ingestion-api). 
+To collect data with a data collection rule, you need an endpoint. This tutorial step walks through the creation of a data collection endpoint (DCE). An optional approach not covered here is to use a [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview.md#logs-ingestion-api). 
 
 1. [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint). 
 
