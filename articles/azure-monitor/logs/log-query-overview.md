@@ -3,7 +3,7 @@ title: Log queries in Azure Monitor
 description: This reference information for Kusto Query Language used by Azure Monitor includes elements specific to Azure Monitor and elements not supported in Azure Monitor log queries.
 ms.topic: concept-article
 ms.reviewer: ilanawaitser
-ms.date: 08/29/2025
+ms.date: 04/29/2026
 
 ---
 
@@ -47,6 +47,8 @@ The best way to get started learning to write log queries by using KQL is to use
 * [KQL tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor) - Guided walk through basic KQL concepts and common operators. This is the best place to start to come up to speed with the language itself and the structure of log queries.
 
 * [Example queries](../logs/queries.md) - Description of the example queries available in Log Analytics. You can use the queries without modification or use them as samples to learn KQL.
+
+* [Chat with your data](../aiops/observability-agent-overview.md#chat-with-your-data) - Use the Observability Agent to explore and analyze your log data using natural language. The agent runs KQL queries on your behalf and surfaces insights without requiring you to write queries.
 
 ## Reference documentation
 

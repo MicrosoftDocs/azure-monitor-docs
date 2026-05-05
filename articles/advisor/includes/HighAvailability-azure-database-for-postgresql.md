@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -123,6 +123,8 @@ Recommendation ID: 2de25da6-5d44-4c0d-8a37-b61f8a65babe
 Subcategory: null
 
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
+
+
 
 
 

@@ -7,7 +7,7 @@ Log Analytics workspaces offer a high degree of reliability. The ingestion pipel
 
 ### Azure Monitor Logs features that enhance resilience
 
-Azure Monitor Logs offers several features that enhance workspaces resilience to various types of issues. You can use these features individually or in combination, depending on your needs.
+Azure Monitor Logs offers several features that enhance workspaces resilience to various types of issues. You can use these features individually or in combination, depending on your needs. For a comprehensive guide that covers regional considerations, disaster recovery, and these features in depth, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
 
 This video provides an overview of reliability and resilience options available for Log Analytics workspaces:
 

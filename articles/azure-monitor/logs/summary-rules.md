@@ -81,7 +81,7 @@ Instead of logging hundreds of similar entries within an hour, the destination t
 
 - The maximum number of active rules in a workspace is 100.
 - Summary rules are currently only available in the public cloud.
-- The summary rule processes incoming data and can't be configured on a historical time range. 
+- The summary rule processes incoming data and doesn't allow a historical time range. Data can only be processed from the recent past up to 24 hours. This corresponds to a maximum `binSize` of 1440 minutes when `binStartTime` is set to the full 24-hour window.
 - Creating a summary rule with query across another tenant under Lighthouse isn't supported.
 - Adding [workspace transformation](./tutorial-workspace-transformations-portal.md#add-a-transformation-to-the-table) to Summary rules destination table isn't supported.
 - Using `union *` and `isfuzzy=true` in Summary rules query aren't supported.
@@ -361,7 +361,7 @@ This table describes the summary rule parameters:
 | `query` | [Kusto Query Language (KQL) query](get-started-queries.md) | Defines the query to execute in the rule. You don't need to specify a time range because the `binSize` parameter determines the aggregation interval - for example, `02:00 to 03:00` if `"binSize": 60`. If you add a time filter in the query, the time rage used in the query is the intersection between the filter and the bin size. |
 | `destinationTable` | tablename_CL | Specifies the name of the destination custom log table. The name value must have the suffix `_CL`. Azure Monitor creates the table in the workspace, if it doesn't already exist, based on the query you set in the rule. If the table already exists in the workspace, Azure Monitor adds any new columns introduced in the query. <br><br> If the summary results include a reserved column name - such as `TimeGenerated`, `_IsBillable`, `_ResourceId`, `TenantId`, or `Type` - Azure Monitor appends the `_Original` prefix to the original fields to preserve their original values.|
 | `binDelay` (optional) | Integer (minutes) | Sets a time to wait before bin execution, typically useful when executed on late arriving data, also known as [ingestion latency](data-ingestion-time.md), and allows most data to arrive. The default delay is from three and a half minutes to 10% of the `binSize` value. <br><br> If you know that the data you query is typically ingested with delay, set the `binDelay` parameter with the known delay value or greater, up to 1440 minutes. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br>In some cases, Azure Monitor might begin bin execution slightly after the set bin delay to ensure service reliability and query success.|
-| `binRetry` | `binStartTime` in<br>`%Y-%n-%eT%H:%M %Z` format | Rerun a bin by provided `binStartTime`. The rest of the rule’s definitions remain per last update. The chosen `binStartTime` value must be after `RuleLastModifiedTime` and fit within the divisions of `binSize`. For example, if the rule's `binSize` is 20 minutes, you could set `binStartTime` to "2026-02-16T10:00:00Z", "2026-02-16T10:20:00Z", or "2026-02-16T10:40:00Z".|
+| `retryBinStartTime` | Datetime in<br>`%Y-%n-%eT%H:%M %Z` format | Rerun a bin by provided `retryBinStartTime`. The rest of the rule’s definitions remain per last update. The chosen `retryBinStartTime` value must be after `RuleLastModifiedTime` and fit within the divisions of `binSize`. For example, if the rule's `binSize` is 20 minutes, you could set `retryBinStartTime` to "2026-02-16T10:00:00Z", "2026-02-16T10:20:00Z", or "2026-02-16T10:40:00Z".|
 | `binStartTime` (optional) | Datetime in<br>`%Y-%n-%eT%H:%M %Z` format | Specifies the date and time for the initial bin execution. The value can start at rule creation datetime minus the `binSize` value, or later and in whole hours. For example, if the datetime is `2023-12-03T12:13Z` and `binSize` is 1,440, the earliest valid `binStartTime` value is `2023-12-02T13:00Z`, and the aggregation includes data logged between 02T13:00 and 03T13:00. In this scenario, the rules start aggregating a 03T13:00 plus the default or specified delay. <br><br> The `binStartTime` parameter is useful in daily summary scenarios. Suppose you're in the UTC-8 time zone and you create a daily rule at `2023-12-03T12:13Z`. You want the rule to complete before you start your day at 8:00 (00:00 UTC). Set the `binStartTime` parameter to `2023-12-02T22:00Z`. The first aggregation includes all data logged between 02T:06:00 and 03T:06:00 local time, and the rule runs at the same time daily. For more information, see [Configure the aggregation timing](#configure-the-aggregation-timing).<br><br> When you update rules, you can either: <br> - Use the existing `binStartTime` value or remove the `binStartTime` parameter, in which case execution continues based on the initial definition.<br> - Update the rule with a new `binStartTime` value to set a new datetime value. |
 | `displayName` (optional) | String | Specifies the rule display name in Azure portal experiences. |
 | `timeSelector` (optional) | `TimeGenerated` | Defines the timestamp field that Azure Monitor uses to aggregate data. For example, if you set `"binSize": 120`, you might get entries with a `TimeGenerated` value between `02:00` and `04:00`. |
@@ -436,7 +436,7 @@ $resourceGroup  = "<resourcegroup>"
 $workspace      = "<workspace>"
 $ruleName       = "<ruleName1>"
 
-$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=$2025-07-01"
+$uri = "https://management.azure.com/subscriptions/$subscriptionId/resourceGroups/$resourceGroup/providers/Microsoft.OperationalInsights/workspaces/$workspace/summarylogs/$ruleName?api-version=2025-07-01"
 
 $token = (Get-AzAccessToken -ResourceUrl "https://management.azure.com/").Token
 
@@ -594,7 +594,7 @@ Not supported.
 
 ## Delete a summary rule
 
-You can have up to 30 active summary rules in your Log Analytics workspace. If you want to create a new rule, but you already have 30 active rules, you must stop or delete an active summary rule. 
+You can have up to 100 active summary rules in your Log Analytics workspace. If you want to create a new rule, but you already have 100 active rules, you must stop or delete an active summary rule. 
 
 ### [API](#tab/api)
 

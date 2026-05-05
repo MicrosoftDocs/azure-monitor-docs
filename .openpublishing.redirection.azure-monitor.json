@@ -56,6 +56,21 @@
    "redirect_document_id": false
   },
   {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-brownfield.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#add-a-new-receiver-to-existing-pipeline-group",
+   "redirect_document_id": true
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-multiple.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#new-pipeline-group-instance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-traefik.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/queries/anffileaccess.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
@@ -8790,6 +8805,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/data-collection/pipeline-configure-clients.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/tables/mdecustomcollectiondevicefileevents.md",
    "redirect_url": "/azure/azure-monitor/reference/tables-index",
    "redirect_document_id": false
@@ -9006,6 +9026,31 @@
   },
   {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-blobservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-fileservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-queueservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-tableservices-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
   }

@@ -32,8 +32,8 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 > 
 > This behavior can be avoided by not collecting performance counters in DCRs that don't specify a [platform type](./data-collection.md#create-data-collection-rule-dcr). Ensure that Windows counters are only included in DCRs associated with Windows machines, and Linux counters are only included in DCRs associated with Linux machines.
 
-> [!NOTE] 
-> Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API (Metric Namespaces - List, Metric Definitions - List, and Metrics - List).
+> [!NOTE]
+> Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API ([Metric Namespaces - List](/rest/api/monitor/metric-namespaces/list), [Metric Definitions - List](/rest/api/monitor/metric-definitions/list), and [Metrics - List](/rest/api/monitor/metrics/list) pointing to **azure.vm.windows.guestmetrics** as Namespace.
 
 ## Add destination
 

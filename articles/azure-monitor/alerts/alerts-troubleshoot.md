@@ -151,7 +151,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
     1. **Is the source IP address blocked?**
 
-        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allowlist. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allowlist.
+        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allow list. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allow list.
 
     1. **Does your webhook endpoint work correctly?**
 
@@ -282,6 +282,25 @@ If you can see a fired alert in the portal, but a related alert processing rule 
     For example, in log search alerts, if the scope of the alert is a Log Analytics workspace, and the **_ResourceId** column is selected, the target resource gets the value of the Resource ID, causing the alert to be triggered on a different resource than initially intended.
 
     In summary, the target resource is the individual resource being monitored, while the scope defines the broader set of resources that the alert rule applies to.
+
+## Problems creating, updating, or deleting any type of alert rules
+
+If you receive an error while trying to create, update, or delete alert rules, verify that the required platform components are available and enabled in your tenant.
+
+### Check that the Geneva Alert RP application is enabled
+
+Azure Monitor relies on a Microsoft-owned first-party application called **Geneva Alert RP** to perform create, read, update, and delete (CRUD) operations for alert rule resources.
+
+This application is part of the underlying Azure platform and is automatically provisioned in your tenant. If this application is **disabled or deleted**, Azure Monitor may be unable to create, update, or manage alert rules as expected.
+
+To resolve this issue:
+
+- Contact your tenant administrator.
+- Ask them to verify that the **Geneva Alert RP** enterprise application:
+  - Exists in the Microsoft Entra tenant
+  - Is not disabled or removed
+
+If the application is missing or disabled, restoring or re-enabling it will allow alert rule operations to function correctly.
 
 ## Problems creating, updating, or deleting alert processing rules in the Azure portal
 

@@ -10,9 +10,12 @@ ms.reviewer: aul
 When you enable Prometheus metrics collection in Azure Monitor from your Kubernetes cluster, it uses a default configuration for targets, dashboards, and recording rules. This article describes the default configuration and the scenarios where you may choose to customize it for your specific requirements.
 
 ## Minimal ingestion profile
-**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume.
+**Minimal ingestion profile** is a setting that is enabled by default when Prometheus metrics are enabled in Azure Monitor for a cluster. This setting reduces the volume of metrics ingested by limiting them to only metrics used by default dashboards, default recording rules, and default alerts. These targets and metrics are listed in this article. If this setting is disabled, then all available metrics for the default targets are collected which can significantly increase ingestion volume. Minimal ingestion is configured independently for cluster-metrics and controlplane-metrics by using the minimal-ingestion-profile section under each group (cluster-metrics and controlplane-metrics). This allows separate control of ingestion volume for cluster-level targets and control plane targets.
 
 You can change the minimal ingestion profile setting by modifying the metrics setting ConfigMap as described in [Customize scraping of Prometheus metrics in Azure Monitor using ConfigMap](./prometheus-metrics-scrape-configuration.md).
+
+> [!NOTE]
+> Schema v2 change: The configuration for targets is now separately under cluster-metrics and controlplane-metrics. If you are migrating from v1, replace minimalingestionprofile = true|false with the corresponding minimal-ingestion-profile.enabled = true|false values in each section.
 
 ## Customization scenarios
 You may choose to use the default configuration or customize collection for your particular requirements. The following table lists the four potential collection scenarios and the recommended method to achieve each.
@@ -26,7 +29,7 @@ You may choose to use the default configuration or customize collection for your
 
 
 ## Targets scraped by default
-Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they're enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets.
+Following are the targets that the Azure Monitor metrics add-on can scrape by default and the conditions under which they're enabled. See [Enable and disable default targets](./prometheus-metrics-scrape-configuration.md#enable-and-disable-default-targets) to enable/disable default targets. If you're using an older ConfigMap schema (v1), control plane targets were configured using prefixed keys such as controlplane-apiserver and controlplane-etcd. In schema version v2, these targets are now configured under the controlplane-metrics section using target names without the controlplane- prefix, such as apiserver and etcd.
 
 The following targets are enabled by default.
 
@@ -36,7 +39,7 @@ The following targets are enabled by default.
 - `kube-state-metrics`
 - `networkobservabilityRetina`
 
-Th following targets are enabled when [control plane metrics (preview)](/azure/aks/monitor-aks#monitor-aks-control-plane-metrics-preview) is enabled.
+The following targets are enabled when [control plane metrics (preview)](/azure/aks/control-plane-metrics-monitor) is enabled. These targets are under "controlplane-metrics" of the ConfigMap.
 
 - `controlplane-apiserver`
 - `controlplane-etcd` 
@@ -96,7 +99,7 @@ The following metrics are collected by default from each default target. All oth
 - `kubelet_volume_stats_available_bytes`
 - `kubelet_volume_stats_inodes_used`
 - `kubelet_volume_stats_inodes`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### coredns
 
@@ -118,7 +121,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### cadvisor
 
@@ -141,7 +144,7 @@ The following metrics are collected by default from each default target. All oth
 - `container_memory_swap`
 - `container_cpu_cfs_throttled_periods_total`
 - `container_cpu_cfs_periods_total`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### kubeproxy
 - `kubeproxy_sync_proxy_rules_duration_seconds` `kubeproxy_sync_proxy_rules_duration_seconds_bucket` `kubeproxy_sync_proxy_rules_duration_seconds_sum` `kubeproxy_sync_proxy_rules_duration_seconds_count` `kubeproxy_network_programming_duration_seconds`
@@ -150,7 +153,7 @@ The following metrics are collected by default from each default target. All oth
 - `process_resident_memory_bytes`
 - `process_cpu_seconds_total`
 - `go_goroutines`
-- `kubernetes_build_info"`
+- `kubernetes_build_info`
 
 #### apiserver
 -  `apiserver_request_duration_seconds` `apiserver_request_duration_seconds_bucket` `apiserver_request_duration_seconds_sum` `apiserver_request_duration_seconds_count` 
@@ -160,15 +163,20 @@ The following metrics are collected by default from each default target. All oth
 -  `process_resident_memory_bytes`
 -  `process_cpu_seconds_total`
 -  `go_goroutines`
--  `kubernetes_build_info"`
+-  `kubernetes_build_info`
 
 #### kube-state
 
 - `kube_job_status_succeeded`
 - `kube_job_spec_completions`
+- `kube_daemonset_status_current_number_scheduled`
 - `kube_daemonset_status_desired_number_scheduled`
+- `kube_daemonset_status_number_misscheduled`
 - `kube_daemonset_status_number_ready`
 - `kube_deployment_status_replicas_ready`
+- `kube_persistentvolumeclaim_access_mode`
+- `kube_persistentvolumeclaim_labels`
+- `kube_persistentvolume_status_phase`
 - `kube_pod_container_status_last_terminated_reason`
 - `kube_pod_container_status_waiting_reason`
 - `kube_pod_container_status_restarts_total`
@@ -202,6 +210,7 @@ The following metrics are collected by default from each default target. All oth
 - `kube_pod_container_info`
 - `kube_resource_labels` (ex - kube_pod_labels, kube_deployment_labels)
 - `kube_resource_annotations` (ex - kube_pod_annotations, kube_deployment_annotations)
+- `kubelet_volume_stats_inodes_free`
 
 #### nodeexporter
 
@@ -231,7 +240,7 @@ The following metrics are collected by default from each default target. All oth
 - `node_disk_io_time_weighted_seconds_total`
 - `node_exporter_build_info`
 - `node_time_seconds`
-- `node_uname_info"`
+- `node_uname_info`
 
 
 #### windowsexporter
@@ -463,7 +472,7 @@ The following recording rules are automatically deployed to support Prometheus v
 - `ux:node_network_receive_drop_total:sum_irate`
 - `ux:node_network_transmit_drop_total:sum_irate`
 
-The following recording rules are required for Windows support. They're deployed automitcally but aren't enabled by default. See [enabling and disabling rule groups](../essentials/prometheus-rule-groups.md#disable-and-enable-rule-groups) to enable them. 
+The following recording rules are required for Windows support. They're deployed automatically but aren't enabled by default. See [enabling and disabling rule groups](../essentials/prometheus-rule-groups.md#disable-and-enable-rule-groups) to enable them. 
 
 - `ux:node_cpu_usage_windows:sum_irate`
 - `ux:node_memory_usage_windows:sum`

@@ -4,7 +4,7 @@ description: Operational excellence recommendations
 ms.topic: article
 author: kanika1894
 ms.author: kapasrij
-ms.date: 02/10/2026
+ms.date: 04/14/2026
 ---
 
 # Operational Excellence recommendations
@@ -59,6 +59,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 
 [!INCLUDE [OperationalExcellence-azure-netapp-files.md](./includes/OperationalExcellence-azure-netapp-files.md)]
 
+[!INCLUDE [OperationalExcellence-azure-orbital-ground-station.md](./includes/OperationalExcellence-azure-orbital-ground-station.md)]
+
 [!INCLUDE [OperationalExcellence-azure-site-recovery.md](./includes/OperationalExcellence-azure-site-recovery.md)]
 
 [!INCLUDE [OperationalExcellence-azure-spring-apps.md](./includes/OperationalExcellence-azure-spring-apps.md)]
@@ -82,6 +84,8 @@ You can get these recommendations on the **Operational Excellence** tab of the A
 [!INCLUDE [OperationalExcellence-microsoft.kubernetesruntime.md](./includes/OperationalExcellence-microsoft.kubernetesruntime.md)]
 
 [!INCLUDE [OperationalExcellence-service-bus.md](./includes/OperationalExcellence-service-bus.md)]
+
+[!INCLUDE [OperationalExcellence-service-fabric.md](./includes/OperationalExcellence-service-fabric.md)]
 
 [!INCLUDE [OperationalExcellence-sql-server-on-azure-virtual-machines.md](./includes/OperationalExcellence-sql-server-on-azure-virtual-machines.md)]
 

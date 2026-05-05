@@ -3,8 +3,9 @@ title: Azure Monitor customer-managed keys
 description: Information and steps to configure Customer-managed key to encrypt data in your Log Analytics workspaces using an Azure Key Vault key.
 ms.topic: how-to
 ms.reviewer: yossiy
-ms.date: 03/10/2026
+ms.date: 04/09/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
+ai-usage: ai-assisted
 
 ---
 
@@ -22,7 +23,7 @@ To control the key lifecycle and revoke access to data, encrypt data by using yo
 
 Data ingested to dedicated clusters is [encrypted twice](/azure/security/fundamentals/double-encryption) - at the service level by using Microsoft-managed keys or customer-managed keys, and at the infrastructure level by using two different [encryption algorithms](/azure/storage/common/storage-service-encryption#about-azure-storage-service-side-encryption) and two different keys. Double encryption protects against a scenario where one of the encryption algorithms or keys is compromised. Dedicated clusters also let you protect data by using [Lockbox](#customer-lockbox).
 
-Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. Azure Monitor encrypts SSD data by using Microsoft-managed keys regardless of whether you configure customer-managed keys, but your control over SSD access adheres to [key revocation](#key-revocation).
+Data ingested in the last 14 days, or recently used in queries, is kept in hot-cache (SSD-backed) for query efficiency. Azure Monitor encrypts hot-cache data by using Microsoft-managed infrastructure keys regardless of whether you configure customer-managed keys. Access to hot-cache data remains governed by the state of your customer-managed key. If you [revoke access to the key](#key-revocation), the system deletes hot-cache data and it becomes inaccessible.
 
 > [!IMPORTANT]
 > Dedicated clusters use a [commitment tier pricing model](./logs-dedicated-clusters.md#cluster-pricing-model) of at least 100 GB per day.
@@ -63,6 +64,18 @@ The following rules apply:
 - When you configure the customer-managed **KEK** in your cluster, the cluster storage sends `wrap` and `unwrap` requests to your Key Vault for **AEK** encryption and decryption.
 - Your **KEK** never leaves your Key Vault. If you store your key in an Azure Key Vault Managed HSM, it never leaves that hardware either.
 - Azure Storage uses the managed identity associated with the cluster for authentication. It accesses Azure Key Vault through Microsoft Entra ID.
+
+### Operational key protection
+
+The encryption model used by Log Analytics dedicated clusters follows [envelope encryption](/azure/security/fundamentals/encryption-atrest#envelope-encryption-with-a-key-hierarchy) principles. Customer-managed keys stored in Azure Key Vault or Managed HSM protect the service-level encryption keys (**AEK**) used by the cluster. These service-level keys aren't persisted in storage on the cluster itself.
+
+During normal operation, the dedicated cluster storage caches the **AEK** in service runtime memory for active cryptographic operations and periodically contacts Key Vault to `unwrap` the key. The following measures protect cached operational keys:
+
+- **Managed identity authentication** - The cluster's [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) controls access to Key Vault, ensuring that only the authorized cluster can access the key.
+- **Azure platform compute isolation** - Dedicated clusters operate on Azure compute infrastructure that provides hypervisor-enforced tenant isolation, host-level memory protections, OS-level process isolation, and VM boundary enforcement. For more information about Azure platform isolation, see [Isolation in the Azure Public Cloud](/azure/security/fundamentals/isolation-choices).
+- **Encrypted infrastructure storage** - [Double encryption](/azure/security/fundamentals/double-encryption) using platform-managed keys at the infrastructure level protects data on the cluster.
+
+Transient operational caching is an availability mechanism. It allows the cluster to continue ingestion and query operations during temporary Key Vault connectivity disruptions (such as transient network errors or DNS failures). Operational key caching doesn't replace or weaken the protection provided by the customer-managed key in Key Vault. Access to encrypted data, including the [hot-cache](#how-customer-managed-keys-work-in-azure-monitor), remains governed by CMK state. If you [revoke access to the key](#key-revocation), encrypted data becomes inaccessible to the service.
 
 ## Required permissions
 
@@ -298,7 +311,10 @@ To link a workspace, see [Create and manage a dedicated cluster](./logs-dedicate
 > - To revoke access to your data, disable your key or delete the Access Policy in your Key Vault.
 > - Setting the cluster's `identity` `type` to `None` also revokes access to your data, but don't use this approach since you can't revert it without contacting support.
 
-The cluster's storage always respects changes in key permissions and becomes unavailable within an hour or sooner if the key is disabled or access policy is deleted. New data ingested to linked workspaces is dropped and unrecoverable. Data is inaccessible on these workspaces and queries fail. Previously ingested data remains as long as your cluster and your workspaces aren't deleted. The data-retention policy governs inaccessible data and purges it when the retention period is reached. Data ingested in the last 14 days and data recently used in queries is also kept in hot-cache (SSD-backed) for query efficiency. The data on SSD gets deleted on the key revocation operation and becomes inaccessible. The cluster storage attempts to reach Key Vault for `wrap` and `unwrap` operations periodically. Once the key is enabled and `unwrap` succeeds, SSD data is reloaded from the dedicated cluster storage. Data ingestion and query functionality resume within 30 minutes.
+It's important to distinguish between intentional key revocation and a temporary Key Vault connectivity disruption:
+
+- **Intentional key revocation** - When you deliberately disable the key or delete the access policy, the cluster's storage becomes unavailable within an hour or sooner. New data ingested to linked workspaces is dropped and unrecoverable. The system deletes hot-cache (SSD) data and it becomes inaccessible. Queries fail on these workspaces. Previously ingested data remains as long as your cluster and your workspaces aren't deleted. The data-retention policy governs inaccessible data and purges it when the retention period is reached. The cluster storage attempts to reach Key Vault for `wrap` and `unwrap` operations periodically. Once you re-enable the key and `unwrap` succeeds, the system reloads SSD data from dedicated cluster storage. Data ingestion and query functionality resume within 30 minutes.
+- **Temporary Key Vault outage** - During transient connection errors (network timeouts, DNS failures), the cluster uses cached operational keys to maintain ingestion and query availability without interruption. The cluster periodically attempts to contact Key Vault, and normal operations resume when connectivity is restored. Transient operational caching doesn't bypass or weaken key revocation controls. There's no published specific duration for how long a cluster can operate without Key Vault access during a transient connectivity disruption.
 
 ### Key rotation
 
@@ -482,12 +498,7 @@ To learn more, see [Customer Lockbox for Microsoft Azure](/azure/security/fundam
 
 ### Troubleshooting
 
-- Behavior per Key Vault availability:
-  - During normal ingestion operation, the dedicated cluster storage caches **AEK** for short periods of time and goes back to Key Vault to `unwrap` periodically.
-    
-  - During Key Vault connection errors, the dedicated cluster storage handles transient errors (timeouts, connection failures, DNS failures) by keeping keys in the cache during the issue to overcome blips and intermittent availability. The query and ingestion capabilities continue without interruption.
-    
-- Key Vault access rate - the frequency with which the cluster storage accesses Key Vault for `wrap` and `unwrap` operations is between 6 to 60 seconds.
+- Behavior per Key Vault availability - For details on how the cluster handles temporary Key Vault outages compared to intentional key revocation, see [Key revocation](#key-revocation). The cluster caches the **AEK** for short periods and contacts Key Vault to `unwrap` periodically at a rate of 6 to 60 seconds.
 
 - If you update your cluster while it's in the provisioning state or updating state, the update fails.
 

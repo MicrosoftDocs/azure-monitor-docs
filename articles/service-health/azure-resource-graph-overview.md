@@ -2,7 +2,7 @@
 title: Azure Resource Graph Overview
 description: Learn about the Azure Resource Graph table properties.
 ms.topic: concept-article
-ms.date: 02/19/2026
+ms.date: 04/28/2026
 
 ---
 # Azure Resource Graph tables overview
@@ -28,24 +28,24 @@ For more information on the HealthResources table, see [VM availability informat
 
 This table shows the core fields in the ARG table for the Service Health, Impacted Resources, and Resource Health queries that represent the metadata about Azure resources.
 
-|Field Name      |Description                                                                 |
-|----------------|----------------------------------------------------------------------------|
-|id              | Full Azure resource ID (for example, /subscriptions/<`subscription-id`>/providers/Microsoft.ResourceHealth/events/<`tracking-id`>)|
-|name            | Name of the resource                                                       |
-|type            | Resource type (for example, Microsoft.Compute/virtualMachines)             |
-|tenantId        | ID of tenant the resource belongs to                                       |
-|location        | Azure region where the resource is deployed (default is Global)            |
-|subscriptionId  | ID of the subscription the resource belongs to                             |
-|resourceGroup   | Name of the resource group                                                 |
-|tags            | Key-value pairs assigned to the resource                                   |
-|properties      | JSON objects containing resource-specific properties                       |
-|sku             | SKU details (tier, name) for applicable resources                          |
-|kind            | Resource kind (used in App Services, for example, functionapp, or webapp)  |
-|managedBy       | Indicates if another Azure service manages the resource                    |
-|identity        | Identity configuration (for example, system-assigned or user-assigned)     |
-|plan            | Marketplace plan details                                                   |
-|zones           | Availability zones the resource is deployed in                             |
-|extendedLocation| Extended location details (for example, custom locations)                  |
+|Field Name      |Description                                                                                                                        |
+|----------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|ID              | Full Azure resource ID (for example, /subscriptions/<`subscription-id`>/providers/Microsoft.ResourceHealth/events/<`tracking-id`>)|
+|name            | Name of the resource                                                                                                              |
+|type            | Resource type (for example, Microsoft.Compute/virtualMachines)                                                                    |
+|tenantId        | ID of tenant the resource belongs to                                                                                              |
+|location        | Azure region where the resource is deployed (default is Global)                                                                   |
+|subscriptionId  | ID of the subscription the resource belongs to                                                                                    |
+|resourceGroup   | Name of the resource group                                                                                                        |
+|tags            | Key-value pairs assigned to the resource                                                                                          |
+|properties      | JSON objects containing resource-specific properties                                                                              |
+|sku             | SKU details (tier, name) for applicable resources                                                                                 |
+|kind            | Resource kind (used in App Services, for example, functionapp, or webapp)                                                         |
+|managedBy       | Indicates if another Azure service manages the resource                                                                           |
+|identity        | Identity configuration (for example, system-assigned or user-assigned)                                                            |
+|plan            | Marketplace plan details                                                                                                          |
+|zones           | Availability zones the resource is deployed in                                                                                    |
+|extendedLocation| Extended location details (for example, custom locations)                                                                         |
 
 
 ## Service Health
@@ -71,32 +71,33 @@ These fields are used together to track, filter, and analyze service health even
 This table lists all the properties you can use in your Service Health and Impacted Resources queries.
 
 
-|Property                         |Description                                                                   |
-|---------------------------------|------------------------------------------------------------------------------|
-|`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)       |
-|`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling        |
-|`Status`                         | Current status of the event: Active or Resolved                              |
-|`EventLevel`                     | Severity: Informational, Warning, Critical, Error                            |
-|`Level`                          | Often mirrors EventLevel and is used for UI rendering                        |
+|Property                         |Description                                                                                        |
+|---------------------------------|---------------------------------------------------------------------------------------------------|
+|`EventType`                      | High-level classification: ServiceIssue, PlannedMaintenance, HealthAdvisory, Billing, SecurityAdvisory, EmergingIssues, and Post Incident Review (PIR)                                                                                                                 |
+|`EventSubType`                   | Specific subtype: Retirement, TaxChanges, PriceChanges, MeterIDChanges, ForeignExchangeRateChange, UnauthorizedPartyAbuse, Underbilling, and Overbilling                                                                                                         |
+|`Status`                         | Current status of the event: Active or Resolved                                                   |
+|`EventLevel`                     | Severity: Informational, Warning, Critical, Error                                                 |
+|`Level`                          | Often mirrors EventLevel and is used for UI rendering                                             |
 |`EventSource`                    | Indicates the source system that generated the event as ServiceHealthResources or HealthResources |
-|`TrackingId`                     | Unique identifier for the event                                              |
-|`Title`                          | Title of the event                                                           |
-|`Summary`                        | Description of the event <br>*At this time to get full text of the description, you can use either Service Health API (description property) or the Activity Log (communication property)*.         |
-|`Priority`                       | Priority level assigned to the event                                         |
-|`ImpactStartTime`                | When the event causing the impact began                                      |
-|`ImpactMitigationTime`           | When mitigation is expected or completed                                     |
-|`Impact`                         | Description of the impact on services                                        |
-|`Region`                         | Which regions and services are impacted |
-|`RecommendedActions`             | Suggested actions for users and/or admins                                    |     
-|`ExternalIncidentId`             | Incident ID used externally (for example in ServiceNow)                      |
+|`TrackingId`                     | Unique identifier for the event                                                                   |
+|`Title`                          | Title of the event                                                                                |
+|`Summary`                        | Description of the event <br>*The full summary of the event is in the `Description` field*.       |
+|`Priority`                       | Priority level assigned to the event                                                              |
+|`ImpactStartTime`                | When the event causing the impact began                                                           |
+|`ImpactMitigationTime`           | When mitigation is expected or completed                                                          |
+|`Impact`                         | Description of the impact on services                                                             |
+|`Region`                         | Which regions and services are impacted                                                           |
+|`RecommendedActions`             | Suggested actions for users and/or admins                                                         |     
+|`ExternalIncidentId`             | Incident ID used externally (for example in ServiceNow)                                           |
 |`PlatformInitiated`              | Indicates if the Azure platform triggers the event (for example, an automated mitigation or system-triggered maintenance)|     
-|`SubscriptionId`                 | The unique identifier of the Azure subscription affected by the event        |
-|`LastUpdateTime`                 | Timestamp of the most recent update to the event                             |     
-|`CurrencyType`                   | The currency used in billing-related events (for example, USD, EUR)          |
-|`impactType`                     | The nature of the impact (for example, SubscriptionList, ServicesForSubTenants)|     
-|`BillingId`                      | Identifier used to associate the event with a billing account or transaction |
-|`EventTags`                      | Metadata tags used to categorize or filter events (for example, Security, Maintenance, Outage)  |     
-|`duration`                       | Descriptive label or title for the event                                     |
+|`SubscriptionId`                 | The unique identifier of the Azure subscription affected by the event                             |
+|`LastUpdateTime`                 | Timestamp of the most recent update to the event                                                  |     
+|`CurrencyType`                   | The currency used in billing-related events (for example, USD, EUR)                               |
+|`impactType`                     | The nature of the impact (for example, SubscriptionList, ServicesForSubTenants)                   |     
+|`BillingId`                      | Identifier used to associate the event with a billing account or transaction                      |
+|`EventTags`                      | Metadata tags used to categorize or filter events (for example, Security, Maintenance, Outage)    |     
+|`duration`                       | Descriptive label or title for the event                                                          |
+|`Description`                    | Full description of the event                                                                     |
 
 
 
@@ -126,22 +127,22 @@ Set the `type` column in the ServiceHealthResources table to **microsoft.resourc
 
 ### Impacted Resources properties
 
-|Field name           |Description |
-|---------------------|---------|
-|`resourceName`       | Name of the impacted resource         |
-|`resourceGroupName`  | Name of Resource Group        |
-|`targetResourceType` | Type of the impacted resource         |
-|`targetResourceId`   | Full resource ID |
-|`targetRegion`       | Region of the impacted resource        |
-|`systemData`         | Metadata about who created or modified the entry       |
-|`maintenanceStartTime`  |When the event causing the impact began  |
-|`maintenanceEndTime`  |When the event causing the impact ended  |
-|`targetResourceType`  | Type of the impacted resource (for example, Microsoft.Compute/virtualMachines) |
-|`targetResourceId`  | Full resource ID of the impacted resource  |
-|`resourceGroup`  |Name of the Resource Group  |
-|`targetRegion`  |Region of the impacted resource  |
-|`staus`  |Current status of the event  |
-|`info`  |  |
+|Field name            |Description                                                                      |
+|----------------------|---------------------------------------------------------------------------------|
+|`resourceName`        | Name of the impacted resource                                                   |
+|`resourceGroupName`   | Name of Resource Group                                                          |
+|`targetResourceType`  | Type of the impacted resource                                                   |
+|`targetResourceId`    | Full resource ID                                                                |
+|`targetRegion`        | Region of the impacted resource                                                 |
+|`systemData`          | Metadata about who created or modified the entry                                |
+|`maintenanceStartTime`|When the event causing the impact began                                          |
+|`maintenanceEndTime`  |When the event causing the impact ended                                          |
+|`targetResourceType`  | Type of the impacted resource (for example, Microsoft.Compute/virtualMachines)  |
+|`targetResourceId`    | Full resource ID of the impacted resource                                       |
+|`resourceGroup`       |Name of the Resource Group                                                       |
+|`targetRegion`        |Region of the impacted resource                                                  |
+|`staus`               |Current status of the event                                                      |
+|`info`                |                                                                                 |
 
 
 ## Resource Health

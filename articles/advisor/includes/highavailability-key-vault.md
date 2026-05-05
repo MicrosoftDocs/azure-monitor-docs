@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Key Vault
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Key Vault
   
 ## Key Vault  
   
-<!--a6d218b1-a826-4183-8cc8-4b111371e47b_begin-->
+<!--7ff06874-39e9-41be-9552-fa1ae2a83c88_begin-->
 
-#### Migrate to HSM Platform 2 Keys  
+#### Azure Key Vault API versions prior to 2026-02-01 are being retired  
   
-To ensure the continued security and functionality of your operations, we recommend transitioning to HSM Platform 2 keys as soon as possible.  
+Transition to API version 2026-02-01. Azure role-based access control (RBAC) will be the default access control model for all newly created vaults. Existing key vaults will continue using their current access control model.  
   
-**Potential benefits**: Avoid service disruptions and maintain secure operations  
+**Potential benefits**: Avoid potential disruptions  
 
-**Impact:** Medium
+**Impact:** High
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=494676)  
+For more information, see [Prepare for Key Vault API version 2026-02-01 and later - Azure RBAC as default](/azure/key-vault/general/access-control-default?tabs=azure-cli)  
 
-ResourceType: microsoft.keyvault/managedhsms  
-Recommendation ID: a6d218b1-a826-4183-8cc8-4b111371e47b  
+ResourceType: microsoft.keyvault/vaults  
+Recommendation ID: 7ff06874-39e9-41be-9552-fa1ae2a83c88  
 Subcategory: undefined
 
-<!--a6d218b1-a826-4183-8cc8-4b111371e47b_end-->
+<!--7ff06874-39e9-41be-9552-fa1ae2a83c88_end-->
 
 <!--articleBody-->

@@ -2,7 +2,7 @@
 title: Azure Diagnostics extension overview
 description: Use Azure Diagnostics for debugging, measuring performance, monitoring, and performing traffic analysis in cloud services, virtual machines, and service fabric.
 ms.topic: concept-article
-ms.date: 04/07/2026
+ms.date: 04/27/2026
 ms.reviewer: shseth
 ai-usage: ai-assisted
 
@@ -42,7 +42,7 @@ The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure cont
 | Destination | Migration options |   
 |-------------|----------------------------------------------------------------------|
 | Azure Storage blobs | If you're using WAD or LAD agents to send data to storage for longer term storage and lower costs, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md). Then you can send data to custom tables with low-cost [Auxiliary plan](../logs/create-custom-table-auxiliary.md) for cost-effective logging and added benefits of Log Analytics | 
-| Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs as a way to land it in your final destination or third party products, consider the following methods now available natively using Azure Monitor: <ul><li> [Configure Event Hubs using VM watch](/azure/virtual-machines/configure-eventhub-vm-watch) A native offering for virtual machines (VMs) and scale sets that send data Azure, including Event Hubs. **Note**: VM Watch doesn't collect application logs </li><li> **Event Hub -> Azure Data Explorer**: If your final data destination is ADX, migrate to [Azure Monitor Agent](./azure-monitor-agent-migration-wad-lad.md) to send data [directly to ADX and Fabric eventhouses](../vm/send-fabric-destination.md) as a simpler, more reliable solution </li> <!--li> **Event Hub -> OTLP destinations**: Migrate to [Azure Monitor Agent](./azure-monitor-agent-overview.md) and [Azure Monitor pipeline](../data-collection/edge-pipeline-configure.md) to send data to OTLP compliant external destinations Splunk, Grafana, Datadog, etc. </li--><li> **Event Hub -> Other destination(s)**: [Contact Azure Monitor team](mailto:obs-agent-pms@microsoft.com) for quick assistance regarding other destinations not listed here </li></ul> |
+| Azure Event Hubs | If you're using WAD or LAD agents to send data to Event Hubs, migrate to using [Azure Monitor Logs data export capability](../logs/logs-data-export.md) to send logs to Event Hub(s). | 
 | Azure Monitor metrics | For VM Guest OS Perf Counter scenarios, migrate to using AMW as a destination for [OpenTelemetry performance counters](../vm/metrics-opentelemetry-guest.md). For custom metric scenarios, migrate to using AMW as a destination for [OpenTelemetry metrics](../app/opentelemetry.md). |
 
 ## Primary scenarios

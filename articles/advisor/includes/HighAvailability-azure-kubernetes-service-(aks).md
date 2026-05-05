@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 04/28/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -81,7 +81,7 @@ Subcategory: undefined
 
 #### Create a dedicated system node pool  
   
-A cluster without a dedicated system node pool is less reliable. We recommend you dedicate system node pools to only serve critical system pods, preventing resource starvation between system and competing user pods. Enforce this behavior with the CriticalAddonsOnly=true:NoSchedule taint on the pool.  
+Your cluster doesn't have a dedicated system node pool. It's recommended to dedicate system node pools to only serve critical system pods. This prevents resource starvation between system and competing user pods. Enforce this behavior with the CriticalAddonsOnly=true:NoSchedule taint on the pool.  
   
 **Potential benefits**: Prevents resource scarcity for core system pods  
 
@@ -94,6 +94,7 @@ Recommendation ID: f31832f1-7e87-499d-a52a-120f610aba98
 Subcategory: undefined
 
 <!--f31832f1-7e87-499d-a52a-120f610aba98_end-->
+
 
 
 <!--fac2ad84-1421-4dd3-8477-9d6e605392b4_begin-->
@@ -261,5 +262,41 @@ Recommendation ID: 40985a2e-6876-4a4c-902e-c85d06272935
 Subcategory: undefined
 
 <!--40985a2e-6876-4a4c-902e-c85d06272935_end-->
+
+<!--c7507a57-0abf-47af-81bb-819a675bc956_begin-->
+
+#### Azure Kubernetes Support for HC-series is being retired  
+  
+Standard_HC44rs, Standard_HC44-16rs, and Standard_HC44-32rs virtual machine sizes will be retired. Transition to one of the current-generation Azure HPC VM families, HBv5-series, or HX-series VMs.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Migrate your HC-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/hc-series-retirement)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: c7507a57-0abf-47af-81bb-819a675bc956  
+Subcategory: undefined
+
+<!--c7507a57-0abf-47af-81bb-819a675bc956_end-->
+
+<!--10378caa-f4fe-48f3-9893-6bdec79687b2_begin-->
+
+#### Azure Kubernetes Support for HBv2-series is being retired  
+  
+Standard_HB120rs_v2, Standard_HB120-96rs_v2, Standard_HB120-64rs_v2, Standard_HB120-32rs_v2, and Standard_HB120-16rs_v2 virtual machine sizes will be retired. Transition to the HBv5-series VMs.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Migrate your HBv2-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/hbv2-series-retirement)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 10378caa-f4fe-48f3-9893-6bdec79687b2  
+Subcategory: undefined
+
+<!--10378caa-f4fe-48f3-9893-6bdec79687b2_end-->
 
 <!--articleBody-->
