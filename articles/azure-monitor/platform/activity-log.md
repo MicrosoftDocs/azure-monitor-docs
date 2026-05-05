@@ -38,7 +38,7 @@ Specify a time interval of events to retrieve. To retrieve events by using the R
 
 The following sections present common scenarios showing different ways to access and retrieve activity log events through the Azure portal and programmatically using Azure CLI, Azure PowerShell, and the REST API.
 - Azure portal samples provide extra context around what kind of events to expect in that view.
-- Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](https://learn.microsoft.com/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
+- Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
 - Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
 - REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). The samples also demonstrate how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
 
