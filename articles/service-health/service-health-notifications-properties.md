@@ -34,7 +34,7 @@ After you sign in to Azure, access Service Health notifications in one of three 
 
   For more information, see [View and retrieve the activity log](/azure/azure-monitor/platform/activity-log?tabs=log-analytics#view-and-retrieve-the-activity-log).
 
-- **Alerts**: Within the Service Health portal pane, you can also set up activity log alerts to notify you when new Service Health events occur. Messages are delivered via email, short messaging service (SMS), or other actions. For instance, you might create an alert to get an email whenever there's a new incident or a security advisory. In this way, you don't have to constantly check the portal because Azure proactively sends you a notification through the channel that you selected.
+- **Alerts**: Within the Service Health portal pane, you can also set up activity log alerts to notify you when new Service Health events occur. Messages are delivered via email, Short Message Service (SMS), or other actions. For instance, you might create an alert to get an email whenever there's a new incident or a security advisory. In this way, you don't have to constantly check the portal because Azure proactively sends you a notification through the channel that you selected.
 
    For more information on how to create alerts, see [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
 
