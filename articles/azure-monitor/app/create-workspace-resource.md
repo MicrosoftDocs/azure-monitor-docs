@@ -55,7 +55,7 @@ If you don't run the `az extension add` command, you see an error message that s
 
 ### [REST](#tab/rest)
 
-To make a REST API call to Azure, you first need to obtain an access token. 
+To make a REST API call to Azure, you first need to obtain an access token.
 
 For more information, see [Manage Azure resources by using the REST API](/azure/azure-resource-manager/management/manage-resources-rest#obtain-an-access-token).
 
@@ -137,7 +137,7 @@ For more information about creating Application Insights resources and Log Analy
 To create a workspace-based Application Insights resource, a Log Analytics workspace is required. If you don't have one already, you can use the following REST API call to create one.
 
 Placeholders: `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<azure-region-name>`
- 
+
 ```rest
 PUT https://management.azure.com/subscriptions/<subscription-id>/resourcegroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2023-09-01
 Authorization: Bearer <access-token>
@@ -178,11 +178,11 @@ Here's how to create a new Application Insights resource using a Bicep template.
 Create a new *.bicep* file (for example, *my-template.bicep*), copy the following content into it:
 
 ```bicep
-param name string 
-param type string 
-param regionId string 
-param requestSource string 
-param workspaceResourceId string 
+param name string
+param type string
+param regionId string
+param requestSource string
+param workspaceResourceId string
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
   name: name
@@ -202,7 +202,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
 Create a new *.bicepparam* file (for example, *my-parameters.bicepparam*), copy the following content into it, and replace the placeholders `<application-insights-resource-name>`, `<application-type>`, `<azure-region-name>`, `<subscription-id>`, `<resource-group-name>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```bicep
-using 'my-template.bicep' 
+using 'my-template.bicep'
 
 param name string = '<application-insights-resource-name>'
 param type string = '<application-type>'
@@ -219,7 +219,7 @@ param workspaceResourceId string = '/subscriptions/<subscription-id>/resourcegro
 
     ```azurepowershell
     New-AzResourceGroupDeployment -ResourceGroupName <your-resource-group> -TemplateFile my-template.bicep -TemplateParameterFile my-parameters.bicepparam
-    ``` 
+    ```
 
     * `-ResourceGroupName` is the group where you want to create the new resources.
     * `-TemplateFile` must occur before the custom parameters.
@@ -426,10 +426,6 @@ For information on how to set up application monitoring with OpenTelemetry, see 
 > [!NOTE]
 > For web apps targeting browsers, we recommend using the [Application Insights JavaScript SDK](javascript-sdk.md).
 
-<!--
-* [Background tasks and modern console applications (.NET/.NET Core)](./worker-service.md)
-* [Classic console applications (.NET)](./console.md)
--->
 
 ### Automatic instrumentation
 
@@ -489,7 +485,7 @@ For more information about modifying the associated workspace using the REST API
 To change the Log Analytics workspace, paste the following code into your template and replace the placeholders `<application-insights-resource-name>`, `<azure-region-name>`, `<application-type>`, and `<log-analytics-workspace-name>` with your specific values:
 
 ```bicep
-param workspaceResourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>' 
+param workspaceResourceId string = '/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>'
 
 resource appInsights 'Microsoft.Insights/components@2020-02-02-preview' = {
   name: '<application-insights-resource-name>'
@@ -797,7 +793,7 @@ To change the daily cap for Application Insights and Log Analytics, run the foll
 
 **Application Insights**
 
-Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<daily-cap-in-gb>` 
+Placeholders: `<resource-group-name>`, `<application-insights-resource-name>`, `<daily-cap-in-gb>`
 
 ```azurepowershell
 Set-AzApplicationInsightsDailyCap -ResourceGroupName <resource-group-name> -Name <application-insights-resource-name> -DailyCapGB <daily-cap-in-gb>
@@ -807,7 +803,7 @@ For more information about the `Set-AzApplicationInsightsDailyCap` command, see 
 
 **Log Analytics**
 
-Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<daily-cap-in-gb>` 
+Placeholders: `<resource-group-name>`, `<log-analytics-workspace-name>`, `<daily-cap-in-gb>`
 
 ```azurepowershell
 Set-AzOperationalInsightsWorkspace -ResourceGroupName <resource-group-name> -Name <log-analytics-workspace-name> -DailyQuotaGb <daily-cap-in-gb>
@@ -822,7 +818,7 @@ For more information about the `Set-AzOperationalInsightsWorkspace` command, see
 
 To change the daily cap for Log Analytics, use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<log-analytics-workspace-name>`, `<access-token>`, `<azure-region-name>`, and `<daily-cap-in-gb>` with your specific values:
 
-Placeholders: 
+Placeholders:
 
 ```http
 PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/Microsoft.OperationalInsights/workspaces/<log-analytics-workspace-name>?api-version=2023-09-01
@@ -1028,11 +1024,11 @@ To set the pricing plan using an ARM template, paste the following code into you
   "parameters": {
     "workspaceName": {
       "type": "string",
-      "defaultValue": "<log-analytics-workspace-name>" 
+      "defaultValue": "<log-analytics-workspace-name>"
     },
     "workspaceRegion": {
       "type": "string",
-      "defaultValue": "<azure-region-name>" 
+      "defaultValue": "<azure-region-name>"
     }
   },
   "resources": [
@@ -1060,11 +1056,11 @@ To set the pricing plan using an ARM template, paste the following code into you
   "parameters": {
     "workspaceName": {
       "type": "string",
-      "defaultValue": "<log-analytics-workspace-name>" 
+      "defaultValue": "<log-analytics-workspace-name>"
     },
     "workspaceRegion": {
       "type": "string",
-      "defaultValue": "<azure-region-name>" 
+      "defaultValue": "<azure-region-name>"
     },
     "capacityReservationLevel": {
       "type": "int",
@@ -1141,12 +1137,12 @@ For more information about the `az monitor app-insights web-test create` command
 To create a standard availability test with default settings, run the following Azure PowerShell command in your terminal and replace the placeholders `<resource-group-name>`, `<azure-region-name>`, `<web-test-name>`, `<url>`, `<subscription-id>`, and `<application-insights-resource-name>` with your specific values:
 
 ```azurepowershell
-$geoLocation = @() 
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-ca-sjc-azr" 
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "apac-sg-sin-azr" 
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-il-ch1-azr" 
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-va-ash-azr" 
-$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "emea-au-syd-edge" 
+$geoLocation = @()
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-ca-sjc-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "apac-sg-sin-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-il-ch1-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "us-va-ash-azr"
+$geoLocation += New-AzApplicationInsightsWebTestGeolocationObject -Location "emea-au-syd-edge"
 New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
                                  -Location <azure-region-name> `
                                  -Name <web-test-name> `
@@ -1160,7 +1156,7 @@ New-AzApplicationInsightsWebTest -ResourceGroupName <resource-group-name> `
                                  -GeoLocation $geoLocation `
                                  -RequestHttpVerb GET `
                                  -Timeout 120 `
-                                 -RuleExpectedHttpStatusCode 200 ` 
+                                 -RuleExpectedHttpStatusCode 200 `
                                  -Enabled `
                                  -Tag @{"hidden-link:/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>" = "Resource"}
 ```
@@ -1419,9 +1415,7 @@ There are several different methods of setting the **Application Version** prope
 
 * **Option 1:** Set the version directly
 
-    Add the line `telemetryClient.Context.Component.Version = typeof(MyProject.MyClass).Assembly.GetName().Version;` to the initialization code of your application.
-
-    To ensure that all `TelemetryClient` instances are set consistently, wrap that line in a [telemetry initializer](../../azure-monitor/app/api-custom-events-metrics.md#defaults).
+    For OpenTelemetry-based instrumentation, set application metadata consistently by using [resource attributes](../../azure-monitor/app/opentelemetry-configuration.md#set-resource-attributes).
 
 * **Option 2:** Set the version in `BuildInfo.config` (ASP.NET only)
 
