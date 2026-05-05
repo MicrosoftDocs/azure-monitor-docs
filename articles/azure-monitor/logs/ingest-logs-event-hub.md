@@ -129,7 +129,7 @@ To create a custom table into which to ingest events, in the Azure portal:
 
 ## Create a data collection endpoint
 
-To collect data with a data collection rule, you need a data collection endpoint: 
+To collect data with a data collection rule, you need an endpoint. This tutorial step walks through the creation of a data collection endpoint (DCE). An optional approach not covered here is to use a [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview#logs-ingestion-api). 
 
 1. [Create a data collection endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint). 
 
