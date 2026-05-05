@@ -11,7 +11,7 @@ ms.date: 03/04/2025
 Learn how to use Azure Advisor score to measure optimization progress.
 
 > [!IMPORTANT]
->The platform enriches the score by introducing finer granularity across categories and subcategories, enabling more precise tracking of adoption of recommendations.
+> The platform enriches the score by introducing finer granularity across categories and subcategories, enabling more precise tracking of adoption of recommendations.
 ## Introduction to Advisor score
 
 Advisor score is a core feature of Advisor that helps you effectively and efficiently achieve your goals. To get the most out of Azure, you must understand where you are in your workload optimization journey. You need to know the services or resources that are well consumed. Further, you want to know how to prioritize your actions, based on recommendations, to maximize the outcome.
@@ -28,7 +28,7 @@ Advisor score is a core feature of Advisor that helps you effectively and effici
 
 [!INCLUDE [Open Azure Advisor overview](./includes/advisor-overview-dashboard.md)]
 
-3.  In **Advisor**, select **Advisor score**.
+1.  In **Advisor**, select **Advisor score**.
 
 On **Advisor | Advisor score**, see the percentages for your overall Advisor score and a breakdown for each Advisor category.
 <<UPDATE SCREENSHOT>>
@@ -89,7 +89,7 @@ Security score is calculated using a [secure score](/azure/defender-for-cloud/se
 
 ### Score methodology for Cost category
 
-The **Cost** category score is calculated by using the individual subscription score and the subscription consumption-based weight. The calculation is summarized in following steps.
+Calculate the **Cost** category score by using the individual subscription score and the subscription consumption-based weight. The calculation process is summarized in the following steps.
 
 1.  Advisor calculates the retail cost of the resources assessed by recommendations. The assessed resources in your subscriptions have at least one recommendation in Advisor.
 
@@ -174,7 +174,7 @@ The following sections answer common questions about Advisor score.
 
 ### How often is my score refreshed?
 
-Your score is refreshed at least once per day.
+The system refreshes your score at least once per day.
 
 ### Why did my score change?
 
@@ -210,7 +210,7 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
 | Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
 
-| Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
+| Other <br /> `5` | All recommendations that aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### What is the list of subcategories for the Operational Excellence category and the related subcategory weights?
 
@@ -223,7 +223,7 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Monitoring and Alerting <br /> `5` | To effectively monitor your workload for security, performance, and reliability, you need a comprehensive system with a stand-alone stack. The comprehensive system provides the foundation for all monitoring, detection, and alert functions. |
 | Safe and Secure Deployment <br /> `5` | Safe and secure deployment processes define how to safely make and deploy changes to your workload. Implementing it requires you to think about deployments through the lens of managing risk. |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
-| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features which are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
+| Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### Why do some recommendations have the empty '-' value in the Impact column of the category score?
@@ -234,7 +234,7 @@ Advisor doesn't immediately include new recommendations or recommendations with 
 
 Your **Cost** score reflects both your potential savings from underutilized resources and the predicted ease of implementing the recommendations.
 
-For example, even when the potential savings are lower; Advisor places more weight on affected resources that are idle for a long time.
+For example, even when the potential savings are lower, Advisor places more weight on affected resources that are idle for a long time.
 
 ### What does it mean when I see "Coming soon" in the Impact column of the score?
 
@@ -252,7 +252,7 @@ Advisor assesses your resources and only updates your score for the categories a
 
 ### How does Advisor calculate the retail cost of resources on a subscription?
 
-Advisor uses the pay-as-you-go rates published on [Azure pricing](https://azure.microsoft.com/pricing "Azure pricing | Microsoft Azure"). The pay-as-you-go rates don't reflect the applicable discounts. The rates are then multiplied by the quantity of usage on the last day the resource was allocated. Since discounts vary across subscriptions, tenants, and enrollments; discounts are omitted from the calculation of the resource cost for the Advisor scores.
+Advisor uses the pay-as-you-go rates published on [Azure pricing](https://azure.microsoft.com/pricing "Azure pricing | Microsoft Azure"). The pay-as-you-go rates don't reflect the applicable discounts. The rates are then multiplied by the quantity of usage on the last day the resource was allocated. Since discounts vary across subscriptions, tenants, and enrollments, Advisor omits discounts from the calculation of the resource cost for the Advisor scores.
 
 ### Do I need to view the recommendations in Advisor to get points for my score?
 
