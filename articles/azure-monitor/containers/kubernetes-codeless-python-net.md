@@ -32,12 +32,12 @@ This section outlines the process of enabling the limited preview feature. It si
 1. Prepare the cluster by following the instructions at [prepare a cluster](kubernetes-codeless.md#prepare-a-cluster).    
 1. Choose a deployment that you want to instrument and onboard it by following the information at [Per-deployment onboarding](kubernetes-codeless.md#per-deployment-onboarding). The following points explain what you need to do differently for limited preview:
     - Keep in mind that namespace-wide onboarding (described in the previous section) is **_not available_** for limited preview languages.
-    - Instead of using public preview annotations for Java and Node.js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use limited preview annotations:
-        - `instrumentation.opentelemetry.io/limited-preview-inject-python` for Python
-        - `instrumentation.opentelemetry.io/limited-preview-inject-dotnet` for .NET
+    - Instead of using public preview annotations for Java and Node.js mentioned in the document (`instrumentation.opentelemetry.io/inject-java` and `instrumentation.opentelemetry.io/inject-nodejs`), use private preview annotations:
+        - `instrumentation.opentelemetry.io/private-preview-inject-python` for Python
+        - `instrumentation.opentelemetry.io/private-preview-inject-dotnet` for .NET
     - If you don't have an Application Insights resource yet, create one. Then copy its connection string (found in the Overview area of the Application Insights resource) into the `spec.destination.applicationInsightsConnectionString` field of the custom resource (CR), as instructed.
     - Put the CR into the same namespace as the deployment you're instrumenting.
-    - Place the `instrumentation.opentelemetry.io/limited-preview-inject-*` annotation correctly. Put it under `spec.template.metadata.annotations` in the deployment, so that it exists at the pod level, _not_ at the deployment level.
+    - Place the `instrumentation.opentelemetry.io/private-preview-inject-*` annotation correctly. Put it under `spec.template.metadata.annotations` in the deployment, so that it exists at the pod level, _not_ at the deployment level.
 1. Restart the deployment you're onboarding after setup completes, as described in the [Restart deployment](../app/kubernetes-codeless.md#restart-deployment) section. This step isn't required if the CR already exists when you add the annotation. Afterward, you don't need to restart or redeploy the deployment every time you change the CR.
 1. Make sure the deployment runs (under load if applicable). Wait three minutes and confirm that the Application Insights resource (or the underlying Log Analytics workspace) has telemetry.
 
