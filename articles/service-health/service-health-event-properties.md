@@ -127,4 +127,4 @@ Service Health event type (`properties.incidentType`)
 - [View and access security advisories](security-advisories-elevated-access.md)
 - [Service Health event tags](service-health-event-tags.md)
 - [Service Health data transitions](service-health-notification-transitions.md)
-- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category).
+- [Activity log - Service Health](/azure/azure-monitor/platform/activity-log-schema#service-health-category)
