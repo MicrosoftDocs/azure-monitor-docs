@@ -212,7 +212,6 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Network Optimization <br /> `25` | Assess and optimize the performance of your Network resources. <ul> <li> Traffic Manager </li> </ul> |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
 | Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
-
 | Other <br /> `5` | All recommendations that aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 
@@ -227,7 +226,6 @@ The score doesn't immediately reflect adopted recommendations. It takes at least
 | Safe and Secure Deployment <br /> `5` | Safe and secure deployment processes define how to safely make and deploy changes to your workload. Implementing it requires you to think about deployments through the lens of managing risk. |
 | Scalability <br /> `10` | Design and implement a reliable scaling strategy for the basis of the workload, the load patterns for user, and ensure the business continuity while scaling the solutions. |
 | Service upgrade and Retirement <br /> `5` | Assess and plan to migrate resources from services and features that are on the path of deprecation. <ul> <li> End to classic deployment model </li> </ul> |
-
 | Other <br /> `5` | All recommendations which aren't aligned with any of the previous subcategories are placed in this subcategory. |
 
 ### Why do some recommendations have the empty '-' value in the Impact column of the category score?
@@ -277,8 +275,6 @@ No. Your score isn't necessarily a reflection of how much you spend. Unnecessary
 For more information about Azure Advisor, see the following articles.
 
 *   [Introduction to Azure Advisor](./advisor-overview.md "Introduction to Azure Advisor | Azure Advisor | Microsoft Learn")
-
-*   [Azure Advisor portal basics](./advisor-get-started.md "Azure Advisor portal basics | Azure Advisor | Microsoft Learn")
 
 *   [Azure Advisor REST API](/rest/api/advisor "Azure Advisor REST API | Microsoft Learn")
 
