@@ -20,7 +20,7 @@ There are some limits on the number of metrics and events per application, that 
 | [Availability tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) count per Application Insights resource | 100 | 100 | |
 | Availability tests count per resource group | 800 | 800 | See [Azure Resource Manager](/azure/azure-resource-manager/management/resources-without-resource-group-limit) |
 | Availability tests maximum redirects per test | 10 | 10 | |
-| Availability tests minimum test frequency | 300 seconds | | Custom test frequencies or frequencies less than 5 minutes require [custom TrackAvailability](../availability-azure-functions.md) implementations. |
+| Availability tests minimum test frequency | 300 seconds | | Frequencies less than 5 minutes require a custom monitoring approach outside Standard availability tests. |
 | [.NET Profiler](../profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger.md) data retention | Two weeks | [Contact support.](https://azure.microsoft.com/support/options/) Maximum retention limit is six months. | |
 | [.NET Profiler](../profiler-overview.md) data sent per day | No limit | No limit. | |
 | [Snapshot Debugger](../snapshot-debugger.md) data sent per day | 30 snapshots per day per monitored app | No limit. | The number of snapshots collected per application can be modified through [configuration](../snapshot-debugger-vm.md). |

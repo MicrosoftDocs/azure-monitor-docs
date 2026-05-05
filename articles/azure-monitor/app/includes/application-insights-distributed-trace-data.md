@@ -13,11 +13,11 @@ Azure Monitor provides two experiences for consuming distributed trace data: the
 
 #### Enable distributed tracing via Application Insights through autoinstrumentation or SDKs
 
-The Application Insights agents and SDKs for .NET, .NET Core, Java, Node.js, and JavaScript all support distributed tracing natively.
+Supported Azure Monitor OpenTelemetry instrumentation and the JavaScript SDK emit distributed tracing data for common frameworks and libraries.
 
-With the proper Application Insights SDK installed and configured, tracing information is automatically collected for popular frameworks, libraries, and technologies by SDK dependency autocollectors. The full list of supported technologies is available in the [Dependency autocollection documentation](../asp-net-dependencies.md#dependency-autocollection).
+With supported instrumentation configured, tracing information is automatically collected for common frameworks, libraries, and technologies.
 
-Any technology also can be tracked manually with a call to [TrackDependency on the TelemetryClient](../api-custom-events-metrics.md).
+Any technology can also be tracked manually by creating [custom spans](../opentelemetry-add-modify.md#add-custom-spans).
 
 #### Data model for telemetry correlation
 
@@ -29,7 +29,7 @@ A distributed logical operation typically consists of a set of smaller operation
 
 You can build a view of the distributed logical operation by using `operation_Id`, `operation_parentId`, and `request.id` with `dependency.id`. These fields also define the causality order of telemetry calls.
 
-In a microservices environment, traces from components can go to different storage items. Every component can have its own connection string in Application Insights. To get telemetry for the logical operation, Application Insights queries data from every storage item. 
+In a microservices environment, traces from components can go to different storage items. Every component can have its own connection string in Application Insights. To get telemetry for the logical operation, Application Insights queries data from every storage item.
 
 When the number of storage items is large, you need a hint about where to look next. The Application Insights data model defines two fields to solve this problem: `request.source` and `dependency.target`. The first field identifies the component that initiated the dependency request. The second field identifies which component returned the response of the dependency call.
 
@@ -65,14 +65,14 @@ Application Insights is transitioning to [W3C Trace-Context](https://w3c.github.
 * `traceparent`: Carries the globally unique operation ID and unique identifier of the call.
 * `tracestate`: Carries system-specific tracing context.
 
-The latest version of the Application Insights SDK supports the Trace-Context protocol, but you might need to opt in to it. (Backward compatibility with the previous correlation protocol supported by the Application Insights SDK is maintained.)
+Supported instrumentation uses the W3C Trace Context protocol for distributed tracing.
 
 The [correlation HTTP protocol, also called Request-Id](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/HttpCorrelationProtocol.md), is being deprecated. This protocol defines two headers:
 
 * `Request-Id`: Carries the globally unique ID of the call.
 * `Correlation-Context`: Carries the name-value pairs collection of the distributed trace properties.
 
-Application Insights also defines the [extension](https://github.com/lmolkova/correlation/blob/master/http_protocol_proposal_v2.md) for the correlation HTTP protocol. It uses `Request-Context` name-value pairs to propagate the collection of properties used by the immediate caller or callee. The Application Insights SDK uses this header to set the `dependency.target` and `request.source` fields.
+Application Insights also uses correlation context to populate fields such as `dependency.target` and `request.source` when that context is available.
 
 The [W3C Trace-Context](https://w3c.github.io/trace-context/) and Application Insights data models map in the following way:
 
