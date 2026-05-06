@@ -117,7 +117,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 
 - Fixed memory and handle leak that caused AzLocal virtual machines degraded performance on Azlocal cluster.
 - Enabled the association of a Data Collection Rule (DCR) to an Azure Batch pool. No remaining scenarios block AMA migration from the legacy agent (MMA). Uses resource tags (`AzBatchPoolResourceId0`, `AzBatchPoolResourceId1`) from IMDS metadata.
-- Added new feature set entering private preview. Features require special configuration unavailable and won't impact existing functionality.
+- Added new feature set entering preview. Features require special configuration unavailable and won't impact existing functionality.
 - Upgraded OpenSSL from version 3.5.2.1 to 3.6.0.
 
 ### Linux
@@ -142,7 +142,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 
 ### Linux
 
-- Added new feature set entering private preview. Features require special configuration unavailable and won't impact existing functionality.
+- Added new feature set entering preview. Features require special configuration unavailable and won't impact existing functionality.
 
 ### Metrics
 
@@ -869,7 +869,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 - Support for direct proxies.
 - Support for Log Analytics gateway.
 
-For more information, see [Azure Monitor Agent DCRs supoprt direct proxies and Log Analytics gateway](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/).
+For more information, see [Azure Monitor Agent DCRs support direct proxies and Log Analytics gateway](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/).
 
 ## June 2021
 
