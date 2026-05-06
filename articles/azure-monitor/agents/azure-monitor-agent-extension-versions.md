@@ -869,7 +869,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 - Support for direct proxies.
 - Support for Log Analytics gateway.
 
-[Learn more](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/)
+For more information, see [Azure Monitor Agent DCRs supoprt direct proxies and Log Analytics gateway](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/).
 
 ## June 2021
 
@@ -891,7 +891,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 - Availability in all public regions.
 - Performance and scale improvements for higher EPS.
 
-[Learn more](https://azure.microsoft.com/updates/azure-monitor-agent-and-data-collection-rules-now-generally-available/)
+For more information, see [Azure Monitor Agent DCRs are generally available](https://azure.microsoft.com/updates/azure-monitor-agent-and-data-collection-rules-now-generally-available/).
 
 ## Important notes
 
