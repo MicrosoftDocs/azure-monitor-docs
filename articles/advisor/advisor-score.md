@@ -276,6 +276,6 @@ For more information about Azure Advisor, see the following articles.
 
 *   [Introduction to Azure Advisor](./advisor-overview.md "Introduction to Azure Advisor | Azure Advisor | Microsoft Learn")
 
-*   [Advisor Score API](https://learn.microsoft.com/en-us/rest/api/advisor/advisor-scores/)
+*   [Advisor Score API](/rest/api/advisor/advisor-scores "Azure Advisor Score API | Microsoft Learn")
 
 *   [Azure Advisor REST API](/rest/api/advisor "Azure Advisor REST API | Microsoft Learn")
