@@ -1,83 +1,911 @@
 ---
 title: Azure Monitor Agent extension versions
-description: This article describes the version details for the Azure Monitor Agent virtual machine extension.
+description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 04/07/2026
+ms.date: 05/06/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
+ai-usage: ai-assisted
 # customer intent: As a cloud administrator, I want to know the version history of the Azure Monitor Agent extension so that I can manage updates and compatibility.
 ---
 
 # Azure Monitor Agent extension versions
 
-
 This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
 > [!NOTE]
-> Microsoft only supports Azure Monitoring Agent versions within the last one year based on the automatic release date. Customers should update to a version within this period. Microsoft releases all bug fixes in the latest version only.
+> Microsoft supports Azure Monitoring Agent versions released within the last year. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
 
-We strongly recommend that you always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature.  
+Always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature.
 
-- Agent versions release once each month. The latest version deploys over a fortnight, and you might see it in some regions before others. You can manually install the release once it is in a VMs region.
-- Automatic rollout follows Azure safe deployment practices and completes in a month and a half following the release month. Deployments are issued in batches, so you might see some of your virtual machines, scale-sets, or Arc-enabled servers on different release during the rollout.
-- Release notes are available during the latest version rollout. 
+- Microsoft releases agent versions once each month. The latest version deploys over a fortnight, and you might see it in some regions before others. You can manually install the release once it's in a VM's region.
+- Automatic rollout follows Azure safe deployment practices and completes in a month and a half following the release month. Deployments are issued in batches, so you might see some of your virtual machines, scale sets, or Arc-enabled servers on different release during the rollout.
+- Release notes are available during the latest version rollout.
 
+> [!IMPORTANT]
+> Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
-## Version details
+## Version summary
 
-| Deployment Date | Release notes | Windows Logs | Linux Logs | Metrics |
-| --- | --- | --- | --- | --- |
-| April 2026 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br>** Windows Logs ** </ul><ul><li>OpenSSL used by AMA and ME updated to 3.6.1</li><li> The AMA extension uninstall process now correctly removes the data directory and associated registry entries for a clean uninstall. </li><li> Add support for parse.XmlPath multi-stage transform to parse Windows Event XML data using XPath queries. </li><li> Significant performance enhancements for local filter event processing including pre-allocated buffers, field name caching, faster UTC-to-string conversion, improved batch packing, and better pipe connectivity error handling. </li><li> Fluent Bit regression for DHCP Log Collection workaround for a regression in AMA 1.41. </li><li> Fix an issue where the complete event schema (field types and sizes) was lost during local filter processing by capturing and reapplying original field metadata. </li><li> Fix DSMS certificate selection - The agent now iterates over all matching DSMS certificates and picks the one with the latest NotBefore timestamp, instead of using the first valid match. </li><li> Remove verbose checksum mismatch logging - Reduce log noise by removing unnecessary file size and checksum mismatch logging in the agent manager. </li><li> Update Metrics Extension (ME) to 2.2026.312.1653</li></ul>** Linux Logs ** </ul><ul><li> Add FTD and FMC messages to CEF syslog stream. </li><li> Fix msgpack handling of nested JSON. </li><li> Add syslog structured data handling for rsyslog configuration. </li><li> Fix StringNCopy for double-width Unicode characters (CJK, emoji) . </li><li> Allow mdsdmgr to launch AMACA in non-systemd (e.g. containerized) scenarios. </li><li> Fix user_events column mismatch issue causing incorrect data deserialization.</li><li> Fix sovereign cloud endpoints for Delos and GovSG. </li><li> Fix telegraf socket Metrics Extension issue. </li><li> Fix AMA install ID file path in package scripts. </li><li> Fix detection of MDSD_RUN_DIR in mdsdmgrctl commands. </li><li> Update MetricsExtension version to 2.20260312.165349. </li><li> Update AMACA version to 3.0.63 . </li><li> Update azureotelcollector package versions to 1.20260226.225322. </li> | 1.42 | | |
-| February 2026 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br>** Windows Logs ** </ul><ul><li>Fixed memory and handle leak which caused AzLocal Virtual Machines degraded performance on Azlocal cluster</li><li> Enabled the association of a DCR to an Azure Batch pool. There are no remaining scenarios blocking AMA migration from the legacy agent (MMA). Uses resource tags (‘AzBatchPoolResourceId0’, ‘AzBatchPoolResourceId1’) from IMDS metadata.</li><li> Added new feature set that will be entering private preview soon. Features require special configuration that is unavailable and will not impact existing functionality. </li><li> Upgraded OpenSSL from version 3.5.2.1 to 3.6.0. </li></ul>** Linux Logs ** </ul><ul><li>Fixed custom logs memory spike.</li><li> Add thread name for user_events</li><li> Azure Batch support. Update ME to 2.20260126.193210</li><li> Declare global variable for syslog and fluent ports, Perform Syslog/Fluent-bit port update if port changes, and validate fluent and syslog port values</li><li> Decode output string only if not a string already</li><li> Add deb 13 support for x86_64, aarch64, and add rsyslog install logic in agent.py</li><li> Slow MetricsExtensions restart loop by adjusting restart limits</li><li> Update fluent-bit to v4.2.1</li></ul>** Metric ** </ul><ul><li> Add default dimensions - process id, executable name, command, owner - to OpenTelemetry process performance counters ingested to AMW.</li><li> Add dimension truncating for AMW metrics to avoid dropping metrics with large dimensions (> 1024 characters).</li></ul> | 1.41.0 | 1.40.0 | |
-| January 2026 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br>** Linux Logs ** </ul><ul><li> Added new feature set that will be entering private preview soon. Features require special configuration that is unavailable and will not impact existing functionality.</li></ul>** Metric ** </ul><ul><li> Truncate metric dimensions larger than 1024 characters.</li><li>Add process metadata to OpenTelemetry process counters.</li><li>Update AzureOTelCollector package version to 1.137.0.</li><li>Add NOTICE file for AzureOTelCollector.exe.</li></ul> | | 1.39.0 | 2.2025.905.1550 |
-| October 2025 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br> ** Windows ** </ul><ul><li>Enabled OpenTelemetry support</li><li>Fixed timestamp issue in Windows Firewall Logs that was affecting log accuracy</li><li>Fixed custom log query issues</li><li>Properly reset AMA token refresh interval if there was failure to prevent authentication issues</li><li>Removed hardcoded package paths in National cloud projects</li></ul><br><br> ** Linux ** </ul> <ul><li> Add support for AMA upload to ADX.</li><li>Add DiskQuota enforcement to ensure disk usage is constrained.</li><li>Add support for FIPS 140-3.</li><li>Add support for Red Hat 10 and Red Hat 9 aarch64.</li><li>Improve AMA version removal by cleaning up all files.</li> <li>Fix lock on files that didn't exit with an error</li><li>Add DNS check for cloud ingestion endpoint and delay retry on failure to prevent unacceptable number of DNS queries when Custom Logs DCE not configured</li><li>Improve DCR Parsing and Troubleshooter</li></ul> | 1.39.0 | 1.38.0, 1.38.1 | |
-| September 2025 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br> ** Windows ** </ul><ul><li>Implemented periodic file notification triggering mechanism to resolve unexpected latency in processing Windows Firewall logs. </li><li>Updated Log Analytics heartbeats to use WMI for OS name retrieval. Provides more consistent OS information in monitoring data. </li><li>Added efficient string handling with string_view implementation. Improves performance in string operations throughout the agent</li><li>Corrected the agent settings file path and improved blob path formatting. Ensures proper configuration for AMA direct upload scenarios</li><li>Added bounds checking to prevent crashes when processing malformed W3C logs. Improves stability when handling unusual or corrupt log formats</li><li>Implemented aggregated error logging in local filter component. Improves clarity by providing aggregated counts rather than individual log events</li></ul><br><br> ** Linux ** </ul> <ul><li>3P OTLP logs support. </li><li>Add Metrics Troubleshooter</li><li>Skip long/malformed rows while uploading data </li><li>Fix multi-byte Unicode character in data uploads</li><li>Fix crash when calling control plane when resource group name contains Unicode chars</li><li>Fix AMA 3P endpoints for new bleu regions</li><li>Fix python warning reported on SElinux systems</li><li>Fix VM extension uninstall when multiple versions of Azure Monitor agent are found to gracefully uninstall them all</li><li>Improve error logging in VM extension install when multiple versions of Azure Monitor agent packages are found </li><li> Fix a bug that causes the agent to prematurely exit when creating a new client connection</li><li> Fix an infrequent bug that can cause a crash when uploading data</li></ul> | 1.38.1 | 1.37.x | |
-| August 2025 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br> ** Windows ** </ul> <ul><li>Fixed timestamp issue in Windows Firewall Logs that was affecting log accuracy</li><li>Fixed token refresh reliability by resetting AMA token refresh interval. Added token expiration time logging for better troubleshooting.</li></ul><br><br> ** Linux ** <ul><li>Enable aarch64 support for Linux custom log (excludes alma8 and rocky8).</li><li>Version Update: Move TeleGraf to version1.24. Will now have clear security scans.</li><li>Bug Fix: reset AMA token to refresh time interval if there was control plane failures.</li><li>Significant Fix: Ubuntu/Debian uninstall failures when SELinux is disabled. </li></ul><br> | 1.37.0 | 1.36.1 | |
-| June 2025 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br> ** Windows ** </ul> <ul><li>SID to Username Resolution for Event Logs Agent Settings Refactoring including improved agent settings cache handling for better performance</li><li>Microsoft Connection Service Logging Improvements</li><li>MetricsExtension Priority Management</li><li>Updated MetricsExtension Integration: Update version and startup parameters</li></ul><br><br> ** Linux ** <ul><li>Change Arc proxy.bypass config to be processed correctly</li><li>Enable log rotate for AMA VM extension and dependent components logs</li><li>Always enable metrics service with AMA VM extension installation for faster metrics collection</li><li>Prevent semanage log spam in Oracle/RH while checking for TCP port configuration</li><li>Write type specific JSON to GIG LA in custom log collection scenario</li></ul><br> | 1.36 | 1.35.8, 1.35.9 | |
-| May 2025 | New releases contain security, quality, and reliability update in addition to itemized changes.<br><br> **Windows** </ul> <ul><li>NEW Launch Metrics Agent (ME) with lower priority<li> JSON logs collection issue when object field is named `log`. Fixes and issue when a JSON object has a field called `log`, which wouldn't get processed correctly.</li><li>Multiline behavior was broken for timestamp where the "M/D/YYYY HH:MM:SS AM/PM" timestamp. The timestamp is now parsed correctly. </li><li>Upgrade that ensures all processes are terminated before shut down. It mitigates data loss during shutdown and boot.</li><li>Add support for disconnected environment (ArcA)</li><li>Fix missing dll issue in Windows 2012.</li><li>Enable Azure Monitor Custom Metric version 2. </li></ul>**Linux**<ul><li>Rocky Linux 8/9 aarch64 support</li></ul> | 1.35.1 | 1.35.1, 1.35.4, 1.35.5, 1.35.6, 1.35.7 | |
-| March 2025 | **Windows Features** - deployment started March 11, 2025 <ul><li>Use fallback API version only if token endpoint wasn't provided by AMCS</li><li>**Bug Fixes**<ul><li>Report actual date and time values from the W3C logs when collecting IIS logs</li><li>Use noncached OS Name for Heartbeat</li><li>Compatibility with Dependency Agent for Client installation scenarios.</li><li>Ignore extra newline character in custom logs collection</li><li>AMA: Bug fix to escape '&' in perf counters data source</li></ul></li></ul>**Linux Features** - deployment started March 28, 2025<ul><li>Simplify AMA service and drop non-systemd support </li><li>Correct syslog-ng configuration that AMA wasn't using in RHEL distributions that caused syslog-ng start failures. </li><li>Improve Arc environment detection, which resolves a hang on start. </li><li>Resolve a race condition on access to timer objects by introducing a mutex to ensure thread safety. </li><li>Improve performance by avoiding temporary heap allocations during data event upload. </li><li>Resolve rpmverify errors on the AMA package cause by dynamic SSL changes. </li><li>Resolve potential deadlock and thread exhaustion when Event Hubs information changes. </li><li>Resolve customer data loss seen when shut down crashes. The fix ensures background tasks are complete before shutdown. </li><li>Make DMI UUID checks more strict to avoid reading service UUIDs on RHEL systems. </li><li>Correct the use of settings provided by Arc. Changed to initialize the proxy using either the MDSD_PROXY_MODE or MDSD_PROXY_ADDRESS environment variables. </li><li>Ignore trailing newlines seen in custom logs for some scenarios. </li><li>Made CPU optimization for uploads by using more efficient RapidJSON string overloads in the ODS upload path. </li><li>Ensure AMA extension code doesn’t use proxy for IMDS. </li><li>Add object_id support for identifier-name in Managed Identity. </li><li>Remove proxy config if customer removes proxy settings. </li><li>Resolved an issue with Custom logs where new paths aren't correctly added. </li><li>Fix semanage spam when SELinux is enabled in certain Oracle or Redhat distros. </li><li>Fix for when AMA system services weren’t updated properly. </li></ul> | 1.34.0 | 1.34.5 | |
-| January 2025 | **Windows Features**<ul><li>Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul>**Linux Features**<ul><li>Added the ability to tune the disk quota for the Linux agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.</li></ul> | 1.32.0 | 1.33.4 | |
-| November 2024 | **Windows Features**<ul><li>Update priorities for selection of ARC/AMA/System Proxy. Some customers had difficulties with the default proxy selections</li><li>Populate SourceHostname column in Microsoft Sentinel's Windows Firewall Logs (ASimNetworkSessionLogs table)</li><li>Resolve data latency issues for Microsoft Sentinel's DNS activity logs (ASimDnsActivityLogs table)</li><li>Update Troubleshooter to version 1.6.37</li><li>Update Metric Extension to version 2.2024.930.1245</li></ul> | 1.31.0 | | |
-| October 2024 | **Windows Features**<ul><li>AMA: Updating AMA proxy settings to allow the Arc proxy to be bypassed</li><li>AMA: Custom Logs support Timestamp as delimiter (for MMA parity). You must deploy it using a DCR template or through the CLI. UI support is coming in the December release.</li><li>Enhance security for file operation when data folder contains redirection</li><li>Update MetricsExtension version to v2.2024.726.1005</li></ul> | 1.30.0 | | |
-| September 2024 | **Linux Features**<ul><li>Support for Azure Linux 3, Ubuntu 24.04 LTS, and Amazon Linux 2023</li><li>Arm64 support for Azure Linux 3 and Ubuntu 24.04 LTS</li><li>Support timestamp-delimited Custom Text Logs for parity with OMS agent</li></ul> **Linux Fixes**<ul><li>Limit how frequently AMA writes its own log messages when the disk full; it fixes an error were logging that the disk is full makes the issue worse</li><li>Fix a crash that can occur when sending events to an unavailable Event Hubs</li><li>Reduce resource utilization when sending events to an unavailable Event Hubs</li><li>Fix for syslog-ng misconfiguration that caused syslog-ng service startup failure on rpm-based distros</li><li>Fix a crash that could occur when parsing syslog messages with a `.` character in the app/process name</li><li>Fix a unicode parsing issue that could cause install failures on certain system locales</li></ul> | | 1.33.1 | |
-| August 2024 | **Windows**<ul><li>Added columns to the SecurityEvent table: Keywords, Opcode, Correlation, ProcessId, ThreadId, EventRecordId.</li><li>AMA: Support AMA Client Installer support for W365 Azure Virtual Desktop (AVD) tenants/partners.</li><li>Fix for missing logs in the 'RenderedDescription' column.</li></ul>**Linux Features**<ul><li>Enable Dynamic Linking of OpenSSL 1.1 in all regions</li><li>Add Computer field to Custom Logs</li><li>Add Event Hubs upload support for Custom Logs </li><li>Reliability improvement for upload task scheduling</li><li>Added support for SUSE15 SP5, and AWS 3 distributions</li></ul>**Linux Fixes**<ul><li>Fix Direct upload to storage for perf counters when no other destination is configured. You don't see perf counters If storage was the only configured destination for perf counters, they wouldn't see perf counters in their blob or table.</li><li>Fluent-Bit updated to version 3.0.7. This fixes the issue with Fluent-Bit creating junk files in the root directory on process shutdown.</li><li>Fix proxy for system-wide proxy using http(s)_proxy env var </li><li>Support for syslog hostnames that are up to 255 characters</li><li>Stop sending rows longer than 1MB. It exceeds ingestion limits and destabilizes the agent. Now the row is gracefully dropped and a diagnostic message is written.</li><li>Set max disk space used for rsyslog spooling to 1GB. There was no limit before which could lead to high memory usage.</li><li>Use random available TCP port when there's a port conflict with AMA port 28230 and 28330. It resolved issues where port 28230 and 28330 were already in uses by the customer that prevented data upload to Azure.</li><li>Fix to AMACoreAgent crash in certain architectures affecting custom log collection</li><li>Structured data for rfc5424 messages were previously being dropped. This is now prepended to the message field.</li></ul> | 1.29 | 1.32.6 | |
-| June 2024 | **Windows**<ul><li>Fix encoding issues with Resource ID field.</li><li>AMA: Support new ingestion endpoint for GovSG environment.</li><li>Upgrade AzureSecurityPack version to 4.33.0.1.</li><li>Upgrade Metrics Extension version to 2.2024.517.533.</li><li>Upgrade Health Extension version to 2024.528.1.</li></ul> | 1.28.2 | | |
-| May 2024 | **Windows**<ul><li>Upgraded Fluent-bit version to 3.0.5. This Fix resolves as security issue in fluent-bit (NVD - CVE-2024-4323 nist.gov)</li><li>Disabled Fluent-bit logging that caused disk exhaustion issues for some customers. Example error is Fluentbit log with "[C:\projects\fluent-bit-2e87g\src\flb_scheduler.c:72 errno=0] No error" fills up the entire disk of the server.</li><li>Fixed AMA extension getting stuck in deletion state on some VMs that are using Arc. This fix improves reliability.</li><li>Fixed AMA not using system proxy, this issue is a bug introduced in 1.26.0. The issue results from a new feature that uses the Arc agent's proxy settings. When the system proxy as set as None the proxy was broken in 1.26.</li><li>Fixed Windows Firewall Logs log file rollover issues</li></ul> | 1.27.0 | | |
-| April 2024 | **Windows**<ul><li>In preparation for the May 17 public preview of Firewall Logs, the agent completed the addition of a profile filter for Domain, Public, and Private Logs. </li><li>AMA running on an Arc enabled server defaults to using the Arc proxy settings if available.</li><li>The AMA VM extension proxy settings override the Arc defaults.</li><li>Bug fix in MSI installer: Symptom - If there are spaces in the fluent-bit config path, AMA wasn't recognizing the path properly. AMA now adds quotes to configuration path in fluent-bit.</li><li>Bug fix for Container Insights: Symptom - custom resource ID weren't being honored.</li><li>Security issue fix: skip the deletion of files and directory whose path contains a redirection (via Junction point, Hard links, Mount point, OB Symlinks, etc.).</li><li>Updating MetricExtension package to 2.2024.328.1744.</li></ul>**Linux**<ul><li>AMA 1.30 now available in Arc.</li><li>New distribution support Debian 12, RHEL CIS L2.</li><li>Fix for mdsd version 1.30.3 in persistence mode, which converted positive integers to float/double values ("3.0", "4.0") to type ulong, which broke Azure stream analytics.</li></ul> | 1.26.0 | 1.31.1 | |
-| March 2024 | **Known Issues -** a change in 1.25.0 to the encoding of resource IDs in the request headers to the ingestion end point disrupts SQL ATP. It causes failures in alert notifications to the Microsoft Detection Center (MDC) and potentially affecting billing events. Symptom isn't seeing expected alerts related to SQL security threats. 1.25.0 didn't release to all data centers and it wasn't identified for auto update in any data center. Customers that did upgrade to 1.25.0 should roll back to 1.24.0<br><br>**Windows**<ul><li>**Breaking Change from Public Preview to GA** Due to customer feedback, automatic parsing of JSON into column in your custom table in Log Analytic was added. You must take action to migrate your JSON DCR created before this release to prevent data loss. This fix is the last before the release of the JSON Log type in Public Preview.</li><li>Fix AMA when resource ID contains nonascii chars, which is common when using some languages other than English. Errors would follow this pattern: … [HealthServiceCommon] [] [Error] … WinHttpAddRequestHeaders x-ms-AzureResourceId: /subscriptions/{your subscription #} /resourceGroups/???????/providers/ … PostDataItems" failed with code 87(ERROR_INVALID_PARAMETER) </li></ul>**Linux**<ul><li>The AMA agent now supports Debian 12 and RHEL9 CIS L2 distribution.</li></ul> | 1.25.0 | 1.31.0 | |
-| February 2024 | **Known Issues**<ul><li>Occasional crash during startup in Arm64 VMs. The fix is in 1.30.3</li></uL>**Windows**<ul><li>Fix memory leak in Internet Information Service (IIS) log collection</li><li>Fix JSON parsing with Unicode characters for some ingestion endpoints</li><li>Allow Client installer to run on Azure Virtual Desktop (AVD) DevBox partner</li><li>Enable Transport Layer Security (TLS) 1.3 on supported Windows versions</li><li>Update MetricsExtension package to 2.2024.202.2043</li></ul>**Linux**<ul><li>Features<ul><li>Add EventTime to syslog for parity with OMS agent</li><li>Add more Common Event Format (CEF) format support</li><li>Add CPU quotas for Azure Monitor Agent (AMA)</li></ul><li>Fixes<ul><li>Handle truncation of large messages in syslog due to Transmission Control Protocol (TCP) framing issue</li><li>Set NO_PROXY for Instance Metadata Service (IMDS) endpoint in AMA Python wrapper</li><li>Fix a crash in syslog parsing</li><li>Add reasonable limits for metadata retries from IMDS</li><li>No longer reset /var/log/azure folder permissions</li></ul></ul> | 1.24.0 | 1.30.3<br>1.30.2 | |
-| January 2024 | **Known Issues**<ul><li>1.29.5 doesn't install on Arc-enabled servers because the agent extension code size is beyond the deployment limit set by Arc. **This issue was fixed in 1.29.6**</li></ul>**Windows**<ul><li>Added support for Transport Layer Security (TLS) 1.3</li><li>Reverted a change to enable multiple IIS subscriptions to use same filter. Feature is redeployed once memory leak is fixed</li><li>Improved Event Trace for Windows (ETW) event throughput rate</li></ul>**Linux**<ul><li>Fix error messages logged, intended for mdsd.err, that instead went to mdsd.warn in 1.29.4 only. Likely error messages: "Exception while uploading to Gig-LA: ...", "Exception while uploading to ODS: ...", "Failed to upload to ODS: ..."</li><li>Reduced noise generated by AMAs' use of semanage when SELinux is enabled</li><li>Handle time parsing in syslog to handle Daylight Savings Time (DST) and leap day</li></ul> | 1.23.0 | 1.29.5, 1.29.6 | |
-| December 2023 | **Known Issues**<ul><li>1.29.4 doesn't install on Arc-enabled servers because the agent extension code size is beyond the deployment limit set by Arc. Fix is coming in 1.29.6</li><li>Multiple IIS subscriptions cause a memory leak. feature reverted in 1.23.0</ul>**Windows** <ul><li>Prevent CPU spikes by not using bookmark when resetting an Event Log subscription</li><li>Added missing Fluent Bit executable to AMA client setup for Custom Log support</li><li>Updated to latest AzureCredentialsManagementService and DsmsCredentialsManagement package</li><li>Update ME to v2.2023.1027.1417</li></ul>**Linux**<ul><li>Support for TLS v1.3</li><li>Support for nopri in Syslog</li><li>Ability to set disk quota from Data Collection Rule (DCR) Agent Settings</li><li>Add Arm64 Ubuntu 22 support</li><li>**Fixes**<ul><li>SysLog</li><ul><li>Parse syslog Palo Alto CEF with multiple space characters following the hostname</li><li>Fix an issue with incorrectly parsing messages containing two '\n' chars in a row</li><li>Improved support for non-RFC compliant devices</li><li>Support Infoblox device messages containing both hostname and IP headers</li></ul><li>Fix AMA crash in Read Hat Enterprise Linux (RHEL) 7.2</li><li>Remove dependency on "which" command</li><li>Fix port conflicts due to AMA using 13000 </li><li>Reliability and Performance improvements</li></ul></li></ul> | 1.22.0 | 1.29.4 | |
-| October 2023 | **Windows** <ul><li>Minimize CPU spikes when resetting an Event Log subscription</li><li>Enable multiple IIS subscriptions to use same filter</li><li>Clean up files and folders for inactive tenants in multitenant mode</li><li>AMA installer doesn't install unnecessary certs</li><li>AMA emits Telemetry table locally</li><li>Update Metric Extension to v2.2023.721.1630</li><li>Update AzureSecurityPack to v4.29.0.4</li><li>Update AzureWatson to v1.0.99</li></ul>**Linux**<ul><li> Add support for Process metrics counters for Log Analytics upload and Azure Monitor Metrics</li><li>Use rsyslog omfwd TCP for improved syslog reliability</li><li>Support Palo Alto CEF logs where hostname is followed by two spaces</li><li>Bug and reliability improvements</li></ul> | 1.21.0 | 1.28.11 | |
-| September 2023 | **Windows** <ul><li>Fix issue with high CPU usage due to excessive Windows Event Logs subscription reset</li><li>Reduce Fluent Bit resource usage by limiting tracked files older than three days and limiting logging to errors only</li><li>Fix race condition where resource_id is unavailable when agent is restarted</li><li>Fix race-condition when vm-extension provision agent (also known as GuestAgent) is issuing a disable-vm-extension command to AMA</li><li>Update MetricExtension version to 2.2023.721.1630</li><li>Update Troubleshooter to v1.5.14 </li></ul> | 1.20.0 | None | |
-| August 2023 | **Windows** <ul><li>AMA: Allow prefixes in the tag names to handle regression</li><li>Updating package version for AzSecPack 4.28 release</li></ui> | 1.19.0 | None | |
-| July 2023 | **Windows** <ul><li>Fix crash when Event Log subscription callback throws errors.<li>MetricExtension updated to 2.2023.609.2051</li></ui> | 1.18.0 | None | |
-| June 2023 | **Windows** <ul><li>Add new FilePath column to custom logs table. You must manually add the column to your custom table</li><li>Config setting to disable custom IMDS endpoint in Tenant.json file</li><li>Fluent Bit binaries signed with Microsoft customer Code Sign cert</li><li>Minimize number of retries on calls to refresh tokens</li><li>Don't overwrite resource ID with empty string</li><li>AzSecPack updated to version 4.27</li><li>AzureProfiler and AzurePerfCollector updated to version 1.0.0.990</li><li>MetricsExtension updated to version 2.2023.513.10</li><li>Troubleshooter updated to version 1.5.0</li></ul>**Linux** <ul><li>To identify forwarder/collector machine, add new column CollectorHostName to syslog table </li><li>Link OpenSSL dynamically</li><li>**Fixes**<ul><li>Allow uploads soon after AMA startup</li><li>To avoid thread pool scheduling issues, run LocalSink Garbage Collector on a dedicated thread </li><li>Fix upgrade restart of disabled services</li><li>Handle Linux Hardening where sudo on root is blocked</li><li>CEF processing fixes for noncompliant Request For Comment (RFC) 5,424 logs</li><li>Adaptive Security Appliance (ASA) tenant can fail to start up due to config-cache directory permissions</li><li>Fix auth proxy in AMA</li><li>Fix to remove null characters in agentlauncher.log after log rotation</li><li>Fix for authenticated proxy(1.27.3)</li><li>Fix regression in Virtual Machine (VM) Insights(1.27.4)</ul></li></ul> | 1.17.0 | 1.27.4 | |
-| May 2023 | **Windows** <ul><li>Enable Large Event support for all regions</li><li>Update to TroubleShooter 1.4.0</li><li>Fixed issue when Event Log subscription became invalid and wouldn't resubscribe</li><li>AMA: Fixed issue with Large Event sending too large data. Also affecting Custom Log</li></ul> **Linux** <ul><li>Support for CIS and SELinux [hardening](./agents-overview.md)</li><li>Include Ubuntu 22.04 (Jammy Jellyfish) in azure-mdsd package publishing</li><li>Move storage SDK patch to build container</li><li>Add system Telegraf counters to AMA</li><li>Drop msgpack and syslog data if not configured in active configuration</li><li>Limit the events sent to Public ingestion pipeline</li><li>**Fixes** <ul><li>Fix mdsd crash in init when in persistent mode </li><li>To avoid a race condition, remove FdClosers from ProtocolListeners </li><li>Fix sed regex special character escaping issue in rpm macro for CentOS 7.3 (Maipo)</li><li>Fix latency and future timestamp issue</li><li>Install AMA syslog configs only if customer is opted in for syslog in DCR</li><li>Fix heartbeat time check</li><li>Skip unnecessary cleanup in fatal signal handler</li><li>Fix case where fast-forwarding might cause intervals to be skipped</li><li>Fix comma separated custom log paths with fluent</li><li>Fix to prevent events folder growing too large and filling the disk</li><li>Hotfix (1.26.3) for Syslog</li></ul></li><ul> | 1.16.0.0 | 1.26.2-1.26.5<sup>Hotfix</sup> | |
-| Apr 2023 | **Windows** <ul><li>AMA: Enable Large Event support based on Region</li><li>AMA: Upgrade to Fluent Bit version 2.0.9</li><li>Update Troubleshooter to 1.3.1</li><li>Update ME version to 2.2023.331.1521</li><li>Updating package version for AzSecPack 4.26 release</li></ul> | 1.15.0 | None | |
-| Mar 2023 | **Windows** <ul><li>Text file collection improvements to handle high rate logging and continuous tailing of longer lines</li><li>VM Insights fixes for collecting metrics from non-English OS</li></ul> | 1.14.0.0 | None | |
-| Feb 2023 | <ul><li>**Linux (hotfix)** Resolved potential data loss due to "Bad file descriptor" errors seen in the mdsd error log with previous version. Upgrade to hotfix version</li><li>**Windows** Reliability improvements in Fluent Bit buffering to handle larger text files</li></ul> | 1.13.1 | 1.25.2<sup>Hotfix</sup> | |
-| Jan 2023 | **Linux** <ul><li>RHEL 9 and Amazon Linux 2 support</li><li>Update to OpenSSL 1.1.1s and require TLS 1.2 or higher</li><li>Performance improvements</li><li>Improvements in Garbage Collection for persisted disk cache and handling corrupted cache files better</li><li>**Fixes** <ul><li>Set agent service memory limit for CentOS/RedHat 7 distros. Resolved MemoryMax parsing error</li><li>Fixed modifying rsyslog system-wide log format caused by installer on RedHat/CentOS 7.3</li><li>Fixed permissions to config directory</li><li>Installation reliability improvements</li><li>Fixed permissions on default file so rpm verification doesn't fail</li><li>Added traceFlags setting to enable trace logs for agent</li></ul></li></ul> **Windows** <ul><li>Fixed issue related to incorrect *EventLevel* and *Task* values for Log Analytics *Event* table, to match Windows Event Viewer values</li><li>Added missing columns for IIS logs - *TimeGenerated, Time, Date, Computer, SourceSystem, AMA, W3SVC, SiteName*</li><li>Reliability improvements for metrics collection</li><li>Fixed machine restart issues on for Arc-enabled servers related to repeated calls to HIMDS service</li></ul> | 1.12.0 | 1.25.1 | |
-| Nov-Dec 2022 | <ul><li>Support for air-gapped clouds added for [Windows Microsoft Standard Installer (MSI) installer for clients](./azure-monitor-agent-windows-client.md) </li><li>Reliability improvements for using AMA with Custom Metrics destination</li><li>Performance and internal logging improvements</li></ul> | 1.11.0 | None | |
-| Oct 2022 | **Windows** <ul><li>Increased reliability of data uploads</li><li>Data quality improvements</li></ul> **Linux** <ul><li>Support for `http_proxy` and `https_proxy` environment variables for [network proxy configurations](./azure-monitor-agent-network-configuration.md#proxy-configuration) for the agent</li><li>[Text logs](./data-collection-log-text.md) <ul><li>Network proxy support enabled</li><li>Fixed missing `_ResourceId`</li><li>Increased maximum line size support to 1 MB</li></ul></li><li>Support ingestion of syslog events whose timestamp is in the future</li><li>Performance improvements</li><li>Fixed `diskio` metrics instance name dimension to use the disk mount paths instead of the device names</li><li>Fixed world writable file issue to lock down write access to certain agent logs and configuration files stored locally on the machine</li></ul> | 1.10.0.0 | 1.24.2 | |
-| Sep 2022 | Reliability improvements | 1.9.0 | None | |
-| August 2022 | **Common updates** <ul><li>Improved resiliency: Default lookback (retry) time updated to last three days (72 hours) up from 60 minutes, for agent to collect data post interruption. Look back time is subject to default offline cache size of 10 Gb</li><li>Fixes the preview custom text log feature that was incorrectly removing the *TimeGenerated* field from the raw data of each event. All events are now additionally stamped with agent (local) upload time</li><li>Reliability and supportability improvements</li></ul> **Windows** <ul><li>Fixed datetime format to UTC</li><li>Fix to use default location for firewall log collection, if not provided</li><li>Reliability and supportability improvements</li></ul> **Linux** <ul><li>Support for OpenSuse 15, Debian 11 Arm64</li><li>Support for coexistence of Azure Monitor agent with legacy Azure Diagnostic extension for Linux (LAD)</li><li>Increased max-size of User Datagram Protocol (UDP) payload for Telegraf output to prevent dimension truncation</li><li>Prevent unconfigured upload to Azure Monitor Metrics destination</li><li>Fix for disk metrics wherein *instance name* dimension uses the disk mount paths instead of the device names, to provide parity with legacy agent</li><li>Fixed *disk free MB* metric to report megabytes instead of bytes</li></ul> | 1.8.0 | 1.22.2 | |
-| July 2022 | Fix for mismatch event timestamps for Microsoft Sentinel Windows Event Forwarding | 1.7.0 | None | |
-| June 2022 | Bug fixes with user assigned identity support, and reliability improvements | 1.6.0 | None | |
-| May 2022 | <ul><li>Fixed issue where agent stops functioning due to faulty XPath query. With this version, only query related Windows events fail, other data types continue to be collected</li><li>Collection of Windows network troubleshooting logs added to 'CollectAMAlogs.ps1' tool</li><li>Linux support for Debian 11 distro</li><li>Fixed issue to list mount paths instead of device names for Linux disk metrics</li></ul> | 1.5.0.0 | 1.21.0 | |
-| April 2022 | <ul><li>Private IP information added in Log Analytics <i>Heartbeat</i> table for Windows and Linux</li><li>Fixed bugs in Windows IIS log collection (preview) <ul><li>Updated IIS site column name to match backend Kusto Query Language (KQL) transform</li><li>Added delay to IIS upload task to account for IIS buffering</li></ul></li><li>Fixed Linux CEF syslog forwarding for Microsoft Sentinel</li><li>Removed 'error' message for Azure MSI token retrieval failure on Arc to show as 'Info' instead</li><li>Support added for Ubuntu 22.04, RHEL 8.5, 8.6, AlmaLinux and RockyLinux distros</li></ul> | 1.4.1<sup>Hotfix</sup> | 1.19.3 | |
-| March 2022 | <ul><li>Fixed timestamp and XML format bugs in Windows Event logs</li><li>Full Windows OS information in Log Analytics Heartbeat table</li><li>Fixed Linux performance counters to collect instance values instead of 'total' only</li></ul> | 1.3.0 | 1.17.5.0 | |
-| February 2022 | <ul><li>Bug fixes for the AMA Client installer</li><li>Versioning fixes to reflect appropriate Windows major/minor/hotfix versions</li><li>Internal test improvement on Linux</li></ul> | 1.2.0 | 1.15.3 | |
-| January 2022 | <ul><li>Syslog RFC compliance for Linux</li><li>Fixed issue for Linux perf counters not flowing on restart</li><li>Fixed installation failure on Windows Server 2008 R2 SP1</li></ul> | 1.1.5.1<sup>Hotfix</sup> | 1.15.2.0<sup>Hotfix</sup> | |
-| December 2021 | <ul><li>Fixed issues impacting Linux Arc-enabled servers</li><li>'Heartbeat' table > 'Category' column reports "Azure Monitor Agent" in Log Analytics for Windows</li></ul> | 1.1.4 | 1.14.7.0<sup>2</sup> | |
-| September 2021 | <ul><li>Fixed issue causing data loss on restarting the agent</li><li>Fixed issue for Arc Windows servers</li></ul> | 1.1.3.2<sup>Hotfix</sup> | 1.12.2.0 <sup>1</sup> | |
-| August 2021 | Fixed issue allowing Azure Monitor Metrics as the only destination | 1.1.2.0 | 1.10.9.0<sup>Hotfix</sup> | |
-| July 2021 | <ul><li>Support for direct proxies</li><li>Support for Log Analytics gateway</li></ul> [Learn more](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/) | 1.1.1 | 1.10.5.0 | |
-| June 2021 | General availability announced. <ul><li>All features except metrics destination now generally available</li><li>Production quality, security, and compliance</li><li>Availability in all public regions</li><li>Performance and scale improvements for higher EPS</li></ul> [Learn more](https://azure.microsoft.com/updates/azure-monitor-agent-and-data-collection-rules-now-generally-available/) | 1.0.12 | 1.9.1.0 | |
+| Date | Windows | Linux | Metrics | Highlights |
+|---|---|---|---|---|
+| [April 2026](#april-2026) | 1.42 | — | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
+| [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
+| [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation |
+| [October 2025](#october-2025) | 1.39.0 | 1.38.0–1.38.1 | — | OpenTelemetry support, FIPS 140-3 |
+| [September 2025](#september-2025) | 1.38.1 | 1.37.x | — | Third-party OTLP logs, Metrics Troubleshooter |
+| [August 2025](#august-2025) | 1.37.0 | 1.36.1 | — | SELinux uninstall fix, aarch64 support |
+| [June 2025](#june-2025) | 1.36 | 1.35.8–1.35.9 | — | SID to Username Resolution, Arc proxy |
+| [May 2025](#may-2025) | 1.35.1 | 1.35.1–1.35.7 | — | Metrics Agent launch, JSON parsing |
+| [March 2025](#march-2025) | 1.34.0 | 1.34.5 | — | Agent Settings refactoring, race condition fixes |
+| [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
+| [November 2024](#november-2024) | 1.31.0 | — | — | Proxy selection, Sentinel enhancements |
+| [October 2024](#october-2024) | 1.30.0 | — | — | Custom Logs timestamp delimiter |
+| [September 2024](#september-2024) | — | 1.33.1 | — | Azure Linux 3, Ubuntu 24.04 LTS, Arm64 |
+| [August 2024](#august-2024) | 1.29 | 1.32.6 | — | SecurityEvent columns, OpenSSL dynamic linking |
+| [June 2024](#june-2024) | 1.28.2 | — | — | Resource ID encoding, GovSG endpoint |
+| [May 2024](#may-2024) | 1.27.0 | — | — | Fluent-bit security fix, proxy improvements |
+| [April 2024](#april-2024) | 1.26.0 | 1.31.1 | — | Firewall Logs profile filter, Arc proxy |
+| [March 2024](#march-2024) | 1.25.0 | 1.31.0 | — | JSON auto-parsing (breaking change) |
+| [February 2024](#february-2024) | 1.24.0 | 1.30.3–1.30.2 | — | IIS memory leak fix, TLS 1.3 |
+| [January 2024](#january-2024) | 1.23.0 | 1.29.5–1.29.6 | — | TLS 1.3 support |
+| [December 2023](#december-2023) | 1.22.0 | 1.29.4 | — | CPU spikes fix, Fluent Bit binary |
+| [October 2023](#october-2023) | 1.21.0 | 1.28.11 | — | CPU optimization, multiple IIS subscriptions |
+| [September 2023](#september-2023) | 1.20.0 | — | — | Event Log subscription reset fix |
+| [August 2023](#august-2023) | 1.19.0 | — | — | Tag name prefixes |
+| [July 2023](#july-2023) | 1.18.0 | — | — | Event Log callback error fix |
+| [June 2023](#june-2023) | 1.17.0 | 1.27.4 | — | FilePath column, OpenSSL dynamic linking |
+| [May 2023](#may-2023) | 1.16.0.0 | 1.26.2–1.26.5 | — | Large Event support, CIS/SELinux hardening |
+| [April 2023](#april-2023) | 1.15.0 | — | — | Large Event region support, Fluent Bit 2.0.9 |
+| [March 2023](#march-2023) | 1.14.0.0 | — | — | Text file collection improvements |
+| [February 2023](#february-2023) | 1.13.1 | 1.25.2 | — | Data loss fix, Fluent Bit buffering |
+| [January 2023](#january-2023) | 1.12.0 | 1.25.1 | — | RHEL 9 support, EventLevel fix |
+| [November–December 2022](#november-december-2022) | 1.11.0 | — | — | Air-gapped cloud support |
+| [October 2022](#october-2022) | 1.10.0.0 | 1.24.2 | — | Proxy environment variables |
+| [September 2022](#september-2022) | 1.9.0 | — | — | Reliability improvements |
+| [August 2022](#august-2022) | 1.8.0 | 1.22.2 | — | Lookback time extended to 72 hours |
+| [July 2022](#july-2022) | 1.7.0 | — | — | Sentinel timestamp fix |
+| [June 2022](#june-2022) | 1.6.0 | — | — | User assigned identity fixes |
+| [May 2022](#may-2022) | 1.5.0.0 | 1.21.0 | — | Debian 11 support |
+| [April 2022](#april-2022) | 1.4.1 | 1.19.3 | — | Private IP in Heartbeat |
+| [March 2022](#march-2022) | 1.3.0 | 1.17.5.0 | — | XML format and timestamp fixes |
+| [February 2022](#february-2022) | 1.2.0 | 1.15.3 | — | AMA Client installer fixes |
+| [January 2022](#january-2022) | 1.1.5.1 | 1.15.2.0 | — | Syslog RFC compliance |
+| [December 2021](#december-2021) | 1.1.4 | 1.14.7.0 | — | Arc-enabled server fixes |
+| [September 2021](#september-2021) | 1.1.3.2 | 1.12.2.0 | — | Data loss fix |
+| [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
+| [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
+| [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
 
-<sup>Hotfix</sup> Don't use AMA Linux versions v1.10.7, v1.15.1, v1.25.2 and AMA Windows v1.1.3.1, v1.1.5.0. Use the hotfix versions.<br/>
-<sup>1</sup> Known issue: No data collected from Linux Arc-enabled servers.<br/>
-<sup>2</sup> Known issue: Linux performance counters data stops flowing on restarting or rebooting the machines.
+## April 2026
+
+**Versions:** Windows 1.42
+
+### Windows
+
+- OpenSSL used by AMA and ME updated to 3.6.1.
+- Extension uninstall now correctly removes the data directory and associated registry entries.
+- Add support for `parse.XmlPath` multistage transform to parse Windows Event XML data by using XPath queries.
+- Significant performance enhancements for local filter event processing, including preallocated buffers, field name caching, faster UTC-to-string conversion, improved batch packing, and better pipe connectivity error handling.
+- Fluent Bit regression fix for DHCP Log Collection (workaround for regression in 1.41).
+- Fix issue where local filter processing lost the complete event schema (field types and sizes) by capturing and reapplying original field metadata.
+- Fix DSMS certificate selection to pick the certificate with the latest NotBefore timestamp instead of using the first valid match.
+- Remove verbose checksum mismatch logging to reduce log noise in the agent manager.
+- Update Metrics Extension (ME) to 2.2026.312.1653.
+
+### Linux
+
+- Added FTD and FMC messages to CEF syslog stream.
+- Fixed msgpack handling of nested JSON.
+- Added syslog structured data handling for rsyslog configuration.
+- Fixed `StringNCopy` for double-width Unicode characters (CJK, emoji).
+- Allowed mdsdmgr to launch AMACA in non-systemd (for example, containerized) scenarios.
+- Fixed user_events column mismatch issue causing incorrect data deserialization.
+- Fixed sovereign cloud endpoints for Delos and GovSG.
+- Fixed telegraf socket Metrics Extension issue.
+- Fixed AMA install ID file path in package scripts.
+- Fixed detection of MDSD_RUN_DIR in mdsdmgrctl commands.
+- Updated MetricsExtension version to 2.20260312.165349.
+- Updated AMACA version to 3.0.63.
+- Updated azureotelcollector package versions to 1.20260226.225322.
+
+## February 2026
+
+**Versions:** Windows 1.41.0, Linux 1.40.0
+
+### Windows
+
+- Fixed memory and handle leak that caused AzLocal virtual machines degraded performance on Azlocal cluster.
+- Enabled the association of a Data Collection Rule (DCR) to an Azure Batch pool. No remaining scenarios block AMA migration from the legacy agent (MMA). Uses resource tags (`AzBatchPoolResourceId0`, `AzBatchPoolResourceId1`) from IMDS metadata.
+- Added new feature set entering private preview. Features require special configuration unavailable and won't impact existing functionality.
+- Upgraded OpenSSL from version 3.5.2.1 to 3.6.0.
+
+### Linux
+
+- Fixed custom logs memory spike.
+- Added thread name for user_events.
+- Added Azure Batch support. Updated ME to 2.20260126.193210.
+- Declared global variable for syslog and fluent ports. Performed Syslog/Fluent-bit port update if port changes and validated fluent and syslog port values.
+- Decoded output string only if not already a string.
+- Added Debian 13 support for x86_64 and aarch64, and added rsyslog install logic in agent.py.
+- Slowed MetricsExtensions restart loop by adjusting restart limits.
+- Updated fluent-bit to v4.2.1.
+
+### Metrics
+
+- Added default dimensions (process ID, executable name, command, owner) to OpenTelemetry process performance counters ingested to AMW.
+- Added dimension truncating for AMW metrics to avoid dropping metrics with large dimensions (>1024 characters).
+
+## January 2026
+
+**Versions:** Linux 1.39.0, Metrics 2.2025.905.1550
+
+### Linux
+
+- Added new feature set entering private preview. Features require special configuration unavailable and won't impact existing functionality.
+
+### Metrics
+
+- Truncate metric dimensions larger than 1,024 characters.
+- Add process metadata to OpenTelemetry process counters.
+- Update AzureOTelCollector package version to 1.137.0.
+- Add NOTICE file for AzureOTelCollector.exe.
+
+## October 2025
+
+**Versions:** Windows 1.39.0, Linux 1.38.0–1.38.1
+
+### Windows
+
+- Enabled OpenTelemetry support.
+- Fixed timestamp issue in Windows Firewall Logs affecting log accuracy.
+- Fixed custom log query issues.
+- Properly reset AMA token refresh interval if there was failure to prevent authentication issues.
+- Removed hardcoded package paths in National cloud projects.
+
+### Linux
+
+- Add support for AMA upload to Azure Data Explorer (ADX).
+- Add DiskQuota enforcement to ensure disk usage is constrained.
+- Add support for FIPS 140-3.
+- Add support for Red Hat 10 and Red Hat 9 aarch64.
+- Improve AMA version removal by cleaning up all files.
+- Fix lock on files that didn't exit with an error.
+- Add DNS check for cloud ingestion endpoint and delay retry on failure to prevent unacceptable number of DNS queries when Custom Logs DCE not configured.
+- Improve DCR Parsing and Troubleshooter.
+
+## September 2025
+
+**Versions:** Windows 1.38.1, Linux 1.37.x
+
+### Windows
+
+- Implemented periodic file notification triggering mechanism to resolve unexpected latency in processing Windows Firewall logs.
+- Updated Log Analytics heartbeats to use WMI for OS name retrieval, providing more consistent OS information in monitoring data.
+- Added efficient string handling with `string_view` implementation to improve performance in string operations.
+- Corrected agent settings file path and improved blob path formatting to ensure proper configuration for AMA direct upload scenarios.
+- Added bounds checking to prevent crashes when processing malformed W3C logs and improve stability.
+- Implemented aggregated error logging in local filter component to provide aggregated counts rather than individual log events.
+
+### Linux
+
+- Third-party OTLP logs support.
+- Add Metrics Troubleshooter.
+- Skip long or malformed rows while uploading data.
+- Fix multibyte Unicode character in data uploads.
+- Fix crash when calling control plane when resource group name contains Unicode characters.
+- Fix AMA third-party endpoints for new bleu regions.
+- Fix Python warning reported on SELinux systems.
+- Fix VM extension uninstall when multiple versions of Azure Monitor agent are found to gracefully uninstall them all.
+- Improve error logging in VM extension install when multiple versions of Azure Monitor agent packages are found.
+- Fix bug that causes the agent to prematurely exit when creating a new client connection.
+- Fix infrequent bug that can cause a crash when uploading data.
+
+## August 2025
+
+**Versions:** Windows 1.37.0, Linux 1.36.1
+
+### Windows
+
+- Fixed timestamp issue in Windows Firewall Logs affecting log accuracy.
+- Fixed token refresh reliability by resetting AMA token refresh interval. Added token expiration time logging for better troubleshooting.
+
+### Linux
+
+- Enabled aarch64 support for Linux custom logs (excludes alma8 and rocky8).
+- Moved TeleGraf to version 1.24 for clear security scans.
+- Reset AMA token refresh time interval if control plane failures occur.
+- Significant fix for Ubuntu/Debian uninstall failures when SELinux is disabled.
+
+## June 2025
+
+**Versions:** Windows 1.36, Linux 1.35.8–1.35.9
+
+### Windows
+
+- SID to Username Resolution for Event Logs Agent Settings Refactoring including improved agent settings cache handling for better performance.
+- Microsoft Connection Service Logging Improvements.
+- MetricsExtension Priority Management.
+- Updated MetricsExtension Integration: Update version and startup parameters.
+
+### Linux
+
+- Change Arc proxy.bypass config to be processed correctly.
+- Enable log rotate for AMA VM extension and dependent components logs.
+- Always enable metrics service with AMA VM extension installation for faster metrics collection.
+- Prevent semanage log spam in Oracle/RH while checking for TCP port configuration.
+- Write type specific JSON to GIG LA in custom log collection scenario.
+
+## May 2025
+
+**Versions:** Windows 1.35.1, Linux 1.35.1–1.35.7
+
+### Windows
+
+- NEW Launch Metrics Agent (ME) with lower priority.
+- JSON logs collection issue when object field is named `log`. Fixes an issue when a JSON object has a field called `log`, which wasn't processed correctly.
+- Multiline behavior was broken for timestamp where the "M/D/YYYY HH:MM:SS AM/PM" timestamp. The timestamp is now parsed correctly.
+- Upgrade that ensures all processes are terminated before shut down. It mitigates data loss during shutdown and boot.
+- Add support for disconnected environment (ArcA).
+- Fix missing dll issue in Windows 2012.
+- Enable Azure Monitor Custom Metric version 2.
+
+### Linux
+
+- Rocky Linux 8/9 aarch64 support.
+
+## March 2025
+
+**Versions:** Windows 1.34.0, Linux 1.34.5
+
+### Windows
+
+- Deployment started March 11, 2025.
+- Use fallback API version only if AMCS doesn't provide the token endpoint.
+- Report actual date and time values from the W3C logs when collecting IIS logs.
+- Use noncached OS Name for Heartbeat.
+- Compatibility with Dependency Agent for Client installation scenarios.
+- Ignore extra newline character in custom logs collection.
+- AMA: Bug fix to escape '&' in perf counters data source.
+
+### Linux
+
+- Deployment started March 28, 2025.
+- Simplify AMA service and drop non-systemd support.
+- Correct syslog-ng configuration that AMA wasn't using in RHEL distributions that caused syslog-ng start failures.
+- Improve Arc environment detection, which resolves a hang on start.
+- Resolve a race condition on access to timer objects by introducing a mutex to ensure thread safety.
+- Improve performance by avoiding temporary heap allocations during data event upload.
+- Resolve rpmverify errors on the AMA package caused by dynamic SSL changes.
+- Resolve potential deadlock and thread exhaustion when Event Hubs information changes.
+- Resolve customer data loss seen when shut down crashes. The fix ensures background tasks are complete before shutdown.
+- Make DMI UUID checks more strict to avoid reading service UUIDs on RHEL systems.
+- Correct the use of settings provided by Arc. Changed to initialize the proxy using either the MDSD_PROXY_MODE or MDSD_PROXY_ADDRESS environment variables.
+- Ignore trailing newlines seen in custom logs for some scenarios.
+- Made CPU optimization for uploads by using more efficient RapidJSON string overloads in the ODS upload path.
+- Ensure AMA extension code doesn't use proxy for IMDS.
+- Add object_id support for identifier-name in Managed Identity.
+- Remove proxy config if customer removes proxy settings.
+- Resolved an issue with Custom logs where new paths aren't correctly added.
+- Fix semanage spam when SELinux is enabled in certain Oracle or Redhat distros.
+- Fix for when AMA system services weren't updated properly.
+
+## January 2025
+
+**Versions:** Windows 1.32.0, Linux 1.33.4
+
+### Windows
+
+- Added the ability to tune the disk quota for the windows agent. Customers can use the agent settings DCR to change the quota between 4,000MB and 1,000,000MB. The default is 10,000MB.
+
+### Linux
+
+- Added the ability to tune the disk quota for the Linux agent. Use the agent settings DCR to change the quota between 4,000 MB and 1,000,000 MB. The default is 10,000 MB.
+
+## November 2024
+
+**Versions:** Windows 1.31.0
+
+### Windows
+
+- Update priorities for selection of ARC, AMA, and System Proxy. Some customers had difficulties with the default proxy selections.
+- Populate SourceHostname column in Microsoft Sentinel's Windows Firewall Logs (ASimNetworkSessionLogs table).
+- Resolve data latency issues for Microsoft Sentinel's DNS activity logs (ASimDnsActivityLogs table).
+- Update Troubleshooter to version 1.6.37.
+- Update Metric Extension to version 2.2024.930.1245.
+
+## October 2024
+
+**Versions:** Windows 1.30.0
+
+### Windows
+
+- AMA: Update AMA proxy settings to allow the Arc proxy to be bypassed.
+- AMA: Custom Logs support Timestamp as delimiter (for MMA parity). You must deploy it by using a DCR template or through the CLI. UI support is coming in the December release.
+- Enhance security for file operation when data folder contains redirection.
+- Update MetricsExtension version to v2.2024.726.1005.
+
+## September 2024
+
+**Versions:** Linux 1.33.1
+
+### Linux
+
+- Support for Azure Linux 3, Ubuntu 24.04 LTS, and Amazon Linux 2023.
+- Arm64 support for Azure Linux 3 and Ubuntu 24.04 LTS.
+- Support timestamp-delimited Custom Text Logs for parity with OMS agent.
+- Limit how frequently AMA writes its own log messages when the disk full; it fixes an error were logging that the disk is full makes the issue worse.
+- Fix a crash that can occur when sending events to an unavailable Event Hubs.
+- Reduce resource utilization when sending events to an unavailable Event Hubs.
+- Fix for syslog-ng misconfiguration that caused syslog-ng service startup failure on rpm-based distros.
+- Fix a crash that could occur when parsing syslog messages with a `.` character in the app/process name.
+- Fix a unicode parsing issue that could cause install failures on certain system locales.
+
+## August 2024
+
+**Versions:** Windows 1.29, Linux 1.32.6
+
+### Windows
+
+- Added columns to the SecurityEvent table: Keywords, Opcode, Correlation, ProcessId, ThreadId, EventRecordId.
+- AMA: Support AMA Client Installer support for W365 Azure Virtual Desktop (AVD) tenants/partners.
+- Fix for missing logs in the 'RenderedDescription' column.
+
+### Linux
+
+- Enable dynamic linking of OpenSSL 1.1 in all regions.
+- Add Computer field to Custom Logs.
+- Add Event Hubs upload support for Custom Logs.
+- Improve reliability for upload task scheduling.
+- Add support for SUSE15 SP5, and AWS 3 distributions.
+- Fix direct upload to storage for perf counters when no other destination is configured. You don't see perf counters if storage was the only configured destination for perf counters, they wouldn't see perf counters in their blob or table.
+- Update Fluent-Bit to version 3.0.7. This version fixes the issue with Fluent-Bit creating junk files in the root directory on process shutdown.
+- Fix proxy for system-wide proxy using http(s)_proxy env var.
+- Support for syslog hostnames that are up to 255 characters.
+- Stop sending rows longer than 1 MB. It exceeds ingestion limits and destabilizes the agent. Now the row is gracefully dropped and a diagnostic message is written.
+- Set max disk space used for rsyslog spooling to 1 GB. There was no limit before which could lead to high memory usage.
+- Use random available TCP port when there's a port conflict with AMA port 28230 and 28330. It resolved issues where port 28230 and 28330 were already in uses by the customer that prevented data upload to Azure.
+- Fix to AMACoreAgent crash in certain architectures affecting custom log collection.
+- Structured data for rfc5424 messages were previously being dropped. This data is now prepended to the message field.
+
+## June 2024
+
+**Versions:** Windows 1.28.2
+
+### Windows
+
+- Fix encoding issues with Resource ID field.
+- AMA: Support new ingestion endpoint for GovSG environment.
+- Upgrade AzureSecurityPack version to 4.33.0.1.
+- Upgrade Metrics Extension version to 2.2024.517.533.
+- Upgrade Health Extension version to 2024.528.1.
+
+## May 2024
+
+**Versions:** Windows 1.27.0
+
+### Windows
+
+- Upgraded Fluent-bit version to 3.0.5. This fix resolves a security issue in Fluent-bit (NVD - CVE-2024-4323 nist.gov).
+- Disabled Fluent-bit logging that caused disk exhaustion problems for some customers. An example error is Fluent-bit log with "[C:\projects\fluent-bit-2e87g\src\flb_scheduler.c:72 errno=0] No error" fills up the entire disk of the server.
+- Fixed AMA extension getting stuck in deletion state on some VMs that use Arc. This fix improves reliability.
+- Fixed AMA not using system proxy. This problem is a bug introduced in version 1.26.0. The problem results from a new feature that uses the Arc agent's proxy settings. When the system proxy is set as None, the proxy is broken in version 1.26.
+- Fixed Windows Firewall Logs log file rollover problems.
+
+## April 2024
+
+**Versions:** Windows 1.26.0, Linux 1.31.1
+
+### Windows
+
+- In preparation for the May 17 public preview of Firewall Logs, the agent completed the addition of a profile filter for Domain, Public, and Private Logs.
+- AMA running on an Arc enabled server defaults to using the Arc proxy settings if available.
+- The AMA VM extension proxy settings override the Arc defaults.
+- Bug fix in MSI installer: Symptom - If there are spaces in the Fluent-bit config path, AMA wasn't recognizing the path properly. AMA now adds quotes to configuration path in Fluent-bit.
+- Bug fix for Container Insights: Symptom - custom resource ID weren't being honored.
+- Security fix: skip the deletion of files and directory whose path contains a redirection (via Junction point, Hard links, Mount point, OB Symlinks, and other similar paths).
+- Updating MetricExtension package to 2.2024.328.1744.
+
+### Linux
+
+- AMA 1.30 is now available in Arc.
+- New distribution support for Debian 12 and RHEL CIS L2.
+- Fix for mdsd version 1.30.3 in persistence mode, which converted positive integers to float/double values ("3.0", "4.0") to type ulong, which broke Azure stream analytics.
+
+## March 2024
+
+**Versions:** Windows 1.25.0, Linux 1.31.0
+
+> [!WARNING]
+> **Known Issue:** A change in 1.25.0 to the encoding of resource IDs in the request headers to the ingestion endpoint disrupts SQL ATP. It causes failures in alert notifications to the Microsoft Detection Center (MDC) and potentially affects billing events. The symptom is that you don't see expected alerts related to SQL security threats. 1.25.0 isn't released to all data centers and it wasn't identified for auto update in any data center. Customers that upgrade to 1.25.0 should roll back to 1.24.0.
+
+### Windows
+
+- **Breaking Change from Public Preview to GA** Due to customer feedback, automatic parsing of JSON into column in your custom table in Log Analytic was added. You must take action to migrate your JSON DCR created before this release to prevent data loss. This fix is the last before the release of the JSON Log type in Public Preview.
+- Fix AMA when resource ID contains non-ASCII chars, which is common when using some languages other than English. Errors follow this pattern: … [HealthServiceCommon] [] [Error] … WinHttpAddRequestHeaders x-ms-AzureResourceId: /subscriptions/{your subscription #} /resourceGroups/???????/providers/ … PostDataItems" failed with code 87(ERROR_INVALID_PARAMETER).
+
+### Linux
+
+- The AMA agent now supports Debian 12 and RHEL9 CIS L2 distribution.
+
+## February 2024
+
+**Versions:** Windows 1.24.0, Linux 1.30.3–1.30.2
+
+> [!WARNING]
+> **Known Issue - Arm64:** Occasional crash during startup in Arm64 VMs. The fix is in 1.30.3.
+
+### Windows
+
+- Fixed memory leak in Internet Information Service (IIS) log collection.
+- Fixed JSON parsing with Unicode characters for some ingestion endpoints.
+- Allowed client installer to run on Azure Virtual Desktop (AVD) DevBox partner.
+- Enabled Transport Layer Security (TLS) 1.3 on supported Windows versions.
+- Updated MetricsExtension package to 2.2024.202.2043.
+
+### Linux
+
+**Features**
+
+- Added EventTime to syslog for parity with OMS agent.
+- Added more Common Event Format (CEF) format support.
+- Added CPU quotas for Azure Monitor Agent (AMA).
+
+**Fixes**
+
+- Handled truncation of large messages in syslog due to Transmission Control Protocol (TCP) framing issue.
+- Set NO_PROXY for Instance Metadata Service (IMDS) endpoint in AMA Python wrapper.
+- Fixed a crash in syslog parsing.
+- Added reasonable limits for metadata retries from IMDS.
+- No longer reset /var/log/azure folder permissions.
+
+## January 2024
+
+**Versions:** Windows 1.23.0, Linux 1.29.5–1.29.6
+
+> [!WARNING]
+> **Known Issue - Linux Arc:** 1.29.5 doesn't install on Arc-enabled servers because the agent extension code size exceeds the deployment limit set by Arc. **This issue is fixed in 1.29.6**.
+
+### Windows
+
+- Added support for Transport Layer Security (TLS) 1.3.
+- Reverted a change that enabled multiple IIS subscriptions to use the same filter. The feature is redeployed once the memory leak is fixed.
+- Improved Event Trace for Windows (ETW) event throughput rate.
+
+### Linux
+
+- Fixed error messages logged to `mdsd.warn` instead of `mdsd.err` in version 1.29.4. Likely error messages: "Exception while uploading to Gig-LA: ...", "Exception while uploading to ODS: ...", "Failed to upload to ODS: ...".
+- Reduced noise generated by AMAs' use of `semanage` when SELinux is enabled.
+- Handled time parsing in syslog to handle Daylight Savings Time (DST) and leap day.
+
+## December 2023
+
+**Versions:** Windows 1.22.0, Linux 1.29.4
+
+> [!WARNING]
+> **Known Issues:**
+> - 1.29.4 doesn't install on Arc-enabled servers because the agent extension code size exceeds the deployment limit set by Arc. Fix is coming in 1.29.6.
+> - Multiple IIS subscriptions cause a memory leak. Feature reverted in 1.23.0.
+
+### Windows
+
+- Prevent CPU spikes by not using a bookmark when resetting an Event Log subscription.
+- Add missing Fluent Bit executable to AMA client setup for Custom Log support.
+- Update to latest AzureCredentialsManagementService and DsmsCredentialsManagement packages.
+- Update ME to v2.2023.1027.1417.
+
+### Linux
+
+- Support for TLS v1.3.
+- Support for nopri in Syslog.
+- Ability to set disk quota from Data Collection Rule (DCR) Agent Settings.
+- Add Arm64 Ubuntu 22 support.
+
+**Fixes**
+
+**Syslog:**
+
+- Parse syslog Palo Alto CEF with multiple space characters following the hostname.
+- Fix an issue with incorrectly parsing messages containing two '\n' chars in a row.
+- Improved support for non-RFC compliant devices.
+- Support Infoblox device messages containing both hostname and IP headers.
+
+**General:**
+
+- Fix AMA crash in Red Hat Enterprise Linux (RHEL) 7.2.
+- Remove dependency on "which" command.
+- Fix port conflicts due to AMA using 13000.
+- Reliability and performance improvements.
+
+## October 2023
+
+**Versions:** Windows 1.21.0, Linux 1.28.11
+
+### Windows
+
+- Minimize CPU spikes when resetting an Event Log subscription.
+- Enable multiple IIS subscriptions to use same filter.
+- Clean up files and folders for inactive tenants in multitenant mode.
+- AMA installer doesn't install unnecessary certs.
+- AMA emits Telemetry table locally.
+- Update Metric Extension to v2.2023.721.1630.
+- Update AzureSecurityPack to v4.29.0.4.
+- Update AzureWatson to v1.0.99.
+
+### Linux
+
+- Add support for Process metrics counters for Log Analytics upload and Azure Monitor Metrics.
+- Use rsyslog omfwd TCP for improved syslog reliability.
+- Support Palo Alto CEF logs where hostname is followed by two spaces.
+- Bug and reliability improvements.
+
+## September 2023
+
+**Versions:** Windows 1.20.0
+
+### Windows
+
+- Fix issue with high CPU usage due to excessive Windows Event Logs subscription reset.
+- Reduce Fluent Bit resource usage by limiting tracked files older than three days and limiting logging to errors only.
+- Fix race condition where resource_id is unavailable when agent is restarted.
+- Fix race condition when vm-extension provision agent (also known as GuestAgent) is issuing a disable-vm-extension command to AMA.
+- Update MetricExtension version to 2.2023.721.1630.
+- Update Troubleshooter to v1.5.14.
+
+## August 2023
+
+**Versions:** Windows 1.19.0
+
+### Windows
+
+- AMA: Allow prefixes in the tag names to handle regression.
+- Update package version for AzSecPack 4.28 release.
+
+## July 2023
+
+**Versions:** Windows 1.18.0
+
+### Windows
+
+- Fix crash when Event Log subscription callback throws errors.
+- Update MetricExtension to 2.2023.609.2051.
+
+## June 2023
+
+**Versions:** Windows 1.17.0, Linux 1.27.4
+
+### Windows
+
+- Added a new `FilePath` column to the custom logs table. You must manually add this column to your custom table.
+- Added a configuration setting to disable the custom IMDS endpoint in the `Tenant.json` file.
+- Signed Fluent Bit binaries with the Microsoft customer Code Sign certificate.
+- Minimized the number of retries on calls to refresh tokens.
+- Prevented overwriting the resource ID with an empty string.
+- Updated AzSecPack to version 4.27.
+- Updated AzureProfiler and AzurePerfCollector to version 1.0.0.990.
+- Updated MetricsExtension to version 2.2023.513.10.
+- Updated Troubleshooter to version 1.5.0.
+
+### Linux
+
+- To identify forwarder or collector machine, add a new column `CollectorHostName` to the syslog table.
+- Link OpenSSL dynamically.
+
+**Fixes**
+
+- Allow uploads soon after AMA startup.
+- To avoid thread pool scheduling problems, run LocalSink Garbage Collector on a dedicated thread.
+- Fix upgrade restart of disabled services.
+- Handle Linux Hardening where sudo on root is blocked.
+- CEF processing fixes for noncompliant Request For Comment (RFC) 5,424 logs.
+- Adaptive Security Appliance (ASA) tenant can fail to start up due to config-cache directory permissions.
+- Fix auth proxy in AMA.
+- Fix to remove null characters in agentlauncher.log after log rotation.
+- Fix for authenticated proxy (1.27.3).
+- Fix regression in Virtual Machine (VM) Insights (1.27.4).
+
+## May 2023
+
+**Versions:** Windows 1.16.0.0, Linux 1.26.2–1.26.5
+
+### Windows
+
+- Enable Large Event support for all regions.
+- Update to TroubleShooter 1.4.0.
+- Fixed problem when Event Log subscription became invalid and wouldn't resubscribe.
+- AMA: Fixed problem with Large Event sending too large data. Also affecting Custom Log.
+
+### Linux
+
+- Support for CIS and SELinux [hardening](./agents-overview.md).
+- Include Ubuntu 22.04 (Jammy Jellyfish) in azure-mdsd package publishing.
+- Move storage SDK patch to build container.
+- Add system Telegraf counters to AMA.
+- Drop msgpack and syslog data if not configured in active configuration.
+- Limit the events sent to Public ingestion pipeline.
+
+**Fixes**
+
+- Fix mdsd crash in init when in persistent mode.
+- To avoid a race condition, remove FdClosers from ProtocolListeners.
+- Fix sed regex special character escaping issue in rpm macro for CentOS 7.3 (Maipo).
+- Fix latency and future timestamp issue.
+- Install AMA syslog configs only if customer is opted in for syslog in DCR.
+- Fix heartbeat time check.
+- Skip unnecessary cleanup in fatal signal handler.
+- Fix case where fast-forwarding might cause intervals to be skipped.
+- Fix comma separated custom log paths with fluent.
+- Fix to prevent events folder growing too large and filling the disk.
+- Hotfix (1.26.3) for Syslog.
+
+## April 2023
+
+**Versions:** Windows 1.15.0
+
+### Windows
+
+- AMA: Enable large event support based on region.
+- AMA: Upgrade to Fluent Bit version 2.0.9.
+- Update Troubleshooter to 1.3.1.
+- Update ME version to 2.2023.331.1521.
+- Update package version for AzSecPack 4.26 release.
+
+## March 2023
+
+**Versions:** Windows 1.14.0.0
+
+### Windows
+
+- Improve text file collection to handle high-rate logging and continuous tailing of longer lines.
+- Fix VM Insights for collecting metrics from non-English OS.
+
+## February 2023
+
+**Versions:** Windows 1.13.1, Linux 1.25.2
+
+> [!NOTE]
+> **Hotfix available:** Linux version 1.25.2 is a hotfix. This version resolves potential data loss due to "Bad file descriptor" errors seen in the mdsd error log with previous version. Upgrade to hotfix version.
+
+### Windows
+
+- Improve reliability in Fluent Bit buffering to handle larger text files.
+
+### Linux
+
+- Fixed potential data loss due to "Bad file descriptor" errors seen in the mdsd error log with previous version.
+
+## January 2023
+
+**Versions:** Windows 1.12.0, Linux 1.25.1
+
+### Windows
+
+- Fixed issue related to incorrect *EventLevel* and *Task* values for Log Analytics *Event* table, to match Windows Event Viewer values.
+- Added missing columns for IIS logs - *TimeGenerated, Time, Date, Computer, SourceSystem, AMA, W3SVC, SiteName*.
+- Reliability improvements for metrics collection.
+- Fixed machine restart issues on for Arc-enabled servers related to repeated calls to HIMDS service.
+
+### Linux
+
+- Support for RHEL 9 and Amazon Linux 2.
+- Update to OpenSSL 1.1.1s and require TLS 1.2 or higher.
+- Performance improvements.
+- Improvements in garbage collection for persisted disk cache and better handling of corrupted cache files.
+
+**Fixes**
+
+- Set agent service memory limit for CentOS and RedHat 7 distros. Resolved MemoryMax parsing error.
+- Fixed modifying rsyslog system-wide log format caused by installer on RedHat and CentOS 7.3.
+- Fixed permissions to config directory.
+- Installation reliability improvements.
+- Fixed permissions on default file so rpm verification doesn't fail.
+- Added traceFlags setting to enable trace logs for agent.
+
+## November–December 2022
+
+**Versions:** Windows 1.11.0
+
+### Windows
+
+- Support for air-gapped clouds added for [Windows Microsoft Standard Installer (MSI) installer for clients](./azure-monitor-agent-windows-client.md).
+- Reliability improvements for using AMA with Custom Metrics destination.
+- Performance and internal logging improvements.
+
+## October 2022
+
+**Versions:** Windows 1.10.0.0, Linux 1.24.2
+
+### Windows
+
+- Support for proxy environment variables.
+
+### Linux
+
+- Support for proxy environment variables.
+
+## September 2022
+
+**Versions:** Windows 1.9.0
+
+### Windows
+
+- Reliability improvements.
+
+## August 2022
+
+**Versions:** Windows 1.8.0, Linux 1.22.2
+
+### Windows
+
+- Extended lookback time to 72 hours.
+
+### Linux
+
+- Extended lookback time to 72 hours.
+
+## July 2022
+
+**Versions:** Windows 1.7.0
+
+### Windows
+
+- Sentinel timestamp fix.
+
+## June 2022
+
+**Versions:** Windows 1.6.0
+
+### Windows
+
+- User assigned identity fixes.
+
+## May 2022
+
+**Versions:** Windows 1.5.0.0, Linux 1.21.0
+
+### Windows
+
+- Debian 11 support.
+
+### Linux
+
+- Debian 11 support.
+
+## April 2022
+
+**Versions:** Windows 1.4.1, Linux 1.19.3
+
+### Windows
+
+- Private IP in Heartbeat.
+
+### Linux
+
+- Private IP in Heartbeat.
+
+## March 2022
+
+**Versions:** Windows 1.3.0, Linux 1.17.5.0
+
+### Windows
+
+- XML format and timestamp fixes.
+
+### Linux
+
+- XML format and timestamp fixes.
+
+## February 2022
+
+**Versions:** Windows 1.2.0, Linux 1.15.3
+
+### Windows
+
+- AMA Client installer fixes.
+
+### Linux
+
+- AMA Client installer fixes.
+
+## January 2022
+
+**Versions:** Windows 1.1.5.1, Linux 1.15.2.0
+
+### Windows
+
+- Syslog RFC compliance.
+
+### Linux
+
+- Syslog RFC compliance.
+
+## December 2021
+
+**Versions:** Windows 1.1.4, Linux 1.14.7.0
+
+### Windows
+
+- Arc-enabled server fixes.
+
+### Linux
+
+- Arc-enabled server fixes.
+
+## September 2021
+
+**Versions:** Windows 1.1.3.2, Linux 1.12.2.0
+
+### Windows
+
+- Data loss fix.
+
+### Linux
+
+- Data loss fix.
+
+## August 2021
+
+**Versions:** Windows 1.1.2.0, Linux 1.10.9.0
+
+### Windows
+
+- Metrics-only destination support.
+
+### Linux
+
+- Metrics-only destination support.
+
+## July 2021
+
+**Versions:** Windows 1.1.1, Linux 1.10.5.0
+
+### Windows
+
+- Support for direct proxies.
+- Support for Log Analytics gateway.
+
+### Linux
+
+- Support for direct proxies.
+- Support for Log Analytics gateway.
+
+[Learn more](https://azure.microsoft.com/updates/general-availability-azure-monitor-agent-and-data-collection-rules-now-support-direct-proxies-and-log-analytics-gateway/)
+
+## June 2021
+
+**Versions:** Windows 1.0.12, Linux 1.9.1.0
+
+### Windows
+
+- General availability announced.
+- All features except metrics destination are now generally available.
+- Production quality, security, and compliance.
+- Availability in all public regions.
+- Performance and scale improvements for higher EPS.
+
+### Linux
+
+- General availability announced.
+- All features except metrics destination are now generally available.
+- Production quality, security, and compliance.
+- Availability in all public regions.
+- Performance and scale improvements for higher EPS.
+
+[Learn more](https://azure.microsoft.com/updates/azure-monitor-agent-and-data-collection-rules-now-generally-available/)
+
+## Important notes
+
+> [!WARNING]
+> **Versions to avoid:**
+> - Don't use AMA Linux versions v1.10.7, v1.15.1, v1.25.2.
+> - Don't use AMA Windows versions v1.1.3.1, v1.1.5.0.
+> 
+> Use the hotfix versions instead.
+
+> [!NOTE]
+> **Known issues in specific versions:**
+> - **v1.1.3.2 and v1.12.2.0:** No data collected from Linux Arc-enabled servers.
+> - **v1.29.4:** Linux performance counters data stops flowing on restarting or rebooting machines.
 
 ## Next steps
 
