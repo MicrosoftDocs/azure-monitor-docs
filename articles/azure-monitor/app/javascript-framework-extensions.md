@@ -1,6 +1,6 @@
 ---
 title: Enable a framework extension for Application Insights JavaScript SDK
-description: Learn how to install and use JavaScript framework extensions for the Application Insights JavaScript SDK. 
+description: Learn how to install and use JavaScript framework extensions for the Application Insights JavaScript SDK.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
 ms.date: 03/06/2026
@@ -24,7 +24,7 @@ These plugins provide extra functionality and integration with the specific fram
 ### [React](#tab/react)
 
 > [!div class="checklist"]
-> * Make sure the version of the React plugin that you want to install is compatible with your version of Application Insights. For more information, see [Compatibility Matrix for the React plugin](https://github.com/microsoft/applicationinsights-react-js#compatibility-matrix). 
+> * Make sure the version of the React plugin that you want to install is compatible with your version of Application Insights. For more information, see [Compatibility Matrix for the React plugin](https://github.com/microsoft/applicationinsights-react-js#compatibility-matrix).
 
 ### [React Native](#tab/reactnative)
 
@@ -52,7 +52,7 @@ The React plug-in for the Application Insights JavaScript SDK enables:
 
 ### [React Native](#tab/reactnative)
 
-The React Native plugin for Application Insights JavaScript SDK enables: 
+The React Native plugin for Application Insights JavaScript SDK enables:
 
 * Track exceptions.
 * Collect device information. By default, this plugin automatically collects:
@@ -92,25 +92,25 @@ npm install @microsoft/applicationinsights-react-js @microsoft/applicationinsigh
 * **React Native Plugin**
 
     By default, the React Native Plugin relies on the [`react-native-device-info` package](https://www.npmjs.com/package/react-native-device-info). You must install and link to this package. Keep the `react-native-device-info` package up to date to collect the latest device names using your app.
-    
+
     Since v3, support for accessing the DeviceInfo has been abstracted into an interface `IDeviceInfoModule` to enable you to use / set your own device info module. This interface uses the same function names and result `react-native-device-info`.
-    
+
     ```zsh
-    
+
     npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
     npm install --save react-native-device-info
     react-native link react-native-device-info
-    
+
     ```
 
 * **React Native Manual Device Plugin**
 
     If you're using React Native Expo, add the React Native Manual Device Plugin instead of the React Native Plugin. The React Native Plugin uses the `react-native-device-info package` package, which React Native Expo doesn't support.
-    
+
     ```bash
-    
+
     npm install --save @microsoft/applicationinsights-react-native @microsoft/applicationinsights-web
-    
+
     ```
 
 #### [Angular](#tab/angular)
@@ -193,19 +193,19 @@ appInsights.loadAppInsights();
         }
     });
     appInsights.loadAppInsights();
-    
+
     ```
 
 * **React Native Manual Device Plugin**
 
     To use this plugin, you must either disable automatic device info collection or use your own device info collection class after you add the extension to your code.
-    
+
     1. Construct the plugin and add it as an `extension` to your existing Application Insights instance.
-    
+
     ```typescript
     import { ApplicationInsights } from '@microsoft/applicationinsights-web';
     import { ReactNativePlugin } from '@microsoft/applicationinsights-react-native';
-    
+
     var RNMPlugin = new ReactNativePlugin();
     var appInsights = new ApplicationInsights({
         config: {
@@ -215,14 +215,14 @@ appInsights.loadAppInsights();
     });
     appInsights.loadAppInsights();
     ```
-    
+
     1. Do one of the following:
-    
+
         * Disable automatic device info collection.
-        
+
         ```typescript
         import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-        
+
         var RNMPlugin = new ReactNativeManualDevicePlugin();
         var appInsights = new ApplicationInsights({
             config: {
@@ -233,12 +233,12 @@ appInsights.loadAppInsights();
         });
         appInsights.loadAppInsights();
         ```
-        
+
         * Use your own device info collection class.
-        
+
         ```typescript
         import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-        
+
         // Simple inline constant implementation
         const myDeviceInfoModule = {
             getModel: () => "deviceModel",
@@ -246,17 +246,17 @@ appInsights.loadAppInsights();
             // v5 returns a string while latest returns a promise
             getUniqueId: () => "deviceId",         // This "may" also return a Promise<string>
         };
-        
+
         var RNMPlugin = new ReactNativeManualDevicePlugin();
         RNMPlugin.setDeviceInfoModule(myDeviceInfoModule);
-        
+
         var appInsights = new ApplicationInsights({
             config: {
                 instrumentationKey: 'YOUR_INSTRUMENTATION_KEY_GOES_HERE',
                 extensions: [RNMPlugin]
             }
         });
-        
+
         appInsights.loadAppInsights();
         ```
 
@@ -293,7 +293,7 @@ export class AppComponent {
         const appInsights = new ApplicationInsights({
             config: {
                 connectionString: 'YOUR_CONNECTION_STRING_GOES_HERE',
-                // *** If you're adding the Click Analytics plug-in, delete the next line. ***  
+                // *** If you're adding the Click Analytics plug-in, delete the next line. ***
                 extensions: [angularPlugin],
              // *** Add the Click Analytics plug-in. ***
              // extensions: [angularPlugin, clickPluginInstance],
@@ -302,7 +302,7 @@ export class AppComponent {
                  // *** Add the Click Analytics plug-in. ***
                  // [clickPluginInstance.identifier]: clickPluginConfig
                 }
-            } 
+            }
          });
         appInsights.loadAppInsights();
     }
@@ -312,9 +312,9 @@ export class AppComponent {
 ---
 
 ### (Optional) Add the Click Analytics plug-in
-   
+
 If you want to add the [Click Analytics plug-in](./javascript-feature-extensions.md):
- 
+
 1. Uncomment the lines for Click Analytics.
 
 1. Do one of the following, depending on which plug-in you're adding:
@@ -353,7 +353,7 @@ appInsights.loadAppInsights();
 
 #### [React Native](#tab/reactnative)
 
-React Native doesn't track router changes but does track [page views](./api-custom-events-metrics.md#page-views).
+React Native doesn't track router changes but does track page views.
 
 #### [Angular](#tab/angular)
 
@@ -466,7 +466,7 @@ To chain more custom exception handlers:
 
     ```javascript
     import { IErrorService } from '@microsoft/applicationinsights-angularplugin-js';
-    
+
     export class CustomErrorHandler implements IErrorService {
         handleError(error: any) {
             ...
@@ -529,7 +529,7 @@ class MyComponent extends React.Component {
     ...
 }
 
-// withAITracking takes 4 parameters (reactPlugin, Component, ComponentName, className). 
+// withAITracking takes 4 parameters (reactPlugin, Component, ComponentName, className).
 // The first two are required and the other two are optional.
 
 export default withAITracking(reactPlugin, MyComponent);
@@ -588,7 +588,7 @@ const MyComponent = () => {
       };
     const additionalProperties = { "Component Name": 'MyComponent' };
     appInsights.trackMetric(metricData, additionalProperties);
-    
+
     return (
         <h1>My Component</h1>
     );
@@ -610,7 +610,7 @@ import { useAppInsightsContext, useTrackMetric } from "@microsoft/applicationins
 const MyComponent = () => {
     const appInsights = useAppInsightsContext();
     const trackComponent = useTrackMetric(appInsights, "MyComponent");
-    
+
     return (
         <h1 onHover={trackComponent} onClick={trackComponent}>My Component</h1>
     );
@@ -641,12 +641,12 @@ const MyComponent = () => {
     useEffect(() => {
         trackCartUpdate({ cartCount: cart.length });
     }, [cart]);
-    
+
     const performCheckout = () => {
         trackCheckout();
         // submit data
     };
-    
+
     return (
         <div>
             <ul>
@@ -669,7 +669,7 @@ When the Hook is used, a data payload can be provided to it to add more data to 
 
 #### Disable automatic device info collection
 
-If you don't want to collect the device information, you can set `disableDeviceCollection` to `true`. 
+If you don't want to collect the device information, you can set `disableDeviceCollection` to `true`.
 
 ```typescript
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
@@ -687,7 +687,7 @@ appInsights.loadAppInsights();
 
 #### Use your own device info collection class
 
-If you want to override your own device's information, you can use `myDeviceInfoModule` to collect your own device information. 
+If you want to override your own device's information, you can use `myDeviceInfoModule` to collect your own device information.
 
 ```typescript
 import { ApplicationInsights } from '@microsoft/applicationinsights-web';
@@ -768,5 +768,5 @@ Check out the [Application Insights Angular demo](https://github.com/microsoft/a
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions) 
+* To review frequently asked questions (FAQ), see [JavaScript framework extensions FAQ](application-insights-faq.yml#javascript-framework-extensions)
 * [Confirm data is flowing](javascript-sdk.md#confirm-data-is-flowing)
