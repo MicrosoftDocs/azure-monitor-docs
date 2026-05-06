@@ -405,7 +405,7 @@ items:
         href: containers/opentelemetry-summary.md
       - name: Monitor AKS applications with OpenTelemetry Protocol (Preview)
         href: containers/kubernetes-open-protocol.md
-      - name: Autoinstrumentation for AKS (Preview)
+      - name: Autoinstrumentation for AKS
         href: containers/kubernetes-codeless.md
       - name: Limited previews
         items:
