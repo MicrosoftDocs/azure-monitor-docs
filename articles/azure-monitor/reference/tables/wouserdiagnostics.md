@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Contains all workload orchestration API Server user diagnostics logs. These events are useful for diagnose failed requests on workload orchestration. Requires Diagnostic Settings to use the Resource Specific destination table.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,27 @@ Contains all workload orchestration API Server user diagnostics logs. These even
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/wouserdiagnostics)|
 
-
-
 ## Columns
-  
-[!INCLUDE [wouserdiagnostics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/wouserdiagnostics-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | Category of the event. |
+| CorrelationId | string | Correlation ID of the operation. |
+| EdgeLocation | string | The Azure Edge custom location resource Id on which the operation happens. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Azure region in which the workload orchestration diagnostic resource is located. |
+| Message | string | The diagnose message. |
+| OperatingResourceId | string | The operating resource id refers to the specific operational resource that the workload orchestration is managing when this event is triggered. |
+| OperatingResourceK8SId | string | The operating resource K8s id refers to K8s resource id (namespace/name) of the specific operational resource that the workload orchestration is managing when this event is triggered. |
+| OperationName | string | Operation name of the event. |
+| Properties | dynamic | Properties of the event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Event generation time. |
+| Type | string | The name of the table |
+| User | string | The Microsoft Entra ID object Id of the requester. |
+| WOServiceInstance | string | workload orchestration service pod name. |
+| WOServiceName | string | workload orchestration service name. |

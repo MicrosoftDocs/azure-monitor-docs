@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform (GCP) GCPLoadBalancer logs, enable you to capture network inbound activity from the load balancer and Web Application Firewall (WAF) to monitor access and detect potential threats across Google Cloud Platform (GCP) resources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,38 @@ The Google Cloud Platform (GCP) GCPLoadBalancer logs, enable you to capture netw
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [gcploadbalancer](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcploadbalancer-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| BackendServiceName | string | The backend service name in Google Cloud Platform . |
+| BackendTargetProjectNumber | string | The Backend Service Project Number. |
+| _BilledSize | real | The record size in bytes |
+| CacheDecision | dynamic | Indicates whether a request was served from the cache or the backend. |
+| EnforcedEdgeSecurityPolicy | dynamic | the edge security policy rule that was enforced. |
+| EnforcedSecurityPolicy | dynamic | Indicates whether a security policy (such as a WAF or access control rules) was applied to a request. |
+| ForwardingRuleName | string | The forwarding rule resource of the load balancer in Google Cloud Platform. |
+| InsertId | string | Optional. Providing a unique identifier for the log entry allows Logging to remove duplicate entries with the same timestamp and insertId in a single query result. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Latency | string | The latency of the request. |
+| LogName | string | Information including a suffix identifying the log sub-type (e.g., admin activity, system access, data access) and where in the hierarchy the request was made. |
+| PayloadRemoteIp | string | The remote ip address of the payload. |
+| PreviewEdgeSecurityPolicy | dynamic | populated if a request matches an edge security policy rule configured for preview. |
+| PreviewSecurityPolicy | dynamic | Request matches a rule configured for preview (present only when a preview rule would have taken priority over the enforced rule). |
+| ProjectId | string | The Project id in Google Cloud Platform |
+| RemoteIp | string | The remote ip of the request. |
+| RequestMethod | string | The http method of the request. |
+| RequestSize | string | The size of the request. |
+| RequestStatus | string | The status code of the request. |
+| RequestUrl | string | The url of the request. |
+| SecurityPolicyRequestData | dynamic | The security policy data of the request. |
+| Severity | string | The severity of the incident. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StatusDetails | string | The status details of the request. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time the log entry was received by logging. |
+| Timestamp | datetime | The time the event described by the log entry occurred. |
+| Type | string | The name of the table |
+| UrlMapName | string | The url map resource name in Google Cloud Platform. |
+| UserAgent | string | The user agent of the request. |
+| Zone | string | The Zone name of the Load Balancer. |

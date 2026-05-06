@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Remaining transactions and multixact IDs for each database of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,35 @@ Remaining transactions and multixact IDs for each database of an Azure Database 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqldbtransactionsstats)|
 
-
-
 ## Columns
-  
-[!INCLUDE [pgsqldbtransactionsstats](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqldbtransactionsstats-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AutovacuumFreezeMaxAge | int | Value of the parameter autovacuum_freeze_max_age at the collection time. |
+| AutovacuumMultixactFreezeMaxAge | int | Value of the parameter autovacuum_multixact_freeze_max_age at the collection time. |
+| _BilledSize | real | The record size in bytes |
+| ConnectionsLimit | int | Maximum number of concurrent connections that can be made to this database, -1 means no limit. |
+| DatabaseName | string | Name of the database. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Location of Azure Database for PostgreSQL Flexible server. |
+| LogicalServerName | string | Logical name of the instance. |
+| MinMultixactId | long | All multixact IDs before this one have been replaced with a transaction ID in this database. |
+| MinMultixactIdAge | long | Age in transactions of multixact ID in this database. |
+| RemainingMultixactIds | long | Remaining multixact IDs in this database. |
+| RemainingMultixactIdsTillEmergencyAV | long | Remaining multixact IDs in this database till emergency autovacuum is triggered. |
+| RemainingMultixactIdsTillWraparound | long | Remaining multixact IDs in this database till wraparound protection will be triggered. |
+| RemainingTransactionIds | long | Remaining transaction IDs in this database. |
+| RemainingTransactionIdsTillEmergencyAV | long | Remaining transaction IDs in this database till emergency autovacuum is triggered. |
+| RemainingTransactionIdsTillWraparound | long | Remaining transaction IDs in this database till wraparound protection will be triggered. |
+| ReplicaRole | string | Replica role example. Primary or secondary. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| TransactionIdFrozen | long | All transaction IDs before this one have been replaced with a permanent ('frozen') transaction ID in this database. |
+| TransactionIdFrozenAge | long | Age in transactions of TransactionIdFrozen in this database. |
+| Type | string | The name of the table |
+| UserId | int | Owner of the database, usually the user who created it. |
+| VacuumFreezeMinAge | int | Value of the parameter vacuum_freeze_min_age at the collection time. |
+| VacuumMultixactFreezeMinAge | int | Value of the parameter vacuum_multixact_freeze_min_age at the collection time. |

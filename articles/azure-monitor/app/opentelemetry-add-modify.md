@@ -144,7 +144,7 @@ Depending on your language and signal type, there are different ways to collect 
 
 * OpenTelemetry API
 * Language-specific logging/metrics libraries
-* Application Insights [Classic API](api-custom-events-metrics.md)
+
 
 > [!NOTE]
 > The [Micrometer Tracing API](https://mvnrepository.com/artifact/io.micrometer/micrometer-tracing-bridge-otel) for Java is not supported.
@@ -156,13 +156,11 @@ The following table represents the currently supported custom telemetry types:
 | **ASP.NET Core**                          |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;`ILogger` API           | Yes           |                |              |            |            |          | Yes    |
-| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           |                |              |            |            |          |        |
 |                                           |               |                |              |            |            |          |        |
 | **Java**                                  |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Logback, `Log4j`, JUL   |               |                |              | Yes        |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Micrometer Metrics      |               | Yes            |              |            |            |          |        |
-| &nbsp;&nbsp;&nbsp;AI Classic API          | Yes           | Yes            | Yes          | Yes        | Yes        | Yes      | Yes    |
 |                                           |               |                |              |            |            |          |        |
 | **Node.js**                               |               |                |              |            |            |          |        |
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       | Yes           | Yes            | Yes          | Yes        |            | Yes      |        |
@@ -171,9 +169,6 @@ The following table represents the currently supported custom telemetry types:
 | &nbsp;&nbsp;&nbsp;OpenTelemetry API       |               | Yes            | Yes          | Yes        |            | Yes      |        |
 | &nbsp;&nbsp;&nbsp;Python Logging Module   |               |                |              |            |            |          | Yes    |
 | &nbsp;&nbsp;&nbsp;Events Extension        | Yes           |                |              |            |            |          | Yes    |
-
-> [!NOTE]
-> Application Insights Java 3.x and Application Insights Node.js 3.x collect telemetry from the Application Insights [Classic API](api-custom-events-metrics.md). This behavior simplifies upgrades and temporarily supports custom telemetry until the OpenTelemetry API includes all custom telemetry types.
 
 ### Add custom metrics
 
@@ -199,7 +194,7 @@ The [OpenTelemetry Specification](https://github.com/open-telemetry/opentelemetr
 describes the instruments and provides examples of when you might use each one.
 
 > [!TIP]
-> The histogram is the most versatile and most closely equivalent to the Application Insights GetMetric [Classic API](api-custom-events-metrics.md). Azure Monitor currently flattens the histogram instrument into our five supported aggregation types, and support for percentiles is underway. Although less versatile, other OpenTelemetry instruments have a lesser effect on your application's performance.
+> The histogram is the most versatile OpenTelemetry metric instrument for recording distributions. Azure Monitor currently flattens the histogram instrument into the five supported aggregation types, and support for percentiles is underway. Although less versatile, other OpenTelemetry instruments have a lesser effect on your application's performance.
 
 #### Histogram example
 

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Provides information about jobs executions (e.g. Export Job) within Log Analytics workspace. Including job status, duration, and errors.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,24 @@ Provides information about jobs executions (e.g. Export Job) within Log Analytic
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/lajoblogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [lajoblogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/lajoblogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CorrelationId | string | The correlation ID of the Job action. Can be used to reference with logs from other tables, like AzureActivity, or included in support cases. |
+| Destination | dynamic | The destination information based on the JobType. e.g. 'Export' includes the export target container name and storage Accounts. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| JobId | string | The ID of the job. Can be used as operationId in the operation resource URI (in request response) to get the job's status or cancel a job. |
+| JobType | string | The type of the job. e.g. 'Export'. |
+| Message | string | A message describing the job's operation or error. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultsGB | real | The results volume in Gigabytes. e.g. the number of Gigabytes exported to Storage Account. |
+| ResultsRecordCount | long | The number of records in the job's result. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SourceTable | string | The table(s) used in the job's query. |
+| Status | string | The job's status, including 'Started', 'Succeeded', 'Canceled, 'Failed'. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time (UTC) of each status change in the job. |
+| Type | string | The name of the table |

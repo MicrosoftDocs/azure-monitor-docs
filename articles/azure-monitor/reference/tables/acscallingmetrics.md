@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Aggregated Calling metrics in daily bins based on dimensions like SDK Version, OS name, Subcode.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,43 @@ Aggregated Calling metrics in daily bins based on dimensions like SDK Version, O
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [acscallingmetrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallingmetrics-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CallsDcount | int | Count of total Call per dimension. |
+| CallType | string | Call type dimension. |
+| Category | string | The log category of the event. Logs with the same log category and resource type will have the same properties fields. |
+| CorrelationId | string | The unique gguid per dimension. |
+| DeviceBrand | string | Device brand dimension. |
+| DeviceBrowser | string | Device browser dimension. |
+| DeviceBrowserVersionMajor | string | Device browser major dimension. |
+| DeviceBrowserVersionMinor | string | Device browser minor dimension. |
+| DeviceFamily | string | Device Family dimension. |
+| DeviceModel | string | Device model dimension. |
+| DeviceOsName | string | Device OS name dimension. |
+| DeviceOsVersionMajor | string | Device OS version major dimension. |
+| DeviceOsVersionMinor | string | Device OS version minor dimension. |
+| FailedLegsDcount | int | Number of failed participants per dimension. |
+| Goal | string | Threshold defined for a leg to succeed. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LegsDcount | int | Count of total participants per dimension. |
+| MetricName | string | Metric name dimension. |
+| MetricValueAvg | real | The average value of metric per dimension. |
+| OperationName | string | The operation associated with log record. |
+| OperationVersion | string | The API-version associated with the operation or version of the operation (if there is no API version). |
+| Platform | string | Platform dimension. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultType | string | Result type dimension. |
+| SdkVersion | string | SDK version dimension. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SubCode | string | Subcode dimension. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| SuccessLegsDcount | int | Count of succeeded participants per dimension. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| TimestampBin | datetime | The daily timestamp bin for each dimension. |
+| TimestampMax | datetime | The max timestamp for each dimension. |
+| Type | string | The name of the table |
+| Unit | string | Unit of metric |

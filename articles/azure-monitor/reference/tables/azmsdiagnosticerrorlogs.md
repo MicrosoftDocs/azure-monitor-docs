@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Captures aggregated diagnostic information such as client errors , server busy errors and quota exceeded errors for various data plane access operations (such as send or receive messages) in Azure Event Hubs and Azure Service Bus.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,24 @@ Captures aggregated diagnostic information such as client errors , server busy e
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/azmsdiagnosticerrorlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [azmsdiagnosticerrorlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azmsdiagnosticerrorlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ActivityId | string | A randomly generated UUID that ensures uniqueness for the audit activity. |
+| ActivityName | string | Operation name. |
+| _BilledSize | real | The record size in bytes |
+| EntityName | string | Entity name. |
+| EntityType | string | Entity type. |
+| ErrorCount | int | Count of identical errors during the aggregation period of 1 minute. |
+| ErrorMessage | string | Detailed error message. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| NamespaceName | string | Namespace name. |
+| OperationResult | string | Type of error (clienterror or serverbusy or quotaexceeded). |
+| Provider | string | Event provider name. Possible values: eventhub, relay, and servicebus. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The event generation time (UTC). |
+| Type | string | The name of the table |

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs generated when app service content is modified.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,19 @@ Logs generated when app service content is modified.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/appservicefileauditlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [appservicefileauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/appservicefileauditlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | Log category name |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| OperationName | string | Operation performed on a file |
+| Path | string | Path to the file that was changed |
+| Process | string | Type of the process that change the file |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time when event is generated |
+| Type | string | The name of the table |

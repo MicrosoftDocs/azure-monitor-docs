@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Call client media stats logs provide media statistics about a call made through ACS. These los are used to provide granular timeseries for quality metrics in Call Diagnostics Center. The logs contains information about media stream type, direction, codec as well as bitrate properties (e.g. max, min, average).
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,34 @@ Call client media stats logs provide media statistics about a call made through 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/acscallclientmediastatstimeseries)|
 
-
-
 ## Columns
-  
-[!INCLUDE [acscallclientmediastatstimeseries](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallclientmediastatstimeseries-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AggregationIntervalSeconds | int | ACS calling media stats aggregation interval in seconds. |
+| Average | real | The average of a certain media metric statistics. |
+| _BilledSize | real | The record size in bytes |
+| CallClientTimeStamp | datetime | The timestamp (UTC) of when the ACS client's media stats log was generated. |
+| CallId | string | The identifier of the call used to correlate. Can be used to identify correlated events between multiple tables. |
+| ClientInstanceId | string | Client instance ID. |
+| Count | long | The count of a certain media metric statistics. |
+| EndpointId | string | ACS calling endpoint ID. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Maximum | real | The maximum of a certain media metric statistics. |
+| MediaStreamCodec | string | Client media stream codec. |
+| MediaStreamDirection | string | Client media stream direction, i.e. recv or send. |
+| MediaStreamId | string | ACS calling media stream ID. |
+| MediaStreamType | string | Client media stream type, i.e. video or screen. |
+| MetricName | string | Client metric name. |
+| Minimum | real | The minimum of a certain media metric statistics. |
+| OperationName | string | The operation associated with log record. |
+| ParticipantId | string | ID of the participant. |
+| RemoteEndpointId | string | ACS calling remote endpoint ID. |
+| RemoteParticipantId | string | ACS remote participant ID. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| Sum | real | The sum of a certain media metric statistics. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

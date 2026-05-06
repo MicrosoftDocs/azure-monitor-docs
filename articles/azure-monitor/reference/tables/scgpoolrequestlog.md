@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains Request Logs for a StandbyContainerGroupPool, which can be used for audit and troubleshooting.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,21 @@ Contains Request Logs for a StandbyContainerGroupPool, which can be used for aud
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/scgpoolrequestlog)|
 
-
-
 ## Columns
-  
-[!INCLUDE [scgpoolrequestlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/scgpoolrequestlog-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| EventName | string | The event that occurred during the operation. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | The region where the event occurred during the operation. |
+| NewMaxCapacity | int | The new maximum number of containers for the standbypool as set by the user. |
+| NewMinCapacity | int | The new minimum number of containers for the standbypool as set by the user. |
+| NewResourceState | string | The new resource state for the containers in the standbypool as set by the user. |
+| OperationName | string | The resource operation name for the log. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time (UTC) when the log was created. |
+| Type | string | The name of the table |

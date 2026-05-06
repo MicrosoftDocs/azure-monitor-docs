@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Service side request and outcome logs from calling SDK like call join, hangup and state updates as outcomes with http request/response payloads in the property bag.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,23 @@ Service side request and outcome logs from calling SDK like call join, hangup an
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [acscallclientservicerequestandoutcome](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/acscallclientservicerequestandoutcome-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The log category of the event. Logs with the same log category and resource type will have the same properties fields. |
+| CorrelationId | string | The unique gguid per dimension. |
+| DurationMs | int | Duration of an operation in milliseconds. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Level | string | Log level like info/error. |
+| OperationName | string | The operation associated with log record. |
+| Properties | dynamic | Properties payload based on request/outcome of various calling operations. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultSignature | int | HTTP result signature. |
+| ResultType | string | Result type like Success/UnexpectedServerError. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

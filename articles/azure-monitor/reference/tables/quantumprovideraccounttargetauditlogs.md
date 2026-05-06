@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Audit logs for target intake management operations performed on Azure Quantum Provider Account resources, such as enabling or disabling a target's intake of new jobs. Used to track changes to target availability.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,26 @@ Audit logs for target intake management operations performed on Azure Quantum Pr
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [quantumprovideraccounttargetauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/quantumprovideraccounttargetauditlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The log category. Value is AuditEvent for all records in this table. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | The Azure region where the Provider Account resource resides. |
+| OperationName | string | The name of the audited operation, such as UpdateTargetIntakeStatus. |
+| OperationParams | dynamic | Additional parameters specific to the operation, represented as a JSON object. For UpdateTargetIntakeStatus this includes the new Status value (Enabled or Disabled). |
+| OperationVersion | string | The API version under which the operation was invoked. |
+| RequesterObjectId | string | The Entra object ID of the identity that performed the operation. |
+| RequesterTenantId | string | The Entra tenant ID of the identity that performed the operation. |
+| RequesterUpn | string | The user principal name (UPN) of the identity that performed the operation. Empty for managed identities and service principals. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultCode | string | The outcome of the operation, such as Success or Failure. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TargetId | string | The identifier of the quantum target whose intake status was modified. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the target operation was recorded. |
+| TraceId | string | The distributed trace identifier for correlating this operation across services. |
+| Type | string | The name of the table |

@@ -13,7 +13,6 @@ ms.date: 04/06/2026
 
 Alibaba Cloud WAF Logs data.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,95 @@ Alibaba Cloud WAF Logs data.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [sentinelalibabacloudwaflogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/sentinelalibabacloudwaflogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AccountAction | string | The action that is performed on the client request after an account security rule is triggered. The value is fixed as block |
+| AccountRuleId | string | The ID of the account security rule that is triggered |
+| AccountTest | bool | The protection mode that is used for the client request after an account security rule is triggered. true: observation mode, false: prevention mode |
+| AclAction | string | The action that is performed on the client request after a rule created for the blocklist or custom protection policy (ACL) feature is triggered. Valid values: block, captcha_strict, captcha, js, captcha_strict_pass, captcha_pass, and js_pass |
+| AclRuleId | string | The ID of the rule that is triggered. The rule is created for the blocklist or ACL feature |
+| AclRuleType | string | The type of the rule that is triggered. The rule is created for the blocklist or ACL feature. Valid values: custom (ACL feature), blocklist (blocklist feature) |
+| AclTest | bool | The protection mode that is used for the client request after a rule created for the blocklist or ACL feature is triggered. true: observation mode, false: prevention mode |
+| AlgorithmRuleId | string | The ID of the rule that is triggered. The rule is created for the typical bot behavior identification feature |
+| AntiscanAction | string | The action that is performed on the client request after a rule created for the scan protection feature is triggered. The value is fixed as block |
+| AntiscanRuleId | string | The ID of the rule that is triggered. The rule is created for the scan protection feature |
+| AntiscanRuleType | string | The type of the rule that is triggered. The rule is created for the scan protection feature. Valid values: highfreq, dirscan, scantools, collaborative |
+| AntiscanTest | bool | The protection mode that is used for the client request after a rule created for the scan protection feature is triggered. true: observation mode, false: prevention mode |
+| _BilledSize | real | The record size in bytes |
+| BlockAction | string | The WAF protection feature that is triggered to block the request. Valid values: tmd, waf, acl, deeplearning, antiscan, antifraud, antibot |
+| BodyBytesSent | long | The number of bytes in the request body |
+| BypassMatchedIds | string | The ID of the rule that is triggered to allow the client request. Multiple IDs are separated with commas |
+| CcAction | string | The action that is performed on the client request after a rule created for the HTTP flood protection or custom protection policy (HTTP Flood Protection) feature is triggered. Valid values: block, captcha, js, captcha_pass, and js_pass |
+| CcBlocks | string | Indicates whether the client request is blocked by the HTTP flood protection feature. 1: The request is blocked, A different value: The request is allowed |
+| CcRuleId | string | The ID of the rule that is triggered. The rule is created for the HTTP flood protection or custom protection policy (HTTP Flood Protection) feature |
+| CcRuleType | string | The type of the rule that is triggered. The rule is created for the HTTP flood protection or custom protection policy (HTTP Flood Protection) feature. Valid values: custom (custom protection rule), system (HTTP flood protection rule) |
+| CcTest | bool | The protection mode that is used for the client request after a rule created for the HTTP flood protection or custom protection policy (HTTP Flood Protection) feature is triggered. true: observation mode, false: prevention mode |
+| ContentType | string | The type of the requested content |
+| DeeplearningAction | string | The action that is performed on the client request after a rule created for the Deep Learning Engine is triggered. The value is fixed as block |
+| DeeplearningRuleId | string | The ID of the rule that is triggered. The rule is created for the Deep Learning Engine |
+| DeeplearningRuleType | string | The type of the rule that is triggered. The rule is created for the Deep Learning Engine. Valid values: xss, code_exec, webshell, sqli, lfilei, rfilei, crlf, other |
+| DeeplearningTest | bool | The protection mode that is used for the client request after a rule created for the Deep Learning Engine is triggered. true: observation mode, false: prevention mode |
+| DlpRuleId | string | The ID of the rule that is triggered. The rule is created for the data leakage prevention feature |
+| DlpTest | bool | The protection mode that is used for the client request after a rule created for the data leakage prevention feature is triggered. true: observation mode, false: prevention mode |
+| FinalAction | string | The action that WAF performs on the client request. Valid values: block, captcha_strict, captcha, and js |
+| FinalPlugin | string | The protection feature that performs the action specified by final_action on the client request. Valid values: waf, deeplearning, dlp, account, normalized, acl, cc, antiscan, scene, antifraud, intelligence, algorithm, wxbb |
+| FinalRuleId | string | The ID of the rule that is applied to the client request. The rule defines the action recorded in the final_action field |
+| FinalRuleType | string | The subtype of the rule that is applied to the client request. The rule is indicated by final_rule_id |
+| Host | string | The Host field of the request header. This field contains the domain name or IP address to access |
+| HttpCookie | string | The Cookie field of the request header. This field contains the cookie information about the client |
+| HttpReferer | string | The Referer field of the request header. This field contains the source URL information about the request |
+| Https | bool | Indicates whether the request is an HTTPS request. true: The request is an HTTPS request, false: The request is an HTTP request |
+| HttpUserAgent | string | The User-Agent field of the request header. This field contains information such as the identifier of the client browser or operating system |
+| HttpXForwardedFor | string | The X-Forwarded-For (XFF) field of the request header. This field is used to identify the actual IP address of the client that is connected to the web server by using an HTTP proxy or a load balancing device |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogProject | string | The name of the log project where the logs are stored. |
+| LogRegion | string | The region where the log store is located. |
+| LogStore | string | The name of the log store where the logs are stored. |
+| MatchedHost | string | The domain name of the origin server that is matched by WAF for the request. A wildcard domain name may be matched |
+| NormalizedAction | string | The action that is performed on the client request after a rule created for the positive security model feature is triggered. Valid values: block and continue |
+| NormalizedRuleId | string | The ID of the rule that is triggered. The rule is created for the positive security model feature |
+| NormalizedRuleType | string | The type of the rule that is triggered. The rule is created for the positive security model feature. Valid values: User-Agent, Referer, URL, Cookie, Bod |
+| NormalizedTest | bool | The protection mode that is used for the client request after a rule created for the positive security model feature is triggered. true: observation mode, false: prevention mode |
+| OwnerId | string | The ID of the Alibaba Cloud account |
+| Querystring | string | The query string in the client request. The query string refers to the part that follows the question mark (?) in the requested URL |
+| RealClientIp | string | The actual IP address of the client that initiates the request. WAF identifies the actual IP address based on the analysis of the request |
+| Region | string | The ID of the region where the WAF instance resides. Valid values: cn (Chinese mainland), int (outside the Chinese mainland) |
+| RemoteAddr | string | The IP address that is used to connect to WAF |
+| RemotePort | int | The port that is used to connect to WAF |
+| RequestLength | long | The number of bytes in the client request. The request includes the request line, request headers, and request body. Unit: bytes |
+| RequestMethod | string | The request method |
+| RequestPath | string | The requested relative path. The relative path refers to the part between the domain name and the question mark (?) in the requested URL |
+| RequestTimeMsec | real | The time that is taken by WAF to process the client request. Unit: milliseconds |
+| RequestTraceid | string | The unique identifier that is generated by WAF for the client request |
+| SceneAction | string | The action that is performed on the client request after a rule created for scenario-specific configuration is triggered. Valid values: block, captcha, js, captcha_pass, and js_pass |
+| SceneId | string | The scenario ID of the rule that is triggered. The rule is created for scenario-specific configuration |
+| SceneRuleId | string | The ID of the rule that is triggered. The rule is created for scenario-specific configuration |
+| SceneRuleType | string | The type of the rule that is triggered. The rule is created for scenario-specific configuration. Valid values: bot_aialgo, js, intelligence, sdk, cc |
+| SceneTest | bool | The protection mode that is used for the client request after a rule created for scenario-specific configuration is triggered. true: observation mode, false: prevention mode |
+| ServerPort | int | The requested destination port |
+| ServerProtocol | string | The protocol and version that is used by the origin server to respond to the request forwarded by WAF |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SslCipher | string | The cipher suite that is used in the client request |
+| SslProtocol | string | The SSL or TLS protocol and version that are used in the client request |
+| Status | int | The HTTP status code that is returned by WAF to the client |
+| TenantId | string | The Log Analytics workspace ID |
+| Time | datetime | The point in time at which the client request is initiated |
+| TimeGenerated | datetime | The time when the log entry was generated |
+| Type | string | The name of the table |
+| UaBrowser | string | The name of the browser that initiates the request |
+| UaBrowserFamily | string | The family to which the browser belongs |
+| UaBrowserType | string | The type of the browser that initiates the request |
+| UaBrowserVersion | string | The version of the browser that initiates the request |
+| UaDeviceType | string | The device type of the client that initiates the request |
+| UaOs | string | The operating system of the client that initiates the request |
+| UaOsFamily | string | The family to which the operating system of the client belongs |
+| UpstreamAddr | string | The back-to-origin addresses used by WAF. Each address is in the IP:Port format. Multiple addresses are separated with commas |
+| UpstreamResponseTime | real | The time that is taken by the origin server to respond to the request. The request is forwarded by WAF. Unit: seconds |
+| UpstreamStatus | int | The status code that is returned by the origin server to WAF |
+| UserId | string | The ID of the Alibaba Cloud account to which the WAF instance belongs |
+| WafAction | string | The action that is performed on the client request after a rule created for the Protection Rules Engine is triggered. The value is fixed as block |
+| WafRuleId | string | The ID of the rule that is triggered. The rule is created for the Protection Rules Engine |
+| WafRuleType | string | The type of the rule that is triggered. The rule is created for the Protection Rules Engine. Valid values: xss, code_exec, webshell, sqli, lfilei, rfilei, crlf, other |
+| WafTest | bool | The protection mode that is used for the client request after a rule created for the Protection Rules Engine is triggered. true: observation mode, false: prevention mode |

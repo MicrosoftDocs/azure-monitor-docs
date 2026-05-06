@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform NAT data connector provides the capability to ingest Cloud NAT Audit logs and Cloud NAT Traffic logs into Microsoft Sentinel using the Compute Engine API. Refer the [Product overview](https://cloud.google.com/nat/docs/overview) document for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,37 @@ The Google Cloud Platform NAT data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [gcpnat](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpnat-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AllocationStatus | string | Status of the NAT IP address allocation. |
+| ASN | string | Autonomous System Number (ASN) associated with the destination IP. |
+| _BilledSize | real | The record size in bytes |
+| City | string | City of the destination IP address (geo-located). |
+| Continent | string | Continent where the destination IP is located. |
+| Country | string | Country of the destination IP address (geo-located). |
+| DestinationRegion | string | Continent or larger geographical region of the destination. |
+| DestIp | string | Destination external IP address the traffic was sent to. |
+| DestPort | string | Destination port on the remote host. |
+| EndpointRegion | string | Region of the destination endpoint. |
+| EndpointZone | string | Zone of the destination endpoint if applicable. |
+| GatewayName | string | Name of the Cloud NAT gateway instance. |
+| GCPResourceType | string | Type of the monitored GCP resource (e.g., 'router', 'gce_instance'). |
+| InsertId | string | Unique identifier for the log entry within the GCP logging system. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogName | string | Name of the log stream. |
+| NatIp | string | Public NAT IP address assigned for this flow. |
+| NatPort | string | Public NAT port assigned for this flow. |
+| ProjectId | string | ID of the GCP project that generated the log entry. |
+| Protocol | string | Network protocol used in the connection. |
+| ReceiveTimestamp | datetime | The time the log entry was received by GCP Logging. |
+| Region | string | Region of the GCP resource involved in the NAT traffic. |
+| RouterId | string | Identifier of the Cloud Router managing the NAT gateway. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIp | string | Source internal IP address from which the traffic originated. |
+| SrcPort | string | Source port on the internal VM or resource. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log was ingested by Log Analytics. |
+| Type | string | The name of the table |
+| VmName | string | Name of the virtual machine that initiated the NAT traffic. |

@@ -11,8 +11,7 @@ ms.date: 03/11/2026
 
 # IlumioInsights
 
-Ilumio Insights data connector provides the capability to ingest audit and event logs from the Ilumio Insight API into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform and uses the Ilumio Insight API to fetch the events. The connector supports DCR-based [ingestion time transformations](https://docs.microsoft.com/azure/azure-monitor/logs/custom-logs-overview) that parses the received security event data into a custom columns so that queries don't need to parse it again, thus resulting in better performance.
-
+Ilumio Insights data connector provides the capability to ingest audit and event logs from the Ilumio Insight API into Microsoft Sentinel. The data connector is built on Microsoft Sentinel Codeless Connector Platform and uses the Ilumio Insight API to fetch the events. The connector supports DCR-based [ingestion time transformations](/azure/azure-monitor/logs/custom-logs-overview) that parses the received security event data into a custom columns so that queries don't need to parse it again, thus resulting in better performance.
 
 ## Table attributes
 
@@ -26,8 +25,46 @@ Ilumio Insights data connector provides the capability to ingest audit and event
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ilumioinsights)|
 
-
-
 ## Columns
-  
-[!INCLUDE [ilumioinsights](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ilumioinsights-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AzureResourceId | string | The Azure resource ID associated with the event. |
+| _BilledSize | real | The record size in bytes |
+| CvssSeverity | string | CVSS (Common Vulnerability Scoring System) severity rating. |
+| DestCity | string | City where the destination IP is geolocated. |
+| DestCountry | string | Country where the destination IP is located. |
+| DestIP | string | IP address of the destination. |
+| DestIsWellKnown | bool | Indicates if the destination is a known/trusted entity. |
+| DestLabel | string | Label or tag assigned to the destination entity. |
+| DestPort | int | Port number on the destination endpoint. |
+| DestThreatLevel | string | Threat level associated with the destination IP. |
+| FlowCount | int | Number of flows or sessions detected for this event. |
+| IllumioTenantId | string | Tenant ID assigned by Illumio for multi-tenant environments. |
+| IllumioUrl | string | URL to view the record or associated details in the Illumio console. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Name | string | The name or type of the insight or event. |
+| Port | int | Source or service port involved in the communication. |
+| Proto | string | Protocol used in the communication (e.g., TCP, UDP). |
+| ResourceInternalId | string | Internal identifier for the monitored resource within Illumio. |
+| ResourceRegion | string | The Azure region where the resource is deployed. |
+| ResourceSubId | string | Azure subscription ID that contains the resource. |
+| ResourceTenantId | string | Azure tenant ID to which the resource belongs. |
+| ResourceVnetId | string | Identifier for the Virtual Network (VNet) associated with the resource. |
+| Service | string | The name of the detected or used service (e.g., HTTP, SSH). |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcCity | string | City where the source IP is geolocated. |
+| SrcCountry | string | Country where the source IP is located. |
+| SrcIP | string | IP address of the source. |
+| SrcIsWellKnown | bool | Indicates if the source is a known/trusted entity. |
+| SrcLabel | string | Label or tag assigned to the source entity. |
+| SrcPort | int | Port number used by the source entity. |
+| SrcThreatLevel | string | Threat level (e.g., Low, Medium, High) associated with the source IP. |
+| Status | string | Current status of the insight (e.g., Active, Resolved). |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the record or event was logged. |
+| TotalReceivedBytes | int | Total number of bytes received during the communication flow. |
+| TotalSentBytes | int | Total number of bytes sent during the communication flow. |
+| Type | string | The name of the table |
+| UniqueId | string | A unique identifier for the specific insight or event. |
+| VEScore | real | Vulnerability exposure score indicating the risk level. |

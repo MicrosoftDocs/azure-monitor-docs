@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Captures various identity-related events, like password changes, password expiration, and user principal name (UPN) changes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,30 @@ Captures various identity-related events, like password changes, password expira
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [identityevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identityevents-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AccountDisplayName | string | Name displayed in the address book entry for the account user. This is usually a combination of the given name, middle initial, and surname of the user. |
+| AccountId | string | Unique identifier for the account in the source application |
+| AccountType | string | Type of user account, indicating its general role like User, SystemPrincipal |
+| AccountUpn | string | Alternate ID, email, or name for the account in the source application |
+| ActionFailureReason | string | Information explaining why the recorded action failed |
+| ActionResult | string | Result of the action |
+| ActionType | string | Type of activity that triggered the event in the raw format received from the source application |
+| AdditionalFields | dynamic | Additional information about the entity or event |
+| Application | string | The source application where this event was received from |
+| ApplicationEventId | string | Raw event ID provided by the source application |
+| ApplicationInstanceId | string | Domain of the source application |
+| ApplicationSessionId | string | Raw session ID provided by the source application |
+| _BilledSize | real | The record size in bytes |
+| IPAddress | string | IP address assigned to the device and used during related network communications |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| RawEventData | dynamic | Full raw event information from the source application in JSON format |
+| ReportId | string | Unique identifier for the event |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TargetObjects | dynamic | List of the target objects of this activity. Target object can be user, group, role, domain, application, and more. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the record was generated |
+| Type | string | The name of the table |
+| UserAgent | string | User agent information from the web browser or other client application |

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 All Logs from Storm cluster nodes.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,22 @@ All Logs from Storm cluster nodes.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [hdinsightstormlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/hdinsightstormlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| ClusterName | string | Name of cluster. |
+| CorrelationId | string | The ID for correlated events. Can be used to identify correlated events between multiple tables. |
+| HostName | string | Name of host where log was emitted. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogLevel | string | The severity level of the log (e.g. INFO,WARN, ERROR, etc.) |
+| LogType | string | The name of the log file that a record came from (e.g. StormNimbus, StormSupervisor). |
+| Message | string | message from Storm log. |
+| OperationName | string | The operation associated with log record. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

@@ -52,7 +52,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * [ASP.NET Core Application](/aspnet/core/introduction-to-aspnet-core) using an officially supported version of [.NET](https://dotnet.microsoft.com/download/dotnet)
 
 > [!Tip]
-> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-dotnet-migrate.md).
+> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
 
 #### [.NET](#tab/net)
 
@@ -60,7 +60,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * Application using a [supported version](https://dotnet.microsoft.com/platform/support/policy) of [.NET](https://dotnet.microsoft.com/download/dotnet) or [.NET Framework](https://dotnet.microsoft.com/download/dotnet-framework) 4.6.2 and later.
 
 > [!Tip]
-> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-dotnet-migrate.md).
+> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
 
 #### [Java](#tab/java)
 
@@ -83,7 +83,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > If you rely on any of those properties, proceed with the Azure Monitor OpenTelemetry Distro.
 
 > [!Tip]
-> If you're migrating from the [Application Insights Classic API](/previous-versions/azure/azure-monitor/app/classic-api), see our [migration documentation](./opentelemetry-nodejs-migrate.md).
+> If you're migrating from older Application Insights SDKs, see our [migration documentation](./migrate-to-opentelemetry.md).
 
 #### [Python](#tab/python)
 
@@ -91,7 +91,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 > * Python Application using Python 3.8+
 
 > [!Tip]
-> If you're migrating from OpenCensus, see our [migration documentation](./opentelemetry-python-opencensus-migrate.md).
+> If you're migrating from OpenCensus, see our [migration documentation](./migrate-to-opentelemetry.md).
 
 ---
 
@@ -102,7 +102,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 Install the latest `Azure.Monitor.OpenTelemetry.AspNetCore` [NuGet package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.AspNetCore):
 
 ```dotnetcli
-dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore 
+dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore
 ```
 
 #### [.NET](#tab/net)
@@ -110,7 +110,7 @@ dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore
 Install the latest `Azure.Monitor.OpenTelemetry.Exporter` [NuGet package](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter):
 
 ```dotnetcli
-dotnet add package Azure.Monitor.OpenTelemetry.Exporter 
+dotnet add package Azure.Monitor.OpenTelemetry.Exporter
 ```
 
 #### [Java](#tab/java)
@@ -264,7 +264,7 @@ import logging
 # `azure.monitor.opentelemetry` package.
 from azure.monitor.opentelemetry import configure_azure_monitor
 
-# Configure OpenTelemetry to use Azure Monitor with the 
+# Configure OpenTelemetry to use Azure Monitor with the
 # APPLICATIONINSIGHTS_CONNECTION_STRING environment variable.
 configure_azure_monitor(
     logger_name="<your_logger_namespace>",  # Set the namespace for the logger in which you would like to collect telemetry for if you are collecting logging telemetry. This is imperative so you do not collect logging telemetry from the SDK itself.
@@ -296,31 +296,31 @@ To paste your connection string, select from the following options:
 
 > [!IMPORTANT]
 > We recommend setting the connection string through code only in local development and test environments.
-> 
+>
 > For production, use an environment variable or configuration file (Java only).
 
 * **Set via environment variable** - *recommended*
 
     Replace `<Your connection string>` in the following command with your connection string.
-    
+
     ```console
     APPLICATIONINSIGHTS_CONNECTION_STRING=<Your connection string>
     ```
 
 * **Set via configuration file** - *Java only*
-    
+
     Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.8.jar` with the following content:
-    
+
     ```json
     {
       "connectionString": "<Your connection string>"
     }
     ```
-      
+
     Replace `<Your connection string>` in the preceding JSON with *your* unique connection string.
 
 * **Set via code** - *ASP.NET Core, Node.js, and Python only*
-  
+
     See [connection string configuration](opentelemetry-configuration.md#connection-string) for an example of setting connection string via code.
 
 > [!NOTE]

@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 This table is populated by Azure Sentinel UEBA with all your users account identities information. It can be used to correlate user information and insights with analytics or hunting queries.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,58 @@ This table is populated by Azure Sentinel UEBA with all your users account ident
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [identityaccountinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/identityaccountinfo-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AccountId | string | Internal identifier for the account. |
+| AccountStatus | string | The status of the account. |
+| AccountUpn | string | User principal name (UPN) of the account. |
+| AdditionalFields | dynamic | Additional information about the entity or event. |
+| Address | string | Address of the account user. |
+| AssignedRoles | dynamic | Role identifiers assigned to the account. |
+| AuthenticationMethod | string | Authentication method used to allow the account user to sign in. |
+| AuthenticationSourceAcccountId | string | Identifier of the federating account, if authentication method is Federated. |
+| _BilledSize | real | The record size in bytes |
+| City | string | City where the account user is located. |
+| Country | string | Country or region where the account user is located. |
+| CreatedDateTime | datetime | Date and time when the user account was created. |
+| CriticalityLevel | int | The criticality score of the account. |
+| DefenderRiskLevel | int | The risk level of the account as calculated by Microsoft Defender. |
+| DefenderRiskUpdateTime | datetime | Date and time Microsoft Defender last updated the risk level of the account. |
+| DeletedDateTime | datetime | Date and time when the user account was deleted. |
+| Department | string | Name of the department that the account user belongs to. |
+| DisplayName | string | Name of the account user displayed in the address book. |
+| EligibleRoles | dynamic | Identifiers for roles the account is eligible to use. |
+| EmailAddress | string | SMTP address of the account. |
+| EmployeeId | string | Employee identifier assigned to the user by the organization. |
+| EnrolledMfas | dynamic | Configured multifactor authentication methods and status. |
+| GivenName | string | Given name or first name of the account user. |
+| GroupMembership | dynamic | Group identifiers assigned to the account. |
+| IdentityId | string | Identifier for the identity that the account is linked to. |
+| IdentityLinkBy | string | The entity that linked the account to the identity. |
+| IdentityLinkReason | string | Reason for linking the account and identity. |
+| IdentityLinkTime | datetime | Date and time the account was linked to the identity. |
+| IdentityLinkType | string | Type of linkage between the account and identity. |
+| IdentityType | string | Type of identity - possible values: User, ServiceAccount |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsPrimary | bool | Indicates if this account is considered as primary account for the linked identity. |
+| JobTitle | string | Job title of the account user. |
+| LastPasswordChangeTime | datetime | Date and time the account password was last changed. |
+| Manager | string | The listed manager of the account user. |
+| Phone | string | The listed phone number of the account user. |
+| ReportId | string | Unique identifier for the event. |
+| Sid | string | Security identifier (SID) of the account. |
+| SourceProvider | string | Source application or service of the account. |
+| SourceProviderAccountId | string | Identifier for the account in the source provider. |
+| SourceProviderInstanceDisplayName | string | Display name of the source application or service of the account. |
+| SourceProviderInstanceId | string | Identifier of the source application or service of the account. |
+| SourceProviderRiskLevel | dynamic | Risk level of the account as it appears in the source provider. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Surname | string | Surname, family name, or last name of the account user. |
+| Tags | dynamic | Tags assigned to the account by Defender for Identity. |
+| TenantId | string | The Log Analytics workspace ID |
+| TenantMembershipType | string | User type. |
+| TimeGenerated | datetime | Date and time (UTC) when the record was generated |
+| Timestamp | datetime | Date and time that the line was written to the database. |
+| Type | string | The name of the table |

@@ -177,7 +177,7 @@ Use one of the following two ways to configure the connection string:
 # [Node.js](#tab/nodejs)
 
 > [!TIP]
-> * **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): https://learn.microsoft.com/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript/
+> * **TypeScript samples** for Azure Monitor OpenTelemetry (authoritative parity source): [TypeScript samples](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript/)
 
 Use one of the following two ways to configure the connection string:
 
@@ -436,7 +436,7 @@ $Env:OTEL_RESOURCE_ATTRIBUTES="cloud.provider=azure,cloud.region=westus,cloud.re
 
 ## Enable sampling
 
-Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](sampling.md#brief-summary).
+Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTelemetry distro supports two sampling strategies for traces and (optionally) lets you align application logs to your trace sampling decisions. The sampler attaches the selected sampling ratio or rate to exported spans so Application Insights can adjust experience counts accurately. For a conceptual overview, see [Learn more about sampling](opentelemetry-sampling.md#why-sampling-matters).
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).

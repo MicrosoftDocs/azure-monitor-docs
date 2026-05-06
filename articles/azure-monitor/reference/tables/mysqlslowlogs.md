@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Slow query Logs for Azure Database for MySQL Flexible Servers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,30 @@ Slow query Logs for Azure Database for MySQL Flexible Servers.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/mysqlslowlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [mysqlslowlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/mysqlslowlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | Category of log. |
+| Db | string | Name of database accessed. |
+| EventClass | string | Class of the log event. |
+| Host | string | Host name of client connecting to MySQL. |
+| InsertId | int | The insert ID. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastInsertId | int | The first automatically generated value successfully inserted for an AUTO_INCREMENT column as a result of the most recently executed INSERT statement. |
+| LockDurationMs | long | Total time in milliseconds the query was locked. |
+| QueryDurationMs | long | Total time in milliseconds the query took to execute. |
+| ReplicationSetRole | string | Replication set role of MySQL flexible server. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| RowsExamined | int | Number of rows examined. |
+| RowsSent | int | Number of rows sent. |
+| ServerId | int | ID of the MySQL flexible server. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SqlText | string | Full query text. |
+| StartTime | datetime | Query start time in UTC timestamp. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| ThreadId | int | ID of thread that executed the query. |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

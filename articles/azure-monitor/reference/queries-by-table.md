@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 [Azure Monitor resource logs](/azure/azure-monitor/essentials/platform-logs-overview) are logs emitted by Azure services that describe the operation of those services or resources. When exported to a [Log Analytics workspace](/azure/azure-monitor/logs/log-analytics-workspace-overview) the logs are stored in tables. This set of articles contains sample queries to retrieve data from the log analytics tables. The queries are also available in the Log Analytics workspace.
 
-
 ## Sample queries by table
 
 ## [AACAudit](./queries/AACAudit.md)

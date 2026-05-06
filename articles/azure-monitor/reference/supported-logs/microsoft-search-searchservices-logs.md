@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Search/searchServices, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Search/searchServices
 
-
-
-# Supported logs for Microsoft.Search/searchServices  
 The following table lists the types of logs available for the Microsoft.Search/searchServices resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Search/searchServices](../supported-metrics/microsoft-search-searchservices-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Search/searchServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-search-searchservices-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Search/searchServices](../supported-metrics/microsoft-search-searchservices-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`OperationLogs` |Operation Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 
 ## Next Steps
 
