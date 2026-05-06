@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 04/28/2026
+ms.date: 05/06/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -63,12 +63,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
-| SUSE Linux Enterprise Server 16                             | ✓<sup>2</sup> |
 | SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 12 SP5                         | ✓ |
 | Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
