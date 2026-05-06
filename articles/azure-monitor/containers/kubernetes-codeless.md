@@ -3,7 +3,7 @@ title: Set up codeless monitoring for AKS with Application Insights
 description: Enable codeless application monitoring on AKS by using Azure Monitor Application Insights autoinstrumentation for Java and Node.js workloads.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
-ms.date: 05/04/2026
+ms.date: 05/05/2026
 ---
 
 # Autoinstrument AKS apps with Azure Monitor Application Insights
@@ -20,7 +20,7 @@ It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#o
 * Azure CLI 2.60.0 or greater. For more information, see [How to install the Azure CLI](/cli/azure/install-azure-cli), [What version of the Azure CLI is installed?](/cli/azure/install-azure-cli#what-version-of-the-azure-cli-is-installed), and [How to update the Azure CLI](/cli/azure/update-azure-cli).
 
 > [!WARNING]
-> This feature isn't compatible with both Windows (any architecture) and Linux Arm64 node pools.
+> This feature supports Linux node pools only. Windows node pools aren't supported.
 
 ## Prepare a cluster
 
