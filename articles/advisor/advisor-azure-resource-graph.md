@@ -37,8 +37,11 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 | `properties.completionType` | How the recommendation was resolved or completed. Only populated when `recommendationStatus` is `Completed`. | `MarkedByUser, SystemVerified`|
 | `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
 
-> [!IMPORTANT] Important: The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used by customers. Always use
+> [!IMPORTANT]
+> The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used by customers. Always use
 > `recommendationStatus` as the single source of truth for a recommendation's current state.
+
+## Examples
 
 ### Example A: Query active (new) recommendations
 
@@ -71,9 +74,6 @@ The `advisorresources` table includes fields that represent the lifecycle state 
     lastUpdated = todatetime(properties.lastUpdated)
 | order by lastUpdated desc
 ```
-
-
-## Examples
 
 ### Get active cost recommendations
 
