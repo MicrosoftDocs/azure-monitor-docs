@@ -60,7 +60,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 | [March 2023](#march-2023) | 1.14.0.0 | — | — | Text file collection improvements |
 | [February 2023](#february-2023) | 1.13.1 | 1.25.2 | — | Data loss fix, Fluent Bit buffering |
 | [January 2023](#january-2023) | 1.12.0 | 1.25.1 | — | RHEL 9 support, EventLevel fix |
-| [November–December 2022](#november-december-2022) | 1.11.0 | — | — | Air-gapped cloud support |
+| [November–December 2022](#novemberdecember-2022) | 1.11.0 | — | — | Air-gapped cloud support |
 | [October 2022](#october-2022) | 1.10.0.0 | 1.24.2 | — | Proxy environment variables |
 | [September 2022](#september-2022) | 1.9.0 | — | — | Reliability improvements |
 | [August 2022](#august-2022) | 1.8.0 | 1.22.2 | — | Lookback time extended to 72 hours |
