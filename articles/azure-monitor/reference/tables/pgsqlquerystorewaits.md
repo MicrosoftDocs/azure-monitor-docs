@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Query Store wait statistics sampled of an Azure Database for PostgreSQL Flexible Server. Wait event types combine different wait events into buckets by similarity.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,26 @@ Query Store wait statistics sampled of an Azure Database for PostgreSQL Flexible
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlquerystorewaits)|
 
-
-
 ## Columns
-  
-[!INCLUDE [pgsqlquerystorewaits](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlquerystorewaits-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Calls | long | Number of the same event captured for this entry. Entries are aggregated by time buckets. |
+| DatabaseId | int | ID (OID) of database in which the statement was executed. 0 indicates it is a background worker or a system call. |
+| EndTime | datetime | The end time corresponding to the time bucket for this entry. Entries are aggregated by time buckets. |
+| Event | string | The PostgreSQL wait event name if backend is currently waiting. |
+| EventType | string | The PostgreSQL type of event for which the backend is waiting. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Location of Azure Database for PostgreSQL Flexible server. |
+| LogicalServerName | string | Logical name of the instance. |
+| QueryId | string | Unique query ID of the statement that is an internal hash code, computed from the statement's parse tree. 0 indicates it was a background worker or system call. |
+| ReplicaRole | string | Replica role example. Primary or secondary. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StartTime | datetime | The start time corresponding to the time bucket for this entry. Entries are aggregated by time buckets. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |
+| UserId | int | ID (OID) of the user that executed the statement. 0 indicates it is a background worker or a system call. |

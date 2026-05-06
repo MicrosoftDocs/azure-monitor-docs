@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools
 
-
-
-# Supported logs for Microsoft.NetApp/netAppAccounts/capacityPools  
 The following table lists the types of logs available for the Microsoft.NetApp/netAppAccounts/capacityPools resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.NetApp/netAppAccounts/capacityPools](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-netapp-netappaccounts-capacitypools-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools](../supported-metrics/microsoft-netapp-netappaccounts-capacitypools-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`Autoscale` |Capacity Pool Autoscaled ||No|No||Yes |
 
 ## Next Steps
 

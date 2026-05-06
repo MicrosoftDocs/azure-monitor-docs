@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 The Setup Audit Trail table contains logs from the Salesforce Audit Trail API that have been ingested into Microsoft Sentinel.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,25 @@ The Setup Audit Trail table contains logs from the Salesforce Audit Trail API th
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/salesforceaudittrail)|
 
-
-
 ## Columns
-  
-[!INCLUDE [salesforceaudittrail](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/salesforceaudittrail-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| Action | string | The action performed. |
+| _BilledSize | real | The record size in bytes |
+| CreatedByContext | string | The context in which the user made the change. |
+| CreatedByEmail | string | The email of the user who made the change. |
+| CreatedById | string | The ID of the user who made the change. |
+| CreatedByIssuer | string | The issuer of the user's identity. |
+| CreatedByName | string | The name of the user who made the change. |
+| CreatedByUsername | string | The username of the user who made the change. |
+| CreatedDate | datetime | The date and time when the change was made. |
+| DelegateUser | string | The user who delegated the change. |
+| Display | string | A user-friendly display name for the change. |
+| Id | string | The unique identifier for the audit trail entry. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Section | string | The section of the Salesforce setup that was changed. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (in UTC) when the log entry was generated. |
+| Type | string | The name of the table |

@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains status and other information about data sources that were collected as part of DCR datasets.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,22 @@ This table contains status and other information about data sources that were co
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/datasetruns)|
 
-
-
 ## Columns
-  
-[!INCLUDE [datasetruns](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/datasetruns-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CorrelationParams | dynamic | A set of parameters, in JSON, that provide identifiers or other strings used to correlate triggers or workflows that initiated the data set run. For example, if the collection was triggered by an Alert, this column will contain the Alert Resource ID. This column may be empty if the data set run has no known correlations. This column enables selecting all data associated with a common trigger. |
+| DataSetRunId | string | Randomly generated unique indentifier (brace-less UUID) for each collecction instance. This column enables selecting all data associated with the same collection. |
+| DCRId | string | The ARM resource Id of the Data Collection Rule (DCR) that produced the data. This column enables selecting all data associated with the same DCR. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Name | string | The name field from the DCR used for data collection. Example: CollectPeformanceReport. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | The operation status of the data set collection. This status could apply to the data set or data source. Example: DataSetRunInProgress or DataSourceCollectionSucceeded. |
+| StatusDetail | dynamic | Additional information about the status of the data set collection, in JSON. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the log was generated. This column can be used to construct a time series or to filter data to a specific time window. Example: 2014-05-25T08:20:03.123456Z. |
+| TimeoutMinutes | int | The duration, in minutes, that a data set collection or data source collection can execute before timing out. |
+| Type | string | The name of the table |

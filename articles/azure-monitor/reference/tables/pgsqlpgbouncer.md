@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 PgBouncer logs of an Azure Database for PostgreSQL Flexible Server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,18 @@ PgBouncer logs of an Azure Database for PostgreSQL Flexible Server.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/pgsqlpgbouncer)|
 
-
-
 ## Columns
-  
-[!INCLUDE [pgsqlpgbouncer](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/pgsqlpgbouncer-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Location of PG server. |
+| LogLevel | string | Log level, Error or Informational. |
+| Message | string | Message from PG Bouncer log. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

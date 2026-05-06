@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Diagnostics data for B2B messages in Azure Logic Apps. After you set up B2B communication between trading partners in your integration account, those partners can exchange messages by using protocols such as AS2, X12, and EDIFACT. To check that this communication works the way you expect, you can enable monitoring in your integration account. These minitoring logs appear here.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,41 @@ Diagnostics data for B2B messages in Azure Logic Apps. After you set up B2B comm
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [liatrackingevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/liatrackingevents-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AgreementProperties | dynamic | Agreement properties for the electronic data interchange functional group. |
+| _BilledSize | real | The record size in bytes |
+| CorrelationId | string | The ID for correlated events. |
+| Error | dynamic | The tracking event error information. |
+| EventRecordType | string | The Tracking record type. |
+| EventTime | datetime | The event time. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| MessageProperties | dynamic | Message properties for the electronic data interchange functional group. |
+| OperationName | string | The name of the operation represented by this event. |
+| OperationVersion | string | The version of the operation represented by this event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SourceType | string | The tracking events source type. |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when this event was generated. |
+| TrackingId | string | The tracking ID. |
+| Type | string | The name of the table |
+| WorkflowName | string | The name of the workflow. |
+| WorkflowOperationClientRequestId | string | The client request ID of the logic app operation. |
+| WorkflowOperationCorrelationId | string | The correlation ID of the logic app operation. |
+| WorkflowOperationName | string | The logic app operation name. |
+| WorkflowOperationOperationTrackingId | string | The operation tracking ID of the logic app operation. |
+| WorkflowOperationTrackingId | string | The tracking ID of the logic app operation. |
+| WorkflowRepeatItemBatchIndex | int | The index of the repeat item batch. |
+| WorkflowRepeatItemIndex | int | The repeat item index. |
+| WorkflowRepeatItemScopeName | string | The repeat item scope name. |
+| WorkflowResourceGroup | string | The resource group name of the workflow. |
+| WorkflowRunClientTrackingId | string | The client tracking ID of the run. |
+| WorkflowRunId | string | The logic app run ID. |
+| WorkflowRunTrackingId | string | The tracking ID of the run. |
+| WorkflowSubscriptionId | string | The subscription ID of the workflow. |
+| WorkflowSystemId | string | The workflow system tracking ID. |
+| WorkflowVersion | string | The version of the workflow. |

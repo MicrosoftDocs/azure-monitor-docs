@@ -5,24 +5,21 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.DocumentDB/cassandraClusters, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.DocumentDB/cassandraClusters
 
-
-
-# Supported logs for Microsoft.DocumentDB/cassandraClusters  
 The following table lists the types of logs available for the Microsoft.DocumentDB/cassandraClusters resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.DocumentDB/cassandraClusters](../supported-metrics/microsoft-documentdb-cassandraclusters-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.DocumentDB/cassandraClusters](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-documentdb-cassandraclusters-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.DocumentDB/cassandraClusters](../supported-metrics/microsoft-documentdb-cassandraclusters-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`CassandraAudit` |CassandraAudit |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdocumentdb)|Yes |
+|`CassandraLogs` |CassandraLogs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftdocumentdb)|Yes |
 
 ## Next Steps
 

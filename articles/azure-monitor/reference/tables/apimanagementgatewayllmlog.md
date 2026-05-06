@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Gateway Logs related to language models for API Management Language.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,29 @@ Gateway Logs related to language models for API Management Language.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [apimanagementgatewayllmlog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/apimanagementgatewayllmlog-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ApiVersion | string | API version used by client. |
+| _BilledSize | real | The record size in bytes |
+| CompletionTokens | int | The number of completion tokens used by the request. |
+| CorrelationId | string | Unique id corresponding with the same field in ApiManagementGatewayLogs. |
+| DeploymentName | string | Deployment name used by client. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsStreamCompletion | bool | Boolean value indicating if the request specified stream mode to be false. |
+| ModelName | string | Model name used by the request. |
+| OperationName | string | Field denotes the specific name or identifier of the operation being performed. |
+| PromptTokens | int | The number of prompt tokens used by the request. |
+| Region | string | The field indicates the geographical location or data center region within the Azure cloud infrastructure where a specific resource or service is deployed. |
+| RequestId | string | Language model's request Id. |
+| RequestMessages | dynamic | Contents of the request messages. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResponseMessages | dynamic | Contents of the response messages. |
+| SequenceNumber | int | The index of this entry in the message exchange. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when request processing started. |
+| TotalTokens | int | The number of total tokens used by the request. |
+| Type | string | The name of the table |

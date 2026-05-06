@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 Requests made to the Zero Trust Segmentation service.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,23 @@ Requests made to the Zero Trust Segmentation service.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/ztsrequest)|
 
-
-
 ## Columns
-  
-[!INCLUDE [ztsrequest](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/ztsrequest-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CorrelationId | string | Internal ZTS correlation ID used in support scenarios. |
+| HttpStatusCode | int | HTTP response status code. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | Azure region or location of the resource. |
+| OperationName | string | The operation performed in the request. |
+| OperationVersion | string | The API version against which the operation was performed. |
+| Properties | dynamic | Additional properties related to the request, stored as a JSON object. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultType | string | The result type of the request operation. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | UTC timestamp when the log record was generated. |
+| Type | string | The name of the table |
+| Uri | string | The full URI of the request, including endpoint and query parameters. |

@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform DNS data connector provides the capability to ingest Cloud DNS Query logs and Cloud DNS Audit logs into Microsoft Sentinel using the Google Cloud DNS API.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,88 @@ The Google Cloud Platform DNS data connector provides the capability to ingest C
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [gcpdns](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpdns-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AuthAnswer | bool | Indicates if the DNS response is authoritative. |
+| AuthenticationInfoPrincipalEmail | string | Email address of the user or service account performing the action. |
+| AuthenticationInfoPrincipalSubject | string | The subject identifier for the principal (user or service account). |
+| AuthorizationInfo | string | Details about the authorization decision for the request. |
+| _BilledSize | real | The record size in bytes |
+| DestinationIP | string | Target IP address of the request. |
+| GCPResourceName | string | Name of the resource being accessed or modified. |
+| GCPResourceType | string | Type of the resource (e.g., compute instance, DNS record). |
+| InsertId | string | A unique identifier assigned to each log entry. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogName | string | The name of the log where this entry is stored. |
+| MethodName | string | The API method or operation invoked in the request. |
+| PayloadType | string | The format or type of the payload in the log entry. |
+| Protocol | string | Protocol used (e.g., TCP, UDP). |
+| QueryName | string | The domain name queried. |
+| QueryType | string | DNS query type (RFC 1035 section 4.1.2). |
+| Rdata | string | DNS answer in presentation format. |
+| ReqManZoneCloudLogConfigEnableLogging | bool | Indicates whether logging was enabled in the request for the managed zone. |
+| ReqManZonePrivVisibConfigNetworks | string | List of networks configured for private visibility of the managed zone. |
+| ReqmetaCallerSuppliedUserAgent | string | User agent String provided by the caller. |
+| ReqmetaRequestAttributesTime | datetime | Timestamp when the request was initiated. |
+| RequestAPIType | string | The type of API request being logged. |
+| RequestChangeAdditions | string | Details of resource additions in the request. |
+| RequestChangeDeletions | string | Details of resource deletions in the request. |
+| RequestManagedZone | string | Details of the managed DNS zone in the request. |
+| RequestManagedZoneDescription | string | Description of the managed DNS zone in the request. |
+| RequestManagedZoneDnsName | string | The DNS name of the managed zone in the request. |
+| RequestManagedZoneName | string | The name of the managed DNS zone in the request. |
+| RequestManagedZoneVisibility | string | The visibility (public or private) of the managed zone in the request. |
+| RequestMetadataCallerIp | string | IP address of the caller initiating the request. |
+| RequestName | string | Name of the resource affected by the request. |
+| RequestProject | string | Google Cloud project associated with the request. |
+| RequestType | string | Type of the request (e.g., Create, Delete, Update). |
+| ResManZoneCloudLogConfigEnableLogging | bool | Indicates whether logging was enabled in the response for the managed zone. |
+| ResourceLabelsLocation | string | Location of the resource. |
+| ResourceLabelsPolicyName | string | Represents the policy name associated with the DNS resource. |
+| ResourceLabelsProjectId | string | Google Cloud project ID associated with the resource. |
+| ResourceLabelsSourceType | string | Specifies the source type of the resource being modified |
+| ResourceLabelsTargetName | string | The target resource name within Google Cloud DNS, such as the managed zone or DNS policy being modified. |
+| ResourceLabelsTargetType | string | The type of DNS resource being acted upon |
+| ResourceLabelsZoneName | string | The name of the managed DNS zone related to the operation. |
+| RespManZonePrivVisibConfigNetworks | string | Lists networks associated with a private managed zone under private visibility configuration. |
+| ResponseChangeAdditions | string | Represents additions made to DNS records (e.g., new A, AAAA, CNAME, or TXT records). |
+| ResponseChangeDeletions | string | Details of deletions in the response. |
+| ResponseChangeId | string | Identifier for the change request in the response. |
+| ResponseChangeStartTime | datetime | Timestamp indicating when the change operation started. |
+| ResponseChangeStatus | string | Status of the change operation in the response. |
+| ResponseCode | string | Response code for the operation. |
+| ResponseManagedZoneCreationTime | datetime | Timestamp when the managed zone was created. |
+| ResponseManagedZoneDescription | string | Description of the managed zone returned in the response. |
+| ResponseManagedZoneDnsName | string | DNS name of the managed zone returned in the response. |
+| ResponseManagedZoneFingerprint | string | Fingerprint for detecting changes in the managed zone. |
+| ResponseManagedZoneId | string | Unique identifier for the managed zone. |
+| ResponseManagedZoneName | string | Name of the managed zone returned in the response. |
+| ResponseManagedZoneNameServers | string | List of name servers associated with the managed zone. |
+| ResponseManagedZoneRrsetCount | string | The total number of resource record sets (RRsets) within a managed zone. |
+| ResponseManagedZoneVisibility | string | Visibility setting (public/private) of the managed zone. |
+| ResponseOperationId | string | A unique identifier for the DNS operation performed. |
+| ResponseOperationStartTime | datetime | The timestamp when the DNS operation started. |
+| ResponseOperationStatus | string | The status of the DNS operation |
+| ResponseOperationType | string | The type of DNS operation executed (e.g., create, update, delete). |
+| ResponseOperationUser | string | The user or service account that performed the DNS operation. |
+| ResponseOpZoneContextNewValue | string | The new value after an operation modifies a DNS managed zone. |
+| ResponseOpZoneContextOldValue | string | The previous value before an operation modified the DNS managed zone. |
+| ResponseType | string | Type of response returned from the API. |
+| ServerLatency | string | Measures the latency of the request to Google Cloud DNS. |
+| ServiceName | string | Name of the Google Cloud service processing the request. |
+| Severity | string | Log severity level (e.g., INFO, WARNING, ERROR). |
+| SourceIP | string | IP address from which the query originated. |
+| SourceNetwork | string | The originating network of the DNS request. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| StatusCode | string | HTTP status code returned for the request. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log entry was created. |
+| Timestamp | datetime | Timestamp when the log entry was recorded. |
+| Type | string | The name of the table |
+| VmInstanceId | string | Compute Engine VM instance ID. |
+| VmInstanceIdString | string | The VM instance ID (if applicable) associated with the request. |
+| VmInstanceName | string | Compute Engine VM instance name. |
+| VmProjectId | string | Google Cloud project ID of the network from which the query was sent. |
+| VmZoneName | string | Name of the VM zone from which the query originated. |

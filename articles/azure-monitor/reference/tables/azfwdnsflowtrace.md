@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains all the DNS proxy data between the client, firewall, and DNS server.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,26 @@ Contains all the DNS proxy data between the client, firewall, and DNS server.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [azfwdnsflowtrace](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/azfwdnsflowtrace-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| MsgType | string | Shows whether the DNS message is a query or response, and whether it's from the client or forwarded by the firewall. |
+| Protocol | string | Internet protocol used for the DNS query (e.g., TCP, UDP). |
+| QueryMessage | string | Details of the DNS query, including the FQDN or URL. |
+| QueryTime | datetime | Timestamp (UTC) when the DNS query was initiated. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResponseTime | datetime | Timestamp (UTC) when the DNS response was received. |
+| ServerIp | string | IP address of the DNS server that responded. |
+| ServerMessage | string | Details of the DNS response received from the upstream DNS server. |
+| ServerPort | int | Port on the DNS server that responded to the query. |
+| SocketFamily | string | Internet protocol family for the DNS query. |
+| SourceIp | string | IP address of the source that initiated the DNS query. |
+| SourcePort | int | Source port from which the DNS query was sent. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp (UTC) when the data plane log was created. |
+| Type | string | The name of the table |

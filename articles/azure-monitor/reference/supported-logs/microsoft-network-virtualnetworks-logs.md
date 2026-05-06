@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.Network/virtualNetworks, arm
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Network/virtualNetworks
 
-
-
-# Supported logs for Microsoft.Network/virtualNetworks  
 The following table lists the types of logs available for the Microsoft.Network/virtualNetworks resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Network/virtualNetworks](../supported-metrics/microsoft-network-virtualnetworks-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Network/virtualNetworks](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-network-virtualnetworks-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Network/virtualNetworks](../supported-metrics/microsoft-network-virtualnetworks-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`VMProtectionAlerts` |VM protection alerts ||No|No||No |
 
 ## Next Steps
 

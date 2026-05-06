@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table shows files that were identified as malicious by Microsoft Defender for Office 365 in SharePoint Online, OneDrive for Business, and Microsoft Teams.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,28 @@ This table shows files that were identified as malicious by Microsoft Defender f
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [filemaliciouscontentinfo](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/filemaliciouscontentinfo-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| DetectionMethods | string | Verdict from the email filtering stack on whether the email contains malware, phishing, or other threats. |
+| DocumentID | string | Unique identifier of the file. |
+| FileCreationTime | datetime | Timestamp of the file creation. |
+| FileName | string | Name of the file that the recorded action was applied to. |
+| FileOwnerDisplayName | string | Account recorded as owner of the file. |
+| FileOwnerUpn | string | Account recorded as owner of the file |
+| FileSize | long | Size of the file in bytes. |
+| FolderPath | string | Folder containing the file that the recorded action was applied to. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LastModifiedTime | datetime | Date and time the item, or related metadata was last modified. |
+| LastModifyingAccountUpn | string | Account that last modified this file. |
+| ReportId | string | Unique identifier for the event. |
+| SHA256 | string | SHA-256 of the file that the recorded action was applied to. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| TenantId | string | The Log Analytics workspace ID |
+| ThreatNames | string | Detection name for malware or other threats found. |
+| ThreatTypes | string | Verdict from the email filtering stack on whether the email contains malware, phishing, or other threats. |
+| TimeGenerated | datetime | Date and time (UTC) when the record was generated. |
+| Type | string | The name of the table |
+| Workload | string | Information about the workload from which the URL originated from. |

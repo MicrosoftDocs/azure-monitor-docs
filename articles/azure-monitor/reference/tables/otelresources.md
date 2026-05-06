@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Resource attributes emitted by an OpenTelemetry source.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,21 @@ Resource attributes emitted by an OpenTelemetry source.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [otelresources](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/otelresources-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| Attributes | dynamic | Resource attributes emitted by an OpenTelemetry source. |
+| _BilledSize | real | The record size in bytes |
+| Id | string | A unique identifier for the resource attributes record. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| RoleName | string | A simplified service identifier combining ServiceNamespace and ServiceName. |
+| ServiceInstanceId | string | A unique identifier for the instance of the service. This is the value of the 'service.instance.id' resource attribute. |
+| ServiceName | string | Logical name of the service. This is the value of the 'service.name' resource attribute. |
+| ServiceNamespace | string | A namespace for ServiceName. This is the value of the 'service.namespace' resource attribute. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the resource attributes were effective. |
+| Type | string | The name of the table |

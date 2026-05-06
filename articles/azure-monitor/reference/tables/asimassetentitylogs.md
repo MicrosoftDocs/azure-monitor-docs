@@ -13,7 +13,6 @@ ms.date: 04/28/2026
 
 Microsoft Sentinel normalized asset entity events table. Stores events associated with security events and alerts, ensuring consistent and efficient analysis across different data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,73 @@ Microsoft Sentinel normalized asset entity events table. Stores events associate
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/asimassetentitylogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [asimassetentitylogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asimassetentitylogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AADTenantId | string | The Azure Active Directory tenant identifier associated with the asset or entity. |
+| AdditionalAssetOwners | dynamic | A dynamic collection of additional owners or co-owners associated with the asset. |
+| AdditionalFields | dynamic | Additional information about the entity that is not captured by other fields in the schema. |
+| AssetClassificationLastScanDateTime | datetime | The timestamp (UTC) of when the asset was last scanned for data classification. |
+| AssetIsProtectedByDlp | bool | Indicates whether the asset is protected by a Data Loss Prevention (DLP) policy. |
+| AssetOriginalDataClassificationType | dynamic | The original data classification type(s) assigned to the asset as reported by the source system. |
+| AssetOriginalPermissions | dynamic | The original permission set assigned to the asset as reported by the source system. |
+| AssetOriginalRiskDetails | dynamic | The full risk details for the asset as provided by the source system. |
+| AssetOriginalRiskLevel | string | The risk level assigned to the asset as reported by the source system, before normalization. |
+| AssetOriginalSensitivityLevel | string | The sensitivity level as reported by the source system, before normalization. |
+| AssetOriginalType | string | The original type of the asset as reported by the source system. |
+| AssetOwnerId | string | The identifier of the user or principal that owns the asset. |
+| AssetOwnerIdType | string | The type or format of the asset owner identifier, such as UPN or SID. |
+| AssetOwnerScope | string | The organizational or administrative scope to which the asset owner belongs. |
+| AssetOwnerScopeId | string | The identifier of the scope to which the asset owner belongs. |
+| AssetOwnerType | string | The type of the asset owner, such as User, Group, or ServicePrincipal. |
+| AssetPath | string | The alias of either FilePath or SitePath. |
+| AssetRelatedIndicators | dynamic | A dynamic collection of threat indicators or signals related to the asset. |
+| AssetRiskFirstReportedTime | datetime | The timestamp (UTC) of when the risk associated with the asset was first reported. |
+| AssetRiskLastReportedTime | datetime | The timestamp (UTC) of when the risk associated with the asset was most recently reported. |
+| AssetRiskLevel | string | The normalized risk level assigned to the asset, such as Low, Medium, High, or Critical. |
+| AssetRiskName | string | The normalized name of the risk or threat associated with the asset. |
+| AssetSensitivityLabel | string | The sensitivity label applied to the asset, such as Confidential or Public. |
+| AssetType | string | The high-level type of the asset, such as File, or Site. |
+| _BilledSize | real | The record size in bytes |
+| EntityCreatedTime | datetime | The timestamp (UTC) of when the entity was originally created in the source system. |
+| EntityFeedType | string | The type or category of the data feed that provided the entity record. |
+| EntityId | string | A unique identifier for the entity within the normalized schema. |
+| EntityIngestionTime | datetime | The timestamp (UTC) of when the entity record was ingested into the system. |
+| EntityIsDeleted | bool | Indicates whether the entity has been deleted in the source system. |
+| EntityLastAccessedTime | datetime | The timestamp (UTC) of when the entity was last accessed. |
+| EntityLastModifiedTime | datetime | The timestamp (UTC) of when the entity was last modified in the source system. |
+| EntityName | string | The display name or identifier of the entity. |
+| EntityNameType | string | The type or format of the entity name, such as UPN, or username. |
+| EntityOriginalId | string | The original identifier for the entity as reported by the source system. |
+| EntityOriginalSource | string | The original data source or connector that provided the entity record. |
+| EntityProduct | string | The product name associated with the source that reported the entity. |
+| EntitySchema | string | The ASIM schema name for this entity record. |
+| EntitySchemaVersion | string | The version of the ASIM schema used for this entity record. |
+| EntitySource | string | The data source or connector that provided the entity record. |
+| EntitySubProduct | string | The sub-product or component name associated with the source that reported the entity. |
+| EntityUpdatedTime | datetime | The timestamp (UTC) of when the entity record was last updated. |
+| EntityVendor | string | The vendor or provider that reported the entity. |
+| ExternalUsersCount | int | The number of external users associated with or having access to the asset. |
+| FileExtension | string | The file extension of the file associated with the asset, such as .exe or .pdf. |
+| FileIsSignatureValid | bool | Indicates whether the digital signature of the file is valid. |
+| FileMD5 | string | The MD5 hash of the file associated with the asset. |
+| FilePath | string | The full path of the file associated with the asset. |
+| FileSHA1 | string | The SHA-1 hash of the file associated with the asset. |
+| FileSHA256 | string | The SHA-256 hash of the file associated with the asset. |
+| FileSHA512 | string | The SHA-512 hash of the file associated with the asset. |
+| FileSignatureDetails | string | Details about the digital signature of the file, such as the signer or certificate information. |
+| FileSize | long | The size of the file in bytes. |
+| IdentityDirectoryId | string | The identifier of the identity directory associated with the entity. |
+| IdentityDirectoryName | string | The name of the identity directory, such as Active Directory or Azure AD, associated with the entity. |
+| InternalUsersCount | int | The number of internal users associated with or having access to the asset. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SitePath | string | The path of the site or storage location associated with the asset. |
+| SitePrimaryUri | string | The primary URI of the site or storage location associated with the asset. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |
+| User | string | The alias of AssetOwnerId. |

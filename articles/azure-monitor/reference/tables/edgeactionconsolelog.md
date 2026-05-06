@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Logs emitted to console by the action code.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,18 @@ Logs emitted to console by the action code.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/edgeactionconsolelog)|
 
-
-
 ## Columns
-  
-[!INCLUDE [edgeactionconsolelog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/edgeactionconsolelog-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| EdgeActionVersion | string | The version of the action that emitted the log. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogMessage | string | The log message emitted by the action code. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp (UTC) when the log entry was created. |
+| TrackingReference | string | The unique reference string that identifies a request served by Front Door, also sent as X-Azure-Ref header to the client. |
+| Type | string | The name of the table |

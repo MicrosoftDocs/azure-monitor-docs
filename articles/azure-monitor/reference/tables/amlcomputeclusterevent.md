@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 AmlCompute Cluster events
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,53 @@ AmlCompute Cluster events
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amlcomputeclusterevent)|
 
-
-
 ## Columns
-  
-[!INCLUDE [amlcomputeclusterevent](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amlcomputeclusterevent-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AllocationState | string | Cluster allocation state |
+| AllocationStateTransitionTime | datetime | Transition time from one state to another |
+| _BilledSize | real | The record size in bytes |
+| ClusterErrorCodes | string | Error code received during cluster creation or scaling |
+| ClusterName | string | Name of the cluster |
+| ClusterType | string | Type of the cluster |
+| CoreCount | int | Count of the cores in the cluster |
+| CreatedBy | string | User who created the cluster |
+| CreationApiVersion | string | Api version used while creating the cluster |
+| CurrentNodeCount | int | Current node count of the cluster |
+| EventType | string | Type of event during cluster creation. |
+| IdleNodeCount | int | Idle node count of the cluster |
+| InitialNodeCount | int | Initial node count of the cluster |
+| InternalOperationName | string |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| IsResizeGrow | string | Flag indicating that cluster is scaling up |
+| LeavingNodeCount | int | Leaving node count of the cluster |
+| MaximumNodeCount | int | Maximum node count of the cluster |
+| MinimumNodeCount | int | Minimum node count of the cluster |
+| NodeDeallocationOption | string | How the node should be deallocated |
+| NodeIdleTimeSecondsBeforeScaleDown | int | Idle time in seconds before cluster is scaled down |
+| Offer | string | Offer with which the cluster is created |
+| OperationName | string | Name of the operation associated with the log event |
+| PreemptedNodeCount | string | Preempted node count of the cluster |
+| PreparingNodeCount | int | Preparing node count of the cluster |
+| ProvisioningState | string | Provisioning state of the cluster |
+| Publisher | string | Publisher of the cluster type |
+| QuotaAllocated | string | Allocated quota to the cluster |
+| QuotaUtilized | string | Utilized quota of the cluster |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultSignature | string |   |
+| RunningNodeCount | int | Running node count of the cluster |
+| ScalingType | string | Type of cluster scaling manual/auto |
+| Sku | string | Sku of the Node/VM created inside cluster |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SubnetId | string | SubnetId of the cluster |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TargetNodeCount | int | Target node count of the cluster while scaling up/down |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time when the log entry was generated |
+| Type | string | The name of the table |
+| UnusableNodeCount | int | Unusable node count of the cluster |
+| Version | string | Version of the image used while Node/VM is created |
+| VmFamilyName | string | Name of the VM family of the nodes that can be created inside cluster |
+| VmPriority | string | Priority of the nodes created inside a cluster Dedicated/LowPriority |
+| VmSize | string | Vm size of the cluster |

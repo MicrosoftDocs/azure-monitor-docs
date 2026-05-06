@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Experimet scorecard metadata and insights.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,22 @@ Experimet scorecard metadata and insights.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/aewexperimentscorecards)|
 
-
-
 ## Columns
-  
-[!INCLUDE [aewexperimentscorecards](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/aewexperimentscorecards-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AllocationId | string | The Id of the allocation used for the feature evaluation. |
+| AnalysisEndTime | datetime | The end name of the scorecard analysis. |
+| AnalysisStartTime | datetime | The start time of the scorecard analysis. |
+| _BilledSize | real | The record size in bytes |
+| FeatureFlagReference | string | The fully qualified Id of the feature. |
+| FeatureName | string | The name of the feature. |
+| Insights | dynamic | Scorecard-level Insights derived from the analysis results in JSON format. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ScorecardId | string | The Id of the experiment scorecard. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the scorecard results were ingested. |
+| Type | string | The name of the table |

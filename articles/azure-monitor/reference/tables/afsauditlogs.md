@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains audit logs retrieved from your Azure Managed Lustre filesystem resource. These logs capture all priviledged operations performed on each Azure Managed Lustre resource. They can be used to monitor events and configure alerts on your resource.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,21 @@ This table contains audit logs retrieved from your Azure Managed Lustre filesyst
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/afsauditlogs)|
 
-
-
 ## Columns
-  
-[!INCLUDE [afsauditlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/afsauditlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ActivityId | string | Internal identifier used for tracking. |
+| _BilledSize | real | The record size in bytes |
+| Identity | dynamic | JSON structure that describes the identity of the user or application that performed the operation. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | The region of the resource associated with the event. |
+| OperationName | string | The operation name for which the log entry was created. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ResultDescription | string | Details about the result of the operation, if available. |
+| ResultSignature | int | HTTP status of API request. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp (UTC) when the log was created. |
+| Type | string | The name of the table |

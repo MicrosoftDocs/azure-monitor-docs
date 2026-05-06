@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Media Account Health Status. This table captures the Azure Media Services account health status. It can be used to diagnose issues for unhealthy accounts.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,20 @@ Media Account Health Status. This table captures the Azure Media Services accoun
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|[Yes](/azure/azure-monitor/reference/queries/amsmediaaccounthealth)|
 
-
-
 ## Columns
-  
-[!INCLUDE [amsmediaaccounthealth](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/amsmediaaccounthealth-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| EventCode | string | The event code. |
+| EventMessage | string | The event status message. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Level | string | Message level. Possible values are Informational, Warning, Error, Critical and Verbose. |
+| Location | string | Location of the service sending the log. |
+| OperationName | string | The name of the operation that triggered the event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the event was generated. |
+| Type | string | The name of the table |

@@ -5,23 +5,35 @@ ms.topic: generated-reference
 ms.date: 08/28/2025
 ms.custom: Microsoft.ManagedNetworkFabric/networkFabrics, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.ManagedNetworkFabric/networkFabrics
-  
-The following table lists the metrics available for the Microsoft.ManagedNetworkFabric/networkFabrics resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
- 
 
-[!INCLUDE [Microsoft.ManagedNetworkFabric/networkFabrics](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-managednetworkfabric-networkfabrics-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.ManagedNetworkFabric/networkFabrics resource type.
+
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
 
+
+### Category: Interface Operational State
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**TS File Server Availability**<br><br>The availability status of the HttpFileServer running on the terminal server. Value 2 indicates that the HttpFileServer is accessible and 1 indicates that it is not accessible. |`NnfFileServer` |Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`InterfaceName`, `HttpStatusCode`, `Url`|PT1M |Yes|
+|**TS Ping Reachability**<br><br>The reachability status of terminal server interfaces through ICMP Ping. A value of 2 signifies that the interface is reachable, while a value of 1 indicates it is not reachable via ICMP Ping. |`TsPing` |Unspecified |Average, Minimum, Maximum, Total (Sum), Count |`InterfaceName`, `PingStatusCode`, `IpAddress`|PT1M |Yes|
 
 ## Next steps
 
