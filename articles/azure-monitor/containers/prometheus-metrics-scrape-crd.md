@@ -275,6 +275,199 @@ Metric renaming isn't supported.
 
 ## Basic Authentication and Bearer Tokens
 
+> [!NOTE]
+> On Kubernetes 1.36 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if are running Kubernetes 1.36 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+
+### Scoped Secrets Access for Pod/ServiceMonitors
+
+On Kubernetes 1.36 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. Previously, the ama-metrics component had cluster-wide permissions to read secrets across all namespaces. This update improves security by requiring explicit, namespace-level access to secrets used for basic authentication
+
+With this change:
+- Access to secrets is limited only to namespaces you explicitly configure
+- You must grant Role-based access control (RBAC) permissions in each namespace where secrets are used
+
+### Default behavior by Kubernetes version
+
+**Kubernetes versions earlier than 1.36**
+- Cluster-wide secrets access is still enabled for backward compatibility
+- Follow the steps [here](#configure-basic-authentication-for-kubernetes-135-and-earlier) to configure basic auth for ServiceMonitor and PodMonitor
+
+**Kubernetes version 1.36 and later**
+- Cluster-wide secrets access is removed
+- By default, no namespaces are monitored for secrets
+- You must:
+    1. Configure allowed namespaces
+    2. Add RBAC permissions in each namespace
+
+### When you need to configure this
+You must configure namespace-scoped secrets access if are running Kubernetes 1.36 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+
+### Configure secrets access for PodMonitor and ServiceMonitor for Basic Auth
+
+Follow these steps to allow Azure Managed Prometheus to read secrets securely.
+
+### Step 1: Create the Basic Auth Secret
+
+Create a secret in the namespace where your application runs:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-basic-auth
+  namespace: my-app          # <-- your application namespace
+type: Opaque
+data:
+  username: <base64-encoded-username>
+  password: <base64-encoded-password>
+```
+
+### Step 2: Reference the Secret in Your ServiceMonitor/PodMonitor
+
+**ServiceMonitor example:**
+
+```yaml
+apiVersion: azmonitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: my-service-monitor
+  namespace: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  endpoints:
+    - port: metrics
+      basicAuth:
+        username:
+          name: my-basic-auth    # Secret name from Step 1
+          key: username
+        password:
+          name: my-basic-auth
+          key: password
+```
+
+**PodMonitor example:**
+
+```yaml
+apiVersion: azmonitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: my-pod-monitor
+  namespace: my-app
+spec:
+  selector:
+    matchLabels:
+      app: my-app
+  podMetricsEndpoints:
+    - port: metrics
+      basicAuth:
+        username:
+          name: my-basic-auth
+          key: username
+        password:
+          name: my-basic-auth
+          key: password
+```
+
+### Step 3: Configure `secrets_access_namespaces`
+
+Edit the [ama-metrics-settings-configmap.yaml](https://aka.ms/azureprometheus-addon-settings-configmap) to include the namespace(s) where your secrets live:
+
+```yaml
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ama-metrics-settings-configmap
+  namespace: kube-system
+data:
+  prometheus-collector-settings: |-
+    cluster_alias = ""
+    secrets_access_namespaces = "kube-system,my-app"
+```
+
+> [!NOTE]
+> - Use a comma-separated list of namespaces
+> - Include kube-system if you also have secrets there
+> - Changes take effect after the ama-metrics pod restarts
+
+### Step 4: Create RBAC in Each Namespace (Kubernetes >= 1.36)
+
+On Kubernetes >= 1.36, the ClusterRole no longer grants cluster-wide secrets access. You must create a `Role` and `RoleBinding` in **every** namespace listed in `secrets_access_namespaces` (including `kube-system` if needed). Apply the following in each namespace. Replace `my-app` with the target namespace:
+
+**Create a Role:**
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: ama-metrics-secrets-reader
+  namespace: my-app              # <-- repeat for each namespace
+rules:
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get", "list", "watch"]
+```
+
+**Create a RoleBinding:**
+
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ama-metrics-secrets-rolebinding
+  namespace: my-app              # <-- repeat for each namespace
+subjects:
+  - kind: ServiceAccount
+    name: ama-metrics-serviceaccount
+    namespace: kube-system       # <-- SA lives in kube-system
+roleRef:
+  kind: Role
+  name: ama-metrics-secrets-reader
+  apiGroup: rbac.authorization.k8s.io
+```
+
+> [!NOTE]
+> Cross-namespace note: The RoleBinding in `my-app` references the ServiceAccount in `kube-system`. This is valid Kubernetes RBAC — a RoleBinding can reference a subject from any namespace.
+
+### Step 5: Verify
+
+After the `ama-metrics` pod restarts:
+
+1. Check the target allocator logs for:
+   ```
+   SecretsAccessNamespaces from configmap: [kube-system my-app]
+   ```
+2. Confirm your ServiceMonitor/PodMonitor targets appear in the target allocator's discovered targets.
+3. Verify that scrape results include metrics from the basic-auth-protected endpoints.
+
+---
+
+### Example: Multiple Namespaces
+
+If you have secrets in `my-app`, `backend`, and `monitoring`:
+
+1. **ConfigMap setting:**
+   ```toml
+   secrets_access_namespaces = "kube-system,my-app,backend,monitoring"
+   ```
+
+2. **RBAC (>= 1.36 only):** Create the Role + RoleBinding (from Step 4) in each of `my-app`, `backend`, and `monitoring`.
+
+---
+
+### Troubleshooting
+
+| Symptom | Cause | Fix |
+|---------|-------|-----|
+| ServiceMonitor targets not discovered | Secret not readable by target allocator | Ensure namespace is in `secrets_access_namespaces` AND Role+RoleBinding exists |
+| `forbidden: User "system:serviceaccount:kube-system:ama-metrics-serviceaccount" cannot list resource "secrets"` in TA logs | Missing RBAC in the namespace | Create Role+RoleBinding in that namespace (Step 4) |
+| Targets discovered but scrape fails with 401 | Secret exists but credentials wrong | Verify the Secret's `data` fields have correct base64-encoded values |
+| Setting ignored after configmap update | Pod hasn't restarted | Restart the `ama-metrics` pod to pick up new configmap values |
+
+
+## Configure Basic Authentication for Kubernetes 1.35 and earlier
+
 Scraping targets using basic auth or bearer tokens is supported using PodMonitors and ServiceMonitors. Make sure that the secret containing the username/password/token is in the same namespace as the pod/service monitor. This behavior is the same as OSS prometheus-operator.
 
 ### TLS-based scraping
@@ -346,10 +539,6 @@ If you want to scrape Prometheus metrics from an https endpoint, the Prometheus 
 > The secret should be created first, and then the ConfigMap, PodMonitor, or ServiceMonitor should be created in `kube-system` namespace. The order of secret creation matters. When there's no secret but a ConfigMap, PodMonitor, or ServiceMonitor pointing to the secret, the following error will be in the ama-metrics prometheus-collector container logs: `no file found for cert....`
 >
 > See [tls_config](https://aka.ms/tlsconfigsetting) for more details on TLS configuration settings.
-
-
-
-
 
 
 ## Next steps
