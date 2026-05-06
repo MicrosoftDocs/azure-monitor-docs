@@ -70,17 +70,20 @@ A typical deployment is shown in the preceding image and includes the following 
 
 ## Azure Monitor pipeline compared to Azure Monitor agent
 
-Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) use different collection models and often work well together. AMA is installed on individual resources and collects telemetry from those resources for Azure Monitor. Azure Monitor pipeline is deployed centrally and receives, processes, and forwards telemetry from multiple local sources before cloud ingestion.
+Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agents/azure-monitor-agent-overview) serve different purposes and are often deployed together.
+
+AMA runs on individual resources and collects telemetry directly from those resources. It's the right choice when you can install an agent on each data source and send data directly to Azure.
+
+Azure Monitor pipeline runs centrally and receives telemetry from any source. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized filtering, aggregation, and transformation before cloud ingestion.
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
-| Ingestion model | Agent-based | Forwarder + Gateway -based |
-| Deployment model | Installed on individual virtual machines or Kubernetes clusters | Deployed centrally on an Arc-enabled Kubernetes cluster |
-| Primary role | Collect telemetry from the resource where the agent runs | Receive, process, and route telemetry from multiple sources before sending it to Azure Monitor |
-| Typical fit | Resources where you can install and manage an agent and send data directly to Azure | Scenarios that need centralized ingestion, preprocessing, or persistent storage before sending data to Azure |
-| Scale model | Per-resource collection with local caching | Aggregated ingestion with centralized persistent storage and processing |
+| Where it runs | On each individual resource (VM, server) | Centrally on an Arc-enabled Kubernetes cluster |
+| How it gets data | Collects from the resource where the agent is installed | Receives from any client that can send data over the network |
+| Best for | Resources where you can install and manage an agent | Sources that can't run an agent, or scenarios that need centralized filtering, aggregation, and transformation |
+| Scale approach | One agent per resource | Deploy on a single Arc-enabled Kubernetes cluster and [scale horizontally](./pipeline-sizing.md) by running multiple replicas to serve thousands of sources. |
 
-Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for scenarios where customers need to receive telemetry from remote sources or apply control before the data reaches Azure.
+Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for sources that can't run an agent or scenarios that need centralized filtering, aggregation, and transformation before data reaches Azure.
 
 ## Supported configurations
 
