@@ -136,7 +136,7 @@ Category Score = ∑((Healthy Resources / Total Applicable) * (Subcategory Weigh
 | Total Applicable Resources | Total resources that the system evaluated while generating Advisor recommendations. This count excludes the resources for which you postponed or dismissed the recommendations. |
 | Subcategory Weight | Fixed weight assigned to each subcategory. |
 
-##### Single vs. multiple subscription
+##### Single vs. multiple subscriptions
 
 The score calculation logic stays the same whether you apply it to a single subscription or multiple subscriptions. The count of resources changes based on the selected scope of subscription, which eventually changes the score value.
 
