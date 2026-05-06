@@ -150,7 +150,7 @@ You can search for specific operations using the **Search to filter items...** f
 
 ### [Search view](#tab/search-view)
 
-You can search for terms in any of the property values. This capability is useful if you write [custom events](api-custom-events-metrics.md) with property values.
+You can search for terms in any of the property values. This capability is useful if you write [custom events](usage.md#track-user-interactions-with-custom-events) with property values.
 
 > [!TIP]
 > You might want to set a time range because searches over a shorter range are faster.
@@ -176,7 +176,7 @@ You can use the following search expressions:
 > [!NOTE]
 > If sampling is enabled, portal experiences such as **Failures**, **Performance**, **Search**, and **End-to-end transaction details** show the telemetry that was retained after sampling rather than every item your application emitted.
 >
-> Suggested samples and correlated views try to preserve related telemetry for the same operation when correlation data is available. Learn more about [sampling](sampling.md).
+> Suggested samples and correlated views try to preserve related telemetry for the same operation when correlation data is available. Learn more about [OpenTelemetry sampling](opentelemetry-sampling.md).
 
 ---
 
@@ -249,7 +249,7 @@ If you instrument your web pages with Application Insights, you can gain visibil
     This view provides a visual summary of various telemetries of your application from the perspective of the browser.
 
     > [!TIP]
-    > For single-page applications (SPAs), turn on [enableAutoRouteTracking](javascript-sdk-configuration.md) or call [trackPageView()](api-custom-events-metrics.md#page-views) on route changes so that each logical page creates its own page view and operation. Otherwise, multiple route changes can be correlated to a single operation and some page view durations can appear as `0`.
+    > For single-page applications (SPAs), turn on [`enableAutoRouteTracking`](javascript-sdk-configuration.md#sdk-configuration) for route changes so that each logical page creates its own page view and operation. Otherwise, multiple route changes can be correlated to a single operation and some page view durations can appear as `0`.
 
 1. For browser operations, the [end-to-end transaction details](#transaction-diagnostics) view shows **Page View Properties** of the client requesting the page, including the type of browser and its location. This information can help determine whether there are performance issues related to particular types of clients.
 
@@ -260,7 +260,7 @@ If you instrument your web pages with Application Insights, you can gain visibil
 
 ## Transaction diagnostics experience
 
-The **Transaction diagnostics** experience, also called **End-to-end transaction details** view, shows a Gantt chart of the transaction, which lists all events with their duration and response code. 
+The **Transaction diagnostics** experience, also called **End-to-end transaction details** view, shows a Gantt chart of the transaction, which lists all events with their duration and response code.
 
 This diagnostics experience automatically correlates server-side telemetry from across all your Application Insights monitored components into a single view and supports multiple resources. Application Insights detects the underlying relationship and allows you to easily diagnose the application component, dependency, or exception that caused a transaction slowdown or failure.
 
@@ -350,9 +350,9 @@ If you don't use the tasks in the previous section, add an inline script in the 
     -releaseProperties @{"ReleaseDescription"="<a description>";
         "TriggerBy"="<Your name>" }
     ```
-    
+
     The following example shows metadata you can set in the optional `releaseProperties` argument by using build and release variables. Select **Save**.
-    
+
     ```powershell
     -releaseProperties @{
     "BuildNumber"="$(Build.BuildNumber)";
@@ -382,7 +382,7 @@ Use the following PowerShell script to create a release annotation from any proc
         [parameter(Mandatory = $true)][string]$releaseName,
         [parameter(Mandatory = $false)]$releaseProperties = @()
     )
-    
+
     # Function to ensure all Unicode characters in a JSON string are properly escaped
     function Convert-UnicodeToEscapeHex {
       param (
@@ -411,7 +411,7 @@ Use the following PowerShell script to create a release annotation from any proc
       }
       return ConvertTo-Json -InputObject $JsonObject -Compress
     }
-    
+
     $annotation = @{
         Id = [GUID]::NewGuid();
         AnnotationName = $releaseName;
@@ -419,10 +419,10 @@ Use the following PowerShell script to create a release annotation from any proc
         Category = "Deployment"; #Application Insights only displays annotations from the "Deployment" Category
         Properties = ConvertTo-Json $releaseProperties -Compress
     }
-    
+
     $annotation = ConvertTo-Json $annotation -Compress
-    $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation  
-    
+    $annotation = Convert-UnicodeToEscapeHex -JsonString $annotation
+
     $accessToken = (az account get-access-token | ConvertFrom-Json).accessToken
     $headers = @{
         "Authorization" = "Bearer $accessToken"
@@ -503,7 +503,7 @@ See the [Limits summary](../service-limits.md#application-insights).
 <details>
 <summary><b>How can I see POST data in my server requests?</b></summary>
 
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+We don't log POST data automatically. Use application logging carefully if you need to capture request body details, and avoid collecting sensitive data.
 </details>
 
 <br>
@@ -529,7 +529,7 @@ See the [Limits summary](../service-limits.md#application-insights).
 
 #### How can I see POST data in my server requests?
 
-We don't log the POST data automatically, but you can use [TrackTrace or log calls](asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+We don't log POST data automatically. Use application logging carefully if you need to capture request body details, and avoid collecting sensitive data.
 
 #### Why does my Azure Function search return no results?
 
@@ -636,7 +636,7 @@ Time not explained in the Gantt chart is time that isn't covered by a tracked de
 
 If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](profiler-overview.md).
 
-#### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal? 
+#### What if I see the message ***Error retrieving data*** while navigating Application Insights in the Azure portal?
 
 This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-aaaa0000-bb11-2222-33cc-444444dddddd) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-bbbb1111-cc22-3333-44dd-555555eeeeee) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs to be investigated further, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
 -->
@@ -646,5 +646,5 @@ This error indicates that the browser was unable to call into a required API or 
 * Learn more about using [Application Map](app-map.md) to spot performance bottlenecks and failure hotspots across all components of your application.
 * Learn more about using the [Availability view](availability-overview.md) to set up recurring tests to monitor availability and responsiveness for your application.
 * Learn [how to use Log Analytics](../logs/log-analytics-tutorial.md) and [write complex queries](../logs/get-started-queries.md) to gain deeper insights from your telemetry data.
-* Learn how to [send logs and custom telemetry to Application Insights](asp-net-trace-logs.md) for more comprehensive monitoring.
+* Learn how to [send custom telemetry to Application Insights](opentelemetry-add-modify.md#collect-custom-telemetry) for more comprehensive monitoring.
 * For an introduction to monitoring uptime and responsiveness, see the [Availability overview](availability-overview.md).

@@ -55,7 +55,7 @@ You can create multiple dashboards in the Azure portal that include tiles visual
 To complete this tutorial:
 
 - Deploy a .NET application to Azure.
-- Enable the [Application Insights SDK](../app/asp-net.md).
+- Enable Application Insights by using [Azure Monitor OpenTelemetry](../app/opentelemetry-enable.md).
 
 > [!NOTE]
 > Required permissions for working with dashboards are discussed in the article on [understanding access control for dashboards](/azure/azure-portal/azure-portal-dashboard-share-access).

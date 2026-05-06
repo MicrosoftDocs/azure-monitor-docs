@@ -18,7 +18,7 @@ customEvents
 ```
 
  > [!NOTE]
- > * Custom measurements are associated with the telemetry item they belong to. They're subject to sampling with the telemetry item that contains those measurements. To track a measurement that has a value independent from other telemetry types, use [metric telemetry](../api-custom-events-metrics.md).
+ > * Custom measurements are associated with the telemetry item they belong to. They're subject to sampling with the telemetry item that contains those measurements. To track a measurement that has a value independent from other telemetry types, use [OpenTelemetry custom metrics](../opentelemetry-add-modify.md#add-custom-metrics).
  > * Don't use string values for custom measurements. Only numeric values are supported.
 
 **Maximum key length**: 150

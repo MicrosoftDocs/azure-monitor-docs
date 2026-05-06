@@ -46,7 +46,7 @@ With live metrics, you can:
 | No retention    | Data persists while it's on the chart and is then discarded.                              | [Data retained for 90 days.](/previous-versions/azure/azure-monitor/app/data-retention-privacy#how-long-is-the-data-kept) |
 | On demand       | Data is only streamed while the live metrics pane is open.                                | Data is sent whenever the SDK is installed and enabled.                                                                   |
 | Free            | There's no charge for Live Stream data.                                                   | Subject to [pricing](../logs/cost-logs.md#application-insights-billing).                                                  |
-| Sampling        | All selected metrics and counters are transmitted. Failures and stack traces are sampled. | Events can be [sampled](api-filtering-sampling.md).                                                                       |
+| Sampling        | All selected metrics and counters are transmitted. Failures and stack traces are sampled. | Events can be sampled. For OpenTelemetry sampling guidance, see [OpenTelemetry sampling](opentelemetry-sampling.md).                                                                       |
 | Control channel | Filter control signals are sent to the SDK. We recommend you secure this channel.         | Communication is one way, to the portal.                                                                                  |
 
 ## Select and filter your metrics
@@ -57,7 +57,7 @@ You can monitor custom performance indicators live by applying arbitrary filters
 
 :::image type="content" source="media/live-stream/filter-request.png" lightbox="media/live-stream/filter-request.png" alt-text="Screenshot that shows the Filter request rate.":::
 
-You can monitor a value different from **Count**. The options depend on the type of stream, which could be any Application Insights telemetry like requests, dependencies, exceptions, traces, events, or metrics. It can also be your own [custom measurement](api-custom-events-metrics.md#properties).
+You can monitor a value different from **Count**. The options depend on the type of stream, which could be any Application Insights telemetry like requests, dependencies, exceptions, traces, events, or metrics. It can also be your own custom measurement. For current custom metric guidance, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 
 :::image type="content" source="media/live-stream/query-builder-request.png" lightbox="media/live-stream/query-builder-request.png" alt-text="Screenshot that shows the Query Builder on Request Rate with a custom metric.":::
 
