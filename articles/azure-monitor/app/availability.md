@@ -1,5 +1,5 @@
 ---
-title: Application Insights availability tests 
+title: Application Insights availability tests
 description: Set up recurring web tests to monitor availability and responsiveness of your app or website.
 ms.topic: how-to
 ms.date: 02/27/2026
@@ -18,22 +18,18 @@ Availability tests don't require any modifications to the website or application
 
 ## Types of availability tests
 
-There are four types of availability tests:
+Application Insights supports Standard tests for current availability monitoring:
 
 * **Standard test:** A type of availability test that checks the availability of a website by sending a single request, similar to the deprecated URL ping test. In addition to validating whether an endpoint is responding and measuring the performance, Standard tests also include TLS/SSL certificate validity, proactive lifetime check, HTTP request verb (for example, `GET`,`HEAD`, and `POST`), custom headers, and custom data associated with your HTTP request.
 
-    [Learn how to create a standard test](/azure/azure-monitor/app/availability?tabs=standard#create-an-availability-test).
+    [Learn how to create a standard test](/azure/azure-monitor/app/availability#create-an-availability-test).
 
-* **Custom TrackAvailability test:** If you decide to create a custom application to run availability tests, you can use the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) method to send the results to Application Insights.
-
-    [Learn how to create a custom TrackAvailability test](/azure/azure-monitor/app/availability?tabs=track#create-an-availability-test).
 
 > [!IMPORTANT]
 > - **URL ping tests are deprecated:** On September 30, 2026, [URL ping tests](/previous-versions/azure/azure-monitor/app/monitor-web-app-availability) in Application Insights will be retired. Existing URL ping tests are removed from your resources. Review the [pricing](https://azure.microsoft.com/pricing/details/monitor/#pricing) for standard tests and [transition](#migrate-classic-url-ping-tests-to-standard-tests) to using them before September 30, 2026 to ensure you can continue to run single-step availability tests in your Application Insights resources.
+> - **Custom availability tests with `TrackAvailability()` are archived Classic API guidance:** For existing implementations, see [Custom availability tests with `TrackAvailability()`](/previous-versions/azure/azure-monitor/app/classic-api?tabs=dotnet%2Cnet#custom-availability-tests-with-trackavailability). Use standard tests for current availability monitoring when possible.
 
 ## Create an availability test
-
-## [Standard test](#tab/standard)
 
 ### Prerequisites
 
@@ -68,172 +64,6 @@ There are four types of availability tests:
    | | **Test Timeout** | Decrease this value to be alerted about slow responses. The test is counted as a failure if the responses from your site aren't received within this period. If you selected **Parse dependent requests**, all the images, style files, scripts, and other dependent resources must be received within this period. |
    | | **HTTP response** | The returned status code counted as a success. The number 200 is the code that indicates that a normal webpage is returned. |
    | | **Content match** | A string, like "Welcome!" We test that an exact case-sensitive match occurs in every response. It must be a plain string, without wildcards. Don't forget that if your page content changes, you might have to update it. *Only English characters are supported with content match.* |
-   
-## [TrackAvailability()](#tab/track)
-
-> [!IMPORTANT]
-> [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) requires making a developer investment in writing and maintaining potentially complex custom code.
->
-> *Standard tests should always be used if possible*, as they require little investment, no maintenance, and have few prerequisites.
-
-This example is designed only to show you the mechanics of how the `TrackAvailability()` API call works within an Azure Functions app. It doesn't show how to write the underlying HTTP test code or business logic required to turn this example into a fully functional availability test.
-
-### Prerequisites
-
-> [!div class="checklist"]
-> * [Workspace-based Application Insights resource](create-workspace-resource.md)
-> * Access to the source code of an [Azure Functions app](/azure/azure-functions/functions-how-to-use-azure-function-app-settings)
-> * Developer expertise to author custom code for [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability), tailored to your specific business needs
-
-### Get started
-
-> [!NOTE]
-> To follow these instructions, you must use either the [App Service](/azure/azure-functions/dedicated-plan) plan or Functions Premium plan to allow editing code in App Service Editor. You also must choose a runtime version that supports the in-process model.
-> 
-> If you're testing behind a virtual network or testing nonpublic endpoints, you need to use the Functions Premium plan.
-
-#### Create a timer trigger function
-
-1. [Create an Azure Functions resource](/azure/azure-functions/functions-create-scheduled-function#create-a-function-app) with the following consideration:
-
-    * **If you don't have an Application Insights resource yet for your timer-triggered function,** it's created *by default* when you create an Azure Functions app.
-
-    * **If you already have an Application Insights resource,** go to the **Monitoring** tab while creating the Azure Functions app, and select or enter the name of your existing resource in the Application Insights dropdown:
-
-        :::image type="content" source="media/availability/create-application-insights.png" alt-text="Screenshot showing selecting your existing Application Insights resource on the Monitoring tab.":::
-
-1. Follow the instructions to [create a timer triggered function](/azure/azure-functions/functions-create-scheduled-function#create-a-timer-triggered-function).
-
-#### Add and edit code in the App Service Editor
-
-Go to your deployed Azure Functions app, and under **Development Tools**, select the **App Service Editor** tab.
-
-To create a new file, right-click under your timer trigger function (for example, **TimerTrigger1**) and select **New File**. Then enter the name of the file and select **Enter**.
-
-1. Create a new file called **function.proj** and paste the following code:
-
-    ```xml
-    <Project Sdk="Microsoft.NET.Sdk"> 
-        <PropertyGroup> 
-            <TargetFramework>netstandard2.0</TargetFramework> 
-        </PropertyGroup> 
-        <ItemGroup> 
-            <PackageReference Include="Microsoft.ApplicationInsights" Version="2.15.0" /> <!-- Ensure you're using the latest version --> 
-        </ItemGroup> 
-    </Project> 
-    ```
-
-    :::image type="content" source="media/availability/function-proj.png" alt-text=" Screenshot showing function.proj in the App Service Editor." lightbox="media/availability/function-proj.png":::
-
-1. Create a new file called **runAvailabilityTest.csx** and paste the following code:
-
-    ```csharp
-    using System.Net.Http; 
-
-    public async static Task RunAvailabilityTestAsync(ILogger log) 
-    { 
-        using (var httpClient = new HttpClient()) 
-        { 
-            // TODO: Replace with your business logic 
-            await httpClient.GetStringAsync("https://www.bing.com/"); 
-        } 
-    } 
-    ```
-
-1. Replace the existing code in **run.csx** with the following:
-
-    ```csharp
-    #load "runAvailabilityTest.csx" 
-
-    using System; 
-
-    using System.Diagnostics; 
-
-    using Microsoft.ApplicationInsights; 
-
-    using Microsoft.ApplicationInsights.Channel; 
-
-    using Microsoft.ApplicationInsights.DataContracts; 
-
-    using Microsoft.ApplicationInsights.Extensibility; 
-
-    private static TelemetryClient telemetryClient; 
-
-    // ============================================================= 
-
-    // ****************** DO NOT MODIFY THIS FILE ****************** 
-
-    // Business logic must be implemented in RunAvailabilityTestAsync function in runAvailabilityTest.csx 
-
-    // If this file does not exist, add it first 
-
-    // ============================================================= 
-
-    public async static Task Run(TimerInfo myTimer, ILogger log, ExecutionContext executionContext) 
-
-    { 
-        if (telemetryClient == null) 
-        { 
-            // Initializing a telemetry configuration for Application Insights based on connection string 
-
-            var telemetryConfiguration = new TelemetryConfiguration(); 
-            telemetryConfiguration.ConnectionString = Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING"); 
-            telemetryConfiguration.TelemetryChannel = new InMemoryChannel(); 
-            telemetryClient = new TelemetryClient(telemetryConfiguration); 
-        } 
-
-        string testName = executionContext.FunctionName; 
-        string location = Environment.GetEnvironmentVariable("REGION_NAME"); 
-        var availability = new AvailabilityTelemetry 
-        { 
-            Name = testName, 
-
-            RunLocation = location, 
-
-            Success = false, 
-        }; 
-
-        availability.Context.Operation.ParentId = Activity.Current.SpanId.ToString(); 
-        availability.Context.Operation.Id = Activity.Current.RootId; 
-        var stopwatch = new Stopwatch(); 
-        stopwatch.Start(); 
-
-        try 
-        { 
-            using (var activity = new Activity("AvailabilityContext")) 
-            { 
-                activity.Start(); 
-                availability.Id = Activity.Current.SpanId.ToString(); 
-                // Run business logic 
-                await RunAvailabilityTestAsync(log); 
-            } 
-            availability.Success = true; 
-        } 
-
-        catch (Exception ex) 
-        { 
-            availability.Message = ex.Message; 
-            throw; 
-        } 
-
-        finally 
-        { 
-            stopwatch.Stop(); 
-            availability.Duration = stopwatch.Elapsed; 
-            availability.Timestamp = DateTimeOffset.UtcNow; 
-            telemetryClient.TrackAvailability(availability); 
-            telemetryClient.Flush(); 
-        } 
-    } 
-
-    ```
-
-> [!NOTE]
-> Tests created with `TrackAvailability()` appear with **CUSTOM** next to the test name.
->
-> :::image type="content" source="media/availability/availability-test-list.png" alt-text="Screenshot showing the Availability experience with two different tests listed.":::
-
----
 
 ## Availability alerts
 
@@ -323,12 +153,11 @@ A custom alert rule offers higher values for the aggregation period (up to 24 ho
 * **Alert on availability metrics**: By using the [new unified alerts](../alerts/alerts-overview.md), you can alert on segmented aggregate availability and test duration metrics too:
 
     1. Select an Application Insights resource in the **Metrics** experience, and select an **Availability** metric.
-    
+
     1. The `Configure alerts` option from the menu takes you to the new experience where you can select specific tests or locations on which to set up alert rules. You can also configure the action groups for this alert rule here.
 
-* **Alert on custom analytics queries**: By using the [new unified alerts](../alerts/alerts-overview.md), you can alert on [custom log queries](../alerts/alerts-types.md#log-alerts). With custom queries, you can alert on any arbitrary condition that helps you get the most reliable signal of availability issues. It's also applicable if you're sending custom availability results by using the TrackAvailability SDK.
+* **Alert on custom analytics queries**: By using the [new unified alerts](../alerts/alerts-overview.md), you can alert on [custom log queries](../alerts/alerts-types.md#log-alerts). With custom queries, you can alert on any arbitrary condition that helps you get the most reliable signal of availability issues.
 
-    The metrics on availability data include any custom availability results you might be submitting by calling the TrackAvailability SDK. You can use the alerting on metrics support to alert on custom availability results.
 
 ### Automate alerts
 
@@ -337,7 +166,7 @@ To automate this process with Azure Resource Manager templates, see [Create a me
 ## See your availability test results
 
 This section explains how to review availability test results in the Azure portal and query the data using [Log Analytics](../logs/log-analytics-overview.md#overview-of-log-analytics-in-azure-monitor). Availability test results can be visualized with both **Line** and **Scatter Plot** views.
- 
+
 ### Check availability
 
 Start by reviewing the graph in the **Availability** experience in the Azure portal.
@@ -435,25 +264,25 @@ resources
     $appInsightsComponent = "componentName";
     $pingTestName = "pingTestName";
     $newStandardTestName = "newStandardTestName";
-    
+
     $componentId = (Get-AzApplicationInsights -ResourceGroupName $resourceGroup -Name $appInsightsComponent).Id;
     $pingTest = Get-AzApplicationInsightsWebTest -ResourceGroupName $resourceGroup -Name $pingTestName;
     $pingTestRequest = ([xml]$pingTest.ConfigurationWebTest).WebTest.Items.Request;
     $pingTestValidationRule = ([xml]$pingTest.ConfigurationWebTest).WebTest.ValidationRules.ValidationRule;
-    
+
     $dynamicParameters = @{};
-    
+
     if ($pingTestRequest.IgnoreHttpStatusCode -eq [bool]::FalseString) {
     $dynamicParameters["RuleExpectedHttpStatusCode"] = [convert]::ToInt32($pingTestRequest.ExpectedHttpStatusCode, 10);
     }
-    
+
     if ($pingTestValidationRule -and $pingTestValidationRule.DisplayName -eq "Find Text" `
     -and $pingTestValidationRule.RuleParameters.RuleParameter[0].Name -eq "FindText" `
     -and $pingTestValidationRule.RuleParameters.RuleParameter[0].Value) {
     $dynamicParameters["ContentMatch"] = $pingTestValidationRule.RuleParameters.RuleParameter[0].Value;
     $dynamicParameters["ContentPassIfTextFound"] = $true;
     }
-    
+
     New-AzApplicationInsightsWebTest @dynamicParameters -ResourceGroupName $resourceGroup -Name $newStandardTestName `
     -Location $pingTest.Location -Kind 'standard' -Tag @{ "hidden-link:$componentId" = "Resource" } -TestName $newStandardTestName `
     -RequestUrl $pingTestRequest.Url -RequestHttpVerb "GET" -GeoLocation $pingTest.PropertiesLocations -Frequency $pingTest.Frequency `
@@ -463,7 +292,7 @@ resources
 
     The new standard test doesn't have alert rules by default, so it doesn't create noisy alerts. No changes are made to your URL ping test so you can continue to rely on it for alerts.
 
-1. Validate the functionality of the new standard test, then [update your alert rules](/azure/azure-monitor/alerts/alerts-manage-alert-rules) that reference the URL ping test to reference the standard test instead. 
+1. Validate the functionality of the new standard test, then [update your alert rules](/azure/azure-monitor/alerts/alerts-manage-alert-rules) that reference the URL ping test to reference the standard test instead.
 
 1. Disable or delete the URL ping test. To do so with Azure PowerShell, you can use this command:
 
@@ -509,8 +338,8 @@ To simplify enabling Azure services without authorizing individual IPs or mainta
 
 1. Next, select *Service Tag* as the **Source** and *ApplicationInsightsAvailability* as the **Source service tag**. Use open ports 80 (http) and 443 (https) for incoming traffic from the service tag.
 
-To manage access when your endpoints are outside Azure or when service tags aren't an option, allowlist the IP addresses of our web test agents. You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
-  
+To manage access when your endpoints are outside Azure or when service tags aren't an option, allow list the IP addresses of our web test agents. You can query IP ranges using PowerShell, Azure CLI, or a REST call with the [Service Tag API](/azure/virtual-network/service-tags-overview#use-the-service-tag-discovery-api). For a comprehensive list of current service tags and their IP details, download the [JSON file](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files).
+
 1. In your network security group resource, under **Settings**, open the **Inbound security rules** experience, then select **Add**.
 
 1. Next, select *IP Addresses* as your **Source**. Then add your IP addresses in a comma-delimited list in **Source IP address/CIRD ranges**.
@@ -519,7 +348,7 @@ To manage access when your endpoints are outside Azure or when service tags aren
 
 1. Connect your Application Insights resource to your internal service endpoint using [Azure Private Link](../fundamentals/private-link-security.md).
 
-1. Write custom code to periodically test your internal server or endpoints. Send the results to Application Insights using the [TrackAvailability()](/dotnet/api/microsoft.applicationinsights.telemetryclient.trackavailability) API in the core SDK package.
+1. Standard tests require network reachability to the endpoint being tested. For nonpublic endpoints, monitor an internal health signal from inside the network and create log or metric alerts on that signal.
 
 [!INCLUDE [application-insights-tls-requirements](includes/application-insights-tls-requirements.md)]
 > [!IMPORTANT]

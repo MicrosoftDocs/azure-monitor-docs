@@ -33,7 +33,7 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 
 * [Alerts](../alerts/alerts-overview.md): Monitor a wide range of aspects of your application and trigger various actions.
 * [Metrics](../essentials/metrics-getting-started.md): Dive deep into metrics data to understand usage patterns and trends.
-* [Diagnostic settings](../essentials/diagnostic-settings.md): Configure streaming export of platform logs and metrics to the destination of your choice. 
+* [Diagnostic settings](../essentials/diagnostic-settings.md): Configure streaming export of platform logs and metrics to the destination of your choice.
 * [Logs](../logs/log-analytics-overview.md): Retrieve, consolidate, and analyze all data collected into Azure Monitoring Logs.
 * [Workbooks](../visualize/workbooks-overview.md): Create interactive reports and dashboards that visualize application monitoring data.
 * [Dashboards with Grafana](grafana-dashboards.md): Create, customize, and share Grafana dashboards for Application Insights data directly in the Azure portal.
@@ -172,11 +172,7 @@ You can also set up evaluations in these ways:
 After you complete the setup for your scenario, run your app and wait a few minutes for telemetry to appear in Application Insights. Then explore [Application Insights experiences](#application-insights-experiences).
 
 > [!IMPORTANT]
-> If you're still using Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
-
-> [!TIP]
-> To review archived .NET or Node.js classic API SDK information, see [API 2.x](/previous-versions/azure/azure-monitor/app/classic-api).
-
+> If you're migrating from older Application Insights SDKs, see [Migrate to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
 ## Other OpenTelemetry integrations on Azure
 
 Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:

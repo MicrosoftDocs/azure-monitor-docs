@@ -14,7 +14,7 @@ Connection strings specify which Application Insights resource your instrumented
 
 > [!IMPORTANT]
 > The connection string contains an instrumentation key (ikey) and an ApplicationId.
-> 
+>
 > The ikey is a unique identifier used by the ingestion service to associate telemetry to a specific Application Insights resource. ***Ikey unique identifiers aren't security tokens or security keys, and aren't considered secrets.***
 > To enhance connection strings, add the ApplicationId value. This update is a new feature that supports automatic instrumentation for scenarios utilizing the Open Telemetry SDK.
 > To protect your Application Insights resource from misuse, the ingestion endpoint provides authenticated telemetry ingestion options based on [Microsoft Entra ID](azure-ad-authentication.md#microsoft-entra-authentication-for-application-insights).
@@ -149,18 +149,12 @@ For end-to-end guidance, including CORS and APIM policies, see: [Using Azure API
 
 ## Next steps
 
-To review frequently asked questions (FAQ), see: 
+To review frequently asked questions (FAQ), see:
 
 * [Connection strings in Application Insights FAQ](application-insights-faq.yml#connection-strings)
 
-Get started at runtime with:
+Get started with:
 
-* [Azure Virtual Machine (VM) and Azure Virtual Machine Scale Sets IIS-hosted apps](./azure-vm-vmss-apps.md)
-* [Internet Information Server (IIS) server](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers)
-* [Web Apps feature of Azure App Service](./azure-web-apps.md)
-
-Get started at development time with:
-
-* [.NET](/azure/azure-monitor/app/classic-api?tabs=dotnet)
-* [Java](./opentelemetry-enable.md?tabs=java)
-* [Node.js](/azure/azure-monitor/app/classic-api?tabs=nodejs)
+* [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md)
+* [Configure OpenTelemetry connection strings](opentelemetry-configuration.md#connection-string)
+* [Add browser telemetry with the JavaScript SDK](javascript-sdk.md)

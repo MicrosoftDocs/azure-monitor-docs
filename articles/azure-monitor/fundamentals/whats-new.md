@@ -43,7 +43,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|Documented default-on sampling for most languages and updated [configuration guidance](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling) accordingly.|
 |Application-Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Published .NET SDK 3.x migration guidance for upgrading applications from the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK to OpenTelemetry.|
 |Application-Insights|[Connection strings](../app/connection-strings.md#authenticated-browser-telemetry-using-connection-strings)|Added guidance for preserving JavaScript browser telemetry with Microsoft Entra ID-only authentication by proxying ingestion through Azure API Management.|
-|Application-Insights|[OpenTelemetry or the Application Insights Classic API SDK?](../app/application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-classic-api-sdk)|Updated FAQ guidance to recommend starting with OpenTelemetry now that the Azure Monitor OpenTelemetry Distro has reached feature parity with the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK.|
+|Application-Insights|[OpenTelemetry or the Application Insights Classic API SDK?](../app/application-insights-faq.yml#should-i-use-opentelemetry-for-new-application-insights-projects)|Updated FAQ guidance to recommend starting with OpenTelemetry now that the Azure Monitor OpenTelemetry Distro has reached feature parity with the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK.|
 |Application-Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md?tabs=aspnetcore)|Published guidance on what OpenTelemetry collects automatically and how to enrich telemetry with resource detectors.|
 |Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published substantial updates to Azure Monitor pipeline guidance, including transformations, TLS, pod placement, and a new architecture diagram.|
 |Fundamentals|[Azure Monitor overview](overview.md)|Published a simplified Azure Monitor overview organized around core user scenarios and updated it to highlight the observability agent.|
@@ -296,7 +296,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|Added Redact URL Query Strings|
-|General|[Monitor a Cloud Environment]()|New article to provide high level monitoring concepts and map to Azure monitoring services.|
+|General|[Monitor a Cloud Environment](best-practices-multicloud.md)|New article to provide high level monitoring concepts and map to Azure monitoring services.|
 |Logs|[Data collection endpoints in Azure Monitor](../data-collection/data-collection-endpoint-overview.md)|Added clarification on when DCE is required.|
 |Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
 |Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
@@ -895,7 +895,7 @@ Logs|[Enhance data and service resilience in Azure Monitor Logs with availabilit
 Logs|[Monitor Log Analytics workspace health](../logs/log-analytics-workspace-health.md)|New article: Explains how to monitor the service and resource health of a Log Analytics workspace.|
 Logs|[Feature extensions for Application Insights JavaScript SDK (Click Analytics)](../app/javascript-click-analytics-plugin.md)|You can now launch Power BI and create a dataset and report connected to a Log Analytics query with one click.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added new tables to the list of tables that support Basic Logs.|
-Logs|[Manage tables in a Log Analytics workspace]()|Refreshed all Log Analytics workspace images with the new TOC on the left.|
+Logs|[Manage tables in a Log Analytics workspace](../logs/manage-logs-tables.md)|Refreshed all Log Analytics workspace images with the new TOC on the left.|
 Security-Fundamentals|[Monitoring Azure App Service](/azure/app-service/monitor-app-service)|Revised the Azure Monitor overview to improve usability. The article is cleaned up, streamlined, and better reflects the product architecture and the customer experience. |
 Snapshot-Debugger|[host.json reference for Azure Functions 2.x and later](/azure/azure-functions/functions-host-json)|Removing the TSG from the Azure Monitor TOC and adding to the support TOC.|
 Snapshot-Debugger|[Configure Bring Your Own Storage (BYOS) for Application Insights Profiler and Snapshot Debugger](../profiler/profiler-bring-your-own-storage.md)|Removing the TSG from the Azure Monitor TOC and adding to the support TOC.|
