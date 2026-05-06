@@ -8,14 +8,14 @@ ms.date: 04/01/2026
 
 # Enable AKS autoinstrumentation for Python and .NET (limited preview)
 
-Azure Kubernetes Service (AKS) autoinstrumentation is a feature that attaches Azure Monitor Application Insights SDK distros to your workload without requiring code changes. It works with workloads running as Kubernetes deployments in AKS. Currently, support for Java and Node.js is in public preview, while support for Python and .NET is in limited preview. This article details the onboarding process that allows a select group of limited preview customers to enable Python and .NET support for their AKS clusters.
+Azure Kubernetes Service (AKS) autoinstrumentation is a feature that attaches Azure Monitor Application Insights software development kit (SDK) distros to your workload without requiring code changes. It works with workloads running as Kubernetes deployments in AKS. Currently, support for Java and Node.js is in public preview, while support for Python and .NET is in limited preview. This article details the onboarding process that allows a select group of limited preview customers to enable Python and .NET support for their AKS clusters.
 
 >[!IMPORTANT]
 > - This feature is a **limited preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > - For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 
-You can use Python and .NET with both the AKS OTLP public preview and AKS autoinstrumentation (non-OTLP).
+You can use Python and .NET with both the AKS OpenTelemetry Protocol (OTLP) public preview and AKS autoinstrumentation (non-OTLP).
 
 ## Onboard to the limited preview
 
@@ -24,7 +24,7 @@ This section outlines the process of enabling the limited preview feature. It si
 > [!IMPORTANT]
 > Application Insights experiences including prebuilt dashboards and queries expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 >
-> When using AKS auto-instrumentation, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. No additional user configuration is required.
+> When you use AKS autoinstrumentation, Azure Monitor automatically uses environment variables to configure SDKs to export metrics with delta temporality and exponential histograms. No additional user configuration is required.
 >
 > For more information, see [Metrics Exporters - OTLP](https://opentelemetry.io/docs/specs/otel/metrics/sdk_exporters/otlp/).
 
