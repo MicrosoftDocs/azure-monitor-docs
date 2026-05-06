@@ -12,7 +12,7 @@ ms.custom: references_regions, devx-track-azurecli, doc-kit-assisted
 
 Azure Monitor can already collect telemetry from on-premises, edge, and multicloud environments. In many enterprise environments, sending large volumes of telemetry directly to the cloud can increase ingestion costs, introduce reliability risks during connectivity loss, and limit your control over what data is collected. Azure Monitor pipeline builds on existing Azure Monitor collection capabilities for these scenarios.
 
-Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, buffer, and route telemetry before it's sent to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on OpenTelemetry technology, the pipeline supports standard ingestion protocols including Syslog and OTLP, enabling it to receive telemetry from a wide range of clients and environments.
+Azure Monitor pipeline provides centralized governance and a single point of control that runs close to your data sources, so you can filter, transform, aggregate, and route telemetry before it's sent to Azure Monitor. This approach helps you reduce ingestion volume, improve reliability in disconnected environments, and apply consistent data processing across hybrid and multicloud deployments. Built on OpenTelemetry technology, the pipeline supports standard ingestion protocols including Syslog and OTLP, enabling it to receive telemetry from a wide range of clients and environments.
 
 :::image type="content" source="media/pipeline-overview/architecture.png" alt-text="Diagram showing typical Azure Monitor pipeline architecture with multiple locations and devices." lightbox="media/pipeline-overview/architecture.png" border="false":::
 
@@ -25,7 +25,7 @@ Use Azure Monitor pipeline when direct-to-cloud collection doesn't meet your sec
 |:---|:---|
 | Bandwidth or ingestion cost constraints | Filters and aggregates data before cloud ingestion to reduce your network bandwidth requirements. |
 | High telemetry volume | Processes data locally at scale to handle sustained high-throughput scenarios before sending to Azure Monitor. |
-| Intermittent or restricted connectivity | Buffers data in persistent storage during disruptions and backfills automatically when connectivity returns. |
+| Intermittent or restricted connectivity | When persistent storage is enabled, stores data locally so it survives process restarts or connectivity loss and backfills automatically when connectivity returns. |
 | Formatting of telemetry | Auto-schematizes Syslog and CEF data to standard tables. |
 
 ## Supported data sources
@@ -35,7 +35,7 @@ Azure Monitor pipeline currently receives and processes the following data sourc
 | Data source | Details | Status |
 |:---|:---|:---|
 | Syslog | Supports RFC 3164 and RFC 5424 over TCP and UDP. CEF is supported as Syslog data through the same receiver. | Generally available |
-| OpenTelemetry Protocol (OTLP) | Supports OTLP ingestion for OpenTelemetry-enabled clients. | Preview |
+| OpenTelemetry logs (OTLP) | Supports ingestion of OpenTelemetry logs from clients to Azure Monitor. | Preview |
 
 ## Key capabilities
 
@@ -44,7 +44,7 @@ Azure Monitor pipeline includes a set of capabilities that help address common i
 - Secure ingestion endpoints support TLS and optional mutual TLS (mTLS), so you can encrypt telemetry in transit and restrict ingestion to trusted clients.
 - Local processing can filter, aggregate, and reshape telemetry before it reaches Azure Monitor, which helps reduce ingestion cost and keep cloud analytics focused on higher-value data.
 - Supported Syslog and CEF data can be auto-schematized for Azure Monitor tables such as `Syslog` and `CommonSecurityLog`, which helps reduce downstream parsing effort.
-- Local buffering in persistent storage helps prevent data loss during connectivity interruptions and automatically backfills data when connectivity returns.
+- Optional persistent storage writes telemetry to durable local storage so it survives process restarts and connectivity interruptions. The pipeline automatically backfills data when connectivity returns.
 - Built-in monitoring exposes health and performance signals for the pipeline itself, so you can see whether it is receiving, processing, and forwarding telemetry.
 - Sizing guidance helps you plan the Kubernetes infrastructure for your expected telemetry volume and workload characteristics.
 
@@ -59,7 +59,7 @@ A typical deployment is shown in the preceding image and includes the following 
 
 - The pipeline runs on an Arc-enabled Kubernetes cluster at each on-premises, edge, or multicloud location.
 - Clients send Syslog data, including CEF, to the pipeline over TCP or UDP on port 514 by default.
-- Clients send OpenTelemetry Protocol (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
+- Clients send OpenTelemetry logs (OTLP) data to the pipeline on TCP port 4317 by default (this feature is in Preview).
 - An optional gateway exposes pipeline receivers to clients outside the cluster.
 - Optional TLS or mutual TLS (mTLS) secures ingestion traffic.
 - Optional transformations filter or reshape data before it's sent to a Log Analytics workspace.
@@ -74,26 +74,26 @@ Azure Monitor pipeline and [Azure Monitor agent (AMA)](/azure/azure-monitor/agen
 
 AMA runs on individual resources and collects telemetry directly from those resources. It's the right choice when you can install an agent on each data source and send data directly to Azure.
 
-Azure Monitor pipeline runs centrally and receives telemetry from any source over standard protocols. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized processing before cloud ingestion.
+Azure Monitor pipeline runs centrally and receives telemetry from any source. It's the right choice when data sources can't run an agent (for example, third-party appliances where installing software would void the warranty, network devices, or IoT hardware), or when you need centralized filtering, aggregation, and transformation before cloud ingestion.
 
 | Aspect | Azure Monitor agent | Azure Monitor pipeline |
 |:---|:---|:---|
 | Where it runs | On each individual resource (VM, server) | Centrally on an Arc-enabled Kubernetes cluster |
 | How it gets data | Collects from the resource where the agent is installed | Receives from any client that can send data over the network |
-| Best for | Resources where you can install and manage an agent | Sources that can't run an agent, or scenarios that need centralized processing |
-| Scale approach | One agent per resource | A single deployment can serve thousands of sources. [Scales horizontally](./pipeline-sizing.md) with additional replicas behind a cluster load balancer. |
+| Best for | Resources where you can install and manage an agent | Sources that can't run an agent, or scenarios that need centralized filtering, aggregation, and transformation |
+| Scale approach | One agent per resource | Deploy on a single Arc-enabled Kubernetes cluster and [scale horizontally](./pipeline-sizing.md) by running multiple replicas to serve thousands of sources. |
 
-Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for sources that can't run an agent or scenarios that need preprocessing before data reaches Azure.
+Many architectures use both together. AMA handles per-resource collection for supported Azure and Arc-enabled resources, while Azure Monitor pipeline provides a central ingestion point for sources that can't run an agent or scenarios that need centralized filtering, aggregation, and transformation before data reaches Azure.
 
 ## Supported configurations
 
 Azure Monitor pipeline runs on Arc-enabled Kubernetes. Support depends on both the region and the Kubernetes distribution versions supported for the required `cert-manager` extension.
 
-| Supported Kubernetes distributions | Supported locations |
+| Supported Kubernetes distributions | Supported regions |
 |:---|:---|
-| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Canada Central<br>- East US<br>- East US2<br>- Italy North<br>- West US2<br>- West Europe<br> |
+| - VMware Tanzu Kubernetes Grid multicloud (TKGm) v1.28.11<br>- SUSE Rancher K3s v1.33.3+k3s1<br>- AKS Arc v1.32.7 | - Australia East<br>- Brazil South<br>- Canada Central<br>- Central India<br>- Central US<br>- Central US EUAP<br>- East Asia<br>- East US<br>- East US 2<br>- East US 2 EUAP<br>- France Central<br>- Germany West Central<br>- Italy North<br>- Japan East<br>- Korea Central<br>- North Central US<br>- North Europe<br>- Norway East<br>- South Africa North<br>- South India<br>- Sweden Central<br>- Switzerland North<br>- UK South<br>- UK West<br>- West Central US<br>- West Europe<br>- West US<br>- West US 2<br>- West US 3 |
 
-For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
+Supported regions, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
 ## Related articles
 

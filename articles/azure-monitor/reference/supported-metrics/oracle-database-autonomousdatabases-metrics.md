@@ -2,7 +2,7 @@
 title: Supported metrics - Oracle.Database/autonomousDatabases
 description: Reference for Oracle.Database/autonomousDatabases metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 04/28/2026
 ms.custom: Oracle.Database/autonomousDatabases, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
@@ -16,6 +16,10 @@ The following table lists the metrics available for the Oracle.Database/autonomo
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
+  
+  
+  
+For a list of supported logs, see [Supported log categories - Oracle.Database/autonomousDatabases](../supported-logs/oracle-database-autonomousdatabases-logs.md)  
   
  
 

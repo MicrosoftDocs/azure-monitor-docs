@@ -41,7 +41,7 @@ Alert processing rules allow you to specify that logic in a single rule, instead
 
 ## Add action groups to all alert types
 
-Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and [Azure Stack Hub](/azure-stack/operator/azure-stack-monitor-health?view=azs-2408).
+Azure Monitor alert rules let you select which action groups will be triggered when their alerts are fired. However, not all Azure alert sources let you specify action groups. Some examples of such alerts include [Azure Backup alerts](/azure/backup/backup-azure-monitoring-built-in-monitor), [VM Insights guest health alerts](../vm/vminsights-health-alerts.md), [Azure Stack Edge](/azure/databox-online/azure-stack-edge-gpu-manage-device-event-alert-notifications), and [Azure Stack Hub](/azure-stack/operator/azure-stack-monitor-health).
 
 For those alert types, you can use alert processing rules to add action groups.
 
@@ -64,7 +64,7 @@ Alert rule ID |  The rule applies only to alerts from a specific alert rule. The
 Alert rule name |  The rule applies only to alerts with this alert rule name. It can also be useful with a **Contains** operator. |
 Description |  The rule applies only to alerts that contain the specified string within the alert rule description field. |
 Monitor condition |  The rule applies only to alerts with the specified monitor condition, either **Fired** or **Resolved**. |
-Monitor service |  The rule applies only to alerts from any of the specified monitoring services that are sending the signal. Different services are available depending on the type of signal. For example: </br>**- Platform**: For metric signals, the monitor service is the metric namespace. Platform means the metrics are provided by the resource provider, namely 'Azure'.</br>**- Azure.ApplicationInsights**: Customer-reported metrics, sent by the Application Insights SDK.</br>**- Azure.VM.Windows.GuestMetrics**: VM guest metrics, collected by an extension running on the VM. Can include built-in operating system perf counters, and custom perf counters.</br>**- _\<Custom namespace\>_**: A custom metric namespace, containing custom metrics sent with the Azure Monitor Metrics API.</br>**- Log Analytics**: The service that provides the 'Custom log search' and 'Log (saved query)' signals.</br>**- Activity Log – Administrative**: The service that provides the 'Administrative' activity log events.</br>**- Activity Log – Policy**: The service that provides the 'Policy' activity log events.</br>**- Activity Log – Autoscale** The service that provides the 'Autoscale' activity log events.</br>**- Activity Log – Security**: The service that provides the 'Security' activity log events.</br>**- Resource health**: The service that provides the resource-level health status.</br>**- Service health**: The service that provides the subscription-level health status.|
+Monitor service |  The rule applies only to alerts from any of the specified monitoring services that are sending the signal. Different services are available depending on the type of signal. For example: </br>**- Platform**: For metric signals, the monitor service is the metric namespace. Platform means the metrics are provided by the resource provider, namely 'Azure'.</br>**- Azure.ApplicationInsights**: Customer-reported metrics, sent by the Application Insights SDK.</br>**- Azure.VM.Windows.GuestMetrics**: VM guest metrics, collected by an extension running on the VM. Can include built-in operating system perf counters, and custom perf counters.</br>**- _\<Custom namespace\>_**: A custom metric namespace, containing custom metrics sent with the Azure Monitor Metrics API.</br>**- Log Analytics**: The service that provides the 'Custom log search' and 'Log (saved query)' signals.</br>**- Activity Log – Administrative**: The service that provides the 'Administrative' activity log events.</br>**- Activity Log – Policy**: The service that provides the 'Policy' activity log events.</br>**- Activity Log – Autoscale** The service that provides the 'Autoscale' activity log events.</br>**- Activity Log – Security**: The service that provides the 'Security' activity log events.</br>**- Resource health**: The service that provides the resource-level health status.</br>|
 Resource |  The rule applies only to alerts from the specified Azure resource. For example, you can use this filter with **Does not equal** to exclude one or more resources when the rule's scope is a subscription. | 
 Resource group |  The rule applies only to alerts from the specified resource groups. For example, you can use this filter with **Does not equal** to exclude one or more resource groups when the rule's scope is a subscription. | 
 Resource type |  The rule applies only to alerts on resources from the specified resource types, such as virtual machines. You can use **Equals** to match one or more specific resources. You can also use **Contains** to match a resource type and all its child resources. For example, use `resource type contains "MICROSOFT.SQL/SERVERS"` to match both SQL servers and all their child resources, like databases.
@@ -77,7 +77,7 @@ Severity |  The rule applies only to alerts with the selected severities. |
   For example, if you set both `resource type = "Virtual Machines"` and `severity = "Sev0"`, then the rule applies only for `Sev0` alerts on virtual machines in the scope.
 * Each filter can include up to five values. There's a logical OR between the values.  
   For example, if your set description contains "this, that" (in the field there's no need to write the apostrophes), then the rule applies only to alerts whose description contains either "this" or "that".
-* Notice that you dont have any spaces (before, after or between) the string that is matched it effects the matching of the filter.
+* Notice that you don't have any spaces (before, after or between) the string that is matched it effects the matching of the filter.
 
 ### What should this rule do?
 
@@ -91,6 +91,9 @@ Choose one of the following actions:
 You can control when the rule applies. The rule is always active, by default. You can select a one-time window for this rule to apply, or you can have a recurring window, such as a weekly recurrence.
 
 ## Configure an alert processing rule
+
+> [!NOTE]
+> After you create or update an alert processing rule, it can take up to 30 minutes for the rule to take effect and start processing newly fired alerts. Alerts that fire during this propagation period might not be affected by the rule.
 
 ### [Portal](#tab/portal)
 

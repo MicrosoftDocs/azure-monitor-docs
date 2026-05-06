@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/NetworkVirtualAppliances
 description: Reference for Microsoft.Network/NetworkVirtualAppliances metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 10/31/2025
+ms.date: 04/28/2026
 ms.custom: Microsoft.Network/NetworkVirtualAppliances, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
@@ -16,6 +16,10 @@ The following table lists the metrics available for the Microsoft.Network/Networ
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
+  
+  
+  
+For a list of supported logs, see [Supported log categories - Microsoft.Network/NetworkVirtualAppliances](../supported-logs/microsoft-network-networkvirtualappliances-logs.md)  
   
  
 

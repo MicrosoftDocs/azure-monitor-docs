@@ -164,17 +164,6 @@ The baselines in this article are measured under controlled conditions. The foll
 
 </details>
 
-
-## Known limitations
-
-The following scenarios haven't yet been measured and may affect throughput:
-
-- **TLS**: Current tests run with TLS disabled. Enabling TLS adds encryption overhead.
-- **Durable buffering**: Current tests run without disk-backed buffers. Enabling durable buffers adds disk I/O overhead but improves reliability.
-- **UDP transport**: The load generator couldn't saturate the pipeline over UDP, so UDP throughput numbers aren't yet available.
-- **OTLP (gRPC)**: The load generator couldn't saturate the pipeline over OTLP either. Measured throughput was ≥29–33K logs/sec with pipeline CPU well below capacity.
-
-
 ## Related articles
 
 - [What is Azure Monitor pipeline?](./pipeline-overview.md)

@@ -1,25 +1,25 @@
 ---
-title: Supported metrics - Microsoft.ClassicStorage/storageAccounts/blobServices
-description: Reference for Microsoft.ClassicStorage/storageAccounts/blobServices metrics in Azure Monitor.
+title: Supported metrics - Microsoft.PowerPlatformMonitoringHub/powerapps
+description: Reference for Microsoft.PowerPlatformMonitoringHub/powerapps metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
-ms.custom: Microsoft.ClassicStorage/storageAccounts/blobServices, arm
+ms.date: 04/28/2026
+ms.custom: Microsoft.PowerPlatformMonitoringHub/powerapps, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
 
 ---
 
   
-# Supported metrics for Microsoft.ClassicStorage/storageAccounts/blobServices
+# Supported metrics for Microsoft.PowerPlatformMonitoringHub/powerapps
   
-The following table lists the metrics available for the Microsoft.ClassicStorage/storageAccounts/blobServices resource type.  
+The following table lists the metrics available for the Microsoft.PowerPlatformMonitoringHub/powerapps resource type.  
   
   
 [!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
   
  
 
-[!INCLUDE [Microsoft.ClassicStorage/storageAccounts/blobServices](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-classicstorage-storageaccounts-blobservices-metrics-include.md)]  
+[!INCLUDE [Microsoft.PowerPlatformMonitoringHub/powerapps](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-powerplatformmonitoringhub-powerapps-metrics-include.md)]  
 
 
 

@@ -9,7 +9,7 @@ ms.reviewer: priyamishra
 
 # Azure monitoring REST API walkthrough
 
-This article shows you how to use the [Azure Monitor REST API reference](/rest/api/monitor/).
+This article shows you how to use the [Azure Monitor REST API reference](../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis). These APIs are part of the Azure Resource Manager (ARM) control plane APIs for various Azure Monitor features.
 
 Retrieve metric definitions, dimension values, and metric values using the Azure Monitor API and use the data in your applications, or store in a database for analysis. You can also list alert rules and view activity logs using the Azure Monitor API.
 
@@ -19,7 +19,7 @@ Request submitted using the Azure Monitor API use the Azure Resource Manager aut
 
 ### Retrieve a token
 
-Once you've created a service principal, retrieve an access token. Specify `resource=https://management.azure.com` in the token request.
+Once you've created a service principal, retrieve an access token. Use `https://management.azure.com/.default` as the `scope` in the token request.
 
 [!INCLUDE [Get a token](../fundamentals/includes/get-authentication-token.md)]
 
@@ -636,11 +636,9 @@ GET https://management.azure.com/subscriptions/12345678-abcd-98765432-abcdef0123
 
     The 529 error code indicates that the metrics backend is currently throttling your requests. The recommended action is to implement an exponential backoff retry scheme. For more information on throttling, see [Understand how Azure Resource Manager throttles requests](/azure/azure-resource-manager/management/request-limits-and-throttling).
 
-## Next steps
+## Related content
 
-* Review the [overview of monitoring](../fundamentals/overview.md).
-* View the [supported metrics with Azure Monitor](../reference/metrics-index.md).
-* Review the [Microsoft Azure Monitor REST API reference](/rest/api/monitor/).
-* Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/).
-* Review the [Azure Management Library](/previous-versions/azure/reference/mt417623(v=azure.100)).
-* [Activity log in Azure Monitor](activity-log.md#retrieve-activity-log-events-by-using-the-rest-api).
+* Review the [overview of monitoring](../fundamentals/overview.md)
+* View the [supported metrics with Azure Monitor](../reference/metrics-index.md)
+* Review the new [Azure Monitor Query client libraries](https://devblogs.microsoft.com/azure-sdk/announcing-the-new-azure-monitor-query-client-libraries/)
+* [Activity log in Azure Monitor](activity-log.md#view-and-retrieve-the-activity-log)
