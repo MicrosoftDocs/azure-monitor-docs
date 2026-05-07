@@ -40,7 +40,13 @@ The following sections present common scenarios showing different ways to access
 
 - Azure portal samples provide extra context around what kind of events to expect in that view.
 
-- REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log). The samples also demonstrate how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
+- Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
+
+- Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
+
+- REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+
+  The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
 
   | Supported `$filter` patterns | Details |
   |------------------------------|---------|
@@ -49,10 +55,6 @@ The following sections present common scenarios showing different ways to access
   | specific resource | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'` |
   | resource provider | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceProvider eq '{resourceProviderName}'` |
   | correlation ID | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and correlationId eq '{correlationID}'` |
-
-- Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
-
-- Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
 
 #### List activity log events for a subscription
 
@@ -71,7 +73,7 @@ The menu you open **Activity log** from determines its initial filter. If you op
 To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
 
 ```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-14T23:59:59Z'
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-14T23:59:59Z'
 ```
 
 # [Azure CLI](#tab/cli)
@@ -85,8 +87,8 @@ subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 
 az monitor activity-log list \
   --subscription "$subscriptionId" \
-  --start-time "2026-03-01T00:00:00Z" \
-  --end-time "2026-03-14T23:59:59Z" \
+  --start-time "2026-04-01T00:00:00Z" \
+  --end-time "2026-04-14T23:59:59Z" \
   --namespace "Microsoft.Insights"
 ```
 
@@ -114,8 +116,8 @@ $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 Set-AzContext -Subscription $subscriptionId
 
 $getAzActivityLogParams = @{
-    StartTime        = [datetime]"2026-03-01T00:00:00Z"
-    EndTime          = [datetime]"2026-03-14T23:59:59Z"
+    StartTime        = [datetime]"2026-04-01T00:00:00Z"
+    EndTime          = [datetime]"2026-04-14T23:59:59Z"
 }
 
 Get-AzActivityLog @getAzActivityLogParams
@@ -160,19 +162,19 @@ The menu you open **Activity log** from determines its initial filter. If you op
 * **Event initiated by** – Filter events by the identity that initiated the event.
 * **Event category** – Filter the event types for certain operations.
 
-# [REST API](#tab/rest)
+# [REST](#tab/rest)
 
 To list activity log events scoped to a resource group using the Azure Resource Manager REST API, use a `GET` request with a `$filter` that includes both the time range and the `resourceGroupName` property. Optionally, include the `Prefer` header to specify a specific timeout for the request (maximum `75` wait time in seconds).
 
 ```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-02-01T00:00:00Z' and eventTimestamp le '2026-02-28T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
 Prefer: wait=75
 ```
 
 # [Azure CLI](#tab/cli)
 
 > [!NOTE]
-> The REST header `Prefer: wait=75` doesn't have a direct equivalent in the idiomatic Azure CLI command for this operation. This command issues the query directly and returns the matching Activity Log records.
+> The REST header `Prefer: wait=75` doesn't have a direct equivalent in the Azure CLI command for this operation. This command issues the query directly and returns the matching Activity Log records.
 
 Use the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command to retrieve activity log events scoped to a resource group. Specific Azure CLI commands reduce the complexity of the equivalent REST API call.
 
@@ -183,8 +185,7 @@ resourceGroupName="myResourceGroup"
 az monitor activity-log list \
   --subscription "$subscriptionId" \
   --resource-group "$resourceGroupName" \
-  --start-time "2026-02-01T00:00:00Z" \
-  --end-time "2026-02-28T23:59:59Z"
+  --offset 30d
 ```
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
@@ -192,7 +193,7 @@ az monitor activity-log list \
 # [PowerShell](#tab/powershell)
 
 > [!NOTE]
-> The REST header `Prefer: wait=75` doesn't have a direct equivalent in the idiomatic Azure PowerShell cmdlet for this operation. This command issues the query directly and returns the matching Activity Log records.
+> The REST header `Prefer: wait=75` doesn't have a direct equivalent in the Azure PowerShell cmdlet for this operation. This command issues the query directly and returns the matching Activity Log records.
 
 Azure PowerShell provides the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet to retrieve activity log events scoped to a resource group over a specified time range.
 
@@ -204,8 +205,8 @@ Set-AzContext -Subscription $subscriptionId
 
 $getAzActivityLogParams = @{
     ResourceGroupName = $resourceGroupName
-    StartTime         = [datetime]"2026-02-01T00:00:00Z"
-    EndTime           = [datetime]"2026-02-28T23:59:59Z"
+    StartTime = (Get-Date).AddDays(-30)
+    EndTime   = Get-Date
 }
 
 Get-AzActivityLog @getAzActivityLogParams
@@ -235,7 +236,7 @@ The Azure portal doesn't provide a way to limit the properties returned from act
 To list activity log events with only specific properties returned using the Azure Resource Manager REST API, include the `$select` query parameter in the `GET` request with a comma-separated list of the properties you want returned.
 
 ```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
 ```
 
 # [Azure CLI](#tab/cli)
@@ -247,15 +248,15 @@ subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 
 az monitor activity-log list \
   --subscription "$subscriptionId" \
-  --start-time "2026-03-01T00:00:00Z" \
-  --end-time "2026-03-29T23:59:59Z" \
+  --offset 30d \
   --select eventName operationName status eventTimestamp correlationId submissionTimestamp level
 ```
+
 # [PowerShell](#tab/powershell)
 
 Limit the properties returned from activity log events in Azure PowerShell by piping the results of `Get-AzActivityLog` to `Select-Object` and specifying the properties you want returned. This doesn't reduce the API response size since `Select-Object` only filters the properties in the output that PowerShell displays. 
 
-Use the `-MaxRecord` parameter of `Get-AzActivityLog` to limit the number of records returned. 
+Use the `-MaxRecord` parameter of `Get-AzActivityLog` to limit the number of records returned.
 
 ```azurepowershell
 $subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
@@ -264,27 +265,10 @@ Set-AzContext -Subscription $subscriptionId
 $activityLogParams = @{
     StartTime      = (Get-Date).AddDays(-30)
     EndTime        = Get-Date
-    DetailedOutput = $true
     MaxRecordCount = 100
 }
 
 Get-AzActivityLog @activityLogParams | Select-Object EventName, OperationName, Status, EventTimestamp, CorrelationId, SubmissionTimestamp, Level
-```
-
-```
-$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
-
-Set-AzContext -Subscription $subscriptionId
-
-$getAzActivityLogParams = @{
-    StartTime = [datetime]"2026-03-01T00:00:00Z"
-    EndTime   = [datetime]"2026-03-29T23:59:59Z"
-    DetailedOutput = $true # This results in a more detailed output.
-    MaxRecordCount = 100 # This reduces the amount of data returned. 
-}
-
-Get-AzActivityLog @getAzActivityLogParams |
-    Select-Object eventName, operationName, status, eventTimestamp, correlationId, submissionTimestamp, level
 ```
 
 ---
