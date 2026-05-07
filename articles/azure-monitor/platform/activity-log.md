@@ -36,7 +36,7 @@ Specify a time interval of events to retrieve. To retrieve events by using the R
 
 ### Activity log access scenarios
 
-The following sections present common scenarios showing different ways to access and retrieve activity log events through the Azure portal, REST calls, and programmatically using Azure CLI and Azure PowerShell:
+The following sections present common scenarios showing different ways to access and retrieve activity log events through the Azure portal, programmatically using Azure CLI and Azure PowerShell, or with REST calls:
 
 - Azure portal samples provide extra context around what kind of events to expect in that view.
 
@@ -67,14 +67,6 @@ The following example retrieves activity log events for a subscription during a 
 The menu you open **Activity log** from determines its initial filter. If you open it from the **Monitor** menu, the only filter selected by default is the subscription. This is the same as opening it from **Subscriptions** > select subscription > **Activity Log**. 
 
 :::image type="content" source="./media/activity-log/view-activity-log.png" lightbox="./media/activity-log/view-activity-log.png" alt-text="Screenshot that shows the activity log." :::
-
-# [REST](#tab/rest)
-
-To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
-
-```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-14T23:59:59Z'
-```
 
 # [Azure CLI](#tab/cli)
 
@@ -140,13 +132,15 @@ Get-AzActivityLog @getAzActivityLogParams
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
----
+# [REST](#tab/rest)
 
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit ARM endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| apiVersion | 2015-04-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-14T23:59:59Z'
+```
+
+---
 
 #### List activity log events for a resource group
 
@@ -161,15 +155,6 @@ The menu you open **Activity log** from determines its initial filter. If you op
 * **Operation** - An action or command, such as create, delete, and write, that affects Azure Resource Manager resources.
 * **Event initiated by** – Filter events by the identity that initiated the event.
 * **Event category** – Filter the event types for certain operations.
-
-# [REST](#tab/rest)
-
-To list activity log events scoped to a resource group using the Azure Resource Manager REST API, use a `GET` request with a `$filter` that includes both the time range and the `resourceGroupName` property. Optionally, include the `Prefer` header to specify a specific timeout for the request (maximum `75` wait time in seconds).
-
-```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
-Prefer: wait=75
-```
 
 # [Azure CLI](#tab/cli)
 
@@ -214,14 +199,16 @@ Get-AzActivityLog @getAzActivityLogParams
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
----
+# [REST](#tab/rest)
 
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit ARM endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| resourceGroupName | myResourceGroup | User input |
-| apiVersion | 2015-04-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+To list activity log events scoped to a resource group using the Azure Resource Manager REST API, use a `GET` request with a `$filter` that includes both the time range and the `resourceGroupName` property. Optionally, include the `Prefer` header to specify a specific timeout for the request (maximum `75` wait time in seconds).
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z' and resourceGroupName eq '{resourceGroupName}'
+Prefer: wait=75
+```
+
+---
 
 #### Return specific activity log properties
 
@@ -231,25 +218,26 @@ Use a parameter to return only specified properties, which reduces the response 
 
 The Azure portal doesn't provide a way to limit the properties returned from activity log events directly. To reduce the amount of data viewed, use the **Edit columns** option in the **Activity log** blade to select which columns are displayed in the portal view.
 
-# [REST](#tab/rest)
-
-To list activity log events with only specific properties returned using the Azure Resource Manager REST API, include the `$select` query parameter in the `GET` request with a comma-separated list of the properties you want returned.
-
-```REST
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
-```
-
 # [Azure CLI](#tab/cli)
 
 Use the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command with the `--select` parameter to specify which properties to return from activity log events.
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+selectFields=(
+  eventName
+  operationName
+  status
+  eventTimestamp
+  correlationId
+  submissionTimestamp
+  level
+)
 
 az monitor activity-log list \
   --subscription "$subscriptionId" \
   --offset 30d \
-  --select eventName operationName status eventTimestamp correlationId submissionTimestamp level
+  --select "${selectFields[@]}"
 ```
 
 # [PowerShell](#tab/powershell)
@@ -260,24 +248,37 @@ Use the `-MaxRecord` parameter of `Get-AzActivityLog` to limit the number of rec
 
 ```azurepowershell
 $subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
+$selectProperties = @(
+    'EventName'
+    'OperationName'
+    'Status'
+    'EventTimestamp'
+    'CorrelationId'
+    'SubmissionTimestamp'
+    'Level'
+)
+
 Set-AzContext -Subscription $subscriptionId
 
 $activityLogParams = @{
-    StartTime      = (Get-Date).AddDays(-30)
-    EndTime        = Get-Date
-    MaxRecordCount = 100
+    StartTime = (Get-Date).AddDays(-30)
+    EndTime   = Get-Date
+    MaxRecord = 100
 }
 
-Get-AzActivityLog @activityLogParams | Select-Object EventName, OperationName, Status, EventTimestamp, CorrelationId, SubmissionTimestamp, Level
+Get-AzActivityLog @activityLogParams |
+    Select-Object -Property $selectProperties
+```
+
+# [REST](#tab/rest)
+
+To list activity log events with only specific properties returned using the Azure Resource Manager REST API, include the `$select` query parameter in the `GET` request with a comma-separated list of the properties you want returned.
+
+```REST
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'&$select=eventName,operationName,status,eventTimestamp,correlationId,submissionTimestamp,level
 ```
 
 ---
-
-| Variable | Example value | Purpose |
-|----------|---------------|---------|
-| host | *management.azure.com* | Implicit ARM endpoint |
-| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
-| apiVersion | 2015-04-01 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 #### List tenant-level activity log events
 
@@ -291,45 +292,43 @@ Go to **Monitor** > **Activity log** in the Azure portal. Change the **Activity*
 
 :::image type="content" source="media/activity-log/directory-activity-logs.png" alt-text="Screenshot showing the Directory Activity option selected in the Activity log blade in the Azure portal." lightbox="media/activity-log/directory-activity-logs.png":::
 
+# [Azure CLI](#tab/cli)
+
+A dedicated Azure CLI command isn't available for tenant-level activity log events. The following example calls the REST API directly by using [az rest](/cli/azure/use-azure-cli-rest-command):
+
+```azurecli-interactive
+apiVersion="2015-04-01"
+providers="Microsoft.Insights/eventtypes/management/values"
+resourceId="/providers/$providers"
+filter="eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'"
+
+az rest --method get --uri "$resourceId?api-version=$apiVersion&\$filter=$filter"
+```
+
+# [PowerShell](#tab/powershell)
+
+A dedicated PowerShell cmdlet isn't available for tenant-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`:
+
+```azurepowershell
+$apiVersion = "2015-04-01"
+$providers = "Microsoft.Insights/eventtypes/management/values"
+$resourceId = "/providers/$providers"
+$filter = "eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z' and eventChannels eq 'Admin, Operation'"
+
+$invokeAzRestMethodParams = @{
+    Path   = "$resourceId?api-version=$apiVersion&`$filter=$filter"
+    Method = "GET"
+}
+
+Invoke-AzRestMethod @invokeAzRestMethodParams
+```
+
 # [REST](#tab/rest)
 
 To list tenant-level activity log events, use this `GET` request. Note that this request targets the tenant-level activity log endpoint, which is different from the subscription-level activity log API.
 
 ```REST
-GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'
-```
-
-# [Azure CLI](#tab/cli)
-
-To list tenant-level activity log events, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command:
-
-```azurecli
-apiVersion="2015-04-01"
-filter="\$filter=eventTimestamp ge '2026-01-15T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'"
-providers="Microsoft.Insights/eventtypes/management/values"
-
-az rest --method get \
-  --uri "/providers/$providers?api-version=$apiVersion&$filter" \
-  --headers "Prefer=wait=75"
-```
-
-# [PowerShell](#tab/powershell)
-
-A dedicated PowerShell cmdlet isn't available for tenant-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
-
-```azurepowershell
-$apiVersion = '2015-04-01'
-$startTime = '2026-01-15T00:00:00Z'
-$endTime = '2026-03-29T23:59:59Z'
-$providers = 'Microsoft.Insights/eventtypes/management/values'
-
-$restParams = @{
-    Method = 'GET'
-    Path   = "/providers/$providers?api-version=$apiVersion" +
-             "&`$filter=eventTimestamp ge '$startTime' and eventTimestamp le '$endTime'"
-}
-
-Invoke-AzRestMethod @restParams
+GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'
 ```
 
 ---
@@ -338,32 +337,27 @@ Invoke-AzRestMethod @restParams
 
 Management group-level activity log events capture events scoped to a specific management group, such as policy assignments and management group membership changes.
 
+> [!NOTE]
+> * The following examples use the `2017-03-01-preview` API version, which is required for management group-level activity log queries.
+
 # [Portal](#tab/portal)
 
 To view management group-level activity log events in the Azure portal, go to **Management groups** > select a management group > **Activity log**. 
 
 :::image type="content" source="media/activity-log/management-group-scope.png" alt-text="Screenshot showing the Activity log blade for a management group in the Azure portal." lightbox="media/activity-log/management-group-scope.png":::
 
-# [REST](#tab/rest)
-
-To list management group-level activity log events, use this `GET` request against the Azure Resource Manager REST API. Replace `{managementGroupId}` with the ID of the management group you want to query, and specify the time range in the `$filter` query parameter. Note the use of the `2017-03-01-preview` API version, which is required for management group-level activity log queries.
-
-```REST
-GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version=2017-03-01-preview&$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'
-```
-
 # [Azure CLI](#tab/cli)
 
-To list management group-level activity log events, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command. This command calls the Azure Resource Manager REST API directly to retrieve activity log events scoped to the specified management group with the `2017-03-01-preview` API version.
+To list management group-level activity log events, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command. This command calls the Azure Resource Manager REST API directly to retrieve activity log events scoped to the specified management group.
 
-```azurecli
+```azurecli-interactive
 managementGroupId="myManagementGroup"
 apiVersion="2017-03-01-preview"
-filter="\$filter=eventTimestamp ge '2026-03-01T00:00:00Z' and eventTimestamp le '2026-03-29T23:59:59Z'"
+filter="\$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'"
 providers="Microsoft.Insights/eventtypes/management/values"
 resourceId="/providers/Microsoft.Management/managementGroups/$managementGroupId/providers/$providers"
 
-az rest --method get --uri "$resourceId?api-version=$apiVersion&$filter" --headers "Prefer=wait=75"
+az rest --method get --uri "$resourceId?api-version=$apiVersion&$filter"
 ```
 
 # [PowerShell](#tab/powershell)
@@ -373,8 +367,8 @@ A dedicated PowerShell cmdlet isn't available for management group-level activit
 ```azurepowershell
 $managementGroupId = 'myManagementGroup'
 $apiVersion = '2017-03-01-preview'
-$startTime = '2026-03-01T00:00:00Z'
-$endTime = '2026-03-29T23:59:59Z'
+$startTime = '2026-04-01T00:00:00Z'
+$endTime = '2026-04-30T23:59:59Z'
 $providers = 'Microsoft.Insights/eventtypes/management/values'
 $resourceId = "/providers/Microsoft.Management/managementGroups/$managementGroupId/providers/$providers"
 
@@ -387,16 +381,25 @@ $restParams = @{
 Invoke-AzRestMethod @restParams
 ```
 
+# [REST](#tab/rest)
+
+To list management group-level activity log events, use this `GET` request against the Azure Resource Manager REST API. Replace `{managementGroupId}` with the ID of the management group you want to query, and specify the time range in the `$filter` query parameter.
+
+```REST
+GET https://management.azure.com/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '2026-04-01T00:00:00Z' and eventTimestamp le '2026-04-30T23:59:59Z'
+```
+
 ---
 
 The following table describes the parameters used in the preceding examples.
 
-| Parameter | Description |
-|-----------|-------------|
-| `{subscriptionId}` | The ID of the Azure subscription. |
-| `{resourceGroupName}` | The name of the resource group. |
-| `{managementGroupId}` | The ID of the management group. |
-| `eventTimestamp ge` / `le` | The start and end of the time range in ISO 8601 format. The start date can't exceed 90 days from the current date unless retention is configured for longer periods. |
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| host | *management.azure.com* | Implicit ARM endpoint |
+| subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
+| resourceGroupName | myResourceGroup | User input |
+| managementGroupId | myManagementGroup | User input |
+| apiVersion | 2015-04-01<br>2017-03-01-preview (for ) | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## View change history
 
