@@ -82,7 +82,7 @@ The storage account and the key vault must be in the same region. They don't nee
 
 ## Link storage accounts to your Log Analytics workspace
 
-The following requirements will be enforced no earlier than August 31, 2025. 
+The following requirements will be enforced no earlier than August 31, 2026. 
 
 | Upcoming requirement | Description |
 |---|---|
