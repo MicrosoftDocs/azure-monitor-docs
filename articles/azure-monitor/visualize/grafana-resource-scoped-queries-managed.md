@@ -15,11 +15,9 @@ Resource-scoped queries are automatically supported when using Azure Monitor das
 
 1. Set the Prometheus server URL to `https://query.<region>.prometheus.monitor.azure.com` where `region` is the location of the Azure Monitor workspace where your resources' metrics are stored.
    - Example: `https://query.eastus.prometheus.monitor.azure.com`
-
 1. Configure authentication:
    - Set authentication method to: **Azure Auth**
    - Set Azure authentication to the **Managed Identity**, **App Registration**, or **Current user** where the selected principal has at least **Monitoring Reader** role on the resource, resource group, or subscription that will be used as the resource scope.
-
 1. Add a custom HTTP header:
    - **Key:** `x-ms-azure-scoping`
    - **Value:** Resource ID, resource group ID, or subscription ID

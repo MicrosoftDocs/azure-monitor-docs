@@ -14,13 +14,9 @@ Dashboards with Grafana for Azure Virtual Machines provide Azure Monitor Grafana
 ## Key capabilities
 
 - **Start from Azure-managed dashboards.** Use prebuilt dashboards for common virtual machine monitoring scenarios.
-
 - **Create and edit dashboards.** Add panels, modify queries, and apply client-side transformations to tailor dashboards for Azure virtual machine monitoring.
-
 - **Save and share as Azure resources.** Store dashboards as standard Azure resources with Azure role-based access control (RBAC) and automate deployment with Azure Resource Manager (ARM) or Bicep.
-
 - **Import from the Grafana community.** Bring in dashboards that use Azure Monitor and Prometheus data sources.
-
 - **Explore data ad-hoc.** Use Grafana Explore to run queries and add the results to new or existing dashboards.
 
 ## Before you begin
@@ -40,7 +36,7 @@ Which dashboards are ready to use, and which data appears in them depends on how
 1. In the Azure portal, open your **Virtual Machine** resource.
 1. In the left menu, select **Dashboards with Grafana**.
 
-:::image type="content" source="media/azure-virtual-machines/image1.png" alt-text="Screenshot showing the location of Dashboards with Grafana in the Virtual Machine resource menu.":::
+:::image type="content" source="media/azure-virtual-machines/vm-resource-dashboards-grafana-menu.png" alt-text="Screenshot showing the location of Dashboards with Grafana in the Virtual Machine resource menu.":::
 
 ## Use the right dashboards for your VM monitoring configuration
 
