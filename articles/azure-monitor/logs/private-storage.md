@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 07/01/2025
+ms.date: 07/05/2026
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -70,6 +70,9 @@ A customer-managed storage account is required for:
 Configure your storage account to use CMKs with Key Vault. For more information, see [Configure customer-managed keys for Azure Storage](/azure/storage/common/customer-managed-keys-configure-existing-account?toc=%252fazure%252fstorage%252fblobs%252ftoc.json#configure-the-key-vault).
 
 ### Considerations for customer-managed storage with CMK
+
+> [!important]
+> When you link a storage account for queries, Log Analytics permanently removes your saved queries and functions from the workspace and stores them in a table in your storage account. Save any queries you want before you link. To do this, select **Export template** under **Automation** in the Log Analytics workspace.
 
 The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
