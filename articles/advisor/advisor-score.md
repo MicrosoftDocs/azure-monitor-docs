@@ -29,8 +29,7 @@ Advisor score is a core feature of Advisor that helps you effectively and effici
 
 [!INCLUDE [Open Azure Advisor overview](./includes/advisor-overview-dashboard.md)]
 
-1.  In **Advisor**, select **Advisor score**.
-
+3.  In **Advisor**, select **Advisor score**.
 
 On **Advisor | Advisor score**, see the percentages for your overall Advisor score and a breakdown for each Advisor category.
 
