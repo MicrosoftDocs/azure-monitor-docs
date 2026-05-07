@@ -379,18 +379,6 @@ sections:
       - question: Where can I get more information about ASP.NET event counters?
         answer: For current metrics guidance, see [Metrics in Application Insights](../app/metrics-overview.md).
 
-  - name: Azure VMs and virtual machine scale sets
-    questions:
-      - question: How can I disable client-side monitoring for ASP.NET Core apps?
-        answer: |
-          Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
-
-          * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
-          * **Value:** `false`
-
-      - question: Where can I get more information about using Application Insights for Azure VMs and virtual machine scale sets?
-        answer: For more information, see [Application Insights for Azure VMs and virtual machine scale sets](../app/azure-vm-vmss-apps.md).
-
   - name: Dependency tracking
     questions:
       - question: How does the automatic dependency collector report failed calls to dependencies?
