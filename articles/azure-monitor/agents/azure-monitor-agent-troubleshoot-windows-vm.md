@@ -113,6 +113,9 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
 
 ## Issues collecting Windows event logs
 
+> [!NOTE]
+> Windows event log collection with Azure Monitor Agent is supported only when the Windows Event Log files are stored on a local disk. Event logs configured on network shares or UNC paths are not supported.
+
 1. Check that your DCR JSON contains a section for `windowsEventLogs`. If not, fix your DCR. See [how to create DCR](../vm/data-collection.md) or [sample DCR](./data-collection-rule-sample-agent.md).
 
 1. Check that the file `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\mcsconfig.lkg.xml` exists.
