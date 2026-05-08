@@ -2,7 +2,7 @@
 title: Use Service Upgrade and Retirement recommendations
 description: Use recommendations for retirement and upgrade of a service
 ms.topic: upgrade-and-migration-article
-ms.date: 11/11/2025
+ms.date: 05/05/2025
 
 ---
 
