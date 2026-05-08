@@ -3,7 +3,8 @@ title: Analyze usage in a Log Analytics workspace in Azure Monitor
 description: Methods and queries to analyze the data in your Log Analytics workspace to help you understand usage and potential cause for high usage.
 ms.topic: how-to
 ms.reviewer: Dale.Koetke
-ms.date: 08/14/2024
+ms.date: 05/08/2026
+ai-usage: ai-assisted
 ---
 
 # Analyze usage in a Log Analytics workspace
@@ -18,6 +19,19 @@ This article provides guidance on analyzing your collected data to assist in con
 :::image source="media/analyze-usage/log-analytics-example.png" lightbox="media/analyze-usage/log-analytics-example.png" alt-text="Screenshot that shows the output for an example query in Log Analytics.":::
 
 [!INCLUDE [azure-monitor-cost-optimization](../fundamentals/includes/azure-monitor-cost-optimization.md)]
+
+## Common questions this article answers
+
+| Question | Section |
+|----------|---------|
+| How do I set up alerts for high data ingestion? | [Send alert when data collection is high](#send-alert-when-data-collection-is-high) |
+| Which tables or solutions ingest the most data? | [Query billable data volume from the Usage table](#query-billable-data-volume-from-the-usage-table) |
+| Which events or records drive high data volume? | [Query billable data volume from event records](#query-billable-data-volume-from-event-records) |
+| Which Azure resources generate the most data? | [Data volume by Azure resource, resource group, or subscription](#data-volume-by-azure-resource-resource-group-or-subscription) |
+| Which computers or VMs send the most data? | [Data volume by computer](#data-volume-by-computer) |
+| How do I analyze Application Insights data volume? | [Application Insights data](#application-insights-data) |
+| How many agents are sending data to my workspace? | [Understand nodes sending data](#understand-nodes-sending-data) |
+| Is late-arriving data causing unexpected charges? | [Diagnose late-arriving data](#diagnose-late-arriving-data) |
 
 ## Causes for higher-than-expected usage
 
@@ -68,14 +82,14 @@ Select **Additional Queries** for prebuilt queries that help you further underst
 
 The **Data ingestion per solution** chart on the [Usage and estimated costs](../cost-usage.md#usage-and-estimated-costs) page for each workspace shows the total volume of data sent and how much is being sent by each solution over the previous 31 days. This information helps you determine trends such as whether any increase is from overall data usage or usage by a particular solution.
 
-## Querying data volumes from the Usage table
+## Query billable data volume from the Usage table
 
 Analyze the amount of billable data collected by a particular service or solution. These queries use the [Usage](/azure/azure-monitor/reference/tables/usage) table that collects usage data for each table in the workspace.
 
 > [!NOTE]
 > The clause with `TimeGenerated` is only to ensure that the query experience in the Azure portal looks back beyond the default 24 hours. When you use the **Usage** data type, `StartTime` and `EndTime` represent the time buckets for which results are presented.
 
-**Billable data volume by type over the past month**
+### Billable data volume by type over the past month
 
 ```kusto
 Usage 
@@ -86,7 +100,7 @@ Usage
 | render columnchart
 ```
 
-**Billable data volume by solution and type over the past month**
+### Billable data volume by solution and type over the past month
 
 ```kusto
 Usage 
@@ -99,14 +113,14 @@ Usage
 
 See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
 
-## Querying data volume from the events directly 
+## Query billable data volume from event records
 
 You can use [log queries](log-query-overview.md) in [Log Analytics](log-analytics-overview.md) if you need deeper analysis into your collected data. Each table in a Log Analytics workspace has the following standard columns that can assist you in analyzing billable data:
 
 * [_IsBillable](log-standard-columns.md#_isbillable) identifies records for which there's an ingestion charge. Use this column to filter out non-billable data.
 * [_BilledSize](log-standard-columns.md#_billedsize) provides the size in bytes of the record.
 
-**Billable data volume for specific events**
+### Billable data volume for specific events
 
 If you find that a particular data type is collecting excessive data, you might want to analyze the data in that table to determine particular records that are increasing. This example filters specific event IDs in the  `Event` table and then provides a count for each ID. You can modify this query by using the columns from other tables.
 
@@ -125,9 +139,9 @@ See [Queries for the Event table](../reference/queries/event.md) for more exampl
 You can analyze the amount of billable data collected from a particular resource or set of resources. These queries use the [_ResourceId](./log-standard-columns.md#_resourceid) and [_SubscriptionId](./log-standard-columns.md#_subscriptionid) columns for data from resources hosted in Azure.
 
 > [!WARNING]
-> Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table as in the preceding queries.
+> The [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) operator scans across all data types and is [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, query the [Usage](/azure/azure-monitor/reference/tables/usage) table instead.
 
-**Billable data volume by resource ID for the last full day**
+#### Billable data volume by resource ID for the last full day
 
 ```kusto
 find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project _ResourceId, _BilledSize, _IsBillable
@@ -136,7 +150,7 @@ find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project
 | sort by BillableDataBytes nulls last
 ```
 
-**Billable data volume by resource group for the last full day**
+#### Billable data volume by resource group for the last full day
 
 ```kusto
 find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project _ResourceId, _BilledSize, _IsBillable
@@ -154,7 +168,7 @@ It might be helpful to parse `_ResourceId`:
     resourceGroup "/providers/" provider "/" resourceType "/" resourceName   
 ```
 
-**Billable data volume by subscription for the last full day**
+#### Billable data volume by subscription for the last full day
 
 ```kusto
 find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project _BilledSize, _IsBillable, _SubscriptionId
@@ -170,10 +184,10 @@ find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project
 
 You can analyze the amount of billable data collected from a virtual machine or a set of virtual machines. The **Usage** table doesn't have the granularity to show data volumes for specific virtual machines, so these queries use the [find operator](/azure/data-explorer/kusto/query/findoperator) to search all tables that include a computer name. The **Usage** type is omitted because this query is only for analytics of data trends.
 
-> [!WARNING]
-> Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table as in the preceding queries.
+> [!IMPORTANT]
+> The [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) operator performs [resource-intensive](./query-optimization.md#query-details-pane) cross-table scans. Query the [Usage](/azure/azure-monitor/reference/tables/usage) table when per-computer detail isn't required.
 
-**Billable data volume by computer for the last full day**
+#### Billable data volume by computer for the last full day
 
 ```kusto
 find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project _BilledSize, _IsBillable, Computer, Type
@@ -183,7 +197,7 @@ find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project
 | sort by BillableDataBytes desc nulls last
 ```
 
-**Count of billable events by computer for the last full day**
+#### Count of billable events by computer for the last full day
 
 ```kusto
 find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project _IsBillable, Computer, Type
@@ -193,11 +207,11 @@ find where TimeGenerated between(startofday(ago(1d))..startofday(now())) project
 | sort by eventCount desc nulls last
 ```
 
-## Querying for common data types
+## Query data volume for common data types
 
 If you find that you have excessive billable data for a particular data type, you might need to perform a query to analyze data in that table. The following queries provide samples for some common data types:
 
-**Security** solution
+### Security solution
 
 ```kusto
 SecurityEvent 
@@ -207,7 +221,7 @@ SecurityEvent
 
 See [Queries for the SecurityEvent table](../reference/queries/securityevent.md) for more example queries.
 
-**Log Management** solution
+### Log Management solution
 
 ```kusto
 Usage 
@@ -218,7 +232,7 @@ Usage
 
 See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
 
-**Perf** data type
+### Perf data type
 
 ```kusto
 Perf 
@@ -232,7 +246,7 @@ Perf
 
 See [Queries for the Perf table](../reference/queries/securityevent.md) for more example queries.
 
-**Event** data type
+### Event data type
 
 ```kusto
 Event 
@@ -246,7 +260,7 @@ Event
 
 See [Queries for the Event table](../reference/queries/event.md) for more example queries.
 
-**Syslog** data type
+### Syslog data type
 
 ```kusto
 Syslog 
@@ -260,7 +274,7 @@ Syslog
 
 See [Queries for the Syslog table](../reference/queries/syslog.md) for more example queries.
 
-**AzureDiagnostics** data type
+### AzureDiagnostics data type
 
 ```kusto
 AzureDiagnostics 
@@ -276,7 +290,9 @@ There are two approaches to investigating the amount of data collected for Appli
 > [!NOTE]
 > Queries against Application Insights tables, except `SystemEvents`, will work for both a workspace-based and classic Application Insights resource. [Backward compatibility](/previous-versions/azure/azure-monitor/app/convert-classic-resource) allows you to continue to use [legacy table names](../app/apm-tables.md). For a workspace-based resource, open **Logs** on the **Log Analytics workspace** menu. For a classic resource, open **Logs** on the **Application Insights** menu.
 
-**Dependency operations generate the most data volume in the last 30 days (workspace-based or classic)**
+### Dependency operations that generate the most data volume in the last 30 days
+
+This query works for both workspace-based and classic Application Insights resources.
 
 ```kusto
 dependencies
@@ -285,7 +301,7 @@ dependencies
 | render barchart  
 ```
 
-**Daily data volume by type for this Application Insights resource for the last 7 days (classic only)**
+### Daily data volume by type for a classic Application Insights resource over 7 days
 
 ```kusto
 systemEvents
@@ -300,7 +316,7 @@ systemEvents
 
 To look at the data volume trends for [workspace-based Application Insights resources](../app/create-workspace-resource.md), use a query that includes all the Application Insights tables. The following queries use the [table names specific to workspace-based resources](../app/apm-tables.md#table-schemas).
 
-**Daily data volume by type for all Application Insights resources in a workspace for 7 days**
+#### Daily data volume by type for all Application Insights resources in a workspace over 7 days
 
 ```kusto
 union AppAvailabilityResults,
@@ -331,7 +347,7 @@ To look at the data volume trends for only a single Application Insights resourc
 
 If you don't have excessive data from any particular source, you might have an excessive number of agents that are sending data.
 
-**Count of agent nodes that are sending a heartbeat each day in the last month**
+### Count of agent nodes sending a heartbeat each day in the last month
 
 ```kusto
 Heartbeat 
@@ -342,10 +358,10 @@ Heartbeat
 
 See [Queries for the Heartbeat table](../reference/queries/heartbeat.md) for more example queries.
 
-> [!WARNING]
-> Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table as in the preceding queries.
+> [!IMPORTANT]
+> The following queries use the [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) operator, which performs [resource-intensive](./query-optimization.md#query-details-pane) cross-table scans. Query the [Usage](/azure/azure-monitor/reference/tables/usage) table when per-node detail isn't required.
 
-**Count of nodes sending any data in the last 24 hours**
+### Count of nodes sending any data in the last 24 hours
 
 ```kusto
 find where TimeGenerated > ago(24h) project Computer
@@ -354,7 +370,7 @@ find where TimeGenerated > ago(24h) project Computer
 | summarize nodes = dcount(computerName)
 ```
 
-**Data volume sent by each node in the last 24 hours**
+### Data volume sent by each node in the last 24 hours
 
 ```kusto
 find where TimeGenerated > ago(24h) project _BilledSize, Computer
@@ -365,9 +381,9 @@ find where TimeGenerated > ago(24h) project _BilledSize, Computer
 
 ## Nodes billed by the legacy Per Node pricing tier
 
-The [legacy Per Node pricing tier](cost-logs.md#legacy-pricing-tiers) bills for nodes with hourly granularity. It also doesn't count nodes that are only sending a set of security data types. To get a list of computers that will be billed as nodes if the workspace is in the legacy Per Node pricing tier, look for nodes that are sending billed data types because some data types are free. In this case, use the leftmost field of the fully qualified domain name.
+The [legacy Per Node pricing tier](cost-logs.md#legacy-pricing-tiers) bills for nodes with hourly granularity. It also doesn't count nodes that are only sending a set of security data types. To get a list of computers that will be billed as nodes if the workspace is in the legacy Per Node pricing tier, look for nodes that are sending billable data types because some data types are free. In this case, use the leftmost field of the fully qualified domain name.
 
-The following queries return the count of computers with billed data per hour. The number of units on your bill is in units of node months, which is represented by `billableNodeMonthsPerDay` in the query. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause. 
+The following queries return the count of computers with billable data per hour. The number of units on your bill is in units of node months, which is represented by `billableNodeMonthsPerDay` in the query. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause. 
 
 ```kusto
 find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(now()) project Computer, _IsBillable, Type, TimeGenerated
@@ -383,7 +399,7 @@ find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(n
 > [!NOTE]
 > Some complexity in the actual billing algorithm when solution targeting is used isn't represented in the preceding query.
 
-## Late-arriving data
+## Diagnose late-arriving data
 
 If you observe high data ingestion reported by using `Usage` records, but you don't observe the same results summing `_BilledSize` directly on the data type, it's possible that you have late-arriving data. This situation occurs when data is ingested with old timestamps.
 
