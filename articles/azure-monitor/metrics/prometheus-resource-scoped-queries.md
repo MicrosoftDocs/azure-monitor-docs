@@ -2,7 +2,7 @@
 title: Resource-scoped queries for Azure Monitor workspace
 description: Learn how to query Azure Monitor workspace metrics using resource-scoped queries with PromQL, including setup, authentication, and error handling.
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 05/08/2026
 author: tylerkight
 ms.author: tylerkight
 ---
@@ -185,6 +185,30 @@ Resource-scoped query behavior depends on the workspace [access control mode](az
 
 > [!TIP]
 > Configure your workspaces with **Use resource or workspace permissions** mode to enable true resource-scoped access without workspace permissions. This is enabled by default on all newly created AMWs after October 2025.
+
+## Use with Azure Managed Grafana
+Resource-scoped queries are automatically supported when using Azure Monitor dashboards with Grafana in the Azure portal. There are no user configuration or additional steps required to use.
+
+For Azure Managed Grafana or self-hosted Grafana, you need to create new data sources with the **x-m-azure scoping** header as described in the following steps:
+
+1.  Create a new Prometheus data source in Grafana.
+2.  Set the Prometheus server URL to https://query.\<region\>.prometheus.monitor.azure.com where region is the location of the AMW(s) where your resources’ metrics are stored.For example, https://query.eastus.prometheus.monitor.azure.com 
+3.  Configure authentication:
+    - Set authentication method to *Azure Auth*.
+    - Set Azure authentication to the Managed Identity, App Registration or Current-user where the selected principal has at least Monitoring Reader role on the resource, resource group, or subscription that will be used as the resource scope.
+4.  Add a custom HTTP header:
+    - Key: `x-ms-azure-scoping`
+    - Value: resource ID, resource group ID, or subscription ID
+
+**Example with Grafana variables:**
+
+Create a variable for dynamic scoping using Prometheus data sources:
+
+- Variable Type: Data Source
+- Type: Prometheus
+- Optional – Instance name filter to filter by RegEx
+  - Use a naming convention like `rs-<datasource-name>` in your resource scoped data sources limit the set of data sources returned.
+- The list of Prom data sources matching Instance name filter will be returned.
 
 ## Supported scenarios
 
