@@ -34,7 +34,7 @@ This article walks you through the end-to-end migration process from the Log Ana
 
 - Review the [prerequisites for installing Azure Monitor Agent](./azure-monitor-agent-manage.md#prerequisites).
 - For non-Azure and on-premises servers, [install the Azure Arc Connected Machine agent](/azure/azure-arc/servers/agent-overview). The Azure Arc agent makes your on-premises servers visible to Azure as targetable resources at no extra cost.
-- Verify that you have the [required permissions to install Azure Monitor Agent](./azure-monitor-agent-manage.md#permissions-required-to-install-the-azure-monitor-agent) on the target machines.
+- Verify that you have the [required permissions to install Azure Monitor Agent](./azure-monitor-agent-requirements.md#permissions) on the target machines.
 - Confirm that Azure Monitor Agent supports your data collection requirements. Azure Monitor Agent is generally available (GA) for data collection, and various Azure Monitor features and Azure services use it.
 
 ## Migration tools
@@ -93,7 +93,7 @@ Follow these steps to set up Azure Monitor Agent with data collection rules:
 
 1. **Disable Log Analytics agent data collection during testing.** To avoid double ingestion, remove the workspace configurations for the Log Analytics agent on pilot servers without uninstalling the Log Analytics agent. For more information, see [Configure data sources for the Log Analytics agent](/azure/azure-monitor/agents/agent-data-sources#configure-data-sources).
 
-1. **Deploy at scale by using Azure Policy.** Use built-in policies to deploy Azure Monitor Agent extensions and data collection rule associations at scale. Azure Policy also automatically deploys to new machines. For more information, see [Manage Azure Monitor Agent - Use Azure Policy](./azure-monitor-agent-manage.md#use-azure-policy).
+1. **Deploy at scale by using Azure Policy.** Use built-in policies to deploy Azure Monitor Agent extensions and data collection rule associations at scale. Azure Policy also automatically deploys to new machines. For more information, see [Use Azure Policy to install and manage the Azure Monitor Agent](./azure-monitor-agent-policy.md).
 
 ## Validate Azure Monitor Agent data collection
 
