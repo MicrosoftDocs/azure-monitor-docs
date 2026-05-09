@@ -136,8 +136,6 @@ Currently, only a subset of Grafana APIs is supported, including:
 - Get all dashboard versions by dashboard UID, `GET /api/dashboards/uid/:uid/versions`
 - Get dashboard version by dashboard UID, `GET /api/dashboards/uid/:uid/versions/:version`
 - Restore dashboard by dashboard UID, `POST /api/dashboards/id/:dashboardId/restore`
-- Get a single data source by UID, `GET /api/datasources/uid/:uid`
-- Query a data source, `POST /api/ds/query`
 - Get dashboard annotations by UID, `GET /api/annotations?dashboardUID=:uid`
 - Create dashboard annotations, `POST /api/annotations`
 - Update a dashboard annotation by annotation ID, `PUT /api/annotations/:id`
