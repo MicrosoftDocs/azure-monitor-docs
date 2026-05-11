@@ -195,6 +195,8 @@ For more information on how to troubleshoot syslog issues with Azure Monitor Age
 
 If after checking basic troubleshooting steps you don't see the Azure Monitor Agent emitting logs or find **'Failed to get MSI token from IMDS endpoint'** errors in `/var/opt/microsoft/azuremonitoragent/log/mdsd.err` log file, it's likely `syslog` user isn't a member of the group `himds`. Add `syslog` user to `himds` user group if the user isn't a member of this group. Create user `syslog` and the group `syslog`, if necessary, and make sure that the user is in that group. For more information, check out Azure Arc-enabled server authentication requirements [here](/azure/azure-arc/servers/managed-identity-authentication).
 
+For a full list of Linux user accounts that the Azure Monitor Agent and Azure Arc create, see [Linux user accounts created during installation](./azure-monitor-agent-manage.md#linux-user-accounts-created-during-installation).
+
 ## Issues with automatic upgrades on Virtual Machine Scale Sets
 
 When you enable *automatic extension upgrade* for `AzureMonitorLinuxAgent` on a Virtual Machine Scale Set, the flag first updates the scale set model. If your scale set's upgrade policy is set to *Manual*, this change doesn't propagate to existing instances until you apply the model update.

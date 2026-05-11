@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 02/18/2026
+ms.date: 05/11/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -21,16 +21,16 @@ For prerequisites and other requirements for using the Azure Monitor Agent, see 
 * [Azure Monitor Agent network configuration](./azure-monitor-agent-network-configuration.md)
 
 > [!IMPORTANT]
-> If the agent is going to connect to the Log Analytics workspace using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
+> If the agent connects to the Log Analytics workspace by using Azure private link, see [Enable private link for monitoring virtual machines and Kubernetes clusters in Azure Monitor](../fundamentals/private-link-vm-kubernetes.md).
 
 > [!IMPORTANT]
-> Installing, upgrading, or uninstalling the Azure Monitor Agent doesn't require a machine restart.
+> You don't need to restart the machine when you install, upgrade, or uninstall the Azure Monitor Agent.
 
 ## Installation options
 
 The following table lists the options for installing the Azure Monitor Agent on Azure VMs and Azure Arc-enabled servers.
 
-For any machine that isn't in Azure, the [Azure Arc agent](/azure/azure-arc/servers/deployment-options) must be installed on the machine before the Azure Monitor Agent can be installed.
+For any machine that isn't in Azure, you must install the [Azure Arc agent](/azure/azure-arc/servers/deployment-options) on the machine before you can install the Azure Monitor Agent.
 
 | Installation method | Description |
 |:---|:---|
@@ -103,7 +103,7 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
 #### [Azure CLI](#tab/azure-cli)
 
-You can install the Azure Monitor Agent on an Azure virtual machine or on an Azure Arc-enabled server by using the Azure CLI command for adding a virtual machine extension.
+To install the Azure Monitor Agent on an Azure virtual machine or on an Azure Arc-enabled server, use the Azure CLI command for adding a virtual machine extension.
 
 ### Azure virtual machines
 
@@ -181,6 +181,27 @@ Install the templates by using [any deployment method for Resource Manager templ
     ```
 
 ---
+
+## Linux user accounts created during installation
+
+When you install the Azure Monitor Agent on a Linux machine, the agent creates local user accounts to run its services securely. If the machine is an Azure Arc-enabled server, the Azure Connected Machine Agent and its extension framework also create accounts as part of the prerequisite infrastructure.
+
+The following table lists the accounts that are created, what creates them, and their purpose.
+
+| Account | Created by | Purpose | When is appears |
+|:---|:---|:---|:---|
+| `azuremonitoragent` | Azure Monitor Agent | Runs the Azure Monitor Agent service process (`mdsd`) for log and metric collection. | Agent extension installation. |
+| `azureotelcollector` | Azure Monitor Agent | Collects OpenTelemetry (OTLP) traces and logs. | When the agent is enabled with OpenTelemetry data collection. |
+| `azuremetricsext` | Azure Monitor Metrics Extension | Collects performance counters and OpenTelemetry OTLP metrics. | When the Metrics Extension is deployed. |
+| `himds` | Azure Connected Machine Agent | Runs the Hybrid Instance Metadata Service (HIMDS), the core Arc agent service. | Azure Arc onboarding (prerequisite for the agent on non-Azure machines). |
+| `arcproxy` | Arc Extensions Framework | Executes extensions securely as a non-root user. | Any Arc extension installation. |
+| `arcuser` | Arc extensions | Non-root execution context for custom script and configuration extensions. | Custom script or configuration extension deployment. |
+
+> [!NOTE]
+> The `himds`, `arcproxy`, and `arcuser` accounts are created by the Azure Arc infrastructure, not by the agent itself. They appear on machines where the agent runs because Azure Arc is a prerequisite for the agent on non-Azure machines. For more information, see [Azure Connected Machine Agent overview](/azure/azure-arc/servers/agent-overview).
+
+> [!IMPORTANT]
+> Don't delete or modify these accounts. Removing them can prevent the agent from functioning correctly.
 
 ## Uninstall
 

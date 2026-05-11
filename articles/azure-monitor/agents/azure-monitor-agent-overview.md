@@ -25,6 +25,8 @@ The Azure Monitor Agent is one method of [data collection for Azure Monitor](../
 
 You can install the agent on a single machine or at scale by using various methods. These methods include a VM extension, Azure Policy, or enabling features like VM insights. For detailed installation options and instructions, see [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md).
 
+On Linux, the agent creates local user accounts to run its services. For the full list of accounts and their purpose, see [Linux user accounts created during installation](./azure-monitor-agent-manage.md#linux-user-accounts-created-during-installation).
+
 ## Data collection
 
 The Azure Monitor Agent collects data according to [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) that are associated with the agent. DCRs define what data is collected, how it gets processed, and where it gets sent.
