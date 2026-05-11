@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 04/06/2026
+ms.date: 05/11/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -26,6 +26,14 @@ This article lists significant changes to Azure Monitor documentation.
 |Application Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Removed outdated .NET migration guidance so the article better reflects the current upgrade path.|
 |Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published general availability updates across Azure Monitor pipeline documentation, including TLS setup, transformations, sizing, troubleshooting, and Kubernetes gateway guidance.|
 |Fundamentals|[Service Level Indicators (SLIs) public preview](service-level-indicators-create.md)|Published a new article for Service Level Indicators (SLIs) public preview.|
+|Agents|[Send data from Azure Diagnostics extension to Azure Monitor Logs](../agents/diagnostics-extension-logs.md)|Revised the diagnostics extension article to reflect the deprecation of Windows Azure Diagnostics (WAD) and Linux Azure Diagnostics (LAD), and added guidance for migrating to Azure Monitor Agent for log collection.|
+|Data Collection|[Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md)|Clarified `extend` versus `project` operator behavior for column output in data collection rule transformations, addressing a common point of confusion when customers add or rename columns.|
+|Logs|[Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs)|Published a comprehensive reliability guide for Azure Monitor Logs covering availability zone protection, [workspace replication](../logs/workspace-replication.md) for cross-region resilience, [data export](../logs/logs-data-export.md) for backup, and disaster recovery recommendations for Log Analytics workspaces.|
+|Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added HTTP Data Collector API deprecation notices and updated the Logs Ingestion API overview with [migration guidance](../logs/custom-logs-migrate.md), [workspace overview](../logs/log-analytics-workspace-overview.md), and [data collection rule](../data-collection/data-collection-rule-overview.md) cross-references to support customers transitioning to the replacement API.|
+|Logs|[Aggregate data in a Log Analytics workspace by using summary rules](../logs/summary-rules.md)|Fixed a rule limit conflict (documentation stated 12 but the service supports 20), corrected parameter naming in code samples, fixed PowerShell syntax errors, and updated the limitations section with current service constraints.|
+|Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|Fixed the `Get-AzAccessToken` code sample to handle the SecureString breaking change introduced in Az.Accounts 5.0, improved article structure, and updated freshness.|
+|Platform|[Azure monitoring REST API walkthrough](../platform/rest-api-walkthrough.md)|Corrected the token acquisition example from the deprecated `resource` parameter to the `scope` parameter for modern Microsoft Entra ID authentication patterns.|
+|Virtual Machines|[Use Performance Diagnostics in Azure Monitor](../vm/performance-diagnostics.md)|Updated Performance Diagnostics documentation for the new configurable threshold values feature, adding threshold configuration guidance across the [run](../vm/performance-diagnostics-run.md), [analyze](../vm/performance-diagnostics-analyze.md), and [extension](../vm/performance-diagnostics-extension.md) articles.|
 
 ### March 2026
 
