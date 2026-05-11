@@ -38,8 +38,8 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 | `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
 
 > [!IMPORTANT]
-> The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used by customers. Always use
-> `recommendationStatus` as the single source of truth for a recommendation's current state.
+> The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used. Always use
+> `recommendationStatus` for a recommendation's current state.
 
 ## Examples
 
@@ -75,7 +75,7 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 | order by lastUpdated desc
 ```
 
-### Get active cost recommendations
+### Example C: Get active cost recommendations
 
 ```advisorresources 
 | where type =~ 'microsoft.advisor/recommendations' 
