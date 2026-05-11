@@ -188,7 +188,7 @@ When you install the Azure Monitor Agent on a Linux machine, the agent creates l
 
 The following table lists the accounts that are created, what creates them, and their purpose.
 
-| Account | Created by | Purpose | When is appears |
+| Account | Created by | Purpose | When it appears |
 |:---|:---|:---|:---|
 | `azuremonitoragent` | Azure Monitor Agent | Runs the Azure Monitor Agent service process (`mdsd`) for log and metric collection. | Agent extension installation. |
 | `azureotelcollector` | Azure Monitor Agent | Collects OpenTelemetry (OTLP) traces and logs. | When the agent is enabled with OpenTelemetry data collection. |
