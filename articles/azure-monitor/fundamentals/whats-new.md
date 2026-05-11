@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 04/06/2026
+ms.date: 05/11/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -26,6 +26,13 @@ This article lists significant changes to Azure Monitor documentation.
 |Application Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Removed outdated .NET migration guidance so the article better reflects the current upgrade path.|
 |Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published general availability updates across Azure Monitor pipeline documentation, including TLS setup, transformations, sizing, troubleshooting, and Kubernetes gateway guidance.|
 |Fundamentals|[Service Level Indicators (SLIs) public preview](service-level-indicators-create.md)|Published a new article for Service Level Indicators (SLIs) public preview.|
+|Data Collection|[Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md)|Clarified `extend` versus `project` operator behavior for column output in data collection rule transformations.|
+|Logs|[Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs)|Published a comprehensive reliability guide for Azure Monitor Logs covering availability zone protection, [workspace replication](../logs/workspace-replication.md) for cross-region resilience, [data export](../logs/logs-data-export.md) for backup, and disaster recovery recommendations for Log Analytics workspaces.|
+|Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added HTTP Data Collector API deprecation notices and updated the Logs Ingestion API overview with [migration guidance](../logs/custom-logs-migrate.md), [workspace overview](../logs/log-analytics-workspace-overview.md), and [data collection rule](../data-collection/data-collection-rule-overview.md) cross-references to support customers transitioning to the replacement API.|
+|Logs|[Aggregate data in a Log Analytics workspace by using summary rules](../logs/summary-rules.md)|Updated thresholds, corrected parameter naming in code samples, fixed PowerShell syntax errors, and updated the limitations section with current service constraints.|
+|Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|Updated the `Get-AzAccessToken` code sample to handle the SecureString breaking change introduced in Az.Accounts 5.0, improved article structure.|
+|Virtual Machines|[Use Performance Diagnostics in Azure Monitor](../vm/performance-diagnostics.md)|Added Performance Diagnostics new configurable threshold values feature in Public preview, adding threshold configuration guidance across the [run](../vm/performance-diagnostics-run.md), [analyze](../vm/performance-diagnostics-analyze.md), and [extension](../vm/performance-diagnostics-extension.md) articles.|
+|Fundamentals |[REST API Index](../fundamentals/azure-monitor-rest-api-index.md)|Restructured APIs into three sections, Azure Monitor, Application Insights, and Logs. Added clarity to scope and endpoints.|
 
 ### March 2026
 
@@ -175,7 +182,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Fundamentals|[Azure Monitor endpoint access and firewall configuration](azure-monitor-network-access.md)|We improved the technical accuracy and included new information about adding IPv6 support for App Insights ingestion endpoints.|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|We updated the search job record limit.|
 |Logs|[Optimize log queries in Azure Monitor](../logs/query-optimization.md#query-details-pane)|Information about the details pane has been updated.|
-|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don’t require deep Grafana integrations.|
+|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don't require deep Grafana integrations.|
 
 ### July 2025
 
