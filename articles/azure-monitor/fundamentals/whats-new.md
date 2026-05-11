@@ -11,6 +11,22 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
 
+### April 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Containers|[OTLP ingestion options overview](../containers/opentelemetry-summary.md)|Published and reorganized Azure Monitor OpenTelemetry public preview documentation for container monitoring, covering [Ingest OTLP data with AMA](../containers/opentelemetry-ingest-agent.md), [Collect and use observability data in AKS](../containers/collect-use-observability-data.md), [AKS autoinstrumentation for Python and .NET](../containers/kubernetes-codeless-python-net.md), [AKS OpenTelemetry Protocol](../containers/kubernetes-open-protocol.md), and [OTLP protocol ingestion](../containers/opentelemetry-protocol-ingestion.md).|
+|Agents|[Observability agent overview](../aiops/observability-agent-overview.md)|Rewrote four Azure Copilot observability agent articles to align with the current product experience and organize guidance around common scenarios such as deep investigation, chat with data, and conversational exploration, including [Issues overview](../aiops/aiops-issue-and-investigation-overview.md), [Use issues](../aiops/aiops-issue-and-investigation-how-to.md), and [Troubleshoot the observability agent](../aiops/observability-agent-troubleshooting.md).|
+|Agents|[Troubleshoot syslog issues with Azure Monitor Agent on Linux](../agents/azure-monitor-agent-troubleshoot-linux-vm-rsyslog.md)|Added a diagnostic section to help troubleshoot syslog upload failures on Linux.|
+|Application Insights|[App Center migration guidance](../app/app-center-migration.md)|Updated the App Center migration guide with clearer support-request steps and a revised retirement timeline.|
+|Application Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md)|Reorganized Application Insights OpenTelemetry guidance into task-based articles for data collection and resource detection, [adding and modifying telemetry](../app/opentelemetry-add-modify.md), [configuration](../app/opentelemetry-configuration.md), and [enablement](../app/opentelemetry-enable.md), making common setup and customization tasks easier to find.|
+|Application Insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Consolidated Java configuration guidance into one article covering JMX metrics, sampling overrides, and telemetry processors.|
+|Application Insights|[Connection strings](../app/connection-strings.md)|Simplified the connection strings guidance by removing duplicate setup steps and pointing readers to the main OpenTelemetry configuration experience.|
+|Application Insights|[Application Insights Classic API](../app/classic-api.md)|Updated Classic API guidance with explicit retirement dates for the Node.js and .NET SDKs and clearer links to [Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet).|
+|Application Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Removed outdated .NET migration guidance so the article better reflects the current upgrade path.|
+|Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published general availability updates across Azure Monitor pipeline documentation, including TLS setup, transformations, sizing, troubleshooting, and Kubernetes gateway guidance.|
+|Fundamentals|[Service Level Indicators (SLIs) public preview](service-level-indicators-create.md)|Published a new article for Service Level Indicators (SLIs) public preview.|
+
 ### March 2026
 
 |Subservice | Article | Description |

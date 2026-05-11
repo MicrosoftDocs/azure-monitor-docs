@@ -13,7 +13,9 @@ Windows event logs are some of the most common sources for health of the client 
 Details for the creation of the DCR are provided in [Collect data from VM client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the Windows Events data source type.
 
 > [!NOTE]
-> To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#windows-events).
+> - To work with the DCR definition directly or to deploy with other methods such as ARM templates, see [Data collection rule (DCR) samples in Azure Monitor](../essentials/data-collection-rule-samples.md#windows-events).
+> - Windows event log collection with Azure Monitor Agent is supported only when the Windows Event Log files are stored on a local disk. Event logs configured on network shares or UNC paths are not supported.
+
 
 ## Configure Windows event data source
 Create the DCR using the process in [Collect data from virtual machine client with Azure Monitor](./data-collection.md). On the **Collect and deliver** tab of the DCR, select **Windows Event Logs** from the **Data source type** dropdown. Select from a set of logs and severity levels to collect. Only logs with the selected severity level for each log are collected.
