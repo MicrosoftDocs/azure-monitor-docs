@@ -9,9 +9,9 @@ ai-usage: ai-assisted
 
 # Analyze usage in a Log Analytics workspace
 
-Azure Monitor costs can vary significantly based on the volume of data being collected in your Log Analytics workspace. This volume is affected by the set of solutions using the workspace and the amount of data that each solution collects.
+Azure Monitor costs can vary significantly based on the volume of data collected in your Log Analytics workspace. The set of solutions that use the workspace and the amount of data each solution collects affect this volume.
 
-This article provides guidance on analyzing your collected data to assist in controlling your data ingestion costs. It helps you:
+This article provides guidance on analyzing your collected data to help you control your data ingestion costs. It helps you:
 
 * Determine the cause of higher-than-expected usage.
 * Predict your costs as you monitor more resources and configure different Azure Monitor features.
@@ -32,9 +32,9 @@ An unexpected increase in any of these factors can result in increased charges f
 
 ## Send alert when data collection is high
 
-To avoid unexpected bills, you should be proactively notified anytime you experience excessive usage. Notification allows you to address any potential anomalies before the end of your billing period.
+To avoid unexpected bills, set up proactive notifications for excessive usage. By receiving notifications, you're setup to address any potential anomalies before the end of your billing period.
 
-The following example is a [log search alert rule](../alerts/alerts-types.md#log-alerts) that sends an alert if the billable data volume ingested in the last 24 hours was greater than 50 GB. Modify the **Alert Logic** setting to use a different threshold based on expected usage in your environment. You can also increase the frequency to check usage multiple times every day, but this option will result in a higher charge for the alert rule.
+The following example is a [log search alert rule](../alerts/alerts-types.md#log-alerts) that sends an alert if the billable data volume ingested in the last 24 hours is greater than 50 GB. Modify the **Alert Logic** setting to use a different threshold based on expected usage in your environment. You can also increase the frequency to check usage multiple times every day, but this option results in a higher charge for the alert rule.
 
 | Setting         | Value                                                                                                     |
 |:----------------|:----------------------------------------------------------------------------------------------------------|
@@ -55,19 +55,19 @@ Start your analysis with existing tools in Azure Monitor. These tools require no
 
 ### Log Analytics Workspace Insights
 
-[Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md#usage-tab) provides you with a quick understanding of the data in your workspace. For example, you can determine the:
+[Log Analytics Workspace Insights](log-analytics-workspace-insights-overview.md#usage-tab) gives you a quick understanding of the data in your workspace. For example, these are some of the insights you might uncover:
 
-* Data tables that are ingesting the most data volume in the main table.
-* Top resources contributing data.
+* Data tables that ingest the most data volume in the main table.
+* Top resources that contribute data.
 * Trend of data ingestion.
 
-See the **Usage** tab for a breakdown of ingestion by solution and table. This information can help you quickly identify the tables that contribute to the bulk of your data volume. The tab also shows trending of data collection over time. You can determine if data collection steadily increased over time or suddenly increased in response to a configuration change.
+The **Usage** tab provides a breakdown of ingestion by solution and table. This information helps you quickly identify the tables that contribute to the bulk of your data volume. The tab also shows trending of data collection over time. See if data collection steadily increased over time or suddenly increased in response to a configuration change.
 
-Select **Additional Queries** for prebuilt queries that help you further understand your data patterns.
+Select **Additional Queries** for prebuilt queries that help you better understand your data patterns.
 
 ### Usage and estimated costs
 
-The **Data ingestion per solution** chart on the [Usage and estimated costs](../cost-usage.md#usage-and-estimated-costs) page for each workspace shows the total volume of data sent and how much is being sent by each solution over the previous 31 days. This information helps you determine trends such as whether any increase is from overall data usage or usage by a particular solution.
+The **Data ingestion per solution** chart on the [Usage and estimated costs](../cost-usage.md#usage-and-estimated-costs) page for each workspace shows the total volume of data sent and how much each solution sends over the previous 31 days. This information helps you determine trends, such as whether any increase comes from overall data usage or usage by a particular solution.
 
 ## Query billable data volume from the Usage table
 
@@ -98,13 +98,13 @@ Usage
 | sort by Solution asc, DataType asc
 ```
 
-See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
+For more example queries, see [Queries for the Usage table](../reference/queries/usage.md).
 
 ## Query billable data volume from event records
 
-You can use [log queries](log-query-overview.md) in [Log Analytics](log-analytics-overview.md) if you need deeper analysis into your collected data. Each table in a Log Analytics workspace has the following standard columns that can assist you in analyzing billable data:
+Use [log queries](log-query-overview.md) in [Log Analytics](log-analytics-overview.md) if you need deeper analysis into your collected data. Each table in a Log Analytics workspace has the following standard columns that can help you analyze billable data:
 
-* [_IsBillable](log-standard-columns.md#_isbillable) identifies records for which there's an ingestion charge. Use this column to filter out non-billable data.
+* [_IsBillable](log-standard-columns.md#_isbillable) identifies records that incur an ingestion charge. Use this column to filter out non-billable data.
 * [_BilledSize](log-standard-columns.md#_billedsize) provides the size in bytes of the record.
 
 ### Billable data volume for specific events
@@ -119,7 +119,7 @@ Event
 | summarize count(), Bytes=sum(_BilledSize) by EventID, bin(TimeGenerated, 1d)
 ```
 
-See [Queries for the Event table](../reference/queries/event.md) for more example queries.
+For more example queries, see [Queries for the Event table](../reference/queries/event.md).
 
 ### Data volume by Azure resource, resource group, or subscription
 
@@ -217,7 +217,7 @@ Usage
 | order by AggregatedValue desc nulls last
 ```
 
-See [Queries for the Usage table](../reference/queries/usage.md) for more example queries.
+For more example queries, see [Queries for the Usage table](../reference/queries/usage.md).
 
 ### Perf data type
 
@@ -245,7 +245,7 @@ Event
 | summarize AggregatedValue = count() by EventLog, EventLevelName
 ```
 
-See [Queries for the Event table](../reference/queries/event.md) for more example queries.
+For more example queries, see [Queries for the Event table](../reference/queries/event.md).
 
 ### Syslog data type
 
@@ -272,10 +272,10 @@ See [Queries for the AzureDiagnostics table](../reference/queries/azurediagnosti
 
 ## Query Application Insights data volume
 
-The following queries apply to Application Insights resources, including classic resources that store data outside a Log Analytics workspace. There are two approaches to investigating the amount of data collected for Application Insights, depending on whether you have a classic or workspace-based application. Use the `_BilledSize` property that's available on each ingested event for both workspace-based and classic resources. You can also use aggregated information in the [systemEvents](/azure/azure-monitor/reference/tables/appsystemevents) table for classic resources.
+The following queries apply to Application Insights resources, including classic resources that store data outside a Log Analytics workspace. Use the `_BilledSize` property that's available on each ingested event for both workspace-based and classic resources. For classic resources, you can also use aggregated information in the [systemEvents](/azure/azure-monitor/reference/tables/appsystemevents) table.
 
 > [!NOTE]
-> Queries against Application Insights tables, except `SystemEvents`, will work for both a workspace-based and classic Application Insights resource. [Backward compatibility](/previous-versions/azure/azure-monitor/app/convert-classic-resource) allows you to continue to use [legacy table names](../app/apm-tables.md). For a workspace-based resource, open **Logs** on the **Log Analytics workspace** menu. For a classic resource, open **Logs** on the **Application Insights** menu.
+> Queries against Application Insights tables, except `SystemEvents`, work for both a workspace-based and classic Application Insights resource. [Backward compatibility](/previous-versions/azure/azure-monitor/app/convert-classic-resource) allows you to continue to use [legacy table names](../app/apm-tables.md). For a workspace-based resource, open **Logs** on the **Log Analytics workspace** menu. For a classic resource, open **Logs** on the **Application Insights** menu.
 
 **Dependency operations generate the most data volume in the last 30 days (workspace-based or classic)**
 
@@ -326,11 +326,11 @@ To look at the data volume trends for only a single Application Insights resourc
 ```
 
 > [!TIP]
-> For workspaces with large data volumes, doing queries such as the preceding one, which query large volumes of raw data, might need to be restricted to a single day. To track trends over time, consider setting up a [Power BI report](./log-powerbi.md) and using [incremental refresh](./log-powerbi.md#collect-data-with-power-bi-dataflows) to collect data volumes per resource once a day.
+> For workspaces with large data volumes, restrict queries such as the preceding one, which query large volumes of raw data, to a single day. To track trends over time, consider setting up a [Power BI report](./log-powerbi.md) and using [incremental refresh](./log-powerbi.md#collect-data-with-power-bi-dataflows) to collect data volumes per resource once a day.
 
 ## Understand nodes sending data
 
-If you don't have excessive data from any particular source, you might have an excessive number of agents that are sending data.
+If you don't see excessive data from any particular source, you might have an excessive number of agents that send data.
 
 ### Count of agent nodes sending a heartbeat each day in the last month
 
@@ -341,7 +341,7 @@ Heartbeat
 | render timechart
 ```
 
-See [Queries for the Heartbeat table](../reference/queries/heartbeat.md) for more example queries.
+For more example queries, see [Queries for the Heartbeat table](../reference/queries/heartbeat.md).
 
 > [!WARNING]
 > Use [find](/azure/data-explorer/kusto/query/findoperator?pivots=azuremonitor) queries sparingly because scans across data types are [resource intensive](./query-optimization.md#query-details-pane) to execute. If you don't need results per subscription, resource group, or resource name, use the [Usage](/azure/azure-monitor/reference/tables/usage) table queries in [Query billable data volume from the Usage table](#query-billable-data-volume-from-the-usage-table).
@@ -366,9 +366,9 @@ find where TimeGenerated > ago(24h) project _BilledSize, Computer
 
 ## Nodes billed by the legacy Per Node pricing tier
 
-The [legacy Per Node pricing tier](cost-logs.md#legacy-pricing-tiers) bills for nodes with hourly granularity. It also doesn't count nodes that are only sending a set of security data types. To get a list of computers that will be billed as nodes if the workspace is in the legacy Per Node pricing tier, look for nodes that are sending billed data types because some data types are free. In this case, use the leftmost field of the fully qualified domain name.
+The [legacy Per Node pricing tier](cost-logs.md#legacy-pricing-tiers) bills nodes with hourly granularity. It also doesn't count nodes that only send a set of security data types. To get a list of computers that are billed as nodes if the workspace is in the legacy Per Node pricing tier, look for nodes that send billed data types because some data types are free. In this case, use the leftmost field of the fully qualified domain name.
 
-The following queries return the count of computers with billed data per hour. The number of units on your bill is in units of node months, which is represented by `billableNodeMonthsPerDay` in the query. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause. 
+The following queries return the count of computers with billed data per hour. The number of units on your bill is in units of node months, which the query represents as `billableNodeMonthsPerDay`. If the workspace has the Update Management solution installed, add the **Update** and **UpdateSummary** data types to the list in the `where` clause.
 
 ```kusto
 find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(now()) project Computer, _IsBillable, Type, TimeGenerated
@@ -386,13 +386,13 @@ find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(n
 
 ## Diagnose late-arriving data
 
-If you observe high data ingestion reported by using `Usage` records, but you don't observe the same results summing `_BilledSize` directly on the data type, it's possible that you have late-arriving data. This situation occurs when data is ingested with old timestamps.
+If you see high data ingestion reported by using `Usage` records, but you don't see the same results when you sum `_BilledSize` directly on the data type, late-arriving data might be the cause. This situation occurs when data is ingested with old timestamps.
 
 For example, an agent might have a connectivity issue and send accumulated data when it reconnects. Or a host might have an incorrect time. Either example can result in an apparent discrepancy between the ingested data reported by the [Usage](/azure/azure-monitor/reference/tables/usage) data type and a query summing [_BilledSize](./log-standard-columns.md#_billedsize) over the raw data for a particular day specified by **TimeGenerated**, the timestamp when the event was generated.
 
-To diagnose late-arriving data issues, use the [_TimeReceived](./log-standard-columns.md#_timereceived) column and the [TimeGenerated](./log-standard-columns.md#timegenerated) column. The `_TimeReceived` property is the time when the record was received by the Azure Monitor ingestion point in the Azure cloud.
+To diagnose late-arriving data problems, use the [_TimeReceived](./log-standard-columns.md#_timereceived) column and the [TimeGenerated](./log-standard-columns.md#timegenerated) column. The `_TimeReceived` property is the time when Azure Monitor receives the record.
 
-The following example is in response to high ingested data volumes of [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) data on May 2, 2021, to identify the timestamps on this ingested data. The `where TimeGenerated > datetime(1970-01-01)` statement is included to provide the clue to the Log Analytics user interface to look over all data.
+The following example responds to high ingested data volumes of [W3CIISLog](/azure/azure-monitor/reference/tables/w3ciislog) data on May 2, 2021, to identify the timestamps on this ingested data. The `where TimeGenerated > datetime(1970-01-01)` statement is included to provide the clue to the Log Analytics user interface to look over all data.
 
 ```Kusto
 W3CIISLog
@@ -405,7 +405,7 @@ W3CIISLog
 
 ## Next steps
 
-* See [Azure Monitor Logs pricing details](cost-logs.md) for information on how charges are calculated for data in a Log Analytics workspace and different configuration options to reduce your charges.
-* See [Azure Monitor cost and usage](../cost-usage.md) for a description of the different types of Azure Monitor charges and how to analyze them on your Azure bill.
-* See [Azure Monitor best practices - Cost management](../best-practices-cost.md) for best practices on configuring and managing Azure Monitor to minimize your charges.
-* See [Data collection transformations in Azure Monitor (preview)](../essentials/data-collection-transformations.md) for information on using transformations to reduce the amount of data you collected in a Log Analytics workspace by filtering unwanted records and columns.
+* For information about how charges are calculated for data in a Log Analytics workspace and different configuration options to reduce your charges, see [Azure Monitor Logs pricing details](cost-logs.md).
+* For a description of the different types of Azure Monitor charges and how to analyze them on your Azure bill, see [Azure Monitor cost and usage](../cost-usage.md).
+* For best practices on configuring and managing Azure Monitor to minimize your charges, see [Azure Monitor best practices - Cost management](../best-practices-cost.md).
+* For information about using transformations to reduce the amount of data you collect in a Log Analytics workspace by filtering unwanted records and columns, see [Data collection transformations in Azure Monitor (preview)](../essentials/data-collection-transformations.md).
