@@ -11,10 +11,10 @@ ai-usage: ai-assisted
 
 [Azure Monitor Logs](../logs/data-platform-logs.md) provides an end-to-end solution for ingesting logs. From [Log Analytics](../data-platform.md), Azure Monitor's user interface for querying logs, you can connect log data to Microsoft's [Power BI](https://powerbi.microsoft.com/) data visualization platform. 
 
-This article explains how to connect Log Analytics to Power BI by exporting query results and how to use the exported data to build reports and dashboards.
+This article explains how to connect Log Analytics to Power BI by exporting query results. Use the exported data from Log Analytics to build reports and dashboards in Power BI.
 
 > [!NOTE]
-> You can use free Power BI features to integrate and create reports and dashboards. More advanced features, such as sharing your work, scheduled refreshes, dataflows, and incremental refresh might require purchasing a Power BI Pro or Premium account. For more information, see [Learn more about Power BI pricing and features](https://powerbi.microsoft.com/pricing/).
+> Use free Power BI features to integrate and create reports and dashboards. More advanced features, such as sharing your work, scheduled refreshes, dataflows, and incremental refresh might require purchasing a Power BI Pro or Premium account. For more information, see [Learn more about Power BI pricing and features](https://powerbi.microsoft.com/pricing/).
 
 ## Prerequisites
 
@@ -32,11 +32,11 @@ This article explains how to connect Log Analytics to Power BI by exporting quer
 
 To export log data to Power BI, start with a query in Log Analytics:
 
-1. In the [Azure portal](https://portal.azure.com), navigate to your Log Analytics workspace.
+1. In the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
 1. Select **Logs** to open the Log Analytics query editor.
 1. Write or select a [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/) query that returns the data you want to visualize in Power BI.
 1. Select **Run** to verify the query returns the expected results.
-1. On the toolbar, select **Export**, then choose one of the **Power BI** options described in the next section.
+1. On the toolbar, select **Export**, and then choose one of the **Power BI** options described in the next section.
 
 ## Create Power BI datasets and reports from Log Analytics queries
 
@@ -45,7 +45,7 @@ The **Export** menu provides two options for working with your Log Analytics que
 :::image type="content" source="media/log-powerbi/export-to-power-bi-log-analytics-option.png" alt-text="Screenshot showing Export to Power BI option in the Log Analytics Export menu." lightbox="media/log-powerbi/export-to-power-bi-log-analytics-option.png":::
 
 - **Power BI (as an M query)**: This option exports the query to a .txt file that contains an [M (Power Query formula language)](/powerquery-m/) script with the connection details for your Log Analytics workspace. Open this file in Power BI Desktop to load the query results as a data source. Use this option when you need to model or transform data in ways that aren't available in the Power BI service. Otherwise, consider exporting the query as a new dataset.
-- **Power BI (new Dataset)**: This option creates a new dataset based on your query directly in the Power BI service. After the dataset has been created, you can create reports, use Analyze in Excel, share it with others, and use other Power BI features. For more information, see [Create a Power BI dataset directly from Log Analytics](/power-bi/connect-data/create-dataset-log-analytics).
+- **Power BI (new Dataset)**: This option creates a new dataset based on your query directly in the Power BI service. After you create the dataset, you can create reports, use Analyze in Excel, share it with others, and use other Power BI features. For more information, see [Create a Power BI dataset directly from Log Analytics](/power-bi/connect-data/create-dataset-log-analytics).
 
 > [!NOTE]
 > The export operation is subject to the [Log Analytics Query API limits](../service-limits.md#la-query-api). If your query results exceed the maximum size of data returned by the Query API, the operation exports partial results.
