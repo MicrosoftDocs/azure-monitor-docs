@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Subscriptions
@@ -98,12 +98,13 @@ When a nodepool's minNodeCount is 0, the autoscaler can scale it to zero. Worklo
 
 **Impact:** High
   
-For more information, see [Sign in to your account](https://aka.ms/discovery/supercomputer)  
+For more information, see [Manage Supercomputer and Nodepools in Microsoft Discovery](https://aka.ms/discovery/supercomputer)  
 
 ResourceType: microsoft.subscriptions/subscriptions  
 Recommendation ID: 2d6324ac-055e-4657-a42c-a7ef571d4aad  
 Subcategory: undefined
 
 <!--2d6324ac-055e-4657-a42c-a7ef571d4aad_end-->
+
 
 <!--articleBody-->

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -368,13 +368,14 @@ Migrate production workload from A-series or B-series virtual machine (VM) to D-
 
 **Impact:** High
   
-  
+For more information, see [Virtual machine sizes overview - Azure Virtual Machines](https://aka.ms/MigrateToHighPerfVMs)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: 7f71b153-c0b7-4e99-a23e-db8179183ec9  
 Subcategory: undefined
 
 <!--7f71b153-c0b7-4e99-a23e-db8179183ec9_end-->
+
 
 
 
@@ -777,7 +778,7 @@ Subcategory: undefined
 
 #### Migrate HCv1 to latest HPC Virtual machine families  
   
-HC-series virtual machine (VMs) sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
+HC-series virtual machine sizes are retiring. To ensure continuity and improved performance, transition to one of the current‑generation Azure HPC VM families, Azure HBv5‑series or Azure HX‑series.  
   
 **Potential benefits**: Avoid service disruption  
 
@@ -790,6 +791,7 @@ Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c
 Subcategory: undefined
 
 <!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
+
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_begin-->
 
@@ -809,5 +811,41 @@ Recommendation ID: ac992ddf-2bbf-4049-b142-a30d6236291e
 Subcategory: undefined
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_end-->
+
+<!--b131ddbe-5439-4c87-95bc-6999b0648252_begin-->
+
+#### Service Fabric support for Windows Server 2022 is ending  
+  
+Service Fabric support for Windows Server 2022 is retiring. To remain supported, upgrade all Service Fabric clusters to Windows Server 2025.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558247)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: b131ddbe-5439-4c87-95bc-6999b0648252  
+Subcategory: undefined
+
+<!--b131ddbe-5439-4c87-95bc-6999b0648252_end-->
+
+<!--2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4_begin-->
+
+#### Service Fabric support for Windows Server 2019 is retiring  
+  
+Service Fabric support for Windows Server 2019 is retiring. To remain supported, upgrade all Service Fabric clusters to Windows Server 2025.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558246)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4  
+Subcategory: undefined
+
+<!--2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4_end-->
 
 <!--articleBody-->

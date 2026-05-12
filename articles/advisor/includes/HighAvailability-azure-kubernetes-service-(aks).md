@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Kubernetes Service (AKS)
@@ -298,5 +298,41 @@ Recommendation ID: 10378caa-f4fe-48f3-9893-6bdec79687b2
 Subcategory: undefined
 
 <!--10378caa-f4fe-48f3-9893-6bdec79687b2_end-->
+
+<!--00dbcc9d-50d4-44ef-bc21-c15785cddf42_begin-->
+
+#### Migrate to Ubuntu 24.04 or later versions  
+  
+Azure Kubernetes Service support for Ubuntu 22.04 is retiring, transition to Ubuntu 24.04+ or a supported alternative.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557928)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 00dbcc9d-50d4-44ef-bc21-c15785cddf42  
+Subcategory: undefined
+
+<!--00dbcc9d-50d4-44ef-bc21-c15785cddf42_end-->
+
+<!--1f0dbe45-11b2-44e5-a6e6-676f599f786f_begin-->
+
+#### Azure Kubernetes Service support for NP-series is being retired  
+  
+Standard_NP10s, Standard_NP20s, and Standard_NP40s virtual machine sizes are being retired. Transition to NC-series or ND-series VMs.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Migrate your NP-series virtual machines by May 31, 2027 - Azure Virtual Machines](/azure/virtual-machines/sizes/retirement/np-series-retirement)  
+
+ResourceType: microsoft.containerservice/managedclusters  
+Recommendation ID: 1f0dbe45-11b2-44e5-a6e6-676f599f786f  
+Subcategory: undefined
+
+<!--1f0dbe45-11b2-44e5-a6e6-676f599f786f_end-->
 
 <!--articleBody-->
