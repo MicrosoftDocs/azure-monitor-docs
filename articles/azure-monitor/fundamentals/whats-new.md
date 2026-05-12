@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 05/11/2026
+ms.date: 05/12/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -11,6 +11,11 @@ This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
 
+### May 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Logs|[Workspace replication](../logs/workspace-replication.md)|Workspace replication now supports private links during failover, removing a previous limitation that blocked customers using private endpoints in BCDR scenarios.|
 ### April 2026
 
 |Subservice | Article | Description |
