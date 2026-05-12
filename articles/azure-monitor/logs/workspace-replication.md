@@ -3,7 +3,7 @@ title: Enhance resilience by replicating your Log Analytics workspace across reg
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 11/02/2025
+ms.date: 05/12/2026
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
@@ -86,7 +86,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
     | Application Insights over Log Analytics workspaces | Not supported |
     | VM Insights | Not supported |
     | Container Insights | Not supported |
-    | Private links | Not supported during failover |
+    | Private links | Supported |
 
 ### Supported regions
 
