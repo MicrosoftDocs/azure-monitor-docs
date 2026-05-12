@@ -4,7 +4,7 @@ description: Information about the Azure Workbooks preview functionality, includ
 services: azure-monitor
 author: gardnerjr
 ms.author: jgardner
-ms.topic: conceptual
+ms.topic: article
 ms.date: 04/02/2026
 ---
 
