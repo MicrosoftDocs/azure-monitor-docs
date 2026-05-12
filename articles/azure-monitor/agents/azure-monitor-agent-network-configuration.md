@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Network Configuration
 description: Learn how to define network settings and enable network isolation for the Azure Monitor Agent.
 ms.topic: how-to
-ms.date: 04/29/2026
+ms.date: 05/11/2026
 ms.custom: references_regions
 ms.reviewer: shseth
 
@@ -94,12 +94,12 @@ $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[pass
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
-**Revert Proxy configuration to defaults**
+**Revert proxy configuration to defaults**
 
 To restore proxy configuration to defaults, define `$settingsString = '{}'`; as in the following example:
 ```azurepowershell
 $settingsString = '{}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope -> > SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 # [Linux VM](#tab/PowerShellLinux)
@@ -126,7 +126,103 @@ $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[pass
 Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
-# [Windows VMSS](#tab/CLIWindowsVmss)
+**Revert proxy configuration to defaults**
+
+To restore proxy configuration to defaults, define `$settingsString = '{}'`; as in the following example:
+```azurepowershell
+$settingsString = '{}';
+Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
+```
+
+# [Windows VMSS (PowerShell)](#tab/PowerShellWindowsVmss)
+
+Use Azure PowerShell to configure proxy settings on a Windows virtual machine scale set.
+
+**No proxy**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"none"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with no authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}';
+$protectedSettingsString = '{"proxy":{"username":"[username]","password":"[password]"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString -ProtectedSetting $protectedSettingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Revert proxy configuration to defaults**
+
+```azurepowershell
+$settingsString = '{}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+# [Linux VMSS (PowerShell)](#tab/PowerShellLinuxVmss)
+
+Use Azure PowerShell to configure proxy settings on a Linux virtual machine scale set.
+
+**No proxy**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"none"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with no authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}';
+$protectedSettingsString = '{"proxy":{"username":"[username]","password":"[password]"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString -ProtectedSetting $protectedSettingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Revert proxy configuration to defaults**
+
+```azurepowershell
+$settingsString = '{}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+# [Windows VMSS (CLI)](#tab/CLIWindowsVmss)
 
 Use Azure CLI to configure proxy settings on a Windows virtual machine scale set.
 
@@ -178,7 +274,7 @@ az vmss extension set \
 > [!NOTE]
 > If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
 
-# [Linux VMSS](#tab/CLILinuxVmss)
+# [Linux VMSS (CLI)](#tab/CLILinuxVmss)
 
 Use Azure CLI to configure proxy settings on a Linux virtual machine scale set.
 
@@ -254,11 +350,11 @@ $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[passwor
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
 ```
 
-**Revert Proxy configuration to defaults**
+**Revert proxy configuration to defaults**
 
-To restore proxy configuration to defaults, define `$settingsString = '{}'`; as in the following example:
+To restore proxy configuration to defaults, define `$settings = @{}`; as in the following example:
 ```azurepowershell
-$settings = '{}';
+$settings = @{}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
@@ -284,6 +380,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
+```
+
+**Revert proxy configuration to defaults**
+
+To restore proxy configuration to defaults, define `$settings = @{}`; as in the following example:
+```azurepowershell
+$settings = @{}
+New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 # [Azure Resource Manager policy template example](#tab/ArmPolicy)

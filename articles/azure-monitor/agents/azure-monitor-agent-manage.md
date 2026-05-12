@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 04/29/2026
+ms.date: 05/11/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -75,7 +75,7 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
     ```azurepowershell
     ## User-assigned managed identity
-    Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
+    Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":"/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
     
     ## System-assigned managed identity
     Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true
@@ -106,7 +106,7 @@ Use the [Add-AzVmssExtension](/powershell/module/az.compute/add-azvmssextension)
     ```
 
 > [!NOTE]
-> If you set your scale set upgrade policy to **Manual**, you need to update existing instances after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
 
 ### Azure Arc-enabled servers
 
@@ -390,7 +390,7 @@ Use the following PowerShell commands:
 Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#azure-virtual-machine-scale-set).
 
 > [!NOTE]
-> If you set your scale set upgrade policy to **Manual**, you need to update existing instances after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
 
 ### Update on Azure Arc-enabled servers
 
