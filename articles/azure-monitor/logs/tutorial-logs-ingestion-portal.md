@@ -1,30 +1,30 @@
 ---
 title: 'Tutorial: Send data to Azure Monitor Logs with Logs ingestion API (Azure portal)'
-description: Tutorial on how sending data to a Log Analytics workspace in Azure Monitor using the Logs ingestion API. Supporting components configured using the Azure portal.
+description: Learn how to send data to a Log Analytics workspace in Azure Monitor by using the Logs ingestion API and the Azure portal.
 ms.topic: tutorial
 ms.date: 05/08/2026
 ms.reviewer: ivkhrul
 ai-usage: ai-assisted
+
+#customer intent: As a developer or IT admin, I want to send external data to a Log Analytics workspace by using the Logs ingestion API so that I can analyze custom log data in Azure Monitor.
 ---
 
 # Tutorial: Send data to Azure Monitor Logs by using the Logs ingestion API (Azure portal)
 
-The [Logs Ingestion API](logs-ingestion-api-overview.md) in Azure Monitor enables you to send external data to a Log Analytics workspace by using a REST API call. This tutorial walks you through configuring a new custom table, a [data collection rule (DCR)](../data-collection/data-collection-rule-overview.md), a [data collection endpoint (DCE)](../data-collection/data-collection-endpoint-overview.md), and a sample application that sends log data by using the Azure portal.
+The Logs ingestion API in Azure Monitor enables you to send external data to a Log Analytics workspace by using a REST API call. This tutorial walks you through configuring a new custom table, a data collection rule (DCR), a data collection endpoint (DCE), and a sample application that sends log data by using the Azure portal.
 
 A DCR defines the data format, the transformation to apply, and the destination table. A DCE provides the endpoint URL that your application sends data to. The DCR has an **immutableId** property, which is a unique identifier you use in the API call.
 
 > [!NOTE]
 > This tutorial uses the Azure portal to configure the components to support the Logs ingestion API. For a similar tutorial that uses Azure Resource Manager templates to configure these components, see [Tutorial: Send data to Azure Monitor using Logs ingestion API (Resource Manager templates)](tutorial-logs-ingestion-api.md). That tutorial also has sample code for the client libraries [.NET](/dotnet/api/overview/azure/Monitor.Ingestion-readme), [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/ingestion/azlogs), [Java](/java/api/overview/azure/monitor-ingestion-readme), [JavaScript](/javascript/api/overview/azure/monitor-ingestion-readme), and [Python](/python/api/overview/azure/monitor-ingestion-readme).
 
+In this tutorial, you:
 
-
-The steps required to configure the Logs ingestion API are as follows:
-
-1. [Create a Microsoft Entra application](#create-azure-ad-application) to authenticate against the API.
-1. [Create a data collection endpoint (DCE)](#create-data-collection-endpoint) to receive data.
-1. [Create a custom table in a Log Analytics workspace](#create-new-table-in-log-analytics-workspace). As part of this process, you create a data collection rule (DCR) to direct the data to the target table.
-1. [Give the Microsoft Entra application access to the DCR](#assign-permissions-to-the-dcr).
-1. [Use sample code to send data by using the Logs ingestion API](#send-sample-data).
+> [!div class="checklist"]
+> * Register a Microsoft Entra application for API authentication
+> * Create a data collection endpoint to receive data
+> * Create a custom table with a data collection rule
+> * Assign permissions and send sample data by using a PowerShell script
 
 ## Prerequisites
 
@@ -33,12 +33,6 @@ To complete this tutorial, you need:
 * A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * PowerShell 7.2 or later.
-
-## Overview
-
-In this tutorial, you use a PowerShell script to send sample Apache access logs over HTTP to the Logs Ingestion API endpoint. The script converts plain text log data to JSON format, which is the required format for the API. A transformation defined in the DCR parses each log entry, extracts specific fields (such as client IP, request type, and response code), and filters out records that don't need to be ingested.
-
-When you finish the configuration, you send sample data from the command line and inspect the results in Log Analytics.
 
 <a name='create-azure-ad-application'></a>
 
@@ -52,11 +46,11 @@ Start by registering a Microsoft Entra application to authenticate against the A
 
 1. Enter a name for the application and change the tenancy scope if the default isn't appropriate for your environment. You don't need to provide a **Redirect URI**.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-name.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-name.png" alt-text="Screenshot that shows app details.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-name.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-name.png" alt-text="Screenshot that shows the application name and tenancy scope fields during registration.":::
 
 1. After registration, view the details of the application. Note the **Application (client) ID** and the **Directory (tenant) ID**. You use these values when you configure the PowerShell script in the [Generate sample data](#generate-sample-data) step.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-id.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-id.png" alt-text="Screenshot that shows the app ID.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-id.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-id.png" alt-text="Screenshot that shows the Application (client) ID and Directory (tenant) ID for the registered app.":::
 
 1. Next, generate an application client secret, which is similar to creating a password to use with a username. Select **Certificates & secrets** > **New client secret**. Enter a name for the secret to identify its purpose and select an **Expires** duration. The value **1 year** is selected here. For a production implementation, follow best practices for a secret rotation procedure or use a more secure authentication mode, such as a certificate.
 
@@ -74,15 +68,15 @@ The DCE must be in the same region as the Log Analytics workspace or the data co
 
 1. To create a new DCE, go to the **Monitor** menu in the Azure portal. Select **Data Collection Endpoints** and then select **Create**.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-endpoint.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-endpoint.png" alt-text="Screenshot that shows new DCE.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-endpoint.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-endpoint.png" alt-text="Screenshot that shows the Data Collection Endpoints page with the Create button.":::
 
 1. Enter a name for the DCE and make sure it's in the same region as your workspace. Select **Create** to create the DCE.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" alt-text="Screenshot that shows DCE details.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" alt-text="Screenshot that shows the name and region fields for a new data collection endpoint.":::
 
 1. After the DCE is created, select it to view its properties. Note the **Logs ingestion** URI. Use this URI as the `$DceURI` parameter when you run the PowerShell script.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" alt-text="Screenshot that shows DCE URI.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" alt-text="Screenshot that shows the Logs ingestion URI on the data collection endpoint overview page.":::
 
 ## Create new table in Log Analytics workspace
 
@@ -95,11 +89,11 @@ Before you can send data to the workspace, you need to create the custom table w
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-custom-log.png" lightbox="media/tutorial-logs-ingestion-portal/new-custom-log.png" alt-text="Screenshot that shows the new DCR-based custom log.":::
 
-1. Enter a name for the table. You don't need to add the *_CL* suffix required for a custom table because the portal automatically adds it to the name you specify.
+1. Enter a name for the table. You don't need to add the `_CL` suffix required for a custom table because the portal automatically adds it to the name you specify.
 
 1. Select **Create a new data collection rule** to create the DCR used to send data to this table. Optionally, choose an existing DCR instead. Specify the **Subscription**, **Resource group**, and **Name** for the DCR that contains the custom log configuration.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" alt-text="Screenshot that shows the new DCR.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" alt-text="Screenshot that shows the fields for creating a new data collection rule during custom log setup.":::
 
 1. Select a DCE that you already created from the pull-down menu and select **Next**.
 
@@ -109,9 +103,9 @@ Before you can send data to the workspace, you need to create the custom table w
 
 Instead of directly configuring the schema of the table, upload a file with a sample JSON array of data through the portal, and Azure Monitor sets the schema automatically. The sample JSON file must contain one or more log records structured as an array, in the same way the data is sent in the body of an HTTP request of the logs ingestion API call.
 
-1. Generate the *data_sample.json* file before you continue. Go to [Generate sample data](#generate-sample-data), run the PowerShell script with the `-Type "file"` option, and then return to this step.
+1. Generate the `data_sample.json` file before you continue. Go to [Generate sample data](#generate-sample-data), run the PowerShell script with the `-Type "file"` option, and then return to this step.
 
-1. Select **Browse for files** and locate the *data_sample.json* file that you previously created.
+1. Select **Browse for files** and locate the `data_sample.json` file that you previously created.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" alt-text="Screenshot that shows custom log browse for files.":::
 
@@ -182,9 +176,9 @@ Instead of directly configuring the schema of the table, upload a file with a sa
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-create.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-create.png" alt-text="Screenshot that shows custom log create.":::
 
-## Collect information from the DCR
+## Collect the DCR immutable ID
 
-The Logs Ingestion API call requires the DCR's immutable ID (a value starting with `dcr-` followed by a GUID) to identify the data collection rule. Collect this value from the DCR's JSON view.
+The Logs ingestion API call requires the DCR's immutable ID (a value starting with `dcr-` followed by a GUID) to identify the data collection rule. Collect this value from the DCR's JSON view.
 
 1. On the **Monitor** menu in the Azure portal, select **Data collection rules** and select the DCR you created. From **Overview** for the DCR, select **JSON View**.
 
@@ -196,11 +190,11 @@ The Logs Ingestion API call requires the DCR's immutable ID (a value starting wi
 
 ## Assign permissions to the DCR
 
-Assign the **Monitoring Metrics Publisher** role to your Microsoft Entra application on the DCR. This role grants the `Microsoft.Insights/Telemetry/Write` permission that the Logs Ingestion API requires.
+Assign the **Monitoring Metrics Publisher** role to your Microsoft Entra application on the DCR. This role grants the `Microsoft.Insights/Telemetry/Write` permission that the Logs ingestion API requires.
 
 1. Select **Access Control (IAM)** for the DCR and then select **Add role assignment**.
 
-    :::image type="content" source="media/tutorial-logs-ingestion-portal/add-role-assignment.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-create.png" alt-text="Screenshot that shows adding the custom role assignment to the DCR.":::
+    :::image type="content" source="media/tutorial-logs-ingestion-portal/add-role-assignment.png" lightbox="media/tutorial-logs-ingestion-portal/add-role-assignment.png" alt-text="Screenshot that shows adding the custom role assignment to the DCR.":::
 
 1. Select **Monitoring Metrics Publisher** > **Next**. If you don't want to use that role, create a custom action with the `Microsoft.Insights/Telemetry/Write` data action instead.
 
@@ -227,9 +221,9 @@ The following PowerShell script generates sample data to configure the custom ta
     Add-Type -AssemblyName System.Web
     ```
 
-1. Update the values of `$tenantId`, `$appId`, and `$appSecret` with the values you noted for **Directory (tenant) ID**, **Application (client) ID**, and secret **Value**. Then save it with the file name *LogGenerator.ps1*.
+1. Update the values of `$tenantId`, `$appId`, and `$appSecret` with the values you noted for **Directory (tenant) ID**, **Application (client) ID**, and secret **Value**. Then save it with the file name `LogGenerator.ps1`.
 
-    ``` PowerShell
+    ```powershell
     param ([Parameter(Mandatory=$true)] $Log, $Type="file", $Output, $DcrImmutableId, $DceURI, $Table)
     ################
     ##### Usage
@@ -325,11 +319,11 @@ The following PowerShell script generates sample data to configure the custom ta
     }
     ```
 
-1. Copy the sample log data from [sample data](#sample-data) or use your own Apache log data. Save it as `sample_access.log`.
+1. Copy the sample log data from [Review sample data](#review-sample-data) or use your own Apache log data. Save it as `sample_access.log`.
 
 1. Run the following command to read the data in the file and create a JSON file called `data_sample.json`:
 
-    ```PowerShell
+    ```powershell
     .\LogGenerator.ps1 -Log "sample_access.log" -Type "file" -Output "data_sample.json"
     ```
 
@@ -339,13 +333,13 @@ Allow at least 30 minutes for the configuration to take effect. You might also e
 
 1. Run the following command providing the values that you collected for your DCR and DCE. The script starts ingesting data by placing calls to the API at the pace of approximately one record per second.
 
-    ```PowerShell
-    .\LogGenerator.ps1 -Log "sample_access.log" -Type "API" -Table "ApacheAccess_CL" -DcrImmutableId <immutable ID> -DceUri <data collection endpoint URL> 
+    ```powershell
+    .\LogGenerator.ps1 -Log "sample_access.log" -Type "API" -Table "ApacheAccess_CL" -DcrImmutableId <immutable ID> -DceUri <data collection endpoint URL>
     ```
 
 1. From Log Analytics, query your newly created table to verify that data arrived and that it's transformed properly.
 
-## Troubleshooting
+## Troubleshoot common issues
 
 If your data doesn't appear in the custom log table, check these common issues:
 
@@ -357,11 +351,11 @@ If your data doesn't appear in the custom log table, check these common issues:
 
 For more troubleshooting guidance, see the [Troubleshooting](tutorial-logs-ingestion-code.md#troubleshooting) section of the sample code article.
 
-## Sample data
+## Review sample data
 
 Use the following synthetic sample data for the tutorial. Alternatively, use your own data if you have your own Apache access logs.
 
-```
+```text
 10.0.144.150 - - [15/Mar/2024:08:00:00 +0000] "POST /pricing HTTP/1.1" 503 588 "https://www.contoso-web.example.com/products" "Mozilla/5.0 (Linux; Android 13; SM-S911B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36" "-"
 198.51.100.24 - - [15/Mar/2024:08:00:40 +0000] "GET /products/details?id=2087 HTTP/1.1" 200 21854 "https://portal.contoso.example.com/dashboard" "Mozilla/5.0 (iPhone; CPU iPhone OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1" "-"
 203.0.113.31 - - [15/Mar/2024:08:00:56 +0000] "DELETE /api/v1/health HTTP/1.1" 200 5002 "https://www.contoso-web.example.com/blog/2024/new-features" "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:124.0) Gecko/20100101 Firefox/124.0" "-"
@@ -564,8 +558,13 @@ Use the following synthetic sample data for the tutorial. Alternatively, use you
 203.0.113.176 - - [15/Mar/2024:10:29:28 +0000] "GET /products/details?id=3291 HTTP/1.1" 200 29593 "https://portal.contoso.example.com/dashboard" "Mozilla/5.0 (iPad; CPU OS 17_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Mobile/15E148 Safari/604.1" "-"
 ```
 
-## Next steps
+## Clean up resources
 
-* [Complete a similar tutorial by using ARM templates](tutorial-logs-ingestion-api.md)
-* [Read more about custom logs](logs-ingestion-api-overview.md)
-* [Learn more about writing transformation queries](../data-collection/data-collection-transformations.md)
+If you no longer need the resources you created in this tutorial, delete them to avoid incurring costs. Delete the resource group that contains the DCE, DCR, and Log Analytics workspace. If you registered a Microsoft Entra application for this tutorial only, delete the app registration from the **App registrations** page in the Azure portal.
+
+## Related content
+
+- [Logs ingestion API overview](logs-ingestion-api-overview.md)
+- [Tutorial: Send data to Azure Monitor using Logs ingestion API (Resource Manager templates)](tutorial-logs-ingestion-api.md)
+- [Data collection rules overview](../data-collection/data-collection-rule-overview.md)
+- [Data collection endpoints overview](../data-collection/data-collection-endpoint-overview.md)
