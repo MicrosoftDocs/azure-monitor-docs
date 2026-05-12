@@ -11,9 +11,9 @@ ai-usage: ai-assisted
 
 # Tutorial: Send data to Azure Monitor Logs by using the Logs ingestion API (Azure portal)
 
-The Logs ingestion API in Azure Monitor enables you to send external data to a Log Analytics workspace by using a REST API call. This tutorial walks you through configuring a new custom table, a data collection rule (DCR), a data collection endpoint (DCE), and a sample application that sends log data by using the Azure portal.
+The Logs ingestion API in Azure Monitor lets you send external data to a Log Analytics workspace by using a REST API call. This tutorial walks you through using the Azure portal to configure a new custom table, a data collection rule (DCR), a data collection endpoint (DCE), and a sample application that sends log data.
 
-A DCR defines the data format, the transformation to apply, and the destination table. A DCE provides the endpoint URL that your application sends data to. The DCR has an **immutableId** property, which is a unique identifier you use in the API call.
+A DCR defines the data format, the transformation to apply, and the destination table. A DCE provides the endpoint URL that your application sends data to. The DCR's `immutableId` property is the unique identifier you include in the API call.
 
 > [!NOTE]
 > This tutorial uses the Azure portal to configure the components to support the Logs ingestion API. For a similar tutorial that uses Azure Resource Manager templates to configure these components, see [Tutorial: Send data to Azure Monitor using Logs ingestion API (Resource Manager templates)](tutorial-logs-ingestion-api.md). That tutorial also has sample code for the client libraries [.NET](/dotnet/api/overview/azure/Monitor.Ingestion-readme), [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/ingestion/azlogs), [Java](/java/api/overview/azure/monitor-ingestion-readme), [JavaScript](/javascript/api/overview/azure/monitor-ingestion-readme), and [Python](/python/api/overview/azure/monitor-ingestion-readme).
@@ -38,7 +38,7 @@ To complete this tutorial, you need:
 
 ## Create Microsoft Entra application
 
-Start by registering a Microsoft Entra application to authenticate against the API. The API supports any Resource Manager authentication scheme, but this tutorial follows the [Client Credential Grant Flow scheme](/entra/identity-platform/v2-oauth2-client-creds-grant-flow).
+Register a Microsoft Entra application to authenticate against the API. The API supports any Resource Manager authentication scheme, but in this tutorial, you follow the [Client Credential Grant Flow scheme](/entra/identity-platform/v2-oauth2-client-creds-grant-flow).
 
 1. On the **Microsoft Entra ID** menu in the Azure portal, select **App registrations** > **New registration**.
 
@@ -48,21 +48,21 @@ Start by registering a Microsoft Entra application to authenticate against the A
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-name.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-name.png" alt-text="Screenshot that shows the application name and tenancy scope fields during registration.":::
 
-1. After registration, view the details of the application. Note the **Application (client) ID** and the **Directory (tenant) ID**. You use these values when you configure the PowerShell script in the [Generate sample data](#generate-sample-data) step.
+1. After registration, view the application details. Note the **Application (client) ID** and the **Directory (tenant) ID**. You use these values when you configure the PowerShell script in the [Generate sample data](#generate-sample-data) step.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-id.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-id.png" alt-text="Screenshot that shows the Application (client) ID and Directory (tenant) ID for the registered app.":::
 
-1. Next, generate an application client secret, which is similar to creating a password to use with a username. Select **Certificates & secrets** > **New client secret**. Enter a name for the secret to identify its purpose and select an **Expires** duration. The value **1 year** is selected here. For a production implementation, follow best practices for a secret rotation procedure or use a more secure authentication mode, such as a certificate.
+1. Generate an application client secret, which is similar to creating a password to use with a username. Select **Certificates & secrets** > **New client secret**. Enter a name for the secret to identify its purpose and select an **Expires** duration. Select **1 year** for this tutorial. For a production implementation, follow best practices for secret rotation or use a more secure authentication mode, such as a certificate.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-secret.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-secret.png" alt-text="Screenshot that shows a secret for a new app.":::
 
-1. Select **Add** to save the secret and then note the **Value**. Record this value because you can't recover it after you move away from this page. Use the same security measures as you would for safekeeping a password because it's the functional equivalent.
+1. Select **Add** to save the secret and then note the **Value**. Record this value because you can't recover it after you move away from this page. Treat this value like a password because it's the functional equivalent.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-app-secret-value.png" lightbox="media/tutorial-logs-ingestion-portal/new-app-secret-value.png" alt-text="Screenshot that shows the secret value for the new app.":::
 
 ## Create data collection endpoint
 
-This tutorial requires a data collection endpoint (DCE) because the Azure portal custom log creation wizard requires one. If you use ARM deployment templates or the Logs management API to [create the custom table and DCR](./tutorial-logs-ingestion-api.md), you have the option to use the [DCR endpoint](../data-collection/data-collection-endpoint-overview.md) instead.
+This tutorial requires a data collection endpoint (DCE) because the Azure portal custom log creation wizard requires one. If you use Azure Resource Manager deployment templates or the Logs management API to [create the custom table and DCR](./tutorial-logs-ingestion-api.md), you have the option to use the [DCR endpoint](../data-collection/data-collection-endpoint-overview.md) instead.
 
 The DCE must be in the same region as the Log Analytics workspace or the data collection rule. After you configure and link the DCE to a DCR, your application can send data over HTTP to the DCE's logs ingestion URI.
 
@@ -74,16 +74,16 @@ The DCE must be in the same region as the Log Analytics workspace or the data co
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-details.png" alt-text="Screenshot that shows the name and region fields for a new data collection endpoint.":::
 
-1. After the DCE is created, select it to view its properties. Note the **Logs ingestion** URI. Use this URI as the `$DceURI` parameter when you run the PowerShell script.
+1. After you create the DCE, select it to view its properties. Note the **Logs ingestion** URI. Use this URI as the `$DceURI` parameter when you run the PowerShell script.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-endpoint-uri.png" alt-text="Screenshot that shows the Logs ingestion URI on the data collection endpoint overview page.":::
 
 ## Create new table in Log Analytics workspace
 
-Before you can send data to the workspace, you need to create the custom table where the data will be sent.
+Before you send data to the workspace, create the custom table that receives the data.
 
 > [!NOTE]
-> The following table creation process for a log ingestion API custom log can't be used to create an [agent custom log table](../agents/data-collection-text-log.md). You must use the CLI or custom template process to create the table. If you don't have sufficient rights to run CLI or custom template, ask your administrator to add the table for you.
+> You can't use the following table creation process for a log ingestion API custom log to create an [agent custom log table](../agents/data-collection-text-log.md). You must use the CLI or custom template process to create the table. If you don't have sufficient rights to run CLI or custom template, ask your administrator to add the table for you.
 
 1. Go to the **Log Analytics workspaces** menu in the Azure portal and select **Tables**. The tables in the workspace appear. Select **Create** > **New custom log (DCR based)**.
 
@@ -91,27 +91,27 @@ Before you can send data to the workspace, you need to create the custom table w
 
 1. Enter a name for the table. You don't need to add the `_CL` suffix required for a custom table because the portal automatically adds it to the name you specify.
 
-1. Select **Create a new data collection rule** to create the DCR used to send data to this table. Optionally, choose an existing DCR instead. Specify the **Subscription**, **Resource group**, and **Name** for the DCR that contains the custom log configuration.
+1. Select **Create a new data collection rule** to create the DCR that sends data to this table. Optionally, choose an existing DCR instead. Specify the **Subscription**, **Resource group**, and **Name** for the DCR that contains the custom log configuration.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" lightbox="media/tutorial-logs-ingestion-portal/new-data-collection-rule.png" alt-text="Screenshot that shows the fields for creating a new data collection rule during custom log setup.":::
 
-1. Select a DCE that you already created from the pull-down menu and select **Next**.
+1. From the pull-down menu, select a DCE that you created, and then select **Next**.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-table-name.png" alt-text="Screenshot that shows the custom log table name.":::
 
 ## Parse and filter sample data
 
-Instead of directly configuring the schema of the table, upload a file with a sample JSON array of data through the portal, and Azure Monitor sets the schema automatically. The sample JSON file must contain one or more log records structured as an array, in the same way the data is sent in the body of an HTTP request of the logs ingestion API call.
+Instead of directly configuring the schema of the table, upload a file with a sample JSON array of data through the portal, and Azure Monitor sets the schema automatically. The sample JSON file must contain one or more log records structured as an array, in the same way you send data in the body of an HTTP request to the logs ingestion API.
 
 1. Generate the `data_sample.json` file before you continue. Go to [Generate sample data](#generate-sample-data), run the PowerShell script with the `-Type "file"` option, and then return to this step.
 
-1. Select **Browse for files** and locate the `data_sample.json` file that you previously created.
+1. Select **Browse for files** and locate the `data_sample.json` file that you created.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-browse-files.png" alt-text="Screenshot that shows custom log browse for files.":::
 
-1. Data from the sample file is displayed with a warning that `TimeGenerated` isn't in the data. All log tables within Azure Monitor Logs are required to have a `TimeGenerated` column populated with the timestamp of the logged event. In this sample, the timestamp of the event is stored in the field called `Time`. You add a transformation that renames this column in the output.
+1. The portal displays data from the sample file with a warning that `TimeGenerated` isn't in the data. All log tables in Azure Monitor Logs require a `TimeGenerated` column populated with the timestamp of the logged event. In this sample, the `Time` field stores the event timestamp. You add a transformation that renames this column in the output.
 
-1. Select **Transformation editor** to open the transformation editor to add this column. You add a transformation that renames this column in the output. The transformation editor lets you create a transformation for the incoming data stream. This transformation is a KQL query that's run against each incoming record. The results of the query are stored in the destination table. For more information on transformation queries, see [Data collection rule transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
+1. Select **Transformation editor** to add this column. The transformation editor lets you create a transformation for the incoming data stream. This transformation is a Kusto Query Language (KQL) query that runs against each incoming record. The destination table stores the query results. For more information about transformation queries, see [Data collection rule transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-data-preview.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-data-preview.png" alt-text="Screenshot that shows the custom log data preview.":::
 
@@ -122,11 +122,11 @@ Instead of directly configuring the schema of the table, upload a file with a sa
     | extend TimeGenerated = todatetime(Time)
     ```
 
-1. Select **Run** to view the results. You can see that the `TimeGenerated` column is now added to the other columns. Most of the interesting data is contained in the `RawData` column, though.
+1. Select **Run** to view the results. The `TimeGenerated` column now appears with the other columns. The `RawData` column contains most of the interesting data, though.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-query-01.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-query-01.png" alt-text="Screenshot that shows the initial custom log data query.":::
 
-1. Modify the query to the following example, which extracts the client IP address, the HTTP method, the address of the page being accessed, and the response code from each log entry.
+1. Modify the query to the following example, which extracts the client IP address, the HTTP method, the requested page address, and the response code from each log entry.
 
     ```kusto
     source
@@ -146,7 +146,7 @@ Instead of directly configuring the schema of the table, upload a file with a sa
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-query-02.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-query-02.png" alt-text="Screenshot that shows the custom log data query with parse command.":::
 
-1. Optimize the query more by removing the `RawData` and `Time` columns because they aren't needed anymore. You can also filter out any records with `ResponseCode` of 200 because you're only interested in collecting data for requests that weren't successful. This step reduces the volume of data being ingested, which reduces its overall cost.
+1. Optimize the query more by removing the `RawData` and `Time` columns because you no longer need them. Also filter out records with a `ResponseCode` of 200 because you're only interested in collecting unsuccessful requests. This step reduces the volume of data you ingest, which reduces cost.
 
     ```kusto
     source
@@ -168,7 +168,7 @@ Instead of directly configuring the schema of the table, upload a file with a sa
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-query-03.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-query-03.png" alt-text="Screenshot that shows a custom log data query with a filter.":::
 
-1. Select **Apply** to save the transformation and view the schema of the table that's about to be created. Select **Next** to proceed.
+1. Select **Apply** to save the transformation and view the schema of the new table. Select **Next** to proceed.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/custom-log-final-schema.png" lightbox="media/tutorial-logs-ingestion-portal/custom-log-final-schema.png" alt-text="Screenshot that shows a custom log final schema.":::
 
@@ -180,11 +180,11 @@ Instead of directly configuring the schema of the table, upload a file with a sa
 
 The Logs ingestion API call requires the DCR's immutable ID (a value starting with `dcr-` followed by a GUID) to identify the data collection rule. Collect this value from the DCR's JSON view.
 
-1. On the **Monitor** menu in the Azure portal, select **Data collection rules** and select the DCR you created. From **Overview** for the DCR, select **JSON View**.
+1. On the **Monitor** menu in the Azure portal, select **Data collection rules**, and then select the DCR you created. From **Overview** for the DCR, select **JSON View**.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-rule-json-view.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-rule-json-view.png" alt-text="Screenshot that shows the DCR JSON view.":::
 
-1. Copy the **immutableId** value.
+1. Copy the `immutableId` value.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/data-collection-rule-immutable-id.png" lightbox="media/tutorial-logs-ingestion-portal/data-collection-rule-immutable-id.png" alt-text="Screenshot that shows collecting the immutable ID from the JSON view.":::
 
@@ -200,7 +200,7 @@ Assign the **Monitoring Metrics Publisher** role to your Microsoft Entra applica
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/add-role-assignment-select-role.png" lightbox="media/tutorial-logs-ingestion-portal/add-role-assignment-select-role.png" alt-text="Screenshot that shows selecting the role for the DCR role assignment.":::
 
-1. Select **User, group, or service principal** for **Assign access to** and choose **Select members**. Select the application that you created and then choose **Select**.
+1. Select **User, group, or service principal** for **Assign access to** > **Select members**. Select the application that you created, and then choose **Select**.
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/add-role-assignment-select-member.png" lightbox="media/tutorial-logs-ingestion-portal/add-role-assignment-select-member.png" alt-text="Screenshot that shows selecting members for the DCR role assignment.":::
 
@@ -210,7 +210,7 @@ Assign the **Monitoring Metrics Publisher** role to your Microsoft Entra applica
 
 ## Generate sample data
 
-The following PowerShell script generates sample data to configure the custom table and sends sample data to the logs ingestion API to test the configuration.
+The following PowerShell script generates sample data to configure the custom table and sends it to the logs ingestion API to test the configuration.
 
 > [!NOTE]
 > This sample script requires PowerShell v7.2 or later.
@@ -221,7 +221,7 @@ The following PowerShell script generates sample data to configure the custom ta
     Add-Type -AssemblyName System.Web
     ```
 
-1. Update the values of `$tenantId`, `$appId`, and `$appSecret` with the values you noted for **Directory (tenant) ID**, **Application (client) ID**, and secret **Value**. Then save it with the file name `LogGenerator.ps1`.
+1. Update `$tenantId`, `$appId`, and `$appSecret` with the values you noted for **Directory (tenant) ID**, **Application (client) ID**, and secret **Value**, and then save the file as `LogGenerator.ps1`.
 
     ```powershell
     param ([Parameter(Mandatory=$true)] $Log, $Type="file", $Output, $DcrImmutableId, $DceURI, $Table)
@@ -331,13 +331,13 @@ The following PowerShell script generates sample data to configure the custom ta
 
 Allow at least 30 minutes for the configuration to take effect. You might also experience increased latency for the first few entries, but this activity should normalize.
 
-1. Run the following command providing the values that you collected for your DCR and DCE. The script starts ingesting data by placing calls to the API at the pace of approximately one record per second.
+1. Run the following command with the values you collected for your DCR and DCE. The script ingests data by calling the API at approximately one record per second.
 
     ```powershell
     .\LogGenerator.ps1 -Log "sample_access.log" -Type "API" -Table "ApacheAccess_CL" -DcrImmutableId <immutable ID> -DceUri <data collection endpoint URL>
     ```
 
-1. From Log Analytics, query your newly created table to verify that data arrived and that it's transformed properly.
+1. From Log Analytics, query your newly created table to verify that data arrived and transformed properly.
 
 ## Troubleshoot common issues
 
@@ -560,7 +560,7 @@ Use the following synthetic sample data for the tutorial. Alternatively, use you
 
 ## Clean up resources
 
-If you no longer need the resources you created in this tutorial, delete them to avoid incurring costs. Delete the resource group that contains the DCE, DCR, and Log Analytics workspace. If you registered a Microsoft Entra application for this tutorial only, delete the app registration from the **App registrations** page in the Azure portal.
+If you no longer need the resources you created in this tutorial, delete them to avoid costs. Delete the resource group that contains the DCE, DCR, and Log Analytics workspace. If you registered a Microsoft Entra application for this tutorial only, delete the app registration from the **App registrations** page in the Azure portal.
 
 ## Related content
 
