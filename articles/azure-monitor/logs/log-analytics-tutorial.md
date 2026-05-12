@@ -1,18 +1,22 @@
 ---
-title: "Log Analytics tutorial"
-description: Learn how to use Log Analytics in Azure Monitor to build and run a log query and analyze its results in the Azure portal.
+title: "Log Analytics Tutorial: Query and Analyze Log Data"
+description: Learn how to use Log Analytics in Azure Monitor to build and run KQL log queries, filter and analyze results, and create charts in the Azure portal.
 ms.topic: tutorial
 ms.reviewer: ilanawaitser
 ms.date: 05/12/2026
 ai-usage: ai-assisted
 
+#customer intent: As a cloud engineer, I want to learn how to use Log Analytics in Azure Monitor so that I can query and analyze log data in my environment.
+
 ---
 
 # Tutorial: Use Log Analytics
 
-Log Analytics in the Azure portal helps you explore and analyze data collected by [Azure Monitor Logs](data-platform-logs.md). You can edit and run [log queries](log-query-overview.md) to filter records, uncover trends, analyze patterns, and gain meaningful insights into your environment.
+Log Analytics is a tool in the Azure portal for querying and analyzing data collected by [Azure Monitor Logs](data-platform-logs.md). When you need to troubleshoot an issue, investigate a performance trend, or understand how your Azure resources behave, you use Log Analytics to write and run [log queries](log-query-overview.md).
 
-This tutorial introduces the Log Analytics interface, walks you through basic queries, and demonstrates how to work with the results. You learn to:
+This tutorial walks you through the Log Analytics interface using sample data. You explore the table schema, write and run basic queries, and work with the results.
+
+In this tutorial, you:
 
 > [!div class="checklist"]
 > * Understand the log data schema.
@@ -21,43 +25,28 @@ This tutorial introduces the Log Analytics interface, walks you through basic qu
 > * View, modify, and share visuals of query results.
 > * Load, export, and copy queries and results.
 
-## Quick start overview
-
-| Step | Task | Expected time |
-|------|------|---------------|
-| 1 | Open Log Analytics and verify scope | 2 min |
-| 2 | Explore table schema and preview data | 3 min |
-| 3 | Write and run a basic query | 2 min |
-| 4 | Apply time range and filters | 3 min |
-| 5 | Analyze, sort, and search results | 5 min |
-| 6 | Group data and create a pivot table | 5 min |
-| 7 | Visualize results as a chart | 3 min |
-| | **Total estimated time** | **~25 min** |
-
-> [!IMPORTANT]
-> This tutorial uses Log Analytics features to build one query and use another example query. When you're ready to learn the syntax of queries and start directly editing the query itself, read the [Kusto Query Language (KQL) tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor). That tutorial walks you through example queries that you can edit and run in Log Analytics. It uses several of the features that you learn in this tutorial.
-
 ## Prerequisites
 
-| Requirement | Details | How to verify |
-|---|---|---|
-| Azure portal access | A Microsoft account or Microsoft Entra ID identity with access to the [Azure portal](https://portal.azure.com). | Sign in to `https://portal.azure.com`. |
-| Demo environment (recommended) | The [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade) includes sample data that supports the queries in this tutorial. No Azure subscription required. | Open the [demo environment link](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade). The query editor loads with prepopulated data. |
-| Azure subscription (alternative) | If you use your own subscription, you need a Log Analytics workspace with data. Your tables might not match the demo data. | In the Azure portal, go to **Monitor** > **Logs** and verify you see a query editor. |
+* A Microsoft account or Microsoft Entra ID identity with access to the [Azure portal](https://portal.azure.com).
+* The [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade) (recommended). The demo environment includes sample data that supports the queries in this tutorial. No Azure subscription required.
+* If you use your own subscription instead of the demo environment, you need a Log Analytics workspace with data. Your tables might not match the demo data.
 
 > [!NOTE]
 > Log Analytics has two modes: Simple and KQL. *This tutorial uses KQL mode.* If you prefer a point-and-select interface instead of writing KQL queries, see [Analyze data using Log Analytics Simple mode](log-analytics-simple-mode.md).
+
+> [!IMPORTANT]
+> This tutorial uses Log Analytics features to build one query and use another example query. When you're ready to learn the syntax of queries and start directly editing the query itself, read the [Kusto Query Language (KQL) tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor). That tutorial walks you through example queries that you can edit and run in Log Analytics. It uses several of the features that you learn in this tutorial.
 
 ## Open Log Analytics
 
 Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only records from that resource. For more information, see [Log query scope](./scope.md).
 
-You can view the scope in the upper-left corner of the Logs experience, below the name of your active query tab. If you're using your own environment, you see an option to select a different scope. This option isn't available in the demo environment.
+The scope appears in the upper-left corner of the Logs experience, below the name of your active query tab. If you're using your own environment, you see an option to select a different scope. This option isn't available in the demo environment.
 
 :::image type="content" source="media/log-analytics-tutorial/log-analytics-query-scope.png" alt-text="Screenshot that shows the Log Analytics scope for the demo." lightbox="media/log-analytics-tutorial/log-analytics-query-scope.png":::
 
 > [!TIP]
-> **CLI alternative:** You can also query a Log Analytics workspace by using the Azure CLI. Replace `<workspace-id>` with your workspace GUID:
+> **CLI alternative:** Query a Log Analytics workspace by using the Azure CLI. Replace `<workspace-id>` with your workspace GUID:
 >
 > ```azurecli
 > az monitor log-analytics query --workspace "<workspace-id>" --analytics-query "AppRequests | take 5" --timespan "P1D" -o table
@@ -67,11 +56,11 @@ You can view the scope in the upper-left corner of the Logs experience, below th
 
 ## View table information
 
-The left side of the screen includes the **Tables** tab, where you can inspect the tables that are available in the current scope. These tables are grouped by **Solution** by default, but you can change their grouping or filter them.
+The left side of the screen includes the **Tables** tab, where you inspect the tables available in the current scope. These tables are grouped by **Solution** by default, but you can change their grouping or filter them.
 
-1. Expand the **Log Management** solution and locate the **AppRequests** table. You can expand the table to view its schema, or hover over its name to show more information about it.
+1. Expand the **Log Management** solution and locate the **AppRequests** table. Expand the table to view its schema, or hover over its name to show more information about it.
 
-    :::image type="content" source="media/log-analytics-tutorial/table-details.png" alt-text="Screenshot that shows the Tables view." lightbox="media/log-analytics-tutorial/table-details.png":::
+    :::image type="content" source="media/log-analytics-tutorial/table-details.png" alt-text="Screenshot that shows the Tables view in Log Analytics." lightbox="media/log-analytics-tutorial/table-details.png":::
 
 1. Select the link below **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to go to the table reference that documents each table and its columns.
 
@@ -92,40 +81,38 @@ The left side of the screen includes the **Tables** tab, where you can inspect t
 
 Write a query by using the **AppRequests** table:
 
-1. Double-click the table name, or hover over it and select **Use in editor** to add it to the query window. You can also type `AppRequests` directly in the window. IntelliSense helps complete the names of tables in the current scope and KQL commands.
+1. Double-click the table name, or hover over it and select **Use in editor** to add it to the query window. Alternatively, type `AppRequests` directly in the window. IntelliSense helps complete the names of tables in the current scope and KQL commands.
 
 1. Select the **Run** button or press **Shift+Enter** with the cursor positioned anywhere in the query text. This is the simplest possible query — it returns all records in the table.
 
-    :::image type="content" source="media/log-analytics-tutorial/query-results.png" alt-text="Screenshot that shows query results." lightbox="media/log-analytics-tutorial/query-results.png":::
+    :::image type="content" source="media/log-analytics-tutorial/query-results.png" alt-text="Screenshot that shows query results in Log Analytics." lightbox="media/log-analytics-tutorial/query-results.png":::
 
-**Verification:** Check the lower-right corner of the results pane. You should see a record count greater than zero. The maximum number of results that the Log Analytics portal returns is 30,000.
+**Verification:** Check the lower-right corner of the results pane. You should see a record count greater than zero. For information about the maximum number of results, see [Configure query result limit](./log-analytics-simple-mode.md#configure-query-result-limit).
 
 > [!TIP]
 > To learn how to author your own queries, see [Get started with log queries in Azure Monitor Logs](get-started-queries.md).
 
-### Time range
+### Set the query time range
 
-All queries return records generated within a set time range. By default, the query returns records generated in the last 24 hours.
-
-You can set a different time range by using the [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) in the query. You can also use the **Time range** dropdown at the top of the screen.
+All queries return records generated within a set time range. By default, the time picker is set to the last 24 hours. Set a different time range by using the **Time range** dropdown at the top of the screen, or add a [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) to the query. If you use both, Log Analytics applies the smaller of the two time ranges. For details, see [Specify a time range](get-started-queries.md#specify-a-time-range).
 
 Change the time range by selecting **Last 12 hours** from the **Time range** dropdown. Select **Run** to return the results.
 
 > [!NOTE]
 > Changing the time range by using the **Time range** dropdown doesn't change the query in the query editor. The time range is applied as a separate filter outside the query text.
 
-:::image type="content" source="media/log-analytics-tutorial/query-time-range.png" alt-text="Screenshot that shows the time range." lightbox="media/log-analytics-tutorial/query-time-range.png":::
+:::image type="content" source="media/log-analytics-tutorial/query-time-range.png" alt-text="Screenshot that shows the time range selector in Log Analytics." lightbox="media/log-analytics-tutorial/query-time-range.png":::
 
 **Verification:** The record count in the lower-right corner should be smaller than the previous 24-hour result. If it's the same, the workspace might have limited data.
 
 > [!TIP]
-> **CLI alternative:** You can specify the time range with the `--timespan` parameter using ISO 8601 duration format:
+> **CLI alternative:** Specify the time range with the `--timespan` parameter using ISO 8601 duration format:
 >
 > ```azurecli
 > az monitor log-analytics query --workspace "<workspace-id>" --analytics-query "AppRequests" --timespan "PT12H" -o table
 > ```
 
-### Multiple filters
+### Apply multiple query filters
 
 Reduce the results further by adding a filter condition. A query can include any number of filters to target exactly the records that you want.
 
@@ -142,14 +129,14 @@ Reduce the results further by adding a filter condition. A query can include any
 **Verification:** The record count should decrease compared to the unfiltered query. All visible records in the **Name** column should show **GET Home/Index**.
 
 > [!TIP]
-> **CLI alternative:** You can achieve the same filter result by adding a `where` clause in KQL:
+> **CLI alternative:** Add a `where` clause in KQL for the same filter result:
 >
 > ```kusto
 > AppRequests
 > | where Name == "GET Home/Index"
 > ```
 
-## Analyze results
+## Analyze query results
 
 Log Analytics provides features for working with the results beyond running queries.
 
@@ -170,6 +157,7 @@ Log Analytics provides features for working with the results beyond running quer
 The results table supports Excel-like filtering from column headers:
 
 1. Select the ellipsis (**...**) in the **Name** column header.
+
 1. Clear **Select All**, then search for **GET Home/Index** and select it. The filter applies automatically.
 
 :::image type="content" source="media/log-analytics-tutorial/query-results-filter.png" alt-text="Screenshot that shows a query results filter." lightbox="media/log-analytics-tutorial/query-results-filter.png":::
@@ -181,6 +169,7 @@ The results table supports Excel-like filtering from column headers:
 Search through the query results by using the search box at the top right of the results pane.
 
 1. Enter **Chicago** in the query results search box.
+
 1. Select the arrows to find all instances of this string in your search results.
 
 :::image type="content" source="media/log-analytics-tutorial/search-query-results.png" alt-text="Screenshot that shows the search box at the top right of the result pane." lightbox="media/log-analytics-tutorial/search-query-results.png":::
@@ -192,7 +181,7 @@ Search through the query results by using the search box at the top right of the
 
 ### Reorganize and summarize data
 
-You can reorganize and summarize the data in the query results to improve visualization.
+Reorganize and summarize the data in the query results to improve visualization.
 
 1. Select **Columns** to the right of the results pane to open the **Columns** sidebar.
 
@@ -207,7 +196,7 @@ You can reorganize and summarize the data in the query results to improve visual
 **Verification:** Results appear in collapsible groups with a URL header for each group. Select a group header to expand or collapse it.
 
 > [!TIP]
-> **KQL equivalent:** You can achieve similar grouping directly in KQL:
+> **KQL equivalent:** Achieve similar grouping directly in KQL:
 >
 > ```kusto
 > AppRequests
@@ -233,7 +222,7 @@ To analyze the performance of your pages, create a pivot table:
 **Verification:** The pivot table shows one row per URL with a **max(DurationMs)** value. Results are sorted with the highest duration at the top.
 
 > [!TIP]
-> **KQL equivalent:** You can create the same pivot table result in KQL:
+> **KQL equivalent:** Create the same pivot table result in KQL:
 >
 > ```kusto
 > AppRequests
@@ -241,7 +230,7 @@ To analyze the performance of your pages, create a pivot table:
 > | order by max_DurationMs desc
 > ```
 
-## Work with charts
+## Visualize query results as charts
 
 View a query that uses numerical data as a chart. Instead of building a query, use an example query from the built-in query library.
 
@@ -261,20 +250,20 @@ View a query that uses numerical data as a chart. Instead of building a query, u
 
 1. The new query is separated from any previous query by a blank line. A query in KQL ends when it encounters a blank line, making them separate queries. Place your cursor anywhere in the new query and select **Run**.
 
-1. To view the results as a graph, select **Chart** on the results pane. You can change the chart type and configure other options.
+1. To view the results as a graph, select **Chart** on the results pane. Change the chart type or configure other options as needed.
 
     :::image type="content" source="media/log-analytics-tutorial/example-query-output-chart.png" alt-text="Screenshot that shows the query results chart." lightbox="media/log-analytics-tutorial/example-query-output-chart.png":::
 
-**Verification:** The chart displays a time-series line graph with hourly data points. The Y-axis shows the average response duration in milliseconds. If you see a spike in the data, you can investigate further by adjusting the time range.
+**Verification:** The chart displays a time-series line graph with hourly data points. The Y-axis shows the average response duration in milliseconds. If you see a spike in the data, investigate further by adjusting the time range.
 
-To get notified when spikes occur, you can create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
+To get notified when spikes occur, create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
 > [!NOTE]
 > Creating an alert rule is not supported in the demo environment.
 
 ## Export and copy results
 
-After you run a query, you can export or copy the results for use outside Log Analytics:
+After you run a query, export or copy the results for use outside Log Analytics:
 
 - **Export to CSV:** Select **Export** in the results toolbar, then select **Export to CSV - all columns** or **Export to CSV - displayed columns** to download the data.
 - **Copy results:** Select rows in the results pane, then right-click and select **Copy** or use **Ctrl+C**. You can paste the data into a spreadsheet or text editor.
@@ -286,7 +275,7 @@ After you run a query, you can export or copy the results for use outside Log An
 
 **Verification:** After exporting to CSV, a file downloads to your browser's default download location. Open the file to verify it contains the query results.
 
-## Troubleshooting
+## Troubleshoot common issues
 
 | Problem | Possible cause | Solution |
 |---|---|---|
@@ -299,7 +288,7 @@ After you run a query, you can export or copy the results for use outside Log An
 | DurationMs filter shows no results with > 150 ms | Your workspace data has uniformly low response times. | Lower the threshold (for example, try **> 5** ms) or use the demo environment, which has varied response times. |
 | Pivot Mode option not visible | The **Columns** sidebar isn't open. | Select **Columns** to the right of the results pane to open the sidebar, then select **Pivot Mode**. |
 
-## Next steps
+## Next step
 
 Now that you know how to use Log Analytics, complete the tutorial on using log queries:
 > [!div class="nextstepaction"]
