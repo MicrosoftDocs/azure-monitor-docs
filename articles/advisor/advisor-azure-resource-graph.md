@@ -44,7 +44,7 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 
 ### Example A: Query active (new) recommendations
 
-```Kusto
+```kusto
 advisorresources
 | where type =~ 'microsoft.advisor/recommendations'
 | where properties.recommendationStatus == 'New'
@@ -60,7 +60,7 @@ advisorresources
 ```
 ### Example B: Query completed recommendations
 
-```Kusto
+```kusto
 advisorresources
 | where type =~ 'microsoft.advisor/recommendations'
 | where properties.recommendationStatus == 'Completed'
@@ -80,7 +80,7 @@ advisorresources
 
 ### Example C: Get active cost recommendations
 
-```Kusto
+```kusto
 advisorresources 
 | where type =~ 'microsoft.advisor/recommendations' 
 | where isempty(properties.tracked) or properties.tracked == false 
