@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure VMware Solution
@@ -29,23 +29,5 @@ Recommendation ID: 42be4c34-135c-4ec7-b3a6-dd3b8ed7b049
 Subcategory: undefined
 
 <!--42be4c34-135c-4ec7-b3a6-dd3b8ed7b049_end-->
-
-<!--afa137b9-4f71-42bb-92f9-e24a1e3d42df_begin-->
-
-#### Migrate AV52 nodes to a new Azure VMware Solution node type  
-  
-AV52 node type is retiring. Migrate from AV52 nodes to a new Azure VMware Solution node type before the end of current AV52 reserved instance term.  
-  
-**Potential benefits**: Avoid service disruption  
-
-**Impact:** Medium
-  
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557094)  
-
-ResourceType: microsoft.avs/privateclouds  
-Recommendation ID: afa137b9-4f71-42bb-92f9-e24a1e3d42df  
-Subcategory: undefined
-
-<!--afa137b9-4f71-42bb-92f9-e24a1e3d42df_end-->
 
 <!--articleBody-->
