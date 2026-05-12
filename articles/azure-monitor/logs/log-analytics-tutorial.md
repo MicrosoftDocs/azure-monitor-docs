@@ -32,14 +32,14 @@ In this tutorial, you:
 * If you use your own subscription instead of the demo environment, you need a Log Analytics workspace with data. Your tables might not match the demo data.
 
 > [!NOTE]
-> Log Analytics has two modes: Simple and KQL. *This tutorial uses KQL mode.* If you prefer a point-and-select interface instead of writing KQL queries, see [Analyze data using Log Analytics Simple mode](log-analytics-simple-mode.md).
+> Log Analytics has two modes: Simple and Kusto Query Language (KQL). *This tutorial uses KQL mode.* If you prefer a point-and-select interface instead of writing KQL queries, see [Analyze data using Log Analytics Simple mode](log-analytics-simple-mode.md).
 
 > [!IMPORTANT]
 > This tutorial uses Log Analytics features to build one query and use another example query. When you're ready to learn the syntax of queries and start directly editing the query itself, read the [Kusto Query Language (KQL) tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor). That tutorial walks you through example queries that you can edit and run in Log Analytics. It uses several of the features that you learn in this tutorial.
 
 ## Open Log Analytics
 
-Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope is set to only records from that resource. For more information, see [Log query scope](./scope.md).
+Open the [Log Analytics demo environment](https://portal.azure.com/#blade/Microsoft_Azure_Monitoring_Logs/DemoLogsBlade), or select **Logs** from the Azure Monitor menu in your subscription. This step sets the initial scope to a Log Analytics workspace so that your query selects from all data in that workspace. If you select **Logs** from an Azure resource's menu, the scope narrows to only records from that resource. For more information, see [Log query scope](./scope.md).
 
 The scope appears in the upper-left corner of the Logs experience, below the name of your active query tab. If you're using your own environment, you see an option to select a different scope. This option isn't available in the demo environment.
 
@@ -94,14 +94,11 @@ Write a query by using the **AppRequests** table:
 
 ### Set the query time range
 
-All queries return records generated within a set time range. By default, the time picker is set to the last 24 hours. Set a different time range by using the **Time range** dropdown at the top of the screen, or add a [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) to the query. If you use both, Log Analytics applies the smaller of the two time ranges. For details, see [Specify a time range](get-started-queries.md#specify-a-time-range).
+All queries return records generated within a set time range. By default, the time picker is set to **Last 24 hours**. Set a different time range by using the **Time range** dropdown at the top of the screen, or add a [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) to the query. If you use both, Log Analytics applies the union of the two time ranges. For details, see [Specify a time range](get-started-queries.md#specify-a-time-range).
 
 Change the time range by selecting **Last 12 hours** from the **Time range** dropdown. Select **Run** to return the results.
 
-> [!NOTE]
-> Changing the time range by using the **Time range** dropdown doesn't change the query in the query editor. The time range is applied as a separate filter outside the query text.
-
-:::image type="content" source="media/log-analytics-tutorial/query-time-range.png" alt-text="Screenshot that shows the time range selector in Log Analytics." lightbox="media/log-analytics-tutorial/query-time-range.png":::
+:::image type="content" source="media/log-analytics-tutorial/query-time-range.png" alt-text="Screenshot that shows the time range selector sin Log Analytics." lightbox="media/log-analytics-tutorial/query-time-range.png":::
 
 **Verification:** The record count in the lower-right corner should be smaller than the previous 24-hour result. If it's the same, the workspace might have limited data.
 
@@ -234,7 +231,7 @@ To analyze the performance of your pages, create a pivot table:
 
 View a query that uses numerical data as a chart. Instead of building a query, use an example query from the built-in query library.
 
-1. Select **Queries** on the left pane. This pane includes example queries that you can add to the query window. If you're using your own workspace, you should have various queries in multiple categories.
+1. Select **Queries** on the left pane. This pane includes example queries that you can add to the query window. If you're using your own workspace, you'll find various queries in multiple categories.
 
 1. Find the **Response time trend** query in the **Applications** category. To load it, double-click the query or hover over the query name to show more information and then select **Load to editor**.
 
@@ -248,7 +245,7 @@ View a query that uses numerical data as a chart. Instead of building a query, u
     | order by TimeGenerated asc
     ```
 
-1. The new query is separated from any previous query by a blank line. A query in KQL ends when it encounters a blank line, making them separate queries. Place your cursor anywhere in the new query and select **Run**.
+1. The new query is separated from any previous query by a blank line. In KQL, a blank line marks the end of a query, so each query in the editor runs independently. Place your cursor anywhere in the new query and select **Run**.
 
 1. To view the results as a graph, select **Chart** on the results pane. Change the chart type or configure other options as needed.
 
@@ -259,7 +256,7 @@ View a query that uses numerical data as a chart. Instead of building a query, u
 To get notified when spikes occur, create an alert rule by opening the context menu (**...**) in the action bar and selecting **+ New alert rule**. For more information, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
 > [!NOTE]
-> Creating an alert rule is not supported in the demo environment.
+> Creating an alert rule isn't supported in the demo environment.
 
 ## Export and copy results
 
