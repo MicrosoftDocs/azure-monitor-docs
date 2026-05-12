@@ -25,11 +25,11 @@ To migrate from the `beta` version of the Logs Query API, change the path in you
 | Log Analytics via ARM<a id="note1"></a><sup>1</sup><br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
 | [Application Insights](/rest/api/application-insights/operation-groups?view=rest-application-insights-v1)<br>`query`<br>`metadata`<br>`metrics`<br>`events` | `https://api.applicationinsights.azure.com/beta/`<br>`https://api.applicationinsights.io/beta/` |
 
-<a href="#note1"><sup>1</sup></a>Log Analytics queries via ARM should migrate to the Logs Query API `v1` [request format](request-format.md#public-api-format).
+<a href="#note1"><sup>1</sup></a>Log Analytics queries via ARM should migrate to the Logs Query API `v1` [request format](request-format.md#public-query-endpoint-format).
 
 ## Split batch queries to single queries
 
-To migrate [batch API calls](batch-queries.md), split every query that you previously sent as part of the `requests` array in the body of the message and use the `query` section in the [request format](request-format.md#post-query) instead.
+To migrate [batch API calls](batch-queries.md), split every query that you previously sent as part of the `requests` array in the body of the message and use the `query` section in the [request format](request-format.md#post-request-format) instead.
 
 If you use an Azure SDK client library to initiate batch queries, split batched queries to run as separate queries using the corresponding methods.
 
