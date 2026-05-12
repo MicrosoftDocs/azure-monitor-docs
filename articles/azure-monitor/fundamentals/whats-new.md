@@ -16,6 +16,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Logs|[Workspace replication](../logs/workspace-replication.md)|Workspace replication now supports private links during failover, removing a previous limitation that blocked customers using private endpoints in BCDR scenarios.|
+
 ### April 2026
 
 |Subservice | Article | Description |
