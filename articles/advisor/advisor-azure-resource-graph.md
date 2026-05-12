@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.date: 05/11/2026
 ---
 
-# Query for Advisor data in Resource Graph Explorer (Azure Resource Graph)
+# Query for Advisor data in Azure Resource Graph
 
 Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Advisor recommendations. Before, the following scenarios weren't possible to do at scale, but can now be achieved using Azure Resource Graph:
 
