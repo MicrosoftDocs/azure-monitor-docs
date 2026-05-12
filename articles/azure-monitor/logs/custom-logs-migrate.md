@@ -3,7 +3,7 @@ title: Migrate from the HTTP Data Collector API to the Log Ingestion API
 description: Migrate from the legacy Azure Monitor Data Collector API to the Log Ingestion API, which provides more processing power and greater flexibility.
 ms.reviewer: ivankh
 ms.topic: how-to 
-ms.date: 08/12/2024
+ms.date: 05/12/2026
 
 ---
 
@@ -84,6 +84,10 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/
 This call is idempotent, so it has no effect if the table has already been converted.    
 
 The API call enables all DCR-based custom logs features on the table. The Data Collector API will continue to ingest data into existing columns, but won't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) won't continue to be populated. Another way to migrate an existing table to using data collection rules, but not necessarily the Log Ingestion API is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
+
+> [!WARNING]
+> After you migrate a table to V2 (V2Migrated), if you update the table schema through the V2 Tables API with a PUT request that introduces schema changes (for example, adding new columns), ingestion through the legacy Data Collector API stops working for that table. The PUT operation reloads the full schema and rewrites the customization document, which breaks backward compatibility with the v1 ingestion flow. PUT requests that don't change the schema don't trigger this behavior. If you still rely on the Data Collector API for ingestion, avoid making schema changes through the Tables API until you've fully migrated to the [Logs Ingestion API](logs-ingestion-api-overview.md).
+
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
