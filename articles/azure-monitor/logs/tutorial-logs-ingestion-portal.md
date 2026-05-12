@@ -30,8 +30,10 @@ In this tutorial, you:
 
 To complete this tutorial, you need:
 
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 * A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
+* Permissions to [register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app#prerequisites).
 * PowerShell 7.2 or later.
 
 <a name='create-azure-ad-application'></a>
@@ -208,6 +210,9 @@ Assign the **Monitoring Metrics Publisher** role to your Microsoft Entra applica
 
     :::image type="content" source="media/tutorial-logs-ingestion-portal/add-role-assignment-save.png" lightbox="media/tutorial-logs-ingestion-portal/add-role-assignment-save.png" alt-text="Screenshot that shows saving the DCR role assignment.":::
 
+> [!IMPORTANT]
+> Allow up to 30 minutes for the role assignment to propagate. If you send data before the role assignment takes effect, you receive an HTTP 403 Forbidden response.
+
 ## Generate sample data
 
 The following PowerShell script generates sample data to configure the custom table and sends it to the logs ingestion API to test the configuration.
@@ -337,7 +342,14 @@ Allow at least 30 minutes for the configuration to take effect. You might also e
     .\LogGenerator.ps1 -Log "sample_access.log" -Type "API" -Table "ApacheAccess_CL" -DcrImmutableId <immutable ID> -DceUri <data collection endpoint URL>
     ```
 
-1. From Log Analytics, query your newly created table to verify that data arrived and transformed properly.
+1. From Log Analytics, run the following query to verify that data arrived and transformed properly:
+
+    ```kusto
+    ApacheAccess_CL
+    | take 10
+    ```
+
+    If you see records with `ClientIP`, `RequestType`, `Resource`, `ResponseCode`, and `TimeGenerated` columns, your configuration is working correctly. If no data appears after 30 minutes, see [Troubleshoot common issues](#troubleshoot-common-issues).
 
 ## Troubleshoot common issues
 
