@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 # Tutorial: Use Log Analytics
 
-Log Analytics is a tool in the Azure portal for querying and analyzing data collected by [Azure Monitor Logs](data-platform-logs.md). When you need to troubleshoot an issue, investigate a performance trend, or understand how your Azure resources behave, you use Log Analytics to write and run [log queries](log-query-overview.md).
+Log Analytics is a tool in the Azure portal for querying and analyzing data collected by [Azure Monitor Logs](data-platform-logs.md). When you need to troubleshoot an issue, investigate a performance trend, or understand how your Azure resources behave, use Log Analytics to write and run [log queries](log-query-overview.md).
 
 This tutorial walks you through the Log Analytics interface using sample data. You explore the table schema, write and run basic queries, and work with the results.
 
@@ -34,8 +34,7 @@ In this tutorial, you:
 > [!NOTE]
 > Log Analytics has two modes: Simple and Kusto Query Language (KQL). *This tutorial uses KQL mode.* If you prefer a point-and-select interface instead of writing KQL queries, see [Analyze data using Log Analytics Simple mode](log-analytics-simple-mode.md).
 
-> [!IMPORTANT]
-> This tutorial uses Log Analytics features to build one query and use another example query. When you're ready to learn the syntax of queries and start directly editing the query itself, read the [Kusto Query Language (KQL) tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor). That tutorial walks you through example queries that you can edit and run in Log Analytics. It uses several of the features that you learn in this tutorial.
+This tutorial uses Log Analytics features to build queries and use example queries. When you're ready to learn the syntax of queries and start directly editing the query itself, try the [Kusto Query Language (KQL) tutorial](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor). That tutorial walks you through example queries that you can edit and run in Log Analytics. It uses several of the features that you learn in this tutorial.
 
 ## Open Log Analytics
 
@@ -62,7 +61,7 @@ The left side of the screen includes the **Tables** tab, where you inspect the t
 
     :::image type="content" source="media/log-analytics-tutorial/table-details.png" alt-text="Screenshot that shows the Tables view in Log Analytics." lightbox="media/log-analytics-tutorial/table-details.png":::
 
-1. Select the link below **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to go to the table reference that documents each table and its columns.
+1. Select the link under **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to go to the table reference that documents each table and its columns.
 
 1. Select **Preview data** to see a few recent records in the table. This preview helps you verify the data before you run a query.
 
@@ -83,7 +82,7 @@ Write a query by using the **AppRequests** table:
 
 1. Double-click the table name, or hover over it and select **Use in editor** to add it to the query window. Alternatively, type `AppRequests` directly in the window. IntelliSense helps complete the names of tables in the current scope and KQL commands.
 
-1. Select the **Run** button or press **Shift+Enter** with the cursor positioned anywhere in the query text. This is the simplest possible query — it returns all records in the table.
+1. Select the **Run** button or press **Shift+Enter** with the cursor positioned anywhere in the query text. This query is the simplest possible and returns all records in the table.
 
     :::image type="content" source="media/log-analytics-tutorial/query-results.png" alt-text="Screenshot that shows query results in Log Analytics." lightbox="media/log-analytics-tutorial/query-results.png":::
 
@@ -94,7 +93,7 @@ Write a query by using the **AppRequests** table:
 
 ### Set the query time range
 
-All queries return records generated within a set time range. By default, the time picker is set to **Last 24 hours**. Set a different time range by using the **Time range** dropdown at the top of the screen, or add a [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) to the query. If you use both, Log Analytics applies the union of the two time ranges. For details, see [Specify a time range](get-started-queries.md#specify-a-time-range).
+All queries return records generated within a set time range. By default, the time picker is set to **Last 24 hours**. Set a different time range by using the **Time range** dropdown at the top of the screen, or add a [where operator](/azure/data-explorer/kusto/query/tutorial?pivots=azuremonitor#filter-by-condition) to the query. If you use both methods, Log Analytics applies the union of the two time ranges. For details, see [Specify a time range](get-started-queries.md#specify-a-time-range).
 
 Change the time range by selecting **Last 12 hours** from the **Time range** dropdown. Select **Run** to return the results.
 
@@ -119,11 +118,11 @@ Reduce the results further by adding a filter condition. A query can include any
 
     :::image type="content" source="media/log-analytics-tutorial/load-old-filters.png" alt-text="Screenshot that shows the query tab with filter options." lightbox="media/log-analytics-tutorial/load-old-filters.png":::
 
-1. Select **GET Home/Index** under **Name**, then select **Apply & Run**.
+1. Select **GET Home/Index** under **Name** > **Apply & Run**.
 
     :::image type="content" source="media/log-analytics-tutorial/query-multiple-filters.png" alt-text="Screenshot that shows query results with multiple filters." lightbox="media/log-analytics-tutorial/query-multiple-filters.png":::
 
-**Verification:** The record count should decrease compared to the unfiltered query. All visible records in the **Name** column should show **GET Home/Index**.
+**Verification:** The record count decreases compared to the unfiltered query. All visible records in the **Name** column show **GET Home/Index**.
 
 > [!TIP]
 > **CLI alternative:** Add a `where` clause in KQL for the same filter result:
@@ -147,7 +146,7 @@ Log Analytics provides features for working with the results beyond running quer
 
 1. Set a filter on the **DurationMs** column to limit the records to those that took more than **150** milliseconds.
 
-**Verification:** After applying the DurationMs filter, all visible records should show a **DurationMs** value greater than 150. The record count decreases.
+**Verification:** After applying the DurationMs filter, all visible records show a **DurationMs** value greater than 150. The record count decreases.
 
 ### Filter from column headers
 
@@ -155,7 +154,7 @@ The results table supports Excel-like filtering from column headers:
 
 1. Select the ellipsis (**...**) in the **Name** column header.
 
-1. Clear **Select All**, then search for **GET Home/Index** and select it. The filter applies automatically.
+1. Clear **Select All**, search for **GET Home/Index**, and select it. The filter applies automatically.
 
 :::image type="content" source="media/log-analytics-tutorial/query-results-filter.png" alt-text="Screenshot that shows a query results filter." lightbox="media/log-analytics-tutorial/query-results-filter.png":::
 
@@ -174,7 +173,7 @@ Search through the query results by using the search box at the top right of the
 **Verification:** Matching text is highlighted in the results. The arrow navigation indicates the total number of matches (for example, "1 of 5").
 
 > [!NOTE]
-> The search box filters the displayed results in the browser — it doesn't modify the KQL query or re-fetch data from the server.
+> The search box filters the displayed results in the browser - it doesn't modify the KQL query or re-fetch data from the server.
 
 ### Reorganize and summarize data
 
@@ -186,7 +185,7 @@ Reorganize and summarize the data in the query results to improve visualization.
 
 1. Drag the **Url** column into the **Row Groups** section. Results are now organized by that column, and you can collapse each group.
 
-    This action processes the data your original query returned — it doesn't re-fetch data from the server. When you rerun the query, Log Analytics retrieves data based on your original query.
+    This action processes the data your original query returned - it doesn't re-fetch data from the server. When you rerun the query, Log Analytics retrieves data based on your original query.
 
     :::image type="content" source="media/log-analytics-tutorial/query-results-grouped.png" alt-text="Screenshot that shows query results grouped by URL." lightbox="media/log-analytics-tutorial/query-results-grouped.png":::
 
@@ -245,7 +244,7 @@ View a query that uses numerical data as a chart. Instead of building a query, u
     | order by TimeGenerated asc
     ```
 
-1. The new query is separated from any previous query by a blank line. In KQL, a blank line marks the end of a query, so each query in the editor runs independently. Place your cursor anywhere in the new query and select **Run**.
+1. A blank line separates the new query from any previous query. In KQL, a blank line marks the end of a query, so each query in the editor runs independently. Place your cursor anywhere in the new query and select **Run**.
 
 1. To view the results as a graph, select **Chart** on the results pane. Change the chart type or configure other options as needed.
 
@@ -260,10 +259,10 @@ To get notified when spikes occur, create an alert rule by opening the context m
 
 ## Export and copy results
 
-After you run a query, export or copy the results for use outside Log Analytics:
+After running a query, export or copy the results for use outside Log Analytics:
 
-- **Export to CSV:** Select **Export** in the results toolbar, then select **Export to CSV - all columns** or **Export to CSV - displayed columns** to download the data.
-- **Copy results:** Select rows in the results pane, then right-click and select **Copy** or use **Ctrl+C**. You can paste the data into a spreadsheet or text editor.
+- **Export to CSV:** Select **Export** in the results toolbar > **Export to CSV - all columns** or **Export to CSV - displayed columns** to download the data.
+- **Copy results:** Select rows in the results pane, right-click, and select **Copy** or use **Ctrl+C**. Paste the data into a spreadsheet or text editor.
 - **Copy query:** Select the query text in the editor and press **Ctrl+C** to copy it. You can share the query with colleagues or save it for later use.
 - **Pin to dashboard:** Select **Pin to dashboard** in the action bar to add the results visual to an Azure dashboard.
 
@@ -276,14 +275,14 @@ After you run a query, export or copy the results for use outside Log Analytics:
 
 | Problem | Possible cause | Solution |
 |---|---|---|
-| Demo environment doesn't load | Browser blocks pop-ups or third-party cookies. | Allow pop-ups for `portal.azure.com`. Try a private/incognito browser window. |
+| Demo environment doesn't load | Browser blocks pop-ups or third-party cookies. | Allow pop-ups for `portal.azure.com`. Try a private or incognito browser window. |
 | AppRequests table not visible | The workspace doesn't have Application Insights data. | Use the demo environment, or [connect an Application Insights resource](../app/create-workspace-resource.md) to your workspace. |
 | Query returns zero results | The selected time range has no data, or the filter is too narrow. | Expand the time range (for example, **Last 7 days**). Remove filters to verify data exists. |
 | "No access" error on workspace | Your account doesn't have read permissions on the workspace. | Ask your administrator to assign the **Log Analytics Reader** role. See [Manage access to log data and workspaces](./manage-access.md). |
 | Chart tab shows "No chart available" | The query doesn't return time-series or numerical data suitable for charting. | Ensure your query includes a `summarize` operator with a `bin(TimeGenerated, ...)` clause. |
-| Filter tab is empty | Filters haven't been loaded for the current query results. | Run a query first. Then select the **Filter** tab and choose the refresh or reload option to populate filter values. |
+| Filter tab is empty | Filters aren't loaded for the current query results. | Run a query first. Then select the **Filter** tab and choose the refresh or reload option to populate filter values. |
 | DurationMs filter shows no results with > 150 ms | Your workspace data has uniformly low response times. | Lower the threshold (for example, try **> 5** ms) or use the demo environment, which has varied response times. |
-| Pivot Mode option not visible | The **Columns** sidebar isn't open. | Select **Columns** to the right of the results pane to open the sidebar, then select **Pivot Mode**. |
+| Pivot Mode option not visible | The **Columns** sidebar isn't open. | Select **Columns** to the right of the results pane to open the sidebar > select **Pivot Mode**. |
 
 ## Next step
 
