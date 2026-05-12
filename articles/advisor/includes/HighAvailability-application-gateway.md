@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -424,19 +424,20 @@ Subcategory: undefined
 
 #### Use NAT gateway for outbound connectivity  
   
-Prevent connectivity failures due to source network address translation (SNAT) port exhaustion by using NAT gateway for outbound traffic from your virtual networks. NAT gateway scales dynamically and provides secure connections for traffic headed to the internet.  
+Prevent outbound connectivity failures due to source network address translation (SNAT) port exhaustion by using a zone‑redundant Standard V2 NAT gateway. Standard V2 NAT gateway scales dynamically, offers native zone redundancy, and improved reliability for outbound internet traffic.  
   
 **Potential benefits**: Prevent outbound connection failures with NAT gateway  
 
 **Impact:** Medium
   
-For more information, see [Source Network Address Translation (SNAT) for outbound connections - Azure Load Balancer ](/azure/load-balancer/load-balancer-outbound-connections#2-associate-a-nat-gateway-to-the-subnet)  
+For more information, see [What Is Azure NAT Gateway?](/azure/nat-gateway/nat-overview#standardv2-nat-gateway)  
 
 ResourceType: microsoft.network/virtualnetworks  
 Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
+
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_begin-->
 

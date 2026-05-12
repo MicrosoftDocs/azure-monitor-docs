@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -379,5 +379,41 @@ Recommendation ID: 687f83d3-db01-4ab1-a77b-b31e99f16d33
 Subcategory: undefined
 
 <!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
+
+<!--b0394e14-2aac-435d-b53a-73005272870d_begin-->
+
+#### Boost Resilience with Per‑Partition Automatic Failover  
+  
+PPAF is a new Azure Cosmos DB preview feature that boosts availability for single‑write region accounts by failing over at the partition level instead of the entire account, reducing downtime and enabling faster recovery during regional outages.  
+  
+**Potential benefits**: Enhances single‑region availability  
+
+**Impact:** Medium
+  
+For more information, see [Configure and Use Per Partition Automatic Failover - Azure Cosmos DB](/azure/cosmos-db/how-to-configure-per-partition-automatic-failover)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: b0394e14-2aac-435d-b53a-73005272870d  
+Subcategory: undefined
+
+<!--b0394e14-2aac-435d-b53a-73005272870d_end-->
+
+<!--36b07167-9b19-4725-81bc-54e8e0510a0c_begin-->
+
+#### Improve Resiliency with Per‑Partition Automatic Failover  
+  
+PPAF is a new Azure Cosmos DB preview feature that boosts availability for single‑write region accounts by failing over at the partition level instead of the entire account, reducing downtime and enabling faster recovery during regional outages.  
+  
+**Potential benefits**: Enhances single‑region availability  
+
+**Impact:** Medium
+  
+For more information, see [Elevating Azure Cosmos DB Resilience with Per Partition Automatic Failover - Azure Cosmos DB Blog](https://aka.ms/cosmosdb-ppaf-blog)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 36b07167-9b19-4725-81bc-54e8e0510a0c  
+Subcategory: undefined
+
+<!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
 
 <!--articleBody-->
