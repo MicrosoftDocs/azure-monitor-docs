@@ -38,8 +38,7 @@ The `advisorresources` table includes fields that represent the lifecycle state 
 | `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
 
 > [!IMPORTANT]
-> The `advisorresources` table also contains internal fields named `customerState` and `platformState`. These are **internal implementation details** and should **not** be used. Always use
-> `recommendationStatus` for a recommendation's current state.
+> The **advisorresources** table includes system fields such as *customerState* and *platformState*. These fields may change and should not be relied on. To determine the current state of a recommendation, use the *recommendationStatus* field.
 
 ## Examples
 
