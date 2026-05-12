@@ -73,6 +73,8 @@ The `advisorresources` table includes fields that represent the lifecycle state 
     lastUpdated = todatetime(properties.lastUpdated)
 | order by lastUpdated desc
 ```
+> [!NOTE]
+> The **Completed** state for security recommendations in the Advisor table in Azure Resource Graph may not reflect the current status. To determine the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud.
 
 ### Example C: Get active cost recommendations
 
