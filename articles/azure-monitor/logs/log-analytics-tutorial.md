@@ -44,13 +44,6 @@ The scope appears in the upper-left corner of the Logs experience, below the nam
 
 :::image type="content" source="media/log-analytics-tutorial/log-analytics-query-scope.png" alt-text="Screenshot that shows the Log Analytics scope for the demo." lightbox="media/log-analytics-tutorial/log-analytics-query-scope.png":::
 
-> [!TIP]
-> **CLI alternative:** Query a Log Analytics workspace by using the Azure CLI. Replace `<workspace-id>` with your workspace GUID:
->
-> ```azurecli
-> az monitor log-analytics query --workspace "<workspace-id>" --analytics-query "AppRequests | take 5" --timespan "P1D" -o table
-> ```
-
 **Verification:** Confirm the query editor is visible and the scope displays your workspace name or "Demo-Workspace" in the upper-left corner.
 
 ## View table information
@@ -68,13 +61,6 @@ The left side of the screen includes the **Tables** tab, where you inspect the t
     :::image type="content" source="media/log-analytics-tutorial/preview-data.png" alt-text="Screenshot that shows preview data for the AppRequests table." lightbox="media/log-analytics-tutorial/preview-data.png":::
 
 **Verification:** The preview pane shows records with columns like **Name**, **Url**, **DurationMs**, **ResultCode**, and **ClientCity**. If the AppRequests table doesn't appear under **Log Management**, your workspace might not have Application Insights data configured.
-
-> [!TIP]
-> **CLI alternative:** To view the schema of the AppRequests table via the Azure CLI:
->
-> ```azurecli
-> az monitor log-analytics query --workspace "<workspace-id>" --analytics-query "AppRequests | getschema | project ColumnName, DataType" --timespan "P1D" -o table
-> ```
 
 ## Write a query
 
@@ -101,13 +87,6 @@ Change the time range by selecting **Last 12 hours** from the **Time range** dro
 
 **Verification:** The record count in the lower-right corner should be smaller than the previous 24-hour result. If it's the same, the workspace might have limited data.
 
-> [!TIP]
-> **CLI alternative:** Specify the time range with the `--timespan` parameter using ISO 8601 duration format:
->
-> ```azurecli
-> az monitor log-analytics query --workspace "<workspace-id>" --analytics-query "AppRequests" --timespan "PT12H" -o table
-> ```
-
 ### Apply multiple query filters
 
 Reduce the results further by adding a filter condition. A query can include any number of filters to target exactly the records that you want.
@@ -123,14 +102,6 @@ Reduce the results further by adding a filter condition. A query can include any
     :::image type="content" source="media/log-analytics-tutorial/query-multiple-filters.png" alt-text="Screenshot that shows query results with multiple filters." lightbox="media/log-analytics-tutorial/query-multiple-filters.png":::
 
 **Verification:** The record count decreases compared to the unfiltered query. All visible records in the **Name** column show **GET Home/Index**.
-
-> [!TIP]
-> **CLI alternative:** Add a `where` clause in KQL for the same filter result:
->
-> ```kusto
-> AppRequests
-> | where Name == "GET Home/Index"
-> ```
 
 ## Analyze query results
 
