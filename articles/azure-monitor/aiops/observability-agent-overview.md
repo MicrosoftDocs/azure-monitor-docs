@@ -5,7 +5,7 @@ ms.topic: concept-article
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: yalavi, ronitauber
-ms.date: 04/03/2026
+ms.date: 05/12/2026
 ms.custom: references_regions
 # Customer intent: As an Azure Monitor user, I want to understand what the Azure Copilot observability agent is, how it works, and how to use it for troubleshooting issues detected by Azure Monitor alerts.
 ---
@@ -126,6 +126,12 @@ The observability agent is currently available in the following Azure regions. S
         - West US 3
     :::column-end:::
 :::row-end:::
+
+## Enable or disable the Observability Agent
+
+Azure Copilot access controls access to the Observability Agent.
+
+If you restrict access to Azure Copilot, users can't use the Observability Agent. For more information, see [Manage access to Azure Copilot](/azure/copilot/manage-access).
 
 ## Current limitations
 
