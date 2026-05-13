@@ -62,16 +62,16 @@ If you have an existing custom table to which you currently send data using the 
   
 ### Identify classic custom tables
 
-To identify which tables use the Data Collector API, [view table properties](../logs/manage-logs-tables.md#view-table-properties). The **Type** property of tables that use the Data Collector API is set to **Custom table (classic)**. Note that tables that ingest data using the legacy Log Analytics agent (MMA) also have the **Type** property set to **Custom table (classic)**. 
+To identify which tables use the Data Collector API, [view table properties](../logs/manage-logs-tables.md#view-table-properties). The **Type** property of tables that use the Data Collector API is set to **Custom table (classic)**. Tables that ingest data by using the legacy Log Analytics agent (MMA) also have the **Type** property set to **Custom table (classic)**. 
 
 > [WARNING]
 > Be sure to migrate from Log Analytics agent to Azure Monitor Agent before converting MMA tables. Otherwise, data stops ingesting into custom fields in these tables after the table conversion.
 
 ### Migration considerations
 
-[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF (Codeless Connector Framework) connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs Ingestion API. Migration can introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors may temporarily coexist during the transition period.
+[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF (Codeless Connector Framework) connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs Ingestion API. Migration can introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors might temporarily coexist during the transition period.
 
-When migrating Sentinel connectors, dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) must be updated to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
+When migrating Sentinel connectors, you must update dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
 
 This table summarizes other considerations to keep in mind for each option:
 
@@ -79,21 +79,21 @@ This table summarizes other considerations to keep in mind for each option:
 |--|-----------------|-----------------------------|
 | **Table and column naming** | Reuse existing table name.<br>Column naming options: <br>- Use new column names and define a transformation to direct incoming data to the newly named column.<br>- Continue using old names. | Set the new table name freely.<br>Need to adjust integrations, dashboards, and alerts before switching to the new table. |
 | **Migration procedure** | One-off table migration. Not possible to roll back a migrated table. | Migration can be done gradually, per table. |
-| **Post-migration** | If you continue to ingest data using the HTTP Data Collector API with existing columns, don't change the schema.<br>Create new columns only if you ingest data using the Logs ingestion API. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
+| **Post-migration** | If you continue to ingest data by using the HTTP Data Collector API with existing columns, don't change the schema.<br>Create new columns only if you ingest data by using the Logs ingestion API. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
 
 > [!WARNING]
-> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. It stops working for that table if you do. The PUT operation reloads the full schema and rewrites the customization document, which breaks backward compatibility with the legacy ingestion flow. PUT requests that don't change the schema don't trigger this behavior. If you still rely on the Data Collector API for ingestion, avoid making schema changes until you've fully migrated to the [Logs Ingestion API](logs-ingestion-api-overview.md).
+> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. If you still rely on the Data Collector API for ingestion, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
 
 ### Convert a table from V1 to V2
 
-To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), issue this API call against the table:  
+To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), send this API call against the table:  
 
 ```rest
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
 ```
-This call is idempotent, so it has no effect if the table has already been converted.    
+This call is idempotent, so it has no effect if the table is already converted.    
 
-The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops working for the entire table. Another way to migrate an existing table to using data collection rules, but not necessarily the Log Ingestion API is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
+The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops working for the entire table. Another way to migrate an existing table to using data collection rules, but not necessarily the Logs ingestion API, is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
@@ -103,13 +103,13 @@ The API call enables all DCR-based custom logs features on the table. If the Dat
 
 ## Reduce send data per call
 
-The Log Ingestion API lets you send up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, you can send multiple calls in parallel. This is a change from the Data Collector API, which lets you send up to 32 MB of data per call.
+The Log Ingestion API lets you send up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, you can send multiple calls in parallel. This limit is different from the Data Collector API, which lets you send up to 32 MB of data per call.
 
 For information about how to call the Log Ingestion API, see [Log Ingestion REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call).
 
 ## Modify table schemas and data collection rules based on changes to source data object
 
-The Data Collector API automatically adjusted a destination legacy table's schema when the source data object schema changed, but the Log Ingestion API doesn't. This ensures you don't collect new data into columns that you didn't intend to create.  
+The Data Collector API automatically adjusts a destination legacy table's schema when the source data object schema changes, but the Logs ingestion API doesn't. The Logs ingestion API behavior ensures you don't collect new data into columns that you didn't intend to create.  
 
 Options for when the source data schema changes:
 
@@ -118,7 +118,7 @@ Options for when the source data schema changes:
 * Leave the destination table and data collection rule unchanged. In this case, you don't ingest the new data.
 
 > [!NOTE]
-> You can't reuse a column name with a data type that's different to the original data type defined for the column. 
+> You can't reuse a column name with a data type that's different from the original data type defined for the column. 
 
 ## Related content
 
