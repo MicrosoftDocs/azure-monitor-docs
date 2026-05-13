@@ -52,9 +52,7 @@ The left side of the screen includes the **Tables** tab, where you inspect the t
 
 1. Expand the **Log Management** solution and locate the **AppRequests** table. Expand the table to view its schema, or hover over its name to show more information about it.
 
-    :::image type="content" source="media/log-analytics-tutorial/table-details.png" alt-text="Screenshot that shows the Tables view in Log Analytics." lightbox="media/log-analytics-tutorial/table-details.png":::
-
-1. Select the link under **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to go to the table reference that documents each table and its columns.
+1. Select the link under **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to view the reference that documents the table and its columns.
 
 1. Hover over the **AppRequests** table and select **Run** to see records from the last 24 hours in the table. This preview helps you verify the data before you run a more extensive query.
 
@@ -150,8 +148,6 @@ Search through the query results by using the search box at the top right of the
 Reorganize and summarize the data in the query results to improve visualization.
 
 1. Select **Columns** to the right of the results pane to open the **Columns** sidebar.
-
-    :::image type="content" source="media/log-analytics-tutorial/query-results-columns.png" alt-text="Screenshot that shows the Column link to the right of the results pane, which you select to open the Columns sidebar." lightbox="media/log-analytics-tutorial/query-results-columns.png":::
 
 1. Drag the **Url** column into the **Row Groups** section. Results are now organized by that column, and you can collapse each group.
 
