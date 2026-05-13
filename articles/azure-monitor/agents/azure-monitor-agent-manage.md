@@ -51,11 +51,11 @@ The following table summarizes which methods are available for each Azure Monito
 
 | Operation | Azure portal | Azure PowerShell | Azure CLI | Resource Manager template |
 |-----------|:---:|:---:|:---:|:---:|
-| [Install](#install-the-agent-extension) | âœ… | âœ… | âœ… | âœ… |
-| [Verify](#verify-installation) | âœ… | â€” | âœ… | â€” |
-| [Uninstall](#uninstall) | âœ… | âœ… | âœ… | â€” |
-| [Update](#update) | âœ… | âœ… | âœ… | â€” |
-| [Configure agent settings (preview)](#configure-agent-settings-preview) | â€” | â€” | â€” | âœ… |
+| [Install](#install-the-agent-extension) | ✔ | ✔ | ✔ | ✔ |
+| [Verify](#verify-installation) | ✔ | — | ✔ | — |
+| [Uninstall](#uninstall) | ✔ | ✔ | ✔ | — |
+| [Update](#update) | ✔ | ✔ | ✔ | — |
+| [Configure agent settings (preview)](#configure-agent-settings-preview) | — | — | — | ✔ |
 
 ## Install the agent extension
 
