@@ -56,7 +56,7 @@ The left side of the screen includes the **Tables** tab, where you inspect the t
 
 1. Select the link under **Useful links** (in this example, [AppRequests](/azure/azure-monitor/reference/tables/AppRequests)) to go to the table reference that documents each table and its columns.
 
-1. Hover over the **AppRequests** table and select **Run** to see a records from the last 24 hours in the table. This preview helps you verify the data before you run a more extensive query.
+1. Hover over the **AppRequests** table and select **Run** to see records from the last 24 hours in the table. This preview helps you verify the data before you run a more extensive query.
 
     :::image type="content" source="media/log-analytics-tutorial/preview-data.png" alt-text="Screenshot that shows preview data for the AppRequests table." lightbox="media/log-analytics-tutorial/preview-data.png":::
 
@@ -143,7 +143,7 @@ Search through the query results by using the search box at the top right of the
 **Verification:** Matching text is highlighted in the results. The arrow navigation indicates the total number of matches (for example, "2/12").
 
 > [!NOTE]
-> The search box filters the displayed results in the browser - it doesn't modify the KQL query or re-fetch data from the server.
+> The search box only filters the displayed results in the browser and doesn't modify the KQL query or re-fetch data from the server.
 
 ### Reorganize and summarize data
 
