@@ -3,13 +3,17 @@ title: Migrate from the HTTP Data Collector API to the Logs ingestion API
 description: Migrate from the legacy Azure Monitor Data Collector API to the Logs ingestion API, which provides more processing power and greater flexibility.
 ms.reviewer: ivankh
 ms.topic: how-to 
-ms.date: 05/12/2026
+ms.date: 05/13/2026
 
 ---
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API to send data to Azure Monitor Logs
 
 The Azure Monitor [Logs ingestion API](../logs/logs-ingestion-api-overview.md) provides more processing power and greater flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md) than the legacy [HTTP Data Collector API](../logs/data-collector-api.md). This article describes the differences between the Data Collector API and the Logs ingestion API and provides guidance and best practices for migrating to the new Logs ingestion API.  
+
+> [!IMPORTANT]
+> The HTTP Data Collector API will be deprecated in **September 2026**. To ensure uninterrupted data ingestion and to benefit from enhanced capabilities, migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md) before the deprecation date.
+
 
 > [!NOTE]
 > As a Microsoft MVP, [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to and provided material feedback for this article. For an example of how you can automate the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
