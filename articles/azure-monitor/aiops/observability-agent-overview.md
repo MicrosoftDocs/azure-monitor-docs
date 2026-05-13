@@ -65,7 +65,7 @@ The conversation continues as your understanding evolves. You can ask follow-up 
 
 ### Investigation data retention
 
-For operational, quality, and future product improvement purposes, the system might retain investigation data internally for up to 30 days after an investigation is completed.
+To support service operation, troubleshooting, and quality assurance, the service might retain investigation data for up to 30 days after an investigation finishes. Microsoft processes this data according to its privacy, security, and compliance policies, and doesn't use it for other purposes. Microsoft doesn't use investigation data to train foundation models.
 
 ## Regions
 
