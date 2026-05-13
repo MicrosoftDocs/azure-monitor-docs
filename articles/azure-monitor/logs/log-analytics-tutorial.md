@@ -199,16 +199,19 @@ To get notified when spikes occur, create an alert rule. Open the (**...**) next
 
 ## Export and copy results
 
-After running a query, export or copy the results for use outside Log Analytics:
+After running a query, export or copy the results for use outside Log Analytics. From the **Share** menu in the action bar:
 
-- **Export to CSV:** Select **Export** in the results toolbar > **Export to CSV - all columns** or **Export to CSV - displayed columns** to download the data.
+- **Copy link to query:** Creates a link to the current query that you can share with others who have access to the same workspace.
+- **Copy query text:** Selects the query text in the editor to your clipboard. 
+
+These features don't work in the demo environment because the demo doesn't have a unique URL or save queries, but you can try them in your own environment.
+
 - **Copy results:** Select rows in the results pane, right-click, and select **Copy** or use **Ctrl+C**. Paste the data into a spreadsheet or text editor.
-- **Copy query:** Select the query text in the editor and press **Ctrl+C** to copy it. You can share the query with colleagues or save it for later use.
-- **Pin to dashboard:** Select **Pin to dashboard** in the action bar to add the results visual to an Azure dashboard.
+- **Export to CSV - all columns** or **Export to CSV - displayed columns** to download the data.
+- **Export to Power BI (as an M query)** or **Export to Power BI (new Dataset)** to open the data in Power BI for further analysis and visualization.
+- **Open in Excel:** Exports the data and opens it in Excel. This option is only available if you have Excel installed on your machine.
 
-To learn how to pin visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](../visualize/tutorial-logs-dashboards.md).
-
-**Verification:** After exporting to CSV, a file downloads to your browser's default download location. Open the file to verify it contains the query results.
+From the **Save** menu in the action bar are options to save the query or pin a visual to a dashboard. To learn how to pin visuals to a shared dashboard, see [Create and share dashboards that visualize data in Azure Monitor Logs](../visualize/tutorial-logs-dashboards.md).
 
 ## Troubleshoot common issues
 
