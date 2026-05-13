@@ -437,7 +437,7 @@ Use the following PowerShell commands:
 
 ### Update Azure Monitor Agent on Azure virtual machine scale sets
 
-Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#azure-virtual-machine-scale-set).
+Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#install-azure-monitor-agent-on-an-azure-virtual-machine-scale-set).
 
 > [!NOTE]
 > If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
@@ -498,7 +498,7 @@ Enable automatic update of the agent by opting in to the [automatic extension up
 
 ### Update Azure Monitor Agent on Azure virtual machine scale sets
 
-Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#azure-virtual-machine-scale-set).
+Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#install-azure-monitor-agent-on-an-azure-virtual-machine-scale-set).
 
 > [!NOTE]
 > If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
