@@ -82,7 +82,7 @@ This table summarizes other considerations to keep in mind for each option:
 | **Post-migration** | If you continue to ingest data by using the HTTP Data Collector API with existing columns, don't change the schema.<br>Create new columns only if you ingest data by using the Logs ingestion API. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
 
 > [!WARNING]
-> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. This breaks ingestion. If you must continue ingesting with the Data Collector API, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
+> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. Doing so breaks ingestion. If you must continue ingesting with the Data Collector API, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
 
 ### Convert a table from V1 to V2
 
