@@ -276,11 +276,11 @@ Metric renaming isn't supported.
 ## Basic Authentication and Bearer Tokens
 
 > [!NOTE]
-> On Kubernetes 1.36 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if are running Kubernetes 1.36 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+> On Kubernetes 1.37 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if are running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
 
 ### Scoped Secrets Access for Pod/ServiceMonitors
 
-On Kubernetes 1.36 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. Previously, the ama-metrics component had cluster-wide permissions to read secrets across all namespaces. This update improves security by requiring explicit, namespace-level access to secrets used for basic authentication
+On Kubernetes 1.37 and later, Azure Managed Prometheus (or ama-metrics) will use namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. Previously, the ama-metrics component had cluster-wide permissions to read secrets across all namespaces. This update improves security by requiring explicit, namespace-level access to secrets used for basic authentication
 
 With this change:
 - Access to secrets is limited only to namespaces you explicitly configure
@@ -288,11 +288,11 @@ With this change:
 
 ### Default behavior by Kubernetes version
 
-**Kubernetes versions earlier than 1.36**
+**Kubernetes versions earlier than 1.37**
 - Cluster-wide secrets access is still enabled for backward compatibility
 - Follow the steps [here](#configure-basic-authentication-for-kubernetes-135-and-earlier) to configure basic auth for ServiceMonitor and PodMonitor
 
-**Kubernetes version 1.36 and later**
+**Kubernetes version 1.37 and later**
 - Cluster-wide secrets access is removed
 - By default, no namespaces are monitored for secrets
 - You must:
@@ -300,7 +300,7 @@ With this change:
     2. Add RBAC permissions in each namespace
 
 ### When you need to configure this
-You must configure namespace-scoped secrets access if are running Kubernetes 1.36 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+You must configure namespace-scoped secrets access if are running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
 
 ### Configure secrets access for PodMonitor and ServiceMonitor for Basic Auth
 
@@ -391,9 +391,9 @@ data:
 > - Include kube-system if you also have secrets there
 > - Changes take effect after the ama-metrics pod restarts
 
-### Step 4: Create RBAC in Each Namespace (Kubernetes >= 1.36)
+### Step 4: Create RBAC in Each Namespace (Kubernetes >= 1.37)
 
-On Kubernetes >= 1.36, the ClusterRole no longer grants cluster-wide secrets access. You must create a `Role` and `RoleBinding` in **every** namespace listed in `secrets_access_namespaces` (including `kube-system` if needed). Apply the following in each namespace. Replace `my-app` with the target namespace:
+On Kubernetes >= 1.37, the ClusterRole no longer grants cluster-wide secrets access. You must create a `Role` and `RoleBinding` in **every** namespace listed in `secrets_access_namespaces` (including `kube-system` if needed). Apply the following in each namespace. Replace `my-app` with the target namespace:
 
 **Create a Role:**
 
@@ -452,7 +452,7 @@ If you have secrets in `my-app`, `backend`, and `monitoring`:
    secrets_access_namespaces = "kube-system,my-app,backend,monitoring"
    ```
 
-2. **RBAC (>= 1.36 only):** Create the Role + RoleBinding (from Step 4) in each of `my-app`, `backend`, and `monitoring`.
+2. **RBAC (>= 1.37 only):** Create the Role + RoleBinding (from Step 4) in each of `my-app`, `backend`, and `monitoring`.
 
 ---
 
@@ -466,7 +466,7 @@ If you have secrets in `my-app`, `backend`, and `monitoring`:
 | Setting ignored after configmap update | Pod hasn't restarted | Restart the `ama-metrics` pod to pick up new configmap values |
 
 
-## Configure Basic Authentication for Kubernetes 1.35 and earlier
+## Configure Basic Authentication for Kubernetes 1.36 and earlier
 
 Scraping targets using basic auth or bearer tokens is supported using PodMonitors and ServiceMonitors. Make sure that the secret containing the username/password/token is in the same namespace as the pod/service monitor. This behavior is the same as OSS prometheus-operator.
 
