@@ -116,7 +116,7 @@ Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
 # [REST API](#tab/rest-api)
 
 ```rest
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
 Authorization: Bearer {token}
 Content-Type: application/json
 ```
