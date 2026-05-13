@@ -20,6 +20,8 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 
 ### Investigate
 
+Use these tools to diagnose issues and understand your application's runtime behavior.
+
 * [Application dashboard](overview-dashboard.md): An at-a-glance assessment of your application's health and performance.
 * [Application map](app-map.md): A visual overview of application architecture and components' interactions.
 * [Live metrics](live-stream.md): A real-time analytics dashboard for insight into application activity and performance.
@@ -31,6 +33,8 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 
 ### Monitoring
 
+Use these tools to continuously track your application's health and set up proactive notifications.
+
 * [Alerts](../alerts/alerts-overview.md): Monitor a wide range of aspects of your application and trigger various actions.
 * [Metrics](../essentials/metrics-getting-started.md): Dive deep into metrics data to understand usage patterns and trends.
 * [Diagnostic settings](../essentials/diagnostic-settings.md): Configure streaming export of platform logs and metrics to the destination of your choice.
@@ -41,12 +45,16 @@ Application Insights supports OpenTelemetry (OTel) to collect telemetry data in 
 
 ### Usage
 
+Use these tools to understand how users interact with your application.
+
 * [Users, sessions, and events](usage.md#users-sessions-and-events): Determine when, where, and how users interact with your web app.
 * [Funnels](usage.md#funnels): Analyze conversion rates to identify where users progress or drop off in the funnel.
 * [Flows](usage.md#user-flows): Visualize user paths on your site to identify high engagement areas and exit points.
 * [Cohorts](usage.md#cohorts): Group users by shared characteristics to simplify trend identification, segmentation, and performance troubleshooting.
 
 ### Code analysis
+
+Use these tools to profile and debug your application code.
 
 * [.NET Profiler](../profiler/profiler-overview.md): Capture, identify, and view performance traces for your application.
 * [Code optimizations](../insights/code-optimizations.md): Harness AI to create better and more efficient applications.
@@ -63,7 +71,7 @@ The logic model diagram visualizes components of Application Insights and how th
 
 ## Getting started
 
-This section covers getting started with OpenTelemetry-based data collection.
+This section covers getting started with OpenTelemetry-based data collection in Azure Monitor Application Insights.
 
 Entry points include:
 
@@ -86,11 +94,11 @@ Use this path for server-side web apps that you instrument in code.
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
-1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Add the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) to your app.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
 #### [VM](#tab/vm)
 
@@ -98,11 +106,11 @@ Use this path when your app runs on a virtual machine or virtual machine scale s
 
 1. Create an [Application Insights resource](create-workspace-resource.md).
 1. Get the resource's [connection string](connection-strings.md).
-1. Add the [OpenTelemetry Distro](opentelemetry-enable.md) to your app.
+1. Add the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) to your app.
 1. Configure the [connection string](opentelemetry-configuration.md#connection-string).
 
 > [!TIP]
-> Some platforms enable data collection automatically through [autoinstrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
+> Some platforms enable data collection automatically through [automatic instrumentation](codeless-overview.md#autoinstrumentation-for-azure-monitor-application-insights). Switch to code-based instrumentation with the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
 
 #### [JavaScript](#tab/js)
 
@@ -175,16 +183,18 @@ After you complete the setup for your scenario, run your app and wait a few minu
 > If you're migrating from older Application Insights SDKs, see [Migrate to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
 ## Other OpenTelemetry integrations on Azure
 
-Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:
+Azure Monitor Application Insights integrates with other Azure services that use OpenTelemetry. Use the following resources for Azure services, software development kits (SDKs), and tools that use OpenTelemetry:
 
-- [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/observability/opentelemetry-conventions.md)
-- [Java tracing in the Azure SDK](/azure/developer/java/sdk/tracing)
-- [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability)
-- [.NET observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel)
-- [Azure Monitor pipeline at edge and multicloud configuration](../essentials/edge-pipeline-configure.md)
-- [OpenTelemetry ingestion into Azure Data Explorer, Azure Synapse Data Explorer, and Real-Time Intelligence](/azure/data-explorer/open-telemetry-connector)
-- [Azure Container Apps OpenTelemetry agent](/azure/container-apps/opentelemetry-agents)
-- [Aspire dashboard overview](/dotnet/aspire/fundamentals/dashboard/overview)
+| Integration | Description |
+|-------------|-------------|
+| [Azure SDK semantic conventions](https://github.com/Azure/azure-sdk/blob/main/docs/observability/opentelemetry-conventions.md) | OpenTelemetry attribute naming conventions used across all Azure SDKs. |
+| [Java tracing in the Azure SDK](/azure/developer/java/sdk/tracing) | Distributed tracing support for Azure SDK for Java clients. |
+| [Azure Cosmos DB SDK observability](/azure/cosmos-db/nosql/sdk-observability) | OpenTelemetry traces and metrics emitted by the Azure Cosmos DB SDK. |
+| [.NET observability with OpenTelemetry](/dotnet/core/diagnostics/observability-with-otel) | OpenTelemetry instrumentation guidance for .NET applications. |
+| [Azure Monitor pipeline at edge and multicloud](../essentials/edge-pipeline-configure.md) | Collect and forward OpenTelemetry data from edge and multicloud environments to Azure Monitor. |
+| [OpenTelemetry ingestion into Azure Data Explorer](/azure/data-explorer/open-telemetry-connector) | Ingest OpenTelemetry data into Azure Data Explorer, Synapse Data Explorer, and Real-Time Intelligence. |
+| [Azure Container Apps OpenTelemetry agent](/azure/container-apps/opentelemetry-agents) | Built-in OpenTelemetry agent for Azure Container Apps. |
+| [Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview) | Local development dashboard for viewing OpenTelemetry traces and metrics from .NET Aspire apps. |
 
 ## Troubleshooting
 

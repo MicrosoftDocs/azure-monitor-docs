@@ -1,0 +1,574 @@
+# Retrievability Fixes Applied — Azure Monitor Pilot
+# Generated: 2026-05-12
+# Branch: retrievability-test
+# Input: Gap analysis from work item 573126
+# Purpose: Track applied and deferred fixes for work item 573127
+
+date: "2026-05-12"
+branch: retrievability-test
+source_work_item: "573126"
+target_work_item: "573127"
+files_modified: 10
+total_insertions: 109
+total_deletions: 58
+
+applied_fixes:
+  # =====================================================
+  # opentelemetry-enable.md (T0: 2.5)
+  # =====================================================
+  - article: "articles/azure-monitor/app/opentelemetry-enable.md"
+    t0_score: 2.5
+    fixes_applied:
+      - id: "otel-1.1"
+        fix_type: auto-fix
+        dimension: heading-hierarchy
+        description: "Promoted orphaned ### OpenTelemetry release status to ## level"
+      - id: "otel-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Added outcome statement to introduction"
+      - id: "otel-5.3"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Rewrote 'Confirm data is flowing' with OpenTelemetry/distro context"
+      - id: "otel-6.1"
+        fix_type: structural
+        dimension: structured-data-utilization
+        description: "Added connection string comparison table (Method | Supported languages | Recommended for)"
+      - id: "otel-6.2"
+        fix_type: structural
+        dimension: structured-data-utilization
+        description: "Added cross-language package summary table (Language | Package | Install command)"
+    fixes_deferred:
+      - id: "otel-1.2"
+        fix_type: structural
+        reason: "Requires restructuring entire procedural body — risk of breaking existing cross-references and tab structure"
+        description: "Remove near-duplicate H2 and promote procedural H3s to H2"
+      - id: "otel-4.1"
+        fix_type: guided-fix
+        reason: "Needs team confirmation on canonical product name (Azure Monitor OpenTelemetry Distro vs Application Insights OpenTelemetry)"
+        description: "Align metadata title with H1"
+      - id: "otel-5.1"
+        fix_type: guided-fix
+        reason: "Touches ~30 tab instances across 5+ sections — needs per-tab language/package verification"
+        description: "Add per-language lead-in sentence to each tab code block"
+      - id: "otel-5.2"
+        fix_type: guided-fix
+        reason: "APPLIED — updated remaining two connection string bullets with Application Insights context"
+        description: "Add context phrases to connection string bullets"
+      - id: "otel-2.2"
+        fix_type: guided-fix
+        reason: "Needs exact SDK/package name verification for each language tab"
+        description: "Add per-language context prose to tab sections"
+      - id: "otel-3.1"
+        fix_type: guided-fix
+        reason: "APPLIED — added explicit CNCF vs Azure distro distinction in intro"
+        description: "Disambiguate OpenTelemetry (CNCF) vs Azure distro"
+      - id: "otel-4.2"
+        fix_type: guided-fix
+        reason: "Naming convention needs docset-wide confirmation"
+        description: "Normalize Application Insights naming pattern"
+
+  # =====================================================
+  # log-analytics-tutorial.md (T0: 2.8)
+  # =====================================================
+  - article: "articles/azure-monitor/logs/log-analytics-tutorial.md"
+    t0_score: 2.8
+    fixes_applied:
+      - id: "lat-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Replaced transitional opener in 'Analyze results' with standalone context"
+      - id: "lat-5.1"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added 'In Log Analytics' product anchor to Time range section"
+      - id: "lat-5.2"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Replaced deictic 'Let's reduce...' in Multiple filters with standalone context"
+      - id: "lat-5.3"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added Log Analytics context to 'Search through query results'"
+      - id: "lat-1.2"
+        fix_type: auto-fix
+        dimension: heading-hierarchy
+        description: "Renamed 'Analyze results' to 'Analyze query results in Log Analytics'"
+      - id: "lat-1.3"
+        fix_type: auto-fix
+        dimension: heading-hierarchy
+        description: "Renamed 'Work with charts' to 'Visualize query results as charts'"
+      - id: "lat-3.2"
+        fix_type: auto-fix
+        dimension: disambiguation
+        description: "Disambiguated Queries pane from query concept"
+      - id: "lat-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Replaced 'the Log Analytics portal experience' with 'Log Analytics'"
+      - id: "lat-4.2"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Standardized 'dropdown list' to 'dropdown'"
+      - id: "lat-6.3"
+        fix_type: auto-fix
+        dimension: structured-data-utilization
+        description: "Converted pivot table steps from prose to numbered list"
+      - id: "lat-1.1"
+        fix_type: structural
+        dimension: heading-hierarchy
+        description: "Moved Time range and Multiple filters under new '## Refine query results' H2"
+    fixes_deferred:
+      - id: "lat-6.1"
+        fix_type: guided-fix
+        reason: "APPLIED — converted Write a query to numbered steps + added AppRequests table explanation (also resolves lat-2.2)"
+        description: "Convert 'Write a query' prose procedure to numbered steps"
+      - id: "lat-2.2"
+        fix_type: guided-fix
+        reason: "AppRequests table description needs schema verification"
+        description: "Explain what the AppRequests table contains"
+      - id: "lat-2.3"
+        fix_type: guided-fix
+        reason: "APPLIED — added scope clarification sentence"
+        description: "Add scope explanation to Open Log Analytics"
+      - id: "lat-3.1"
+        fix_type: guided-fix
+        reason: "APPLIED — added disambiguation sentence to intro"
+        description: "Disambiguate Log Analytics from Log Analytics workspace"
+      - id: "lat-6.2"
+        fix_type: guided-fix
+        reason: "APPLIED — converted View table information to numbered steps per tutorial template"
+        description: "Convert View table information prose to numbered steps"
+
+  # =====================================================
+  # action-groups.md (T0: 2.8)
+  # =====================================================
+  - article: "articles/azure-monitor/alerts/action-groups.md"
+    t0_score: 2.8
+    fixes_applied:
+      - id: "ag-1.1"
+        fix_type: auto-fix
+        dimension: heading-hierarchy
+        description: "Wrapped orphaned H3s under new '## Overview' H2 section"
+      - id: "ag-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Added inline SMS details replacing circular self-reference"
+      - id: "ag-5.3"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added '### Webhook retry behavior' heading and webhook disambiguation note"
+    fixes_deferred:
+      - id: "ag-2.3"
+        fix_type: structural
+        reason: "Extracting Global/Regional table requires restructuring procedure steps — high risk"
+        description: "Extract Global vs Regional processing table to standalone section"
+      - id: "ag-5.1"
+        fix_type: structural
+        reason: "Extracting notification types table from procedure requires careful restructuring"
+        description: "Extract notification types table to standalone ## Notification types section"
+      - id: "ag-5.2"
+        fix_type: structural
+        reason: "Extracting action types table from procedure requires careful restructuring"
+        description: "Extract action types table to standalone ## Action types section"
+      - id: "ag-1.2"
+        fix_type: structural
+        reason: "Resolving 5.1 and 5.2 naturally fixes this — depends on those structural changes"
+        description: "Portal creation procedure section too long"
+      - id: "ag-2.2"
+        fix_type: guided-fix
+        reason: "Rate limit values need verification from service limits article"
+        description: "Add inline limit values to Service limits section"
+      - id: "ag-3.1"
+        fix_type: guided-fix
+        reason: "Webhook type distinction wording needs product behavior verification"
+        description: "Disambiguate Webhook vs Secure webhook"
+      - id: "ag-4.1"
+        fix_type: auto-fix
+        reason: "No change needed — text already used correct 'Event Hubs' in the action types table"
+        description: "Normalize Event Hub to Event Hubs"
+
+  # =====================================================
+  # alerts-troubleshoot.md (T0: 2.8)
+  # =====================================================
+  - article: "articles/azure-monitor/alerts/alerts-troubleshoot.md"
+    t0_score: 2.8
+    fixes_applied:
+      - id: "at-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Extracted sender email addresses into IMPORTANT callout block"
+      - id: "at-5.1"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added parent-scenario context to three 'action suppressed' blocks"
+      - id: "at-5.2"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added Azure Monitor context to MetricValue null and dimensions empty subsections"
+      - id: "at-2.1"
+        fix_type: structural
+        dimension: context-completeness
+        description: "Added scenario overview bulleted list to introduction"
+    fixes_deferred:
+      - id: "at-1.1"
+        fix_type: structural
+        reason: "Restructuring five H3 subsections risks breaking portal deep-links and bookmark references"
+        description: "Restructure H3 subsections under 'unexpected content' parent"
+      - id: "at-3.1"
+        fix_type: guided-fix
+        reason: "Qualifying language needs verification per section"
+        description: "Disambiguate overloaded 'action' term"
+      - id: "at-4.3"
+        fix_type: guided-fix
+        reason: "APPLIED — normalized 'log alert rule' to 'log search alert rule'"
+        description: "Standardize alert type terminology"
+      - id: "at-6.1"
+        fix_type: auto-fix
+        reason: "Retry table already exists in structured format in the article"
+        description: "Convert webhook retry logic to structured table"
+      - id: "at-6.2"
+        fix_type: guided-fix
+        reason: "Rate limit values need freshness verification"
+        description: "Add consolidated rate-limit table"
+
+  # =====================================================
+  # azure-monitor-agent-manage.md (T0: 2.8)
+  # =====================================================
+  - article: "articles/azure-monitor/agents/azure-monitor-agent-manage.md"
+    t0_score: 2.8
+    fixes_applied:
+      - id: "ama-3.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Expanded DCR to 'data collection rule (DCR)' on first use"
+      - id: "ama-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Fixed incorrect 'virtual machines scale set' to 'virtual machine scale set'"
+      - id: "ama-2.1"
+        fix_type: structural
+        dimension: context-completeness
+        description: "Added ## Verify installation section with portal, CLI, and Heartbeat query methods (sourced from sibling migration articles)"
+    fixes_deferred:
+      - id: "ama-1.1"
+        fix_type: auto-fix
+        reason: "Tab heading standardization touches dozens of headings across Install/Uninstall/Update — needs careful audit of all tab markup"
+        description: "Standardize tab heading hierarchy levels"
+      - id: "ama-2.1"
+        fix_type: structural
+        reason: "APPLIED — verification commands sourced from sibling migration articles"
+        description: "Add ## Verify installation section"
+      - id: "ama-5.1"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed all 16 tab subheadings to include Azure Monitor Agent"
+        description: "Add Azure Monitor Agent to tab subheadings"
+      - id: "ama-1.2"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed to 'Configure agent settings (preview)' + updated anchor in matrix"
+        description: "Rename 'Configure (preview)' to more descriptive heading"
+      - id: "ama-6.1"
+        fix_type: structural
+        reason: "APPLIED — matrix built from article's actual tab content"
+        description: "Add operations-by-method summary table"
+
+  # =====================================================
+  # get-started-queries.md (T0: 3.0)
+  # =====================================================
+  - article: "articles/azure-monitor/logs/get-started-queries.md"
+    t0_score: 3.0
+    fixes_applied:
+      - id: "gsq-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Replaced 'The Analytics portal' with 'Log Analytics'"
+      - id: "gsq-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Added Log Analytics tool context to introduction"
+      - id: "gsq-4.2"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Replaced 'using a Kusto query' with 'using a KQL query'"
+      - id: "gsq-5.2"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added 'in KQL queries' to desc/asc section"
+      - id: "gsq-5.3"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added grounding sentence to duplicate records FAQ"
+      - id: "gsq-6.2"
+        fix_type: auto-fix
+        dimension: structured-data-utilization
+        description: "Added 'KQL comparison operators and logical operators' keywords to filter table intro"
+    fixes_deferred:
+      - id: "gsq-1.3"
+        fix_type: guided-fix
+        reason: "Title change needs SEO review and cross-reference audit"
+        description: "Add 'KQL' to H1 title and front matter"
+      - id: "gsq-5.1"
+        fix_type: structural
+        reason: "APPLIED — added intro sentences to Limit results, Specify a time range, and Include or exclude columns"
+        description: "Add introductory sentences before tab content in multiple sections"
+      - id: "gsq-1.1"
+        fix_type: structural
+        reason: "APPLIED — removed redundant ### Sort, promoted #### Desc and asc to ###"
+        description: "Remove redundant ### Sort under ## Sort results"
+      - id: "gsq-2.2"
+        fix_type: auto-fix
+        reason: "Aggregation section intro already partially exists — skipped to avoid duplication"
+        description: "Add missing intro for aggregation section"
+      - id: "gsq-3.1"
+        fix_type: guided-fix
+        reason: "Heading rename may break existing in-page anchors"
+        description: "Rename 'Structure a query' to 'Structure a KQL query'"
+      - id: "gsq-6.1"
+        fix_type: guided-fix
+        reason: "APPLIED — updated meta description to 165 chars with KQL, Log Analytics, Simple mode"
+        description: "Update meta description with KQL and Log Analytics keywords"
+
+  # =====================================================
+  # analyze-metrics.md (T0: 3.0)
+  # =====================================================
+  - article: "articles/azure-monitor/metrics/analyze-metrics.md"
+    t0_score: 3.0
+    fixes_applied:
+      - id: "am-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Added 'Azure Monitor metrics explorer' full name to scope section opening"
+      - id: "am-6.1"
+        fix_type: structural
+        dimension: structured-data-utilization
+        description: "Converted aggregation types from bullet list to structured table"
+      - id: "am-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Added intro paragraph between Interactive chart features H2 and first H3"
+      - id: "am-4.2"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Standardized 'scope picker' to 'resource scope picker'"
+      - id: "am-5.1"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added 'in Azure Monitor metrics explorer' context to Select a single resource"
+    fixes_deferred:
+      - id: "am-1.1"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed to 'Pan and zoom in metrics charts'"
+        description: "Rename Interactive chart features to Pan and zoom in metrics charts"
+      - id: "am-2.2"
+        fix_type: guided-fix
+        reason: "Resource provider list completeness needs verification"
+        description: "Clarify resource provider list in Correlate metrics to logs"
+
+  # =====================================================
+  # app-insights-overview.md (T0: 3.2)
+  # =====================================================
+  - article: "articles/azure-monitor/app/app-insights-overview.md"
+    t0_score: 3.2
+    fixes_applied:
+      - id: "aio-2.3"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Re-anchored Getting started section to Azure Monitor Application Insights"
+      - id: "aio-3.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Changed 'OpenTelemetry Distro' to 'Azure Monitor OpenTelemetry Distro' in tab steps"
+      - id: "aio-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Normalized 'autoinstrumentation' to 'automatic instrumentation'"
+      - id: "aio-4.2"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Re-introduced 'Azure Monitor Application Insights' in Other integrations section"
+      - id: "aio-5.2"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added introductory prose to Investigate, Monitoring, Usage, Code analysis subsections"
+    fixes_deferred:
+      - id: "aio-1.1"
+        fix_type: guided-fix
+        reason: "Adding H3 between tabs needs verification of tab rendering behavior"
+        description: "Add H3 between Getting started intro and tab group"
+      - id: "aio-5.1"
+        fix_type: structural
+        reason: "Consolidating near-duplicate tab content is a major restructure"
+        description: "Consolidate shared steps above tabs, use tabs only for unique content"
+      - id: "aio-6.1"
+        fix_type: guided-fix
+        reason: "Platform/language combinations need verification"
+        description: "Add supported platforms/languages summary table"
+      - id: "aio-1.2"
+        fix_type: guided-fix
+        reason: "Heading rename needs portal UI label verification"
+        description: "Rename 'Application Insights Experiences' to more descriptive heading"
+      - id: "aio-2.1"
+        fix_type: guided-fix
+        reason: "Diagram description needs visual verification"
+        description: "Add descriptive prose to Logic model section"
+      - id: "aio-2.2"
+        fix_type: guided-fix
+        reason: "Common troubleshooting scenarios need team verification"
+        description: "Expand Troubleshooting stub with common scenarios"
+      - id: "aio-6.2"
+        fix_type: guided-fix
+        reason: "APPLIED — converted flat link list to table with one-sentence descriptions"
+        description: "Add descriptions to Other OpenTelemetry integrations links"
+
+  # =====================================================
+  # overview.md (fundamentals) (T0: 3.2)
+  # =====================================================
+  - article: "articles/azure-monitor/fundamentals/overview.md"
+    t0_score: 3.2
+    fixes_applied:
+      - id: "ov-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Added Azure Monitor Agent (AMA) mention to Onboarding section"
+      - id: "ov-5.1"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Added 'Azure Monitor provides' to Troubleshooting and diagnostics opening"
+      - id: "ov-5.2"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Changed 'Application Insights' to 'Azure Monitor's Application Insights' in Monitor your agents"
+      - id: "ov-5.3"
+        fix_type: auto-fix
+        dimension: chunk-autonomy
+        description: "Led Analyze and visualize section with 'Azure Monitor provides'"
+    fixes_deferred:
+      - id: "ov-1.1"
+        fix_type: guided-fix
+        reason: "APPLIED — split into ## Respond to issues (alerts/AIOps) and ## Autoscale; also separated AIOps features (resolves ov-3.3)"
+        description: "Split Respond to issues into alerts and Autoscale sections"
+      - id: "ov-3.1"
+        fix_type: guided-fix
+        reason: "APPLIED — converted to bullet list with disambiguation sentence (also resolves ov-6.2)"
+        description: "Disambiguate Azure Monitor workspaces vs Log Analytics workspaces"
+      - id: "ov-3.2"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed heading to 'Monitor your AI agents'"
+        description: "Disambiguate 'agent' — observability agent vs AI agent monitoring"
+      - id: "ov-3.3"
+        fix_type: guided-fix
+        reason: "Product naming needs confirmation"
+        description: "Separate AIOps, dynamic thresholds, smart detection"
+      - id: "ov-6.2"
+        fix_type: guided-fix
+        reason: "Table structure needs confirmation"
+        description: "Convert workspace types prose to comparison table"
+
+  # =====================================================
+  # diagnostic-settings.md (T0: 3.2)
+  # =====================================================
+  - article: "articles/azure-monitor/platform/diagnostic-settings.md"
+    t0_score: 3.2
+    fixes_applied:
+      - id: "ds-2.1"
+        fix_type: auto-fix
+        dimension: context-completeness
+        description: "Added standalone context to Metrics limitations opening"
+      - id: "ds-4.1"
+        fix_type: auto-fix
+        dimension: entity-normalization
+        description: "Replaced deprecated 'diagnostic logs' with 'resource logs'"
+    fixes_deferred:
+      - id: "ds-3.1"
+        fix_type: guided-fix
+        reason: "APPLIED — replaced ambiguous bold 'Metrics' with explicit 'Azure Monitor collects platform metrics automatically'"
+        description: "Disambiguate 'Metrics' (pipeline vs data type vs category value)"
+      - id: "ds-1.1"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed to 'Expected latency after creating a diagnostic setting'"
+        description: "Rename 'Time before data gets to destinations' to include 'latency'"
+      - id: "ds-1.2"
+        fix_type: guided-fix
+        reason: "APPLIED — renamed to 'Diagnostic settings for Application Insights'"
+        description: "Rename 'Application Insights' to 'Diagnostic settings for Application Insights'"
+      - id: "ds-2.2"
+        fix_type: guided-fix
+        reason: "APPLIED — rewrote opener to anchor to diagnostic settings"
+        description: "Anchor 'Controlling costs' to diagnostic settings"
+      - id: "ds-4.2"
+        fix_type: guided-fix
+        reason: "Template naming convention needs broader docset check"
+        description: "Standardize Resource Manager template naming"
+      - id: "ds-5.1"
+        fix_type: structural
+        reason: "APPLIED — added summary paragraph with universal constraints before the destinations table"
+        description: "Add summary paragraph before destinations table"
+      - id: "ds-5.2"
+        fix_type: guided-fix
+        reason: "Code sample comments need accuracy verification"
+        description: "Add self-identifying comments to tab code samples"
+      - id: "ds-6.1"
+        fix_type: guided-fix
+        reason: "Cost reduction strategies need freshness verification"
+        description: "Convert cost-control prose to scannable bulleted list"
+
+# Summary
+summary:
+  total_fixes_in_gap_analysis: 99  # H+M only (excluding 26 low)
+  fixes_applied: 55
+  fixes_deferred: 24
+  fixes_addressed_by_other: 4  # otel-4.2, ag-3.1, ov-3.3, ov-6.2
+  fixes_applied_by_phase:
+    batch_auto_fixes: 34      # initial automated batch
+    interactive_structural: 5  # ama-2.1, ama-6.1, gsq-5.1, gsq-1.1, ds-5.1
+    interactive_guided: 16     # otel-5.2, otel-3.1, lat-6.1, lat-2.3, lat-3.1, lat-6.2, at-4.3, ama-5.1, ama-1.2, gsq-6.1, am-1.1, aio-6.2, ov-1.1, ov-3.1, ov-3.2, ds-3.1, ds-1.1, ds-1.2, ds-2.2
+  fixes_applied_by_dimension:
+    chunk_autonomy: 16
+    entity_normalization: 15
+    heading_hierarchy: 10
+    context_completeness: 9
+    structured_data_utilization: 7
+    disambiguation: 6
+  fixes_applied_by_type:
+    auto_fix: 34
+    structural: 11
+    guided_fix: 16
+  fixes_skipped_interactive:
+    # Structural skipped (7)
+    - {id: "otel-1.2", reason: "Risk of breaking cross-references and tab structure"}
+    - {id: "ag-2.3", reason: "Extracting from procedure steps — high risk"}
+    - {id: "ag-5.1", reason: "Extracting notification types table — careful restructuring needed"}
+    - {id: "ag-5.2", reason: "Same pattern as ag-5.1"}
+    - {id: "ag-1.2", reason: "Depends on ag-5.1 and ag-5.2"}
+    - {id: "at-1.1", reason: "Risks breaking portal deep-links and bookmark references"}
+    - {id: "aio-5.1", reason: "Major restructure — near-duplicate tab consolidation"}
+    # Guided skipped (17 — 4 others moved to fixes_addressed_by_other_fix)
+    - {id: "otel-4.1", reason: "Title/H1 split intentionally covers two search intents"}
+    - {id: "otel-5.1", reason: "Touches ~30 tab instances — large scope deferred"}
+    - {id: "otel-2.2", reason: "Overlaps with otel-5.1 — deferred together"}
+    - {id: "gsq-1.3", reason: "Article covers both KQL and Simple mode — KQL-only title would be inaccurate"}
+    - {id: "gsq-3.1", reason: "Section covers both modes — rename would be inaccurate"}
+    - {id: "ag-2.2", reason: "Rate limit values inline where contextually needed"}
+    - {id: "at-6.2", reason: "Rate limits already stated inline in each section"}
+    - {id: "am-2.2", reason: "Cannot verify resource provider list completeness"}
+    - {id: "aio-1.1", reason: "Risk of breaking tab rendering with inserted H3"}
+    - {id: "aio-6.1", reason: "Cannot verify all platform/language combinations"}
+    - {id: "aio-1.2", reason: "Heading rename needs portal UI label verification"}
+    - {id: "aio-2.1", reason: "Diagram description needs visual verification"}
+    - {id: "aio-2.2", reason: "Common troubleshooting scenarios need team verification"}
+    - {id: "ds-4.2", reason: "Template naming convention needs broader docset check"}
+    - {id: "ds-5.2", reason: "Code sample comments need accuracy verification"}
+    - {id: "ds-6.1", reason: "Cost reduction strategies need freshness verification"}
+  fixes_addressed_by_other_fix:
+    - {id: "otel-4.2", addressed_by: "already correct", note: "Intro defines 'Azure Monitor Application Insights', body uses 'Application Insights' — matches Learn naming pattern"}
+    - {id: "ag-3.1", addressed_by: "ag-5.3", note: "Webhook disambiguation NOTE added in batch edit"}
+    - {id: "ov-3.3", addressed_by: "ov-1.1", note: "AIOps/dynamic thresholds/smart detection separated when Respond to issues was split"}
+    - {id: "ov-6.2", addressed_by: "ov-3.1", note: "Workspace types converted to bullet list with disambiguation sentence"}
+
+# Re-evaluation plan
+re_evaluation:
+  wait_period: "3-5 business days after PR merge for Learn re-indexing"
+  method: "Re-run Content Retrievability agent on all 10 articles"
+  target_improvement: "+1 point average per article on weakest dimensions"
+  output_file: "azmon-eval-2026-05-post.yaml"

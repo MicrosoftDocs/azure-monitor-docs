@@ -37,11 +37,17 @@ After you configure a diagnostic setting, the time for each data source to becom
 
 ## Destinations
 
-Diagnostic settings send data to the destinations in the following table. To help ensure the security of data in transit, all destination endpoints are configured to support TLS 1.2.
+Azure Monitor diagnostic settings send platform logs and metrics to one or more destinations. The following constraints apply to all destination types:
 
-A single diagnostic setting can define no more than one of each destination. If you want to send data to more than one of a particular destination type (for example, two Log Analytics workspaces), create multiple settings. Each resource can have up to five diagnostic settings.
+- The destination resource must already exist before you create the diagnostic setting.
+- For regional resources, the destination must be in the same region as the monitored resource (applies to Storage accounts and Event Hubs).
+- When virtual networks are enabled, you must allow **trusted Microsoft services** to bypass the firewall for Storage accounts and Event Hubs.
+- A single diagnostic setting can define no more than one of each destination type. To send to multiple destinations of the same type (for example, two Log Analytics workspaces), create multiple settings.
+- Each resource can have up to five diagnostic settings.
 
-Any destinations that a diagnostic setting uses must exist before you can create the setting. The destination doesn't have to be in the same subscription as the resource that's sending logs if the user who configures the setting has appropriate Azure role-based access control (RBAC) access to both subscriptions. Use Azure Lighthouse to include destinations in another Microsoft Entra tenant.
+To help ensure the security of data in transit, all destination endpoints are configured to support TLS 1.2.
+
+The destination doesn't have to be in the same subscription as the resource that's sending logs if the user who configures the setting has appropriate Azure role-based access control (RBAC) access to both subscriptions. Use Azure Lighthouse to include destinations in another Microsoft Entra tenant.
 
 | Destination | Description | Requirements |
 |:------------|:------------|:-------------|
@@ -250,7 +256,7 @@ If you do use category groups in a diagnostic setting, you can't select individu
 
 ## Metrics limitations
 
-Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
+When you use Azure Monitor diagnostic settings to export platform metrics to a Log Analytics workspace, the following limitations apply. Not all metrics can be sent to a Log Analytics workspace with diagnostic settings. See the **Exportable** column in the [list of supported metrics](./metrics-supported.md).
 
 Diagnostic settings don't currently support multidimensional metrics. Metrics with dimensions are exported as flattened single-dimensional metrics and aggregated across dimension values. For example, the `IOReadBytes` metric on a blockchain can be explored and charted on a per-node level. When the metric is exported with diagnostic settings, it shows all read bytes for all nodes.
 
@@ -258,13 +264,13 @@ To work around the limitations for specific metrics, you can manually extract th
 
 ## Controlling costs
 
-You might incur costs for data that diagnostic settings collect. The cost depends on the destination that you choose and the volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
+Azure Monitor diagnostic settings can generate costs based on the destination and volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
 
-Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because **Metrics** already collects this data. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis by using log queries.
+Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because Azure Monitor collects platform metrics automatically and makes them available in metrics explorer. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis by using log queries.
 
 Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace by using transformations. For details, see [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
 
-## Time before data gets to destinations
+## Expected latency after creating a diagnostic setting
 
 After you create a diagnostic setting, data should start flowing to your selected destinations within 90 minutes. When you're sending data to a Log Analytics workspace, the table is created automatically if it doesn't already exist. The table is created only when the destinations receive the first log records.
 
@@ -275,14 +281,14 @@ If you get no information within 24 hours, you might be experiencing one of the 
 
 Try disabling the configuration and then reenabling it. If the problem continues, contact Azure support through the Azure portal.
 
-## Application Insights
+## Diagnostic settings for Application Insights
 
 Consider the following information for diagnostic settings for Application Insights applications:
 
 * The destination can't be the same Log Analytics workspace that your Application Insights resource is based on.
 * The Application Insights user can't have access to both workspaces. Set the Log Analytics [access control mode](/azure/azure-monitor/logs/log-analytics-workspace-overview) to **Requires workspace permissions**. Through [Azure RBAC](/azure/azure-monitor/app/resources-roles-access-control), ensure that the user has access to only the Log Analytics workspace that the Application Insights resource is based on.
 
-These steps are necessary because Application Insights accesses data across resources to provide complete end-to-end transaction operations and accurate application maps. These resources include Log Analytics workspaces. Because diagnostic logs use the same table names, duplicate data can appear if the user has access to multiple resources that contain the same data.
+These steps are necessary because Application Insights accesses data across resources to provide complete end-to-end transaction operations and accurate application maps. These resources include Log Analytics workspaces. Because resource logs use the same table names, duplicate data can appear if the user has access to multiple resources that contain the same data.
 
 ## Troubleshooting
 

@@ -21,6 +21,8 @@ Each action is made up of:
 
 This article shows you how to create and manage action groups.
 
+## Overview
+
 ### Global availability and resilience
 
 Global requests from clients can be processed by action group services in any region. If one region of the action group service is down, the traffic is automatically routed and processed in other regions. As a global service, an action group helps provide a disaster recovery solution.
@@ -458,10 +460,12 @@ When you set up the Resource Manager role:
 
 ## SMS
 
+SMS notifications in Azure Monitor action groups support bi-directional communication. The SMS contains the short name of the action group and the title of the alert. Users can respond to an SMS to unsubscribe, resubscribe, or request help.
+
 You might have a limited number of SMS actions per action group.
 
 * For information about rate limits, see [Azure Monitor service limits](../service-limits.md).
-* For important information about using SMS notifications in action groups, see the table under step 9 in [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
+* For more details about SMS notification configuration, see [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
 
 > [!NOTE]
 > If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party SMS provider that offers support in your country/region.
@@ -592,6 +596,10 @@ For information about pricing for supported countries/regions, see [Azure Monito
 
 > [!NOTE]
 > If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit. The webhook endpoint must also be publicly accessible. You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI. If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the Logic Apps action to transform the alert schema to meet the target webhook's expectations.
+>
+> Action groups support two webhook types: **Webhook** for endpoints using basic auth via URI, and **Secure webhook** for endpoints protected by Microsoft Entra ID service principal authentication.
+
+### Webhook retry behavior
 
 Webhook action groups generally follow these rules when called:
 
