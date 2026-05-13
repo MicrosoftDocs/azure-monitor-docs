@@ -107,7 +107,7 @@ Yes, the agent can only access the Azure data of the resources in scope for inve
 
 This section addresses questions about the accuracy, security, and guardrails of the observability agent.
 
-### How do you prevent the model from hallucinating incorrect root causes?
+### How do you prevent the model from producing incorrect root causes?
 
 The agent follows Microsoft Responsible AI practices, including grounding responses in relevant telemetry data and applying system-level safeguards to reduce unsupported conclusions.
 
