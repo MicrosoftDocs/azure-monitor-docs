@@ -64,7 +64,7 @@ If you have an existing custom table to which you currently send data using the 
 
 To identify which tables use the Data Collector API, [view table properties](../logs/manage-logs-tables.md#view-table-properties). The **Type** property of tables that use the Data Collector API is set to **Custom table (classic)**. Tables that ingest data by using the legacy Log Analytics agent (MMA) also have the **Type** property set to **Custom table (classic)**. 
 
-> [WARNING]
+> [!WARNING]
 > Be sure to migrate from Log Analytics agent to Azure Monitor Agent before converting MMA tables. Otherwise, data stops ingesting into custom fields in these tables after the table conversion.
 
 ### Migration considerations
