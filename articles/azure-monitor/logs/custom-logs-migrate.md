@@ -115,7 +115,7 @@ Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
 
 # [REST API](#tab/rest-api)
 
-For more information about this API, see [Logs management](../../fundamentals/azure-monitor-rest-api-index.md#logs-management) Tables API for the migration operator group.
+For more information about this API and the latest version, see the [Logs management API](../../fundamentals/azure-monitor-rest-api-index.md#logs-management) section and select the Tables API for the migration operator group in the REST API docs.
 
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
 Authorization: Bearer {token}
