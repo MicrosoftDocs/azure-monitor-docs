@@ -35,7 +35,7 @@ Azure Network Security Perimeter is available in all Public cloud regions where 
 
 
 > [!NOTE]
-> These limitations also apply to Sentinel-enabled Log Analytics workspaces.
+> Sentinel doesn't support workspaces with the Network Security Perimeter enabled and these limitations also apply to Sentinel-enabled Log Analytics workspaces.
 
 ## Supported components
 The components of Azure Monitor that are supported with network security perimeters are listed in the following table with their minimum API version. See [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources) for a list of the other Azure services that are supported with network security perimeters.
