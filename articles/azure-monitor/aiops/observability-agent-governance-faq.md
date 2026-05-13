@@ -20,7 +20,7 @@ This article answers common governance, data privacy, compliance, and AI model q
 
 The following diagram shows how data flows through the observability agent, including data sources, processing, storage, and security controls.
 
-:::image type="content" source="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png" alt-text="Diagram that shows the observability agent data handling architecture, including data sources, Azure OpenAI, storage with 30-day retention, and security and privacy controls.":::
+:::image type="content" source="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png" alt-text="Diagram that shows the observability agent data handling architecture, including data sources, Azure OpenAI, storage with 30-day retention, and security and privacy controls." lightbox="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png":::
 
 ## Data and privacy
 
