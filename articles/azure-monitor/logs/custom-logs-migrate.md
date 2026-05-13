@@ -82,7 +82,7 @@ This table summarizes other considerations to keep in mind for each option:
 | **Post-migration** | If you continue to ingest data by using the HTTP Data Collector API with existing columns, don't change the schema.<br>Create new columns only if you ingest data by using the Logs ingestion API. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
 
 > [!WARNING]
-> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. If you still rely on the Data Collector API for ingestion, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
+> After you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column) if you're still ingesting through the legacy Data Collector API. This breaks ingestion. If you must continue ingesting with the Data Collector API, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
 
 ### Convert a table from V1 to V2
 
@@ -93,7 +93,7 @@ POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/
 ```
 This call is idempotent, so it has no effect if the table is already converted.    
 
-The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops working for the entire table. Another way to migrate an existing table to using data collection rules, but not necessarily the Logs ingestion API, is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
+The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Another way to migrate an existing table to using data collection rules, but not necessarily the Logs ingestion API, is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
