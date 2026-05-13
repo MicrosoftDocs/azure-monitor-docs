@@ -290,7 +290,7 @@ With this change:
 
 **Kubernetes versions earlier than 1.37**
 - Cluster-wide secrets access is still enabled for backward compatibility
-- Follow the steps [here](#configure-basic-authentication-for-kubernetes-135-and-earlier) to configure basic auth for ServiceMonitor and PodMonitor
+- Follow the steps [here](#configure-basic-authentication-for-kubernetes-136-and-earlier) to configure basic auth for ServiceMonitor and PodMonitor
 
 **Kubernetes version 1.37 and later**
 - Cluster-wide secrets access is removed
