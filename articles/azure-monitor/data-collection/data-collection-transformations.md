@@ -1,9 +1,9 @@
 ---
-title: Transformations Azure Monitor
-description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data.
+title: Transformations in Azure Monitor
+description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data, including multi-stage transformations with processors.
 ms.topic: concept-article
 ms.date: 05/13/2026
-ms.reviwer: nikeist
+ms.reviewer: nikeist
 ---
 
 # Transformations in Azure Monitor
@@ -20,7 +20,7 @@ The following tables in a Log Analytics workspace support transformations.
 
 * Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
 * Any custom table created for the Azure Monitor Agent.
-* Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md). See [Auxiliary logs transformations](#auxiliary-logs-transformations) for details.
+* Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
 
 ## Create a transformation
 
@@ -62,36 +62,92 @@ The data that's ingested into Azure Monitor is a combination of the pipeline tra
 
 :::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
 
-## Auxiliary logs transformations
+## Multi-stage transformations (preview)
 
 > [!IMPORTANT]
-> Auxiliary logs transformations are currently in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+> Multi-stage transformations are currently in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-You can use transformations to parse, filter, and split logs ingested into [Auxiliary-tier](../logs/data-platform-logs.md#table-plans) custom tables. Auxiliary logs transformations let you:
+Multi-stage transformations extend Azure Monitor's ingestion pipeline by allowing multiple, ordered transformations applied to telemetry at the client (on the virtual machine via Azure Monitor Agent) or during ingestion, before the data is stored in Log Analytics. Multi-stage transformations use a processor-based model defined in a new `transformations` section within a [data collection rule (DCR)](data-collection-rule-overview.md).
 
-- **Parse and filter custom logs** on ingestion into Auxiliary-tier tables to reduce stored data volume and cost.
-- **Direct standard logs** (for example, VM or resource logs) to custom Auxiliary-tier tables for low-cost retention.
-- **Split logs** between Analytics-tier and Auxiliary-tier tables by configuring multiple `dataFlows` in a DCR with KQL transformations that route data to different output streams.
+Multi-stage transformations require API version `2025-05-11` or later. During preview, DCRs with multi-stage transformations must be authored via REST API.
 
-### Prerequisites
+### Capabilities
 
-- A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
-- [Permissions to create and modify data collection rules](data-collection-rule-create-edit.md#permissions).
-- Logs already flowing into Analytics or Basic tier tables.
+Multi-stage transformations let you:
 
-### Configure auxiliary logs transformations
+- **Extract attributes** from raw data in common formats (CEF, JSON, XML) on the client.
+- **Rename and drop columns** on the client before data leaves the resource.
+- **Filter and aggregate logs** on the client to reduce data volume sent to Azure Monitor.
+- **Apply KQL transformations** at ingestion time.
+- **Combine client-side and ingestion-time transformations** in a single DCR.
+- **Apply multiple processors** to the same data stream in a defined order.
 
-You can configure transformations for Auxiliary logs in the following scenarios:
+### How it works
 
-- **API-based ingestion**: Configure a DCR with the Auxiliary table as the output stream.
-- **Azure Monitor Agent–collected logs**: Modify `dataFlows` in the DCR to redirect output to an Auxiliary table.
-- **Logs collected via diagnostic settings**: Modify the workspace's default DCR to route data to Auxiliary-tier tables.
+Data collection rules define a multi-stage processing pipeline with four stages:
 
-To create a custom table with the Auxiliary plan, see [Set up a table with the Auxiliary plan](../logs/create-custom-table-auxiliary.md).
+1. **Data collection** — Azure Monitor Agent collects data from the source.
+1. **Client-side processing** — Transformations run on the agent before data leaves the resource.
+1. **Ingestion-time processing** — Transformations run in Azure Monitor after data is received.
+1. **Data delivery** — Data is stored in the destination Log Analytics workspace table.
 
-### Split logs between Analytics and Auxiliary tiers
+Transformations are explicitly assigned to stages. Client-side transformations attach to data sources. Ingestion-time transformations attach to data flows.
 
-To split logs between tiers, implement multiple `dataFlows` for the same input stream in a DCR. Use KQL transformations to filter and route data into different output streams — for example, send high-value records to an Analytics-tier table and route verbose or low-priority records to an Auxiliary-tier table for low-cost retention.
+### Processors
+
+Each transformation is built from ordered, composable *processors*. A transformation begins with a **header processor** that establishes the schema, followed by one or more processing steps.
+
+#### Header processors
+
+Header processors define the output schema and depend on the data source type. Available headers include:
+
+| Header | Description |
+|--------|-------------|
+| `header.Syslog` | Syslog data sources |
+| `header.WindowsEvents` | Windows event log data sources |
+| `header.WindowsPerformanceCounters` | Windows performance counter data sources |
+| `header.LinuxPerformanceCounters` | Linux performance counter data sources |
+| `header.TextLog` | Custom text log data sources |
+| `header.IISLog` | IIS log data sources |
+| `header.WindowsFirewallLog` | Windows Firewall log data sources |
+| `header.StandardStream` | Standard stream (ingestion-time) |
+| `header.CustomStream` | Custom stream (ingestion-time) |
+
+#### Processing processors
+
+After the header, apply one or more processors to transform data:
+
+| Processor | Description | Stage |
+|-----------|-------------|-------|
+| `filter.Basic` | Filter records based on conditions | Client and ingestion |
+| `map.Rename` | Rename columns | Client and ingestion |
+| `map.Drop` | Drop columns | Client and ingestion |
+| `parse.JsonPath` | Extract fields from JSON data | Client and ingestion |
+| `parse.XmlPath` | Extract fields from XML data | Client and ingestion |
+| `parse.CEFAttribute` | Extract fields from CEF-formatted data | Client and ingestion |
+| `aggregate.Basic` | Aggregate records (changes output schema) | Client |
+| `enrich.DNSLookup` | Enrich records with DNS lookup data | Client |
+| `transform.KQL` | Apply a KQL transformation | Ingestion only |
+
+> [!NOTE]
+> Aggregation changes the output schema and requires routing aggregated data to a separate table from non-aggregated data.
+
+### DCR structure for multi-stage transformations
+
+Multi-stage DCRs introduce a `transformations` section alongside the existing `dataFlows` section. The `transformations` section contains named transformation objects, each with an ordered list of processors.
+
+- Client-side transformations are referenced from `dataSources` entries.
+- Ingestion-time transformations are referenced from `dataFlows` entries using the `transform` property (which replaces the `transformKql` property used in single-stage transformations).
+
+### Design approach
+
+When authoring a multi-stage DCR:
+
+1. Assess data sources and destinations.
+1. Identify aggregation needs (aggregation changes schema, requiring separate output tables).
+1. Plan differential processing paths if different records need different treatment.
+1. Author client-side transformations for filtering and parsing that reduces data volume before transmission.
+1. Define data flows per stream, applying ingestion-time transformations as needed.
 
 ## Cost for transformations
 
