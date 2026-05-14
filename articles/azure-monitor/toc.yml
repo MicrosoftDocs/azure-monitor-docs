@@ -1518,6 +1518,9 @@ items:
     - name: Responsible use
       displayName: Azure Copilot observability agent
       href: aiops/observability-agent-responsible-use.md
+    - name: Governance FAQ
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-governance-faq.md
   - name: Issues and investigations
     items:
     - name: Issues overview

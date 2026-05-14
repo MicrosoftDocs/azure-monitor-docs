@@ -146,8 +146,8 @@ You must also add the required annotations on your workload pod spec. The follow
 | `fluentbit.io/exclude: "true"` | Excludes both stdout & stderr streams on all the containers in the Pod |
 | `fluentbit.io/exclude_stdout: "true"` | Excludes only stdout stream on all the containers in the Pod |
 | `fluentbit.io/exclude_stderr: "true"` | Excludes only stderr stream on all the containers in the Pod |
-| `fluentbit.io/exclude_container1: "true"` | Exclude both stdout & stderr streams only for the container1 in the pod |
-| `fluentbit.io/exclude_stdout_container1: "true"` | Exclude only stdout only for the container1 in the pod |
+| `fluentbit.io/exclude-container1: "true"` | Exclude both stdout & stderr streams only for the container1 in the pod |
+| `fluentbit.io/exclude_stdout-container1: "true"` | Exclude only stdout only for the container1 in the pod |
 
 >[!NOTE]
 >These annotations are fluent bit based. If you use your own fluent-bit based log collection solution with the Kubernetes plugin filter and annotation based exclusion, it will stop collecting logs from both Container Insights and your solution.

@@ -2,7 +2,7 @@
 title: Azure Service Health Portal
 description: The Azure Service Health portal experience lets users engage with service events and manage actions to maintain the business continuity of affected applications.
 ms.topic: overview
-ms.date: 03/25/2026
+ms.date: 05/12/2026
 ---
 
 # Azure Service Health portal
@@ -27,9 +27,9 @@ The [Service Health portal](https://portal.azure.com/#view/Microsoft_Azure_Healt
 ### The retention of Service Health events
 Azure Service Health retains all event types in the Health History section of the portal for up to 90 days after they become inactive. These events are archived in the Health History once they're resolved or inactive. You can filter and review them by type, date, and effect.
 > [!NOTE]
-> The Service issue remains in the portal for 90 days, whether it's active or resolved. It appears in the Active tab while its status is active, and is also added to the History tab after three days. Once resolved, the issue is no longer available in the Active tab and stays in the History tab for the remainder of the 90‑day period.
+> The Service issue remains in the portal for 90 days, whether it's active or resolved. It appears in the Active tab while its status is active, and is also added to the History tab after three days. 
 >
-> Issues older than 90 days aren't shown, but are stored for a year and can be accessed via an API query.
+> Issues older than 90 days aren't shown, but are stored for a year and can be accessed via REST API. For more information, see [Service Health REST API](/rest/api/resourcehealth/events/).
 
 - **Alerts**: Service Health alerts (for example, via email, webhook, Logic Apps) aren't subject to the 90-day limit because they're tied to the alerting infrastructure.
 - **Resource Health**: Resource Health events, like when a virtual machine (VM) goes offline aren’t part of Service Health. They’re saved for 90 days and viewed in a different section of the Azure portal.
