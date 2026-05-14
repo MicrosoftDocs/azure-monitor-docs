@@ -15,10 +15,6 @@ The [HTTP Data Collector API](../logs/data-collector-api.md) is deprecated and s
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
-
-> [!NOTE]
-> Microsoft MVP, [Morten Waltorp Knudsen](https://mortenknudsen.net/), contributed to this article. For an example of automating the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
-
 ## Advantages of the Logs ingestion API
 
 The Logs ingestion API provides the following advantages over the Data Collector API:
@@ -161,3 +157,5 @@ Options when the source data schema changes:
 
 * [Tutorial: Send custom logs using the Azure portal](tutorial-logs-ingestion-portal.md)
 * [Tutorial: Send custom logs using Resource Manager templates and REST API](tutorial-logs-ingestion-api.md)
+
+Microsoft MVP [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to this article. For an example of automating the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
