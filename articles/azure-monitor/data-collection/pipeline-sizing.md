@@ -113,8 +113,6 @@ The baselines in this article are measured under controlled conditions. The foll
 - **Variable payloads.** The baselines use ~1.2 KB messages. Real-world traffic with variable message sizes and formats might affect parsing throughput.
 - **Additional KQL transformations.** The baselines already include the cost of syslog/CEF parsing. Adding extra KQL transformations before export adds further processing overhead per message.
 - **External ingress (gateway).** Sending traffic through a gateway like Traefik adds network hops and potential TLS termination overhead compared to in-cluster delivery.
-- **UDP transport.** Baselines for UDP aren't yet available.
-- **OTLP (gRPC).** Baselines for OTLP aren't yet available.
 
 ## Test setup
 
