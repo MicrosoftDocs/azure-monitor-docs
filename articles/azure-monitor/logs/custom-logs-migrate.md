@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is deprecated. Support for the legacy Data Collector API ends **September 14, 2026**. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md), which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
+The [HTTP Data Collector API](../logs/data-collector-api.md) is on a deprecation path. Support for the legacy Data Collector API ends **September 14, 2026**. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md), which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
