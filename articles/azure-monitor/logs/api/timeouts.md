@@ -26,15 +26,53 @@ If a query takes longer than the specified timeout (or default timeout, if unspe
 
 For example, the following request allows a maximum server timeout age of 30 seconds:
 
+# [REST API](#tab/rest-api)
+
+```rest
+POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
+Authorization: Bearer {token}
+Prefer: wait=30
+
+{
+    "query" : "Heartbeat | count"
+}
 ```
-    POST https://api.loganalytics.azure.com/v1/workspaces/{workspace-id}/query
-    Authorization: Bearer <access token>
-    Prefer: wait=30
-    
-    {
-        "query" : "Heartbeat | count"
-    }
+
+# [Azure CLI](#tab/azure-cli)
+
+Use `az rest` with `--headers` to pass the `Prefer: wait=30` timeout header directly to the Logs query API.
+
+```azurecli
+workspaceId="myWorkspaceId"
+logAnalyticsEndpoint="https://api.loganalytics.azure.com"
+
+az rest --method post \
+  --url "$logAnalyticsEndpoint/v1/workspaces/$workspaceId/query" \
+  --headers "Prefer=wait=30" "Content-Type=application/json" \
+  --body '{"query": "Heartbeat | count"}'
 ```
+
+> [!NOTE]
+> The dedicated `az monitor log-analytics query` command doesn't support custom timeout headers. Use `az rest` when you need to set the `Prefer: wait=` value.
+
+# [PowerShell](#tab/powershell)
+
+```azurepowershell
+$workspaceId = 'myWorkspaceId'
+
+$queryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = 'Heartbeat | count'
+    Wait        = 30
+}
+
+$results = Invoke-AzOperationalInsightsQuery @queryParams
+$results.Results
+```
+
+The `-Wait` parameter sets the upper bound, in seconds, for the server to process the query. See [`Invoke-AzOperationalInsightsQuery`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery).
+
+---
 
 ## Common API errors
 
