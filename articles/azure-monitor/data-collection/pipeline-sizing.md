@@ -69,8 +69,8 @@ Adding replicas scales throughput linearly. These values are measured on 4-core 
 | Pipeline type | 1 replica | 2 replicas | 4 replicas | 8 replicas |
 |:---|:---|:---|:---|:---|
 | Syslog Basic | ~100,000/sec | ~200,000/sec | ~400,000/sec | ~800,000/sec |
-| Syslog Fully Formed | ~70,000/sec | ~140,000/sec | ~280,000/sec | |
-| CEF Fully Formed | ~35,000/sec | ~70,000/sec | ~140,000/sec | |
+| Syslog Fully Formed | ~70,000/sec | ~140,000/sec | ~280,000/sec | ~560,000/sec |
+| CEF Fully Formed | ~35,000/sec | ~70,000/sec | ~140,000/sec | ~280,000/sec |
 
 > [!IMPORTANT]
 > Run each pipeline replica on its own node. Co-locating replicas on the same node causes CPU contention and affects throughput.
