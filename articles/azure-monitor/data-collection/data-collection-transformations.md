@@ -2,7 +2,7 @@
 title: Transformations Azure Monitor
 description: Use transformations in a data collection rule in Azure Monitor to filter and modify incoming data.
 ms.topic: concept-article
-ms.date: 01/20/2026
+ms.date: 05/13/2026
 ms.reviwer: nikeist
 ---
 
@@ -20,6 +20,7 @@ The following tables in a Log Analytics workspace support transformations.
 
 * Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
 * Any custom table created for the Azure Monitor Agent.
+* Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md). See [Auxiliary logs transformations](#auxiliary-logs-transformations) for details.
 
 ## Create a transformation
 
@@ -60,6 +61,37 @@ The following table summarizes the key differences between Azure Monitor pipelin
 The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network. The schema of the data output by the Azure Monitor transformation must match the schema of the destination table in the Log Analytics workspace.
 
 :::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
+
+## Auxiliary logs transformations
+
+> [!IMPORTANT]
+> Auxiliary logs transformations are currently in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+You can use transformations to parse, filter, and split logs ingested into [Auxiliary-tier](../logs/data-platform-logs.md#table-plans) custom tables. Auxiliary logs transformations let you:
+
+- **Parse and filter custom logs** on ingestion into Auxiliary-tier tables to reduce stored data volume and cost.
+- **Direct standard logs** (for example, VM or resource logs) to custom Auxiliary-tier tables for low-cost retention.
+- **Split logs** between Analytics-tier and Auxiliary-tier tables by configuring multiple `dataFlows` in a DCR with KQL transformations that route data to different output streams.
+
+### Prerequisites
+
+- A Log Analytics workspace where you have at least [contributor rights](../logs/manage-access.md#azure-rbac).
+- [Permissions to create and modify data collection rules](data-collection-rule-create-edit.md#permissions).
+- Logs already flowing into Analytics or Basic tier tables.
+
+### Configure auxiliary logs transformations
+
+You can configure transformations for Auxiliary logs in the following scenarios:
+
+- **API-based ingestion**: Configure a DCR with the Auxiliary table as the output stream.
+- **Azure Monitor Agent–collected logs**: Modify `dataFlows` in the DCR to redirect output to an Auxiliary table.
+- **Logs collected via diagnostic settings**: Modify the workspace's default DCR to route data to Auxiliary-tier tables.
+
+To create a custom table with the Auxiliary plan, see [Set up a table with the Auxiliary plan](../logs/create-custom-table-auxiliary.md).
+
+### Split logs between Analytics and Auxiliary tiers
+
+To split logs between tiers, implement multiple `dataFlows` for the same input stream in a DCR. Use KQL transformations to filter and route data into different output streams — for example, send high-value records to an Analytics-tier table and route verbose or low-priority records to an Auxiliary-tier table for low-cost retention.
 
 ## Cost for transformations
 
