@@ -1,9 +1,10 @@
 ---
-title: Timeouts of query executions
-description: Query execution times can vary widely based on the complexity of the query, the amount of data being analyzed, and the load on the system and workspace at the time of the query.
-ms.date: 08/12/2024
+title: Logs Query Timeouts and Errors
+description: Query execution times can vary widely based on the complexity of the query, the amount of data being analyzed, and the load on the system and workspace at the time of the query. Learn how to set timeouts and troubleshoot common API errors.
+ms.date: 05/14/2026
 ms.topic: concept-article
 ---
+
 # Timeouts
 
 Query execution times can vary widely based on:
