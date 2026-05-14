@@ -88,6 +88,8 @@ Entry points include:
 
 Choose the tab that best matches your workload or hosting model. Each tab shows the recommended data-collection path for that scenario.
 
+### Set up data collection
+
 #### [Web apps](#tab/webapps)
 
 Use this path for server-side web apps that you instrument in code.

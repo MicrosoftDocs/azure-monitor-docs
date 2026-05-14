@@ -192,11 +192,12 @@ The following sample template creates a diagnostic setting to send all audit log
 
 ### [Bicep](#tab/bicep)
 
-The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope.
+The following sample template creates a diagnostic setting to send all audit logs to a Log Analytics workspace. The `apiVersion` value can change depending on the resource in the scope. For sample templates for other resources, see [Resource Manager template samples for diagnostic settings in Azure Monitor](./resource-manager-diagnostic-settings.md).
 
 **Template File**
 
 ```bicep
+// Azure Monitor diagnostic setting — send audit category logs to a Log Analytics workspace
 param scope string
 param workspaceId string
 param settingName string
@@ -220,13 +221,14 @@ resource diag 'Microsoft.Insights/diagnosticSettings@2021-05-01-preview' = {
 **Parameters File**
 
 ```bicep
+// Parameters for the diagnostic setting Bicep template
 using './<template-file-name>.bicep'
 
 param settingName = 'audit3'
 
 param workspaceId = '/subscriptions/<subscription id>/resourcegroups/<resourcegroup name>/providers/microsoft.operationalinsights/workspaces/<workspace name>'
 
-param scope = 'Microsoft.<resource type>/<resourceName>
+param scope = 'Microsoft.<resource type>/<resourceName>'
 ```
 
 ### [REST API](#tab/rest)
@@ -266,9 +268,11 @@ To work around the limitations for specific metrics, you can manually extract th
 
 Azure Monitor diagnostic settings can generate costs based on the destination and volume of collected data. For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/) or refer to the [Frequently Asked Questions section](./diagnostic-settings-faq.md).
 
-Collect only the categories that you need for each service. You might also not want to collect platform metrics from Azure resources, because Azure Monitor collects platform metrics automatically and makes them available in metrics explorer. Configure your diagnostic data to collect metrics only if you need metric data in the workspace for more complex analysis by using log queries.
+To control costs from diagnostic settings:
 
-Diagnostic settings don't allow granular filtering within a selected category. You can filter data for supported tables in a Log Analytics workspace by using transformations. For details, see [Transformations in Azure Monitor](../data-collection/data-collection-transformations.md).
+* Collect only the log categories that you need for each service.
+* Skip collecting platform metrics unless you need metric data in the workspace for complex analysis by using log queries. Azure Monitor collects platform metrics automatically and makes them available in metrics explorer without a diagnostic setting.
+* Use [transformations](../data-collection/data-collection-transformations.md) to filter data for supported tables in a Log Analytics workspace. Diagnostic settings don't allow granular filtering within a selected category.
 
 ## Expected latency after creating a diagnostic setting
 

@@ -230,25 +230,25 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
     Also, check the payload format (JSON) for [activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema), and for the [common alert schema](../alerts/alerts-common-schema.md).
  
-### **The search results are not included in the log search alert notifications.**
+## The search results are not included in the log search alert notifications
 
 As of log search alerts API version 2021-08-01, search results were removed from alert notification payload. 
 Search results are only available for alert rules created with older API versions (2018-04-16). Creation of new alert rules through the Azure portal will, by default, create the rule with the newer version.
 Follow [Changes to the log alert rule creation experience](./alerts-manage-alerts-previous-version.md#changes-to-the-log-search-alert-rule-creation-experience) to learn about the changes and recommended adjustments for using the updated version.
 
-### **The `MetricValue` field contains "null" for resolved log search alert notifications.**
+## The MetricValue field contains null for resolved log search alert notifications
 
 In Azure Monitor log search alerts, the MetricValue field contains 'null' for resolved notifications. This is by design. Stateful log search alerts use a [time-based resolution logic](./alerts-create-log-alert-rule.md#configure-alert-rule-details) rather than value-based. Azure Monitor is sending a null metric value since there's no value that caused the alert to resolve, but rather elapsed time.
 
-### The dimensions list is empty or alert title doesn't contain a dimension name
+## The dimensions list is empty or alert title doesn't contain a dimension name
 
 In Azure Monitor log search alerts, when a query doesn't return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
  
-### Information is missing in an activity log alert
+## Information is missing in an activity log alert
 
 [Activity log alerts](./alerts-types.md#activity-log-alerts) are alerts that are based on events written to the Azure activity log, such as events about creating, updating, or deleting Azure resources, service health and resource health events, or findings from Azure Advisor and Azure Policy. If you received an alert based on the activity log but some fields that you need are missing or incorrect, first check the events in the activity log itself. If the Azure resource didn't write the fields you're looking for in its activity log event, those fields aren't included in the corresponding alert. 
 
-### The custom properties are missing from email, SMS, or push notifications.
+## The custom properties are missing from email, SMS, or push notifications
 
 Custom properties are only passed to the payload for actions such as webhook, Azure Functions, or Azure Logic apps. Custom properties aren't included in notifications (email/SMS/push).
 

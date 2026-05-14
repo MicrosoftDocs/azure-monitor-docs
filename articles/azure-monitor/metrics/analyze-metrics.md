@@ -322,10 +322,10 @@ For more information, see [Create, view, and manage metric alerts](../alerts/ale
 In metrics explorer, the **Drill into Logs** feature helps you diagnose the root cause of anomalies in your metric chart. Drilling into logs allows you to correlate spikes in your metric chart to the following types of logs and queries:
 
 * **Activity log**: Provides insight into the operations on each Azure resource in the subscription from the outside (the management plane) and updates on Azure Service Health events. Use the activity log to determine the what, who, and when for any write operations (`PUT`, `POST`, or `DELETE`) taken on the resources in your subscription. There's a single activity log for each Azure subscription.
-* **Diagnostic log**: Provides insight into operations that you performed within an Azure resource (the data plane). Examples include getting a secret from a key vault or making a request to a database. The content of resource logs varies by the Azure service and resource type. You must enable logs for the resource.
+* **Resource logs**: Provides insight into operations that you performed within an Azure resource (the data plane). Examples include getting a secret from a key vault or making a request to a database. The content of resource logs varies by the Azure service and resource type. You must enable logs for the resource.
 * **Recommended log** Provides scenario-based queries that you can use to investigate anomalies in metrics explorer.
 
-Currently, **Drill into Logs** is available for select resource providers. Resource providers that offer the complete **Drill into Logs** experience include Azure Application Insights, Autoscale, Azure App Service, and Azure Storage.
+Currently, **Drill into Logs** is available for the following resource providers: Azure Application Insights, Autoscale, Azure App Service, and Azure Storage.
 
 1. To diagnose a spike in failed requests, select **Drill into Logs**.
 
