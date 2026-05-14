@@ -40,16 +40,20 @@ Prefer: wait=30
 
 # [Azure CLI](#tab/azure-cli)
 
+Use `az rest` with `--headers` to pass the `Prefer: wait=30` timeout header directly to the Logs query API.
+
 ```azurecli
 workspaceId="myWorkspaceId"
+logAnalyticsEndpoint="https://api.loganalytics.azure.com"
 
-az monitor log-analytics query \
-  --workspace "$workspaceId" \
-  --analytics-query "Heartbeat | count"
+az rest --method post \
+  --url "$logAnalyticsEndpoint/v1/workspaces/$workspaceId/query" \
+  --headers "Prefer=wait=30" "Content-Type=application/json" \
+  --body '{"query": "Heartbeat | count"}'
 ```
 
 > [!NOTE]
-> The `az monitor log-analytics query` command doesn't currently support setting a custom server-side timeout. Use REST or PowerShell if you need to adjust the timeout.
+> The dedicated `az monitor log-analytics query` command doesn't support custom timeout headers. Use `az rest` when you need to set the `Prefer: wait=` value.
 
 # [PowerShell](#tab/powershell)
 
