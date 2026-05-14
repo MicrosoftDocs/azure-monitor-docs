@@ -114,7 +114,7 @@ Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
 
 # [REST API](#tab/rest-api)
 
-For more information about this API and the latest version, see the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) section and select the Tables API for the migration operator group in the REST API docs.
+For more information about this API and the latest version, see the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) section and select the Tables API for the `migrate` operation group in the REST API docs.
 
 ```REST
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
@@ -124,7 +124,7 @@ Content-Type: application/json
 
 ---
 
-The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
+The `migrate` operation enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
