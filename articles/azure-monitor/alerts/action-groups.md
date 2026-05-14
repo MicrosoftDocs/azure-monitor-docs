@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
 
-Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
+Action groups define who get notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
 Each action is made up of:
 
@@ -124,7 +124,7 @@ An action group can contain one or more automated actions. The following table d
 1. Select **Review + create** to review your settings. This step quickly checks your inputs to make sure you entered all required information. If there are issues, they're reported here. After reviewing the settings, select **Create** to create the action group.
 
     > [!NOTE]
-    > When you configure an action to notify a person by email or SMS, they receive a confirmation that indicates they were added to the action group. For new email addresses, this will be in the form of an OTP email validation request, for validated email addresses a standard email notifying them of the additon to the action gropu will be sent. 
+    > When you configure an action to notify a person by email or SMS, they receive a confirmation indicating they were added to the action group. New email addresses receive a one-time passcode (OTP) validation request. Previously validated email addresses receive a standard notification email.
 
 ### Test an action group in the Azure portal
 
