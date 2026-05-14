@@ -1,5 +1,5 @@
 ---
-title: Migrate from the HTTP Data Collector API to the Logs ingestion API
+title: Migrate from the HTTP Data Collector API to the Logs Ingestion API
 description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.reviewer: ivankh
 ms.topic: how-to
