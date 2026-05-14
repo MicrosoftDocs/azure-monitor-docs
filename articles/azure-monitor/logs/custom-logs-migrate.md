@@ -1,22 +1,21 @@
 ---
 title: Migrate from the HTTP Data Collector API to the Logs ingestion API
-description: Migrate from the legacy Azure Monitor Data Collector API to the Logs ingestion API, which provides more processing power and greater flexibility.
+description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.reviewer: ivankh
-ms.topic: how-to 
+ms.topic: how-to
 ms.date: 05/13/2026
+ai-usage: ai-assisted
+#customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API deprecation.
 
 ---
 
-# Migrate from the HTTP Data Collector API to the Logs ingestion API to send data to Azure Monitor Logs
+# Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The Azure Monitor [Logs ingestion API](../logs/logs-ingestion-api-overview.md) provides more processing power and greater flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md) than the legacy [HTTP Data Collector API](../logs/data-collector-api.md). This article describes the differences between the Data Collector API and the Logs ingestion API and provides guidance and best practices for migrating to the new Logs ingestion API.  
-
-> [!IMPORTANT]
-> The HTTP Data Collector API will be deprecated in **September 2026**. To ensure uninterrupted data ingestion and to benefit from enhanced capabilities, migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md) before the deprecation date.
+The HTTP Data Collector API is deprecated and will be retired in **September 2026**, ceasing to function. The Azure Monitor [Logs ingestion API](../logs/logs-ingestion-api-overview.md) provides more processing power and greater flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md) than the legacy [HTTP Data Collector API](../logs/data-collector-api.md). This article describes the differences between the Data Collector API and the Logs ingestion API and provides guidance and best practices for migrating to the new Logs ingestion API.
 
 
 > [!NOTE]
-> As a Microsoft MVP, [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to and provided material feedback for this article. For an example of how you can automate the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
+> Microsoft MVP, [Morten Waltorp Knudsen](https://mortenknudsen.net/), contributed to this article. For an example of how you can automate the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
 
 ## Advantages of the Logs ingestion API
 
@@ -25,7 +24,7 @@ The Logs ingestion API provides the following advantages over the Data Collector
 * Supports [transformations](../data-collection/data-collection-transformations.md), which enable you to modify the data before it's ingested into the destination table, including filtering and data manipulation.
 * Lets you send data to multiple destinations.  
 * Enables you to manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
-* Supports role-based access controls (RBAC) to restrict data ingestion by data collection rule and identity.
+* Supports role-based access control (RBAC) to restrict data ingestion by data collection rule and identity.
 
 ## Prerequisites
 
@@ -37,13 +36,13 @@ The migration procedure described in this article requires:
 
 ## Permissions required
 
-The Logs Ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and DCR-scoped RBAC. Assign the app permissions to the DCR and use a DCE or the DCR logs ingestion endpoint for ingestion requests.
+The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and DCR-scoped RBAC. Assign the app permissions to the DCR and use a DCE or the DCR logs ingestion endpoint for ingestion requests.
 
 | Action | Permissions required |
 |:-------|:---------------------|
 | Create a data collection endpoint. | `Microsoft.Insights/dataCollectionEndpoints/write` permissions as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
 | Create or modify a data collection rule. | `Microsoft.Insights/DataCollectionRules/Write` permissions as provided by the [Monitoring Contributor built-in role](/azure/role-based-access-control/built-in-roles#monitoring-contributor), for example. |
-| Convert a table that uses the Data Collector API to data collection rules and the Logs ingestion API. | `Microsoft.OperationalInsights/workspaces/tables/migrate/action` permissions as provided by the [Log Analytics Contributor built-in role](./manage-access.md#log-analytics-contributor), for example. |
+| Convert a table that uses the Data Collector API to data collection rules and the Logs ingestion API. | `Microsoft.OperationalInsights/workspaces/tables/migrate/action` permissions as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example. |
 | Create new tables or modify table schemas. | `microsoft.operationalinsights/workspaces/tables/write` permissions as provided by the [Log Analytics Contributor built-in role](manage-access.md#log-analytics-contributor), for example. |
 | Call the Logs ingestion API. | See [Assign permissions to a DCR](tutorial-logs-ingestion-api.md#assign-permissions-to-a-dcr). |
 
@@ -53,8 +52,6 @@ The Logs ingestion API requires you to create two new types of resources, which 
 
 * [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), from which the data you collect is ingested into the pipeline for processing.
 * [Data collection rules](../data-collection/data-collection-rule-overview.md), which define [data transformations](../data-collection/data-collection-transformations.md) and the destination table to which the data is ingested.
-
-Microsoft Sentinel CCF (Codeless Connector Framework) connectors available via Content Hub use DCR/DCE with the Logs Ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API.
 
 ## Migrate existing custom tables or create new tables
 
@@ -73,7 +70,9 @@ To identify which tables use the Data Collector API, [view table properties](../
 
 ### Migration considerations
 
-[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF (Codeless Connector Framework) connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs Ingestion API. Migration can introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors might temporarily coexist during the transition period.
+Microsoft Sentinel CCF (Codeless Connector Framework) connectors available via Content Hub use DCR/DCE with the Logs ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API.
+
+[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs ingestion API. Migration can introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors might temporarily coexist during the transition period.
 
 When migrating Sentinel connectors, you must update dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
 
@@ -86,11 +85,11 @@ This table summarizes other considerations to keep in mind for each option:
 | **Post-migration** | If you continue to ingest data by using the HTTP Data Collector API with existing columns, don't change the schema.<br>Create new columns only if you ingest data by using the Logs ingestion API. | Data in the old table is available until the end of retention period.<br>When you first set up a new table or make schema changes, it can take 10-15 minutes for the data changes to start appearing in the destination table. |
 
 > [!WARNING]
-> If you're still ingesting through the legacy Data Collector API after you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column). Doing so breaks legacy ingestion. If you must continue ingesting with the Data Collector API, avoid making schema changes until you fully migrate to the [Logs Ingestion API](logs-ingestion-api-overview.md).
+> If you're still ingesting through the legacy Data Collector API after you migrate a table, don't use the [Tables API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) or the **Edit schema** option in the **Tables** UI to introduce schema changes (for example, adding a new column). Doing so breaks legacy ingestion. If you must continue ingesting with the Data Collector API, avoid making schema changes until you fully migrate to the [Logs ingestion API](logs-ingestion-api-overview.md).
 
 ### Convert a table from V1 to V2
 
-To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs Ingestion API (V2), run the migrate operation against the table. This call is idempotent, so it has no effect if the table is already converted.
+To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), run the migrate operation against the table. This call is idempotent, so it has no effect if the table is already converted.
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -123,7 +122,7 @@ For more information about this API and the latest version, see the [Logs manage
 
 ```REST
 POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
-Authorization: Bearer {token}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
@@ -133,11 +132,11 @@ The API call enables all DCR-based custom logs features on the table. If the Dat
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
-> -  `_ResourceId`, `id`, `_ResourceId`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
+> - `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
 > - Custom columns you add to an Azure table must have the suffix `_CF`.
 > - If you update the table schema in your Log Analytics workspace, you must also update the input stream definition in the data collection rule to ingest data into new or modified columns.
 
-## Reduce send data per call
+## Reduce data size per call
 
 The Logs ingestion API lets you send up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, you can send multiple calls in parallel. This limit is different from the Data Collector API, which lets you send up to 32 MB of data per call.
 
@@ -158,5 +157,5 @@ Options for when the source data schema changes:
 
 ## Related content
 
-* [Walk through a tutorial sending custom logs using the Azure portal.](tutorial-logs-ingestion-portal.md)
-* [Walk through a tutorial sending custom logs using Resource Manager templates and REST API.](tutorial-logs-ingestion-api.md)
+* [Tutorial: Send custom logs using the Azure portal](tutorial-logs-ingestion-portal.md)
+* [Tutorial: Send custom logs using Resource Manager templates and REST API](tutorial-logs-ingestion-api.md)
