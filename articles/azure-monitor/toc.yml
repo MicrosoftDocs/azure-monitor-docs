@@ -1365,8 +1365,6 @@ items:
         href: logs/api/timeouts.md
       - name: Prefer headers
         href: logs/api/prefer-options.md
-      - name: Errors
-        href: logs/api/errors.md
       - name: Migrate from using batch and beta query APIs
         href: logs/api/migrate-batch-and-beta.md
 - name: Respond

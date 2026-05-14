@@ -35,7 +35,7 @@ After you receive a token, the process for calling the Log Analytics API is the 
 To quickly explore the API without using Microsoft Entra authentication, we provide a demonstration workspace with sample data. You can [authenticate by using an API key](./access-api.md#authenticate-with-a-demo-api-key).
 
 > [!NOTE]
-> When you use Microsoft Entra authentication, it might take up to 60 minutes for the Application Insights REST API to recognize new role-based access control permissions. While permissions are propagating, REST API calls might fail with [error code 403](./errors.md#insufficient-permissions).
+> When you use Microsoft Entra authentication, it might take up to 60 minutes for the Application Insights REST API to recognize new role-based access control permissions. While permissions are propagating, REST API calls might fail with [error code 403](./timeouts.md#insufficient-permissions).
 
 ## Log Analytics API query limits
 

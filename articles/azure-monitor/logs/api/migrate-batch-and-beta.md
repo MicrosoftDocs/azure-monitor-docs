@@ -10,9 +10,9 @@ ai-usage: ai-assisted
 
 ---
 
-# Migrate from Logs Query API batch operation and beta version
+# Migrate from the Logs query API batch operation and beta version
 
-The Azure Monitor Logs Query API is deprecating the `batch` query operation and the `beta` API version. Support for these features is available according to the following timelines:
+The Azure Monitor Logs query API is deprecating the `batch` query operation and the `beta` API version. Support for these features is available according to the following timelines:
 
 | Support cutoff date | Deprecation | Migration steps |
 |---|---|---|

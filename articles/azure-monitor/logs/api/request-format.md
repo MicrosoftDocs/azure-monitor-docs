@@ -39,7 +39,7 @@ Pass these parameters in the query string for `GET` requests or in the JSON body
 
 ## GET request format
 
-For `GET` requests, include request parameters in the query string. 
+For `GET` requests, include request parameters in the query string. For example, to count `AzureActivity` events by `Category`, use the following request:
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -133,6 +133,14 @@ POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
 Authorization: Bearer {token}
 Content-Type: application/json
 
+{
+  "query": "AzureActivity | summarize count() by Category"
+}
+```
+
+Payload file `query-payload.json`
+
+```json
 {
   "query": "AzureActivity | summarize count() by Category"
 }
