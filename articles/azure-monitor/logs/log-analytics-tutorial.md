@@ -1,4 +1,4 @@
----
+﻿---
 title: "Log Analytics Tutorial: Query and Analyze Log Data"
 description: Learn how to use Log Analytics in Azure Monitor to build and run KQL log queries, filter and analyze results, and create charts in the Azure portal.
 ms.topic: tutorial
