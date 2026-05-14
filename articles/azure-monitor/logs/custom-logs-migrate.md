@@ -90,12 +90,44 @@ This table summarizes other considerations to keep in mind for each option:
 
 ### Convert a table from V1 to V2
 
-To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), send this API call against the table:  
+To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs Ingestion API (V2), run the migrate operation against the table. This call is idempotent, so it has no effect if the table is already converted.
 
-```rest
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2021-12-01-preview
+# [Azure CLI](#tab/azure-cli)
+
+Use the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command:
+
+```azurecli
+az monitor log-analytics workspace table migrate \
+  --resource-group "myResourceGroup" \
+  --workspace-name "myWorkspace" \
+  --table-name "myTable_CL"
 ```
-This call is idempotent, so it has no effect if the table is already converted.    
+
+# [PowerShell](#tab/powershell)
+
+Use the [Invoke-AzOperationalInsightsMigrateTable](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet:
+
+```azurepowershell
+$migrateTableParams = @{
+    ResourceGroupName = 'myResourceGroup'
+    WorkspaceName     = 'myWorkspace'
+    TableName         = 'myTable_CL'
+}
+
+Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
+```
+
+# [REST API](#tab/rest-api)
+
+For more information about this API and the latest version, see the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) section and select the Tables API for the migration operator group in the REST API docs.
+
+```REST
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
+Authorization: Bearer {token}
+Content-Type: application/json
+```
+
+---
 
 The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Another way to migrate an existing table to using data collection rules, but not necessarily the Logs ingestion API, is applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
 
