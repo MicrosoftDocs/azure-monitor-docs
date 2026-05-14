@@ -48,7 +48,7 @@ The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for 
 
 The Logs ingestion API requires you to create two new types of resources, which the HTTP Data Collector API doesn't require: 
 
-* [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), which ingest the data you collect into the pipeline for processing.
+* [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), which ingest the data you collect into the pipeline for processing. Optionally use the [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for direct ingestion without needing to create a separate DCE.
 * [Data collection rules](../data-collection/data-collection-rule-overview.md), which define [data transformations](../data-collection/data-collection-transformations.md) and the destination table that receives your ingested data.
 
 ## Migrate existing custom tables or create new tables
@@ -68,11 +68,9 @@ To identify which tables use the Data Collector API, [view table properties](../
 
 ### Migration considerations
 
-Microsoft Sentinel CCF (Codeless Connector Framework) connectors available via Content Hub use DCR/DCE with the Logs ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API.
+[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) to Codeless Connector Framework (CCF) connectors available via Content Hub. These CCF connectors use DCRs with the Logs ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API. Migration might introduce new or updated table names and schemas. Old Azure Functions–based connectors that use the legacy HTTP Data Collector API and new CCF connectors might temporarily coexist during the transition period. 
 
-[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) from the legacy HTTP Data Collector API (often Azure Functions–based) to CCF connectors available via Content Hub. These CCF connectors use DCR/DCE with the Logs ingestion API. Migration might introduce new or updated table names and schemas. Old Azure Functions–based connectors and new CCF connectors might temporarily coexist during the transition period.
-
-When migrating Sentinel connectors, you must update dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) to reference any new CCF-backed tables or changed schemas. Verify and update Kusto Query Language (KQL) queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
+When migrating Sentinel connectors, you must update dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
 
 This table summarizes considerations for each option:
 
@@ -126,7 +124,7 @@ Content-Type: application/json
 
 ---
 
-The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. You can also migrate an existing table to data collection rules — without necessarily using the Logs ingestion API — by applying a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to the table.
+The API call enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
 
 > [!IMPORTANT]
 > - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
@@ -155,7 +153,7 @@ Options when the source data schema changes:
 
 ## Related content
 
+Microsoft MVP [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to this article. For an example of automating the setup and ongoing use of the Logs ingestion API, see his [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
+
 * [Tutorial: Send custom logs using the Azure portal](tutorial-logs-ingestion-portal.md)
 * [Tutorial: Send custom logs using Resource Manager templates and REST API](tutorial-logs-ingestion-api.md)
-
-Microsoft MVP [Morten Waltorp Knudsen](https://mortenknudsen.net/) contributed to this article. For an example of automating the setup and ongoing use of the Logs ingestion API, see Morten's publicly available [AzLogDcrIngestPS PowerShell module](https://github.com/KnudsenMorten/AzLogDcrIngestPS).
