@@ -280,6 +280,14 @@
   href: ../amsstreamingendpointrequests.md
 - name: AMWMetricsUsageDetails
   href: ../amwmetricsusagedetails.md
+- name: ANFTopClientReadIOPS
+  href: ../anftopclientreadiops.md
+- name: ANFTopClientWriteIOPS
+  href: ../anftopclientwriteiops.md
+- name: ANFTopFileReadIOPS
+  href: ../anftopfilereadiops.md
+- name: ANFTopFileWriteIOPS
+  href: ../anftopfilewriteiops.md
 - name: Anomalies
   href: ../anomalies.md
 - name: AOIDatabaseQuery
@@ -368,6 +376,8 @@
   href: ../ascauditlogs.md
 - name: ASCDeviceEvents
   href: ../ascdeviceevents.md
+- name: ASimAgentEventLogs
+  href: ../asimagenteventlogs.md
 - name: ASimAlertEventLogs
   href: ../asimalerteventlogs.md
 - name: ASimAssetEntityLogs
@@ -528,6 +538,24 @@
   href: ../azuremetricsv2.md
 - name: AzureMonitorPipelineLogErrors
   href: ../azuremonitorpipelinelogerrors.md
+- name: AzureSQLAutomaticTuning
+  href: ../azuresqlautomatictuning.md
+- name: AzureSQLBlocks
+  href: ../azuresqlblocks.md
+- name: AzureSQLDatabaseWaitStatistics
+  href: ../azuresqldatabasewaitstatistics.md
+- name: AzureSQLDeadlocks
+  href: ../azuresqldeadlocks.md
+- name: AzureSQLErrors
+  href: ../azuresqlerrors.md
+- name: AzureSQLQueryStoreRuntimeStatistics
+  href: ../azuresqlquerystoreruntimestatistics.md
+- name: AzureSQLQueryStoreWaitStatistics
+  href: ../azuresqlquerystorewaitstatistics.md
+- name: AzureSQLResourceUsageStats
+  href: ../azuresqlresourceusagestats.md
+- name: AzureSQLTimeouts
+  href: ../azuresqltimeouts.md
 - name: BehaviorAnalytics
   href: ../behavioranalytics.md
 - name: BehaviorEntities
@@ -574,6 +602,8 @@
   href: ../cloudappevents.md
 - name: CloudAuditEvents
   href: ../cloudauditevents.md
+- name: CloudDnsEvents
+  href: ../clouddnsevents.md
 - name: CloudHsmServiceOperationAuditLogs
   href: ../cloudhsmserviceoperationauditlogs.md
 - name: CloudProcessEvents
@@ -794,6 +824,8 @@
   href: ../devicetvmsoftwarevulnerabilities.md
 - name: DeviceTvmSoftwareVulnerabilitiesKB
   href: ../devicetvmsoftwarevulnerabilitieskb.md
+- name: DisruptionAndResponseEvents
+  href: ../disruptionandresponseevents.md
 - name: DnsAuditEvents
   href: ../dnsauditevents.md
 - name: DNSQueryLogs
