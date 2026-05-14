@@ -120,10 +120,6 @@
   href: microsoft-dbforpostgresql-flexibleservers-metrics.md
 - name: Microsoft.DBForPostgreSQL/serverGroupsv2
   href: microsoft-dbforpostgresql-servergroupsv2-metrics.md
-- name: Microsoft.DBforPostgreSQL/servers
-  href: microsoft-dbforpostgresql-servers-metrics.md
-- name: Microsoft.DBforPostgreSQL/serversv2
-  href: microsoft-dbforpostgresql-serversv2-metrics.md
 - name: Microsoft.DevCenter/devcenters
   href: microsoft-devcenter-devcenters-metrics.md
 - name: microsoft.deviceregistry/namespaces
@@ -190,6 +186,8 @@
   href: microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-metrics.md
 - name: Microsoft.HealthModel/healthmodels
   href: microsoft-healthmodel-healthmodels-metrics.md
+- name: Microsoft.HorizonDB/clusters
+  href: microsoft-horizondb-clusters-metrics.md
 - name: Microsoft.HybridContainerService/provisionedClusters
   href: microsoft-hybridcontainerservice-provisionedclusters-metrics.md
 - name: microsoft.hybridnetwork/networkfunctions
