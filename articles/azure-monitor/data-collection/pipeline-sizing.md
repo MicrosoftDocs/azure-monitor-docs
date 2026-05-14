@@ -3,7 +3,7 @@ title: Azure Monitor pipeline performance and sizing
 description: Learn how to size Azure Monitor pipeline for your throughput requirements, including measured baselines across node sizes, scaling strategies, and capacity planning examples.
 ai-usage: ai-assisted
 ms.topic: best-practice
-ms.date: 05/01/2026
+ms.date: 05/14/2026
 ms.custom: references_regions
 
 #customer intent: As a cloud architect or operations engineer, I want to understand Azure Monitor pipeline throughput and how to size a deployment so that I can allocate the right cluster resources for my expected log volume.
@@ -11,7 +11,7 @@ ms.custom: references_regions
 
 # Azure Monitor pipeline performance and sizing
 
-Azure Monitor pipeline delivers high-throughput log ingestion on minimal infrastructure. A single pipeline replica on a commodity 8-core node sustains **~200,000 syslog messages per second end-to-end into Log Analytics** — roughly **17 billion events per day** — while consuming only **~2.6 GB of working-set memory**. Throughput scales linearly with CPU cores and replicas, so capacity planning reduces to picking a per-vCPU rate and a replica count. Scale vertically with larger nodes, horizontally with more replicas, or both. When overloaded, the pipeline backpressures senders rather than dropping data.
+Azure Monitor pipeline delivers high-throughput log ingestion on minimal infrastructure. A single pipeline replica on a commodity 8-core node sustains **~200,000 syslog messages per second end-to-end into Log Analytics** — roughly **17 billion events per day** — while consuming only **~2.8 GB of working-set memory**. Throughput scales linearly with CPU cores and replicas, so capacity planning reduces to picking a per-vCPU rate and a replica count. Scale vertically with larger nodes, horizontally with more replicas, or both. When overloaded, the pipeline backpressures senders rather than dropping data.
 
 > [!NOTE]
 > The performance data in this article was collected using pipeline version [v0.159](./pipeline-extension-versions.md#version-v01580---mar-2026-preview) in May 2026 with TCP transport, ~1.2 KB payloads, and TLS disabled. Your results might vary based on payload size, TLS configuration, network latency, and cluster workload.
@@ -34,18 +34,15 @@ All values are from a single replica under sustained full load, measured end-to-
 
 | vCPUs | Example node | Syslog Basic | Syslog Fully Formed | CEF Fully Formed |
 |:---|:---|:---|:---|:---|
-| 2 | `Standard_D2as_v6` | ~50,000/sec | ~24,000/sec | ~11,000/sec |
-| 4 | `Standard_D4as_v6` | ~100,000/sec | ~43,000/sec | ~21,000/sec |
-| 8 | `Standard_D8as_v6` | ~200,000/sec | ~87,000/sec | ~49,000/sec |
-| 16 | `Standard_D16as_v6` | ~400,000/sec | | |
+| 2 | `Standard_D2as_v6` | ~50,000/sec | ~35,000/sec | ~17,000/sec |
+| 4 | `Standard_D4as_v6` | ~100,000/sec | ~70,000/sec | ~35,000/sec |
+| 8 | `Standard_D8as_v6` | ~200,000/sec | ~150,000/sec | ~65,000/sec |
+| 16 | `Standard_D16as_v6` | ~400,000/sec | ~300,000/sec | ~130,000/sec |
 
 The pipeline automatically uses all available CPU cores. No configuration changes are needed when you move to a larger node.
 
 > [!IMPORTANT]
 > Ensure senders open **at least as many concurrent TCP connections as there are CPU cores** on the pipeline node. The pipeline distributes incoming traffic across cores by source connection, so too few connections leave cores idle. More connections improve distribution.
-
-> [!NOTE]
-> Syslog Fully Formed and CEF Fully Formed values are from an earlier test methodology and might understate saturated throughput. Updated numbers using the same multi-load-generator methodology applied to Syslog Basic are pending.
 
 ## Capacity planning
 
@@ -56,8 +53,8 @@ Throughput and memory scale linearly with CPU cores. The per-vCPU rates are cons
 | Pipeline type | Per-vCPU throughput | Per-vCPU memory (at saturation) |
 |:---|:---|:---|
 | Syslog Basic | ~25,000 logs/sec | ~330 MB |
-| Syslog Fully Formed | ~11,000 logs/sec | ~100 MB |
-| CEF Fully Formed | ~5,500 logs/sec | ~65 MB |
+| Syslog Fully Formed | ~18,000 logs/sec | ~350 MB |
+| CEF Fully Formed | ~8,000 logs/sec | ~300 MB |
 
 At idle (no traffic), a pipeline replica uses approximately **150 MB** regardless of node size.
 
@@ -72,8 +69,8 @@ Adding replicas scales throughput linearly. These values are measured on 4-core 
 | Pipeline type | 1 replica | 2 replicas | 4 replicas | 8 replicas |
 |:---|:---|:---|:---|:---|
 | Syslog Basic | ~100,000/sec | ~200,000/sec | ~400,000/sec | ~800,000/sec |
-| Syslog Fully Formed | ~43,000/sec | ~100,000/sec | ~170,000/sec | |
-| CEF Fully Formed | ~21,000/sec | ~48,000/sec | ~90,000/sec | |
+| Syslog Fully Formed | ~70,000/sec | ~140,000/sec | ~280,000/sec | |
+| CEF Fully Formed | ~35,000/sec | ~70,000/sec | ~140,000/sec | |
 
 > [!IMPORTANT]
 > Run each pipeline replica on its own node. Co-locating replicas on the same node causes CPU contention and affects throughput.
@@ -82,7 +79,7 @@ Adding replicas scales throughput linearly. These values are measured on 4-core 
 
 To calculate the resources you need:
 
-1. Identify your pipeline type — the per-vCPU rate varies significantly (Syslog Basic is ~5x faster than CEF Fully Formed due to schematization cost). Look up the rate from the [baselines table](#per-vcpu-baselines).
+1. Identify your pipeline type — the per-vCPU rate varies significantly (Syslog Basic is ~3x faster than CEF Fully Formed due to schematization cost). Look up the rate from the [baselines table](#per-vcpu-baselines).
 1. Divide your peak logs/sec by the per-vCPU rate.
 1. Add 30% headroom and round up to get total vCPUs.
 1. Distribute those vCPUs across replicas (one per node).
@@ -99,8 +96,8 @@ To calculate the resources you need:
 | Pipeline type | Peak target | vCPUs needed (with 30% headroom) | Example deployment |
 |:---|:---|:---|:---|
 | Syslog Basic | 400,000/sec | 21 | 6 replicas on 4-core nodes or 3 replicas on 8-core nodes |
-| Syslog Fully Formed | 200,000/sec | 24 | 6 replicas on 4-core nodes or 3 replicas on 8-core nodes |
-| CEF Fully Formed | 100,000/sec | 24 | 6 replicas on 4-core nodes or 3 replicas on 8-core nodes |
+| Syslog Fully Formed | 200,000/sec | 15 | 4 replicas on 4-core nodes or 2 replicas on 8-core nodes |
+| CEF Fully Formed | 100,000/sec | 17 | 5 replicas on 4-core nodes or 3 replicas on 8-core nodes |
 
 ## Overload behavior
 
@@ -116,15 +113,15 @@ The baselines in this article are measured under controlled conditions. The foll
 - **Variable payloads.** The baselines use ~1.2 KB messages. Real-world traffic with variable message sizes and formats might affect parsing throughput.
 - **Additional KQL transformations.** The baselines already include the cost of syslog/CEF parsing. Adding extra KQL transformations before export adds further processing overhead per message.
 - **External ingress (gateway).** Sending traffic through a gateway like Traefik adds network hops and potential TLS termination overhead compared to in-cluster delivery.
-- **UDP transport.** Baselines for UDP are coming soon.
-- **OTLP (gRPC).** Baselines for OTLP are coming soon.
+- **UDP transport.** Baselines for UDP aren't yet available.
+- **OTLP (gRPC).** Baselines for OTLP aren't yet available.
 
 ## Test setup
 
 - **Nodes tested**: `Standard_D2as_v6` (2 vCPU, 8 GB), `Standard_D4as_v6` (4 vCPU, 16 GB), `Standard_D8as_v6` (8 vCPU, 32 GB), `Standard_D16as_v6` (16 vCPU, 64 GB)
 - **Transport**: TCP
 - **Payload**: RFC 5424 formatted syslog messages, ~1.2 KB each, with randomized fields (IPs, ports, session IDs, counters) per message. Syslog Basic and Syslog Fully Formed use a generic (non-CEF) message body. CEF Fully Formed uses a CEF-formatted message body.
-- The load generator runs in the same cluster but uses minimal resources (< 2 cores, < 2 GB memory), so the cluster capacity is effectively dedicated to pipeline pods.
+- The load generator runs in the same cluster on separate nodes. For single-replica vertical tests it uses minimal resources; for multi-replica horizontal tests, multiple load-generator pods run on dedicated nodes to fully saturate the pipeline.
 - Each test run scrapes the pipeline's internal Prometheus metrics to measure exact receive and export counts, and queries Log Analytics to verify end-to-end delivery. Pipeline received = exported = Log Analytics received.
 - Memory figures are **working set** as reported by `kubectl top pods`.
 
