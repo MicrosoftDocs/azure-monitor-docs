@@ -1,7 +1,7 @@
 ---
 title: Overview
 description: This article describes the REST API that makes the data collected by Azure Log Analytics easily available.
-ms.date: 09/17/2024
+ms.date: 05/14/2026
 ms.topic: concept-article
 ---
 
@@ -57,6 +57,11 @@ Instead of calling the REST API directly, you can use the idiomatic Azure Monito
 * [Python](/python/api/overview/azure/monitor-query-readme)
 
 Each client library is a wrapper around the REST API that allows you to retrieve log data from the workspace.
+
+You can also query from the command line:
+
+* **Azure CLI**: [`az monitor log-analytics query`](/cli/azure/monitor/log-analytics#az-monitor-log-analytics-query) — runs a KQL query against a workspace.
+* **Azure PowerShell**: [`Invoke-AzOperationalInsightsQuery`](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) — runs a KQL query against a workspace. Part of the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module, which also has cmdlets for managing workspaces, tables, clusters, and data exports.
 
 ## Next steps
 
