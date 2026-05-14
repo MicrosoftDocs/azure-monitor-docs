@@ -56,21 +56,22 @@ az monitor log-analytics query \
 
 # [PowerShell](#tab/powershell)
 
+The [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet (from the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module) queries the Logs API directly. It handles authentication and JSON serialization automatically.
+
 ```azurepowershell
 $workspaceId = 'myWorkspaceId'
-$query = 'AzureActivity | summarize count() by Category'
-$logAnalyticsEndpoint = 'https://api.loganalytics.azure.com'
 
-$invokeAzRestMethodParams = @{
-    Method = 'GET'
-    Uri    = "$logAnalyticsEndpoint/v1/workspaces/$workspaceId/query?query=$query"
+$queryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = 'AzureActivity | summarize count() by Category'
+    Timespan    = (New-TimeSpan -Hours 12)
 }
 
-Invoke-AzRestMethod @invokeAzRestMethodParams
+$results = Invoke-AzOperationalInsightsQuery @queryParams
+$results.Results
 ```
 
-> [!NOTE]
-> `Invoke-AzRestMethod` doesn't support the Log Analytics query endpoint natively. Pass the full URL by using `-Uri` instead of `-Path`, and omit `-ResourceId`.
+Use `-IncludeStatistics` to return query performance data, or `-Wait` to set a server-side timeout in seconds.
 
 # [REST API](#tab/rest-api)
 
@@ -111,20 +112,18 @@ az monitor log-analytics query \
 
 ```azurepowershell
 $workspaceId = 'myWorkspaceId'
-$logAnalyticsEndpoint = 'https://api.loganalytics.azure.com'
 
-$body = @{
-    query = 'AzureActivity | summarize count() by Category'
-} | ConvertTo-Json
-
-$invokeAzRestMethodParams = @{
-    Method  = 'POST'
-    Uri     = "$logAnalyticsEndpoint/v1/workspaces/$workspaceId/query"
-    Payload = $body
+$queryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = 'AzureActivity | summarize count() by Category'
 }
 
-Invoke-AzRestMethod @invokeAzRestMethodParams
+$results = Invoke-AzOperationalInsightsQuery @queryParams
+$results.Results
 ```
+
+> [!NOTE]
+> `Invoke-AzOperationalInsightsQuery` always sends a `POST` request internally. The same cmdlet works for both `GET` and `POST` query scenarios. For queries that need the full REST API surface (for example, custom headers or the `Prefer: wait=` timeout), use `Invoke-AzRestMethod` with the full endpoint URL instead.
 
 # [REST API](#tab/rest-api)
 
