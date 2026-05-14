@@ -1361,7 +1361,7 @@ items:
         href: logs/api/azure-resource-queries.md
       - name: Response caching
         href: logs/api/cache.md
-      - name: Server timeouts
+      - name: Server timeouts and errors
         href: logs/api/timeouts.md
       - name: Prefer headers
         href: logs/api/prefer-options.md
