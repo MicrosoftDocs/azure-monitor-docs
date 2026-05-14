@@ -276,7 +276,7 @@ Metric renaming isn't supported.
 ## Basic Authentication and Bearer Tokens
 
 > [!NOTE]
-> On Kubernetes 1.37 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if are running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+> On Kubernetes 1.37 and later, Azure Managed Prometheus (or ama-metrics) uses namespace-scoped access to Kubernetes secrets for PodMonitor and ServiceMonitor configurations. You must configure namespace-scoped secrets access if you're running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
 
 ### Scoped Secrets Access for Pod/ServiceMonitors
 
@@ -300,7 +300,7 @@ With this change:
     2. Add RBAC permissions in each namespace
 
 ### When you need to configure this
-You must configure namespace-scoped secrets access if are running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
+You must configure namespace-scoped secrets access if you're running Kubernetes 1.37 or later and your ServiceMonitor or PodMonitor uses basicAuth and any configuration that references Kubernetes secrets.
 
 ### Configure secrets access for PodMonitor and ServiceMonitor for Basic Auth
 
