@@ -26,7 +26,7 @@ To migrate from the `beta` version of the Logs query API, change the path in you
 | Operation group reference | URI examples |
 |---------------------------|--------------|
 | [Log Analytics](../../fundamentals/azure-monitor-rest-api-index.md#logs-query)<br>`query`<br>`metadata` | `https://api.loganalytics.azure.com/beta/`<br>`https://api.loganalytics.io/beta/` |
-| Log Analytics via Azure Resource Manager (ARM)<br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
+| Log Analytics via ARM<a id="note1"></a><sup>1</sup><br>`query`<br>`metadata` | `https://management.azure.com/.../api/query?api-version=2017-01-01-preview`<br>`https://management.azure.com/.../api/metadata?api-version=2017-01-01-preview` |
 | [Application Insights](../../fundamentals/azure-monitor-rest-api-index.md#application-insights-apis)<br>`query`<br>`metadata`<br>`metrics`<br>`events` | `https://api.applicationinsights.azure.com/beta/`<br>`https://api.applicationinsights.io/beta/` |
 
 <a href="#note1"><sup>1</sup></a>Log Analytics queries via ARM should migrate to the Logs Query API `v1` [request format](request-format.md#public-query-endpoint-format).

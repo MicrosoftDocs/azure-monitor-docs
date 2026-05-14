@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 The Logs query API lets you run Kusto Query Language (KQL) queries against a Log Analytics workspace through a public REST endpoint. Retrieve or analyze log data programmatically for automation, custom reporting, or integration with other tools.
 
-This article shows how to format `GET` and `POST` requests for the query endpoint, with examples for REST, Azure CLI, and Azure PowerShell. For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis), the [Log Analytics REST API reference](../../fundamentals/azure-monitor-rest-api-index.md#log-analytics-apis), and [API access and authentication](access-api.md).
+This article shows how to format `GET` and `POST` requests for the query endpoint, with examples for REST, Azure CLI, and Azure PowerShell. For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis), the [Log Analytics REST API reference](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis), and [API access and authentication](access-api.md).
 
 > [!NOTE]
 > This article covers the public query endpoint at `api.loganalytics.azure.com`. It doesn't cover Azure Resource Manager (ARM) management operations for Log Analytics workspaces.
