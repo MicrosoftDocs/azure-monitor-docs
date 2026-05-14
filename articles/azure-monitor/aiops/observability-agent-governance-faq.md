@@ -18,9 +18,13 @@ This article answers common governance, data privacy, compliance, and AI model q
 > Azure Copilot observability agent is currently in preview.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-The following diagram shows how data flows through the observability agent, including data sources, processing, storage, and security controls.
+The following diagram shows data handling for ad hoc investigation and data exploration.
 
-:::image type="content" source="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png" alt-text="Diagram that shows the observability agent data handling architecture, including data sources, Azure OpenAI, storage with 30-day retention, and security and privacy controls." lightbox="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png":::
+:::image type="content" source="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png" alt-text="Diagram that shows the observability agent architecture for ad hoc investigation and data exploration, including data sources, Azure OpenAI, storage retention, and privacy controls." lightbox="media/observability-agent-governance-faq/observability-agent-data-handling-architecture.png":::
+
+The following diagram shows data handling after an issue is created, including shared context in Azure Monitor Workspace and role-based access.
+
+:::image type="content" source="media/observability-agent-governance-faq/observability-agent-data-handling-architecture-issue-created.png" alt-text="Diagram that shows the observability agent architecture for issue creation, including Azure Monitor Workspace shared context, role-based access, storage retention, and privacy controls." lightbox="media/observability-agent-governance-faq/observability-agent-data-handling-architecture-issue-created.png":::
 
 ## Data and privacy
 
