@@ -97,8 +97,6 @@ When a recommendation is active, you can manually update its state to manage you
 
 You can continue to change states between active, postponed, dismissed, and completed, or reactivate a recommendation, until Azure Advisor performs system verification and marks a recommendation as completed. Recommendations you manually mark as completed are indicated as "Marked completed".
 
-For more information, see [Azure Advisor recommendation state management](/azure/advisor/advisor-azure-state-management).
-
 ## Related articles
 
 For more information about Azure Advisor, see the following articles.
