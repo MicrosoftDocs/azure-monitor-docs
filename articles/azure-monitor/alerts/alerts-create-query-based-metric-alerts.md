@@ -27,23 +27,6 @@ You can enable resource-centric stamping and access for a workspace using one of
 > [!NOTE]
 > All methods use the preview API version 2025-05-03-preview. The `properties.metrics.enableAccessUsingResourcePermissions` shape is not available in the most recent GA version 2023-04-03.
 
-# [REST](#tab/rest-1)
-
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version={apiVersion}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "location": "{location}",
-  "properties": {
-    "metrics": {
-      "enableAccessUsingResourcePermissions": true
-    }
-  }
-}
-```
-
 # [Azure CLI](#tab/cli-1)
 
 [!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
@@ -89,13 +72,13 @@ $accountName = "myAccountName"
 $apiVersion = "2025-05-03-preview"
 $providers = "microsoft.monitor/accounts/$accountName"
 $resourceId = "/subscriptions/$subscriptionId/resourcegroups/$resourceGroupName/providers/$providers"
-$payloadFile = ".\enable-stamping.json"
+$payloadFile = "./enable-stamping.json"
 
 Set-AzContext -Subscription $subscriptionId
 
 $restParams = @{
-    Path    = "$resourceId?api-version=$apiVersion"
     Method  = "PUT"
+    Path    = "$resourceId?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
@@ -110,6 +93,42 @@ Invoke-AzRestMethod @restParams
   "properties": {
     "metrics": {
       "enableAccessUsingResourcePermissions": true
+    }
+  }
+}
+```
+
+# [REST](#tab/rest-1)
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.monitor/accounts/{accountName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "location": "{location}",
+  "properties": {
+    "metrics": {
+      "enableAccessUsingResourcePermissions": true
+    }
+  }
+}
+```
+
+# [Bicep](#tab/bicep-1)
+
+The following Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
+
+```bicep
+param accountName string = 'myAccountName'
+param location string = 'eastus'
+
+resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
+  name: accountName
+  location: location
+  properties: {
+    metrics: {
+      enableAccessUsingResourcePermissions: true
     }
   }
 }
@@ -146,25 +165,6 @@ The following ARM (JSON) example uses the [Microsoft.Monitor accounts](/azure/te
       }
     }
   ]
-}
-```
-
-# [Bicep](#tab/bicep-1)
-
-The following Bicep example uses the [Microsoft.Monitor accounts](/azure/templates/microsoft.monitor/accounts?pivots=deployment-language-bicep) resource type.
-
-```bicep
-param accountName string = 'myAccountName'
-param location string = 'eastus'
-
-resource monitorWorkspace 'Microsoft.Monitor/accounts@2025-05-03-preview' = {
-  name: accountName
-  location: location
-  properties: {
-    metrics: {
-      enableAccessUsingResourcePermissions: true
-    }
-  }
 }
 ```
 
@@ -217,62 +217,6 @@ From the *Create an alert rule* page:
     1. From the **Wait for** dropdown list, select the delay time for the alert. Default is no delay.
 
 1. From here, configure the alert as you would any other alert. See the other alert creation guides in the documentation.
-
-# [REST](#tab/rest-2)
-
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version={apiVersion}
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "location": "<location>",
-  "identity": {
-    "type": "UserAssigned",
-    "userAssignedIdentities": {
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
-    }
-  },
-  "properties": {
-    "enabled": true,
-    "description": "Sample query-based metric alert rule",
-    "severity": 3,
-    "targetResourceType": "microsoft.monitor/accounts",
-    "scopes": [
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>"
-    ],
-    "evaluationFrequency": "PT1M",
-    "criteria": {
-      "allOf": [
-        {
-          "name": "KubeContainerOOMKilledCount",
-          "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
-          "criterionType": "StaticThresholdCriterion"
-        }
-      ],
-      "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
-      "failingPeriods": {
-        "for": "PT5M"
-      }
-    },
-    "resolveConfiguration": {
-      "autoResolved": true,
-      "timeToResolve": "PT2M"
-    },
-    "actions": [
-      {
-        "actionGroupId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/actionGroups/<actionGroupName>"
-      }
-    ],
-    "actionProperties": {
-      "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
-    },
-    "customProperties": {
-      "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
-    }
-  }
-}
-```
 
 # [Azure CLI](#tab/cli-2)
 
@@ -365,13 +309,13 @@ $clusterName = "myCluster"
 $actionGroupName = "myActionGroup"
 $apiVersion = "2024-03-01-preview"
 $resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/metricAlerts/$ruleName"
-$payloadFile = ".\query-based-metric-alert.json"
+$payloadFile = "./query-based-metric-alert.json"
 
 Set-AzContext -Subscription $subscriptionId
 
 $restParams = @{
-    Path    = "$resourceId?api-version=$apiVersion"
     Method  = "PUT"
+    Path    = "$resourceId?api-version=$apiVersion"
     Payload = Get-Content -Raw -Path $payloadFile
 }
 
@@ -433,17 +377,73 @@ Invoke-AzRestMethod @restParams
 }
 ```
 
-# [ARM (JSON)](#tab/arm-2)
+# [REST](#tab/rest-2)
 
-The following ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts/{ruleName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
 
-[!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
+{
+  "location": "<location>",
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
+    }
+  },
+  "properties": {
+    "enabled": true,
+    "description": "Sample query-based metric alert rule",
+    "severity": 3,
+    "targetResourceType": "microsoft.monitor/accounts",
+    "scopes": [
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ContainerService/managedClusters/<clusterName>"
+    ],
+    "evaluationFrequency": "PT1M",
+    "criteria": {
+      "allOf": [
+        {
+          "name": "KubeContainerOOMKilledCount",
+          "query": "sum by (cluster,container,controller,namespace)(kube_pod_container_status_last_terminated_reason{reason=\"OOMKilled\"} * on(cluster,namespace,pod) group_left(controller) label_replace(kube_pod_owner, \"controller\", \"$1\", \"owner_name\", \"(.*)\")) > 0",
+          "criterionType": "StaticThresholdCriterion"
+        }
+      ],
+      "odata.type": "Microsoft.Azure.Monitor.PromQLCriteria",
+      "failingPeriods": {
+        "for": "PT5M"
+      }
+    },
+    "resolveConfiguration": {
+      "autoResolved": true,
+      "timeToResolve": "PT2M"
+    },
+    "actions": [
+      {
+        "actionGroupId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/actionGroups/<actionGroupName>"
+      }
+    ],
+    "actionProperties": {
+      "Email.Subject": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    },
+    "customProperties": {
+      "Alert Summary": "Prometheus alert - Container killed due to OOM in cluster: ${data.alertContext.condition.allOf[0].dimensions.cluster} in pod: ${data.alertContext.condition.allOf[0].dimensions.pod} container: ${data.alertContext.condition.allOf[0].dimensions.container}"
+    }
+  }
+}
+```
 
 # [Bicep](#tab/bicep-2)
 
 The following Bicep example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-bicep) resource type.
 
 [!INCLUDE [alerts-query-based-metric-alert-template-bicep](includes/alerts-query-based-metric-alert-template-bicep.md)]
+
+# [ARM (JSON)](#tab/arm-2)
+
+The following ARM (JSON) example uses the [Microsoft.Insights metricAlerts](/azure/templates/microsoft.insights/metricalerts?pivots=deployment-language-arm-template) resource type.
+
+[!INCLUDE [alerts-query-based-metric-alert-template-json](includes/alerts-query-based-metric-alert-template-json.md)]
 
 ---
 
@@ -468,19 +468,6 @@ The following Bicep example uses the [Microsoft.Insights metricAlerts](/azure/te
 
 Create and configure the user-assigned managed identity with permissions before including it in the rule configuration. Set `identity` -> `type` to `UserAssigned` and include the MI resource ID in `identity` -> `userAssignedIdentities`, as in the following example:
 
-# [JSON](#tab/json-3)
-
-```json
-{
-  "identity": {
-    "type": "UserAssigned",
-    "userAssignedIdentities": {
-      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
-    }
-  }
-}
-```
-
 # [Bicep](#tab/bicep-3)
 
 ```bicep
@@ -489,6 +476,19 @@ Create and configure the user-assigned managed identity with permissions before 
     type: 'UserAssigned',
     userAssignedIdentities: {
       '/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>': {}
+    }
+  }
+}
+```
+
+# [JSON](#tab/json-3)
+
+```json
+{
+  "identity": {
+    "type": "UserAssigned",
+    "userAssignedIdentities": {
+      "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<userAssignedMiName>": {}
     }
   }
 }
@@ -517,22 +517,22 @@ For automatic role assignment to succeed, you must have one of the following rol
 
 Set the `identity` -> `type` property to `SystemAssigned` as in the following example:
 
-# [JSON](#tab/json-3)
-
-```json
-{
-  "identity": {
-    "type": "SystemAssigned"
-  }
-}
-```
-
 # [Bicep](#tab/bicep-3)
 
 ```bicep
 {
   identity: {
     type: 'SystemAssigned'
+  }
+}
+```
+
+# [JSON](#tab/json-3)
+
+```json
+{
+  "identity": {
+    "type": "SystemAssigned"
   }
 }
 ```
@@ -566,14 +566,6 @@ You can query metrics emitted to any Workspace by:
 
 For resource-centric rules, the following scope options are supported:
 
-# [JSON](#tab/json-3)
-
-| Scope | Example |
-|-------|---------|
-| Single resource | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>"]` |
-| Resource group | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>"]` |
-| Subscription | `"scopes": ["/subscriptions/<subscriptionId>"]` |
-
 # [Bicep](#tab/bicep-3)
 
 | Scope | Example |
@@ -581,6 +573,14 @@ For resource-centric rules, the following scope options are supported:
 | Single resource | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>']` |
 | Resource group | `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>']` |
 | Subscription | `scopes: ['/subscriptions/<subscriptionId>']` |
+
+# [JSON](#tab/json-3)
+
+| Scope | Example |
+|-------|---------|
+| Single resource | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.containerservice/managedclusters/<clusterName>"]` |
+| Resource group | `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>"]` |
+| Subscription | `"scopes": ["/subscriptions/<subscriptionId>"]` |
 
 ---
 
@@ -592,13 +592,13 @@ You can query metrics emitted to a specific Azure Monitor Workspace, regardless 
 
 For workspace scope, include the Workspace Azure Resource Manager ID in the Scopes[] list.
 
-# [JSON](#tab/json-3)
-
-Example: `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>"]`
-
 # [Bicep](#tab/bicep-3)
 
 Example: `scopes: ['/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>']`
+
+# [JSON](#tab/json-3)
+
+Example: `"scopes": ["/subscriptions/<subscriptionId>/resourcegroups/<resourceGroupName>/providers/microsoft.monitor/accounts/<azureMonitorWorkspaceName>"]`
 
 ---
 

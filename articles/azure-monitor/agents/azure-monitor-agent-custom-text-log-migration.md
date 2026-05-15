@@ -35,17 +35,9 @@ You should follow the steps only if the following criteria are met:
 
 1. To enable ingestion from a DCR and manage your table in the Azure portal, issue the following API call against your existing custom log table. This call only changes the table the first time you run it. Running it again has no effect. Migration is one-way, so you can't migrate the table back to the Log Analytics agent.
 
-    # [REST](#tab/rest)
-
-    ```REST
-    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version={apiVersion}
-    Authorization: Bearer {token}
-    Content-Type: application/json
-    ```
-
     # [Azure CLI](#tab/cli)
 
-    The following Azure CLI example uses the [az monitor log-analytics workspace table](/cli/azure/monitor/log-analytics/workspace/table) command group.
+    The following Azure CLI example uses the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table) command.
 
     ```azurecli
     subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -85,6 +77,14 @@ You should follow the steps only if the following criteria are met:
     ```
 
     [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+    # [REST](#tab/rest)
+
+    ```REST
+    POST https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version={apiVersion}
+    Authorization: Bearer {accessToken}
+    Content-Type: application/json
+    ```
 
     ---
 

@@ -85,7 +85,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 > [!IMPORTANT]
 > To send Platform Telemetry data to Storage Accounts or Event Hubs, the resource, data collection rule, and the destination Storage Account or the Event Hubs must all be in the same region.
 
-### [Portal](#tab/portal)
+# [Portal](#tab/portal)
 
 ### Create a data collection rule using the Azure portal
 
@@ -124,60 +124,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 1. Select **Save** , then select **Review + create**.
 
-### [REST](#tab/rest)
-
-Creating a data collection rule for metrics requires the following steps:
-
-1. Create the data collection rule.
-1. Grant permissions for the rule's managed identity to write to the destination.
-1. Create a data collection rule association.
-
-### Create the data collection rule
-
-To create a DCR using the REST API, you must make an authenticated request using a bearer token. For more information on authenticating with Azure Monitor, see [Authenticate Azure Monitor requests](/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests).
-
-Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
-
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
-```
-
-The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
-
-### Grant write permissions to the managed identity
-
-The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed identity, assign the appropriate role to the entity.
-
-The following table shows the roles required for each destination type:
-
-| Destination type | Role |
-|------------------|------|
-| Log Analytics workspace | not required |
-| Azure storage account | `Storage Blob Data Contributor` |
-| Event Hubs | `Azure Event Hubs Data Sender` |
-
-For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
-
-To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
-
-## Create a data collection rule association
-
-After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
-
-To create a DCRA using the REST API, use the following endpoint and payload:
-
-```REST
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{virtualMachineName}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
-
-{
-  "properties": {
-    "description": "Association of platform telemetry DCR with VM myVirtualMachine",
-    "dataCollectionRuleId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/dataCollectionRules/<dataCollectionRuleName>"
-  }
-}
-```
-
-### [Azure CLI](#tab/CLI)
+# [Azure CLI](#tab/CLI)
 
 ### Create a data collection rule using Azure CLI
 
@@ -186,7 +133,7 @@ Create a JSON file containing the collection rule specification. For more inform
 > [!IMPORTANT]
 > The rule file has the same format as used for PowerShell and the REST API, however the file must not contain `identity`, the `location`, or `kind`. These parameters are specified in the `az monitor data-collection rule create` command.
 
-The following Azure CLI example uses the [az monitor data-collection rule](/cli/azure/monitor/data-collection/rule) command group.
+The following Azure CLI example uses the [az monitor data-collection rule create](/cli/azure/monitor/data-collection/rule) command.
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -242,7 +189,7 @@ To assign a role to a managed identity using CLI, use `az role assignment create
 
 Assign the appropriate role to the managed identity of the DCR. The following example assigns the `Storage Blob Data Contributor` role to the managed identity of the DCR for a storage account.
 
-The following Azure CLI example uses the [az role assignment](/cli/azure/role/assignment) command group.
+The following Azure CLI example uses the [az role assignment create](/cli/azure/role/assignment) command.
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -259,8 +206,6 @@ az role assignment create \
   --role "$roleDefinitionName" \
   --scope "$scope"
 ```
-
-This Azure CLI example uses the [az role assignment](/cli/azure/role/assignment) command group.
 
 ## Create a data collection rule association
 
@@ -285,7 +230,7 @@ az monitor data-collection rule association create \
   --resource "$resourceUri"
 ```
 
-### [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell)
 
 ### Create a data collection rule using PowerShell
 
@@ -383,10 +328,195 @@ $dataCollectionRuleAssociationParams = @{
 }
 
 New-AzDataCollectionRuleAssociation @dataCollectionRuleAssociationParams
-
 ```
 
-### [ARM (JSON)](#tab/arm)
+# [REST](#tab/rest)
+
+Creating a data collection rule for metrics requires the following steps:
+
+1. Create the data collection rule.
+1. Grant permissions for the rule's managed identity to write to the destination.
+1. Create a data collection rule association.
+
+### Create the data collection rule
+
+To create a DCR using the REST API, you must make an authenticated request using a bearer token. For more information on authenticating with Azure Monitor, see [Authenticate Azure Monitor requests](/azure/azure-monitor/essentials/rest-api-walkthrough?tabs=portal#authenticate-azure-monitor-requests).
+
+Use the following endpoint to create a data collection rule for metrics using the REST API. For more information, see [Data Collection Rules - Create](/rest/api/monitor/data-collection-rules/create).
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dataCollectionRuleName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+```
+
+The payload is a JSON object that defines a collection rule. The payload is sent in the body of the request. For more information on the JSON structure, see [Data collection rule (DCR) structure for metrics export](metrics-export-structure.md). For sample DCR JSON objects, see [Sample Metrics Export JSON objects](metrics-export-structure.md#metrics-export-samples).
+
+### Grant write permissions to the managed identity
+
+The managed identity used by the DCR must have write permissions to the destination when the destination is a Storage Account or Event Hubs. To grant permissions for the rule's managed identity, assign the appropriate role to the entity.
+
+The following table shows the roles required for each destination type:
+
+| Destination type | Role |
+|------------------|------|
+| Log Analytics workspace | not required |
+| Azure storage account | `Storage Blob Data Contributor` |
+| Event Hubs | `Azure Event Hubs Data Sender` |
+
+For more information, see [Assign Azure roles to a managed identity](/azure/role-based-access-control/role-assignments-portal-managed-identity).
+
+To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
+
+## Create a data collection rule association
+
+After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
+
+To create a DCRA using the REST API, use the following endpoint and payload:
+
+```REST
+PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{virtualMachineName}/providers/Microsoft.Insights/dataCollectionRuleAssociations/{associationName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "properties": {
+    "description": "Association of platform telemetry DCR with VM myVirtualMachine",
+    "dataCollectionRuleId": "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.Insights/dataCollectionRules/<dataCollectionRuleName>"
+  }
+}
+```
+
+# [Bicep](#tab/bicep)
+
+### Create a data collection rule using Bicep templates
+
+Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the Log Analytics workspace.')
+param workspaceId string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
+  name: dataCollectionRuleName
+  kind: 'PlatformTelemetry'
+  identity: {
+    type: 'UserAssigned' | 'SystemAssigned'
+    userAssignedIdentities: {
+      type: 'string'
+    }
+  }
+  location: location
+  properties: {
+    dataSources: {
+      platformTelemetry: [
+        {
+          streams: [
+            '<resourceType>:<metricName> | Metrics-Group-All'
+          ]
+          name: 'myPlatformTelemetryDataSource'
+        }
+      ]
+    }
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: workspaceId
+          name: 'myDestination'
+        }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: [
+          '<resourceType>:<metricName> | Metrics-Group-All'
+        ]
+        destinations: [
+          'myDestination'
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Parameters file
+
+```bicep
+using './<template-name>.bicep'
+
+param dataCollectionRuleName = 'myDataCollectionRule'
+
+param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace'
+
+param location = 'eastus'
+```
+
+### Sample DCR template
+
+```bicep
+@description('Specifies the name of the Data Collection Rule to create.')
+param dataCollectionRuleName string
+
+@description('Specifies the Log Analytics workspace.')
+param workspaceId string
+
+@description('Specifies the location in which to create the Data Collection Rule.')
+param location string
+
+resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
+  name: dataCollectionRuleName
+  location: location
+  kind: 'PlatformTelemetry'
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    dataSources: {
+      platformTelemetry: [
+        {
+          streams: [
+            'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+            'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+            'Microsoft.Cache/redis:Metrics-Group-All'
+            'Microsoft.keyvault/vaults:Metrics-Group-All'
+          ]
+          name: 'myPlatformTelemetryDataSource'
+        }
+      ]
+    }
+    destinations: {
+      logAnalytics: [
+        {
+          workspaceResourceId: workspaceId
+          name: 'myDestination'
+        }
+      ]
+    }
+    dataFlows: [
+      {
+        streams: [
+          'Microsoft.Compute/virtualMachines:Metrics-Group-All'
+          'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
+          'Microsoft.Cache/redis:Metrics-Group-All'
+          'Microsoft.keyvault/vaults:Metrics-Group-All'
+        ]
+        destinations: [
+          'myDestination'
+        ]
+      }
+    ]
+  }
+}
+```
+
+# [ARM (JSON)](#tab/arm)
 
 ### Create a data collection rule using ARM templates
 
@@ -538,135 +668,6 @@ Use the following template to create a DCR. For more information, see [Microsoft
       }
     }
   ]
-}
-```
-
-### [Bicep](#tab/bicep)
-
-### Create a data collection rule using Bicep templates
-
-Use the following template to create a DCR. For more information, see [Microsoft.Insights dataCollectionRules](/azure/templates/microsoft.insights/datacollectionrules?pivots=deployment-language-arm-template#datacollectionruleresourceidentity-1).
-
-```bicep
-@description('Specifies the name of the Data Collection Rule to create.')
-param dataCollectionRuleName string
-
-@description('Specifies the Log Analytics workspace.')
-param workspaceId string
-
-@description('Specifies the location in which to create the Data Collection Rule.')
-param location string
-
-resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
-  name: dataCollectionRuleName
-  kind: 'PlatformTelemetry'
-  identity: {
-    type: 'UserAssigned' | 'SystemAssigned'
-    userAssignedIdentities: {
-      type: 'string'
-    }
-  }
-  location: location
-  properties: {
-    dataSources: {
-      platformTelemetry: [
-        {
-          streams: [
-            '<resourceType>:<metricName> | Metrics-Group-All'
-          ]
-          name: 'myPlatformTelemetryDataSource'
-        }
-      ]
-    }
-    destinations: {
-      logAnalytics: [
-        {
-          workspaceResourceId: workspaceId
-          name: 'myDestination'
-        }
-      ]
-    }
-    dataFlows: [
-      {
-        streams: [
-          '<resourceType>:<metricName> | Metrics-Group-All'
-        ]
-        destinations: [
-          'myDestination'
-        ]
-      }
-    ]
-  }
-}
-```
-
-### Parameters file
-
-```bicep
-using './<template-name>.bicep'
-
-param dataCollectionRuleName = 'myDataCollectionRule'
-
-param workspaceId = '/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/myResourceGroup/providers/microsoft.operationalinsights/workspaces/myWorkspace'
-
-param location = 'eastus'
-```
-
-### Sample DCR template
-
-```bicep
-@description('Specifies the name of the Data Collection Rule to create.')
-param dataCollectionRuleName string
-
-@description('Specifies the Log Analytics workspace.')
-param workspaceId string
-
-@description('Specifies the location in which to create the Data Collection Rule.')
-param location string
-
-resource dataCollectionRule 'Microsoft.Insights/dataCollectionRules@2024-03-11' = {
-  name: dataCollectionRuleName
-  location: location
-  kind: 'PlatformTelemetry'
-  identity: {
-    type: 'SystemAssigned'
-  }
-  properties: {
-    dataSources: {
-      platformTelemetry: [
-        {
-          streams: [
-            'Microsoft.Compute/virtualMachines:Metrics-Group-All'
-            'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
-            'Microsoft.Cache/redis:Metrics-Group-All'
-            'Microsoft.keyvault/vaults:Metrics-Group-All'
-          ]
-          name: 'myPlatformTelemetryDataSource'
-        }
-      ]
-    }
-    destinations: {
-      logAnalytics: [
-        {
-          workspaceResourceId: workspaceId
-          name: 'myDestination'
-        }
-      ]
-    }
-    dataFlows: [
-      {
-        streams: [
-          'Microsoft.Compute/virtualMachines:Metrics-Group-All'
-          'Microsoft.Compute/virtualMachineScaleSets:Metrics-Group-All'
-          'Microsoft.Cache/redis:Metrics-Group-All'
-          'Microsoft.keyvault/vaults:Metrics-Group-All'
-        ]
-        destinations: [
-          'myDestination'
-        ]
-      }
-    ]
-  }
 }
 ```
 
