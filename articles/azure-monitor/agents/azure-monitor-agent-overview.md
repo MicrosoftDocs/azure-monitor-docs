@@ -49,51 +49,81 @@ The following tables identify the different environments and features that the A
 
 ### Windows agents
 
-| Category | Area | Azure Monitor Agent | Legacy agent |
-|:---|:---|:---|:---|
-| **Support environments** |  |  |  |
-|  | Azure | ✓ | ✓ |
-|  | Other clouds (Azure Arc) | ✓ | ✓ |
-|  | On-premises (Azure Arc) | ✓ | ✓ |
-|  | Windows Client OS | ✓ |  |
-| **Data collected** |  |  |  |
-|  | Event Logs | ✓ | ✓ |
-|  | Performance | ✓ | ✓ |
-|  | File-based logs | ✓  | ✓ |
-|  | Internet Information Services (IIS) logs | ✓  | ✓ |
-| **Data sent to** |  |  |  |
-|  | Azure Monitor logs | ✓ | ✓ |
-| **Supported services and features** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#identify-dependent-services)) | ✓ |
-|  | VM insights | ✓ | ✓ |
-|  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) |  |  |
-|  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
-|  | Azure Local | ✓ |  |
-|  | Update Manager (no longer uses agents) |  |  |
-|  | Change tracking | ✓ | ✓ |
-|  | SQL Best Practices Assessment | ✓ |     |
+The following tables compare Azure Monitor Agent and legacy agent capabilities on Windows.
+
+#### Supported environments
+
+| Environment | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Azure | ✓ | ✓ |
+| Other clouds (Azure Arc) | ✓ | ✓ |
+| On-premises (Azure Arc) | ✓ | ✓ |
+| Windows Client OS | ✓ |  |
+
+#### Data collected
+
+| Data source | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Event Logs | ✓ | ✓ |
+| Performance | ✓ | ✓ |
+| File-based logs | ✓ | ✓ |
+| Internet Information Services (IIS) logs | ✓ | ✓ |
+
+#### Data destinations
+
+| Destination | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Azure Monitor logs | ✓ | ✓ |
+
+#### Supported services and features
+
+| Service or feature | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Microsoft Sentinel | ✓ ([Scope](./azure-monitor-agent-migration.md#identify-dependent-services)) | ✓ |
+| VM insights | ✓ | ✓ |
+| Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) |  |  |
+| Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
+| Azure Local | ✓ |  |
+| Update Manager (no longer uses agents) |  |  |
+| Change tracking | ✓ | ✓ |
+| SQL Best Practices Assessment | ✓ |  |
 
 ### Linux agents
 
-| Category | Area | Azure Monitor Agent | Legacy agent |
-|:---|:---|:---|:---|
-| **Supported environments** |  |  |  |
-|  | Azure | ✓ | ✓ |
-|  | Other clouds (Azure Arc) | ✓ | ✓ |
-|  | On-premises (Azure Arc) | ✓ | ✓ |
-| **Data collected** |  |  |
-|  | Syslog | ✓ | ✓ |
-|  | Performance | ✓ | ✓ |
-|  | File-based logs | ✓ |  |
-| **Data sent to** |  |  |  |
-|  | Azure Monitor logs | ✓ | ✓ |
-| **Supported services and features** |  |  |  |
-|  | Microsoft Sentinel  | ✓ ([Scope](./azure-monitor-agent-migration.md#identify-dependent-services)) | ✓ |
-|  | VM insights | ✓ | ✓ |
-|  | Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) | | |
-|  | Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
-|  | Update Manager (no longer uses agents) | | |
-|  | Change tracking | ✓ | ✓ |
+The following tables compare Azure Monitor Agent and legacy agent capabilities on Linux.
+
+#### Supported environments
+
+| Environment | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Azure | ✓ | ✓ |
+| Other clouds (Azure Arc) | ✓ | ✓ |
+| On-premises (Azure Arc) | ✓ | ✓ |
+
+#### Data collected
+
+| Data source | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Syslog | ✓ | ✓ |
+| Performance | ✓ | ✓ |
+| File-based logs | ✓ |  |
+
+#### Data destinations
+
+| Destination | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Azure Monitor logs | ✓ | ✓ |
+
+#### Supported services and features
+
+| Service or feature | Azure Monitor Agent | Legacy agent |
+|:---|:---:|:---:|
+| Microsoft Sentinel | ✓ ([Scope](./azure-monitor-agent-migration.md#identify-dependent-services)) | ✓ |
+| VM insights | ✓ | ✓ |
+| Microsoft Defender for Cloud (uses only the Microsoft Defender for Endpoint agent) | | |
+| Automation Update Management (moved to Azure Update Manager) | ✓ | ✓ |
+| Update Manager (no longer uses agents) | | |
+| Change tracking | ✓ | ✓ |
 
 ## Supported data sources
 
