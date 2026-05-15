@@ -99,7 +99,7 @@ Review the definitions and implications for the Completed and Dismissed recommen
 Use the following procedures to change recommendation states.
 
 > [!NOTE]
->To perform these actions, you need specific permissions. For more information, see [Roles and permissions](../articles/permissions).
+>To perform these actions, you need specific permissions. For more information, see [Roles and permissions](/permissions).
 
 ### How to change recommendation states
 
