@@ -23,7 +23,7 @@ This article shows you how to configure autoscale for a Virtual Machine Scale Se
 
 ## Prerequisites  
 
-To configure autoscale using PowerShell, you need an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free).
+To configure autoscale using PowerShell, you need an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Set up your environment
 
