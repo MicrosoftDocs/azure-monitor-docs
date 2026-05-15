@@ -1,10 +1,11 @@
 ---
 title: Create and configure a health model resource in Azure Monitor (Preview)
-description: Learn now to create a new Azure Monitor health model.
+description: Learn how to create a new Azure Monitor health model.
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 06/27/2025
+ms.date: 05/13/2026
+ai-usage: ai-assisted
 ---
 
 # Create a new Azure Monitor health model (preview)
@@ -12,7 +13,11 @@ ms.date: 06/27/2025
 [Azure Monitor health models](./overview.md) allow you to define and track the health of your Azure workloads and the resources they depend on. This article describes different methods for creating and configuring health models. 
 
 ## Prerequisites
-Before you create a health model, you must have a [service group](/azure/governance/service-groups/overview) that includes the Azure resources you want to monitor. See [Quickstart: Create a service group (preview) in the portal](/azure/governance/service-groups/create-service-group-portal).
+Before you create a health model, make sure you have:
+
+- Access to an Azure subscription where you can create a health model resource.
+- At least one Azure resource that you want to monitor.
+- Required monitoring data available for the signals you plan to configure.
 
 ## Permissions required
 
@@ -21,49 +26,36 @@ Before you create a health model, you must have a [service group](/azure/governa
 
 **To manage an existing health model:**
 - You must have at least **Monitoring Contributor** role on the health model.
-- •	To add resources to your health model you must add them as Members to your Service Group. Adding members to a service group requires at least **Contributor** role on the service.
 
 **To view an existing health model:**
 - You must have at least **Monitoring Reader** role on the health model.
-- To view the service group, you must have **Service Group reader** on the service group.
 
-**Managed entity**<br>
+**Managed identity**<br>
 The managed identity that you select for the health model requires the following permissions. If you use a system assigned managed identity, these permissions are automatically assigned. If you use a user assigned managed identity, you must assign the following permissions before you create the health model.
 
-- **Service Group reader** on the service group. 
-- **Monitoring reader** on any members in the service group.
-- **Monitoring reader** on the Log Analytics workspace and Azure Monitor workspace if you create those signals.
+- **Monitoring Reader** on Azure resources represented by entities in the model.
+- **Monitoring Reader** on the Log Analytics workspace and Azure Monitor workspace if you create those signals.
+
+If you use discovery, the managed identity might require additional read permissions on the discovery scope and any resources that discovery needs to enumerate.
 
 
 ## Create a health model
-There are two methods to create an Azure Monitor health model in the Azure portal.
-
-
-### [Service groups menu](#tab/service-groups)
-From the menu for the service group, select **Monitoring**  and then click **creating a health model**. This will open the **Create a new Azure Monitor health model** pane where you can provide the details for the new health model.
-
-:::image type="content" source="media/create/create-from-service-group.png" lightbox="media/create/create-from-service-group.png" alt-text="Screenshot creating health model from service group.":::
-
-### [Health models menu](#tab/health-models)
 From the **Health Models** menu in the Azure portal, select **Create**.
 
 :::image type="content" source="media/create/create-from-health-model.png" lightbox="media/create/create-from-health-model.png" alt-text="Screenshot creating health model from health model menu.":::
 
----
-
-Using either method, you need to provide the details for the new health model in the following table.
+Provide the details for the new health model in the following table.
 
 | Tab | Description |
 |:---|:---|
 | **Basics** | Select the subscription, resource group, and region for the health model in addition to a descriptive name. The Azure resources don't need to be in the same subscription or resource group as the health model. |
-| **Identity** | Configure the identity for the health model access the service group. This is used to enumerate the members of the service group and add them as entities to the health model. It's also used by default to access telemetry for the Azure resources represented by each entity, although this identity can later be changed for each entity. See [Permissions required](#permissions-required) for the requirements of this identity. |
-| **Discovery** | Select a service group for the health model. An entity will be created for each member of the service group. Select the option to **Add recommended signals** to automatically add a set of recommended signals to each entity for that Azure resource type. |
+| **Identity** | Configure the identity that the health model uses to discover entities and access telemetry. This identity is also used by default for Azure resource entities, although you can later configure different authentication settings for specific entities. See [Permissions required](#permissions-required). |
 | **Tags** | Add any [tags](/azure/azure-resource-manager/management/tag-resources) to help categorize the health model in your environment. |
 
 
 
 ## Configure a health model
-When you create a new health model, it will include an entity for each of the Azure resources in the service group, but none of the entities will be monitored. The next step is to configure the health model by adding  signals to each entity to measure their health and optionally add alerts to notify you when the health state of an entity changes.
+When you create a new health model, start by adding entities manually or configuring discovery to populate entities automatically. Next, configure the health model by adding signals to each entity to measure health and optionally add alerts to notify you when the health state of an entity changes.
 
 You'll perform most of the configuration in the **Designer**, which is a visual tool that provides access to all the configuration options for the entities in the health model. Get complete details on the designer and the different configuration options it provides in [Configure an Azure Monitor health model using the designer](./designer.md).
 
@@ -77,16 +69,6 @@ The view includes a list of all the entities in the health model with their curr
 Modify the filter to show only entities matching particular criteria. For example, set the **Contains signals** filter to **Doesn't contain signals** to list only those entities that don't have any signal definitions associated with them. You can then select each of those entities to add signal definitions.
 
 :::image type="content" source="media/create/entities-view.png" lightbox="media/create/entities-view.png" alt-text="Screenshot of entities view.":::
-
-### Discovery view
-The discovery view allows you to configure the service group and auto-discovery settings for the health model. This includes changing the identity used for accessing the service group.
-
-To change the service group associated with your health model, click the **Change** link and select a service group from the list. The tenant root service group cannot be used as model discovery scope.
-
-:::image type="content" source="media/create/discovery-view.png" lightbox="media/create/discovery-view.png" alt-text="Screenshot of discovery view.":::
-
-> [!NOTE]
-> If you remove the service group for the health model, the health model will include only the root entity, and you'll receive a warning message that the health model will not be populated.
 
 ### Signal definitions
 The signal definitions view is useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals. It provides a list of all the [signal definitions](./designer.md#signal-definitions) in the health model and their thresholds.
