@@ -237,27 +237,25 @@ For the cloud service role, if you pick the configuration from disk, the data is
 
 The plug-in returns the following exit codes:
 
-| Exit code | Description |
-| --- | --- |
-| 0 |Success. |
-| -1 |Generic error. |
-| -2 |Unable to load the rcf file.<p>This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM. |
-| -3 |Can't load the Diagnostics configuration file.<p><p>Solution: Caused by a configuration file not passing schema validation. The solution is to provide a configuration file that complies with the schema. |
-| -4 |Another instance of the monitoring agent Diagnostics is already using the local resource directory.<p><p>Solution: Specify a different value for **LocalResourceDirectory**. |
-| -6 |The guest agent plug-in launcher attempted to launch Diagnostics with an invalid command line.<p><p>This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM. |
-| -10 |The Diagnostics plug-in exited with an unhandled exception. |
-| -11 |The guest agent was unable to create the process responsible for launching and monitoring the monitoring agent.<p><p>Solution: Verify that sufficient system resources are available to launch new processes.<p> |
-| -101 |Invalid arguments when calling the Diagnostics plug-in.<p><p>This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM. |
-| -102 |The plug-in process is unable to initialize itself.<p><p>Solution: Verify that sufficient system resources are available to launch new processes. |
-| -103 |The plug-in process is unable to initialize itself. Specifically, it's unable to create the logger object.<p><p>Solution: Verify that sufficient system resources are available to launch new processes. |
-| -104 |Unable to load the rcf file provided by the guest agent.<p><p>This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM. |
-| -105 |The Diagnostics plug-in can't open the Diagnostics configuration file.<p><p>This internal error should only happen if the Diagnostics plug-in gets manually invoked incorrectly on the VM. |
-| -106 |Can't read the Diagnostics configuration file.<p><p>Caused by a configuration file not passing schema validation. <br><br>Solution: Provide a configuration file that complies with the schema. For more information, see [Check Diagnostics extension configuration](#check-diagnostics-extension-configuration). |
-| -107 |The resource directory pass to the monitoring agent is invalid.<p><p>This internal error should only happen if the monitoring agent is manually invoked incorrectly on the VM.</p> |
-| -108 |Unable to convert the Diagnostics configuration file into the monitoring agent configuration file.<p><p>This internal error should only happen if the Diagnostics plug-in is manually invoked with an invalid configuration file. |
-| -110 |General Diagnostics configuration error.<p><p>This internal error should only happen if the Diagnostics plug-in is manually invoked with an invalid configuration file. |
-| -111 |Unable to start the monitoring agent.<p><p>Solution: Verify that sufficient system resources are available. |
-| -112 |General error. |
+- **0** — Success.
+- **-1** — Generic error.
+- **-2** — Unable to load the rcf file. This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM.
+- **-3** — Can't load the Diagnostics configuration file. Caused by a configuration file not passing schema validation. **Solution:** Provide a configuration file that complies with the schema.
+- **-4** — Another instance of the monitoring agent Diagnostics is already using the local resource directory. **Solution:** Specify a different value for **LocalResourceDirectory**.
+- **-6** — The guest agent plug-in launcher attempted to launch Diagnostics with an invalid command line. This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM.
+- **-10** — The Diagnostics plug-in exited with an unhandled exception.
+- **-11** — The guest agent was unable to create the process responsible for launching and monitoring the monitoring agent. **Solution:** Verify that sufficient system resources are available to launch new processes.
+- **-101** — Invalid arguments when calling the Diagnostics plug-in. This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM.
+- **-102** — The plug-in process is unable to initialize itself. **Solution:** Verify that sufficient system resources are available to launch new processes.
+- **-103** — The plug-in process is unable to initialize itself. Specifically, it's unable to create the logger object. **Solution:** Verify that sufficient system resources are available to launch new processes.
+- **-104** — Unable to load the rcf file provided by the guest agent. This internal error should only happen if the guest agent plug-in launcher is manually invoked incorrectly on the VM.
+- **-105** — The Diagnostics plug-in can't open the Diagnostics configuration file. This internal error should only happen if the Diagnostics plug-in gets manually invoked incorrectly on the VM.
+- **-106** — Can't read the Diagnostics configuration file. Caused by a configuration file not passing schema validation. **Solution:** Provide a configuration file that complies with the schema. For more information, see [Check Diagnostics extension configuration](#check-diagnostics-extension-configuration).
+- **-107** — The resource directory pass to the monitoring agent is invalid. This internal error should only happen if the monitoring agent is manually invoked incorrectly on the VM.
+- **-108** — Unable to convert the Diagnostics configuration file into the monitoring agent configuration file. This internal error should only happen if the Diagnostics plug-in is manually invoked with an invalid configuration file.
+- **-110** — General Diagnostics configuration error. This internal error should only happen if the Diagnostics plug-in is manually invoked with an invalid configuration file.
+- **-111** — Unable to start the monitoring agent. **Solution:** Verify that sufficient system resources are available.
+- **-112** — General error.
 
 ### Local log extraction
 
