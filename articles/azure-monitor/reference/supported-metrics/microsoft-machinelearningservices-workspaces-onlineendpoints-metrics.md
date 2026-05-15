@@ -5,27 +5,46 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.MachineLearningServices/workspaces/onlineEndpoints, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
-  
 # Supported metrics for Microsoft.MachineLearningServices/workspaces/onlineEndpoints
-  
-The following table lists the metrics available for the Microsoft.MachineLearningServices/workspaces/onlineEndpoints resource type.  
-  
-  
-[!INCLUDE [headings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/metrics-headings.md)]  
-  
-  
-  
-For a list of supported logs, see [Supported log categories - Microsoft.MachineLearningServices/workspaces/onlineEndpoints](../supported-logs/microsoft-machinelearningservices-workspaces-onlineendpoints-logs.md)  
-  
- 
 
-[!INCLUDE [Microsoft.MachineLearningServices/workspaces/onlineEndpoints](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/metrics/microsoft-machinelearningservices-workspaces-onlineendpoints-metrics-include.md)]  
+The following table lists the metrics available for the Microsoft.MachineLearningServices/workspaces/onlineEndpoints resource type.
+
+**Table headings**
+
+**Metric** - The metric display name as it appears in the Azure portal.
+**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+**Unit** - Unit of measure.
+**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+
+For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
+
+For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
 
+For a list of supported logs, see [Supported log categories - Microsoft.MachineLearningServices/workspaces/onlineEndpoints](../supported-logs/microsoft-machinelearningservices-workspaces-onlineendpoints-logs.md)
+
+
+### Category: Traffic
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Connections Active**<br><br>The total number of concurrent TCP connections active from clients. |`ConnectionsActive` |Count |Average |\<none\>|PT1M |No|
+|**Data Collection Errors Per Minute**<br><br>The number of data collection events dropped per minute. |`DataCollectionErrorsPerMinute` |Count |Minimum, Maximum, Average |`deployment`, `reason`, `type`|PT1M |No|
+|**Data Collection Events Per Minute**<br><br>The number of data collection events processed per minute. |`DataCollectionEventsPerMinute` |Count |Minimum, Maximum, Average |`deployment`, `type`|PT1M |No|
+|**Network Bytes**<br><br>The bytes per second served for the endpoint. |`NetworkBytes` |BytesPerSecond |Average |\<none\>|PT1M |No|
+|**New Connections Per Second**<br><br>The average number of new TCP connections per second established from clients. |`NewConnectionsPerSecond` |CountPerSecond |Average |\<none\>|PT1M |No|
+|**Request Latency**<br><br>The average complete interval of time taken for a request to be responded in milliseconds |`RequestLatency` |Milliseconds |Average |`deployment`|PT1M |Yes|
+|**Request Latency P50**<br><br>The average P50 request latency aggregated by all request latency values collected over the selected time period |`RequestLatency_P50` |Milliseconds |Average |`deployment`|PT1M |Yes|
+|**Request Latency P90**<br><br>The average P90 request latency aggregated by all request latency values collected over the selected time period |`RequestLatency_P90` |Milliseconds |Average |`deployment`|PT1M |Yes|
+|**Request Latency P95**<br><br>The average P95 request latency aggregated by all request latency values collected over the selected time period |`RequestLatency_P95` |Milliseconds |Average |`deployment`|PT1M |Yes|
+|**Request Latency P99**<br><br>The average P99 request latency aggregated by all request latency values collected over the selected time period |`RequestLatency_P99` |Milliseconds |Average |`deployment`|PT1M |Yes|
+|**Requests Per Minute**<br><br>The number of requests sent to online endpoint within a minute |`RequestsPerMinute` |Count |Average |`deployment`, `statusCode`, `statusCodeClass`, `modelStatusCode`|PT1M |No|
 
 ## Next steps
 

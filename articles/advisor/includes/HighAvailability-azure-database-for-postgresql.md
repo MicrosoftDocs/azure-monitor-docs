@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Database for PostgreSQL
@@ -125,5 +125,25 @@ Subcategory: null
 <!--2de25da6-5d44-4c0d-8a37-b61f8a65babe_end-->
 
 
+
+
+
+<!--bbce2e96-97d6-406e-bb16-07fda2759879_begin-->
+
+#### Migrate to Azure Database for PostgreSQL Elastic Cluster  
+  
+Azure Cosmos DB for PostgreSQL is retiring. Migrate to Azure Database for PostgreSQL Elastic Cluster.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=556085)  
+
+ResourceType: microsoft.dbforpostgresql/servergroupsv2  
+Recommendation ID: bbce2e96-97d6-406e-bb16-07fda2759879  
+Subcategory: undefined
+
+<!--bbce2e96-97d6-406e-bb16-07fda2759879_end-->
 
 <!--articleBody-->

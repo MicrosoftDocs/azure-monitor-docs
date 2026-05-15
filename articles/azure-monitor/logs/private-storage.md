@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 07/01/2025
+ms.date: 05/07/2026
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -23,7 +23,7 @@ Custom log content uploaded to customer-managed storage accounts might change in
 > Starting June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
-> Starting August 31, 2025, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
+> Starting August 31, 2026, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
 
 | Action | Permission required |
 |---|---|
@@ -71,6 +71,9 @@ Configure your storage account to use CMKs with Key Vault. For more information,
 
 ### Considerations for customer-managed storage with CMK
 
+> [!WARNING]
+> When you link a storage account for queries, all queries and functions are permanently removed from the workspace and stored in a table in the storage account. Before starting this operation, click Export template under Automation in your workspace to save your queries and functions.
+
 The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
 | Special case | Remediation |
@@ -82,7 +85,7 @@ The storage account and the key vault must be in the same region. They don't nee
 
 ## Link storage accounts to your Log Analytics workspace
 
-The following requirements will be enforced no earlier than August 31, 2025. 
+The following requirements will be enforced no earlier than August 31, 2026. 
 
 | Upcoming requirement | Description |
 |---|---|

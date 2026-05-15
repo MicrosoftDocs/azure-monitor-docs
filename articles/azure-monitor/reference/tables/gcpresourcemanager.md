@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The Google Cloud Platform Resource Manager data connector provides the capability to ingest Resource Manager [Admin Activity and Data Access Audit logs](https://cloud.google.com/resource-manager/docs/audit-logging) into Microsoft Sentinel using the Cloud Resource Manager API. Refer the [Product overview](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy) document for more details.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,105 @@ The Google Cloud Platform Resource Manager data connector provides the capabilit
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [gcpresourcemanager](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/gcpresourcemanager-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AuthenticationInfoPrincipalEmail | string | The email address of the authenticated principal making the request. |
+| AuthenticationInfoPrincipalSubject | string | The unique subject identifier for the principal (useful for federated identities). |
+| AuthenticationInfoServiceAccountKeyName | string | The resource name of the service account key used to authenticate the request. |
+| AuthorizationInfo | string | Details on the authorization checks performed, including the permissions evaluated. |
+| _BilledSize | real | The record size in bytes |
+| GCPResourceName | string | The name of the resource that the operation is acting on. |
+| GCPResourceType | string | The type of resource involved in the operation (e.g., project, folder, organization). |
+| InsertID | string | A unique ID for the log entry used for deduplication. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogName | string | The full resource name of the log (e.g., projects/[PROJECT_ID]/logs/[LOG_ID]). |
+| MetadataParentDeltaDestinationParentId | string | The destination parent ID when a resource moves between parents (e.g., folder or org). |
+| MetadataParentDeltaDestinationParentType | string | The type of destination parent (e.g., folder, organization). |
+| MetadataParentDeltaSourceParentId | string | The original parent ID of the resource before the move. |
+| MetadataParentDeltaSourceParentType | string | The type of source parent (e.g., folder, organization). |
+| MetadataType | string | The type of metadata associated with the log entry. |
+| MethodName | string | The API method that was called (e.g., google.cloud.resourcemanager.v3.Projects.CreateProject). |
+| NumResponseItems | string | The number of items returned in the response, if applicable. |
+| OperationFirst | bool | Indicates whether this is the first log entry for a long-running operation. |
+| OperationID | string | An identifier for a long-running operation shared across related log entries. |
+| OperationLast | bool | Indicates whether this is the last log entry for a long-running operation. |
+| OperationProducer | string | The name of the producer of the operation (e.g., the GCP service executing the operation). |
+| PayloadType | string | The type of the log payload (e.g., protoPayload, textPayload). |
+| ReceiveTimestamp | datetime | The time the log entry was received by Cloud Logging. |
+| RequestConstraint | string | The Org Policy constraint specified in the request. |
+| RequestCreateTime | datetime | The timestamp when the resource was created as specified in the request. |
+| RequestCustomConstraint | string | Custom constraint configuration specified in the request. |
+| RequestDestinationParent | string | The resource name of the destination parent, used in resource moves. |
+| RequestFolderDisplayName | string | The display name of the folder provided in the request. |
+| RequestFolderParent | string | The parent resource of the folder specified in the request. |
+| RequestLifecycleState | string | The lifecycle state of the resource in the request (e.g., ACTIVE, DELETE_REQUESTED). |
+| RequestListValue | string | A list of values specified in the request (e.g., tags, constraints). |
+| RequestMetadataCallerIP | string | The IP address of the caller who made the request. |
+| RequestMetadataCallerSuppliedUserAgent | string | The user agent String provided by the caller's client application. |
+| RequestMetadataDestinationAttributes | string | Metadata about the request destination, such as port or protocol. |
+| RequestMetadataRequestAttributesAuth | string | Authentication attributes related to the request, such as authority selector or principal email. |
+| RequestMetadataRequestAttributesReason | string | The reason or justification for making the request (if provided). |
+| RequestMetadataRequestAttributesTime | datetime | The timestamp when the request was made. |
+| RequestName | string | The name or ID of the resource targeted by the request. |
+| RequestOptionsRequestedPolicyVersion | string | The version of the IAM policy format requested. |
+| RequestPageSize | string | The number of results to return per page in a list request. |
+| RequestParent | string | The parent resource (e.g., folder or org) under which the request is being made. |
+| RequestPolicyAuditConfigs | string | The audit configuration settings defined in the policy request. |
+| RequestPolicyBindings | string | A list of role bindings defined in the IAM policy request. |
+| RequestPolicyEtag | string | The ETag used for concurrency control in the policy request. |
+| RequestPolicyName | string | The resource name of the policy being modified in the request. |
+| RequestPolicySpec | string | Detailed specification of the Org Policy being applied. |
+| RequestProjectCreateTime | datetime | The time the project was created as per the request. |
+| RequestProjectId | string | The project ID associated with the request. |
+| RequestProjectLabels | string | Key-value labels assigned to the project in the request. |
+| RequestProjectLifecycleState | string | The lifecycle state of the project (e.g., ACTIVE, DELETE_REQUESTED). |
+| RequestProjectName | string | The display name of the project specified in the request. |
+| RequestProjectParent | string | The parent resource (folder or organization) under which the project is created. |
+| RequestProjectProjectId | string | The unique project ID provided in the request. |
+| RequestProjectProjectNumber | string | The numerical project identifier. |
+| RequestQuery | string | A query String used for filtering results (e.g., in search or list operations). |
+| RequestResource | string | The full representation of the resource included in the request. |
+| RequestTagBindingParent | string | The full name of the resource to which the tag is being bound. |
+| RequestTagBindingTagValue | string | The tag value being bound to a resource in the request. |
+| RequestTagKeyName | string | The full resource name of the tag key referenced in the request. |
+| RequestTagValueName | string | The full resource name of the tag value in the request. |
+| RequestType | string | The type of request being made (e.g., Create, Update, Delete). |
+| RequestUpdateMask | string | A comma-separated list specifying the fields to be updated in a partial update request. |
+| ResourceLabelsFolderId | string | The folder ID associated with the resource. |
+| ResourceLabelsMethod | string | The method name label used for filtering in logs. |
+| ResourceLabelsOrganizationId | string | The organization ID associated with the resource. |
+| ResourceLabelsProjectId | string | The project ID associated with the resource. |
+| ResourceLabelsService | string | The service name label used for filtering in logs. |
+| ResponseAuditConfigs | string | The audit configurations returned in the response. |
+| ResponseBindings | string | The IAM role bindings included in the response. |
+| ResponseCreateTime | datetime | The timestamp when the resource was created, as returned in the response. |
+| ResponseDescription | string | A description of the resource or result returned in the response. |
+| ResponseDisplayName | string | The display name of the resource returned in the response. |
+| ResponseEtag | string | The ETag used for concurrency control in the response. |
+| ResponseLabels | string | The key-value labels attached to the resource in the response. |
+| ResponseLifecycleState | string | The lifecycle state of the resource in the response (e.g., ACTIVE, DELETE_REQUESTED). |
+| ResponseName | string | The full resource name returned in the response. |
+| ResponseNamespacedName | string | A namespaced identifier for the resource (used in tagging). |
+| ResponseParent | string | The parent resource name associated with the response. |
+| ResponsePolicySpec | string | The policy specification returned in the response (Org Policy or IAM policy). |
+| ResponseProjectId | string | The project ID returned in the response. |
+| ResponseProjectNumber | string | The project ID returned in the response. |
+| ResponseShortName | string | The short, user-defined name of the resource returned in the response. |
+| ResponseState | string | The current state of the resource (e.g., ACTIVE, DELETED). |
+| ResponseTagKey | string | The tag key associated with the resource returned in the response. |
+| ResponseTagValue | string | The tag value associated with the resource in the response. |
+| ResponseTagValueNamespacedName | string | A fully qualified name (including tag key) for the tag value. |
+| ResponseType | string | The type of the response payload. |
+| ResponseUpdateTime | datetime | The time when the resource was last updated, as per the response. |
+| ServiceDataPolicyDeltaBindingDeltas | string | Changes (additions or removals) to IAM bindings as part of the policy delta. |
+| ServiceDataType | string | The type of service-specific data returned in the response. |
+| ServiceName | string | The name of the GCP service handling the request (e.g., cloudresourcemanager.googleapis.com). |
+| Severity | string | Log level indicating the severity of the event (e.g., INFO, ERROR). |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| Status | string | The status of the request, including error codes and messages if the operation failed. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The time the log entry was received by logging. |
+| Timestamp | datetime | The time the event described by the log entry occurred. |
+| Type | string | The name of the table |

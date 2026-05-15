@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 04/06/2026
+ms.date: 05/12/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,35 @@ ms.date: 04/06/2026
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
+
+### May 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Logs|[Workspace replication](../logs/workspace-replication.md)|Workspace replication now supports private links during failover, removing a previous limitation that blocked customers using private endpoints in BCDR scenarios.|
+
+### April 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Containers|[OTLP ingestion options overview](../containers/opentelemetry-summary.md)|Published and reorganized Azure Monitor OpenTelemetry public preview documentation for container monitoring, covering [Ingest OTLP data with AMA](../containers/opentelemetry-ingest-agent.md), [Collect and use observability data in AKS](../containers/collect-use-observability-data.md), [AKS autoinstrumentation for Python and .NET](../containers/kubernetes-codeless-python-net.md), [AKS OpenTelemetry Protocol](../containers/kubernetes-open-protocol.md), and [OTLP protocol ingestion](../containers/opentelemetry-protocol-ingestion.md).|
+|Agents|[Observability agent overview](../aiops/observability-agent-overview.md)|Rewrote four Azure Copilot observability agent articles to align with the current product experience and organize guidance around common scenarios such as deep investigation, chat with data, and conversational exploration, including [Issues overview](../aiops/aiops-issue-and-investigation-overview.md), [Use issues](../aiops/aiops-issue-and-investigation-how-to.md), and [Troubleshoot the observability agent](../aiops/observability-agent-troubleshooting.md).|
+|Agents|[Troubleshoot syslog issues with Azure Monitor Agent on Linux](../agents/azure-monitor-agent-troubleshoot-linux-vm-rsyslog.md)|Added a diagnostic section to help troubleshoot syslog upload failures on Linux.|
+|Application Insights|[App Center migration guidance](../app/app-center-migration.md)|Updated the App Center migration guide with clearer support-request steps and a revised retirement timeline.|
+|Application Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md)|Reorganized Application Insights OpenTelemetry guidance into task-based articles for data collection and resource detection, [adding and modifying telemetry](../app/opentelemetry-add-modify.md), [configuration](../app/opentelemetry-configuration.md), and [enablement](../app/opentelemetry-enable.md), making common setup and customization tasks easier to find.|
+|Application Insights|[Configuration options: Azure Monitor Application Insights for Java](../app/java-standalone-config.md)|Consolidated Java configuration guidance into one article covering JMX metrics, sampling overrides, and telemetry processors.|
+|Application Insights|[Connection strings](../app/connection-strings.md)|Simplified the connection strings guidance by removing duplicate setup steps and pointing readers to the main OpenTelemetry configuration experience.|
+|Application Insights|[Application Insights Classic API](../app/classic-api.md)|Updated Classic API guidance with explicit retirement dates for the Node.js and .NET SDKs and clearer links to [Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet).|
+|Application Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Removed outdated .NET migration guidance so the article better reflects the current upgrade path.|
+|Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published general availability updates across Azure Monitor pipeline documentation, including TLS setup, transformations, sizing, troubleshooting, and Kubernetes gateway guidance.|
+|Fundamentals|[Service Level Indicators (SLIs) public preview](service-level-indicators-create.md)|Published a new article for Service Level Indicators (SLIs) public preview.|
+|Data Collection|[Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md)|Clarified `extend` versus `project` operator behavior for column output in data collection rule transformations.|
+|Logs|[Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs)|Published a comprehensive reliability guide for Azure Monitor Logs covering availability zone protection, [workspace replication](../logs/workspace-replication.md) for cross-region resilience, [data export](../logs/logs-data-export.md) for backup, and disaster recovery recommendations for Log Analytics workspaces.|
+|Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added HTTP Data Collector API deprecation notices and updated the Logs Ingestion API overview with [migration guidance](../logs/custom-logs-migrate.md), [workspace overview](../logs/log-analytics-workspace-overview.md), and [data collection rule](../data-collection/data-collection-rule-overview.md) cross-references to support customers transitioning to the replacement API.|
+|Logs|[Aggregate data in a Log Analytics workspace by using summary rules](../logs/summary-rules.md)|Updated thresholds, corrected parameter naming in code samples, fixed PowerShell syntax errors, and updated the limitations section with current service constraints.|
+|Logs|[Set up resources required to send data to Azure Monitor Logs using the Logs Ingestion API](../logs/set-up-logs-ingestion-api-prerequisites.md)|Updated the `Get-AzAccessToken` code sample to handle the SecureString breaking change introduced in Az.Accounts 5.0, improved article structure.|
+|Virtual Machines|[Use Performance Diagnostics in Azure Monitor](../vm/performance-diagnostics.md)|Added Performance Diagnostics new configurable threshold values feature in Public preview, adding threshold configuration guidance across the [run](../vm/performance-diagnostics-run.md), [analyze](../vm/performance-diagnostics-analyze.md), and [extension](../vm/performance-diagnostics-extension.md) articles.|
+|Fundamentals |[REST API Index](../fundamentals/azure-monitor-rest-api-index.md)|Restructured APIs into three sections, Azure Monitor, Application Insights, and Logs. Added clarity to scope and endpoints.|
 
 ### March 2026
 
@@ -43,7 +72,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|Documented default-on sampling for most languages and updated [configuration guidance](../app/opentelemetry-configuration.md?tabs=nodejs#enable-sampling) accordingly.|
 |Application-Insights|[Migrate to OpenTelemetry](../app/migrate-to-opentelemetry.md?tabs=dotnet)|Published .NET SDK 3.x migration guidance for upgrading applications from the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK to OpenTelemetry.|
 |Application-Insights|[Connection strings](../app/connection-strings.md#authenticated-browser-telemetry-using-connection-strings)|Added guidance for preserving JavaScript browser telemetry with Microsoft Entra ID-only authentication by proxying ingestion through Azure API Management.|
-|Application-Insights|[OpenTelemetry or the Application Insights Classic API SDK?](../app/application-insights-faq.yml#should-i-use-opentelemetry-or-the-application-insights-classic-api-sdk)|Updated FAQ guidance to recommend starting with OpenTelemetry now that the Azure Monitor OpenTelemetry Distro has reached feature parity with the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK.|
+|Application-Insights|[OpenTelemetry or the Application Insights Classic API SDK?](../app/application-insights-faq.yml#should-i-use-opentelemetry-for-new-application-insights-projects)|Updated FAQ guidance to recommend starting with OpenTelemetry now that the Azure Monitor OpenTelemetry Distro has reached feature parity with the [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK.|
 |Application-Insights|[OpenTelemetry data collection and resource detectors](../app/opentelemetry-collect-detect.md?tabs=aspnetcore)|Published guidance on what OpenTelemetry collects automatically and how to enrich telemetry with resource detectors.|
 |Data Collection|[Azure Monitor pipeline overview](../data-collection/pipeline-overview.md)|Published substantial updates to Azure Monitor pipeline guidance, including transformations, TLS, pod placement, and a new architecture diagram.|
 |Fundamentals|[Azure Monitor overview](overview.md)|Published a simplified Azure Monitor overview organized around core user scenarios and updated it to highlight the observability agent.|
@@ -106,7 +135,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Application-Insights|[Troubleshooting](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-aks-autoinstrumentation)| We're rapidly growing and updating our list of Application Insights troubleshooting content.|
 |Application-Insights|[Resource detectors](../app/opentelemetry-collect-detect.md#resource-detectors)| New information is available on OpenTelemetry resource detectors.|
-|Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry/samples-dev/src).|
+|Application-Insights|[Node.js samples](../app/opentelemetry-configuration.md?tabs=nodejs)| We published new OpenTelemetry Node.js samples across our portfolio based on the [authoritative parity source](/samples/azure/azure-sdk-for-js/monitor-opentelemetry-typescript).|
 |Data Collection|[DCR visualizer](../data-collection/data-collection-rule-view.md)| Published new article for viewing DCRs to deliver content for new DCR Visualizer.|
 |Fundamentals|[VM agents troubleshooting](best-practices-security.md#recommended-action)| Published self-service steps for identifying and remediating VM agents still outdated TLS.|
 |Logs|[New transforms tables](../logs/tables-feature-support.md)|New tables supported for transforms.|
@@ -159,7 +188,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Fundamentals|[Azure Monitor endpoint access and firewall configuration](azure-monitor-network-access.md)|We improved the technical accuracy and included new information about adding IPv6 support for App Insights ingestion endpoints.|
 |Logs|[Run search jobs in Azure Monitor](../logs/search-jobs.md)|We updated the search job record limit.|
 |Logs|[Optimize log queries in Azure Monitor](../logs/query-optimization.md#query-details-pane)|Information about the details pane has been updated.|
-|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don’t require deep Grafana integrations.|
+|Visualizations|[Use Azure Monitor dashboards with Grafana (preview)](../visualize/visualize-use-grafana-dashboards.md)|We updated documentation to make the free, Azure-integrated Grafana with Dashboards the primary recommendation for customers who don't require deep Grafana integrations.|
 
 ### July 2025
 
@@ -168,7 +197,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Alerts|[Customize log search alert email subjects (preview)](../alerts/alerts-customize-email-subject-how-to.md)|Log search alert email subjects can now be customized.|
 |Application-Insights|[Application Insights for ASP.NET and ASP.NET Core applications](../app/asp-net.md)|[Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDK fundamentals for both ASP.NET and ASP.NET Core are now merged in one place.|
 |Application-Insights|[Metrics in Application Insights](../app/metrics-overview.md)|The documentation now clarifies that Azure Monitor Metrics and Workspaces ingest custom metrics at a fixed 60-second interval, regardless of how often they're sent, while Log Analytics records them at the actual send interval. Introduced the OTEL_METRIC_EXPORT_INTERVAL environment variable, allowing configuration of the OpenTelemetry metric export interval, with a default of 60 seconds.|
-|Application-Insights|[Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)|Clarified that when using Microsoft Entra ID for the Application Insights data collection endpoint, the application must also authenticate with Entra ID or telemetry is rejected.|
+|Application-Insights|[Troubleshoot missing application telemetry in Azure Monitor Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/investigate-missing-telemetry)|Clarified that when using Microsoft Entra ID for the Application Insights data collection endpoint, the application must also authenticate with Microsoft Entra ID or telemetry is rejected.|
 |Application-Insights|[Application Insights availability tests](../app/availability.md)|Published a query to discover deprecated URL ping tests with [Azure Resource Graph Explorer](/azure/governance/resource-graph/first-query-portal).|
 |Application-Insights|[Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md)|All sampling links from the Azure portal now go directly to our OpenTelemetry guidance.|
 |Platform|[Azure Monitor activity log](../platform/activity-log.md)|Rewritten for clarity and to consolidate articles.|
@@ -296,7 +325,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Application-Insights|[Configure Azure Monitor OpenTelemetry](../app/opentelemetry-configuration.md)|Added Redact URL Query Strings|
-|General|[Monitor a Cloud Environment]()|New article to provide high level monitoring concepts and map to Azure monitoring services.|
+|General|[Monitor a Cloud Environment](best-practices-multicloud.md)|New article to provide high level monitoring concepts and map to Azure monitoring services.|
 |Logs|[Data collection endpoints in Azure Monitor](../data-collection/data-collection-endpoint-overview.md)|Added clarification on when DCE is required.|
 |Logs|[Logs Ingestion API in Azure Monitor](../logs/logs-ingestion-api-overview.md)|Added clarification on endpoint used with API.|
 |Logs|[Enable network isolation for Azure Monitor Agent by using Private Link](../agents/azure-monitor-agent-private-link.md)|Rewritten for clarity.|
@@ -895,7 +924,7 @@ Logs|[Enhance data and service resilience in Azure Monitor Logs with availabilit
 Logs|[Monitor Log Analytics workspace health](../logs/log-analytics-workspace-health.md)|New article: Explains how to monitor the service and resource health of a Log Analytics workspace.|
 Logs|[Feature extensions for Application Insights JavaScript SDK (Click Analytics)](../app/javascript-click-analytics-plugin.md)|You can now launch Power BI and create a dataset and report connected to a Log Analytics query with one click.|
 Logs|[Set a table's log data plan to Basic or Analytics](../logs/logs-table-plans.md)|Added new tables to the list of tables that support Basic Logs.|
-Logs|[Manage tables in a Log Analytics workspace]()|Refreshed all Log Analytics workspace images with the new TOC on the left.|
+Logs|[Manage tables in a Log Analytics workspace](../logs/manage-logs-tables.md)|Refreshed all Log Analytics workspace images with the new TOC on the left.|
 Security-Fundamentals|[Monitoring Azure App Service](/azure/app-service/monitor-app-service)|Revised the Azure Monitor overview to improve usability. The article is cleaned up, streamlined, and better reflects the product architecture and the customer experience. |
 Snapshot-Debugger|[host.json reference for Azure Functions 2.x and later](/azure/azure-functions/functions-host-json)|Removing the TSG from the Azure Monitor TOC and adding to the support TOC.|
 Snapshot-Debugger|[Configure Bring Your Own Storage (BYOS) for Application Insights Profiler and Snapshot Debugger](../profiler/profiler-bring-your-own-storage.md)|Removing the TSG from the Azure Monitor TOC and adding to the support TOC.|

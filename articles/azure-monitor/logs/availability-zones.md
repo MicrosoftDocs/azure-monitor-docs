@@ -10,7 +10,9 @@ ms.custom: references_regions
 ---
 # Enhance data and service resilience in Azure Monitor Logs with availability zones
 
-[Azure availability zones](/azure/reliability/availability-zones-overview) protect applications and data from datacenter failures and can enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. In some regions, availability zones protect all Log Analytics workspaces by default. In other regions, you need to link your workspace to a dedicated cluster for availability zone protection. This article describes the data and service resilience benefits Azure Monitor availability zones provide, and lists the level of support provided in each region.
+[Azure availability zones](/azure/reliability/availability-zones-overview) are an Azure feature that protects applications and data from datacenter failures. They provide in-region protection with no configuration required and enhance the resilience of Azure Monitor features that rely on a Log Analytics workspace. In some regions, availability zones protect all Log Analytics workspaces by default. In other regions, you need to link your workspace to a dedicated cluster for availability zone protection. This article describes the data and service resilience benefits Azure Monitor availability zones provide and lists the level of support provided in each region.
+
+For cross-region resilience against region-wide incidents, see [workspace replication](workspace-replication.md), and for a comprehensive overview of all resiliency options, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
 
 > [!NOTE]
 > Application Insights resources can use availability zones only if they're workspace-based. Classic Application Insights resources can't use availability zones.
@@ -84,4 +86,6 @@ Linking your workspace to a dedicated cluster:
 
 ## Next steps
 
-Learn more about [Azure Monitor Logs features that enhance resilience and reliability](../best-practices-logs.md#reliability).
+- For comprehensive reliability guidance, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
+- For cross-region resilience, see [Enhance resilience by replicating your Log Analytics workspace across regions](workspace-replication.md).
+- Learn more about [Azure Monitor Logs features that enhance resilience and reliability](../best-practices-logs.md#reliability).

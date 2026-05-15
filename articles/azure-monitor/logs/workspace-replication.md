@@ -3,7 +3,7 @@ title: Enhance resilience by replicating your Log Analytics workspace across reg
 description: Use the workspace replication feature in Log Analytics to create copies of a workspace in different regions for data resiliency.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 11/02/2025
+ms.date: 05/12/2026
 ms.custom: references_regions 
 
 # Customer intent: As a Log Analytics workspace administrator, I want to replicate my workspace across regions to protect and continue to access my log data in the event of a regional failure.
@@ -11,7 +11,9 @@ ms.custom: references_regions
 
 # Enhance resilience by replicating your Log Analytics workspace across regions
 
-Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces.
+Replicating your Log Analytics workspace across regions enhances resilience by letting you switch over to the replicated workspace and continue operations if there's a regional failure. This article explains how Log Analytics workspace replication works, how to replicate your workspace, how to switch over and back, and how to decide when to switch between your replicated workspaces. 
+
+Workspace replication is a paid, configurable feature that protects against region-wide incidents that compliments [availability zones](availability-zones.md), the transparent in-region protection against datacenter failures. For a comprehensive overview of all resiliency options, see [Reliability in Azure Monitor Logs](/azure/reliability/reliability-monitor-logs).
 
 Here's a video that provides a quick overview of how Log Analytics workspace replication works:
 
@@ -84,7 +86,7 @@ If you write your own client to send log data to your Log Analytics workspace, e
     | Application Insights over Log Analytics workspaces | Not supported |
     | VM Insights | Not supported |
     | Container Insights | Not supported |
-    | Private links | Not supported during failover |
+    | Private links | Supported |
 
 ### Supported regions
 

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/24/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -424,19 +424,20 @@ Subcategory: undefined
 
 #### Use NAT gateway for outbound connectivity  
   
-Prevent connectivity failures due to source network address translation (SNAT) port exhaustion by using NAT gateway for outbound traffic from your virtual networks. NAT gateway scales dynamically and provides secure connections for traffic headed to the internet.  
+Prevent outbound connectivity failures due to source network address translation (SNAT) port exhaustion by using a zone‑redundant Standard V2 NAT gateway. Standard V2 NAT gateway scales dynamically, offers native zone redundancy, and improved reliability for outbound internet traffic.  
   
 **Potential benefits**: Prevent outbound connection failures with NAT gateway  
 
 **Impact:** Medium
   
-For more information, see [Source Network Address Translation (SNAT) for outbound connections - Azure Load Balancer ](/azure/load-balancer/load-balancer-outbound-connections#2-associate-a-nat-gateway-to-the-subnet)  
+For more information, see [What Is Azure NAT Gateway?](/azure/nat-gateway/nat-overview#standardv2-nat-gateway)  
 
 ResourceType: microsoft.network/virtualnetworks  
 Recommendation ID: 56f0c458-521d-4b8b-a704-c0a099483d19  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--56f0c458-521d-4b8b-a704-c0a099483d19_end-->
+
 
 <!--01c0dcd3-d6f7-4d50-a98b-4e15f9486a32_begin-->
 
@@ -640,23 +641,7 @@ Subcategory: undefined
 
 <!--c7b5d99f-9759-4a04-9e86-ff6a41e0902f_end-->
 
-<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_begin-->
 
-#### Application Gateway v1 has been retired. Migrate to Application Gateway v2.  
-  
-We announced the deprecation of Application Gateway V1 on April 28, 2023. Starting from April 28, 2026, we are retiring Application Gateway v1 SKU. If you use Application Gateway V1 SKU, start planning your migration to V2 now.  
-  
-**Potential benefits**: Plan your migration to v2 now.  
-
-**Impact:** High
-  
-For more information, see [We're retiring Application Gateway V1 SKU in April 2026 - Azure Application Gateway](https://aka.ms/appgw/v1eol)  
-
-ResourceType: microsoft.network/applicationgateways  
-Recommendation ID: 0e19257e-dcef-4d00-8de1-5fe1ae0fd948  
-Subcategory: undefined
-
-<!--0e19257e-dcef-4d00-8de1-5fe1ae0fd948_end-->
 
 
 <!--96e232d0-9b01-4e96-8c24-f9160ba3535a_begin-->
@@ -730,5 +715,23 @@ Recommendation ID: 954daefb-e247-4e27-85c6-a212f9df5a53
 Subcategory: undefined
 
 <!--954daefb-e247-4e27-85c6-a212f9df5a53_end-->
+
+<!--6012b4f4-b19a-4d6e-ae25-4289c228428e_begin-->
+
+#### Deploy Application Gateway in a zone-redundant configuration  
+  
+Deploy Application Gateway in a zone-redundant configuration to ensure continued customer access to services. If a specific zone goes offline, services in other zones remain available.  
+  
+**Potential benefits**: Enhanced uptime and customer access.  
+
+**Impact:** High
+  
+For more information, see [Architecture Best Practices for Azure Application Gateway v2 - Microsoft Azure Well-Architected Framework](https://aka.ms/learnmore_network_applicationgateway)  
+
+ResourceType: microsoft.network/applicationgateways  
+Recommendation ID: 6012b4f4-b19a-4d6e-ae25-4289c228428e  
+Subcategory: undefined
+
+<!--6012b4f4-b19a-4d6e-ae25-4289c228428e_end-->
 
 <!--articleBody-->

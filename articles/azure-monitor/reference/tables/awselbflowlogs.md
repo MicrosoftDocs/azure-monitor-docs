@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This connector allows you to ingest AWS Elastic Load Balancer (ALB, NLB and GLB) logs into Microsoft Sentinel. These logs contain detailed records for requests handled by your load balancers, including client IPs, latencies, request paths, and status codes. These logs are useful for monitoring traffic patterns, investigating anomalies, and ensuring security compliance.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,28 @@ This connector allows you to ingest AWS Elastic Load Balancer (ALB, NLB and GLB)
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [awselbflowlogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awselbflowlogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AccountId | string | The AWS account ID that owns the network interface. |
+| Action | string | Indicates whether the traffic was accepted or rejected. |
+| _BilledSize | real | The record size in bytes |
+| Bytes | string | The number of bytes transferred during the flow. |
+| DestinationAddress | string | The destination IP address of the traffic. |
+| DestinationPort | string | The destination port of the traffic. |
+| EndTime | datetime | The end time of the flow in Unix seconds. |
+| InterfaceId | string | The ID of the network interface for which the traffic is recorded. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogStatus | string | Indicates the logging status (e.g., OK, NODATA, SKIPDATA). |
+| LogType | string | Type of the log (e.g., VPCFlowLog, TransitGatewayFlowLog). |
+| Packets | string | The number of packets transferred during the flow. |
+| Protocol | string | The IANA protocol number of the traffic (e.g., 6 for TCP, 17 for UDP). |
+| SourceAddress | string | The source IP address of the traffic. |
+| SourcePort | string | The source port of the traffic. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SStartTime | datetime | The start time of the flow in Unix seconds. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log was collected or ingested. |
+| Type | string | The name of the table |
+| Version | string | The version of the flow log format. |

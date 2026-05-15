@@ -5,7 +5,7 @@ metadata:
   ms.service: azure-monitor
   ms.topic: faq
   ms.custom: references_regions
-  ms.date: 03/19/2026
+  ms.date: 05/03/2026
 
 title: "Application Insights FAQ - Frequently Asked Questions"
 summary: |
@@ -27,17 +27,14 @@ sections:
           From server web apps:
 
           * HTTP requests.
-          * [Dependencies](./asp-net-dependencies.md). Calls to SQL databases, HTTP calls to external services, Azure Cosmos DB, Azure Table Storage, Azure Blob Storage, and Azure Queue Storage.
-          * [Exceptions](./asp-net-exceptions.md) and stack traces.
-          * [Performance counters](./asp-net-counters.md): Performance counters are available when using:
-             * [Azure Monitor Application Insights agent](classic-api.md#deploy-the-application-insights-agent-for-on-premises-servers)
-             * [Azure monitoring for VMs or virtual machine scale sets](./azure-vm-vmss-apps.md)
-             * [Application Insights `collectd` writer](/previous-versions/azure/azure-monitor/app/deprecated-java-2x#collectd-linux-performance-metrics-in-application-insights-deprecated).
-          * [Custom events and metrics](./api-custom-events-metrics.md) that you code.
-          * [Trace logs](./asp-net-trace-logs.md) if you configure the appropriate collector.
-          
+          * Dependencies such as SQL, HTTP, Azure Cosmos DB, Azure Table Storage, Azure Blob Storage, and Azure Queue Storage calls.
+          * Exceptions and stack traces.
+          * Runtime metrics from supported instrumentation.
+          * Custom events and metrics that you send by using [OpenTelemetry custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry), the [JavaScript SDK](javascript-sdk.md), or [Click Analytics](javascript-feature-extensions.md).
+          * Trace logs if you configure the appropriate collector.
+
           From [client webpages](./javascript-sdk.md):
-          
+
           * Uncaught exceptions in your app, including information on
              * Stack trace
              * Exception details and message accompanying the error
@@ -58,9 +55,9 @@ sections:
              > For some applications, such as single-page applications (SPAs), the duration isn't always recorded and, in those cases, defaults to 0.
 
              For more information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
-          
+
            From other sources, if you configure them:
-          
+
            * [Azure diagnostics](../agents/diagnostics-extension-to-application-insights.md)
            * [Import to Log Analytics](../logs/data-collector-api.md)
            * [Log Analytics](../logs/data-collector-api.md)
@@ -74,21 +71,21 @@ sections:
 
       - question: How many Application Insights resources should I deploy?
         answer: |
-          To understand the number of Application Insights resources required to cover your application or components across environments, see the [Application Insights deployment planning guide](create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy).  
+          To understand the number of Application Insights resources required to cover your application or components across environments, see the [Application Insights deployment planning guide](create-workspace-resource.md#how-many-application-insights-resources-should-i-deploy).
 
       - question: How can I manage Application Insights resources with PowerShell?
         answer: |
           You can [write PowerShell scripts](./powershell.md) by using Azure Resource Monitor to:
-          
+
           * Create and update Application Insights resources.
           * Set the pricing plan.
           * Get the connection string.
           * Add a metric alert.
           * Add an availability test.
-          
-          You can't set up a metrics explorer report or set up continuous export.    
 
-      - question: How can I query Application Insights telemetry? 
+          You can't set up a metrics explorer report or set up continuous export.
+
+      - question: How can I query Application Insights telemetry?
         answer: |
            Use the [REST API](/rest/api/application-insights/) to run [Log Analytics](../logs/log-query-overview.md) queries.
 
@@ -96,11 +93,11 @@ sections:
         answer: |
           We recommend the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
 
-          The [ingestion schema](https://github.com/microsoft/ApplicationInsights-dotnet/tree/master/BASE/Schema/PublicSchema) and [endpoint protocol](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) are available publicly.    
+          The [ingestion schema](https://github.com/microsoft/ApplicationInsights-dotnet/tree/master/BASE/Schema/PublicSchema) and [endpoint protocol](https://github.com/MohanGsk/ApplicationInsights-Home/blob/master/EndpointSpecs/ENDPOINT-PROTOCOL.md) are available publicly.
 
       - question: How long does it take for telemetry to be collected?
         answer: |
-           Most Application Insights data has a latency of under 5 minutes. Some data can take longer, which is typical for larger log files. See the [Application Insights service-level agreement](https://azure.microsoft.com/support/legal/sla/application-insights/v1_2/).    
+           Most Application Insights data has a latency of under 5 minutes. Some data can take longer, which is typical for larger log files. See the [Application Insights service-level agreement](https://azure.microsoft.com/support/legal/sla/application-insights/v1_2/).
 
       - question: What is the Application Insights pricing model?
         answer: |
@@ -110,8 +107,8 @@ sections:
         answer: |
           * If your Azure web app is hosted in a datacenter where there's an Application Insights collection endpoint, there's no charge.
           * If there's no collection endpoint in your host datacenter, your app's telemetry incurs [Azure outgoing charges](https://azure.microsoft.com/pricing/details/bandwidth/).
-          
-          This answer depends on the distribution of our endpoints, *not* on where your Application Insights resource is hosted.   
+
+          This answer depends on the distribution of our endpoints, *not* on where your Application Insights resource is hosted.
 
       - question: Do I incur network costs if my Application Insights resource is monitoring an Azure resource (that is, telemetry producer) in a different region?
         answer: |
@@ -128,8 +125,8 @@ sections:
 
           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem) and [Azure Resource Manager TLS Support](/azure/azure-resource-manager/management/tls-support).
 
-      - question: Where can I get more information about Application Insights? 
-        answer: For more information, see [Introduction to Application Insights](../app/app-insights-overview.md).     
+      - question: Where can I get more information about Application Insights?
+        answer: For more information, see [Introduction to Application Insights](../app/app-insights-overview.md).
 
   - name: Data collection, retention, storage, and privacy
     questions:
@@ -137,97 +134,35 @@ sections:
         answer: |
           #### Context
           Application Insights collects telemetry from your app and stores it in a Log Analytics workspace. It works for apps hosted anywhere, not only in Azure.
-          
+
           #### What is collected and from where
           Telemetry comes from: (1) the SDK you add to your app, including any custom telemetry you send, (2) optional server agents, and (3) Microsoft-run availability tests. Typical data includes requests, dependencies, exceptions and crashes, performance counters, client and server context, traces, and any custom events or metrics you send.
           To verify what is being sent, run your app in debug mode and check your IDE Output or Diagnostics windows. For webpages, open your browser developer tools and inspect the Network tab.
           You can filter or enrich telemetry before it is sent by implementing a telemetry processor.
-          
+
           #### Retention and storage
           Raw data retention can be set to 30, 60, 90, 120, 180, 270, 365, 550, or 730 days. Retention beyond 90 days can incur extra charges. Aggregated metrics are retained at 1-minute granularity for 90 days. Debug snapshots are retained for 15 days. Data is stored in the region you choose when creating the resource.
           Telemetry is immutable after ingestion. You cannot edit telemetry. Purge is available to delete data when required.
-          
+
           #### Access, security, and encryption
           Data is visible to you and teammates with access and can be exported. Microsoft uses your data only to provide the service with restricted personnel access and may use aggregate statistics to improve the service.
           Telemetry is sent over HTTPS and data is encrypted at rest and as it moves between datacenters.
-          
+
           #### Privacy and responsible use
           Default SDK modules focus on performance, usage, and diagnostics and typically do not include sensitive personal data. Do not put sensitive data in URLs. Review custom telemetry so it does not include personal data. Client IP is used for geolocation, then the stored IP field is zeroed by default. If you need masking, add a telemetry initializer. If your app needs an opt-out, disable collection in code. Also review seemingly innocuous fields, for example device name on personal devices.
           You can control or disable some collection in configuration or via code. For more information, see [Geolocation and IP address handling](ip-collection.md).
-          
+
           #### TLS
           Use modern TLS for data in transit. Do not hardcode older protocol versions. Allow the platform to negotiate newer versions as they become available. For more information, see [Secure your Azure Monitor deployment](../fundamentals/best-practices-security.md).
-          
-          #### Local buffering and outages
-          If connectivity to Azure is lost or throttled, SDKs buffer telemetry locally and retry. Stale items are dropped, for example after about 48 hours for logs and 30 minutes for metrics. Local temporary storage is not encrypted, so secure any storage directory you configure. In browsers, sessionStorage is used to buffer sends.
-          
-          #### Per-language local storage: quick reference
-          - **.NET (ServerTelemetryChannel)**: Defaults to `%LOCALAPPDATA%\Microsoft\ApplicationInsights` or `%TMP%`. You can set a persisted folder in config or code.
-          
-            _Config (ApplicationInsights.config)_:
-            ```xml
-            <TelemetryChannel Type="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel, Microsoft.AI.ServerTelemetryChannel">
-                <StorageFolder>D:\NewTestFolder</StorageFolder>
-            </TelemetryChannel>
-            ```
-          
-            _C# code_:
-            ```csharp
-            var channel = new Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.ServerTelemetryChannel();
-            channel.StorageFolder = @"D:\NewTestFolder";
-            channel.Initialize(Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active);
-            Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active.TelemetryChannel = channel;
-            ```
-          
-          - **.NET (ASP.NET Core)**: Same defaults as above. On Linux and macOS, the SDK can auto-create a storage folder. Order of preference: `${TMPDIR}`, then `/var/tmp`, then `/tmp`. You can also set a folder in `Startup.cs`.
-          
-            _ASP.NET Core Startup_:
-            ```csharp
-            using Microsoft.ApplicationInsights.Channel;
-            using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
-            // inside ConfigureServices
-            services.AddSingleton(typeof(ITelemetryChannel), new ServerTelemetryChannel { StorageFolder = "/tmp/myfolder" });
-            ```
-          
-          - **Java**: Uses the OS temp folder, for example `C:\Users\username\AppData\Local\Temp` on Windows. This path is not configurable via the standard config file.
-          
-          - **Node.js**: Defaults to `%TEMP%/appInsights-node{CONNECTION STRING}`. You can change the file prefix used for the temp directory at runtime.
-          
-            _Node sample_:
-            ```js
-            const appInsights = require('applicationinsights');
-            appInsights.Sender.TEMPDIR_PREFIX = 'my-app-ai';
-            appInsights.setup(process.env.APPLICATIONINSIGHTS_CONNECTION_STRING).start();
-            ```
-          
-          - **JavaScript (browser)**: Uses `sessionStorage` keys `AI_buffer` and `AI_sent_buffer`. To disable sessionStorage buffering:
-          
-            ```js
-            import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-            const appInsights = new ApplicationInsights({
-              config: {
-                connectionString: '<YOUR-CONNECTION-STRING>',
-                enableSessionStorageBuffer: false
-              }
-            });
-            appInsights.loadAppInsights();
-            ```
-          
-          - **Python (OpenCensus)**: Defaults to `%USERNAME%/.opencensus/.azure/`. You can set a custom path:
-          
-            ```python
-            from opencensus.ext.azure.log_exporter import AzureLogHandler
-            handler = AzureLogHandler(connection_string='<YOUR-CONNECTION-STRING>',
-                                      storage_path='/var/tmp/ai-cache')
-            ```
 
+          #### Local buffering and outages
+          If connectivity to Azure is lost or throttled, supported OpenTelemetry exporters and current SDKs can buffer telemetry locally and retry. For current OpenTelemetry behavior, see [Offline storage and automatic retries](opentelemetry-configuration.md#offline-storage-and-automatic-retries). For browser buffering settings, see the [JavaScript SDK configuration](javascript-sdk-configuration.md#sdk-configuration).
       - question: What usage data does Microsoft collect?
         answer: |
           In many instances, Application Insights automatically collects data about product usage for Microsoft. This data is stored in a Microsoft data store and doesn't affect customers' monitoring volume and cost. Application Insights collects essential and nonessential metrics about:
- 
+
           * [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md)
           * [Autoinstrumentation (automatic instrumentation)](codeless-overview.md)
-          * Application Insights SDKs ([Classic API](/previous-versions/azure/azure-monitor/app/classic-api))
 
           The three main purposes of this data collection are:
 
@@ -249,7 +184,6 @@ sections:
           | **Non-essential metrics** |      |      |            |         |        |
           | Disk I/O failure          | ❌   | ✅  | ❌         | ❌     | ❌     |
 
-          \* Not supported with [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) or autoinstrumentation (*OTel only*)
 
           #### Supported EU regions
 
@@ -350,91 +284,8 @@ sections:
 
           For archived information, see [Data collection, retention, and storage in Application Insights](/previous-versions/azure/azure-monitor/app/data-retention-privacy).
 
-  - name: Application Insights API for custom events and metrics
+  - name: TLS support
     questions:
-      - question: Why am I missing telemetry data?
-        answer: |
-          Both [TelemetryChannels](telemetry-channels.md#what-are-telemetry-channels) will lose buffered telemetry if it isn't flushed before an application shuts down.
-
-          To avoid data loss, flush the TelemetryClient when an application is shutting down.
-
-          For more information, see [Flushing data](api-custom-events-metrics.md#flushing-data).
-          
-      - question: What exceptions might Track_() calls throw?
-        answer: |
-          None. You don't need to wrap them in try-catch clauses. If the SDK encounters problems, it will log messages in the debug console output and, if the messages get through, in Diagnostic Search.
-
-      - question: Is there a REST API to get data from the portal?
-        answer: |
-          Yes, the [data access API](/rest/api/application-insights/). Other ways to extract data include [Power BI](..\logs\log-powerbi.md) on [workspace-based resource](create-workspace-resource.md).
-
-      - question: Why are my calls to custom events and metrics APIs ignored?
-        answer: |
-          The Application Insights SDK isn't compatible with autoinstrumentation. If autoinstrumentation is enabled, calls to <code class="notranslate">Track()</code> and other custom events and metrics APIs will be ignored.
-
-          Turn off autoinstrumentation in the Azure portal on the Application Insights tab of the App Service page or set <code class="notranslate">ApplicationInsightsAgent_EXTENSION_VERSION</code> to <code class="notranslate">disabled</code>.
-          
-      - question: Why are the counts in Search and Metrics charts unequal?
-        answer: |
-           [Sampling](./sampling.md) reduces the number of telemetry items (like requests and custom events) that are sent from your app to the portal. In Search, you see the number of items received. In metric charts that display a count of events, you see the number of original events that occurred.
-          
-           Each item that's transmitted carries an `itemCount` property that shows how many original events that item represents. To observe sampling in operation, you can run this query in Log Analytics:
-          
-           ```
-           requests | summarize original_events = sum(itemCount), transmitted_events = count()
-           ```
-        
-      - question: How can I set an alert on an event?
-        answer: |
-             Azure alerts are only on metrics. Create a custom metric that crosses a value threshold whenever your event occurs. Then set an alert on the metric. You get a notification whenever the metric crosses the threshold in either direction. You won't get a notification until the first crossing, no matter whether the initial value is high or low. There's always a latency of a few minutes.
-     
-      - question: Where can I get more information about the Application Insights API for custom events and metrics? 
-        answer: For more information, see [Application Insights API for custom events and metrics](../app/api-custom-events-metrics.md).
-  
-  - name: Deploying Application Insights Agent for on-premises servers
-    questions:
-      - question: Does Application Insights Agent support proxy installations?
-        answer: |
-          Yes. There are multiple ways to download Application Insights Agent:
-
-          * If your computer has internet access, you can onboard to the PowerShell Gallery by using `-Proxy` parameters.
-          * You can also manually download the module and either install it on your computer or use it directly.
-
-          Each of these options is described in the [detailed instructions](classic-api.md?tabs=dotnet#detailed-instructions).  
-
-      - question: Does Application Insights Agent support ASP.NET Core applications?
-        answer: |
-          Yes. In [Application Insights Agent 2.0.0](https://www.powershellgallery.com/packages/Az.ApplicationMonitor/2.0.0) and later, ASP.NET Core applications hosted in IIS are supported.
-
-      - question: How do I verify that the enablement succeeded?
-        answer: |
-          * You can use the [Get-ApplicationInsightsMonitoringStatus](classic-api.md?tabs=dotnet#api-reference) cmdlet to verify that enablement succeeded.
-          * Use [Live Metrics](./live-stream.md) to quickly determine if your app is sending telemetry.
-          * You can also use [Log Analytics](../logs/log-analytics-tutorial.md) to list all the cloud roles currently sending telemetry:
-
-              ```Kusto
-              union * | summarize count() by cloud_RoleName, cloud_RoleInstance
-              ```
-      - question: How do I achieve proxy passthrough?
-        answer: |  
-          To achieve proxy passthrough, configure a machine-level proxy or an application-level proxy.
-          See [DefaultProxy](/dotnet/framework/configure-apps/file-schema/network/defaultproxy-element-network-settings).
-
-          Example Web.config:
-
-          ```xml
-          <system.net>
-              <defaultProxy>
-              <proxy proxyaddress="http://xx.xx.xx.xx:yyyy" bypassonlocal="true"/>
-              </defaultProxy>
-          </system.net>
-          ```
-
-      - question: Where can I get more information about deploying Application Insights Agent for on-premises servers? 
-        answer: For more information, see [Deploy Application Insights Agent for on-premises servers](classic-api.md?tabs=dotnet#deploy-the-application-insights-agent-for-on-premises-servers).
-
-  - name: TLS support 
-    questions: 
       - question: Determine if TLS retirement affects you
         answer: |
           Application Insights and Azure Monitor don't control the TLS version used for HTTPS connections. The TLS version depends on the operating system and runtime environment where your application runs.
@@ -458,7 +309,7 @@ sections:
           The following operating systems include integrated support for TLS 1.2 or higher:
 
           - **Windows**: Windows 8, Windows Server 2012, and later
-          - **Linux**: Most modern Linux distributions that use OpenSSL 1.0.1 or later     
+          - **Linux**: Most modern Linux distributions that use OpenSSL 1.0.1 or later
 
       - question: How do I ensure my resources aren't affected?
         answer: |
@@ -474,333 +325,65 @@ sections:
 
       - question: Where can I get Transport Layer Security (TLS) support?
         answer: |
-           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem). 
+           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).
 
-      - question: Where can I get more information about TLS support in Application Insights? 
-        answer: For more information, see [TLS support](../app/application-insights-tls.md).    
+      - question: Where can I get more information about TLS support in Application Insights?
+        answer: For more information, see [TLS support](../app/application-insights-tls.md).
 
-  - name: ASP.NET
-    questions:
-      - question: How can I uninstall the SDK?
-        answer: |
-          To remove Application Insights, you need to remove the NuGet packages and references from the API in your application. You can uninstall NuGet packages by using the NuGet Package Manager in Visual Studio.
-
-          1. If trace collection is enabled, first uninstall the Microsoft.ApplicationInsights.TraceListener package by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) but don't remove any dependencies.
-          1. Uninstall the Microsoft.ApplicationInsights.Web package and remove its dependencies by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package) and its [Uninstall options](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-options) within the [NuGet Package Manager Options control](/nuget/consume-packages/install-use-packages-visual-studio#nuget-package-manager-options-control).
-          1. To fully remove Application Insights, check and manually delete the added code or files along with any API calls you added in your project. For more information, see [What is automatically created when you add the Application Insights SDK?](#what-is-automatically-created-when-you-add-the-application-insights-sdk).
-      
-      - question: What is automatically created when you add the Application Insights SDK?
-        answer: |
-          When you add Application Insights to your project, it automatically creates files and adds code to some of your files. Solely uninstalling the NuGet Packages doesn't always discard the files and code. To fully remove Application Insights, you should check and manually delete the added code or files along with any API calls you added in your project.
-
-          When you add Application Insights Telemetry to a Visual Studio ASP.NET project, it adds the following files:
-
-          * *ApplicationInsights.config*
-          * *AiHandleErrorAttribute.cs*
-
-          The following pieces of code are automatically added:
-
-          * *[Your project's name].csproj*
-
-             ```C#
-              <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4</ApplicationInsightsResourceId>
-             ```
-
-          * *Packages.config*
-
-             ```xml
-             <packages>
-             ...
-    
-               <package id="Microsoft.ApplicationInsights" version="2.12.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.Agent.Intercept" version="2.4.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.DependencyCollector" version="2.12.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.PerfCounterCollector" version="2.12.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.Web" version="2.12.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.WindowsServer" version="2.12.0" targetFramework="net472" />
-               <package id="Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel" version="2.12.0" targetFramework="net472" />
-    
-               <package id="Microsoft.AspNet.TelemetryCorrelation" version="1.0.7" targetFramework="net472" />
-    
-               <package id="System.Buffers" version="4.4.0" targetFramework="net472" />
-               <package id="System.Diagnostics.DiagnosticSource" version="4.6.0" targetFramework="net472" />
-               <package id="System.Memory" version="4.5.3" targetFramework="net472" />
-               <package id="System.Numerics.Vectors" version="4.4.0" targetFramework="net472" />
-               <package id="System.Runtime.CompilerServices.Unsafe" version="4.5.2" targetFramework="net472" />
-             ...
-             </packages>
-             ```
-          * *Layout.cshtml*
-
-             If your project has a *Layout.cshtml* file, the following code is added.
-    
-             ```html
-             <head>
-             ...
-                 <script type = 'text/javascript' >
-                     var appInsights=window.appInsights||function(config)
-                     {
-                         function r(config){ t[config] = function(){ var i = arguments; t.queue.push(function(){ t[config].apply(t, i)})} }
-                         var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
-                     }({
-                         connectionString:'<YOUR-CONNECTION-STRING>'
-                     });
-            
-                     window.appInsights=appInsights;
-                     appInsights.trackPageView();
-                 </script>
-             ...
-             </head>
-             ```
-
-          * *ConnectedService.json*
-
-             ```json
-             {
-               "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
-               "Version": "16.0.0.0",
-               "GettingStartedDocument": {
-                 "Uri": "https://go.microsoft.com/fwlink/?LinkID=613413"
-              }
-             }
-             ```
-
-          * *FilterConfig.cs*
-
-             ```csharp
-                     public static void RegisterGlobalFilters(GlobalFilterCollection filters)
-                     {
-                         filters.Add(new ErrorHandler.AiHandleErrorAttribute());// This line was added
-                     }
-             ```
-
-      - question: How can I disable telemetry correlation?
-        answer: |
-          To disable telemetry correlation in configuration, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
-
-      - question: Where can I get more information about using Application Insights with ASP.NET? 
-        answer: For more information, see [Configure Application Insights for your ASP.NET website](../app/asp-net.md). 
-  
   - name: ASP.NET Core applications
     questions:
-      - question: Does Application Insights support ASP.NET Core 3.1?
-        answer: |
-          ASP.NET Core 3.1 is no longer supported by Microsoft.
-
-          [Application Insights SDK for ASP.NET Core](https://nuget.org/packages/Microsoft.ApplicationInsights.AspNetCore) version 2.8.0 and Visual Studio 2019 or later can be used with ASP.NET Core 3.1 applications. 
       - question: How can I track telemetry that's not automatically collected?
         answer: |
-          Get an instance of `TelemetryClient` by using constructor injection and call the required `TrackXXX()` method on it. We don't recommend creating new `TelemetryClient` or `TelemetryConfiguration` instances in an ASP.NET Core application. A singleton instance of `TelemetryClient` is already registered in the `DependencyInjection` container, which shares `TelemetryConfiguration` with the rest of the telemetry. Create a new `TelemetryClient` instance only if it needs a configuration that's separate from the rest of the telemetry.
+          For current instrumentation, use OpenTelemetry APIs and language-specific logging or metrics APIs. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 
-          The following example shows how to track more telemetry from a controller.
+          For browser custom events, use the [Application Insights JavaScript SDK](javascript-sdk.md) or [Click Analytics](javascript-feature-extensions.md). For server-side custom events, use [OpenTelemetry custom events](opentelemetry-add-modify.md#send-custom-events).
 
-          ```csharp
-          using Microsoft.ApplicationInsights;
-
-          public class HomeController : Controller
-          {
-              private TelemetryClient telemetry;
-
-              // Use constructor injection to get a TelemetryClient instance.
-              public HomeController(TelemetryClient telemetry)
-              {
-                 this.telemetry = telemetry;
-              }
-
-              public IActionResult Index()
-              {
-                  // Call the required TrackXXX method.
-                  this.telemetry.TrackEvent("HomePageRequested");
-                  return View();
-              }
-          }
-          ```
-
-          For more information about custom data reporting in Application Insights, see [Application Insights custom metrics API reference](./api-custom-events-metrics.md). A similar approach can be used for sending custom metrics to Application Insights by using the [GetMetric API](./get-metric.md).    
-         
       - question: How do I capture Request and Response body in my telemetry?
         answer: |
-          ASP.NET Core has [built-in support](/aspnet/core/fundamentals/http-logging) for logging HTTP Request/Response information (including body) via [`ILogger`](asp-net-core.md#ilogger-logs). It's recommended to leverage this. This may potentially expose personally identifiable information (PII) in telemetry, and can cause costs (performance costs and Application Insights billing) to significantly increase, so evaluate the risks carefully before using this.
+          ASP.NET Core has [built-in support](/aspnet/core/fundamentals/http-logging) for logging HTTP request and response information, including the body. This can expose personally identifiable information (PII) and can significantly increase performance and ingestion costs, so evaluate the risks carefully before using it.
 
       - question: How do I customize ILogger logs collection?
         answer: |
-          The default setting for Application Insights is to only capture **Warning** and more severe logs.
-
-          Capture **Information** and less severe logs by changing the logging configuration for the Application Insights provider as follows.
-
-          ```json
-          {
-              "Logging": {
-                  "LogLevel": {
-                      "Default": "Information"
-                  },
-                  "ApplicationInsights": {
-                      "LogLevel": {
-                          "Default": "Information"
-                      }
-                  }
-              },
-              "ApplicationInsights": {
-                  "ConnectionString": "<YOUR-CONNECTION-STRING>"
-              }
-          }
-          ```
-
-          It's important to note that the following example doesn't cause the Application Insights provider to capture `Information` logs. It doesn't capture it because the SDK adds a default logging filter that instructs `ApplicationInsights` to capture only `Warning` logs and more severe logs. Application Insights requires an explicit override.
-
-          ```json
-          {
-              "Logging": {
-                 "LogLevel": {
-                     "Default": "Information"
-                 }
-              }
-          }
-          ```
-
-          For more information, see [ILogger configuration](/dotnet/core/extensions/logging#configure-logging).
-
-      - question: Some Visual Studio templates used the UseApplicationInsights() extension method on IWebHostBuilder to enable Application Insights. Is this usage still valid?
-        answer: |
-          The extension method `UseApplicationInsights()` is still supported, but it's marked as obsolete in Application Insights SDK version 2.8.0 and later. It's removed in the next major version of the SDK. To enable Application Insights telemetry, use `AddApplicationInsightsTelemetry()` because it provides overloads to control some configuration. Also, in ASP.NET Core 3.X apps, `services.AddApplicationInsightsTelemetry()` is the only way to enable Application Insights.
+          For current .NET applications, configure log collection through OpenTelemetry and your standard .NET logging configuration. Use `Logging:LogLevel` in *appsettings.json* to choose application log levels, and configure OpenTelemetry log export as part of Azure Monitor OpenTelemetry setup. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md?tabs=aspnetcore) and [Modify telemetry](opentelemetry-add-modify.md#modify-telemetry).
 
       - question: I'm deploying my ASP.NET Core application to Web Apps. Should I still enable the Application Insights extension from Web Apps?
-        answer: | 
-          If the SDK is installed at build time as shown in this article, you don't need to enable the [Application Insights extension](./azure-web-apps.md) from the App Service portal. If the extension is installed, it backs off when it detects the SDK is already added. If you enable Application Insights from the extension, you don't have to install and update the SDK. But if you enable Application Insights by following instructions in this article, you have more flexibility because:
-
-          * Application Insights telemetry continues to work in:
-             * All operating systems, including Windows, Linux, and Mac.
-             * All publish modes, including self-contained or framework dependent.
-             * All target frameworks, including the full .NET Framework.
-             * All hosting options, including Web Apps, VMs, Linux, containers, AKS, and non-Azure hosting.
-             * All .NET Core versions, including preview versions.
-          * You can see telemetry locally when you're debugging from Visual Studio.
-          * You can track more custom telemetry by using the `TrackXXX()` API.
-          * You have full control over the configuration.
-
-      - question: Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
         answer: |
-          Yes. In [Application Insights Agent 2.0.0-beta1](https://www.powershellgallery.com/packages/Az.ApplicationMonitor/2.0.0-beta1) and later, ASP.NET Core applications hosted in IIS are supported.
+          Choose one instrumentation path for the application. For code-based current setup, use Azure Monitor OpenTelemetry. For no-code App Service monitoring, use [Application monitoring without code changes](codeless-overview.md). Avoid overlapping instrumentation for the same app unless you're validating a migration.
 
-      - question: Are all features supported if I run my application in Linux?
+      - question: Can I enable Application Insights monitoring without changing application code?
         answer: |
-          Yes. Feature support for the SDK is the same in all platforms, with the following exceptions:
+          For new application monitoring, use the Azure Monitor OpenTelemetry Distro or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
 
-          * The SDK collects [event counters](./asp-net-counters.md) on Linux because [performance counters](./asp-net-counters.md) are only supported in Windows. Most metrics are the same.
-
-      - question: Is this SDK supported for Worker Services?
-        answer: |
-          No. Instead, use [Application Insights for Worker Service applications (non-HTTP applications)](worker-service.md) for worker services.
-            
-      - question: How can I uninstall the SDK?
-        answer: |
-          To remove Application Insights, you need to remove the NuGet packages and references from the API in your application. You can uninstall NuGet packages by using the NuGet Package Manager in Visual Studio.
-
-          > [!NOTE]
-          > These instructions are for uninstalling the ASP.NET Core SDK. If you need to uninstall the ASP.NET SDK, see [How can I uninstall the ASP.NET SDK?](#how-can-i-uninstall-the-sdk).
-
-          1. Uninstall the Microsoft.ApplicationInsights.AspNetCore package by using the [NuGet Package Manager](/nuget/consume-packages/install-use-packages-visual-studio#uninstall-a-package).
-          1. To fully remove Application Insights, check and manually delete the added code or files along with any API calls you added in your project. For more information, see [What is created when you add the Application Insights SDK?](#what-is-created-when-you-add-the-application-insights-sdk).
-
-      - question: What is created when you add the Application Insights SDK?
-        answer: |
-          When you add Application Insights to your project, it creates files and adds code to some of your files. Solely uninstalling the NuGet Packages won't always discard the files and code. To fully remove Application Insights, you should check and manually delete the added code or files along with any API calls you added in your project.
-
-          When you add Application Insights Telemetry to a Visual Studio ASP.NET Core template project, it adds the following code:
-
-          * *[Your project's name].csproj*
-
-             ```csharp
-             <PropertyGroup>
-                 <TargetFramework>netcoreapp3.1</TargetFramework>
-                 <ApplicationInsightsResourceId>/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/WebApplication4core</ApplicationInsightsResourceId>
-             </PropertyGroup>
-  
-             <ItemGroup>
-                 <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
-             </ItemGroup>
-  
-             <ItemGroup>
-                 <WCFMetadata Include="Connected Services" />
-             </ItemGroup>
-             ```
-
-          * *Appsettings.json*
-
-             ```json
-             "ApplicationInsights": {
-                 "ConnectionString": "<YOUR-CONNECTION-STRING>"
-             }
-             ```
-
-          * *ConnectedService.json*
-    
-             ```json
-             {    
-                 "ProviderId": "Microsoft.ApplicationInsights.ConnectedService.ConnectedServiceProvider",
-                 "Version": "16.0.0.0",
-                 "GettingStartedDocument": {
-                     "Uri": "https://go.microsoft.com/fwlink/?LinkID=798432"
-                 }
-             }
-             ```
-          * *Startup.cs*
-
-             ```csharp
-             public void ConfigureServices(IServiceCollection services)
-                 {
-                    services.AddRazorPages();
-                    services.AddApplicationInsightsTelemetry(); // This is added
-                 }
-             ```
-
-      - question: How can I disable telemetry correlation?
-        answer: |
-          To disable telemetry correlation in code, see `<ExcludeComponentCorrelationHttpHeadersOnDomains>` in [Application Insights for console applications](/previous-versions/azure/azure-monitor/app/console).
-
-      - question: Where can I get more information about using Application Insights for ASP.NET Core applications? 
-        answer: For more information, see [Application Insights for ASP.NET Core](../app/asp-net-core.md).
-
-  - name: ASP.NET performance counters      
+      - question: Where can I get more information about using Application Insights for ASP.NET Core applications?
+        answer: For current ASP.NET Core instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=aspnetcore).
+  - name: ASP.NET performance counters
     questions:
       - question: What's the difference between the Exception rate and Exceptions metrics?
         answer:  |
           * `Exception rate`: The Exception rate is a system performance counter. The CLR counts all the handled and unhandled exceptions that are thrown and divides the total in a sampling interval by the length of the interval. The Application Insights SDK collects this result and sends it to the portal.
-          * `Exceptions`: The Exceptions metric counts the `TrackException` reports received by the portal in the sampling interval of the chart. It includes only the handled exceptions where you write `TrackException` calls in your code. It doesn't include all [unhandled exceptions](./asp-net-exceptions.md).  
+          * `Exceptions`: The Exceptions metric counts exception telemetry received by the portal in the sampling interval of the chart. It includes handled exceptions that your instrumentation reports. It might not include every unhandled exception.
 
-      - question: Where can I get more information about ASP.NET performance counters? 
-        answer: For more information, see [Counters for .NET in Application Insights](../app/asp-net-counters.md).    
+      - question: Where can I get more information about ASP.NET performance counters?
+        answer: For current metrics guidance, see [Metrics in Application Insights](../app/metrics-overview.md).
 
-  - name: ASP.NET event counters 
+  - name: ASP.NET event counters
     questions:
       - question: Can I see EventCounters in Live Metrics?
         answer: |
           Live Metrics don't show EventCounters. Use Metric Explorer or Analytics to see the telemetry.
 
       - question: After I enabled Application Insights from the Azure Web App Portal, why can't I see event counters?
-        answer: | 
-          [Application Insights extension](./azure-web-apps.md) for ASP.NET Core doesn't yet support this feature.
+        answer: |
+          App Service monitoring without code changes doesn't currently support this feature for ASP.NET Core.
 
-      - question: Where can I get more information about ASP.NET event counters? 
-        answer: For more information, see [Counters for .NET in Application Insights](../app/asp-net-counters.md). 
-
-  - name: Azure VMs and virtual machine scale sets
-    questions:
-      - question: How can I disable client-side monitoring for ASP.NET Core apps?
-        answer: |  
-          Client-side monitoring is enabled by default for ASP.NET Core apps. If you want to disable it, define an environment variable in the server with the following information:
-
-          * **Name:** `APPINSIGHTS_JAVASCRIPT_ENABLED`
-          * **Value:** `false`
-
-      - question: Where can I get more information about using Application Insights for Azure VMs and virtual machine scale sets? 
-        answer: For more information, see [Application Insights for Azure VMs and virtual machine scale sets](../app/azure-vm-vmss-apps.md).
+      - question: Where can I get more information about ASP.NET event counters?
+        answer: For current metrics guidance, see [Metrics in Application Insights](../app/metrics-overview.md).
 
   - name: Dependency tracking
     questions:
       - question: How does the automatic dependency collector report failed calls to dependencies?
         answer: |
-          Failed dependency calls have the `success` field set to False. The module `DependencyTrackingTelemetryModule` doesn't report `ExceptionTelemetry`. The full data model for dependency is described in [Application Insights telemetry data model](data-model-complete.md#dependency-telemetry).
+          Failed dependency calls have the `success` field set to `false`. Dependency telemetry doesn't automatically create a separate exception item for every failed dependency call. The full data model for dependency telemetry is described in [Application Insights telemetry data model](data-model-complete.md#dependency-telemetry).
 
       - question: How do I calculate ingestion latency for my dependency telemetry?
         answer: |
@@ -808,57 +391,57 @@ sections:
 
           ```kusto
           dependencies
-          | extend E2EIngestionLatency = ingestion_time() - timestamp 
+          | extend E2EIngestionLatency = ingestion_time() - timestamp
           | extend TimeIngested = ingestion_time()
           ```
 
       - question: How do I determine the time the dependency call was initiated?
         answer: |
-          In the Log Analytics query view, `timestamp` represents the moment the TrackDependency() call was initiated, which occurs immediately after the dependency call response is received. To calculate the time when the dependency call began, you would take `timestamp` and subtract the recorded `duration` of the dependency call.
+          In the Log Analytics query view, `timestamp` represents the moment the dependency telemetry operation was initiated, which occurs immediately after the dependency call response is received. To calculate the time when the dependency call began, you would take `timestamp` and subtract the recorded `duration` of the dependency call.
 
       - question: Does dependency tracking in Application Insights include logging response bodies?
         answer: |
-          Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications. 
+          Dependency tracking in Application Insights doesn't include logging response bodies as it would generate too much telemetry for most applications.
 
-      - question: Where can I get more information about dependency tracking in Application Insights? 
-        answer: For more information, see [Dependency tracking](../app/asp-net-dependencies.md).
-           
+      - question: Where can I get more information about dependency tracking in Application Insights?
+        answer: For current dependency and custom span guidance, see [Add custom spans](../app/opentelemetry-add-modify.md#add-custom-spans).
+
   - name: Availability tests
     questions:
       - question: Can I run availability tests on an intranet server?
         answer: |
           Availability tests run on points of presence that are distributed around the globe. There are two solutions:
-          
+
           * **Firewall door**: Allow requests to your server from [the long and changeable list of web test agents](../fundamentals/azure-monitor-network-access.md).
-          * **Custom code**: Write your own code to send periodic requests to your server from inside your intranet. You could run Visual Studio web tests for this purpose. The tester could send the results to Application Insights by using the `TrackAvailability()` API.
+          * **Custom code**: Write your own code to send periodic requests to your server from inside your intranet. You could run Visual Studio web tests for this purpose. Emit an internal health signal and alert on the resulting log or metric.
 
       - question: What is the user agent string for availability tests?
         answer: |
           The user agent string is **Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0; AppInsights)**
 
-      - question: Where can I get more information about Application Insights availability tests? 
+      - question: Where can I get more information about Application Insights availability tests?
         answer: For more information, see [Availability tests](../app/availability.md).
-       
+
   - name: TLS support for availability tests
     questions:
       - question: How does the deprecation impact my web test behavior?
         answer: |
-          Availability tests act as a distributed client in each of the supported web test locations. Every time a web test is executed the availability test service attempts to reach out to the remote endpoint defined in the web test configuration. A TLS Client Hello message is sent which contains all the currently supported TLS configuration. If the remote endpoint shares a common TLS configuration with the availability test client, then the TLS handshake succeeds. Otherwise, the web test fails with a TLS handshake failure. 
+          Availability tests act as a distributed client in each of the supported web test locations. Every time a web test is executed the availability test service attempts to reach out to the remote endpoint defined in the web test configuration. A TLS Client Hello message is sent which contains all the currently supported TLS configuration. If the remote endpoint shares a common TLS configuration with the availability test client, then the TLS handshake succeeds. Otherwise, the web test fails with a TLS handshake failure.
 
       - question: How do I validate what TLS configuration a remote endpoint supports?
         answer: |
-          There are several tools available to test what TLS configuration an endpoint supports. One way would be to follow the example detailed on this [page](/security/engineering/solving-tls1-problem#appendix-a-handshake-simulation). If your remote endpoint isn't available via the Public internet, you need to ensure you validate the TLS configuration supported on the remote endpoint from a machine that has access to call your endpoint. 
+          There are several tools available to test what TLS configuration an endpoint supports. One way would be to follow the example detailed on this [page](/security/engineering/solving-tls1-problem#appendix-a-handshake-simulation). If your remote endpoint isn't available via the Public internet, you need to ensure you validate the TLS configuration supported on the remote endpoint from a machine that has access to call your endpoint.
 
           > [!NOTE]
-          > For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known. 
+          > For steps to enable the needed TLS configuration on your web server, it is best to reach out to the team that owns the hosting platform your web server runs on if the process is not known.
 
       - question: After May 1, 2025, what will the web test behavior be for impacted tests?
         answer: |
-          There's no one exception type that all TLS handshake failures impacted by this deprecation would present themselves with. However, the most common exception your web test would start failing with would be `The request was aborted: Couldn't create SSL/TLS secure channel`. You should also be able to see any TLS related failures in the TLS Transport [Troubleshooting Step](/troubleshoot/azure/azure-monitor/app-insights/availability/diagnose-ping-test-failure) for the web test result that is potentially impacted. 
+          There's no one exception type that all TLS handshake failures impacted by this deprecation would present themselves with. However, the most common exception your web test would start failing with would be `The request was aborted: Couldn't create SSL/TLS secure channel`. You should also be able to see any TLS related failures in the TLS Transport [Troubleshooting Step](/troubleshoot/azure/azure-monitor/app-insights/availability/diagnose-ping-test-failure) for the web test result that is potentially impacted.
 
       - question: Can I view what TLS configuration is currently in use by my web test?
         answer: |
-          The TLS configuration negotiated during a web test execution can't be viewed. As long as the remote endpoint supports common TLS configuration with availability tests, no impact should be seen post-deprecation. 
+          The TLS configuration negotiated during a web test execution can't be viewed. As long as the remote endpoint supports common TLS configuration with availability tests, no impact should be seen post-deprecation.
 
       - question: Which components does the deprecation affect in the availability test service?
         answer: |
@@ -868,43 +451,23 @@ sections:
         answer: |
           For any general questions around the legacy TLS problem, see [Solving TLS problems](/security/engineering/solving-tls1-problem).
 
-      - question: Where can I get more information about TLS support for availability tests? 
+      - question: Where can I get more information about TLS support for availability tests?
         answer: For more information, see [Supported TLS configurations](../app/availability.md#supported-tls-configurations).
-          
+
   - name: Monitoring in Azure App Service for .NET, Node.js, Python, and Java applications
     questions:
       - question: What does Application Insights modify in my project?
-        answer: |  
-          The details depend on the type of project. The following list is an example for a web application.
-          
-          * **Adds files to your project:**
-             * ApplicationInsights.config
-             * ai.js
+        answer: |
+          The changes depend on the instrumentation path. No-code App Service monitoring typically uses app settings and platform configuration. Code-based monitoring uses the OpenTelemetry package and startup configuration for the selected language. For current guidance, see [Enable application monitoring in Azure App Service](../app/codeless-app-service.md) and [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md).
 
-          * **Installs NuGet packages:**
-             * Application Insights API: The core API
-             * Application Insights API for Web Applications: Used to send telemetry from the server
-             * Application Insights API for JavaScript Applications: Used to send telemetry from the client
-
-          * **Includes assemblies in packages:**
-            * Microsoft.ApplicationInsights
-            * Microsoft.ApplicationInsights.Platform
-
-          * **Inserts items into:**
-            * Web.config
-            * packages.config
-
-          * Inserts snippets into the client and server code to initialize them with the Application Insights resource ID. For example, in an MVC app, code is inserted into the main page *Views/Shared/\_Layout.cshtml*. For new projects only, you [add Application Insights to an existing project manually](./app-insights-overview.md).
-        
       - question: What's the difference between standard metrics from Application Insights vs. Azure App Service metrics?
         answer: |
-          Application Insights collects telemetry for the requests that made it to the application. If the failure occurs in WebApps/WebServer, and the request didn't reach the user application, Application Insights doesn't have any telemetry about it.
+          Application Insights collects telemetry for the requests that made it to the application. If the failure occurs in Web Apps or the web server and the request didn't reach the user application, Application Insights doesn't have telemetry about it.
 
-          The duration for `serverresponsetime` calculated by Application Insights doesn't necessarily match the server response time observed by Web Apps. This behavior is because Application Insights only counts the duration when the request actually reaches the user application. If the request is stuck or queued in WebServer, the waiting time is included in the Web Apps metrics but not in Application Insights metrics.
+          The duration for `serverresponsetime` calculated by Application Insights doesn't necessarily match the server response time observed by Web Apps. Application Insights counts the duration when the request reaches the user application. If the request is stuck or queued in the web server, the waiting time is included in the Web Apps metrics but not in Application Insights metrics.
 
-      - question: Where can I get more information about monitoring in Azure App Service for .NET, Node.js, Python, and Java applications? 
+      - question: Where can I get more information about monitoring in Azure App Service for .NET, Node.js, Python, and Java applications?
         answer: For more information, see [Enable application monitoring in Azure App Service](../app/codeless-app-service.md).
-
   - name: Autoinstrumentation
     questions:
       - question: Should the term "autoinstrumentation" be hyphenated?
@@ -913,10 +476,10 @@ sections:
 
           In general, we don't include a hyphen after the "auto" prefix.
 
-      - question: Where can I get more information about autoinstrumentation? 
+      - question: Where can I get more information about autoinstrumentation?
         answer: For more information, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md).
 
-  - name: Connection strings 
+  - name: Connection strings
     questions:
       - question: Do new Azure regions require the use of connection strings?
         answer: |
@@ -929,6 +492,25 @@ sections:
       - question: When do I need to set the environment variable?
         answer: |
           Set the `APPLICATIONINSIGHTS_CONNECTION_STRING` manually in all scenarios where the system doesn't provide it automatically. These scenarios include, but aren't limited to: local development and .NET Isolated Functions using ASP.NET Core integration. In these cases, the environment variable ensures the OpenTelemetry pipeline can send telemetry to Application Insights. For more information on configuring connection strings with an environment variable, see [Configuring OpenTelemetry in Application Insights](./opentelemetry-configuration.md#connection-string).
+
+      - question: Should I use a separate Application Insights resource for browser telemetry if I use authenticated server-side ingestion or OTLP?
+        answer: |
+          Not strictly. A single Application Insights resource can receive browser telemetry from the Application Insights JavaScript SDK and server-side telemetry sent by using authenticated ingestion when local authentication remains enabled for browser ingestion. Server-side telemetry can use [Microsoft Entra authenticated ingestion](./azure-ad-authentication.md), and [OTLP ingestion by using the OpenTelemetry Collector](../containers/opentelemetry-protocol-ingestion.md) requires Microsoft Entra authentication. You don't need to avoid OpenTelemetry or OTLP solely because your application also collects browser telemetry.
+
+          The main exception is when you disable local authentication on an Application Insights resource to require Microsoft Entra authentication for all ingestion. In that configuration, the JavaScript SDK can't authenticate directly from the browser and browser telemetry might stop flowing. For browser telemetry in that scenario, use a separate browser telemetry resource with local authentication enabled or route browser telemetry through an authenticated proxy pattern. For more information, see [Authenticated browser telemetry using connection strings](./connection-strings.md#authenticated-browser-telemetry-using-connection-strings).
+
+          Even when a single resource works technically, consider using a separate Application Insights resource for browser/client-side telemetry as a risk-isolation best practice. Browser instrumentation runs in an untrusted client environment, so its connection string is visible to users and can't be treated as a secret. An exposed connection string can potentially be used to send spoofed, irrelevant, or high-volume telemetry to the associated resource, which can pollute dashboards, alerts, troubleshooting queries, and increase ingestion cost.
+
+          A separate browser telemetry resource can help you:
+
+          - Rotate or replace the browser-side connection string without disrupting server-side telemetry.
+          - Contain spoofed, spam, or garbage telemetry to the browser-specific resource.
+          - Protect the quality of server-side telemetry used for diagnostics, alerting, and operational analysis.
+          - Apply different access control, ownership, or governance settings when needed.
+
+          Balance these benefits against the added management overhead of multiple resources, including additional connection strings, RBAC assignments, configuration, and cross-resource investigations. End-to-end correlation can still work across multiple Application Insights resources when the user has access to the relevant resources. For more information, see [Application map](./app-map.md) and [Transaction diagnostics](./failures-performance-transactions.md#transaction-diagnostics-experience).
+
+          Private Link and ingestion authentication are separate controls. Private Link controls network access to Azure Monitor resources; Microsoft Entra authentication controls whether telemetry ingestion is authorized by an identity. Don't use Private Link as a substitute for ingestion authentication, and don't treat resource separation as a requirement for authenticated server-side ingestion.
 
       - question: How do I instrument a global web application to meet regional data compliance requirements?
         answer: |
@@ -953,13 +535,13 @@ sections:
 
           :::image type="content" source="media/application-insights-faq/routing-based-on-region.png" alt-text="Diagram showing routing based on region to specific App Insights resources." lightbox="media/application-insights-faq/routing-based-on-region.png":::
 
-      - question: Where can I get more information about connection strings in Application Insights? 
+      - question: Where can I get more information about connection strings in Application Insights?
         answer: For more information, see [Connection strings](../app/connection-strings.md).
 
   - name: Creating and configuring Application Insights resources
     questions:
       - question: How do I move an Application Insights resource to a new region?
-        answer: | 
+        answer: |
           Transferring existing Application Insights resources between regions isn't supported, and you can't migrate historical data to a new region. The workaround involves:
 
           * Creating a new Application Insights resource in the desired region.
@@ -983,9 +565,9 @@ sections:
         answer: |
           We don't recommend using this method of populating the API version. The newest version can represent preview releases, which might contain breaking changes. Even with newer non-preview releases, the API versions aren't always backward compatible with existing templates. In some cases, the API version might not be available to all subscriptions.
 
-      - question: Where can I get more information about creating and configuring Application Insights resources? 
+      - question: Where can I get more information about creating and configuring Application Insights resources?
         answer: For more information, see [Create and configure Application Insights resources](../app/create-workspace-resource.md).
-        
+
   - name: Telemetry data model
     questions:
       - question: How can I report data model or schema problems and suggestions?
@@ -1002,76 +584,36 @@ sections:
         answer: |
           This can occur if you're using string values. Only numeric values work with custom measurements.
 
-      - question: Where can I get more information about the telemetry data model? 
+      - question: Where can I get more information about the telemetry data model?
         answer: For more information, see [Application Insights telemetry data model](../app/data-model-complete.md).
-        
+
   - name: Logging with .NET
     questions:
       - question: What Application Insights telemetry type is produced from ILogger logs? Where can I see ILogger logs in Application Insights?
         answer: |
-          `ApplicationInsightsLoggerProvider` captures `ILogger` logs and creates `TraceTelemetry` from them. If an `Exception` object is passed to the `Log` method on `ILogger`, `ExceptionTelemetry` is created instead of `TraceTelemetry`. 
+          OpenTelemetry log records are stored in the `traces` table in Application Insights Logs. To view them in the Azure portal, open your Application Insights resource, select **Logs**, and query the `traces` table.
 
-          **Viewing ILogger Telemetry**
+          Example query: `traces | where message contains "YourSearchTerm"`.
 
-          In the Azure portal:
-
-          1. Go to the Azure portal and access your Application Insights resource.
-          1. Select the **Logs** section inside Application Insights.
-          1. Use Kusto Query Language (KQL) to query ILogger messages stored in the `traces` table.
-              Example Query: `traces | where message contains "YourSearchTerm"`.
-          1. Refine your queries to filter ILogger data by severity, time range, or specific message content.
-
-          In Visual Studio (Local Debugger):
-
-          1. Start your application in debug mode within Visual Studio.
-          1. Open the **Diagnostic Tools** window while the application runs.
-          1. In the **Events** tab, ILogger logs appear along with other telemetry data.
-          1. To locate specific ILogger messages, use the search and filter features in the **Diagnostic Tools** window.
-
-          If you prefer to always send `TraceTelemetry`, use this snippet:
-
-          ```csharp
-          builder.AddApplicationInsights(
-              options => options.TrackExceptionsAsExceptionTelemetry = false);
-          ```
+      - question: How do I customize ILogger logs collection?
+        answer: |
+          For current .NET applications, configure log collection through OpenTelemetry and your standard .NET logging configuration. Use `Logging:LogLevel` in *appsettings.json* to choose application log levels, and configure OpenTelemetry log export as part of Azure Monitor OpenTelemetry setup. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md?tabs=aspnetcore) and [Modify telemetry](opentelemetry-add-modify.md#modify-telemetry).
 
       - question: Why do some ILogger logs not have the same properties as others?
         answer: |
-          Application Insights captures and sends `ILogger` logs by using the same `TelemetryConfiguration` information that's used for every other telemetry. But there's an exception. By default, `TelemetryConfiguration` isn't fully set up when you log from *Program.cs* or *Startup.cs*. Logs from these places don't have the default configuration, so they aren't running all `TelemetryInitializer` instances and `TelemetryProcessor` instances.
-         
-      - question: I'm using the standalone package Microsoft.Extensions.Logging.ApplicationInsights, and I want to log more custom telemetry manually. How should I do that?
+          When logs are emitted before application telemetry configuration is complete, they can have fewer enriched properties than logs emitted later in the application lifecycle.
+
+      - question: How should I send custom telemetry manually?
         answer: |
-          When you use the standalone package, `TelemetryClient` isn't injected to the dependency injection (DI) container. You need to create a new instance of `TelemetryClient` and use the same configuration that the logger provider uses, as the following code shows. This requirement ensures that the same configuration is used for all custom telemetry and telemetry from `ILogger`.
+          For current instrumentation, send custom telemetry with OpenTelemetry APIs or the Azure Monitor OpenTelemetry Distro. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 
-          ```csharp
-          public class MyController : ApiController
-          {
-             // This TelemetryClient instance can be used to track additional telemetry through the TrackXXX() API.
-             private readonly TelemetryClient _telemetryClient;
-             private readonly ILogger _logger;
+      - question: Where can I get more information about logging with .NET?
+        answer: For current .NET instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=net).
 
-             public MyController(IOptions<TelemetryConfiguration> options, ILogger<MyController> logger)
-             {
-                  _telemetryClient = new TelemetryClient(options.Value);
-                  _logger = logger;
-             }  
-          }
-          ```
-
-          > [!NOTE]
-          > If you use the `Microsoft.ApplicationInsights.AspNetCore` package to enable Application Insights, modify this code to get `TelemetryClient` directly in the constructor.
-
-      - question: I don't have the SDK installed, and I use the Azure Web Apps extension to enable Application Insights for my ASP.NET Core applications. How do I use the new provider? 
-        answer: |
-          The Application Insights extension in Azure Web Apps uses the new provider. You can modify the filtering rules in the *appsettings.json* file for your application.
-
-      - question: Where can I get more information about logging with .NET? 
-        answer: For more information, see [Application Insights logging with .NET](../app/ilogger.md).
-       
   - name: Java Profiler
     questions:
       - question: What is Azure Monitor Application Insights Java Profiling?
-        answer: |     
+        answer: |
           The Java Profiler uses Java Flight Recorder (JFR) to profile your application using  a customized configuration.
 
       - question: What is Java Flight Recorder?
@@ -1079,10 +621,10 @@ sections:
           Java Flight Recorder (JFR) is a tool for collecting profiling data of a running Java application. JFR is integrated into the Java Virtual Machine (JVM) and is used for troubleshooting performance issues. Learn more about [Java SE JFR Runtime](https://docs.oracle.com/javacomponents/jmc-5-4/jfr-runtime-guide/about.htm#JFRUH170).
 
       - question: What is the price and/or licensing fee implications for enabling App Insights Java Profiling?
-        answer: | 
+        answer: |
           Java Profiling is a free feature with Application Insights. [Azure Monitor Application Insights pricing](https://azure.microsoft.com/pricing/details/monitor/) is based on ingestion cost.
 
-      - question: Which Java profiling information is collected? 
+      - question: Which Java profiling information is collected?
         answer: |
           Profiling data collected by the JFR includes: method and execution profiling data, garbage collection data, and lock profiles.
 
@@ -1091,11 +633,11 @@ sections:
           JFR recording can be viewed and analyzed with your preferred tool, for example [Java Mission Control (JMC)](https://jdk.java.net/jmc/8/).
 
       - question: Are performance diagnosis and fix recommendations provided with App Insights Java Profiling?
-        answer: | 
+        answer: |
           'Performance diagnostics and recommendations' is a new feature that is available soon as Application Insights Java Diagnostics. You can [sign up](https://aka.ms/JavaO11y) to preview this feature. JFR recording can be viewed with Java Mission Control (JMC).
-          
+
       - question: What's the difference between on-demand and automatic Java Profiling in App Insights?
-        answer: | 
+        answer: |
           On-demand is user triggered profiling in real-time whereas automatic profiling is with preconfigured triggers.
 
           Use [Profile Now](../profiler/profiler-settings.md) for the on-demand profiling option. [Profile Now](../profiler/profiler-settings.md) immediately profiles all agents that are attached to the Application Insights instance.
@@ -1114,13 +656,13 @@ sections:
         answer: |
           Yes, you can profile a JVM running microservices using the JFR.
 
-      - question: Where can I get more information about Java Profiler? 
-        answer: For more information, see [Azure Monitor Application Insights Profiler for Java](../app/java-standalone-profiler.md). 
+      - question: Where can I get more information about Java Profiler?
+        answer: For more information, see [Azure Monitor Application Insights Profiler for Java](../app/java-standalone-profiler.md).
 
-  - name: Sampling overrides - Application Insights for Java       
+  - name: Sampling overrides - Application Insights for Java
     questions:
       - question: Do I need to use manual instrumentation to enable sampling overrides?
-        answer: | 
+        answer: |
           No, sampling overrides is now generally available (GA) and can be used with both autoinstrumentation and manual instrumentation.
 
       - question: How do I configure sampling overrides when using Azure App Service with autoinstrumentation?
@@ -1139,26 +681,26 @@ sections:
         answer: |
           For autoinstrumentation, you can configure sampling overrides via the Azure portal. If using manual instrumentation, you should place the Application Insights agent JAR in the appropriate directory and include the applicationinsights.json file with your desired sampling settings.
 
-      - question: Where can I get more information about sampling overrides? 
+      - question: Where can I get more information about sampling overrides?
         answer: For more information, see [Sampling overrides - Azure Monitor Application Insights for Java](../app/java-standalone-sampling-overrides.md).
-        
+
   - name: Telemetry processors
     questions:
-      - question: Why doesn't the log processor process log files using TelemetryClient.trackTrace()?
+      - question: Why doesn't the log processor process logs outside OpenTelemetry instrumentation?
         answer: |
-          TelemetryClient.trackTrace() is part of the Application Insights Classic SDK bridge, and the log processors only work with the new [OpenTelemetry-based instrumentation](opentelemetry-enable.md).
+          OpenTelemetry processors can work with telemetry that flows through the OpenTelemetry pipeline. Logs or files that are written outside that pipeline aren't processed by OpenTelemetry processors unless you explicitly collect them.
 
-      - question: Where can I get more information about telemetry processors? 
+      - question: Where can I get more information about telemetry processors?
         answer: For more information, see [Telemetry processors (preview) - Azure Monitor Application Insights for Java](../app/java-standalone-telemetry-processors.md).
 
   - name: JavaScript SDK
-    questions: 
+    questions:
       - question: What are the user and session counts?
         answer: |
           * The JavaScript SDK sets a user cookie on the web client, to identify returning users, and a session cookie to group activities.
           * If there's no client-side script, you can set cookies at the server.
           * If one real user uses your site in different browsers, or by using in-private/incognito browsing, or different machines, they're counted more than once.
-          * To identify a signed-in user across machines and browsers, add a call to [setAuthenticatedUserContext()](./api-custom-events-metrics.md#authenticated-users).
+          * To identify a signed-in user across machines and browsers, use the JavaScript SDK [authenticated user context](javascript-feature-extensions.md#optional-set-the-authenticated-user-context) or set the OpenTelemetry `enduser.id` attribute.
 
       - question: What is the JavaScript SDK performance/overhead?
         answer: |
@@ -1173,7 +715,7 @@ sections:
           | Chrome Latest ✔ |  Firefox Latest ✔ | v3.x: IE 9+ & Microsoft Edge ✔<br>v2.x: IE 8+ Compatible & Microsoft Edge ✔ | Opera Latest ✔ | Safari Latest ✔ |
 
       - question: Where can I find code examples for the JavaScript SDK?
-        answer: | 
+        answer: |
           For runnable examples, see [Application Insights JavaScript SDK samples](https://github.com/microsoft/ApplicationInsights-JS/tree/master/examples).
 
       - question: What is the ES3/Internet Explorer 8 compatibility with the JavaScript SDK?
@@ -1183,12 +725,12 @@ sections:
           This statement doesn't mean that we only support the lowest common set of features. We need to maintain ES3 code compatibility. New features need to be added in a manner that wouldn't break ES3 JavaScript parsing and added as an optional feature.
 
           See GitHub for full details on [Internet Explorer 8 support](https://github.com/Microsoft/ApplicationInsights-JS#es3ie8-compatibility).
-      
-      - question: Is the JavaScript SDK open-source?
-        answer: |    
-          Yes, the Application Insights JavaScript SDK is open source. To view the source code or to contribute to the project, see the [official GitHub repository](https://github.com/Microsoft/ApplicationInsights-JS).  
 
-      - question: Where can I get more information about the JavaScript SDK? 
+      - question: Is the JavaScript SDK open-source?
+        answer: |
+          Yes, the Application Insights JavaScript SDK is open source. To view the source code or to contribute to the project, see the [official GitHub repository](https://github.com/Microsoft/ApplicationInsights-JS).
+
+      - question: Where can I get more information about the JavaScript SDK?
         answer: For more information, see [Enable Azure Monitor Application Insights Real User Monitoring](../app/javascript-sdk.md).
 
   - name: JavaScript SDK configuration
@@ -1206,28 +748,28 @@ sections:
       - question: Are the HTTP 502 and 503 responses always captured by Application Insights?
         answer:  |
           No. The "502 bad gateway" and "503 service unavailable" errors aren't always captured by Application Insights. If only client-side JavaScript is being used for monitoring, this behavior would be expected because the error response is returned prior to the page containing the HTML header with the monitoring JavaScript snippet being rendered.
-          
+
           If the 502 or 503 response was sent from a server with server-side monitoring enabled, the errors are collected by the Application Insights SDK.
-          
+
           Even when server-side monitoring is enabled on an application's web server, sometimes a 502 or 503 error isn't captured by Application Insights. Many modern web servers don't allow a client to communicate directly. Instead, they employ solutions like reverse proxies to pass information back and forth between the client and the front-end web servers.
-          
+
           In this scenario, a 502 or 503 response might be returned to a client because of an issue at the reverse proxy layer, so it isn't captured out-of-box by Application Insights. To help detect issues at this layer, you might need to forward logs from your reverse proxy to Log Analytics and create a custom rule to check for 502 or 503 responses. To learn more about common causes of 502 and 503 errors, see [Troubleshoot HTTP errors of "502 bad gateway" and "503 service unavailable" in Azure App Service](/azure/app-service/troubleshoot-http-502-http-503).
 
-      - question: Where can I get more information about JavaScript SDK configuration? 
+      - question: Where can I get more information about JavaScript SDK configuration?
         answer: For more information, see [Application Insights JavaScript SDK configuration](../app/javascript-sdk-configuration.md).
-                
-         
-  - name: JavaScript framework extensions 
+
+
+  - name: JavaScript framework extensions
     questions:
       - question: How does Application Insights generate device information like browser, OS, language, and model?
         answer: |
           The browser passes the User Agent string in the HTTP header of the request. The Application Insights ingestion service uses [UA Parser](https://github.com/ua-parser/uap-core) to generate the fields you see in the data tables and experiences. As a result, Application Insights users are unable to change these fields.
-          
+
           Occasionally, this data might be missing or inaccurate if the user or enterprise disables sending User Agent in browser settings. The [UA Parser regexes](https://github.com/ua-parser/uap-core/blob/master/regexes.yaml) might not include all device information. Or Application Insights might not have adopted the latest updates.
 
-      - question: Where can I get more information about JavaScript framework extensions? 
+      - question: Where can I get more information about JavaScript framework extensions?
         answer: For more information, see [Enable a framework extension for Application Insights JavaScript SDK](../app/javascript-framework-extensions.md).
-        
+
   - name: Managed workspaces
     questions:
       - question: Do I need to update scripts or automation that reference classic resources?
@@ -1256,510 +798,46 @@ sections:
         answer: |
           No. All alerts, dashboards, and availability tests remain intact and continue to function after migration.
 
-      - question: Where can I get more information about managed workspaces? 
+      - question: Where can I get more information about managed workspaces?
         answer: For more information, see [Managed workspaces in Application Insights](../app/managed-workspaces.md).
-        
+
   - name: Node.js
     questions:
       - question: How can I disable telemetry correlation?
-        answer: | 
-          To disable telemetry correlation, use the `correlationHeaderExcludedDomains` property in configuration. For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js#configuration).
+        answer: |
+          For current instrumentation, review [distributed tracing and telemetry correlation](distributed-trace-data.md). For JavaScript browser telemetry, see [JavaScript SDK configuration](javascript-sdk-configuration.md#enable-w3c-distributed-tracing-support).
 
       - question: How can I configure the desired log level?
-        answer: |  
+        answer: |
           To configure the desired log level that Application Insights will use, use the `APPLICATIONINSIGHTS_INSTRUMENTATION_LOGGING_LEVEL` environment variable.
           The supported values are NONE, ERROR, WARN, INFO, DEBUG, VERBOSE and ALL.
           For more information, see [ApplicationInsights-node.js](https://github.com/microsoft/ApplicationInsights-node.js?tab=readme-ov-file#applicationinsights-3x-sdk-unsupported-properties).
 
-      - question: Where can I get more information about monitoring Node.js services and apps with Application Insights? 
-        answer: For more information, see [Monitor your Node.js services and apps with Application Insights](../app/nodejs.md).  
-        
+      - question: Where can I get more information about monitoring Node.js services and apps with Application Insights?
+        answer: For current Node.js instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=nodejs).
+
   - name: Azure Monitor OpenTelemetry
     questions:
       - question: Where can I find a list of Application Insights SDK versions and their names?
         answer: |
-          A list of SDK versions and names is hosted on GitHub. For more information, see [SDK Version](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/docs/versions_and_names.md). 
+          A list of SDK versions and names is hosted on GitHub. For more information, see [SDK Version](https://github.com/microsoft/ApplicationInsights-dotnet/blob/develop/docs/versions_and_names.md).
 
-      - question: Where can I get more information about OpenTelemetry? 
+      - question: Where can I get more information about OpenTelemetry?
         answer: For more information, see [Collect telemetry with OpenTelemetry in Application Insights](../app/app-insights-overview.md).
 
   - name: Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry
     questions:
-      - question: How do the SDK APIs map to OpenTelemetry concepts?
+      - question: Where can I get migration guidance?
         answer: |
-          [OpenTelemetry](https://opentelemetry.io/) is a vendor neutral observability framework. There are no Application Insights APIs in the OpenTelemetry SDK or libraries. Before migrating, it's important to understand some of OpenTelemetry's concepts.
+          See [Migrate from Application Insights SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md). Keep migration-specific guidance on that page so current setup articles can continue to present one recommended OpenTelemetry path.
 
-          * In Application Insights, all telemetry was managed through a single `TelemetryClient` and `TelemetryConfiguration`. In OpenTelemetry, each of the three telemetry signals (Traces, Metrics, and Logs) has its own configuration. You can manually create telemetry via the .NET runtime without external libraries. For more information, see the .NET guides on [distributed tracing](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs), [metrics](/dotnet/core/diagnostics/metrics), and [logging](/dotnet/core/extensions/logging).
-
-          * Application Insights used `TelemetryModules` to automatically collect telemetry for your application.
-          Instead, OpenTelemetry uses [Instrumentation libraries](https://opentelemetry.io/docs/specs/otel/overview/#instrumentation-libraries) to collect telemetry from specific components (such as [AspNetCore](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.AspNetCore) for Requests and [HttpClient](https://www.nuget.org/packages/OpenTelemetry.Instrumentation.Http) for Dependencies).
-
-          * Application Insights used `TelemetryInitializers` to enrich telemetry with additional information or to override properties.
-          With OpenTelemetry, you can write a [Processor](https://opentelemetry.io/docs/collector/configuration/#processors) to customize a specific signal. Additionally, many OpenTelemetry Instrumentation libraries offer an `Enrich` method to customize the telemetry generated by that specific component.
-
-          * Application Insights used `TelemetryProcessors` to filter telemetry. An OpenTelemetry [Processor](https://opentelemetry.io/docs/collector/configuration/#processors) can also be used to apply filtering rules on a specific signal.
-
-          For migration guidance, refer to [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](../app/opentelemetry-dotnet-migrate.md).
-
-      - question: How do Application Insights telemetry types map to OpenTelemetry?
-        answer: |
-          This table maps Application Insights data types to OpenTelemetry concepts and their .NET implementations.
-
-          | Azure Monitor Table | Application Insights DataType | OpenTelemetry DataType             | .NET Implementation                  |
-          |---------------------|-------------------------------|------------------------------------|--------------------------------------|
-          | customEvents        | EventTelemetry                | N/A                                | N/A                                  |
-          | customMetrics       | MetricTelemetry               | Metrics                            | System.Diagnostics.Metrics.Meter     |
-          | dependencies        | DependencyTelemetry           | Spans (Client, Internal, Consumer) | System.Diagnostics.Activity          |
-          | exceptions          | ExceptionTelemetry            | Exceptions                         | System.Exception                     |
-          | requests            | RequestTelemetry              | Spans (Server, Producer)           | System.Diagnostics.Activity          |
-          | traces              | TraceTelemetry                | Logs                               | Microsoft.Extensions.Logging.ILogger |
-          | traces              | TraceTelemetry                | Span Events                        | System.Diagnostics.ActivityEvent     |
-
-          The following documents provide more information.
-
-          - [Data Collection Basics of Azure Monitor Application Insights](./app-insights-overview.md)
-          - [Application Insights telemetry data model](./data-model-complete.md)
-          - [OpenTelemetry Concepts](https://opentelemetry.io/docs/concepts/)
-     
-      - question: How do Application Insights sampling concepts map to OpenTelemetry?
-        answer: |
-          While Application Insights offered multiple options to configure sampling, Azure Monitor Exporter or Azure Monitor Distro only offers fixed rate sampling. Only *Requests* and *Dependencies* (*OpenTelemetry Traces*) can be sampled.
-
-          For code samples detailing how to configure sampling, see our guide [Enable Sampling](./opentelemetry-configuration.md#enable-sampling)
-
-      - question: How do Telemetry Processors and Initializers map to OpenTelemetry?
-        answer: |
-          In the Application Insights .NET SDK, use telemetry processors to filter and modify or discard telemetry. Use telemetry initializers to add or modify custom properties. For more information, see the [Azure Monitor documentation](./api-filtering-sampling.md). OpenTelemetry replaces these concepts with activity or log processors, which enrich and filter telemetry.
-
-          #### Filtering Traces
-
-          To filter telemetry data in OpenTelemetry, you can implement an activity processor. This example is equivalent to the Application Insights example for filtering telemetry data as described in [Azure Monitor documentation](./api-filtering-sampling.md). The example illustrates where unsuccessful dependency calls are filtered.
-
-          ```csharp
-          using System.Diagnostics;
-          using OpenTelemetry;
-
-          internal sealed class SuccessfulDependencyFilterProcessor : BaseProcessor<Activity>
-          {
-              public override void OnEnd(Activity activity)
-              {
-                  if (!OKtoSend(activity))
-                  {
-                      activity.ActivityTraceFlags &= ~ActivityTraceFlags.Recorded;
-                  }
-              }
-
-              private bool OKtoSend(Activity activity)
-              {
-                 return activity.Kind == ActivityKind.Client && activity.Status == ActivityStatusCode.Ok;
-              }
-          }
-          ```
-
-          To use this processor, you need to create a `TracerProvider` and add the processor before `AddAzureMonitorTraceExporter`.
-
-          ```csharp
-          using OpenTelemetry.Trace;
-
-          public static void Main()
-          {
-             var tracerProvider = Sdk.CreateTracerProviderBuilder()
-                 .AddProcessor(new SuccessfulDependencyFilterProcessor())
-                 .AddAzureMonitorTraceExporter()
-                 .Build();
-          }
-          ```
-
-          #### Filtering Logs
-
-          [`ILogger`](/dotnet/core/extensions/logging) implementations have a built-in mechanism to apply [log filtering](/dotnet/core/extensions/logging?tabs=command-line#how-filtering-rules-are-applied). This filtering lets you control the logs that are sent to each registered provider, including the `OpenTelemetryLoggerProvider`. "OpenTelemetry" is the [alias](/dotnet/api/microsoft.extensions.logging.provideraliasattribute) for `OpenTelemetryLoggerProvider`, used in configuring filtering rules.
-
-          The following example defines "Error" as the default `LogLevel` and also defines "Warning" as the minimum `LogLevel` for a user defined category. These rules as defined only apply to the `OpenTelemetryLoggerProvider`.
-
-          ```csharp
-          builder.AddFilter<OpenTelemetryLoggerProvider>("*", LogLevel.Error);
-          builder.AddFilter<OpenTelemetryLoggerProvider>("MyProduct.MyLibrary.MyClass", LogLevel.Warning);
-          ```
-
-          For more information, please read the [OpenTelemetry .NET documentation on logs](https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/docs/logs/README.md).
-
-          #### Adding Custom Properties to Traces
-
-          In OpenTelemetry, you can use activity processors to enrich telemetry data with more properties. It's similar to using telemetry initializers in Application Insights, where you can modify telemetry properties.
-
-          By default, Azure Monitor Exporter flags any HTTP request with a response code of 400 or greater as failed. However, if you want to treat 400 as a success, you can add an enriching activity processor that sets the success on the activity and adds a tag to include more telemetry properties. It's similar to adding or modifying properties using an initializer in Application Insights as described in [Azure Monitor documentation](./api-filtering-sampling.md?tabs=javascriptwebsdkloaderscript#addmodify-properties-itelemetryinitializer).
-
-          Here's an example of how to add custom properties and override the default behavior for certain response codes:
- 
-          ```csharp
-          using System.Diagnostics;
-          using OpenTelemetry;
-
-          /// <summary>
-          /// Custom Processor that overrides the default behavior of treating response codes >= 400 as failed requests.
-          /// </summary>
-          internal class MyEnrichingProcessor : BaseProcessor<Activity>
-          {
-              public override void OnEnd(Activity activity)
-              {
-                  if (activity.Kind == ActivityKind.Server)
-                  {
-                      int responseCode = GetResponseCode(activity);
-
-                      if (responseCode >= 400 && responseCode < 500)
-                      {
-                         // If we set the Success property, the SDK won't change it
-                         activity.SetStatus(ActivityStatusCode.Ok);
-
-                         // Allow to filter these requests in the portal
-                        activity.SetTag("Overridden400s", "true");
-                      }
-
-                      // else leave the SDK to set the Success property
-                  }
-              }
-
-              private int GetResponseCode(Activity activity)
-              {
-                 foreach (ref readonly var tag in activity.EnumerateTagObjects())
-                 {    
-                    if (tag.Key == "http.response.status_code" && tag.Value is int value)
-                    {
-                     return value;
-                    }
-                 }
-
-                 return 0;
-              }
-          }
-          ```
-
-          To use this processor, you need to create a `TracerProvider` and add the processor before `AddAzureMonitorTraceExporter`.
-
-          ```csharp
-          using OpenTelemetry.Trace;
-
-          public static void Main()
-          {
-             var tracerProvider = Sdk.CreateTracerProviderBuilder()
-                 .AddSource("Company.Product.Name")
-                 .AddProcessor(new MyEnrichingProcessor())
-                 .AddAzureMonitorTraceExporter()
-                 .Build();
-          }
-          ```
       - question: How do I manually track telemetry using OpenTelemetry?
         answer: |
-           #### Sending Traces - Manual
-  
-           Traces in Application Insights are stored as `RequestTelemetry` and `DependencyTelemetry`. In OpenTelemetry, traces are modeled as `Span` using the `Activity` class.
-
-           OpenTelemetry .NET utilizes the `ActivitySource` and `Activity` classes for tracing, which are part of the .NET runtime. This approach is distinctive because the .NET implementation integrates the tracing API directly into the runtime itself. The `System.Diagnostics.DiagnosticSource` package allows developers to use `ActivitySource` to create and manage `Activity` instances. This method provides a seamless way to add tracing to .NET applications without relying on external libraries, applying the built-in capabilities of the .NET ecosystem. For more detailed information, refer to the [distributed tracing instrumentation walkthroughs](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs).
-
-           Here's how to migrate manual tracing:
-
-           > [!Note]
-           > In Application Insights, the role name and role instance could be set at a per-telemetry level. However, with the Azure Monitor Exporter, we cannot customize at a per-telemetry level. The role name and role instance are extracted from the OpenTelemetry resource and applied across all telemetry. Please read this document for more information: [Set the cloud role name and the cloud role instance](./opentelemetry-configuration.md?tabs=aspnetcore#set-the-cloud-role-name-and-the-cloud-role-instance).
-
-           #### DependencyTelemetry
-
-           Application Insights `DependencyTelemetry` is used to model outgoing requests. Here's how to convert it to OpenTelemetry:
-
-           **Application Insights Example:**
-
-           ```csharp
-           DependencyTelemetry dep = new DependencyTelemetry
-           {
-              Name = "DependencyName",
-              Data = "https://www.example.com/",
-              Type = "Http",
-              Target = "www.example.com",
-              Duration = TimeSpan.FromSeconds(10),
-              ResultCode = "500",
-              Success = false
-           };
-
-           dep.Context.Cloud.RoleName = "MyRole";
-           dep.Context.Cloud.RoleInstance = "MyRoleInstance";
-           dep.Properties["customprop1"] = "custom value1";
-           client.TrackDependency(dep);
-           ```
-
-           **OpenTelemetry Example:**
-
-           ```csharp
-           var activitySource = new ActivitySource("Company.Product.Name");
-           var resourceAttributes = new Dictionary<string, object>
-           {
-              { "service.name", "MyRole" },
-              { "service.instance.id", "MyRoleInstance" }
-           };
-
-           var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
-
-           using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-             .SetResourceBuilder(resourceBuilder)
-             .AddSource(activitySource.Name)
-             .AddAzureMonitorTraceExporter()
-             .Build();
-
-           // Emit traces
-           using (var activity = activitySource.StartActivity("DependencyName", ActivityKind.Client))
-           {
-             activity?.SetTag("url.full", "https://www.example.com/");
-             activity?.SetTag("server.address", "www.example.com");
-             activity?.SetTag("http.request.method", "GET");
-             activity?.SetTag("http.response.status_code", "500");
-             activity?.SetTag("customprop1", "custom value1");
-             activity?.SetStatus(ActivityStatusCode.Error);
-             activity?.SetEndTime(activity.StartTimeUtc.AddSeconds(10));
-           }
-           ```
-
-           #### RequestTelemetry
-
-           Application Insights `RequestTelemetry` models incoming requests. Here's how to migrate it to OpenTelemetry:
-
-           **Application Insights Example:**
-
-           ```csharp
-           RequestTelemetry req = new RequestTelemetry
-           {
-              Name = "RequestName",
-              Url = new Uri("http://example.com"),
-              Duration = TimeSpan.FromSeconds(10),
-              ResponseCode = "200",
-              Success = true,
-              Properties = { ["customprop1"] = "custom value1" }
-           };
-
-           req.Context.Cloud.RoleName = "MyRole";
-           req.Context.Cloud.RoleInstance = "MyRoleInstance";
-           client.TrackRequest(req);
-           ```
-
-           **OpenTelemetry Example:**
-
-           ```csharp
-           var activitySource = new ActivitySource("Company.Product.Name");
-           var resourceAttributes = new Dictionary<string, object>
-           {
-              { "service.name", "MyRole" },
-              { "service.instance.id", "MyRoleInstance" }
-           };
-
-           var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
-
-           using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-             .SetResourceBuilder(resourceBuilder)
-             .AddSource(activitySource.Name)
-             .AddAzureMonitorTraceExporter()
-             .Build();
-
-           // Emit traces
-           using (var activity = activitySource.StartActivity("RequestName", ActivityKind.Server))
-           {
-             activity?.SetTag("url.scheme", "https");
-             activity?.SetTag("server.address", "www.example.com");
-             activity?.SetTag("url.path", "/");
-             activity?.SetTag("http.response.status_code", "200");
-             activity?.SetTag("customprop1", "custom value1");
-             activity?.SetStatus(ActivityStatusCode.Ok);
-           }
-           ```
-
-           #### Custom Operations Tracking
-
-           In Application Insights, track custom operations using `StartOperation` and `StopOperation` methods. Achieve it using `ActivitySource` and `Activity` in OpenTelemetry .NET. For operations with `ActivityKind.Server` and `ActivityKind.Consumer`, Azure Monitor Exporter generates `RequestTelemetry`. For `ActivityKind.Client`, `ActivityKind.Producer`, and `ActivityKind.Internal`, it generates `DependencyTelemetry`. For more information on custom operations tracking, see the [Azure Monitor documentation](./custom-operations-tracking.md). For more on using `ActivitySource` and `Activity` in .NET, see the [.NET distributed tracing instrumentation walkthroughs](/dotnet/core/diagnostics/distributed-tracing-instrumentation-walkthroughs#activity).
-
-           Here's an example of how to start and stop an activity for custom operations:
-
-           ```csharp
-           using System.Diagnostics;
-           using OpenTelemetry;
-
-           var activitySource = new ActivitySource("Company.Product.Name");
-
-           using var tracerProvider = Sdk.CreateTracerProviderBuilder()
-               .AddSource(activitySource.Name)
-               .AddAzureMonitorTraceExporter()
-               .Build();
-
-           // Start a new activity
-           using (var activity = activitySource.StartActivity("CustomOperation", ActivityKind.Server))
-           {
-               activity?.SetTag("customTag", "customValue");
-
-               // Perform your custom operation logic here
-
-               // No need to explicitly call Activity.Stop() because the using block automatically disposes the Activity object, which stops it.
-           }
-           ```
-
-           #### Sending Logs
-
-           Logs in Application Insights are stored as `TraceTelemetry` and `ExceptionTelemetry`.
-
-           ##### TraceTelemetry
-
-           In OpenTelemetry, logging is integrated via the `ILogger` interface. Here's how to migrate `TraceTelemetry`:
-
-           **Application Insights Example:**
-
-           ```csharp
-           TraceTelemetry traceTelemetry = new TraceTelemetry 
-           {
-              Message = "hello from tomato 2.99",
-              SeverityLevel = SeverityLevel.Warning,
-           };
-
-           traceTelemetry.Context.Cloud.RoleName = "MyRole";
-           traceTelemetry.Context.Cloud.RoleInstance = "MyRoleInstance";
-           client.TrackTrace(traceTelemetry);
-           ```
-
-           **OpenTelemetry Example:**
-
-           ```csharp
-           var resourceAttributes = new Dictionary<string, object>
-           {
-              { "service.name", "MyRole" },
-              { "service.instance.id", "MyRoleInstance" }
-           };
-
-           var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
-
-           using var loggerFactory = LoggerFactory.Create(builder => builder
-              .AddOpenTelemetry(logging =>
-              {
-                  logging.SetResourceBuilder(resourceBuilder);
-                  logging.AddAzureMonitorLogExporter();
-              }));
-
-           // Create a new instance `ILogger` from the above LoggerFactory
-           var logger = loggerFactory.CreateLogger<Program>();
-
-           // Emit log: This uses the logger instance to write a new log
-           logger.FoodPrice("tomato", 2.99);
-
-           internal static partial class LoggerExtensions
-           {
-              [LoggerMessage(LogLevel.Warning, "Hello from `{name}` `{price}`.")]
-              public static partial void FoodPrice(this ILogger logger, string name, double price);
-           }
-           ```
-
-           ##### ExceptionTelemetry
-
-           Application Insights uses `ExceptionTelemetry` to log exceptions. Here's how to migrate to OpenTelemetry:
-
-           **Application Insights Example:**
-
-           ```csharp
-           ExceptionTelemetry exceptionTelemetry = new ExceptionTelemetry(new Exception("Test exception"))
-           {
-               SeverityLevel = SeverityLevel.Error
-           };
-
-           exceptionTelemetry.Context.Cloud.RoleName = "MyRole";
-           exceptionTelemetry.Context.Cloud.RoleInstance = "MyRoleInstance";
-           exceptionTelemetry.Properties["customprop1"] = "custom value1";
-           client.TrackException(exceptionTelemetry);
-           ```
-
-           **OpenTelemetry Example:**
-
-           ```csharp
-           var resourceAttributes = new Dictionary<string, object> 
-           {
-              { "service.name", "MyRole" },
-              { "service.instance.id", "MyRoleInstance" }
-           };
-
-           var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(resourceAttributes);
-
-           using var loggerFactory = LoggerFactory.Create(builder => builder
-              .AddOpenTelemetry(logging =>
-              {
-                  logging.SetResourceBuilder(resourceBuilder);
-                  logging.AddAzureMonitorLogExporter();
-              }));
-
-           // Create a new instance `ILogger` from the above LoggerFactory.
-           var logger = loggerFactory.CreateLogger<Program>();
-
-           try
-           {
-               // Simulate exception
-               throw new Exception("Test exception");
-           }
-           catch (Exception ex)
-           {
-              // Emit exception: This uses the logger instance to write a new exception
-              logger?.LogError(ex, "An error occurred");
-           }
-           ```
-
-           #### Sending Metrics
- 
-           Metrics in Application Insights are stored as `MetricTelemetry`. In OpenTelemetry, metrics are modeled as `Meter` from the `System.Diagnostics.DiagnosticSource` package.
-
-           Application Insights has both non-pre-aggregating (`TrackMetric()`) and preaggregating (`GetMetric().TrackValue()`) Metric APIs. Unlike OpenTelemetry, Application Insights has no notion of [Instruments](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/supplementary-guidelines.md#instrument-selection). Application Insights has the same API for all the metric scenarios.
-
-           OpenTelemetry, on the other hand, requires users to first [pick the right metric instrument](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/supplementary-guidelines.md#instrument-selection) based on the actual semantics of the metric. For example, if the intention is to count something (like the number of total server requests received, etc.), [OpenTelemetry Counter](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#counter) should be used. If the intention is to calculate various percentiles (like the P99 value of server latency), then [OpenTelemetry Histogram](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/metrics/api.md#histogram) instrument should be used. Due to this fundamental difference between Application Insights and OpenTelemetry, no direct comparison is made between them.
-
-           Unlike Application Insights, OpenTelemetry doesn't provide built-in mechanisms to enrich or filter metrics. In Application Insights, telemetry processors and initializers could be used to modify or discard metrics, but this capability isn't available in OpenTelemetry.
-
-           Additionally, OpenTelemetry doesn't support sending raw metrics directly, as there's no equivalent to the `TrackMetric()` functionality found in Application Insights.
-
-           Migrating from Application Insights to OpenTelemetry involves replacing all Application Insights Metric API usages with the OpenTelemetry API. It requires understanding the various OpenTelemetry Instruments and their semantics.
-
-           > [!Tip]
-           > The histogram is the most versatile and the closest equivalent to the Application Insights `GetMetric().TrackValue()` API. You can replace Application Insights Metric APIs with Histogram to achieve the same purpose.
-
-           #### Other Telemetry Types
-
-           ##### CustomEvents
-
-           Not supported in OpenTelemetry.
-
-           **Application Insights Example:**
-
-           ```csharp
-           TelemetryClient.TrackEvent()
-           ```
-
-           ##### AvailabilityTelemetry
-
-           Not supported in OpenTelemetry.
-
-           **Application Insights Example:**
-
-           ```csharp
-           TelemetryClient.TrackAvailability()
-           ```
-
-           ##### PageViewTelemetry
-
-           Not supported in OpenTelemetry.
-
-           **Application Insights Example:**
-
-           ```csharp
-           TelemetryClient.TrackPageView()
-           ```
-
-      - question: Can I get live metrics for console and worker service applications?
-        answer: |
-          We recommend the [Azure Monitor OpenTelemetry Exporter](https://www.nuget.org/packages/Azure.Monitor.OpenTelemetry.Exporter) for console and worker service applications, which does not include live metrics. 
-
-      - question: Where can I get more information about migrating from .NET Application Insights SDKs to OpenTelemetry? 
-        answer: For more information, see [Migrate from .NET Application Insights SDKs to Azure Monitor OpenTelemetry](../app/opentelemetry-dotnet-migrate.md).
-          
-  - name: OpenTelemetry sampling  
+          Use OpenTelemetry APIs and language-specific logging or metrics APIs. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
+  - name: OpenTelemetry sampling
     questions:
       - question: Is the Application Insights custom sampler tail-based?
-        answer: | 
+        answer: |
           The Application Insights custom sampler makes sampling decisions after span creation, rather than before, so it doesn't follow a traditional head-based approach. Instead, it applies sampling decisions at the end of span generation—after the span is complete but before export.
 
           Although this behavior resembles tail-based sampling in some ways, the sampler doesn't wait to collect multiple spans from the same trace before deciding. Instead, it uses a hash of the Trace ID to help ensure trace completeness.
@@ -1774,7 +852,7 @@ sections:
           |-----------------------------|--------------------------------|---------------------------------------------|--------------------------------------------------------------------------|
           | Head-based                  | Before a span starts           | Low latency, minimal overhead               | May sample out desired traces including failures                         |
           | Tail-based                  | After spans are buffered based on time or volume thresholds | Allows highly selective trace sampling criteria | Higher cost and added processing delay  |
-          | App Insights custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics and [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) compatibility                  |
+          | Azure Monitor custom sampler | End of span generation         | Balances trace completeness with efficiency | Required for Live Metrics compatibility                  |
 
       - question: Can I sample dependencies, requests, or other telemetry types at different rates?
         answer: |
@@ -1785,7 +863,7 @@ sections:
           The Application Insights custom sampler propagates sampling decisions using the W3C Trace Context standard by default. This standard enables sampling decisions to flow between services. However, because the sampler makes sampling decisions at the end of span generation—after the call to downstream services—the propagation carries incomplete sampling information. This limitation complies with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/#sampled-flag), but downstream services can't reliably use this propagated sampling decision.
 
       - question: Does the Application Insights custom sampler respect sampling decisions from upstream services?
-        answer: | 
+        answer: |
           No, the Application Insights custom sampler always makes an independent sampling decision, even if the upstream service uses the same sampling algorithm. Sampling decisions from upstream services, including those using W3C Trace Context headers, don't influence the downstream service's decision. However, it does sample based on a hash of the Trace ID to ensure trace completeness. To improve consistency and reduce the chance of broken traces, configure all components in the system to use the same sampler and sampling rate.
 
       - question: Why do some traces appear incomplete even when using the Application Insights custom sampler?
@@ -1799,10 +877,10 @@ sections:
 
       - question: How does the Application Insights custom sampler work alongside ingestion sampling?
         answer: Ingestion sampling only drops what reaches the service, so it can't counteract or override the Application Insights custom sampler decisions. If both are enabled, the effective rate is multiplicative. For example, an SDK rate of 20 percent combined with an ingestion rate of 50 percent results in roughly 10 percent of data being stored. Microsoft recommends doing sampling at the source with the Azure Monitor OpenTelemetry sampler to keep traces intact and predictable, and using ingestion sampling only as a fallback.
-      
-      - question: Where can I get more information about OpenTelemetry sampling? 
+
+      - question: Where can I get more information about OpenTelemetry sampling?
         answer: For more information, see [Sampling in Azure Monitor Application Insights with OpenTelemetry](../app/opentelemetry-sampling.md).
-        
+
   - name: OpenTelemetry support and feedback
     questions:
       - question: What is OpenTelemetry?
@@ -1816,16 +894,16 @@ sections:
           * It's vendor-neutral and provides consistent APIs/SDKs across languages.
           * Over time, we believe OpenTelemetry will enable Azure Monitor customers to observe applications written in languages beyond our [supported languages](../app/app-insights-overview.md#getting-started).
           * It expands the types of data you can collect through a rich set of [instrumentation libraries](https://opentelemetry.io/docs/concepts/components/#instrumentation-libraries).
-          * OpenTelemetry Software Development Kits (SDKs) tend to be more performant at scale than their predecessors, the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs.
+          * OpenTelemetry Software Development Kits (SDKs) are designed for performant, vendor-neutral telemetry at scale.
           * OpenTelemetry aligns with Microsoft's strategy to [embrace open source](https://opensource.microsoft.com/).
 
       - question: What's the status of OpenTelemetry?
-        answer: | 
+        answer: |
           See [OpenTelemetry Status](https://opentelemetry.io/status/).
 
       - question: What is the Azure Monitor OpenTelemetry Distro?
         answer: |
-          You can think of it as a thin wrapper that bundles together all the OpenTelemetry components for a first-class experience on Azure. This wrapper is also called a [distribution](https://opentelemetry.io/docs/concepts/distributions/) in OpenTelemetry. 
+          You can think of it as a thin wrapper that bundles together all the OpenTelemetry components for a first-class experience on Azure. This wrapper is also called a [distribution](https://opentelemetry.io/docs/concepts/distributions/) in OpenTelemetry.
 
       - question: Why should I use the Azure Monitor OpenTelemetry Distro?
         answer: |
@@ -1850,19 +928,11 @@ sections:
 
           For languages without a supported standalone OpenTelemetry exporter, the Azure Monitor OpenTelemetry Distro is the only currently supported way to use OpenTelemetry with Azure Monitor. For languages with a supported standalone OpenTelemetry exporter, you have the option of using either the Azure Monitor OpenTelemetry Distro or the appropriate standalone OpenTelemetry exporter depending on your telemetry scenario. For more information, see [When should I use the Azure Monitor OpenTelemetry exporter?](#when-should-i-use-the-azure-monitor-opentelemetry-exporter).
 
-      - question: Should I use OpenTelemetry or the Application Insights Classic API SDK?
+      - question: Should I use OpenTelemetry for new Application Insights projects?
         answer: |
-          We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
-          
-          OpenTelemetry provides advantages over the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs, including:
+          Yes. We recommend using the Azure Monitor OpenTelemetry Distro for new projects.
 
-          - Better standardization across platforms
-          - A wider ecosystem of instrumentation libraries
-          - Greater flexibility in data collection and processing
-          - Improved vendor neutrality, though Azure Monitor OpenTelemetry Distro is still optimized for Azure.
-
-           If you're using .NET or Node.js [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs, see [Migrate from Application Insights Classic API SDKs to Azure Monitor OpenTelemetry](.\migrate-to-opentelemetry.md).
-          
+          If you're migrating an existing .NET or Node.js application from older Application Insights SDKs, see [Migrate from Application Insights SDKs to Azure Monitor OpenTelemetry](migrate-to-opentelemetry.md).
       - question: When should I use the Azure Monitor OpenTelemetry exporter?
         answer: |
           For ASP.NET Core, Java, Node.js, and Python, we recommend using the Azure Monitor OpenTelemetry Distro. It's one line of code to get started.
@@ -1873,12 +943,12 @@ sections:
 
       - question: What's the current release state of features within the Azure Monitor OpenTelemetry Distro?
         answer: |
-          The Azure Monitor OpenTelemetry Distro has reached feature parity with the Application Insights [Classic API](/previous-versions/azure/azure-monitor/app/classic-api) SDKs.
-          
+          The Azure Monitor OpenTelemetry Distro supports the current recommended Application Insights instrumentation path.
+
           For the latest details about code analysis experiences, see [.NET Profiler](../profiler/profiler-overview.md) and [Snapshot Debugger](../snapshot-debugger/snapshot-debugger.md).
 
       - question: Can OpenTelemetry be used for web browsers?
-        answer: |       
+        answer: |
           Yes, but we don't recommend it and Azure doesn't support it. OpenTelemetry JavaScript is heavily optimized for Node.js. Instead, we recommend using the Application Insights JavaScript SDK.
 
       - question: When can we expect the OpenTelemetry SDK to be available for use in web browsers?
@@ -1886,7 +956,7 @@ sections:
           The OpenTelemetry web SDK doesn't have a determined availability timeline. We're likely several years away from a browser SDK that is a viable alternative to the Application Insights JavaScript SDK.
 
       - question: Can I test OpenTelemetry in a web browser today?
-        answer: | 
+        answer: |
           The [OpenTelemetry web sandbox](https://github.com/open-telemetry/opentelemetry-sandbox-web-js) is a fork designed to make OpenTelemetry work in a browser. It's not yet possible to send telemetry to Application Insights. The SDK doesn't define general client events.
 
       - question: Is running Application Insights alongside competitor agents like AppDynamics, DataDog, and NewRelic supported?
@@ -1912,10 +982,10 @@ sections:
       - question: How should I instrument Blazor Apps?
         answer: |
           To instrument a Blazor app, first identify the hosting model. Blazor Server supports full [OpenTelemetry-based instrumentation](opentelemetry-enable.md). Blazor WebAssembly runs in the browser and supports limited instrumentation through JavaScript.
-          
+
   - name: Overview dashboard
     questions:
-      - question: Can I display more than 30 days of data? 
+      - question: Can I display more than 30 days of data?
         answer: |
           No, there's a limit of 30 days of data displayed in a dashboard.
 
@@ -1925,51 +995,21 @@ sections:
 
           To work around this behavior, delete the default dashboard and select **Application Dashboard** again to re-create a new one.
 
-      - question: Where can I get more information about the Overview dashboard? 
+      - question: Where can I get more information about the Overview dashboard?
         answer: For more information, see [Application Insights Overview dashboard](../app/overview-dashboard.md).
 
   - name: Telemetry channels
     questions:
-      - question: Does the Application Insights channel guarantee telemetry delivery? If not, what are the scenarios in which telemetry can be lost?
+      - question: Does Application Insights guarantee telemetry delivery?
         answer: |
-          The short answer is that none of the built-in channels offer a transaction-type guarantee of telemetry delivery to the back end. `ServerTelemetryChannel` is more advanced compared with `InMemoryChannel` for reliable delivery, but it also makes only a best-effort attempt to send telemetry. Telemetry can still be lost in several situations, including these common scenarios:
-
-          - Items in memory are lost when the application crashes.
-          - Telemetry is lost during extended periods of network problems. Telemetry is stored to local disk during network outages or when problems occur with the Application Insights back end. However, items older than 48 hours are discarded.
-          - The default disk locations for storing telemetry in Windows are %LOCALAPPDATA% or %TEMP%. These locations are typically local to the machine. If the application migrates physically from one location to another, any telemetry stored in the original location is lost.
-          - In Azure Web Apps on Windows, the default disk-storage location is D:\local\LocalAppData. This location isn't persisted. It's wiped out in app restarts, scale-outs, and other such operations, which leads to loss of any telemetry stored there. You can override the default and specify storage to a persisted location like D:\home. However, such persisted locations are served by remote storage and so can be slow.
-
-          Although less likely, it's also possible that the channel can cause duplicate telemetry items. This behavior occurs when `ServerTelemetryChannel` retries because of network failure or timeout, when the telemetry was delivered to the back end, but the response was lost because of network issues or there was a timeout.
-
-
-      - question: Does ServerTelemetryChannel work on systems other than Windows?
-        answer: |
-          Although the name of its package and namespace includes "WindowsServer," this channel is supported on systems other than Windows, with the following exception. On systems other than Windows, the channel doesn't create a local storage folder by default. You must create a local storage folder and configure the channel to use it. After local storage has been configured, the channel works the same way on all systems.
-
-          > [!NOTE]
-          > With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows. For non-Windows systems, the SDK will automatically create a local storage folder based on the following logic:
-          >
-          > - `${TMPDIR}`: If the `${TMPDIR}` environment variable is set, this location is used.
-          > - `/var/tmp`: If the previous location doesn't exist, we try `/var/tmp`.
-          > - `/tmp`: If both the previous locations don't exist, we try `tmp`.
-          > - If none of those locations exist, local storage isn't created and manual configuration is still required. For full implementation details, see [this GitHub repo](https://github.com/microsoft/ApplicationInsights-dotnet/pull/1860).
+          OpenTelemetry exporters and SDKs generally use best-effort delivery. Telemetry can still be lost if an application crashes, the process exits before pending telemetry is exported, storage is unavailable, or network and service outages last beyond retry limits. For current OpenTelemetry behavior, see [Offline storage and automatic retries](opentelemetry-configuration.md#offline-storage-and-automatic-retries).
 
       - question: Does the SDK create temporary local storage? Is the data encrypted at storage?
         answer: |
-          The SDK stores telemetry items in local storage during network problems or during throttling. This data isn't encrypted locally.
+          Some current exporters and SDKs can create temporary local storage during network problems or throttling. Local temporary storage isn't encrypted by Application Insights, so secure any directory you configure. For current OpenTelemetry behavior, see [Offline storage and automatic retries](opentelemetry-configuration.md#offline-storage-and-automatic-retries).
 
-          For Windows systems, the SDK automatically creates a temporary local folder in the %TEMP% or %LOCALAPPDATA% directory and restricts access to administrators and the current user only.
-
-          For systems other than Windows, no local storage is created automatically by the SDK, so no data is stored locally by default.
-
-          > [!NOTE]
-          > With the release 2.15.0-beta3 and greater, local storage is now automatically created for Linux, Mac, and Windows.
-
-          You can create a storage directory yourself and configure the channel to use it. In this case, you're responsible for ensuring that the directory is secured. Read more about [data protection and privacy](/previous-versions/azure/azure-monitor/app/data-retention-privacy#does-the-sdk-create-temporary-local-storage).
-
-      - question: Where can I get more information about telemetry channels? 
-        answer: For more information, see [Telemetry channels in Application Insights](../app/telemetry-channels.md).
-
+      - question: Where can I get more information about telemetry delivery behavior?
+        answer: For current OpenTelemetry retry and storage behavior, see [OpenTelemetry configuration](../app/opentelemetry-configuration.md#offline-storage-and-automatic-retries).
   - name: Search
     questions:
       - question: How much data is retained?
@@ -1978,13 +1018,13 @@ sections:
 
       - question: How can I see POST data in my server requests?
         answer: |
-          We don't log the POST data automatically, but you can use [TrackTrace or log calls](./asp-net-trace-logs.md). Put the POST data in the message parameter. You can't filter on the message in the same way you can filter on properties, but the size limit is longer.
+          We don't log POST data automatically. Use application logging carefully if you need to capture request body details, and avoid collecting sensitive data.
 
       - question: Why does my Azure Function search return no results?
         answer: |
-          Azure Functions doesn't log URL query strings. 
-          
-      - question: Where can I get more information about Search? 
+          Azure Functions doesn't log URL query strings.
+
+      - question: Where can I get more information about Search?
         answer: For more information, see [Search and Diagnostics](../app/failures-performance-transactions.md?tabs=search-view).
 
   - name: Transaction Diagnostics
@@ -2005,7 +1045,7 @@ sections:
       - question: What about clock skews across different component instances?
         answer: |
           Timelines are adjusted for clock skews in the transaction chart. You can see the exact timestamps in the details pane or by using Log Analytics.
-        
+
       - question: Why is the new experience missing most of the related items queries?
         answer: |
           This behavior is by design. All the related items, across all components, are already available on the left side in the top and bottom sections. The new experience has two related items that the left side doesn't cover: all telemetry from five minutes before and after this event and the user timeline.
@@ -2014,7 +1054,7 @@ sections:
         answer: |
           The transaction diagnostics experience shows all telemetry in a [single operation](distributed-trace-data.md#data-model-for-telemetry-correlation) that shares an [Operation ID](data-model-complete.md#context). By default, the Application Insights SDK for JavaScript creates a new operation for each unique page view. In a single-page application (SPA), only one page view event is generated and a single Operation ID is used for all telemetry generated. As a result, many events might be correlated to the same operation.
 
-          In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript.md#single-page-applications) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
+          In these scenarios, you can use Automatic Route Tracking to automatically create new operations for navigation in your SPA. You must turn on [enableAutoRouteTracking](javascript-sdk-configuration.md#sdk-configuration) so that a page view is generated every time the URL route is updated (logical page view occurs). If you want to manually refresh the Operation ID, call `appInsights.properties.context.telemetryTrace.traceID = Microsoft.ApplicationInsights.Telemetry.Util.generateW3CId()`. Manually triggering a PageView event also resets the Operation ID.
 
       - question: Why do transaction detail durations not add up to the top-request duration?
         answer: |
@@ -2022,11 +1062,11 @@ sections:
 
           If all calls were instrumented, in process is the likely root cause for the time spent. A useful tool for diagnosing the process is the [.NET Profiler](./profiler-overview.md).
 
-      - question: What if I see the message "Error retrieving data" while navigating Application Insights in the Azure portal? 
+      - question: What if I see the message "Error retrieving data" while navigating Application Insights in the Azure portal?
         answer: |
           This error indicates that the browser was unable to call into a required API or the API returned a failure response. To troubleshoot the behavior, open a browser [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2) and [disable any browser extensions](https://support.microsoft.com/microsoft-edge/add-turn-off-or-remove-extensions-in-microsoft-edge-9c0ec68c-2fbc-2f2c-9ff0-bdc76f46b026) that are running, then identify if you can still reproduce the portal behavior. If the portal error still occurs, try testing with other browsers, or other machines, investigate DNS or other network related issues from the client machine where the API calls are failing. If the portal error continues and needs more investigation, [collect a browser network trace](/azure/azure-portal/capture-browser-trace#capture-a-browser-trace-for-troubleshooting) while reproducing the unexpected portal behavior, then open a support case from the Azure portal.
 
-      - question: Where can I get more information about Transaction Diagnostics? 
+      - question: Where can I get more information about Transaction Diagnostics?
         answer: For more information, see [Investigate failures, performance, and transactions with Application Insights](../app/failures-performance-transactions.md?tabs=search-view).
 
   - name: Usage analysis
@@ -2079,57 +1119,28 @@ sections:
         answer: |
           Yes. To learn how to edit workbook templates, see [Azure Workbooks templates](../visualize/workbooks-templates.md#edit-a-template).
 
-      - question: Where can I get more information about usage analysis? 
-        answer: For more information, see [Usage analysis with Application Insights](../app/usage.md). 
+      - question: Where can I get more information about usage analysis?
+        answer: For more information, see [Usage analysis with Application Insights](../app/usage.md).
 
   - name: Worker Service applications
     questions:
       - question: Which package should I use?
         answer: |
-           | .NET Core app scenario | Package  |
-           |---------|---------|
-           | Without HostedServices                              | WorkerService                     |
-           | With HostedServices                                 | AspNetCore (not WorkerService) |
-           | With HostedServices, monitoring only HostedServices | WorkerService (rare scenario)  |
-
-      - question: Can HostedServices inside a .NET Core app using the AspNetCore package have TelemetryClient injected to it?
-        answer: |
-          Yes, the configuration is shared with the rest of the web application.
+          For current worker service applications, use the Azure Monitor OpenTelemetry Exporter or Distro. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md?tabs=net).
 
       - question: How can I track telemetry that's not automatically collected?
         answer: |
-          Get an instance of `TelemetryClient` by using constructor injection and call the required `TrackXXX()` method on it. We don't recommend creating new `TelemetryClient` instances. A singleton instance of `TelemetryClient` is already registered in the `DependencyInjection` container, which shares `TelemetryConfiguration` with the rest of the telemetry. Creating a new `TelemetryClient` instance is recommended only if it needs a configuration that's separate from the rest of the telemetry.
+          For current instrumentation, use OpenTelemetry APIs and language-specific logging or metrics APIs. For examples, see [Collect custom telemetry](opentelemetry-add-modify.md#collect-custom-telemetry).
 
-      - question: Can I use Visual Studio IDE to onboard Application Insights to a Worker Service project?
-        answer: |
-          Visual Studio IDE onboarding is currently supported only for ASP.NET/ASP.NET Core applications. This document is updated when Visual Studio ships support for onboarding Worker Service applications.
+          For browser custom events, use the [Application Insights JavaScript SDK](javascript-sdk.md) or [Click Analytics](javascript-feature-extensions.md). For server-side custom events, use [OpenTelemetry custom events](opentelemetry-add-modify.md#send-custom-events).
 
-      - question: Can I enable Application Insights monitoring by using tools like Azure Monitor Application Insights Agent (formerly Status Monitor v2)?
+      - question: Can I enable Application Insights monitoring without changing application code?
         answer: |
-          No. [Azure Monitor Application Insights Agent](classic-api.md?tabs=dotnet) currently supports [.NET](/dotnet/fundamentals/) only.
+          For new application monitoring, use the Azure Monitor OpenTelemetry Distro or current autoinstrumentation paths. See [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and [Application monitoring without code changes](codeless-overview.md).
 
       - question: Are all features supported if I run my application in Linux?
         answer: |
-          Yes. Feature support for this SDK is the same in all platforms, with the following exceptions:
+          Feature support depends on the language, hosting environment, and instrumentation path. For current support, start with [Enable OpenTelemetry with Application Insights](opentelemetry-enable.md) and the relevant language-specific configuration article.
 
-          * Performance counters are supported only in Windows except for Process CPU/Memory shown in live metrics.
-          * Even though `ServerTelemetryChannel` is enabled by default, if the application is running in Linux or macOS, the channel doesn't automatically create a local storage folder to keep telemetry temporarily if there are network issues. Because of this limitation, telemetry is lost when there are temporary network or server issues. To work around this issue, configure a local folder for the channel:
-
-             ```csharp
-             using Microsoft.ApplicationInsights.Channel;
-             using Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel;
-
-                 public void ConfigureServices(IServiceCollection services)
-                 {
-                     // The following will configure the channel to use the given folder to temporarily
-                     // store telemetry items during network or Application Insights server issues.
-                     // User should ensure that the given folder already exists
-                     // and that the application has read/write permissions.
-                     services.AddSingleton(typeof(ITelemetryChannel),
-                                             new ServerTelemetryChannel () {StorageFolder = "/tmp/myfolder"});
-                     services.AddApplicationInsightsTelemetryWorkerService();
-                 }
-             ```
-
-      - question: Where can I get more information about Worker Service applications? 
-        answer: For more information, see [Application Insights for Worker Service applications (non-HTTP applications)](../app/worker-service.md).
+      - question: Where can I get more information about Worker Service applications?
+        answer: For current worker service instrumentation, see [Enable OpenTelemetry with Application Insights](../app/opentelemetry-enable.md?tabs=net).

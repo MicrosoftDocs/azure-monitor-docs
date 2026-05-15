@@ -2,7 +2,7 @@
 title: Stream Azure monitoring data to an event hub and external partners
 description: Learn how to stream your Azure monitoring data to an event hub to get the data into a partner SIEM or analytics tool.
 ms.topic: how-to
-ms.date: 09/30/2024
+ms.date: 04/27/2026
 ms.reviewer: lualderm
 ---
 
@@ -25,16 +25,9 @@ Before you configure streaming for a data source, you need to [create an Event H
 
 Data can be sent to Event Hubs by using the following methods in Azure Monitor:
 
-* **Data collection rules**
-
-    Data collection rules are used to stream logs and metrics to Event Hubs, Log analytics workspaces and Azure Storage. For information on how to set up data collection rules, see [Data collection rules in Azure Monitor](../data-collection/data-collection-rule-overview.md) and [Create and edit data collection rules](../data-collection/data-collection-rule-create-edit.md).
-
-    > [!NOTE]
-    > The preview capability to send VM client data collected by Azure Monitor Agent directly to Event Hubs or Storage using `"kind": "AgentDirectToStore"` is being retired. See [Send data to Event Hubs and Storage (Preview)](../vm/send-event-hubs-storage.md) for details and alternatives.
-
 * **Diagnostic settings**
 
-    Use diagnostics setting to stream logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create a diagnostic setting](diagnostic-settings.md#create-a-diagnostic-setting).
+    Use diagnostics setting to stream Azure platform logs and metrics to Event Hubs. For information on how to set up diagnostic settings, see [Create a diagnostic setting](diagnostic-settings.md#create-a-diagnostic-setting).
 
 * **Manually stream using Logic Apps**
 

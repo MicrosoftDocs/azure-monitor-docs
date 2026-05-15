@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AWS Platform Firewall Alert logs , ingested from Sentinel's connector, enabling real-time analysis and correlation with other security data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,37 @@ The AWS Platform Firewall Alert logs , ingested from Sentinel's connector, enabl
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [awsnetworkfirewallalert](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewallalert-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AlertAction | string | The action taken when an alert was triggered (e.g., allowed, dropped, rejected). |
+| AppProto | string | The application layer protocol detected. |
+| AvailabilityZone | string | The AWS Availability Zone where the firewall instance is located. |
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the detected threat or network activity. |
+| DestIp | string | The destination IP address of the packet. |
+| DestPort | string | The destination port to which the packet was sent. |
+| Direction | string | The direction of the traffic (e.g., inbound, outbound). |
+| EventTimestamp | datetime | The epoch timestamp of when the event occurred. |
+| EventType | string | The type of event recorded (e.g., alert, flow, drop, pass). |
+| FirewallName | string | The name of the AWS Network Firewall instance generating the log. |
+| FlowId | string | A unique identifier for the network flow related to this event. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| PktSrc | string | The source of the packet (e.g., internal, external, firewall rule). |
+| Proto | string | The protocol used (e.g., TCP, UDP, ICMP). |
+| Rev | string | The revision number of the matched Suricata rule. |
+| Severity | string | The severity level of the event, typically based on Suricata rule classifications. |
+| Signature | string | The name or description of the Suricata rule that triggered the alert. |
+| SignatureId | string | The unique identifier of the Suricata rule that matched the event. |
+| Sni | string | The Server Name Indication (SNI) from TLS traffic. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIp | string | The source port from which the packet originated. |
+| SrcPort | string | The source port from which the packet originated. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log entry was created in AWS Network Firewall. |
+| Timestamp | datetime | The exact timestamp when the event was captured. |
+| TxId | string | The transaction ID associated with the specific network flow. |
+| Type | string | The name of the table |
+| VerdictAction | string | The final decision made by the firewall (e.g., pass, drop, alert). |
+| Version | string | The version of the log schema or Suricata rule format used. |

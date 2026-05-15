@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains records of Azure Site Recovery v2 (ASRv2) health related events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,27 @@ This table contains records of Azure Site Recovery v2 (ASRv2) health related eve
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [asrv2healthevents](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2healthevents-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AffectedResourceId | string | The affected resource Id. |
+| AffectedResourceName | string | The affected resource name. |
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the log. |
+| CorrelationId | string | The correlation Id of the event. |
+| EventName | string | The health event name. |
+| EventSeverity | string | The health event severity. |
+| EventType | string | The health event type. |
+| HealthErrors | dynamic | The errors associated with the health event. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LogId | string | The event log Id for the health event. |
+| OperationName | string | The name of the operation. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the log was generated. |
+| TimeOfOccurrence | datetime | The time of occurrence of the event. |
+| Type | string | The name of the table |
+| Version | string | The version for the event properties. |

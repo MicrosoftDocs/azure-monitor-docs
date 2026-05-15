@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 03/27/2026
 ms.custom: Microsoft.Quantum/providerAccounts, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Quantum/providerAccounts
 
-
-
-# Supported logs for Microsoft.Quantum/providerAccounts  
 The following table lists the types of logs available for the Microsoft.Quantum/providerAccounts resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Quantum/providerAccounts](../supported-metrics/microsoft-quantum-provideraccounts-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Quantum/providerAccounts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-quantum-provideraccounts-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Quantum/providerAccounts](../supported-metrics/microsoft-quantum-provideraccounts-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AuditEvent` |Audit Logs |[QuantumProviderAccountJobAuditLogs](/azure/azure-monitor/reference/tables/quantumprovideraccountjobauditlogs)<p>Audit logs for job-related operations performed on Azure Quantum Provider Account resources, including job cancellations and priority updates. Used to track who performed which job operation and when.|Yes|No||Yes |
 
 ## Next Steps
 

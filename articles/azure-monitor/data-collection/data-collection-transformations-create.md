@@ -2,7 +2,7 @@
 title: Create a transformation in Azure Monitor
 description: Create a transformation in Azure Monitor and add it to a data collection rule (DCR).
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 04/22/2026
 ms.reviwer: nikeist
 
 ---
@@ -27,8 +27,8 @@ The output of the query must match the schema of the target table with the follo
 Following is an example of a transformation that performs several functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
-* Adds a new column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator.
-* Formats the output to match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
+* Parses the incoming `property` column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator to separate its JSON values into a temporary column `Properties`.
+* Formats the transformation output to exactly match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
 source

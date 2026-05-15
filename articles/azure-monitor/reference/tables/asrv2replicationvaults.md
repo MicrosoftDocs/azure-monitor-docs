@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table contains records of Azure Site Recovery v2 (ASRv2) replication vault related events.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,20 @@ This table contains records of Azure Site Recovery v2 (ASRv2) replication vault 
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [asrv2replicationvaults](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/asrv2replicationvaults-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| Category | string | The category of the log. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Location | string | The location of the replication vault. |
+| OperationName | string | The name of the operation. |
+| ProvisioningState | string | The provisioning state of the replication vault. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| ServiceResourceId | string | The replication vault service resource Id. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) when the log was generated. |
+| Type | string | The name of the table |

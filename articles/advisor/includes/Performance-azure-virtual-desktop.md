@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Virtual Desktop
@@ -14,21 +14,22 @@ ms.custom: Performance Azure Virtual Desktop
   
 <!--2cc17306-822e-45b1-8d7f-5b0d2f2cccdb_begin-->
 
-#### Change the max session limit setting for your depth first load balanced host pool to improve VM performance  
+#### Set the max session limit setting for the depth first load balanced host pool  
   
-Depth first load balancing uses the max session limit setting to determine the maximum number of users that can have concurrent sessions on a single session host. If the max session limit setting is too high, all user sessions are directed to the same session host and this causes performance and reliability issues. Therefore, when setting a host pool to have depth first load balancing, you should also set an appropriate max session limit setting according to the configuration of your deployment and capacity of your VMs. To fix this, open your host pool's properties and change the value next to the max session limit setting.  
+Depth first load balancing uses the max session limit setting to determine the maximum number of users that can have concurrent sessions on a single session host. If the max session limit setting is too high, all user sessions are directed to the same session host causing performance issues.  
   
-**Potential benefits**: Ensure session host functional stability, reliability, and performance when using Windows Virtual Desktop service  
+**Potential benefits**: Ensure session host stability, reliability, and performance  
 
 **Impact:** High
   
-For more information, see [Configure host pool load balancing in Azure Virtual Desktop](/azure/virtual-desktop/configure-host-pool-load-balancing)  
+For more information, see [Configure host pool load balancing in Azure Virtual Desktop - Azure Virtual Desktop](/azure/virtual-desktop/configure-host-pool-load-balancing)  
 
 ResourceType: microsoft.desktopvirtualization/hostpools  
 Recommendation ID: 2cc17306-822e-45b1-8d7f-5b0d2f2cccdb  
 
 
 <!--2cc17306-822e-45b1-8d7f-5b0d2f2cccdb_end-->
+
 
 <!--d89829c9-dadf-4ddc-87d6-fd746debd5d3_begin-->
 

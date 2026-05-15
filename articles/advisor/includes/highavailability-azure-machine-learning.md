@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/13/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Machine Learning
@@ -12,22 +12,22 @@ ms.custom: HighAvailability Azure Machine Learning
   
 ## Azure Machine Learning  
   
-<!--08a4b7ad-b2b8-41b4-bc80-a733da095979_begin-->
+<!--8027dfbe-6af9-427c-8078-6e907d6a7ce1_begin-->
 
-#### Transition from Batch Endpoints preview APIs  
+#### Migrate external data imports to Microsoft Fabric  
   
-Azure Machine Learning Batch Endpoints preview APIs will be retired. Customers should move to alternative solutions for batch inferencing to ensure continuity and leverage newer capabilities.  
+Import data from external sources – S3, Snowflake, Azure SQL Db along with external Data Connections in Azure Machine Learning are being retired. To avoid any disruptions to ML pipelines, migrate external data imports to Microsoft Fabric and use AzureML datastores.  
   
-**Potential benefits**: Ensure service continuity  
+**Potential benefits**: Avoid service disruption  
 
-**Impact:** High
+**Impact:** Medium
   
-For more information, see [What are batch endpoints? - Azure Machine Learning](/azure/machine-learning/concept-endpoints-batch?view=azureml-api-2)  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=557406)  
 
 ResourceType: microsoft.machinelearningservices/workspaces  
-Recommendation ID: 08a4b7ad-b2b8-41b4-bc80-a733da095979  
+Recommendation ID: 8027dfbe-6af9-427c-8078-6e907d6a7ce1  
 Subcategory: undefined
 
-<!--08a4b7ad-b2b8-41b4-bc80-a733da095979_end-->
+<!--8027dfbe-6af9-427c-8078-6e907d6a7ce1_end-->
 
 <!--articleBody-->

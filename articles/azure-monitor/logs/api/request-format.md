@@ -1,58 +1,155 @@
 ---
-title: Request format
-description: The Azure Monitor Log Analytics API request format.
-ms.date: 08/12/2024
+title: Request Format for the Azure Monitor Logs Query API
+description: Learn how to format GET and POST requests for the Azure Monitor Logs query API to run KQL queries. Includes REST, Azure CLI, and Azure PowerShell examples.
 ms.topic: how-to
+ms.date: 05/12/2026
+ai-usage: ai-assisted
+
+#customer intent: As a developer, I want to format GET and POST requests for the Azure Monitor Logs query API so that I can run KQL queries against my workspace programmatically.
+
 ---
-# Azure Monitor Log Analytics API request format
+# Request format for the Azure Monitor Logs query API
 
-There are two endpoints through which you can communicate with the Log Analytics API:
-- A direct URL for the API: `https://api.loganalytics.azure.com`
-- Through Azure Resource Manager (ARM).
+The Logs query API lets you run Kusto Query Language (KQL) queries against a Log Analytics workspace through a public REST endpoint. Retrieve or analyze log data programmatically for automation, custom reporting, or integration with other tools.
 
-While the URLs are different, the query parameters are the same for each endpoint. Both endpoints require authorization through Microsoft Entra ID.
+This article shows how to format `GET` and `POST` requests for the query endpoint, with examples for REST, Azure CLI, and Azure PowerShell. For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis), the [Log Analytics REST API reference](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis), and [API access and authentication](access-api.md).
 
-The API supports the `POST` and `GET` methods.
+> [!NOTE]
+> This article covers the public query endpoint at `api.loganalytics.azure.com`. It doesn't cover Azure Resource Manager (ARM) management operations for Log Analytics workspaces.
 
-## Public API format
+## Public query endpoint format
 
-The Public API format is:
+The public Logs query API endpoint has this format:
 
+`https://api.loganalytics.azure.com/{apiVersion}/workspaces/{workspaceId}/query?[parameters]`
+
+- `apiVersion` is the public query API version. Use `v1`.
+- `workspaceId` is the GUID of the Log Analytics workspace to query.
+- `[parameters]` are query string values such as `query`, `timespan`, and `workspaces`.
+
+## Query parameters
+
+Pass these parameters in the query string for `GET` requests or in the JSON body for `POST` requests.
+
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `query` | Yes | The KQL query to run. |
+| `timespan` | No | The time range for the query. Use an ISO 8601 duration (for example, `PT12H` for 12 hours) or a start/end pair separated by `/` (for example, `2024-01-01/2024-01-02`). If omitted, the query runs against all available data. |
+| `workspaces` | No | Additional workspace IDs to include in a [cross-workspace query](../cross-workspace-query.md). |
+
+## GET request format
+
+For `GET` requests, include request parameters in the query string. For example, to count `AzureActivity` events by `Category`, use the following request:
+
+# [Azure CLI](#tab/azure-cli)
+
+This Azure CLI command is part of the generally available `log-analytics` extension, which Azure CLI installs automatically.
+
+```azurecli
+workspaceId="myWorkspaceId"
+
+az monitor log-analytics query \
+  --workspace "$workspaceId" \
+  --analytics-query "AzureActivity | summarize count() by Category" \
+  --timespan "PT12H"
 ```
-    https://api.loganalytics.azure.com/{api-version}/workspaces/{workspaceId}/query?[parameters]
+
+# [PowerShell](#tab/powershell)
+
+The [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet (from the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module) queries the Logs API directly. It handles authentication and JSON serialization automatically.
+
+```azurepowershell
+$workspaceId = 'myWorkspaceId'
+
+$queryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = 'AzureActivity | summarize count() by Category'
+    Timespan    = (New-TimeSpan -Hours 12)
+}
+
+$results = Invoke-AzOperationalInsightsQuery @queryParams
+$results.Results
 ```
-where:
- - **api-version**: The API version. The current version is "v1"
- - **workspaceId**: Your workspace ID
- - **parameters**: The data required for this query
 
-## GET /query
+Use `-IncludeStatistics` to return query performance data, or `-Wait` to set a server-side timeout in seconds.
 
-When the HTTP method executed is `GET`, the parameters are included in the query string.
+# [REST API](#tab/rest-api)
 
-For example, to count AzureActivity events by Category, make this call:
-
+```rest
+GET https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query?query=AzureActivity%20|%20summarize%20count()%20by%20Category
+Authorization: Bearer {token}
+Content-Type: application/json
 ```
-    GET https://api.loganalytics.azure.com/v1/workspaces/{workspace-id}/query?query=AzureActivity%20|%20summarize%20count()%20by%20Category
-    Authorization: Bearer <access token>
-```
-## POST /query
 
-When the HTTP method executed is `POST`:
- - The body MUST be valid JSON.
- - The request must include the header: `Content-Type: application/json` 
- - The parameters are included as properties in the JSON body.
- - If the **timespan** parameter is included in both the query string and the JSON body, the timespan will be the intersection of the two values. 
- 
-For example, to count AzureActivity events by Category, make this call:
+---
 
+## POST request format
+
+For `POST` requests, send request parameters in the JSON body.
+
+- The request body must be valid JSON.
+- Include the `Content-Type: application/json` header.
+- Put request values such as `query`, `timespan`, and `workspaces` in the JSON body.
+- If you specify `timespan` in both the query string and the body, the service uses the
+  intersection of the two values.
+
+# [Azure CLI](#tab/azure-cli)
+
+The `az monitor log-analytics query` command is in the generally available `log-analytics` extension, which Azure CLI installs automatically.
+
+```azurecli
+workspaceId="myWorkspaceId"
+
+az monitor log-analytics query \
+  --workspace "$workspaceId" \
+  --analytics-query "AzureActivity | summarize count() by Category"
 ```
-    POST https://api.loganalytics.azure.com/v1/workspaces/{workspace-id}/query
-    
-    Authorization: Bearer <access token>
-    Content-Type: application/json
-    
-    {
-      "query": "AzureActivity | summarize count() by Category"
-    }
+
+> [!NOTE]
+> The `az monitor log-analytics query` command always sends a POST request internally. The same command syntax works for both `GET` and `POST` query scenarios.
+
+# [PowerShell](#tab/powershell)
+
+```azurepowershell
+$workspaceId = 'myWorkspaceId'
+
+$queryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = 'AzureActivity | summarize count() by Category'
+}
+
+$results = Invoke-AzOperationalInsightsQuery @queryParams
+$results.Results
 ```
+
+> [!NOTE]
+> `Invoke-AzOperationalInsightsQuery` always sends a `POST` request internally. The same cmdlet works for both `GET` and `POST` query scenarios. For queries that need the full REST API surface (for example, custom headers or the `Prefer: wait=` timeout), use `Invoke-AzRestMethod` with the full endpoint URL instead.
+
+# [REST API](#tab/rest-api)
+
+```rest
+POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "query": "AzureActivity | summarize count() by Category"
+}
+```
+
+Payload file `query-payload.json`
+
+```json
+{
+  "query": "AzureActivity | summarize count() by Category"
+}
+```
+
+---
+
+## Related content
+
+- [API access and authentication](access-api.md)
+- [Response format for the Log Analytics Query API](response-format.md)
+- [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis)
+

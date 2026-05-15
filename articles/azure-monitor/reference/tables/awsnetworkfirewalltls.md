@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 The AWS Platform Firewall TLS logs, ingested from Sentinel's connector, enabling real-time analysis and correlation with other security data sources.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,25 @@ The AWS Platform Firewall TLS logs, ingested from Sentinel's connector, enabling
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [awsnetworkfirewalltls](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/awsnetworkfirewalltls-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| Action | string | The action taken by the firewall (e.g., allowed, dropped, inspected). |
+| AvailabilityZone | string | The AWS Availability Zone where the firewall instance is located. |
+| _BilledSize | real | The record size in bytes |
+| DestIp | string | The destination IP address of the packet. |
+| DestPort | string | The destination port to which the packet was sent. |
+| ErrorMessage | string | Any error message associated with the event, if applicable. |
+| EventTimestamp | datetime | The epoch timestamp of when the event occurred. |
+| FirewallName | string | The name of the AWS Network Firewall instance generating the log. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LeafCertificateFingerprint | string | The SHA-256 fingerprint of the leaf certificate observed in the TLS handshake. |
+| Sni | string | The Server Name Indication (SNI) from TLS traffic. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SrcIp | string | The source IP address of the packet that triggered the event. |
+| SrcPort | string | The source port from which the packet originated. |
+| Status | string | The status of the TLS inspection event (e.g., success, failure). |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp when the log entry was created in AWS Network Firewall. |
+| Type | string | The name of the table |

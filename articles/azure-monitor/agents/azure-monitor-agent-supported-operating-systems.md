@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 01/16/2026
+ms.date: 05/06/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -39,20 +39,14 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
+Azure Monitor Agent supports the following Linux distributions, grouped by distribution family.
+
+### Red Hat-based distributions
+
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
 | AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
-| Amazon Linux 2                                              | ✓ |
-| Amazon Linux 2023                                           | ✓ |
-| Azure Linux 3.0                                             | ✓<sup>2</sup> |
-| CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
-| Debian 13                                                   | ✓ |
-| Debian 12                                                   | ✓ |
-| Debian 11                                                   | ✓<sup>2</sup> |
-| Debian 10                                                   | ✓ |
-| Debian 9                                                    | ✓ |
-| OpenSUSE 15                                                 | ✓ |
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
@@ -63,43 +57,65 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
-| SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP6                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP5                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP4                         | ✓<sup>2</sup> |
-| SUSE Linux Enterprise Server 15 SP3                         | ✓ |
-| SUSE Linux Enterprise Server 15 SP2                         | ✓ |
-| SUSE Linux Enterprise Server 15 SP1                         | ✓ |
-| SUSE Linux Enterprise Server 15                             | ✓ |
-| SUSE Linux Enterprise Server 12 SP5                         | ✓ |
+
+### Debian-based distributions
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Debian 13                                                   | ✓ |
+| Debian 12                                                   | ✓ |
+| Debian 11                                                   | ✓<sup>2</sup> |
+| Debian 10                                                   | ✓ |
+| Debian 9                                                    | ✓ |
 | Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 18.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 16.04 LTS                                            | ✓ |
 
+### SUSE distributions
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| OpenSUSE 15                                                 | ✓ |
+| SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
+
+### Amazon Linux
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Amazon Linux 2                                              | ✓ |
+| Amazon Linux 2023                                           | ✓ |
+
+### Azure Linux
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Azure Linux 3.0                                             | ✓<sup>2</sup> |
+| CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
+
 <sup>1</sup> Requires Python (3 or 2) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
 <sup>2</sup> Also supported on ARM64-based machines.<br>
-<sup>3</sup> Does not include the required minimum 4 GB of disk space by default. See the following note. 
+<sup>3</sup> Doesn't include the required minimum 4 GB of disk space by default. See the following note. 
 
 > [!NOTE]
-> - Machines and appliances that run heavily customized or stripped-down versions of the listed distributions and hosted solutions that disallow customization by the user are not supported. Azure Monitor relies on various packages and other baseline functionality that is often removed from these kinds of systems. Installations might require some environment modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) is not supported due to heavy customization and because of [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
+> - Machines and appliances that run heavily customized or stripped-down versions of the listed distributions and hosted solutions that disallow customization by the user aren't supported. Azure Monitor relies on various packages and other baseline functionality that these kinds of systems often remove. Installations might require some environment modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) isn't supported due to heavy customization and because of [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
 > - Disk size in Azure Linux (previously known as CBL-Mariner) is by default lower compared to other Azure VMs, which are about 30 GB. The Azure Monitor Agent requires at least a 4-GB disk size to install and run successfully. For more information and for instructions on how to increase disk size before you install the agent, see the [Azure Linux documentation](https://eng.ms/docs/products/mariner-linux/gettingstarted/azurevm/azurevm#disk-size).
 
 ## Hardening standards
 
-The Azure Monitor Agent supports most industry-standard hardening standards and is continuously tested and certified against these standards for every release. All Azure Monitor Agent scenarios are explicitly designed for security.
+The Azure Monitor Agent supports most industry-standard hardening standards. The product team continuously tests and certifies the agent against these standards for every release. The Azure Monitor Agent scenarios are explicitly designed for security.
 
 ### Windows hardening
 
-The Azure Monitor Agent supports all standard Windows hardening standards, including Security Technical Implementation Guides (STIGs) and Federal Information Processing Standards (FIPS), and is Federal Risk and Authorization Management Program (FedRAMP) compliant under Azure Monitor.
+The Azure Monitor Agent supports all standard Windows hardening standards, including Security Technical Implementation Guides (STIGs) and Federal Information Processing Standards (FIPS). It's also Federal Risk and Authorization Management Program (FedRAMP) compliant under Azure Monitor.
 
 ### Linux hardening
 
 > [!NOTE]
-> Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The standards aren't supported by the [Dependency Agent](../vm/vminsights-dependency-agent.md) or by the [Azure Diagnostics extension](./diagnostics-extension-overview.md).
+> Only the Azure Monitor Agent for Linux supports the hardening standards described in this section. The [Dependency Agent](../vm/vminsights-dependency-agent.md) and the [Azure Diagnostics extension](./diagnostics-extension-overview.md) don't support these standards.
 
-The Azure Monitor Agent for Linux supports various hardening standards for Linux operating systems and distributions. Every release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). Only settings and hardening that apply to those images are supported. CIS-published images that have more customizations and images customized with settings and hardening that differs from official CIS benchmarks aren't supported.
+The Azure Monitor Agent for Linux supports various hardening standards for Linux operating systems and distributions. Each release of the agent is tested and certified against the supported hardening standards by using images that are publicly available in Azure Marketplace, including images published by [Center for Internet Security (CIS)](/compliance/regulatory/offering-cis-benchmark). The agent supports only settings and hardening that apply to those images. It doesn't support CIS-published images that have more customizations or images customized with settings and hardening that differ from official CIS benchmarks.
 
 Currently supported hardening standards:
 
@@ -122,7 +138,7 @@ Currently supported hardening standards:
 | Red Hat Enterprise Linux Server 9 | ✓ |
 
 > [!IMPORTANT]  
-> Configuring your Linux machine system-wide crypto policy to "FUTURE" does not work with the Azure Monitor Agent. This policy disables certain cryptographic algorithms and prevents communication with back-end Azure Monitor services that use best-practice crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
+> Configuring your Linux machine system-wide crypto policy to "FUTURE" doesn't work with the Azure Monitor Agent. This policy disables certain cryptographic algorithms and prevents communication with back-end Azure Monitor services that use best-practice crypto policies. Specifically, the FUTURE policy disables some algorithms that use less than 3,072-bit keys, such as SHA-1, RSA, and Diffie-Hellman.
 >
 > To identify the current policy setting mode, run the following `update-crypto-policies` command:
 >
@@ -132,7 +148,7 @@ Currently supported hardening standards:
 
 ## On-premises and in other clouds
 
-The Azure Monitor Agent is supported on machines in other clouds and in on-premises environments via [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). The Azure Monitor Agent authenticates to your workspace by using a managed identity. The managed identity is created when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated by using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution.
+You can use the Azure Monitor Agent on machines in other clouds and in on-premises environments by using [Azure Arc-enabled servers](/azure/azure-arc/servers/overview). The Azure Monitor Agent authenticates to your workspace by using a managed identity. You create the managed identity when you install the [Connected Machine agent](/azure/azure-arc/servers/agent-overview), which is part of Azure Arc. The legacy Log Analytics agent authenticated by using the workspace ID and key, so it didn't need Azure Arc. Managed identity is a more secure and manageable authentication solution.
 
 The Azure Arc agent is used only as an installation mechanism and doesn't add cost or resource consumption. Paid options for Azure Arc are available, but these options aren't required to use the Azure Monitor Agent.
 

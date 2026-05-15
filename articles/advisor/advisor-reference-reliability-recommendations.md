@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 03/24/2026
+ms.date: 05/12/2026
 ---
 
 # Reliability recommendations
@@ -64,6 +64,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-maps.md](./includes/HighAvailability-azure-maps.md)]
 
+[!INCLUDE [HighAvailability-azure-monitor-pipeline.md](./includes/HighAvailability-azure-monitor-pipeline.md)]
+
 [!INCLUDE [HighAvailability-azure-monitor-workspace.md](./includes/HighAvailability-azure-monitor-workspace.md)]
 
 [!INCLUDE [HighAvailability-azure-monitor.md](./includes/HighAvailability-azure-monitor.md)]
@@ -74,6 +76,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
 
+[!INCLUDE [HighAvailability-azure-sphere.md](./includes/HighAvailability-azure-sphere.md)]
+
 [!INCLUDE [HighAvailability-azure-spring-apps.md](./includes/HighAvailability-azure-spring-apps.md)]
 
 [!INCLUDE [HighAvailability-azure-sql-database.md](./includes/HighAvailability-azure-sql-database.md)]
@@ -83,6 +87,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-synapse-analytics.md](./includes/HighAvailability-azure-synapse-analytics.md)]
 
 [!INCLUDE [HighAvailability-azure-vmware-solution.md](./includes/HighAvailability-azure-vmware-solution.md)]
+
+[!INCLUDE [HighAvailability-batch.md](./includes/HighAvailability-batch.md)]
 
 [!INCLUDE [HighAvailability-classic-deployment-model-storage.md](./includes/HighAvailability-classic-deployment-model-storage.md)]
 

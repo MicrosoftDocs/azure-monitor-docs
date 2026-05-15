@@ -22,3 +22,4 @@ The observability agent depends on OpenAI for the text generation to function co
 - [Azure Monitor issues overview](aiops-issue-and-investigation-overview.md)
 - [Use Azure Monitor issues](aiops-issue-and-investigation-how-to.md)
 - [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
+- [Governance, privacy, and AI model FAQ](observability-agent-governance-faq.md)

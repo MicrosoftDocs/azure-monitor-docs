@@ -115,7 +115,7 @@ This feature is enabled by default for JavaScript and the headers are automatica
 If the XMLHttpRequest or Fetch Ajax requests are sent to a different domain host, including subdomains, the correlation headers aren't included by default. To enable this feature, set the [`enableCorsCorrelation` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to `true`. If you set `enableCorsCorrelation` to `true`, all XMLHttpRequest and Fetch Ajax requests include the correlation headers. As a result, if the application on the server that's being called doesn't support the `traceparent` header, the request might fail, depending on whether the browser / version can validate the request based on which headers the server accepts. You can use the [`correlationHeaderExcludedDomains` configuration field](./javascript-sdk-configuration.md#sdk-configuration) to exclude the server's domain from cross-component correlation header injection. For example, you can use `correlationHeaderExcludedDomains: ['*.auth0.com']` to exclude correlation headers from requests sent to the Auth0 identity provider.
 
 > [!IMPORTANT]
-> To see all configurations required to enable correlation, see the [JavaScript correlation documentation](./javascript.md#enable-distributed-tracing).
+> To see all configurations required to enable correlation, see the [JavaScript correlation documentation](./javascript-sdk-configuration.md#enable-w3c-distributed-tracing-support).
 
 [!INCLUDE [Filter and preprocess telemetry](./includes/application-insights-api-filtering-sampling.md)]
 
@@ -179,9 +179,9 @@ const appInsights = new ApplicationInsights({ config: {
 } });
 appInsights.loadAppInsights();
 // To insert a telemetry initializer, uncomment the following code.
-/** var telemetryInitializer = (envelope) => { envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer'; 
+/** var telemetryInitializer = (envelope) => { envelope.data = envelope.data || {}; envelope.data.someField = 'This item passed through my telemetry initializer';
  };
-appInsights.addTelemetryInitializer(telemetryInitializer); **/ 
+appInsights.addTelemetryInitializer(telemetryInitializer); **/
 appInsights.trackPageView();
 ```
 
@@ -290,7 +290,7 @@ To configure or change the storage account or blob container that's linked to yo
    :::image type="content" source="./media/javascript-sdk-configuration/reconfigure.png" lightbox="./media/javascript-sdk-configuration/reconfigure.png" alt-text="Screenshot that shows reconfiguring your selected Azure blob container on the Properties pane.":::
 
 ### View the unminified callstack
- 
+
 To view the unminified callstack, select an Exception Telemetry item in the Azure portal, find the source maps that match the call stack, and drag and drop the source maps onto the call stack in the Azure portal. The source map must have the same name as the source file of a stack frame, but with a `map` extension.
 
 If you experience issues that involve source map support for JavaScript applications, see [Troubleshoot source map support for JavaScript applications](/troubleshoot/azure/azure-monitor/app-insights/javascript-sdk-troubleshooting#troubleshoot-source-map-support-for-javascript-applications).

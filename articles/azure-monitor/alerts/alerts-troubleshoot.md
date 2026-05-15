@@ -10,6 +10,15 @@ ms.custom: references_regions
 
 This article discusses common problems in Azure Monitor alerts and notifications. [Azure Monitor alerts](./alerts-overview.md) proactively notify you when important conditions are found in your monitoring data.
 
+The following troubleshooting scenarios are covered in this article:
+
+* Email, SMS, voice, or push notifications not received
+* Expected action (webhook, function, etc.) didn't trigger
+* Duplicate notifications
+* Unexpected content in notifications
+* Alert processing rule issues
+* Alert rule creation, update, or deletion errors
+
 For specific information about troubleshooting Azure metric or log search alerts, see:
 
 * [Troubleshoot Azure Monitor metric alerts](alerts-troubleshoot-metric.md)
@@ -25,7 +34,7 @@ Otherwise, use the information in the rest of this article to troubleshoot your 
 
 In the Azure portal you received the error "The log search alert rule creation failed with error – 'Failed to create alert rule `<Rule Name>`. There was a problem with the server, Please try again in a few minutes.'"
 
-This could happen if the combined size of all data in the log alert rule properties exceeds 64 KB (or 32 K string characters). Check if the alert rule is using a large query, has many dimensions, action group, or a long description, whose combined size could be greater than 64 KB.
+This could happen if the combined size of all data in the log search alert rule properties exceeds 64 KB (or 32 K string characters). Check if the alert rule is using a large query, has many dimensions, action group, or a long description, whose combined size could be greater than 64 KB.
 
 ## I didn't receive the expected email
 
@@ -33,7 +42,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 
 1. **Was the email suppressed by an [alert processing rule](./alerts-processing-rules.md)**?
 
-    Check by clicking on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md):
+    If your alert email wasn't delivered, check whether it was suppressed by an alert processing rule. Click on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md):
     <!-- convertborder later -->
     :::image type="content" source="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" lightbox="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" alt-text="Screenshot of alert history tab with suppression from alert processing rule." border="false":::
 
@@ -43,10 +52,13 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 
 1. **Are your email server and mailbox accepting external emails?**
 
+    > [!IMPORTANT]
+    > **Azure Monitor alert notification sender addresses** — Allow emails from these addresses in your email filtering and spam prevention services:
+    > * `azure-noreply@microsoft.com`
+    > * `azureemail-noreply@microsoft.com`
+    > * `alerts-noreply@mail.windowsazure.com`
+
     Verify that emails from these three addresses aren't blocked:
-    * azure-noreply@microsoft.com
-    * azureemail-noreply@microsoft.com
-    * alerts-noreply@mail.windowsazure.com
 
     It's common for internal mailing lists or distribution lists to block emails from external email addresses. Make sure that you allow mail from the above email addresses.
     To test, add a regular work email address (not a mailing list) to the action group and see if alerts arrive to that email.
@@ -99,7 +111,7 @@ If you can see a fired alert in the portal, but didn't receive the SMS, voice ca
 
 1. **Was the action suppressed by an [alert processing rule](./alerts-processing-rules.md)?**
 
-    Check by clicking on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md): 
+    If your SMS, voice, or push notification wasn't delivered, check whether it was suppressed by an alert processing rule. Click on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md):
 
     :::image type="content" source="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" lightbox="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" alt-text="Screenshot of alert history tab with suppression from alert processing rule." border="false":::
 
@@ -141,7 +153,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
 1. **Was the action suppressed by an alert processing rule?**
 
-    Check by clicking on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md):
+    If your configured action (such as a webhook, Azure function, or logic app) didn't trigger, check whether it was suppressed by an alert processing rule. Click on the fired alert in the portal, and look at the history tab for suppressed [action groups](./action-groups.md):
     <!-- convertborder later -->
     :::image type="content" source="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" lightbox="media/alerts-troubleshoot/history-tab-alert-processing-rule-suppression.png" alt-text="Screenshot of alert history tab with suppression from alert processing rule." border="false":::
 
@@ -151,7 +163,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
     1. **Is the source IP address blocked?**
 
-        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allowlist. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allowlist.
+        Webhooks only support public networks and firewalls. IP addresses for all regions need to be in the allow list. Add the [IP addresses that the webhook is called from](../fundamentals/azure-monitor-network-access.md#action-group-webhooks) to your allow list.
 
     1. **Does your webhook endpoint work correctly?**
 
@@ -218,25 +230,25 @@ If you received a notification for an alert (such as an email or an SMS) more th
 
     Also, check the payload format (JSON) for [activity log alerts](../alerts/activity-log-alerts-webhook.md), for [log search alerts](../alerts/alerts-log-webhook.md) (both Application Insights and log analytics), for [metric alerts](alerts-metric-near-real-time.md#payload-schema), and for the [common alert schema](../alerts/alerts-common-schema.md).
  
-### **The search results are not included in the log search alert notifications.**
+## The search results are not included in the log search alert notifications
 
 As of log search alerts API version 2021-08-01, search results were removed from alert notification payload. 
 Search results are only available for alert rules created with older API versions (2018-04-16). Creation of new alert rules through the Azure portal will, by default, create the rule with the newer version.
 Follow [Changes to the log alert rule creation experience](./alerts-manage-alerts-previous-version.md#changes-to-the-log-search-alert-rule-creation-experience) to learn about the changes and recommended adjustments for using the updated version.
 
-### **The `MetricValue` field contains "null" for resolved log search alert notifications.**
+## The MetricValue field contains null for resolved log search alert notifications
 
-This is by design. Stateful log search alerts use a [time-based resolution logic](./alerts-create-log-alert-rule.md#configure-alert-rule-details) rather than value-based. Azure Monitor is sending a null metric value since there's no value that caused the alert to resolve, but rather elapsed time.
+In Azure Monitor log search alerts, the MetricValue field contains 'null' for resolved notifications. This is by design. Stateful log search alerts use a [time-based resolution logic](./alerts-create-log-alert-rule.md#configure-alert-rule-details) rather than value-based. Azure Monitor is sending a null metric value since there's no value that caused the alert to resolve, but rather elapsed time.
 
-### The dimensions list is empty or alert title doesn't contain a dimension name
+## The dimensions list is empty or alert title doesn't contain a dimension name
 
-When a query doesn't return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
+In Azure Monitor log search alerts, when a query doesn't return any rows, the resource ID field (which is the basis for populating dimension and title fields) is empty. For example, when you have a log search alert rule that returns no results, if the threshold is 0, the alert fires as expected, but the dimensions list is empty or alert title doesn't contain a dimension name. 
  
-### Information is missing in an activity log alert
+## Information is missing in an activity log alert
 
 [Activity log alerts](./alerts-types.md#activity-log-alerts) are alerts that are based on events written to the Azure activity log, such as events about creating, updating, or deleting Azure resources, service health and resource health events, or findings from Azure Advisor and Azure Policy. If you received an alert based on the activity log but some fields that you need are missing or incorrect, first check the events in the activity log itself. If the Azure resource didn't write the fields you're looking for in its activity log event, those fields aren't included in the corresponding alert. 
 
-### The custom properties are missing from email, SMS, or push notifications.
+## The custom properties are missing from email, SMS, or push notifications
 
 Custom properties are only passed to the payload for actions such as webhook, Azure Functions, or Azure Logic apps. Custom properties aren't included in notifications (email/SMS/push).
 
@@ -282,6 +294,25 @@ If you can see a fired alert in the portal, but a related alert processing rule 
     For example, in log search alerts, if the scope of the alert is a Log Analytics workspace, and the **_ResourceId** column is selected, the target resource gets the value of the Resource ID, causing the alert to be triggered on a different resource than initially intended.
 
     In summary, the target resource is the individual resource being monitored, while the scope defines the broader set of resources that the alert rule applies to.
+
+## Problems creating, updating, or deleting any type of alert rules
+
+If you receive an error while trying to create, update, or delete alert rules, verify that the required platform components are available and enabled in your tenant.
+
+### Check that the Geneva Alert RP application is enabled
+
+Azure Monitor relies on a Microsoft-owned first-party application called **Geneva Alert RP** to perform create, read, update, and delete (CRUD) operations for alert rule resources.
+
+This application is part of the underlying Azure platform and is automatically provisioned in your tenant. If this application is **disabled or deleted**, Azure Monitor may be unable to create, update, or manage alert rules as expected.
+
+To resolve this issue:
+
+- Contact your tenant administrator.
+- Ask them to verify that the **Geneva Alert RP** enterprise application:
+  - Exists in the Microsoft Entra tenant
+  - Is not disabled or removed
+
+If the application is missing or disabled, restoring or re-enabling it will allow alert rule operations to function correctly.
 
 ## Problems creating, updating, or deleting alert processing rules in the Azure portal
 

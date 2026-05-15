@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 02/26/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Cosmos DB
@@ -40,13 +40,14 @@ We noticed that your Azure Cosmos DB applications are using Gateway mode via the
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB performance tips for .NET SDK v2](/azure/cosmos-db/performance-tips#networking)  
+For more information, see [Performance Tips for .NET SDK V2 - Azure Cosmos DB](/azure/cosmos-db/performance-tips#networking)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 75c8c891-46d2-41fa-a81c-84e870a139a9  
 
 
 <!--75c8c891-46d2-41fa-a81c-84e870a139a9_end-->
+
 
 <!--3a7c4990-18e7-4581-b62d-c745260e7c5b_begin-->
 
@@ -76,13 +77,14 @@ You are using the query page size of 100 for queries for your Azure Cosmos conta
 
 **Impact:** Medium
   
-For more information, see [SQL query metrics for Azure Cosmos DB for NoSQL](/azure/cosmos-db/sql-api-query-metrics#max-item-count)  
+For more information, see [SQL Query Metrics - Azure Cosmos DB](/azure/cosmos-db/sql-api-query-metrics#max-item-count)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: e27c5181-5005-4dc3-a449-89b726a3bf54  
 
 
 <!--e27c5181-5005-4dc3-a449-89b726a3bf54_end-->
+
 
 <!--1ff3c87f-63c6-4b94-9bb1-28f8d115103e_begin-->
 
@@ -112,13 +114,14 @@ Queries can benefit from adding indexes for reduced cost and increased performan
 
 **Impact:** Medium
   
-For more information, see [Azure Cosmos DB indexing policies](/azure/cosmos-db/index-policy#include-exclude-paths)  
+For more information, see [Indexing policies - Azure Cosmos DB](/azure/cosmos-db/index-policy#include-exclude-paths)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 4391ebb6-9519-4563-97c8-85f40cb92a63  
 
 
 <!--4391ebb6-9519-4563-97c8-85f40cb92a63_end-->
+
 
 <!--b633adb4-0c3c-4ab6-ab52-a9d752c6ac52_begin-->
 
@@ -130,7 +133,7 @@ When CPU usage surpasses 90% within a 12-hour timeframe, users are notified abou
 
 **Impact:** Medium
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/cosmos-db/mongodb/vcore/how-to-scale-cluster)  
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/documentdb/how-to-scale-cluster)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: b633adb4-0c3c-4ab6-ab52-a9d752c6ac52  

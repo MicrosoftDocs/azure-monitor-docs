@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 This table has Microsoft Peering public IP metadata.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,25 @@ This table has Microsoft Peering public IP metadata.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [atcmicrosoftpeeringmetadata](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/atcmicrosoftpeeringmetadata-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ATCRegion | string | Azure Traffic Collector (ATC) deployment region. |
+| ATCResourceId | string | Azure resource ID of Azure Traffic Collector (ATC). |
+| _BilledSize | real | The record size in bytes |
+| IpMask | string | Mask of Microsoft Peering IP prefix. |
+| IpSubnet | string | Subnet of Microsoft Peering IP prefix. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| OperationName | string | The specific Azure Traffic Collector (ATC) operation that emitted this record. |
+| PrefixRegion | string | Azure region of the IP prefix. |
+| RegionalBgpCommunity | string | Region-based Border Gateway Protocol (BGP) Community tag. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SchemaVersion | string | Flow record schema version. |
+| ServiceBgpCommunity | string | Service-based Border Gateway Protocol (BGP) Community tag. |
+| ServiceName | string | Type of service the IP prefix is. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Timestamp (UTC) when the Azure Traffic Collector (ATC) emitted this record. |
+| Type | string | The name of the table |

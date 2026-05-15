@@ -15,10 +15,11 @@ Advisor uses the built-in roles provided by Azure role-based access control (Azu
 
 Review the following section to learn more about each role and the associated access.
 
-### Roles to view, dismiss, and postpone recommendations
+### Roles to manage recommendations status
 
-| Role | View recommendations | Dismiss and postpone recommendations |
+| Role | View recommendations | Manage recommendation status |
 |:---|:--- |:--- |
+| Advisor Recommendations Contributor (Assessments and Reviews) | X | X |
 | Subscription Reader | X |  |
 | Subscription Contributor | X | X |
 | Subscription Owner | X | X |
@@ -28,6 +29,18 @@ Review the following section to learn more about each role and the associated ac
 | Resource Reader | X |  |
 | Resource Contributor | X | X |
 | Resource Owner | X | X |
+
+### Roles to manage access to Advisor personalized or review recommendations
+| Role | View reviews | View review recommendations | Manage recommendation statuses |
+|:---|:--- |:--- |:--- |
+| Advisor Reviews Reader/Advisor Reviews Contributor | X |  |  |
+| Advisor Recommendations Contributor (Assessments and Reviews) |  | X | X |
+| Subscription Reader | X | X |  |
+| Subscription Contributor | X | X | X |
+| Subscription Owner | X | X | X |
+| Resource Reader | X | X |  |
+| Resource Contributor | X | X | X |
+| Resource Owner | X | X | X |
 
 ### Roles to edit rules and configurations
 
@@ -49,37 +62,38 @@ To learn more about built-in roles, see [Azure built-in roles](/azure/role-based
 
 ## Available actions to build custom roles
 
-If your organization requires roles that don't match the Azure built-in roles, create your own custom role. A custom role works like a built-in role and allow you to assign it to users, groups, and service principals at management group, subscription, and resource group scopes. Use the following actions to create your custom role.
+If your organization requires roles that don't match the Azure built-in roles, create your own custom role. A custom role works like a built-in role and you can assign it to users, groups, and service principals at management group, subscription, and resource group scopes. Use the following actions to create your custom role.
 
 | Action | Details |
 |:--- |:--- |
-| `Microsoft.Advisor/generateRecommendations/action` | Create a Recommendation. |
-| `Microsoft.Advisor/register/action` | Register with the Provider. |
-| `Microsoft.Advisor/unregister/action` | Unregister with the Provider. |
-| `Microsoft.Advisor/advisorScore/read` | Gets Advisor score. |
-| `Microsoft.Advisor/configurations/read` | Read Configurations. |
-| `Microsoft.Advisor/configurations/write` | Create or update Configuration. |
-| `Microsoft.Advisor/generateRecommendations/read` | Get status of `generateRecommendations` action. |
-| `Microsoft.Advisor/metadata/read` | Read Metadata. |
-| `Microsoft.Advisor/operations/read` | Get operations. |
-| `Microsoft.Advisor/recommendations/read` | Read recommendations. |
+| `Microsoft.Advisor/recommendations/available/action` | Displays vailable action |
+| `Microsoft./generateRecommendations/action` | Create a Recommendation |
+| `Microsoft./register/action` | Register with the Provider |
+| `Microsoft./unregister/action` | Unregister with the Provider |
+| `Microsoft./Score/read` | Gets Advisor score |
+| `Microsoft./configurations/read` | Read Configurations. |
+| `Microsoft.Advisor/configurations/write` | Create or update Configuration |
+| `Microsoft.Advisor/generateRecommendations/read` | Get status of `generateRecommendations` action |
+| `Microsoft.Advisor/metadata/read` | Read Metadata |
+| `Microsoft.Advisor/operations/read` | Get operations |
+| `Microsoft.Advisor/recommendations/read` | Read recommendations |
 | `Microsoft.Advisor/recommendations/write` | Create recommendations. |
-| `Microsoft.Advisor/recommendations/available/action` | New recommendation is available. |
-| `Microsoft.Advisor/recommendations/suppressions/read` | Read Suppressions. |
-| `Microsoft.Advisor/recommendations/suppressions/write` | Create or update Suppressions. |
-| `Microsoft.Advisor/recommendations/suppressions/delete` | Delete Suppression. |
-| `Microsoft.Advisor/suppressions/read` | Read Suppressions. |
-| `Microsoft.Advisor/suppressions/write` | Create or update Suppressions. |
-| `Microsoft.Advisor/suppressions/delete` | Delete Suppression. |
-| `Microsoft.Advisor/assessmentTypes/read` | Reads `AssessmentTypes`. |
-| `Microsoft.Advisor/assessments/read` | Reads Assessments. |
-| `Microsoft.Advisor/assessments/write` | Create Assessments. |
-| `Microsoft.Advisor/resiliencyReviews/read` | Reads `resiliencyReviews`. |
-| `Microsoft.Advisor/triageRecommendations/read` | Reads `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/approve/action` | Approves `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/reject/action` | Rejects `triageRecommendations`. |
-| `Microsoft.Advisor/triageRecommendations/reset/action` | Resets `triageRecommendations`. |
-| `Microsoft.Advisor/workloads/read` | Reads workloads. |
+| `Microsoft.Advisor/recommendations/available/action` | New recommendation is available.|
+| `Microsoft.Advisor/recommendations/suppressions/read` | Read Suppressions |
+| `Microsoft.Advisor/recommendations/suppressions/write` | Create or update Suppressions |
+| `Microsoft.Advisor/recommendations/suppressions/delete` | Delete Suppression |
+| `Microsoft.Advisor/suppressions/read` | Read Suppressions |
+| `Microsoft.Advisor/suppressions/write` | Create or update Suppressions |
+| `Microsoft.Advisor/suppressions/delete` | Delete Suppression |
+| `Microsoft.Advisor/assessmentTypes/read` | Reads `AssessmentTypes` |
+| `Microsoft.Advisor/assessments/read` | Reads Assessments |
+| `Microsoft.Advisor/assessments/write` | Create Assessments |
+| `Microsoft.Advisor/resiliencyReviews/read` | Reads `resiliencyReviews` |
+| `Microsoft.Advisor/triageRecommendations/read` | Reads `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/approve/action` | Approves `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/reject/action` | Rejects `triageRecommendations` |
+| `Microsoft.Advisor/triageRecommendations/reset/action` | Resets `triageRecommendations` |
+| `Microsoft.Advisor/workloads/read` | Reads workloads |
 
 > [!NOTE]
 > For example, you must have a sufficient permission level for a virtual machine (VM) to view recommendations associated with the VM.

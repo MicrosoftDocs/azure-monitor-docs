@@ -40,7 +40,7 @@ The installation of the Log Analytics agent automatically includes the Troublesh
 
 The Troubleshooting Tool checks the following scenarios:
 
-- The agent is unhealthy; the heartbeat doesn't work properly.
+- The agent is unhealthy and the heartbeat isn't working properly.
 - The agent doesn't start or can't connect to Log Analytics.
 - The agent Syslog isn't working.
 - The agent has high CPU or memory usage.
@@ -88,45 +88,41 @@ A clean reinstall of the agent fixes most problems. This task might be the first
 
 ## Installation error codes
 
-| Error code | Meaning |
-| --- | --- |
-| NOT_DEFINED | The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd. |
-| 2 | Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
-| 3 | No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage. |
-| 4 | Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings. |
-| 5 | The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`. |
-| 6 | Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). |
-| 17 | Installation of OMS package failed. Look through the command output for the root failure. |
-| 18 | Installation of OMSConfig package failed. Look through the command output for the root failure. |
-| 19 | Installation of OMI package failed. Look through the command output for the root failure. |
-| 20 | Installation of SCX package failed. Look through the command output for the root failure. |
-| 21 | Installation of Provider kits failed. Look through the command output for the root failure. |
-| 22 | Installation of bundled package failed. Look through the command output for the root failure. |
-| 23 | SCX or OMI package already installed. Use `--upgrade` instead of `--install` to install the shell bundle. |
-| 30 | Internal bundle error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
-| 55 | Unsupported openssl version *or* can't connect to Azure Monitor *or* dpkg is locked *or* missing curl program. |
-| 61 | Missing Python ctypes library. Install the Python ctypes library or package (python-ctypes). |
-| 62 | Missing tar program. Install tar. |
-| 63 | Missing sed program. Install sed. |
-| 64 | Missing curl program. Install curl. |
-| 65 | Missing gpg program. Install gpg. |
+- **NOT_DEFINED**—The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd.
+- **2**—Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
+- **3**—No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
+- **4**—Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings.
+- **5**—The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`.
+- **6**—Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest).
+- **17**—Installation of OMS package failed. Look through the command output for the root failure.
+- **18**—Installation of OMSConfig package failed. Look through the command output for the root failure.
+- **19**—Installation of OMI package failed. Look through the command output for the root failure.
+- **20**—Installation of SCX package failed. Look through the command output for the root failure.
+- **21**—Installation of Provider kits failed. Look through the command output for the root failure.
+- **22**—Installation of bundled package failed. Look through the command output for the root failure.
+- **23**—SCX or OMI package already installed. Use `--upgrade` instead of `--install` to install the shell bundle.
+- **30**—Internal bundle error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **55**—Unsupported openssl version *or* can't connect to Azure Monitor *or* dpkg is locked *or* missing curl program.
+- **61**—Missing Python ctypes library. Install the Python ctypes library or package (python-ctypes).
+- **62**—Missing tar program. Install tar.
+- **63**—Missing sed program. Install sed.
+- **64**—Missing curl program. Install curl.
+- **65**—Missing gpg program. Install gpg.
 
 ## Onboarding error codes
 
-| Error code | Meaning |
-| --- | --- |
-| 2 | Invalid option provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage. |
-| 3 | Invalid configuration provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage. |
-| 4 | Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for network requirements](./azure-monitor-agent-network-configuration.md#firewall-endpoints). |
-| 5 | 403 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details. |
-| 6 | Non-200 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details. |
-| 7 | Unable to connect to Azure Monitor. See the full output of the omsadmin script for details. |
-| 8 | Error onboarding to Log Analytics workspace. See the full output of the omsadmin script for details. |
-| 30 | Internal script error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
-| 31 | Error generating agent ID. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
-| 32 | Error generating certificates. See the full output of the omsadmin script for details. |
-| 33 | Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output. |
-| 34 | Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`. |
+- **2**—Invalid option provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
+- **3**—Invalid configuration provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
+- **4**—Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for network requirements](./azure-monitor-agent-network-configuration.md#firewall-endpoints).
+- **5**—403 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
+- **6**—Non-200 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
+- **7**—Unable to connect to Azure Monitor. See the full output of the omsadmin script for details.
+- **8**—Error onboarding to Log Analytics workspace. See the full output of the omsadmin script for details.
+- **30**—Internal script error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **31**—Error generating agent ID. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **32**—Error generating certificates. See the full output of the omsadmin script for details.
+- **33**—Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **34**—Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`.
 
 
 ### OMS output plug-in debug
@@ -226,7 +222,7 @@ This error is a known problem that occurs on the first upload of Linux data into
 
 ### Probable causes
 
-A regression in the nss-pem package [v1.0.3-5.el7](https://pkgs.org/download/nss-pem) causes a severe performance problem. This problem frequently appears in Redhat and CentOS 7.x distributions. For more information about this problem, see [1667121 Performance regression in libcurl](https://bugzilla.redhat.com/show_bug.cgi?id=1667121).
+A regression in the nss-pem package [v1.0.3-5.el7](https://pkgs.org/download/nss-pem) causes a severe performance problem. This problem frequently appears in Red Hat and CentOS 7.x distributions. For more information about this problem, see [1667121 Performance regression in libcurl](https://bugzilla.redhat.com/show_bug.cgi?id=1667121).
 
 Performance-related bugs don't always happen and they're difficult to reproduce. If you experience such a problem with omiagent, use the script `omiHighCPUDiagnostics.sh`. The script collects the stack trace of the omiagent when it exceeds a certain threshold.
 
@@ -243,13 +239,13 @@ Performance-related bugs don't always happen and they're difficult to reproduce.
 1. Upgrade the nss-pem package to [v1.0.3-5.el7_6.1](https://pkgs.org/download/nss-pem): <br/>
 `sudo yum upgrade nss-pem`
 
-1. If nss-pem isn't available for upgrade, which mostly happens on CentOS, downgrade curl to 7.29.0-46. If you run "yum update" by mistake, curl is upgraded to 7.29.0-51 and the problem happens again: <br/>
+1. If nss-pem isn't available for upgrade, which mostly happens on CentOS, downgrade curl to 7.29.0-46. If you run `yum update` by mistake, curl is upgraded to 7.29.0-51 and the problem happens again: <br/>
 `sudo yum downgrade curl libcurl`
 
 1. Restart OMI: <br/>
 `sudo scxadmin -restart`
 
-## Problem: You don't see forwarded Syslog messages
+## Problem: You don't see forwarded syslog messages
 
 ### Probable causes
 
@@ -259,9 +255,9 @@ Performance-related bugs don't always happen and they're difficult to reproduce.
 
 ### Resolution
 
-* Verify the configuration in the Log Analytics workspace for Syslog has all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](../vm/data-collection-syslog.md#create-the-dcr).
+* Verify the configuration in the Log Analytics workspace for Syslog includes all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](../vm/data-collection-syslog.md#create-the-dcr).
 * Verify the native Syslog messaging daemons (`rsyslog`, `syslog-ng`) can receive the forwarded messages.
-* To ensure that messages aren't being blocked, check firewall settings on the Syslog server.
+* To ensure that messages aren't blocked, check firewall settings on the Syslog server.
 * Simulate a Syslog message to Log Analytics by using a `logger` command: <br/>
   `logger -p local0.err "This is my test message"`
 
@@ -271,7 +267,7 @@ You see `[error]: unexpected error error_class=Errno::EADDRINUSE error=#<Errno::
 
 ### Probable causes
 
-This error indicates that the Linux diagnostic extension (LAD) is installed side by side with the Log Analytics Linux VM extension. They're both using the same port for Syslog data collection as omsagent.
+This error message indicates that the Linux diagnostic extension (LAD) is installed side by side with the Log Analytics Linux VM extension. They're both using the same port for Syslog data collection as omsagent.
 
 ### Resolution
 

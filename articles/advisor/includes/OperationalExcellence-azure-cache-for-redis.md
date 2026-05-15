@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 10/14/2025
+ms.date: 04/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure Cache for Redis
@@ -105,5 +105,23 @@ Recommendation ID: dc33091b-a748-4418-b4b0-d3d97466efe4
 
 
 <!--dc33091b-a748-4418-b4b0-d3d97466efe4_end-->
+
+<!--2bb28cf0-969d-43a3-baf8-51328ac497fc_begin-->
+
+#### Migrate to Azure Managed Redis  
+  
+Azure Cache for Redis will be retired on September 30, 2028. New cache creation will be blocked in phases - starting April 1, 2026 for new customers and starting October 1, 2026 for existing customers. Proactively migrate workloads to Azure Managed Redis to avoid service disruption.  
+  
+**Potential benefits**: AMR offers low-latency, cost-effective data storage  
+
+**Impact:** High
+  
+For more information, see [Frequently asked questions (FAQ) on the retirement of Azure Cache for Redis - Azure Cache for Redis](/azure/azure-cache-for-redis/retirement-faq)  
+
+ResourceType: microsoft.cache/redis  
+Recommendation ID: 2bb28cf0-969d-43a3-baf8-51328ac497fc  
+
+
+<!--2bb28cf0-969d-43a3-baf8-51328ac497fc_end-->
 
 <!--articleBody-->

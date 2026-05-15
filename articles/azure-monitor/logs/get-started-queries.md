@@ -1,15 +1,15 @@
----
+﻿---
 title: Get started with log queries in Azure Monitor Logs
-description: This article provides a tutorial for getting started writing log queries in Azure Monitor Logs.
+description: Learn how to write and run log queries in Azure Monitor Logs using Log Analytics. This tutorial covers filtering, sorting, aggregating, and time ranges in KQL and Simple mode.
 ms.topic: tutorial
 ms.reviewer: ilanawaitser
-ms.date: 01/08/2025
+ms.date: 04/29/2026
 
 ---
 
 # Get started with log queries in Azure Monitor Logs
 
-This article explains the fundamentals of using log queries in [Azure Monitor Logs](data-platform-logs.md). Where applicable, it provides examples of querying data using both KQL mode and [Log Analytics simple mode](log-analytics-simple-mode.md):
+This article explains the fundamentals of using log queries in [Azure Monitor Logs](data-platform-logs.md). You write and run log queries in [Log Analytics](log-analytics-overview.md), a tool in the Azure portal for querying data in Azure Monitor Logs. Where applicable, it provides examples of querying data using both KQL mode and [Log Analytics simple mode](log-analytics-simple-mode.md):
 
 * **KQL mode** allows you to write and customize advanced queries using [Kusto Query Language (KQL)](/kusto/query/).
 
@@ -18,6 +18,8 @@ This article explains the fundamentals of using log queries in [Azure Monitor Lo
 * **Simple mode** provides a user-friendly interface where you select a table and apply filters to build queries.
 
     :::image type="content" source="media/get-started-queries/simple-mode-ribbon.png" alt-text="Screenshot shows the Simple mode ribbon.":::
+
+Use the [Observability Agent](../aiops/observability-agent-overview.md#chat-with-your-data) to explore your log data using natural language instead of writing queries.
 
 For a more detailed comparison between KQL mode and Simple mode, see [Overview of Log Analytics in Azure Monitor](log-analytics-overview.md).
 
@@ -102,6 +104,8 @@ To search for records that include a specific value in any of their columns:
 
 ## Limit results
 
+Use the `take` operator in KQL, or the **Show** option in Simple mode, to return a limited number of records from your log query.
+
 ## [KQL mode](#tab/kql)
 
 Use the `take` operator to view a small sample of records by returning up to the specified number of records. For example:
@@ -129,34 +133,32 @@ To return up to a specific number of records, you can limit the results:
 
 This section describes the `sort` and `top` operators and their `desc` and `asc` arguments. Although `take` is useful for getting a few records, you can't select or sort the results in any particular order. To get an ordered view, use `sort` and `top`.
 
-### Sort
-
 ### [KQL mode](#tab/kql)
 
 You can use the [`sort` operator](/azure/data-explorer/kusto/query/sort-operator) to sort the query results by the column you specify. However, `sort` doesn't limit the number of records that are returned by the query.
 
-For example, the following query returns all available records for the `SecurityEvent` table, which is up to a maximum of 30,000 records, and sorts them by the TimeGenerated column.
+For example, the following query returns all available records for the `SecurityEvent` table, up to the [portal result limit](./log-analytics-simple-mode.md#configure-query-result-limit), and sorts them by the TimeGenerated column.
 
 ```Kusto
-SecurityEvent	
+SecurityEvent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 | sort by TimeGenerated
 ```
 
-The preceding query could return too many results. Also, it might also take some time to return the results. The query sorts the entire `SecurityEvent` table by the `TimeGenerated` column. The Analytics portal then limits the display to only 30,000 records. This approach isn't optimal. The best way to only get the latest records is to use the [`top` operator](#top).
+The preceding query could return too many results. Also, it might also take some time to return the results. The query sorts the entire `SecurityEvent` table by the `TimeGenerated` column. The Analytics portal then limits the display to the [portal result limit](./log-analytics-simple-mode.md#configure-query-result-limit). This approach isn't optimal. The best way to only get the latest records is to use the [`top` operator](#top).
 
-#### Desc and asc
+### Desc and asc
 
-Use the `desc` argument to sort records in descending order. Descending is the default sorting order for `sort` and `top`, so you can usually omit the `desc` argument.
+Use the `desc` argument to sort records in descending order in KQL queries. Descending is the default sorting order for `sort` and `top`, so you can usually omit the `desc` argument.
 
 For example, the data returned by both of the following queries is sorted by the [TimeGenerated column](./log-standard-columns.md#timegenerated), in descending order:
 
 * ```Kusto
-  SecurityEvent	
+  SecurityEvent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   | sort by TimeGenerated desc
   ```
 
 * ```Kusto
-  SecurityEvent	
+  SecurityEvent                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
   | sort by TimeGenerated
   ```
 
@@ -216,7 +218,7 @@ SecurityEvent
 | where Level == 8
 ```
 
-When you write filter conditions, you can use the following expressions:
+When you write filter conditions, you can use the following KQL comparison operators and logical operators:
 
 | Expression  | Description                                          | Example                                                    |
 |:------------|:-----------------------------------------------------|:-----------------------------------------------------------|
@@ -278,6 +280,8 @@ To filter by multiple conditions, you can add additional filters:
 
 ## Specify a time range
 
+Control which time period your Azure Monitor log query covers by using the time picker or adding a time filter directly in the query.
+
 ## [KQL mode](#tab/kql)
 
 You can specify a time range by using the time picker or a time filter.
@@ -314,6 +318,8 @@ The time picker is displayed next to the **Run** button and indicates that you'r
 ---
 
 ## Include or exclude columns in query results
+
+Select which columns appear in your Azure Monitor log query results by using `project` in KQL or the column picker in Simple mode.
 
 ## [KQL mode](#tab/kql)
 
@@ -463,7 +469,7 @@ To calculate the average `CounterValue` for each computer:
 
 Unfortunately, the results of this query are meaningless because we mixed together different performance counters. To make the results more meaningful, you could calculate the average separately for each combination of `CounterName` and `Computer`.
 
-However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done using a Kusto query.
+However, it's currently not possible to define groups by multiple dimensions in simple mode. Switch to the KQL mode tab to see how this can be done using a KQL query.
 
 ---
 
@@ -518,7 +524,7 @@ This section provides answers to common questions.
 
 ### Why am I seeing duplicate records in Azure Monitor Logs?
 
-Occasionally, you might notice duplicate records in Azure Monitor Logs. This duplication is typically from one of the following two conditions:
+When running log queries, you might notice duplicate records in your results. This duplication is typically from one of the following two conditions:
           
 * Components in the pipeline have retries to ensure reliable delivery at the destination. Occasionally, this capability might result in duplicates for a small percentage of telemetry items.
 * If the duplicate records come from a virtual machine, you might have both the Log Analytics agent and Azure Monitor Agent installed. If you still need the Log Analytics agent installed, configure the Log Analytics workspace to no longer collect data that's also being collected by the data collection rule used by Azure Monitor Agent.

@@ -5,24 +5,20 @@ ms.topic: generated-reference
 ms.date: 04/16/2025
 ms.custom: Microsoft.SignalRService/SignalR, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.SignalRService/SignalR
 
-
-
-# Supported logs for Microsoft.SignalRService/SignalR  
 The following table lists the types of logs available for the Microsoft.SignalRService/SignalR resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.SignalRService/SignalR](../supported-metrics/microsoft-signalrservice-signalr-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.SignalRService/SignalR](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-signalrservice-signalr-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.SignalRService/SignalR](../supported-metrics/microsoft-signalrservice-signalr-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`AllLogs` |Azure SignalR Service Logs. |[SignalRServiceDiagnosticLogs](/azure/azure-monitor/reference/tables/signalrservicediagnosticlogs)<p>Azure SignalR service diagnostic logs.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/signalrservicediagnosticlogs)|No |
 
 ## Next Steps
 

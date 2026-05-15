@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Azure Database for PostgreSQL
@@ -42,13 +42,14 @@ The server is encountering frequent checkpoints, which can impact performance. T
 
 **Impact:** High
   
-For more information, see [High IOPS utilization - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
+For more information, see [High IOPS utilization](/azure/postgresql/flexible-server/how-to-high-io-utilization#checkpoint-timings)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: 3e62d12b-2de5-411b-97ec-092250fb488c  
 
 
 <!--3e62d12b-2de5-411b-97ec-092250fb488c_end-->
+
 
 
 
@@ -140,13 +141,14 @@ The server has crossed the 50% wraparound limit, with greater than 1 billion tra
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#autovacuum-transaction-id-txid-wraparound-protection)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: b35d2b04-2c01-4f4c-91af-7abe3b0cc697  
 
 
 <!--b35d2b04-2c01-4f4c-91af-7abe3b0cc697_end-->
+
 
 
 
@@ -220,13 +222,14 @@ Your server's autovacuum parameter setting is OFF and the Bloat ratio (dead tupl
 
 **Impact:** High
   
-For more information, see [Autovacuum tuning - Azure Database for PostgreSQL flexible server](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: dfecf01a-aac2-4429-bc03-7de5756e8bc8  
 
 
 <!--dfecf01a-aac2-4429-bc03-7de5756e8bc8_end-->
+
 
 
 <!--e9415244-34b8-4b90-900a-25a6e154fa7e_begin-->
@@ -258,13 +261,14 @@ Your server has orphaned prepared transactions. Rollback or commit the orphaned 
 
 **Impact:** High
   
-For more information, see [Autovacuum Tuning - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
+For more information, see [Autovacuum Tuning](/azure/postgresql/flexible-server/how-to-autovacuum-tuning#prepared-statements)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40  
 
 
 <!--eecd0096-23c1-4ad6-9a8d-fc55d9e8cc40_end-->
+
 
 
 <!--b26edab6-a8dc-4903-b29f-d3b7fb9e0f9c_begin-->
@@ -372,13 +376,14 @@ The server has high client connection errors, frequent disconnects, and high idl
 
 **Impact:** High
   
-For more information, see [PgBouncer in Azure Database for PostgreSQL flexible server - Azure Database for PostgreSQL](/azure/postgresql/flexible-server/concepts-pgbouncer)  
+For more information, see [PgBouncer](/azure/postgresql/flexible-server/concepts-pgbouncer)  
 
 ResourceType: microsoft.dbforpostgresql/flexibleservers  
 Recommendation ID: ed0b346c-26a6-4c2b-850b-32a449d94e56  
 
 
 <!--ed0b346c-26a6-4c2b-850b-32a449d94e56_end-->
+
 
 
 <!--articleBody-->

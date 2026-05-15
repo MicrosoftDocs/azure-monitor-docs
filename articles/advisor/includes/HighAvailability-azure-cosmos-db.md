@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 03/10/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -40,13 +40,14 @@ A high number of metadata operations on an account can result in rate limiting. 
 
 **Impact:** Medium
   
-For more information, see [Azure Cosmos DB performance tips for .NET SDK v2](/azure/cosmos-db/performance-tips).
+For more information, see [Performance Tips for .NET SDK V2 - Azure Cosmos DB](/azure/cosmos-db/performance-tips)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bdb595a4-e148-41f9-98e8-68ec92d1932e  
-Subcategory: Scalability 
+Subcategory: undefined
 
 <!--bdb595a4-e148-41f9-98e8-68ec92d1932e_end-->
+
 
 <!--44a0a07f-23a2-49df-b8dc-a1b14c7c6a9d_begin-->
 
@@ -86,39 +87,41 @@ Subcategory: Other
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_begin-->
 
-#### Hotfix - Upgrade to 2.6.14 version of the Async Java SDK v2 or to Java SDK v4  
+#### Update Azure Cosmos DB Java SDK v2 to version 2.6.14 or migrate to Azure Cosmos DB Java SDK v4  
   
-There's a critical bug in version 2.6.13 (and lower) of the Azure Cosmos DB Async Java SDK v2 causing errors when a Global logical sequence number (LSN) greater than the Max Integer value is reached. The error happens transparently to you by the service after a large volume of transactions occur in the lifetime of an Azure Cosmos DB container. Note: While this is a critical hotfix for the Async Java SDK v2, we still highly recommend you migrate to the [Java SDK v4](/azure/cosmos-db/sql/sql-api-sdk-java-v4).  
+Migrate to Azure Cosmos DB Java SDK v4. As a hotflix, update Azure Cosmos DB Java SDK v2 to version 2.6.14. A critical bug in Azure Cosmos DB Async Java SDK v2 version 2.6.13 and earlier causes errors when a Global logical sequence number (LSN) is greater than the Max Integer value.  
   
-**Potential benefits**: If action isn't taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
+**Potential benefits**: Without action, operations fail with NumberFormatException  
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB: SQL Async Java API, SDK & resources](/azure/cosmos-db/sql/sql-api-sdk-async-java).
+For more information, see [SQL Async Java API, SDK and Resources - Azure Cosmos DB](/azure/cosmos-db/sql/sql-api-sdk-async-java)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: bc9e5110-a220-4ab9-8bc9-53f92d3eef70  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--bc9e5110-a220-4ab9-8bc9-53f92d3eef70_end-->
+
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_begin-->
 
 #### Critical issue - Upgrade to the current recommended version of the Java SDK v4  
   
-There's a critical bug in version 4.15 and lower of the Azure Cosmos DB Java SDK v4 causing errors when a Global logical sequence number (LSN) greater than the Max Integer value is reached. This happens transparently to you by the service after a large volume of transactions occur in the lifetime of an Azure Cosmos DB container. Avoid this problem by upgrading to the current recommended version of the Java SDK v4  
+A critical bug affects Azure Cosmos DB Java SDK v4 versions 4.15 and earlier. When the Global Logical Sequence Number (LSN) exceeds the maximum integer value—something that can occur transparently after a large volume of transactions over a container’s lifetime—the SDK may start returning errors. To  
   
-**Potential benefits**: If action isn't taken, all create, read, update, and delete operations may begin to fail with NumberFormatException  
+**Potential benefits**: All CRUD operations may fail with NumberFormatException  
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB Java SDK v4 for API for NoSQL release notes and resources](/azure/cosmos-db/sql/sql-api-sdk-java-v4).
+For more information, see [Java SDK V4 for API for Nosql Release Notes and Resources - Azure Cosmos DB](/azure/cosmos-db/sql/sql-api-sdk-java-v4)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 38942ae5-3154-4e0b-98d9-23aa061c334b  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--38942ae5-3154-4e0b-98d9-23aa061c334b_end-->
+
 
 <!--123039b5-0fda-4744-9a17-d6b5d5d122b2_begin-->
 
@@ -217,17 +220,18 @@ Subcategory: Other
   
 An Azure Cosmos DB account using an old version of the SDK lacks the latest fixes and improvements. Your Azure Cosmos DB account is using an outdated version of the SDK. We recommend upgrading to the latest version for the latest fixes, performance improvements, and new feature capabilities.  
   
-**Potential benefits**: Improved reliability, performance, and new feature capabilities  
+**Potential benefits**: Improved reliability, performance, and new capabilities  
 
 **Impact:** High
   
-For more information, see [Azure Cosmos DB](/azure/cosmos-db/).
+For more information, see [Azure Cosmos DB documentation - Azure Cosmos DB](/azure/cosmos-db/)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 60a55165-9ccd-4536-81f6-e8dc6246d3d2  
-Subcategory: ServiceUpgradeAndRetirement
+Subcategory: undefined
 
 <!--60a55165-9ccd-4536-81f6-e8dc6246d3d2_end-->
+
 
 <!--5de9f2e6-087e-40da-863a-34b7943beed4_begin-->
 
@@ -330,13 +334,14 @@ Your Azure Cosmos DB accounts use periodic backup. Continuous backup with point-
 
 **Impact:** Medium
   
-For more information, see [Continuous Backup with Point-in-Time Restore](/azure/cosmos-db/continuous-backup-restore-introduction)  
+For more information, see [Continuous Backup with Point-in-Time Restore - Azure Cosmos DB](/azure/cosmos-db/continuous-backup-restore-introduction)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 52fef986-5897-4359-8b92-0f22749f0d73  
 Subcategory: BusinessContinuity
 
 <!--52fef986-5897-4359-8b92-0f22749f0d73_end-->
+
 
 
 <!--a2002089-9dd1-46b6-881c-d0f349515230_begin-->
@@ -356,5 +361,59 @@ Recommendation ID: a2002089-9dd1-46b6-881c-d0f349515230
 Subcategory: undefined
 
 <!--a2002089-9dd1-46b6-881c-d0f349515230_end-->
+
+<!--687f83d3-db01-4ab1-a77b-b31e99f16d33_begin-->
+
+#### Enable zone redundancy for multi-region Cosmos DB accounts  
+  
+Enabling zone redundancy for multi-region Cosmos DB accounts to improve high availability and reduce the risk of data loss in case of a regional outage.  
+  
+**Potential benefits**: Improved availability and reliability  
+
+**Impact:** High
+  
+For more information, see [High Availability (Reliability) in Azure Cosmos DB for NoSQL](https://aka.ms/learnmore_cosmos)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 687f83d3-db01-4ab1-a77b-b31e99f16d33  
+Subcategory: undefined
+
+<!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
+
+<!--b0394e14-2aac-435d-b53a-73005272870d_begin-->
+
+#### Boost Resilience with Per‑Partition Automatic Failover  
+  
+PPAF is a new Azure Cosmos DB preview feature that boosts availability for single‑write region accounts by failing over at the partition level instead of the entire account, reducing downtime and enabling faster recovery during regional outages.  
+  
+**Potential benefits**: Enhances single‑region availability  
+
+**Impact:** Medium
+  
+For more information, see [Configure and Use Per Partition Automatic Failover - Azure Cosmos DB](/azure/cosmos-db/how-to-configure-per-partition-automatic-failover)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: b0394e14-2aac-435d-b53a-73005272870d  
+Subcategory: undefined
+
+<!--b0394e14-2aac-435d-b53a-73005272870d_end-->
+
+<!--36b07167-9b19-4725-81bc-54e8e0510a0c_begin-->
+
+#### Improve Resiliency with Per‑Partition Automatic Failover  
+  
+PPAF is a new Azure Cosmos DB preview feature that boosts availability for single‑write region accounts by failing over at the partition level instead of the entire account, reducing downtime and enabling faster recovery during regional outages.  
+  
+**Potential benefits**: Enhances single‑region availability  
+
+**Impact:** Medium
+  
+For more information, see [Elevating Azure Cosmos DB Resilience with Per Partition Automatic Failover - Azure Cosmos DB Blog](https://aka.ms/cosmosdb-ppaf-blog)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 36b07167-9b19-4725-81bc-54e8e0510a0c  
+Subcategory: undefined
+
+<!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
 
 <!--articleBody-->

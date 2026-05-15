@@ -11,9 +11,6 @@ ms.date: 03/11/2026
 
 # DHOSReliability
 
-
-
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +23,27 @@ ms.date: 03/11/2026
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [dhosreliability](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/dhosreliability-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| AbnormalShutdownCount | int |   |
+| _BilledSize | real | The record size in bytes |
+| Computer | string |   |
+| ComputerID | string |   |
+| ConfigMgrClientID | string |   |
+| Country | string |   |
+| DeviceLastSeenTime | datetime |   |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| KernelModeCrashCount | int |   |
+| KernelModeCrashFreePercentForIndustry | real |   |
+| Manufacturer | string |   |
+| Model | string |   |
+| ModelFamily | string |   |
+| OSArchitecture | string |   |
+| OSBuildNumber | int |   |
+| OSEdition | string |   |
+| OSRevisionNumber | int |   |
+| OSVersion | string |   |
+| TimeGenerated | datetime |   |
+| Type | string | The name of the table |

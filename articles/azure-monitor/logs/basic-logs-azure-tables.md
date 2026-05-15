@@ -13,7 +13,7 @@ All custom tables created with or migrated to the [Logs ingestion API](logs-inge
 > [!NOTE]
 > Tables created with the [Data Collector API](data-collector-api.md) don't support the Basic table plan.
 
-[!INCLUDE [basictables](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/basic-tables-include.md)]
+[!INCLUDE [basictables](../reference/tables/includes/basic-tables-include.md)]
 
 ## Next steps
 

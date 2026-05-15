@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SCOPE ended event including SCOPE job result and Information about the job.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,19 @@ SCOPE ended event including SCOPE job result and Information about the job.
 |**Lake-only ingestion**|No|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [synapsescopepoolscopejobsended](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/synapsescopepoolscopejobsended-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| CorrelationId | string | A GUID used to group together a set of related events. |
+| Identity | dynamic | A JSON blob that describes the identity of the user or application that performed the operation. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| OperationName | string | The operation associated with log record. |
+| Properties | dynamic | Extended properties related to this event. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | The timestamp (UTC) of when the log was generated. |
+| Type | string | The name of the table |

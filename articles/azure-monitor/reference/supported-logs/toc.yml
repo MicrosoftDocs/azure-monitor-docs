@@ -1,0 +1,610 @@
+items:
+- name: Microsoft.AAD/DomainServices
+  href: microsoft-aad-domainservices-logs.md
+  displayName: AccountLogon,AccountManagement,DetailTracking,DirectoryServiceAccess,DNSServerAuditsDynamicUpdates - Preview,DNSServerAuditsGeneral - Preview,LogonLogoff,ObjectAccess,PolicyChange,PrivilegeUse,SystemSecurity
+- name: Microsoft.AgFoodPlatform/farmBeats
+  href: microsoft-agfoodplatform-farmbeats-logs.md
+  displayName: Application Audit Logs,Farm Management Logs,Farm Operation Logs,Insight Logs,Job Processed Logs,Model Inference Logs,Provider Auth Logs,Satellite Logs,Sensor Management Logs,Weather Logs
+- name: Microsoft.AnalysisServices/servers
+  href: microsoft-analysisservices-servers-logs.md
+  displayName: Engine,Service
+- name: Microsoft.ApiManagement/service
+  href: microsoft-apimanagement-service-logs.md
+  displayName: Logs related to ApiManagement Gateway,Logs related to Developer Portal usage,Logs related to generative AI gateway,Logs related to Model Context Protocol (MCP) servers usage,Logs related to Websocket Connections
+- name: Microsoft.ApiManagement/service/workspaces
+  href: microsoft-apimanagement-service-workspaces-logs.md
+  displayName: Gateway logs for API Management workspaces
+- name: Microsoft.App/managedEnvironments
+  href: microsoft-app-managedenvironments-logs.md
+  displayName: Container App console logs,Container App HTTP logs,Container App system logs,Session allocation logs,Session console logs,Session pool lifecycle logs,Spring App console logs
+- name: Microsoft.AppConfiguration/configurationStores
+  href: microsoft-appconfiguration-configurationstores-logs.md
+  displayName: Audit,HTTP Requests
+- name: Microsoft.AppLink/applinks/applinkmembers
+  href: microsoft-applink-applinks-applinkmembers-logs.md
+  displayName: Istiod logs
+- name: Microsoft.AppPlatform/spring
+  href: microsoft-appplatform-spring-logs.md
+  displayName: Application Console,Build Logs,Container Event Logs,Ingress Logs,System Logs
+- name: Microsoft.Attestation/attestationProviders
+  href: microsoft-attestation-attestationproviders-logs.md
+  displayName: AuditEvent message log category.,Operational message log category.,Requests which could not be processed.
+- name: Microsoft.Automation/automationAccounts
+  href: microsoft-automation-automationaccounts-logs.md
+  displayName: AuditEvent,DscNodeStatus,JobLogs,JobStreams
+- name: Microsoft.AutonomousDevelopmentPlatform/accounts
+  href: microsoft-autonomousdevelopmentplatform-accounts-logs.md
+  displayName: Audit,Operational,Request
+- name: Microsoft.AutonomousDevelopmentPlatform/workspaces
+  href: microsoft-autonomousdevelopmentplatform-workspaces-logs.md
+  displayName: Audit,Operational,Request
+- name: microsoft.avs/privateClouds
+  href: microsoft-avs-privateclouds-logs.md
+  displayName: VMware Syslog
+- name: Microsoft.AzureDataTransfer/connections/flows
+  href: microsoft-azuredatatransfer-connections-flows-logs.md
+  displayName: Operational Logs
+- name: microsoft.azureplaywrightservice/accounts
+  href: microsoft-azureplaywrightservice-accounts-logs.md
+  displayName: Microsoft Playwright Testing Operations
+- name: microsoft.azuresphere/catalogs
+  href: microsoft-azuresphere-catalogs-logs.md
+  displayName: Audit Logs,Device Events
+- name: Microsoft.Batch/batchaccounts
+  href: microsoft-batch-batchaccounts-logs.md
+  displayName: Audit Logs,Service Logs
+- name: microsoft.botservice/botservices
+  href: microsoft-botservice-botservices-logs.md
+  displayName: Requests from the channels to the bot
+- name: Microsoft.Cache/redis
+  href: microsoft-cache-redis-logs.md
+  displayName: Connected client list,MSEntra authentication audit log
+- name: Microsoft.Cache/redisEnterprise/databases
+  href: microsoft-cache-redisenterprise-databases-logs.md
+  displayName: Connection events (New Connection/Authentication/Disconnection)
+- name: Microsoft.Cdn/cdnwebapplicationfirewallpolicies
+  href: microsoft-cdn-cdnwebapplicationfirewallpolicies-logs.md
+  displayName: Web Appliation Firewall Logs
+- name: Microsoft.Cdn/edgeactions
+  href: microsoft-cdn-edgeactions-logs.md
+  displayName: Console Logs,Service Logs
+- name: Microsoft.Cdn/profiles
+  href: microsoft-cdn-profiles-logs.md
+  displayName: Azure Cdn Access Log,FrontDoor Access Log,FrontDoor Health Probe Log,FrontDoor WebApplicationFirewall Log
+- name: Microsoft.Cdn/profiles/endpoints
+  href: microsoft-cdn-profiles-endpoints-logs.md
+  displayName: Gets the metrics of the endpoint, e.g., bandwidth, egress, etc.
+- name: Microsoft.Chaos/experiments
+  href: microsoft-chaos-experiments-logs.md
+  displayName: Experiment Orchestration Events
+- name: Microsoft.CloudHealth/healthmodels
+  href: microsoft-cloudhealth-healthmodels-logs.md
+  displayName: Operational logs,Request logs
+- name: Microsoft.CodeSigning/codesigningaccounts
+  href: microsoft-codesigning-codesigningaccounts-logs.md
+  displayName: Sign Transactions
+- name: Microsoft.CognitiveServices/accounts
+  href: microsoft-cognitiveservices-accounts-logs.md
+  displayName: Audit Logs,Azure OpenAI Request Usage,Request and Response Logs,Trace Logs
+- name: Microsoft.CognitiveServices/accounts/projects
+  href: microsoft-cognitiveservices-accounts-projects-logs.md
+  displayName: Audit Logs,Trace Logs
+- name: microsoft.community/communityTrainings
+  href: microsoft-community-communitytrainings-logs.md
+  displayName: Application Data Plane Exceptions and Errors,Application Data Plane Logs
+- name: Microsoft.Compute/virtualMachines
+  href: microsoft-compute-virtualmachines-logs.md
+  displayName: SoftwareUpdateProfile,SoftwareUpdates
+- name: Microsoft.ConfidentialLedger/Ledgers
+  href: microsoft-confidentialledger-ledgers-logs.md
+  displayName: Azure Confidential Ledger activity Logs with UserId,Azure Confidential Ledger UDE/UDF logs
+- name: Microsoft.ConfidentialLedger/ManagedCCF
+  href: microsoft-confidentialledger-managedccf-logs.md
+  displayName: CCF Application Logs
+- name: Microsoft.ConfidentialLedger/ManagedCCFs
+  href: microsoft-confidentialledger-managedccfs-logs.md
+  displayName: CCF Application Logs
+- name: Microsoft.ConnectedCache/CacheNodes
+  href: microsoft-connectedcache-cachenodes-logs.md
+  displayName: Events
+- name: Microsoft.ConnectedCache/enterpriseMccCustomers
+  href: microsoft-connectedcache-enterprisemcccustomers-logs.md
+  displayName: Events
+- name: Microsoft.ConnectedCache/ispCustomers
+  href: microsoft-connectedcache-ispcustomers-logs.md
+  displayName: Events
+- name: Microsoft.ConnectedVehicle/platformAccounts
+  href: microsoft-connectedvehicle-platformaccounts-logs.md
+  displayName: MCVP Audit Logs,MCVP Logs
+- name: Microsoft.ContainerInstance/containerGroups
+  href: microsoft-containerinstance-containergroups-logs.md
+  displayName: Container events,Standard output logs
+- name: Microsoft.ContainerRegistry/registries
+  href: microsoft-containerregistry-registries-logs.md
+  displayName: Login Events,RepositoryEvent logs
+- name: Microsoft.ContainerService/fleets
+  href: microsoft-containerservice-fleets-logs.md
+  displayName: fleet-hub-agent,fleet-hub-net-controller-manager,guard,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Cloud Controller Manager,Kubernetes Controller Manager,Kubernetes Scheduler
+- name: Microsoft.ContainerService/managedClusters
+  href: microsoft-containerservice-managedclusters-logs.md
+  displayName: csi-azuredisk-controller,csi-azurefile-controller,csi-snapshot-controller,fleet-mcs-controller-manager,fleet-member-agent,fleet-member-net-controller-manager,guard,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Cloud Controller Manager,Kubernetes Cluster Autoscaler,Kubernetes Controller Manager,Kubernetes Scheduler,Node Auto Provisioning
+- name: Microsoft.CustomProviders/resourceproviders
+  href: microsoft-customproviders-resourceproviders-logs.md
+  displayName: Audit logs for MiniRP calls
+- name: Microsoft.D365CustomerInsights/instances
+  href: microsoft-d365customerinsights-instances-logs.md
+  displayName: Audit events,Operational events
+- name: Microsoft.Dashboard/dashboards
+  href: microsoft-dashboard-dashboards-logs.md
+  displayName: Update Events
+- name: Microsoft.Dashboard/grafana
+  href: microsoft-dashboard-grafana-logs.md
+  displayName: Grafana Login Events,Grafana Usage Insights Events
+- name: Microsoft.Databricks/workspaces
+  href: microsoft-databricks-workspaces-logs.md
+  displayName: Databricks Accounts,Databricks Brick Store HttpGateway,Databricks Budget Policy Central,Databricks Capsule8 Container Security Scanning Reports,Databricks Clam AV Scan,Databricks Cloud Storage Metadata,Databricks Cluster Libraries,Databricks Cluster Policies,Databricks Clusters,Databricks Dashboards,Databricks Data Monitoring,Databricks Data Rooms,Databricks DatabricksSQL,Databricks Delta Pipelines,Databricks Feature Store,Databricks File System,Databricks Files,Databricks Filesystem Logs,Databricks Genie,Databricks Git Credentials,Databricks Global Init Scripts,Databricks Groups,Databricks IAM Role,Databricks Ingestion,Databricks Jobs,Databricks Lakehouse Apps,Databricks Lakeview configuration,Databricks Lineage Tracking,Databricks Marketplace Consumer,Databricks Marketplace Provider,Databricks MLFlow Acled Artifact,Databricks MLFlow Experiment,Databricks Model Registry,Databricks Notebook,Databricks Online Tables,Databricks Partner Hub,Databricks Predictive Optimization,Databricks Remote History Service,Databricks Repos,Databricks Request For Access Events,Databricks Role Based Access Control,Databricks Secrets,Databricks Serverless Real-Time Inference,Databricks SQL Analytics,Databricks SQLPermissions,Databricks SSH,Databricks Unity Catalog,Databricks Vector Search,Databricks Web Terminal,Databricks Webhook Notifications,Databricks Workspace,Databricks Workspace Files,Instance Pools
+- name: Microsoft.DataFactory/factories
+  href: microsoft-datafactory-factories-logs.md
+  displayName: Airflow dag processing logs,Airflow scheduler logs,Airflow task execution logs,Airflow web logs,Airflow worker logs,Pipeline activity runs log,Pipeline runs log,Sandbox Activity runs log,Sandbox Pipeline runs log,SSIS integration runtime logs,SSIS package event message context,SSIS package event messages,SSIS package executable statistics,SSIS package execution component phases,SSIS package exeution data statistics,Trigger runs log
+- name: Microsoft.DataLakeAnalytics/accounts
+  href: microsoft-datalakeanalytics-accounts-logs.md
+  displayName: Audit Logs,Configuration Change Event Logs,Job Event Logs,Job Info Logs,Request Logs
+- name: Microsoft.DataLakeStore/accounts
+  href: microsoft-datalakestore-accounts-logs.md
+  displayName: Audit Logs,Request Logs
+- name: Microsoft.DataProtection/BackupVaults
+  href: microsoft-dataprotection-backupvaults-logs.md
+  displayName: Addon Azure Backup Job Data,Addon Azure Backup Policy Data,Addon Azure Backup Protected Instance Data,Core Azure Backup Data
+- name: Microsoft.DataReplication/replicationVaults
+  href: microsoft-datareplication-replicationvaults-logs.md
+  displayName: ASRv2 Health Event Data,ASRv2 Job Event Data,ASRv2 Protected Item Data,ASRv2 Replication Extension Data,ASRv2 Replication Policy Data,ASRv2 Replication Vault Data
+- name: Microsoft.DataShare/accounts
+  href: microsoft-datashare-accounts-logs.md
+  displayName: Received Share Snapshots,Sent Share Snapshots,Share Subscriptions,Shares
+- name: Microsoft.DBforMariaDB/servers
+  href: microsoft-dbformariadb-servers-logs.md
+  displayName: MariaDB Audit Logs,MariaDB Server Logs
+- name: Microsoft.DBforMySQL/flexibleServers
+  href: microsoft-dbformysql-flexibleservers-logs.md
+  displayName: MySQL Audit Logs,MySQL Slow Logs
+- name: Microsoft.DBforMySQL/servers
+  href: microsoft-dbformysql-servers-logs.md
+  displayName: MySQL Audit Logs,MySQL Server Logs
+- name: Microsoft.DBforPostgreSQL/flexibleServers
+  href: microsoft-dbforpostgresql-flexibleservers-logs.md
+  displayName: PostgreSQL Autovacuum and schema statistics,PostgreSQL PgBouncer Logs,PostgreSQL Query Store Runtime,PostgreSQL Query Store SQL Text,PostgreSQL Query Store Wait Statistics,PostgreSQL remaining transactions,PostgreSQL Server Logs,PostgreSQL Sessions data
+- name: Microsoft.DBForPostgreSQL/serverGroupsv2
+  href: microsoft-dbforpostgresql-servergroupsv2-logs.md
+  displayName: PostgreSQL Server Logs
+- name: Microsoft.DesktopVirtualization/appAttachPackages
+  href: microsoft-desktopvirtualization-appattachpackages-logs.md
+  displayName: Management
+- name: Microsoft.DesktopVirtualization/applicationgroups
+  href: microsoft-desktopvirtualization-applicationgroups-logs.md
+  displayName: Checkpoint,Error,Management
+- name: Microsoft.DesktopVirtualization/hostpools
+  href: microsoft-desktopvirtualization-hostpools-logs.md
+  displayName: AgentHealthStatus,Autoscale logs for pooled host pools,Checkpoint,Connection,Connection Graphics Data Logs Preview,Error,HostRegistration,Management,Network Data Logs,Network links logs for AVD connections,Session Host Management Activity Logs
+- name: Microsoft.DesktopVirtualization/repositoryfolders
+  href: microsoft-desktopvirtualization-repositoryfolders-logs.md
+  displayName: Management
+- name: Microsoft.DesktopVirtualization/scalingplans
+  href: microsoft-desktopvirtualization-scalingplans-logs.md
+  displayName: Autoscale logs
+- name: Microsoft.DesktopVirtualization/workspaces
+  href: microsoft-desktopvirtualization-workspaces-logs.md
+  displayName: Checkpoint,Error,Feed,Management
+- name: Microsoft.DevCenter/devcenters
+  href: microsoft-devcenter-devcenters-logs.md
+  displayName: Agent Health Status,Billing events,Connections,Dataplane audit logs,Resource Operations
+- name: Microsoft.Devices/IotHubs
+  href: microsoft-devices-iothubs-logs.md
+  displayName: C2D Commands,C2D Twin Operations,Configurations,Connections,D2CTwinOperations,Device Identity Operations,Device Streams (Preview),Device Telemetry,Direct Methods,Distributed Tracing (Preview),File Upload Operations,Jobs Operations,Routes,Twin Queries
+- name: Microsoft.Devices/provisioningServices
+  href: microsoft-devices-provisioningservices-logs.md
+  displayName: Device Operations,Service Operations
+- name: Microsoft.DevOpsInfrastructure/pools
+  href: microsoft-devopsinfrastructure-pools-logs.md
+  displayName: Resource Provisioning Logs
+- name: Microsoft.DigitalTwins/digitalTwinsInstances
+  href: microsoft-digitaltwins-digitaltwinsinstances-logs.md
+  displayName: DataHistoryOperation,DigitalTwinsOperation,EventRoutesOperation,ModelsOperation,QueryOperation,ResourceProviderOperation
+- name: Microsoft.Discovery/bookshelves
+  href: microsoft-discovery-bookshelves-logs.md
+  displayName: Audit Logs
+- name: Microsoft.Discovery/supercomputers
+  href: microsoft-discovery-supercomputers-logs.md
+  displayName: Audit Logs
+- name: Microsoft.Discovery/workspaces
+  href: microsoft-discovery-workspaces-logs.md
+  displayName: Audit Logs
+- name: Microsoft.DocumentDB/cassandraClusters
+  href: microsoft-documentdb-cassandraclusters-logs.md
+  displayName: CassandraAudit,CassandraLogs
+- name: Microsoft.DocumentDB/DatabaseAccounts
+  href: microsoft-documentdb-databaseaccounts-logs.md
+  displayName: CassandraRequests,ControlPlaneRequests,DataPlaneRequests,DataPlaneRequests - Aggregated 15 Min,DataPlaneRequests - Aggregated 5 Min,GremlinRequests,MongoRequests,PartitionKeyRUConsumption,PartitionKeyStatistics,QueryRuntimeStatistics,TableApiRequests
+- name: Microsoft.DocumentDB/mongoClusters
+  href: microsoft-documentdb-mongoclusters-logs.md
+  displayName: vCoreMongoRequests
+- name: Microsoft.DurableTask/schedulers
+  href: microsoft-durabletask-schedulers-logs.md
+  displayName: Durable Task Scheduler Logs
+- name: Microsoft.Edge/diagnostics
+  href: microsoft-edge-diagnostics-logs.md
+  displayName: Audit Logs,Diagnostic Logs
+- name: Microsoft.EventGrid/domains
+  href: microsoft-eventgrid-domains-logs.md
+  displayName: Data plane operations logs,Delivery Failure Logs,Publish Failure Logs
+- name: Microsoft.EventGrid/namespaces
+  href: microsoft-eventgrid-namespaces-logs.md
+  displayName: Failed HTTP data plane operations logs,Failed MQTT Connections,Failed MQTT Published Messages,Failed MQTT Subscription Operations,MQTT Disconnections,Successful HTTP data plane operations logs,Successful MQTT Connections
+- name: Microsoft.EventGrid/partnerNamespaces
+  href: microsoft-eventgrid-partnernamespaces-logs.md
+  displayName: Data plane operations logs,Publish Failure Logs
+- name: Microsoft.EventGrid/partnerTopics
+  href: microsoft-eventgrid-partnertopics-logs.md
+  displayName: Delivery Failure Logs
+- name: Microsoft.EventGrid/systemTopics
+  href: microsoft-eventgrid-systemtopics-logs.md
+  displayName: Delivery Failure Logs
+- name: Microsoft.EventGrid/topics
+  href: microsoft-eventgrid-topics-logs.md
+  displayName: Data plane operations logs,Delivery Failure Logs,Publish Failure Logs
+- name: Microsoft.EventHub/Namespaces
+  href: microsoft-eventhub-namespaces-logs.md
+  displayName: Application Metrics Logs,Archive Logs,Auto Scale Logs,Customer Managed Key Logs,DataDR Logs,Diagnostic Error Logs,Kafka Coordinator Logs,Kafka User Error Logs,Operational Logs,Runtime Audit Logs,VNet/IP Filtering Connection Logs
+- name: Microsoft.HardwareSecurityModules/cloudHsmClusters
+  href: microsoft-hardwaresecuritymodules-cloudhsmclusters-logs.md
+  displayName: Hsm Service Operations
+- name: Microsoft.HealthcareApis/services
+  href: microsoft-healthcareapis-services-logs.md
+  displayName: Audit logs,Diagnostic logs
+- name: Microsoft.HealthcareApis/workspaces/dicomservices
+  href: microsoft-healthcareapis-workspaces-dicomservices-logs.md
+  displayName: Audit logs,Diagnostic logs
+- name: Microsoft.HealthcareApis/workspaces/fhirservices
+  href: microsoft-healthcareapis-workspaces-fhirservices-logs.md
+  displayName: FHIR Audit logs
+- name: Microsoft.HealthcareApis/workspaces/iotconnectors
+  href: microsoft-healthcareapis-workspaces-iotconnectors-logs.md
+  displayName: Diagnostic logs
+- name: Microsoft.HealthcareInterop/fhirQueryEventBatchChannels
+  href: microsoft-healthcareinterop-fhirqueryeventbatchchannels-logs.md
+  displayName: Diagnostic logs
+- name: Microsoft.HealthcareInterop/fhirQueryFlatFileBatchChannels
+  href: microsoft-healthcareinterop-fhirqueryflatfilebatchchannels-logs.md
+  displayName: Diagnostic logs
+- name: Microsoft.HealthDataAIServices/deidServices
+  href: microsoft-healthdataaiservices-deidservices-logs.md
+  displayName: Audit Logs
+- name: microsoft.insights/autoscalesettings
+  href: microsoft-insights-autoscalesettings-logs.md
+  displayName: Autoscale Evaluations,Autoscale Scale Actions
+- name: microsoft.insights/components
+  href: microsoft-insights-components-logs.md
+  displayName: Availability results,Browser timings,Dependencies,Events,Exceptions,Metrics,Page views,Performance counters,Requests,Resources,System events,Traces
+- name: Microsoft.Insights/datacollectionrules
+  href: microsoft-insights-datacollectionrules-logs.md
+  displayName: Log Errors
+- name: microsoft.keyvault/managedhsms
+  href: microsoft-keyvault-managedhsms-logs.md
+  displayName: Audit Event
+- name: Microsoft.KeyVault/vaults
+  href: microsoft-keyvault-vaults-logs.md
+  displayName: Audit Logs,Azure Policy Evaluation Details
+- name: microsoft.kubernetes/connectedClusters
+  href: microsoft-kubernetes-connectedclusters-logs.md
+  displayName: csi-aksarcdisk-controller,csi-aksarcnfs-controller,csi-aksarcsmb-controller,guard,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Cloud Controller Manager,Kubernetes Cluster Autoscaler,Kubernetes Controller Manager,Kubernetes Scheduler
+- name: Microsoft.Kusto/clusters
+  href: microsoft-kusto-clusters-logs.md
+  displayName: Command,Data operation,Failed ingestion,Ingestion batching,Journal,Query,Succeeded ingestion,Table details,Table usage statistics
+- name: microsoft.loadtestservice/loadtests
+  href: microsoft-loadtestservice-loadtests-logs.md
+  displayName: Azure Load Testing Operations
+- name: Microsoft.Logic/IntegrationAccounts
+  href: microsoft-logic-integrationaccounts-logs.md
+  displayName: Integration Account track events
+- name: Microsoft.Logic/Workflows
+  href: microsoft-logic-workflows-logs.md
+  displayName: Workflow runtime diagnostic events
+- name: Microsoft.MachineLearningServices/registries
+  href: microsoft-machinelearningservices-registries-logs.md
+  displayName: Registry Asset Read Event,Registry Asset Write Event
+- name: Microsoft.MachineLearningServices/workspaces
+  href: microsoft-machinelearningservices-workspaces-logs.md
+  displayName: AmlComputeClusterEvent,AmlComputeClusterNodeEvent,AmlComputeCpuGpuUtilization,AmlComputeJobEvent,AmlRunStatusChangedEvent,ComputeInstanceEvent,DataLabelChangeEvent,DataLabelReadEvent,DataSetChangeEvent,DataSetReadEvent,DataStoreChangeEvent,DataStoreReadEvent,DeploymentEventACI,DeploymentEventAKS,DeploymentReadEvent,EnvironmentChangeEvent,EnvironmentReadEvent,InferencingOperationACI,InferencingOperationAKS,ModelsActionEvent,ModelsChangeEvent,ModelsReadEvent,PipelineChangeEvent,PipelineReadEvent,RunEvent,RunReadEvent
+- name: Microsoft.MachineLearningServices/workspaces/onlineEndpoints
+  href: microsoft-machinelearningservices-workspaces-onlineendpoints-logs.md
+  displayName: AmlOnlineEndpointConsoleLog,AmlOnlineEndpointEventLog,AmlOnlineEndpointTrafficLog
+- name: Microsoft.ManagedNetworkFabric/networkDevices
+  href: microsoft-managednetworkfabric-networkdevices-logs.md
+  displayName: BGP Neighbor Updates,Bi-Directional Forwarding Detection Updates,Component State Updates,Interface State Updates,Interface Vxlan Updates,Network Instance Updates,System Session History Updates,System State Message Updates
+- name: Microsoft.Monitor/accounts
+  href: microsoft-monitor-accounts-logs.md
+  displayName: Metrics Usage Details
+- name: Microsoft.Monitor/pipelineGroups
+  href: microsoft-monitor-pipelinegroups-logs.md
+  displayName: Log Errors
+- name: Microsoft.NetApp/netAppAccounts/capacityPools
+  href: microsoft-netapp-netappaccounts-capacitypools-logs.md
+  displayName: Capacity Pool Autoscaled
+- name: Microsoft.NetApp/netAppAccounts/capacityPools/caches
+  href: microsoft-netapp-netappaccounts-capacitypools-caches-logs.md
+  displayName: ANF Cache Volumes File Access Logs
+- name: Microsoft.Network/applicationgateways
+  href: microsoft-network-applicationgateways-logs.md
+  displayName: Application Gateway Access Log,Application Gateway Firewall Log,Application Gateway Performance Log
+- name: Microsoft.Network/azureFirewalls
+  href: microsoft-network-azurefirewalls-logs.md
+  displayName: Azure Firewall Application Rule,Azure Firewall Application Rule (Legacy Azure Diagnostics),Azure Firewall Application Rule Aggregation (Policy Analytics),Azure Firewall DNS Flow Trace Log,Azure Firewall DNS Proxy (Legacy Azure Diagnostics),Azure Firewall DNS query,Azure Firewall Fat Flow Log,Azure Firewall Flow Trace Log,Azure Firewall FQDN Resolution Failure,Azure Firewall IDPS Signature,Azure Firewall Nat Rule,Azure Firewall Nat Rule Aggregation (Policy Analytics),Azure Firewall Network Rule,Azure Firewall Network Rule (Legacy Azure Diagnostics),Azure Firewall Network Rule Aggregation (Policy Analytics),Azure Firewall Threat Intelligence
+- name: microsoft.network/bastionHosts
+  href: microsoft-network-bastionhosts-logs.md
+  displayName: Bastion Audit Logs
+- name: Microsoft.Network/dnsResolverPolicies
+  href: microsoft-network-dnsresolverpolicies-logs.md
+  displayName: DNS Response
+- name: Microsoft.Network/expressRouteCircuits
+  href: microsoft-network-expressroutecircuits-logs.md
+  displayName: Peering Route Table Logs
+- name: Microsoft.Network/frontdoors
+  href: microsoft-network-frontdoors-logs.md
+  displayName: Frontdoor Access Log,Frontdoor Web Application Firewall Log
+- name: Microsoft.Network/loadBalancers
+  href: microsoft-network-loadbalancers-logs.md
+  displayName: Load Balancer Health Event
+- name: Microsoft.Network/natgateways
+  href: microsoft-network-natgateways-logs.md
+  displayName: Flowlogs (v1) for NatGateway traffic at IP level
+- name: Microsoft.Network/networkManagers
+  href: microsoft-network-networkmanagers-logs.md
+  displayName: Connectivity Configuration Change,Network Group Membership Change,Rule Collection Change
+- name: Microsoft.Network/networkManagers/ipamPools
+  href: microsoft-network-networkmanagers-ipampools-logs.md
+  displayName: Pool Allocation Change
+- name: Microsoft.Network/networksecuritygroups
+  href: microsoft-network-networksecuritygroups-logs.md
+  displayName: Network Security Group Event,Network Security Group Rule Counter,Network Security Group Rule Flow Event
+- name: Microsoft.Network/networkSecurityPerimeters
+  href: microsoft-network-networksecurityperimeters-logs.md
+  displayName: Cross perimeter inbound access allowed by perimeter link.,Cross perimeter outbound access allowed by perimeter link.,Inbound access allowed within same perimeter.,Outbound attempted to same or different perimeter.,Private endpoint traffic allowed.,Public inbound access allowed by NSP access rules.,Public inbound access allowed by PaaS resource rules.,Public inbound access denied by NSP access rules.,Public inbound access denied by PaaS resource rules.,Public outbound access allowed by NSP access rules.,Public outbound access allowed by PaaS resource rules.,Public outbound access denied by NSP access rules.,Public outbound access denied by PaaS resource rules
+- name: Microsoft.Network/networkSecurityPerimeters/profiles
+  href: microsoft-network-networksecurityperimeters-profiles-logs.md
+  displayName: NSP Inbound Access Allowed.,NSP Inbound Access Denied.,NSP Outbound Access Allowed.,NSP Outbound Access Denied.
+- name: Microsoft.Network/NetworkVirtualAppliances
+  href: microsoft-network-networkvirtualappliances-logs.md
+  displayName: ADG Syslog Event
+- name: microsoft.network/p2svpngateways
+  href: microsoft-network-p2svpngateways-logs.md
+  displayName: Gateway Diagnostic Logs,IKE Diagnostic Logs,P2S Diagnostic Logs
+- name: Microsoft.Network/publicIPAddresses
+  href: microsoft-network-publicipaddresses-logs.md
+  displayName: DDoS protection notifications,Flow logs of DDoS mitigation decisions,Reports of DDoS mitigations
+- name: Microsoft.Network/publicIPPrefixes
+  href: microsoft-network-publicipprefixes-logs.md
+  displayName: DDoS protection notifications,Flow logs of DDoS mitigation decisions,Reports of DDoS mitigations
+- name: Microsoft.Network/trafficManagerProfiles
+  href: microsoft-network-trafficmanagerprofiles-logs.md
+  displayName: Traffic Manager Probe Health Results Event
+- name: microsoft.network/virtualnetworkgateways
+  href: microsoft-network-virtualnetworkgateways-logs.md
+  displayName: Gateway Diagnostic Logs,IKE Diagnostic Logs,P2S Diagnostic Logs,Route Diagnostic Logs,Tunnel Diagnostic Logs
+- name: Microsoft.Network/virtualNetworks
+  href: microsoft-network-virtualnetworks-logs.md
+  displayName: VM protection alerts
+- name: microsoft.network/vpngateways
+  href: microsoft-network-vpngateways-logs.md
+  displayName: Gateway Diagnostic Logs,IKE Diagnostic Logs,Route Diagnostic Logs,Tunnel Diagnostic Logs
+- name: Microsoft.NetworkAnalytics/DataProducts
+  href: microsoft-networkanalytics-dataproducts-logs.md
+  displayName: Database Query,Delete ingested file,Digestion,Ingestion,Output storage read,Read ingested file
+- name: Microsoft.NetworkCloud/bareMetalMachines
+  href: microsoft-networkcloud-baremetalmachines-logs.md
+  displayName: Security - Audit,Security - Break Glass Audit,Security - Critical,Security - Debug,Security - Defender,Security - Error,Security - Info,Security - Notice,Security - Warning,System - Critical,System - Debug,System - Error,System - Info,System - Notice,System - Warning
+- name: Microsoft.NetworkCloud/clusterManagers
+  href: microsoft-networkcloud-clustermanagers-logs.md
+  displayName: Cluster Manager Deploy or Upgrade Logs
+- name: Microsoft.NetworkCloud/clusters
+  href: microsoft-networkcloud-clusters-logs.md
+  displayName: IDRAC Container Logs,Kubernetes API Audit Logs,Kubernetes Logs,Platform Operation Logs,VM Orchestration Logs
+- name: Microsoft.NetworkCloud/kubernetesClusters
+  href: microsoft-networkcloud-kubernetesclusters-logs.md
+  displayName: Tenant Operation Logs
+- name: Microsoft.NetworkCloud/storageAppliances
+  href: microsoft-networkcloud-storageappliances-logs.md
+  displayName: Storage Appliance alerts,Storage Appliance audits,Storage Appliance logs
+- name: Microsoft.NetworkFunction/azureTrafficCollectors
+  href: microsoft-networkfunction-azuretrafficcollectors-logs.md
+  displayName: Express Route Circuit IPFIX Flow Records,Microsoft Peering Metadata,Private Peering Metadata
+- name: Microsoft.NotificationHubs/namespaces
+  href: microsoft-notificationhubs-namespaces-logs.md
+  displayName: Operational Logs
+- name: Microsoft.NotificationHubs/namespaces/notificationHubs
+  href: microsoft-notificationhubs-namespaces-notificationhubs-logs.md
+  displayName: Operational Logs
+- name: microsoft.onlineexperimentation/workspaces
+  href: microsoft-onlineexperimentation-workspaces-logs.md
+  displayName: Audit
+- name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
+  href: microsoft-openenergyplatform-energyservices-logs.md
+  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
+- name: Microsoft.OpenLogisticsPlatform/Workspaces
+  href: microsoft-openlogisticsplatform-workspaces-logs.md
+  displayName: Supply Chain Entity Operations,Supply Chain Event logs
+- name: Microsoft.OperationalInsights/workspaces
+  href: microsoft-operationalinsights-workspaces-logs.md
+  displayName: Audit,Jobs,Summary Logs
+- name: Microsoft.Orbital/geocatalogs
+  href: microsoft-orbital-geocatalogs-logs.md
+  displayName: Audit Logs,Ingestion Logs
+- name: Microsoft.PlayFab/titles
+  href: microsoft-playfab-titles-logs.md
+  displayName: AuditLogs
+- name: Microsoft.PowerBI/tenants
+  href: microsoft-powerbi-tenants-logs.md
+  displayName: Engine,OneLakeData
+- name: Microsoft.PowerBI/tenants/workspaces
+  href: microsoft-powerbi-tenants-workspaces-logs.md
+  displayName: Engine,OneLakeData
+- name: Microsoft.PowerBIDedicated/capacities
+  href: microsoft-powerbidedicated-capacities-logs.md
+  displayName: Engine
+- name: Microsoft.ProviderHub/providerMonitorSettings
+  href: microsoft-providerhub-providermonitorsettings-logs.md
+  displayName: UserRP Http Incoming Requests,UserRP Http Outgoing Requests,UserRP Provisioning Operations
+- name: Microsoft.ProviderHub/providerRegistrations
+  href: microsoft-providerhub-providerregistrations-logs.md
+  displayName: Provisioning Operations,UserRP Http Incoming Requests,UserRP Http Outgoing Requests
+- name: microsoft.purview/accounts
+  href: microsoft-purview-accounts-logs.md
+  displayName: DataSensitivity,PurviewAccountAuditEvents,ScanStatus
+- name: Microsoft.Quantum/providerAccounts
+  href: microsoft-quantum-provideraccounts-logs.md
+  displayName: Audit Logs
+- name: Microsoft.Quantum/workspaces
+  href: microsoft-quantum-workspaces-logs.md
+  displayName: Audit Logs
+- name: Microsoft.RecoveryServices/Vaults
+  href: microsoft-recoveryservices-vaults-logs.md
+  displayName: Addon Azure Backup Alert Data,Addon Azure Backup Job Data,Addon Azure Backup Policy Data,Addon Azure Backup Protected Instance Data,Addon Azure Backup Storage Data,Azure Backup Operations,Azure Backup Reporting Data,Azure Site Recovery Events,Azure Site Recovery Jobs,Azure Site Recovery Protected Disk Data Churn,Azure Site Recovery Recovery Points,Azure Site Recovery Replicated Items,Azure Site Recovery Replicated Items Details,Azure Site Recovery Replication Data Upload Rate,Azure Site Recovery Replication Stats,Core Azure Backup Data
+- name: Microsoft.RedHatOpenShift/hcpOpenShiftClusters
+  href: microsoft-redhatopenshift-hcpopenshiftclusters-logs.md
+  displayName: Cloud Controller Manager,CSI Azure Disk Controller,CSI Azure File Controller,CSI Snapshot Controller,Kubernetes API Server,Kubernetes Audit,Kubernetes Audit Admin Logs,Kubernetes Controller Manager,Kubernetes Scheduler
+- name: Microsoft.Relay/namespaces
+  href: microsoft-relay-namespaces-logs.md
+  displayName: HybridConnections Events,VNet/IP Filtering Connection Logs
+- name: Microsoft.ResourceBuilder/workspaces
+  href: microsoft-resourcebuilder-workspaces-logs.md
+  displayName: JobExecution
+- name: Microsoft.ResourceBuilder/workspaces/pipelines/jobs
+  href: microsoft-resourcebuilder-workspaces-pipelines-jobs-logs.md
+  displayName: JobExecution
+- name: Microsoft.Search/searchServices
+  href: microsoft-search-searchservices-logs.md
+  displayName: Operation Logs
+- name: Microsoft.Security/antiMalwareSettings
+  href: microsoft-security-antimalwaresettings-logs.md
+  displayName: AntimalwareScanResults
+- name: Microsoft.Security/defenderForStorageSettings
+  href: microsoft-security-defenderforstoragesettings-logs.md
+  displayName: AntimalwareScanResults
+- name: microsoft.securityinsights/settings
+  href: microsoft-securityinsights-settings-logs.md
+  displayName: Analytics,Automation,Data Collection - Connectors
+- name: Microsoft.ServiceBus/Namespaces
+  href: microsoft-servicebus-namespaces-logs.md
+  displayName: Application Metrics Logs(Unused),DataDR Logs,Diagnostic Error Logs,Operational Logs,Runtime Audit Logs,VNet/IP Filtering Connection Logs
+- name: Microsoft.ServiceNetworking/trafficControllers
+  href: microsoft-servicenetworking-trafficcontrollers-logs.md
+  displayName: Application Gateway for Containers Access Log,Application Gateway for Containers Firewall Log
+- name: Microsoft.SignalRService/SignalR
+  href: microsoft-signalrservice-signalr-logs.md
+  displayName: Azure SignalR Service Logs.
+- name: Microsoft.SignalRService/SignalR/replicas
+  href: microsoft-signalrservice-signalr-replicas-logs.md
+  displayName: Azure SignalR Service Logs.
+- name: Microsoft.SignalRService/WebPubSub
+  href: microsoft-signalrservice-webpubsub-logs.md
+  displayName: Connectivity logs for Azure Web PubSub Service.,Http Request logs for Azure Web PubSub Service.,Messaging logs for Azure Web PubSub Service.
+- name: Microsoft.SignalRService/WebPubSub/replicas
+  href: microsoft-signalrservice-webpubsub-replicas-logs.md
+  displayName: Connectivity logs for Azure Web PubSub Service.,Http Request logs for Azure Web PubSub Service.,Messaging logs for Azure Web PubSub Service.
+- name: microsoft.singularity/accounts
+  href: microsoft-singularity-accounts-logs.md
+  displayName: Activity Logs,Execution Logs
+- name: Microsoft.Sql/managedInstances
+  href: microsoft-sql-managedinstances-logs.md
+  displayName: Devops operations Audit Logs,Resource Usage Statistics,SQL Security Audit Event
+- name: Microsoft.Sql/managedInstances/databases
+  href: microsoft-sql-managedinstances-databases-logs.md
+  displayName: Errors,Query Store Runtime Statistics,Query Store Wait Statistics,SQL Insights
+- name: Microsoft.Sql/servers/databases
+  href: microsoft-sql-servers-databases-logs.md
+  displayName: Automatic tuning,Blocks,Database Wait Statistics,Deadlocks,Devops operations Audit Logs,Dms Workers,Errors,Exec Requests,Query Store Runtime Statistics,Query Store Wait Statistics,Request Steps,SQL Insights,Sql Requests,SQL Security Audit Event,Timeouts,Waits
+- name: Microsoft.StandbyPool/standbycontainergrouppools
+  href: microsoft-standbypool-standbycontainergrouppools-logs.md
+  displayName: Standby container group pool settings updates,Standby container group pool updates
+- name: Microsoft.StandbyPool/standbyvirtualmachinepools
+  href: microsoft-standbypool-standbyvirtualmachinepools-logs.md
+  displayName: Standby virtual machine pool settings updates,Standby virtual machine pool updates
+- name: Microsoft.Storage/storageAccounts/blobServices
+  href: microsoft-storage-storageaccounts-blobservices-logs.md
+  displayName: Storage Delete,Storage Read,Storage Write
+- name: Microsoft.Storage/storageAccounts/fileServices
+  href: microsoft-storage-storageaccounts-fileservices-logs.md
+  displayName: StorageDelete,StorageRead,StorageWrite
+- name: Microsoft.Storage/storageAccounts/queueServices
+  href: microsoft-storage-storageaccounts-queueservices-logs.md
+  displayName: StorageDelete,StorageRead,StorageWrite
+- name: Microsoft.Storage/storageAccounts/tableServices
+  href: microsoft-storage-storageaccounts-tableservices-logs.md
+  displayName: StorageDelete,StorageRead,StorageWrite
+- name: Microsoft.StorageCache/amlFilesystems
+  href: microsoft-storagecache-amlfilesystems-logs.md
+  displayName: Azure Managed Lustre audit event
+- name: Microsoft.StorageCache/caches
+  href: microsoft-storagecache-caches-logs.md
+  displayName: HPC Cache operation event,HPC Cache upgrade event,HPC Cache warning
+- name: Microsoft.StorageMover/storageMovers
+  href: microsoft-storagemover-storagemovers-logs.md
+  displayName: Copy logs - Failed,Job run logs
+- name: Microsoft.StreamAnalytics/streamingjobs
+  href: microsoft-streamanalytics-streamingjobs-logs.md
+  displayName: Authoring,Execution
+- name: Microsoft.Synapse/workspaces
+  href: microsoft-synapse-workspaces-logs.md
+  displayName: Built-in Sql Pool Requests Ended,Integration Activity Runs,Integration Pipeline Runs,Integration Trigger Runs,SQL Security Audit Event,Synapse Gateway Api Requests,Synapse Link Event,Synapse RBAC Operations
+- name: Microsoft.Synapse/workspaces/bigDataPools
+  href: microsoft-synapse-workspaces-bigdatapools-logs.md
+  displayName: Big Data Pool Applications Ended
+- name: Microsoft.Synapse/workspaces/kustoPools
+  href: microsoft-synapse-workspaces-kustopools-logs.md
+  displayName: Command,Data operation,Failed ingestion,Ingestion batching,Journal,Query,Succeeded ingestion,Table details,Table usage statistics
+- name: Microsoft.Synapse/workspaces/scopePools
+  href: microsoft-synapse-workspaces-scopepools-logs.md
+  displayName: Scope Pool Scope Jobs Ended,Scope Pool Scope Jobs State Change
+- name: Microsoft.Synapse/workspaces/sqlPools
+  href: microsoft-synapse-workspaces-sqlpools-logs.md
+  displayName: Dms Workers,Exec Requests,Request Steps,Sql Requests,Sql Security Audit Event,Waits
+- name: Microsoft.ToolchainOrchestrator/diagnostics
+  href: microsoft-toolchainorchestrator-diagnostics-logs.md
+  displayName: Audit Logs,Diagnostic Logs
+- name: microsoft.videoindexer/accounts
+  href: microsoft-videoindexer-accounts-logs.md
+  displayName: Audit,Indexing Logs
+- name: Microsoft.Web/hostingEnvironments
+  href: microsoft-web-hostingenvironments-logs.md
+  displayName: App Service Environment Platform Logs
+- name: Microsoft.Web/serverfarms
+  href: microsoft-web-serverfarms-logs.md
+  displayName: App Service Console Logs,App Service Platform logs
+- name: Microsoft.Web/sites
+  href: microsoft-web-sites-logs.md
+  displayName: Access Audit Logs,App Service Application Logs,App Service Authentication logs (preview),App Service Console Logs,App Service Platform logs,Function Application Logs,HTTP logs,IPSecurity Audit logs,Report Antivirus Audit Logs,Site Content Change Audit Logs,Workflow Runtime Logs
+- name: Microsoft.Web/sites/slots
+  href: microsoft-web-sites-slots-logs.md
+  displayName: Access Audit Logs,App Service Application Logs,App Service Console Logs,App Service Platform logs,Function Application Logs,HTTP logs,IPSecurity Audit logs,Report Antivirus Audit Logs,Site Content Change Audit Logs
+- name: Microsoft.Web/staticsites
+  href: microsoft-web-staticsites-logs.md
+  displayName: Diagnostic logs,HTTP logs
+- name: microsoft.workloads/sapvirtualinstances
+  href: microsoft-workloads-sapvirtualinstances-logs.md
+  displayName: Change Detection
+- name: Microsoft.ZeroTrustSegmentation/segmentationManagers
+  href: microsoft-zerotrustsegmentation-segmentationmanagers-logs.md
+  displayName: Segmentation Manager Job Status Log,Segmentation Manager Request Log
+- name: NGINX.NGINXPLUS/nginxDeployments
+  href: nginx-nginxplus-nginxdeployments-logs.md
+  displayName: NGINX Logs,NGINX Security Logs,NGINX Upstream Update Logs
+- name: Oracle.Database/autonomousDatabases
+  href: oracle-database-autonomousdatabases-logs.md
+  displayName: Backup Events,Creation Events,Critical Events,Delete Events,Information Events,Restore Events,Update Events
+- name: Oracle.Database/cloudExadataInfrastructures
+  href: oracle-database-cloudexadatainfrastructures-logs.md
+  displayName: Creation Events,Critical events,Delete Events,Information Events,Maintenance Events,Update Events
+- name: Oracle.Database/cloudVmClusters
+  href: oracle-database-cloudvmclusters-logs.md
+  displayName: Add Virtual Machine Events,Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Terminate Virtual Machine Events,Update Events
+- name: Oracle.Database/dbSystems
+  href: oracle-database-dbsystems-logs.md
+  displayName: Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Update Events

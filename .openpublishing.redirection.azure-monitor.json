@@ -1,5 +1,890 @@
 {
  "redirections": [
+    {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-aad_domainservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-aad-domainservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-aadiam_tenants.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-aadiam-tenants",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-agfoodplatform_farmbeats.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-agfoodplatform-farmbeats",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-analysisservices_servers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-analysisservices-servers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-apimanagement_service.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-apimanagement-service",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-app_managedenvironments.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-app-managedenvironments",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-appconfiguration_configurationstores.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-appconfiguration-configurationstores",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-applink_applinks_applinksmembers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-applink-applinks-applinksmembers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-appplatform_spring.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-appplatform-spring",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-attestation_attestationproviders.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-attestation-attestationproviders",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-automation_automationaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-automation-automationaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-avs_privateclouds.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-avs-privateclouds",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azureadgraph_tenants.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azureadgraph-tenants",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuredatatransfer_connections.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azuredatatransfer-connections",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents_datacollection.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azureplaywrightservice_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azureplaywrightservice-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuresphere_catalogs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azuresphere-catalogs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azurestackhci_clusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azurestackhci-clusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-azurestackhci_virtualmachines.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-azurestackhci-virtualmachines",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-batch_batchaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-batch-batchaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-blockchain_blockchainmembers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-blockchain-blockchainmembers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-botservice_botservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-botservice-botservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-cache_redis.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-cache-redis",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-cache_redisenterprise.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-cache-redisenterprise",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-cdn_edgeactions.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-cdn-edgeactions",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-cdn_profiles.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-cdn-profiles",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-chaos_experiments.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-chaos-experiments",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-cognitiveservices_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-cognitiveservices-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-communication_communicationservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-communication-communicationservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-compute_virtualmachines.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-compute-virtualmachines",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-compute_virtualmachinescalesets.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-compute-virtualmachinescalesets",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-conenctedvmwarevsphere_virtualmachines.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-conenctedvmwarevsphere-virtualmachines",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-confidentialledger_ledgers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-confidentialledger-ledgers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-confidentialledger_managedccfs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-confidentialledger-managedccfs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-connectedcache_cachenodes.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-connectedcache-cachenodes",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-connectedvehicle_platformaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-connectedvehicle-platformaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-containerinstance_containergroups.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-containerinstance-containergroups",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-containerregistry_registries.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-containerregistry-registries",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-containerservice_managedclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-containerservice-managedclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-d365customerinsights_instances.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-d365customerinsights-instances",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dashboard_dashboard.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dashboard-dashboard",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dashboard_grafana.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dashboard-grafana",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-databricks_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-databricks-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datacollaboration_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datacollaboration-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datafactory_factories.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datafactory-factories",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datalakeanalytics_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datalakeanalytics-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datalakestore_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datalakestore-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datareplication_replicationvaults.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datareplication-replicationvaults",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-datashare_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-datashare-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbformariadb_servers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbformariadb-servers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbformysql_flexibleservers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbformysql-flexibleservers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbformysql_servers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbformysql-servers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbforpostgresql_flexibleservers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbforpostgresql-flexibleservers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbforpostgresql_servers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbforpostgresql-servers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-dbforpostgresql_serversv2.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-dbforpostgresql-serversv2",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-desktopvirtualization_applicationgroups.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-desktopvirtualization-applicationgroups",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-desktopvirtualization_hostpools.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-desktopvirtualization-hostpools",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-desktopvirtualization_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-desktopvirtualization-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-devcenter_devcenters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-devcenter-devcenters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-devices_iothubs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-devices-iothubs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-devices_provisioningservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-devices-provisioningservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-devopsinfrastructure_pools.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-devopsinfrastructure-pools",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-digitaltwins_digitaltwinsinstances.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-digitaltwins-digitaltwinsinstances",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-documentdb_cassandraclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-documentdb-cassandraclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-documentdb_databaseaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-documentdb-databaseaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-documentdb_mongoclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-documentdb-mongoclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-durabletask_schedulers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-durabletask-schedulers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-edge_diagnostics.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-edge-diagnostics",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_domains.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-domains",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_namespaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-namespaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_partnernamespaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-partnernamespaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_partnertopics.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-partnertopics",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_systemtopics.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-systemtopics",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventgrid_topics.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventgrid-topics",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-eventhub_namespaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-eventhub-namespaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-experimentation_experimentworkspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-experimentation-experimentworkspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-graph_tenants.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-graph-tenants",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-hardwaresecuritymodules_cloudhsmclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-hardwaresecuritymodules-cloudhsmclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-hdinsight_clusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-hdinsight-clusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-healthcareapis_services.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-healthcareapis-services",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-healthcareapis_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-healthcareapis-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-healthcareinterop_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-healthcareinterop-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-healthdataaiservices_deidservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-healthdataaiservices-deidservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-hybridcontainerservice_provisionedclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-hybridcontainerservice-provisionedclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-insights_autoscalesettings.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-insights-autoscalesettings",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-insights_components.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-insights-components",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-insights_datacollectionrules.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-insights-datacollectionrules",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-insights_workloadmonitoring.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-insights-workloadmonitoring",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-intune_operations.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-intune-operations",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-keyvault_vaults.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-keyvault-vaults",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-kubernetes_connectedclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-kubernetes-connectedclusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-kusto_clusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-kusto-clusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-loadtestservice_loadtests.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-loadtestservice-loadtests",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-logic_integrationaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-logic-integrationaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-logic_workflows.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-logic-workflows",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-machinelearningservices_registries.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-machinelearningservices-registries",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-machinelearningservices_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-machinelearningservices-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-managednetworkfabric_networkdevices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-managednetworkfabric-networkdevices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-media_mediaservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-media-mediaservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-monitor_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-monitor-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-monitor_pipelinegroups.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-monitor-pipelinegroups",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_applicationgateways.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-applicationgateways",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_azurefirewalls.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-azurefirewalls",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_bastionhosts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-bastionhosts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_dnsresolverpolicies.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-dnsresolverpolicies",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_expressroutecircuits.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-expressroutecircuits",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_frontdoors.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-frontdoors",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_loadbalancers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-loadbalancers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_networkinterfaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-networkinterfaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_networkmanagers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-networkmanagers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_networksecuritygroups.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-networksecuritygroups",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_networksecurityperimeters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-networksecurityperimeters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_networkwatchers_connectionmonitors.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-networkwatchers-connectionmonitors",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_publicipaddresses.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-publicipaddresses",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_trafficmanagerprofiles.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-trafficmanagerprofiles",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_virtualnetworkgateways.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-virtualnetworkgateways",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_virtualnetworks.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-virtualnetworks",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-network_vpngateways.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-network-vpngateways",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkanalytics_dataproducts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkanalytics-dataproducts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkcloud_baremetalmachines.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkcloud-baremetalmachines",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkcloud_clustermanagers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkcloud-clustermanagers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkcloud_clusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkcloud-clusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkcloud_storageappliances.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkcloud-storageappliances",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-networkfunction_azuretrafficcollectors.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-networkfunction-azuretrafficcollectors",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-onlineexperimentation_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-onlineexperimentation-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-openenergyplatform_energyservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-openenergyplatform-energyservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-openlogisticsplatform_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-openlogisticsplatform-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-operationalinsights_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-operationalinsights-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-orbital_geocatalogs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-orbital-geocatalogs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-playfab_titles.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-playfab-titles",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-powerbi_tenants.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-powerbi-tenants",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-powerbi_tenants_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-powerbi-tenants-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-powerbidedicated_capacities.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-powerbidedicated-capacities",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-purview_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-purview-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-recoveryservices_vaults.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-recoveryservices-vaults",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-relay_namespaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-relay-namespaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-scvmm_virtualmachines.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-scvmm-virtualmachines",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-search_searchservices.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-search-searchservices",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-security_defenderforstoragesettings.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-security-defenderforstoragesettings",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-security_security.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-security-security",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_alerteventnormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-alerteventnormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_asimtables.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-asimtables",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_assetentitynormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-assetentitynormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_auditeventnormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-auditeventnormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_authenticationevent.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-authenticationevent",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_cef.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-cef",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_dnsnormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-dnsnormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_networksessionnormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-networksessionnormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_processeventnormalized.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-processeventnormalized",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_purview.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-purview",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_securityinsights.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-securityinsights",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_threatintelligence.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-threatintelligence",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-securityinsights_websessionlogs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-securityinsights-websessionlogs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-servicebus_namespaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-servicebus-namespaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-servicefabric_clusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-servicefabric-clusters",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-servicenetworking_trafficcontrollers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-servicenetworking-trafficcontrollers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-signalrservice_signalr.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-signalrservice-signalr",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-signalrservice_webpubsub.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-signalrservice-webpubsub",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-sql_managedinstances.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-sql-managedinstances",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-sql_servers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-sql-servers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-sql_servers_databases.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-sql-servers-databases",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-standbypool_standbycontainergrouppools.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-standbypool-standbycontainergrouppools",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-standbypool_standbyvirtualmachinepools.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-standbypool-standbyvirtualmachinepools",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-storage_storageaccounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-storage-storageaccounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-storagecache_amlfilesytems.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-storagecache-amlfilesytems",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-storagecache_caches.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-storagecache-caches",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-storagemover_storagemovers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-storagemover-storagemovers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-streamanalytics_streamingjobs.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-streamanalytics-streamingjobs",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-synapse_workspaces.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-synapse-workspaces",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-timeseriesinsights_environments.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-timeseriesinsights-environments",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-toolchainorchestrator_diagnostics.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-toolchainorchestrator-diagnostics",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-videoindexer_accounts.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-videoindexer-accounts",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-web_sites.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-web-sites",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-workloadmonitor_monitors.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-workloadmonitor-monitors",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/microsoft-zerotrustsegmentation_segmentationmanagers.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/microsoft-zerotrustsegmentation-segmentationmanagers",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/nginx-nginxplus_nginxdeployments.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/nginx-nginxplus-nginxdeployments",
+   "redirect_document_id": true
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/tables/oracle-database_cloudvmclusters.md",
+   "redirect_url": "/azure/azure-monitor/reference/tables/oracle-database-cloudvmclusters",
+   "redirect_document_id": true
+  },
   {
    "source_path": "articles/azure-monitor/app/codeless-app-service.md",
    "redirect_url": "/azure/app-service/monitor-app-service",
@@ -53,6 +938,21 @@
   {
    "source_path_from_root": "/articles/azure-monitor/profiler/profiler-overview.md",
    "redirect_url": "/azure/azure-monitor/insights/code-optimizations-profiler-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-brownfield.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#add-a-new-receiver-to-existing-pipeline-group",
+   "redirect_document_id": true
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-kubernetes-gateway-multiple.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway#new-pipeline-group-instance",
+   "redirect_document_id": false
+  },
+  {
+   "source_path_from_root": "/articles/azure-monitor/data-collection/pipeline-traefik.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway",
    "redirect_document_id": false
   },
   {
@@ -8655,16 +9555,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/tables/microsoft-azuremonitordiagnosticsagents-datacollection.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
-   "source_path": "articles/azure-monitor/reference/tables/oracle-database-cloudvmclusters.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/app/asp-net-counters.md",
    "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false
@@ -8787,6 +9677,11 @@
   {
    "source_path": "articles/azure-monitor/data-collection/edge-pipeline-configure.md",
    "redirect_url": "/azure/azure-monitor/data-collection/pipeline-configure",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/data-collection/pipeline-configure-clients.md",
+   "redirect_url": "/azure/azure-monitor/data-collection/pipeline-kubernetes-gateway",
    "redirect_document_id": false
   },
   {
@@ -9007,6 +9902,36 @@
   {
    "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classiccompute-virtualmachines-metrics.md",
    "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-blobservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-fileservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-queueservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/reference/supported-metrics/microsoft-classicstorage-storageaccounts-tableservices-metrics.md",
+   "redirect_url": "/azure/azure-monitor/reference",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/api/errors.md",
+   "redirect_url": "/azure/azure-monitor/logs/api/timeouts#common-api-errors",
    "redirect_document_id": false
   }
  ]

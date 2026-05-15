@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 SAP NetWeaver Application Server ABAP logs changes to business data objects in change documents. This table stores information about the changes made to business objects, including the user who made the change, the date and time of the change, and the type of change that was made.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,43 @@ SAP NetWeaver Application Server ABAP logs changes to business data objects in c
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [abapchangedocslog](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/abapchangedocslog-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| ActualChangeNumber | string | Actual change number. |
+| AgentId | string | Unique agent or integration suite identifier. |
+| _BilledSize | real | The record size in bytes |
+| ChangedTableKey | string | Changed table key. |
+| ChangeNumber | string | Document change number. |
+| ClientId | string | The ClientId is a three-digit number that identifies a specific client within an SAP system. The ClientId is used in various SAP transactions and configuration settings to identify the client and ensure that the correct client is being accessed or configured. |
+| CreatedFromPlannedChange | string | Created from planned change, in the following syntax:('X' , ' '). |
+| CurrencyKeyNew | string | Currency key: new value. |
+| CurrencyKeyOld | string | Currency key: old value. |
+| FieldName | string | Field name. |
+| FlagText | string | Flag text. |
+| HeaderTypeOfChange | string | Header type of change, including: U = Change; I = Insert; E = Delete Single Docu; D = Delete; J = Insert Single Docu. |
+| Instance | string | The Instance refers to a specific installation of an SAP system on a server. An SAP system can have multiple instances running on the same server, each with its own set of processes and resources. The Instance is identified by a unique name that is set during the installation of the SAP system, following syntax: \<HOST\>_\<SYSID\>_\<SYSNR\>. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| ItemTypeOfChange | string | Item type of change, including: U = Change; I = Insert; E = Delete Single Docu; D = Delete; J = Insert Single Docu. |
+| Language | string | Document language. |
+| ObjectClass | string | Object class, such as BELEG, BPAR, PFCG, IDENTITY. |
+| ObjectId | string | Object ID. |
+| PlannedChangeNumber | string | Planned change number. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| SystemId | string | The SystemId is a unique identifier for a specific SAP system. It is a three-character alphanumeric code that is used to distinguish between different SAP systems. |
+| SystemNumber | string | The SystemNumber is a two-digit number that identifies a specific SAP system. It is set during the installation of an SAP system and cannot be changed afterwards. The SystemNumber is used in various SAP transactions and configuration settings to identify the system and ensure that the correct system is being accessed or configured. |
+| SystemRole | string | The SAP system's role. |
+| SystemUniqueId | string | Unique system identifier. |
+| TableName | string | Table name. |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time when the record was generated. |
+| TransactionCode | string | Transaction code. |
+| Type | string | The name of the table |
+| UOMNew | string | Unit of measure: new value. |
+| UOMOld | string | Unit of measure: old value. |
+| UpdatedOn | datetime | The date and time of the event occured in the SAP system in UTC format. |
+| User | string | The User who performed the a specific event or activity. |
+| ValueNew | string | Field content: new value. |
+| ValueOld | string | Field content: old value. |
+| Version | string | Document change version. |

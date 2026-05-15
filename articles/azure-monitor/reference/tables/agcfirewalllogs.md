@@ -13,7 +13,6 @@ ms.date: 03/11/2026
 
 Contains web application firewall logs logged through either detection or prevention mode for Application Gateway for Containers.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,34 @@ Contains web application firewall logs logged through either detection or preven
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [agcfirewalllogs](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/agcfirewalllogs-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| Action | string | Action taken on the request. Available values are Blocked and Allowed (for custom rules), Matched (when a rule matches a part of the request), and Detected and Blocked (these are both for mandatory rules, depending on if the WAF is in detection or prevention mode). |
+| _BilledSize | real | The record size in bytes |
+| ClientIp | string | Originating IP for the request. |
+| ClientPort | int | Originating port for the request. |
+| DetailedData | string | Specific data found in request that matched the rule for the triggered event. |
+| DetailedMessage | string | Description of the rule for the triggered event. |
+| FileDetails | string | Configuration file that contained the rule for the triggered event. |
+| Hostname | string | Hostname or IP address of the Application Gateway. |
+| InstanceId | string | Application Gateway instance for which firewall data is being generated. For a multiple-instance application gateway, there is one row per instance. |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| LineDetails | string | Line number in the configuration file that triggered the event. |
+| Message | string | User-friendly message for the triggering event. More details are provided in the details section. |
+| OperationName | string | Name of the operation. |
+| PolicyId | string | Resource ID of the web application firewall policy. |
+| PolicyScope | string | A named scope consisting of Kubernetes resource references the scope is applied to. |
+| PolicyScopeName | string | The name to the type of scope assignment the web application firewall policy is assigned to. |
+| RequestUri | string | URL of the received request. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| RuleId | string | Rule ID of the triggering event. |
+| RuleSetType | string | Rule set type. The available value is Microsoft_DefaultRuleSet or Microsoft_BotManagerRuleSet. |
+| RuleSetVersion | string | Rule set version used for Microsoft_DefaultRuleSet or Microsoft_BotManagerRuleSet. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Time (UTC) when the log was created. |
+| TrackingId | string | Generated guid by Application Gateway for Containers to help with tracking and debugging. This value correlates to the x-request-id header returned to the client from Application Gateway for Containers. |
+| Type | string | The name of the table |

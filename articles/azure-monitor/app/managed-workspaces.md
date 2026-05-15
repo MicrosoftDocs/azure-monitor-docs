@@ -1,8 +1,9 @@
 ---
+
 title: Application Insights managed workspaces
 description: This article explains automatically created managed workspaces
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 05/15/2026
 ---
 
 # Managed workspaces in Application Insights
@@ -11,13 +12,13 @@ ms.date: 08/28/2025
 
 ## What is a managed workspace?
 
-A managed workspace is a Log Analytics workspace that Application Insights creates and manages on your behalf. This workspace is used exclusively by the Application Insights resource that created it.
+For a standard workspace-based Application Insights resource, a managed workspace is a Log Analytics workspace that Application Insights creates and manages on your behalf. This workspace is used exclusively by the Application Insights resource that created it.
 
 If you create an Application Insights resource without specifying a Log Analytics workspace, Azure automatically creates a managed workspace. If you attempt to create a classic Application Insights resource, Azure instead creates a workspace-based version that uses a managed workspace.
 
 ## What happens during managed workspace creation?
 
-When Azure creates a managed workspace during Application Insights deployment, the following actions occur:
+When Azure creates a managed Log Analytics workspace during standard Application Insights deployment, the following actions occur:
 
 - It creates the Application Insights resource in the specified subscription and resource group.
 - It creates a Log Analytics workspace and links it to the Application Insights resource.
@@ -30,7 +31,8 @@ Managed workspaces have the following limitations:
 - Support only the Application Insights resource that created them. A managed workspace can't be used for diagnostic settings, custom logs, or another Application Insights instance.
 - Changes to workspace settings, such as quotas, are allowed, but the workspace can't be repurposed for other uses.
 - Tagging is supported only for newly created managed resource groups and managed workspaces. Existing managed resource groups and workspaces created before this change can't be tagged.
-- Removal follows one of two paths:
+- You can't delete the managed Log Analytics workspace directly while it's managed by Application Insights. Removal follows one of two paths:
+
   - Delete the Application Insights resource. Azure deletes the managed resource group and the managed workspace automatically.
   - Keep the Application Insights resource by connecting it to a different Log Analytics workspace, then delete the managed resource group that contains the managed workspace.
 
@@ -39,17 +41,19 @@ Managed workspaces have the following limitations:
 Managed workspaces created by Application Insights follow specific naming conventions.
 
 **Managed workspace groups**
-- **Name**: `ai_<APPINSIGHTS RESOURCE NAME>_<APPINSIGHTS RESOURCE ID>_managed`
+
+- **Name**: `ai\_<APPINSIGHTS RESOURCE NAME>\_<APPINSIGHTS RESOURCE ID>\_managed`
 - **Managed by**: The associated Application Insights resource
 
 **Managed Log Analytics workspaces**
+
 - **Name**: `managed-<APPINSIGHTS RESOURCE NAME>-ws`
 
-You can identify the managing resource by checking the **Managed By** property in the Azure portal.
+You can identify the managing resource by checking the **Managed By*- property in the Azure portal.
 
 ## Remove managed workspaces
 
-Remove a managed workspace only after it isn't connected to an Application Insights resource. Use one of the following options.
+Remove a managed workspace only after it isn't connected to an Application Insights resource. You can't delete the managed Log Analytics workspace directly while it's protected by the managed resource group's deny assignment. Use one of the following options.
 
 ### Option 1: Delete the Application Insights resource
 
@@ -58,27 +62,27 @@ Delete the Application Insights resource that owns the managed workspace. Azure 
 ### Option 2: Keep the Application Insights resource
 
 1. **Reconnect the Application Insights resource to a different Log Analytics workspace.**
-1. **Delete the managed resource group** that contains the managed workspace.
+2. **Delete the managed resource group*- that contains the managed workspace. Delete the managed resource group, not the workspace. Resource group deletion removes the managed workspace and the deny assignment.
 
 > [!NOTE]
 > The managed workspace shows **Deny assignments** in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
 
 ## Automatically migrated classic resources
 
-Beginning in April 2025, classic Application Insights resources are automatically migrated to workspace-based resources. As part of the migration:
+Beginning in April 2025, Microsoft attempted to automatically migrate classic Application Insights resources to workspace-based resources. As part of the migration:
 
 - The classic Application Insights resource is converted to a workspace-based resource.
 - A managed Log Analytics workspace is created and linked to the migrated resource.
 - The workspace is placed in a new resource group. The new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at [Convert classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ### Limitations of automatic migration
 
 > [!WARNING]
-> * Microsoft completed attempts to automatically migrate classic Application Insights resources to workspace-based resources. Remaining classic resources must be manually migrated.
-> * Classic Application Insights resources that aren't migrated by July 31, 2025, are disabled, and can't ingest new data. To reenable a resource, convert it to a workspace-based Application Insights resource.
+> - Microsoft completed attempts to automatically migrate classic Application Insights resources to workspace-based resources. Remaining classic resources must be manually migrated.
+> - Classic Application Insights resources have been retired and don't ingest new data. To reenable telemetry collection, convert the resource to a workspace-based Application Insights resource.
 
 Some classic Application Insights resources can't be migrated until you take extra steps. Migration is blocked in the following scenarios:
 
@@ -89,7 +93,7 @@ Some classic Application Insights resources can't be migrated until you take ext
 
 To complete the migration, update your subscription or resource configuration to remove the blockers mentioned earlier.
 
-To prevent service interruptions, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+To reenable telemetry collection or avoid ongoing service interruption, resolve these issues and [manually migrate classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ## AMPLS considerations
 
@@ -103,7 +107,7 @@ During migration, the process copies the PNA settings from the classic resource 
 
 If public query access is disabled and the workspace isn't associated with AMPLS, telemetry queries from a private network fail after migration. To restore access, either add the workspace to AMPLS or enable public query access.
 
-Telemetry ingestion continues regardless of PNA settings or AMPLS scope. The ingestion path from the Application Insights endpoint to the Log Analytics workspace uses Microsoft's Azure backbone network. Migration doesn't interrupt data collection.
+Telemetry ingestion for successfully migrated workspace-based resources continues regardless of PNA settings or AMPLS scope. The ingestion path from the Application Insights endpoint to the Log Analytics workspace uses Microsoft's Azure backbone network. Migration doesn't interrupt data collection for resources that are successfully migrated to workspace-based Application Insights.
 
 ### Common configurations
 
@@ -130,9 +134,9 @@ Telemetry ingestion continues regardless of PNA settings or AMPLS scope. The ing
 
 If you're using AMPLS, take the following steps:
 
-- **Add the Log Analytics workspace to your AMPLS** to maintain private query access.
-- **Alternatively, enable PNA for queries** if private access isn't required.
-- **Validate telemetry query access** from your virtual network after migration.
+- **Add the Log Analytics workspace to your AMPLS*- to maintain private query access.
+- **Alternatively, enable PNA for queries*- if private access isn't required.
+- **Validate telemetry query access*- from your virtual network after migration.
 
 ### How to add a workspace to AMPLS
 
@@ -162,7 +166,7 @@ These policies are defined and enforced at the management group, subscription, o
 ### What to expect
 
 - Microsoft doesn't retry automatic migration for resources blocked by policy.
-- Microsoft continues telemetry ingestion into classic resources until July 31, 2025.
+- Classic Application Insights resources have been retired and don't ingest new telemetry.
 - Microsoft keeps existing data available for query after ingestion stops but doesn't collect new telemetry.
 
 ### Required actions

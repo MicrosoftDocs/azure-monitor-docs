@@ -2,7 +2,7 @@
 title: Configure Azure Monitor Application Insights for Java
 description: Learn how to configure Azure Monitor Application Insights for Java, including connection strings, JSON configuration, sampling overrides, JMX metrics, telemetry processors, logging, Micrometer metrics, and runtime settings.
 ms.topic: how-to
-ms.date: 03/20/2026
+ms.date: 04/08/2026
 ms.devlang: java
 ms.custom:
   - devx-track-java, devx-track-extended-java
@@ -19,7 +19,7 @@ This article shows you how to configure Azure Monitor Application Insights for J
 
 # [Default config file](#tab/config-default)
 
-By default, Application Insights Java 3 expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.5.jar*.
+By default, Application Insights Java 3 expects the configuration file to be named *applicationinsights.json* and located in the same directory as *applicationinsights-agent-3.7.8.jar*.
 
 # [Custom config file](#tab/config-custom)
 
@@ -28,7 +28,7 @@ You can specify a custom configuration file with:
 * the `APPLICATIONINSIGHTS_CONFIGURATION_FILE` environment variable, or
 * the `applicationinsights.configuration.file` system property.
 
-If you provide a relative path, it will resolve relative to the directory where *applicationinsights-agent-3.7.5.jar* is located.
+If you provide a relative path, it will resolve relative to the directory where *applicationinsights-agent-3.7.8.jar* is located.
 
 # [Inline JSON config](#tab/config-json)
 
@@ -1330,17 +1330,17 @@ Metric filters are used to exclude some metrics in order to help control ingesti
 
 | Metric name | Metric type | Description | Filterable |
 |-------------|-------------|-------------|------------|
-| `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | ✅ |
-| `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | ✅ |
-| `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | ✅ |
-| `GC Total Time` | Custom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| ✅ |
-| `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | ✅ |
-| `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| ✅ |
-| `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | ❌ |
-| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | ❌ |
-| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | ❌ |
-| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | ❌ |
-| `\Memory\Available Bytes` | Default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | ❌ |
+| `Current Thread Count` | Custom metrics | See [ThreadMXBean.getThreadCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html#getThreadCount--). | âœ… |
+| `Loaded Class Count` | Custom metrics | See [ClassLoadingMXBean.getLoadedClassCount()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html#getLoadedClassCount--). | âœ… |
+| `GC Total Count` | Custom metrics | Sum of counts across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionCount()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html). | âœ… |
+| `GC Total Time` | Custom metrics | Sum of time across all GarbageCollectorMXBean instances (diff since last reported). See [GarbageCollectorMXBean.getCollectionTime()](https://docs.oracle.com/javase/7/docs/api/java/lang/management/GarbageCollectorMXBean.html).| âœ… |
+| `Heap Memory Used (MB)` | Custom metrics | See [MemoryMXBean.getHeapMemoryUsage().getUsed()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--). | âœ… |
+| `% Of Max Heap Memory Used` | Custom metrics | java.lang:type=Memory / maximum amount of memory in bytes. See [MemoryUsage](https://docs.oracle.com/javase/7/docs/api/java/lang/management/MemoryUsage.html)| âœ… |
+| `\Processor(_Total)\% Processor Time` | Default metrics | Difference in [system wide CPU load tick counters](https://www.oshi.ooo/oshi-core/apidocs/com.github.oshi.common/oshi/hardware/CentralProcessor.html#getProcessorCpuLoadTicks()) (Only User and System) divided by the number of [logical processors count](https://www.oshi.ooo/oshi-core/apidocs/com.github.oshi.common/oshi/hardware/CentralProcessor.html#getLogicalProcessors()) in a given interval of time | âŒ |
+| `\Process(??APP_WIN32_PROC??)\% Processor Time` | Default metrics | See [OperatingSystemMXBean.getProcessCpuTime()](https://docs.oracle.com/javase/8/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getProcessCpuTime--) (diff since last reported, normalized by time and number of CPUs). | âŒ |
+| `\Process(??APP_WIN32_PROC??)\Private Bytes` | Default metrics | Sum of [MemoryMXBean.getHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getHeapMemoryUsage--) and [MemoryMXBean.getNonHeapMemoryUsage()](https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryMXBean.html#getNonHeapMemoryUsage--). | âŒ |
+| `\Process(??APP_WIN32_PROC??)\IO Data Bytes/sec` | Default metrics | `/proc/[pid]/io` Sum of bytes read and written by the process (diff since last reported). See [proc(5)](https://man7.org/linux/man-pages/man5/proc.5.html). | âŒ |
+| `\Memory\Available Bytes` | Default metrics | See [OperatingSystemMXBean.getFreePhysicalMemorySize()](https://docs.oracle.com/javase/7/docs/jre/api/management/extension/com/sun/management/OperatingSystemMXBean.html#getFreePhysicalMemorySize()). | âŒ |
 
 ---
 
@@ -2286,7 +2286,7 @@ Add `applicationinsights-core` to your application:
 <dependency>
   <groupId>com.microsoft.azure</groupId>
   <artifactId>applicationinsights-core</artifactId>
-  <version>3.7.5</version>
+  <version>3.7.8</version>
 </dependency>
 ```
 
@@ -2515,7 +2515,7 @@ By default, Application Insights Java 3.x logs at level `INFO` to both the file 
 In the preceding configuration example:
 
 * `level` can be one of `OFF`, `ERROR`, `WARN`, `INFO`, `DEBUG`, or `TRACE`.
-* `path` can be an absolute or relative path. Relative paths are resolved against the directory where `applicationinsights-agent-3.7.5.jar` is located.
+* `path` can be an absolute or relative path. Relative paths are resolved against the directory where `applicationinsights-agent-3.7.8.jar` is located.
 
 Starting with Java agent version 3.0.2, you can also set the self-diagnostics `level` by using the environment variable `APPLICATIONINSIGHTS_SELF_DIAGNOSTICS_LEVEL`. It then takes precedence over the self-diagnostics level specified in the JSON configuration.
 

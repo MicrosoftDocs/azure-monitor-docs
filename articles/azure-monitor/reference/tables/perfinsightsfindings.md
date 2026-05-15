@@ -13,7 +13,6 @@ ms.date: 03/30/2026
 
 This table contains information about individual PerfInsights findings.
 
-
 ## Table attributes
 
 |Attribute|Value|
@@ -26,8 +25,25 @@ This table contains information about individual PerfInsights findings.
 |**Lake-only ingestion**|Yes|
 |**Sample Queries**|-|
 
-
-
 ## Columns
-  
-[!INCLUDE [perfinsightsfindings](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/tables/perfinsightsfindings-include.md)]
+
+| Column | Type | Description |
+|---|---|---|
+| _BilledSize | real | The record size in bytes |
+| DataSetRunId | string | The identifier of the Data Set run for which this data was collected. |
+| Finding | string | The detailed description of the finding. |
+| FindingId | string | Unique identifier for the finding. |
+| FindingPartitionKey | string | Partitionkey to access the finding. |
+| ImpactLevel | string | Impact level of the finding (High, Medium, Low). |
+| _IsBillable | string | Specifies whether ingesting the data is billable. When _IsBillable is `false` ingestion isn't billed to your Azure account |
+| Recommendation | string | Recommended action to address the finding. |
+| ReferenceLinks | dynamic | List of reference URLs. |
+| ReportId | string | Reference to the parent report ID. |
+| _ResourceId | string | A unique identifier for the resource that the record is associated with |
+| RuleCategory | string | Category of the finding. |
+| RuleFriendlyName | string | Name of the rule that generated the finding. |
+| SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
+| _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
+| TenantId | string | The Log Analytics workspace ID |
+| TimeGenerated | datetime | Date and time (UTC) when the log was generated. This column can be used to construct a time series or to filter data to a specific time window. Example: 2014-05-25T08:20:03.123456Z. |
+| Type | string | The name of the table |

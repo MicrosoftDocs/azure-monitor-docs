@@ -2,7 +2,7 @@
 title: Use Service Upgrade and Retirement recommendations
 description: Use recommendations for retirement and upgrade of a service
 ms.topic: upgrade-and-migration-article
-ms.date: 11/11/2025
+ms.date: 05/05/2025
 
 ---
 
@@ -18,7 +18,7 @@ Azure services periodically undergo a retirement and upgrade journey, necessitat
 
 The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements have **Retirement Date** and **Retiring Feature** values marked as `N/A` or null.
 
-Previously, [retirement recommendations were only available through Advisor workbooks](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn") that are in preview mode. Now, you also have access to the information using the native user experience in Azure Advisor and Azure Advisor REST API requests. Based on your requirements and comfort, choose your route.
+Retirement recommendations can be accessed through multiple channels—Recommendations Pane, API, ARG, ASH and workbooks. All of these have the same source of truth - Advisor retirement recommendations. Choose the option that best fits your needs and preferences. The details are captured below:
 
 > [!NOTE]
 > Only recommendations with available **Impacted resources** information are displayed in Advisor panes. The Advisor API response provides the same information. For more information about **Impacted resources**, see [Coverage of Services](#coverage-of-services).
@@ -127,7 +127,41 @@ advisorresources
 | project retirementFeatureName, retirementDate, resourceId, shortDescription
 ```
 
+### [Service retirements workbooks](#tab/service-retirement-workbook)
+
+The Service Retirement workbook in Azure Advisor provides a single centralized resource-level view of service retirements. It helps you assess impact, evaluate options, and plan for migration from retiring services and features.
+
+To open the Service Retirement workbook, complete the following actions.
+
+1.  In **Azure Advisor**, select **Workbooks**.
+
+1.  Select **All** or **Public Templates**.
+
+1.  Under **Azure Advisor**, select **Service Retirement**.
+
+You can also directly access the Service Retirement workbook using [this link](https://portal.azure.com/#blade/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/WorkbookTemplateName/Service%20Retirement).
+
+The workbook shows a list and a map view of service retirements that impact your resources or services. Each service has a planned retirement date, the number of impacted resources, and migration guidance.
+
+*   Use filters for subscription, resource group, and location to focus on a specific workload.
+*   Use sorting to find services that are scheduled to retire and have the most impact on your workload.
+*   Use the export feature to share the report with your team to help plan your migration.
+
+> For more information, see [Service Retirement workbook](./advisor-workbook-service-retirement.md "Service Retirement workbook | Azure Advisor | Microsoft Learn").
+
+### [Azure Service Health](#tab/azure-service-health)
+
+Azure Service Health is a suite of experiences that provides  alerts and guidance when issues in Azure services affect you. It notifies you about service incidents, planned maintenance, and health advisories that might impact your Azure resources.
+
+Azure Service Health is also a source through which you can stay informed about upcoming service retirements. Health advisories in Azure Service Health include information about services and features that are scheduled for retirement, helping you plan migrations in advance.
+Azure Service Health is one of the ways you can proactively get information on upcoming Azure service retirements alongside Azure Advisor recommendations, workbooks, and APIs.
+
+> For more information, see [What is Azure Service Health?](/azure/service-health/overview "What is Azure Service Health? | Microsoft Learn").
+
 ---
+
+> [!NOTE]
+> All channels support retirement recommendations only for public clouds.
 
 ## Coverage of services
 
@@ -218,6 +252,10 @@ Based on your need, use any of the listed ways to get the required information.
 
 [!INCLUDE [Table for retiring June 2026](./includes/retiring-feature/retirement-date-2026-06.md)]
 
+#### Retiring July 2026
+
+[!INCLUDE [Table for retiring July 2026](./includes/retiring-feature/retirement-date-2026-07.md)]
+
 #### Retiring August 2026
 
 [!INCLUDE [Table for retiring August 2026](./includes/retiring-feature/retirement-date-2026-08.md)]
@@ -251,6 +289,10 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring April 2027
 
 [!INCLUDE [Table for retiring April 2027](./includes/retiring-feature/retirement-date-2027-04.md)]
+
+#### Retiring May 2027
+
+[!INCLUDE [Table for retiring May 2027](./includes/retiring-feature/retirement-date-2027-05.md)]
 
 #### Retiring June 2027
 
@@ -289,6 +331,16 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring November 2028
 
 [!INCLUDE [Table for retiring November 2028](./includes/retiring-feature/retirement-date-2028-11.md)]
+
+### [Retiring in 2029](#tab/service-retire-2029)
+
+#### Retiring March 2029
+
+[!INCLUDE [Table for retiring March 2029](./includes/retiring-feature/retirement-date-2029-03.md)]
+
+#### Retiring June 2029
+
+[!INCLUDE [Table for retiring June 2029](./includes/retiring-feature/retirement-date-2029-06.md)]
 
 ---
 

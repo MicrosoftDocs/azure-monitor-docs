@@ -5,24 +5,21 @@ ms.topic: generated-reference
 ms.date: 10/31/2025
 ms.custom: Microsoft.Cdn/edgeactions, naam
 
-# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script. 
+# NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
 
 ---
 
+# Supported logs for Microsoft.Cdn/edgeactions
 
-
-
-# Supported logs for Microsoft.Cdn/edgeactions  
 The following table lists the types of logs available for the Microsoft.Cdn/edgeactions resource type.
-  
-  
-  
-For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/edgeactions](../supported-metrics/microsoft-cdn-edgeactions-metrics.md)  
-  
 
-  
-[!INCLUDE [Microsoft.Cdn/edgeactions](~/reusable-content/ce-skilling/azure/includes/azure-monitor/reference/logs/microsoft-cdn-edgeactions-logs-include.md)]  
-  
+For a list of supported metrics, see [Supported metrics - Microsoft.Cdn/edgeactions](../supported-metrics/microsoft-cdn-edgeactions-metrics.md)
+
+
+|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
+|---|---|---|---|---|---|---|
+|`ServiceLog` |Service Logs ||No|No||Yes |
+|`UserLog` |Console Logs |[EdgeActionConsoleLog](/azure/azure-monitor/reference/tables/edgeactionconsolelog)<p>Logs emitted to console by the action code.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/edgeactionconsolelog)|Yes |
 
 ## Next Steps
 
