@@ -67,10 +67,7 @@ If a new review is available to you, you see a notification banner on top of Adv
 [!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
 
 1.  On the menu for Advisor, select **Manage** > **Reviews (Preview)**.
-
-
-    A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
-
+1.  A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
 1.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
 
 ### Review status
