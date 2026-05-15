@@ -145,7 +145,7 @@ Mark a recommendation as complete when you take the recommended action or when t
 > [!NOTE]
 > You can reactivate recommendations you marked as completed manually until Azure Advisor performs system verification. After system verification, you can't change or reactivate completed recommendations.
 
-:::image type="content" source="./media/advisor-get-started/state_management-2.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state_management-2.png":::
+:::image type="content" source="./media/advisor-get-started/state-management-2.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state_management-2.png":::
 
 ### Reactivate a recommendation
 
