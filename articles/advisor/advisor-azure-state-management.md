@@ -1,6 +1,6 @@
 ---
 # Required metadata
-# For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
+# For more information, see https://learn.microsoft.com/help/platform/learn-editor-add-metadata
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
 title: Azure Advisor recommendation state management
@@ -24,7 +24,7 @@ By using Azure Advisor recommendation state management, you can track and manage
 Full state management is not supported for security recommendations. Only the Active state is supported for this category. Other states such as Completed, Postponed, and Dismissed are not applicable to security recommendations. 
 
 Please note that Completed state may appear for security recommendations in the Advisor table in Azure Resource Graph. This value may not reflect the actual status and should not be relied upon.
-For the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud: https://learn.microsoft.com/azure/defender-for-cloud/
+For the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud: [Microsoft Defender for Cloud documentation] (../articles/defender-for-cloud/)
 
 :::image type="content" source="./media/advisor-get-started/state-management.png" alt-text="Screenshot showing the Azure Advisor state management page." lightbox="./media/advisor-get-started/state-management.png":::
 
@@ -99,7 +99,7 @@ Review the definitions and implications for the Completed and Dismissed recommen
 Use the following procedures to change recommendation states.
 
 > [!NOTE]
->To perform these actions, you need specific permissions. For more information, see [Roles and permissions](https://learn.microsoft.com/azure/advisor/permissions).
+>To perform these actions, you need specific permissions. For more information, see [Roles and permissions](s://learn.microsoft.com/azure/advisor/permissions).
 
 ### How to change recommendation states
 
@@ -145,7 +145,7 @@ Mark a recommendation as complete when you take the recommended action or when t
 > [!NOTE]
 > You can reactivate recommendations you marked as completed manually until Azure Advisor performs system verification. After system verification, you can't change or reactivate completed recommendations.
 
-:::image type="content" source="./media/advisor-get-started/state-management-2.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state_management-2.png":::
+:::image type="content" source="./media/advisor-get-started/state-management-2.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state-management-2.png":::
 
 ### Reactivate a recommendation
 
