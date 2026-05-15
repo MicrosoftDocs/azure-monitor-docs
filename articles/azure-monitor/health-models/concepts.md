@@ -43,9 +43,9 @@ In most health models, all entities will connect directly or indirectly to the r
 
 
 ## Signals
-The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*.
+The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
 
-For signal types, signal definitions, thresholds, and configuration details, see [Signals in Azure Monitor health models](./signals.md).
+For signal types, signal definitions, thresholds, and configuration details, see [Signals in Azure Monitor health models](./signals.md). 
 
 ## Health states
 The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. Health state is determined by the [signals](#signals) that are associated with an entity, and it may be affected by the health states of any child entities. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
