@@ -24,8 +24,6 @@ When Azure creates a managed Log Analytics workspace during standard Application
 - It creates a Log Analytics workspace and links it to the Application Insights resource.
 - It creates a new resource group and places the managed workspace in that group.
 
-For OTLP-enabled Application Insights resources, managed workspace creation can also create the extra Azure Monitor resources required for OTLP ingestion. The Application Insights resource shows the DCR link and OTLP endpoint URLs for traces, metrics, and logs in the Azure portal.
-
 ## Limitations
 
 Managed workspaces have the following limitations:
@@ -66,7 +64,7 @@ Delete the Application Insights resource that owns the managed workspace. Azure 
 1. **Reconnect the Application Insights resource to a different Log Analytics workspace.**
 2. **Delete the managed resource group*- that contains the managed workspace. Delete the managed resource group, not the workspace. Resource group deletion removes the managed workspace and the deny assignment.
 
-> \[!NOTE]
+> [!NOTE]
 > The managed workspace shows \*\*Deny assignments\*\- in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
 
 ## Automatically migrated classic resources
@@ -77,12 +75,12 @@ Beginning in April 2025, Microsoft attempted to automatically migrate classic Ap
 - A managed Log Analytics workspace is created and linked to the migrated resource.
 - The workspace is placed in a new resource group. The new group doesn't inherit access permissions from the Application Insights resource group. However, users with appropriate permissions can still query telemetry data through the Application Insights resource, due to resource-centric access control.
 
-> \[!IMPORTANT]
-> Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at \[Convert classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
+> [!IMPORTANT]
+> Each migrated classic Application Insights resource gets its own managed workspace and resource group. Azure sets a limit on the number of resource groups allowed in a subscription. Automatic migration can use up this limit and block the creation of new resource groups. To avoid hitting this limit, manually migrate your classic Application Insights resources by following the steps at [Convert classic Application Insights resources](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 
 ### Limitations of automatic migration
 
-> \[!WARNING]
+> [!WARNING]
 > - Microsoft completed attempts to automatically migrate classic Application Insights resources to workspace-based resources. Remaining classic resources must be manually migrated.
 > - Classic Application Insights resources have been retired and don't ingest new data. To reenable telemetry collection, convert the resource to a workspace-based Application Insights resource.
 
@@ -149,8 +147,8 @@ If you're using AMPLS, take the following steps:
 5. Choose the Log Analytics workspace created during migration.
 6. Save the configuration.
 
-> \[!TIP]
-> To identify the new workspace, open your Application Insights resource in the Azure portal and review the value under \*\*Workspace\*\*.
+> [!TIP]
+> To identify the new workspace, open your Application Insights resource in the Azure portal and review the value under **Workspace**.
 
 ## Migration blocked due to policy restrictions
 
@@ -185,9 +183,6 @@ If you need help with updating Azure policies, contact your organization's polic
 - Review common questions in the [Managed workspaces FAQ](application-insights-faq.yml#managed-workspaces).
 - [Migrate classic resources to workspace-based Application Insights](/previous-versions/azure/azure-monitor/app/convert-classic-resource).
 - [Create and configure Application Insights resources](./create-workspace-resource.md).
-- [Monitor AKS applications with OTLP and Azure Monitor](../containers/kubernetes-open-protocol.md).
-- [Use OpenTelemetry with Azure Monitor](../containers/collect-use-observability-data.md).
 - [Manage connection strings in Application Insights](./connection-strings.md).
 - [Learn how data collection works](./app-insights-overview.md).
 - [Read the Application Insights overview](./app-insights-overview.md).
-
