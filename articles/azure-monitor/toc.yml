@@ -577,6 +577,9 @@ items:
       href: health-models/overview.md
     - name: Get started
       items:
+      - name: Quickstart
+        displayName: health models
+        href: health-models/quickstart.md 
     - name: Concepts
       items:
       - name: Entities and health state
