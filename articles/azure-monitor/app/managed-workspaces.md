@@ -65,7 +65,7 @@ Delete the Application Insights resource that owns the managed workspace. Azure 
 2. **Delete the managed resource group*- that contains the managed workspace. Delete the managed resource group, not the workspace. Resource group deletion removes the managed workspace and the deny assignment.
 
 > [!NOTE]
-> The managed workspace shows \*\*Deny assignments\*\- in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
+> The managed workspace shows **Deny assignments** in the Azure portal. These deny assignments don't prevent deletion of the resource group that contains the managed workspace. Resource group deletion completes and removes the workspace.
 
 ## Automatically migrated classic resources
 
