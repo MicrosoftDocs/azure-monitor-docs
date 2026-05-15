@@ -22,6 +22,7 @@ Each discovery rule includes these core settings:
 |:---|:---|
 | Display name | Friendly name for the discovery rule. |
 | Authentication setting | Identity used by discovery to enumerate resources. |
+| Resource access authentication setting | Identity used to access source resources for discovery methods that require direct resource reads, such as Application Insights topology. |
 | Parent entity | Entity that discovered entities are attached to in the health model graph. |
 | Discover relationships | When enabled, discovery attempts to create relationships between discovered entities when supported. |
 | Add recommended signals | When enabled, discovery adds recommended signals to supported discovered entities. |
@@ -35,6 +36,29 @@ Use the discovery kind that matches your workload and source of truth.
 | Application Insights topology | Discovers entities from Application Insights topology and dependency information. | Application-centric workloads where components and dependencies are tracked in Application Insights. |
 | Resource graph query | Discovers Azure resources that match Azure Resource Graph conditions. | Scope-based discovery by resource type, resource group, subscription, location, tags, and other properties. |
 | Service group | Discovers entities from members of a service group scope. | Service group-based workload organization. |
+
+### Application Insights topology settings
+When you create an **Application Insights topology** discovery rule, configure:
+
+- **Source: Application Insights** - Select the Application Insights resource that discovery reads topology from.
+- **Authentication setting** - Select the identity used to enumerate and run discovery.
+- **Resource access authentication setting** - Select the identity used to read source resource details required by topology discovery.
+- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
+- **Discover relationships** and **Add recommended signals** - Enable these options to populate topology edges and baseline signals.
+
+:::image type="content" source="media/discoveries/create-app-insights-discovery.png" lightbox="media/discoveries/create-app-insights-discovery.png" alt-text="Screenshot of creating an Application Insights topology discovery rule with source selection, authentication settings, parent entity selection, and configuration options.":::
+
+### Service group settings
+When you create a **Service group** discovery rule, configure:
+
+- **Source: Service group** - Select the service group that provides the discovery scope.
+- **Authentication setting** - Select the identity used to enumerate service group members.
+- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
+- **Discover relationships** and **Add recommended signals** - Enable these options to add relationships and supported baseline signals for discovered members.
+
+If you start from a service group experience, you can create a health model from the service group monitoring page and then configure discovery in the model.
+
+:::image type="content" source="media/create/create-from-service-group.png" lightbox="media/create/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
 
 ## Recommended signals and alerts
 When you enable **Add recommended signals**, discovery adds supported recommended signals to discovered entities.
