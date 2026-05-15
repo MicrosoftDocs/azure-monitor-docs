@@ -9,10 +9,22 @@ ai-usage: ai-assisted
 ---
 
 # Discover entities for Azure Monitor health models (preview)
-Discovery automatically adds entities to an [Azure Monitor health model](./overview.md) based on a rule. This article explains each discovery kind, how discovery recommendations work, and how to assign a parent entity for discovered entities.
+Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains each discovery kind, how discovery recommendations work, and how to assign a parent entity for discovered entities.
+
+## Discovery kinds
+There are three kinds of discoveries shown in the following table. You can use any combination of discoveries in a single health model depending on your requirements.
+
+| Discovery kind | Description | Best for |
+|:---|:---|:---|
+| Application Insights topology | Discovers entities from Application Insights topology and dependency information. | Application-centric workloads where components and dependencies are tracked in Application Insights. |
+| Resource graph query | Discovers Azure resources that match an Azure Resource Graph query. | Scope-based discovery by resource type, resource group, subscription, location, tags, and other properties. |
+| Service group | Discovers entities from members of a service group scope. | Service group-based workload organization. |
+
+## Discovery frequency
+All discoveries run every 5 minutes. This value can't be modified.
 
 ## Discovery concepts
-A discovery rule defines how entities are found and added to your model. Discovery helps you bootstrap large or dynamic topologies without manually adding every entity.
+A discovery rule defines how entities are found and added to your model.
 
 :::image type="content" source="media/discoveries/discovery-kinds.png" lightbox="media/discoveries/discovery-kinds.png" alt-text="Screenshot of the Discovery view with the Create menu showing Application Insights topology, Resource graph query, and Service group discovery kinds.":::
 
@@ -28,14 +40,7 @@ Each discovery rule includes these core settings:
 | Add recommended signals | When enabled, discovery adds recommended signals to supported discovered entities. |
 | Results preview | Preview list of resources discovery can currently find with the configured scope and conditions. |
 
-## Discovery kinds
-Use the discovery kind that matches your workload and source of truth.
 
-| Discovery kind | Description | Best for |
-|:---|:---|:---|
-| Application Insights topology | Discovers entities from Application Insights topology and dependency information. | Application-centric workloads where components and dependencies are tracked in Application Insights. |
-| Resource graph query | Discovers Azure resources that match Azure Resource Graph conditions. | Scope-based discovery by resource type, resource group, subscription, location, tags, and other properties. |
-| Service group | Discovers entities from members of a service group scope. | Service group-based workload organization. |
 
 ### Application Insights topology settings
 When you create an **Application Insights topology** discovery rule, configure:
@@ -60,18 +65,16 @@ If you start from a service group experience, you can create a health model from
 
 :::image type="content" source="media/create/create-from-service-group.png" lightbox="media/create/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
 
-## Recommended signals and alerts
-When you enable **Add recommended signals**, discovery adds supported recommended signals to discovered entities.
-
-Discovery does not automatically create alert configurations. After discovery adds entities and signals, configure alert behavior in the health model by following [Configure alerts in health models](./alerts.md).
-
 ## Specify a parent entity for discovered entities
-Each discovery rule supports a **Parent entity** setting.
+Each discovery rule has a **Parent entity** setting. Any entities added by the discovery are attached as children of this entity. If multiple discoveries with different parent entities discovery the same entity, a relationship is created with each parent. 
 
-- If you select a parent entity, all discovered entities are attached under that parent.
-- If you don't select a parent entity, a new parent entity is created for the discovery rule.
+If you don't select a parent entity, a new generic entity is created for the discovery rule.
 
-Choose a stable parent that represents the boundary of the discovery scope, such as a workload, environment, or resource group entity.
+## Recommended signals and alerts
+When you enable **Add recommended signals**, discovery adds the [recommended signals]() for that resource type to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities.
+
+Discovery does not automatically create alert configurations for the entity. After discovery adds entities and signals, configure alert behavior in the health model by following [Configure alerts in health models](./alerts.md).
+
 
 ## Create and run a discovery rule
 1. Open the health model, and then select **Discovery**.
@@ -85,16 +88,6 @@ Choose a stable parent that represents the boundary of the discovery scope, such
 
 :::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of creating a Resource graph query discovery rule with authentication setting, parent entity selection, conditions, and options for discovering relationships and adding recommended signals.":::
 
-## Verify discovered entities
-After you create a rule, review discovered entities in the graph and entity views.
-
-:::image type="content" source="media/discoveries/discovered-entities-graph.png" lightbox="media/discoveries/discovered-entities-graph.png" alt-text="Screenshot of health model graph showing entities discovered and added under a parent entity.":::
-
-Use the discovered graph to validate that:
-
-- Entities were added under the expected parent.
-- Relationships match your intended topology.
-- Recommended signals were assigned where supported.
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)

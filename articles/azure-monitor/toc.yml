@@ -575,18 +575,22 @@ items:
     - name: Overview
       displayName: health models
       href: health-models/overview.md
+    - name: Get started
+      items:
     - name: Concepts
-      displayName: health models
-      href: health-models/concepts.md
-    - name: Discoveries
-      displayName: health models
-      href: health-models/discoveries.md
-    - name: Signals
-      displayName: health models
-      href: health-models/signals.md
-    - name: Alerts
-      displayName: health models
-      href: health-models/alerts.md
+      items:
+      - name: Entities and health state
+        displayName: health models
+        href: health-models/concepts.md
+      - name: Discoveries
+        displayName: health models
+        href: health-models/discoveries.md
+      - name: Signals
+        displayName: health models
+        href: health-models/signals.md
+      - name: Alerts
+        displayName: health models
+        href: health-models/alerts.md
     - name: Create
       displayName: health models
       href: health-models/create.md

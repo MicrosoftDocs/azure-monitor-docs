@@ -4,7 +4,7 @@ description: Description of the core concepts required for building and using he
 ms.topic: concept-article
 author: bwren
 ms.author: bwren
-ms.date: 05/13/2026
+ms.date: 05/15/2026
 ai-usage: ai-assisted
 ---
 
@@ -44,6 +44,16 @@ In most health models, all entities will connect directly or indirectly to the r
 
 ## Signals
 The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
+
+Azure Monitor health models support the following discovery types.
+
+| Discovery type | High-level description |
+|:---|:---|
+| Application Insights topology | Discovers application components and their dependencies from Application Insights topology to quickly map your workload relationships. |
+| Resource graph query | Discovers Azure resources that match a Resource Graph query so you can onboard resources at scale with query-based selection. |
+| Service group | Discovers entities from a service group definition to align model entities with your service structure and ownership boundaries. |
+
+For detailed discovery configuration and behavior, see [Discoveries in Azure Monitor health models](./discoveries.md).
 
 For signal types, signal definitions, thresholds, and configuration details, see [Signals in Azure Monitor health models](./signals.md). 
 

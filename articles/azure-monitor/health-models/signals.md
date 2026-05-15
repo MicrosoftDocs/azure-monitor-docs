@@ -9,10 +9,10 @@ ai-usage: ai-assisted
 ---
 
 # Signals in Azure Monitor health models (preview)
-Signals determine health in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
+Signals determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
 
 ## Signal concepts
-A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
+A signal is a value from a metric or query that's periodically compared to threshold values for each health state. A single entity can have one or more signals  that collectively determine its health state. 
 
 Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources.
 
@@ -24,8 +24,17 @@ The following table describes signal types and their data sources.
 | Signal type | Data source |
 |:---|:---|
 | Azure resource | Samples a [platform metric](../essentials/data-platform-metrics.md) from a specific resource and compares it against numeric thresholds. |
-| Log Analytics workspace | Runs a [log query](../logs/queries.md) against a Log Analytics workspace and evaluates the result. |
-| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) against an Azure Monitor workspace and evaluates the result. |
+| Log Analytics workspace | Runs a [log query](../logs/queries.md) from a Log Analytics workspace and evaluates the result. |
+| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
+
+## Reusable signals
+Rather than manually create every signal, there are two options to use signals that have already been defined.
+
+| Reusable signal | Description |
+|:---|:---|
+| Recommended signals | Prebuilt signals for supported resource types with default degraded and unhealthy thresholds. |
+| Signal definitions | Reusable signal configurations that you create once and apply across multiple entities for consistent logic and easier maintenance. |
+| Import from alert rule | Automtically create signals from alert rules applied to the Azure resource. |
 
 ## Configure signals in the designer
 To configure signals for an entity, open the [Designer](./designer.md), select the entity, and then select **Edit**.
