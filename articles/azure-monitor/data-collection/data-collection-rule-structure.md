@@ -2,8 +2,9 @@
 title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Details on the structure of different kinds of data collection rule in Azure Monitor.
 ms.topic: reference
-ms.date: 4/27/2026
+ms.date: 05/15/2026
 ms.reviwer: msundaram
+ai-usage: ai-assisted
 ---
 
 # Structure of a data collection rule (DCR) in Azure Monitor
@@ -78,6 +79,7 @@ All data source types share the following common parameters.
 |:----------|:------------|
 | `name` | Name to identify the data source in the DCR. |
 | `streams` | List of streams that the data source will collect. If this is a standard data type such as a Windows event, then the stream will be in the form `Microsoft-<TableName>`. If it's a custom type, then it will be in the form `Custom-<TableName>` |
+| `transform` | (Preview) Name of a transformation from the [`transformations`](#transformations) section to apply client-side. Use this property for multi-stage transformations. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). |
 
 #### Valid data source types
 
@@ -146,11 +148,403 @@ Data flows match input streams with destinations. Each data source may optionall
 |:--------|:------------|
 | `streams` | One or more streams defined in the input streams section. You may include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream though if the data flow includes a transformation. One stream can also be used by multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. |
 | `destinations` | One or more destinations from the `destinations` section above. Multiple destinations are allowed for multi-homing scenarios. |
-| `transformKql` | Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream. |
+| `transform` | (Preview) Name of a transformation from the [`transformations`](#transformations) section to apply at ingestion time. Mutually exclusive with `transformKql`. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). |
+| `transformKql` | Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream. Mutually exclusive with `transform`. |
 | `outputStream` | Describes which table in the workspace specified under the `destination` property the data will be sent to. The value of `outputStream` has the format `Microsoft-[tableName]` when data is being ingested into a standard table, or `Custom-[tableName]` when ingesting data into a custom table. Only one destination is allowed per stream.<br><br>This property isn't used for known data sources from Azure Monitor such as events and performance data since these are sent to predefined tables. |
+
+## Transformations
+
+> [!IMPORTANT]
+> Multi-stage transformations are currently in public preview. This section requires API version `2025-05-11` or later. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+The `transformations` section defines reusable named transformations referenced by `dataSources` and `dataFlows`. Each transformation defines a pipeline of [processors](data-collection-transformations.md#processors) that are applied sequentially to the data. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview) for conceptual details.
+
+```json
+"transformations": [
+    {
+        "name": "my_transform",
+        "headerProcessor": {
+            "processor": "header.Syslog",
+            "configuration": { }
+        },
+        "processors": [
+            {
+                "processor": "filter.Basic",
+                "configuration": {
+                    "any": [
+                        {
+                            "all": [
+                                {
+                                    "columnName": "Facility",
+                                    "operator": "==",
+                                    "value": "auth"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+]
+```
+
+### Transformation object properties
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `name` | string | Yes | Unique name for this transformation. Referenced by `dataSources[].transform` and `dataFlows[].transform`. |
+| `headerProcessor` | object | Yes | Header processor that establishes the starting schema. Must be the first element. See [Header processors](#header-processors). |
+| `processors` | array | No | Ordered sequence of transformation processors applied after the header. See [Processor types](#processor-types). |
+
+### Processor object
+
+Each processor is a declarative building block that describes a specific data transformation operation.
+
+```json
+{
+    "processor": "family.Name",
+    "configuration": { }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `processor` | string | Yes | Processor name in the format `Family.Name`. Case-sensitive. |
+| `configuration` | object | Yes | Processor-specific configuration. See individual processor sections. |
+
+### Header processors
+
+Header processors receive raw data and convert it into a known schematized tabular format. A header processor must be the first processor in any transformation.
+
+#### Client-side headers
+
+These header processors are used for client-side transformations assigned to data sources.
+
+| Processor | Data source | Configuration |
+|:----------|:------------|:--------------|
+| `header.Syslog` | Syslog | None |
+| `header.WindowsEvents` | Windows event logs | None |
+| `header.WindowsPerformanceCounters` | Windows performance counters | None |
+| `header.LinuxPerformanceCounters` | Linux performance counters | None |
+| `header.TextLog` | Custom text log files | None |
+| `header.IISLog` | IIS logs | None |
+| `header.WindowsFirewallLog` | Windows Firewall logs | None |
+
+Each header processor outputs a fixed schema. For example, `header.Syslog` outputs columns including `TimeGenerated`, `Facility`, `SeverityNumber`, `Message`, `Host`, and others.
+
+#### Ingestion-side headers
+
+These header processors are used for ingestion-side transformations assigned to data flows.
+
+**header.StandardStream** — Used when the input is a standard stream such as `Microsoft-Syslog` or `Microsoft-Event`.
+
+```json
+{
+    "processor": "header.StandardStream",
+    "configuration": {
+        "streamId": "Microsoft-Syslog"
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `streamId` | string | Yes | Identifier of the standard stream, such as `Microsoft-Syslog`. |
+
+**header.CustomStream** — Used when the input is a custom stream defined in `streamDeclarations`.
+
+```json
+{
+    "processor": "header.CustomStream",
+    "configuration": {
+        "streamId": "Custom-MyStream"
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `streamId` | string | Yes | Identifier of the custom stream. Must match a stream defined in `streamDeclarations`. |
+
+### Processor types
+
+#### filter.Basic
+
+Drops entire records based on condition evaluation. Conditions are structured as OR groups of AND groups.
+
+```json
+{
+    "processor": "filter.Basic",
+    "configuration": {
+        "any": [
+            {
+                "all": [
+                    {
+                        "columnName": "Facility",
+                        "operator": "==",
+                        "value": "auth"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `any` | array of AND groups | Yes | Top-level OR group. A record is kept if any AND group evaluates to true. |
+
+Each AND group has an `all` property containing an array of condition objects:
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnName` | string | Yes | Column to evaluate. |
+| `operator` | string | Yes | Comparison operator. String: `==`, `!=`, `contains`, `!contains`. Numeric: `==`, `!=`, `>`, `<`, `>=`, `<=`. |
+| `value` | string, number, or boolean | Yes | Reference value to compare against. |
+
+Output schema: Same as input. Records are dropped, not columns.
+
+#### map.Rename
+
+Renames a column and optionally changes its type.
+
+```json
+{
+    "processor": "map.Rename",
+    "configuration": {
+        "all": [
+            {
+                "columnName": "OldName",
+                "nameAs": "NewName",
+                "typeAs": "string"
+            }
+        ]
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnName` | string | Yes | Existing column to rename or typecast. |
+| `nameAs` | string | No | New column name. If omitted, column keeps its name. |
+| `typeAs` | string | No | Target type: `string`, `int`, `long`, `real`, `bool`, `datetime`. If casting fails, `null` is returned. |
+
+#### map.Drop
+
+Drops one or more columns from the data.
+
+```json
+{
+    "processor": "map.Drop",
+    "configuration": {
+        "columnNames": ["Column1", "Column2"]
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnNames` | array of string | Yes | Columns to drop. |
+
+#### parse.JsonPath
+
+Parses a JSON-formatted string in a column and extracts specified keys into new columns.
+
+```json
+{
+    "processor": "parse.JsonPath",
+    "configuration": {
+        "columnName": "EventData",
+        "all": [
+            {
+                "path": "$.user.name",
+                "nameAs": "UserName",
+                "typeAs": "string"
+            }
+        ]
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnName` | string | Yes | Column containing the JSON string. |
+| `all` | array of extraction objects | Yes | Keys to extract. |
+
+Extraction object properties:
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `path` | string | Yes | JSON path to the key, such as `$.key` or `$.nested.key`. |
+| `nameAs` | string | Yes | New output column name. |
+| `typeAs` | string | No | Target type. If casting fails, `null` is returned. |
+
+#### parse.XmlPath
+
+Parses an XML-formatted string in a column and extracts specified elements into new columns.
+
+```json
+{
+    "processor": "parse.XmlPath",
+    "configuration": {
+        "columnName": "RawXml",
+        "all": [
+            {
+                "path": "/Event/System/EventID",
+                "nameAs": "EventID",
+                "typeAs": "int"
+            }
+        ]
+    }
+}
+```
+
+Configuration properties match `parse.JsonPath`, except `path` uses XPath syntax (for example, `/Event/System/EventID` or `/Event/EventData/Data[@Name='SubjectUserName']`).
+
+> [!NOTE]
+> Valid XPath syntax is governed by the parser library at each stage. Advanced XPath expressions might only be supported in specific execution locations.
+
+#### parse.CEFAttribute
+
+Parses CEF (Common Event Format) data in a column and extracts specified fields into new columns.
+
+```json
+{
+    "processor": "parse.CEFAttribute",
+    "configuration": {
+        "columnName": "Message",
+        "all": [
+            {
+                "path": "deviceAction",
+                "nameAs": "Action",
+                "typeAs": "string"
+            }
+        ]
+    }
+}
+```
+
+Configuration properties match `parse.JsonPath`, except `path` specifies the CEF key name.
+
+#### aggregate.Basic
+
+Summarizes records using aggregation operators with grouping dimensions.
+
+```json
+{
+    "processor": "aggregate.Basic",
+    "configuration": {
+        "batchingSettings": {
+            "timeWindow": "5m",
+            "maxBatchRows": 1000
+        },
+        "aggregates": [
+            {
+                "columnName": "CounterValue",
+                "operator": "avg",
+                "nameAs": "AvgValue"
+            },
+            {
+                "operator": "count",
+                "nameAs": "RecordCount"
+            }
+        ],
+        "dimensionColumns": ["Host", "CounterName"]
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `batchingSettings.timeWindow` | string | Yes | Timespan per aggregation batch, such as `5m` or `1h`. |
+| `batchingSettings.maxBatchRows` | int | Yes | Maximum rows per aggregation batch. |
+| `aggregates` | array | Yes | Aggregation definitions. |
+| `dimensionColumns` | array of string | Yes | Columns to group by. Only `string` type is supported. |
+
+Aggregate entry properties:
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnName` | string | No | Column to aggregate. Not required for the `count` operator. |
+| `operator` | string | Yes | Aggregation function: `sum`, `avg`, `min`, `max`, `count`. |
+| `nameAs` | string | Yes | Output column name for the aggregated value. |
+
+> [!IMPORTANT]
+> Aggregation changes the output schema entirely. The output contains only the aggregate columns and dimension columns. Route aggregated data to a separate custom table.
+
+#### enrich.DNSLookup
+
+Looks up an IP address in a column and adds a DNS name column.
+
+```json
+{
+    "processor": "enrich.DNSLookup",
+    "configuration": {
+        "columnName": "IPAddress",
+        "nameAs": "DNSName"
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `columnName` | string | Yes | Column containing the IP address to look up. |
+| `nameAs` | string | Yes | New output column name for the resolved DNS name. |
+
+> [!NOTE]
+> DNS resolution is best-effort. If the lookup fails, the output column contains `null`.
+
+#### transform.KQL
+
+Applies an arbitrary KQL expression for advanced scenarios. This processor is ingestion-side only.
+
+```json
+{
+    "processor": "transform.KQL",
+    "configuration": {
+        "expression": "source | where SeverityNumber >= 4 | extend EnrichedMsg = strcat(Host, ': ', Message)"
+    }
+}
+```
+
+| Property | Type | Required | Description |
+|:---------|:-----|:---------|:------------|
+| `expression` | string | Yes | KQL query string applied to the input data. |
+
+> [!NOTE]
+> Limited validation is performed on the KQL expression. The output schema is determined by the KQL expression and can't be statically validated. This processor provides a migration path for existing DCRs that use `transformKql` in data flows.
+
+### Processor availability matrix
+
+The following table shows which processors are available on the client side and the ingestion side.
+
+| Processor | Family | Client-side | Ingestion-side |
+|:----------|:-------|:------------|:---------------|
+| `header.Syslog` | Header | Yes | No |
+| `header.WindowsEvents` | Header | Yes | No |
+| `header.WindowsPerformanceCounters` | Header | Yes | No |
+| `header.LinuxPerformanceCounters` | Header | Yes | No |
+| `header.TextLog` | Header | Yes | No |
+| `header.IISLog` | Header | Yes | No |
+| `header.WindowsFirewallLog` | Header | Yes | No |
+| `header.StandardStream` | Header | No | Yes |
+| `header.CustomStream` | Header | No | Yes |
+| `filter.Basic` | Filter | Yes | Yes |
+| `map.Rename` | Map | Yes | Yes |
+| `map.Drop` | Map | Yes | Yes |
+| `parse.JsonPath` | Parse | Yes | Yes |
+| `parse.XmlPath` | Parse | Yes | Yes |
+| `parse.CEFAttribute` | Parse | Yes | Yes |
+| `aggregate.Basic` | Aggregate | Yes | Yes |
+| `enrich.DNSLookup` | Enrich | Yes | Yes |
+| `transform.KQL` | Transform | No | Yes |
 
 ## Related content
 
 - [Overview of data collection rules and methods for creating them](data-collection-rule-overview.md)
 - [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md)
+- [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview)
+- [Create a transformation in Azure Monitor](data-collection-transformations-create.md)
 - [Collect data from VM clients](../vm/data-collection.md)

@@ -2,8 +2,9 @@
 title: Supported KQL features in Azure Monitor transformations
 description: Supported KQL features in Azure Monitor transformations
 ms.topic: reference
-ms.date: 01/20/2026
+ms.date: 05/15/2026
 ms.reviewer: nikeist
+ai-usage: ai-assisted
 
 ---
 
@@ -14,6 +15,9 @@ ms.reviewer: nikeist
 Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records.
 
 Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
+
+> [!NOTE]
+> For [multi-stage transformations (preview)](data-collection-transformations.md#multi-stage-transformations-preview), the KQL features described in this article apply to the `transform.KQL` processor and to the `transformKql` property in data flows. Other processor types such as `filter.Basic`, `parse.JsonPath`, and `aggregate.Basic` use declarative JSON configuration rather than KQL. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for details.
 
 ## Special considerations
 

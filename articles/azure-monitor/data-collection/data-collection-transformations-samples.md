@@ -2,8 +2,9 @@
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 05/15/2026
 ms.reviwer: nikeist
+ai-usage: ai-assisted
 ---
 
 # Sample transformations in Azure Monitor
@@ -119,7 +120,265 @@ source
 > [!WARNING]
 > See [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) for tips on using complex parse commands.
 
+## Multi-stage transformation samples (preview)
+
+> [!IMPORTANT]
+> Multi-stage transformations are currently in public preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+The following samples demonstrate processor-based multi-stage transformations. Each sample shows the `transformations` section of a DCR definition. For the complete DCR structure and how to reference these transformations from data sources and data flows, see [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+
+### Filter syslog by facility on the client
+
+Filter syslog records on the client side to keep only `auth` and `authpriv` events before sending them over the network.
+
+```json
+{
+    "name": "client_filter_auth",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "filter.Basic",
+            "configuration": {
+                "any": [
+                    {
+                        "all": [
+                            {
+                                "columnName": "Facility",
+                                "operator": "==",
+                                "value": "auth"
+                            }
+                        ]
+                    },
+                    {
+                        "all": [
+                            {
+                                "columnName": "Facility",
+                                "operator": "==",
+                                "value": "authpriv"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### Parse JSON fields from Windows Events
+
+Extract structured fields from a JSON payload in the `EventData` column of Windows Events.
+
+```json
+{
+    "name": "client_parse_windows_events",
+    "headerProcessor": {
+        "processor": "header.WindowsEvents",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.XmlPath",
+            "configuration": {
+                "columnName": "RawXml",
+                "all": [
+                    {
+                        "path": "/Event/System/EventID",
+                        "nameAs": "EventID",
+                        "typeAs": "int"
+                    },
+                    {
+                        "path": "/Event/EventData/Data[@Name='SubjectUserName']",
+                        "nameAs": "SubjectUserName",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "processor": "map.Drop",
+            "configuration": {
+                "columnNames": ["RawXml", "RenderingInfo"]
+            }
+        }
+    ]
+}
+```
+
+### Aggregate performance counters
+
+Aggregate performance counter data on the client side to reduce data volume by summarizing values over a 5-minute window.
+
+```json
+{
+    "name": "client_aggregate_perf",
+    "headerProcessor": {
+        "processor": "header.WindowsPerformanceCounters",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "aggregate.Basic",
+            "configuration": {
+                "batchingSettings": {
+                    "timeWindow": "5m",
+                    "maxBatchRows": 1000
+                },
+                "aggregates": [
+                    {
+                        "columnName": "CounterValue",
+                        "operator": "avg",
+                        "nameAs": "AvgValue"
+                    },
+                    {
+                        "columnName": "CounterValue",
+                        "operator": "max",
+                        "nameAs": "MaxValue"
+                    },
+                    {
+                        "operator": "count",
+                        "nameAs": "SampleCount"
+                    }
+                ],
+                "dimensionColumns": ["CounterName", "Instance"]
+            }
+        }
+    ]
+}
+```
+
+> [!IMPORTANT]
+> Aggregation changes the output schema entirely. Route aggregated data to a separate custom table.
+
+### Extract CEF attributes from syslog
+
+Extract CEF (Common Event Format) attributes from syslog messages, often used for security device data.
+
+```json
+{
+    "name": "client_parse_cef",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.CEFAttribute",
+            "configuration": {
+                "columnName": "Message",
+                "all": [
+                    {
+                        "path": "deviceAction",
+                        "nameAs": "DeviceAction",
+                        "typeAs": "string"
+                    },
+                    {
+                        "path": "sourceAddress",
+                        "nameAs": "SourceIP",
+                        "typeAs": "string"
+                    },
+                    {
+                        "path": "destinationAddress",
+                        "nameAs": "DestinationIP",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "processor": "enrich.DNSLookup",
+            "configuration": {
+                "columnName": "SourceIP",
+                "nameAs": "SourceDNSName"
+            }
+        }
+    ]
+}
+```
+
+### Ingestion-side KQL transformation
+
+Apply a KQL expression to a standard stream at ingestion time. This provides a migration path from the legacy `transformKql` property.
+
+```json
+{
+    "name": "ingestion_kql_syslog",
+    "headerProcessor": {
+        "processor": "header.StandardStream",
+        "configuration": {
+            "streamId": "Microsoft-Syslog"
+        }
+    },
+    "processors": [
+        {
+            "processor": "transform.KQL",
+            "configuration": {
+                "expression": "source | where SeverityLevel != 'info' | extend EnrichedMsg = strcat(HostName, ': ', SyslogMessage)"
+            }
+        }
+    ]
+}
+```
+
+### Syslog to CommonSecurityLog two-stage approach
+
+Transform syslog data and ingest it as CommonSecurityLog using a two-stage approach. The client-side transformation parses CEF attributes, and the ingestion-side transformation maps the data to the CommonSecurityLog table schema.
+
+**Client-side transformation:**
+
+```json
+{
+    "name": "client_cef_extract",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.CEFAttribute",
+            "configuration": {
+                "columnName": "Message",
+                "all": [
+                    {
+                        "path": "deviceAction",
+                        "nameAs": "DeviceAction",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+**Ingestion-side transformation:**
+
+```json
+{
+    "name": "ingestion_map_to_csl",
+    "headerProcessor": {
+        "processor": "header.StandardStream",
+        "configuration": {
+            "streamId": "Microsoft-CommonSecurityLog"
+        }
+    },
+    "processors": [
+        {
+            "processor": "transform.KQL",
+            "configuration": {
+                "expression": "source | extend DeviceAction = DeviceAction"
+            }
+        }
+    ]
+}
+```
+
 ## Next steps
 
 * [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
-* [Create a workspace transformation DCRs that applies to data not collected using a DCR](data-collection-transformations.md#workspace-transformation-dcr).
+* [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview).
+* [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+* [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete processor reference.

@@ -2,8 +2,9 @@
 title: Create a transformation in Azure Monitor
 description: Create a transformation in Azure Monitor and add it to a data collection rule (DCR).
 ms.topic: how-to
-ms.date: 04/22/2026
-ms.reviwer: nikeist
+ms.date: 05/15/2026
+ms.reviewer: nikeist
+ai-usage: ai-assisted
 
 ---
 
@@ -11,8 +12,24 @@ ms.reviwer: nikeist
 
 [Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
 
-> [!NOTE]
-> If you're not familiar with KQL or creating log queries for Azure Monitor data, start with [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md) and [Log queries in Azure Monitor](../logs/log-query-overview.md).
+In this article:
+
+- [Create and test a transformation query](#create-the-transformation-query) using KQL in Log Analytics
+- [Add a single-stage transformation to a DCR](#add-transformation-to-dcr) using the `transformKql` property
+- [Create a multi-stage transformation (preview)](#create-a-multi-stage-transformation-preview) using processor-based pipelines
+- [Create a workspace transformation DCR](#create-workspace-transformation-dcr) applied directly to a workspace
+
+> [!TIP]
+> **Single-stage vs. multi-stage:** Use a single-stage transformation (`transformKql`) when you need to apply one KQL query to a data flow. Use multi-stage transformations (`transform` with processors) when you need client-side filtering before data leaves the agent, multiple processing steps in a pipeline, or non-KQL processors like parsing, filtering, or enrichment.
+
+## Prerequisites
+
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+- A [Log Analytics workspace](../logs/quick-create-workspace.md) where you have at least [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) permissions.
+- An existing [data collection rule (DCR)](data-collection-rule-create-edit.md) associated with a data source. If you don't have one, [create one](data-collection-rule-create-edit.md) before proceeding.
+- Familiarity with [KQL](/kusto/query/) and [log queries in Azure Monitor](../logs/log-query-overview.md). For an introduction, see [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md).
+- For REST API or PowerShell approaches: [Azure CLI](/cli/azure/install-azure-cli) or the [Az PowerShell module](/powershell/azure/install-azure-powershell) installed. Sign in before running commands (`az login` or `Connect-AzAccount`).
+- For multi-stage transformations (preview): API version `2025-05-11` or later.
 
 ## Basic query structure
 
@@ -20,14 +37,14 @@ All transformation queries start with `source`, which is a virtual table that re
 
 The output of the query must match the schema of the target table with the following considerations:
 
-* You may omit any columns that shouldn't be populated. The column will be empty for the record in the target table.
-* Make sure to exclude any columns that aren't included in the output table. The data will be accepted without error, but you'll be charged for the ingestion of the extra data even though it's not stored.
-* The output of every transformation must contain a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, you can add it in the transformation with `extend` or `project`.
+- You can omit columns that shouldn't be populated. The column is empty for the record in the target table.
+- Exclude any columns that aren't in the output table. Extra columns are accepted without error, but you're charged for ingesting data that isn't stored.
+- Include a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, add it with `extend` or `project`.
 
 Following is an example of a transformation that performs several functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
-* Parses the incoming `property` column using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator to separate its JSON values into a temporary column `Properties`.
+* Adds a new column `Properties` using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator with the `parse_json` function to parse JSON values from the incoming `properties` column.
 * Formats the transformation output to exactly match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
@@ -47,41 +64,57 @@ source
 
 ## Create the transformation query
 
-Before you create or edit the DCR that will include your transformation, you'll need to create and test the transformation query. You'll typically do this by running test queries against existing data or test data. When you get the results you want, you can replace the table name with `source` and paste it into your DCR as explained below in [Add transformation to DCR](#add-transformation-to-dcr).
+Before you add a transformation to a DCR, create and test the query in Log Analytics. When your query returns the expected results, replace the table name with `source` and add it to your DCR as described in [Add transformation to DCR](#add-transformation-to-dcr).
 
 > [!IMPORTANT]
 > Transformations don't support all KQL features. See [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md) for supported features and limitations.
 
-For example, if you're creating a transformation to filter Syslog events, you might start with the following query which you can run in Log Analytics.
+Use one of the following strategies to test your transformation query:
+
+1. **Query existing data.** If you're already collecting the data you want to transform, write a query against that table in Log Analytics. Verify that the output shows the expected filtering or modifications, then copy the query text.
+1. **Use sample data with `datatable`.** Write a query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample dataset that represents your incoming data. Verify the query output, then copy the query text without the `datatable` operator.
+1. **Create a test table in the portal.** [Create a new table](../logs/create-custom-table.md) in the Azure portal and provide sample data. Use the built-in transformation editor to write and test your query. Copy the query text when you're satisfied with the results.
+
+For example, to filter Syslog events, start with this query in Log Analytics:
 
 ```kusto
 Syslog | where SeverityLevel != 'info'
 ```
-You can paste this query into your DCR and then change the table name to `source`.
+You can then replace the table name with `source` in your DCR:
 
 ```kusto
 source | where SeverityLevel != 'info'
 ```
 
-Use one of the following strategies for data to use to test your query.
-
-* If you're already collecting the data that you want to transform, then you can use Log Analytics to write a query that filters or modifies the data as needed. Copy the query text and paste it into your DCR.
-* Use Log Analytics to write your query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample data set that represents your incoming data. Copy the query text without the `datatable` operator and paste it into your DCR.
-* Use the process to [create a new table](../logs/create-custom-table.md) in the Azure portal and provide sample data. Use the included interface to create and test your transformation query. Either copy the query text and paste into your DCR, or complete the process and then edit the DCR to copy the transformation query. You can then delete the new table if you don't need it.
-
 ## Add transformation to DCR
 
-Once you have your transformation query, you can add it to a DCR. Use the guidance in [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) to create or edit the DCR using the information in this section to include the transformation query in the DCR definition.
+Once you have your transformation query, add it to a DCR by following these steps:
+
+1. Open your DCR definition in JSON. You can export the current definition using the Azure CLI:
+
+    ```azurecli
+    az monitor data-collection rule show --name {dcrName} --resource-group {resourceGroupName} > dcr.json
+    ```
+
+    For other methods, see [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md).
+
+1. Locate the `dataFlows` section of the DCR. This section pairs a data source with a destination.
+1. Add the `transformKql` JSON property to the data flow you want to transform. Set its value to your transformation query on a single line. The transformation is applied to the incoming stream before it's sent to the destination and only applies to that data flow, even if the same stream or destination is used in other data flows.
+1. Save and deploy the updated DCR:
+
+    ```azurecli
+    az monitor data-collection rule update --name {dcrName} --resource-group {resourceGroupName} --body @dcr.json
+    ```
+
+    For other methods, see [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md).
 
 > [!NOTE]
-> Some data sources will provide a method using the Azure portal to add a transformation to a DCR. For example, [collecting a text from a virtual machine](../agents/data-collection-log-text.md) allows you to specify a transformation query in the Azure portal. Most data collection scenarios though currently require you to work directly with the DCR definition to add a transformation. That's the process described in this section.
-
-The transformation query is specified in the `transformKql` property in the [Data Flows](data-collection-rule-structure.md#data-flows) section of the DCR. This is the section that pairs a data source with a destination. The transformation is applied to the incoming stream of the data flow before it's sent to the destination. It will only apply to that data flow even if the same stream or destination is used in other data flows.
+> Some data sources provide a method using the Azure portal to add a transformation to a DCR. For example, [collecting a text from a virtual machine](../agents/data-collection-log-text.md) allows you to specify a transformation query in the Azure portal. Most data collection scenarios though currently require you to work directly with the DCR definition.
 
 If the `transformKql` property is omitted, or if its value is simply `source`, then no transformation is applied, and the incoming data is sent to the destination without modification.
 
 > [!IMPORTANT]
-> The transformation query must be on a single line the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
+> The transformation query must be on a single line in the DCR. If you're creating the transformation in the Azure portal, you can use multiple lines for readability, and `\n` will be included in the query for each new line.
 
 In the following example, there's no `transformKql` property, so the incoming data is sent to the destination without modification.
 
@@ -129,6 +162,228 @@ In the following example, `transformKql` has a query that filters data, so only 
     } 
 ] 
 ```
+
+### Verify the transformation
+
+1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
+1. In the Azure portal, navigate to your Log Analytics workspace and select **Logs**.
+1. Query the target table and confirm the transformation logic is applied. For example, verify that filtered records are excluded or that new calculated columns are populated.
+
+    ```kusto
+    Syslog
+    | where TimeGenerated > ago(30m)
+    | take 10
+    ```
+
+> [!NOTE]
+> Transformed data typically appears within 5 minutes. For workspace transformation DCRs, allow up to 60 minutes.
+
+## Create a multi-stage transformation (preview)
+
+> [!IMPORTANT]
+> Multi-stage transformations are currently in public preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
+
+Multi-stage transformations use the `transformations` section in a DCR to define processor-based pipelines that are referenced by data sources and data flows using the `transform` property. Unlike single-stage transformations that use `transformKql`, multi-stage transformations run on the client side (before data leaves the agent) or the ingestion side (before data reaches the workspace), or both.
+
+- **Client-side transformations** — run on the agent before data is sent. These transformations reduce data volume at the source and can filter, parse, or enrich data before transmission.
+- **Ingestion-side transformations** — run on the service after data arrives but before storage. These transformations can apply KQL expressions and further enrich data.
+
+In a multi-stage pipeline, a *processor* is a named processing step — such as filtering, parsing, enriching, or applying KQL — that runs in sequence. The *header processor* declares the input format for the pipeline (for example, `header.Syslog` for syslog data).
+
+See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview) for conceptual details and [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete schema reference.
+
+### Create a multi-stage transformation using REST API
+
+To create a multi-stage transformation using the REST API:
+
+1. Create a JSON file with your DCR definition. The DCR must include:
+    - A `transformations` section that defines one or more named processor pipelines.
+    - A `transform` property on data sources (for client-side) or data flows (for ingestion-side) that references the named transformation.
+1. Submit the DCR using the REST API with API version `2025-05-11` or later:
+
+    ```http
+    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11
+    Content-Type: application/json
+    ```
+
+    Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, navigate to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
+
+    > [!TIP]
+    > You can use `az rest` to handle authentication automatically:
+    >
+    > ```azurecli
+    > az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
+    > ```
+
+1. Verify the DCR was created successfully by checking the response status code (200 or 201).
+
+The following example creates a DCR with a client-side transformation that filters syslog data to keep only auth events, and an ingestion-side transformation that applies KQL to the stream before it's stored.
+
+The DCR definition includes these key sections:
+
+- **`streamDeclarations`** — defines the schema for custom streams used between processing stages.
+- **`dataSources`** — configures the data source with a `transform` property referencing the client-side transformation by name.
+- **`dataFlows`** — maps streams to destinations with an optional `transform` property for ingestion-side processing.
+- **`transformations`** — defines the named processor pipelines referenced by data sources and data flows.
+
+```json
+{
+    "location": "eastus",
+    "properties": {
+        "streamDeclarations": {
+            "Custom-FilteredSyslog": {
+                "columns": [
+                    { "name": "TimeGenerated", "type": "datetime" },
+                    { "name": "Facility", "type": "string" },
+                    { "name": "Message", "type": "string" },
+                    { "name": "Host", "type": "string" },
+                    { "name": "SeverityNumber", "type": "int" }
+                ]
+            }
+        },
+        "dataSources": {
+            "syslog": [
+                {
+                    "name": "syslogAuth",
+                    "facilityNames": ["auth", "authpriv"],
+                    "logLevels": ["*"],
+                    "transform": "client_filter_auth",
+                    "streams": ["Custom-FilteredSyslog"]
+                }
+            ]
+        },
+        "destinations": {
+            "logAnalytics": [
+                {
+                    "name": "myWorkspace",
+                    "workspaceResourceId": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}",
+                    "workspaceId": "{workspaceId}"
+                }
+            ]
+        },
+        "dataFlows": [
+            {
+                "streams": ["Custom-FilteredSyslog"],
+                "transform": "ingestion_enrich_syslog",
+                "destinations": ["myWorkspace"],
+                "outputStream": "Microsoft-Syslog"
+            }
+        ],
+        "transformations": [
+            {
+                "name": "client_filter_auth",
+                "headerProcessor": {
+                    "processor": "header.Syslog",
+                    "configuration": {}
+                },
+                "processors": [
+                    {
+                        "processor": "filter.Basic",
+                        "configuration": {
+                            "any": [
+                                {
+                                    "all": [
+                                        {
+                                            "columnName": "Facility",
+                                            "operator": "==",
+                                            "value": "auth"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            {
+                "name": "ingestion_enrich_syslog",
+                "headerProcessor": {
+                    "processor": "header.CustomStream",
+                    "configuration": {
+                        "streamId": "Custom-FilteredSyslog"
+                    }
+                },
+                "processors": [
+                    {
+                        "processor": "transform.KQL",
+                        "configuration": {
+                            "expression": "source | extend EnrichedMsg = strcat(Host, ': ', Message)"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+> [!NOTE]
+> This example demonstrates the `transform.KQL` processor capability. Because `outputStream` maps to the standard `Microsoft-Syslog` table, the `EnrichedMsg` column isn't stored — standard tables have fixed schemas and silently drop extra columns. To persist custom columns, set `outputStream` to a custom table (for example, `Custom-EnrichedSyslog`) with `EnrichedMsg` declared in `streamDeclarations`.
+
+You can also use PowerShell with `Invoke-AzRestMethod`:
+
+```powershell
+$dcr = Get-Content -Path "dcr.json" -Raw
+Invoke-AzRestMethod `
+    -Path "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" `
+    -Method PUT `
+    -Payload $dcr
+```
+
+### Create a multi-stage transformation using the Azure portal
+
+To access the multi-stage transformation portal UI during the preview, navigate to `https://portal.azure.com/?feature.transformEnabled=true`.
+
+1. Navigate to **Monitor** > **Data Collection Rules** and select **Create**.
+1. On the **Basics** tab, provide the rule name, subscription, resource group, and region. Select the appropriate **Platform Type** (Windows, Linux, or Custom).
+1. On the **Resources** tab, select **Add resources** and choose the virtual machines or other resources to associate with this DCR.
+1. On the **Collect and deliver** tab, select **Add data source**. Choose the data source type and configure collection settings on the **Data source** tab.
+1. Select the **Destination** tab. Select **Azure Monitor Logs** as the destination type and choose your Log Analytics workspace. You must configure the destination before authoring a transformation.
+1. Select the **Transform (optional)** tab. The tab displays a pipeline visualization showing the flow from **Data source** to **Transform** to **Destination**, along with a **Schema preview** at the bottom.
+1. Select **+ Add** in the **Transform** section to start adding processors. Each processor runs in the order defined.
+
+    > [!NOTE]
+    > Not all processors have a dedicated UI form during the preview. For processors without UI support, use the **Unknown processor** option to paste the processor JSON configuration directly. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for the JSON structure of each processor.
+
+1. Select **Add data source** to save the data source with its transformation and destination.
+1. Select **Review + create** to validate and deploy the DCR.
+
+### Verify a multi-stage transformation
+
+After you create a multi-stage transformation, verify that both client-side and ingestion-side processing are working:
+
+1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
+1. In the Azure portal, navigate to your Log Analytics workspace and select **Logs**.
+1. Query the target table to confirm client-side filtering took effect. For example, if you filtered to the `auth` facility only, verify that other facilities are absent:
+
+    ```kusto
+    Syslog
+    | where TimeGenerated > ago(30m)
+    | summarize count() by Facility
+    ```
+
+1. If your ingestion-side transformation outputs to a custom table, verify that enrichment columns appear:
+
+    ```kusto
+    CustomTable_CL
+    | where TimeGenerated > ago(30m)
+    | project TimeGenerated, Facility, Message, EnrichedMsg
+    | take 10
+    ```
+
+    If you're outputting to a standard table like `Syslog`, extra columns aren't stored. Verify KQL enrichment by checking that existing columns are modified as expected.
+
+1. Check for pipeline errors in the [DCR error logs](data-collection-monitor.md#enable-dcr-error-logs):
+
+    ```kusto
+    DCRLogErrors
+    | where TimeGenerated > ago(1h)
+    | where _ResourceId has "{dcrName}"
+    ```
+
+> [!NOTE]
+> Transformed data typically appears within 5 minutes. If no data appears after 10 minutes, check the `DCRLogErrors` table for pipeline errors.
+
 ## Create workspace transformation DCR
 
 The [workspace transformation data collection rule (DCR)](data-collection-transformations.md#workspace-transformation-dcr) is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. There can be only one workspace transformation DCR for each workspace, but it can include transformations for any number of tables.
@@ -143,7 +398,7 @@ Use one of the following methods to create a workspace transformation DCR for yo
 
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
 
-1. On the Log Analytics workspaces menu in the Azure portal, select **Tables**. Click to the right of the table you're interested in and select Create transformation.
+1. On the Log Analytics workspaces menu in the Azure portal, select **Tables**. Select the ellipsis (**...**) to the right of the table you want to transform, and then select **Create transformation**.
 
     :::image type="content" source="media/data-collection-transformations-create/create-transformation-select.png" lightbox="media/data-collection-transformations-create/create-transformation-select.png" alt-text="Screenshot that shows the option to create a transformation for a table in the Azure portal.":::
 
@@ -151,14 +406,16 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
     :::image type="content" source="media/data-collection-transformations-create/new-data-collection-rule.png" lightbox="media/data-collection-transformations-create/new-data-collection-rule.png" alt-text="Screenshot that shows creating a new data collection rule.":::
 
-1. Select Next to view sample data from the table. Click **Transformation editor** to define the transformation query.
+1. Select **Next** to view sample data from the table. Select **Transformation editor** to define the transformation query.
 
     :::image type="content" source="media/data-collection-transformations-create/sample-data.png" lightbox="media/data-collection-transformations-create/sample-data.png" alt-text="Screenshot that shows sample data from the log table.":::
 
 1. You can then edit and run the transformation query to see the results against actual data from the table. Keep modifying and testing the query until you get the results you want.
-1. When you're satisfied with the query, click **Apply** and then **Next** and **Create** to save the DCR with your new transformation.
+1. When you're satisfied with the query, select **Apply** and then **Next** and **Create** to save the DCR with your new transformation.
 
     :::image type="content" source="media/data-collection-transformations-create/save-transformation.png" lightbox="media/data-collection-transformations-create/save-transformation.png" alt-text="Screenshot that shows saving the transformation.":::
+
+1. To verify the transformation is active, navigate to **Monitor** > **Data Collection Rules** and confirm the workspace transformation DCR appears with status **Succeeded**. Then query the target table after the next ingestion cycle to confirm transformations are applied.
 
 ### [JSON](#tab/json)
 
@@ -204,10 +461,18 @@ Following is a sample JSON definition for a workspace transformation DCR.
                 ],
                 "transformKql": "source | project-away ParameterXml"
             }
-        ],
-        "provisioningState": "Succeeded"
+        ]
     }
 }
+```
+
+Deploy the workspace transformation DCR using Azure CLI:
+
+```azurecli
+az monitor data-collection rule create \
+    --name {dcrName} \
+    --resource-group {resourceGroupName} \
+    --body @dcr.json
 ```
 
 ---
@@ -217,7 +482,7 @@ Following is a sample JSON definition for a workspace transformation DCR.
 Transformations run a KQL query against every record collected with the DCR, so it's important that they run efficiently. Transformation execution time contributes to overall [data ingestion latency](../logs/data-ingestion-time.md), and transformations that take excessive time to run can impact the performance of data collection and result in data loss. Optimal transformations should take no more than 1 second to run. See [Optimize log queries in Azure Monitor](../logs/query-optimization.md) for guidance on testing your query before you implement it as a transformation and for recommendations on optimizing queries that don't run efficiently.
 
 > [!IMPORTANT]
-> You may experience data loss if a transformation takes more than 20 seconds.
+> You might experience data loss if a transformation takes more than 20 seconds.
 
 Because transformations don't run interactively, it's important to continuously monitor them to ensure that they're running properly and not taking excessive time to process data. See [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) for details on logs and metrics that monitor the health and performance of transformations. This includes identifying any errors that occur in the KQL and metrics to track their running duration.
 
@@ -228,7 +493,29 @@ The following metrics are automatically collected for transformations and should
 
 [Enable DCR error logs](data-collection-monitor.md#enable-dcr-error-logs) to track any errors that occur in your transformations or other queries. Create a [log alert rule](../alerts/alerts-create-log-alert-rule.md) to be automatically notified when an entry is written to this table.
 
-## Guidance
+## Troubleshoot transformations
+
+The following tables list common transformation errors and their resolutions.
+
+| Error | Cause | Resolution |
+|:------|:------|:-----------|
+| Schema mismatch | Transformation output doesn't match the target table columns. | Verify that the `project` or `extend` output matches the destination table schema. See the [data reference](/azure/azure-monitor/reference/) for column names and types. |
+| Unsupported KQL operator | Using an operator not available in transformations (for example, `join`). | See [Supported KQL features](data-collection-transformations-kql.md) for the list of supported operators. |
+| Query works in Log Analytics but fails in transformation | Some KQL operators supported in Log Analytics aren't supported in transformations. | See [Supported KQL features](data-collection-transformations-kql.md) for the subset of operators available in transformations. Test queries with only supported operators before adding to the DCR. |
+| Data loss after transformation | Transformation takes more than 20 seconds to run. | Simplify the KQL query. See [Optimize log queries](../logs/query-optimization.md) for recommendations. |
+| Transformation not applied | Both `transformKql` and `transform` specified on the same data flow. | These properties are mutually exclusive. Use one or the other per data flow. |
+| Errors in DCR error logs | Invalid KQL syntax or runtime errors. | [Enable DCR error logs](data-collection-monitor.md#enable-dcr-error-logs) and review the `DCRLogErrors` table. |
+| Permission denied | Insufficient permissions to create or edit the DCR. | Verify that you have [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) role on the resource group or subscription. |
+
+### Multi-stage transformation errors
+
+| Error | Cause | Resolution |
+|:------|:------|:-----------|
+| Processor not recognized | Invalid processor type name (for example, `filter.basic` instead of `filter.Basic`). | Processor names are case-sensitive. See [Processor types](data-collection-rule-structure.md#processor-types) for valid names. |
+| Named transformation not found | The `transform` property references a name that doesn't exist in the `transformations` section. | Verify the `transform` value on the data source or data flow matches a `name` in the `transformations` array exactly. |
+| Client-side transformation not applied | Agent version doesn't support multi-stage transformations. | Update Azure Monitor Agent to the latest version. Multi-stage transformations require API version `2025-05-11` or later. |
+
+## Transformation guides by data source
 
 There are multiple methods to create transformations depending on the data collection method. The following table lists guidance for different methods for creating transformations.
 
@@ -241,12 +528,21 @@ There are multiple methods to create transformations depending on the data colle
 
 ## Limitations and considerations
 
+* Transformations run at ingestion time and contribute to data processing costs. However, filtering data with transformations can reduce ingestion volume and storage costs. See [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md) for details.
 * Not all tables in a Log Analytics workspace support transformations. See [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md) for a list of supported tables.
-* Not all KQL operators are supported in transformation queries. See [Supported KQL features in Azure Monitor transformations](/azure/azure-monitor/essentials/data-collection-transformations-kql).
+* Not all KQL operators are supported in transformation queries. See [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md).
 * While a transformation can send a single data source to multiple tables, it can't send data to multiple workspaces. To send data from a single data source to multiple workspaces, create multiple DCRs.
 * The workspace transformation DCR can't send a single data source to multiple tables since the transformation is applied to the table itself.
 * Transformations in the workspace transformation DCR are applied to all data sent to the table, regardless of the data source. If you need to apply different transformations to different data sources, use a `where` statement in the transformation query to apply different logic to data from different sources.
+* For multi-stage transformations, `transform` and `transformKql` are mutually exclusive per data flow. A DCR can mix old-style (`transformKql`) and new-style (`transform`) data flows across different streams.
+* Multi-stage transformations require API version `2025-05-11` or later.
+* Performance counter data requires separate DCRs for Windows and Linux machines when using multi-stage transformations. A DCR of kind `All` can't use both `header.WindowsPerformanceCounters` and `header.LinuxPerformanceCounters` in a single client-side transformation.
 
 ## Next steps
 
-* [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.
+- [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) - Track transformation performance and diagnose errors.
+- [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md) - Verify which KQL operators work in transformations.
+- [Structure of a data collection rule (DCR) in Azure Monitor](data-collection-rule-structure.md) - Full JSON schema reference for DCR definitions.
+- [Transformation samples for Azure Monitor](data-collection-transformations-samples.md) - Example transformation queries for common scenarios.
+- [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.
+- [Cost optimization and Azure Monitor](../fundamentals/best-practices-cost.md) - Understand how transformations affect ingestion costs.
