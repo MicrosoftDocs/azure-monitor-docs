@@ -104,8 +104,15 @@ The *dependencies* setting of an entity determines how its health state is propa
 | Option | Description |
 |:-------|:------------|
 | Worst of | Propagates the worst health state among all dependencies. This is the default setting and the most common. |
-| Minimum health  | Entity becomes degraded or unhealthy when the number of healthy children entities falls to or below a specific threshold. Specify a separate threshold for each health state. The threshold can either be an absolute value or a percentage. |
-| Maximum not healthy | Entity becomes degraded or unhealthy when the number of non-healthy children entities reaches or exceeds a specific threshold. Specify a separate threshold for each health state. The threshold can either be an absolute value or a percentage. |
+| Minimum healthy  | Entity becomes degraded or unhealthy when the number of healthy children entities falls to or below a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
+| Maximum not healthy | Entity becomes degraded or unhealthy when the number of non-healthy children entities reaches or exceeds a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
+
+For example, consider an application that relies on six virtual machines, but the application is healthy if one of the machines is offline. the application is degraded if two machines are offline, and unhealthy if more than two are offline. 
+
+For this functionality, a generic entity is used to aggregate the health of the virtual machines as shown in the following image. The *Minimum healthy* dependency setting is used on the generic entity with the following thresholds:
+
+- Degraded threshold: 4
+- Unhealthy threshold: 3
 
 ### Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).
@@ -115,9 +122,8 @@ Following is a history from [Entity details](./analyze-health.md#entity-details)
 :::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting.":::
 
 
-
 ## Alerts
-Alerts notify you when the health state of an entity changes.
+Alerts notify you when the health state of an entity changes. 
 
 For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
 

@@ -579,7 +579,10 @@ items:
       items:
       - name: Quickstart
         displayName: health models
-        href: health-models/quickstart.md 
+        href: health-models/quickstart.md
+      - name: Tutorial
+        displayName: health models
+        href: health-models/tutorial.md
     - name: Concepts
       items:
       - name: Entities and health state
