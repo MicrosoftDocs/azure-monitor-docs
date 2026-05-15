@@ -30,7 +30,7 @@ In this tutorial, you:
 
 To complete this tutorial, you need:
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * A Log Analytics workspace where you have at least [contributor rights](manage-access.md#azure-rbac).
 * [Permissions to create DCR objects](../data-collection/data-collection-rule-create-edit.md#permissions) in the workspace.
 * Permissions to [register an application in Microsoft Entra ID](/entra/identity-platform/quickstart-register-app#prerequisites).

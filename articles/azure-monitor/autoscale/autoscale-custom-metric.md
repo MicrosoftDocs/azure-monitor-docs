@@ -27,7 +27,7 @@ Azure Monitor autoscale applies to:
 
 ## Prerequisite
 
-You must have an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free).
+You must have an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Overview
 
