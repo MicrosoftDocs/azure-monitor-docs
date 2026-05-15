@@ -88,41 +88,41 @@ A clean reinstall of the agent fixes most problems. This task might be the first
 
 ## Installation error codes
 
-- **NOT_DEFINED** — The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd.
-- **2** — Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
-- **3** — No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
-- **4** — Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings.
-- **5** — The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`.
-- **6** — Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest).
-- **17** — Installation of OMS package failed. Look through the command output for the root failure.
-- **18** — Installation of OMSConfig package failed. Look through the command output for the root failure.
-- **19** — Installation of OMI package failed. Look through the command output for the root failure.
-- **20** — Installation of SCX package failed. Look through the command output for the root failure.
-- **21** — Installation of Provider kits failed. Look through the command output for the root failure.
-- **22** — Installation of bundled package failed. Look through the command output for the root failure.
-- **23** — SCX or OMI package already installed. Use `--upgrade` instead of `--install` to install the shell bundle.
-- **30** — Internal bundle error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
-- **55** — Unsupported openssl version *or* can't connect to Azure Monitor *or* dpkg is locked *or* missing curl program.
-- **61** — Missing Python ctypes library. Install the Python ctypes library or package (python-ctypes).
-- **62** — Missing tar program. Install tar.
-- **63** — Missing sed program. Install sed.
-- **64** — Missing curl program. Install curl.
-- **65** — Missing gpg program. Install gpg.
+- **NOT_DEFINED**—The installer can't install the auoms auditd plug-in because the necessary dependencies aren't installed. Installation of auoms failed. Install package auditd.
+- **2**—Invalid option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
+- **3**—No option provided to the shell bundle. Run `sudo sh ./omsagent-*.universal*.sh --help` for usage.
+- **4**—Invalid package type *or* invalid proxy settings. The omsagent-*rpm*.sh packages can only be installed on RPM-based systems. The omsagent-*deb*.sh packages can only be installed on Debian-based systems. Use the universal installer from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest). Also review to verify your proxy settings.
+- **5**—The shell bundle must be executed as root *or* there was a 403 error returned during onboarding. Run your command by using `sudo`.
+- **6**—Invalid package architecture *or* there was a 200 error returned during onboarding. The omsagent-\*x64.sh packages can only be installed on 64-bit systems. The omsagent-\*x86.sh packages can only be installed on 32-bit systems. Download the correct package for your architecture from the [latest release](https://github.com/Microsoft/OMS-Agent-for-Linux/releases/latest).
+- **17**—Installation of OMS package failed. Look through the command output for the root failure.
+- **18**—Installation of OMSConfig package failed. Look through the command output for the root failure.
+- **19**—Installation of OMI package failed. Look through the command output for the root failure.
+- **20**—Installation of SCX package failed. Look through the command output for the root failure.
+- **21**—Installation of Provider kits failed. Look through the command output for the root failure.
+- **22**—Installation of bundled package failed. Look through the command output for the root failure.
+- **23**—SCX or OMI package already installed. Use `--upgrade` instead of `--install` to install the shell bundle.
+- **30**—Internal bundle error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **55**—Unsupported openssl version *or* can't connect to Azure Monitor *or* dpkg is locked *or* missing curl program.
+- **61**—Missing Python ctypes library. Install the Python ctypes library or package (python-ctypes).
+- **62**—Missing tar program. Install tar.
+- **63**—Missing sed program. Install sed.
+- **64**—Missing curl program. Install curl.
+- **65**—Missing gpg program. Install gpg.
 
 ## Onboarding error codes
 
-- **2** — Invalid option provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
-- **3** — Invalid configuration provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
-- **4** — Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for network requirements](./azure-monitor-agent-network-configuration.md#firewall-endpoints).
-- **5** — 403 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
-- **6** — Non-200 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
-- **7** — Unable to connect to Azure Monitor. See the full output of the omsadmin script for details.
-- **8** — Error onboarding to Log Analytics workspace. See the full output of the omsadmin script for details.
-- **30** — Internal script error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
-- **31** — Error generating agent ID. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
-- **32** — Error generating certificates. See the full output of the omsadmin script for details.
-- **33** — Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
-- **34** — Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`.
+- **2**—Invalid option provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
+- **3**—Invalid configuration provided to the omsadmin script. Run `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -h` for usage.
+- **4**—Invalid proxy provided to the omsadmin script. Verify the proxy and see the [documentation for network requirements](./azure-monitor-agent-network-configuration.md#firewall-endpoints).
+- **5**—403 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
+- **6**—Non-200 HTTP error received from Azure Monitor. See the full output of the omsadmin script for details.
+- **7**—Unable to connect to Azure Monitor. See the full output of the omsadmin script for details.
+- **8**—Error onboarding to Log Analytics workspace. See the full output of the omsadmin script for details.
+- **30**—Internal script error. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **31**—Error generating agent ID. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **32**—Error generating certificates. See the full output of the omsadmin script for details.
+- **33**—Error generating metaconfiguration for omsconfig. File a [GitHub issue](https://github.com/Microsoft/OMS-Agent-for-Linux/issues) with details from the output.
+- **34**—Metaconfiguration generation script not present. Retry onboarding with `sudo sh /opt/microsoft/omsagent/bin/omsadmin.sh -w <Workspace ID> -s <Workspace Key>`.
 
 
 ### OMS output plug-in debug
