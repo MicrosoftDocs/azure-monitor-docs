@@ -51,7 +51,7 @@ You can access Advisor through the [Azure portal](https://aka.ms/azureadvisordas
 ### What permissions do I need to access Advisor?
 
 You can access Advisor recommendations as the Owner, Contributor, or Reader of a subscription, resource group, or resource.
-For more information, see: [Roles and Permissions](https://learn.microsoft.com/azure/advisor/permissions)
+For more information, see: [Roles and Permissions](/articles/advisor/permissions)
 ### What resources does Advisor provide recommendations for?
 
 Advisor provides recommendations for the following services:
@@ -99,7 +99,7 @@ When a recommendation is active, you can manually update its state to manage you
 
 You can continue to change states between active, postponed, dismissed, and completed, or reactivate a recommendation, until Azure Advisor performs system verification and marks a recommendation as completed. Recommendations you manually mark as completed are indicated as "Marked completed".
 
-For more information, see [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
+For more information, see [Azure Advisor recommendation state management](/articles/advisor/advisor-azure-state-management.md).
 
 ## Related articles
 
