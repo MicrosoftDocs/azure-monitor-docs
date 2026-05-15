@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 The Logs query API lets you run Kusto Query Language (KQL) queries against a Log Analytics workspace through a public REST endpoint. Retrieve or analyze log data programmatically for automation, custom reporting, or integration with other tools.
 
-This article shows how to format `GET` and `POST` requests for the Logs query API endpoint, including direct REST examples and equivalent Azure CLI and Azure PowerShell commands.
+This article shows how to format `GET` and `POST` requests for the Logs query API endpoint, including direct REST examples and equivalent Azure CLI commands and Azure PowerShell cmdlets.
 
 For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis).
 
@@ -196,7 +196,9 @@ $restParams = @{
     Payload    = Get-Content -Raw -Path $payloadFile
 }
 
-Invoke-AzRestMethod @restParams
+$response = Invoke-AzRestMethod @restParams
+$results = $response.Content | ConvertFrom-Json
+$results.tables
 ```
 
 **Payload file (query-payload.json):**
@@ -210,9 +212,9 @@ Invoke-AzRestMethod @restParams
 
 Alternatively, use the [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet which abstracts the HTTP request format and works for both `GET` and `POST` query scenarios. See the [GET request format](#get-request-format) section for a cmdlet sample.
 
-# [REST API](#tab/rest)
+# [REST](#tab/rest)
 
-```rest
+```REST
 POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
 Authorization: Bearer {accessToken}
 Content-Type: application/json
