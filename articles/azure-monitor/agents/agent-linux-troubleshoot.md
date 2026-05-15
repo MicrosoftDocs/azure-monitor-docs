@@ -40,7 +40,7 @@ The installation of the Log Analytics agent automatically includes the Troublesh
 
 The Troubleshooting Tool checks the following scenarios:
 
-- The agent is unhealthy; the heartbeat doesn't work properly.
+- The agent is unhealthy and the heartbeat isn't working properly.
 - The agent doesn't start or can't connect to Log Analytics.
 - The agent Syslog isn't working.
 - The agent has high CPU or memory usage.
@@ -222,7 +222,7 @@ This error is a known problem that occurs on the first upload of Linux data into
 
 ### Probable causes
 
-A regression in the nss-pem package [v1.0.3-5.el7](https://pkgs.org/download/nss-pem) causes a severe performance problem. This problem frequently appears in Redhat and CentOS 7.x distributions. For more information about this problem, see [1667121 Performance regression in libcurl](https://bugzilla.redhat.com/show_bug.cgi?id=1667121).
+A regression in the nss-pem package [v1.0.3-5.el7](https://pkgs.org/download/nss-pem) causes a severe performance problem. This problem frequently appears in Red Hat and CentOS 7.x distributions. For more information about this problem, see [1667121 Performance regression in libcurl](https://bugzilla.redhat.com/show_bug.cgi?id=1667121).
 
 Performance-related bugs don't always happen and they're difficult to reproduce. If you experience such a problem with omiagent, use the script `omiHighCPUDiagnostics.sh`. The script collects the stack trace of the omiagent when it exceeds a certain threshold.
 
@@ -239,13 +239,13 @@ Performance-related bugs don't always happen and they're difficult to reproduce.
 1. Upgrade the nss-pem package to [v1.0.3-5.el7_6.1](https://pkgs.org/download/nss-pem): <br/>
 `sudo yum upgrade nss-pem`
 
-1. If nss-pem isn't available for upgrade, which mostly happens on CentOS, downgrade curl to 7.29.0-46. If you run "yum update" by mistake, curl is upgraded to 7.29.0-51 and the problem happens again: <br/>
+1. If nss-pem isn't available for upgrade, which mostly happens on CentOS, downgrade curl to 7.29.0-46. If you run `yum update` by mistake, curl is upgraded to 7.29.0-51 and the problem happens again: <br/>
 `sudo yum downgrade curl libcurl`
 
 1. Restart OMI: <br/>
 `sudo scxadmin -restart`
 
-## Problem: You don't see forwarded Syslog messages
+## Problem: You don't see forwarded syslog messages
 
 ### Probable causes
 
@@ -255,9 +255,9 @@ Performance-related bugs don't always happen and they're difficult to reproduce.
 
 ### Resolution
 
-* Verify the configuration in the Log Analytics workspace for Syslog has all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](../vm/data-collection-syslog.md#create-the-dcr).
+* Verify the configuration in the Log Analytics workspace for Syslog includes all the facilities and the correct log levels. Review [configure Syslog collection in the Azure portal](../vm/data-collection-syslog.md#create-the-dcr).
 * Verify the native Syslog messaging daemons (`rsyslog`, `syslog-ng`) can receive the forwarded messages.
-* To ensure that messages aren't being blocked, check firewall settings on the Syslog server.
+* To ensure that messages aren't blocked, check firewall settings on the Syslog server.
 * Simulate a Syslog message to Log Analytics by using a `logger` command: <br/>
   `logger -p local0.err "This is my test message"`
 
@@ -267,7 +267,7 @@ You see `[error]: unexpected error error_class=Errno::EADDRINUSE error=#<Errno::
 
 ### Probable causes
 
-This error indicates that the Linux diagnostic extension (LAD) is installed side by side with the Log Analytics Linux VM extension. They're both using the same port for Syslog data collection as omsagent.
+This error message indicates that the Linux diagnostic extension (LAD) is installed side by side with the Log Analytics Linux VM extension. They're both using the same port for Syslog data collection as omsagent.
 
 ### Resolution
 
