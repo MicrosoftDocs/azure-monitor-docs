@@ -14,7 +14,7 @@ ms.custom: references_regions
 Azure Monitor pipeline delivers high-throughput log ingestion on minimal infrastructure. A single pipeline replica on a commodity 8-core node sustains **~200,000 syslog messages per second end-to-end into Log Analytics** — roughly **17 billion events or ~20 TB per day** — while consuming only **~2.8 GB of working-set memory**. Throughput scales linearly with CPU cores and replicas, so capacity planning reduces to picking a per-vCPU rate and a replica count. Scale vertically with larger nodes, horizontally with more replicas, or both. When overloaded, the pipeline backpressures senders rather than dropping data.
 
 > [!NOTE]
-> The performance data in this article was collected using pipeline version [v0.159](./pipeline-extension-versions.md#version-v01580---mar-2026-preview) in May 2026 with TCP transport, ~1.2 KB payloads, and TLS disabled. Your results might vary based on payload size, TLS configuration, network latency, and cluster workload.
+> The performance data in this article was collected using pipeline version [v1.1.1](./pipeline-extension-versions.md#version-v111---april-2026-general-availability) in May 2026 with TCP transport, ~1.2 KB payloads, and TLS disabled. Your results might vary based on payload size, TLS configuration, network latency, and cluster workload.
 
 ## Pipeline types tested
 
@@ -73,7 +73,7 @@ Adding replicas scales throughput linearly. These values are measured on 4-core 
 | CEF Fully Formed | ~35,000/sec | ~70,000/sec | ~140,000/sec | ~280,000/sec |
 
 > [!IMPORTANT]
-> Run each pipeline replica on its own node. Co-locating replicas on the same node causes CPU contention and affects throughput.
+> Dedicate each node to a single pipeline replica. Sharing a node with other workloads or additional replicas causes CPU contention and reduces throughput.
 
 ### Size for a target throughput
 
