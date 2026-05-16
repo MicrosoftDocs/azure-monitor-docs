@@ -67,8 +67,12 @@ If a new review is available to you, you see a notification banner on top of Adv
 [!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
 
 1.  On the menu for Advisor, select **Manage** > **Reviews (Preview)**.
-1.  A list of reviews opens. At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
-1.  Use search, filters, and sorting to find the review you need. You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews. If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter. To see the reviews for a subscription, update the filter.
+1.  A list of reviews opens.
+1.  At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
+1.  Use search, filters, and sorting to find the review you need.
+1.  You can filter reviews by one of the **Status equals** states shown next, or choose **All** (the default) to see all reviews.
+1.  If you don't see a review for your subscription, make sure the review subscription is included in the global portal filter.
+1.  To see the reviews for a subscription, update the filter.
 
 ### Review status
 
@@ -92,9 +96,7 @@ Manage recommendation statuses through four steps: `active`, `dismissed`, `compl
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
 1.  On **Reviews**, select the name of a review to open the recommendations list.
-
-    For new reviews, recommendations are set to **Active** state.
-
+1.  For new reviews, recommendations are set to **Active** state.
 1.  Note the priority for each recommendation. To help you decide which recommendation to implement first, your account team defines the **Priority**.
 
     :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/advisor-reviews-contoso-company-pending-preview.png" source="./media/advisor-reviews-contoso-company-pending.png" type="content":::
@@ -117,20 +119,17 @@ For details on permissions to act on recommendations, see [Roles and permissions
 
 ### Access review recommendations
 
-On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
-
-The recommendations are grouped by type.
-
-You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
-
+1.  On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
+1.  The recommendations are grouped by type.
+1.  You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
 
 You can sort recommendations by using the following column headers: **Priority** (**Critical**, **High**, **Medium**, **Low**, **Informational**), **Description**, **Impacted resources**, **Review name**, **Potential benefits**, or **Last updated** date.
 
 
 ### View recommendation details
 
-Select a recommendation description to open a details pane. Your Microsoft account team adds the **Description**, **Potential benefits**, and **Notes** when they prepare the review.
-
+1.  Select a recommendation description to open a details pane.
+1.  Your Microsoft account team adds the **Description**, **Potential benefits**, and **Notes** when they prepare the review.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability pane for a Resiliency Reviews recommendation." lightbox="./media/resiliency-reviews/resiliency-review-reliability-page-detail.png" source="./media/resiliency-reviews/resiliency-review-reliability-page-detail.png" type="content":::
 
@@ -142,16 +141,9 @@ For details on recommendation priority, see [Recommendation priority](#recommend
 
 Recommendation status helps you decide what action to take. Review each available recommendation status: 
 
-
 * **Active**: New recommendations identified by the Azure Advisor system.
-
-
 * **Postponed**: Temporarily hides a recommendation for a set period. After that period, the recommendation automatically reappears.
-
-
 * **Dismissed**: Permanently removes an item from view until you choose to reactivate it.
-
-
 * **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that recommendation no longer applies.
 
 
@@ -167,13 +159,10 @@ The engineers on your Microsoft account team track the results of your actions o
 For more information about Azure Advisor, see the following articles.
 
 *   [Introduction to Azure Advisor](./advisor-overview.md "Introduction to Azure Advisor | Azure Advisor | Microsoft Learn")
-
 *   [Azure Advisor portal basics](./advisor-get-started.md "Azure Advisor portal basics | Azure Advisor | Microsoft Learn")
-
 *   [Azure Advisor REST API](/rest/api/advisor "Azure Advisor REST API | Microsoft Learn")
 
-For more information about specific Advisor recommendations, see the following articles.
+For more information about specific Advisor recommendations, see the following articles:
 
 *   [Reliability workbook](./advisor-workbook-reliability.md "Reliability workbook | Azure Advisor | Microsoft Learn")
-
 *   [Reliability recommendations](./advisor-reference-reliability-recommendations.md "Reliability recommendations | Azure Advisor | Microsoft Learn")
