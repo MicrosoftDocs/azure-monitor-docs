@@ -58,14 +58,17 @@ To view recommendations or manage the status of each recommendation, you need sp
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
-### Access reviews
 
-Find resiliency reviews created by your Microsoft account team.
+### Open the Azure Advisor Dashboard
 
-If a new review is available to you, you see a notification banner on top of Advisor. A **New** review is one with all recommendations in the **Active** state.
+To view reviews, open the Azure Advisor Dashboard.
 
 [!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
 
+### Access reviews
+
+1.  Find resiliency reviews created by your Microsoft account team.
+1.  If a new review is available to you, you see a notification banner on top of Advisor. A **New** review is one with all recommendations in the **Active** state.
 1.  On the menu for Advisor, select **Manage** > **Reviews (Preview)**.
 1.  A list of reviews opens.
 1.  At the top of the pane, you see the number of **Total Reviews** and review **Recommendations**, and a graph of **Reviews by status**.
