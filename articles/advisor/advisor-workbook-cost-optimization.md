@@ -103,7 +103,7 @@ Review Azure Reservations cost saving opportunities. Use filters for subscriptio
 
 ### Azure savings plan for compute
 
-Review Azure savings plan for compute cost saving opportunities. Use filters for subscriptions, a look back period (7, 30 or 60 days), and a term (1 year or 3 years). Learn more about [What is Azure savings plans for compute?](https://azure.microsoft.com/pricing/offers/savings-plan-compute) and how much you can [save with Savings Plan for Compute](https://azure.microsoft.com/pricing/offers/savings-plan-compute).
+Review Azure savings plan for compute cost saving opportunities. Use filters for subscriptions, a look back period (7, 30 or 60 days), and a term (1 year or 3 years). Learn more about [What is Azure savings plans for compute?](https://azure.microsoft.com/pricing/offers/savings-plans?cid=msft_learn) and how much you can [save with Savings Plan for Compute](https://azure.microsoft.com/pricing/offers/savings-plans?cid=msft_learn).
 
 ## Usage Optimization
 
