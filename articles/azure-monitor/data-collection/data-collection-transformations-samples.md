@@ -1,15 +1,15 @@
 ---
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
-ms.topic: how-to
+ms.topic: sample
 ms.date: 05/15/2026
-ms.reviwer: nikeist
+ms.reviewer: nikeist
 ai-usage: ai-assisted
 ---
 
 # Sample transformations in Azure Monitor
 
-[Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides  sample queries for common scenarios that you can use to get started creating your own transformations. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for details on testing these transformations and adding them to a data collection rule (DCR).
+[Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides sample queries for common scenarios that you can use to get started creating your own transformations. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for details on testing these transformations and adding them to a data collection rule (DCR).
 
 ## Reduce data costs
 
@@ -33,7 +33,7 @@ source | project-away RawData
 
 ## Parse important data from a column
 
-You may have a column with important data buried in excessive text. Keep only the valuable data and remove the text that isn't needed. Use [string functions](data-collection-transformations-kql.md#scalar-functions) such as `substring` and `extract` to parse the data you want. You can also parse the data using `parse` or `split` to break a single column in to multiple values and select the one you want. Then use `extend` to create a new column with the parsed data and `project-away` to remove the original column.
+You might have a column with important data buried in excessive text. Keep only the valuable data and remove the text that isn't needed. Use [string functions](data-collection-transformations-kql.md#scalar-functions) such as `substring` and `extract` to parse the data you want. You can also parse the data using `parse` or `split` to break a single column into multiple values and select the one you want. Then use `extend` to create a new column with the parsed data and `project-away` to remove the original column.
 
 > [!WARNING]
 > See [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) for tips on using complex parse commands.
@@ -54,7 +54,7 @@ Send rows in your data that require basic query capabilities to basic logs table
 
 ## Remove sensitive data
 
-You might have a data source that sends information you don't want stored for privacy or compliancy reasons.
+You might have a data source that sends information you don't want stored for privacy or compliance reasons.
 
 ### Filter sensitive information
 
@@ -116,9 +116,6 @@ source
 | project d = split(RawData,",") 
 | project TimeGenerated=todatetime(d[0]), Code=toint(d[1]), Severity=tostring(d[2]), Module=tostring(d[3]), Message=tostring(d[4])
 ```
-
-> [!WARNING]
-> See [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) for tips on using complex parse commands.
 
 ## Multi-stage transformation samples (preview)
 
@@ -378,7 +375,7 @@ Transform syslog data and ingest it as CommonSecurityLog using a two-stage appro
 
 ## Next steps
 
-* [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
-* [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview).
-* [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
-* [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete processor reference.
+- [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
+- [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview).
+- [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+- [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete processor reference.

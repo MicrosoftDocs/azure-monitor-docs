@@ -12,13 +12,6 @@ ai-usage: ai-assisted
 
 [Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
 
-In this article:
-
-- [Create and test a transformation query](#create-the-transformation-query) using KQL in Log Analytics
-- [Add a single-stage transformation to a DCR](#add-transformation-to-dcr) using the `transformKql` property
-- [Create a multi-stage transformation (preview)](#create-a-multi-stage-transformation-preview) using processor-based pipelines
-- [Create a workspace transformation DCR](#create-workspace-transformation-dcr) applied directly to a workspace
-
 > [!TIP]
 > **Single-stage vs. multi-stage:** Use a single-stage transformation (`transformKql`) when you need to apply one KQL query to a data flow. Use multi-stage transformations (`transform` with processors) when you need client-side filtering before data leaves the agent, multiple processing steps in a pipeline, or non-KQL processors like parsing, filtering, or enrichment.
 
@@ -88,7 +81,7 @@ source | where SeverityLevel != 'info'
 
 ## Add transformation to DCR
 
-Once you have your transformation query, add it to a DCR by following these steps:
+After you have your transformation query, add it to a DCR by following these steps:
 
 1. Open your DCR definition in JSON. You can export the current definition using the Azure CLI:
 
@@ -166,7 +159,7 @@ In the following example, `transformKql` has a query that filters data, so only 
 ### Verify the transformation
 
 1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
-1. In the Azure portal, navigate to your Log Analytics workspace and select **Logs**.
+1. In the Azure portal, go to your Log Analytics workspace and select **Logs**.
 1. Query the target table and confirm the transformation logic is applied. For example, verify that filtered records are excluded or that new calculated columns are populated.
 
     ```kusto
@@ -206,7 +199,7 @@ To create a multi-stage transformation using the REST API:
     Content-Type: application/json
     ```
 
-    Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, navigate to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
+    Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, go to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
 
     > [!TIP]
     > You can use `az rest` to handle authentication automatically:
@@ -332,9 +325,9 @@ Invoke-AzRestMethod `
 
 ### Create a multi-stage transformation using the Azure portal
 
-To access the multi-stage transformation portal UI during the preview, navigate to `https://portal.azure.com/?feature.transformEnabled=true`.
+To access the multi-stage transformation portal UI during the preview, go to `https://portal.azure.com/?feature.transformEnabled=true`.
 
-1. Navigate to **Monitor** > **Data Collection Rules** and select **Create**.
+1. Go to **Monitor** > **Data Collection Rules** and select **Create**.
 1. On the **Basics** tab, provide the rule name, subscription, resource group, and region. Select the appropriate **Platform Type** (Windows, Linux, or Custom).
 1. On the **Resources** tab, select **Add resources** and choose the virtual machines or other resources to associate with this DCR.
 1. On the **Collect and deliver** tab, select **Add data source**. Choose the data source type and configure collection settings on the **Data source** tab.
@@ -353,7 +346,7 @@ To access the multi-stage transformation portal UI during the preview, navigate 
 After you create a multi-stage transformation, verify that both client-side and ingestion-side processing are working:
 
 1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
-1. In the Azure portal, navigate to your Log Analytics workspace and select **Logs**.
+1. In the Azure portal, go to your Log Analytics workspace and select **Logs**.
 1. Query the target table to confirm client-side filtering took effect. For example, if you filtered to the `auth` facility only, verify that other facilities are absent:
 
     ```kusto
@@ -391,7 +384,7 @@ The [workspace transformation data collection rule (DCR)](data-collection-transf
 Use one of the following methods to create a workspace transformation DCR for your workspace and add one or more transformations to it.
 
 > [!NOTE]
-> It may take up to 60 minutes for a new transformation query to be activated.
+> It might take up to 60 minutes for a new transformation query to be activated.
 
 
 ### [Azure portal](#tab/portal)
@@ -402,7 +395,7 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
     :::image type="content" source="media/data-collection-transformations-create/create-transformation-select.png" lightbox="media/data-collection-transformations-create/create-transformation-select.png" alt-text="Screenshot that shows the option to create a transformation for a table in the Azure portal.":::
 
-1. If the workspace transformation DCR hasn't already been created for this workspace, select the option to create one. If it has already been created, then that DCR will already be selected. Each workspaces can only have one workspace transformation DCR.
+1. If the workspace transformation DCR hasn't already been created for this workspace, select the option to create one. If it has already been created, then that DCR will already be selected. Each workspace can only have one workspace transformation DCR.
 
     :::image type="content" source="media/data-collection-transformations-create/new-data-collection-rule.png" lightbox="media/data-collection-transformations-create/new-data-collection-rule.png" alt-text="Screenshot that shows creating a new data collection rule.":::
 
@@ -415,7 +408,7 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
     :::image type="content" source="media/data-collection-transformations-create/save-transformation.png" lightbox="media/data-collection-transformations-create/save-transformation.png" alt-text="Screenshot that shows saving the transformation.":::
 
-1. To verify the transformation is active, navigate to **Monitor** > **Data Collection Rules** and confirm the workspace transformation DCR appears with status **Succeeded**. Then query the target table after the next ingestion cycle to confirm transformations are applied.
+1. To verify the transformation is active, go to **Monitor** > **Data Collection Rules** and confirm the workspace transformation DCR appears with status **Succeeded**. Then query the target table after the next ingestion cycle to confirm transformations are applied.
 
 ### [JSON](#tab/json)
 

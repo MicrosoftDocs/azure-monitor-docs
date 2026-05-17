@@ -19,9 +19,9 @@ The following diagram illustrates the transformation process for incoming data a
 
 The following tables in a Log Analytics workspace support transformations.
 
-* Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
-* Any custom table created for the Azure Monitor Agent.
-* Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
+- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
+- Any custom table created for the Azure Monitor Agent.
+- Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
 
 ## Create a transformation
 
@@ -83,7 +83,7 @@ A single DCR can combine both client-side and ingestion-side transformations. Th
 - Multi-stage transformations require API version `2025-05-11` or later.
 - The `transformations` section and the `transform` property on data sources and data flows aren't recognized by earlier API versions.
 - The `transform` property is mutually exclusive with `transformKql` per data flow. A DCR can mix old-style and new-style data flows across different streams.
-- To access the portal authoring UI during the preview, navigate to `https://portal.azure.com/?feature.transformEnabled=true`.
+- To access the portal authoring UI during the preview, go to `https://portal.azure.com/?feature.transformEnabled=true`.
 - For issues during preview, contact `multistagetransforms@microsoft.com` with your DCR resource ID and subscription.
 
 ### Design approach for multi-stage processing
@@ -101,9 +101,9 @@ Follow these steps when designing a multi-stage DCR:
 
 ## Workspace transformation DCR
 
-Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](../platform/diagnostic-settings.md) and application data collected by [Application insights](../app/app-insights-overview.md).
+Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](../platform/diagnostic-settings.md) and application data collected by [Application Insights](../app/app-insights-overview.md).
 
-The *workspace transformation data collection rule (DCR)* is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](data-collection-transformations.md) on data that doesn't yet use a DCR for its data collection, and thus has no means to define a transformation.
+The *workspace transformation data collection rule (DCR)* is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform transformations on data that doesn't yet use a DCR for its data collection, and thus has no means to define a transformation.
 
 There can be only one workspace DCR for each workspace, but it can include transformations for any number of supported tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 
@@ -113,7 +113,7 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 :::image type="content" source="media/data-collection-transformations/transformation-comparison.png" lightbox="media/data-collection-transformations/transformation-comparison.png" alt-text="Diagram that compares standard DCR transformations with workspace transformation DCR." border="false":::
 
-<sup>1</sup> The Log Analytics agent has been deprecated, but some environments may still use it. It's only one example of a data source that doesn't use a DCR.
+<sup>1</sup> The Log Analytics agent has been deprecated, but some environments might still use it. It's only one example of a data source that doesn't use a DCR.
 
 ## Azure Monitor pipeline transformations
 
@@ -135,102 +135,15 @@ The data that's ingested into Azure Monitor is a combination of the pipeline tra
 
 :::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
 
-## Multi-stage transformations (preview)
-
-> [!IMPORTANT]
-> Multi-stage transformations are currently in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
-
-Multi-stage transformations extend Azure Monitor's ingestion pipeline by allowing multiple, ordered transformations applied to telemetry at the client (on the virtual machine via Azure Monitor Agent) or during ingestion, before the data is stored in Log Analytics. Multi-stage transformations use a processor-based model defined in a new `transformations` section within a [data collection rule (DCR)](data-collection-rule-overview.md).
-
-Multi-stage transformations require API version `2025-05-11` or later. During preview, DCRs with multi-stage transformations must be authored via REST API.
-
-### Capabilities
-
-Multi-stage transformations let you:
-
-- **Extract attributes** from raw data in common formats (CEF, JSON, XML) on the client.
-- **Rename and drop columns** on the client before data leaves the resource.
-- **Filter and aggregate logs** on the client to reduce data volume sent to Azure Monitor.
-- **Apply KQL transformations** at ingestion time.
-- **Combine client-side and ingestion-time transformations** in a single DCR.
-- **Apply multiple processors** to the same data stream in a defined order.
-
-### How it works
-
-Data collection rules define a multi-stage processing pipeline with four stages:
-
-1. **Data collection** — Azure Monitor Agent collects data from the source.
-1. **Client-side processing** — Transformations run on the agent before data leaves the resource.
-1. **Ingestion-time processing** — Transformations run in Azure Monitor after data is received.
-1. **Data delivery** — Data is stored in the destination Log Analytics workspace table.
-
-Transformations are explicitly assigned to stages. Client-side transformations attach to data sources. Ingestion-time transformations attach to data flows.
-
-### Processors
-
-Each transformation is built from ordered, composable *processors*. A transformation begins with a **header processor** that establishes the schema, followed by one or more processing steps.
-
-#### Header processors
-
-Header processors define the output schema and depend on the data source type. Available headers include:
-
-| Header | Description |
-|--------|-------------|
-| `header.Syslog` | Syslog data sources |
-| `header.WindowsEvents` | Windows event log data sources |
-| `header.WindowsPerformanceCounters` | Windows performance counter data sources |
-| `header.LinuxPerformanceCounters` | Linux performance counter data sources |
-| `header.TextLog` | Custom text log data sources |
-| `header.IISLog` | IIS log data sources |
-| `header.WindowsFirewallLog` | Windows Firewall log data sources |
-| `header.StandardStream` | Standard stream (ingestion-time) |
-| `header.CustomStream` | Custom stream (ingestion-time) |
-
-#### Processing processors
-
-After the header, apply one or more processors to transform data:
-
-| Processor | Description | Stage |
-|-----------|-------------|-------|
-| `filter.Basic` | Filter records based on conditions | Client and ingestion |
-| `map.Rename` | Rename columns | Client and ingestion |
-| `map.Drop` | Drop columns | Client and ingestion |
-| `parse.JsonPath` | Extract fields from JSON data | Client and ingestion |
-| `parse.XmlPath` | Extract fields from XML data | Client and ingestion |
-| `parse.CEFAttribute` | Extract fields from CEF-formatted data | Client and ingestion |
-| `aggregate.Basic` | Aggregate records (changes output schema) | Client |
-| `enrich.DNSLookup` | Enrich records with DNS lookup data | Client |
-| `transform.KQL` | Apply a KQL transformation | Ingestion only |
-
-> [!NOTE]
-> Aggregation changes the output schema and requires routing aggregated data to a separate table from non-aggregated data.
-
-### DCR structure for multi-stage transformations
-
-Multi-stage DCRs introduce a `transformations` section alongside the existing `dataFlows` section. The `transformations` section contains named transformation objects, each with an ordered list of processors.
-
-- Client-side transformations are referenced from `dataSources` entries.
-- Ingestion-time transformations are referenced from `dataFlows` entries using the `transform` property (which replaces the `transformKql` property used in single-stage transformations).
-
-### Design approach
-
-When authoring a multi-stage DCR:
-
-1. Assess data sources and destinations.
-1. Identify aggregation needs (aggregation changes schema, requiring separate output tables).
-1. Plan differential processing paths if different records need different treatment.
-1. Author client-side transformations for filtering and parsing that reduces data volume before transmission.
-1. Define data flows per stream, applying ingestion-time transformations as needed.
-
 ## Cost for transformations
 
 Processing logs (transforming and filtering) in the Azure Monitor cloud pipeline has different billing implications depending on the type of table into which data is being ingested in a Log Analytics workspace. 
 
 ### Auxiliary Logs
 
-Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. Transformations can either increase of decrease the size of the data. 
+Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. Transformations can either increase or decrease the size of the data. 
 
-The following tables shows some examples: 
+The following table shows some examples: 
 
 |Incoming data size| Data dropped or added by transformation | Data ingested into a Log Analytics workspace as an Auxiliary Logs table| Data processing billable GBs |Data ingestion billable GBs |
 |:--------------------------|:------------------------------:|:----------------------------------------:|:----------------------:|:----------------:|
@@ -267,7 +180,7 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 
 ## Next steps
 
-* [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
+- [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
 - [Create a transformation in Azure Monitor](data-collection-transformations-create.md), including multi-stage transformations.
 - [Structure of a data collection rule (DCR)](data-collection-rule-structure.md) for the complete JSON schema, including the multi-stage `transformations` section.
 - [Create a workspace transformation DCR](data-collection-transformations-create.md#create-workspace-transformation-dcr) for data not collected using a DCR.

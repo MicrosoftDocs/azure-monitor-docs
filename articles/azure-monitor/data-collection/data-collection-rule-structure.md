@@ -3,7 +3,7 @@ title: Structure of a data collection rule (DCR) in Azure Monitor
 description: Details on the structure of different kinds of data collection rule in Azure Monitor.
 ms.topic: reference
 ms.date: 05/15/2026
-ms.reviwer: msundaram
+ms.reviewer: msundaram
 ai-usage: ai-assisted
 ---
 
@@ -63,13 +63,13 @@ The input stream section of a DCR defines the incoming data that's being collect
 
 Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data. This is because the API sends custom data that can have any schema.
 
-Text logs from AMA are an example of data collection that requires both `dataSources` and `streamDeclarations`. The data source includes the configuration 
+Text logs from Azure Monitor Agent (AMA) are an example of data collection that requires both `dataSources` and `streamDeclarations`. The data source includes the configuration for connecting to the data source, and `streamDeclarations` defines the schema of the incoming data.
 
 ### Data sources
 
 Data sources are unique sources of monitoring data that each has its own format and method of exposing its data. Each data source type has a unique set of parameters that must be configured for each data source. The data returned by the data source is typically a known type, so the schema doesn't need to be defined in the DCR.
 
-For example, events and performance data collected from a VM with the Azure Monitor agent (AMA), use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this is a known schema for potential incoming data.
+For example, events and performance data collected from a VM with AMA, use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this is a known schema for potential incoming data.
 
 #### Common parameters
 
@@ -237,7 +237,9 @@ Each header processor outputs a fixed schema. For example, `header.Syslog` outpu
 
 These header processors are used for ingestion-side transformations assigned to data flows.
 
-**header.StandardStream** — Used when the input is a standard stream such as `Microsoft-Syslog` or `Microsoft-Event`.
+#### header.StandardStream
+
+Used when the input is a standard stream such as `Microsoft-Syslog` or `Microsoft-Event`.
 
 ```json
 {
@@ -252,7 +254,9 @@ These header processors are used for ingestion-side transformations assigned to 
 |:---------|:-----|:---------|:------------|
 | `streamId` | string | Yes | Identifier of the standard stream, such as `Microsoft-Syslog`. |
 
-**header.CustomStream** — Used when the input is a custom stream defined in `streamDeclarations`.
+#### header.CustomStream
+
+Used when the input is a custom stream defined in `streamDeclarations`.
 
 ```json
 {
