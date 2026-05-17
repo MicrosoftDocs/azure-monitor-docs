@@ -109,7 +109,7 @@ For more information, see [Workspace transformation DCR](../data-collection/data
 
 [Transformations](data-collection-transformations.md) are [KQL queries](../logs/log-query-overview.md) included in a DCR that run against each record received. They allow you to modify incoming data before it's stored in Azure Monitor or sent to another destination. Filter unneeded data to reduce your ingestion costs, remove sensitive data that shouldn't be persisted in the Log Analytics workspace, or format data to ensure that it matches the schema of its destination. Transformations also enable advanced scenarios such as sending data to multiple destinations or enriching data with additional information.
 
-[Multi-stage transformations (Preview)](data-collection-transformations.md#multi-stage-transformations) allow you to string together multiple transformations in a single DCR, where the output of one transformation is the input of the next. The key components of multi-stage transformations are:
+[Multi-stage transformations (Preview)](data-collection-transformations.md#multi-stage-transformations-preview) allow you to string together multiple transformations in a single DCR, where the output of one transformation is the input of the next. The key components of multi-stage transformations are:
 - Client-side transformations assigned to the data source 
 - Ingestion-time transformations which run in Azure Monitor assigned to the data flow
 

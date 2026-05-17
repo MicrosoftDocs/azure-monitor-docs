@@ -25,7 +25,7 @@ The following tables in a Log Analytics workspace support transformations.
 
 ## Create a transformation
 
-There are some data collection scenarios that allow you to add a transformation using the Azure portal, but most scenarios require you to create a new DCR using its JSON definition or add a transformation to an existing DCR. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](data-collection-transformations-samples.md) for sample transformation queries for common scenarios.
+There are some data collection scenarios that allow you to add a transformation using the Azure portal, but most scenarios require you to create a new DCR using its JSON definition or add a transformation to an existing DCR. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](data-collection-transformations-samples.md) for sample transformation queries of common scenarios.
 
 ## Multi-stage transformations (preview)
 
@@ -69,22 +69,20 @@ For the complete processor reference, including configuration schemas and output
 
 Each transformation is assigned to a specific processing stage. This distinction determines where compute happens, what data is sent over the network, and what costs can be optimized early.
 
-| Aspect | Client-side | Ingestion-side |
+| Aspect | Client-side | Ingestion-time |
 |:-------|:------------|:---------------|
-| Assigned to | Data source (`dataSources`) | Data flow (`dataFlows`) |
+| Assignment | Data source (`dataSources`) | Data flow (`dataFlows`) |
 | Runs on | Azure Monitor Agent (VM) | Azure Monitor service |
 | Header processor | Data-source-specific (for example, `header.Syslog`) | `header.StandardStream` or `header.CustomStream` |
 | Cost benefit | Reduces network and ingestion costs by filtering/aggregating before data leaves the resource | Applies after data is schematized and enriched with additional table columns |
 
-A single DCR can combine both client-side and ingestion-side transformations. The output of the client-side stage becomes the input to the ingestion-side stage automatically.
+A single DCR can combine both client-side and ingestion-time transformations. The output of the client-side stage becomes the input to the ingestion-time stage automatically.
 
-### Multi-stage DCR requirements
+### Multi-stage DCR considerations
 
-- Multi-stage transformations require API version `2025-05-11` or later.
-- The `transformations` section and the `transform` property on data sources and data flows aren't recognized by earlier API versions.
-- The `transform` property is mutually exclusive with `transformKql` per data flow. A DCR can mix old-style and new-style data flows across different streams.
-- To access the portal authoring UI during the preview, go to `https://portal.azure.com/?feature.transformEnabled=true`.
-- For issues during preview, contact `multistagetransforms@microsoft.com` with your DCR resource ID and subscription.
+- Multi-stage transformations require API version `2025-05-11` or later. The `transformations` section and the `transform` property on data sources and data flows aren't recognized by earlier API versions.
+- The `transform` property is mutually exclusive with `transformKql` per data flow. A DCR can mix old and new data flows across different streams.
+- During preview, you must manually coordinate the header of the downstream transformation with the outcome of the upstream transformation. For example, if you apply aggregation to a raw stream of Windows Events, the outcome might not be compatible with the corresponding Event table, and the ingestion-time transformation should begin with a custom stream header.
 
 ### Design approach for multi-stage processing
 
@@ -95,9 +93,6 @@ Follow these steps when designing a multi-stage DCR:
 1. **Plan for differential processing.** If you need to process portions of the same logs differently, create multiple data sources of the same type with different collection settings and apply different client-side transformations to each.
 1. **Author client-side transformations.** Use standard streams (`Microsoft-*`) if the output retains the header schema, or custom streams (`Custom-*`) if it doesn't. Define custom streams in `streamDeclarations`.
 1. **Define data flows.** For each stream, create a data flow. Use ingestion-time data flows to split a single stream across multiple destination tables by applying different filter criteria per data flow.
-
-> [!NOTE]
-> At this time, you must manually coordinate the header of the downstream transformation with the outcome of the upstream transformation. For example, if you apply aggregation to a raw stream of Windows Events, the outcome might not be compatible with the corresponding Event table, and the ingestion-time transformation should begin with a custom stream header.
 
 ## Workspace transformation DCR
 
@@ -117,13 +112,13 @@ For example, the [Event](../reference/tables/event.md) table is used to store ev
 
 ## Azure Monitor pipeline transformations
 
-[Azure Monitor pipeline data transformations](./pipeline-transformations.md) provide similar functionality as data transformations in Azure Monitor. Both allow you to apply a KQL query to incoming data to filter or modify that data before it's sent to the next step in the data flow.
+[Azure Monitor pipeline data transformations](./pipeline-transformations.md) provide similar functionality as client-side transformations in Azure Monitor. Both allow you to apply a KQL query to incoming data to filter or modify that data before it's sent to the next step in the data flow.
 
-Azure Monitor transformations are run after the data is received by Azure Monitor but before it's ingested in the Log Analytics workspace. Azure Monitor pipeline transformations are applied earlier in the data flow, allowing for data shaping and filtering before the data is sent to Azure Monitor. This makes pipeline transformations useful for reducing data volume and network bandwidth when sending data from edge or multicloud environments.
+Azure Monitor ingestion-time transformations are run after the data is received by Azure Monitor but before it's ingested in the Log Analytics workspace. Azure Monitor pipeline transformations are applied earlier in the data flow, allowing for data shaping and filtering before the data is sent to Azure Monitor. This makes pipeline transformations useful for reducing data volume and network bandwidth when sending data from edge or multicloud environments.
 
-The following table summarizes the key differences between Azure Monitor pipeline transformations and Azure Monitor transformations:
+The following table summarizes the key differences between Azure Monitor pipeline transformations and Azure Monitor ingestion-timetransformations:
 
-| Feature | Azure Monitor Pipeline Transformations | Azure Monitor Transformations |
+| Feature | Azure Monitor Pipeline Transformations | Azure Monitor Ingestion-time Transformations |
 |:---|:---|:---|
 | When applied | Before data is sent to Azure Monitor | After data is received by Azure Monitor.<br>Before it's stored in Log Analytics workspace |
 | Definition | Defined in data flows in Azure Monitor pipeline | Defined in Data Collection Rules (DCRs) in Azure Monitor |
@@ -131,7 +126,7 @@ The following table summarizes the key differences between Azure Monitor pipelin
 | Aggregations supported? | Yes | No |
 | Template supported? | Yes | No |
 
-The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network. The schema of the data output by the Azure Monitor transformation must match the schema of the destination table in the Log Analytics workspace.
+The data that's ingested into Azure Monitor is a combination of the pipeline transformation and any subsequent Azure Monitor ingestion-time transformations. The only requirement is that the output schema of the pipeline transformation must match the input schema expected by the Azure Monitor ingestion-time transformation. While you can filter data in either transformation, it's generally more efficient to filter data in the pipeline transformations since this reduces the amount of data sent over the network. The schema of the data output by the Azure Monitor ingestion-time transformation must match the schema of the destination table in the Log Analytics workspace.
 
 :::image type="content" source="./media/pipeline-transformations/workflow.png" lightbox="./media/pipeline-transformations/workflow.png" alt-text="Diagram showing the flow of data from pipeline transformation to Azure Monitor transformation to Log Analytics workspace.":::
 
@@ -141,7 +136,7 @@ Processing logs (transforming and filtering) in the Azure Monitor cloud pipeline
 
 ### Auxiliary Logs
 
-Auxiliary Logs charges for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor cloud pipeline if the destination in a Log Analytics workspace is an Auxiliary Logs table. The data ingestion charge applies only to the data after the transformation which is ingested as an Auxiliary Logs table into a Log Analytics workspace. Transformations can either increase or decrease the size of the data. 
+Auxiliary Logs assigns a cost for data processed and data ingested into a Log Analytics workspace. The data processing charge applies to all of the incoming data received by the Azure Monitor if the destination in a Log Analytics workspace is an Auxiliary Logs table. This includes the amount of data processed by any Azure Monitor ingestion-time transformations. The data ingestion charge applies only to the data after the ingestion-time transformation delivered to an Auxiliary Logs table. Transformations can either increase or decrease the size of the data. 
 
 The following table shows some examples: 
 
