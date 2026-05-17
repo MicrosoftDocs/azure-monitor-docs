@@ -20,7 +20,7 @@ Specific advantages of DCR-based data collection include:
 * Scalable configuration options supporting infrastructure as code and DevOps processes.
 * Option of Azure Monitor pipeline in your own environment to provide high-end scalability, layered network configurations, and periodic connectivity.
 
-## Viewing DCRs
+## View DCRs
 
 Data collection rules (DCRs) are stored in Azure so they can be centrally deployed and managed like any other Azure resource. They provide a consistent and centralized way to define and customize different data collection scenarios.
 
@@ -69,7 +69,7 @@ Once a DCR is created, there are different methods to use it based on the data c
 The following sections describe the common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used specify which DCR to use for that particular scenario. 
 
 ### Azure Monitor agent (AMA)
-[Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is used to collect data from virtual machines and Kubernetes clusters. The following diagram illustrates data collection for AMA running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this would also include Prometheus metrics. The agent uses that information to determine what data to collect from the machine and send to Azure Monitor. Once the data is delivered, any [transformation](#transformations) specified in the DCR are run to filter and modify the data and then sends the data to the specified workspace and table.
+[Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is used to collect data from virtual machines and Kubernetes clusters. The following diagram illustrates data collection for AMA running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this would also include Prometheus metrics. The agent uses that information to determine what data to collect from the machine and optionally apply a client-side transformation (Preview) to filter and transform the data before sending it to Azure Monitor. Once the data is sent, any ingestion-time [transformations](#transformations) specified in the DCR are run to filter and modify the data further. Then Azure Monitor delivers the data to the specified destination.
 
 See [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) and [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) for details.
 
