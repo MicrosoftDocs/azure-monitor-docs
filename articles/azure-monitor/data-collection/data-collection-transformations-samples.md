@@ -1,7 +1,7 @@
 ---
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
-ms.topic: sample
+ms.topic: how-to
 ms.date: 05/15/2026
 ms.reviewer: nikeist
 ai-usage: ai-assisted
@@ -109,7 +109,7 @@ source | extend TimeGenerated = now()
 
 ### Parse data
 
-Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table.
+Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table. [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) to reduce processing time.
 
 ```kusto
 source 
@@ -373,7 +373,7 @@ Transform syslog data and ingest it as CommonSecurityLog using a two-stage appro
 }
 ```
 
-## Next steps
+## Related content
 
 - [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
 - [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview).

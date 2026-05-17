@@ -69,7 +69,7 @@ Text logs from Azure Monitor Agent (AMA) are an example of data collection that 
 
 Data sources are unique sources of monitoring data that each has its own format and method of exposing its data. Each data source type has a unique set of parameters that must be configured for each data source. The data returned by the data source is typically a known type, so the schema doesn't need to be defined in the DCR.
 
-For example, events and performance data collected from a VM with AMA, use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this is a known schema for potential incoming data.
+For example, events and performance data collected from a VM with the Azure Monitor agent (AMA), use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this is a known schema for potential incoming data.
 
 #### Common parameters
 

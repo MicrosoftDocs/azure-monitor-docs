@@ -19,7 +19,7 @@ The following diagram illustrates the transformation process for incoming data a
 
 The following tables in a Log Analytics workspace support transformations.
 
-- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). You can also use the [Azure Monitor data reference](/azure/azure-monitor/reference/) which lists the attributes for each table, including whether it supports transformations.
+- Any Azure table listed in [Tables that support transformations in Azure Monitor Logs](../logs/tables-feature-support.md). The [Azure Monitor data reference](/azure/azure-monitor/reference/) also includes whether the table supports transformations and lists other attributes for each table. 
 - Any custom table created for the Azure Monitor Agent.
 - Custom tables with the [Auxiliary plan](../logs/create-custom-table-auxiliary.md).
 
@@ -103,7 +103,7 @@ Follow these steps when designing a multi-stage DCR:
 
 Transformations are defined in a data collection rule (DCR), but there are still data collections in Azure Monitor that don't yet use a DCR. Examples include resource logs collected by [diagnostic settings](../platform/diagnostic-settings.md) and application data collected by [Application Insights](../app/app-insights-overview.md).
 
-The *workspace transformation data collection rule (DCR)* is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform transformations on data that doesn't yet use a DCR for its data collection, and thus has no means to define a transformation.
+The *workspace transformation data collection rule (DCR)* is a special [DCR](data-collection-rule-overview.md) that's applied directly to a Log Analytics workspace. The purpose of this DCR is to perform [transformations](data-collection-transformations.md) on data that doesn't yet use a DCR for its data collection, and thus has no means to define a transformation.
 
 There can be only one workspace DCR for each workspace, but it can include transformations for any number of supported tables. These transformations are applied to any data sent to these tables unless that data came from another DCR. 
 

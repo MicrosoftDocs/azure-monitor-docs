@@ -12,9 +12,9 @@ ai-usage: ai-assisted
 
 [Transformations in Azure Monitor](data-collection-transformations.md) allow you to run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details KQL considerations and supported features in transformation queries in addition to special operators that are only available in transformations.
 
-Because transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records.
+Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records.
 
-Only the operators listed in this article are supported. Other KQL operators available in log queries aren't supported in transformations.
+Only the operators listed in this article are supported in transformations.
 
 > [!NOTE]
 > For [multi-stage transformations (preview)](data-collection-transformations.md#multi-stage-transformations-preview), the KQL features described in this article apply to the `transform.KQL` processor and to the `transformKql` property in data flows. Other processor types such as `filter.Basic`, `parse.JsonPath`, and `aggregate.Basic` use declarative JSON configuration rather than KQL. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for details.
@@ -120,7 +120,7 @@ The `geo_location` function returns approximate geographical location for an IP 
 
 ## Supported statements
 
-### Let statement
+###                   Let statement
 
 The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 

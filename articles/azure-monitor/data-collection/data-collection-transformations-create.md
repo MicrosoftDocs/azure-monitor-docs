@@ -12,29 +12,17 @@ ai-usage: ai-assisted
 
 [Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
 
-> [!TIP]
-> **Single-stage vs. multi-stage:** Use a single-stage transformation (`transformKql`) when you need to apply one KQL query to a data flow. Use multi-stage transformations (`transform` with processors) when you need client-side filtering before data leaves the agent, multiple processing steps in a pipeline, or non-KQL processors like parsing, filtering, or enrichment.
-
-## Prerequisites
-
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
-- A [Log Analytics workspace](../logs/quick-create-workspace.md) where you have at least [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) permissions.
-- An existing [data collection rule (DCR)](data-collection-rule-create-edit.md) associated with a data source. If you don't have one, [create one](data-collection-rule-create-edit.md) before proceeding.
-- Familiarity with [KQL](/kusto/query/) and [log queries in Azure Monitor](../logs/log-query-overview.md). For an introduction, see [Overview of Log Analytics in Azure Monitor](../logs/log-analytics-overview.md).
-- For REST API or PowerShell approaches: [Azure CLI](/cli/azure/install-azure-cli) or the [Az PowerShell module](/powershell/azure/install-azure-powershell) installed. Sign in before running commands (`az login` or `Connect-AzAccount`).
-- For multi-stage transformations (preview): API version `2025-05-11` or later.
-
 ## Basic query structure
 
 All transformation queries start with `source`, which is a virtual table that represents the input stream. You can then use any supported KQL operators to filter, modify, or add columns to the data as you would with any other table. The query is applied individually to each entry sent by the data source. 
 
 The output of the query must match the schema of the target table with the following considerations:
 
-- You can omit columns that shouldn't be populated. The column is empty for the record in the target table.
+- Omit columns that shouldn't be populated to save costs. When you do, that column is empty for each record in the target table.
 - Exclude any columns that aren't in the output table. Extra columns are accepted without error, but you're charged for ingesting data that isn't stored.
 - Include a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, add it with `extend` or `project`.
 
-Following is an example of a transformation that performs several functions:
+The following transformation is an example that performs these functions:
 
 * Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
 * Adds a new column `Properties` using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator with the `parse_json` function to parse JSON values from the incoming `properties` column.
@@ -62,18 +50,18 @@ Before you add a transformation to a DCR, create and test the query in Log Analy
 > [!IMPORTANT]
 > Transformations don't support all KQL features. See [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md) for supported features and limitations.
 
-Use one of the following strategies to test your transformation query:
-
-1. **Query existing data.** If you're already collecting the data you want to transform, write a query against that table in Log Analytics. Verify that the output shows the expected filtering or modifications, then copy the query text.
-1. **Use sample data with `datatable`.** Write a query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample dataset that represents your incoming data. Verify the query output, then copy the query text without the `datatable` operator.
-1. **Create a test table in the portal.** [Create a new table](../logs/create-custom-table.md) in the Azure portal and provide sample data. Use the built-in transformation editor to write and test your query. Copy the query text when you're satisfied with the results.
+| Transformation test strategy | Description |
+|:-----------------|:------------|
+| **Query existing data.**  | If you're already collecting the data you want to transform, write a query against that table in Log Analytics. Verify that the output shows the expected filtering or modifications, then copy the query text. |
+| **Use sample data with `datatable`.** | Write a query using the [`datatable`](/kusto/query/datatable-operator) operator to create a sample dataset that represents your incoming data. Verify the query output, then copy the query text without the `datatable` operator. |
+| **Create a test table in the portal.** | [Create a new table](../logs/create-custom-table.md) in the Azure portal and provide sample data. Use the built-in transformation editor to write and test your query. Copy the query text when you're satisfied with the results. |
 
 For example, to filter Syslog events, start with this query in Log Analytics:
 
 ```kusto
 Syslog | where SeverityLevel != 'info'
 ```
-You can then replace the table name with `source` in your DCR:
+Then replace the table name with `source` in your DCR:
 
 ```kusto
 source | where SeverityLevel != 'info'
@@ -83,13 +71,13 @@ source | where SeverityLevel != 'info'
 
 After you have your transformation query, add it to a DCR by following these steps:
 
-1. Open your DCR definition in JSON. You can export the current definition using the Azure CLI:
+1. Get the current DCR definition. Either open your DCR definition in the UI and select the JSON view, or export the the JSON using the Azure CLI:
 
     ```azurecli
     az monitor data-collection rule show --name {dcrName} --resource-group {resourceGroupName} > dcr.json
     ```
 
-    For other methods, see [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md).
+    For more information, see [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md).
 
 1. Locate the `dataFlows` section of the DCR. This section pairs a data source with a destination.
 1. Add the `transformKql` JSON property to the data flow you want to transform. Set its value to your transformation query on a single line. The transformation is applied to the incoming stream before it's sent to the destination and only applies to that data flow, even if the same stream or destination is used in other data flows.
@@ -202,7 +190,7 @@ To create a multi-stage transformation using the REST API:
     Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, go to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
 
     > [!TIP]
-    > You can use `az rest` to handle authentication automatically:
+    > Use `az rest` to handle authentication automatically:
     >
     > ```azurecli
     > az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
