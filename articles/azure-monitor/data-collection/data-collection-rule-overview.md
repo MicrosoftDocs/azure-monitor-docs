@@ -22,25 +22,25 @@ Specific advantages of DCR-based data collection include:
 
 ## View DCRs
 
-Data collection rules (DCRs) are stored in Azure so they can be centrally deployed and managed like any other Azure resource. They provide a consistent and centralized way to define and customize different data collection scenarios.
+Data collection rules (DCRs) are stored in Azure so you can centrally deploy and manage them like any other Azure resource. They provide a consistent and centralized way to define and customize different data collection scenarios.
 
-View all of the DCRs in your subscription from the **Data Collection Rules** option of the **Monitor** menu in the Azure portal. Regardless of the method used to create the DCR and the details of the DCR itself, all DCRs in the subscription are listed in this screen.
+View all of the DCRs in your subscription from the **Data Collection Rules** option of the **Monitor** menu in the Azure portal. Regardless of the method used to create the DCR and the details of the DCR itself, this screen lists all DCRs in the subscription.
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-rules.png" lightbox="media/data-collection-rule-overview/data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
 ## Replace legacy data collection methods
 
-The DCR collection process has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their DCR-based replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
+The data collection process that uses DCRs replaces other data collection methods in Azure Monitor. The following table lists legacy methods and their DCR-based replacements. In the future, DCRs are expected to replace other data collection methods in Azure Monitor.
 
 | Legacy method | DCR method | Description |
 |:--------------|:-----------|:------------|
-| [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | The Azure Monitor agent is now used to monitor virtual machines (VMs) and Kubernetes clusters supporting [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md). |
-| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings are still currently used to collect resource logs from Azure resources. Platform metrics can now be collected using Metrics export. |
-| [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | The Logs ingestion API is used to send data to a Log Analytics workspace from any REST client. It uses OAuth-based authentication (more secure than workspace keys), DCR-governed schema control and transformations, and provides improved reliability, scalability, and long-term platform support compared to the legacy HTTP Data Collector API. |
+| [Log Analytics agent](../agents/log-analytics-agent.md) | [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) | Use the Azure Monitor agent to monitor virtual machines (VMs) and Kubernetes clusters that support [VM insights](../vm/vminsights-overview.md) and [Container insights](../containers/kubernetes-monitoring-overview.md). |
+| [Diagnostic settings](../platform/diagnostic-settings.md)<br>(metrics only) | [Metrics export](./metrics-export-create.md) | Diagnostic settings still collect resource logs from Azure resources. Use Metrics export to collect platform metrics. |
+| [Data Collector API](../logs/data-collector-api.md) | [Logs ingestion API](../logs/logs-ingestion-api-overview.md) | Use the Logs ingestion API to send data to a Log Analytics workspace from any REST client. It uses OAuth-based authentication (more secure than workspace keys), DCR-governed schema control and transformations, and provides improved reliability, scalability, and long-term platform support compared to the legacy HTTP Data Collector API. |
 
 ## Data collection process
 
-The data collection process supported by DCRs provides a common processing path for incoming data. Each data collection scenario is defined in a DCR. The DCR provides instructions for how Azure Monitor should process the data it receives. Depending on the scenario, DCRs specify all or some of the following:
+The data collection process that DCRs support provides a common processing path for incoming data. Each data collection scenario is defined in a DCR. The DCR provides instructions for how Azure Monitor should process the data it receives. Depending on the scenario, DCRs specify all or some of the following items:
 
 * Data to collect and send to Azure Monitor.
 * Schema of the incoming data.
@@ -51,7 +51,7 @@ The data collection process supported by DCRs provides a common processing path 
 
 ## Data collection rule associations (DCRAs)
 
-Data collection rule associations (DCRAs) are created between the resource and the DCR to enable certain data collection scenarios. This is a many-to-many relationship, where a single DCR can be associated with multiple resources and a single resource can be associated with up to 30 DCRs. This allows you to develop a strategy for maintaining your monitoring across sets of resources with different requirements.
+Create data collection rule associations (DCRAs) between the resource and the DCR to enable certain data collection scenarios. This relationship is many-to-many, where you can associate multiple resources with a single DCR and associate up to 30 DCRs with a single resource. Develop a strategy for maintaining your monitoring across sets of resources with different requirements.
 
 
 ## Using a DCR
@@ -66,42 +66,42 @@ Once a DCR is created, there are different methods to use it based on the data c
 | [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) | DCR is active for the workspace as soon as it's created. |
 
 ## Scenarios
-The following sections describe the common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used specify which DCR to use for that particular scenario. 
+The following sections describe common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used to specify which DCR to use for that particular scenario. 
 
 ### Azure Monitor agent (AMA)
-[Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) is used to collect data from virtual machines and Kubernetes clusters. The following diagram illustrates data collection for AMA running on a virtual machine. When the agent is installed, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this would also include Prometheus metrics. The agent uses that information to determine what data to collect from the machine and optionally apply a client-side transformation ([Preview](#transformations)) to filter and transform the data before sending it to Azure Monitor. Once the data is sent, any ingestion-time [transformations](#transformations) specified in the DCR are run to filter and modify the data further. Then Azure Monitor delivers the data to the specified destination.
+Use [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) to collect data from virtual machines and Kubernetes clusters. The following diagram shows how AMA collects data when running on a virtual machine. When you install the agent, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this collection also includes Prometheus metrics. The agent uses that information to determine what data to collect from the machine and optionally apply a client-side transformation ([Preview](#transformations)) to filter and transform the data before sending it to Azure Monitor. Once the data is sent, any ingestion-time [transformations](#transformations) specified in the DCR run to filter and modify the data further. Then Azure Monitor delivers the data to the specified destination.
 
-See [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) and [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) for details.
+For more information, see [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md) and [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md).
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-virtual-machine.png" lightbox="media/data-collection-rule-overview/data-collection-virtual-machine.png" alt-text="Diagram that shows basic operation for Azure Monitor agent using DCR." border="false":::
 
 #### Event hubs (Preview)
-The following diagram illustrates how data is ingested into a Log Analytics workspace directly from Event Hubs. When data is received by the event hub, it's delivered to Azure Monitor and then transformed and sent to any destinations specified in any DCRs associated with it. 
+The following diagram shows how data is ingested into a Log Analytics workspace directly from Event Hubs. When the event hub receives data, it delivers the data to Azure Monitor. Azure Monitor then transforms the data and sends it to any destinations specified in any DCRs associated with it. 
 
-See [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md) for details.
+For more information, see [Ingest events from Azure Event Hubs into Azure Monitor Logs (preview)](../logs/ingest-logs-event-hub.md).
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-event-hubs.png" lightbox="media/data-collection-rule-overview/data-collection-event-hubs.png" alt-text="Diagram that shows basic operation for event hub data sent to Azure Monitor." border="false":::
 
 #### Platform metrics (Preview)
-Platform metrics are automatically collected from Azure resources and sent to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The following diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This replaces the current method of using [diagnostic settings](../platform/diagnostic-settings.md) to perform this function.
+Azure resources automatically collect platform metrics and send them to [Azure Monitor Metrics](../metrics/data-platform-metrics.md). The following diagram shows the process of using a DCR to send this data to a Log Analytics workspace for analysis using log queries. This process replaces the current method of using [diagnostic settings](../platform/diagnostic-settings.md) to perform this function.
 
 When the DCR is created, it specifies the workspace and table where the data should be sent. The DCR also includes a transformation that ensures the data is in the correct format for the target table. The DCR is then associated with the resource from which the platform metrics are collected.
 
-See [Metrics export using data collection rules](./metrics-export-create.md) for details.
+For more information, see [Metrics export using data collection rules](./metrics-export-create.md).
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-platform-metrics.png" lightbox="media/data-collection-rule-overview/data-collection-platform-metrics.png" alt-text="Diagram that shows basic operation for DCR collecting platform metrics." border="false":::
 
 ### Direct ingestion
-With direct ingestion, a particular DCR is specified to process the incoming data. For example, the following diagram illustrates data from a custom application using Logs ingestion API. Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
+Use direct ingestion to specify a particular DCR to process the incoming data. For example, the following diagram illustrates data from a custom application using Logs ingestion API. Each API call specifies the DCR that processes its data. The DCR understands the structure of the incoming data, includes a [transformation](#transformations) that ensures the data is in the format of the target table, and specifies a workspace and table to send the transformed data.
 
-See [Logs ingestion API](../logs/logs-ingestion-api-overview.md) for details.
+For more information, see [Logs ingestion API](../logs/logs-ingestion-api-overview.md).
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-direct-ingestion.png" lightbox="media/data-collection-rule-overview/data-collection-direct-ingestion.png" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
 ### Workspace transformation DCR
-Workspace transformation DCRs provide transformations for data collection that doesn't use a DCR. They're applied directly to the Log Analytics workspace and are automatically activated when they're created.
+Workspace transformation DCRs provide transformations for data collection that don't use a DCR. They're applied directly to the Log Analytics workspace and are automatically activated when they're created.
 
-See [Workspace transformation DCR](../data-collection/data-collection-transformations.md) for details.
+For more information, see [Workspace transformation DCR](../data-collection/data-collection-transformations.md).
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-workspace-transformation.png" lightbox="media/data-collection-rule-overview/data-collection-workspace-transformation.png" alt-text="Diagram that shows basic operation of workspace transformation DCR." border="false":::
 
@@ -117,11 +117,11 @@ See [Workspace transformation DCR](../data-collection/data-collection-transforma
 
 ## DCR regions
 
-Data collection rules are available in all public regions where Log Analytics workspaces and the Azure Government and China clouds are supported. Air-gapped clouds aren't yet supported. A DCR gets created and stored in a particular region and is backed up to the [paired-region](/azure/reliability/cross-region-replication-azure#azure-paired-regions) within the same geography. The service is deployed to all three [availability zones](/azure/reliability/availability-zones-overview) within the region. For this reason, it's a *zone-redundant service*, which further increases availability.
+Data collection rules are available in all public regions where Log Analytics workspaces and the Azure Government and China clouds are supported. Air-gapped clouds aren't yet supported. You create and store a DCR in a particular region, and the service backs it up to the [paired-region](/azure/reliability/cross-region-replication-azure#azure-paired-regions) within the same geography. The service is deployed to all three [availability zones](/azure/reliability/availability-zones-overview) within the region. For this reason, it's a *zone-redundant service*, which further increases availability.
 
 **Single region data residency** is a preview feature to enable storing customer data in a single region and is currently only available in the Southeast Asia Region (Singapore) of the Asia Pacific Geo and the Brazil South (Sao Paulo State) Region of the Brazil Geo. Single-region residency is enabled by default in these regions.
 
-## Next steps
+## Related content
 
 For more information on how to work with DCRs, see:
 
