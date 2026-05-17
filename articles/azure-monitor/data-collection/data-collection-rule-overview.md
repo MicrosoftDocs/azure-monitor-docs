@@ -1,5 +1,5 @@
 ---
-title: Data collection rules in Azure Monitor
+title: Data Collection Rules in Azure Monitor
 description: Overview of data collection rules (DCRs) in Azure Monitor including their contents and structure and how you can create and work with them.
 ms.topic: concept-article
 ms.date: 01/20/2026
@@ -28,7 +28,7 @@ View all of the DCRs in your subscription from the **Data Collection Rules** opt
 
 :::image type="content" source="media/data-collection-rule-overview/data-collection-rules.png" lightbox="media/data-collection-rule-overview/data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
 
-## Replaced legacy data collection methods
+## Replace legacy data collection methods
 
 The DCR collection process has either replaced or is in the process of replacing other data collection methods in Azure Monitor. The following table lists the legacy methods with their DCR-based replacements. Other data collection methods in Azure Monitor are expected to also be replaced by DCRs in the future.
 
