@@ -11,8 +11,8 @@ ai-usage: ai-assisted
 
 This article describes the JSON structure of DCRs for those cases where you need to work directly with their definition. 
 
-* See [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md) for details working with the JSON described here.
-* See [Sample data collection rules (DCRs) in Azure Monitor](data-collection-rule-samples.md) for sample DCRs for different scenarios.
+* For details about working with the JSON described in this article, see [Create and edit DCRs](data-collection-rule-create-edit.md).
+* For samples of different scenarios, see [Sample DCRs in Azure Monitor](data-collection-rule-samples.md).
 
 ## Properties
 
@@ -21,12 +21,12 @@ The following table describes properties at the top level of the DCR.
 | Property | Description |
 |:---------|:------------|
 | `description` | Optional description of the data collection rule defined by the user. |
-| `dataCollectionEndpointId` | Resource ID of the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) used by the DCR if you provided one when the DCR was created. This property isn't present in DCRs that don't use a DCE. |
+| `dataCollectionEndpointId` | Resource ID of the [data collection endpoint (DCE)](data-collection-endpoint-overview.md) used by the DCR if you provide one when creating the DCR. This property isn't present in DCRs that don't use a DCE. |
 | `endpoints`<sup>1</sup> | Contains the `logsIngestion` and `metricsIngestion` URL of the endpoints for the DCR. This section and its properties are automatically created when the DCR is created only if the `kind` attribute in the DCR is `Direct`. |
 | `immutableId` | A unique identifier for the data collection rule. This property and its value are automatically created when the DCR is created. |
-| `kind` | Specifies the data collection scenario the DCR is used for. This parameter is further described below. |
+| `kind` | Specifies the data collection scenario the DCR is used for. This parameter is further described in the following section. |
 
-<sup>1</sup> This property wasn't created for DCRs created before March 31, 2024. DCRs created before this date required a [data collection endpoint (DCE)](data-collection-endpoint-overview.md) and the `dataCollectionEndpointId` property to be specified. If you want to use these embedded DCEs then you must create a new DCR. 
+<sup>1</sup> This property wasn't created for DCRs created before March 31, 2024. DCRs created before this date required a [data collection endpoint (DCE)](data-collection-endpoint-overview.md) and the `dataCollectionEndpointId` property to be specified. If you want to use these embedded DCEs, you must create a new DCR. 
 
 ## Kind
 
@@ -51,47 +51,47 @@ The basic flow of a DCR is shown in the following diagram. Each of the component
 
 ## Input streams
 
-The input stream section of a DCR defines the incoming data that's being collected. There are two types of incoming stream, depending on the particular data collection scenario. Most data collection scenarios use one of the input streams, while some may use both.
+The input stream section of a DCR defines the incoming data it collects. Two types of incoming streams are possible depending on the data collection scenario. Most data collection scenarios use one of the input streams, while some scenarios use both.
 
 > [!NOTE]
 > [Workspace transformation DCRs](data-collection-transformations.md#workspace-transformation-dcr) don't have an input stream.
 
 | Input stream | Description |
 |:-------------|:------------|
-| `dataSources` | Known type of data. This is often data processed by Azure Monitor agent and delivered to Azure Monitor using a known data type. |
-| `streamDeclarations` | Custom data that needs to be defined in the DCR. |
+| `dataSources` | Known type of data. This type often comes from data processed by Azure Monitor agent and delivered to Azure Monitor by using a known data type. |
+| `streamDeclarations` | Custom data that requires a definition in the DCR. |
 
-Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data. This is because the API sends custom data that can have any schema.
+Data sent from the Logs ingestion API uses a `streamDeclaration` with the schema of the incoming data because the API sends custom data.
 
 Text logs from Azure Monitor Agent (AMA) are an example of data collection that requires both `dataSources` and `streamDeclarations`. The data source includes the configuration for connecting to the data source, and `streamDeclarations` defines the schema of the incoming data.
 
 ### Data sources
 
-Data sources are unique sources of monitoring data that each has its own format and method of exposing its data. Each data source type has a unique set of parameters that must be configured for each data source. The data returned by the data source is typically a known type, so the schema doesn't need to be defined in the DCR.
+Data sources are unique sources of monitoring data, each with its own format and method for exposing data. Each data source type has a unique set of parameters that you must configure for each data source. The data source typically returns a known data type, so you don't need to define the schema in the DCR.
 
-For example, events and performance data collected from a VM with the Azure Monitor agent (AMA), use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this is a known schema for potential incoming data.
+For example, events and performance data collected from a VM by using the Azure Monitor agent (AMA) use data sources such as `windowsEventLogs` and `performanceCounters`. You specify criteria for the events and performance counters that you want to collect, but you don't need to define the structure of the data itself since this schema is known for potential incoming data.
 
-#### Common parameters
+#### Common data source parameters
 
 All data source types share the following common parameters.
 
 | Parameter | Description |
 |:----------|:------------|
 | `name` | Name to identify the data source in the DCR. |
-| `streams` | List of streams that the data source will collect. If this is a standard data type such as a Windows event, then the stream will be in the form `Microsoft-<TableName>`. If it's a custom type, then it will be in the form `Custom-<TableName>` |
+| `streams` | List of streams that the data source collects. If this stream is a standard data type such as a Windows event, the stream appears as `Microsoft-<TableName>`. If it's a custom type, the stream appears as `Custom-<TableName>`. |
 | `transform` | (Preview) Name of a transformation from the [`transformations`](#transformations) section to apply client-side. Use this property for multi-stage transformations. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). |
 
 #### Valid data source types
 
-The data source types currently available are listed in the following table.
+The following table lists the currently available data source types.
 
 | Data source type | Description | Streams | Parameters |
 |:-----------------|:------------|:--------|:-----------|
 | `eventHub` | Data from Azure Event Hubs. | Custom<sup>1</sup> | `consumerGroup` - Consumer group of event hub to collect from. |
 | `iisLogs` | IIS logs from Windows machines | `Microsoft-W3CIISLog` |`logDirectories` - Directory where IIS logs are stored on the client. |
-| `logFiles` | Text or json log on a virtual machine | Custom<sup>1</sup> | `filePatterns` - Folder and file pattern for log files to be collected from client.<br>`format` - *json* or *text* |
+| `logFiles` | Text or JSON log on a virtual machine | Custom<sup>1</sup> | `filePatterns` - Folder and file pattern for log files to collect from client.<br>`format` - *json* or *text* |
 | `performanceCounters` | Performance counters for both Windows and Linux virtual machines | `Microsoft-Perf`<br>`Microsoft-InsightsMetrics` | `samplingFrequencyInSeconds` - Frequency that performance data should be sampled.<br>`counterSpecifiers` - Objects and counters that should be collected. |
-| `prometheusForwarder` | Prometheus data collected from Kubernetes cluster. | `Microsoft-PrometheusMetrics` | `streams` - Streams to collect<br>`labelIncludeFilter` - List of label inclusion filters as name-value pairs. Currently only 'microsoft_metrics_include_label' supported. |
+| `prometheusForwarder` | Prometheus data collected from Kubernetes cluster. | `Microsoft-PrometheusMetrics` | `streams` - Streams to collect<br>`labelIncludeFilter` - List of label inclusion filters as name-value pairs. Currently only `microsoft_metrics_include_label` supported. |
 | `syslog` | Syslog events on Linux virtual machines<br><br>Events in Common Event Format on security appliances | `Microsoft-Syslog`<br><br>`Microsoft-CommonSecurityLog` for CEF | `facilityNames` - Facilities to collect<br>`logLevels` - Log levels to collect |
 | `windowsEventLogs` | Windows event log on virtual machines | `Microsoft-Event` | `xPathQueries` - XPaths specifying the criteria for the events that should be collected. |
 | `extension` | Extension-based data source used by Azure Monitor agent. | Varies by extension | `extensionName` - Name of the extension<br>`extensionSettings` - Values for each setting required by the extension |
@@ -100,11 +100,11 @@ The data source types currently available are listed in the following table.
 
 ### Stream declarations
 
-Declaration of the different types of data sent into the Log Analytics workspace. Each stream is an object whose key represents the stream name, which must begin with *Custom-*. The stream contains a full list of top-level properties that are contained in the JSON data that will be sent. The shape of the data you send to the endpoint doesn't need to match that of the destination table. Instead, the output of the transform that's applied on top of the input data needs to match the destination shape.
+Declare the different types of data you send into the Log Analytics workspace. Each stream is an object whose key represents the stream name, which must begin with *Custom-*. The stream contains a full list of top-level properties that are contained in the JSON data you send. The shape of the data you send to the endpoint doesn't need to match that of the destination table. Instead, the output of the transform that's applied on top of the input data needs to match the destination shape.
 
 #### Data types
 
-The possible data types that can be assigned to the properties are:
+Assign the following data types to the properties:
 
 * `string`
 * `int`
@@ -116,9 +116,9 @@ The possible data types that can be assigned to the properties are:
 
 ## Destinations
 
-The `destinations` section includes an entry for each destination where the data will be sent. These destinations are matched with input streams in the `dataFlows` section.
+Include an entry for each destination where you send the data in the `destinations` section. Match these destinations with input streams in the `dataFlows` section.
 
-### Common parameters
+### Common destination parameters
 
 | Parameters | Description |
 |:-----------|:------------|
@@ -126,13 +126,13 @@ The `destinations` section includes an entry for each destination where the data
 
 ### Valid destinations
 
-The destinations currently available are listed in the following table.
+The following table lists the available destinations.
 
 | Destination | Description | Required parameters |
 |:------------|:------------|:--------------------|
 | `azureDataExplorer` | Azure Data Explorer | `resourceId` - Resource ID of the ADX cluster<br>`databaseName` - Name of the database in the ADX cluster<br>`ingestionUri` - Ingestion URI of the cluster |
 | `azureMonitorMetrics` | Azure Monitor metrics | No configuration is required since there's only a single metrics store for the subscription. |
-| `logAnalytics` | Log Analytics workspace | `workspaceResourceId` - Resource ID of the workspace.<br>`workspaceID` - ID of the workspace<br><br>This only specifies the workspace, not the table where the data will be sent. If it's a known destination, then no table needs to be specified. For custom tables, the table is specified in the data source. |
+| `logAnalytics` | Log Analytics workspace | `workspaceResourceId` - Resource ID of the workspace.<br>`workspaceID` - ID of the workspace<br><br>This parameter only specifies the workspace, not the table where the data is sent. If it's a known destination, then you don't need to specify a table. For custom tables, specify the table in the data source. |
 | `microsoftFabric` | Microsoft Fabric eventhouse | `tenantId` - Tenant ID of the Fabric workspace<br>`databaseName` - Name of the database in the Fabric eventhouse<br>`ingestionUri` - [Ingestion URI of the Fabric eventhouse database](/fabric/real-time-intelligence/manage-monitor-database#database-details) |
 
 > [!IMPORTANT]
@@ -140,13 +140,13 @@ The destinations currently available are listed in the following table.
 
 ## Data flows
 
-Data flows match input streams with destinations. Each data source may optionally specify a transformation and in some cases will specify a specific table in the Log Analytics workspace. 
+Data flows match input streams with destinations. Each data source can optionally specify a transformation and, in some cases, specify a specific table in the Log Analytics workspace. 
 
 ### Data flow properties
 
 | Section | Description |
 |:--------|:------------|
-| `streams` | One or more streams defined in the input streams section. You may include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream though if the data flow includes a transformation. One stream can also be used by multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. |
+| `streams` | One or more streams defined in the input streams section. Include multiple streams in a single data flow if you want to send multiple data sources to the same destination. Only use a single stream if the data flow includes a transformation. Use one stream for multiple data flows when you want to send a particular data source to multiple tables in the same Log Analytics workspace. |
 | `destinations` | One or more destinations from the `destinations` section above. Multiple destinations are allowed for multi-homing scenarios. |
 | `transform` | (Preview) Name of a transformation from the [`transformations`](#transformations) section to apply at ingestion time. Mutually exclusive with `transformKql`. See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). |
 | `transformKql` | Optional [transformation](data-collection-transformations.md) applied to the incoming stream. The transformation must understand the schema of the incoming data and output data in the schema of the target table. If you use a transformation, the data flow should only use a single stream. Mutually exclusive with `transform`. |
@@ -203,39 +203,208 @@ Each processor is a declarative building block that describes a specific data tr
 
 ```json
 {
-    "processor": "family.Name",
+    "processor": "{family}.{Name}",
     "configuration": { }
 }
 ```
 
 | Property | Type | Required | Description |
 |:---------|:-----|:---------|:------------|
-| `processor` | string | Yes | Processor name in the format `Family.Name`. Case-sensitive. |
+| `processor` | string | Yes | Processor name in the format *`{family}.{Name}`*. Case-sensitive. For example, `filter.Basic`. |
 | `configuration` | object | Yes | Processor-specific configuration. See individual processor sections. |
+
+### Processor types
+
+The following table shows which processors are available on the client side and the ingestion side.
+
+- Client-side header processors are used for client-side transformations assigned to data sources. They require no configuration since the schema of the incoming data is known. 
+- Ingestion-side header processors are used for ingestion-side transformations assigned to data flows.
+
+| Processor name | Family | Client-side | Ingestion-side |
+|:----------|:-------|:------------|:---------------|
+| [`header.Syslog`](#headersyslog) | Header | Yes | No |
+| [`header.WindowsEvents`](#headerswindowsevents) | Header | Yes | No |
+| [`header.WindowsPerformanceCounters`](#headerswindowsperformancecounters) | Header | Yes | No |
+| [`header.LinuxPerformanceCounters`](#headerslinuxperformancecounters) | Header | Yes | No |
+| [`header.TextLog`](#headerstextlog) | Header | Yes | No |
+| [`header.IISLog`](#headersiislog) | Header | Yes | No |
+| [`header.WindowsFirewallLog`](#headerswindowsfirewalllog) | Header | Yes | No |
+| [`header.StandardStream`](#headerstandardstream) | Header | No | Yes |
+| [`header.CustomStream`](#headercustomstream) | Header | No | Yes |
+| [`filter.Basic`](#filterbasic) | Filter | Yes | Yes |
+| [`map.Rename`](#maprename) | Map | Yes | Yes |
+| [`map.Drop`](#mapdrop) | Map | Yes | Yes |
+| [`parse.JsonPath`](#parsejsonpath) | Parse | Yes | Yes |
+| [`parse.XmlPath`](#parsexmlpath) | Parse | Yes | Yes |
+| [`parse.CEFAttribute`](#parsecefattribute) | Parse | Yes | Yes |
+| [`aggregate.Basic`](#aggregatebasic) | Aggregate | Yes | Yes |
+| [`enrich.DNSLookup`](#enrichdnslookup) | Enrich | Yes | Yes |
+| [`transform.KQL`](#transformkql) | Transform | No | Yes |
 
 ### Header processors
 
 Header processors receive raw data and convert it into a known schematized tabular format. A header processor must be the first processor in any transformation.
 
-#### Client-side headers
+#### header.Syslog
 
-These header processors are used for client-side transformations assigned to data sources.
+Client side header for syslog data sources.
 
-| Processor | Data source | Configuration |
-|:----------|:------------|:--------------|
-| `header.Syslog` | Syslog | None |
-| `header.WindowsEvents` | Windows event logs | None |
-| `header.WindowsPerformanceCounters` | Windows performance counters | None |
-| `header.LinuxPerformanceCounters` | Linux performance counters | None |
-| `header.TextLog` | Custom text log files | None |
-| `header.IISLog` | IIS logs | None |
-| `header.WindowsFirewallLog` | Windows Firewall logs | None |
+<details>
+<summary>Output schema:</summary>
 
-Each header processor outputs a fixed schema. For example, `header.Syslog` outputs columns including `TimeGenerated`, `Facility`, `SeverityNumber`, `Message`, `Host`, and others.
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| Facility | string |
+| SeverityNumber | int |
+| EventTime | datetime |
+| HostIP | string |
+| Message | string |
+| ProcessId | string |
+| Severity | string |
+| Host | string |
+| Ident | string |
+| Timestamp | datetime |
 
-#### Ingestion-side headers
+</details>
 
-These header processors are used for ingestion-side transformations assigned to data flows.
+#### header.WindowsEvents
+Client side header for Windows event log data sources.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| TimeCreated | datetime |
+| PublisherId | string |
+| PublisherName | string |
+| Channel | string |
+| LoggingComputer | string |
+| EventNumber | int |
+| EventCategory | int |
+| EventLevel | string |
+| UserName | string |
+| RawXml | string |
+| EventDescription | string |
+| RenderingInfo | string |
+| EventRecordId | int |
+
+</details>
+
+#### header.WindowsPerformanceCounters
+
+Client side header for Windows performance counter data sources.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| CounterName | string |
+| CounterValue | real |
+| SampleRate | int |
+| Counter | string |
+| Instance | string |
+
+</details>
+
+#### header.LinuxPerformanceCounters
+Client side header for Linux performance counter data sources.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| Timestamp | datetime |
+| CounterName | string |
+| ObjectName | string |
+| InstanceName | string |
+| Value | int |
+| Host | string |
+
+</details>
+
+#### header.TextLog
+Client side header for custom text log files.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| FilePath | string |
+| RawData | string |
+| Computer | string |
+
+</details>
+
+#### header.IISLog
+Client side header for IIS log data sources.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| s_sitename | string |
+| s_computername | string |
+| s_ip | string |
+| cs_method | string |
+| cs_uri_stem | string |
+| cs_uri_query | string |
+| s_port | int |
+| cs_username | string |
+| c_ip | string |
+| cs_version | string |
+| cs_User_Agent_ | string |
+| cs_Cookie_ | string |
+| cs_Referer_ | string |
+| cs_host | string |
+| sc_status | int |
+| sc_substatus | int |
+| sc_win32_status | int |
+| sc_bytes | int |
+| cs_bytes | int |
+| time_taken | int |
+
+</details>
+
+#### header.WindowsFirewallLog
+Client side header for Windows Firewall log data sources.
+
+<details>
+<summary>Output schema:</summary>
+
+| Column | Type |
+|:-------|:-----|
+| TimeGenerated | datetime |
+| date | string |
+| time | string |
+| action | string |
+| protocol | string |
+| src_ip | string |
+| dst_ip | string |
+| src_port | string |
+| dst_port | string |
+| size | string |
+| tcpflags | string |
+| tcpsyn | string |
+| tcpack | string |
+| tcpwin | string |
+| icmptype | string |
+| icmpcode | string |
+| info | string |
+| path | string |
+| pid | string |
+
+</details>
 
 #### header.StandardStream
 
@@ -254,6 +423,8 @@ Used when the input is a standard stream such as `Microsoft-Syslog` or `Microsof
 |:---------|:-----|:---------|:------------|
 | `streamId` | string | Yes | Identifier of the standard stream, such as `Microsoft-Syslog`. |
 
+Output Schema: Same as the corresponding standard Log Analytics table schema. See [Log Analytics table reference](../reference/tables-index.md) for schemas by resource type.
+
 #### header.CustomStream
 
 Used when the input is a custom stream defined in `streamDeclarations`.
@@ -271,7 +442,9 @@ Used when the input is a custom stream defined in `streamDeclarations`.
 |:---------|:-----|:---------|:------------|
 | `streamId` | string | Yes | Identifier of the custom stream. Must match a stream defined in `streamDeclarations`. |
 
-### Processor types
+### After header processors
+
+These processors are used for both client-side and ingestion-side transformations after the header processor.
 
 #### filter.Basic
 
@@ -335,6 +508,8 @@ Renames a column and optionally changes its type.
 | `nameAs` | string | No | New column name. If omitted, column keeps its name. |
 | `typeAs` | string | No | Target type: `string`, `int`, `long`, `real`, `bool`, `datetime`. If casting fails, `null` is returned. |
 
+Output schema: Same as input, except for renamed columns and columns with changed types.
+
 #### map.Drop
 
 Drops one or more columns from the data.
@@ -351,6 +526,8 @@ Drops one or more columns from the data.
 | Property | Type | Required | Description |
 |:---------|:-----|:---------|:------------|
 | `columnNames` | array of string | Yes | Columns to drop. |
+
+Output schema: Same as input, except for dropped columns.
 
 #### parse.JsonPath
 
@@ -385,6 +562,8 @@ Extraction object properties:
 | `nameAs` | string | Yes | New output column name. |
 | `typeAs` | string | No | Target type. If casting fails, `null` is returned. |
 
+Output schema: Same as input, plus new columns for each extracted key.
+
 #### parse.XmlPath
 
 Parses an XML-formatted string in a column and extracts specified elements into new columns.
@@ -406,6 +585,8 @@ Parses an XML-formatted string in a column and extracts specified elements into 
 ```
 
 Configuration properties match `parse.JsonPath`, except `path` uses XPath syntax (for example, `/Event/System/EventID` or `/Event/EventData/Data[@Name='SubjectUserName']`).
+
+Output schema: Same as input, plus new columns for each extracted element.
 
 > [!NOTE]
 > Valid XPath syntax is governed by the parser library at each stage. Advanced XPath expressions might only be supported in specific execution locations.
@@ -431,6 +612,8 @@ Parses CEF (Common Event Format) data in a column and extracts specified fields 
 ```
 
 Configuration properties match `parse.JsonPath`, except `path` specifies the CEF key name.
+
+Output schema: Same as input, plus new columns for each extracted field.
 
 #### aggregate.Basic
 
@@ -475,8 +658,7 @@ Aggregate entry properties:
 | `operator` | string | Yes | Aggregation function: `sum`, `avg`, `min`, `max`, `count`. |
 | `nameAs` | string | Yes | Output column name for the aggregated value. |
 
-> [!IMPORTANT]
-> Aggregation changes the output schema entirely. The output contains only the aggregate columns and dimension columns. Route aggregated data to a separate custom table.
+Output schema: Aggregation changes the output schema entirely. The output contains only the aggregate columns and dimension columns. Route aggregated data to a separate custom table.
 
 #### enrich.DNSLookup
 
@@ -497,12 +679,11 @@ Looks up an IP address in a column and adds a DNS name column.
 | `columnName` | string | Yes | Column containing the IP address to look up. |
 | `nameAs` | string | Yes | New output column name for the resolved DNS name. |
 
-> [!NOTE]
-> DNS resolution is best-effort. If the lookup fails, the output column contains `null`.
+Output schema: Same as input, plus new column for the resolved DNS name. DNS resolution is best-effort. If the lookup fails, the output column contains `null`.
 
 #### transform.KQL
 
-Applies an arbitrary KQL expression for advanced scenarios. This processor is ingestion-side only.
+Applies a custom KQL expression for advanced scenarios. This processor is ingestion-side only and provides limited validation of the KQL. Existing DCRs that use `transformKql` in data flows have a straightforward migration path with this processor.
 
 ```json
 {
@@ -517,33 +698,7 @@ Applies an arbitrary KQL expression for advanced scenarios. This processor is in
 |:---------|:-----|:---------|:------------|
 | `expression` | string | Yes | KQL query string applied to the input data. |
 
-> [!NOTE]
-> Limited validation is performed on the KQL expression. The output schema is determined by the KQL expression and can't be statically validated. This processor provides a migration path for existing DCRs that use `transformKql` in data flows.
-
-### Processor availability matrix
-
-The following table shows which processors are available on the client side and the ingestion side.
-
-| Processor | Family | Client-side | Ingestion-side |
-|:----------|:-------|:------------|:---------------|
-| `header.Syslog` | Header | Yes | No |
-| `header.WindowsEvents` | Header | Yes | No |
-| `header.WindowsPerformanceCounters` | Header | Yes | No |
-| `header.LinuxPerformanceCounters` | Header | Yes | No |
-| `header.TextLog` | Header | Yes | No |
-| `header.IISLog` | Header | Yes | No |
-| `header.WindowsFirewallLog` | Header | Yes | No |
-| `header.StandardStream` | Header | No | Yes |
-| `header.CustomStream` | Header | No | Yes |
-| `filter.Basic` | Filter | Yes | Yes |
-| `map.Rename` | Map | Yes | Yes |
-| `map.Drop` | Map | Yes | Yes |
-| `parse.JsonPath` | Parse | Yes | Yes |
-| `parse.XmlPath` | Parse | Yes | Yes |
-| `parse.CEFAttribute` | Parse | Yes | Yes |
-| `aggregate.Basic` | Aggregate | Yes | Yes |
-| `enrich.DNSLookup` | Enrich | Yes | Yes |
-| `transform.KQL` | Transform | No | Yes |
+Output schema: Defined by the KQL and can't be statically validated.
 
 ## Related content
 
