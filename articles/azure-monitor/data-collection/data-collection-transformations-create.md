@@ -150,8 +150,8 @@ In the following example, `transformKql` has a query that filters data, so only 
 
 Multi-stage transformations use the `transformations` section in a DCR to define processor-based pipelines that data sources and data flows reference by using the `transform` property. Unlike single-stage transformations that use `transformKql`, multi-stage transformations run on the client side (before data leaves the agent) or the ingestion side (before data reaches the workspace), or both.
 
-- **Client-side transformations** — run on the agent before data is sent. These transformations reduce data volume at the source and can filter, parse, or enrich data before transmission.
-- **Ingestion-side transformations** — run on the service after data arrives but before storage. These transformations can apply KQL expressions and further enrich data.
+- **Client-side transformations** - run on the agent before data is sent. These transformations reduce data volume at the source and can filter, parse, or enrich data before transmission.
+- **Ingestion-side transformations** - run on the service after data arrives but before storage. These transformations can apply KQL expressions and further enrich data.
 
 In a multi-stage pipeline, a *processor* is a named processing step that runs in sequence, such as filtering, parsing, enriching, or applying KQL. The *header processor* declares the input format for the pipeline (for example, `header.Syslog` for syslog data).
 
@@ -165,10 +165,11 @@ The following example creates a DCR with a client-side transformation that filte
 
 The DCR definition includes these key sections:
 
-- **`streamDeclarations`** — defines the schema for custom streams used between processing stages.
-- **`dataSources`** — configures the data source with a `transform` property referencing the client-side transformation by name.
-- **`dataFlows`** — maps streams to destinations with an optional `transform` property for ingestion-side processing.
-- **`transformations`** — defines the named processor pipelines referenced by data sources and data flows.
+- **`streamDeclarations`** - defines the schema for custom streams used between processing stages
+- **`dataSources`** - configures the data source with a `transform` property referencing the client-side transformation by name
+- **`destinations`** - where data is sent
+- **`dataFlows`** - maps streams to destinations with an optional `transform` property for ingestion-side processing
+- **`transformations`** - defines the named processor pipelines referenced by data sources and data flows
 
 #### [REST API](#tab/rest-api)
 

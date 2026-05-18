@@ -296,7 +296,7 @@ Extract CEF (Common Event Format) attributes from syslog messages, often used fo
 }
 ```
 
-### Ingestion-side KQL transformation
+### Ingestion-time KQL transformation
 
 Apply a KQL expression to a standard stream at ingestion time. This provides a migration path from the legacy `transformKql` property.
 
@@ -351,7 +351,7 @@ Transform syslog data and ingest it as CommonSecurityLog using a two-stage appro
 }
 ```
 
-**Ingestion-side transformation:**
+**Ingestion-time transformation:**
 
 ```json
 {

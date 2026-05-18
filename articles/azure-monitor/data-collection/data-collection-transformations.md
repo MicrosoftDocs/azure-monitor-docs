@@ -43,7 +43,7 @@ With multi-stage transformations, a DCR defines a data processing pipeline rathe
 
 ### Processors
 
-Transformations in multi-stage DCRs are defined using *processors* — small, declarative building blocks that each perform a specific type of operation. Processors have the following characteristics:
+Transformations in multi-stage DCRs are defined using *processors* - small, declarative building blocks that each perform a specific type of operation. Processors have the following characteristics:
 
 - **Composable.** Multiple processors can be chained together in a single transformation.
 - **Ordered.** Processors run sequentially in the order defined in the transformation.
