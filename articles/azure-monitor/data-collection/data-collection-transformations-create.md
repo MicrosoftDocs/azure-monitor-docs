@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 # Create a transformation in Azure Monitor
 
-[Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's stored in a Log Analytics workspace. They're implemented as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
+[Transformations in Azure Monitor](data-collection-transformations.md) filter or modify incoming data before storing it in a Log Analytics workspace. Implement transformations as a Kusto Query Language (KQL) statement in a [data collection rule (DCR)](data-collection-rule-overview.md). This article provides guidance on creating and testing a transformation query and adding it to a DCR.
 
 ## Basic query structure
 
@@ -18,15 +18,15 @@ All transformation queries start with `source`, which is a virtual table that re
 
 The output of the query must match the schema of the target table with the following considerations:
 
-- Omit columns that shouldn't be populated to save costs. When you do, that column is empty for each record in the target table.
-- Exclude any columns that aren't in the output table. Extra columns are accepted without error, but you're charged for ingesting data that isn't stored.
-- Include a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, add it with `extend` or `project`.
+- Omit columns that you don't want to save costs. When you omit a column, that column is empty for each record in the target table.
+- Exclude any columns that aren't in the output table. Extra columns are accepted without error, but you pay for ingesting data that isn't stored.
+- Include a valid timestamp in a column called `TimeGenerated` of type `datetime`. If your data source doesn't include this property, add it by using `extend` or `project`.
 
-The following transformation is an example that performs these functions:
+The following transformation is an example that performs three functions:
 
-* Filters the incoming data with a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
-* Adds a new column `Properties` using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator with the `parse_json` function to parse JSON values from the incoming `properties` column.
-* Formats the transformation output to exactly match the columns of the target table using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
+* Filters the incoming data by using a [`where`](/azure/data-explorer/kusto/query/whereoperator) statement.
+* Adds a new column `Properties` by using the [`extend`](/azure/data-explorer/kusto/query/extendoperator) operator with the `parse_json` function to parse JSON values from the incoming `properties` column.
+* Formats the transformation output to exactly match the columns of the target table by using the [`project`](/azure/data-explorer/kusto/query/projectoperator) operator.
 
 ```kusto
 source
@@ -40,8 +40,7 @@ source
     EventId = tostring(Properties.EventId)
 ```
 
-> [!NOTE]
-> See [Data collection rule (DCR) samples and scenarios in Azure Monitor](data-collection-rule-samples.md) for various samples for different scenarios.
+See [Data collection rule (DCR) samples and scenarios in Azure Monitor](data-collection-rule-samples.md) for various samples of different scenarios.
 
 ## Create the transformation query
 
@@ -144,21 +143,6 @@ In the following example, `transformKql` has a query that filters data, so only 
 ] 
 ```
 
-### Verify the transformation
-
-1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
-1. In the Azure portal, go to your Log Analytics workspace and select **Logs**.
-1. Query the target table and confirm the transformation logic is applied. For example, verify that filtered records are excluded or that new calculated columns are populated.
-
-    ```kusto
-    Syslog
-    | where TimeGenerated > ago(30m)
-    | take 10
-    ```
-
-> [!NOTE]
-> Transformed data typically appears within 5 minutes. For workspace transformation DCRs, allow up to 60 minutes.
-
 ## Create a multi-stage transformation (preview)
 
 > [!IMPORTANT]
@@ -173,30 +157,9 @@ In a multi-stage pipeline, a *processor* is a named processing step — such as 
 
 See [Multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview) for conceptual details and [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete schema reference.
 
-### Create a multi-stage transformation using REST API
+### Create a multi-stage transformation
 
-To create a multi-stage transformation using the REST API:
-
-1. Create a JSON file with your DCR definition. The DCR must include:
-    - A `transformations` section that defines one or more named processor pipelines.
-    - A `transform` property on data sources (for client-side) or data flows (for ingestion-side) that references the named transformation.
-1. Submit the DCR using the REST API with API version `2025-05-11` or later:
-
-    ```http
-    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11
-    Content-Type: application/json
-    ```
-
-    Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, go to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
-
-    > [!TIP]
-    > Use `az rest` to handle authentication automatically:
-    >
-    > ```azurecli
-    > az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
-    > ```
-
-1. Verify the DCR was created successfully by checking the response status code (200 or 201).
+Create a multi-stage transformation using the Azure portal or programmatically.
 
 The following example creates a DCR with a client-side transformation that filters syslog data to keep only auth events, and an ingestion-side transformation that applies KQL to the stream before it's stored.
 
@@ -206,6 +169,33 @@ The DCR definition includes these key sections:
 - **`dataSources`** — configures the data source with a `transform` property referencing the client-side transformation by name.
 - **`dataFlows`** — maps streams to destinations with an optional `transform` property for ingestion-side processing.
 - **`transformations`** — defines the named processor pipelines referenced by data sources and data flows.
+
+#### [REST API](#tab/rest-api)
+
+To create a multi-stage transformation using the REST API:
+
+1. Create a JSON file with your DCR definition. The DCR must include:
+    - A `transformations` section that defines one or more named processor pipelines.
+    - A `transform` property on data sources (for client-side) or data flows (for ingestion-side) that references the named transformation.
+
+1. Submit the DCR using the REST API with API version `2025-05-11` or later:
+
+    ```http
+    PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11
+    Content-Type: application/json
+    ```
+
+    Replace `{subscriptionId}`, `{resourceGroupName}`, and `{dcrName}` with your values. To find your subscription ID and resource group, go to the resource group in the Azure portal or run `az group show --name {resourceGroupName}`.
+
+
+    ```azurecli
+    az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
+    ```
+
+1. Verify the DCR was created successfully by checking the response status code (200 or 201). DCRs also appear in the Azure portal under **Monitor** > **Data Collection Rules**.
+
+<details>
+<summary>Example DCR JSON</summary>
 
 ```json
 {
@@ -311,16 +301,19 @@ Invoke-AzRestMethod `
     -Payload $dcr
 ```
 
-### Create a multi-stage transformation using the Azure portal
+</details>
 
-To access the multi-stage transformation portal UI during the preview, go to `https://portal.azure.com/?feature.transformEnabled=true`.
+#### [Portal](#tab/portal)
 
 1. Go to **Monitor** > **Data Collection Rules** and select **Create**.
 1. On the **Basics** tab, provide the rule name, subscription, resource group, and region. Select the appropriate **Platform Type** (Windows, Linux, or Custom).
 1. On the **Resources** tab, select **Add resources** and choose the virtual machines or other resources to associate with this DCR.
 1. On the **Collect and deliver** tab, select **Add data source**. Choose the data source type and configure collection settings on the **Data source** tab.
-1. Select the **Destination** tab. Select **Azure Monitor Logs** as the destination type and choose your Log Analytics workspace. You must configure the destination before authoring a transformation.
+1. Select the **Destination** tab. Select **Log Analytics Workspaces** as the destination type and choose your Log Analytics workspace. You must configure the destination before authoring a transformation.
 1. Select the **Transform (optional)** tab. The tab displays a pipeline visualization showing the flow from **Data source** to **Transform** to **Destination**, along with a **Schema preview** at the bottom.
+
+    :::image type="content" source="media/data-collection-transformations-create/multi-stage-transform-template.png" alt-text="Screenshot that shows the multi-stage transform template section of the DCR creation.":::
+
 1. Select **+ Add** in the **Transform** section to start adding processors. Each processor runs in the order defined.
 
     > [!NOTE]
@@ -328,42 +321,6 @@ To access the multi-stage transformation portal UI during the preview, go to `ht
 
 1. Select **Add data source** to save the data source with its transformation and destination.
 1. Select **Review + create** to validate and deploy the DCR.
-
-### Verify a multi-stage transformation
-
-After you create a multi-stage transformation, verify that both client-side and ingestion-side processing are working:
-
-1. Send test data through the data source configured in the DCR, or wait for the next data collection cycle.
-1. In the Azure portal, go to your Log Analytics workspace and select **Logs**.
-1. Query the target table to confirm client-side filtering took effect. For example, if you filtered to the `auth` facility only, verify that other facilities are absent:
-
-    ```kusto
-    Syslog
-    | where TimeGenerated > ago(30m)
-    | summarize count() by Facility
-    ```
-
-1. If your ingestion-side transformation outputs to a custom table, verify that enrichment columns appear:
-
-    ```kusto
-    CustomTable_CL
-    | where TimeGenerated > ago(30m)
-    | project TimeGenerated, Facility, Message, EnrichedMsg
-    | take 10
-    ```
-
-    If you're outputting to a standard table like `Syslog`, extra columns aren't stored. Verify KQL enrichment by checking that existing columns are modified as expected.
-
-1. Check for pipeline errors in the [DCR error logs](data-collection-monitor.md#enable-dcr-error-logs):
-
-    ```kusto
-    DCRLogErrors
-    | where TimeGenerated > ago(1h)
-    | where _ResourceId has "{dcrName}"
-    ```
-
-> [!NOTE]
-> Transformed data typically appears within 5 minutes. If no data appears after 10 minutes, check the `DCRLogErrors` table for pipeline errors.
 
 ## Create workspace transformation DCR
 
@@ -487,11 +444,6 @@ The following tables list common transformation errors and their resolutions.
 | Transformation not applied | Both `transformKql` and `transform` specified on the same data flow. | These properties are mutually exclusive. Use one or the other per data flow. |
 | Errors in DCR error logs | Invalid KQL syntax or runtime errors. | [Enable DCR error logs](data-collection-monitor.md#enable-dcr-error-logs) and review the `DCRLogErrors` table. |
 | Permission denied | Insufficient permissions to create or edit the DCR. | Verify that you have [Monitoring Contributor](/azure/role-based-access-control/built-in-roles#monitoring-contributor) role on the resource group or subscription. |
-
-### Multi-stage transformation errors
-
-| Error | Cause | Resolution |
-|:------|:------|:-----------|
 | Processor not recognized | Invalid processor type name (for example, `filter.basic` instead of `filter.Basic`). | Processor names are case-sensitive. See [Processor types](data-collection-rule-structure.md#processor-types) for valid names. |
 | Named transformation not found | The `transform` property references a name that doesn't exist in the `transformations` section. | Verify the `transform` value on the data source or data flow matches a `name` in the `transformations` array exactly. |
 | Client-side transformation not applied | Agent version doesn't support multi-stage transformations. | Update Azure Monitor Agent to the latest version. Multi-stage transformations require API version `2025-05-11` or later. |
@@ -519,7 +471,7 @@ There are multiple methods to create transformations depending on the data colle
 * Multi-stage transformations require API version `2025-05-11` or later.
 * Performance counter data requires separate DCRs for Windows and Linux machines when using multi-stage transformations. A DCR of kind `All` can't use both `header.WindowsPerformanceCounters` and `header.LinuxPerformanceCounters` in a single client-side transformation.
 
-## Next steps
+## Related content
 
 - [Monitor and troubleshoot DCR data collection in Azure Monitor](data-collection-monitor.md) - Track transformation performance and diagnose errors.
 - [Supported KQL features in Azure Monitor transformations](data-collection-transformations-kql.md) - Verify which KQL operators work in transformations.
