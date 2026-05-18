@@ -117,11 +117,11 @@ For details on permissions to act on recommendations, see [Roles and permissions
 ### Access review recommendations
 
 1.  On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
+  :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/reviews-tab.png" source="./media/reviews-tab.png" type="content":::
 1.  The recommendations are grouped by type.
 1.  You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
 
 You can sort recommendations by using the following column headers: **Priority** (**Critical**, **High**, **Medium**, **Low**, **Informational**), **Description**, **Impacted resources**, **Review name**, **Potential benefits**, or **Last updated** date.
-
 
 ### View recommendation details
 
