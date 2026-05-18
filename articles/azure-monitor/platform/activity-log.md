@@ -64,13 +64,13 @@ Subscription level events capture events created directly by resource providers 
 
 The following example retrieves activity log events for a subscription during a specific time range. 
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-1)
 
 The menu you open **Activity log** from determines its initial filter. If you open it from the **Monitor** menu, the only filter selected by default is the subscription. This is the same as opening it from **Subscriptions** > select subscription > **Activity Log**. 
 
 :::image type="content" source="./media/activity-log/view-activity-log.png" lightbox="./media/activity-log/view-activity-log.png" alt-text="Screenshot that shows the activity log." :::
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 Use the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) Azure CLI command to retrieve activity log events for a subscription over a specified time range. By default, this command retrieves events for the subscription currently set in your Azure CLI context. To explicitly specify a subscription, use the `--subscription` parameter as shown in the examples below.
 
@@ -104,7 +104,7 @@ az monitor activity-log list \
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell-1)
 
 Azure PowerShell provides the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet to retrieve activity log events for a subscription over a specified time range.
 
@@ -147,7 +147,7 @@ Get-AzActivityLog @getAzActivityLogParams
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 To list activity log events, use this `GET` request for the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
 
@@ -161,7 +161,7 @@ GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Micros
 
 Add `resourceGroupName` to the `$filter` to scope Azure Monitor activity log results to a specific resource group.
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-1)
 
 The menu you open **Activity log** from determines its initial filter. If you open it from a resource's menu, the filter is set to that resource. Select **Add Filter** to add more properties to the filter. Here are the other properties you can filter by in the portal:
 
@@ -171,7 +171,7 @@ The menu you open **Activity log** from determines its initial filter. If you op
 * **Event initiated by** – Filter events by the identity that initiated the event.
 * **Event category** – Filter the event types for certain operations.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 > [!NOTE]
 > The REST header `Prefer: wait=75` doesn't have a direct equivalent in the Azure CLI command for this operation. This command issues the query directly and returns the matching Activity Log records.
@@ -191,7 +191,7 @@ az monitor activity-log list \
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell-1)
 
 > [!NOTE]
 > The REST header `Prefer: wait=75` doesn't have a direct equivalent in the Azure PowerShell cmdlet for this operation. This command issues the query directly and returns the matching Activity Log records.
@@ -216,7 +216,7 @@ Get-AzActivityLog @getAzActivityLogParams
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 To list activity log events scoped to a resource group using the Azure Resource Manager REST API, use a `GET` request with a `$filter` that includes both the time range and the `resourceGroupName` property. Optionally, include the `Prefer` header to specify a specific timeout for the request (maximum `75` wait time in seconds).
 
@@ -231,11 +231,11 @@ Prefer: wait=75
 
 Use a parameter to return only specified properties, which reduces the response payload size. For more information, see [Activity log schema property descriptions](activity-log-schema.md#property-descriptions).
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-1)
 
 The Azure portal doesn't provide a way to limit the properties returned from activity log events directly. To reduce the amount of data viewed, use the **Edit columns** option in the **Activity log** blade to select which columns are displayed in the portal view.
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 Use the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command with the `--select` parameter to specify which properties to return from activity log events.
 
@@ -262,7 +262,7 @@ az monitor activity-log list \
   --select "${selectFields[@]}"
 ```
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell-1)
 
 Limit the properties returned from activity log events in Azure PowerShell by piping the results of `Get-AzActivityLog` to `Select-Object` and specifying the properties you want returned. This doesn't reduce the API response size since `Select-Object` only filters the properties in the output that PowerShell displays. 
 
@@ -294,7 +294,7 @@ Get-AzActivityLog @activityLogParams |
     Select-Object -Property $selectProperties
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 To list activity log events with only specific properties returned using the Azure Resource Manager REST API, include the `$select` query parameter in the `GET` request with a comma-separated list of the properties you want returned.
 
@@ -310,13 +310,13 @@ Tenant-level activity log events typically have limited entries but might includ
 
 Querying at this scope uses a different REST API than the subscription-level activity log events API. Azure CLI and Azure PowerShell don't provide dedicated commands.
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-1)
 
 Go to **Monitor** > **Activity log** in the Azure portal. Change the **Activity** pull down menu and select **Directory Activity**. 
 
 :::image type="content" source="media/activity-log/directory-activity-logs.png" alt-text="Screenshot showing the Directory Activity option selected in the Activity log blade in the Azure portal." lightbox="media/activity-log/directory-activity-logs.png":::
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 A dedicated Azure CLI command isn't available for tenant-level activity log events. The following example calls the REST API directly by using [az rest](/cli/azure/use-azure-cli-rest-command):
 
@@ -333,7 +333,7 @@ az rest \
   --uri "$resourceId?api-version=$apiVersion&\$filter=$filter"
 ```
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell-1)
 
 A dedicated PowerShell cmdlet isn't available for tenant-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`:
 
@@ -353,7 +353,7 @@ $invokeAzRestMethodParams = @{
 Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 To list tenant-level activity log events, use this `GET` request. Note that this request targets the tenant-level activity log endpoint, which is different from the subscription-level activity log API.
 
@@ -370,13 +370,13 @@ Management group-level activity log events capture events scoped to a specific m
 > [!NOTE]
 > * The following examples use the `2017-03-01-preview` API version, which is required for management group-level activity log queries.
 
-# [Portal](#tab/portal)
+# [Portal](#tab/portal-1)
 
 To view management group-level activity log events in the Azure portal, go to **Management groups** > select a management group > **Activity log**. 
 
 :::image type="content" source="media/activity-log/management-group-scope.png" alt-text="Screenshot showing the Activity log blade for a management group in the Azure portal." lightbox="media/activity-log/management-group-scope.png":::
 
-# [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli-1)
 
 To list management group-level activity log events, use the [az rest](/cli/azure/use-azure-cli-rest-command) Azure CLI command. This command calls the Azure Resource Manager REST API directly to retrieve activity log events scoped to the specified management group.
 
@@ -394,7 +394,7 @@ az rest \
   --url "$resourceId?api-version=$apiVersion&\$filter=$filter"
 ```
 
-# [PowerShell](#tab/powershell)
+# [PowerShell](#tab/powershell-1)
 
 A dedicated PowerShell cmdlet isn't available for management group-level activity log events. The following example calls the REST API directly by using `Invoke-AzRestMethod`.
 
@@ -415,7 +415,7 @@ $invokeAzRestMethodParams = @{
 Invoke-AzRestMethod @invokeAzRestMethodParams
 ```
 
-# [REST](#tab/rest)
+# [REST](#tab/rest-1)
 
 To list management group-level activity log events, use this `GET` request against the Azure Resource Manager REST API. Replace `{managementGroupId}` with the ID of the management group you want to query, and specify the time range in the `$filter` query parameter.
 
@@ -615,7 +615,9 @@ AzureActivity
 | summarize arg_max(TimeGenerated, *) by Hash
 ```
 
-## Export the activity log to CSV
+## Export the activity log to a file
+
+# [Portal](#tab/portal-2)
 
 Select **Download as CSV** to export the activity log to a CSV file in the Azure portal.
 
@@ -624,9 +626,9 @@ Select **Download as CSV** to export the activity log to a CSV file in the Azure
 > [!IMPORTANT]
 > Exporting a large number of log entries can take a long time. To improve performance, reduce the time range of the export. In the Azure portal, set the **Timespan** setting. 
 
-You can also export the activity log programmatically (for example, to JSON or CSV) by using Azure CLI or Azure PowerShell.
+# [Azure CLI](#tab/cli-2)
 
-# [Azure CLI](#tab/csv-cli)
+You can export the activity log programmatically by using Azure CLI.
 
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -643,7 +645,9 @@ az monitor activity-log list \
   > "$outputFile"
 ```
 
-# [PowerShell](#tab/csv-powershell)
+# [PowerShell](#tab/powershell-2)
+
+You can export the activity log programmatically by using Azure PowerShell.
 
 ```azurepowershell
 $subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
@@ -661,8 +665,6 @@ $getAzActivityLogParams = @{
 Get-AzActivityLog @getAzActivityLogParams |
     Export-Csv -Path $outputFile -NoTypeInformation
 ```
-
----
 
 The following example PowerShell script exports the activity log to CSV files in one-hour intervals, each saved to a separate file.
 
@@ -697,6 +699,8 @@ while ($currentStart -lt $endTime) {
  
 Write-Host "Export completed. Files saved to $outputFolder."
 ```
+
+---
 
 ## Identify resource creation
 
