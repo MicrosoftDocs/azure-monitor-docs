@@ -52,10 +52,6 @@ Customers with Unified or Premier Support contracts can access resiliency review
 
 Your Microsoft account team works with you to collect information about the workload. They need to know which subscriptions are used for the workload, and which subscriptions they should use to publish the review and recommendations. You need to work with the owner of the subscription to configure permissions for your team.
 
-## View recommendations
-
-To view recommendations or manage the status of each recommendation, you need specific role permissions. For definitions, see [Terminology](#terminology).
-
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
 
