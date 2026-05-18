@@ -65,7 +65,6 @@ You can view recommendation details, such as the recommended actions and affecte
 
 :::image type="content" source="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png" alt-text="Screenshot showing the Advisor Reliability recommendation tile page." lightbox="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png":::
 
-   
 1. To see action details, select a **Recommended actions** link. The Azure page where you can act opens. Alternatively, open a page to the affected resources to take the recommended action (the two pages might be the same).
   
    To help you understand the recommendation before you act, select **Learn more** on the **Recommended action** page or at the top of the **Recommendation details** page.
