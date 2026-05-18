@@ -26,7 +26,6 @@ Full state management is not supported for security recommendations. Only the Ac
 Please note that Completed state may appear for security recommendations in the Advisor table in Azure Resource Graph. This value may not reflect the actual status and should not be relied upon.
 For the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud: [Microsoft Defender for Cloud documentation] (../articles/defender-for-cloud/)
 
-:::image type="content" source="./media/advisor-get-started/state-management.png" alt-text="Screenshot showing the Azure Advisor state management page." lightbox="./media/advisor-get-started/state-management.png":::
 
 ## Recommendation state
 
@@ -144,8 +143,6 @@ Mark a recommendation as complete when you take the recommended action or when t
 
 > [!NOTE]
 > You can reactivate recommendations you marked as completed manually until Azure Advisor performs system verification. After system verification, you can't change or reactivate completed recommendations.
-
-:::image type="content" source="./media/advisor-get-started/state-management-2.png" alt-text="Screenshot that shows the Azure Advisor state management page." lightbox="./media/advisor-get-started/state-management-2.png":::
 
 ### Reactivate a recommendation
 
