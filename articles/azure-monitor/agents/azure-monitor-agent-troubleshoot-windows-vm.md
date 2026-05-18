@@ -31,6 +31,9 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
 
     1. If not, check if you see any errors in extension logs located at `C:\WindowsAzure\Logs\Plugins\Microsoft.Azure.Monitor.AzureMonitorWindowsAgent` on your machine
 
+    > [!NOTE]
+    > A status of "Provisioning succeeded" means the extension package was downloaded and registered with the Azure platform. It does not confirm that the agent process is running or healthy. Continue with the following steps to verify the agent is active.
+
 1. **Verify that the agent is running**:
 
     1. Check if the agent is emitting heartbeat logs to Log Analytics workspace using the following query. Skip if 'Custom Metrics' is the only destination in the data collection rule (DCR):
@@ -61,6 +64,8 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
 1. **Verify that agent was able to download the associated DCR(s) from AMCS service:**
 
     1. Check if you see the latest DCR downloaded at this location `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\mcs\configchunks`
+
+        If this directory is empty or missing, the agent was unable to download the DCR configuration from AMCS. Verify the VM is associated with a DCR (see step 4), confirm the VM can reach AMCS endpoints, and check for errors in `C:\WindowsAzure\Resources\AMADataStore.<virtual-machine-name>\Tables\MAEventTable.tsf`.
 
 ## Issues collecting Performance counters
 
@@ -133,3 +138,7 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
         </Column>
     </Subscription>
     ```
+
+## Next steps
+
+- [Use the Azure Monitor Agent Troubleshooter for Windows](troubleshooter-ama-windows.md)

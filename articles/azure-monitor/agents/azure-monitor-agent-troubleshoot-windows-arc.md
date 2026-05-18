@@ -61,7 +61,9 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
 
 1. **Verify that agent was able to download the associated DCR(s) from AMCS service:**
 
-    1. Check if you see the latest DCR downloaded at this location `C:\Resources\Directory\AMADataStore\mcs\configchunks` 
+    1. Check if you see the latest DCR downloaded at this location `C:\Resources\Directory\AMADataStore\mcs\configchunks`
+
+        If this directory is empty or missing, the agent was unable to download the DCR configuration from AMCS. Verify the server is associated with a DCR (see step 4), confirm the server can reach AMCS endpoints, and check for errors in `C:\Resources\Directory\AMADataStore\Configuration`.
 
 ## Issues collecting Performance counters
 
@@ -135,3 +137,7 @@ Use the following steps to troubleshoot the latest version of the Azure Monitor 
         </Column>
     </Subscription>
     ```
+
+## Next steps
+
+- [Use the Azure Monitor Agent Troubleshooter for Windows](troubleshooter-ama-windows.md)
