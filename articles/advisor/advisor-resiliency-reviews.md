@@ -27,7 +27,7 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 
 The triage process is deprecated and replaced with a new process.
 
-- `Pending`,'not started', 'in progress', and `Accepted` are now combined into only `Active`.
+- `Pending`,`not started`, `in progress`, and `Accepted` are now combined into only `Active`.
 - `Rejected` is now `Dismissed`.
 - `Completed` and `Postponed` remain unchanged.
 
