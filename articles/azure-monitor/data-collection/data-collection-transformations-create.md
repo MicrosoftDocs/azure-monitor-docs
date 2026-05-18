@@ -171,9 +171,30 @@ The DCR definition includes these key sections:
 - **`dataFlows`** - maps streams to destinations with an optional `transform` property for ingestion-side processing
 - **`transformations`** - defines the named processor pipelines referenced by data sources and data flows
 
+Verify DCRs by checking them in the Azure portal under **Monitor** > **Data Collection Rules**.
+
+#### [Azure portal](#tab/portal-1)
+
+1. Go to **Monitor** > **Data Collection Rules** and select **Create**.
+1. On the **Basics** tab, provide the rule name, subscription, resource group, and region. Select the appropriate **Platform Type** (Windows, Linux, or Custom).
+1. On the **Resources** tab, select **Add resources** and choose the virtual machines or other resources to associate with this DCR.
+1. On the **Collect and deliver** tab, select **Add data source**. Choose the data source type and configure collection settings on the **Data source** tab.
+1. Select the **Destination** tab. Select **Log Analytics Workspaces** as the destination type and choose your Log Analytics workspace. You must configure the destination before authoring a transformation.
+1. Select the **Transform (optional)** tab. The tab displays a pipeline visualization showing the flow from **Data source** to **Transform** to **Destination**, along with a **Schema preview** at the bottom.
+
+    :::image type="content" source="media/data-collection-transformations-create/multi-stage-transform-template.png" alt-text="Screenshot that shows the multi-stage transform template section of the DCR creation.":::
+
+1. Select **+ Add** in the **Transform** section to start adding processors. Each processor runs in the order defined.
+
+    > [!NOTE]
+    > Not all processors have a dedicated UI form during the preview. For processors without UI support, use the **Unknown processor** option to paste the processor JSON configuration directly. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for the JSON structure of each processor.
+
+1. Select **Add data source** to save the data source with its transformation and destination.
+1. Select **Review + create** to validate and deploy the DCR.
+
 #### [REST API](#tab/rest-api)
 
-To create a mult-istage transformation by using the REST API:
+To create a multi-stage transformation by using the REST API:
 
 1. Create a JSON file with your DCR definition. The DCR must include:
     - A `transformations` section that defines one or more named processor pipelines.
@@ -181,7 +202,7 @@ To create a mult-istage transformation by using the REST API:
 
 1. Submit the DCR by using the REST API with API version `2025-05-11` or later:
 
-    ```http
+    ```rest
     PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11
     Content-Type: application/json
     ```
@@ -193,10 +214,8 @@ To create a mult-istage transformation by using the REST API:
     az rest --method put --url "https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}?api-version=2025-05-11" --body @dcr.json
     ```
 
-1. Verify the DCR was created successfully by checking the response status code (200 or 201). DCRs also appear in the Azure portal under **Monitor** > **Data Collection Rules**.
-
 <details>
-<summary>Example DCR JSON</summary>
+<summary>Example dcr.json</summary>
 
 ```json
 {
@@ -304,24 +323,7 @@ Invoke-AzRestMethod `
 
 </details>
 
-#### [Portal](#tab/portal)
-
-1. Go to **Monitor** > **Data Collection Rules** and select **Create**.
-1. On the **Basics** tab, provide the rule name, subscription, resource group, and region. Select the appropriate **Platform Type** (Windows, Linux, or Custom).
-1. On the **Resources** tab, select **Add resources** and choose the virtual machines or other resources to associate with this DCR.
-1. On the **Collect and deliver** tab, select **Add data source**. Choose the data source type and configure collection settings on the **Data source** tab.
-1. Select the **Destination** tab. Select **Log Analytics Workspaces** as the destination type and choose your Log Analytics workspace. You must configure the destination before authoring a transformation.
-1. Select the **Transform (optional)** tab. The tab displays a pipeline visualization showing the flow from **Data source** to **Transform** to **Destination**, along with a **Schema preview** at the bottom.
-
-    :::image type="content" source="media/data-collection-transformations-create/multi-stage-transform-template.png" alt-text="Screenshot that shows the multi-stage transform template section of the DCR creation.":::
-
-1. Select **+ Add** in the **Transform** section to start adding processors. Each processor runs in the order defined.
-
-    > [!NOTE]
-    > Not all processors have a dedicated UI form during the preview. For processors without UI support, use the **Unknown processor** option to paste the processor JSON configuration directly. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for the JSON structure of each processor.
-
-1. Select **Add data source** to save the data source with its transformation and destination.
-1. Select **Review + create** to validate and deploy the DCR.
+---
 
 ## Create workspace transformation DCR
 
@@ -333,7 +335,7 @@ Use one of the following methods to create a workspace transformation DCR for yo
 > It might take up to 60 minutes for a new transformation query to activate.
 
 
-### [Azure portal](#tab/portal)
+### [Portal](#tab/portal-2)
 
 You can create a workspace transformation DCR in the Azure portal by adding a transformation to a supported table.
 
@@ -356,7 +358,7 @@ You can create a workspace transformation DCR in the Azure portal by adding a tr
 
 1. To verify the transformation is active, go to **Monitor** > **Data Collection Rules** and confirm the workspace transformation DCR appears with status **Succeeded**. Then query the target table after the next ingestion cycle to confirm transformations are applied.
 
-### [JSON](#tab/json)
+### [ARM template](#tab/json)
 
 Workspace transformation DCRs work like other DCRs. They use the same JSON structure for their definition. Create and edit them by using the same commands and strategies described in [Create or edit a DCR using JSON](data-collection-rule-create-edit.md). The differences are in the JSON definition:
 
