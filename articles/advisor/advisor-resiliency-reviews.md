@@ -17,7 +17,7 @@ You can find resiliency reviews in [Azure Advisor](https://aka.ms/azureadvisorda
 
 In this article, you learn how to enable and access resiliency reviews prepared for you manage, implement, and track the lifecycle of each recommendation.
 
-## Terminology
+## Terminology 
 
 | Term or phrase | Detail |
 |:--- |:--- |
