@@ -34,6 +34,9 @@
   items:
   - name: Advisor data in Azure Resource Graph
     href: ./advisor-azure-resource-graph.md
+  - name: Recommendation state management
+    href: advisor-azure-state-management.md
+    displayName: Azure Advisor Recommendation State Management
   - name: Bulk remediation for recommendations
     href: ./advisor-quick-fix.md
   - name: Calculate total cost savings
