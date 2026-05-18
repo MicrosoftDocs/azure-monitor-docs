@@ -1,9 +1,11 @@
 ---
-title: Azure Monitor Activity Log
+title: Activity Log in Azure Monitor
 description: Learn how to view, retrieve, and export Azure Monitor activity log data to Log Analytics, Azure Event Hubs, and Azure Storage for analysis and long-term retention.
 ms.topic: how-to
 ms.date: 05/04/2026
 ms.reviewer: orens
+ai-usage: ai-assisted
+
 # customer intent: As an Azure administrator, I want to view and export activity log data so that I can audit control plane operations and retain logs beyond the default 90-day period.
 ---
 
@@ -38,23 +40,23 @@ Specify a time interval of events to retrieve. To retrieve events by using the R
 
 The following sections present common scenarios showing different ways to access and retrieve activity log events through the Azure portal, programmatically using Azure CLI and Azure PowerShell, or with REST calls:
 
-- Azure portal samples provide extra context around what kind of events to expect in that view.
+* Azure portal samples provide extra context around what kind of events to expect in that view.
 
-- Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
+* Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
 
-- Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
+* Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
 
-- REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
+* REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
 
-  The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
-
-  | Supported `$filter` patterns | Details |
-  |------------------------------|---------|
-  | default subscription with a time range | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}'` |
-  | resource group | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`|
-  | specific resource | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'` |
-  | resource provider | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceProvider eq '{resourceProviderName}'` |
-  | correlation ID | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and correlationId eq '{correlationID}'` |
+    The [List activity log events for a resource group](#list-activity-log-events-for-a-resource-group) sample also demonstrates how to explicitly set a timeout for your client to match the maximum timeout period for the activity log REST API of 75 seconds by using the [`Prefer` header](../logs/api/timeouts.md#timeout-request-header).
+    
+    | Supported `$filter` patterns | Details |
+    |------------------------------|---------|
+    | default subscription with a time range | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}'` |
+    | resource group | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceGroupName eq '{resourceGroupName}'`|
+    | specific resource | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceUri eq '{resourceURI}'` |
+    | resource provider | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and resourceProvider eq '{resourceProviderName}'` |
+    | correlation ID | `$filter=eventTimestamp ge '{startTime}' and eventTimestamp le '{endTime}' and correlationId eq '{correlationID}'` |
 
 #### List activity log events for a subscription
 
@@ -185,7 +187,6 @@ az monitor activity-log list \
   --subscription "$subscriptionId" \
   --resource-group "$resourceGroupName" \
   --offset "$offset"
-
 ```
 
 [!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
@@ -211,7 +212,6 @@ $getAzActivityLogParams = @{
 }
 
 Get-AzActivityLog @getAzActivityLogParams
-
 ```
 
 [!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
@@ -358,7 +358,7 @@ Invoke-AzRestMethod @invokeAzRestMethodParams
 To list tenant-level activity log events, use this `GET` request. Note that this request targets the tenant-level activity log endpoint, which is different from the subscription-level activity log API.
 
 ```REST
-GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version=2015-04-01&$filter=eventTimestamp ge '{starTime}' and eventTimestamp le '{endTime}'
+GET https://management.azure.com/providers/Microsoft.Insights/eventtypes/management/values?api-version={apiVersion}&$filter=eventTimestamp ge '{starTime}' and eventTimestamp le '{endTime}'
 ```
 
 ---
@@ -433,7 +433,7 @@ The following table describes the parameters used in the preceding examples.
 | subscriptionId | aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e | User input |
 | resourceGroupName | myResourceGroup | User input |
 | managementGroupId | myManagementGroup | User input |
-| apiVersion | 2015-04-01<br>2017-03-01-preview (for `management group-level activity log queries`) | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+| apiVersion | • 2015-04-01<br>• 2017-03-01-preview (for management group-level) | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
 ## View change history
 
@@ -624,25 +624,47 @@ Select **Download as CSV** to export the activity log to a CSV file in the Azure
 > [!IMPORTANT]
 > Exporting a large number of log entries can take a long time. To improve performance, reduce the time range of the export. In the Azure portal, set the **Timespan** setting. 
 
+You can also export the activity log programmatically (for example, to JSON or CSV) by using Azure CLI or Azure PowerShell.
 
-You can also export the activity log to a CSV file by using PowerShell or the Azure CLI, as shown in the following examples.
-
-# [Azure CLI](#tab/csv-azure-cli)
+# [Azure CLI](#tab/csv-cli)
 
 ```azurecli
-az monitor activity-log list --start-time "2024-03-01T00:00:00Z" --end-time "2024-03-15T23:59:59Z" --max-items 1000 > activitylog.json
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+startTime="2026-04-01T00:00:00Z"
+endTime="2026-04-14T23:59:59Z"
+maxItems=1000
+outputFile="./activity-log.json"
+
+az monitor activity-log list \
+  --subscription "$subscriptionId" \
+  --start-time "$startTime" \
+  --end-time "$endTime" \
+  --max-items "$maxItems" \
+  > "$outputFile"
 ```
 
 # [PowerShell](#tab/csv-powershell)
 
-```powershell
-Get-AzActivityLog -StartTime 2021-12-01T10:30 -EndTime 2022-01-14T11:30 | Export-csv operations_logs.csv
+```azurepowershell
+$subscriptionId = "aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+$startTime = "2026-04-01T00:00:00Z"
+$endTime = "2026-04-14T23:59:59Z"
+$outputFile = "./activity-log.csv"
+
+Set-AzContext -SubscriptionId $subscriptionId
+
+$getAzActivityLogParams = @{
+    StartTime = $startTime
+    EndTime   = $endTime
+}
+
+Get-AzActivityLog @getAzActivityLogParams |
+    Export-Csv -Path $outputFile -NoTypeInformation
 ```
 
 ---
 
 The following example PowerShell script exports the activity log to CSV files in one-hour intervals, each saved to a separate file.
-
 
 ```powershell
 # Parameters
@@ -679,7 +701,6 @@ Write-Host "Export completed. Files saved to $outputFolder."
 ## Identify resource creation
 
 Use the activity log to find out when the system created a resource and who created it. The activity log is the only place that stores the creator of a resource. Because the activity log only retains data for 90 days by default, you must export the logs to a location that allows you to extend the retention period, like a Log Analytics workspace. Then find the creator of a resource by querying the `AzureActivity` table. The data is retained for the duration you specified in the [retention period for this table](../logs/data-retention-configure.md).
-
 
 ## Related content
 
