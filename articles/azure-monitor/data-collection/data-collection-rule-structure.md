@@ -223,12 +223,12 @@ The following table shows which processors are available on the client side and 
 | Processor name | Family | Client-side | Ingestion-side |
 |:----------|:-------|:------------|:---------------|
 | [`header.Syslog`](#headersyslog) | Header | Yes | No |
-| [`header.WindowsEvents`](#headerswindowsevents) | Header | Yes | No |
-| [`header.WindowsPerformanceCounters`](#headerswindowsperformancecounters) | Header | Yes | No |
-| [`header.LinuxPerformanceCounters`](#headerslinuxperformancecounters) | Header | Yes | No |
-| [`header.TextLog`](#headerstextlog) | Header | Yes | No |
-| [`header.IISLog`](#headersiislog) | Header | Yes | No |
-| [`header.WindowsFirewallLog`](#headerswindowsfirewalllog) | Header | Yes | No |
+| [`header.WindowsEvents`](#headerwindowsevents) | Header | Yes | No |
+| [`header.WindowsPerformanceCounters`](#headerwindowsperformancecounters) | Header | Yes | No |
+| [`header.LinuxPerformanceCounters`](#headerlinuxperformancecounters) | Header | Yes | No |
+| [`header.TextLog`](#headertextlog) | Header | Yes | No |
+| [`header.IISLog`](#headeriislog) | Header | Yes | No |
+| [`header.WindowsFirewallLog`](#headerwindowsfirewalllog) | Header | Yes | No |
 | [`header.StandardStream`](#headerstandardstream) | Header | No | Yes |
 | [`header.CustomStream`](#headercustomstream) | Header | No | Yes |
 | [`filter.Basic`](#filterbasic) | Filter | Yes | Yes |

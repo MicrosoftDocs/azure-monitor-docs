@@ -102,7 +102,7 @@ The operating system and applications in virtual machines often write to the Win
 
 For guidance on how to create a DCR to collect Windows and Syslog events, see [Collect data with Azure Monitor Agent](data-collection.md). You can quickly create a DCR by using the most common Windows event logs and Syslog facilities filtering by event level.
 
-For more granular filtering by criteria such as event ID, you can create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries). You can further filter the collected data by [editing the DCR](../data-collection/data-collection-rule-overview.md#viewing-dcrs) to add a [transformation](../data-collection/data-collection-transformations.md).
+For more granular filtering by criteria such as event ID, create a custom filter by using [XPath queries](../agents/data-collection-windows-events.md#filter-events-using-xpath-queries). Filter the collected data further by [editing the DCR](../data-collection/data-collection-rule-overview.md#view-dcrs) to add a [transformation](../data-collection/data-collection-transformations.md).
 
 Use the following guidance as a recommended starting point for event collection. Modify the DCR settings to filter unneeded events and add other events depending on your requirements.
 
@@ -148,7 +148,7 @@ For guidance on creating a DCR to collect performance counters, see [Collect eve
 | Destination | Description |
 |:------------|:------------|
 | Metrics | Host metrics are automatically sent to Azure Monitor Metrics. You can use a DCR to collect client metrics so that they can be analyzed together with [metrics explorer](../metrics/analyze-metrics.md) or used with [metrics alerts](../alerts/alerts-create-new-alert-rule.md?tabs=metric). This data is stored for 93 days. |
-| Logs | Performance data stored in Azure Monitor Logs can be stored for extended periods. The data can be analyzed along with your event data by using [log queries](../logs/log-query-overview.md) with [Log Analytics](../logs/log-analytics-overview.md) or [log search alerts](../alerts/alerts-create-new-alert-rule.md?tabs=log). You can also correlate data by using complex logic across multiple machines, regions, and subscriptions.<br><br>Performance data is sent to the following tables:<br>• VM insights: [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>• Other performance data: [Perf](/azure/azure-monitor/reference/tables/perf) |
+| Logs | Performance data stored in Azure Monitor Logs can be stored for extended periods. The data can be analyzed along with your event data by using [log queries](../logs/log-query-overview.md) with [Log Analytics](../logs/log-analytics-overview.md) or [log search alerts](../alerts/alerts-create-new-alert-rule.md?tabs=log). You can also correlate data by using complex logic across multiple machines, regions, and subscriptions.<br><br>Performance data is sent to the following tables:<br>* VM insights: [InsightsMetrics](/azure/azure-monitor/reference/tables/insightsmetrics)<br>* Other performance data: [Perf](/azure/azure-monitor/reference/tables/perf) |
 
 ### Sample log queries
 
