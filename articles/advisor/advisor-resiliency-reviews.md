@@ -27,7 +27,7 @@ In this article, you learn how to enable and access resiliency reviews prepared 
 
 The triage process is deprecated and replaced with a new process.
 
-- `Pending`,'not started', 'in progress', and `Accepted` are now combined into only `Active`.
+- `Pending`,`not started`, `in progress`, and `Accepted` are now combined into only `Active`.
 - `Rejected` is now `Dismissed`.
 - `Completed` and `Postponed` remain unchanged.
 
@@ -51,10 +51,6 @@ Customers with Unified or Premier Support contracts can access resiliency review
 
 
 Your Microsoft account team works with you to collect information about the workload. They need to know which subscriptions are used for the workload, and which subscriptions they should use to publish the review and recommendations. You need to work with the owner of the subscription to configure permissions for your team.
-
-## View recommendations
-
-To view recommendations or manage the status of each recommendation, you need specific role permissions. For definitions, see [Terminology](#terminology).
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
 
@@ -94,15 +90,13 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-Manage recommendation statuses through four steps: `active`, `dismissed`, `completed`, and `postponed`. Engineers on your team can access recommendations on the **Reliability** pane.
+Manage recommendation statuses through four steps: `active`, `dismissed`, `completed`, and `postponed`. Engineers on your team can access recommendations on the `Reliability` or `Review` blade.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
 1.  On **Reviews**, select the name of a review to open the recommendations list.
 1.  For new reviews, recommendations are set to **Active** state.
 1.  Note the priority for each recommendation. To help you decide which recommendation to implement first, your account team defines the **Priority**.
-
-    :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/advisor-reviews-contoso-company-pending-preview.png" source="./media/advisor-reviews-contoso-company-pending.png" type="content":::
 
 ### Recommendation priority
 
@@ -123,11 +117,11 @@ For details on permissions to act on recommendations, see [Roles and permissions
 ### Access review recommendations
 
 1.  On **Recommendations** > **Reliability**, view the **Active** review recommendations under the **Reviews** tab.
+  :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/reviews-tab.png" source="./media/reviews-tab.png" type="content":::
 1.  The recommendations are grouped by type.
 1.  You can filter the recommendations by subscription, priority, and workload. You can also sort the recommendation list.
 
 You can sort recommendations by using the following column headers: **Priority** (**Critical**, **High**, **Medium**, **Low**, **Informational**), **Description**, **Impacted resources**, **Review name**, **Potential benefits**, or **Last updated** date.
-
 
 ### View recommendation details
 
