@@ -47,7 +47,7 @@ To filter the display, use the buttons at the top of the page:
 
 To display a specific list of recommendations, select a category tile.
 
-:::image type="content" source="./media/advisor-get-started/advisor-reliability-tile-small.png" alt-text="Screenshot  that shows the Advisor Reliability recommendation tile." lightbox="./media/advisor-get-started/advisor-reliability-tile-small.png":::
+:::image type="content" source="./media/advisor-get-started/advisor-reliability-tile-small.png" alt-text="Screenshot showing the Advisor Reliability recommendation tile." lightbox="./media/advisor-get-started/advisor-reliability-tile-small.png":::
 
 Each tile provides information about the recommendations for that category:
 
@@ -73,7 +73,7 @@ You can view recommendation details, such as the recommended actions and affecte
 
 1. You can manage recommendation statuses.
 
-To manage recommendation statuses, see: [Azure Advisor recommendation state management](./advisor/advisor-azure-state-management.md).
+To manage recommendation statuses, see: [Azure Advisor Get Started](./advisor-get-started.md).
 
 You need certain privileges to dismiss the recommendation. For information on permissions, see [Permissions in Azure Advisor](permissions.md).
 
