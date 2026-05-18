@@ -34,11 +34,9 @@ You can apply filters to display recommendations for specific subscriptions and 
 
 Select a category to display the list of recommendations for that category. Select a recommendation to learn more about it. You can also learn about actions that you can perform to take advantage of an opportunity or resolve an issue.
 
-:::image type="content" source="./media/advisor-overview/advisor-reliability-recommendations-main-m.png" alt-text="Screenshot of the Advisor Reliability recommendations page." lightbox="./media/advisor-overview/advisor-reliability-recommendations-main-m.png":::
 
 Select the recommended action for a recommendation to implement the recommendation. A simple interface opens that enables you to implement the recommendation. It also might refer you to documentation that assists you with implementation. After you implement a recommendation, it can take up to a day for Advisor to recognize the action.
 
-If you don't intend to take immediate action on a recommendation, you can postpone it for a specified time period. You can also dismiss it. If you don't want to receive recommendations for a specific subscription or resource group, you can configure Advisor to only generate recommendations for specified subscriptions and resource groups.
 
 ## Frequently asked questions
 
@@ -50,7 +48,7 @@ You can access Advisor through the [Azure portal](https://aka.ms/azureadvisordas
 ### What permissions do I need to access Advisor?
 
 You can access Advisor recommendations as the Owner, Contributor, or Reader of a subscription, resource group, or resource.
-
+For more information, see: [Roles and Permissions](/azure/advisor/permissions)
 ### What resources does Advisor provide recommendations for?
 
 Advisor provides recommendations for the following services:
@@ -89,9 +87,14 @@ Advisor provides recommendations for the following services:
 
 Advisor also includes your recommendations from [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction), which might include recommendations for other resource types.
 
-### Can I postpone or dismiss a recommendation?
+### Can I change recommendation status?
 
-To postpone or dismiss a recommendation, select **Postpone** or **Dismiss**. The recommendation is moved to the **Postponed/Dismissed** tab on the recommendation list page.
+When a recommendation is active, you can manually update its state to manage your work:
+- **Postponed** – Temporarily hide the recommendation and review it later.
+- **Dismissed** – Indicate that the recommendation isn't relevant.
+- **Completed** – Indicate that you took the recommended action.
+
+You can continue to change states between active, postponed, dismissed, and completed, or reactivate a recommendation, until Azure Advisor performs system verification and marks a recommendation as completed. Recommendations you manually mark as completed are indicated as "Marked completed".
 
 ## Related articles
 
