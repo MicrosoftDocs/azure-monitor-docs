@@ -90,7 +90,7 @@ At the top of the reviews pane, use **Feedback** to tell the platform about your
 
 ### Review recommendations
 
-Manage recommendation statuses through four steps: `active`, `dismissed`, `completed`, and `postponed`. Engineers on your team can access recommendations on the **Reliability** pane.
+Manage recommendation statuses through four steps: `active`, `dismissed`, `completed`, and `postponed`. Engineers on your team can access recommendations on the `Reliability` or `Review` blade.
 
 :::image alt-text="Screenshot of the Azure Advisor Reliability menu highlight." lightbox="./media/advisor-reliability-highlight-reliability-2.png" source="./media/advisor-reliability-highlight-reliability-2.png" type="content":::
 
