@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 05/11/2026
+ms.date: 05/18/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -184,24 +184,22 @@ Install the templates by using [any deployment method for Resource Manager templ
 
 ## Linux user accounts created during installation
 
-When you install the Azure Monitor Agent on a Linux machine, the agent creates local user accounts to run its services securely. If the machine is an Azure Arc-enabled server, the Azure Connected Machine Agent and its extension framework also create accounts as part of the prerequisite infrastructure.
+When you install the Azure Monitor Agent on a Linux machine, the agent creates local user accounts to run its component services securely. Each account runs under its own dedicated user context to isolate privileges and follow Linux security best practices for service management.
 
-The following table lists the accounts that are created, what creates them, and their purpose.
+The following table lists the accounts that the Azure Monitor Agent creates.
 
-| Account | Created by | Purpose | When it appears |
-|:---|:---|:---|:---|
-| `azuremonitoragent` | Azure Monitor Agent | Runs the Azure Monitor Agent service process (`mdsd`) for log and metric collection. | Agent extension installation. |
-| `azureotelcollector` | Azure Monitor Agent | Collects OpenTelemetry (OTLP) traces and logs. | When the agent is enabled with OpenTelemetry data collection. |
-| `azuremetricsext` | Azure Monitor Metrics Extension | Collects performance counters and OpenTelemetry OTLP metrics. | When the Metrics Extension is deployed. |
-| `himds` | Azure Connected Machine Agent | Runs the Hybrid Instance Metadata Service (HIMDS), the core Arc agent service. | Azure Arc onboarding (prerequisite for the agent on non-Azure machines). |
-| `arcproxy` | Arc Extensions Framework | Executes extensions securely as a non-root user. | Any Arc extension installation. |
-| `arcuser` | Arc extensions | Non-root execution context for custom script and configuration extensions. | Custom script or configuration extension deployment. |
-
-> [!NOTE]
-> The `himds`, `arcproxy`, and `arcuser` accounts are created by the Azure Arc infrastructure, not by the agent itself. They appear on machines where the agent runs because Azure Arc is a prerequisite for the agent on non-Azure machines. For more information, see [Azure Connected Machine Agent overview](/azure/azure-arc/servers/agent-overview).
+| Account | Purpose | When it appears |
+|:---|:---|:---|
+| `azuremonitoragent` | Runs the Azure Monitor Agent service process (`mdsd`) for log and metric collection. | Agent extension installation. |
+| `azureotelcollector` | Runs the OpenTelemetry Collector component that gathers observability data (metrics, logs, traces) from the VM and forwards it to Azure Monitor. | When the agent is enabled with OpenTelemetry data collection. |
+| `azuremetricsext` | Runs the Metrics Extension, which consumes metrics emitted by the agent and sends them to Azure Monitor Metrics. The Metrics Extension operates independently but is launched and managed by the agent. | When the Metrics Extension is deployed. |
 
 > [!IMPORTANT]
 > Don't delete or modify these accounts. Removing them can prevent the agent from functioning correctly.
+
+### Azure Arc user accounts
+
+On Azure Arc-enabled servers, the Azure Connected Machine Agent and its extension framework create additional local user accounts (`himds`, `arcproxy`, `arcuser`) as part of the prerequisite infrastructure. These accounts aren't created by the Azure Monitor Agent. For more information about Arc-related accounts and their purpose, see [Azure Connected Machine Agent overview](/azure/azure-arc/servers/agent-overview).
 
 ## Uninstall
 
@@ -294,27 +292,27 @@ Not applicable.
 ## Update
 
 > [!NOTE]
-> We strongly recommend that you always update to the latest version of the agent or opt in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade).
+> Always update to the latest version of the agent or opt in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade).
 >
-> Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. You should expect automatic updates to take weeks to roll out the latest version.
+> Automatic extension rollout follows standard Azure deployment practices to safely deploy the latest version of the agent. Automatic updates take weeks to roll out the latest version.
 >
 > Upgrades are issued in batches, so some of your virtual machines, scale sets, or Azure Arc-enabled servers might be upgraded before others.
 >
-> If you need to upgrade an extension immediately, you can use the manual instructions that are described in this article. Only agents released in the past year are supported.
+> If you need to upgrade an extension immediately, use the manual instructions described in this article. Only agents released in the past year are supported.
 
 #### [Azure portal](#tab/azure-portal)
 
-To do a one-time update of the agent, go to your virtual machine or scale set. Select the **Extensions** tab, then check the agent and click **Update**.
+To update the agent, go to your virtual machine or scale set. Select the **Extensions** tab, check the agent, and select **Update**.
 
-We recommend that you enable automatic update of the agent by enabling [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). Go to your virtual machine or scale set, select the **Extensions** tab, and then select **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent**. In the dialog that opens, select **Enable automatic upgrade**.
+Enable automatic update of the agent by enabling [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). Go to your virtual machine or scale set, select the **Extensions** tab, and then select **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent**. In the dialog that opens, select **Enable automatic upgrade**.
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
 ### Update on Azure virtual machines
 
-To do a one-time update of the agent, install the new version as described.
+To update the agent one time, install the new version as described in this article.
 
-We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). 
+Enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade). 
 
 Use the following PowerShell commands:
 
@@ -332,7 +330,7 @@ Use the following PowerShell commands:
 
 ### Update on Azure Arc-enabled servers
 
-To do a one-time upgrade of the agent, use the following PowerShell commands:
+To upgrade the agent one time, use the following PowerShell commands:
 
 * Windows
 
@@ -348,7 +346,7 @@ To do a one-time upgrade of the agent, use the following PowerShell commands:
     Update-AzConnectedExtension -ResourceGroupName $env.ResourceGroupName -MachineName <arc-server-name> -ExtensionTarget $target
     ```
 
-We recommend that you enable automatic update of the agent by opting in to the [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
+Enable automatic update of the agent by opting in to the [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
 
 Use the following PowerShell commands:
 
@@ -368,9 +366,9 @@ Use the following PowerShell commands:
 
 ### Update on Azure virtual machines
 
-To do a one-time update of the agent, you must first uninstall the existing agent version. Then install the new version as described in this article.
+To update the agent one time, first uninstall the existing agent version. Then, install the new version as described in this article.
   
-We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) feature by using the following Azure CLI commands:
+Enable automatic update of the agent by opting in to the [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) feature by using the following Azure CLI commands:
 
 * Windows
 
@@ -386,7 +384,7 @@ We recommend that you enable automatic update of the agent by opting in to [auto
 
 ### Update on Azure Arc-enabled servers
 
-To do a one-time upgrade of the agent, use the following Azure CLI commands:
+To upgrade the agent one time, use the following Azure CLI commands:
 
 * Windows
 
@@ -400,7 +398,7 @@ To do a one-time upgrade of the agent, use the following Azure CLI commands:
     az connectedmachine upgrade-extension --extension-targets "{\"Microsoft.Azure.Monitor.AzureMonitorLinuxAgent\":{\"targetVersion\":\"<target-version-number>\"}}" --machine-name <arc-server-name> --resource-group <resource-group-name>
     ```
   
-We recommend that you enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
+Enable automatic update of the agent by opting in to [automatic extension upgrade](/azure/azure-arc/servers/manage-automatic-vm-extension-upgrade#manage-automatic-extension-upgrade).
 
 Use the following Azure CLI commands:
 
@@ -424,12 +422,12 @@ Not applicable.
 
 ## Configure (preview)
 
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) serve as a management tool for the Azure Monitor Agent on your machine. The AgentSettings DCR can be used to configure certain Azure Monitor Agent parameters to configure the agent to your specific monitoring needs.
+[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) manage the Azure Monitor Agent on your machine. Use the AgentSettings DCR to configure certain Azure Monitor Agent parameters to match your specific monitoring needs.
 
 > [!NOTE]
 > Important considerations when you work with the AgentSettings DCR:
 >
-> * Currently, the AgentSettings DCR can be configured only by using an Azure Resource Manager template.
+> * Currently, you can configure the AgentSettings DCR only by using an Azure Resource Manager template.
 > * AgentSettings must be a single DCR with no other settings.
 > * The virtual machine and the AgentSettings DCR must be in the same region.
 
@@ -439,7 +437,7 @@ The AgentSettings DCR currently supports setting the following parameters:
 
 | Parameter | Description | Valid values |
 | --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `4,000` to `1,000,000 default: 10,000`<br>Windows: `4,000` to `1,000,000`|
+| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `4,000` to `1,000,000` default: `10,000`<br>Windows: `4,000` to `1,000,000`|
 | `UseTimeReceivedForForwardedEvents` | Changes the **WEF** column in the Microsoft Sentinel Windows Event Forwarding (WEF) table to use `TimeReceived` instead of `TimeGenerated` data | `0` or `1` |
 
 ### Set up the AgentSettings DCR
@@ -532,7 +530,7 @@ Currently not supported.
     ```
 
     > [!NOTE]
-    > If you are associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
+    > If you're associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
     >
     > "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
 
