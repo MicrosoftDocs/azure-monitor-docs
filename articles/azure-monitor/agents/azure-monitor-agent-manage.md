@@ -61,7 +61,18 @@ The following table summarizes which methods are available for each Azure Monito
 
 ### [Azure portal](#tab/azure-portal)
 
-To install the agent and create a DCR to collect data by using the Azure portal, use the guidance in [Collect data by using the Azure Monitor Agent](../vm/data-collection.md).
+The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md). When you add a VM as a resource in the DCR, the portal automatically installs the agent and begins collecting data in a single workflow.
+
+If you need to install the agent extension without creating a DCR (for example, to pre-stage the agent before configuring data collection), you can install it directly from the VM:
+
+1. In the [Azure portal](https://portal.azure.com), go to **Virtual Machines** and select your VM.
+1. Select **Extensions + applications** under **Settings**.
+1. Select **Add**.
+1. Search for and select **AzureMonitorWindowsAgent** (or **AzureMonitorLinuxAgent** for Linux VMs).
+1. Select **Next**, review the settings, and then select **Review + create**.
+
+> [!NOTE]
+> Installing the extension alone doesn't start data collection. You must create at least one DCR and associate it with the VM before data begins flowing. See [Collect data by using the Azure Monitor Agent](../vm/data-collection.md).
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
