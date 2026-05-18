@@ -61,9 +61,9 @@ For detailed graphics and information on your Advisor score, see [Optimize Azure
 
 You can view recommendation details, such as the recommended actions and affected resources. You can also see the solution options, including postponing or dismissing a recommendation.
 
-1. To review details of a recommendation, including the affected resources, open the recommendation list for a category. Then select **Description** or **Impacted resources** for a specific recommendation. The following screenshot shows a Reliability recommendation details page.
+:::image type="content" source="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png" alt-text="Screenshot showing the Advisor Reliability recommendation tile page."     lightbox="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png":::
 
-:::image type="content" source="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png" alt-text="Screenshot showing the Advisor Reliability recommendation tile page." lightbox="./media/advisor-get-started/advisor-score-reliability-recommendation-page-2.png":::
+1. To review details of a recommendation, including the affected resources, open the recommendation list for a category. Then select **Description** or **Impacted resources** for a specific recommendation. The following screenshot shows a Reliability recommendation details page.
 
 1. To see action details, select a **Recommended actions** link. The Azure page where you can act opens. Alternatively, open a page to the affected resources to take the recommended action (the two pages might be the same).
   
