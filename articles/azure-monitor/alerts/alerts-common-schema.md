@@ -478,6 +478,63 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 }
 ```
 
+### Sample log search alert when the monitoringService = Simple Log Alert
+
+```json
+{
+  "alertContext": {
+    "properties": {},
+    "conditionType": "LogQueryCriteria",
+    "condition": {
+      "windowSize": null,
+      "allOf": [
+        {
+          "searchQuery": "exceptions | where timestamp > ago(5m) | project timestamp, operation_Name, problemId, type, outerMessage",
+          "metricMeasureColumn": null,
+          "targetResourceTypes": null,
+          "operator": null,
+          "threshold": null,
+          "timeAggregation": null,
+          "dimensions": null,
+          "metricValue": 1.0,
+          "failingPeriods": null,
+          "linkToSearchResultsUI": "https://portal.azure.com/AnalyticsBlade/subscriptions/12345a-1234b-123c-123d-12345678e/?query=exceptions+%7C+where+timestamp+%3E+ago%285m%29+%7C+project+timestamp%2C+operation_Name%2C+problemId%2C+type%2C+outerMessage",
+          "linkToFilteredSearchResultsUI": "https://portal.azure.com/AnalyticsBlade/subscriptions/12345a-1234b-123c-123d-12345678e/?query=exceptions+%7C+where+timestamp+%3E+ago%285m%29+%7C+project+timestamp%2C+operation_Name%2C+problemId%2C+type%2C+outerMessage",
+          "linkToSearchResultsAPI": "https://api.applicationinsights.io/v1/apps/0MyAppId0/query?query=exceptions%20%7C%20where%20timestamp%20%3E%20ago%285m%29%20%7C%20project%20timestamp%2C%20operation_Name%2C%20problemId%2C%20type%2C%20outerMessage",
+          "linkToFilteredSearchResultsAPI": "https://api.applicationinsights.io/v1/apps/0MyAppId0/query?query=exceptions%20%7C%20where%20timestamp%20%3E%20ago%285m%29%20%7C%20project%20timestamp%2C%20operation_Name%2C%20problemId%2C%20type%2C%20outerMessage",
+          "event": [
+            [
+              {
+                "name": "timestamp",
+                "value": "2020-07-09T13:54:34Z"
+              },
+              {
+                "name": "operation_Name",
+                "value": "GET /api/orders"
+              },
+              {
+                "name": "problemId",
+                "value": "System.NullReferenceException at OrdersController.GetOrder"
+              },
+              {
+                "name": "type",
+                "value": "System.NullReferenceException"
+              },
+              {
+                "name": "outerMessage",
+                "value": "Object reference not set to an instance of an object."
+              }
+            ]
+          ]
+        }
+      ],
+      "windowStartTime": null,
+      "windowEndTime": null
+    }
+  }
+}
+```
+
 ## Alert context fields for activity log alerts
 
 See [Azure activity log event schema](../essentials/activity-log-schema.md) for detailed information about the fields in activity log alerts.

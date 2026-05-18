@@ -102,7 +102,7 @@ Interactive features include the following:
 * Change chart settings such as chart type, Y-axis range, and legends.
 * Save and share charts
 
-For more information on chart features, see [Interactive chart features](analyze-metrics.md#interactive-chart-features).
+For more information on chart features, see [Pan and zoom in metrics charts](analyze-metrics.md#pan-and-zoom-in-metrics-charts).
 
 ## Next steps
 

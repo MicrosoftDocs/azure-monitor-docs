@@ -16,7 +16,7 @@ This article provides a PowerShell script that sets up all of the resources you 
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The **Az** and **Microsoft.Graph** PowerShell modules installed. The script installs them automatically if they're missing.
 - Permissions to create Microsoft Entra ID app registrations and assign roles on your subscription.
 - A [Log Analytics workspace](quick-create-workspace.md). You can use an existing workspace or let the script create one.

@@ -26,6 +26,9 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
 ## Configure the simple log search alert rule conditions
 
+> [!NOTE]
+> Simple log alert rules don't support splitting by dimensions or mute actions.
+
 1. Select the **Condition** tab.  
 1. Select **Custom log search** for the **Signal name** field. Alternatively, select **See all signals** if you want to choose a different signal for the condition.
 1. (Optional) If you selected **See all signals** in the previous step, use the **Select a signal** pane to search for the signal name or filter the list of signals. Filter by:

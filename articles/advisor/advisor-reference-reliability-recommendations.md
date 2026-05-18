@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 04/14/2026
+ms.date: 05/12/2026
 ---
 
 # Reliability recommendations
@@ -63,6 +63,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-managed-workspace-for-grafana.md](./includes/HighAvailability-azure-managed-workspace-for-grafana.md)]
 
 [!INCLUDE [HighAvailability-azure-maps.md](./includes/HighAvailability-azure-maps.md)]
+
+[!INCLUDE [HighAvailability-azure-monitor-pipeline.md](./includes/HighAvailability-azure-monitor-pipeline.md)]
 
 [!INCLUDE [HighAvailability-azure-monitor-workspace.md](./includes/HighAvailability-azure-monitor-workspace.md)]
 

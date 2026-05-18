@@ -2,7 +2,7 @@
 title: Supported log categories - MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
 description: Reference for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/14/2026
 ms.custom: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,6 +16,8 @@ The following table lists the types of logs available for the MICROSOFT.OPENENER
 
 |Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
 |---|---|---|---|---|---|---|
+|`AczApiLogs` |ACZ API Logs ||No|No||Yes |
+|`AczWorkerLogs` |ACZ Worker Logs ||No|No||Yes |
 |`AirFlowTaskLogs` |Air Flow Task Logs |[OEPAirFlowTask](/azure/azure-monitor/reference/tables/oepairflowtask)<p>Diagnostic logs for AirFlow task execution having task name, task details.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/oepairflowtask)|Yes |
 |`AuditEvent` |Audit Event |[OEPAuditLogs](/azure/azure-monitor/reference/tables/oepauditlogs)<p>Audit Logs for Microsoft Energy Data Services.|No|Yes||Yes |
 |`CRSCatalogLogs` |CRS Catalog Service Logs |[OEPDataplaneLogs](/azure/azure-monitor/reference/tables/oepdataplanelogs)<p>Contains logs for HTTP requests & responses for the Indexer Service API, in OSDU Data Platform, and Microsoft Energy Data Services. The Indexer service, indexes the metadata store to support search. The indexer service will automatically take items that are newly added to storage and index the attributes from the schema associated with the kind attribute.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/oepdataplanelogs)|Yes |

@@ -67,7 +67,7 @@ The following sample creates a rule that can target any resource.
         "description": "Specifies whether the alert is enabled"
       }
     },
-      "autoMitigate": {
+    "autoMitigate": {
       "type": "bool",
       "defaultValue": false,
       "metadata": {
@@ -85,24 +85,17 @@ The following sample creates a rule that can target any resource.
       "type": "string",
       "minLength": 1,
       "metadata": {
-        "description": "Name of the metric used in the comparison to activate the alert."
+        "description": "Log query used by the alert rule."
       }
     },
-     "muteActionsDuration": {
-      "type": "string",
-      "allowedValues": [
-        "PT1M",
-        "PT5M",
-        "PT15M",
-        "PT30M",
-        "PT1H",
-        "PT6H",
-        "PT12H",
-        "P1D"
-      ],
+    "minRecurrenceCount": {
+      "type": "int",
+      "defaultValue": 2,
+      "minValue": 1,
       "metadata": {
-        "description": "Mute actions for the chosen period of time (in ISO 8601 duration format) after the alert is fired."
-      },
+        "description": "Minimum number of recurring violations required to trigger the alert."
+      }
+    },
     "actionGroupId": {
       "type": "string",
       "defaultValue": "",
@@ -115,7 +108,7 @@ The following sample creates a rule that can target any resource.
     {
       "type": "Microsoft.Insights/scheduledQueryRules",
       "apiVersion": "2025-01-01-preview",
-        "kind": "SimpleLogAlert",
+      "kind": "SimpleLogAlert",
       "name": "[parameters('alertName')]",
       "location": "[parameters('location')]",
       "tags": {},
@@ -130,12 +123,11 @@ The following sample creates a rule that can target any resource.
           "allOf": [
             {
               "query": "[parameters('query')]",
-              }
+              "minRecurrenceCount": "[parameters('minRecurrenceCount')]"
             }
           ]
         },
-            "autoMitigate": "[parameters('autoMitigate')]",
-        "muteActionsDuration": "[parameters('muteActionsDuration')]",
+        "autoMitigate": "[parameters('autoMitigate')]",
         "actions": {
           "actionGroups": [
             "[parameters('actionGroupId')]"
@@ -178,6 +170,9 @@ The following sample creates a rule that can target any resource.
     },
     "query": {
       "value": "Perf | where ObjectName == \"Processor\" and CounterName == \"% Processor Time\""
+    },
+    "minRecurrenceCount": {
+      "value": 2
     },
     "actionGroupId": {
       "value": "/subscriptions/replace-with-subscription-id/resourceGroups/resource-group-name/providers/Microsoft.Insights/actionGroups/replace-with-action-group"

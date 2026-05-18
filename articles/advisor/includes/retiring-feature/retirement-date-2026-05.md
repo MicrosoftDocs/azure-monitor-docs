@@ -11,3 +11,10 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | App service | .NET 9 (STS) | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
+##### May 31, 2026
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Kubernetes service | HC-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

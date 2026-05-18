@@ -2,10 +2,10 @@
 title: Advisor data in Azure Resource Graph
 description: Make queries for Advisor data in Azure Resource Graph
 ms.topic: concept-article
-ms.date: 10/27/2025
+ms.date: 05/11/2026
 ---
 
-# Query for Advisor data in Resource Graph Explorer (Azure Resource Graph)
+# Query for Advisor data in Azure Resource Graph
 
 Advisor resources are now onboarded to [Azure Resource Graph](https://azure.microsoft.com/features/resource-graph/), which lays the foundation to many at-scale customer scenarios for Advisor recommendations. Before, the following scenarios weren't possible to do at scale, but can now be achieved using Azure Resource Graph:
 
@@ -28,36 +28,70 @@ There are three resource types available for querying under Advisor resources. H
 
 These resource types are listed under a new table named as *AdvisorResources*, which you can also query in the Resource Graph Explorer in the Azure portal.
 
+## Recommendation state fields
+The `advisorresources` table includes fields that represent the lifecycle state of each recommendation. Use the following **consolidated state fields** when querying recommendation status:
+
+| Field | Description | Example values |
+| :-- | :-- | :-- |
+| `properties.recommendationStatus` | The current consolidated status of the recommendation. This is the single source of truth for recommendation state. | `New, InProgress, Completed, Postponed, Dismissed` |
+| `properties.completionType` | How the recommendation was resolved or completed. Only populated when `recommendationStatus` is `Completed`. | `MarkedByUser, SystemVerified`|
+| `properties.lastUpdated` | Timestamp of the most recent state change for the recommendation. | `2026-04-09T11:41:28Z` |
+
+> [!IMPORTANT]
+> The **advisorresources** table includes system fields such as *customerState* and *platformState*. These fields may change and should not be relied on. To determine the current state of a recommendation, use the *recommendationStatus* field.
+
 ## Examples
 
-### Get active cost recommendations
+### Example A: Query active (new) recommendations
+
+```kusto
+advisorresources
+| where type =~ 'microsoft.advisor/recommendations'
+| where properties.recommendationStatus == 'New'
+| project
+    id,
+    subscriptionId,
+    resourceGroup,
+    category = tostring(properties.category),
+    impact = tostring(properties.impact),
+    description = tostring(properties.shortDescription.solution),
+    recommendationStatus = tostring(properties.recommendationStatus),
+    lastUpdated = todatetime(properties.lastUpdated)
+```
+### Example B: Query completed recommendations
+
+```kusto
+advisorresources
+| where type =~ 'microsoft.advisor/recommendations'
+| where properties.recommendationStatus == 'Completed'
+| project
+    id,
+    subscriptionId,
+    resourceGroup,
+    category = tostring(properties.category),
+    description = tostring(properties.shortDescription.solution),
+    recommendationStatus = tostring(properties.recommendationStatus),
+    completionType = tostring(properties.completionType),
+    lastUpdated = todatetime(properties.lastUpdated)
+| order by lastUpdated desc
+```
+> [!NOTE]
+> The **Completed** state for security recommendations in the Advisor table in Azure Resource Graph may not reflect the current status. To determine the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud.
+
+### Example C: Get active cost recommendations
 
 ```kusto
 advisorresources 
 | where type =~ 'microsoft.advisor/recommendations' 
-| where (properties.category == 'Security' and properties.lastUpdated > ago(60h)) or properties.lastUpdated >= ago(1d) 
 | where isempty(properties.tracked) or properties.tracked == false 
 | project id, stableId = name, subscriptionId, resourceGroup, properties 
-| join kind = leftouter (
-    advisorresources
-    | where type =~ 'microsoft.advisor/suppressions' 
-    | extend tokens = split(id, '/') 
-    | extend stableId = iff(array_length(tokens) > 3, tokens[(array_length(tokens) - 3)], '') 
-    | extend expirationTimeStamp = todatetime(iff(strcmp(tostring(properties.ttl), '-1') == 0, '9999-12-31', properties.expirationTimeStamp)) 
-    | where expirationTimeStamp > now() 
-    | project
-        suppressionId = tostring(properties.suppressionId),
-        stableId,
-        expirationTimeStamp)
-    on stableId 
+| where properties.recommendationStatus == "New"
 | project
     id,
     stableId,
     subscriptionId,
     resourceGroup,
-    properties,
-    expirationTimeStamp,
-    suppressionId
+    properties
 | join kind = leftouter  (
     advisorresources
     | where type =~ 'microsoft.advisor/configurations'
@@ -78,28 +112,22 @@ advisorresources
     on subscriptionId, resourceGroup
 | extend isActive3 = iff(isempty(excludeProperty), true, tobool(excludeProperty) == false)
 | where isActive3 == true
-| summarize
-    expirationTimeStamp = max(expirationTimeStamp),
-    suppressionIds = make_list(suppressionId)
-    by id, stableId, subscriptionId, resourceGroup, tostring(properties)
+| project  id, stableId, subscriptionId, resourceGroup, tostring(properties)
 | extend properties = parse_json(properties)
 | extend extendedProperties = properties.extendedProperties
-| extend properties = parse_json(properties)
 | extend recommendationTypeId = tostring(properties.recommendationTypeId)
 | extend resourceType = tostring(properties.impactedField)
 | extend category = tostring(properties.category)
 | extend impact = tolower(tostring(properties.impact))
-| extend resourceId = tolower(substring(id, 0, strlen(id) - 81))
+| extend resourceId = tolower(properties.resourceMetadata.resourceId)
 | extend description = tostring(properties.shortDescription.solution)
 | extend lastUpdate = tostring(properties.lastUpdated)
-| extend isRecommendationActive = (isnull(expirationTimeStamp) or isempty(expirationTimeStamp))
 | extend extendedProperties = properties.extendedProperties
 | extend recommendationSubcategory = tostring(extendedProperties.recommendationSubCategory)
 | extend annualSavingsAmount = toreal(extendedProperties.annualSavingsAmount)
 | extend savingsCurrency = tostring(extendedProperties.savingsCurrency)
 | extend term = tostring(extendedProperties.term)
 | extend lookbackPeriod = tostring(extendedProperties.lookbackPeriod)
-| where isRecommendationActive == 1
 | where category == 'Cost'
 | project
     subscriptionId,

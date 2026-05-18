@@ -62,6 +62,7 @@ ms.date: 11/11/2025
 > | Kubernetes service | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Activity log alert rule | Alerts - GetAlertSummary API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Monitor workspace | Azure Monitor - ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Azure Monitor workspace | Azure Monitor Remote-write sidecar container | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Service bus namespace | Legacy Service Bus SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service bus namespace | Outdated Azure SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service bus namespace | WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus and com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
@@ -72,3 +73,4 @@ ms.date: 11/11/2025
 > | Virtual machine | NVv4-series Azure Virtual Machines | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual network gateway | Non-AZ VPNs | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Workspace | Azure Machine Learning - Data Labeling | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Workspace | Azure ML External Data Import | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

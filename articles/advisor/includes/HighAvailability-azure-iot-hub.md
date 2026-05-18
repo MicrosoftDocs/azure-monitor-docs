@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 07/22/2025
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure IoT Hub
@@ -76,13 +76,14 @@ When an IoT Hub exceeds its daily message quota, operation and cost problems mig
 
 **Impact:** High
   
-For more information, see [Troubleshooting Azure IoT Hub error codes ](/azure/iot-hub/troubleshoot-error-codes#403002-iothubquotaexceeded)  
+For more information, see [Troubleshoot Azure IoT Hub Error Codes](/azure/iot-hub/troubleshoot-error-codes#403002-iothubquotaexceeded)  
 
 ResourceType: microsoft.devices/iothubs  
 Recommendation ID: e4bda6ac-032c-44e0-9b40-e0522796a6d2  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--e4bda6ac-032c-44e0-9b40-e0522796a6d2_end-->
+
 
 <!--63f181a7-95a9-42be-9443-34ea8a5b4d3e_begin-->
 

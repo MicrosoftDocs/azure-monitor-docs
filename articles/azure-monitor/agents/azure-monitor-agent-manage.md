@@ -34,7 +34,7 @@ For any machine that isn't in Azure, you must install the [Azure Arc agent](/azu
 
 | Installation method | Description |
 |:---|:---|
-| Virtual machine (VM) extension | Use any of the methods described in this article to install the agent via the Azure extension framework. This method doesn't create a DCR, so you must create at least one DCR and associate it with the agent before data collection begins. |
+| Virtual machine (VM) extension | Use any of the methods described in this article to install the agent via the Azure extension framework. This method doesn't create a data collection rule (DCR), so you must create at least one DCR and associate it with the agent before data collection begins. |
 | [Create a DCR](../vm/data-collection.md) | When you create a DCR in the Azure portal, the Azure Monitor Agent is installed on any machine that's added as a resource for the DCR. The agent immediately begins to collect data as defined in the DCR.
 | [VM insights](../vm/vminsights-enable-overview.md) | When you enable VM insights on a machine, the Azure Monitor Agent is installed and a DCR is created to collect a predefined set of data. You shouldn't modify this DCR, but you can create more DCRs to collect more data. |
 | [Container insights](../containers/kubernetes-monitoring-enable.md) | When you enable collection of Prometheus metrics or container logs on a Kubernetes cluster, a containerized version of the Azure Monitor Agent is installed in the cluster and a DCR is created to immediately begin collecting data. You can modify the DCR by using the guidance in [Configure data collection and cost optimization in Container insights by using DCRs](../containers/container-insights-data-collection-dcr.md).
@@ -47,17 +47,38 @@ For any machine that isn't in Azure, you must install the [Azure Arc agent](/azu
 >
 > * Cloning a machine that has Azure Monitor Agent installed isn't supported. The best practice for this scenario is to use [Azure Policy](/azure/azure-arc/servers/deploy-ama-policy) or an infrastructure as a code (IaaC) tool to deploy the Azure Monitor Agent at scale.
 
+The following table summarizes which methods are available for each Azure Monitor Agent operation:
+
+| Operation | Azure portal | Azure PowerShell | Azure CLI | Resource Manager template |
+|-----------|:---:|:---:|:---:|:---:|
+| [Install](#install-the-agent-extension) | ✔ | ✔ | ✔ | ✔ |
+| [Verify](#verify-installation) | ✔ | — | ✔ | — |
+| [Uninstall](#uninstall) | ✔ | ✔ | ✔ | — |
+| [Update](#update) | ✔ | ✔ | ✔ | — |
+| [Configure agent settings (preview)](#configure-agent-settings-preview) | — | — | — | ✔ |
+
 ## Install the agent extension
 
 ### [Azure portal](#tab/azure-portal)
 
-To install the agent and create a DCR to collect data by using the Azure portal, use the guidance in [Collect data by using the Azure Monitor Agent](../vm/data-collection.md).
+The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md). When you add a VM as a resource in the DCR, the portal automatically installs the agent and begins collecting data in a single workflow.
+
+If you need to install the agent extension without creating a DCR (for example, to pre-stage the agent before configuring data collection), you can install it directly from the VM:
+
+1. In the [Azure portal](https://portal.azure.com), go to **Virtual Machines** and select your VM.
+1. Select **Extensions + applications** under **Settings**.
+1. Select **Add**.
+1. Search for and select **AzureMonitorWindowsAgent** (or **AzureMonitorLinuxAgent** for Linux VMs).
+1. Select **Next**, review the settings, and then select **Review + create**.
+
+> [!NOTE]
+> Installing the extension alone doesn't start data collection. You must create at least one DCR and associate it with the VM before data begins flowing. See [Collect data by using the Azure Monitor Agent](../vm/data-collection.md).
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
 You can install the Azure Monitor Agent on an Azure virtual machine or on an Azure Arc-enabled server by using the PowerShell command for adding a virtual machine extension.
 
-### Azure virtual machines
+### Install Azure Monitor Agent on Azure virtual machines
 
 Use the following PowerShell commands to install the Azure Monitor Agent on an Azure virtual machine. Choose the appropriate command based on the authentication method you use.
 
@@ -75,17 +96,40 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
     ```azurepowershell
     ## User-assigned managed identity
-    Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
+    Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true -SettingString '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":"/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
     
     ## System-assigned managed identity
     Set-AzVMExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true
     ```
 
-### Azure virtual machine scale set
+### Install Azure Monitor Agent on an Azure virtual machine scale set
 
 Use the [Add-AzVmssExtension](/powershell/module/az.compute/add-azvmssextension) PowerShell cmdlet to install the Azure Monitor Agent on an Azure virtual machine scale set.
 
-### Azure Arc-enabled servers
+* Windows
+
+    ```azurepowershell
+    $vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+    Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true
+
+    Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+    ```
+
+* Linux
+
+    ```azurepowershell
+    $vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+    Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -EnableAutomaticUpgrade $true
+
+    Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+    ```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+### Install Azure Monitor Agent on Azure Arc-enabled servers
 
 Use the following PowerShell commands to install the Azure Monitor Agent on an Azure Arc-enabled server:
 
@@ -105,7 +149,7 @@ Use the following PowerShell commands to install the Azure Monitor Agent on an A
 
 To install the Azure Monitor Agent on an Azure virtual machine or on an Azure Arc-enabled server, use the Azure CLI command for adding a virtual machine extension.
 
-### Azure virtual machines
+### Install Azure Monitor Agent on Azure virtual machines
 
 Use the following Azure CLI commands to install the Azure Monitor Agent on an Azure virtual machine. Choose the appropriate command based on the authentication method you use.
 
@@ -137,11 +181,31 @@ Use the following Azure CLI commands to install the Azure Monitor Agent on an Az
     az vm extension set --name AzureMonitorLinuxAgent --publisher Microsoft.Azure.Monitor --ids <vm-resource-id> --enable-auto-upgrade true
     ```
 
-### Azure virtual machines scale set
+### Install Azure Monitor Agent on an Azure virtual machine scale set
+Use the [az vmss extension set](/cli/azure/vmss/extension) Azure CLI cmdlet to install the Azure Monitor Agent on an Azure virtual machine scale set.
 
-Use the [az vmss extension set](/cli/azure/vmss/extension) Azure CLI cmdlet to install the Azure Monitor Agent on an Azure virtual machines scale set.
+* Windows
 
-### Azure Arc-enabled servers
+    ```azurecli
+    az vmss extension set --name AzureMonitorWindowsAgent --publisher Microsoft.Azure.Monitor --vmss-name <vmss-name> --resource-group <resource-group-name> --enable-auto-upgrade true
+    ```
+
+* Linux
+
+    ```azurecli
+    az vmss extension set --name AzureMonitorLinuxAgent --publisher Microsoft.Azure.Monitor --vmss-name <vmss-name> --resource-group <resource-group-name> --enable-auto-upgrade true
+    ```
+
+To use a user-assigned managed identity, add the `--settings` parameter:
+
+```azurecli
+az vmss extension set --name AzureMonitorLinuxAgent --publisher Microsoft.Azure.Monitor --vmss-name <vmss-name> --resource-group <resource-group-name> --enable-auto-upgrade true --settings '{"authentication":{"managedIdentity":{"identifier-name":"mi_res_id","identifier-value":"/subscriptions/<my-subscription-id>/resourceGroups/<my-resource-group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<my-user-assigned-identity>"}}}'
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+### Install Azure Monitor Agent on Azure Arc-enabled servers
 
 Use the following Azure CLI commands to install the Azure Monitor Agent on an Azure Arc-enabled server:
 
@@ -201,6 +265,47 @@ The following table lists the accounts that the Azure Monitor Agent creates.
 
 On Azure Arc-enabled servers, the Azure Connected Machine Agent and its extension framework create additional local user accounts (`himds`, `arcproxy`, `arcuser`) as part of the prerequisite infrastructure. These accounts aren't created by the Azure Monitor Agent. For more information about Arc-related accounts and their purpose, see [Azure Connected Machine Agent overview](/azure/azure-arc/servers/agent-overview).
 
+## Verify installation
+
+After you install the Azure Monitor Agent, verify that the agent is running and sending data to your Log Analytics workspace.
+
+### Check extension status in the Azure portal
+
+1. Go to your virtual machine or Azure Arc-enabled server in the Azure portal.
+1. Select **Extensions + applications** (or **Extensions** for Arc-enabled servers).
+1. Confirm that **AzureMonitorWindowsAgent** or **AzureMonitorLinuxAgent** is listed with a status of **Provisioning succeeded**.
+
+### Check extension status with Azure CLI
+
+Run the following command to list installed extensions and verify that the Azure Monitor Agent extension is present and provisioned:
+
+```azurecli
+az vm extension list --resource-group <resource-group-name> --vm-name <virtual-machine-name> --output table
+```
+
+For Azure Arc-enabled servers, use:
+
+```azurecli
+az connectedmachine extension list --resource-group <resource-group-name> --machine-name <arc-server-name> --output table
+```
+
+### Verify data collection with a Heartbeat query
+
+Query the `Heartbeat` table in your Log Analytics workspace to confirm the Azure Monitor Agent is sending heartbeat data. In Log Analytics, run:
+
+```kusto
+Heartbeat
+| where Category == "Azure Monitor Agent"
+| where TimeGenerated > ago(5m)
+| project Computer, TimeGenerated, Category, OSType
+| order by TimeGenerated desc
+```
+
+If the query returns results, the Azure Monitor Agent is successfully installed and sending data to the workspace.
+
+> [!NOTE]
+> It can take several minutes after installation for the first heartbeat data to appear. If you don't see results, verify that a [data collection rule](../vm/data-collection.md) is associated with the machine.
+
 ## Uninstall
 
 #### [Azure portal](#tab/azure-portal)
@@ -209,7 +314,7 @@ To uninstall the Azure Monitor Agent by using the Azure portal, go to your virtu
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-### Uninstall on an Azure virtual machine
+### Uninstall Azure Monitor Agent on an Azure virtual machine
 
 Use the following PowerShell commands to uninstall the Azure Monitor Agent on an Azure virtual machine:
 
@@ -225,11 +330,31 @@ Use the following PowerShell commands to uninstall the Azure Monitor Agent on an
     Remove-AzVMExtension -Name AzureMonitorLinuxAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> 
     ```
 
-### Uninstall on an Azure virtual machines scale set
+### Uninstall Azure Monitor Agent on an Azure virtual machine scale set
 
 Use the [Remove-AzVmssExtension](/powershell/module/az.compute/remove-azvmssextension) PowerShell cmdlet to uninstall the Azure Monitor Agent on an Azure virtual machine scale set.
 
-### Uninstall on an Azure Arc-enabled server
+* Windows
+
+    ```azurepowershell
+    $vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+    Remove-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent
+
+    Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+    ```
+
+* Linux
+
+    ```azurepowershell
+    $vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+
+    Remove-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent
+
+    Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+    ```
+
+### Uninstall Azure Monitor Agent on an Azure Arc-enabled server
 
 Use the following PowerShell commands to uninstall the Azure Monitor Agent on an Azure Arc-enabled server:
 
@@ -247,7 +372,7 @@ Use the following PowerShell commands to uninstall the Azure Monitor Agent on an
 
 #### [Azure CLI](#tab/azure-cli)
 
-### Uninstall on an Azure virtual machine
+### Uninstall Azure Monitor Agent on an Azure virtual machine
 
 Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an Azure virtual machine:
 
@@ -263,11 +388,23 @@ Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an 
     az vm extension delete --resource-group <resource-group-name> --vm-name <virtual-machine-name> --name AzureMonitorLinuxAgent
     ```
 
-### Uninstall on an Azure virtual machine scale set
+### Uninstall Azure Monitor Agent on an Azure virtual machine scale set
 
 Use the [az vmss extension delete](/cli/azure/vmss/extension) Azure CLI cmdlet to uninstall the Azure Monitor Agent on an Azure virtual machine scale set.
 
-### Uninstall on an Azure Arc-enabled server
+* Windows
+
+    ```azurecli
+    az vmss extension delete --name AzureMonitorWindowsAgent --vmss-name <vmss-name> --resource-group <resource-group-name>
+    ```
+
+* Linux
+
+    ```azurecli
+    az vmss extension delete --name AzureMonitorLinuxAgent --vmss-name <vmss-name> --resource-group <resource-group-name>
+    ```
+
+### Uninstall Azure Monitor Agent on an Azure Arc-enabled server
 
 Use the following Azure CLI commands to uninstall the Azure Monitor Agent on an Azure Arc-enabled server:
 
@@ -308,7 +445,7 @@ Enable automatic update of the agent by enabling [automatic extension upgrade](/
 
 #### [Azure PowerShell](#tab/azure-powershell)
 
-### Update on Azure virtual machines
+### Update Azure Monitor Agent on Azure virtual machines
 
 To update the agent one time, install the new version as described in this article.
 
@@ -328,7 +465,14 @@ Use the following PowerShell commands:
     Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Publisher Microsoft.Azure.Monitor -ExtensionType AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Location <location> -EnableAutomaticUpgrade $true
     ```
 
-### Update on Azure Arc-enabled servers
+### Update Azure Monitor Agent on Azure virtual machine scale sets
+
+Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#install-azure-monitor-agent-on-an-azure-virtual-machine-scale-set).
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+### Update Azure Monitor Agent on Azure Arc-enabled servers
 
 To upgrade the agent one time, use the following PowerShell commands:
 
@@ -364,7 +508,7 @@ Use the following PowerShell commands:
 
 #### [Azure CLI](#tab/azure-cli)
 
-### Update on Azure virtual machines
+### Update Azure Monitor Agent on Azure virtual machines
 
 To update the agent one time, first uninstall the existing agent version. Then, install the new version as described in this article.
   
@@ -382,7 +526,14 @@ Enable automatic update of the agent by opting in to the [automatic extension up
     az vm extension set --name AzureMonitorLinuxAgent --publisher Microsoft.Azure.Monitor --vm-name <virtual-machine-name> --resource-group <resource-group-name> --enable-auto-upgrade true
     ```
 
-### Update on Azure Arc-enabled servers
+### Update Azure Monitor Agent on Azure virtual machine scale sets
+
+Enable [automatic extension upgrade](/azure/virtual-machines/automatic-extension-upgrade) for scale sets. To manually update the agent, [reinstall the extension](#install-azure-monitor-agent-on-an-azure-virtual-machine-scale-set).
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+### Update Azure Monitor Agent on Azure Arc-enabled servers
 
 To upgrade the agent one time, use the following Azure CLI commands:
 
@@ -420,7 +571,7 @@ Not applicable.
 
 ---
 
-## Configure (preview)
+## Configure agent settings (preview)
 
 [Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) manage the Azure Monitor Agent on your machine. Use the AgentSettings DCR to configure certain Azure Monitor Agent parameters to match your specific monitoring needs.
 

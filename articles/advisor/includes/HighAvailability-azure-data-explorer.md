@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 01/26/2025
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Data Explorer
@@ -30,22 +30,6 @@ Subcategory: Other
 
 <!--fa2649e9-e1a5-4d07-9b26-51c080d9a9ba_end-->
 
-<!--f2bcadd1-713b-4acc-9810-4170a5d01dea_begin-->
 
-#### Add subnet delegation for 'Microsoft.Kusto/clusters'  
-  
-If a subnet isn't delegated, the associated Azure service won't be able to operate within it. Your subnet doesn't have the required delegation. Delegate your subnet for 'Microsoft.Kusto/clusters'.  
-  
-**Potential benefits**: Improve reliability, availability, performance, and new feature capabilities  
-
-**Impact:** High
-  
-For more information, see [What is subnet delegation in Azure virtual network? ](/azure/virtual-network/subnet-delegation-overview)  
-
-ResourceType: microsoft.kusto/clusters  
-Recommendation ID: f2bcadd1-713b-4acc-9810-4170a5d01dea  
-Subcategory: Other
-
-<!--f2bcadd1-713b-4acc-9810-4170a5d01dea_end-->
 
 <!--articleBody-->

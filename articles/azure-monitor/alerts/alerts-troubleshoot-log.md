@@ -61,7 +61,7 @@ If your log search alert didn't fire when it should have, check the following it
 
     - Rules were created via the API, and the user skipped validation.
     - The query [runs on multiple resources](../logs/cross-workspace-query.md), and one or more of the resources was deleted or moved.
-    - The [query fails](../logs/api/errors.md) because:
+    - The [query fails](../logs/api/timeouts.md#common-api-errors) because:
         - Data stopped flowing to a table in the query for more than 30 days.
         - [Custom logs tables](../agents/data-sources-custom-logs.md) haven't been created because the data flow hasn't started.
     - Changes in the [query language](/azure/kusto/query/) include a revised format for commands and functions, so the query provided earlier is no longer valid.

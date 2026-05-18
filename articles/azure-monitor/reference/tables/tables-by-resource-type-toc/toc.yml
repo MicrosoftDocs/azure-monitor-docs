@@ -58,6 +58,8 @@
   href: ../microsoft-communication-communicationservices.md
 - name: microsoft.compute/virtualmachines
   href: ../microsoft-compute-virtualmachines.md
+- name: microsoft.compute/virtualmachines/extensions
+  href: ../microsoft-compute-virtualmachines-extensions.md
 - name: microsoft.compute/virtualmachinescalesets
   href: ../microsoft-compute-virtualmachinescalesets.md
 - name: microsoft.conenctedvmwarevsphere/virtualmachines
@@ -124,6 +126,12 @@
   href: ../microsoft-devopsinfrastructure-pools.md
 - name: microsoft.digitaltwins/digitaltwinsinstances
   href: ../microsoft-digitaltwins-digitaltwinsinstances.md
+- name: microsoft.discovery/bookshelves
+  href: ../microsoft-discovery-bookshelves.md
+- name: microsoft.discovery/supercomputers
+  href: ../microsoft-discovery-supercomputers.md
+- name: microsoft.discovery/workspaces
+  href: ../microsoft-discovery-workspaces.md
 - name: microsoft.documentdb/cassandraclusters
   href: ../microsoft-documentdb-cassandraclusters.md
 - name: microsoft.documentdb/databaseaccounts
@@ -200,6 +208,8 @@
   href: ../microsoft-monitor-accounts.md
 - name: microsoft.monitor/pipelinegroups
   href: ../microsoft-monitor-pipelinegroups.md
+- name: microsoft.netapp/netappaccounts/capacitypools
+  href: ../microsoft-netapp-netappaccounts-capacitypools.md
 - name: microsoft.network/applicationgateways
   href: ../microsoft-network-applicationgateways.md
 - name: microsoft.network/azurefirewalls
@@ -266,6 +276,10 @@
   href: ../microsoft-powerbidedicated-capacities.md
 - name: microsoft.purview/accounts
   href: ../microsoft-purview-accounts.md
+- name: microsoft.quantum/provideraccounts
+  href: ../microsoft-quantum-provideraccounts.md
+- name: microsoft.quantum/workspaces
+  href: ../microsoft-quantum-workspaces.md
 - name: microsoft.recoveryservices/vaults
   href: ../microsoft-recoveryservices-vaults.md
 - name: microsoft.relay/namespaces
@@ -278,6 +292,8 @@
   href: ../microsoft-security-defenderforstoragesettings.md
 - name: microsoft.security/security
   href: ../microsoft-security-security.md
+- name: microsoft.securityinsights/agenteventnormalized
+  href: ../microsoft-securityinsights-agenteventnormalized.md
 - name: microsoft.securityinsights/alerteventnormalized
   href: ../microsoft-securityinsights-alerteventnormalized.md
 - name: microsoft.securityinsights/asimtables

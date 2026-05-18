@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -561,5 +561,23 @@ Recommendation ID: c62d7787-7595-4539-a837-9f9bcffac205
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--c62d7787-7595-4539-a837-9f9bcffac205_end-->
+
+<!--7d26ab34-5f6a-495e-91e3-781a1c578c3f_begin-->
+
+#### Migrate Python applications to Linux  
+  
+Python applications hosted on Azure App Service on Windows and Azure Functions on Windows will no longer run. To avoid service disruption, migrate Python applications to Linux.  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558027)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 7d26ab34-5f6a-495e-91e3-781a1c578c3f  
+Subcategory: undefined
+
+<!--7d26ab34-5f6a-495e-91e3-781a1c578c3f_end-->
 
 <!--articleBody-->

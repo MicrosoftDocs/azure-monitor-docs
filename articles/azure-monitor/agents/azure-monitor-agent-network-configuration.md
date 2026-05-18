@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Network Configuration
 description: Learn how to define network settings and enable network isolation for the Azure Monitor Agent.
 ms.topic: how-to
-ms.date: 04/09/2026
+ms.date: 05/11/2026
 ms.custom: references_regions
 ms.reviewer: shseth
 
@@ -13,19 +13,19 @@ The Azure Monitor Agent supports connections by using direct proxies, a Log Anal
 
 ## Virtual network service tags
 
-[Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) must be enabled on the virtual network for the virtual machine (VM). Both `AzureMonitor` and `AzureResourceManager` tags are required. See the `AzureMonitor` entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any other requirements.
+You must enable [Azure Virtual Network service tags](/azure/virtual-network/service-tags-overview) on the virtual network for the virtual machine (VM). Both `AzureMonitor` and `AzureResourceManager` tags are required. See the `AzureMonitor` entry in [Available service tags](/azure/virtual-network/service-tags-overview#available-service-tags) for any other requirements.
 
-You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where Azure Virtual Network service tags can't be used, the firewall requirements are described later in this article.
+You can use Azure Virtual Network service tags to define network access controls on [network security groups](/azure/virtual-network/network-security-groups-overview#security-rules), [Azure Firewall](/azure/firewall/service-tags), and user-defined routes. Use service tags in place of specific IP addresses when you create security rules and routes. For scenarios where you can't use Azure Virtual Network service tags, see the firewall requirements later in this article.
 
 > [!NOTE]
-> Data collection endpoint (DCE) public IP addresses aren't included in the network service tags you can use to define network access controls for Azure Monitor. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses. Doing so ensures the scenarios work until these scenarios are supported via network service tags.
+> You can't use network service tags to define network access controls for Azure Monitor to include data collection endpoint (DCE) public IP addresses. If you have custom logs or Internet Information Services (IIS) log data collection rules (DCRs), consider allowing the DCE's public IP addresses. This configuration ensures the scenarios work until these scenarios are supported via network service tags.
 
 ## Firewall endpoints
 
 The following table provides the endpoints that firewalls must provide access to for different clouds. Each endpoint is an outbound connection to port 443.
 
 > [!IMPORTANT]
-> For all endpoints, HTTPS inspection must be disabled.
+> For all endpoints, disable HTTPS inspection.
 
 | Endpoint | Purpose | Example |
 |:---------|:--------|:--------|
@@ -49,26 +49,26 @@ Replace the suffix in the endpoints with the suffix in the following table for r
 
 > [!NOTE]
 >
-> * If you use private links on the agent, you must add *only* [private DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
+> * If you use private links on the agent, add *only* [private DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce). The agent doesn't use the nonprivate endpoints listed in the preceding table when you use private links or private DCEs.
 >
 > * The Azure Monitor metrics (custom metrics) preview isn't available in Azure Government and Azure operated by 21Vianet clouds.
 >
-> * When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. The DCEs must be added to the Azure Monitor Private Link Scope configuration via a [private link](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls).
+> * When you use the Azure Monitor Agent with Azure Monitor Private Link Scope, all your DCRs must use DCEs. Add the DCEs to the Azure Monitor Private Link Scope configuration via a [private link](../fundamentals/private-link-configure.md#connect-resources-to-the-ampls).
 
 ## Proxy configuration
 
-The Azure Monitor Agent extensions for Windows and Linux can communicate either through a proxy server or through a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use it for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
+The Azure Monitor Agent extensions for Windows and Linux can communicate through either a proxy server or a [Log Analytics gateway](gateway.md) to Azure Monitor by using the HTTPS protocol. Use the extensions for Azure VMs, scale sets, and Azure Arc for servers. Use the extensions settings for configuration as described in the following steps. Both anonymous authentication and basic authentication by using a username and password are supported.
 
 > [!IMPORTANT]
-> OMS Gateway isn't supported with Azure Arc-enabled servers for proxy connectivity, private link connectivity, and public endpoint connectivity options.
+> Azure Arc-enabled servers don't support OMS Gateway for proxy connectivity, private link connectivity, and public endpoint connectivity options.
 
 > [!IMPORTANT]
 > Proxy configuration isn't supported for [Azure Monitor Metrics (preview)](../metrics/metrics-custom-overview.md) as a destination. If you send metrics to this destination, it uses the public internet without any proxy.
 
 > [!NOTE]
-> Setting Linux system proxy via environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that get picked up by all systemd services [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
+> Setting the Linux system proxy through environment variables like `http_proxy` and `https_proxy` is supported only when you use the Azure Monitor Agent for Linux version 1.24.2 or later. For the Azure Resource Manager template (ARM template), if you configure a proxy, use the ARM template shown here as an example of how to declare the proxy settings inside the ARM template. Also, a user can set global environment variables that all systemd services pick up [via the DefaultEnvironment variable in /etc/systemd/system.conf](https://www.man7.org/linux/man-pages/man5/systemd-system.conf.5.html).
 
-Use Azure PowerShell commands in the following examples based on your environment and configuration.
+Use the commands in the following examples based on your environment and configuration.
 
 # [Windows VM](#tab/PowerShellWindows)
 
@@ -94,12 +94,12 @@ $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[pass
 Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
-**Revert Proxy configuration to defaults**
+**Revert proxy configuration to defaults**
 
-To restore proxy configuration to defaults, you could define $settingsString = '{}'; as in the following example:
+To restore proxy configuration to defaults, define `$settingsString = '{}'`; as in the following example:
 ```azurepowershell
 $settingsString = '{}';
-Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName RESOURCE GROUP HERE -VMName VM NAME HERE -Location westeurope -> > SettingString $settingsString
+Set-AzVMExtension -ExtensionName AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
 ```
 
 # [Linux VM](#tab/PowerShellLinux)
@@ -126,6 +126,206 @@ $protectedSettingsString = '{"proxy":{"username":"[username]","password": "[pass
 Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString -ProtectedSettingString $protectedSettingsString
 ```
 
+**Revert proxy configuration to defaults**
+
+To restore proxy configuration to defaults, define `$settingsString = '{}'`; as in the following example:
+```azurepowershell
+$settingsString = '{}';
+Set-AzVMExtension -ExtensionName AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -VMName <virtual-machine-name> -Location <location> -SettingString $settingsString
+```
+
+# [Windows VMSS (PowerShell)](#tab/PowerShellWindowsVmss)
+
+Use Azure PowerShell to configure proxy settings on a Windows virtual machine scale set.
+
+**No proxy**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"none"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with no authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}';
+$protectedSettingsString = '{"proxy":{"username":"[username]","password":"[password]"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString -ProtectedSetting $protectedSettingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Revert proxy configuration to defaults**
+
+```azurepowershell
+$settingsString = '{}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorWindowsAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+# [Linux VMSS (PowerShell)](#tab/PowerShellLinuxVmss)
+
+Use Azure PowerShell to configure proxy settings on a Linux virtual machine scale set.
+
+**No proxy**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"none"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with no authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Proxy with authentication**
+
+```azurepowershell
+$settingsString = '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}';
+$protectedSettingsString = '{"proxy":{"username":"[username]","password":"[password]"}}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString -ProtectedSetting $protectedSettingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+**Revert proxy configuration to defaults**
+
+```azurepowershell
+$settingsString = '{}';
+$vmss = Get-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name>
+Add-AzVmssExtension -VirtualMachineScaleSet $vmss -Name AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -Type AzureMonitorLinuxAgent -TypeHandlerVersion <version-number> -Setting $settingsString
+Update-AzVmss -ResourceGroupName <resource-group-name> -VMScaleSetName <vmss-name> -VirtualMachineScaleSet $vmss
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [Update-AzVmssInstance](/powershell/module/az.compute/update-azvmssinstance) after modifying the VMSS model. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+# [Windows VMSS (CLI)](#tab/CLIWindowsVmss)
+
+Use Azure CLI to configure proxy settings on a Windows virtual machine scale set.
+
+**No proxy**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorWindowsAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"none"}}'
+```
+
+**Proxy with no authentication**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorWindowsAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}'
+```
+
+**Proxy with authentication**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorWindowsAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}' \
+    --protected-settings '{"proxy":{"username":"[username]","password":"[password]"}}'
+```
+
+**Revert proxy configuration to defaults**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorWindowsAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{}'
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
+# [Linux VMSS (CLI)](#tab/CLILinuxVmss)
+
+Use Azure CLI to configure proxy settings on a Linux virtual machine scale set.
+
+**No proxy**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorLinuxAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"none"}}'
+```
+
+**Proxy with no authentication**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorLinuxAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"false"}}'
+```
+
+**Proxy with authentication**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorLinuxAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{"proxy":{"mode":"application","address":"http://[address]:[port]","auth":"true"}}' \
+    --protected-settings '{"proxy":{"username":"[username]","password":"[password]"}}'
+```
+
+**Revert proxy configuration to defaults**
+
+```azurecli
+az vmss extension set \
+    --name AzureMonitorLinuxAgent \
+    --publisher Microsoft.Azure.Monitor \
+    --vmss-name <vmss-name> \
+    --resource-group <resource-group-name> \
+    --settings '{}'
+```
+
+> [!NOTE]
+> If you set your scale set upgrade policy to **Manual**, you need to update existing instances by running [az vmss update-instances](/cli/azure/vmss#az-vmss-update-instances) to apply the extension. For scale sets with **Automatic** or **Rolling** upgrade policy, the extension is applied to instances automatically.
+
 # [Windows Arc-enabled server](#tab/PowerShellWindowsArc)
 
 **No proxy**
@@ -150,11 +350,11 @@ $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[passwor
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
 ```
 
-**Revert Proxy configuration to defaults**
+**Revert proxy configuration to defaults**
 
-To restore proxy configuration to defaults, you could define $settingsString = '{}'; as in the following example:
+To restore proxy configuration to defaults, define `$settings = @{}`; as in the following example:
 ```azurepowershell
-$settings = '{}';
+$settings = @{}
 New-AzConnectedMachineExtension -Name AzureMonitorWindowsAgent -ExtensionType AzureMonitorWindowsAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
@@ -180,6 +380,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 $settings = @{"proxy" = @{mode = "application"; address = "http://[address]:[port]"; auth = "true"}}
 $protectedSettings = @{"proxy" = @{username = "[username]"; password = "[password]"}}
 New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings -ProtectedSetting $protectedSettings
+```
+
+**Revert proxy configuration to defaults**
+
+To restore proxy configuration to defaults, define `$settings = @{}`; as in the following example:
+```azurepowershell
+$settings = @{}
+New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType AzureMonitorLinuxAgent -Publisher Microsoft.Azure.Monitor -ResourceGroupName <resource-group-name> -MachineName <arc-server-name> -Location <arc-server-location> -Setting $settings
 ```
 
 # [Azure Resource Manager policy template example](#tab/ArmPolicy)
@@ -353,14 +561,14 @@ New-AzConnectedMachineExtension -Name AzureMonitorLinuxAgent -ExtensionType Azur
 
 ## Log Analytics gateway configuration
 
-1. Follow the preceding guidance to configure proxy settings on the agent and provide the IP address and port number that correspond to the gateway server. If you deployed multiple gateway servers behind a load balancer, for the agent proxy configuration, instead use the virtual IP address of the load balancer.
+1. Follow the preceding guidance to configure proxy settings on the agent and provide the IP address and port number that correspond to the gateway server. If you deployed multiple gateway servers behind a load balancer, for the agent proxy configuration, use the virtual IP address of the load balancer.
 
 1. Add the configuration endpoint URL to fetch DCRs to the allow list for the gateway:
 
     1. Run `Add-OMSGatewayAllowedHost -Host global.handler.control.monitor.azure.com`.
     1. Run `Add-OMSGatewayAllowedHost -Host <gateway-server-region-name>.handler.control.monitor.azure.com`.
 
-    (If you use private links on the agent, you must also add the [DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).)
+    If you use private links on the agent, you must also add the [DCEs](../data-collection/data-collection-endpoint-overview.md#components-of-a-dce).
 
 1. Add the data ingestion endpoint URL to the allow list for the gateway:
 

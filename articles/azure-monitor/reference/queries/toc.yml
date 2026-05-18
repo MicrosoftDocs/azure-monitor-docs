@@ -167,6 +167,8 @@ items:
   href: ASRJobs.md
 - name: ASRReplicatedItems
   href: ASRReplicatedItems.md
+- name: ASimAgentEventLogs
+  href: ASimAgentEventLogs.md
 - name: ASimAlertEventLogs
   href: ASimAlertEventLogs.md
 - name: ASimAssetEntityLogs
@@ -321,8 +323,14 @@ items:
   href: ChaosStudioExperimentEventLogs.md
 - name: CloudAppEvents
   href: CloudAppEvents.md
+- name: CloudAuditEvents
+  href: CloudAuditEvents.md
 - name: CloudHsmServiceOperationAuditLogs
   href: CloudHsmServiceOperationAuditLogs.md
+- name: CloudProcessEvents
+  href: CloudProcessEvents.md
+- name: CloudStorageAggregatedEvents
+  href: CloudStorageAggregatedEvents.md
 - name: CommonSecurityLog
   href: CommonSecurityLog.md
 - name: CommunicationComplianceActivity
@@ -463,6 +471,10 @@ items:
   href: LAQueryLogs.md
 - name: LASummaryLogs
   href: LASummaryLogs.md
+- name: LedgerTransactionLogs
+  href: LedgerTransactionLogs.md
+- name: LedgerUserDefinedLogs
+  href: LedgerUserDefinedLogs.md
 - name: LogicAppWorkflowRuntime
   href: LogicAppWorkflowRuntime.md
 - name: MDCDetectionDNSEvents

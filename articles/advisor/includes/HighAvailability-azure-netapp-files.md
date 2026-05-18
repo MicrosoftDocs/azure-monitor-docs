@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/14/2026
+ms.date: 05/12/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -154,9 +154,9 @@ Subcategory: DisasterRecovery
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_begin-->
 
-#### New volume creation for basic networking will be upgraded to standard  
+#### New volume creation with Standard networking only  
   
-From May 31, all new Azure NetApp Files volumes will use Standard Networking. Requests specifying Basic Networking (via portal, CLI, ARM, or Terraform) will be automatically upgraded. Existing volumes are unaffected, and charges apply only if billable Standard Networking features are used.  
+From May 31, all Azure NetApp Files volumes will be created using Standard Networking. Basic network feature will no longer be an option.  Existing volumes are unaffected and no customer action is required.  
   
 **Potential benefits**: Increases the number of IP addresses.  
 
@@ -169,6 +169,7 @@ Recommendation ID: 64936c6e-8236-4875-8234-109ab34576fe
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--64936c6e-8236-4875-8234-109ab34576fe_end-->
+
 
 
 <!--2c3230cf-e6a3-4479-8a82-b8031b991b24_begin-->
