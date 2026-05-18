@@ -237,3 +237,7 @@ This forces the current scale set model (including the updated `enableAutomaticU
 > ```
 
 If specific virtual machines still don't update, check *Instance protection* (protect from scale set actions) and clear it if set.
+
+## Next steps
+
+- [Use the Azure Monitor Agent Troubleshooter for Linux](troubleshooter-ama-linux.md)
