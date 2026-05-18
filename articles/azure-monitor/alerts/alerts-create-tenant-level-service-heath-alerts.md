@@ -2,7 +2,7 @@
 title: Create Tenant Level Service Health Alerts (preview)
 description: This article shows you how to create tenant level service health alerts in the Azure portal and provides some troubleshooting guidance.
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 05/18/2026
 ms.reviewer: harelbr
 ---
 
@@ -54,7 +54,7 @@ Failed to create alert rule. Error: StatusCode=Forbidden, ReasonPhrase=Forbidden
 
 **Recommendation**
 
-Make sure the user attempting to create the alert rule has tenant admin access. If the user lacks the necessary permissions, they'll receive a 'No access' result and should consult their subscription owner for the being granted access.
+Make sure the user attempting to create the alert rule has tenant admin access. Consult with your Entra Tenant Admin to get "Read" access via entra roles.
 
 ### **Fired tenant-level SH alerts aren’t shown in the alerts list**
 
