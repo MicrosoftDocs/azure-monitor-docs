@@ -98,8 +98,6 @@ Manage recommendation statuses through four steps: `active`, `dismissed`, `compl
 1.  For new reviews, recommendations are set to **Active** state.
 1.  Note the priority for each recommendation. To help you decide which recommendation to implement first, your account team defines the **Priority**.
 
-    :::image alt-text="Screenshot of the Azure Advisor Resiliency Reviews recommendation list pane with pending recommendations." lightbox="./media/advisor-reviews-contoso-company-pending-preview.png" source="./media/advisor-reviews-contoso-company-pending.png" type="content":::
-
 ### Recommendation priority
 
 The priority of a recommendation is based on the impact value and urgency of the suggested improvements. Your Microsoft account team sets recommendation priority. If a recommendation targets multiple resources or subscriptions, you must accept the recommendation for all resources or subscriptions.
