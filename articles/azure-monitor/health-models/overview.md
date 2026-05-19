@@ -32,7 +32,14 @@ Track the health of your workload using multiple views. The Graph view shown abo
 :::image type="content" source="media/overview/sample-graph-view.png" lightbox="media/overview/sample-graph-view.png" alt-text="Screenshot of health details of an entity in a sample health model." :::
 
 ## Leverage existing investments
-Health models leverage your existing investments in Azure Monitor by working with the same data that you're already collecting for your Azure resources. This includes platform metrics and resource logs, Prometheus metrics from your Kubernetes clusters, logs and metrics from your virtual machines, and application data collected from Azure Monitor. Alerts created from health models are integrated into your existing Azure Monitor alerting experience and use the same action groups for notifications and automation.
+Health models leverage your existing investments in Azure Monitor by working with the same data that you're already collecting for your Azure resources. This includes:
+
+- Platform metrics and resource logs from Azure resources
+- Prometheus metrics from Kubernetes clusters
+- Logs and performance counters from virtual machines
+- Application data collected from Application Insights
+
+Alerts created from health models are integrated into your existing Azure Monitor alerting experience and use the same action groups for notifications and automation.
 
 
 ## Configure a model

@@ -19,21 +19,11 @@ There are three distinct types of entities as described in the following section
 
 :::image type="content" source="media/concepts/entities.png" lightbox="media/concepts/entities.png" alt-text="Screenshot showing entity types.":::
 
-### Root entity
-All health models have a single entity called the *root entity* that represents the model itself. While not required, all other entities in the health model typically connect to the root either directly or through other relationships. The root entity can't be deleted.
-
-The primary use of the root entity is to represent the overall health of the workload or application represented by the health model. You can track health of the application over time and create alerts based on the health of the root entity either in addition or instead of the individual entities in the model.
-
-
-### Azure resource entity
-An *Azure resource entity* represents an Azure resource from the current subscription or from another subscription that you can access. You can either add the resource or configure discovery to add matching resources automatically. 
-
-The health model includes a representation of the Azure resource and not the resource itself. A resource can be represented in multiple health models, and each can define different monitoring requirements and business logic. If the resource is represented by multiple entities in different models, then the signals for each entity are evaluated separately, and each has its own independent health state.
-
-The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses on how to interpret that data in the context of the role of the resource in the workload.
-
-### Generic entity
-A *generic entity* represents some part of the application or workload that isn't an Azure resource. It may represent some manual process in the workflow, or you may use it to represent some aggregation of other entities such as a region or a business unit. A generic entity can have its own signals, although it may just have a health state determined by the health of its child entities. You create most generic entities manually, although a generic entity may also be automatically created to support health rollup for entities that are automatically added through discovery.
+| Entity type | Description |
+|:---|:---|
+| Root entity | All health models have a single entity called the *root entity* that represents the model itself. While not required, all other entities in the health model typically connect to the root either directly or through other relationships. The root entity can't be deleted.<br><br>The primary use of the root entity is to represent the overall health of the workload or application represented by the health model. You can track health of the application over time and create alerts based on the health of the root entity either in addition or instead of the individual entities in the model. |
+| Azure resource entity |An *Azure resource entity* represents an Azure resource from the current subscription or from another subscription that you can access. You can either add the resource or configure discovery to add matching resources automatically.<br><br>The health model includes a representation of the Azure resource and not the resource itself. A resource can be represented in multiple health models, and each can define different monitoring requirements and business logic. If the resource is represented by multiple entities in different models, then the signals for each entity are evaluated separately, and each has its own independent health state.
+| Generic entity | A *generic entity* represents some part of the application or workload that isn't an Azure resource. It may represent some manual process in the workflow, or you may use it to represent some aggregation of other entities such as a region or a business unit. A generic entity can have its own signals, although it may just have a health state determined by the health of its child entities. You create most generic entities manually, although a generic entity may also be automatically created to support health rollup for entities that are automatically added through discovery. |
 
 
 ## Relationship
@@ -41,24 +31,8 @@ A relationship represents the dependency of one entity on another, or it may rep
 
 In most health models, all entities will connect directly or indirectly to the root entity. This allows you to roll up the health of all entities in the model to the root entity. This is useful for tracking the overall health of your workload and for alerting on the health of the entire workload.
 
-
-## Signals
-The [health state](#health-states) of an entity in an Azure Monitor health model is determined by one or more *signals*. A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
-
-Azure Monitor health models support the following discovery types.
-
-| Discovery type | High-level description |
-|:---|:---|
-| Application Insights topology | Discovers application components and their dependencies from Application Insights topology to quickly map your workload relationships. |
-| Resource graph query | Discovers Azure resources that match a Resource Graph query so you can onboard resources at scale with query-based selection. |
-| Service group | Discovers entities from a service group definition to align model entities with your service structure and ownership boundaries. |
-
-For detailed discovery configuration and behavior, see [Discoveries in Azure Monitor health models](./discoveries.md).
-
-For signal types, signal definitions, thresholds, and configuration details, see [Signals in Azure Monitor health models](./signals.md). 
-
 ## Health states
-The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. Health state is determined by the [signals](#signals) that are associated with an entity, and it may be affected by the health states of any child entities. You can view the most current health state of your workflow and its components in addition to tracking the health of the model over time.
+The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. The health state of an entity is determined by one or more [signals](./signals.md). A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
 
 Azure Monitor health models use the health states in the following table to represent the health of each entity in the model. There's no objective definition of the thresholds that determine each of these health states, but you'll specify each according to the requirements of your particular workload and business. 
 
@@ -75,7 +49,7 @@ In the following example, the entity is set to a degraded state since one of its
 
 :::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
 
-### Health propagation
+## Health propagation
 
 In addition to its own signals, the health state of an entity is affected by its child entities. This typically represents the dependency of one entity in your health model on another entity. While the signal for the parent may be healthy, you can assume that it isn't fully operational since another entity that it depends on isn't working properly.
 
@@ -84,6 +58,9 @@ You may also use health rollup to consolidate the health of multiple entities. F
 The following example illustrates health propagation in a sample health model. Signals are shown for an event hub entity and a generic entity representing an application component that processes incoming messages. Even though the signal for the message processor is healthy, its entity health state is unhealthy due to the unhealthy state of the event hub that it depends on. This unhealthy state is propagated to the root entity because it's the worst state of the entities connected to the root.
 
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
+
+## Health propagation settings
+The default health propagation behavior can be modified on both the parent and child entity using the *impact* and *dependencies* settings as described in the following sections. This allows you to tune health propagation to fit the specific needs of your workload and to accurately represent the health of your application.
 
 ### Impact
 The *impact* setting of an entity determines how its health state is propagated to its parent(s). The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
