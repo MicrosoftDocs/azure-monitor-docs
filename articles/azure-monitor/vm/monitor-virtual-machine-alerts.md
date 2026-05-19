@@ -107,6 +107,12 @@ Both the **Heartbeat** metric and the **Heartbeat** log table originate from the
 - **Metric alerts** use the converted Heartbeat metric. They're near real-time, stateful (notify once when fired and once when resolved), and natively support dimensions like computer name. Metric alerts are recommended when you need to detect the *absence* of a heartbeat.
 - **Log search alerts** query the Heartbeat table directly. They're inherently more latent because they evaluate log data at a set frequency. Log search alerts can be stateful or stateless and offer flexible KQL-based filtering, but they're less effective for detecting missing data.
 
+Agent heartbeat alerts depend on telemetry being delivered from the Azure Monitor Agent through the ingestion pipeline before the alert evaluation window closes. Transient agent-side or ingestion latency can cause heartbeat records to arrive after the evaluation window, leading the alert to fire even though the VM is healthy and the agent is sending data normally.
+
+If your goal is to detect whether an Azure VM is running, prefer the VM availability metric alert, which is evaluated by the Azure platform and is not subject to agent or log-ingestion latency.
+
+Use the agent heartbeat alert when your goal is specifically to detect agent health (for example, hybrid machines or to validate that workload telemetry is flowing). When using heartbeat-based alerts, account for typical ingestion latency in your evaluation window and threshold. To diagnose latency on the Heartbeat table, see the sample queries in [Queries for the Heartbeat table](azure/azure-monitor/reference/queries/heartbeat.md) and [Log data ingestion time in Azure Monitor](azure/azure-monitor/logs/data-ingestion-time.md).
+
 #### Metric alert rules
 
 A metric called **Heartbeat** is included in each Log Analytics workspace. Each virtual machine connected to that workspace sends a heartbeat metric value each minute. Because the computer is a dimension on the metric, you can fire an alert when any computer fails to send a heartbeat. Set the **Aggregation type** to **Count** and the **Threshold** value to match the **Evaluation granularity**.
