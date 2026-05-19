@@ -4,14 +4,18 @@ description: Learn alert concepts and configuration for Azure Monitor health mod
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/14/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ---
 
 # Alerts in Azure Monitor health models (preview)
-Alerts in [Azure Monitor health models](./overview.md) notify you when the health state of an entity changes. This article explains alert concepts and how to configure alerts in the designer.
+Alerts in [Azure Monitor health models](./overview.md) fire when the health state of an entity changes. [Action groups](../alerts/action-groups.md) associated with an alert rule trigger automated responses that can proactively notify you when critical issues ocur in the work load represented by the health model. This article explains alert concepts and how to configure alerts in the designer.
 
 ## Alert concepts
+Alerts can be configured independently on any entity in the health model. They can be fired when the entity enters a degraded or an unhealthy state. The only configuration required is the severity and description of the alert.
+
+An alert is fired only when the entity changes state. Even though multiple signals may be degraded or unhealthy, only a single alert is fired. The alert is automatically resolved when the entity returns to a healthy state.
+
 Health model alerts integrate with [Azure Monitor alerts](../alerts/alerts-overview.md) and can use the same [action groups](../alerts/action-groups.md) for notifications and automation.
 
 Health model alerts differ from resource-level alerts because they evaluate entity health states that can include multiple signals and dependency rollup.

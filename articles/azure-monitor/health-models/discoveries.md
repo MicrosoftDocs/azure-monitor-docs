@@ -4,7 +4,7 @@ description: Learn discovery concepts and configuration for Azure Monitor health
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/14/2026
+ms.date: 05/18/2026
 ai-usage: ai-assisted
 ---
 
@@ -35,9 +35,9 @@ Each discovery rule includes these core settings:
 | Display name | Friendly name for the discovery rule. |
 | Authentication setting | Identity used by discovery to enumerate resources. |
 | Resource access authentication setting | Identity used to access source resources for discovery methods that require direct resource reads, such as Application Insights topology. |
-| Parent entity | Entity that discovered entities are attached to in the health model graph. |
+| Parent entity | Any entities added by the discovery are attached as children of this entity. If you don't select a parent entity, a new generic entity is created for the discovery rule. |
 | Discover relationships | When enabled, discovery attempts to create relationships between discovered entities when supported. |
-| Add recommended signals | When enabled, discovery adds recommended signals to supported discovered entities. |
+| Add recommended signals | When enable, the [recommended signals]() for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
 | Results preview | Preview list of resources discovery can currently find with the configured scope and conditions. |
 
 
@@ -53,6 +53,17 @@ When you create an **Application Insights topology** discovery rule, configure:
 
 :::image type="content" source="media/discoveries/create-app-insights-discovery.png" lightbox="media/discoveries/create-app-insights-discovery.png" alt-text="Screenshot of creating an Application Insights topology discovery rule with source selection, authentication settings, parent entity selection, and configuration options.":::
 
+### Resource graph query settings
+When you create a **Resource graph query** discovery rule, configure:
+
+- **Scope** - Select the subscription or subscriptions to evaluate in the query.
+- **Query** - Enter an Azure Resource Graph query that returns the resources you want to discover.
+- **Authentication setting** - Select the identity used to run the query and enumerate matching resources.
+- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
+- **Discover relationships** and **Add recommended signals** - Enable these options to add supported relationships and baseline signals for matched resources.
+
+Use **Results preview** to validate that the query returns the intended resources before you create the rule.
+
 ### Service group settings
 When you create a **Service group** discovery rule, configure:
 
@@ -65,15 +76,8 @@ If you start from a service group experience, you can create a health model from
 
 :::image type="content" source="media/create/create-from-service-group.png" lightbox="media/create/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
 
-## Specify a parent entity for discovered entities
-Each discovery rule has a **Parent entity** setting. Any entities added by the discovery are attached as children of this entity. If multiple discoveries with different parent entities discovery the same entity, a relationship is created with each parent. 
-
-If you don't select a parent entity, a new generic entity is created for the discovery rule.
-
-## Recommended signals and alerts
-When you enable **Add recommended signals**, discovery adds the [recommended signals]() for that resource type to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities.
-
-Discovery does not automatically create alert configurations for the entity. After discovery adds entities and signals, configure alert behavior in the health model by following [Configure alerts in health models](./alerts.md).
+## Multiple discoveries
+A single health model can use multiple discoveries, including multiple rules of the same type. For example, you might use multiple Resource graph query discoveries to find resources by tag values and attach them to different parent entities. If the same resource is discovered by more than one rule, each rule creates a separate entity in the model that represent the same resource.
 
 
 ## Create and run a discovery rule
