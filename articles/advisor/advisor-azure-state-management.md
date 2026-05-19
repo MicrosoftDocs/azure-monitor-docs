@@ -9,7 +9,7 @@ author:      zucatihal # GitHub alias
 ms.author:   v-zucatihal # Microsoft alias
 ms.service: azure-advisor
 ms.topic: how-to
-ms.date:     03/17/2026
+ms.date:     05/19/2026
 ms.reviewer: tiffanywang, adaga
 ---
 
@@ -279,7 +279,7 @@ This page displays a table with the following columns:
 
 - Other category specific columns
 
-## More information 
+## More information
 
 To learn more, see the [How-to guide](/azure/advisor/advisor-cost-recommendations).
 
