@@ -202,6 +202,19 @@ Resource Health alerts are a type of activity alert. The [Resource Health overvi
 
 Resource Health relies on signals from different Azure services to assess whether a resource is healthy. If a resource is unhealthy, Resource Health analyzes more information to determine the source of the problem. It also reports on actions that Microsoft is taking to fix the problem and identifies actions you can take to address it.
 
+> [!Note]
+> Activity log alerts, including Service Health alerts and Resource Health alerts, are
+> **event-driven and stateless**. This means that when a matching event is detected in
+> the activity log, the alert fires once and its monitor condition is set to **Fired**.
+> Unlike metric or log search alerts, activity log alerts do not automatically resolve
+> because there is no ongoing condition to evaluate — the alert represents a single event
+> that occurred at a specific point in time. As a result, the monitor condition will
+> remain as **Fired** indefinitely. This is expected behavior and does not indicate an
+> ongoing issue. To manage these alerts, use the **User response** field to change the
+> status from **New** to **Acknowledged** or **Closed**. For more information on alert
+> states and user response, see
+> [Azure Monitor alerts overview](alerts-overview.md#alerts-and-state).
+
 ## Smart detection alerts
 
 After you set up Application Insights for your project and your app generates a certain amount of data, smart detection takes 24 hours to learn the normal behavior of your app. Your app's performance has a typical pattern of behavior. Some requests or dependency calls are more prone to failure than others, and the overall failure rate might go up as load increases.
