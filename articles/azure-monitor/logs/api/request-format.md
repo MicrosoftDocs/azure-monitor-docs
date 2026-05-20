@@ -47,16 +47,16 @@ Use `az rest` to call the Logs query API directly.
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 workspaceId="myWorkspaceId"
-encodedQuery="AzureActivity%20%7C%20summarize%20count%28%29%20by%20Category"
+query="AzureActivity | summarize count() by Category"
 timespan="PT12H"
-logsQueryApiEndpoint="https://api.loganalytics.azure.com"
+logsQueryApiEndpoint="https://api.loganalytics.io"
 resourceId="$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
 
 az account set --subscription "$subscriptionId"
 
 az rest \
   --method get \
-  --uri "$resourceId?query=$encodedQuery&timespan=$timespan" \
+  --uri "$resourceId?query=$query&timespan=$timespan" \
   --resource "$logsQueryApiEndpoint"
 ```
 
@@ -84,16 +84,15 @@ Use `Invoke-AzRestMethod` to call the Logs query API directly.
 $subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
 $workspaceId = 'myWorkspaceId'
 $query = 'AzureActivity | summarize count() by Category'
-$encodedQuery = [System.Uri]::EscapeDataString($query)
 $timespan = 'PT12H'
-$logsQueryApiEndpoint = 'https://api.loganalytics.azure.com'
+$logsQueryApiEndpoint = 'https://api.loganalytics.io'
 $resourceId = "$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
 
 Set-AzContext -Subscription $subscriptionId
 
 $restParams = @{
     Method     = 'GET'
-    Uri        = "${resourceId}?query=$encodedQuery&timespan=$timespan"
+    Uri        = "${resourceId}?query=$query&timespan=$timespan"
     ResourceId = $logsQueryApiEndpoint
 }
 
@@ -151,7 +150,7 @@ Use `az rest` to call the Logs query API directly.
 ```azurecli
 subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 workspaceId="myWorkspaceId"
-logsQueryApiEndpoint="https://api.loganalytics.azure.com"
+logsQueryApiEndpoint="https://api.loganalytics.io"
 resourceId="$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
 payloadFile="./query-payload.json"
 
@@ -183,7 +182,7 @@ Use `Invoke-AzRestMethod` to call the Logs query API directly.
 ```azurepowershell
 $subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
 $workspaceId = 'myWorkspaceId'
-$logsQueryApiEndpoint = 'https://api.loganalytics.azure.com'
+$logsQueryApiEndpoint = 'https://api.loganalytics.io'
 $resourceId = "$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
 $payloadFile = './query-payload.json'
 
