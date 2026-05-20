@@ -16,7 +16,7 @@ items:
   displayName: Gateway logs for API Management workspaces
 - name: Microsoft.App/managedEnvironments
   href: microsoft-app-managedenvironments-logs.md
-  displayName: Container App console logs,Container App system logs,Session allocation logs,Session console logs,Session pool lifecycle logs,Spring App console logs
+  displayName: Container App console logs,Container App HTTP logs,Container App system logs,Session allocation logs,Session console logs,Session pool lifecycle logs,Spring App console logs
 - name: Microsoft.AppConfiguration/configurationStores
   href: microsoft-appconfiguration-configurationstores-logs.md
   displayName: Audit,HTTP Requests
@@ -77,9 +77,6 @@ items:
 - name: Microsoft.Chaos/experiments
   href: microsoft-chaos-experiments-logs.md
   displayName: Experiment Orchestration Events
-- name: Microsoft.ClassicNetwork/networksecuritygroups
-  href: microsoft-classicnetwork-networksecuritygroups-logs.md
-  displayName: Network Security Group Rule Flow Event
 - name: Microsoft.CloudHealth/healthmodels
   href: microsoft-cloudhealth-healthmodels-logs.md
   displayName: Operational logs,Request logs
@@ -178,12 +175,6 @@ items:
   displayName: PostgreSQL Autovacuum and schema statistics,PostgreSQL PgBouncer Logs,PostgreSQL Query Store Runtime,PostgreSQL Query Store SQL Text,PostgreSQL Query Store Wait Statistics,PostgreSQL remaining transactions,PostgreSQL Server Logs,PostgreSQL Sessions data
 - name: Microsoft.DBForPostgreSQL/serverGroupsv2
   href: microsoft-dbforpostgresql-servergroupsv2-logs.md
-  displayName: PostgreSQL Server Logs
-- name: Microsoft.DBforPostgreSQL/servers
-  href: microsoft-dbforpostgresql-servers-logs.md
-  displayName: PostgreSQL Query Store Runtime Statistics,PostgreSQL Query Store Wait Statistics,PostgreSQL Server Logs
-- name: Microsoft.DBforPostgreSQL/serversv2
-  href: microsoft-dbforpostgresql-serversv2-logs.md
   displayName: PostgreSQL Server Logs
 - name: Microsoft.DesktopVirtualization/appAttachPackages
   href: microsoft-desktopvirtualization-appattachpackages-logs.md
@@ -436,7 +427,7 @@ items:
   displayName: Audit
 - name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
   href: microsoft-openenergyplatform-energyservices-logs.md
-  displayName: Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
+  displayName: ACZ API Logs,ACZ Worker Logs,Air Flow Task Logs,Audit Event,CRS Catalog Service Logs,CRS Conversion Service Logs,Dataset Service Logs,EDS DMS Logs,EDS Secret Logs,Elastic Operator Logs,Elasticsearch Logs,Entitlements Service Logs,File Service Logs,Indexer Service Logs,Legal Service Logs,Notification Service Logs,Partition Service Logs,PDSBackend Service Logs,PDSFrontend Service Logs,Register Service Logs,Reservoir DDMS Client Logs,Reservoir DDMS Server Logs,Rock and Fluid Samples DDMS Logs,Schema Service Logs,Search Extensions Service Logs,Search Service Logs,Storage Service Logs,Unit Service Logs,Wellbore Service Logs,WellDelivery Service Logs,Workflow Service Logs
 - name: Microsoft.OpenLogisticsPlatform/Workspaces
   href: microsoft-openlogisticsplatform-workspaces-logs.md
   displayName: Supply Chain Entity Operations,Supply Chain Event logs

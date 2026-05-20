@@ -29,7 +29,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
-| [April 2026](#april-2026) | 1.42 | — | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
+| [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
 | [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
 | [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation |
 | [October 2025](#october-2025) | 1.39.0 | 1.38.0–1.38.1 | — | OpenTelemetry support, FIPS 140-3 |
@@ -79,7 +79,7 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 
 ## April 2026
 
-**Versions:** Windows 1.42
+**Versions:** Windows 1.42, Linux 1.41
 
 ### Windows
 

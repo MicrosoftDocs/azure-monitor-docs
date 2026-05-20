@@ -39,20 +39,14 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
+Azure Monitor Agent supports the following Linux distributions, grouped by distribution family.
+
+### Red Hat-based distributions
+
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
 | AlmaLinux 9                                                 | ✓ |
 | AlmaLinux 8                                                 | ✓<sup>2</sup> |
-| Amazon Linux 2                                              | ✓ |
-| Amazon Linux 2023                                           | ✓ |
-| Azure Linux 3.0                                             | ✓<sup>2</sup> |
-| CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
-| Debian 13                                                   | ✓ |
-| Debian 12                                                   | ✓ |
-| Debian 11                                                   | ✓<sup>2</sup> |
-| Debian 10                                                   | ✓ |
-| Debian 9                                                    | ✓ |
-| OpenSUSE 15                                                 | ✓ |
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
@@ -63,12 +57,42 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
 | Rocky Linux 9                                               | ✓ |
 | Rocky Linux 8                                               | ✓ |
-| SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
+
+### Debian-based distributions
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Debian 13                                                   | ✓ |
+| Debian 12                                                   | ✓ |
+| Debian 11                                                   | ✓<sup>2</sup> |
+| Debian 10                                                   | ✓ |
+| Debian 9                                                    | ✓ |
 | Ubuntu 24.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 22.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 20.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 18.04 LTS                                            | ✓<sup>2</sup> |
 | Ubuntu 16.04 LTS                                            | ✓ |
+
+### SUSE distributions
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| OpenSUSE 15                                                 | ✓ |
+| SUSE Linux Enterprise Server 15 SP7                         | ✓<sup>2</sup> |
+
+### Amazon Linux
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Amazon Linux 2                                              | ✓ |
+| Amazon Linux 2023                                           | ✓ |
+
+### Azure Linux
+
+| Operating system | Support <sup>1</sup> |
+|:---|:---:|
+| Azure Linux 3.0                                             | ✓<sup>2</sup> |
+| CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 
 <sup>1</sup> Requires Python (3 or 2) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
 <sup>2</sup> Also supported on ARM64-based machines.<br>

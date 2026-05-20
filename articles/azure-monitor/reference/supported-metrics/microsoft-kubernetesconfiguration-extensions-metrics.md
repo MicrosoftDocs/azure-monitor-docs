@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.kubernetesconfiguration/extensions
 description: Reference for microsoft.kubernetesconfiguration/extensions metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/14/2026
 ms.custom: microsoft.kubernetesconfiguration/extensions, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -29,6 +29,11 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 
 
+### Category: Errors
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**File Sync Errors**<br><br>Number of file sync errors |`FileSyncErrors` |Count |Total (Sum), Average, Count |`volume_name`, `subvolume_name`, `transfer_mode`, `status`|PT1M |No|
+
 ### Category: Latency
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
@@ -47,6 +52,13 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Search Total Time in Milliseconds**<br><br>Total time taken to search |`TotalSearchTimeMilliseconds` |Milliseconds |Average |`AppName`, `ChunkMinScore`, `GpuEnabled`, `InputLength`, `QueryType`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Similarity Search Total Time in Milliseconds**<br><br>Total time taken to search for similar documents |`TotalSimilaritySearchTimeMilliseconds` |Milliseconds |Average |`AppName`, `GpuEnabled`, `InputLength`, `ChunkMinScore`, `IndexType`, `MetricType`, `TopK`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 
+### Category: Saturation
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Edgevolume Percentage Space Available**<br><br>Percentage of available space on Edgevolume |`EdgevolumePercentageSpaceAvailable` |Percent |Average, Minimum, Maximum |`edgevolume_name`|PT1M |No|
+|**Edgevolume Space Available**<br><br>Bytes of available space on Edgevolume |`EdgevolumeSpaceAvailable` |Bytes |Total (Sum), Average, Minimum, Maximum |`edgevolume_name`|PT1M |No|
+|**Edgevolume Space Total**<br><br>Bytes of total space on Edgevolume |`EdgevolumeSpaceTotal` |Bytes |Total (Sum), Average, Minimum, Maximum |`edgevolume_name`|PT1M |No|
+
 ### Category: Traffic
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
@@ -63,6 +75,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Evaluation API Request Count**<br><br>Total number of Evaluation API requests |`EvaluationApiRequestCount` |Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Failed Skipped Count**<br><br>Count of failed or skipped files |`FailedSkippedCount` |Count |Count |`Category`, `GpuEnabled`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**File Ingestion Rate**<br><br>Total files ingested per Job |`FileIngestionRate` |Count |Total (Sum) |`AppName`, `GpuEnabled`, `FileType`, `JobID`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
+|**File Sync Count**<br><br>Number of files successfully synchronized |`FileSyncCount` |Count |Total (Sum), Average, Count |`volume_name`, `subvolume_name`, `transfer_mode`|PT1M |No|
 |**Hybrid Search Model API Request Count**<br><br>Total number of Hybrid Search Model API requests |`HybridSearchModelApiRequestCount` |Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Inference Answer Feedback**<br><br>Inference Answer Feedback |`InferenceAnswerFeedback` |Count |Count |`AppName`, `ChunkMinScore`, `ChunkScores`, `GpuEnabled`, `LLMProvider`, `RunId`, `Thumb`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|
 |**Inference API Request Count**<br><br>Number of Inference API requests |`InferenceApiRequestCount` |Count |Count |`AppName`, `Method`, `Route`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H |No|

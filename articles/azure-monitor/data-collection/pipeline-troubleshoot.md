@@ -182,9 +182,8 @@ In the `service.pipelines` array, confirm:
 
 | Type | Protocol | Example Endpoint |
 |---|---|---|
-| OTLP | gRPC | `0.0.0.0:4317` |
+| OTLP (Preview) | gRPC | `0.0.0.0:4317` |
 | Syslog | TCP or UDP | `0.0.0.0:514` |
-| UDP | UDP | `0.0.0.0:5557` |
 
 ### Test connectivity from source
 
@@ -398,7 +397,6 @@ kubectl logs <pipeline-pod> -n <pipeline-namespace>
 
 **Causes**:
 - Persistent storage configuration issues
-- Buffer corruption
 - Connectivity still not fully restored
 
 **Resolution**:
@@ -462,7 +460,7 @@ kubectl logs <pipeline-pod> -n <pipeline-namespace>
 
 **Causes**:
 - High data throughput exceeding current sizing
-- Memory leaks or resource exhaustion
+- Resource limits set too low for current workload
 - Inefficient transformations
 
 **Resolution**:

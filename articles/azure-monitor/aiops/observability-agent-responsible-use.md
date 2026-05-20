@@ -54,3 +54,4 @@ To integrate Azure Copilot observability agent effectively into your operations,
 - [Azure Monitor issues and investigations (preview) overview](aiops-issue-and-investigation-overview.md)
 - [Use Azure Monitor issues and investigations (preview)](aiops-issue-and-investigation-how-to.md)
 - [Azure Copilot observability agent (preview) troubleshooting](observability-agent-troubleshooting.md)
+- [Governance, privacy, and AI model FAQ](observability-agent-governance-faq.md)

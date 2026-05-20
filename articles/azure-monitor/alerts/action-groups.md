@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
 
-Action groups define who gets notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
+Action groups define who get notified and what actions are taken when an alert fires. They support multiple notification types, including voice call, SMS, push notifications, email, and automated actions (for example, triggering a webhook or [Azure Function](/azure/azure-functions/functions-overview)). These groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
 Each action is made up of:
 
@@ -20,6 +20,8 @@ Each action is made up of:
 * **Details**: Specific configuration based on the action type.
 
 This article shows you how to create and manage action groups.
+
+## Overview
 
 ### Global availability and resilience
 
@@ -36,6 +38,44 @@ Global requests from clients can be processed by action group services in any re
 * Action Groups are defined by the unique set of actions and the users to be notified.<br>
     **Example:** To notify User1, User2 and User3 by email for two different alert rules, you only need to create one action group and apply it to both alert rules.
 
+## Global and regional action group processing
+
+When you create an action group, you select a processing region. The region determines where the action group is stored and processed.
+
+> [!NOTE]
+> Service Health Alerts are only supported in public clouds within the global region. For Action groups to properly function in response to a Service Health Alert, the region of the action group must be set to *Global*.
+
+| Option | Behavior |
+| ------ | -------- |
+| Global | The action groups service decides where to store the action group. The action group is persisted in at least two regions to ensure regional resiliency. Processing of actions may be done in any [geographic region](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br></br>Voice, SMS, and email actions performed as the result of [service health alerts](../../service-health/alerts-activity-log-service-notifications-portal.md) are resilient to Azure live-site incidents. |
+| Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br><br>You can select one of these regions for regional processing of action groups:<br>• East US<br>• West US<br>• East US2<br>• West US2<br>• South Central US<br>• North Central US<br>• Sweden Central<br>• Germany West Central<br>• India Central<br>• India South<br><br>We're continually adding more regions for regional data processing of action groups. |
+
+## Notification types
+
+An action group can contain one or more notifications. The following table describes the available notification types that you can configure.
+
+| Notification type | Description | Fields |
+|-------------------|-------------|--------|
+| Email Azure Resource Manager role | Send an email to the subscription members, based on their role.<br>See [Email](#email-azure-resource-manager). | Enter the primary email address configured for the Microsoft Entra user. See [Email](#email-azure-resource-manager). |
+| Email | Ensure that your email filtering and any malware/spam prevention services are configured appropriately.<br><br>Emails are sent from the following email addresses:<br>• azure-noreply@microsoft.com<br>• azureemail-noreply@microsoft.com<br>• alerts-noreply@mail.windowsazure.com | Enter the email where the notification should be sent.<br><br> Email addresses must be verified via One-Time Passcode (OTP) within 30 minutes of saving the action group. This verification will persist across all past and future action groups within the same tenant. |
+| SMS | SMS notifications support bi-directional communication. The SMS contains the following information:<br>• Shortname of the action group this alert was sent to<br>• The title of the alert.<br><br>A user can respond to an SMS to:<br>• Unsubscribe from all SMS alerts for all action groups or a single action group.<br>• Resubscribe to alerts<br>• Request help.<br><br>For more information about supported SMS replies, see [SMS replies](#sms-replies). | Enter the **Country code** and the **Phone number** for the SMS recipient. If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party SMS provider that supports your country/region. |
+| Azure app push notifications | Send notifications to the [Azure mobile app](https://azure.microsoft.com/features/azure-portal/mobile-app/). | In the **Azure account email** field, enter the email address that you use as your account ID when you configure the Azure mobile app. |
+| Voice | Voice notification. | Enter the **Country code** and the **Phone number** for the recipient of the notification. If you can't select your country/region code in the Azure portal, voice notifications aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party voice call provider that supports your country/region. |
+
+## Action types
+
+An action group can contain one or more automated actions. The following table describes the available action types.
+
+| Action type | Details |
+|-------------|---------|
+| Automation Runbook | Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#automation-limits). |
+| Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. *Event hub supports cross-tenant support up to api version _2023-09-01-preview_ |
+| Functions | Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br><br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br><br>Your endpoint must support the HTTP POST method.<br><br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br><br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account). |
+| ITSM | An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
+| Logic apps |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications. |
+| Secure webhook | When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action. |
+| Webhook | If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br><br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br><br>For information about the rules used for retrying webhook actions, see [Webhook](#webhook). |
+
 ## Create an action group in the Azure portal
 
 1. Go to the [Azure portal](https://portal.azure.com/).
@@ -51,15 +91,7 @@ Global requests from clients can be processed by action group services in any re
 1. Configure basic action group settings. In the **Project details** section:
 
     * Select values for **Subscription** and **Resource group**.
-    * Select the region.
-
-    > [!NOTE]
-    > Service Health Alerts are only supported in public clouds within the global region. For Action groups to properly function in response to a Service Health Alert, the region of the action group must be set to *Global*.
-
-    | Option | Behavior |
-    | ------ | -------- |
-    | Global | The action groups service decides where to store the action group. The action group is persisted in at least two regions to ensure regional resiliency. Processing of actions may be done in any [geographic region](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br></br>Voice, SMS, and email actions performed as the result of [service health alerts](../../service-health/alerts-activity-log-service-notifications-portal.md) are resilient to Azure live-site incidents. |
-    | Regional | The action group is stored within the selected region. The action group is [zone-redundant](/azure/reliability/availability-zones-service-support). Use this option if you want to ensure that the processing of your action group is performed within a specific [geographic boundary](https://azure.microsoft.com/explore/global-infrastructure/geographies/#overview).<br><br>You can select one of these regions for regional processing of action groups:<br>• East US<br>• West US<br>• East US2<br>• West US2<br>• South Central US<br>• North Central US<br>• Sweden Central<br>• Germany West Central<br>• India Central<br>• India South<br><br>We're continually adding more regions for regional data processing of action groups. |
+    * Select the region. For details about the differences between Global and Regional processing, see [Global and regional action group processing](#global-and-regional-action-group-processing).
 
     The action group is saved in the subscription, region, and resource group that you select.
 
@@ -73,15 +105,7 @@ Global requests from clients can be processed by action group services in any re
 
 1. For each notification:
 
-    1. Select the **Notification type**, and then fill in the appropriate fields for that notification. The available options are:
-
-        | Notification type | Description | Fields |
-        |-------------------|-------------|--------|
-        | Email Azure Resource Manager role | Send an email to the subscription members, based on their role.<br>See [Email](#email-azure-resource-manager). | Enter the primary email address configured for the Microsoft Entra user. See [Email](#email-azure-resource-manager). |
-        | Email | Ensure that your email filtering and any malware/spam prevention services are configured appropriately.<br><br>Emails are sent from the following email addresses:<br>• azure-noreply@microsoft.com<br>• azureemail-noreply@microsoft.com<br>• alerts-noreply@mail.windowsazure.com | Enter the email where the notification should be sent.<br><br> Email addresses must be verified via One-Time Passcode (OTP) within 30 minutes of saving the action group. This verification will persist across all past and future action groups within the same tenant. |
-        | SMS | SMS notifications support bi-directional communication. The SMS contains the following information:<br>• Shortname of the action group this alert was sent to<br>• The title of the alert.<br><br>A user can respond to an SMS to:<br>• Unsubscribe from all SMS alerts for all action groups or a single action group.<br>• Resubscribe to alerts<br>• Request help.<br><br>For more information about supported SMS replies, see [SMS replies](#sms-replies). | Enter the **Country code** and the **Phone number** for the SMS recipient. If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party SMS provider that supports your country/region. |
-        | Azure app push notifications | Send notifications to the [Azure mobile app](https://azure.microsoft.com/features/azure-portal/mobile-app/). | In the **Azure account email** field, enter the email address that you use as your account ID when you configure the Azure mobile app. |
-        | Voice | Voice notification. | Enter the **Country code** and the **Phone number** for the recipient of the notification. If you can't select your country/region code in the Azure portal, voice notifications aren't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). As a workaround until your country is supported, configure the action group to call a webhook to a third-party voice call provider that supports your country/region. |
+    1. Select the **Notification type**, and then fill in the appropriate fields for that notification. For available options, see [Notification types](#notification-types).
 
     1. Select if you want to enable the **Common alert schema**. The common alert schema is a single extensible and unified alert payload that can be used across all the alert services in Azure Monitor. For more information about the common schema, see [Common alert schema](./alerts-common-schema.md).
 
@@ -91,17 +115,7 @@ Global requests from clients can be processed by action group services in any re
 
 1. Configure actions. Select **Next: Actions**. or select the **Actions** tab at the top of the page.
 
-1. Define a list of actions to trigger when an alert is triggered. Select an action type and enter a name for each action.
-
-    | Action type | Details |
-    |-------------|---------|
-    | Automation Runbook | Use Automation Runbook to automate tasks based on metrics. For example, shut down resources when a certain threshold in the associated budget is met. For information about limits on Automation runbook payloads, see [Automation limits](/azure/azure-resource-manager/management/azure-subscription-service-limits#automation-limits). |
-    | Event hubs | An Event Hubs action publishes notifications to Event Hubs. It's the only action type that supports [Azure Private Link](/azure/event-hubs/private-link-service) and [network security perimeter (NSP)](/azure/private-link/network-security-perimeter-concepts). For more information about Event Hubs, see [Azure Event Hubs—A big data streaming platform and event ingestion service](/azure/event-hubs/event-hubs-about). You can subscribe to the alert notification stream from your event receiver. *Event hub supports cross-tenant support up to api version _2023-09-01-preview_ |
-    | Functions | Calls an existing HTTP trigger endpoint in functions. For more information, see [Azure Functions](/azure/azure-functions/functions-get-started).<br><br>When you define the function action, the function's HTTP trigger endpoint and access key are saved in the action definition, for example, `https://azfunctionurl.azurewebsites.net/api/httptrigger?code=<access_key>`. If you change the access key for the function, you must remove and re-create the function action in the action group.<br><br>Your endpoint must support the HTTP POST method.<br><br>The function must have access to the storage account. If it doesn't have access, keys aren't available and the function URI isn't accessible.<br><br>[Learn about restoring access to the storage account](/azure/azure-functions/functions-recover-storage-account). |
-    | ITSM | An ITSM action requires an ITSM connection. To learn how to create an ITSM connection, see [ITSM integration](./itsmc-overview.md). |
-    | Logic apps |You can use [Azure Logic Apps](/azure/logic-apps/logic-apps-overview) to build and customize workflows for integration and to customize your alert notifications. |
-    | Secure webhook | When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action. |
-    | Webhook | If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br><br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br><br>For information about the rules used for retrying webhook actions, see [Webhook](#webhook). |
+1. Define a list of actions to trigger when an alert is triggered. Select an action type and enter a name for each action. For available options, see [Action types](#action-types).
 
     :::image type="content" source="media/action-groups/action-group-3-actions.png" alt-text="Screenshot that shows the Actions tab of the Create action group dialog. Several options are visible in the Action type list.":::
 
@@ -110,7 +124,7 @@ Global requests from clients can be processed by action group services in any re
 1. Select **Review + create** to review your settings. This step quickly checks your inputs to make sure you entered all required information. If there are issues, they're reported here. After reviewing the settings, select **Create** to create the action group.
 
     > [!NOTE]
-    > When you configure an action to notify a person by email or SMS, they receive a confirmation that indicates they were added to the action group. For new email addresses, this will be in the form of an OTP email validation request, for validated email addresses a standard email notifying them of the additon to the action gropu will be sent. 
+    > When you configure an action to notify a person by email or SMS, they receive a confirmation indicating they were added to the action group. New email addresses receive a one-time passcode (OTP) validation request. Previously validated email addresses receive a standard notification email.
 
 ### Test an action group in the Azure portal
 
@@ -458,10 +472,12 @@ When you set up the Resource Manager role:
 
 ## SMS
 
+SMS notifications in Azure Monitor action groups support bi-directional communication. The SMS contains the short name of the action group and the title of the alert. Users can respond to an SMS to unsubscribe, resubscribe, or request help.
+
 You might have a limited number of SMS actions per action group.
 
 * For information about rate limits, see [Azure Monitor service limits](../service-limits.md).
-* For important information about using SMS notifications in action groups, see the table under step 9 in [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
+* For more details about SMS notification configuration, see [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
 
 > [!NOTE]
 > If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party SMS provider that offers support in your country/region.
@@ -592,6 +608,10 @@ For information about pricing for supported countries/regions, see [Azure Monito
 
 > [!NOTE]
 > If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit. The webhook endpoint must also be publicly accessible. You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI. If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the Logic Apps action to transform the alert schema to meet the target webhook's expectations.
+>
+> Action groups support two webhook types: **Webhook** for endpoints using basic auth via URI, and **Secure webhook** for endpoints protected by Microsoft Entra ID service principal authentication.
+
+### Webhook retry behavior
 
 Webhook action groups generally follow these rules when called:
 

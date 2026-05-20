@@ -16,7 +16,7 @@ This article explains how to create a Log Analytics workspace.
 
 ## Prerequisites
 
-To create a Log Analytics workspace, you need an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free).
+To create a Log Analytics workspace, you need an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Permissions required
 

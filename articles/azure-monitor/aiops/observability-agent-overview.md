@@ -150,3 +150,4 @@ Azure Copilot is designed and operated in alignment with Microsoft's Responsible
 - [Azure Monitor issues overview](aiops-issue-and-investigation-overview.md) - Detailed technical documentation.
 - [Use Azure Monitor issues](aiops-issue-and-investigation-how-to.md) - Step-by-step usage guide.
 - [Best practices for Azure Copilot observability agent](observability-agent-best-practices.md) - Optimization guidance.
+- [Governance, privacy, and AI model FAQ](observability-agent-governance-faq.md) - Data privacy, compliance, and AI model questions.

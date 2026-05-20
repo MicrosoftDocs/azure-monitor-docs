@@ -28,30 +28,40 @@ Application Insights is an OpenTelemetry feature of Azure Monitor that offers ap
 
 See [Application Insights](../app/app-insights-overview.md).
 
-## Monitor your agents
-Application Insights provides a unified experience for monitoring AI agents across Microsoft Foundry, Copilot Studio, and third‑party agent frameworks. It consolidates telemetry and diagnostics, enabling developers to track agent performance, troubleshoot errors, and optimize agent behavior. Through its integration with Microsoft Foundry, Application Insights delivers real‑time observability for operators of generative AI workloads, with built‑in dashboards that surface key operational metrics such as token consumption, latency, error rates, and quality scores.
+## Monitor your AI agents
+Azure Monitor's Application Insights provides a unified experience for monitoring AI agents across Microsoft Foundry, Copilot Studio, and third‑party agent frameworks. It consolidates telemetry and diagnostics, enabling developers to track agent performance, troubleshoot errors, and optimize agent behavior. Through its integration with Microsoft Foundry, Application Insights delivers real‑time observability for operators of generative AI workloads, with built‑in dashboards that surface key operational metrics such as token consumption, latency, error rates, and quality scores.
 
 See [Monitor AI agents](../app/agents-view.md) and [Observability in generative AI](/azure/ai-foundry/concepts/observability).
 
 ## Azure Monitor data platform
-Azure Monitor has a centralized data platform to support collection of telemetry from a variety of sources and the different features for analysis and troubleshooting. Log Analytics workspaces collect log and trace data which can be analyzed with Kusto Query Language (KQL). Azure Monitor workspaces collect Prometheus and OpenTelemetry metrics, which can be analyzed using Prometheus Query Language (PromQL).
+Azure Monitor has a centralized data platform to support collection of telemetry from a variety of sources and the different features for analysis and troubleshooting. The platform uses two workspace types, each optimized for different data:
+
+- **Log Analytics workspaces** collect log and trace data, which can be analyzed with Kusto Query Language (KQL).
+- **Azure Monitor workspaces** collect Prometheus and OpenTelemetry metrics, which can be analyzed using Prometheus Query Language (PromQL).
+
+Despite the similar names, these are separate resource types with different data stores and query languages.
 
 See [Azure Monitor data platform](./data-platform.md).
 
 ## Analyze and visualize data
-In addition to integrating monitoring data into the Azure portal experience for different services, Azure Monitor provides multiple options to visualize your monitoring data or perform ad-hoc analysis. Use prebuilt workbooks and Grafana dashboards in the Azure portal or create your own custom dashboards. For ad-hoc analysis, use metrics explorer to analyze metrics using PromQL and Log Analytics to analyze log and trace data using KQL.
+Azure Monitor provides multiple options to visualize your monitoring data and perform ad-hoc analysis, in addition to integrating monitoring data into the Azure portal experience for different services. Use prebuilt workbooks and Grafana dashboards in the Azure portal or create your own custom dashboards. For ad-hoc analysis, use metrics explorer to analyze metrics using PromQL and Log Analytics to analyze log and trace data using KQL.
 
 See [Visualize data](../visualize/best-practices-visualize.md), [metrics explorer](../metrics/metrics-explorer.md), [Log Analytics](../logs/log-analytics-overview.md).
 
 ## Troubleshooting and diagnostics
-Use interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubleshooting experience, use the observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
+Azure Monitor provides interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubleshooting experience, use the Azure Copilot observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
 
 See [Azure Copilot observability agent](../aiops/observability-agent-overview.md).
 
 ## Respond to issues
-Alerts in Azure Monitor proactively notify you when issues are identified in collected data so that you can proactively respond to them before they affect your customers.  AIOps capabilities such as dynamic alert thresholds and smart alerts use machine learning to assist in alert configuration and response. Autoscale is an Azure Monitor feature that automatically adds and removes resources according to the load on your application.
+Alerts in Azure Monitor proactively notify you when issues are identified in collected data so that you can respond to them before they affect your customers. Azure Monitor includes AIOps capabilities that use machine learning to reduce alert noise. Features include dynamic thresholds that adapt to metric patterns and smart detection that identifies application anomalies.
 
-See [Azure Monitor alerts](../alerts/alerts-overview.md), [Smart alerts](../alerts/proactive-diagnostics.md), [Autoscale](../autoscale/autoscale-overview.md).
+See [Azure Monitor alerts](../alerts/alerts-overview.md), [Smart detection](../alerts/proactive-diagnostics.md).
+
+## Autoscale
+Autoscale is an Azure Monitor feature that automatically adds and removes resources according to the load on your application. You can configure autoscale rules based on metrics, schedules, or a combination of both.
+
+See [Autoscale](../autoscale/autoscale-overview.md).
 
 
 ## Hybrid environments
@@ -60,7 +70,7 @@ Azure Monitor isn't only designed to monitor Azure environments but can act as a
 See [Multicloud monitoring](./best-practices-multicloud.md) and [Azure Monitor pipeline](../data-collection/pipeline-overview.md).
 
 ## Onboarding 
-Onboard resources to Azure Monitor using a variety of methods including the Azure portal, command line, or infrastructure as code (IaC) templates to deploy at scale. Use data collection rules to customize and filter the data that should be collected from different sources. 
+Onboard resources to Azure Monitor using a variety of methods including the Azure portal, command line, or infrastructure as code (IaC) templates to deploy at scale. Use the Azure Monitor Agent (AMA) installed on your virtual machines and servers to collect logs and metrics according to your data collection rules. 
 
 See [Data sources and data collection methods](./data-sources.md) and [Resource Manager template samples](./resource-manager-samples.md).
 

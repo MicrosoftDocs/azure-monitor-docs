@@ -102,6 +102,11 @@ As described in [Scaling alert rules](#scaling-alert-rules), create an availabil
 ### Agent heartbeat
 The agent heartbeat is slightly different than the machine unavailable alert because it relies on Azure Monitor Agent to send a heartbeat. The agent heartbeat can alert you if the machine is running but the agent is unresponsive.
 
+Both the **Heartbeat** metric and the **Heartbeat** log table originate from the same per-minute heartbeat signal that Azure Monitor Agent sends to the Log Analytics workspace. The agent writes a record to the Heartbeat log table every minute. The Heartbeat metric is then derived from that log data through automatic [log-to-metric conversion](../alerts/alerts-metric-logs.md), which makes it available in the workspace metric store for near-real-time alerting. The difference between the two alert types is how each consumes that data:
+
+- **Metric alerts** use the converted Heartbeat metric. They're near real-time, stateful (notify once when fired and once when resolved), and natively support dimensions like computer name. Metric alerts are recommended when you need to detect the *absence* of a heartbeat.
+- **Log search alerts** query the Heartbeat table directly. They're inherently more latent because they evaluate log data at a set frequency. Log search alerts can be stateful or stateless and offer flexible KQL-based filtering, but they're less effective for detecting missing data.
+
 #### Metric alert rules
 
 A metric called **Heartbeat** is included in each Log Analytics workspace. Each virtual machine connected to that workspace sends a heartbeat metric value each minute. Because the computer is a dimension on the metric, you can fire an alert when any computer fails to send a heartbeat. Set the **Aggregation type** to **Count** and the **Threshold** value to match the **Evaluation granularity**.

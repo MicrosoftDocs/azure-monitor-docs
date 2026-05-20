@@ -13,18 +13,20 @@ ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-python
 
 # Enable Azure Monitor OpenTelemetry for .NET, Node.js, Python, and Java applications
 
-This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md). The Azure Monitor OpenTelemetry Distro:
+This article describes how to enable and configure OpenTelemetry-based data collection within [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry Distro. [OpenTelemetry](https://opentelemetry.io/) is the open-source CNCF observability standard; the Azure Monitor OpenTelemetry Distro is Microsoft's distribution of that standard, optimized for Azure Monitor. The distro:
 
 * Provides an [OpenTelemetry distribution](https://opentelemetry.io/docs/concepts/distributions/#what-is-a-distribution), which includes support for features specific to Azure Monitor.
-* Enables [automatic telemetry](opentelemetry-collect-detect.md) telemetry by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
+* Enables [automatic telemetry](opentelemetry-collect-detect.md) collection by including OpenTelemetry instrumentation libraries for collecting traces, metrics, logs, and exceptions.
 * Allows collecting [custom](opentelemetry-add-modify.md#collect-custom-telemetry) telemetry.
 * Supports [Live Metrics](live-stream.md) to monitor and collect telemetry from live, in-production web applications.
 
 For more information about the advantages of using the Azure Monitor OpenTelemetry Distro, see [Why should I use the Azure Monitor OpenTelemetry Distro](application-insights-faq.yml#why-should-i-use-the-azure-monitor-opentelemetry-distro).
 
-To learn more about collecting data using OpenTelemetry, check out [Collect OpenTelemetry (OTel) for Application Insights experiences](app-insights-overview.md) or the [OpenTelemetry FAQ](.\application-insights-faq.yml#opentelemetry-support-and-feedback).
+To learn more about collecting data using OpenTelemetry, check out the [Application Insights overview](app-insights-overview.md) or the [OpenTelemetry FAQ](./application-insights-faq.yml#opentelemetry-support-and-feedback).
 
-### OpenTelemetry release status
+Follow the steps in this article to install the distro, connect it to your Application Insights resource, and verify that telemetry data flows to Azure Monitor.
+
+## OpenTelemetry release status
 
 OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
 
@@ -34,6 +36,16 @@ OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applic
 ## Enable OpenTelemetry with Application Insights
 
 Follow the steps in this section to instrument your application with OpenTelemetry. Select a tab for language-specific instructions.
+
+The following table summarizes the packages and install commands for each supported language:
+
+| Language | Package | Install command |
+|----------|---------|------------------|
+| ASP.NET Core | `Azure.Monitor.OpenTelemetry.AspNetCore` | `dotnet add package Azure.Monitor.OpenTelemetry.AspNetCore` |
+| .NET | `Azure.Monitor.OpenTelemetry.Exporter` | `dotnet add package Azure.Monitor.OpenTelemetry.Exporter` |
+| Java | `applicationinsights-agent-3.7.8.jar` | [Download from GitHub](https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.7.8/applicationinsights-agent-3.7.8.jar) |
+| Node.js | `@azure/monitor-opentelemetry` | `npm install @azure/monitor-opentelemetry` |
+| Python | `azure-monitor-opentelemetry` | `pip install azure-monitor-opentelemetry` |
 
 > [!NOTE]
 > .NET covers multiple scenarios, including classic ASP.NET, console apps, Windows Forms (WinForms), and more.
@@ -75,7 +87,7 @@ Follow the steps in this section to instrument your application with OpenTelemet
 #### [Node.js](#tab/nodejs)
 
 > [!div class="checklist"]
-> * Application using an officially [supported version](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments) of Node.js runtime:<br>â€¢ [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes)<br>â€¢ [Azure Monitor OpenTelemetry Exporter supported runtimes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments)
+> * Application using an officially [supported version](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments) of Node.js runtime:<br>• [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes)<br>• [Azure Monitor OpenTelemetry Exporter supported runtimes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry-exporter#currently-supported-environments)
 
 > [!NOTE]
 > If you don't rely on any properties listed in the [not-supported table](https://github.com/microsoft/ApplicationInsights-node.js/blob/beta/README.md#ApplicationInsights-Shim-Unsupported-Properties), the *ApplicationInsights shim* is your easiest path forward once out of beta.
@@ -292,14 +304,20 @@ To copy the connection string:
 
 ### Paste the connection string in your environment
 
-To paste your connection string, select from the following options:
+To paste your connection string, use one of the following methods:
+
+| Method | Supported languages | Recommended for |
+|--------|--------------------|-----------------|
+| Environment variable | All | Production |
+| Configuration file (`applicationinsights.json`) | Java only | Production (Java) |
+| Code | ASP.NET Core, Node.js, Python | Local dev/test only |
 
 > [!IMPORTANT]
 > We recommend setting the connection string through code only in local development and test environments.
 >
 > For production, use an environment variable or configuration file (Java only).
 
-* **Set via environment variable** - *recommended*
+* **Set the Application Insights connection string as an environment variable (recommended for production)**
 
     Replace `<Your connection string>` in the following command with your connection string.
 
@@ -307,7 +325,7 @@ To paste your connection string, select from the following options:
     APPLICATIONINSIGHTS_CONNECTION_STRING=<Your connection string>
     ```
 
-* **Set via configuration file** - *Java only*
+* **Set the Application Insights connection string in a configuration file** - *Java only*
 
     Create a configuration file named `applicationinsights.json`, and place it in the same directory as `applicationinsights-agent-3.7.8.jar` with the following content:
 
@@ -319,19 +337,19 @@ To paste your connection string, select from the following options:
 
     Replace `<Your connection string>` in the preceding JSON with *your* unique connection string.
 
-* **Set via code** - *ASP.NET Core, Node.js, and Python only*
+* **Set the Application Insights connection string in code** - *ASP.NET Core, Node.js, and Python only*
 
     See [connection string configuration](opentelemetry-configuration.md#connection-string) for an example of setting connection string via code.
 
 > [!NOTE]
-> If you set the connection string in multiple places, the environment variable is prioritized in the following order:
+> If you set the connection string in multiple places, it's resolved in the following precedence order (highest to lowest):
 > 1. Code
 > 2. Environment variable
 > 3. Configuration file
 
 ### Confirm data is flowing
 
-Run your application, then open Application Insights in the Azure portal. It might take a few minutes for data to show up.
+After you configure the Azure Monitor OpenTelemetry Distro and set the connection string, run your application and open your Application Insights resource in the Azure portal to verify that traces, metrics, and logs appear. It might take a few minutes for data to show up.
 
 :::image type="content" source="media/opentelemetry/server-requests.png" alt-text="Screenshot of the Application Insights Overview tab with server requests and server response time highlighted.":::
 

@@ -48,18 +48,20 @@ Here's a summary of configuration tasks for creating a chart to analyze metrics:
 
 ## Set the resource scope
 
-The resource **scope picker** lets you scope your chart to view metrics for a single resource or for multiple resources. To view metrics across multiple resources, the resources must be within the same subscription and region location. 
+The resource scope picker in Azure Monitor metrics explorer lets you scope your chart to view metrics for a single resource or for multiple resources. To view metrics across multiple resources, the resources must be within the same subscription and region location. 
 
 > [!NOTE] 
 > You must have *Monitoring Reader* permission at the subscription level to visualize metrics across multiple resources, resource groups, or a subscription. For more information, see [Assign Azure roles in the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 ### Select a single resource
 
+To view metrics for a single resource in Azure Monitor metrics explorer:
+
 1. Choose **Select a scope**.
 
     :::image source="./media/analyze-metrics/scope-picker.png" lightbox="./media/analyze-metrics/scope-picker.png" alt-text="Screenshot that shows how to open the resource scope picker for metrics explorer.":::
 
-1. Use the scope picker to select the resources whose metrics you want to see. If you open metrics explorer for a specific resource, the scope should be populated.
+1. Use the resource scope picker to select the resources whose metrics you want to see. If you open metrics explorer for a specific resource, the scope should be populated.
 
     For some resources, you can view only one resource's metrics at a time. On the **Resource types** menu, these resources are shown in the **All resource types** section.
 
@@ -119,7 +121,9 @@ Use the time picker to change the **Time range** for your data, such as the last
 
 In addition to changing the time range with the time picker, you can pan and zoom by using the controls in the chart area.
 
-## Interactive chart features
+## Pan and zoom in metrics charts
+
+Azure Monitor metrics explorer provides interactive controls to navigate your metric data. You can pan across time ranges and zoom into specific time periods to investigate anomalies.
 
 ### Pan across metrics data
 
@@ -181,14 +185,13 @@ In this scenario, if you set the time granularity to 30 minutes, metrics explore
 
 Metrics explorer has five aggregation types:
 
-* **Sum**: The sum of all values captured during the aggregation interval. The sum aggregation is sometimes called the *total* aggregation.
-* **Count**: The number of measurements captured during the aggregation interval.
-
-    When the metric is always captured with the value of 1, the count aggregation is equal to the sum aggregation. This scenario is common when the metric tracks the count of distinct events and each measurement represents one event. The code emits a metric record every time a new request arrives.
-
-* **Average**: The average of the metric values captured during the aggregation interval.
-* **Min**: The smallest value captured during the aggregation interval.
-* **Max**: The largest value captured during the aggregation interval.
+| Aggregation | Description |
+|-------------|-------------|
+| **Sum** | The sum of all values captured during the aggregation interval. Sometimes called the *total* aggregation. |
+| **Count** | The number of measurements captured during the aggregation interval. When the metric is always captured with the value of 1, the count aggregation is equal to the sum aggregation. This scenario is common when the metric tracks the count of distinct events and each measurement represents one event. |
+| **Average** | The average of the metric values captured during the aggregation interval. |
+| **Min** | The smallest value captured during the aggregation interval. |
+| **Max** | The largest value captured during the aggregation interval. |
 
 :::image type="content" source="media/analyze-metrics/aggregations.png" lightbox="media/analyze-metrics/aggregations.png" alt-text="Screenshot that shows the aggregation dropdown list.":::
 
@@ -319,10 +322,10 @@ For more information, see [Create, view, and manage metric alerts](../alerts/ale
 In metrics explorer, the **Drill into Logs** feature helps you diagnose the root cause of anomalies in your metric chart. Drilling into logs allows you to correlate spikes in your metric chart to the following types of logs and queries:
 
 * **Activity log**: Provides insight into the operations on each Azure resource in the subscription from the outside (the management plane) and updates on Azure Service Health events. Use the activity log to determine the what, who, and when for any write operations (`PUT`, `POST`, or `DELETE`) taken on the resources in your subscription. There's a single activity log for each Azure subscription.
-* **Diagnostic log**: Provides insight into operations that you performed within an Azure resource (the data plane). Examples include getting a secret from a key vault or making a request to a database. The content of resource logs varies by the Azure service and resource type. You must enable logs for the resource.
+* **Resource logs**: Provides insight into operations that you performed within an Azure resource (the data plane). Examples include getting a secret from a key vault or making a request to a database. The content of resource logs varies by the Azure service and resource type. You must enable logs for the resource.
 * **Recommended log** Provides scenario-based queries that you can use to investigate anomalies in metrics explorer.
 
-Currently, **Drill into Logs** is available for select resource providers. Resource providers that offer the complete **Drill into Logs** experience include Azure Application Insights, Autoscale, Azure App Service, and Azure Storage.
+Currently, **Drill into Logs** is available for the following resource providers: Azure Application Insights, Autoscale, Azure App Service, and Azure Storage.
 
 1. To diagnose a spike in failed requests, select **Drill into Logs**.
 
