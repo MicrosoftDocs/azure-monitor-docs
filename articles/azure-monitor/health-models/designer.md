@@ -98,6 +98,14 @@ The **Alerts** tab of the [entity editor](#entity-properties) allows you to conf
 For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
 
 
+## Entities view
+The Entities view is useful for quickly finding and editing the signals and alerts for entities in the model. Use it as an alternative to the designer view when you want to focus on the entities and their properties rather than the visual layout of the model.
+
+The view includes a list of all the entities in the health model with their current health state. You can open the same [Entity editor](./designer.md#entity-properties) from this view as you can in the designer view by clicking the entity link.
+
+Modify the filter to show only entities matching particular criteria. For example, set the **Contains signals** filter to **Doesn't contain signals** to list only those entities that don't have any signal definitions associated with them. You can then select each of those entities to add signal definitions.
+
+:::image type="content" source="media/create/entities-view.png" lightbox="media/create/entities-view.png" alt-text="Screenshot of entities view.":::
 
 
 ## Next steps
