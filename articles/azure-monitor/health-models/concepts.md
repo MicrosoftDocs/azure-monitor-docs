@@ -91,6 +91,9 @@ For this functionality, a generic entity is used to aggregate the health of the 
 - Degraded threshold: 4
 - Unhealthy threshold: 3
 
+:::image type="content" source="media/concepts/child-dependencies.png" lightbox="media/concepts/child-dependencies.png" alt-text="Screenshot showing different dependency settings." border="false":::
+
+
 ## Alerts
 Alerts fire when the health state of an entity changes to degraded or unhealthy. Along with action groups, they allow you to be proactively notified when critical issues occur in the workload represented by the health model.
 
