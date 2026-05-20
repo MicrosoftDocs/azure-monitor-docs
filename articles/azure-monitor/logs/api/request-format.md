@@ -2,20 +2,19 @@
 title: Request Format for the Azure Monitor Logs Query API
 description: Learn how to format GET and POST requests for the Azure Monitor Logs query API to run KQL queries. Includes REST, Azure CLI, and Azure PowerShell examples.
 ms.topic: how-to
-ms.date: 05/12/2026
+ms.date: 05/15/2026
 ai-usage: ai-assisted
 
 #customer intent: As a developer, I want to format GET and POST requests for the Azure Monitor Logs query API so that I can run KQL queries against my workspace programmatically.
-
 ---
+
 # Request format for the Azure Monitor Logs query API
 
 The Logs query API lets you run Kusto Query Language (KQL) queries against a Log Analytics workspace through a public REST endpoint. Retrieve or analyze log data programmatically for automation, custom reporting, or integration with other tools.
 
-This article shows how to format `GET` and `POST` requests for the query endpoint, with examples for REST, Azure CLI, and Azure PowerShell. For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis), the [Log Analytics REST API reference](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis), and [API access and authentication](access-api.md).
+This article shows how to format `GET` and `POST` requests for the Logs query API endpoint, including direct REST examples and equivalent Azure CLI commands and Azure PowerShell cmdlets.
 
-> [!NOTE]
-> This article covers the public query endpoint at `api.loganalytics.azure.com`. It doesn't cover Azure Resource Manager (ARM) management operations for Log Analytics workspaces.
+For the broader Azure Monitor API surface, see the [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-apis).
 
 ## Public query endpoint format
 
@@ -39,46 +38,97 @@ Pass these parameters in the query string for `GET` requests or in the JSON body
 
 ## GET request format
 
-For `GET` requests, include request parameters in the query string. For example, to count `AzureActivity` events by `Category`, use the following request:
+For `GET` requests, include request parameters in the query string. For example, to count `AzureActivity` events by `Category` over the last 12 hours, use the following request:
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-This Azure CLI command is part of the generally available `log-analytics` extension, which Azure CLI installs automatically.
+Use `az rest` to call the Logs query API directly.
 
 ```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 workspaceId="myWorkspaceId"
+query="AzureActivity | summarize count() by Category"
+timespan="PT12H"
+logsQueryApiEndpoint="https://api.loganalytics.io"
+resourceId="$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
+
+az account set --subscription "$subscriptionId"
+
+az rest \
+  --method get \
+  --uri "$resourceId?query=$query&timespan=$timespan" \
+  --resource "$logsQueryApiEndpoint"
+```
+
+Alternatively, Azure CLI supports this operation using the [az monitor log-analytics query](/cli/azure/monitor/log-analytics) command. It's part of the generally available `log-analytics` extension, which Azure CLI installs automatically.
+
+```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+workspaceId="myWorkspaceId"
+query="AzureActivity | summarize count() by Category"
+timespan="PT12H"
+
+az account set --subscription "$subscriptionId"
 
 az monitor log-analytics query \
   --workspace "$workspaceId" \
-  --analytics-query "AzureActivity | summarize count() by Category" \
-  --timespan "PT12H"
+  --analytics-query "$query" \
+  --timespan "$timespan"
 ```
 
 # [PowerShell](#tab/powershell)
 
-The [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet (from the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module) queries the Logs API directly. It handles authentication and JSON serialization automatically.
+Use `Invoke-AzRestMethod` to call the Logs query API directly.
 
 ```azurepowershell
+$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
 $workspaceId = 'myWorkspaceId'
+$query = 'AzureActivity | summarize count() by Category'
+$timespan = 'PT12H'
+$logsQueryApiEndpoint = 'https://api.loganalytics.io'
+$resourceId = "$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
+
+Set-AzContext -Subscription $subscriptionId
+
+$restParams = @{
+    Method     = 'GET'
+    Uri        = "${resourceId}?query=$query&timespan=$timespan"
+    ResourceId = $logsQueryApiEndpoint
+}
+
+$response = Invoke-AzRestMethod @restParams
+$results = $response.Content | ConvertFrom-Json
+$results.tables
+```
+
+Alternatively, Azure PowerShell supports this operation using the [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet (from the [Az.OperationalInsights](/powershell/module/az.operationalinsights/) module). It handles authentication and JSON serialization automatically.
+
+```azurepowershell
+$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
+$workspaceId = 'myWorkspaceId'
+$query = 'AzureActivity | summarize count() by Category'
+$timespan = New-TimeSpan -Hours 12
+
+Set-AzContext -Subscription $subscriptionId
 
 $queryParams = @{
     WorkspaceId = $workspaceId
-    Query       = 'AzureActivity | summarize count() by Category'
-    Timespan    = (New-TimeSpan -Hours 12)
+    Query       = $query
+    Timespan    = $timespan
 }
 
 $results = Invoke-AzOperationalInsightsQuery @queryParams
 $results.Results
 ```
 
-Use `-IncludeStatistics` to return query performance data, or `-Wait` to set a server-side timeout in seconds.
+> [!TIP]
+> Use `-IncludeStatistics` to return query performance data, or `-Wait` to set a server-side timeout in seconds.
 
-# [REST API](#tab/rest-api)
+# [REST](#tab/rest)
 
-```rest
-GET https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query?query=AzureActivity%20|%20summarize%20count()%20by%20Category
-Authorization: Bearer {token}
-Content-Type: application/json
+```REST
+GET https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query?query=AzureActivity%20%7C%20summarize%20count%28%29%20by%20Category&timespan=PT12H
+Authorization: Bearer {accessToken}
 ```
 
 ---
@@ -93,55 +143,84 @@ For `POST` requests, send request parameters in the JSON body.
 - If you specify `timespan` in both the query string and the body, the service uses the
   intersection of the two values.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-The `az monitor log-analytics query` command is in the generally available `log-analytics` extension, which Azure CLI installs automatically.
+Use `az rest` to call the Logs query API directly.
 
 ```azurecli
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
 workspaceId="myWorkspaceId"
+logsQueryApiEndpoint="https://api.loganalytics.io"
+resourceId="$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
+payloadFile="./query-payload.json"
 
-az monitor log-analytics query \
-  --workspace "$workspaceId" \
-  --analytics-query "AzureActivity | summarize count() by Category"
+az account set --subscription "$subscriptionId"
+
+az rest \
+  --method post \
+  --uri "$resourceId" \
+  --resource "$logsQueryApiEndpoint" \
+  --headers Content-Type=application/json \
+  --body @"$payloadFile"
 ```
 
-> [!NOTE]
-> The `az monitor log-analytics query` command always sends a POST request internally. The same command syntax works for both `GET` and `POST` query scenarios.
-
-# [PowerShell](#tab/powershell)
-
-```azurepowershell
-$workspaceId = 'myWorkspaceId'
-
-$queryParams = @{
-    WorkspaceId = $workspaceId
-    Query       = 'AzureActivity | summarize count() by Category'
-}
-
-$results = Invoke-AzOperationalInsightsQuery @queryParams
-$results.Results
-```
-
-> [!NOTE]
-> `Invoke-AzOperationalInsightsQuery` always sends a `POST` request internally. The same cmdlet works for both `GET` and `POST` query scenarios. For queries that need the full REST API surface (for example, custom headers or the `Prefer: wait=` timeout), use `Invoke-AzRestMethod` with the full endpoint URL instead.
-
-# [REST API](#tab/rest-api)
-
-```rest
-POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
-Authorization: Bearer {token}
-Content-Type: application/json
-
-{
-  "query": "AzureActivity | summarize count() by Category"
-}
-```
-
-Payload file `query-payload.json`
+**Payload file (query-payload.json):**
 
 ```json
 {
-  "query": "AzureActivity | summarize count() by Category"
+  "query": "AzureActivity | summarize count() by Category",
+  "timespan": "PT12H"
+}
+```
+
+Alternatively, use the [az monitor log-analytics query](/cli/azure/monitor/log-analytics) command which abstracts the HTTP request format and works for both `GET` and `POST` query scenarios. See the [GET request format](#get-request-format) section for a command sample.
+
+# [PowerShell](#tab/powershell)
+
+Use `Invoke-AzRestMethod` to call the Logs query API directly.
+
+```azurepowershell
+$subscriptionId = 'aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e'
+$workspaceId = 'myWorkspaceId'
+$logsQueryApiEndpoint = 'https://api.loganalytics.io'
+$resourceId = "$logsQueryApiEndpoint/v1/workspaces/$workspaceId/query"
+$payloadFile = './query-payload.json'
+
+Set-AzContext -Subscription $subscriptionId
+
+$restParams = @{
+    Method     = 'POST'
+    Uri        = $resourceId
+    ResourceId = $logsQueryApiEndpoint
+    Payload    = Get-Content -Raw -Path $payloadFile
+}
+
+$response = Invoke-AzRestMethod @restParams
+$results = $response.Content | ConvertFrom-Json
+$results.tables
+```
+
+**Payload file (query-payload.json):**
+
+```json
+{
+  "query": "AzureActivity | summarize count() by Category",
+  "timespan": "PT12H"
+}
+```
+
+Alternatively, use the [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet which abstracts the HTTP request format and works for both `GET` and `POST` query scenarios. See the [GET request format](#get-request-format) section for a cmdlet sample.
+
+# [REST](#tab/rest)
+
+```REST
+POST https://api.loganalytics.azure.com/v1/workspaces/{workspaceId}/query
+Authorization: Bearer {accessToken}
+Content-Type: application/json
+
+{
+  "query": "AzureActivity | summarize count() by Category",
+  "timespan": "PT12H"
 }
 ```
 
@@ -152,4 +231,3 @@ Payload file `query-payload.json`
 - [API access and authentication](access-api.md)
 - [Response format for the Log Analytics Query API](response-format.md)
 - [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md#azure-monitor-logs-apis)
-
