@@ -9,52 +9,30 @@ ai-usage: ai-assisted
 ---
 
 # Alerts in Azure Monitor health models (preview)
-Alerts in [Azure Monitor health models](./overview.md) fire when the health state of an entity changes. [Action groups](../alerts/action-groups.md) associated with an alert rule trigger automated responses that can proactively notify you when critical issues ocur in the work load represented by the health model. This article explains alert concepts and how to configure alerts in the designer.
-
-## Alert concepts
-Alerts can be configured independently on any entity in the health model. They can be fired when the entity enters a degraded or an unhealthy state. The only configuration required is the severity and description of the alert.
-
-An alert is fired only when the entity changes state. Even though multiple signals may be degraded or unhealthy, only a single alert is fired. The alert is automatically resolved when the entity returns to a healthy state.
-
-Health model alerts integrate with [Azure Monitor alerts](../alerts/alerts-overview.md) and can use the same [action groups](../alerts/action-groups.md) for notifications and automation.
-
-Health model alerts differ from resource-level alerts because they evaluate entity health states that can include multiple signals and dependency rollup.
-
-:::image type="content" source="media/concepts/alert.png" lightbox="media/concepts/alert.png" alt-text="Diagram of alert created from health state." border="false":::
-
-The following table summarizes key differences.
-
-| Azure resource alert rules | Health entity alert rules |
-|:---|:---|
-| Based on a single metric value or log query from a single resource. | Based on entity health state, which can include multiple signals and child-entity rollup. |
-| Can trigger multiple alerts from one resource when multiple rules fire. | Triggers one alert per entity for the configured health state transition. |
-| Usually uses identical criteria and severity for one resource type. | Supports different criteria and severity by entity role in each model. |
-
-## Build an alert strategy
-You can define alert rules at different levels in the same model for different audiences.
-
-For example, create alerts on Azure resource entities for engineering teams, alerts on generic entities for business or operations teams, and a root alert for executive awareness.
-
-:::image type="content" source="media/concepts/alert-strategy.png" lightbox="media/concepts/alert-strategy.png" alt-text="Diagram of a health model with alert rules at different levels." border="false":::
-
-If you already have resource-level alert rules, those rules continue to fire. Review and disable redundant rules when health model alerts provide better workload context.
+[Alerts in Azure Monitor health models](./overview.md#alerting) fire when the health state of an entity changes. Action groups associated with an alert rule trigger automated responses that can proactively notify you when critical issues occur in the work load represented by the health model. This article explains alert concepts and how to configure alerts in the designer.
 
 ## Configure alerts in the designer
 To configure alerts for an entity:
 
 1. Open the [Designer](./designer.md) for the health model.
 1. Select an entity and choose **Edit**.
-1. On the **Alerts** tab, enable **Degraded**, **Unhealthy**, or both.
-1. Set the alert **Severity**.
-1. Optionally select up to five action groups.
+1. On the **Alerts** tab, enable **Degraded**, **Unhealthy**, or both. The alert fires when the entity enters the corresponding health state based on its signals and child dependencies.
+1. Set the alert **Severity** and provide an optional description.
+1. Optionally select up to five [action groups](../alerts/action-groups.md) depending on your notification requirements.
 1. Save the entity and then select **Save changes** in the designer.
 
 :::image type="content" source="media/designer/entity-editor-alerts.png" lightbox="media/designer/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
 
-### Alert behavior
-When an enabled health state transition occurs, the alert fires for that entity and configured state.
+## Migrate from resource-specific alert rules
+Any resource-specific alert rules configured on an Azure resource will continue to operate when that resource is added to a health model, even if health model alerts are enabled. This could result in duplicate alerts for the same underlying issue. 
 
-Only one alert is created for the entity even when multiple underlying signals contribute to that state.
+There are multiple strategies that you may employ to migrate from resource-specific alert rules to health model alerts:
+
+- Add the Azure resource to a health model and enable signals but not alerts. When a resource-specific alert fires, use the health model signals to analyze the health state of the entity and validate that the health model is correctly reflecting the issue. Once you have confidence in the health model configuration, enable alerts in the health model and disable the resource-specific alert rules.
+- Generate both alerts until you can validate that the health model alerts are firing as expected, and then disable the resource-specific alert rules to avoid duplicates.
+- Import alerts from resource-specific alert rules to the health model using the **Import from alert rule** option when adding signals in the designer. This creates signals based on the alert rule criteria and alert rules based on the alert rule configuration. You can then disable the original resource-specific alert rules to avoid duplicates.
+
+
 
 ## Next steps
 - [Understand health model concepts](./concepts.md)

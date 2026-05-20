@@ -11,8 +11,22 @@ ai-usage: ai-assisted
 # Discover entities for Azure Monitor health models (preview)
 Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains each discovery kind, how discovery recommendations work, and how to assign a parent entity for discovered entities.
 
+## Create and run a discovery rule
+1. Open the health model, and then select **Discovery**.
+1. Select **Create**, and then choose a discovery kind.
+1. Enter a display name.
+1. Select the authentication setting to use for discovery.
+1. Optionally select a parent entity.
+1. Configure kind-specific scope or conditions.
+1. Set **Discover relationships** and **Add recommended signals** based on your needs.
+1. Review **Results preview**, and then select **Create**.
+
+:::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of creating a Resource graph query discovery rule with authentication setting, parent entity selection, conditions, and options for discovering relationships and adding recommended signals.":::
+
+
+
 ## Discovery kinds
-There are three kinds of discoveries shown in the following table. You can use any combination of discoveries in a single health model depending on your requirements.
+There are three kinds of discoveries shown in the following table. You can use any combination of discoveries, including multiple discoveries of the same type, in a single health model depending on your requirements.
 
 | Discovery kind | Description | Best for |
 |:---|:---|:---|
@@ -23,7 +37,7 @@ There are three kinds of discoveries shown in the following table. You can use a
 ## Discovery frequency
 All discoveries run every 5 minutes. This value can't be modified.
 
-## Discovery concepts
+## Discovery settings
 A discovery rule defines how entities are found and added to your model.
 
 :::image type="content" source="media/discoveries/discovery-kinds.png" lightbox="media/discoveries/discovery-kinds.png" alt-text="Screenshot of the Discovery view with the Create menu showing Application Insights topology, Resource graph query, and Service group discovery kinds.":::
@@ -38,59 +52,31 @@ Each discovery rule includes these core settings:
 | Parent entity | Any entities added by the discovery are attached as children of this entity. If you don't select a parent entity, a new generic entity is created for the discovery rule. |
 | Discover relationships | When enabled, discovery attempts to create relationships between discovered entities when supported. |
 | Add recommended signals | When enable, the [recommended signals]() for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
-| Results preview | Preview list of resources discovery can currently find with the configured scope and conditions. |
+
 
 
 
 ### Application Insights topology settings
-When you create an **Application Insights topology** discovery rule, configure:
+When you create an **Application Insights topology**, you select an Application Insights resource in your subscription or a subscription you have access to. No other configuration is required other than the common settings. The components in the Application Insights topology are discovered as entities in the health model with relationships based on the dependencies in the topology.
 
-- **Source: Application Insights** - Select the Application Insights resource that discovery reads topology from.
-- **Authentication setting** - Select the identity used to enumerate and run discovery.
-- **Resource access authentication setting** - Select the identity used to read source resource details required by topology discovery.
-- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
-- **Discover relationships** and **Add recommended signals** - Enable these options to populate topology edges and baseline signals.
-
-:::image type="content" source="media/discoveries/create-app-insights-discovery.png" lightbox="media/discoveries/create-app-insights-discovery.png" alt-text="Screenshot of creating an Application Insights topology discovery rule with source selection, authentication settings, parent entity selection, and configuration options.":::
 
 ### Resource graph query settings
-When you create a **Resource graph query** discovery rule, configure:
+When you create a **Resource graph query** discovery rule, you create a [KQL query](/azure/governance/resource-graph/samples/starter) that retrieves the resources you want. You can select between *Simple view* which prompts you for each property value and *Query view* which allows you work with the full query text.
 
-- **Scope** - Select the subscription or subscriptions to evaluate in the query.
-- **Query** - Enter an Azure Resource Graph query that returns the resources you want to discover.
-- **Authentication setting** - Select the identity used to run the query and enumerate matching resources.
-- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
-- **Discover relationships** and **Add recommended signals** - Enable these options to add supported relationships and baseline signals for matched resources.
+Select **Refresh preview** to see the results of your query and verify that it returns the expected resources before you create the discovery rule.
 
-Use **Results preview** to validate that the query returns the intended resources before you create the rule.
+:::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
 
 ### Service group settings
-When you create a **Service group** discovery rule, configure:
+When you create a **Service group** discovery rule, you select a service group in your tenant. This will create a Resource graph query that retrieves the members of the service group as entities in the health model. You can simply accept this query or modify it as you would a Resource graph query discovery.
 
-- **Source: Service group** - Select the service group that provides the discovery scope.
-- **Authentication setting** - Select the identity used to enumerate service group members.
-- **Parent entity** - Optionally select a parent. If not selected, a parent entity is created for the rule.
-- **Discover relationships** and **Add recommended signals** - Enable these options to add relationships and supported baseline signals for discovered members.
+Select **Refresh preview** to see the results of your query and verify that it returns the expected resources before you create the discovery rule.
 
-If you start from a service group experience, you can create a health model from the service group monitoring page and then configure discovery in the model.
-
-:::image type="content" source="media/create/create-from-service-group.png" lightbox="media/create/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
+:::image type="content" source="media/discoveries/create-from-service-group.png" lightbox="media/discoveries/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
 
 ## Multiple discoveries
 A single health model can use multiple discoveries, including multiple rules of the same type. For example, you might use multiple Resource graph query discoveries to find resources by tag values and attach them to different parent entities. If the same resource is discovered by more than one rule, each rule creates a separate entity in the model that represent the same resource.
 
-
-## Create and run a discovery rule
-1. Open the health model, and then select **Discovery**.
-1. Select **Create**, and then choose a discovery kind.
-1. Enter a display name.
-1. Select the authentication setting to use for discovery.
-1. Optionally select a parent entity.
-1. Configure kind-specific scope or conditions.
-1. Set **Discover relationships** and **Add recommended signals** based on your needs.
-1. Review **Results preview**, and then select **Create**.
-
-:::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of creating a Resource graph query discovery rule with authentication setting, parent entity selection, conditions, and options for discovering relationships and adding recommended signals.":::
 
 
 ## Next steps

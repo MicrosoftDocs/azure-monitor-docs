@@ -21,7 +21,7 @@ State-based monitoring provides the following benefits over exclusively alert-ba
 - Define relationships between workload components to identify health dependencies and track overall workload health.
 - Create generic entities to aggregate the health of related entities in the health model.
 
-:::image type="content" source="media/overview/sample-health-model.png" lightbox="media/overview/sample-health-model.png" alt-text="Screenshot of an example health model." :::
+:::image type="content" source="media/overview/sample-health-model.png" lightbox="media/overview/sample-health-model.png" alt-text="Screenshot of an example health model." border="false":::
 
 
 ## Track health
@@ -52,6 +52,12 @@ Azure Monitor health models provide a graphical designer to arrange entities, de
 Health models allow you to create alerts based on health state instead of individual signals. Alert on unhealthy entities or on aggregate health that represents business impact across multiple dependencies. This approach reduces alert noise, focuses investigations on workload impact, and uses the same action groups as other Azure Monitor alerts.
 
 :::image type="content" source="media/overview/sample-alert-rule.png" lightbox="media/overview/sample-alert-rule.png" alt-text="Screenshot of configuring details of an alert rule for a sample health model." :::
+
+You can define alert rules at different levels in the same model for different audiences. For example, create alerts on Azure resource entities for engineering teams, alerts on generic entities for business or operations teams, and a root alert for executive awareness.
+
+:::image type="content" source="media/concepts/alert-strategy.png" lightbox="media/concepts/alert-strategy.png" alt-text="Diagram of a health model with alert rules at different levels." border="false":::
+
+
 
 ## Next steps
 

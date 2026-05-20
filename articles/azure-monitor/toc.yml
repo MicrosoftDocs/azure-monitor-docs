@@ -584,16 +584,8 @@ items:
         displayName: health models
         href: health-models/tutorial.md
     - name: Concepts
-      items:
-      - name: Entities and health state
-        displayName: health models
-        href: health-models/concepts.md
-      - name: Discoveries
-        displayName: health models
-        href: health-models/discoveries.md
-      - name: Alerts
-        displayName: health models
-        href: health-models/alerts.md
+      displayName: health models
+      href: health-models/concepts.md
     - name: Create and configure
       items:
       - name: Create a health model
@@ -605,6 +597,12 @@ items:
       - name: Configure signals
         displayName: health models
         href: health-models/signals.md
+      - name: Create discoveries
+        displayName: health models
+        href: health-models/discoveries.md
+      - name: Configure alerts
+        displayName: health models
+        href: health-models/alerts.md
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md

@@ -17,7 +17,7 @@ Entities are the building blocks of an [Azure Monitor health model](./overview.m
 
 There are three distinct types of entities as described in the following sections.
 
-:::image type="content" source="media/concepts/entities.png" lightbox="media/concepts/entities.png" alt-text="Screenshot showing entity types.":::
+:::image type="content" source="media/concepts/entities.png" lightbox="media/concepts/entities.png" alt-text="Screenshot showing entity types." border="false":::
 
 | Entity type | Description |
 |:---|:---|
@@ -62,8 +62,8 @@ The following example illustrates health propagation in a sample health model. S
 ## Health propagation settings
 The default health propagation behavior can be modified on both the parent and child entity using the *impact* and *dependencies* settings as described in the following sections. This allows you to tune health propagation to fit the specific needs of your workload and to accurately represent the health of your application.
 
-### Impact
-The *impact* setting of an entity determines how its health state is propagated to its parent(s). The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
+### Impact (child)
+The *impact* setting of a child entity determines how its health state is propagated to its parent(s). The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
 
 | Option | Description |
 |:-------|:------------|
@@ -75,8 +75,8 @@ The following sample shows the effect of each impact setting. Each of the child 
 
 :::image type="content" source="media/concepts/health-impact.png" lightbox="media/concepts/health-impact.png" alt-text="Screenshot of an example health model showing different impact settings." border="false":::
 
-### Dependencies
-The *dependencies* setting of an entity determines how its health state is propagated from its child(ren). The following table describes the different dependency settings. Select the setting for each entity in the [entity editor](#entities).
+### Dependencies (parent)
+The *dependencies* setting of a parent entity determines how its health state is propagated from its child(ren). The following table describes the different dependency settings. Select the setting for each entity in the [entity editor](#entities).
 
 | Option | Description |
 |:-------|:------------|
@@ -91,19 +91,22 @@ For this functionality, a generic entity is used to aggregate the health of the 
 - Degraded threshold: 4
 - Unhealthy threshold: 3
 
-### Health objective
+## Alerts
+Alerts fire when the health state of an entity changes to degraded or unhealthy. Along with action groups, they allow you to be proactively notified when critical issues occur in the workload represented by the health model.
+
+While health models generate the same alerts as [resource-specific alert rules](../alerts/alerts-overview.md) in Azure Monitor and use the same [action groups](../alerts/action-groups.md) for notifications and automation, they provide significant advantages:
+
+- Automatically resolved when the entity returns to a healthy state. 
+- Reduce alert noise by firing only a single alert when health state changes even though multiple signals may be degraded or unhealthy.
+- Fire alerts on a parent entity consolidating the health of multiple child entities.
+
+
+## Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).
 
 Following is a history from [Entity details](./analyze-health.md#entity-details) for a sample entity showing health objective reporting.
 
 :::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting.":::
-
-
-## Alerts
-Alerts notify you when the health state of an entity changes. 
-
-For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
-
 
 
 ## Next steps
