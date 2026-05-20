@@ -30,6 +30,6 @@ For governance at scale, use Azure Policy to control which subscriptions can ena
 
 ## Related content
 
-- [Observability Agent in Azure Monitor overview](/azure/azure-monitor/observability-agent/overview)
+- [Observability Agent in Azure Monitor overview](../aiops/observability-agent-overview.md)
 - [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/)
 
