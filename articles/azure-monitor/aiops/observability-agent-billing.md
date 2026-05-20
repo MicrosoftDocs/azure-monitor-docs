@@ -1,6 +1,6 @@
 ---
 title: Billing and cost management for Observability Agent in Azure Monitor
-description: Learn how the Azure Monitor Observability Agent is billed, what's billable, when charges begin, and how to manage costs in Azure Cost Management.
+description: Learn how the Azure Monitor Observability Agent is billed, what's billable, when charges begin, and how to manage costs in Microsoft Cost Management.
 ms.topic: concept-article
 ms.service: azure-monitor
 ms.date: 05/12/2026
@@ -24,7 +24,7 @@ Charges are scoped to the **Azure subscription** of the monitored resource.
 
 ## Monitor and manage costs
 
-Observability Agent charges appear in **Azure Cost Management** alongside your other Azure Monitor costs.
+Observability Agent charges appear in **Microsoft Cost Management** alongside your other Azure Monitor costs.
 
 For governance at scale, use Azure Policy to control which subscriptions can enable the agent.
 
