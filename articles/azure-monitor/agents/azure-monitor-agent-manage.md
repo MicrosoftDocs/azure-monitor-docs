@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 05/11/2026
+ms.date: 05/18/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -245,6 +245,25 @@ Install the templates by using [any deployment method for Resource Manager templ
     ```
 
 ---
+
+## Linux user accounts created during installation
+
+When you install the Azure Monitor Agent on a Linux machine, the agent creates local user accounts to run its component services securely. Each account runs under its own dedicated user context to isolate privileges and follow Linux security best practices for service management.
+
+The following table lists the accounts that the Azure Monitor Agent creates.
+
+| Account | Purpose | When it appears |
+|:---|:---|:---|
+| `azuremonitoragent` | Runs the Azure Monitor Agent service process (`mdsd`) for log and metric collection. | Agent extension installation. |
+| `azureotelcollector` | Runs the OpenTelemetry Collector component that gathers observability data (metrics, logs, traces) from the VM and forwards it to Azure Monitor. | When the agent is enabled with OpenTelemetry data collection. |
+| `azuremetricsext` | Runs the Metrics Extension, which consumes metrics emitted by the agent and sends them to Azure Monitor Metrics. The Metrics Extension operates independently but is launched and managed by the agent. | When the Metrics Extension is deployed. |
+
+> [!IMPORTANT]
+> Don't delete or modify these accounts. Removing them can prevent the agent from functioning correctly.
+
+### Azure Arc user accounts
+
+On Azure Arc-enabled servers, the Azure Connected Machine Agent and its extension framework create additional local user accounts (`himds`, `arcproxy`, `arcuser`) as part of the prerequisite infrastructure. These accounts aren't created by the Azure Monitor Agent. For more information about Arc-related accounts and their purpose, see [Azure Connected Machine Agent overview](/azure/azure-arc/servers/agent-overview).
 
 ## Verify installation
 
