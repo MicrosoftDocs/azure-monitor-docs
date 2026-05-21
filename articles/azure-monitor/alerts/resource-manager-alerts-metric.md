@@ -99,6 +99,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -257,6 +258,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -440,6 +442,7 @@ param windowSize string = 'PT5M'
 @description('how often the metric alert is evaluated represented in ISO 8601 duration format')
 @allowed([
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -623,6 +626,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "defaultValue": "PT5M",
       "allowedValues": [
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -798,6 +802,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -919,6 +924,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -1101,6 +1107,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -1214,6 +1221,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -1381,6 +1389,7 @@ param windowSize string = 'PT5M'
 @description('how often the metric alert is evaluated represented in ISO 8601 duration format')
 @allowed([
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -1489,6 +1498,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "defaultValue": "PT5M",
       "allowedValues": [
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -1680,6 +1690,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -1846,6 +1857,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -2104,6 +2116,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
 ])
@@ -2322,6 +2335,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M"
       ],
@@ -2565,6 +2579,7 @@ param windowSize string = 'PT5M'
 @description('how often the metric alert is evaluated represented in ISO 8601 duration format')
 @allowed([
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -2800,6 +2815,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "defaultValue": "PT5M",
       "allowedValues": [
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -3050,6 +3066,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -3271,6 +3288,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -3514,6 +3532,7 @@ param windowSize string = 'PT5M'
 @description('how often the metric alert is evaluated represented in ISO 8601 duration format')
 @allowed([
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -3751,6 +3770,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "defaultValue": "PT5M",
       "allowedValues": [
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -4000,6 +4020,7 @@ param windowSize string = 'PT5M'
 @allowed([
   'PT1M'
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -4219,6 +4240,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "allowedValues": [
         "PT1M",
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
@@ -4463,6 +4485,7 @@ param windowSize string = 'PT5M'
 @description('how often the metric alert is evaluated represented in ISO 8601 duration format')
 @allowed([
   'PT5M'
+  'PT10M'
   'PT15M'
   'PT30M'
   'PT1H'
@@ -4698,6 +4721,7 @@ resource metricAlert 'Microsoft.Insights/metricAlerts@2018-03-01' = {
       "defaultValue": "PT5M",
       "allowedValues": [
         "PT5M",
+        "PT10M",
         "PT15M",
         "PT30M",
         "PT1H"
