@@ -23,17 +23,142 @@ The following table describes signal types and their data sources.
 ## Configure signals in the designer
 The Signals tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in Signal details. If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
 
-:::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
+:::image type="content" source="media/designer/signals-empty.png" lightbox="media/designer/signals-empty.png" alt-text="Screenshot of signals page for an entity.":::
 
+When you add the first signal of a particular type to an entity, you must specify the following properties. You can change these properties later.
 
 | Property | Description |
 |:---|:---|
-| Data source | Source that signal assignments use for evaluation and threshold comparison. Each entity can use one data source per signal type. |
-| Authentication setting | Authentication used to read from the data source. The model managed identity is used by default. Select another authentication setting when needed. |
-
-For discovery scenarios, make sure the managed identity has required read permissions for discovery scope and data sources. For details, see [Permissions required](./create.md#permissions-required). |
+| Data source | The signals that are added to the entity will access this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signals](./concepts.md#signals). |
+| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#authentication-settings) view.<br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
 
 
+### Add and remove signals
+Each type of signal has the following options. Click on a signal to edit its definition.
+
+- **Add signal assignment:** -  Create a new signal or select from sets of existing signals. 
+- **Remove assignment** -  Enabled when one or more signals are selected. Removes the signal assignment from the entity, but doesn't delete the signal definition. The signal can still be assigned to other entities in the model.
+
+### Add assignments
+When you click **Add a signal assignment** in the entity editor, the options will vary depending on the signal type. 
+
+- **Select existing:** - Select from existing metric signals that have been added to other entities in the health model. This allows you to reuse the same signal definition across multiple entities. 
+- **Recommended:** - Select from a set of recommended signals and thresholds for the resource type. Once you select a recommended signal, it's added to existing signals. Azure resource signals only.
+- **Create new:** - Create a new metric signal definition. This allows you to define a custom metric signal for the entity that can be used with other entities of the same type.
+
+### Signal details
+
+The following table describes the different types of signals that can be used in a health model and their data sources. 
+
+| Signal type | Data source |
+|:---|:---|
+| Azure resource | Sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold. |
+| Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
+| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
+
+
+The details required for each signal will vary depending on its type.
+
+### [Azure resource](#tab/azureresource)
+#### Azure resource signals
+Azure resource signals sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold to determine the health state. Only metric definitions that are supported for the resource type of the Azure resource represented by the entity are available.
+
+
+:::image type="content" source="media/designer/azure-resource-signals.png" lightbox="media/designer/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
+
+#### Signal properties
+
+The following tables describe the properties that define an Azure resource signal definition.
+
+
+| Setting | Description |
+|:---|:---|
+| Display name | The name of the signal as it appears in the health model. This defaults to the name of the metric but can be modified later. |
+| Refresh interval | The interval at which the metric data is refreshed. This is typically set to 1 minute, but can be set to a longer interval if desired. |
+| Metric namespace | The namespace of the metric. Each resource type will typically have a single namespace, but some resource types may have multiple. Each namespace has its own set of metrics. |
+| Metric | Metric to use for the signal. In the Azure portal, you can select from a list of all metrics in the selected namespace. The most commonly used metrics for the resource type are listed at the top. |
+| Description | Description of the metric. This is a read-only value that is provided by the metric definition. |
+| Dimension | Dimension for the signal if the metric supports them. Dimensions are used to define difference instances of the metric on the Azure resource.  |
+| Dimension filter | Only available if a dimension is selected. Filters data for only the specified dimension value. |
+| Aggregation Type | Method used to aggregate the different data samples over the *Time grain*. Metric data is sampled every minute, so there will typically be multiple values collected over the time grain specified for the signal. Different aggregations will be available for different metrics.<br><br>Examples of common aggregations include:<br><br>- Average - Average of the values collected over the time grain<br>- Maximum - Maximum of the different values collected over the time grain<br>- Total - Sum total of the values collected over the time grain |
+| Time grain | Length of time over which metric values are collected and then aggregated using the specified aggregation method. |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. Select **Remove threshold** to not use a degraded threshold. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+### [Log Analytics workspace](#tab/loganalyticsworkspace)
+
+### Log Analytics workspace signals
+Log Analytics workspace signals run a [log query](../logs/queries.md) against a Log Analytics workspace and compare the results to the thresholds to determine the health state. Use log signals to search for errors in log data or to perform complex calculations on numeric data stored in the Log Analytics workspace.
+
+:::image type="content" source="media/designer/log-signals.png" lightbox="media/designer/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
+
+#### Log Analytics workspace
+Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity, but you can have multiple signals using different log queries from this workspace.
+
+#### Log query
+The log query must return a single record with a numeric value. If the record includes multiple columns, then you can specify which column to use as the signal value. The query should return a single record. If it returns multiple records, then only the first record is used.
+
+The following example shows a log query that returns a count of error logs in the last hour. 
+
+```kusto
+ContainerLogV2
+| where _ResourceId == '/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.containerservice/managedclusters/my-cluster' 
+| where LogSource == 'stderr'
+| summarize value = count()
+```
+
+#### Signal properties
+The following table describes the properties that define Log Analytics workspace signal definition.
+
+| Setting | Description |
+|:---|:---|
+| Display name | Name of the signal as it appears in the health model. |
+| Refresh interval | How often the query should be run. |
+| Query text | The text of the log query to run. Click **Edit query** to create a new query or edit an existing one. Log Analytics interface is displayed where you can write queries and test the results. |
+| Query time range | The time range for the records retrieved by the query. It will only retrieve data from this time range. The value is set in the query editor when you edit the query. |
+| Value column name | The name of the column returned from the query that contains the value to compare to the thresholds for each health state. |
+| Data unit | Label for the units of the value returned from the query. This doesn't affect the results but only how the value is displayed. |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+
+### [Azure Monitor workspace](#tab/azuremonitorworkspace)
+
+### Azure Monitor workspace signals
+Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus data and evaluate the results to determine the health state. Use Azure Monitor workspace signals in place of metric signals for resources that have metric data scraped by [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md). The log query must return a single record with a numeric value. 
+
+#### Azure Monitor workspace
+Before you can create an Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
+
+#### Signal properties
+The following table describes the properties that define Azure Monitor workspace signal definition.
+
+
+| Setting | Description |
+|:---|:---|
+| Display name | Name of the signal as it appears in the health model. |
+| Refresh interval | How often the query should be run. |
+| Query text | The text of the PromQL query to run. The query must return a single record with a numeric value. If it returns multiple records, then only the first record is used. |
+| Query time range | The time range for the records retrieved by the query. It will only retrieve data from this time range.  |
+| Data unit | The unit of measurement for the signal data. |
+| Degraded threshold | If this calculation is true, and the Unhealthy calculation is false, then the state of the entity is set to **Degraded**. If both this and the Unhealthy calculation are false, then the health of the entity is set to **Healthy**. |
+| Unhealthy threshold | If this calculation is true, then the state of the entity is set to **Unhealthy**. If this calculation is false, then the **Degraded** threshold is checked. |
+
+---
+
+#### Signal definitions
+A signal definition includes all of the properties required to uniquely define the signal and the thresholds that determine the health state to set. This allows different definitions to be used for the signal but with different thresholds.
+
+You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, you would create multiple signal definitions using the same metric but with different thresholds. In the following example, there are two definitions for **Percentage CPU** because they have different thresholds.
+
+:::image type="content" source="media/designer/signal-definitions.png" lightbox="media/designer/signal-definitions.png" alt-text="Screenshot of list of signal definitions." :::
+
+### Thresholds
+Thresholds are numeric values that are compared to the value of the signal to determine the health state of the entity. Each signal definition has two thresholds, one for the **Degraded** state and one for the **Unhealthy** state. The degraded threshold is optional, but the unhealthy threshold is required. 
+
+You can specify the operator for each threshold to determine how the signal value is compared. Some signals might indicate a degraded or unhealthy state when the value is above the threshold, while others might indicate a degraded or unhealthy state when the value is below the threshold. 
+
+To define both thresholds for a signal definition ensure that degraded threshold is set to a value that is less than the unhealthy threshold. The degraded state will be set if the signal value is between the degraded and unhealthy thresholds. If the signal value is above the unhealthy threshold, then the entity is set to the unhealthy state. If the signal value is below the degraded threshold, then the entity is set to the healthy state.
 
 
 
@@ -41,60 +166,20 @@ For discovery scenarios, make sure the managed identity has required read permis
 
 
 
-### Add signal assignments
-When you select **Add signal assignment**, use one of the following options:
 
-- **Select existing** - Reuse a signal definition already used in the model.
-- **Recommended** - Add recommended signals and default thresholds for supported resource types.
-- **Create new** - Create a new signal definition for the entity.
+
+
+
+
+
+
+
+
 
 ### Recommended signals
 Recommended signals provide a fast starting point for supported Azure resource types. They include predefined metrics and default degraded and unhealthy thresholds that you can tune after assignment.
 
 Use recommended signals to bootstrap quickly, and then adjust thresholds based on workload behavior and service-level objectives.
-
-## Configure signal types
-### Azure resource signals
-Azure resource signals evaluate supported metrics for the resource type represented by the entity.
-
-:::image type="content" source="media/designer/azure-resource-signals.png" lightbox="media/designer/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
-
-Common properties include metric namespace, metric name, dimension filters, aggregation type, time grain, and degraded/unhealthy thresholds.
-
-### Log Analytics workspace signals
-Log Analytics workspace signals run a KQL query and compare the returned numeric value to thresholds.
-
-:::image type="content" source="media/designer/log-signals.png" lightbox="media/designer/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
-
-The query must return a single record with a numeric value. If multiple records are returned, only the first record is used.
-
-Example query:
-
-```kusto
-ContainerLogV2
-| where _ResourceId == '/subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/my-resource-group/providers/microsoft.containerservice/managedclusters/my-cluster'
-| where LogSource == 'stderr'
-| summarize value = count()
-```
-
-### Azure Monitor workspace signals
-Azure Monitor workspace signals evaluate Prometheus data by running a PromQL query. Use this signal type when workloads use [Azure Monitor managed service for Prometheus](../essentials/prometheus-metrics-overview.md).
-
-The query must return a single record with a numeric value. If multiple records are returned, only the first record is used.
-
-## Signal definitions and thresholds
-A signal definition contains all properties required to evaluate a signal and map results to health states.
-
-You can reuse a definition across entities, or create separate definitions for the same metric with different thresholds.
-
-:::image type="content" source="media/designer/signal-definitions.png" lightbox="media/designer/signal-definitions.png" alt-text="Screenshot of list of signal definitions.":::
-
-Each definition supports:
-
-- **Degraded threshold** - Optional threshold for degraded state.
-- **Unhealthy threshold** - Required threshold for unhealthy state.
-
-Choose comparison operators and threshold values based on expected workload behavior.
 
 ## Reusable signals
 Rather than manually create every signal, there are two options to use signals that have already been defined.
