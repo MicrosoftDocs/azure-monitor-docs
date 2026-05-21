@@ -35,6 +35,10 @@ Enable application monitoring for **Azure Kubernetes Service (AKS)** and send OT
 - **Create or select** an Application Insights resource with **Enable OTLP Support (Preview)** and **Use managed workspaces** set to **Yes**.
 - **Onboard applications** per namespace or per deployment by using either:
   - **Autoinstrumentation** for **Java** and **Node.js**.
+
+    > [!NOTE]
+    > To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
+
   - **Autoconfiguration** for apps already instrumented with OpenTelemetry Software Development Kits (SDKs).
 
 For more information, see [Monitor AKS applications with OpenTelemetry Protocol (OTLP) Preview](kubernetes-open-protocol.md).
