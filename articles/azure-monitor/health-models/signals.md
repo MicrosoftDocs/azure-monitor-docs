@@ -11,14 +11,6 @@ ai-usage: ai-assisted
 # Signals in Azure Monitor health models (preview)
 Signals determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
 
-## Signal concepts
-A signal is a value from a metric or query that's periodically compared to threshold values for each health state. A single entity can have one or more signals  that collectively determine its health state. 
-
-Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources.
-
-The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses on how to interpret that data in the context of the role of the resource in the workload.
-
-:::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
 
 ### Signal types
 The following table describes signal types and their data sources.
@@ -29,17 +21,8 @@ The following table describes signal types and their data sources.
 | Log Analytics workspace | Runs a [log query](../logs/queries.md) from a Log Analytics workspace and evaluates the result. |
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 
-## Reusable signals
-Rather than manually create every signal, there are two options to use signals that have already been defined.
-
-| Reusable signal | Description |
-|:---|:---|
-| Recommended signals | Prebuilt signals for supported resource types with default degraded and unhealthy thresholds. |
-| Signal definitions | Reusable signal configurations that you create once and apply across multiple entities for consistent logic and easier maintenance. |
-| Import from alert rule | Automtically create signals from alert rules applied to the Azure resource. |
-
 ## Configure signals in the designer
-To configure signals for an entity, open the [Designer](./designer.md), select the entity, and then select **Edit**.
+To configure signals for an entity, open the [Designer](./designer.md), select the entity, and then select **Edit**. 
 
 On the **Signals** tab, configure these properties when you add the first signal for a signal type:
 
@@ -49,6 +32,21 @@ On the **Signals** tab, configure these properties when you add the first signal
 | Authentication setting | Authentication used to read from the data source. The model managed identity is used by default. Select another authentication setting when needed. |
 
 For discovery scenarios, make sure the managed identity has required read permissions for discovery scope and data sources. For details, see [Permissions required](./create.md#permissions-required).
+
+
+
+
+
+
+## Reusable signals
+Rather than manually create every signal, there are two options to use signals that have already been defined.
+
+| Reusable signal | Description |
+|:---|:---|
+| Recommended signals | Prebuilt signals for supported resource types with default degraded and unhealthy thresholds. |
+| Signal definitions | Reusable signal configurations that you create once and apply across multiple entities for consistent logic and easier maintenance. |
+| Import from alert rule | Automtically create signals from alert rules applied to the Azure resource. |
+
 
 ### Add signal assignments
 When you select **Add signal assignment**, use one of the following options:

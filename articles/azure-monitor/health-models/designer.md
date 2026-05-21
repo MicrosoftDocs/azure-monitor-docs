@@ -87,15 +87,11 @@ The **General** tab of the entity editor allows you to configure the properties 
 
 
 ## Signals
-The **Signals** tab of the [entity editor](#entity-properties) allows you to create or edit signals and assign them to the entity.
-
-For signal concepts, signal types, recommended signals, signal definitions, and threshold configuration, see [Signals in Azure Monitor health models](./signals.md).
+The **Signals** tab of the [entity editor](#entity-properties) allows you to create or edit signals and assign them to the entity. For signal concepts, signal types, recommended signals, signal definitions, and threshold configuration, see [Signals in Azure Monitor health models](./signals.md).
 
 
 ## Alerts
-The **Alerts** tab of the [entity editor](#entity-properties) allows you to configure alerts for the entity.
-
-For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
+The **Alerts** tab of the [entity editor](#entity-properties) allows you to configure alerts for the entity. For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
 
 
 ## Entities view

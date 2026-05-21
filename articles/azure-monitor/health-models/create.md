@@ -50,10 +50,6 @@ If you don't add the identities when the health model is created, you can add th
 
 :::image type="content" source="media/create/authentication-settings.png" lightbox="media/create/authentication-settings.png" alt-text="Screenshot of authentication settings view.":::
 
-## Configure a health model
-You'll perform most of the configuration in the **Designer**, which is a visual tool that provides access to all the configuration options for the entities in the health model. Get complete details on the designer and the different configuration options it provides in [Configure an Azure Monitor health model using the designer](./designer.md).
-
-
 ## Next steps
 - [Configure a health model using the designer](./designer.md).
 - [Understand the concepts of health models](./concepts.md).
