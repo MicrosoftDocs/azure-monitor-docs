@@ -49,11 +49,11 @@ Microsoft publishes release notes after the rollout completes. This timing ensur
 
 If you need the latest version before it reaches your resources:
 
-*   Manually install a version once it becomes available in your region. For more information, see [Azure Monitor agent installation and management guidance](https://learn.microsoft.com/azure/azure-monitor/agents/azure-monitor-agent-overview).
+*   Manually install a version once it becomes available in your region. For more information, see [Azure Monitor agent installation and management guidance](azure-monitor-agent-overview.md).
 
 ### Recommendation
 
-For most scenarios, [enable automatic extension updates](https://learn.microsoft.com/us/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems eventually stay current with supported versions.
+For most scenarios, [enable automatic extension updates](/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems eventually stay current with supported versions.
 
 ## Version summary
 
