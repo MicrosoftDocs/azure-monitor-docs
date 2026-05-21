@@ -53,7 +53,7 @@ If you need the latest version before it reaches your resources:
 
 ### Recommendation
 
-For most scenarios, [enable automatic extension updates](/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems eventually stay current with supported versions.
+For most scenarios, [enable automatic extension updates](azure/virtual-machines/automatic-extension-upgrade) to ensure your systems eventually stay current with supported versions.
 
 ## Version summary
 
