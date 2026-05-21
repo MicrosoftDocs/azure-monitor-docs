@@ -11,7 +11,6 @@ ai-usage: ai-assisted
 # Signals in Azure Monitor health models (preview)
 Signals determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
 
-
 ### Signal types
 The following table describes signal types and their data sources.
 
@@ -22,30 +21,24 @@ The following table describes signal types and their data sources.
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 
 ## Configure signals in the designer
-To configure signals for an entity, open the [Designer](./designer.md), select the entity, and then select **Edit**. 
+The Signals tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in Signal details. If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
 
-On the **Signals** tab, configure these properties when you add the first signal for a signal type:
+:::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
+
 
 | Property | Description |
 |:---|:---|
 | Data source | Source that signal assignments use for evaluation and threshold comparison. Each entity can use one data source per signal type. |
 | Authentication setting | Authentication used to read from the data source. The model managed identity is used by default. Select another authentication setting when needed. |
 
-For discovery scenarios, make sure the managed identity has required read permissions for discovery scope and data sources. For details, see [Permissions required](./create.md#permissions-required).
+For discovery scenarios, make sure the managed identity has required read permissions for discovery scope and data sources. For details, see [Permissions required](./create.md#permissions-required). |
 
 
 
 
 
 
-## Reusable signals
-Rather than manually create every signal, there are two options to use signals that have already been defined.
 
-| Reusable signal | Description |
-|:---|:---|
-| Recommended signals | Prebuilt signals for supported resource types with default degraded and unhealthy thresholds. |
-| Signal definitions | Reusable signal configurations that you create once and apply across multiple entities for consistent logic and easier maintenance. |
-| Import from alert rule | Automtically create signals from alert rules applied to the Azure resource. |
 
 
 ### Add signal assignments
@@ -103,12 +96,24 @@ Each definition supports:
 
 Choose comparison operators and threshold values based on expected workload behavior.
 
+## Reusable signals
+Rather than manually create every signal, there are two options to use signals that have already been defined.
+
+| Reusable signal | Description |
+|:---|:---|
+| Recommended signals | Prebuilt signals for supported resource types with default degraded and unhealthy thresholds. |
+| Signal definitions | Reusable signal configurations that you create once and apply across multiple entities for consistent logic and easier maintenance. |
+| Import from alert rule | Automtically create signals from alert rules applied to the Azure resource. |
+
 ### Signal definitions
 The signal definitions view is useful for understanding the signals that are available in the model and their current thresholds and for cleaning up any unused signals. It provides a list of all the [signal definitions](./designer.md#signal-definitions) in the health model and their thresholds.
 
 You can't add or edit signal definitions from this view, because that requires the context of an entity, but you can delete any signal definitions that aren't used by any entities in the model (indicated by the green tick icon). Select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any signals that are in use are selected.
 
 :::image type="content" source="media/create/signal-definitions-view.png" lightbox="media/create/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
+
+
+
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)
