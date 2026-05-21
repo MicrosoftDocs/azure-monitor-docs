@@ -100,7 +100,7 @@ When you click **Add a signal assignment** in the entity editor, the options wil
 
 
 
-. The following table describes the different types of signals that can be used in a health model and their data sources. 
+The following table describes the different types of signals that can be used in a health model and their data sources. 
 
 | Signal type | Data source |
 |:---|:---|
