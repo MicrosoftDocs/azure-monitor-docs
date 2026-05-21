@@ -143,26 +143,6 @@ With header:
 x-ms-azure-scoping: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 ```
 
-### Using with Grafana
-
-1. Create a new Prometheus data source in Grafana.
-2. Set the Prometheus server URL to `https://query.eastus.prometheus.monitor.azure.com` (or your region).
-3. Configure authentication:
-   - For Azure Managed Prometheus data source: Use Azure authentication.
-   - For OSS Prometheus data source: Use Managed Identity with Monitoring Reader role.
-4. Add a custom HTTP header:
-   - Key: `x-ms-azure-scoping`
-   - Value: Resource ID, resource group ID, or subscription ID
-
-**Example with Grafana variables:**
-
-Create a variable for dynamic scoping:
-- Name: `ResourceScope`
-- Type: `Custom`
-- Values: List of resource IDs or subscription IDs
-
-Use `${ResourceScope}` as the header value to switch between resources without duplicating dashboards.
-
 ## Permissions required
 
 ### Resource-scoped queries

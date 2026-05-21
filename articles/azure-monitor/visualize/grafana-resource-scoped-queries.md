@@ -15,10 +15,12 @@ This article explains how to use resource-scoped queries in Azure Monitor dashbo
 
 ## Supported resources
 
-This experience is supported for the following resource types:
+The following table lists supported resource types and configuration requirements:
 
-- Application Insights resources that are OTLP-enabled and associated with an Azure Monitor workspace.
-- Azure virtual machines emitting OpenTelemetry metrics that are stored in an Azure Monitor workspace This includes VMs using the [metrics-based monitoring experience](/azure/azure-monitor/vm/metrics-opentelemetry-guest).
+| Resource type | Required configuration |
+|---|---|
+| Application Insights | The resource is OTLP-enabled and associated with an Azure Monitor workspace. For onboarding guidance, see [Collect and use observability data in Azure Monitor](/azure/azure-monitor/containers/collect-use-observability-data). |
+| Azure virtual machines | The VM emits OpenTelemetry metrics stored in an Azure Monitor workspace. This includes VMs using the [metrics-based monitoring experience](/azure/azure-monitor/vm/metrics-opentelemetry-guest). |
 
 To use this experience, the selected resource must already send metrics to an Azure Monitor workspace, and ingested metrics must include the **Microsoft.resourceid** label. For Application Insights, resource-scoped queries are supported for OpenTelemetry metrics when the associated data collection rule enriches metrics with the Application Insights resource ID.
 
@@ -37,7 +39,7 @@ Compared to workspace-scoped queries, resource-scoped queries simplify access ma
 | **Aspect** | **Workspace-scoped** | **Resource-scoped** |
 |---|---|---|
 | Query context | All metrics in a selected Azure Monitor workspace | Metrics with the **Microsoft.resourceid** label of a specific resource, resource group, or subscription |
-| Entry point | All Dashboards with Grafana Prometheus data sources | Dashboards with Grafana opened from a supported Azure resource, Prometheus data sources |
+| Entry point | All Dashboards with Grafana Prometheus data sources | Dashboards with Grafana opened from a supported Azure resource's Prometheus data sources |
 | Data source | Azure Monitor workspace name | Current-resource (`<resource-name>`) |
 | Access requirement | **Monitoring Reader** role on the Azure Monitor workspace | **Monitoring Reader** role on the target resource |
 | Resource filtering | Query author manually filters by resource labels such as **Microsoft.resourceid** | Resource scope is applied automatically by the platform |
@@ -60,7 +62,7 @@ Because resource scope is applied automatically, dashboards can use simpler Prom
 
 - Workspace-scoped dashboards remain the better choice for **open-source compatibility** and portability of dashboards to self-hosted or managed Grafana outside the Azure portal.
 - Workspace-scoped dashboards remain the right approach for centralized monitoring teams that need access to data from all resources emitting metrics to the workspace.
-- This experience applies only to supported resource types whose metrics are correctly labeled with the Azure resource.
+- This experience applies only to supported resource types whose metrics are correctly labeled with the Azure resource ID.
 - If metrics aren't labeled with the required Microsoft resource labels, resource-scoped queries will not return results for that resource.
 
 ## Next steps

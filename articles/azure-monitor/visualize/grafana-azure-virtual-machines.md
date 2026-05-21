@@ -9,12 +9,12 @@ ai-usage: ai-assisted
 
 # Use Dashboards with Grafana for Azure Virtual Machines
 
-Dashboards with Grafana for Azure Virtual Machines provides the Azure Monitor Grafana experience directly in the Azure portal. It includes prebuilt dashboards for platform metrics, OpenTelemetry-based VM metrics stored in Azure Monitor workspaces, and classic VM data stored in Log Analytics workspaces. You can customize dashboards by adding panels, modifying queries, and applying Grafana transformations. You can save and share dashboards as Azure resources with Azure role-based access control (RBAC) and deployment through Azure Resource Manager or Bicep. You can also import compatible community dashboards and use Grafana Explore for ad hoc analysis.
+Dashboards with Grafana for Azure Virtual Machines provides ready-to-use Grafana dashboards and visualizations for VMs monitored with Azure Monitor directly in the Azure portal. It includes prebuilt dashboards for platform metrics, OpenTelemetry-based VM metrics stored in Azure Monitor workspaces, and classic VM data stored in Log Analytics workspaces. You can customize dashboards by adding panels, modifying queries, and applying Grafana transformations. You can save and share dashboards as Azure resources with Azure role-based access control (RBAC) and deployment through Azure Resource Manager or Bicep. You can also import compatible community dashboards and use Grafana Explore for ad hoc analysis.
 
 ## Key capabilities
 
 - **Start from Azure-managed dashboards.** Use prebuilt dashboards for common virtual machine monitoring scenarios.
-- **Create and edit dashboards.** Add panels, modify queries, and apply Grafana transformations to tailor dashboards for Azure virtual machine monitoring.
+- **Create and edit dashboards.** Add panels, modify queries, and apply Grafana transformations to tailor dashboards for your organization's use cases.
 - **Save and share as Azure resources.** Store dashboards as standard Azure resources with Azure role-based access control (RBAC) and automate deployment with Azure Resource Manager (ARM) or Bicep.
 - **Import from the Grafana community.** Bring in dashboards that use Azure Monitor and Prometheus data sources.
 - **Explore data ad hoc.** Use Grafana Explore to run queries and add the results to new or existing dashboards.
