@@ -3,7 +3,7 @@ title: Migrate from the HTTP Data Collector API to the Logs Ingestion API
 description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.reviewer: ivankh
 ms.topic: how-to
-ms.date: 05/13/2026
+ms.date: 05/22/2026
 ai-usage: ai-assisted
 #customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API deprecation.
 
@@ -11,9 +11,12 @@ ai-usage: ai-assisted
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is on a deprecation path. Support for the legacy Data Collector API ends **September 14, 2026**. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md), which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
+The [HTTP Data Collector API](../logs/data-collector-api.md) is deprecated as of **September 14, 2026**. Existing ingestion continues to work, but the API receives only critical security fixes and migration support. No new features or improvements are planned. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) to use data collection rule (DCR) transformations, multi-destination routing, table-plan flexibility, and continued investment.
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
+
+> [!IMPORTANT]
+> Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions; clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API is deprecated but ingestion continues for TLS-compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
 
 ## Advantages of the Logs ingestion API
 
@@ -61,7 +64,27 @@ If you have an existing custom table to which you currently send data by using t
   
 ### Identify classic custom tables
 
-To identify which tables use the Data Collector API, [view table properties](../logs/manage-logs-tables.md#view-table-properties). Tables that use the Data Collector API or ingest data by using the legacy Log Analytics agent (MMA) display **Custom table (classic)** as the **Type** property.
+You have two ways to find tables that use the Data Collector API:
+
+* **Table properties (portal):** [View table properties](../logs/manage-logs-tables.md#view-table-properties). Tables that use the Data Collector API or ingest data through the legacy Log Analytics agent (MMA) display **Custom table (classic)** as the **Type** property.
+* **Query heuristics:** Column-name suffixes and the `SourceSystem` value indicate Data Collector–backed rows. Use these signals to inventory candidate tables programmatically.
+
+Column-name suffix conventions for Data Collector–created columns:
+
+| Suffix | Data type |
+|:------|:----------|
+| `_s` | string |
+| `_d` | double |
+| `_t` | datetime |
+
+To list tables in a workspace that contain rows ingested through the Data Collector API, run this query:
+
+```kusto
+search *
+| where SourceSystem == "RestAPI"
+| summarize Rows = count() by $table
+| order by Rows desc
+```
 
 > [!WARNING]
 > Migrate from the Log Analytics agent to the Azure Monitor Agent before converting MMA tables. Otherwise, data stops ingesting into custom fields in these tables after the table conversion.
@@ -137,6 +160,32 @@ The `migrate` operation enables all DCR-based custom logs features on the table.
 The Logs ingestion API lets you send up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, you can send multiple calls in parallel. This limit differs from the Data Collector API, which lets you send up to 32 MB of data per call.
 
 To call the Logs ingestion API, see [Logs ingestion REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call).
+
+## Handle GUID and data type differences
+
+In Azure Monitor Logs, GUIDs are stored as strings at ingestion. There's no native `guid` type at the physical storage layer, and queries always operate on string values. Plan your data collection rule (DCR) schema and your downstream queries with this model in mind.
+
+### GUIDs are stored as strings
+
+Declare GUID columns as `string` in your DCR `streamDeclarations` and in the destination table schema. No transformation is required to convert GUID values from the source: the platform writes them as strings regardless of how the source serializes them.
+
+This behavior is intentional and applies to both ingestion APIs. The Logs ingestion API doesn't introduce a new `guid` type, and migrating from the Data Collector API doesn't change how existing GUID values are stored or queried.
+
+### Cross-API type inconsistency
+
+The Azure Monitor APIs report GUID column types differently. This matters if you build tooling that reads schema from one API and runs queries against another:
+
+| API | Reported type for a GUID column |
+|:----|:--------------------------------|
+| `/metadata` | `string` |
+| `/query` | `string` |
+| `/tables` | `guid` |
+
+This is a known platform behavior. Your queries always operate on string values, regardless of which API surfaced the schema. If your tooling switches on the type reported by `/tables`, account for the `guid` value explicitly and treat it the same as `string`.
+
+### Don't change table schema during migration
+
+If you're still ingesting through the HTTP Data Collector API, don't add or modify columns on the destination table through the Tables API or the **Edit schema** UI. Schema changes during migration break legacy ingestion for the entire table. Complete the cutover to the Logs ingestion API before any schema change. For details, see the warning in [Migrate existing custom tables or create new tables](#migrate-existing-custom-tables-or-create-new-tables).
 
 ## Handle source data schema changes
 
