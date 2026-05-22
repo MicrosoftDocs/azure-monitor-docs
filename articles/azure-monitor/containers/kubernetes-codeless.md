@@ -12,6 +12,8 @@ This guide shows how to enable Azure Monitor Application Insights for Azure Kube
 
 It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps autoinstrument the application pods by injecting the Azure Monitor OpenTelemetry Distro to generate telemetry. For more information about autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md)
 
+> [!NOTE]
+> To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
 
 ## Prerequisites
 

@@ -203,7 +203,8 @@ Use the Kubernetes custom resources when you need more control. For more informa
 
 Follow the **namespace-wide** or **per-deployment** onboarding guidance in the article linked earlier to inject the Azure Monitor OpenTelemetry distribution into your pods.
 
-To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
+> [!NOTE]
+> To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
 
 ### Autoconfiguration (apps already instrumented with OpenTelemetry SDKs)
 

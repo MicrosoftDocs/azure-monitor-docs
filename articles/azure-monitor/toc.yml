@@ -1527,6 +1527,9 @@ items:
     - name: Best practices
       displayName: Azure Copilot observability agent
       href: aiops/observability-agent-best-practices.md
+    - name: Billing and cost management
+      displayName: Azure Copilot observability agent
+      href: aiops/observability-agent-billing.md
     - name: Troubleshooting
       displayName: Azure Copilot observability agent
       href: aiops/observability-agent-troubleshooting.md
