@@ -61,7 +61,9 @@ The following table summarizes which methods are available for each Azure Monito
 
 ### [Azure portal](#tab/azure-portal)
 
-The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md).
+The recommended way to install the Azure Monitor Agent through the Azure portal is to [create a data collection rule (DCR)](../vm/data-collection.md). The Azure Monitor Agent is installed automatically if necessary, and an association is created between the DCR and each machine you select.
+
+For the step-by-step portal walkthrough, including how to set the platform type, add resources, and configure data sources, see [Create data collection rule (DCR)](../vm/data-collection.md#create-data-collection-rule-dcr).
 
 ### [Azure PowerShell](#tab/azure-powershell)
 
