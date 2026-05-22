@@ -18,42 +18,25 @@ This article describes the version details for the Azure Monitor Agent (AMA) vir
 
 ## Release cadence and rollout timeline
 
-Azure Monitor Agent versions are released on a regular cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/). Understanding how releases are created and rolled out helps explain why your resources might not immediately reflect the latest version.
+Azure Monitor Agent versions are released on a regular cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
 
-### How releases are created
+### How releases work
 
-*   New agent versions are typically released periodically to deliver security fixes, reliability improvements, and new features.
-*   A new version might not be released every month.
+New agent versions are released periodically to deliver security fixes, reliability improvements, and new features. After a version is released, automatic updates deploy it in stages across Azure regions:
 
-### How updates are rolled out
+- For **Azure VMs and scale sets**, automatic updates typically complete within **4–6 weeks** of rollout start.
+- **Arc-enabled servers** follow a similar staged rollout and might take longer due to additional validation steps.
+- During rollout, different resources might run different agent versions until the update reaches them.
 
-After a version is released, the system **automatically deploys it in stages** across regions and resource types:
-1.  **Deployment begins** in a limited set of regions.
-1.  **Rollout expands progressively** to additional regions and environments.
-1.  **Full rollout completes** after validation at global scale.
-
-*   For **Azure VMs and scale sets**, automatic updates typically complete within **4–6 weeks** of rollout start.
-*   **Arc-enabled servers** follow a similar staged rollout and might complete later due to additional validation steps.
-
-### What to expect during rollout
-
-*   Different resources run different agent versions during the rollout period.
-*   Enabling automatic updates doesn't guarantee immediate upgrades. Systems might stay on older versions until the rollout reaches them.
-*   Some environments can stay behind the latest release for an extended period.
+If you need the latest version before automatic updates reach your resources, you can manually install a version once it's available in your region. For more information, see [Azure Monitor Agent installation and management guidance](azure-monitor-agent-overview.md).
 
 ### Release notes availability
 
-Microsoft publishes release notes after the rollout completes. This timing ensures the release notes reflect a version that's fully validated and available across regions.
-
-### Getting the latest version sooner
-
-If you need the latest version before it reaches your resources:
-
-*   Manually install a version once it becomes available in your region. For more information, see [Azure Monitor agent installation and management guidance](azure-monitor-agent-overview.md).
+Microsoft publishes release notes after the rollout completes. This timing ensures the release notes reflect a version that's fully available across regions.
 
 ### Recommendation
 
-For most scenarios, [enable automatic extension updates](/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems eventually stay current with supported versions.
+For most scenarios, [enable automatic extension updates](/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems stay current with supported versions.
 
 ## Version summary
 
