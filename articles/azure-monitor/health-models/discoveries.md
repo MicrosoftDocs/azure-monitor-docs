@@ -38,11 +38,7 @@ There are three kinds of discoveries shown in the following table. You can use a
 All discoveries run every 5 minutes. This value can't be modified.
 
 ## Discovery settings
-A discovery rule defines how entities are found and added to your model.
-
-:::image type="content" source="media/discoveries/discovery-kinds.png" lightbox="media/discoveries/discovery-kinds.png" alt-text="Screenshot of the Discovery view with the Create menu showing Application Insights topology, Resource graph query, and Service group discovery kinds.":::
-
-Each discovery rule includes these core settings:
+A discovery rule defines how entities are found and added to your model. Each discovery rule includes these core settings:
 
 | Setting | Description |
 |:---|:---|

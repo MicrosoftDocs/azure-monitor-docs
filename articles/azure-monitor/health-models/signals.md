@@ -164,14 +164,17 @@ Signal definitions are reusable configurations that define a specific signal and
 
 ### Using signal definitions
 
-To create a signal definition, click **Save as new signal definition** when editing a signal instead of **Save**. 
-
-:::image type="content" source="media/signals/add-signal-definition.png" lightbox="media/signals/add-signal-definition.png" alt-text="Screenshot showing Save as new signal definition in the signal editor.":::
-
-To use a signal definition, select **Signal definitions** when adding a signal. 
+**Create a signal definition**<br>
+Click **Save as new signal definition** when editing a signal instead of **Save**. 
 
 :::image type="content" source="media/signals/save-signal-definition.png" lightbox="media/signals/save-signal-definition.png" alt-text="Screenshot showing Save as new signal definition in the signal editor.":::
 
+**Use a signal definition**<br>
+Select **Signal definitions** when adding a signal. 
+
+:::image type="content" source="media/signals/add-signal-definition.png" lightbox="media/signals/add-signal-definition.png" alt-text="Screenshot showing signal definition option in the signal editor.":::
+
+**Identify signal definitions**
 Signal definitions are listed with an icon to distinguish them from other signals.
 
 :::image type="content" source="media/signals/sample-signal-definition.png" lightbox="media/signals/sample-signal-definition.png" alt-text="Screenshot showing sample signal definition.":::
@@ -188,8 +191,6 @@ The signal definitions view lists all of the signal definitions in the health mo
 ### Deleting signal definitions
 
 From the signal definitions view, select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any of the selected signals are in use by an entity in the health model.
-
-:::image type="content" source="media/signals/signal-definitions-view.png" lightbox="media/signals/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)
