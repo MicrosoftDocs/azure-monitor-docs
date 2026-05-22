@@ -13,7 +13,7 @@ This article describes the concepts that you must understand to create and use [
 
 
 ## Entities
-Entities are the building blocks of an [Azure Monitor health model](./overview.md). They represent the different components of your workload and any supporting business processes. You can add entities manually, or you can use discovery to add them automatically based on supported discovery methods. 
+Entities are the building blocks of an [Azure Monitor health model](./overview.md). They represent the different components of your workload and any supporting business processes. You can add entities manually, or you can use a [discovery](./discoveries.md) to add them automatically based on supported discovery methods. 
 
 There are three distinct types of entities as described in the following sections.
 
@@ -27,7 +27,7 @@ There are three distinct types of entities as described in the following section
 
 
 ## Relationship
-A relationship represents the dependency of one entity on another, or it may represent the aggregation of multiple entities into a single entity. An entity can have multiple child entities and multiple parent entities. The primary function of relationships is to support health propagation as described in [Health states](#health-states).
+A relationship represents the dependency of one entity on another, or it may represent the aggregation of multiple entities into a single entity in order to track their collective health. An entity can have multiple child entities and multiple parent entities. The primary function of relationships is to support health propagation as described in [Health states](#health-states).
 
 In most health models, all entities will connect directly or indirectly to the root entity. This allows you to roll up the health of all entities in the model to the root entity. This is useful for tracking the overall health of your workload and for alerting on the health of the entire workload.
 

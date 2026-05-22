@@ -12,14 +12,17 @@ ai-usage: ai-assisted
 
 Azure Monitor health models allow you to define and track the health of entities in your workload and the resources they depend on. Health models augment raw monitoring signals collected by Azure Monitor with business context, so you can monitor the health of a workload rather than isolated resources.
 
+## State-based monitoring
+
 Health models introduce state-based monitoring to Azure Monitor. This adds a business context to your monitoring data by assigning a health state to each managed entity and combining multiple entities to represent an application or workload. 
 
 State-based monitoring provides the following benefits over exclusively alert-based monitoring:
 
-- Identify the current health of each entity in the health model based on multiple signals.
+- Identify the current health of each entity in the health model in the business context of the overall workload.
 - Reduce alert noise by correlating multiple signals into a single health state.
 - Define relationships between workload components to identify health dependencies and track overall workload health.
-- Create generic entities to aggregate the health of related entities in the health model.
+- Use generic entities to aggregate the health of related entities in the health model.
+- Track availability of the workload and its components over time and compare to service level objectives.
 
 :::image type="content" source="media/overview/sample-health-model.png" lightbox="media/overview/sample-health-model.png" alt-text="Screenshot of an example health model." border="false":::
 
@@ -51,11 +54,7 @@ Azure Monitor health models provide a graphical designer to arrange entities, de
 ## Alerting
 Health models allow you to create alerts based on health state instead of individual signals. Alert on unhealthy entities or on aggregate health that represents business impact across multiple dependencies. This approach reduces alert noise, focuses investigations on workload impact, and uses the same action groups as other Azure Monitor alerts.
 
-:::image type="content" source="media/overview/sample-alert-rule.png" lightbox="media/overview/sample-alert-rule.png" alt-text="Screenshot of configuring details of an alert rule for a sample health model." :::
-
-You can define alert rules at different levels in the same model for different audiences. For example, create alerts on Azure resource entities for engineering teams, alerts on generic entities for business or operations teams, and a root alert for executive awareness.
-
-:::image type="content" source="media/concepts/alert-strategy.png" lightbox="media/concepts/alert-strategy.png" alt-text="Diagram of a health model with alert rules at different levels." border="false":::
+:::image type="content" source="media/overview/alert-sample.png" lightbox="media/overview/alert-sample.png" alt-text="Diagram of a health model with alert rules at parent level." border="false":::
 
 
 
