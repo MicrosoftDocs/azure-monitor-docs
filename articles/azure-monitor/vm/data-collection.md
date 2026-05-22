@@ -12,7 +12,7 @@ Azure Monitor automatically collects host metrics and activity logs from Azure v
 
 ## Scope of article
 
-If you have basic data collection requirements, the guidance in this article and the related articles for each [data source](#add-data-sources) should be sufficient. The Azure portal can create and edit the DCR without requiring you to understand its structure or manually associate it with the VM.
+If you have basic data collection requirements, the guidance in this article and the related articles for each [data source](#add-data-sources) should be sufficient. The Azure portal can create and edit the DCR without requiring you to understand its structure or manually associate it with the VM. Creating a DCR and adding VM resources is also the recommended way to install the Azure Monitor Agent through the Azure portal. The Azure Monitor Agent is installed automatically if necessary, and an association is created between the DCR and each VM you select.
 
 If you need advanced features such as [transformations](../data-collection/data-collection-transformations.md) or want to create and assign DCRs by using Azure CLI, Azure Policy, or other methods, see [Create data collection rules (DCRs) using JSON](../data-collection/data-collection-rule-create-edit.md). You can also review sample DCRs created by this process at [Data collection rule (DCR) samples for VMs in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data).
 
