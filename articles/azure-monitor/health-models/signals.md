@@ -30,7 +30,7 @@ When you add the first signal of a particular type to an entity, you must specif
 | Property | Description |
 |:---|:---|
 | Data source | The signals that are added to the entity will access this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signal types](#signal-types). |
-| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#authentication-settings) view.<br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
+| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
 
 
 ### Add and remove signals
@@ -189,7 +189,7 @@ The signal definitions view lists all of the signal definitions in the health mo
 
 From the signal definitions view, select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any of the selected signals are in use by an entity in the health model.
 
-:::image type="content" source="media/create/signal-definitions-view.png" lightbox="media/create/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
+:::image type="content" source="media/signals/signal-definitions-view.png" lightbox="media/signals/signal-definitions-view.png" alt-text="Screenshot of signal definitions view.":::
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)

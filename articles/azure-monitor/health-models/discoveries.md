@@ -51,7 +51,7 @@ Each discovery rule includes these core settings:
 | Resource access authentication setting | Identity used to access source resources for discovery methods that require direct resource reads, such as Application Insights topology. |
 | Parent entity | Any entities added by the discovery are attached as children of this entity. If you don't select a parent entity, a new generic entity is created for the discovery rule. |
 | Discover relationships | When enabled, discovery attempts to create relationships between discovered entities when supported. |
-| Add recommended signals | When enable, the [recommended signals]() for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
+| Add recommended signals | When enable, the [recommended signals](./signals.md#recommended-signals) for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
 
 
 
@@ -65,14 +65,14 @@ When you create a **Resource graph query** discovery rule, you create a [KQL que
 
 Select **Refresh preview** to see the results of your query and verify that it returns the expected resources before you create the discovery rule.
 
-:::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
+:::image type="content" source="media/discoveries/create-resource-graph-discovery.png" lightbox="media/discoveries/create-resource-graph-discovery.png" alt-text="Screenshot of a resource group discovery rule.":::
 
 ### Service group settings
 When you create a **Service group** discovery rule, you select a service group in your tenant. This will create a Resource graph query that retrieves the members of the service group as entities in the health model. You can simply accept this query or modify it as you would a Resource graph query discovery.
 
 Select **Refresh preview** to see the results of your query and verify that it returns the expected resources before you create the discovery rule.
 
-:::image type="content" source="media/discoveries/create-from-service-group.png" lightbox="media/discoveries/create-from-service-group.png" alt-text="Screenshot of the service group monitoring page with a link to create a health model for the service group.":::
+:::image type="content" source="media/discoveries/create-service-group-discovery.png" lightbox="media/discoveries/create-service-group-discovery.png" alt-text="Screenshot of a service group discovery rule.":::
 
 ## Multiple discoveries
 A single health model can use multiple discoveries, including multiple rules of the same type. For example, you might use multiple Resource graph query discoveries to find resources by tag values and attach them to different parent entities. If the same resource is discovered by more than one rule, each rule creates a separate entity in the model that represent the same resource.
