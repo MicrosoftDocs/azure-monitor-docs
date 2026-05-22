@@ -111,7 +111,7 @@ Agent heartbeat alerts depend on telemetry being delivered from the Azure Monito
 
 If your goal is to detect whether an Azure VM is running, prefer the VM availability metric alert, which is evaluated by the Azure platform and is not subject to agent or log-ingestion latency.
 
-Use the agent heartbeat alert when your goal is specifically to detect agent health (for example, hybrid machines or to validate that workload telemetry is flowing). When using heartbeat-based alerts, account for typical ingestion latency in your evaluation window and threshold. To diagnose latency on the Heartbeat table, see the sample queries in [Queries for the Heartbeat table](azure/azure-monitor/reference/queries/heartbeat.md) and [Log data ingestion time in Azure Monitor](azure/azure-monitor/logs/data-ingestion-time.md).
+Use the agent heartbeat alert when your goal is specifically to detect agent health (for example, hybrid machines or to validate that workload telemetry is flowing). When using heartbeat-based alerts, account for typical ingestion latency in your evaluation window and threshold. To diagnose latency on the Heartbeat table, see the sample queries in [Queries for the Heartbeat table](../reference/queries/heartbeat.md) and [Log data ingestion time in Azure Monitor](../logs/data-ingestion-time.md).
 
 #### Metric alert rules
 
