@@ -2,7 +2,8 @@
 title: Dashboards with Grafana in Application Insights
 description: Create, customize, and share Grafana dashboards for Application Insights directly in the Azure portal.
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 05/21/2026
+ai-usage: ai-assisted
 ---
 
 # Dashboards with Grafana in Application Insights
@@ -35,13 +36,13 @@ Dashboards with [Grafana](../visualize/visualize-grafana-overview.md) in [Applic
 ## Open the Grafana experience in Application Insights
 
 1. In the Azure portal, open your **Application Insights** resource.
-2. In the left menu, select **Dashboards with Grafana**.
+1. In the left menu, select **Dashboards with Grafana**.
 
 :::image type="content" source="media/grafana-dashboards/dashboards-with-grafana.png" alt-text="A screenshot of the Azure portal with dashboards for grafana selected." lightbox="media/grafana-dashboards/dashboards-with-grafana.png":::
 
 The gallery lists **Azure‑managed** dashboards and your **Saved dashboards** for the current Application Insights resource.
 
-The gallery automatically filters to dashboards created for Application Insights. This filter is applied by default and can’t be changed when you use Dashboards with Grafana within Application Insights.  
+The gallery automatically filters to dashboards created for Application Insights. This filter is applied by default and can't be changed when you use Dashboards with Grafana within Application Insights.  
 
 :::image type="content" source="media/grafana-dashboards/grafana-dashboards.png" alt-text="A screenshot of grafana dashboards that can be selected." lightbox="media/grafana-dashboards/grafana-dashboards.png":::
 
@@ -55,7 +56,8 @@ Azure provides several Azure‑managed dashboards that focus on Application Insi
 - **Azure | Insights | Applications – Failures – Operations**
 - **Azure | Insights | Applications – Failures – Dependencies**
 - **Azure | Insights | Applications | OTel (OpenTelemetry)**
-- **Agent Framework** dashboards for generative AI applications instrumented with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview)
+- **Agent Framework** dashboards for generative AI applications instrumented with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework)
+- **GitHub Copilot**, **Claude Code**, and **OpenClaw** dashboards for AI coding agents that emit OpenTelemetry. See [Monitor AI coding agents](agents-view.md#monitor-ai-coding-agents).
 
 To view a dashboard, select the dashboard name from the list.
 
@@ -102,9 +104,9 @@ You can import dashboards from the Grafana public gallery that rely on Azure dat
 To import a dashboard:
 
 1. In **Dashboards with Grafana**, select **Browse Grafana dashboards Gallery**.  
-2. Choose a dashboard and copy the **Dashboard ID**.  
-3. Return to **Dashboards with Grafana** and select **New**.  
-4. Select **Import** and follow the prompts.  
+1. Choose a dashboard and copy the **Dashboard ID**.  
+1. Return to **Dashboards with Grafana** and select **New**.  
+1. Select **Import** and follow the prompts.  
 
 The imported dashboard is saved as an Azure resource.
 
@@ -121,8 +123,8 @@ Dashboards visible in **Dashboards with Grafana** inside an Application Insights
 Dashboards you create **inside** an Application Insights resource receive this tag automatically. If you import or create a dashboard **outside** the resource and want it to appear in the Application Insights gallery, add the tag manually:
 
 1. Open the dashboard resource.
-2. Select **Tags** and add the name and value.
-3. Save the changes.  
+1. Select **Tags** and add the name and value.
+1. Save the changes.  
 
 :::image type="content" source="media/grafana-dashboards/edit-tags.png" alt-text="A screenshot of the Grafana dashboard edit tags window." lightbox="media/grafana-dashboards/edit-tags.png":::
 
@@ -181,7 +183,7 @@ Dashboards with Grafana in Application Insights has **no additional cost** for t
 
 ## Next steps
 
-- Learn more about [visualizing with Grafana](../visualize/visualize-grafana-overview.md)
+- Learn more about [visualizing with Grafana](../visualize/visualize-grafana-overview.md).
 - Instrument with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview).
 - Secure your environment with [Azure role‑based access control (RBAC)](/azure/role-based-access-control/overview).
 - Build [ARM](/azure/azure-resource-manager/templates/overview) or [Bicep](/azure/azure-resource-manager/bicep/overview) templates.
