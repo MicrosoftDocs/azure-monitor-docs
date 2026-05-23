@@ -91,14 +91,21 @@ The *dependencies* setting of a parent entity determines how its health state is
 | Minimum healthy  | Entity becomes degraded or unhealthy when the number of healthy children entities falls to or below a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
 | Maximum not healthy | Entity becomes degraded or unhealthy when the number of non-healthy children entities reaches or exceeds a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
 
-For example, consider an application that relies on six virtual machines, but the application is healthy if one of the machines is offline. the application is degraded if two machines are offline, and unhealthy if more than two are offline. 
-
-For this functionality, a generic entity is used to aggregate the health of the virtual machines as shown in the following image. The *Minimum healthy* dependency setting is used on the generic entity with the following thresholds:
-
-- Degraded threshold: 4
-- Unhealthy threshold: 3
+For example, consider the following application that relies on four virtual machines, but the application is healthy if one of the machines is offline. For this functionality, a generic entity is used to aggregate the health of the virtual machines as shown in the following image. The *Minimum healthy* dependency setting is used on the generic entity with an unhealthy threshold of 3. Alternatively, the *Maximum not healthy* dependency setting can be used with a threshold of 2.
 
 :::image type="content" source="media/concepts/child-dependencies.png" lightbox="media/concepts/child-dependencies.png" alt-text="Screenshot showing different dependency settings." border="false":::
+
+## Health model of health models
+A health model can be added to another health model just as any other Azure resource. This allows you to create a health model that includes other health models as child components. This pattern lets you build separate health models for different applications, domains, or complex subsystems, and then combine them into a single all-up view.
+
+When you add a health model to another health model, the embedded model state is the health state of its root entity. The parent model then rolls up that state with other entities by using the same relationship, impact, and dependency settings described earlier in this article.
+
+This approach is useful for enterprise-level monitoring scenarios, such as:
+
+- One health model per application, with a top-level portfolio health model.
+- One health model per complex component, with a parent model for end-to-end service health.
+
+You can also set a [health objective](#health-objective) on the top-level root entity to track SLO attainment for the combined workload.
 
 
 ## Alerts
@@ -106,15 +113,13 @@ Alerts fire when the health state of an entity changes to degraded or unhealthy.
 
 While health models generate the same alerts as [resource-specific alert rules](../alerts/alerts-overview.md) in Azure Monitor and use the same [action groups](../alerts/action-groups.md) for notifications and automation, they provide significant advantages:
 
-- Automatically resolved when the entity returns to a healthy state. 
 - Reduce alert noise by firing only a single alert when health state changes even though multiple signals may be degraded or unhealthy.
+- Automatically resolved when the entity returns to a healthy state. 
 - Fire alerts on a parent entity consolidating the health of multiple child entities.
 
 
 ## Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).
-
-Following is a history from [Entity details](./analyze-health.md#entity-details) for a sample entity showing health objective reporting.
 
 :::image type="content" source="media/concepts/health-objective.png" lightbox="media/concepts/health-objective.png" alt-text="Screenshot of an example health objective reporting.":::
 

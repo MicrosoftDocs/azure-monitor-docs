@@ -18,8 +18,6 @@ When you open the designer view, you're presented with the *canvas*, which is wh
 
 The following table describes the options available in the command bar in the designer.
 
-:::image type="content" source="media/designer/toolbar.png" lightbox="media/designer/toolbar.png" alt-text="Screenshot of designer command bar.":::
-
 | Option | Description |
 |:-------|:------------|
 | Add entity | Add a generic entity](./concepts.md#generic-entity) or one or more [Azure resource entities](./concepts.md#entities) to the canvas. If you add multiple Azure resource entities, any detected relationships between them will automatically be created. |
@@ -38,7 +36,7 @@ The following table describes the options available in the command bar in the de
 
 ## Entities
 
-Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the [Entity editor](#entity-properties), which allows you to configure the properties of the entity and to create and assign signals and alerts. 
+Entities are represented as nodes in the designer view. In addition to the name and resource type, each entity includes icons that identify the different types of monitoring that have been configured for it as shown in the following image. Click **Edit** on an entity to open the [Entity editor](#entity-properties), which allows you to configure the properties of the entity and to create and assign [signals](./signals.md) and [alerts](./alerts.md). 
 
 :::image type="content" source="media/designer/entity.png" lightbox="media/designer/entity.png" alt-text="Screenshot of an entity in the designer view with its icons identified.":::
 
@@ -63,9 +61,8 @@ Click **Add** on the toolbar to add an entity to the mode.
 You can optionally configure properties and signals for the entity before saving it. Then position the entity where you want it on the canvas and create relationships between it and other entities in the model.
 
 ## Relationships
-[Relationships](./concepts.md#relationship) determine health propagation between entities in the health model. Every entity, except for the root, should be connected to at least one parent entity. The parent is either the root entity or another entity that propagates to the root, either directly or through its own parent(s).
 
-To create a relationship between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. 
+To create a [relationship](./concepts.md#relationship) between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. 
 
 You can't move a relationship to a new parent or child. Instead, delete the relationship and create a new one. To delete a relationship, click on it and either click **Delete** or press the delete key.
 
@@ -87,11 +84,11 @@ The **General** tab of the entity editor allows you to configure the properties 
 
 
 ## Signals
-The **Signals** tab of the [entity editor](#entity-properties) allows you to create or edit signals and assign them to the entity. For signal concepts, signal types, recommended signals, signal definitions, and threshold configuration, see [Signals in Azure Monitor health models](./signals.md).
+The **Signals** tab of the [entity editor](#entity-properties) allows you to create or edit signals and assign them to the entity. See [Signals in Azure Monitor health models](./signals.md).
 
 
 ## Alerts
-The **Alerts** tab of the [entity editor](#entity-properties) allows you to configure alerts for the entity. For alert strategy and configuration details, see [Alerts in Azure Monitor health models](./alerts.md).
+The **Alerts** tab of the [entity editor](#entity-properties) allows you to configure alerts for the entity. See [Alerts in Azure Monitor health models](./alerts.md).
 
 
 ## Entities view

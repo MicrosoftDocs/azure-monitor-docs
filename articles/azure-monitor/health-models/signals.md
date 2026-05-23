@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 ---
 
 # Signals in Azure Monitor health models (preview)
-Signals determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
+[Signals](./concepts.md#signals) determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
 
 ## Signal types
 Each entity in a health model can use any of the available signal types described in the following table.
@@ -21,7 +21,7 @@ Each entity in a health model can use any of the available signal types describe
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 
 ## Configure signals in the designer
-The Signals tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signal types](#signal-types). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
+The **Signals** tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signal types](#signal-types). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
 
 :::image type="content" source="media/designer/signals-empty.png" lightbox="media/designer/signals-empty.png" alt-text="Screenshot of signals page for an entity.":::
 
@@ -32,30 +32,17 @@ When you add the first signal of a particular type to an entity, you must specif
 | Data source | The signals that are added to the entity will access this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signal types](#signal-types). |
 | Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
 
+## Add signal assignment
+When you click **Add a signal assignment** in the entity editor, you have multiple options.
 
-### Add and remove signals
-Each type of signal has the following options. Click on a signal to edit its definition.
-
-- **Add signal assignment:** -  Create a new signal or select from sets of existing signals. 
-- **Remove assignment** -  Enabled when one or more signals are selected. Removes the signal assignment from the entity, but doesn't delete the signal definition. The signal can still be assigned to other entities in the model.
-
-### Add assignments
-When you click **Add a signal assignment** in the entity editor, the options will vary depending on the signal type. 
-
-- **Select existing:** - Select from existing metric signals that have been added to other entities in the health model. This allows you to reuse the same signal definition across multiple entities. 
-- **Recommended:** - Select from a set of recommended signals and thresholds for the resource type. Once you select a recommended signal, it's added to existing signals. Azure resource signals only.
-- **Create new:** - Create a new metric signal definition. This allows you to define a custom metric signal for the entity that can be used with other entities of the same type.
+| Option | Description |
+|:---|:---|
+| Create new | Create a new metric signal for the entity and optionally save as a signal definition. |
+| Signal definitions | Select from [signal definitions](#signal-definitions) that you previously created in the current health model. |
+| Recommended | Select from a predefined set of recommended signals and thresholds for the resource type. (Azure resource signals only) |
+| Import from alert rules | Create a signal based on existing alert rules that are defined for the Azure resource represented by the entity. The same signal and criteria from the alert rule is used for the new signal. |
 
 ## Signal details
-
-The following table describes the different types of signals that can be used in a health model and their data sources. 
-
-| Signal type | Data source |
-|:---|:---|
-| Azure resource | Sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold. |
-| Log Analytics workspace | Run a [log query](../logs/queries.md) against a Log Analytics workspace and evaluate the results. |
-| Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) to analyze Prometheus and evaluate the results. |
-
 
 The details required for each signal will vary depending on its type.
 
@@ -68,7 +55,7 @@ Azure resource signals sample the value of a [platform metric](../essentials/dat
 
 ### Signal properties
 
-The following tables describe the properties that define an Azure resource signal definition.
+The following tables describe the properties that define an Azure resource signal.
 
 
 | Setting | Description |
@@ -108,7 +95,7 @@ ContainerLogV2
 ```
 
 ### Signal properties
-The following table describes the properties that define Log Analytics workspace signal definition.
+The following table describes the properties that define Log Analytics workspace signal.
 
 | Setting | Description |
 |:---|:---|
@@ -131,7 +118,7 @@ Azure Monitor workspace signals run a [PromQL query](../metrics/metrics-explorer
 Before you can create an Azure Monitor workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity.
 
 ### Signal properties
-The following table describes the properties that define Azure Monitor workspace signal definition.
+The following table describes the properties that define Azure Monitor workspace signal.
 
 
 | Setting | Description |
@@ -147,8 +134,8 @@ The following table describes the properties that define Azure Monitor workspace
 ---
 
 
-### Thresholds
-Thresholds are numeric values that are compared to the value of the signal to determine the health state of the entity. Each signal definition has two thresholds, one for the **Degraded** state and one for the **Unhealthy** state. The degraded threshold is optional, but the unhealthy threshold is required. 
+## Thresholds
+Thresholds are numeric values that are compared to the value of the signal to determine its health state. Each signal definition has two thresholds, one for the **Degraded** state and one for the **Unhealthy** state. The degraded threshold is optional, but the unhealthy threshold is required. 
 
 You can specify the operator for each threshold to determine how the signal value is compared. Some signals might indicate a degraded or unhealthy state when the value is above the threshold, while others might indicate a degraded or unhealthy state when the value is below the threshold. 
 
@@ -160,37 +147,28 @@ Recommended signals provide a fast starting point for supported Azure resource t
 
 
 ## Signal definitions
-Signal definitions are reusable configurations that define a specific signal and its associated thresholds. Rather than create a new signal for each entity, you can define a signal once and reuse it across multiple entities.
+Rather than create a new signal for each entity, you can define a signal once and reuse it across multiple entities by creating a signal definition. Signal definitions are reusable configurations that define a specific signal and its associated thresholds. 
 
-### Using signal definitions
-
-**Create a signal definition**<br>
-Click **Save as new signal definition** when editing a signal instead of **Save**. 
+To create a signal definition, select **Save as new signal definition** when editing a signal instead of **Save**. 
 
 :::image type="content" source="media/signals/save-signal-definition.png" lightbox="media/signals/save-signal-definition.png" alt-text="Screenshot showing Save as new signal definition in the signal editor.":::
 
-**Use a signal definition**<br>
-Select **Signal definitions** when adding a signal. 
-
-:::image type="content" source="media/signals/add-signal-definition.png" lightbox="media/signals/add-signal-definition.png" alt-text="Screenshot showing signal definition option in the signal editor.":::
-
-**Identify signal definitions**
-Signal definitions are listed with an icon to distinguish them from other signals.
+Signal definitions are displayed along with other signals for an entity, but have a unique icon to distinguish them from other signals.
 
 :::image type="content" source="media/signals/sample-signal-definition.png" lightbox="media/signals/sample-signal-definition.png" alt-text="Screenshot showing sample signal definition.":::
 
-### Edit signal definitions
-Edit signal definitions in the designer as you would edit any other signal. When you edit the signal definition for one entity, the changes will be applied to all entities that use that signal definition. You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. 
+To add a signal definition to another entity, select **Signal definitions** to choose from the available signal definitions.
 
-### View signal definitions
+:::image type="content" source="media/signals/add-signal-definition.png" lightbox="media/signals/add-signal-definition.png" alt-text="Screenshot showing signal definition option in the signal editor.":::
+
+
+Edit signal definitions in the designer as you would edit any other signal. When you edit the signal definition for one entity, the changes will be applied to all entities that use that signal definition. You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, create multiple signal definitions with different thresholds.
 
 The signal definitions view lists all of the signal definitions in the health model. Click on any signal definition to view its details including the entities that use it.
 
 :::image type="content" source="media/signals/signal-definitions-view.png" lightbox="media/signals/signal-definitions-view.png" alt-text="Screenshot showing the signal definitions view.":::
 
-### Deleting signal definitions
-
-From the signal definitions view, select any signal definitions to delete and click **Delete** at the top of the screen. This button will be disabled if any of the selected signals are in use by an entity in the health model.
+To delete a signal definition, open the signal definitions view, select any signal definitions to delete, and click **Delete** at the top of the screen. This button will be disabled if any of the selected signals are in use by an entity in the health model.
 
 ## Next steps
 - [Configure a health model using the designer](./designer.md)
