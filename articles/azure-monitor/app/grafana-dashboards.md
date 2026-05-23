@@ -56,7 +56,7 @@ Azure provides several Azure‑managed dashboards that focus on Application Insi
 - **Azure | Insights | Applications – Failures – Operations**
 - **Azure | Insights | Applications – Failures – Dependencies**
 - **Azure | Insights | Applications | OTel (OpenTelemetry)**
-- **Agent Framework** dashboards for generative AI applications instrumented with the [Microsoft Agent Framework](/agent-framework/overview/agent-framework)
+- **Agent Framework** dashboards for generative AI applications instrumented with the [Microsoft Foundry Agent Service](/azure/foundry/agents/overview)
 - **GitHub Copilot**, **Claude Code**, and **OpenClaw** dashboards for AI coding agents that emit OpenTelemetry. See [Monitor AI coding agents](agents-view.md#monitor-ai-coding-agents).
 
 To view a dashboard, select the dashboard name from the list.
