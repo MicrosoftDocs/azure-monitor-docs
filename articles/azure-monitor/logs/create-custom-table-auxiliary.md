@@ -48,9 +48,6 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 
 1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
 
-> [!NOTE]
-> This sample lists all the supported column data types.
-
 # [Azure CLI](#tab/cli-1)
 
 [!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
@@ -106,10 +103,6 @@ az rest \
         {
           "name": "BooleanProperty",
           "type": "boolean"
-        },
-        {
-          "name": "GuidProperty",
-          "type": "guid"
         },
         {
           "name": "DateTimeProperty",
@@ -185,10 +178,6 @@ Invoke-AzRestMethod @restParams
           "type": "boolean"
         },
         {
-          "name": "GuidProperty",
-          "type": "guid"
-        },
-        {
           "name": "DateTimeProperty",
           "type": "dateTime"
         }
@@ -226,8 +215,6 @@ Content-Type: application/json
           "type": "real"},
         {"name": "BooleanProperty",
           "type": "boolean"},
-        {"name": "GuidProperty",
-          "type": "guid"},
         {"name": "DateTimeProperty",
           "type": "dateTime"}
       ]
@@ -898,6 +885,7 @@ For more information, see the following articles:
 
 * [Overview of workspace transformation DCRs](../data-collection/data-collection-transformations.md#workspace-transformation-dcr)
 * [How-to create a workspace transformation](../data-collection/data-collection-transformations-create.md#create-workspace-transformation-dcr)
+
 
 ## Related content
 
