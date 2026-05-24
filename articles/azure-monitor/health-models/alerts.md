@@ -19,7 +19,7 @@ Configure alerts for an entity on the **Alerts** tab in the entity editor. You c
 
 Add up to five [action groups] for each entity to define the automated responses that will be triggered when the alert fires.
 
-:::image type="content" source="media/designer/entity-editor-alerts.png" lightbox="media/designer/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
+:::image type="content" source="media/alerts/entity-editor-alerts.png" lightbox="media/alerts/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
 
 ## Migrate from resource-specific alert rules
 Any resource-specific alert rules configured on an Azure resource will continue to operate when that resource is added to a health model, even if health model alerts are enabled. This could result in duplicate alerts for the same underlying issue. 
