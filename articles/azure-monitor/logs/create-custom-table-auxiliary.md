@@ -273,10 +273,6 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
           type: 'boolean'
         }
         {
-          name: 'GuidProperty'
-          type: 'guid'
-        }
-        {
           name: 'DateTimeProperty'
           type: 'dateTime'
         }
@@ -338,10 +334,6 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
             {
               "name": "BooleanProperty",
               "type": "boolean"
-            },
-            {
-              "name": "GuidProperty",
-              "type": "guid"
             },
             {
               "name": "DateTimeProperty",
@@ -457,10 +449,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 "type": "boolean"
               },
               {
-                "name": "GuidProperty",
-                "type": "guid"
-              },
-              {
                 "name": "DateTimeProperty",
                 "type": "dateTime"
               }
@@ -553,10 +541,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 "type": "boolean"
               },
               {
-                "name": "GuidProperty",
-                "type": "guid"
-              },
-              {
                 "name": "DateTimeProperty",
                 "type": "dateTime"
               }
@@ -629,10 +613,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
               {
                 "name": "BooleanProperty",
                 "type": "boolean"
-              },
-              {
-                "name": "GuidProperty",
-                "type": "guid"
               },
               {
                 "name": "DateTimeProperty",
@@ -710,10 +690,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
               {
                 name: 'BooleanProperty'
                 type: 'boolean'
-              }
-              {
-                name: 'GuidProperty'
-                type: 'guid'
               }
               {
                 name: 'DateTimeProperty'
@@ -815,10 +791,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                     "type": "boolean"
                   },
                   {
-                    "name": "GuidProperty",
-                    "type": "guid"
-                  },
-                  {
                     "name": "DateTimeProperty",
                     "type": "dateTime"
                   }
@@ -885,7 +857,6 @@ For more information, see the following articles:
 
 * [Overview of workspace transformation DCRs](../data-collection/data-collection-transformations.md#workspace-transformation-dcr)
 * [How-to create a workspace transformation](../data-collection/data-collection-transformations-create.md#create-workspace-transformation-dcr)
-
 
 ## Related content
 
