@@ -112,6 +112,8 @@ The possible data types that can be assigned to the properties are:
 * `dynamic`
 * `datetime`
 
+The `guid` type isn't available in stream declarations. If your source data includes GUID values, declare those columns as `string`. The Tables API supports the `guid` type, but the values are actually stored and queried as strings. For more information, see [Column data types in Azure Monitor Logs](../logs/logs-table-overview.md#column-data-types).
+
 ## Destinations
 
 The `destinations` section includes an entry for each destination where the data will be sent. These destinations are matched with input streams in the `dataFlows` section.
