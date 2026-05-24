@@ -11,12 +11,11 @@ ai-usage: ai-assisted
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is deprecated as of **September 14, 2026**. Existing ingestion continues to work, but the API receives only critical security fixes and migration support. No new features or improvements are planned. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) to use data collection rule (DCR) transformations, multi-destination routing, table-plan flexibility, and continued investment.
+The [HTTP Data Collector API](../logs/data-collector-api.md) is on a deprecation path. Support for the legacy Data Collector API ends **September 14, 2026**. Existing ingestion continues to work, but the API only receives critical security fixes. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
-> [!IMPORTANT]
-> Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions; clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API is deprecated but ingestion continues for TLS-compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
+Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions; clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API is deprecated but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
 
 ## Advantages of the Logs ingestion API
 
@@ -37,7 +36,7 @@ To complete this migration, you need:
 
 ## Permissions required
 
-The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and data collection rule (DCR)–scoped RBAC. Assign the app permissions to the DCR and use a data collection endpoint (DCE) or the DCR logs ingestion endpoint for ingestion requests.
+The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and data collection rule (DCR) scoped RBAC. Assign the app permissions to the DCR and use a data collection endpoint (DCE) or the DCR logs ingestion endpoint for ingestion requests.
 
 | Action | Permissions required |
 |:-------|:---------------------|
@@ -64,27 +63,29 @@ If you have an existing custom table to which you currently send data by using t
   
 ### Identify classic custom tables
 
-You have two ways to find tables that use the Data Collector API:
+You have a few ways to find tables that use the Data Collector API:
 
 * **Table properties (portal):** [View table properties](../logs/manage-logs-tables.md#view-table-properties). Tables that use the Data Collector API or ingest data through the legacy Log Analytics agent (MMA) display **Custom table (classic)** as the **Type** property.
-* **Query heuristics:** Column-name suffixes and the `SourceSystem` value indicate Data Collector–backed rows. Use these signals to inventory candidate tables programmatically.
 
-Column-name suffix conventions for Data Collector–created columns:
+* **Table properties (API):** `tableSubType` is `Classic` when viewing table properties with the `Table` operation of the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management). Here's an example Azure CLI command that quickly finds all tables with this criteria:
+
+```azurecli
+az monitor log-analytics workspace table list \
+  --resource-group myResourceGroupName --workspace-name myWorkspaceName \
+  --query "[?schema.tableSubType=='Classic'].{Name:name, SubType:schema.tableSubType}" -o table
+```
+
+* **Query heuristics:** Clues from individual records can help further investigate legacy API usage. Records with the `SourceSystem` value of `RestAPI` indicate the record was created by the HTTP Data Collector API, so the table was legacy when the record was created.  Also, certain column name suffixes indicate the column was created by the legacy API.
+
+To list tables in a workspace that contain rows ingested through the Data Collector API, run this query:
+
+Suffix conventions for columns created by the legacy API:
 
 | Suffix | Data type |
 |:------|:----------|
 | `_s` | string |
 | `_d` | double |
 | `_t` | datetime |
-
-To list tables in a workspace that contain rows ingested through the Data Collector API, run this query:
-
-```kusto
-search *
-| where SourceSystem == "RestAPI"
-| summarize Rows = count() by $table
-| order by Rows desc
-```
 
 > [!WARNING]
 > Migrate from the Log Analytics agent to the Azure Monitor Agent before converting MMA tables. Otherwise, data stops ingesting into custom fields in these tables after the table conversion.
@@ -181,9 +182,7 @@ The Azure Monitor APIs report GUID column types differently. This matters if you
 | `/query` | `string` |
 | `/tables` | `guid` |
 
-This is a known platform behavior. Your queries always operate on string values, regardless of which API surfaced the schema. If your tooling switches on the type reported by `/tables`, account for the `guid` value explicitly and treat it the same as `string`.
-
-### Don't change table schema during migration
+Your queries always operate on string values, regardless of which API surfaced the schema. If your tooling switches on the type reported by `/tables`, account for the `guid` value explicitly and treat it the same as `string`.
 
 If you're still ingesting through the HTTP Data Collector API, don't add or modify columns on the destination table through the Tables API or the **Edit schema** UI. Schema changes during migration break legacy ingestion for the entire table. Complete the cutover to the Logs ingestion API before any schema change. For details, see the warning in [Migrate existing custom tables or create new tables](#migrate-existing-custom-tables-or-create-new-tables).
 
