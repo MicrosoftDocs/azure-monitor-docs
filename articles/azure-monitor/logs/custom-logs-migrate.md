@@ -162,29 +162,9 @@ The Logs ingestion API lets you send up to 1 MB of compressed or uncompressed da
 
 To call the Logs ingestion API, see [Logs ingestion REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call).
 
-## Handle GUID and data type differences
+## Handle GUID data type differences
 
-In Azure Monitor Logs, GUIDs are stored as strings at ingestion. There's no native `guid` type at the physical storage layer, and queries always operate on string values. Plan your data collection rule (DCR) schema and your downstream queries with this model in mind.
-
-### GUIDs are stored as strings
-
-Declare GUID columns as `string` in your DCR `streamDeclarations` and in the destination table schema. No transformation is required to convert GUID values from the source: the platform writes them as strings regardless of how the source serializes them.
-
-This behavior is intentional and applies to both ingestion APIs. The Logs ingestion API doesn't introduce a new `guid` type, and migrating from the Data Collector API doesn't change how existing GUID values are stored or queried.
-
-### Cross-API type inconsistency
-
-The Azure Monitor APIs report GUID column types differently. This matters if you build tooling that reads schema from one API and runs queries against another:
-
-| API | Reported type for a GUID column |
-|:----|:--------------------------------|
-| `/metadata` | `string` |
-| `/query` | `string` |
-| `/tables` | `guid` |
-
-Your queries always operate on string values, regardless of which API surfaced the schema. If your tooling switches on the type reported by `/tables`, account for the `guid` value explicitly and treat it the same as `string`.
-
-If you're still ingesting through the HTTP Data Collector API, don't add or modify columns on the destination table through the Tables API or the **Edit schema** UI. Schema changes during migration break legacy ingestion for the entire table. Complete the cutover to the Logs ingestion API before any schema change. For details, see the warning in [Migrate existing custom tables or create new tables](#migrate-existing-custom-tables-or-create-new-tables).
+GUIDs are stored as strings in Azure Monitor Logs. The Tables API accepts `guid` as a column type, but that data type is viewed and written as `string` type by the Logs query and Logs ingestion APIs respectively. Declare data source GUIDs as `string` in your [DCR](../data-collection/data-collection-rule-structure.md#data-types) `streamDeclarations`. This behavior is the same for both ingestion APIs, so migrating from the Data Collector API doesn't change how existing GUID values are stored or queried. For more information, see [Table column data types](logs-table-overview.md#column-data-types).
 
 ## Handle source data schema changes
 
