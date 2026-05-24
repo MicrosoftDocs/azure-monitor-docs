@@ -10,7 +10,7 @@ ms.date: 03/05/2026
 
 # Add or delete tables and columns in Azure Monitor Logs
 
-[Data collection rules](../data-collection/data-collection-rule-overview.md) let you [filter and transform log data](../data-collection/data-collection-transformations.md) before sending the data to an [Azure table or a custom table](../logs/manage-logs-tables.md#table-type-and-schema). This article explains how to create custom tables and add custom columns to tables in your Log Analytics workspace.
+[Data collection rules](../data-collection/data-collection-rule-overview.md) let you [filter and transform log data](../data-collection/data-collection-transformations.md) before sending the data to an [Azure table or a custom table](../logs/logs-table-overview.md#table-types). This article explains how to create custom tables and add custom columns to tables in your Log Analytics workspace.
 
 > [!IMPORTANT]
 > Whenever you update a table schema, be sure to [update any data collection rules](../data-collection/data-collection-rule-overview.md) that send data to the table. The table schema you define in your data collection rule determines how Azure Monitor streams data to the destination table. Azure Monitor doesn't update data collection rules automatically when you make table schema changes.

@@ -17,7 +17,7 @@ Here's a video that explains some of the uses and benefits of the Auxiliary tabl
 
 > [!VIDEO https://www.youtube.com/embed/GbD2Q3K_6Vo?cc_load_policy=1&cc_lang_pref=auto]
 
-Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](logs-ingestion-api-overview.md).
+Azure Monitor Logs supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](logs-table-overview.md#table-plans) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](logs-ingestion-api-overview.md).
 
 This article explains how to create a new custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table. For more information about Auxiliary plan concepts, see [Azure Monitor Logs table plans](data-platform-logs.md#table-plans).
 
