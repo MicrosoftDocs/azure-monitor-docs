@@ -1016,6 +1016,9 @@ items:
       - name: Manage tables
         displayName: Azure Monitor Logs tables
         items:
+        - name: Tables overview
+          displayName: column types, data types, GUID, string, plans, retention
+          href: logs/logs-table-overview.md
         - name: View and manage table properties
           href: logs/manage-logs-tables.md
         - name: Select a table plan
