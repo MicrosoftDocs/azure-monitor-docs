@@ -117,6 +117,7 @@ While health models generate the same alerts as [resource-specific alert rules](
 - Automatically resolved when the entity returns to a healthy state. 
 - Fire alerts on a parent entity consolidating the health of multiple child entities.
 
+:::image type="content" source="media/concepts/alert.png" lightbox="media/concepts/alert.png" alt-text="Diagram showing how alerts work in a health model.":::
 
 ## Health objective
 The health objective for an entity is the target percentage of time this entity should be healthy. This allows you to track the achievement of your availability goals over time. Health objective is an optional value. Instead of setting one for each entity in the health model, you may choose to only set a health objective for the root entity which represents a health objective for the entire workload. Select the setting for each entity in the [entity editor](#entities).

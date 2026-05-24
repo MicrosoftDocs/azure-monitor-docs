@@ -13,12 +13,11 @@ ai-usage: ai-assisted
 
 Unlike resource-specific alert rules in Azure Monitor, health model alerts are configure for an entity instead of individual signals. The signals determine the health state of the entity, and the alert fires when that state changes. 
 
-## Configure alerts in the designer
+## Enable alerts for an entity
 
-1. Configure alerts for an entity on the **Alerts** tab in the entity editor. 
-1. Enable **Degraded**, **Unhealthy**, or both. The alert fires when the entity enters the corresponding health state based on its signals and child dependencies. Set the alert **Severity** and provide an optional description.
-1. Optionally select up to five [action groups](../alerts/action-groups.md) depending on your notification requirements.
-1. Save the entity and then select **Save changes** in the designer.
+Configure alerts for an entity on the **Alerts** tab in the entity editor. You can enable **Degraded**, **Unhealthy**, or both. The alert fires when the entity enters the corresponding health state based on its signals and child dependencies. The only properties you need to specify are the alert **Severity** and an optional description.
+
+Add up to five [action groups] for each entity to define the automated responses that will be triggered when the alert fires.
 
 :::image type="content" source="media/designer/entity-editor-alerts.png" lightbox="media/designer/entity-editor-alerts.png" alt-text="Screenshot of alert configuration in the entity editor.":::
 
