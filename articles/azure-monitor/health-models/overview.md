@@ -12,6 +12,8 @@ ai-usage: ai-assisted
 
 Azure Monitor health models allow you to define and track the health of entities in your workload and the resources they depend on. Health models augment raw monitoring signals collected by Azure Monitor with business context, so you can monitor the health of a workload rather than isolated resources.
 
+:::image type="content" source="media/overview/sample-health-model.png" lightbox="media/overview/sample-health-model.png" alt-text="Screenshot of an example health model." border="false":::
+
 ## State-based monitoring
 
 Health models introduce state-based monitoring to Azure Monitor. This adds a business context to your monitoring data by assigning a health state to each managed entity and combining multiple entities to represent an application or workload. 
@@ -23,9 +25,6 @@ State-based monitoring provides the following benefits over exclusively alert-ba
 - Define relationships between workload components to identify health dependencies and track overall workload health.
 - Use generic entities to aggregate the health of related entities in the health model.
 - Track availability of the workload and its components over time and compare to service level objectives.
-
-:::image type="content" source="media/overview/sample-health-model.png" lightbox="media/overview/sample-health-model.png" alt-text="Screenshot of an example health model." border="false":::
-
 
 ## Track health
 Entities in the health model represent Azure resources, and each has a set of signals that together determine its overall health state. Signals can be based on metrics or log queries, and you can define your own signals or use a set of recommended signals for common Azure resources. The health of each entity rolls up to any entities that depend on it, giving you an overall health state for the entire workload.

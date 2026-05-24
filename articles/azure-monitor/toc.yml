@@ -586,6 +586,9 @@ items:
       - name: Use the designer
         displayName: health models
         href: health-models/designer.md
+      - name: Configure entities
+        displayName: health models
+        href: health-models/entities.md
       - name: Configure signals
         displayName: health models
         href: health-models/signals.md

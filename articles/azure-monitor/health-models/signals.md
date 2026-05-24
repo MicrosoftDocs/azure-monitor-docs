@@ -8,7 +8,7 @@ ms.date: 05/14/2026
 ai-usage: ai-assisted
 ---
 
-# Signals in Azure Monitor health models (preview)
+# Create and configure signals in Azure Monitor health models (preview)
 [Signals](./concepts.md#signals) determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
 
 ## Signal types
@@ -149,7 +149,7 @@ Recommended signals provide a fast starting point for supported Azure resource t
 ## Signal definitions
 Rather than create a new signal for each entity, you can define a signal once and reuse it across multiple entities by creating a signal definition. Signal definitions are reusable configurations that define a specific signal and its associated thresholds. 
 
-To create a signal definition, select **Save as new signal definition** when editing a signal instead of **Save**. 
+To create a signal definition, select **Save as new signal definition** when editing a signal instead of **Add to entity**. 
 
 :::image type="content" source="media/signals/save-signal-definition.png" lightbox="media/signals/save-signal-definition.png" alt-text="Screenshot showing Save as new signal definition in the signal editor.":::
 
