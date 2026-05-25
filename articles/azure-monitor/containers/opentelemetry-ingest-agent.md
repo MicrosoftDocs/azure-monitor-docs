@@ -102,7 +102,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Review and create the deployment.
 1. After deployment completes, go to the created DCR and copy its resource ID from the **Overview** page.
 
-### Deploy Azure Monitor Agent
+## Deploy Azure Monitor Agent
 
 Install the Azure Monitor Agent by using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
 
@@ -111,7 +111,7 @@ Verify that you're installing the minimum required version:
 * **Windows**: Version 1.38.1 or higher
 * **Linux**: Version 1.37.0 or higher
 
-### Associate the DCR with your compute resources
+## Associate the DCR with your compute resources
 
 Create an association between your Data Collection Rule and the VMs, Virtual Machine Scale Sets, or Arc-enabled servers running your instrumented applications:
 
@@ -121,7 +121,7 @@ Create an association between your Data Collection Rule and the VMs, Virtual Mac
 
 For programmatic association, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
 
-### Configure application environment
+## Configure application environment
 
 Set the following configuration in your application environment:
 
@@ -137,7 +137,7 @@ You might need to alter your OTLP exporter to separate metrics versus logs and t
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
-#### Example environment variable configuration
+### Example environment variable configuration
 
 Here's an example configuration for setting environment variables. `microsoft.applicationId` is required if using App Insights based DCR.
 
@@ -153,7 +153,7 @@ export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponentia
 > [!NOTE]
 > The Azure Monitor Agent running on the VM handles authentication and routing to Azure Monitor endpoints.
 
-### Authentication and permissions
+## Authentication and permissions
 
 For OTLP ingestion through Azure Monitor Agent (AMA), associate data collection rules (DCRs) with Azure resources such as virtual machines, virtual machine scale sets, and Arc-enabled servers through data collection rule associations (DCRAs). AMA authenticates by using the system-assigned managed identity of the compute resource and retrieves its configuration from Azure Monitor. AMA then sends telemetry through the Azure Monitor ingestion pipeline without requiring any additional role assignments on the DCR.
 
