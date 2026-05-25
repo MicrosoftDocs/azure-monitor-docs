@@ -26,7 +26,7 @@ There are three distinct types of entities as described in the following section
 | Generic entity | A *generic entity* represents some part of the application or workload that isn't an Azure resource. It may represent some manual process in the workflow, or you may use it to represent some aggregation of other entities such as a region or a business unit. A generic entity can have its own signals, although it may just have a health state determined by the health of its child entities. You create most generic entities manually, although a generic entity may also be automatically created to support health rollup for entities that are automatically added through discovery. |
 
 
-## Relationship
+## Relationships
 A relationship represents the dependency of one entity on another, or it may represent the aggregation of multiple entities into a single entity in order to track their collective health. An entity can have multiple child entities and multiple parent entities. The primary function of relationships is to support health propagation as described in [Health states](#health-states).
 
 In most health models, all entities will connect directly or indirectly to the root entity. This allows you to roll up the health of all entities in the model to the root entity. This is useful for tracking the overall health of your workload and for alerting on the health of the entire workload.
@@ -91,12 +91,12 @@ The *dependencies* setting of a parent entity determines how its health state is
 | Minimum healthy  | Entity becomes degraded or unhealthy when the number of healthy children entities falls to or below a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
 | Maximum not healthy | Entity becomes degraded or unhealthy when the number of non-healthy children entities reaches or exceeds a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
 
-For example, consider the following application that relies on four virtual machines, but the application is healthy if one of the machines is offline. For this functionality, a generic entity is used to aggregate the health of the virtual machines as shown in the following image. The *Minimum healthy* dependency setting is used on the generic entity with an unhealthy threshold of 3. Alternatively, the *Maximum not healthy* dependency setting can be used with a threshold of 2.
+For example, consider the following application that relies on four virtual machines, but the application is healthy if one of the machines is offline. For this functionality, a generic entity is used to aggregate the health of the virtual machines. The *Minimum healthy* dependency setting is used on the generic entity with an unhealthy threshold of 3. Alternatively, the *Maximum not healthy* dependency setting can be used with a threshold of 2.
 
 :::image type="content" source="media/concepts/child-dependencies.png" lightbox="media/concepts/child-dependencies.png" alt-text="Screenshot showing different dependency settings." border="false":::
 
-## Health model of health models
-A health model can be added to another health model just as any other Azure resource. This allows you to create a health model that includes other health models as child components. This pattern lets you build separate health models for different applications, domains, or complex subsystems, and then combine them into a single all-up view.
+## Embedded health models
+A health model can be added to another health model just as any other Azure resource, which allows you to create a health model that includes other health models as child components. This pattern lets you build separate health models for different applications, domains, or complex subsystems, and then combine them into a single all-up view.
 
 When you add a health model to another health model, the embedded model state is the health state of its root entity. The parent model then rolls up that state with other entities by using the same relationship, impact, and dependency settings described earlier in this article.
 
