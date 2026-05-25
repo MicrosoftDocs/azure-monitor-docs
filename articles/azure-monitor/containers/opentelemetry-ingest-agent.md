@@ -2,7 +2,7 @@
 title: Ingest OTLP Data into Azure Monitor with AMA (Preview)
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data to Azure Monitor using Azure Monitor Agent on VMs, Scale Sets, and Arc-enabled servers.
 ms.topic: how-to
-ms.date: 05/01/2026
+ms.date: 05/25/2026
 ms.reviewer: kaprince
 ai-usage: ai-assisted
 ---
@@ -102,7 +102,7 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Review and create the deployment.
 1. After deployment completes, go to the created DCR and copy its resource ID from the **Overview** page.
 
-### Deploy Azure Monitor Agent
+## Deploy Azure Monitor Agent
 
 Install the Azure Monitor Agent by using Azure CLI or PowerShell. For detailed instructions, see [Install and manage Azure Monitor Agent](../agents/azure-monitor-agent-manage.md?tabs=azure-powershell).
 
@@ -111,7 +111,7 @@ Verify that you're installing the minimum required version:
 * **Windows**: Version 1.38.1 or higher
 * **Linux**: Version 1.37.0 or higher
 
-### Associate the DCR with your compute resources
+## Associate the DCR with your compute resources
 
 Create an association between your Data Collection Rule and the VMs, Virtual Machine Scale Sets, or Arc-enabled servers running your instrumented applications:
 
@@ -121,7 +121,7 @@ Create an association between your Data Collection Rule and the VMs, Virtual Mac
 
 For programmatic association, see [Manage data collection rule associations](../data-collection/data-collection-rule-associations.md).
 
-### Configure application environment
+## Configure application environment
 
 Set the following configuration in your application environment:
 
@@ -137,7 +137,7 @@ You might need to alter your OTLP exporter to separate metrics versus logs and t
 > [!IMPORTANT]
 > Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
 
-#### Example environment variable configuration
+### Example environment variable configuration
 
 Here's an example configuration for setting environment variables. `microsoft.applicationId` is required if using App Insights based DCR.
 
@@ -153,22 +153,13 @@ export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponentia
 > [!NOTE]
 > The Azure Monitor Agent running on the VM handles authentication and routing to Azure Monitor endpoints.
 
-### Configure Microsoft Entra authentication
+## Authentication and permissions
 
-You must enable system-assigned managed identity on your compute resource. Assign the **Monitoring Metrics Publisher** role to the managed identity. The managed identity AMA uses needs permission to write data to your DCR.
+For OTLP ingestion through Azure Monitor Agent (AMA), associate data collection rules (DCRs) with Azure resources such as virtual machines, virtual machine scale sets, and Arc-enabled servers through data collection rule associations (DCRAs). AMA authenticates by using the system-assigned managed identity of the compute resource and retrieves its configuration from Azure Monitor. AMA then sends telemetry through the Azure Monitor ingestion pipeline without requiring any additional role assignments on the DCR.
 
-1. Go to your DCR in the Azure portal.
-1. In the left navigation, select **Access control (IAM)**.
-1. Select **Add** > **Add role assignment**.  
-    :::image type="content" source="./media/opentelemetry-ingest-agent/data-collection-rule-access-control.png" lightbox="./media/opentelemetry-ingest-agent/data-collection-rule-access-control.png" alt-text="Screenshot showing how to add a role assignment to a Data Collection Rule.":::
-1. Select **Monitoring Metrics Publisher** and select **Next**.  
-    :::image type="content" source="./media/opentelemetry-ingest-agent/role-assignment-metrics-publisher.png" lightbox="./media/opentelemetry-ingest-agent/role-assignment-metrics-publisher.png" alt-text="Screenshot showing the Monitoring Metrics Publisher role selection.":::
-1. For **Assign access to**, select **Managed Identity**.
-1. Next to **Members**, select **+ Select members** and choose your managed identity.
-1. Select **Review + assign** to save the role assignment.
+Ensure that you enable system-assigned managed identity on your virtual machines, virtual machine scale sets, or Arc-enabled servers.
 
-> [!IMPORTANT]
-> - Application Insights experiences, including prebuilt dashboards and queries, expect and require OTLP metrics with delta temporality and exponential histogram aggregation.
+For ingestion paths that call the Azure Monitor ingestion API directly, such as the OpenTelemetry Collector or the Logs ingestion API, you send telemetry to a data collection endpoint (DCE) from an external service or workload. Those scenarios require explicit Microsoft Entra authentication and the **Monitoring Metrics Publisher** built-in role on the DCR. For details, see [Ingest OTLP data into Azure Monitor by using the OpenTelemetry Collector](opentelemetry-protocol-ingestion.md).
 
 ## Next steps
 
