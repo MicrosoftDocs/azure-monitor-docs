@@ -17,7 +17,7 @@ Here's a video that explains some of the uses and benefits of the Auxiliary tabl
 
 > [!VIDEO https://www.youtube.com/embed/GbD2Q3K_6Vo?cc_load_policy=1&cc_lang_pref=auto]
 
-Azure Monitor Logs currently supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](manage-logs-tables.md#table-type-and-schema) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](logs-ingestion-api-overview.md).
+Azure Monitor Logs supports the Auxiliary table plan on [data collection rule (DCR)-based custom tables](logs-table-overview.md#table-plans) to which you send data you collect using [Azure Monitor Agent](../agents/agents-overview.md) or the [Logs ingestion API](logs-ingestion-api-overview.md).
 
 This article explains how to create a new custom table with the Auxiliary plan in your Log Analytics workspace and set up a data collection rule that sends data to this table. For more information about Auxiliary plan concepts, see [Azure Monitor Logs table plans](data-platform-logs.md#table-plans).
 
@@ -47,9 +47,6 @@ To create a custom table with the Auxiliary plan in the Azure portal:
 1. Under **Table plan**, select **Auxiliary / Lake**.
 
 1. Select **Next** and complete the remaining steps to configure the schema and data collection. For detailed instructions on the remaining steps, see [Add or delete tables and columns in Azure Monitor Logs](create-custom-table.md#create-a-custom-table).
-
-> [!NOTE]
-> This sample lists all the supported column data types.
 
 # [Azure CLI](#tab/cli-1)
 
@@ -106,10 +103,6 @@ az rest \
         {
           "name": "BooleanProperty",
           "type": "boolean"
-        },
-        {
-          "name": "GuidProperty",
-          "type": "guid"
         },
         {
           "name": "DateTimeProperty",
@@ -185,10 +178,6 @@ Invoke-AzRestMethod @restParams
           "type": "boolean"
         },
         {
-          "name": "GuidProperty",
-          "type": "guid"
-        },
-        {
           "name": "DateTimeProperty",
           "type": "dateTime"
         }
@@ -226,8 +215,6 @@ Content-Type: application/json
           "type": "real"},
         {"name": "BooleanProperty",
           "type": "boolean"},
-        {"name": "GuidProperty",
-          "type": "guid"},
         {"name": "DateTimeProperty",
           "type": "dateTime"}
       ]
@@ -284,10 +271,6 @@ resource table 'Microsoft.OperationalInsights/workspaces/tables@2025-07-01' = {
         {
           name: 'BooleanProperty'
           type: 'boolean'
-        }
-        {
-          name: 'GuidProperty'
-          type: 'guid'
         }
         {
           name: 'DateTimeProperty'
@@ -351,10 +334,6 @@ The following ARM (JSON) example uses the [Microsoft.OperationalInsights workspa
             {
               "name": "BooleanProperty",
               "type": "boolean"
-            },
-            {
-              "name": "GuidProperty",
-              "type": "guid"
             },
             {
               "name": "DateTimeProperty",
@@ -470,10 +449,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 "type": "boolean"
               },
               {
-                "name": "GuidProperty",
-                "type": "guid"
-              },
-              {
                 "name": "DateTimeProperty",
                 "type": "dateTime"
               }
@@ -566,10 +541,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                 "type": "boolean"
               },
               {
-                "name": "GuidProperty",
-                "type": "guid"
-              },
-              {
                 "name": "DateTimeProperty",
                 "type": "dateTime"
               }
@@ -642,10 +613,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
               {
                 "name": "BooleanProperty",
                 "type": "boolean"
-              },
-              {
-                "name": "GuidProperty",
-                "type": "guid"
               },
               {
                 "name": "DateTimeProperty",
@@ -723,10 +690,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
               {
                 name: 'BooleanProperty'
                 type: 'boolean'
-              }
-              {
-                name: 'GuidProperty'
-                type: 'guid'
               }
               {
                 name: 'DateTimeProperty'
@@ -826,10 +789,6 @@ This method closely follows the steps described in [Tutorial: Send data to Azure
                   {
                     "name": "BooleanProperty",
                     "type": "boolean"
-                  },
-                  {
-                    "name": "GuidProperty",
-                    "type": "guid"
                   },
                   {
                     "name": "DateTimeProperty",

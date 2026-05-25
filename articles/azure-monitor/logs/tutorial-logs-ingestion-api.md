@@ -139,13 +139,14 @@ A [DCE](../data-collection/data-collection-endpoint-overview.md) is required to 
 
 ## Create new table in Log Analytics workspace
 
-The custom table must be created before you can send data to it. The table for this tutorial will include five columns shown in the schema below. The `name`, `type`, and `description` properties are mandatory for each column. The properties `isHidden` and `isDefaultDisplay` both default to `false` if not explicitly specified. Possible data types are `string`, `int`, `long`, `real`, `boolean`, `dateTime`, `guid`, and `dynamic`.
+A custom table must be created before you can send data to it. Consider these constraints when you create the table:
+- The `name`, `type`, and `description` properties are mandatory for each column. 
+- The properties `isHidden` and `isDefaultDisplay` both default to `false` if not explicitly specified. 
+- Possible data types are `string`, `int`, `long`, `real`, `boolean`, `dateTime`, and `dynamic`. The API and portal UI accept `guid` as a column type, but GUIDs are stored and queried as `string` type. When you define the stream in your data collection rule, declare GUID columns as `string`. For more information, see [GUID columns and data type differences](logs-table-overview.md#column-data-types).
+- Custom tables must use a suffix of `_CL`.
 
 > [!NOTE]
 > This tutorial uses PowerShell from Azure Cloud Shell to make REST API calls by using the Azure Monitor **Tables** API. You can use any other valid method to make these calls.
-
-> [!IMPORTANT]
-> Custom tables must use a suffix of `_CL`.
 
 1. Select the **Cloud Shell** button in the Azure portal and ensure the environment is set to **PowerShell**.
 

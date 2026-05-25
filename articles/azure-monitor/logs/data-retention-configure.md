@@ -433,7 +433,7 @@ Get-AzOperationalInsightsTable -ResourceGroupName ContosoRG -WorkspaceName Conto
 
 ## What happens to data when you delete a table in a Log Analytics workspace?
 
-A Log Analytics workspace can contain several [types of tables](../logs/manage-logs-tables.md#table-type-and-schema). What happens when you delete the table is different for each:
+A Log Analytics workspace can contain several [types of tables](../logs/logs-table-overview.md#table-types). What happens when you delete the table is different for each:
 
 | Table type | Data retention | Recommendations | Recovery |
 |------------|----------------|-----------------|----------|
