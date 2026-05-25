@@ -4,7 +4,7 @@ description: Learn how to use the designer to configure an Azure Monitor health 
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/13/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 
@@ -82,7 +82,7 @@ The **General** tab of the entity editor allows you to configure the properties 
 | Canvas position | X and Y coordinates of the entity on the canvas. This is automatically set when you drag the entity around the canvas. You can also manually set these values to position the entity in a specific location. |
 | Tags | One or more optional name/value pairs to assign to the entity. Labels are used to group entities together for reporting and filtering purposes. You can use the same label on multiple entities. |
 
-:::image type="content" source="media/entities/entity-editor.png" lightbox="media/entities/entity-editor.png" alt-text="Screenshot of authentication settings view.":::
+:::image type="content" source="media/designer/entity-editor.png" lightbox="media/designer/entity-editor.png" alt-text="Screenshot of authentication settings view.":::
 
 ## Signals
 The **Signals** tab of the [entity editor](#entity-properties) allows you to create or edit signals and assign them to the entity. See [Signals in Azure Monitor health models](./signals.md).
@@ -99,7 +99,7 @@ The view includes a list of all the entities in the health model with their curr
 
 Modify the filter to show only entities matching particular criteria. For example, set the **Contains signals** filter to **Doesn't contain signals** to list only those entities that don't have any signal definitions associated with them. You can then select each of those entities to add signal definitions.
 
-:::image type="content" source="media/create/entities-view.png" lightbox="media/create/entities-view.png" alt-text="Screenshot of entities view.":::
+:::image type="content" source="media/designer/entities-view.png" lightbox="media/designer/entities-view.png" alt-text="Screenshot of entities view.":::
 
 
 ## Next steps

@@ -589,12 +589,12 @@ items:
       - name: Configure signals
         displayName: health models
         href: health-models/signals.md
-      - name: Create discoveries
-        displayName: health models
-        href: health-models/discoveries.md
       - name: Configure alerts
         displayName: health models
         href: health-models/alerts.md
+      - name: Create discoveries
+        displayName: health models
+        href: health-models/discoveries.md
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md

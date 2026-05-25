@@ -4,7 +4,7 @@ description: Learn how to create a new Azure Monitor health model.
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/22/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 

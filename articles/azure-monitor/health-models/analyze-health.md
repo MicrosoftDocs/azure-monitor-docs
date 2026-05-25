@@ -4,7 +4,7 @@ description: Describes the different views available to view the health state of
 ms.topic: concept-article
 author: bwren
 ms.author: bwren
-ms.date: 06/27/2025
+ms.date: 05/25/2026
 ---
 
 # Analyze health state of Azure Monitor health models (preview)

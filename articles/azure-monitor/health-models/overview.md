@@ -4,7 +4,7 @@ description: Overview of health models in Azure Monitor that allow you to track 
 ms.topic: overview
 author: bwren
 ms.author: bwren
-ms.date: 05/13/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 

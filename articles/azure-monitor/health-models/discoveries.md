@@ -4,12 +4,12 @@ description: Learn discovery concepts and configuration for Azure Monitor health
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/18/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 
 # Auto discover entities for Azure Monitor health models (preview)
-Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains each discovery kind, how discovery recommendations work, and how to assign a parent entity for discovered entities.
+Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains the different types of discoveries and how to create and configure them.
 
 ## Create a discovery rule
 Create discoveries from the **Discovery** menu in the health model.

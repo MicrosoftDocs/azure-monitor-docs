@@ -4,12 +4,12 @@ description: Learn signal concepts and configuration for Azure Monitor health mo
 ms.topic: how-to
 author: bwren
 ms.author: bwren
-ms.date: 05/14/2026
+ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
 
 # Create and configure signals in Azure Monitor health models (preview)
-[Signals](./concepts.md#signals) determine the health of entities in [Azure Monitor health models](./overview.md). This article explains signal concepts and details how to configure and tune signals in the designer.
+[Signals](./concepts.md#signals) determine the health of entities in [Azure Monitor health models](./overview.md). This article explains how to configure and tune signals in the designer.
 
 ## Signal types
 Each entity in a health model can use any of the available signal types described in the following table.
@@ -21,16 +21,16 @@ Each entity in a health model can use any of the available signal types describe
 | Azure Monitor workspace | Runs a [PromQL query](../metrics/metrics-explorer.md) from an Azure Monitor workspace and evaluates the result. |
 
 ## Configure signals in the designer
-The **Signals** tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign to the entity. There is a section for each type of signal described in [Signal types](#signal-types). If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable that type.
+The **Signals** tab of the [entity editor](./designer.md#entities) allows you to create or edit signals and assign them to the entity. If a signal type is defined for the entity, then you can configure its details. If not, then you're given an option to enable and configure that type.
 
-:::image type="content" source="media/designer/signals-empty.png" lightbox="media/designer/signals-empty.png" alt-text="Screenshot of signals page for an entity.":::
+:::image type="content" source="media/signals/signals-empty.png" lightbox="media/signals/signals-empty.png" alt-text="Screenshot of signals page for an entity.":::
 
 When you add the first signal of a particular type to an entity, you must specify the following properties. You can change these properties later.
 
 | Property | Description |
 |:---|:---|
 | Data source | The signals that are added to the entity will access this data source to apply their logic and compare to their threshold. Each entity can have only one data source for each signal type, but you can have multiple signals of that type that use the same data source. Each signal type uses a different type of data source that you must configure for each entity. See the data source for each signal type in [Signal types](#signal-types). |
-| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
+| Authentication setting | The **Authentication setting** specifies the authentication setting used by the entity to access the data source. The managed identity you specified when you created the health model is used by default. You can create additional settings in the [Authentication settings](./create.md#identity) view.<br><br>An icon specifies whether the method has required access to collect telemetry from the resource. Click **Change** to select another authentication setting. . See [Permissions required](./create.md#permissions-required) for the managed identity requirements. |
 
 ## Add signal assignment
 When you click **Add a signal assignment** in the entity editor, you have multiple options.
@@ -51,7 +51,7 @@ The details required for each signal will vary depending on its type.
 Azure resource signals sample the value of a [platform metric](../essentials/data-platform-metrics.md) from a particular resource and compare against a numeric threshold to determine the health state. Only metric definitions that are supported for the resource type of the Azure resource represented by the entity are available.
 
 
-:::image type="content" source="media/designer/azure-resource-signals.png" lightbox="media/designer/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
+:::image type="content" source="media/signals/azure-resource-signals.png" lightbox="media/signals/azure-resource-signals.png" alt-text="Screenshot of Azure resource signals for an entity.":::
 
 ### Signal properties
 
@@ -77,7 +77,7 @@ The following tables describe the properties that define an Azure resource signa
 ### Log Analytics workspace signals
 Log Analytics workspace signals run a [log query](../logs/queries.md) against a Log Analytics workspace and compare the results to the thresholds to determine the health state. Use log signals to search for errors in log data or to perform complex calculations on numeric data stored in the Log Analytics workspace.
 
-:::image type="content" source="media/designer/log-signals.png" lightbox="media/designer/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
+:::image type="content" source="media/signals/log-signals.png" lightbox="media/signals/log-signals.png" alt-text="Screenshot of log signals for an entity.":::
 
 ### Log Analytics workspace
 Before you can create a Log Analytics workspace signal, you must specify the workspace to query and the authentication that the health model will use to access it. You can only specify a single workspace for each entity, but you can have multiple signals using different log queries from this workspace.
@@ -142,9 +142,6 @@ You can specify the operator for each threshold to determine how the signal valu
 To define both thresholds for a signal definition ensure that degraded threshold is set to a value that is less than the unhealthy threshold. The degraded state will be set if the signal value is between the degraded and unhealthy thresholds. If the signal value is above the unhealthy threshold, then the entity is set to the unhealthy state. If the signal value is below the degraded threshold, then the entity is set to the healthy state.
 
 
-## Recommended signals
-Recommended signals provide a fast starting point for supported Azure resource types. They include predefined metrics and default degraded and unhealthy thresholds. You can tune the thresholds on each entity after they're added. Use recommended signals to bootstrap quickly, and then adjust thresholds based on workload behavior and service-level objectives.
-
 
 ## Signal definitions
 Rather than create a new signal for each entity, you can define a signal once and reuse it across multiple entities by creating a signal definition. Signal definitions are reusable configurations that define a specific signal and its associated thresholds. 
@@ -164,7 +161,7 @@ To add a signal definition to another entity, select **Signal definitions** to c
 
 Edit signal definitions in the designer as you would edit any other signal. When you edit the signal definition for one entity, the changes will be applied to all entities that use that signal definition. You might use the same metric to measure the health of multiple entities, but different entities might require different thresholds. In this case, create multiple signal definitions with different thresholds.
 
-The signal definitions view lists all of the signal definitions in the health model. Click on any signal definition to view its details including the entities that use it.
+The **Signal definitions** view lists all of the signal definitions in the health model. Click on any signal definition to view its details including the entities that use it.
 
 :::image type="content" source="media/signals/signal-definitions-view.png" lightbox="media/signals/signal-definitions-view.png" alt-text="Screenshot showing the signal definitions view.":::
 
