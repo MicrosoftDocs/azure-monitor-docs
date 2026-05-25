@@ -62,7 +62,7 @@ You can optionally configure properties and signals for the entity before saving
 
 ## Relationships
 
-To create a [relationship](./concepts.md#relationship) between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. 
+To create a [relationship](./concepts.md#relationships) between two entities, either click the bottom handle of the parent entity and drag the line to the top handle of the child entity or click and drag from the top handle of the child to the bottom handle of the parent. Each entity (except the root entity which can't have a parent) can have multiple children and multiple parents. 
 
 You can't move a relationship to a new parent or child. Instead, delete the relationship and create a new one. To delete a relationship, click on it and either click **Delete** or press the delete key.
 

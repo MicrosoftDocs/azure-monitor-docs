@@ -38,7 +38,7 @@ Each discovery rule includes these core settings:
 | Resource access authentication setting | Identity used to access source resources for discovery methods that require direct resource reads, such as Application Insights topology. |
 | Parent entity | Any entities added by the discovery are attached as children of this entity. If you don't select a parent entity, a new generic entity is created for the discovery rule. |
 | Discover relationships | When enabled, discovery attempts to create relationships between discovered entities when supported. |
-| Add recommended signals | When enable, the [recommended signals](./signals.md#recommended-signals) for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
+| Add recommended signals | When enable, the recommended signals for that resource type are added to any discovered entities. This allows you to have basic monitoring automatically started for any discovered entities. |
 
 Each discovery type has the specific settings shown in the following tabs:
 
