@@ -7,7 +7,7 @@ ms.topic: concept-article
 
 # Azure Monitor Logs query API overview
 
-The Logs query API is a REST API that you can use to query the full set of data collected by Azure Monitor Logs. You can use the same query language that's used throughout the service. Use this API to retrieve data, build new visualizations of your data, and extend the capabilities of Log Analytics. For the broader Azure Monitor API surface, see the [Logs query](../../fundamentals/azure-monitor-rest-api-index.md#logs-query) section of the Azure Monitor REST API index.
+Query the full set of data collected by Azure Monitor Logs with the Logs query API. This REST API uses the same query language that's used throughout the service to retrieve data, build new visualizations of your data, and extend the capabilities of Log Analytics. For the broader Azure Monitor API surface, see the [Logs query](../../fundamentals/azure-monitor-rest-api-index.md#logs-query) section of the Azure Monitor REST API index.
 
 ## Query endpoint
 
@@ -52,10 +52,10 @@ For the full request parameter reference (including `timespan` and cross-workspa
 
 ## Logs query API authentication
 
-You must authenticate to access the Logs query API:
+Your application must authenticate to access the Logs query API:
 
 - To query your workspaces, you must use [Microsoft Entra authentication](/entra/fundamentals/what-is-entra-id).
-- To quickly explore the API without using Microsoft Entra authentication, you can use an API key to query sample data in a non-production environment.
+- To quickly explore the API without using Microsoft Entra authentication, use the demo API key to query sample data in a non-production test environment.
 
 <a name='azure-ad-authentication-for-workspace-data'></a>
 
@@ -77,7 +77,7 @@ After you receive a token, the process for calling the Logs query API is the sam
 
 ### API key authentication for sample data
 
-To quickly explore the API without using Microsoft Entra authentication, Microsoft provides a demonstration workspace with sample data. You can [authenticate by using an API key](./access-api.md#authenticate-with-a-demo-api-key).
+To quickly explore the API without using Microsoft Entra authentication, Microsoft provides a demonstration workspace with sample data. [Authenticate by using an API key](./access-api.md#authenticate-with-a-demo-api-key).
 
 ## Logs query API limits
 
@@ -85,7 +85,7 @@ The API enforces limits on concurrency, result size, query duration, and throttl
 
 ## Client libraries and command-line tools
 
-Instead of calling the REST API directly, you can use the idiomatic Azure Monitor Query client libraries:
+Azure Monitor supports client libraries for various programming languages. Instead of calling the REST API directly, these libraries provide a wrapper for calling the Logs query API that also handles authentication, retries, and response parsing for you. Client libraries are available for:
 
 * [.NET](/dotnet/api/overview/azure/Monitor.Query-readme)
 * [Go](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/monitor/query/azlogs)
@@ -93,9 +93,7 @@ Instead of calling the REST API directly, you can use the idiomatic Azure Monito
 * [JavaScript](/javascript/api/overview/azure/monitor-query-readme)
 * [Python](/python/api/overview/azure/monitor-query-readme)
 
-Each client library is a wrapper around the REST API that allows you to retrieve log data from the workspace.
-
-You can also query from the command line using Azure CLI or Azure PowerShell:
+Use Azure CLI or Azure PowerShell in a similar way to query from the command line:
 
 # [Azure CLI](#tab/azure-cli)
 
@@ -103,7 +101,7 @@ Use [`az monitor log-analytics query`](/cli/azure/monitor/log-analytics#az-monit
 
 ```azurecli
 az monitor log-analytics query \
-  --workspace "{workspaceId}" \
+  --workspace "myWorkspaceId" \
   --analytics-query "AzureActivity | summarize count() by Category" \
   --timespan "PT12H"
 ```
@@ -114,7 +112,7 @@ Use [`Invoke-AzOperationalInsightsQuery`](/powershell/module/az.operationalinsig
 
 ```azurepowershell
 $queryParams = @{
-    WorkspaceId = '{workspaceId}'
+    WorkspaceId = 'myWorkspaceId'
     Query       = 'AzureActivity | summarize count() by Category'
     Timespan    = (New-TimeSpan -Hours 12)
 }
@@ -128,7 +126,7 @@ Invoke-AzOperationalInsightsQuery @queryParams
 
 To explore the API without writing code, use an API client such as [Bruno](https://www.usebruno.com/) or [Insomnia](https://insomnia.rest/) to build queries with a visual interface. You can also use [cURL](https://curl.haxx.se/) from the command line and pipe the output into [jsonlint](https://github.com/zaach/jsonlint) for readable JSON.
 
-## Next steps
+## Related content
 
 * Discover available endpoints and operations in [Azure Monitor REST API index](../../fundamentals/azure-monitor-rest-api-index.md).
 * Learn how to bring data into Azure Monitor by checking out [Logs Ingestion API in Azure Monitor](../logs-ingestion-api-overview.md).
