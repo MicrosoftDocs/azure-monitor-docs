@@ -90,6 +90,10 @@
   items:
     - name: How to report an impact
       href: report-issue.md
+
+
+    - name: Service Health retirement alerting guidelines
+      href: service-retirement-alerting-guidelines.md
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
