@@ -90,6 +90,9 @@
   items:
     - name: How to report an impact
       href: report-issue.md
+
+    - name: Identify impacted resources for service retirements using Azure Resource Graph
+      href: service-retirement-unified-impact-queries.md
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
