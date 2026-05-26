@@ -25,7 +25,7 @@ This article walks you through setting a table's protection level, granting acce
 
 Setting a table's protection level to `Protected` immediately prevents standard read roles from accessing the data in that table. Complete these steps for each table that contains sensitive telemetry.
 
-### [Azure portal](#tab/portal)
+### [Azure portal](#tab/portal-1)
 
 1. In the Azure portal, go to **Log Analytics workspaces** and select your workspace.
 1. Under **Settings**, select **Tables**.
@@ -36,30 +36,34 @@ Setting a table's protection level to `Protected` immediately prevents standard 
 
 <!-- Placeholder: screenshot of protection level setting in the Tables blade -->
 
-### [Azure CLI](#tab/azure-cli)
+### [Azure CLI](#tab/azure-cli-1)
 
-Use `az rest` to call the Tables API. Direct CLI support for the `protectionLevel` property is not yet available during preview.
+Use the following command to set a table's protection level to `Protected` by using the CLI.
 
 ```azurecli
-url="https://management.azure.com"
-url+="/subscriptions/{subscription-id}"
-url+="/resourceGroups/{resource-group}"
-url+="/providers/Microsoft.OperationalInsights"
-url+="/workspaces/{workspace-name}"
-url+="/tables/{table-name}"
-url+="?api-version=2025-02-01"
+# User input
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroupName"
+workspaceName="myWorkspaceName"
+tableName="myTableName"
 
-az rest --method patch \
-  --url "$url" \
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.OperationalInsights/workspaces/$workspaceName/tables/$tableName"
+url="$apiEndpoint$path/providers/$provider?api-version=2025-02-01"
+
+az rest --method patch --url "$url" \
   --body '{"properties": {"protectionLevel": "Protected"}}'
 ```
 
-### [REST API](#tab/rest)
+### [REST API](#tab/rest-1)
 
-Send a PATCH request to the table resource:
+To update the table's protection level, use this `PATCH` request for the [Tables - Update](/rest/api/loganalytics/tables/update) operation. Use the latest `apiVersion` documented there.
 
-```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}/tables/{table-name}?api-version=2025-02-01
+```REST
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -85,12 +89,10 @@ A successful response returns the table definition with `protectionLevel` set to
 
 | Placeholder | Value |
 |---|---|
-| `{subscription-id}` | Your Azure subscription ID. |
-| `{resource-group}` | The resource group that contains your workspace. |
-| `{workspace-name}` | Your Log Analytics workspace name. |
-| `{table-name}` | The table to protect (for example, `SecurityEvent`). |
-
-The API version may change before GA. Check the [REST API reference](/rest/api/loganalytics/tables) for the latest version.
+| `{subscriptionId}` | Your Azure subscription ID. |
+| `{resourceGroupName}` | The resource group that contains your workspace. |
+| `{workspaceName}` | Your Log Analytics workspace name. |
+| `{tableName}` | The table to protect (for example, `SecurityEvent`). |
 
 ## Grant access to protected tables
 
@@ -100,7 +102,7 @@ After you protect a table, you must explicitly grant access to users who need th
 
 The **Privileged Monitoring Data Reader** built-in role grants read access to all protected tables at the assigned scope.
 
-#### [Azure portal](#tab/portal)
+#### [Azure portal](#tab/portal-2)
 
 1. In the Azure portal, go to the scope where you want to assign the role (subscription, resource group, or workspace).
 1. Select **Access control (IAM)** > **Add** > **Add role assignment**.
@@ -108,16 +110,22 @@ The **Privileged Monitoring Data Reader** built-in role grants read access to al
 1. On the **Members** tab, select the user, group, or managed identity.
 1. Select **Review + assign**.
 
-#### [Azure CLI](#tab/azure-cli)
+#### [Azure CLI](#tab/azure-cli-2)
+
+Use the following command to assign the Privileged Monitoring Data Reader role by using the CLI.
 
 ```azurecli
-scope="/subscriptions/{subscription-id}"
-scope+="/resourceGroups/{resource-group}"
-scope+="/providers/Microsoft.OperationalInsights"
-scope+="/workspaces/{workspace-name}"
+# User input
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroupName"
+workspaceName="myWorkspaceName"
+assigneeObjectId="myAssigneeObjectId"
+
+scope="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+scope+="/providers/Microsoft.OperationalInsights/workspaces/$workspaceName"
 
 az role assignment create \
-  --assignee "{user-or-group-object-id}" \
+  --assignee "$assigneeObjectId" \
   --role "Privileged Monitoring Data Reader" \
   --scope "$scope"
 ```
@@ -126,10 +134,10 @@ az role assignment create \
 
 | Placeholder | Value |
 |---|---|
-| `{user-or-group-object-id}` | The Microsoft Entra object ID of the user or group. |
-| `{subscription-id}` | Your Azure subscription ID. |
-| `{resource-group}` | The resource group that contains your workspace. |
-| `{workspace-name}` | Your Log Analytics workspace name. |
+| `assigneeObjectId` | The Microsoft Entra object ID of the user or group. |
+| `subscriptionId` | Your Azure subscription ID. |
+| `resourceGroupName` | The resource group that contains your workspace. |
+| `workspaceName` | Your Log Analytics workspace name. |
 
 ### Grant access to specific protected tables only
 
@@ -180,25 +188,33 @@ This pattern works well for incident response and support scenarios where engine
 
 By default, some control-plane roles (such as Reader and Monitoring Reader) provide implicit read access to log data. DataAction-only mode closes this path so that only DataActions govern data access.
 
-### [Azure CLI](#tab/azure-cli)
+### [Azure CLI](#tab/azure-cli-3)
+
+Use the following command to enable DataAction-only mode by using the CLI.
 
 ```azurecli
-url="https://management.azure.com"
-url+="/subscriptions/{subscription-id}"
-url+="/resourceGroups/{resource-group}"
-url+="/providers/Microsoft.OperationalInsights"
-url+="/workspaces/{workspace-name}"
-url+="?api-version=2025-02-01"
+# User input
+subscriptionId="aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e"
+resourceGroupName="myResourceGroupName"
+workspaceName="myWorkspaceName"
 
-az rest --method patch \
-  --url "$url" \
+# Build request URL
+apiEndpoint="https://management.azure.com"
+path="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+provider="Microsoft.OperationalInsights/workspaces/$workspaceName"
+url="$apiEndpoint$path/providers/$provider?api-version=2025-02-01"
+
+az rest --method patch --url "$url" \
   --body '{"properties": {"features": {"dataAuthorizationMode": "DataActionsOnly"}}}'
 ```
 
-### [REST API](#tab/rest)
+### [REST API](#tab/rest-3)
 
-```http
-PATCH https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}?api-version=2025-02-01
+To enable DataAction-only mode, use this `PATCH` request for the [Workspaces - Update](/rest/api/loganalytics/workspaces/update) operation. Use the latest `apiVersion` documented there.
+
+```REST
+PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
+Authorization: Bearer {accessToken}
 Content-Type: application/json
 
 {
@@ -214,11 +230,9 @@ Content-Type: application/json
 
 | Placeholder | Value |
 |---|---|
-| `{subscription-id}` | Your Azure subscription ID. |
-| `{resource-group}` | The resource group that contains your workspace. |
-| `{workspace-name}` | Your Log Analytics workspace name. |
-
-The API version may change before GA. Check the [REST API reference](/rest/api/loganalytics/workspaces) for the latest version.
+| `{subscriptionId}` | Your Azure subscription ID. |
+| `{resourceGroupName}` | The resource group that contains your workspace. |
+| `{workspaceName}` | Your Log Analytics workspace name. |
 
 After you enable DataAction-only mode, verify that users who previously relied on control-plane roles for log access now receive appropriate DataAction-based role assignments.
 
