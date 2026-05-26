@@ -48,13 +48,13 @@ The API returns a JSON response containing a `tables` array. Each table includes
 }
 ```
 
-For the full request parameter reference (including `timespan` and cross-workspace options), see [Request format](./request-format.md). For detailed response structure and error handling, see [Response format](./response-format.md).
+For the full request parameter reference (including `timespan` and cross-workspace options), see [Request format](request-format.md#query-parameters). For detailed response structure and error handling, see [Response format](response-format.md).
 
 ## Logs query API authentication
 
 Your application must authenticate to access the Logs query API:
 
-- To query your workspaces, you must use [Microsoft Entra authentication](/entra/fundamentals/what-is-entra-id).
+- To query your workspaces, you must use [Microsoft Entra authentication](/entra/fundamentals/what-is-entra).
 - To quickly explore the API without using Microsoft Entra authentication, use the demo API key to query sample data in a non-production test environment.
 
 <a name='azure-ad-authentication-for-workspace-data'></a>
@@ -77,11 +77,11 @@ After you receive a token, the process for calling the Logs query API is the sam
 
 ### API key authentication for sample data
 
-To quickly explore the API without using Microsoft Entra authentication, Microsoft provides a demonstration workspace with sample data. [Authenticate by using an API key](./access-api.md#authenticate-with-a-demo-api-key).
+To quickly explore the API without using Microsoft Entra authentication, Microsoft provides a demonstration workspace with sample data. [Authenticate by using an API key](access-api.md#authenticate-with-a-demo-api-key).
 
 ## Logs query API limits
 
-The API enforces limits on concurrency, result size, query duration, and throttling rate. These limits apply per workspace and vary depending on the query source. For the full list of thresholds, see [Query API limits](../../service-limits.md#query-api).
+The API enforces limits on concurrency, result size, query duration, and throttling rate. These limits apply per workspace and vary depending on the query source. For the full list of thresholds, see [Query API limits](../../fundamentals/service-limits.md#log-analytics-workspaces).
 
 ## Client libraries and command-line tools
 
