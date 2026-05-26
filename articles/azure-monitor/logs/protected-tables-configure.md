@@ -25,7 +25,7 @@ This article walks you through setting a table's protection level, granting acce
 
 Setting a table's protection level to `Protected` immediately prevents standard read roles from accessing the data in that table. Complete these steps for each table that contains sensitive telemetry.
 
-### [Portal](#tab/portal)
+### [Azure portal](#tab/portal)
 
 1. In the Azure portal, go to **Log Analytics workspaces** and select your workspace.
 1. Under **Settings**, select **Tables**.
@@ -36,26 +36,23 @@ Setting a table's protection level to `Protected` immediately prevents standard 
 
 <!-- Placeholder: screenshot of protection level setting in the Tables blade -->
 
-### [Azure CLI](#tab/cli)
+### [Azure CLI](#tab/azure-cli)
 
 Use `az rest` to call the Tables API. Direct CLI support for the `protectionLevel` property is not yet available during preview.
 
 ```azurecli
+url="https://management.azure.com"
+url+="/subscriptions/{subscription-id}"
+url+="/resourceGroups/{resource-group}"
+url+="/providers/Microsoft.OperationalInsights"
+url+="/workspaces/{workspace-name}"
+url+="/tables/{table-name}"
+url+="?api-version=2025-02-01"
+
 az rest --method patch \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}/tables/{table-name}?api-version=2025-02-01" \
+  --url "$url" \
   --body '{"properties": {"protectionLevel": "Protected"}}'
 ```
-
-Replace the placeholder values:
-
-| Placeholder | Value |
-|---|---|
-| `{subscription-id}` | Your Azure subscription ID. |
-| `{resource-group}` | The resource group that contains your workspace. |
-| `{workspace-name}` | Your Log Analytics workspace name. |
-| `{table-name}` | The table to protect (for example, `SecurityEvent`). |
-
-The API version and exact property path may change before general availability. Check the [REST API reference](/rest/api/loganalytics/tables) for the latest version.
 
 ### [REST API](#tab/rest)
 
@@ -86,6 +83,15 @@ A successful response returns the table definition with `protectionLevel` set to
 
 ---
 
+| Placeholder | Value |
+|---|---|
+| `{subscription-id}` | Your Azure subscription ID. |
+| `{resource-group}` | The resource group that contains your workspace. |
+| `{workspace-name}` | Your Log Analytics workspace name. |
+| `{table-name}` | The table to protect (for example, `SecurityEvent`). |
+
+The API version may change before GA. Check the [REST API reference](/rest/api/loganalytics/tables) for the latest version.
+
 ## Grant access to protected tables
 
 After you protect a table, you must explicitly grant access to users who need the data. You can use the built-in Privileged Monitoring Data Reader role for broad access, or create custom ABAC conditions for more targeted grants.
@@ -94,7 +100,7 @@ After you protect a table, you must explicitly grant access to users who need th
 
 The **Privileged Monitoring Data Reader** built-in role grants read access to all protected tables at the assigned scope.
 
-#### [Portal](#tab/portal)
+#### [Azure portal](#tab/portal)
 
 1. In the Azure portal, go to the scope where you want to assign the role (subscription, resource group, or workspace).
 1. Select **Access control (IAM)** > **Add** > **Add role assignment**.
@@ -102,18 +108,28 @@ The **Privileged Monitoring Data Reader** built-in role grants read access to al
 1. On the **Members** tab, select the user, group, or managed identity.
 1. Select **Review + assign**.
 
-#### [Azure CLI](#tab/cli)
+#### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
+scope="/subscriptions/{subscription-id}"
+scope+="/resourceGroups/{resource-group}"
+scope+="/providers/Microsoft.OperationalInsights"
+scope+="/workspaces/{workspace-name}"
+
 az role assignment create \
   --assignee "{user-or-group-object-id}" \
   --role "Privileged Monitoring Data Reader" \
-  --scope "/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}"
+  --scope "$scope"
 ```
 
-Replace `{user-or-group-object-id}` with the Microsoft Entra object ID of the user or group.
-
 ---
+
+| Placeholder | Value |
+|---|---|
+| `{user-or-group-object-id}` | The Microsoft Entra object ID of the user or group. |
+| `{subscription-id}` | Your Azure subscription ID. |
+| `{resource-group}` | The resource group that contains your workspace. |
+| `{workspace-name}` | Your Log Analytics workspace name. |
 
 ### Grant access to specific protected tables only
 
@@ -164,15 +180,20 @@ This pattern works well for incident response and support scenarios where engine
 
 By default, some control-plane roles (such as Reader and Monitoring Reader) provide implicit read access to log data. DataAction-only mode closes this path so that only DataActions govern data access.
 
-### [Azure CLI](#tab/cli)
+### [Azure CLI](#tab/azure-cli)
 
 ```azurecli
+url="https://management.azure.com"
+url+="/subscriptions/{subscription-id}"
+url+="/resourceGroups/{resource-group}"
+url+="/providers/Microsoft.OperationalInsights"
+url+="/workspaces/{workspace-name}"
+url+="?api-version=2025-02-01"
+
 az rest --method patch \
-  --url "https://management.azure.com/subscriptions/{subscription-id}/resourceGroups/{resource-group}/providers/Microsoft.OperationalInsights/workspaces/{workspace-name}?api-version=2025-02-01" \
+  --url "$url" \
   --body '{"properties": {"features": {"dataAuthorizationMode": "DataActionsOnly"}}}'
 ```
-
-The exact property path and API version may change before general availability.
 
 ### [REST API](#tab/rest)
 
@@ -190,6 +211,14 @@ Content-Type: application/json
 ```
 
 ---
+
+| Placeholder | Value |
+|---|---|
+| `{subscription-id}` | Your Azure subscription ID. |
+| `{resource-group}` | The resource group that contains your workspace. |
+| `{workspace-name}` | Your Log Analytics workspace name. |
+
+The API version may change before GA. Check the [REST API reference](/rest/api/loganalytics/workspaces) for the latest version.
 
 After you enable DataAction-only mode, verify that users who previously relied on control-plane roles for log access now receive appropriate DataAction-based role assignments.
 
