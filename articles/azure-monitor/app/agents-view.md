@@ -113,6 +113,8 @@ Once the data is in Azure Monitor, investigate usage and adoption patterns in Ap
 
 Azure Monitor includes ready-to-use Grafana dashboards for coding agent monitoring:
 
+<!-- Work item 580717: Kayode will provide the three missing dashboard links before merge. Update this section once the final URLs are confirmed. -->
+
 * [GitHub Copilot dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#github-copilot)
 * [Claude Code dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#claude-code)
 * [Codex dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#codex)
