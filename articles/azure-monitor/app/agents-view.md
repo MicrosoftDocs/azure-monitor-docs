@@ -93,7 +93,7 @@ To learn more about using Grafana with Application Insights, see [Dashboards wit
 
 ## Monitor AI coding agents
 
-AI coding agents such as GitHub Copilot, Claude Code, Codex, OpenClaw, and Gemini CLI emit OpenTelemetry Protocol (OTLP) signals that route into Application Insights for usage, cost, and reliability visibility.
+AI coding agents such as GitHub Copilot, Claude Code, Codex, OpenClaw, Gemini CLI, and OpenCode emit OpenTelemetry Protocol (OTLP) signals that route into Application Insights for usage, cost, and reliability visibility.
 
 ### How coding agent telemetry reaches Azure Monitor
 
@@ -113,9 +113,12 @@ Once the data is in Azure Monitor, investigate usage and adoption patterns in Ap
 
 Azure Monitor includes ready-to-use Grafana dashboards for coding agent monitoring:
 
-* [GitHub Copilot dashboard](https://aka.ms/amg/dash/gh-copilot)
-* [Claude Code dashboard](https://aka.ms/amg/dash/claude-code)
-* [OpenClaw dashboard](https://aka.ms/amg/dash/openclaw)
+* [GitHub Copilot dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#github-copilot)
+* [Claude Code dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#claude-code)
+* [Codex dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#codex)
+* [OpenClaw dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#openclaw)
+* [Gemini CLI dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#gemini-cli)
+* [OpenCode dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#opencode)
 
 :::image type="content" source="media/agents-view/coding-agents-grafana-dashboard.png" lightbox="media/agents-view/coding-agents-grafana-dashboard.png" alt-text="Screenshot of the coding agent Grafana dashboard showing operations, tokens, sessions, and per-model latency.":::
 
