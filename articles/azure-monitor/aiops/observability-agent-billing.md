@@ -12,7 +12,7 @@ The Observability Agent in Azure Monitor uses generative AI to investigate, diag
 
 ## How the Observability Agent is billed
 
-The Observability Agent uses a **consumption-based** pricing model. You pay only for the AI work the agent performs. Agent consumption is measured in **Azure Copilot Unit (ACU)**. ACU pricing is uniform across models, so you don't need to track per-model rates. ACU list prices are available on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
+The Observability Agent uses a **consumption-based** pricing model. You pay only for the AI work the agent performs. Agent consumption is measured in **Azure Agent Credit (AAC)**. AAC pricing is uniform across models, so you don't need to track per-model rates. AAC list prices are available on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/).
 
 Charges are scoped to the **Azure subscription** of the monitored resource.
 
@@ -20,7 +20,7 @@ Charges are scoped to the **Azure subscription** of the monitored resource.
 > Billing for the Observability Agent starts on **July 1, 2026**.
 
 > [!NOTE]
-> Deep investigation operations include multiple agent and tool calls. A single deep investigation operation is capped at 300 ACUs.
+> Deep investigation operations include multiple agent and tool calls. A single deep investigation operation is capped at 300 AACs.
 
 ## Monitor and manage costs
 
