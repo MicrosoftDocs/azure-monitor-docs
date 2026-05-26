@@ -2,7 +2,7 @@
 title: Service Health Alerts overview
 description: Service health alerts notify of the health of your Azure services or regions.
 ms.topic: concept-article
-ms.date: 03/30/2026
+ms.date: 05/26/2026
 ---
 
 # Service Health alerts 
