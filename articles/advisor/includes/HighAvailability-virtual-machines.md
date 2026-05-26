@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -424,11 +424,11 @@ Subcategory: HighAvailability
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_begin-->
 
-#### Enable Azure Virtual Machine Scale Set (VMSS) application health monitoring  
+#### Enable application health monitoring for Virtual Machine Scale Sets (VMSS)  
   
-Configuring Virtual Machine Scale Set application health monitoring using the Application Health extension or load balancer health probes enables the Azure platform to improve the resiliency of your application by responding to changes in application health.  
+Configure VM scale set application health monitoring using the Application Health extension or load balancer probes so Azure can detect unhealthy instances, trigger repairs, and enable safer upgrades to improve application resiliency.  
   
-**Potential benefits**: Increase resiliency by exposing application health to Azure  
+**Potential benefits**: App-health detection during upgrade and auto-repair  
 
 **Impact:** Medium
   
@@ -436,9 +436,10 @@ For more information, see [Use Application Health extension with Azure Virtual M
 
 ResourceType: microsoft.compute/virtualmachinescalesets  
 Recommendation ID: 3b587048-b04b-4f81-aaed-e43793652b0f  
-Subcategory: MonitoringAndAlerting
+Subcategory: undefined
 
 <!--3b587048-b04b-4f81-aaed-e43793652b0f_end-->
+
 
 <!--01c715f6-426a-47d3-87be-9f26e2ab2d8e_begin-->
 
@@ -784,13 +785,14 @@ HC-series virtual machine sizes are retiring. To ensure continuity and improved 
 
 **Impact:** Medium
   
-For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=548543)  
+  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: c6199b8a-db76-4a4f-b45b-ef5e9d2be09c  
 Subcategory: undefined
 
 <!--c6199b8a-db76-4a4f-b45b-ef5e9d2be09c_end-->
+
 
 
 <!--ac992ddf-2bbf-4049-b142-a30d6236291e_begin-->
@@ -847,5 +849,95 @@ Recommendation ID: 2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4
 Subcategory: undefined
 
 <!--2ae93784-84f0-4f3a-8a9c-4ee4f8549cd4_end-->
+
+<!--40df4452-9b9f-47d7-921c-638e6cac6333_begin-->
+
+#### Add and enable the LegacyVMNVA tag for NVA virtual machines  
+  
+The workload uses a VM series that is eligible to be deployed on MANA-capable hardware. If the workload isn't MANA ready, apply and enable the 'LegacyVMNVA' tag on affected VMs to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
+  
+**Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
+
+**Impact:** High
+  
+For more information, see [MANA support for Network Virtual Appliances (NVAs) - Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-network-virtual-appliance-opt-out)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 40df4452-9b9f-47d7-921c-638e6cac6333  
+Subcategory: undefined
+
+<!--40df4452-9b9f-47d7-921c-638e6cac6333_end-->
+
+<!--53f3eb12-bd32-4e63-8241-234ae2b58615_begin-->
+
+#### Enable LegacyVMNVA tag for NVA virtual machines  
+  
+The workload uses a VM series that is eligible to be deployed on MANA-capable hardware. The workload has the LegacyVMNVA tag but the tag needs to be enabled. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
+  
+**Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
+
+**Impact:** High
+  
+For more information, see [MANA support for Network Virtual Appliances (NVAs) - Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-network-virtual-appliance-opt-out#temporary-mana-exception-with-legacyvmnva)  
+
+ResourceType: microsoft.compute/virtualmachines  
+Recommendation ID: 53f3eb12-bd32-4e63-8241-234ae2b58615  
+Subcategory: undefined
+
+<!--53f3eb12-bd32-4e63-8241-234ae2b58615_end-->
+
+<!--2a126a9d-b0ec-4352-bb39-863cb8fafdcf_begin-->
+
+#### Add and enable LegacyVMNVA tag on VM Scale Set with NVAs  
+  
+The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, apply and enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+  
+**Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
+
+**Impact:** High
+  
+For more information, see [MANA support for Network Virtual Appliances (NVAs) - Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-network-virtual-appliance-opt-out#compatibility)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 2a126a9d-b0ec-4352-bb39-863cb8fafdcf  
+Subcategory: undefined
+
+<!--2a126a9d-b0ec-4352-bb39-863cb8fafdcf_end-->
+
+<!--b70fccd9-37c8-435a-8868-7b5b2ec759f7_begin-->
+
+#### Enable LegacyVMNVA tag for VM Scale Set Uniform  
+  
+The VMs in Virtual Machine Scale Set use a VM series that is eligible to be deployed on MANA-capable hardware. If the VMs aren't MANA ready, enable the 'LegacyVMNVA' tag on the Virtual Machine Scale Set to temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a MANA supported OS or VM series by then.  
+  
+**Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
+
+**Impact:** High
+  
+For more information, see [MANA support for Network Virtual Appliances (NVAs) - Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-network-virtual-appliance-opt-out#compatibility)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: b70fccd9-37c8-435a-8868-7b5b2ec759f7  
+Subcategory: undefined
+
+<!--b70fccd9-37c8-435a-8868-7b5b2ec759f7_end-->
+
+<!--dcca165d-ffec-43e4-a21d-bc41b7812e09_begin-->
+
+#### Enable LegacyVMNVA tag for NVAs in VM Scale Set Uniform  
+  
+The VM uses a VM series that is eligible to be deployed on MANA-capable hardware. The Virtual Machine Scale Set has the LegacyVMNVA tag but the tag needs to be enabled for the VM. Enabling the tag will temporarily avoid deployment on MANA-capable hardware until 5/31/2027. Migrate to a supported OS or VM series by then.  
+  
+**Potential benefits**: Reduce network performance risk due to MANA incompatibility.  
+
+**Impact:** High
+  
+For more information, see [MANA support for Network Virtual Appliances (NVAs) - Microsoft Azure Network Adapter](/azure/virtual-network/accelerated-networking-mana-network-virtual-appliance-opt-out#compatibility)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets/virtualmachines  
+Recommendation ID: dcca165d-ffec-43e4-a21d-bc41b7812e09  
+Subcategory: undefined
+
+<!--dcca165d-ffec-43e4-a21d-bc41b7812e09_end-->
 
 <!--articleBody-->

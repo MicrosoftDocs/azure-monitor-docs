@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -733,5 +733,23 @@ Recommendation ID: 6012b4f4-b19a-4d6e-ae25-4289c228428e
 Subcategory: undefined
 
 <!--6012b4f4-b19a-4d6e-ae25-4289c228428e_end-->
+
+<!--374b21de-e7ec-409a-9961-93e789e27536_begin-->
+
+#### Use Zone-Redundant NAT Gateway configuration to reduce outages  
+  
+Deploy a zone-redundant StandardV2 NAT Gateway configuration  
+  
+**Potential benefits**: Outbound traffic remains operational even if one zone fails  
+
+**Impact:** High
+  
+  
+
+ResourceType: microsoft.network/natgateways  
+Recommendation ID: 374b21de-e7ec-409a-9961-93e789e27536  
+Subcategory: undefined
+
+<!--374b21de-e7ec-409a-9961-93e789e27536_end-->
 
 <!--articleBody-->
