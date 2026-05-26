@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service Certificates
@@ -22,13 +22,14 @@ You have an App Service Certificate that's currently in a Pending Issuance statu
 
 **Impact:** High
   
-For more information, see [Install a TLS/SSL Certificate for Your App - Azure App Service](https://aka.ms/ASCDomainVerificationRequired)  
+  
 
 ResourceType: microsoft.certificateregistration/certificateorders  
 Recommendation ID: a2385343-200c-4eba-bbe2-9252d3f1d6ea  
 Subcategory: undefined
 
 <!--a2385343-200c-4eba-bbe2-9252d3f1d6ea_end-->
+
 
 
 <!--articleBody-->
