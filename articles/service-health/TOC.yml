@@ -93,7 +93,7 @@
 
 
     - name: Service Health retirement alerting guidelines
-      href: service-retirement-alerting-guidelines.md
+      href: service-retirement-alerting-guidance.md
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
