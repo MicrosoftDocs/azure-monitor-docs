@@ -11,7 +11,7 @@ ai-usage: ai-assisted
 # Enable alerts in Azure Monitor health models (preview)
 [Alerts in Azure Monitor health models](./overview.md#alerting) fire when the health state of an entity changes. Action groups associated with an alert rule trigger automated responses that can proactively notify you when critical issues occur in the work load represented by the health model. This article explains how to configure alerts in the designer.
 
-Unlike resource-specific alert rules in Azure Monitor, health model alerts are configure for an entity instead of individual signals. The signals determine the health state of the entity, and the alert fires when that state changes. 
+Unlike resource-specific alert rules in Azure Monitor, health model alerts are configured for an entity instead of individual signals. The signals determine the health state of the entity, and the alert fires when that state changes. 
 
 ## Enable alerts for an entity
 
