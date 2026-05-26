@@ -3,7 +3,7 @@ title: Manage access to Log Analytics workspaces
 description: This article explains how you can manage access to data stored in a Log Analytics workspace in Azure Monitor by using resource, workspace, or table-level permissions.
 ms.topic: how-to
 ms.reviewer: MeirMen
-ms.date: 10/30/2025
+ms.date: 05/26/2026
 ms.custom: devx-track-azurepowershell
 
 ---
@@ -308,6 +308,77 @@ This is the recommended method for table and row-level access control. For more 
 ## Set table-level read access
 
 Granular RBAC has all the capabilities of table-level read access. The best practice for new access control configuration is to implement granular RBAC. To reference the method that only does table-level control, see [Manage table-level read access](manage-table-access.md).
+
+## Protected tables (preview)
+
+Protected tables provide a "deny by default" isolation model for sensitive telemetry in your Log Analytics workspace. Use protected tables to restrict access to data that contains PII, PHI, financial records, AI prompts and responses, or other regulated content.
+
+Every Log Analytics table has a `protectionLevel` property with two possible values:
+
+| Protection level | Behavior |
+|---|---|
+| `General` (default) | Standard access. Users with Reader, Monitoring Reader, or other read roles can query this table. |
+| `Protected` | Restricted access. Standard roles cannot access the data. Users need explicit access granted through ABAC conditions on the `protectionLevel` attribute. |
+
+Once you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
+
+### How protected table access works
+
+Access to protected tables uses the same ABAC condition framework as [granular RBAC](granular-rbac-log-analytics.md), with conditions targeting the `protectionLevel` attribute. Azure Monitor provides a built-in role designed for this scenario:
+
+**Privileged Monitoring Data Reader** grants access to all protected tables. You can assign this role at any scope (subscription, resource group, workspace, or resource). It works with [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure) for time-bound and just-in-time access.
+
+For more targeted access, create custom roles with ABAC conditions that combine table name and protection level filters. For configuration steps, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
+
+### Access methods
+
+Protected table access uses different DataActions and ABAC attributes depending on whether the query runs in workspace context or resource context.
+
+**Workspace-centric access:**
+
+| Component | Value |
+|---|---|
+| DataAction | `Microsoft.OperationalInsights/workspaces/query/*/read` |
+| ABAC attribute | `Microsoft.OperationalInsights/workspaces/tables:protectionLevel` |
+
+**Resource-centric access:**
+
+| Component | Value |
+|---|---|
+| DataAction | `Microsoft.Insights/logs/data/read` |
+| ABAC attributes | `Microsoft.Insights/logs/tables:name` and `Microsoft.Insights/logs/tables:protectionLevel` |
+
+### DataAction-only mode
+
+You can enable DataAction-only mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader no longer grant implicit data access. Only DataActions provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
+
+For configuration steps, see [Enable DataAction-only mode](protected-tables-configure.md#enable-dataaction-only-mode).
+
+### Behavior
+
+Keep the following behavior details in mind when working with protected tables:
+
+- **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query does not return a 400 or 403 error.
+- **Schema remains visible.** Table metadata, including column names and types, is accessible regardless of the protection level. Only data rows are restricted.
+- **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has the required ABAC-granted access.
+- **Alert rules require managed identity.** Only alert rules configured with a managed identity (MSI/MI) are supported for queries on protected tables.
+- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables, but the role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute. Without this condition, the assignment does not grant access to protected data.
+
+### Limitations (preview)
+
+The following limitations apply during the preview:
+
+| Limitation | Details |
+|---|---|
+| Per-workspace granularity only | The protection level is set per table within a workspace. To isolate data per application, use separate workspaces. |
+| Cross-workspace queries not supported | The `app()` and `workspace()` functions for cross-workspace queries do not yet support protected tables. |
+| No audit logging for protected table queries | Audit entries for queries that access protected tables are not yet available. |
+| Row-level and column-level RBAC | Planned for future releases. Not available during preview. |
+
+### Related content
+
+- [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md)
+- [Granular RBAC in Azure Monitor](granular-rbac-log-analytics.md)
 
 ## Next steps
 
