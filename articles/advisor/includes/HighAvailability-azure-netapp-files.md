@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure NetApp Files
@@ -61,13 +61,14 @@ Configure a snapshot for the Azure NetApp Files volume. Restore a snapshot to a 
 
 **Impact:** High
   
-For more information, see [How Azure NetApp Files snapshots work](/azure/azure-netapp-files/snapshots-introduction)  
+For more information, see [Understand Azure NetApp Files snapshot-based data protection](/azure/azure-netapp-files/snapshots-introduction)  
 
 ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
 Recommendation ID: cda11061-35a8-4ca3-aa03-b242dcdf7319  
 Subcategory: undefined
 
 <!--cda11061-35a8-4ca3-aa03-b242dcdf7319_end-->
+
 
 
 

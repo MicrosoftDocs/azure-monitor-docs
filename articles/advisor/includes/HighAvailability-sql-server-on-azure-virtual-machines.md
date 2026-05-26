@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability SQL Server on Azure Virtual Machines
@@ -47,5 +47,23 @@ Recommendation ID: e44bbf9e-55e0-4f18-9ec3-812b10b93fc2
 Subcategory: undefined
 
 <!--e44bbf9e-55e0-4f18-9ec3-812b10b93fc2_end-->
+
+<!--cb5f37e8-2ce6-4f50-baa0-a2a8c25a2293_begin-->
+
+#### Deploy SQL Virtual Machines across availability zones  
+  
+Deploying SQL Virtual Machines across availability zones improves resiliency by reducing the impact of zone-level failures when combined with supported high availability configurations.  
+  
+**Potential benefits**: Improved resiliency  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.sqlvirtualmachine/sqlvirtualmachines  
+Recommendation ID: cb5f37e8-2ce6-4f50-baa0-a2a8c25a2293  
+Subcategory: undefined
+
+<!--cb5f37e8-2ce6-4f50-baa0-a2a8c25a2293_end-->
 
 <!--articleBody-->

@@ -578,12 +578,23 @@ items:
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
-    - name: Create
-      displayName: health models
-      href: health-models/create.md
-    - name: Configure
-      displayName: health models
-      href: health-models/designer.md
+    - name: Create and configure
+      items:
+      - name: Create a health model
+        displayName: health models
+        href: health-models/create.md
+      - name: Use the designer
+        displayName: health models
+        href: health-models/designer.md
+      - name: Configure signals
+        displayName: health models
+        href: health-models/signals.md
+      - name: Configure alerts
+        displayName: health models
+        href: health-models/alerts.md
+      - name: Create discoveries
+        displayName: health models
+        href: health-models/discoveries.md
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md

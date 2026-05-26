@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Cognitive Services
@@ -283,5 +283,23 @@ Recommendation ID: 46a2ac77-9b96-4741-a036-76155cc3616c
 Subcategory: undefined
 
 <!--46a2ac77-9b96-4741-a036-76155cc3616c_end-->
+
+<!--134edfc1-8479-4792-b19b-b47ac18a58ac_begin-->
+
+#### Azure Document Intelligence v3.0 2022-08-31 API is being retired  
+  
+Azure Document Intelligence v3.0 2022-08-31 API is being retired. Migrate to v4.0 2024-11-30 API.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=561176)  
+
+ResourceType: microsoft.cognitiveservices/accounts  
+Recommendation ID: 134edfc1-8479-4792-b19b-b47ac18a58ac  
+Subcategory: undefined
+
+<!--134edfc1-8479-4792-b19b-b47ac18a58ac_end-->
 
 <!--articleBody-->
