@@ -25,6 +25,7 @@ The following table describes properties at the top level of the DCR.
 | `endpoints`<sup>1</sup> | Contains the `logsIngestion` and `metricsIngestion` URL of the endpoints for the DCR. This section and its properties are automatically created when the DCR is created only if the `kind` attribute in the DCR is `Direct`. |
 | `immutableId` | A unique identifier for the data collection rule. This property and its value are automatically created when the DCR is created. |
 | `kind` | Specifies the data collection scenario the DCR is used for. This parameter is further described in the following section. |
+| `transformations` | (Preview) Array of named transformation pipelines used by [multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview). Each entry defines a header processor and an ordered sequence of processors. Referenced by `dataSources` and `dataFlows` via the `transform` property. Requires API version `2025-05-11` or later. See [Transformations](#transformations). |
 
 <sup>1</sup> This property wasn't created for DCRs created before March 31, 2024. DCRs created before this date required a [data collection endpoint (DCE)](data-collection-endpoint-overview.md) and the `dataCollectionEndpointId` property to be specified. If you want to use these embedded DCEs, you must create a new DCR. 
 
@@ -48,6 +49,16 @@ The following table lists the different kinds of DCRs and their details.
 The basic flow of a DCR is shown in the following diagram. Each of the components is described in the following sections.
 
 :::image type="content" source="media/data-collection-rule-structure/dcr-flow-diagram.png" lightbox="media/data-collection-rule-structure/dcr-flow-diagram.png" alt-text="Diagram that illustrates the relationship between the different sections of a DCR." border="false":::
+
+The full data flow through a DCR follows this sequence: **Data sources** → **Input streams** → **Data flows** → **Destinations**. Not all DCR types use every element. The following table shows which elements apply to each DCR type.
+
+| DCR type | Data sources | Input streams | Data flows | Destinations |
+|:---------|:-------------|:--------------|:-----------|:-------------|
+| AMA DCRs (`Linux`, `Windows`) | Yes | Yes | Yes | Yes |
+| Direct ingest DCRs (`Direct`) | No | Yes | Yes | Yes |
+| Workspace transformation DCRs (`WorkspaceTransforms`) | No | No | Yes | No |
+
+With [multi-stage transformations](data-collection-transformations.md#multi-stage-transformations-preview), the `transformations` section adds processor pipelines that apply at the data source stage (client-side) or the data flow stage (ingestion-side), depending on where the named transformation is referenced.
 
 ## Input streams
 
@@ -444,7 +455,7 @@ Used when the input is a custom stream defined in `streamDeclarations`.
 
 ### After header processors
 
-These processors are used for both client-side and ingestion-side transformations after the header processor.
+These processors run after the header processor in a transformation pipeline. Not all processors are available on both stages. Refer to the [processor applicability table](#processor-types) to determine which processors are supported on the client side, the ingestion side, or both.
 
 #### filter.Basic
 

@@ -9,7 +9,9 @@ ai-usage: ai-assisted
 
 # Transformations in Azure Monitor
 
-Transformations in Azure Monitor allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations are run after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md) and use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) that's applied individually to each entry in the incoming data.
+Transformations in Azure Monitor filter or modify incoming data before it's sent to a Log Analytics workspace. Transformations run after the data source delivers the data and before it's sent to the destination. They're defined in a [data collection rule (DCR)](data-collection-rule-overview.md).
+
+Standard transformations use a [Kusto Query Language (KQL) statement](data-collection-transformations-kql.md) applied individually to each entry in the incoming data. [Multi-stage transformations](#multi-stage-transformations-preview) extend this model with a pipeline of declarative processors, where a KQL query is one of many available processor types in the transformation chain.
 
 The following diagram illustrates the transformation process for incoming data and shows a sample query that might be used. In this sample, only records where the `message` column contains the word `error` are collected.
 
@@ -25,7 +27,7 @@ The following tables in a Log Analytics workspace support transformations.
 
 ## Create a transformation
 
-There are some data collection scenarios that allow you to add a transformation using the Azure portal, but most scenarios require you to create a new DCR using its JSON definition or add a transformation to an existing DCR. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](data-collection-transformations-samples.md) for sample transformation queries of common scenarios.
+Some data collection scenarios support adding a transformation through the Azure portal, but most scenarios require creating a new DCR using its JSON definition or adding a transformation to an existing DCR. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for different options and [Best practices and samples for transformations in Azure Monitor](data-collection-transformations-samples.md) for sample transformation queries of common scenarios.
 
 ## Multi-stage transformations (preview)
 
