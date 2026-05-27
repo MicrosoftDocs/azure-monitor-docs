@@ -2,7 +2,7 @@
 title: Monitor virtual machines in Azure
 description: Start here to learn how to monitor Azure Virtual Machines and Virtual Machine Scale Sets.
 ai-usage: ai-assisted
-ms.date: 03/08/2026
+ms.date: 05/26/2026
 ms.custom: horz-monitor
 ms.topic: concept-article
 
@@ -33,7 +33,7 @@ Azure Monitor collects two types of metrics from virtual machines:
 
 Enable enhanced monitoring to collect guest data and fully light up the **Monitor** view in the Azure portal. This process installs [Azure Monitor agent](../agents/azure-monitor-agent-overview.md) on the virtual machine and starts collecting a default set of metrics.
 
-If you enable guest monitoring in the Azure portal, choose between two experiences. Both provide guest monitoring, but they differ in how they store and process metrics. See [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) for guidance on choosing the right option.
+When you enable guest monitoring in the Azure portal, choose between OpenTelemetry metrics (recommended for new deployments) and logs-based metrics (classic for existing implementations). Both provide guest monitoring, but they differ in how they store and process metrics. See [Metrics experience for virtual machines in Azure Monitor](./metrics-opentelemetry-guest.md) for details on these options.
 
 For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 
@@ -63,14 +63,9 @@ Common types of guest logs include:
 After Azure Monitor sends logs to a Log Analytics workspace, you can analyze them with [Kusto Query Language (KQL)](/azure/data-explorer/kusto/query/). For example, you can query Windows Event Logs to identify common errors or security events, or analyze IIS logs to understand web traffic patterns. See [Log Analytics overview](../logs/log-analytics-overview.md) for more information.
 
 ## Alerts
-Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. Alerts allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down, when its CPU usage exceeds a certain threshold, or when error events are discovered.
+Alerts in Azure Monitor proactively notify you when specific conditions are found in your monitoring data. They allow you to identify and address issues in your system before your customers notice them. For example, you might create an alert to notify you when a VM is down, when its CPU usage exceeds a certain threshold, or when error events are discovered.
 
-### Recommended alert rules
-Azure Monitor provides recommended alert rules for VMs and virtual machine scale sets that you can enable quickly in the Azure portal. These rules use host metrics, so you can enable them without enhanced monitoring. They cover common conditions such as high CPU usage, low available memory, and disk performance issues.
-
-For step-by-step guidance on enabling recommended alerts, see:
-- [Enable recommended alert rules for Azure virtual machine](tutorial-alerts.md)
-- [Enable recommended alert rules for Azure virtual machine scale set](tutorial-scale-set-alerts.md)
+When you enable enhanced monitoring, Azure Monitor will create a baseline set of recommended alert rules for the VM based on your monitoring configuration. You can then customize thresholds, severity, and notifications from the Alerts experience.
 
 ### Additional alert rules
 Beyond recommended alert rules, you can create custom alert rules based on any metric or log data collected from your VMs. Alert rules can notify you through email, SMS, or webhooks, and can trigger automated responses using Azure Automation runbooks or Azure Functions.
@@ -95,11 +90,16 @@ Performance Diagnostics is a troubleshooting tool that helps you identify and di
 
 See [Use Performance Diagnostics in Azure Monitor to troubleshoot VM performance issues](./performance-diagnostics.md) for details on using Performance Diagnostics.
 
+## View Grafana dashboards
+
+Dashboards with Grafana for Azure virtual machines are integrated into the VM monitoring experience in the Azure portal. You can use built-in dashboards for single-machine and at-scale views, and you can open dashboard links from relevant charts.
+
+For details, see [Use Azure Monitor dashboards with Grafana](../visualize/visualize-use-grafana-dashboards.md).
+
 ## Related content
 
 - [Tutorial: Enable monitoring for Azure virtual machine](tutorial-enable-monitoring.md) - Enable monitoring for a single VM.
 - [Tutorial: Enable monitoring for Azure virtual machine scale set](tutorial-scale-set-enable-monitoring.md) - Enable monitoring for a scale set.
-- [Tutorial: Enable recommended alerts for Azure virtual machine](tutorial-alerts.md) - Turn on recommended alert rules for a VM.
 - [Tutorial: Enable recommended alerts for Azure virtual machine scale set](tutorial-scale-set-alerts.md) - Turn on recommended alert rules for a scale set.
 - [Enable monitoring for Azure virtual machine](vm-enable-monitoring.md) - Configure monitoring at scale.
 - [Migrate from logs-based to OpenTelemetry metrics](./vm-opentelemetry-migrate.md) - Move to the OpenTelemetry-based metrics experience.
