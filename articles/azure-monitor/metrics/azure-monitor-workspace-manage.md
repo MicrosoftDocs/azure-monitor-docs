@@ -66,6 +66,15 @@ To create an Azure Monitor workspace, use one of the following Resource Manager 
 }
 ```
 
+> [!NOTE]
+> The `$schema` value in the ARM template (`schema.management.azure.com`) is the ARM template schema reference, not a deployment endpoint. You don't need to change it for Azure Government or other sovereign clouds. To deploy to Azure Government, set the active cloud before deploying:
+>
+> ```azurecli
+> az cloud set --name AzureUSGovernment
+> ```
+>
+> Azure Monitor workspace is available in Azure Government regions. For network endpoint requirements in Azure Government, see [Network firewall requirements for monitoring Kubernetes clusters](../containers/kubernetes-monitoring-firewall.md#azure-government-cloud) and [Azure Monitor endpoint access and firewall configuration](../fundamentals/azure-monitor-network-access.md#azure-government-endpoints).
+
 ```bicep
 @description('Specify the name of the workspace.')
 param workspaceName string
