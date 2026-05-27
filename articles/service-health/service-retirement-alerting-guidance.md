@@ -1,11 +1,11 @@
 ---
-title: Service retirement alerts and actions and how to choose the right signal - Azure Service Health | Microsoft Learn
+title: Service retirement alerts and actions and how to choose the right signal
 description: Guidance on using Azure Service Health and Azure Advisor alerts for service retirements without getting duplicate notifications.
 ms.topic: conceptual article
 ms.date: 05/26/2026
 ---
 
-# Service retirement alerts and actions and how to choose the right signal - Azure Service Health | Microsoft Learn
+# Service retirement alerts and actions and how to choose the right signal
 
 Azure provides multiple alerting mechanisms for service retirements. Each one serves a different purpose.
 
@@ -51,9 +51,8 @@ Choose **one primary alerting path per scenario**:
 | Awareness of new retirement | Service Health alert |
 | Resource-level remediation tracking | Advisor alert |
 
-Tip
-
-To prevent duplicate notifications, don't configure both alert types for the same retirement.
+> [!TIP]
+> To prevent duplicate notifications, don't configure both alert types for the same retirement.
 
 ## Combining alerts with Azure Resource Graph
 
@@ -80,3 +79,13 @@ Both models are supported and can be used together.
 Azure Service Health provides lifecycle awareness. Azure Advisor drives execution, and Azure Resource Graph connects the two.
 
 Using this pattern reduces alert fatigue, improves response quality, and enables a reliable service retirement automation using supported Azure capabilities.
+
+## Next steps
+- Learn how to identify impacted resources in [View impacted resources for service retirements](impacted-resources-retirements.md).
+- Create lifecycle notifications by using [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
+- Configure remediation-focused notifications with [Create Advisor alerts in the Azure portal](../advisor/advisor-alerts-potal.md).
+- Review actionable retirement guidance in [Use Azure Advisor service upgrade and retirement recommendations](../advisor/advisor-how-to-use-service-upgrade-retirement-recommendations.md).
+
+
+
+
