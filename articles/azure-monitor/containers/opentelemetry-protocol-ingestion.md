@@ -104,7 +104,7 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. To use the system-assigned identity, leave the `managed_identity` section blank in your collector configuration.
+1. To use the system-assigned identity, leave the `managed_identity` section empty in your collector configuration.
 
 **For non-Azure environments:**
 
