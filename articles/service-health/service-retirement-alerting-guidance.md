@@ -1,7 +1,7 @@
 ---
 title: Service retirement alerts and actions and how to choose the right signal
 description: Guidance on using Azure Service Health and Azure Advisor alerts for service retirements without getting duplicate notifications.
-ms.topic: conceptual article
+ms.topic: overview
 ms.date: 05/26/2026
 ---
 
@@ -83,8 +83,8 @@ Using this pattern reduces alert fatigue, improves response quality, and enables
 ## Next steps
 - Learn how to identify impacted resources in [View impacted resources for service retirements](impacted-resources-retirements.md).
 - Create Service Health alerts using [Create Service Health alerts](alerts-activity-log-service-notifications-portal.md).
-- Configure remediation-focused notifications with [Create Advisor alerts in the Azure portal](../advisor/advisor-alerts-potal.md).
-- Review actionable retirement guidance in [Use Azure Advisor service upgrade and retirement recommendations](../advisor/advisor-how-to-use-service-upgrade-retirement-recommendations.md).
+- Configure remediation-focused notifications with [Create Advisor alerts in the Azure portal](./advisor/advisor-alerts-potal.md).
+- Review actionable retirement guidance in [Use Azure Advisor service upgrade and retirement recommendations](./advisor/advisor-how-to-use-service-upgrade-retirement-recommendations.md).
 
 
 
