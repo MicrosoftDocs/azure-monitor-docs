@@ -6,7 +6,7 @@ ms.date: 05/26/2026
 
 ---
 
-# Identify impacted resources for service retirements using Azure Resource Graph - Azure Service Health | Microsoft Learn
+# Identify impacted resources for service retirements using Azure Resource Graph
 
 Azure announces service retirements through **Azure Service Health**, while **Azure Advisor** provides remediation and migration guidance.
 
