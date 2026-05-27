@@ -19,7 +19,7 @@ This article explains how to choose the right alerting path, and how to combine 
 | Signal | Azure Service Health | Announces that a service retirement has occurred. |
 | Action | Azure Advisor | Identifies impacted resources and remediation. |
 
-Understanding this diffeence is key to knowing how to select the correct alerting strategy.
+Understanding this difference is key to knowing how to select the correct alerting strategy.
 
 ## Alerting options
 
