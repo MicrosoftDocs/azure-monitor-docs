@@ -90,6 +90,8 @@
   items:
     - name: How to report an impact
       href: report-issue.md
+    - name: How to choose the right signal for Service Retirement alerts
+      href: service-retirement-alerting-guidance.md  
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
