@@ -155,11 +155,11 @@ export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponentia
 
 ## Authentication and permissions
 
-For OTLP ingestion through Azure Monitor Agent (AMA), associate data collection rules (DCRs) with Azure resources such as virtual machines, virtual machine scale sets, and Arc-enabled servers through data collection rule associations (DCRAs). AMA authenticates by using the system-assigned managed identity of the compute resource and retrieves its configuration from Azure Monitor. AMA then sends telemetry through the Azure Monitor ingestion pipeline without requiring any additional role assignments on the DCR.
+OTLP ingestion through Azure Monitor Agent (AMA) uses a data collection rule (DCR) to associate supported Azure resources with OTLP ingestion endpoints, including virtual machines, virtual machine scale sets, and Azure Arc–enabled servers. AMA retrieves its settings from Azure Monitor and sends telemetry through the ingestion pipeline. The agent doesn't require separate permissions or role assignments.
 
-Ensure that you enable system-assigned managed identity on your virtual machines, virtual machine scale sets, or Arc-enabled servers.
+In contrast, direct ingestion methods such as the OpenTelemetry Collector send OTLP telemetry to Azure Monitor ingestion endpoints from external sources or service. For these scenarios, authenticate by using a Microsoft Entra identity. Then use RBAC to assign the Monitoring Metrics Publisher role on the DCR to the identity used by the OpenTelemetry Collector.
 
-For ingestion paths that call the Azure Monitor ingestion API directly, such as the OpenTelemetry Collector or the Logs ingestion API, you send telemetry to a data collection endpoint (DCE) from an external service or workload. Those scenarios require explicit Microsoft Entra authentication and the **Monitoring Metrics Publisher** built-in role on the DCR. For details, see [Ingest OTLP data into Azure Monitor by using the OpenTelemetry Collector](opentelemetry-protocol-ingestion.md).
+For more information about Collector-specific setup, see [Ingest OTLP data into Azure Monitor by using OTel Collector](opentelemetry-protocol-ingestion.md).
 
 ## Next steps
 

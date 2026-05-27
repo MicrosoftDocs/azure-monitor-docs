@@ -1,18 +1,14 @@
 ---
-title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
+title: Ingest OTLP Data into Azure Monitor with OTel Collector
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor by using OTel Collector (Preview)
+# Ingest OTLP data into Azure Monitor by using OTel Collector
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals. You can send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
-
-> [!IMPORTANT]
-> * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
-> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 ## Overview
 
@@ -39,20 +35,11 @@ You can configure OTLP data ingestion in Azure Monitor by using one of two appro
 
 This method automatically provisions all required Azure resources and configures their relationships. You can use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
-1. Register the Application Insights OTLP preview features and provider.
-
-    ```bash
-    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
-    
-    az provider register -n Microsoft.Insights
-    ```
-
 1. In the Azure portal, create a new Application Insights resource.
 
-1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
+1. On the **Basics** tab, set **OTLP support** to **On**.
 
-    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with OTLP support set to On.":::
 
 1. Complete the resource creation process.
 
@@ -85,7 +72,7 @@ Record the resource IDs of both workspaces for later use.
 To enable Application Insights troubleshooting experiences with your OTLP data:
 
 1. Create an Application Insights resource in the same region as your workspaces.
-1. Clear the **Enable OTLP support** checkbox to avoid creating duplicate resources.
+1. Leave **OTLP support** set to **Off** to avoid creating duplicate resources.
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]

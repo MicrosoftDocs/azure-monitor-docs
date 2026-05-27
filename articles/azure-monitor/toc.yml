@@ -697,7 +697,7 @@ items:
     items:
     - name: Collect and analyze OpenTelemetry data (Preview)
       href: containers/collect-use-observability-data.md
-    - name: Ingest OTLP signals with OTel Collector (Preview)
+    - name: Ingest OTLP signals with OTel Collector
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
