@@ -129,6 +129,22 @@ Here's an example of an inbound security rule with an ActionGroup service tag:
 | Portal | `gateway.azureserviceprofiler.net`<br>`dataplane.diagnosticservices.azure.com` | 443 |
 | Storage | `*.core.windows.net` | 443 |
 
+### Azure Government endpoints
+
+Azure Government uses the `.us` top-level domain instead of `.com`. The following table lists endpoints for Azure Monitor services in the Azure Government cloud.
+
+| Endpoint | Purpose | Port |
+|:---|:---|:---|
+| `*.ods.opinsights.azure.us` | Data ingestion | 443 |
+| `*.oms.opinsights.azure.us` | Azure Monitor agent onboarding | 443 |
+| `dc.services.visualstudio.com` | Agent telemetry (Application Insights, public cloud) | 443 |
+| `global.handler.control.monitor.azure.us` | Access control service | 443 |
+| `<cluster-region-name>.handler.control.monitor.azure.us` | Fetch data collection rules for a specific cluster | 443 |
+| `*.ingest.monitor.azure.us` | Container insights — logs ingestion endpoint | 443 |
+| `*.metrics.ingest.monitor.azure.us` | Azure Monitor managed service for Prometheus — metrics ingestion endpoint | 443 |
+
+For more information, see [Compare Azure Government and global Azure](/azure/azure-government/compare-azure-government-global-azure#guidance-for-developers) and [Network firewall requirements for monitoring Kubernetes clusters](../containers/kubernetes-monitoring-firewall.md#azure-government-cloud).
+
 ## Frequently asked questions
 
 This section provides answers to common questions.
