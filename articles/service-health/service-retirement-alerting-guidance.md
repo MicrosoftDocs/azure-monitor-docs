@@ -1,8 +1,7 @@
 ---
-
 title: Service retirement alerts and actions and how to choose the right signal - Azure Service Health | Microsoft Learn
 description: Guidance on using Azure Service Health and Azure Advisor alerts for service retirements without getting duplicate notifications.
-ms.topic: conceptual
+ms.topic: conceptual article
 ms.date: 05/26/2026
 ---
 
