@@ -21,6 +21,8 @@ It includes sample queries specifically for Azure Service Health.
 
 ## Impacted resource sample queries
 
+[!INCLUDE [azure-service-health-impacted-resources](includes/azure-service-health-impacted-resources.md)]
+
 #### Confirmed impacted resources for planned maintenance
 
 **Overview** This document explains how to use Azure Resource Graph (ARG) queries to correlate **Planned Maintenance** with **Azure Service Health** data. Together, they identify impacted resources, determine the maintenance status and if any action is required.
