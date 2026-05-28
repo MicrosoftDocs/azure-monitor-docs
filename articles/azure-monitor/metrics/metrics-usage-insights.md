@@ -407,7 +407,6 @@ Select a comparison time range using the **Comparison dates** dropdown to define
 
 
 > [!TIP] 
-
 > Use wider time ranges (such as 60 or 90 days) to identify long-term trends in ingestion volume. Use shorter ranges to investigate recent changes. 
 
 :::image type="content" source="./media/metrics-usage-insights/ingestion-volume-change.png" lightbox="./media/metrics-usage-insights/ingestion-volume-change.png" alt-text="A screenshot showing the ingestion volume change page.":::
