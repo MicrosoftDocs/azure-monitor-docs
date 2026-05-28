@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: concept-article
-ms.date: 03/11/2026
+ms.date: 05/28/2026
 
 ---
 
@@ -267,6 +267,22 @@ advisorresources
 ) on resourceId
 | project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
 ```
+
+For all Health Advisory events such as *retirements*, *action required*, and *informational* use this sample query.
+
+```dotnetcli
+servicehealthresources
+| where type =~ "microsoft.resourcehealth/events/impactedresources"
+| where id contains "{0}"
+| extend resourceId = tolower(tostring(properties.targetResourceId))
+| extend resourceName = tostring(properties.resourceName)
+| extend resourceType = tostring(properties.targetResourceType)
+| extend region = tostring(properties.targetRegion)
+| extend resourceGroup = tostring(properties.resourceGroup)
+| project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`;
+```
+
+
 ### Frequently Asked Questions
 
 |Question|Answer|
