@@ -104,22 +104,21 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. To use the system-assigned identity, leave the `managed_identity` section empty in your collector configuration.
+1. To use the system-assigned identity, leave the `managed_identity` section empty in your collector configuration:
+
+   ```yaml
+   extensions:
+     azure_auth:
+       managed_identity:
+       scopes:
+         - https://monitor.azure.com/.default
+   ```
 
 **For non-Azure environments:**
 
-Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity:
+Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity. Follow the examples in the [Azure Authentication Extension README](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme).
 
-```yaml
-extensions:
-  azureauth/monitor:
-    managed_identity:
-      client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # Your identity client ID
-    scopes:
-      - https://monitor.azure.com/.default
-```
-
-For workload identities, service principals, or other Microsoft Entra identities, provide the `client_id` of the identity that needs to authenticate.
+For workload identities, service principals, or other Microsoft Entra identities, provide the required identity details to authenticate.
 
 ### Grant permissions to the Data Collection Rule
 
@@ -207,7 +206,7 @@ processors:
   batch:
 
 extensions:
-  azureauth/monitor:
+  azure_auth:
     use_default: true
     scopes:
       - https://monitor.azure.com/.default
@@ -218,11 +217,11 @@ exporters:
     logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Logs</strong>/otlp/v1/logs"
     metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
     auth:
-      authenticator: azureauth/monitor
+      authenticator: azure_auth
 
 service:
   extensions:
-    - azureauth/monitor
+    - azure_auth
   pipelines:
     traces:
       receivers: [otlp]
