@@ -4,7 +4,7 @@ description: Create a data collection rule to collect guest logs from an Azure v
 ai-usage: ai-assisted
 ms.topic: tutorial
 ms.custom: subject-monitoring
-ms.date: 03/09/2026
+ms.date: 05/28/2026
 ms.reviewer: Xema Pathak
 ---
 
@@ -22,7 +22,7 @@ In this tutorial, you learn how to:
 ## Prerequisites
 To complete this tutorial, you need either:
 
-- Virtual machine with monitoring enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md)
+- A virtual machine with monitoring enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 - Virtual machine scale set with monitoring enabled by following [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 

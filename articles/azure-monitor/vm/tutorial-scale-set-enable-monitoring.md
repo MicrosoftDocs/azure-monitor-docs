@@ -1,9 +1,10 @@
 ---
 title: Enable monitoring for an Azure virtual machine scale set
 description: Enable monitoring in Azure Monitor for an Azure virtual machine scale set.
+ai-usage: ai-assisted
 ms.topic: tutorial
 ms.custom: subject-monitoring
-ms.date: 03/13/2026
+ms.date: 05/28/2026
 ms.reviewer: xpathak
 ---
 
@@ -11,7 +12,7 @@ ms.reviewer: xpathak
 
 Azure virtual machine scale sets (VMSS) automatically send host-level metrics to Azure Monitor, which provide insights into the overall performance and health of the scale set. For complete monitoring though, you also need to collect guest-level performance data from the instances in the scale set, which provides insights into the applications, components, and processes running on each instance and their performance and health.
 
-This tutorial walks you through enabling monitoring to collect guest performance data from your virtual machine scale sets using the Azure portal and the logs-based experience.
+This tutorial walks you through enabling monitoring to collect guest performance data from your virtual machine scale sets by using the Azure portal and the logs-based (classic) experience.
 
 > [!NOTE]
 > Virtual machine scale sets currently support only the logs-based experience for monitoring described in [Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md). The metrics-based experience available for individual virtual machines is not yet supported for scale sets.
@@ -51,7 +52,7 @@ The deployment process installs the Azure Monitor agent on all instances in the 
 
 After the deployment completes, it takes a few minutes for enough data to be collected to populate the performance charts.
 
-From your virtual machine scale set in the Azure portal, select **Insights** and then select the **Performance** tab to view performance charts.
+From your virtual machine scale set in the Azure portal, select **Insights**, and then select the **Performance** tab to view performance charts.
 
 The **Performance** view provides a set of charts that allow you to analyze the performance of different components across all instances in the scale set such as CPU, memory, disk, and network over time.
 

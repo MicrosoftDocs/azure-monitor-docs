@@ -1,14 +1,15 @@
 ---
 title: Collect and customize OpenTelemetry metrics for Azure virtual machines
 description: Learn how to collect OpenTelemetry metrics from virtual machines and customize the collection by modifying data collection rules to add per-process metrics and other advanced performance counters.
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/13/2026
+ms.date: 05/28/2026
 ms.reviewer: jeffwo, tylerknight
 ---
 
 # Customize OpenTelemetry metrics collection for virtual machines in Azure Monitor (preview)
 
-When you [enable the metrics-based experience](./tutorial-enable-monitoring.md) for monitoring your Azure virtual machines, a default set of metrics are collected. You can customize your collection to include additional metrics such as per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics by modifying the data collection rule.
+When you [enable the metrics-based experience](./tutorial-enable-monitoring.md) for monitoring your Azure virtual machines, a default set of metrics are collected. Depending on your onboarding selections, OpenTelemetry per-process metrics might already be enabled. You can customize your collection by modifying the data collection rule (DCR) to add or remove metrics such as per-process performance, logical disk usage, filesystem utilization, and other workload-specific metrics.
 
 Details for the creation of the DCR are provided in [Collect data from virtual machine client with Azure Monitor](../vm/data-collection.md). This article provides additional details for the OpenTelemetry Performance Counters data source type.
 
@@ -24,6 +25,10 @@ The default set of OpenTelemetry metrics are collected at no cost. There is an a
 
 - An Azure Monitor workspace to store the OpenTelemetry metrics. See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
 - Permissions to create data collection rules. See [Permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
+- If you create query-based metric alerts on OpenTelemetry metrics, use a user-assigned managed identity with required permissions. See [Query-based metric alerts overview (preview)](../alerts/alerts-query-based-metric-alerts-overview.md).
+
+> [!NOTE]
+> If you enabled monitoring before VMI v2 and your DCR wasn't updated for per-process collection, per-process charts can show prompts to update configuration.
 
 ## Identify data collection rule (DCR)
 
@@ -83,7 +88,7 @@ The metrics in the following table are collected by default and at no additional
 | system.disk.operation_time | Average disk operation time |
 
 ### Additional metrics
-The metrics in the following table can be collected by modifying the DCR for the VM as described above. There's an additional cost to collect these metrics. 
+The metrics in the following table can be collected by modifying the DCR for the VM as described above. There's an additional cost to collect these metrics beyond the default metrics set. 
 
 | Metric Name | Description |
 |:---|:---|
