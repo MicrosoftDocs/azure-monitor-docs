@@ -399,6 +399,41 @@ The daily time series trend line for each metric can be used to identify sudden 
 
 :::image type="content" source="./media/metrics-usage-insights/unused-metrics.png" lightbox="./media/metrics-usage-insights/unused-metrics.png" alt-text="A screenshot showing the unused metrics page.":::
 
+### Ingestion Volume Change 
+
+**Ingestion Volume Change** allows you to compare metrics ingestion volume between two points in time to identify significant changes in your workspace. Use this dashboard to detect unexpected spikes or drops in time series counts and event ingestion rates, helping you investigate cost changes and capacity planning. 
+
+Select a comparison time range using the **Comparison dates** dropdown to define the start and end dates for comparison. The dashboard compares the metrics data on the first day (initial) and the last day (final) of the selected period. 
+
+
+> [!TIP] 
+
+> Use wider time ranges (such as 60 or 90 days) to identify long-term trends in ingestion volume. Use shorter ranges to investigate recent changes. 
+
+:::image type="content" source="./media/metrics-usage-insights/ingestion-volume-change.png" lightbox="./media/metrics-usage-insights/ingestion-volume-change.png" alt-text="A screenshot showing the ingestion volume change page.":::
+
+**Metric comparison table**
+
+The table on this page compares time series and event rate data between the initial and final dates of the selected time period. It has the following columns:
+
+| Column Name | Description |
+|---|---|
+| Namespace | Namespace in the Azure Monitor Workspace the metric belongs to. Namespaces are not configurable. |
+| Metric | The name of the metric the insight is generated for. |
+| Dimensions | The set of labels/dimensions being described. `*` indicates All Dimensions are included. |
+| Initial Event Rate | The rate of events ingested on the start date of the selected comparison period. |
+| Final Event Rate | The rate of events ingested on the end date of the selected comparison period. |
+| Event Rate Difference | The difference in event ingestion rate between the start and end dates. Positive values indicate growth; negative values indicate a decrease. |
+| Event Rate Change % | The percentage change in event ingestion rate between the two dates. Shows 100 for new metrics that didn't exist on the start date. |
+| Initial Timeseries | The number of active time series on the start date of the selected comparison period. |
+| Final Timeseries | The number of active time series on the end date of the selected comparison period. |
+| Timeseries Difference | The difference in the number of active time series between the start and end dates. |
+| Timeseries Change % | The percentage change in the number of active time series between the two dates. Shows 100 for new metrics that didn't exist on the start date. |
+
+> [!NOTE]
+> If the initial value for a metric is zero (the metric did not exist on the start date), the percentage change columns display 100, indicating the metric is entirely new. If both initial and final values are zero, the percentage change is left blank.
+
+
 ## Advanced Analytics
 
 If you want to personalize the insights pages, you can modify the underlying queries behind the pages in a workbook. Select **Workbooks** from the navigation pane, then select the **Usage Insights** workbook. When your changes are complete, save the customized workbook for reuse. For details on workbooks and guidance, see [Azure Monitor workbooks](/azure/azure-monitor/visualize/workbooks-overview).
