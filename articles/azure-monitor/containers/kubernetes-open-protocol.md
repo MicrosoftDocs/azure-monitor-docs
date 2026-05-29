@@ -16,6 +16,9 @@ OpenTelemetry provides a standardized way to emit traces, logs, and metrics. Azu
 >  
 > For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
+> [!TIP]
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+
 ## Key capabilities
 
 - Enable cluster-level monitoring to install Azure Monitor components on the AKS cluster.
