@@ -1,7 +1,7 @@
 ---
 title: Sample queries for Azure Resource Health
 description: Azure Resource Graph sample queries for Resource Health showing the use of resource types and tables to access Azure Resource Health related resources and properties.
-ms.date: 08/07/2025
+ms.date: 05/29/2026
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-azurecli
 ---
