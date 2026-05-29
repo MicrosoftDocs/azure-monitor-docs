@@ -16,12 +16,21 @@ Use stream specifications in the format:
 <resource-provider>/<resource-type>:<category-or-Logs-Group-All>
 ```
 
+To collect all log categories for a resource type, use Logs-Group-All. For example:
+`microsoft.app/managedenvironments:Logs-Group-All`
+
+To collect a specific log category, use the category name:
+`microsoft.dbformysql/flexibleservers:MySqlAuditLogs
+`
+
 Examples:
 
-```text
+```
 microsoft.app/managedenvironments:Logs-Group-All
 microsoft.dbformysql/flexibleservers:MySqlAuditLogs
 ```
+
+
 
 | Resource name | Resource provider | Log categories | Log table |
 |---|---|---|---|

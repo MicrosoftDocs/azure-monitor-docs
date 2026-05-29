@@ -28,15 +28,22 @@ Platform telemetry DCRs provide several benefits over diagnostic settings:
 
 ## Prerequisites
 
-Before you create a platform telemetry DCR, make sure that:
+Before you create a platform telemetry DCR, make sure that you have the following:
 
-- You have an Azure account with an active subscription.
-- The preview feature is enabled for your subscription (`DcrPlatformLogs`).
-- You have one or more supported Azure resources in supported regions.
-- You have a destination resource:
-  - Log Analytics workspace: The workspace and DCR must be in the same region. Monitored resources can be in any supported region.
-  - Storage account: The storage account, DCR, and monitored resources must be in the same region. Managed identity is required on the DCR.
-  - Event Hubs: The Event Hubs namespace, DCR, and monitored resources must be in the same region. A managed identity is required on the DCR.
+- Azure account with an active subscription.
+- Preview feature is enabled for your subscription (`DcrPlatformLogs`).
+- One or more [supported Azure resources](./platform-logs-reference.md#supported-resource-types) in [supported regions](./platform-logs-reference.md#supported-regions).
+- One or more [destination resources](#export-destinations).
+
+To verify preview feature registration with Azure CLI:
+
+```azurecli
+az account set --subscription "<subscription-id>"
+az feature list --namespace Microsoft.Insights | grep DcrPlatformLogs
+```
+
+The output should show `"state": "Registered"`.
+
 
 ### Tool-specific prerequisites
 
@@ -48,26 +55,6 @@ Before you create a platform telemetry DCR, make sure that:
 | REST API | Bearer token for ARM authentication. |
 | Bicep or ARM templates | Azure CLI or Azure PowerShell for deployment. |
 
-To verify preview feature registration with Azure CLI:
-
-```azurecli
-az account set --subscription "<subscription-id>"
-az feature list --namespace Microsoft.Insights | grep DcrPlatformLogs
-```
-
-The output should show `"state": "Registered"`.
-
-## Supported resource types and log categories
-
-Platform telemetry DCRs support specific resource types and category streams.
-
-Use `Logs-Group-All` to collect all categories for a resource type, or specify a single category stream (for example, `microsoft.dbformysql/flexibleservers:MySqlAuditLogs`).
-
-For the full list of supported resource types, category streams, destination tables, and regions, see [Platform logs supported resource types, categories, and regions](platform-logs-reference.md).
-
-## Supported regions
-
-For the current list of supported regions and region-specific requirements, see [Platform logs supported resource types, categories, and regions](platform-logs-reference.md#supported-regions).
 
 ## Export destinations
 
@@ -84,34 +71,49 @@ A platform telemetry DCR supports one destination type. To send data to multiple
 
 ## Create a data collection rule
 
-Use one of the following methods to create a platform telemetry DCR. After you create the DCR, grant permissions to the managed identity (for storage account and Event Hubs destinations), and then create a data collection rule association.
+Use one of the following methods to create a platform telemetry DCR to collect platform logs. After you create the DCR, grant permissions to the managed identity for storage account and Event Hubs destinations, and then create a data collection rule association.
 
 > [!NOTE]
 > For storage account and Event Hubs destinations, the DCR, destination, and monitored resources must all be in the same region.
 
 # [Azure portal](#tab/azure-portal)
 
-1. In the Azure portal, go to **Monitor** > **Data Collection Rules**, and then select **Create**.
-1. Select the link at the top of the page to use the new DCR creation experience.
-1. On the **Basics** tab, set:
-   - **Rule name**: A descriptive name, such as `dcr-platform-telemetry`.
-   - **Subscription**: Your subscription.
-   - **Resource group**: Existing or new resource group.
-   - **Region**: A supported region.
-   - **Type of telemetry**: `PlatformTelemetry`.
-   - **Enable Managed Identity**: Required if destination is storage account or Event Hubs.
-1. On the **Resources** tab, select **Add resources** and add resources to monitor.
-1. Select **Next** to go to **Collect and deliver**, and then select **Add new datasource**.
-1. Confirm the resource types and select log categories.
-1. Go to **Destinations**, and then select **Add destination**.
-1. Configure one destination:
-   - Log Analytics workspace: Select workspace.
-   - Storage account: Select storage account and container name.
-   - Event Hubs: Select namespace and event hub.
-1. Select **Save**, and then select **Review + create**.
+### Create a data collection rule using the Azure portal
 
-> [!NOTE]
-> For storage account and Event Hubs destinations, the DCR, destination, and monitored resources must all be in the same region.
+1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
+
+1. Select the link on the top of the page to use the new DCR creation experience.
+
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
+
+1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
+
+1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send logs to a Storage Account or Event Hubs.
+
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
+
+1. On the **Resources** page, select **Add resources** to add the resources you want to collect logs from.
+
+1. Select **Next** to move to the **Collect and deliver** tab.
+
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-resources.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
+
+1. Select **Add new datasource**.
+
+1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect logs from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the logs collected for it. By default, all available logs for the resource are collected.
+
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
+
+1. Select **Next Destinations** to move to the **Destinations** tab.
+
+1. Select **Add destination** and then the **Destination type** that you want to add. The required fields change based on the destination type you select.
+
+  > [!NOTE]
+  > To send logs to a Storage Account or Event Hubs, the resource generating the logs, the DCR, and the Storage Account or Event Hub must all be in the same region. To send logs to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the logs can be in any region.
+
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-data-destination.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
+
+1. Select **Save** , then select **Review + create**.
 
 # [Azure CLI](#tab/azure-cli)
 
