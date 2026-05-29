@@ -4,6 +4,8 @@ description: Learn how to use Copilot in Azure to create, analyze, and modify Az
 ms.topic: concept-article
 ms.date: 04/02/2026
 ms.reviewer: gardnerjr
+ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ---
 
