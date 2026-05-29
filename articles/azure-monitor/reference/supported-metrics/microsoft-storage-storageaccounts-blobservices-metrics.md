@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/blobServices
 description: Reference for Microsoft.Storage/storageAccounts/blobServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.Storage/storageAccounts/blobServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -37,7 +37,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 |**Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes. |`BlobCapacity` |Bytes |Average |`BlobType`, `Tier`|PT1H |No|
 |**Blob Count**<br><br>The number of blob objects stored in the storage account. |`BlobCount` |Count |Average |`BlobType`, `Tier`|PT1H |No|
 |**Blob Provisioned Size**<br><br>The amount of storage provisioned in the storage account's Blob service in bytes. |`BlobProvisionedSize` |Bytes |Average |`BlobType`, `Tier`|PT1H |No|
+|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` |Count |Average |`ContainerName`, `BlobType`, `Tier`|PT1H |No|
 |**Blob Container Count**<br><br>The number of containers in the storage account. |`ContainerCount` |Count |Average |`AccessLevel`|PT1H |Yes|
+|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` |Bytes |Average |`ContainerName`, `Tier`, `BlobType`|PT1H |No|
 |**Index Capacity**<br><br>The amount of storage used by Azure Data Lake Storage Gen2 hierarchical index. |`IndexCapacity` |Bytes |Average |\<none\>|PT1H |No|
 
 ### Category: Transaction

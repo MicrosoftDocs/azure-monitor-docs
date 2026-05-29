@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/clusters
 description: Reference for Microsoft.NetworkCloud/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.NetworkCloud/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -45,6 +45,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Memory Used (Preview)**<br><br>The used memory of the node. |`Cluster Node Memory Used` |Bytes |Minimum, Maximum, Average, Total (Sum) |`ClusterName`, `ClusterNodeName`|PT1M |No|
 |**Memory Available (Preview)**<br><br>The available memory of the node. |`Memory Available Bytes` |Bytes |Minimum, Maximum, Average, Total (Sum) |`ClusterName`, `ClusterNodeName`|PT1M |No|
 |**Memory Total (Preview)**<br><br>The total physical memory of the node. |`Memory Total Bytes` |Bytes |Minimum, Maximum, Average, Total (Sum) |`ClusterName`, `ClusterNodeName`|PT1M |No|
+|**VM Memory Used (Preview)**<br><br>Amount of virtual machine memory that is in use. |`VmMemoryUsed` |Bytes |Minimum, Maximum, Average |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |No|
 
 ### Category: Calico
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -72,7 +73,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Container Memory Fail Count**<br><br>Number of times a container's memory usage limit is hit. In the absence of data, this metric will default to 0. |`ContainerMemoryFailcnt` |Count |Average |`Container`, `Host`, `Namespace`, `Pod`|PT1M |No|
 |**Container Memory Usage Bytes**<br><br>Current memory usage, including all memory regardless of when it was accessed. In the absence of data, this metric will default to 0. |`ContainerMemoryUsageBytes` |Bytes |Average |`Container`, `Host`, `Namespace`, `Pod`|PT1M |No|
 |**Container Scrape Error**<br><br>Indicates whether there was an error while getting container metrics. |`ContainerScrapeError` |Unspecified |Average |`Host`|PT1M |No|
-|**Container Tasks State**<br><br>Number of tasks or processes in a given state (sleeping, running, stopped, uninterruptible, or waiting) in a container. |`ContainerTasksState` |Count |Average |`Container`, `Host`, `Namespace`, `Pod`, `State`|PT1M |No|
+|**Container Tasks State (Deprecated)**<br><br>Number of tasks or processes in a given state (sleeping, running, stopped, uninterruptible, or waiting) in a container. |`ContainerTasksState` |Count |Average |`Container`, `Host`, `Namespace`, `Pod`, `State`|PT1M |No|
 
 ### Category: Controller
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -185,6 +186,9 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |---|---|---|---|---|---|---|
 |**Percentage CPU (Preview)**<br><br>The percentage of processor time that is not idle. |`Cluster Node CPU Utilization` |Percent |Minimum, Maximum, Average, Count |`ClusterName`, `ClusterNodeName`|PT1M |No|
 |**Percentage Memory (Preview)**<br><br>The memory usage of the node, including unused allocated memory. |`Cluster Node Memory Usage` |Percent |Minimum, Maximum, Average, Total (Sum) |`ClusterName`, `ClusterNodeName`|PT1M |No|
+|**VM Memory Available (Preview)**<br><br>Amount of virtual machine memory that is available. |`VmMemoryAvailable` |Bytes |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |No|
+|**VM Memory Used Percentage (Preview)**<br><br>Percentage of virtual machine memory that is in use. |`VmMemoryUsedPercentage` |Percent |Minimum, Maximum, Average |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |No|
+|**VM Percentage CPU (Preview)**<br><br>Virtual machine CPU utilization. |`VmPercentageCPU` |Percent |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |No|
 
 ### Category: Statefulset
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -222,6 +226,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Storage Read Operations/sec (Preview)**<br><br>Rate of read operations by the host from the storage endpoint. |`Storage Endpoint Read Operations/sec` |CountPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `StorageEndpoint`|PT1M |No|
 |**Storage Write Bytes/Sec (Preview)**<br><br>Rate of data written by the host to the storage endpoint. |`Storage Endpoint Write Bytes/sec` |BytesPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `StorageEndpoint`|PT1M |No|
 |**Storage Write Operations/sec (Preview)**<br><br>Rate of write operations by the host to the storage endpoint. |`Storage Endpoint Write Operations/sec` |CountPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `StorageEndpoint`|PT1M |No|
+|**VM Network In/Sec (Preview)**<br><br>Rate of network bytes received by the virtual machine interfaces per second. |`VmNetworkReceiveBytesPerSecond` |BytesPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `Instance`, `Interface`|PT1M |No|
+|**VM Network Out/Sec (Preview)**<br><br>Rate of network bytes transmitted by the virtual machine interfaces per second. |`VmNetworkTransmitBytesPerSecond` |BytesPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `Instance`, `Interface`|PT1M |No|
 
 ### Category: VMOrchestrator
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
