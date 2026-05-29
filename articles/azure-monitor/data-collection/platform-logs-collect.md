@@ -90,19 +90,19 @@ Use one of the following methods to create a platform telemetry DCR to collect p
 
 1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send logs to a Storage Account or Event Hubs.
 
-  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
 
 1. On the **Resources** page, select **Add resources** to add the resources you want to collect logs from.
 
 1. Select **Next** to move to the **Collect and deliver** tab.
 
-  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-resources.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
 
 1. Select **Add new datasource**.
 
 1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect logs from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the logs collected for it. By default, all available logs for the resource are collected.
 
-  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
 
 1. Select **Next Destinations** to move to the **Destinations** tab.
 
@@ -122,7 +122,10 @@ Use one of the following methods to create a platform telemetry DCR to collect p
 Create a JSON file named `dcr-definition.json` with the DCR specification. The following example exports all logs from Azure Database for MySQL flexible servers and NGINX deployments to a Log Analytics workspace:
 
 
-```azurecli
+<details>
+<summary>Logs Analytics workspace DCR</summary>
+
+```json
 {
   "properties": {
     "dataSources": {
@@ -156,35 +159,10 @@ Create a JSON file named `dcr-definition.json` with the DCR specification. The f
   }
 }
 ```
+</details>
 
-Create the DCR:
-
-```azurecli
-az monitor data-collection rule create \
-  --name "dcr-platform-telemetry" \
-  --resource-group "<resource-group-name>" \
-  --location "<supported-region>" \
-  --kind PlatformTelemetry \
-  --rule-file "dcr-definition.json"
-```
-
-For storage account or Event Hubs destinations, add the identity parameter:
-
-```azurecli
-az monitor data-collection rule create \
-  --name "dcr-platform-telemetry" \
-  --resource-group "<resource-group-name>" \
-  --location "<supported-region>" \
-  --kind PlatformTelemetry \
-  --identity "{type:'SystemAssigned'}" \
-  --rule-file "dcr-definition.json"
-
-```
-
-Copy the `id` and `principalId` values from the output. You use these values when you assign roles and create rule associations.
-
-
-#### Storage account destination
+<details>
+<summary>Storage account DCR</summary>
 
 ```json
 {
@@ -221,7 +199,10 @@ Copy the `id` and `principalId` values from the output. You use these values whe
   }
 }
 ```
+</details>
 
+<details>
+<summary>Storage account DCR</summary>
 #### Event Hubs destination
 
 ```json
@@ -258,10 +239,44 @@ Copy the `id` and `principalId` values from the output. You use these values whe
   }
 }
 ```
+</details>
+
+Create the DCR:
+
+```azurecli
+az monitor data-collection rule create \
+  --name "dcr-platform-telemetry" \
+  --resource-group "<resource-group-name>" \
+  --location "<supported-region>" \
+  --kind PlatformTelemetry \
+  --rule-file "dcr-definition.json"
+```
+
+For storage account or Event Hubs destinations, add the identity parameter:
+
+```azurecli
+az monitor data-collection rule create \
+  --name "dcr-platform-telemetry" \
+  --resource-group "<resource-group-name>" \
+  --location "<supported-region>" \
+  --kind PlatformTelemetry \
+  --identity "{type:'SystemAssigned'}" \
+  --rule-file "dcr-definition.json"
+
+```
+
+Copy the `id` and `principalId` values from the output. You use these values when you assign roles and create rule associations.
+
+
+
 
 # [Azure PowerShell](#tab/azure-powershell)
 
 Create a JSON file named `dcr-definition.json` with the full DCR specification, including `kind`, `location`, and optionally `identity`:
+
+
+<details>
+<summary>Logs Analytics workspace DCR</summary>
 
 ```json
 {
@@ -270,8 +285,8 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
       "platformTelemetry": [
         {
           "streams": [
-            "microsoft.dbforpostgresql/flexibleservers:Logs-Group-All",
-            "microsoft.dashboard/grafana:Logs-Group-All"
+            "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+            "nginx.nginxplus/nginxdeployments:Logs-Group-All"
           ],
           "name": "myPlatformTelemetryDataSource"
         }
@@ -288,8 +303,8 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
     "dataFlows": [
       {
         "streams": [
-          "microsoft.dbforpostgresql/flexibleservers:Logs-Group-All",
-          "microsoft.dashboard/grafana:Logs-Group-All"
+          "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+          "nginx.nginxplus/nginxdeployments:Logs-Group-All"
         ],
         "destinations": ["myLogAnalyticsDestination"]
       }
@@ -299,12 +314,44 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
   "location": "<supported-region>"
 }
 ```
+</details>
 
-For storage account or Event Hubs destinations, add the identity block at the root level:
+<details>
+<summary>Storage account DCR</summary>
 
 ```json
 {
-  "properties": { ... },
+  "properties": {
+    "dataSources": {
+      "platformTelemetry": [
+        {
+          "streams": [
+            "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+            "microsoft.storagecache/caches:Logs-Group-All"
+          ],
+          "name": "myPlatformTelemetryDataSource"
+        }
+      ]
+    },
+    "destinations": {
+      "storageAccounts": [
+        {
+          "storageAccountResourceId": "<storage-account-resource-id>",
+          "containerName": "<container-name>",
+          "name": "myStorageDestination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+          "microsoft.storagecache/caches:Logs-Group-All"
+        ],
+        "destinations": ["myStorageDestination"]
+      }
+    ]
+  },
   "identity": {
     "type": "systemAssigned"
   },
@@ -312,6 +359,54 @@ For storage account or Event Hubs destinations, add the identity block at the ro
   "location": "<supported-region>"
 }
 ```
+</details>
+
+<details>
+<summary>Storage account DCR</summary>
+#### Event Hubs destination
+
+```json
+{
+  "properties": {
+    "dataSources": {
+      "platformTelemetry": [
+        {
+          "streams": [
+            "microsoft.app/managedenvironments:Logs-Group-All",
+            "microsoft.containerregistry/registries:Logs-Group-All"
+          ],
+          "name": "myPlatformTelemetryDataSource"
+        }
+      ]
+    },
+    "destinations": {
+      "eventHubs": [
+        {
+          "eventHubResourceId": "<event-hub-resource-id>",
+          "name": "myEventHubDestination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "microsoft.app/managedenvironments:Logs-Group-All",
+          "microsoft.containerregistry/registries:Logs-Group-All"
+        ],
+        "destinations": ["myEventHubDestination"]
+      }
+    ]
+  },
+  "identity": {
+    "type": "systemAssigned"
+  },
+  "kind": "PlatformTelemetry",
+  "location": "<supported-region>"
+}
+```
+</details>
+
+
 
 Create the DCR:
 
@@ -346,7 +441,8 @@ Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
-#### Log Analytics workspace
+<details>
+<summary>Logs Analytics workspace DCR</summary>
 
 ```json
 {
@@ -355,8 +451,8 @@ Content-Type: application/json
       "platformTelemetry": [
         {
           "streams": [
-            "microsoft.dashboard/grafana:Logs-Group-All",
-            "microsoft.loadtestservice/loadtests:Logs-Group-All"
+            "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+            "nginx.nginxplus/nginxdeployments:Logs-Group-All"
           ],
           "name": "myPlatformTelemetryDataSource"
         }
@@ -373,8 +469,8 @@ Content-Type: application/json
     "dataFlows": [
       {
         "streams": [
-          "microsoft.dashboard/grafana:Logs-Group-All",
-          "microsoft.loadtestservice/loadtests:Logs-Group-All"
+          "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+          "nginx.nginxplus/nginxdeployments:Logs-Group-All"
         ],
         "destinations": ["myLogAnalyticsDestination"]
       }
@@ -384,12 +480,44 @@ Content-Type: application/json
   "location": "<supported-region>"
 }
 ```
+</details>
 
-For storage account or Event Hubs destinations, add the identity property at the root level:
+<details>
+<summary>Storage account DCR</summary>
 
 ```json
 {
-  "properties": { ... },
+  "properties": {
+    "dataSources": {
+      "platformTelemetry": [
+        {
+          "streams": [
+            "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+            "microsoft.storagecache/caches:Logs-Group-All"
+          ],
+          "name": "myPlatformTelemetryDataSource"
+        }
+      ]
+    },
+    "destinations": {
+      "storageAccounts": [
+        {
+          "storageAccountResourceId": "<storage-account-resource-id>",
+          "containerName": "<container-name>",
+          "name": "myStorageDestination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "microsoft.dbformysql/flexibleservers:Logs-Group-All",
+          "microsoft.storagecache/caches:Logs-Group-All"
+        ],
+        "destinations": ["myStorageDestination"]
+      }
+    ]
+  },
   "identity": {
     "type": "systemAssigned"
   },
@@ -397,6 +525,53 @@ For storage account or Event Hubs destinations, add the identity property at the
   "location": "<supported-region>"
 }
 ```
+</details>
+
+<details>
+<summary>Storage account DCR</summary>
+#### Event Hubs destination
+
+```json
+{
+  "properties": {
+    "dataSources": {
+      "platformTelemetry": [
+        {
+          "streams": [
+            "microsoft.app/managedenvironments:Logs-Group-All",
+            "microsoft.containerregistry/registries:Logs-Group-All"
+          ],
+          "name": "myPlatformTelemetryDataSource"
+        }
+      ]
+    },
+    "destinations": {
+      "eventHubs": [
+        {
+          "eventHubResourceId": "<event-hub-resource-id>",
+          "name": "myEventHubDestination"
+        }
+      ]
+    },
+    "dataFlows": [
+      {
+        "streams": [
+          "microsoft.app/managedenvironments:Logs-Group-All",
+          "microsoft.containerregistry/registries:Logs-Group-All"
+        ],
+        "destinations": ["myEventHubDestination"]
+      }
+    ]
+  },
+  "identity": {
+    "type": "systemAssigned"
+  },
+  "kind": "PlatformTelemetry",
+  "location": "<supported-region>"
+}
+```
+</details>
+
 
 Copy the `id` and `identity.principalId` values from the response for use in role assignments and rule associations.
 
@@ -597,7 +772,6 @@ For storage account and Event Hubs destinations, the DCR system-assigned managed
 | Storage account | `Storage Blob Data Contributor` | `ba92f5b4-2d11-453d-a403-e96b0029c9fe` |
 | Event Hubs | `Azure Event Hubs Data Sender` | `2b629674-e913-4c01-ae53-ef4638d8f975` |
 
-### Azure CLI
 
 ```azurecli
 # Storage account
@@ -616,8 +790,6 @@ az role assignment create \
 ## Create a data collection rule association
 
 After you create the DCR and assign permissions, associate the rule with each resource you want to monitor.
-
-### Azure CLI
 
 ```azurecli
 az monitor data-collection rule association create \
