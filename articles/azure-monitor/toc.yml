@@ -232,13 +232,14 @@ items:
       href: vm/monitor-vm.md
     - name: Best practices
       href: vm/best-practices-vm.md
-    - name: Getting started
+    - name: Get started
       items:
-      - name: Virtual machines
-        items:
-        - name: Enable monitoring
-          displayName: virtual machine, VM
-          href: vm/tutorial-enable-monitoring.md
+      - name: Enable monitoring
+        displayName: virtual machine, VM
+        href: vm/tutorial-enable-monitoring.md
+      - name: Collect guest logs
+        displayName: virtual machine, VM 
+        href: vm/tutorial-collect-logs.md
       - name: Virtual machine scale sets
         items:
         - name: Enable monitoring
@@ -247,8 +248,6 @@ items:
         - name: Enable recommended alerts
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
-      - name: Collect guest logs
-        href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
       - name: Enable from command line
@@ -383,9 +382,10 @@ items:
     - name: Deployment guidance
       displayName: containers
       href: containers/monitor-kubernetes.md
-    - name: Getting started
+    - name: Get started
       items:
-      - name: Enable monitoring for a cluster
+      - name: Enable monitoring
+        displayName: kubernetes, cluster
         href: containers/kubernetes-monitoring-tutorial.md
     - name: Best practices
       displayName: containers, kubernetes
