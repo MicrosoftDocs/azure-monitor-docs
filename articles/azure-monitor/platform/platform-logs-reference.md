@@ -51,4 +51,4 @@ microsoft.dbformysql/flexibleservers:MySqlAuditLogs
 ## Related content
 
 - [Collect platform logs with data collection rules](platform-logs-collect.md)
-- [Supported log categories by resource type](../reference/supported-logs/logs-index.yml)
+- [Supported log categories by resource type](../reference/supported-logs/logs-index)
