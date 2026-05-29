@@ -123,7 +123,7 @@ You should avoid sending duplicate data to multiple workspaces because of the ex
 
 ### Data access control
 
-When you grant a user [access to a workspace](manage-access.md#azure-rbac), the user has access to all data in that workspace. This access is appropriate for a member of a central administration or security team who must access data for all resources. Access to the workspace is also determined by resource-context role-based access control (RBAC) and table-level RBAC. To review or change the access control mode, in the Azure portal, go to **Log Analytics workspaces** > your workspace > **Properties**.
+When you grant a user [access to a workspace](manage-access.md#azure-rbac), the user has access to all data in that workspace. This access is appropriate for a member of a central administration or security team who must access data for all resources. Access to the workspace is also determined by resource-context role-based access control (RBAC) and table-level RBAC. 
 
 [Resource-context RBAC](manage-access.md#access-mode): By default, if a user has read access to an Azure resource, they inherit permissions to any of that resource's monitoring data sent to the workspace. This level of access allows users to access information about resources they manage without being granted explicit access to the workspace. To block this access, change the [access control mode](manage-access.md#access-control-mode) to require explicit workspace permissions.
 
