@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 05/06/2026
+ms.date: 05/29/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
 ai-usage: ai-assisted
@@ -11,24 +11,41 @@ ai-usage: ai-assisted
 
 # Azure Monitor Agent extension versions
 
-This article describes the version details for the Azure Monitor Agent virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
+This article describes the version details for the Azure Monitor Agent (AMA) virtual machine extension. This extension deploys the agent on virtual machines, scale sets, and Arc-enabled servers (on-premises servers with Azure Arc agent installed).
 
 > [!NOTE]
-> Microsoft supports Azure Monitoring Agent versions released within the last year. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
+> Microsoft supports Azure Monitor Agent versions released within the last year. Update to a version within this period. Microsoft releases all bug fixes in the latest version only.
 
-Always update to the latest version, or opt in to the [Automatic Extension Update](/azure/virtual-machines/automatic-extension-upgrade) feature.
+## Release cadence and rollout timeline
 
-- Microsoft releases agent versions once each month. The latest version deploys over a fortnight, and you might see it in some regions before others. You can manually install the release once it's in a VM's region.
-- Automatic rollout follows Azure safe deployment practices and completes in a month and a half following the release month. Deployments are issued in batches, so you might see some of your virtual machines, scale sets, or Arc-enabled servers on different release during the rollout.
-- Release notes are available during the latest version rollout.
+Azure Monitor Agent versions are released on a regular cadence and deployed by using [Azure Safe Deployment Practices](https://azure.microsoft.com/blog/advancing-safe-deployment-practices/).
+
+### How releases work
+
+New agent versions are released periodically to deliver security fixes, reliability improvements, and new features. After a version is released, automatic updates deploy it in stages across Azure regions:
+
+- For **Azure VMs and scale sets**, automatic updates typically complete within **4–6 weeks** of rollout start.
+- **Arc-enabled servers** follow a similar staged rollout and might take longer due to additional validation steps.
+- During rollout, different resources might run different agent versions until the update reaches them.
+
+If you need the latest version before automatic updates reach your resources, you can manually install a version once it's available in your region. For more information, see [Azure Monitor Agent installation and management guidance](azure-monitor-agent-overview.md).
+
+### Release notes availability
+
+Microsoft publishes release notes after the rollout completes. This timing ensures the release notes reflect a version that's fully available across regions.
+
+### Recommendation
+
+For most scenarios, [enable automatic extension updates](/azure/virtual-machines/automatic-extension-upgrade) to ensure your systems stay current with supported versions.
+
+## Version summary
 
 > [!IMPORTANT]
 > Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
-## Version summary
-
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [May 2026](#may-2026) | 1.43 | — | — | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
 | [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
 | [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation |
@@ -76,6 +93,22 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 | [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
 | [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
 | [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
+
+## May 2026
+
+**Versions:** Windows 1.43
+
+### Windows
+
+- Fixed an AMA installer crash.
+- Improved file logger mutex locking and exception handling for better reliability.
+- Fixed an uninitialized agent settings lock that could cause a crash during early startup.
+- Added exponential backoff reconnect for Docker container monitoring socket timeouts.
+- Removed a deprecated security dependency to address a known vulnerability.
+- Updated Metrics Extension to 2.2026.424.2329.
+- Updated AMACA to 3.0.77.
+- Updated OpenSSL to 3.6.2.1.
+- Updated AzSecPack to 4.42.0.33.
 
 ## April 2026
 
@@ -334,12 +367,12 @@ Always update to the latest version, or opt in to the [Automatic Extension Updat
 - Support for Azure Linux 3, Ubuntu 24.04 LTS, and Amazon Linux 2023.
 - Arm64 support for Azure Linux 3 and Ubuntu 24.04 LTS.
 - Support timestamp-delimited Custom Text Logs for parity with OMS agent.
-- Limit how frequently AMA writes its own log messages when the disk full; it fixes an error were logging that the disk is full makes the issue worse.
+- Limit how frequently AMA writes its own log messages when the disk is full. This change fixes an error where logging that the disk is full makes the issue worse.
 - Fix a crash that can occur when sending events to an unavailable Event Hubs.
 - Reduce resource utilization when sending events to an unavailable Event Hubs.
 - Fix for syslog-ng misconfiguration that caused syslog-ng service startup failure on rpm-based distros.
 - Fix a crash that could occur when parsing syslog messages with a `.` character in the app/process name.
-- Fix a unicode parsing issue that could cause install failures on certain system locales.
+- Fix a Unicode parsing issue that could cause install failures on certain system locales.
 
 ## August 2024
 
