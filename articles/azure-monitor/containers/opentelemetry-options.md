@@ -22,8 +22,6 @@ First, Azure Monitor now offers native OpenTelemetry Protocol (OTLP) ingestion p
 
 Second, Azure Monitor supports the Microsoft OpenTelemetry Distro, an OpenTelemetry client distribution that bundles all the open-source and Microsoft components required for a fully integrated experience with Azure Monitor for both AI agent and traditional applications. Together, these options let you choose a vendor-neutral OTLP path or a Microsoft-supported instrumentation path powered by OpenTelemetry components. Both approaches enable investigation, analytics, and visualization workflows in Azure Monitor.
 
-Azure Monitor supports OpenTelemetry in two ways: native OTLP ingestion and the Microsoft OpenTelemetry Distro.
-
 ## Native OpenTelemetry support with OTLP ingestion
 
 Azure Monitor supports direct ingestion of OpenTelemetry signals using OTLP, the open standard for transmitting logs, metrics, and traces. This path is available to teams that already use open-source OpenTelemetry SDKs, require vendor-neutral instrumentation, or are standardizing on open-source tooling across multiple environments. Azure Monitor can receive OTLP signals through AKS-integrated onboarding, the Azure Monitor Agent on virtual machines and Arc-enabled servers, or by directly receiving OTLP at Azure Monitor cloud ingestion endpoints from an open-source OpenTelemetry Collector.
