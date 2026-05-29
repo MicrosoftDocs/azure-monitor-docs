@@ -159,7 +159,7 @@ Use one of the following methods to create a Platform Telemetry DCR. After creat
 > [!NOTE]
 > For storage account and event hub destinations, the DCR, destination, and monitored resources must all be in the same region.
 
-### Azure portal
+# [Azure portal](#tab/azure-portal)
 
 1. In the Azure portal, go to **Monitor** > **Data Collection Rules**, and then select **Create**.
 1. Select the link at the top of the page to use the new DCR creation experience.
@@ -183,9 +183,9 @@ Use one of the following methods to create a Platform Telemetry DCR. After creat
 > [!NOTE]
 > For storage account and event hub destinations, the DCR, destination, and monitored resources must all be in the same region.
 
-### Azure CLI
+# [Azure CLI](#tab/azure-cli)
 
-**Log Analytics workspace destination**
+#### Log Analytics workspace destination
 Create a JSON file named dcr-definition.json with the DCR specification. The following example exports all logs from Azure Database for MySQL flexible servers and NGINX deployments to a Log Analytics workspace:
 
 
@@ -251,7 +251,7 @@ az monitor data-collection rule create \
 Copy the id and principalId from the output. You need these values to assign roles and create rule associations.
 
 
-**Storage account destination — sample JSON**
+#### Storage account destination
 
 ```json
 {
@@ -289,7 +289,7 @@ Copy the id and principalId from the output. You need these values to assign rol
 }
 ```
 
-**Event hub destination — sample JSON**
+#### Event hub destination
 
 ```json
 {
@@ -326,7 +326,7 @@ Copy the id and principalId from the output. You need these values to assign rol
 }
 ```
 
-### Azure Powershell
+# [Azure PowerShell](#tab/azure-powershell)
 Create a JSON file named dcr-definition.json with the full DCR specification, including kind, location, and optionally identity:
 
 ```json
@@ -399,7 +399,7 @@ New-AzDataCollectionRule @dcrParams
 
 Copy the Id and IdentityPrincipalId from the output for use in role assignments and rule associations.
 
-### REST API
+# [REST API](#tab/rest)
 Send a PUT request to create the DCR:
 
 ```
@@ -411,7 +411,7 @@ Authorization: Bearer {accessToken}
 Content-Type: application/json
 ```
 
-**Log Analytics workspace — request body:**
+#### Log Analytics workspace
 
 ```json
 {
@@ -465,9 +465,9 @@ For storage account or event hub destinations, add the identity property at the 
 
 Copy the id and the identity.principalId from the response for use in role assignments and rule associations.
 
-### Bicep / ARM templates
+# [Bicep/ARM template](#tab/bicep)
 
-**Log Analytics workspace — Bicep template:**
+#### Log Analytics workspace
 
 ```bicep
 @description('Name of the data collection rule.')
@@ -522,7 +522,7 @@ output dcrId string = dataCollectionRule.id
 output principalId string = dataCollectionRule.identity.principalId
 ```
 
-### Storage account — Bicep template:
+#### Storage account
 
 ```bicep
 @description('Name of the data collection rule.')
@@ -581,7 +581,7 @@ output dcrId string = dataCollectionRule.id
 output principalId string = dataCollectionRule.identity.principalId
 ```
 
-### Event hub — Bicep template
+#### Event hub
 
 ```bicep
 @description('Name of the data collection rule.')
@@ -647,14 +647,7 @@ az deployment group create \
                location="<supported-region>"
 ```
 
-
-
-
-
-
-
-
-
+---
 
 
 
@@ -738,11 +731,11 @@ Common pitfalls to check:
 ## Clean up resources
 If you no longer need the resources created in this article, delete the data collection rule and its associations.
 
-### Azure portal
+# [Azure portal](#tab/portal-cleanup)
 25.	Go to Monitor > Data Collection Rules.
 26.	Select the DCR, then select Delete.
 
-### Azure CLI:
+# [Azure CLI](#tab/cli-cleanup)
 
 ```azurecli
 # Delete the association first
@@ -757,7 +750,7 @@ az monitor data-collection rule delete \
   --resource-group "<resource-group-name>"
 ```
 
-### Azure PowerShell:
+# [Azure PowerShell](#tab/powershell-cleanup)
 
 ```azurepowershell
 Remove-AzDataCollectionRuleAssociation `
@@ -770,7 +763,7 @@ Remove-AzDataCollectionRule `
   -ResourceGroupName "<resource-group-name>"
 ```
 
-### REST API:
+# [REST API](#tab/rest-cleanup)
 
 ```bash
 # Delete the association
@@ -784,6 +777,8 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}
        /dataCollectionRules/{dataCollectionRuleName}?api-version=2024-03-11
 Authorization: Bearer {accessToken}
 ```
+
+---
 
 Bicep / ARM: Remove the resources from your Bicep template and redeploy, or delete the resource group if it was created solely for this purpose.
 
