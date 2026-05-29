@@ -2,7 +2,7 @@
 title: What is Azure Service Health?
 description: Personalized information about how your Azure apps are affected due to current and future Azure service problems and maintenance. 
 ms.topic: overview
-ms.date: 10/31/2025
+ms.date: 05/29/2026
 ---
 # What is Azure Service Health?
 
