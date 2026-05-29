@@ -280,7 +280,7 @@ servicehealthresources
 | extend region = tostring(properties.targetRegion)
 | extend resourceGroup = tostring(properties.resourceGroup)
 | project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`;
-
+```
 
 ### Frequently Asked Questions
 
