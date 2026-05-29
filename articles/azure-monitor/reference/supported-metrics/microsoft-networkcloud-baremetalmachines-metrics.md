@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetworkCloud/bareMetalMachines
 description: Reference for Microsoft.NetworkCloud/bareMetalMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.NetworkCloud/bareMetalMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,17 +34,17 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 ### Category: CPU
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**CPU Guest Usage**<br><br>Percentage of time that the CPU is running a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuest` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Guest Nice Usage**<br><br>Percentage of time that the CPU is running low-priority processes on a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuestNice` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Idle**<br><br>Percentage of time that the CPU is idle. In the absence of data, this metric will default to 0. |`CpuUsageIdle` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage IO Wait**<br><br>Percentage of time that the CPU is waiting for I/O operations to complete. In the absence of data, this metric will default to 0. |`CpuUsageIowait` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage IRQ**<br><br>Percentage of time that the CPU is servicing hardware interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageIrq` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Nice**<br><br>Percentage of time that the CPU is in user mode, running low-priority processes. In the absence of data, this metric will default to 0. |`CpuUsageNice` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Soft IRQ**<br><br>Percentage of time that the CPU is servicing software interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageSoftirq` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage Steal**<br><br>Percentage of time that the CPU is in stolen time, which is time spent in other operating systems in a virtualized environment. In the absence of data, this metric will default to 0. |`CpuUsageSteal` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
-|**CPU Usage System**<br><br>Percentage of time that the CPU is in system mode. In the absence of data, this metric will default to 0. |`CpuUsageSystem` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Guest Usage (Deprecated)**<br><br>Percentage of time that the CPU is running a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuest` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Guest Nice Usage (Deprecated)**<br><br>Percentage of time that the CPU is running low-priority processes on a virtual CPU for a guest operating system. In the absence of data, this metric will default to 0. |`CpuUsageGuestNice` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage Idle**<br><br>Percentage of time that the CPU is idle. In the absence of data, this metric will default to 0. |`CpuUsageIdle` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage IO Wait (Deprecated)**<br><br>Percentage of time that the CPU is waiting for I/O operations to complete. In the absence of data, this metric will default to 0. |`CpuUsageIowait` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage IRQ (Deprecated)**<br><br>Percentage of time that the CPU is servicing hardware interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageIrq` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage Nice (Deprecated)**<br><br>Percentage of time that the CPU is in user mode, running low-priority processes. In the absence of data, this metric will default to 0. |`CpuUsageNice` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage Soft IRQ (Deprecated)**<br><br>Percentage of time that the CPU is servicing software interrupt requests. In the absence of data, this metric will default to 0. |`CpuUsageSoftirq` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage Steal (Deprecated)**<br><br>Percentage of time that the CPU is in stolen time, which is time spent in other operating systems in a virtualized environment. In the absence of data, this metric will default to 0. |`CpuUsageSteal` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage System**<br><br>Percentage of time that the CPU is in system mode. In the absence of data, this metric will default to 0. |`CpuUsageSystem` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
 |**CPU Usage Total**<br><br>Percentage of time that the CPU is active (not idle). In the absence of data, this metric will default to 150. |`CpuUsageTotal` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |Yes|
-|**CPU Usage User**<br><br>Percentage of time that the CPU is in user mode. In the absence of data, this metric will default to 0. |`CpuUsageUser` |Count |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
+|**CPU Usage User**<br><br>Percentage of time that the CPU is in user mode. In the absence of data, this metric will default to 0. |`CpuUsageUser` |Percent |Average |`CPU`, `Host`, `MachineRole`|PT1M |No|
 |**Total CPUs Available to Nexus per NUMA**<br><br>Total number of CPUs available to Nexus per NUMA. This metric is only emitted on compute nodes. |`NcTotalCpusPerNuma` |Count |Average |`Hostname`, `MachineRole`, `NUMA Node`|PT1M |No|
 |**CPUs per NUMA Allocated for Nexus K8s**<br><br>Total number of CPUs per NUMA allocated for Nexus Kubernetes and Tenant Workloads. This metric is only emitted on compute nodes. |`NcTotalWorkloadCpusAllocatedPerNuma` |Count |Average |`Hostname`, `MachineRole`, `NUMA Node`|PT1M |No|
 |**CPUs per NUMA Available for Nexus K8s**<br><br>Total number of CPUs per NUMA available for use by Nexus Kubernetes and Tenant Workloads. This metric is only emitted on compute nodes. |`NcTotalWorkloadCpusAvailablePerNuma` |Count |Average |`Hostname`, `MachineRole`, `NUMA Node`|PT1M |No|
@@ -131,6 +131,11 @@ For a list of supported logs, see [Supported log categories - Microsoft.NetworkC
 |**Node Network Speed Bytes**<br><br>Current network speed, in bytes per second, for the node network interfaces. In the absence of data, this metric will default to 0. |`NodeNetworkSpeedBytes` |Bytes |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Up**<br><br>Indicates the operational status of the nodes network interfaces. Value is 1 if operstate is 'up', 0 otherwise. |`NodeNetworkStatus` |Count |Count |`Device`, `Host`, `MachineRole`|PT1M |No|
 |**Node Network Transmited Packets**<br><br>Total number of packets transmitted by the node network interfaces. |`NodeNetworkTransmitPackets` |Count |Average |`Device`, `Host`, `MachineRole`|PT1M |No|
+
+### Category: Storage
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Node Failed iSCSI Sessions**<br><br>Total number of failed iSCSI sessions on the node. |`NodeFailedIscsiSessions` |Count |Average |`Host`, `MachineRole`, `StorageAppliance`|PT1M |No|
 
 ### Category: System
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|

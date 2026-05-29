@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Quantum/providerAccounts
 description: Reference for Microsoft.Quantum/providerAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 03/27/2026
+ms.date: 05/29/2026
 ms.custom: Microsoft.Quantum/providerAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -65,7 +65,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Quantum/
 |**Remaining subscription quota**<br><br>Shows rate at which the subscription quota is being used up. |`SubscriptionQuotaUsageRate` |Count |Average, Maximum, Minimum |`SubscriptionId`, `QuotaPriorityName`|PT1M |Yes|
 |**Target availability**<br><br>Shows the availability of the target. |`TargetAvailability` |Percent |Average, Maximum, Minimum |`QueueId`, `QueueName`, `TargetId`, `TargetName`|PT1M |Yes|
 |**Target queue size**<br><br>Current size of the target queue. |`TargetQueueSize` |Count |Average, Maximum, Minimum |`QueueId`, `QueueName`, `TargetId`, `TargetName`|PT1M |Yes|
-|**Target wait time**<br><br>Shows the average time (in seconds) a job spends in the target until it starts processing. |`TargetWaitTime` |Seconds |Average, Maximum, Minimum |`QueueId`, `QueueName`, `TargetId`, `TargetName`|PT1M |Yes|
+|**Target wait time**<br><br>Shows the average time (in seconds) a job spends in the target until it starts processing. |`TargetWaitTime` |Seconds |Average, Maximum, Minimum |`QueueId`, `QueueName`, `TargetId`, `TargetName`, `JobPriorityName`|PT1M |Yes|
 
 ## Next steps
 

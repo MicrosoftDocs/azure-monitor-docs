@@ -211,13 +211,13 @@ items:
   displayName: DataHistoryOperation,DigitalTwinsOperation,EventRoutesOperation,ModelsOperation,QueryOperation,ResourceProviderOperation
 - name: Microsoft.Discovery/bookshelves
   href: microsoft-discovery-bookshelves-logs.md
-  displayName: Audit Logs
+  displayName: Audit Logs,Audit Logs
 - name: Microsoft.Discovery/supercomputers
   href: microsoft-discovery-supercomputers-logs.md
-  displayName: Audit Logs
+  displayName: Audit Logs,Audit Logs
 - name: Microsoft.Discovery/workspaces
   href: microsoft-discovery-workspaces-logs.md
-  displayName: Audit Logs
+  displayName: Audit Logs,Audit Logs
 - name: Microsoft.DocumentDB/cassandraClusters
   href: microsoft-documentdb-cassandraclusters-logs.md
   displayName: CassandraAudit,CassandraLogs
