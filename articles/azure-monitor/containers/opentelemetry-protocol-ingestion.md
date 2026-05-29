@@ -120,7 +120,7 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
    ```
 
    > [!NOTE]
-   > The `azure_auth` extension name and syntax require OpenTelemetry Collector version **0.148.0 or later**. Earlier versions use a different naming convention and aren't backward compatible.
+   > This example requires OpenTelemetry Collector version **0.148.0 or later**. The `azure_auth` syntax isn't backward compatible with earlier versions.
 
 **For non-Azure environments:**
 
