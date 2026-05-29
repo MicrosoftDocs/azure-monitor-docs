@@ -10,6 +10,8 @@ ms.custom: ai-assisted
 
 This article lists resource types, category streams, destination tables, and regions currently supported for [platform log export by using data collection rules (DCRs)](./platform-logs-collect.md).
 
+## Supported resource types
+
 Use stream specifications in the format:
 
 `<resource-provider>/<resource-type>:<category-or-Logs-Group-All>`
@@ -104,4 +106,3 @@ You can create platform telemetry DCRs and monitor resources in the following Az
 ## Related content
 
 - [Collect platform logs with data collection rules](platform-logs-collect.md)
-- [Supported log categories by resource type](../reference/supported-logs/logs-index)
