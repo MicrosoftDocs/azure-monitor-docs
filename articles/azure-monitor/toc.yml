@@ -398,9 +398,9 @@ items:
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
-      - name: OpenTelemetry Protocol ingestion overview (Preview)
+      - name: OpenTelemetry Protocol ingestion overview
         href: containers/opentelemetry-summary.md
-      - name: Monitor AKS applications with OpenTelemetry Protocol (Preview)
+      - name: Monitor AKS applications with OpenTelemetry Protocol
         href: containers/kubernetes-open-protocol.md
       - name: Autoinstrumentation for AKS
         href: containers/kubernetes-codeless.md
@@ -681,9 +681,9 @@ items:
         href: logs/tutorial-workspace-transformations-api.md
   - name: Collect OpenTelemetry
     items:
-    - name: Collect and analyze OpenTelemetry data (Preview)
+    - name: Collect and analyze OpenTelemetry data
       href: containers/collect-use-observability-data.md
-    - name: Ingest OTLP signals with OTel Collector (Preview)
+    - name: Ingest OTLP signals with OTel Collector
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
@@ -1257,48 +1257,7 @@ items:
       href: visualize/grafana-azure-data-explorer.md
     - name: Kubernetes clusters
       href: visualize/grafana-kubernetes.md
-    - name: Call Grafana APIs programmatically
-      href: visualize/visualize-call-grafana-api.md
-  - name: Power BI
-    href: logs/log-powerbi.md
-- name: Analyze
-  items:
-  - name: Metrics explorer
-    items:
-    - name: Analyze metrics
-      href: metrics/analyze-metrics.md
-    - name: Metrics explorer with PromQL
-      displayName: Prometheus, metrics explorer
-      href: metrics/metrics-explorer.md
-    - name: Understanding metrics aggregation
-      href: metrics/metrics-aggregation-explained.md
-    - name: Examples of metric charts
-      href: metrics/metric-chart-samples.md
-    - name: Troubleshooting metric charts
-      href: metrics/metrics-troubleshoot.md
-  - name: REST API for metrics
-    items:
-    - name: Metrics REST API Walkthrough
-      displayName: metrics, analyze
-      href: platform/rest-api-walkthrough.md
-    - name: Migrate to the metrics getBatch API
-      href: metrics/migrate-to-batch-api.md
-  - name: Log Analytics
-    items:
-    - name: Overview
-      href: logs/log-analytics-overview.md
-    - name: Simple mode
-      href: logs/log-analytics-simple-mode.md
-    - name: Query scope
-      href: logs/scope.md
-    - name: Saving queries
-      href: logs/save-query.md
-    - name: Using queries
-      href: logs/queries.md
-    - name: Summary rules
-      href: logs/summary-rules.md
-    - name: Query packs
-      href: logs/query-packs.md
+cks.md
     - name: Tutorial
       displayName: Log Analytics workspace, log query, log queries, query, queries
       href: logs/log-analytics-tutorial.md

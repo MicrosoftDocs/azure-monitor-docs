@@ -20,17 +20,28 @@ The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your 
 - **Cost optimization**: The default metrics-based experience is free. Retiring the logs-based experience can reduce Log Analytics ingestion costs.
 - **Azure Monitor agent**: You don't need to reinstall or update the Azure Monitor agent. The same agent handles both logs-based and OpenTelemetry metrics collection using different DCRs.
 - **Run both experiences temporarily if needed**: Keep both experiences enabled only long enough to validate replacement queries and dashboards.
-- **Query-based metric alerts**: If you create alert rules on OpenTelemetry metrics, use a user-assigned managed identity with the required permissions. See [Query-based metric alerts overview (preview)](../alerts/alerts-query-based-metric-alerts-overview.md).
-- **Per-process charts**: If your original DCR was created before VMI v2 onboarding updates, per-process charts can show prompts to update configuration until per-process metrics are added.
+
 
 ## When to keep the logs-based experience
 
 Keep the logs-based experience enabled if any of the following are still true:
 
 - You need to monitor VM Scale Sets.
+- You need the VM to connect to Azure Monitor with private link.
 - You rely on the built-in multi-VM dashboards and workbooks in VM insights.
 - You need to correlate metrics and logs in a single KQL query.
 - You still use queries, alerts, dashboards, or workbooks that depend on the `InsightsMetrics` table.
+
+If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
+
+## Before you retire the logs-based experience
+
+Before you retire the logs-based experience, confirm the following:
+
+- Metrics-based monitoring is already enabled for each VM.
+- The metrics-based experience shows the performance data that you need.
+- If you require per-process charts, confirm per-process metrics are enabled in the OpenTelemetry DCR.
+s that depend on the `InsightsMetrics` table.
 
 If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
 

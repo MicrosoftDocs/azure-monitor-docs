@@ -400,17 +400,13 @@ New-AzDataCollectionRuleAssociation `
 
 ---
 
-
 ## Enable network isolation
 
 There are two methods for network isolation that VM insights supports as described in the following table.
 
-> [!NOTE]
-> Azure Monitor Agent supports private link and network security perimeter configurations. However, the VMI v2 portal onboarding workflow has a private-link caveat. For portal onboarding details, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
-
 | Method | Description |
 |:---|:---|
-| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). |
+| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). This method is not currently supported for [metrics-based collection](./metrics-opentelemetry-guest.md). |
 | Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 

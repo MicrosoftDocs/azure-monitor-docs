@@ -15,7 +15,7 @@ In the portal onboarding workflow, OpenTelemetry metrics are enabled by default.
 ## Compare experiences
 The following table compares the OpenTelemetry-based and logs-based monitoring experiences for Azure virtual machines in Azure Monitor.
 
-| Feature | Metrics-based (preview) | Logs-based (classic) |
+| Feature | Metrics-based | Logs-based (classic) |
 |:---|:---|:---|
 | **Data storage** | Azure Monitor workspace | Log Analytics workspace |
 | **Applies to** | Azure VMs<br>Arc-enabled servers | Azure VMs<br>Arc-enabled servers<br>VM Scale Sets |
@@ -62,9 +62,11 @@ Enhanced monitoring with OpenTelemetry uses a subset of the available system met
 ## Limitations of metrics-based collection
 
 - Metrics-based collection is currently only available for individual VMs and Arc-enabled servers. Logs-based collection can also be used for VM Scale Sets.
+- Metrics-based collection doesn't currently support [private link](../fundamentals/private-link-security.md).
 - You can't perform a single query across data in a Log Analytics workspace and Azure Monitor workspace. With logs-based collection, logs and metrics for your VMs are stored together, allowing you to correlate between them in a single KQL query. With metrics-based collection, metrics are stored in an Azure Monitor workspace and logs are stored in a Log Analytics workspace, requiring separate queries for each.
 - You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
-- The VMI v2 portal onboarding workflow has a private-link caveat. For details, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
+and logs are stored in a Log Analytics workspace, requiring separate queries for each.
+- You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
 
 > [!TIP]
 > Share your feedback on new performance counters or functionality you would like to see by posting to the Azure Monitor [GitHub Community](https://github.com/microsoft/AzureMonitorCommunity/discussions) or via [Portal feedback](/answers/questions/564554/where-can-i-submit-suggestions-for-azure).

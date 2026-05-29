@@ -11,8 +11,6 @@ ms.reviewer: Xema Pathak
 # Tutorial: Enable recommended alerts for an Azure virtual machine scale set
 Once you have enabled monitoring for a virtual machine scale set, enable alerts to get notified when the scale set or its instances experience issues or performance degradation. Azure Monitor provides a set of recommended alert rules based on common performance scenarios that you can quickly enable for your virtual machine scale sets.
 
-If recommended alerts were already enabled during monitoring configuration, use this tutorial to review and customize thresholds, severity, and notifications.
-
 In this tutorial, you learn how to:
 
 > [!div class="checklist"]

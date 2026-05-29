@@ -73,9 +73,17 @@ Select **Review + Enable** and then **Enable** After a few minutes, the Azure Mo
 ## View performance data
 It will take a few minutes after the agent is installed for enough data to be collected to populate the portal. When both experiences are enabled for a VM, you get a selector at the top to choose the experience you want to view. Select each experience to compare the different charts and insights that are available.
 
-The metrics-based (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
+The metrics-based experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
 
 :::image type="content" source="media/tutorial-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/metrics-experience.png":::
+
+The logs-based experience uses summarized performance data collected in the Log Analytics workspace to populate a set of charts that allow you to analyze the performance of different components of the machine such as CPU, disk, and network over time.
+
+:::image type="content" source="media/tutorial-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/logs-experience.png":::
+
+## View Grafana dashboards
+Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in the Azure portal. It's automatically available at no cost and with no configuration requirements. Use [Dashboards with Grafana for Azure Virtual Machines]() to view collected data for multiple machines.
+enable-monitoring/metrics-experience.png":::
 
 The logs-based experience uses summarized performance data collected in the Log Analytics workspace to populate a set of charts that allow you to analyze the performance of different components of the machine such as CPU, disk, and network over time.
 
