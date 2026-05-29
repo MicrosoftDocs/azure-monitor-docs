@@ -119,6 +119,9 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
          - https://monitor.azure.com/.default
    ```
 
+   > [!NOTE]
+   > The `azure_auth` extension name and syntax require OpenTelemetry Collector version **0.148.0 or later**. Earlier versions use a different naming convention and aren't backward compatible.
+
 **For non-Azure environments:**
 
 Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity. Follow the examples in the [Azure Authentication Extension README](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme).
