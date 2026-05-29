@@ -575,12 +575,23 @@ items:
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
-    - name: Create
-      displayName: health models
-      href: health-models/create.md
-    - name: Configure
-      displayName: health models
-      href: health-models/designer.md
+    - name: Create and configure
+      items:
+      - name: Create a health model
+        displayName: health models
+        href: health-models/create.md
+      - name: Use the designer
+        displayName: health models
+        href: health-models/designer.md
+      - name: Configure signals
+        displayName: health models
+        href: health-models/signals.md
+      - name: Configure alerts
+        displayName: health models
+        href: health-models/alerts.md
+      - name: Create discoveries
+        displayName: health models
+        href: health-models/discoveries.md
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md
@@ -1251,13 +1262,10 @@ items:
       href: visualize/visualize-grafana-overview.md
     - name: Use Grafana dashboards
       href: visualize/visualize-use-grafana-dashboards.md
-    - name: Copy to Managed Grafana
-      href: visualize/visualize-copy-to-managed-grafana.md
-    - name: Azure Data Explorer
-      href: visualize/grafana-azure-data-explorer.md
+    - name: Azure Virtual Machines
+      href: visualize/grafana-azure-virtual-machines.md
     - name: Kubernetes clusters
       href: visualize/grafana-kubernetes.md
-cks.md
     - name: Tutorial
       displayName: Log Analytics workspace, log query, log queries, query, queries
       href: logs/log-analytics-tutorial.md

@@ -14,6 +14,9 @@ Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) sig
 > * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
 > * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
+> [!TIP]
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+
 ## Overview
 
 Azure Monitor can receive OTLP signals through three ingestion mechanisms:

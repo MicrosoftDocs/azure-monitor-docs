@@ -155,7 +155,6 @@ Use this path for AI agents. Choose the setup that matches your hosting model.
 
 - **Managed hosting**
   - **Azure AI Foundry:** For Foundry-managed agents and workflows, start with [tracing setup in Foundry](/azure/foundry/observability/how-to/trace-agent-setup). For app-side instrumentation, you can also use the Azure Monitor OpenTelemetry Distro with the [Foundry SDK](/azure/foundry-classic/how-to/develop/trace-agents-sdk).
-  - **Copilot Studio:** Use built-in configuration to emit your telemetry to Azure Monitor. For more information, see [Connect your Copilot Studio agent to Application Insights](/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry#connect-your-copilot-studio-agent-to-application-insights).
 
 - **Self-hosting**
   - **Microsoft Agent Framework:** If you're building an agent from scratch and self-hosting, use the [Microsoft Agent Framework](/agent-framework/agents/observability) to orchestrate your agent and emit telemetry to Azure Monitor.

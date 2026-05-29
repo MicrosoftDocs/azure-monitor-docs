@@ -101,6 +101,8 @@ items:
   href: ADFSSignInLogs.md
 - name: ADFTriggerRun
   href: ADFTriggerRun.md
+- name: ADGSyslogEvent
+  href: ADGSyslogEvent.md
 - name: ADTDataHistoryOperation
   href: ADTDataHistoryOperation.md
 - name: ADTDigitalTwinsOperation
@@ -311,6 +313,24 @@ items:
   href: AzureMetrics.md
 - name: AzureMonitorPipelineLogErrors
   href: AzureMonitorPipelineLogErrors.md
+- name: AzureSQLAutomaticTuning
+  href: AzureSQLAutomaticTuning.md
+- name: AzureSQLBlocks
+  href: AzureSQLBlocks.md
+- name: AzureSQLDatabaseWaitStatistics
+  href: AzureSQLDatabaseWaitStatistics.md
+- name: AzureSQLDeadlocks
+  href: AzureSQLDeadlocks.md
+- name: AzureSQLErrors
+  href: AzureSQLErrors.md
+- name: AzureSQLQueryStoreRuntimeStatistics
+  href: AzureSQLQueryStoreRuntimeStatistics.md
+- name: AzureSQLQueryStoreWaitStatistics
+  href: AzureSQLQueryStoreWaitStatistics.md
+- name: AzureSQLResourceUsageStats
+  href: AzureSQLResourceUsageStats.md
+- name: AzureSQLTimeouts
+  href: AzureSQLTimeouts.md
 - name: CCFApplicationLogs
   href: CCFApplicationLogs.md
 - name: CIEventsAudit
@@ -409,6 +429,12 @@ items:
   href: DeviceTvmSoftwareInventory.md
 - name: DeviceTvmSoftwareVulnerabilities
   href: DeviceTvmSoftwareVulnerabilities.md
+- name: DiscoveryBookshelfAuditLogs
+  href: DiscoveryBookshelfAuditLogs.md
+- name: DiscoverySupercomputerAuditLogs
+  href: DiscoverySupercomputerAuditLogs.md
+- name: DiscoveryWorkspaceAuditLogs
+  href: DiscoveryWorkspaceAuditLogs.md
 - name: DnsEvents
   href: DnsEvents.md
 - name: DurableTaskSchedulerLogs

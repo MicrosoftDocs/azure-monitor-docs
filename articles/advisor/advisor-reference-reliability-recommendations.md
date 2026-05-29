@@ -4,7 +4,7 @@ description: Full list of available reliability recommendations in Advisor.
 author: kanika1894
 ms.author: kapasrij
 ms.topic: article
-ms.date: 05/12/2026
+ms.date: 05/26/2026
 ---
 
 # Reliability recommendations
@@ -73,6 +73,8 @@ Azure Advisor helps you ensure and improve the continuity of your business-criti
 [!INCLUDE [HighAvailability-azure-netapp-files.md](./includes/HighAvailability-azure-netapp-files.md)]
 
 [!INCLUDE [HighAvailability-azure-relay.md](./includes/HighAvailability-azure-relay.md)]
+
+[!INCLUDE [HighAvailability-azure-signalr-service.md](./includes/HighAvailability-azure-signalr-service.md)]
 
 [!INCLUDE [HighAvailability-azure-site-recovery.md](./includes/HighAvailability-azure-site-recovery.md)]
 

@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -66,7 +66,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**DedicatedGatewayMemoryUsage**<br><br>Memory usage across dedicated gateway instances |`DedicatedGatewayMemoryUsage` |Bytes |Average, Maximum, Minimum |`Region`, `ApplicationType`|PT1M |No|
 |**DedicatedGatewayRequests**<br><br>Requests at the dedicated gateway |`DedicatedGatewayRequests` |Count |Count |`DatabaseName`, `CollectionName`, `CacheExercised`, `OperationName`, `Region`, `CacheHit`|PT1M |No|
 |**Account Deleted**<br><br>Account Deleted |`DeleteAccount` |Count |Count |\<none\>|PT5M |No|
-|**Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCount` |Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT1H, P1D |No|
+|**(deprecated) Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCount` |Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT1H, P1D |No|
+|**Document Count**<br><br>Total document count reported at 5 minutes, 1 hour and 1 day granularity |`DocumentCountV2` |Count |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M, PT1H, P1D |No|
 |**Document Quota**<br><br>Total storage quota reported at 5 minutes granularity |`DocumentQuota` |Bytes |Total (Sum), Average |`CollectionName`, `DatabaseName`, `Region`|PT5M |No|
 |**Global Secondary Index Catchup Gap In Minutes**<br><br>Maximum time difference in minutes between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexCatchupGapInMinutes` |Count |Maximum |`Region`, `TargetContainerName`, `BuildType`|PT1M |No|
 |**Global Secondary Index Propagation Latency In Seconds**<br><br>Average time difference in seconds between data in source container and data propagated to global secondary index |`GlobalSecondaryIndexPropagationLatencyInSeconds` |Count |Average |`Region`, `TargetContainerName`, `TargetContainerStatus`, `BuildType`|PT1M |No|
