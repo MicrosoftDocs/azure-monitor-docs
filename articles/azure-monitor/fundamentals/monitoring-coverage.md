@@ -3,6 +3,8 @@ title: Monitoring coverage in Azure Monitor (preview)
 description: Details on the monitoring coverage feature in Azure Monitor, which allows you to identify gaps in your monitoring posture and quickly enable data collection, alerting, and data flow validation at scale.
 ms.topic: concept-article
 ms.date: 05/29/2026
+author: shayoniseth
+ms.author: shseth
 ai-usage: ai-assisted
 ---
 
@@ -76,7 +78,7 @@ The recommended VM insights settings can include preview OpenTelemetry metrics s
 
 Monitoring coverage can also recommend alert rules for resources that are missing recommended alert coverage. Select **Apply** next to **Enable VM Recommended Alerts** or **Enable AKS Recommended Alerts** to configure recommended alert rules from a centralized flow. Alert coverage might vary by resource based on available telemetry, and creating alert rules might incur costs.
 
-For virtual machines, the **Enable VM Recommended Alerts** page creates alert rules for supported signals and notifies you when potential issues are detected. Some VMs might already have alerts configured. New rules don't duplicate existing alerts.
+For virtual machines, the **Enable VM Recommended Alerts** page creates alert rules for supported signals and notifies you when potential issues are detected. Some VMs might already have alerts configured. New rules won't duplicate existing alerts.
 
 For VM recommended alerts, choose one of the following scopes:
 
@@ -156,7 +158,7 @@ Validation checks are grouped by areas such as:
 Fix detected issues in numerical order, then select **Run validation checks** to update the status. Use the **List** and **Diagram** views to switch between validation result layouts.
 
 > [!NOTE]
-> Passing all current validations doesn't necessarily mean there's nothing wrong with the data flow's end-to-end configuration. Additional validations are added in the future.
+> Passing all current validations doesn't necessarily mean there's nothing wrong with the data flow's end-to-end configuration. Additional validations will be added in the future.
 
 :::image type="content" source="./media/monitoring-coverage/resource-data-flow.png" lightbox="./media/monitoring-coverage/resource-data-flow.png" alt-text="Screenshot of resource data flow status with validation checks, recommended action, and last checked time.":::
 
