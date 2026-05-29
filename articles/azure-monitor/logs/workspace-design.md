@@ -91,10 +91,10 @@ You might have a requirement to segregate data or define boundaries based on own
 
 ### Split billing
 
-You might need to split billing between different parties or perform charge back to a customer or internal business unit. [Azure Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) shows charges by workspace. A log query can also show [billable data volume by Azure resource, resource group, or subscription](analyze-usage.md#data-volume-by-azure-resource-resource-group-or-subscription). This approach might be sufficient for your billing requirements.
+You might need to split billing between different parties or perform charge back to a customer or internal business unit. [Microsoft Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) shows charges by workspace. A log query can also show [billable data volume by Azure resource, resource group, or subscription](analyze-usage.md#data-volume-by-azure-resource-resource-group-or-subscription). This approach might be sufficient for your billing requirements.
 
 * **If you don't need to split billing or perform charge back:** Use a single workspace for all cost owners.
-* **If you need to split billing or perform charge back:** Consider whether [Azure Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) or a log query provides cost reporting that's granular enough for your requirements. If not, use a separate workspace for each cost owner.
+* **If you need to split billing or perform charge back:** Consider whether [Microsoft Cost Management + Billing](../cost-usage.md#azure-cost-management--billing) or a log query provides cost reporting that's granular enough for your requirements. If not, use a separate workspace for each cost owner.
 
 ### Data retention
 
@@ -157,7 +157,7 @@ When naming each workspace, include a meaningful indicator in the name so that t
 
 ## Multiple tenant strategies
 
-Organizations with multiple Microsoft Entra tenants often need a strategy for managing workspaces across tenant boundaries. Common multi-tenant scenarios include:
+Organizations with multiple Microsoft Entra tenants often need a strategy for managing workspaces across tenant boundaries. Common multitenant scenarios include:
 
 - **Service providers**: MSPs, MSSPs, and ISVs that manage workspaces on behalf of customers in separate tenants.
 - **Enterprise mergers and acquisitions**: Subsidiaries or acquired companies that retain separate tenants during or after integration.
