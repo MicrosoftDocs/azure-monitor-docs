@@ -703,7 +703,7 @@ items:
       - name: Collect logs using DCRs
         displayName: data collection rules, platform logs, resource logs
         href: data-collection/platform-logs-collect.md
-      - name: Supported resource types, categories, and regions
+      - name: Supported resources and regions
         displayName: data collection rules, platform logs, resource logs, categories, regions
         href: data-collection/platform-logs-reference.md
     - name: Diagnostic settings
