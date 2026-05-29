@@ -690,6 +690,9 @@ items:
       - name: Metrics export using DCRs
         displayName: data collection rules, metrics
         href: data-collection/metrics-export-create.md
+      - name: Supported resources and regions
+        displayName: metrics export, supported resources, supported regions
+        href: data-collection/metrics-export-reference.md
       - name: Metrics export DCR structure
         displayName: metrics export
         href: data-collection/metrics-export-structure.md
@@ -700,8 +703,8 @@ items:
       - name: Collect logs using DCRs
         displayName: data collection rules, platform logs, resource logs
         href: data-collection/platform-logs-collect.md
-      - name: Supported resource types and categories
-        displayName: data collection rules, platform logs, resource logs, categories
+      - name: Supported resource types, categories, and regions
+        displayName: data collection rules, platform logs, resource logs, categories, regions
         href: data-collection/platform-logs-reference.md
     - name: Diagnostic settings
       items:

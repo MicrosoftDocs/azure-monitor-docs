@@ -19,7 +19,6 @@ Before this feature, you could only export platform logs by using [diagnostic se
 Platform telemetry DCRs provide several benefits over diagnostic settings:
 
 - DCRs are more flexible and scalable than diagnostic settings. Use a single DCR with multiple resources, while a separate diagnostic setting is required for each resource.
-- Define collection once and reuse it across many resources by using data collection rule associations (DCRAs).
 - Use consistent ARM, Bicep, and Terraform deployment patterns across resource types.
 - Use managed identity for keyless authentication to storage accounts and Event Hubs.
 - Reduce typical end-to-end latency to about three minutes, compared to 6-10 minutes with diagnostic settings.

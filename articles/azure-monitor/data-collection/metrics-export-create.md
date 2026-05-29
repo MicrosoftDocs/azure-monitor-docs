@@ -1,24 +1,31 @@
 ---
-title: Metrics Export Using Data Collection Rules (Preview)
+title: Metrics export using data collection rules (Preview)
 description: Learn how to create data collection rules for metrics.
-ms.topic: concept-article
-ms.date: 01/20/2026
+ms.topic: how-to
+ms.date: 05/29/2026
 ms.custom: ai-assisted
 ---
 
 # Metrics export using data collection rules (Preview)
 
-Platform metrics measure the performance of different aspects of your Azure resources. [Diagnostic settings](../platform/diagnostic-settings.md) are used to collect and export platform metrics from all Azure resources that support them. [Data collection rules (DCRs)](./data-collection-rule-overview.md) can also be used to collect and export platform metrics from [supported Azure resources](#supported-resources-and-regions). This article describes how to use DCRs to export metrics.
+Platform metrics measure the performance of different aspects of your Azure resources. Platform telemetry [data collection rules (DCRs)](./data-collection-rule-overview.md) let you collect and export platform metrics from supported Azure resources. This article shows you how to create a DCR for metrics export.
+
+> [!IMPORTANT]
+> This feature is currently in preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!NOTE]
 > While you can use DCRs and diagnostic settings at the same time, you should disable any diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
 
-Using DCRs to export metrics provides the following advantages over diagnostic settings:
+## Compare to diagnostic settings
+
+Before this feature, you could only export platform metrics by using [diagnostic settings](../platform/diagnostic-settings.md). Diagnostic settings are still required for resource types that don't yet support DCRs.
+
+Platform telemetry DCRs provide several benefits over diagnostic settings:
 
 * DCR configuration enables exporting metrics with dimensions.
 * DCR configuration enables filtering based on metric name so you can export only the metrics that you need.
-* DCRs are more flexible and scalable compared to diagnostic settings.
-* End to end latency for DCRs is within 3 minutes, while diagnostic settings export latency is 6-10 minutes.
+* DCRs are more flexible and scalable than diagnostic settings. Use a single DCR with multiple resources, while a separate diagnostic setting is required for each resource.
+* End-to-end latency for DCRs is within three minutes, while diagnostic settings export latency is six to ten minutes.
 
 > [!NOTE]
 > Use metrics export with DCRs for continuous export of metrics data as it's created. To query historical data that's already been collected, use the [Data plane Metrics Batch API](/rest/api/monitor/metrics-batch/batch). See [Data plane Metrics Batch API query versus Metrics export](data-plane-versus-metrics-export.md) for a comparison of the two strategies.
@@ -46,37 +53,7 @@ DCRs for metrics export have the following limitations:
 
 ## Supported resources and regions
 
-The following resources currently support metrics export using data collection rules:
-
-| Resource type | Stream specification |
-|---------------|----------------------|
-| Virtual Machine scale sets | Microsoft.compute/virtualmachinescalesets |
-| Virtual machines | Microsoft.compute/virtualmachines |
-| Redis cache | Microsoft.cache/redis |
-| IOT hubs | Microsoft.devices/iothubs |
-| Key vaults | Microsoft.keyvault/vaults |
-| Storage accounts | Microsoft.storage/storageaccounts<br>Microsoft.storage/Storageaccounts/blobservices<br>Microsoft.storage/storageaccounts/fileservices<br>Microsoft.storage/storageaccounts/queueservices<br>Microsoft.storage/storageaccounts/tableservices |
-| SQL Server | Microsoft.sql/servers<br>Microsoft.sql/servers/databases |
-|Operational Insights | Microsoft.operationalinsights/workspaces |
-| Data protection | Microsoft.dataprotection/backupvaults |
-| Azure Kubernetes Service| Microsoft.ContainerService/managedClusters |
-
-### Supported regions
-
-You can create a DCR for metrics export in any region, but the resources that you want to export metrics from must be in one of the following regions:
-
-* Australia East
-* Central US
-* CentralUsEuap
-* South Central US
-* East US
-* East US 2
-* Eastus2Euap
-* West US
-* West US 2
-* North Europe
-* West Europe
-* UK South
+For the current list of supported resources and supported regions, see [Metrics export supported resources and regions](metrics-export-reference.md).
 
 ## Create a data collection rule (DCR) for metrics export
 
@@ -207,7 +184,7 @@ az role assignment create \
   --scope "$scope"
 ```
 
-## Create a data collection rule association
+### Create a data collection rule association
 
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/cli/azure/monitor/data-collection/rule/association).
 
@@ -304,7 +281,7 @@ $roleAssignmentParams = @{
 New-AzRoleAssignment @roleAssignmentParams
 ```
 
-## Create a data collection rule association
+### Create a data collection rule association
 
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. Use `New-AzDataCollectionRuleAssociation` to create an association between a data collection rule and a resource. For more information, see [New-AzDataCollectionRuleAssociation](/powershell/module/az.monitor/new-azdatacollectionruleassociation).
 
@@ -368,7 +345,7 @@ For more information, see [Assign Azure roles to a managed identity](/azure/role
 
 To assign a role to a managed identity using REST, see [Role Assignments - Create](/rest/api/authorization/role-assignments/create).
 
-## Create a data collection rule association
+### Create a data collection rule association
 
 After you create the data collection rule, create a data collection rule association (DCRA) to associate the rule with the resource to be monitored. For more information, see [Data Collection Rule Associations - Create](/rest/api/monitor/data-collection-rule-associations/create)
 
@@ -687,13 +664,15 @@ Use the following template to create a DCR. For more information, see [Microsoft
 | monitoredResourceName | myKeyVault | User input |
 | apiVersion | 2024-03-11 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
 
-After creating the DCR, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics Workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, Storage Account, or Event Hubs is approximately 3 minutes, depending on the resource type.
+## Verify data collection
+
+After creating the DCR, allow up to 30 minutes for the first platform metrics data to appear in the Log Analytics workspace. Once data starts flowing, the latency for a platform metric time series flowing to a Log Analytics workspace, storage account, or Event Hubs is approximately three minutes, depending on the resource type.
 
 ## Exported data
 
 The following examples show the data exported to each destination.
 
-### Log analytics workspaces
+### Log Analytics workspace
 
 Data exported to a Log Analytics workspace is stored in the `AzureMetricsV2` table in the Log Analytics workspace in the following format:
 
@@ -754,9 +733,13 @@ The following example shows a metric exported to Event Hubs.
 }
 ```
 
+## Troubleshoot
+
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 
 ## Next steps
 
 * [Read about the detailed structure of a data collection rule](data-collection-rule-structure.md).
 * [Get details on transformations in a data collection rule](data-collection-transformations.md).
+* [Collect platform logs using data collection rules](platform-logs-collect.md).
+* [Review supported platform logs resource types and categories](platform-logs-reference.md).

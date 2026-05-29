@@ -1,14 +1,14 @@
 ---
-title: Platform logs supported resource types and categories (Preview)
-description: Reference for resource types, category streams, and destination tables supported for platform logs export by using data collection rules.
+title: Platform logs supported resource types, categories, and regions (Preview)
+description: Reference for resource types, category streams, destination tables, and regions supported for platform logs export by using data collection rules.
 ms.topic: reference
 ms.date: 05/28/2026
 ms.custom: ai-assisted
 ---
 
-# Platform logs supported resource types and categories (Preview)
+# Platform logs supported resource types, categories, and regions (Preview)
 
-This article lists resource types and category streams currently supported for platform telemetry export by using data collection rules (DCRs).
+This article lists resource types, category streams, destination tables, and regions currently supported for platform telemetry export by using data collection rules (DCRs).
 
 Use stream specifications in the format:
 
@@ -47,6 +47,55 @@ microsoft.dbformysql/flexibleservers:MySqlAuditLogs
 | Azure HPC Cache | `microsoft.storagecache/caches` | `AscCacheOperationEvent`, `AscUpgradeEvent`, `AscWarningEvent` | `StorageCacheOperationEvents`, `StorageCacheWarningEvents` |
 | Azure Storage Mover | `microsoft.storagemover/storagemovers` | `CopyLogsFailed`, `JobRunLogs` | `StorageMoverCopyLogsFailed`, `StorageMoverJobRunLogs` |
 | NGINX deployments | `nginx.nginxplus/nginxdeployments` | `NginxLogs`, `NginxSecurityLogs`, `NginxUpstreamUpdateLogs` | `NGXOperationLogs`, `NGXSecurityLogs`, `NginxUpstreamUpdateLogs` |
+
+## Supported regions
+
+You can create platform telemetry DCRs and monitor resources in the following 41 Azure regions. The DCR must be deployed in a supported region.
+
+- Australia Central
+- Australia East
+- Australia Southeast
+- Austria East
+- Canada Central
+- Canada East
+- Central India
+- Central US
+- Central US EUAP
+- Chile Central
+- East Asia
+- East US
+- East US 2
+- East US 2 EUAP
+- Indonesia Central
+- Italy North
+- Japan East
+- Japan West
+- Jio India West
+- Korea Central
+- Korea South
+- Malaysia West
+- Mexico Central
+- New Zealand North
+- North Central US
+- North Europe
+- Norway East
+- Poland Central
+- South Africa North
+- South Central US
+- Southeast Asia
+- Sweden Central
+- Switzerland North
+- Taiwan North
+- UK South
+- UK West
+- West Central US
+- West Europe
+- West US
+- West US 2
+- West US 3
+
+> [!NOTE]
+> The DCR and destination resource must be in the same region. For Log Analytics workspace destinations, monitored resources can be in any supported region. For storage account and Event Hubs destinations, monitored resources must be in the same region as the DCR and destination.
 
 ## Related content
 
