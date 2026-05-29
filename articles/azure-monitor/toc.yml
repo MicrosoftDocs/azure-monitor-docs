@@ -697,12 +697,12 @@ items:
         href: data-collection/data-plane-versus-metrics-export.md
     - name: Logs
       items:
-      - name: Collect platform logs using DCRs (Preview)
+      - name: Collect logs using DCRs
         displayName: data collection rules, platform logs, resource logs
-        href: platform/platform-logs-collect.md
-      - name: Supported resource types and categories (Preview)
+        href: data-collection/platform-logs-collect.md
+      - name: Supported resource types and categories
         displayName: data collection rules, platform logs, resource logs, categories
-        href: platform/platform-logs-reference.md
+        href: data-collection/platform-logs-reference.md
     - name: Diagnostic settings
       items:
       - name: Create or edit
