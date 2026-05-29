@@ -202,8 +202,7 @@ Create a JSON file named `dcr-definition.json` with the DCR specification. The f
 </details>
 
 <details>
-<summary>Storage account DCR</summary>
-#### Event Hubs destination
+<summary>Event Hubs DCR</summary>
 
 ```json
 {
@@ -362,8 +361,7 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
 </details>
 
 <details>
-<summary>Storage account DCR</summary>
-#### Event Hubs destination
+<summary>Event Hubs DCR</summary>
 
 ```json
 {
@@ -800,9 +798,13 @@ az monitor data-collection rule association create \
 
 ## Verify data collection
 
-After you create the DCR and DCRA, allow up to 30 minutes for the first data to arrive. After ingestion starts, steady-state latency is about three minutes.
+After you create the DCR and association, allow up to 30 minutes for the first data to appear. Once data starts flowing, latency is approximately three minutes.
 
-### Log Analytics workspace
+The following tabs show how to verify data collection for each destination type.
+
+# [Log Analytics workspace](#tab/log-analytics-workspace)
+
+Query the resource-specific log table in your Log Analytics workspace. For example, to verify logs from Azure Database for MySQL flexible servers:
 
 ```kusto
 AzureDiagnostics
@@ -811,6 +813,57 @@ AzureDiagnostics
 | summarize count() by Category
 | order by count_ desc
 ```
+
+You can also run a broad search to locate any data for a resource in the last 60 minutes:
+```kusto
+search "<resource-name-or-id-fragment>"
+| where TimeGenerated > ago(60m)
+| project TimeGenerated, Type, _ResourceId, Resource, ResourceGroup
+| take 50
+```
+
+# [Storage account](#tab/storage-account)
+
+Check the blob container you specified in the DCR for JSON files containing exported logs. Each file contains records in the following format:
+
+```json
+{
+  "category": "MySqlAuditLogs",
+  "resourceId": "<resource-id>",
+  "time": "2026-05-20T14:13:00.0000000Z",
+  "operationName": "LogEvent",
+  "properties": {}
+}
+```
+
+To list the newest blobs in a container using the Azure CLI:
+
+```azurecli
+az storage blob list \
+  --account-name <storageAccount> \
+  --container-name <container> \
+  --query "sort_by([].{name:name, lastModified:properties.lastModified}, &lastModified)[-10:]" \
+  -o table
+```
+
+# [Event hub](#tab/event-hub)
+
+Use the Event Hubs monitoring features in the Azure portal to verify incoming messages, or consume events from the event hub using a consumer application. Each event contains a JSON record:
+
+```json
+{
+  "category": "ContainerAppConsoleLogs",
+  "resourceId": "<resource-id>",
+  "time": "2026-05-20T13:43:00.0000000Z",
+  "operationName": "LogEvent",
+  "properties": {}
+}
+```
+
+In the Azure portal, go to Event Hub > Monitoring > Metrics, add the Incoming Messages and Incoming Bytes metrics, and confirm non-zero values after onboarding.
+
+---
+
 
 ## Troubleshoot
 

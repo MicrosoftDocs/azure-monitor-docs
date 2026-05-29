@@ -1,20 +1,18 @@
 ---
-title: Platform logs supported resource types, categories, and regions (Preview)
+title: Platform logs supported resource types and regions (Preview)
 description: Reference for resource types, category streams, destination tables, and regions supported for platform logs export by using data collection rules.
 ms.topic: reference
 ms.date: 05/28/2026
 ms.custom: ai-assisted
 ---
 
-# Platform logs supported resource types, categories, and regions (Preview)
+# Platform logs supported resource types and regions (Preview)
 
-This article lists resource types, category streams, destination tables, and regions currently supported for platform telemetry export by using data collection rules (DCRs).
+This article lists resource types, category streams, destination tables, and regions currently supported for [platform log export by using data collection rules (DCRs)](./platform-logs-collect.md).
 
 Use stream specifications in the format:
 
-```text
-<resource-provider>/<resource-type>:<category-or-Logs-Group-All>
-```
+`<resource-provider>/<resource-type>:<category-or-Logs-Group-All>`
 
 To collect all log categories for a resource type, use Logs-Group-All. For example:
 `microsoft.app/managedenvironments:Logs-Group-All`
@@ -25,11 +23,8 @@ To collect a specific log category, use the category name:
 
 Examples:
 
-```
-microsoft.app/managedenvironments:Logs-Group-All
-microsoft.dbformysql/flexibleservers:MySqlAuditLogs
-```
-
+`microsoft.app/managedenvironments:Logs-Group-All'
+'microsoft.dbformysql/flexibleservers:MySqlAuditLogs'
 
 
 | Resource name | Resource provider | Log categories | Log table |
@@ -59,7 +54,7 @@ microsoft.dbformysql/flexibleservers:MySqlAuditLogs
 
 ## Supported regions
 
-You can create platform telemetry DCRs and monitor resources in the following 41 Azure regions. The DCR must be deployed in a supported region.
+You can create platform telemetry DCRs and monitor resources in the following Azure regions. The DCR must be deployed in a supported region.
 
 - Australia Central
 - Australia East
