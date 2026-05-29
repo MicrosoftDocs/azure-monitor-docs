@@ -66,11 +66,11 @@ The **Configure monitoring** step includes:
 
 The recommended VM insights settings can include preview OpenTelemetry metrics sent to an Azure Monitor workspace and classic log-based metrics sent to a Log Analytics workspace. The OpenTelemetry metrics configuration collects performance counters such as filesystem usage, disk usage, disk operation time, disk operations, memory usage, network I/O, CPU time, network dropped, network errors, and system uptime.
 
-:::image type="content" source="./media/monitoring-coverage/enablement.png" lightbox="./media/monitoring-coverage/enablement.png" alt-text="Screenshot of Configure monitoring for VM Insights with selected resources and recommended settings.":::
+:::image type="content" source="./media/monitoring-coverage/vm-insights-configure.png" lightbox="./media/monitoring-coverage/vm-insights-configure.png" alt-text="Screenshot of Configure monitoring for VM Insights with selected resources and recommended settings.":::
 
-<!-- TODO: Add screenshot - Customize VM Insights settings for OpenTelemetry metrics, log-based metrics, workspaces, and DCRs. -->
+:::image type="content" source="./media/monitoring-coverage/vm-insights-customize.png" lightbox="./media/monitoring-coverage/vm-insights-customize.png" alt-text="Screenshot of customize VM Insights settings for OpenTelemetry metrics, log-based metrics, workspaces, and DCRs.":::
 
-<!-- TODO: Add screenshot - Review and enable VM Insights settings before applying changes. -->
+:::image type="content" source="./media/monitoring-coverage/vm-insights-review.png" lightbox="./media/monitoring-coverage/vm-insights-review.png" alt-text="Screenshot of review and enable VM Insights settings before applying changes.":::
 
 ### Enable recommended alert rules
 
@@ -91,13 +91,13 @@ The recommended VM alert settings include host metric alert rules, a VM availabi
 
 The **Review + Enable** tab summarizes the selected scope, selected resources, alert rules, and notification settings. After the alerts are created, you can customize them from the **Alerts** page.
 
-<!-- TODO: Add screenshot - Configure VM recommended alerts with subscription-level scope selected. -->
+:::image type="content" source="./media/monitoring-coverage/vm-alerts-subscription.png" lightbox="./media/monitoring-coverage/vm-alerts-subscription.png" alt-text="Screenshot of Configure VM recommended alerts with subscription-level scope selected.":::
 
-<!-- TODO: Add screenshot - Configure VM recommended alerts for selected resources. -->
+:::image type="content" source="./media/monitoring-coverage/vm-alerts-selected-resources.png" lightbox="./media/monitoring-coverage/vm-alerts-selected-resources.png" alt-text="Screenshot of Configure VM recommended alerts for selected resources.":::
 
-<!-- TODO: Add screenshot - Customize recommended alert rules, thresholds, and notification options. -->
+:::image type="content" source="./media/monitoring-coverage/vm-alerts-customize.png" lightbox="./media/monitoring-coverage/vm-alerts-customize.png" alt-text="Screenshot of customize recommended alert rules, thresholds, and notification options.":::
 
-<!-- TODO: Add screenshot - Review and enable VM recommended alerts. -->
+:::image type="content" source="./media/monitoring-coverage/vm-alerts-review.png" lightbox="./media/monitoring-coverage/vm-alerts-review.png" alt-text="Screenshot of review and enable VM recommended alerts.":::
 
 ### Enable AKS recommended alerts
 
@@ -138,7 +138,7 @@ The **Configuration details** section shows the monitoring configurations applie
 - Recommended alert rules, including enabled rules and notification configuration, with an action to manage alert rules.
 - Data collection rules associated with the resource, including data sources and destinations, with an action to associate the resource to additional DCRs.
 
-<!-- TODO: Add screenshot - Resource monitoring coverage details with configuration summary, VM insights, recommended alerts, and DCRs. -->
+:::image type="content" source="./media/monitoring-coverage/resource-monitoring-details.png" lightbox="./media/monitoring-coverage/resource-monitoring-details.png" alt-text="Screenshot of resource monitoring coverage details with configuration summary, VM insights, recommended alerts, and DCRs.":::
 
 ### Data flow status for a resource
 
@@ -158,7 +158,7 @@ Fix detected issues in numerical order, then select **Run validation checks** to
 > [!NOTE]
 > Passing all current validations doesn't necessarily mean there's nothing wrong with the data flow's end-to-end configuration. Additional validations are added in the future.
 
-<!-- TODO: Add screenshot - Resource data flow status with validation checks, recommended action, and last checked time. -->
+:::image type="content" source="./media/monitoring-coverage/resource-data-flow.png" lightbox="./media/monitoring-coverage/resource-data-flow.png" alt-text="Screenshot of resource data flow status with validation checks, recommended action, and last checked time.":::
 
 ## Important notes
 
