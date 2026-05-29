@@ -232,6 +232,8 @@
   href: ../microsoft-network-networksecuritygroups.md
 - name: microsoft.network/networksecurityperimeters
   href: ../microsoft-network-networksecurityperimeters.md
+- name: microsoft.network/networkvirtualappliances
+  href: ../microsoft-network-networkvirtualappliances.md
 - name: microsoft.network/networkwatchers/connectionmonitors
   href: ../microsoft-network-networkwatchers-connectionmonitors.md
 - name: microsoft.network/publicipaddresses

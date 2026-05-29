@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Compute/virtualMachines
 description: Reference for Microsoft.Compute/virtualMachines metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.Compute/virtualMachines, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -97,7 +97,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Compute/
 |**VM Uncached Used Burst IO Credits Percentage**<br><br>Percentage of Uncached Burst IO Credits used by the VM. |`VM Remote Used Burst IO Credits Percentage` |Percent |Average, Minimum, Maximum |\<none\>|PT1M |Yes|
 |**VM Uncached Bandwidth Consumed Percentage**<br><br>Percentage of uncached disk bandwidth consumed by the VM. Only available on VM series that support premium storage. |`VM Uncached Bandwidth Consumed Percentage` |Percent |Average |\<none\>|PT1M |Yes|
 |**VM Uncached IOPS Consumed Percentage**<br><br>Percentage of uncached disk IOPS consumed by the VM. Only available on VM series that support premium storage. |`VM Uncached IOPS Consumed Percentage` |Percent |Average |\<none\>|PT1M |Yes|
-|**VM Availability Metric (Preview)**<br><br>Measure of Availability of Virtual machines over time. |`VmAvailabilityMetric` |Count |Average, Minimum, Maximum |`Context`|PT1M |Yes|
+|**VM Availability Metric**<br><br>Measure of availability of virtual machines over time. |`VmAvailabilityMetric` |Count |Average, Minimum, Maximum |`Context`|PT1M |Yes|
 
 ## Next steps
 

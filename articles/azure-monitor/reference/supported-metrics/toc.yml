@@ -230,6 +230,8 @@
   href: microsoft-managednetworkfabric-l3isolationdomains-metrics.md
 - name: Microsoft.ManagedNetworkFabric/networkDevices
   href: microsoft-managednetworkfabric-networkdevices-metrics.md
+- name: Microsoft.ManagedNetworkFabric/networkFabricControllers
+  href: microsoft-managednetworkfabric-networkfabriccontrollers-metrics.md
 - name: Microsoft.ManagedNetworkFabric/networkFabrics
   href: microsoft-managednetworkfabric-networkfabrics-metrics.md
 - name: Microsoft.Maps/accounts
@@ -322,6 +324,8 @@
   href: microsoft-network-trafficmanagerprofiles-metrics.md
 - name: Microsoft.Network/virtualHubs
   href: microsoft-network-virtualhubs-metrics.md
+- name: Microsoft.Network/virtualnetworkappliances
+  href: microsoft-network-virtualnetworkappliances-metrics.md
 - name: microsoft.network/virtualnetworkgateways
   href: microsoft-network-virtualnetworkgateways-metrics.md
 - name: Microsoft.Network/virtualNetworks
@@ -356,16 +360,14 @@
   href: microsoft-orbital-terminals-metrics.md
 - name: Microsoft.OrionDB/clusters
   href: microsoft-oriondb-clusters-metrics.md
-- name: Microsoft.Peering/peerings
-  href: microsoft-peering-peerings-metrics.md
-- name: Microsoft.Peering/peeringServices
-  href: microsoft-peering-peeringservices-metrics.md
 - name: Microsoft.PlayFab/titles
   href: microsoft-playfab-titles-metrics.md
 - name: Microsoft.PowerBIDedicated/capacities
   href: microsoft-powerbidedicated-capacities-metrics.md
 - name: Microsoft.PowerPlatformMonitoringHub/copilotstudio
   href: microsoft-powerplatformmonitoringhub-copilotstudio-metrics.md
+- name: Microsoft.PowerPlatformMonitoringHub/microsoftapp
+  href: microsoft-powerplatformmonitoringhub-microsoftapp-metrics.md
 - name: Microsoft.PowerPlatformMonitoringHub/powerapps
   href: microsoft-powerplatformmonitoringhub-powerapps-metrics.md
 - name: Microsoft.PowerPlatformMonitoringHub/powerautomate
