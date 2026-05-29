@@ -34,16 +34,6 @@ Keep the logs-based experience enabled if any of the following are still true:
 
 If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
 
-## Before you retire the logs-based experience
-
-Before you retire the logs-based experience, confirm the following:
-
-- Metrics-based monitoring is already enabled for each VM.
-- The metrics-based experience shows the performance data that you need.
-- If you require per-process charts, confirm per-process metrics are enabled in the OpenTelemetry DCR.
-s that depend on the `InsightsMetrics` table.
-
-If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
 
 ## Before you retire the logs-based experience
 

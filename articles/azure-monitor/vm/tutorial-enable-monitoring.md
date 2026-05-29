@@ -82,15 +82,7 @@ The logs-based experience uses summarized performance data collected in the Log 
 :::image type="content" source="media/tutorial-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/logs-experience.png":::
 
 ## View Grafana dashboards
-Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in the Azure portal. It's automatically available at no cost and with no configuration requirements. Use [Dashboards with Grafana for Azure Virtual Machines]() to view collected data for multiple machines.
-enable-monitoring/metrics-experience.png":::
-
-The logs-based experience uses summarized performance data collected in the Log Analytics workspace to populate a set of charts that allow you to analyze the performance of different components of the machine such as CPU, disk, and network over time.
-
-:::image type="content" source="media/tutorial-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/logs-experience.png":::
-
-## View Grafana dashboards
-Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in the Azure portal. It's automatically available at no cost and with no configuration requirements. Use [Dashboards with Grafana for Azure Virtual Machines]() to view collected data for multiple machines.
+Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in the Azure portal. It's automatically available at no cost and with no configuration requirements. Use [Dashboards with Grafana for Azure Virtual Machines](../visualize/grafana-azure-virtual-machines.md) to view collected data for multiple machines.
 
 ## Next steps
 Now that you have enabled enhanced monitoring for your virtual machine, collect guest logs such as Windows event logs or Syslog from the virtual machine.
