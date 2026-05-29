@@ -3,7 +3,6 @@ title: Monitoring coverage in Azure Monitor (preview)
 description: Details on the monitoring coverage feature in Azure Monitor, which allows you to identify gaps in your monitoring posture and quickly enable data collection, alerting, and data flow validation at scale.
 ms.topic: concept-article
 ms.date: 05/29/2026
-author: shayoniseth
 ms.author: shseth
 ai-usage: ai-assisted
 ---
