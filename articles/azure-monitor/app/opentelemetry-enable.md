@@ -26,6 +26,9 @@ To learn more about collecting data using OpenTelemetry, check out the [Applicat
 
 Follow the steps in this article to install the distro, connect it to your Application Insights resource, and verify that telemetry data flows to Azure Monitor.
 
+> [!TIP]
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](../containers/opentelemetry-options.md).
+
 ## OpenTelemetry release status
 
 OpenTelemetry offerings are available for .NET, Node.js, Python, and Java applications. For a feature-by-feature release status, see the [FAQ](application-insights-faq.yml#what-s-the-current-release-state-of-features-within-the-azure-monitor-opentelemetry-distro).
