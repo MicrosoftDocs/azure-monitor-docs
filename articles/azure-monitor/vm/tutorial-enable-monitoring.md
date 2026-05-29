@@ -18,11 +18,15 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Enable enhanced monitoring for a virtual machine, which installs Azure Monitor Agent and begins data collection.
-> * Choose between metrics-based (preview) and logs-based (classic) experiences.
+> * Choose between metrics-based (recommended) and logs-based (classic) experiences.
+> * Enable recommended alerts for the virtual machine.
 > * Inspect graphs analyzing performance data collected from the virtual machine.
 
 ## Prerequisites
-To complete this tutorial, you need an Azure virtual machine to monitor.
+To complete this tutorial, you need the following:
+
+- Azure virtual machine to monitor
+- Managed identity with  Monitoring Reader role (or a custom role with equivalent permissions) on the VM or the Azure Monitor workspace if you enable recommended alerts with OpenTelemetry metrics enabled.
 
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
@@ -40,24 +44,30 @@ Leave **OpenTelemetry metrics** selected since this experience is available at n
 
 Select **Customize infrastructure monitoring** to open the customization options for the current machine.
 
-### Select workspaces
+## Select workspaces
 
 Depending on your metrics selection, a default Azure Monitor workspace (OpenTelemetry metrics) and Log Analytics workspace (log-base metrics) are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. You can select an existing workspace if you prefer or select **Create new** to create a new one with a different name as the default.
 
 :::image type="content" source="media/tutorial-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-enable-monitoring/configure-monitor.png":::
 
-### Select performance counters
-For OpenTelemetry metrics, a standard set of performance counters are collected at no cost. These are listed in the **Performance counters** section. You also have the option of enabling collection of **OpenTelemetry per process metrics**. These do have a cost associated with them though. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor).
+## Select performance counters
+For OpenTelemetry metrics, a standard set of performance counters are collected at no cost. These are listed in the **Performance counters** section. Optionally, enable **OpenTelemetry per process metrics**, which do incur additional cost. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor).
 
-### Select data collection rule
-Monitoring configurations are stored in [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md). A single DCR is created by default for the current virtual machine for both OpenTelemetry metrics and logs-based metrics. Alternatively, you can select existing DCRs. This allows you to reuse existing configurations for multiple machines to reduce the complexity of your monitoring environment.
+You can't customize the performance counters collected by log-based metrics.
+
+## Select data collection rule
+Monitoring configurations are stored in [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md). A single DCR is created by default for the current virtual machine for both OpenTelemetry metrics and logs-based metrics. Alternatively, you can select an existing DCR. This allows you to reuse existing configurations for multiple machines to reduce the complexity of your monitoring environment. Have a new DCR created for your first virtual machine and then use that DCR for any additional machines that you enable.
 
 ## Enable recommended alerts
 Leave **Enable recommended alerts** checked to automatically create [alert rules](../alerts/alerts-overview.md) based on the monitoring configuration. If OpenTelemetry metrics are enabled, the alert rules will be based on those metrics even if log-based metrics are also enabled. If only log-based metrics are enabled, the alert rules will be based on VM host metrics.
 
 An [action group](../alerts/action-groups.md) is also created that includes the email address of the user who enabled the monitoring.
 
-### Save
+> [!IMPORTANT]
+> If OpenTelemetry metrics are used for the alert rules, then you must select a managed identity as specified in [Prerequisites](#prerequisites).
+
+
+## Save
 Select **Review + Enable** and then **Enable** After a few minutes, the Azure Monitor agent is installed on the virtual machine, and data will start being collected.
 
 ## View performance data
