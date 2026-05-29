@@ -4,6 +4,8 @@ description: Find solutions to common errors and known limitations when using Co
 ms.topic: troubleshooting-general
 ms.date: 04/02/2026
 ms.reviewer: gardnerjr
+ms.collection: ce-skilling-ai-copilot
+ms.update-cycle: 180-days
 ai-usage: ai-assisted
 ---
 
