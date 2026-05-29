@@ -1,6 +1,6 @@
 ---
-title: Design a Log Analytics workspace architecture
-description: The article describes the considerations and recommendations for customers preparing to deploy a workspace in Azure Monitor.
+title: Design a Log Analytics Workspace Architecture
+description: Learn about key considerations and recommendations for designing and deploying Log Analytics workspaces in Azure Monitor.
 ms.topic: concept-article
 ms.date: 05/27/2026
 ---
@@ -12,7 +12,7 @@ A single [Log Analytics workspace](log-analytics-workspace-overview.md) might be
 > [!NOTE]
 > This article discusses Azure Monitor and Microsoft Sentinel because many customers need to consider both in their design. Most of the decision criteria apply to both services. If you use only one of these services, ignore the other in your evaluation.
 
-Here's a video about the fundamentals of Azure Monitor Logs and best practices and design considerations for designing your Azure Monitor Logs deployment:
+The following video covers Azure Monitor Logs fundamentals, best practices, and design considerations for your deployment:
 
 > [!VIDEO https://www.youtube.com/embed/7RBp9j0P_Ao?cc_load_policy=1&cc_lang_pref=auto]
 
@@ -37,7 +37,7 @@ The following table presents criteria to consider when you design your workspace
 | [Commitment tiers](#commitment-tiers) | Commitment tiers allow you to reduce your ingestion cost by committing to a minimum amount of daily data in a single workspace. |
 | [Legacy agent limitations](#legacy-agent-limitations) | Legacy virtual machine agents have limitations on the number of workspaces they can connect to. |
 | [Data access control](#data-access-control) | Configure access to the workspace and to different tables and data from different resources. |
-|[Resilience](#resilience)| To ensure that data in your workspace is available in the event of a region failure, ingest data into multiple workspaces in different regions.|
+| [Resilience](#resilience) | To ensure that data in your workspace is available in the event of a region failure, ingest data into multiple workspaces in different regions. |
 
 ### Operational and security data
 
@@ -49,10 +49,9 @@ Creating dedicated workspaces for Azure Monitor and Microsoft Sentinel will allo
 
 A workspace with Microsoft Sentinel gets three months of free data retention instead of 31 days. This scenario typically results in higher costs for operational data in a workspace without Microsoft Sentinel. See [Azure Monitor Logs pricing details](cost-logs.md#workspaces-with-microsoft-sentinel).
 
-
 **Combined workspace**
 
-Combining your data from Azure Monitor and Microsoft Sentinel in the same workspace gives you better visibility across all of your data allowing you to easily combine both in queries and workbooks. If access to the security data should be limited to a particular team, use [table level RBAC](../logs/manage-access.md#set-table-level-read-access) to block particular users from tables with security data or limit users to accessing the workspace using [resource-context](../logs/manage-access.md#access-mode).
+Combining your data from Azure Monitor and Microsoft Sentinel in the same workspace gives you better visibility across all of your data allowing you to easily combine both in queries and workbooks. If access to the security data should be limited to a particular team, use [table level RBAC](manage-access.md#set-table-level-read-access) to block particular users from tables with security data or limit users to accessing the workspace using [resource-context](manage-access.md#access-mode).
 
 This configuration may result in cost savings if it helps you reach a [commitment tier](#commitment-tiers), which provides a discount to your ingestion charges. For example, consider an organization that has operational data and security data each ingesting about 50 GB per day. Combining the data in the same workspace would allow a commitment tier at 100 GB per day. That scenario would provide a 15% discount for Azure Monitor and a 50% discount for Microsoft Sentinel.
 
@@ -106,9 +105,9 @@ Configure default [data retention settings](data-retention-configure.md) for a w
 
 ### Commitment tiers
 
-[Commitment tiers](../logs/cost-logs.md#commitment-tiers) provide a discount to your workspace ingestion costs when you commit to a specific amount of daily data. You might choose to consolidate data in a single workspace to reach the level of a particular tier. This same volume of data spread across multiple workspaces wouldn't be eligible for the same tier, unless you have a dedicated cluster.
+[Commitment tiers](cost-logs.md#commitment-tiers) provide a discount to your workspace ingestion costs when you commit to a specific amount of daily data. You might choose to consolidate data in a single workspace to reach the level of a particular tier. This same volume of data spread across multiple workspaces wouldn't be eligible for the same tier, unless you have a dedicated cluster.
 
-If your daily ingestion reaches at least 100 GB, implement a [dedicated cluster](../logs/cost-logs.md#dedicated-clusters) that provides extra functionality and performance. Dedicated clusters also allow you to combine the data from multiple workspaces in the cluster to reach the level of a commitment tier.
+If your daily ingestion reaches at least 100 GB, implement a [dedicated cluster](cost-logs.md#dedicated-clusters) that provides extra functionality and performance. Dedicated clusters also allow you to combine the data from multiple workspaces in the cluster to reach the level of a commitment tier.
 
 * **If you'll ingest at least 100 GB per day across all resources:** Create a dedicated cluster and set the appropriate commitment tier.
 * **If you'll ingest at least 100 GB per day across resources:** Consider combining them into a single workspace to take advantage of a commitment tier.
@@ -145,7 +144,7 @@ To ensure that critical data in your workspace is available in the event of a re
 
 This option requires managing integration with other services and products separately for each workspace. Even though the data will be available in the alternate workspace in case of failure, resources that rely on the data, such as alerts and workbooks, won't know to switch over to the alternate workspace. Consider storing ARM templates for critical resources with configuration for the alternate workspace in Azure DevOps, or as disabled policies that can quickly be enabled in a failover scenario.
 
-## Work with multiple workspaces
+## Multiple workspace considerations
 
 Many designs include multiple workspaces. For example, a central security operations team might use its own Microsoft Sentinel workspaces to manage centralized artifacts like analytics rules or workbooks.
 
@@ -190,7 +189,7 @@ Advantages to this strategy:
 
 Disadvantages to this strategy:
 
-* Running a query over a large number of workspaces is slow and can't scale above 100 workspaces. A central visualization and data analytics layer is possible but will be slow if more than a few dozen workspaces exist. This situation is less acute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). See [here](cross-workspace-query.md) for more details on running queries across workspaces.
+* Running a query over a large number of workspaces is slow and can't scale above 100 workspaces. A central visualization and data analytics layer is possible but will be slow if more than a few dozen workspaces exist. This situation is less acute if all workspaces are co-located on the same [dedicated cluster](logs-dedicated-clusters.md). For more details, see [Run queries across workspaces](cross-workspace-query.md).
 * If customers aren't onboarded for Azure delegated resource management, service provider administrators must be provisioned in the customer directory. This requirement makes it more difficult for the service provider to manage many customer tenants at once.
 * When running a query on a workspace, the workspace admins might have visibility to the full text of the query via [query audit](query-audit.md).
 
@@ -200,7 +199,7 @@ A single workspace is created in the service provider's subscription. This optio
 
 Advantages to this strategy:
 
-* It's easy to manage many customers.
+* The service provider manages many customers from a single workspace.
 * The service provider has full ownership over the logs and the various artifacts, such as functions and saved queries.
 * A service provider can perform analytics across all of its customers.
 
@@ -211,6 +210,7 @@ Disadvantages to this strategy:
 * All data from all customers will be stored in the same region with a single bill and the same retention and configuration settings.
 
 ### Hybrid
+
 In a hybrid model, each tenant has its own workspace. A mechanism is used to pull data into a central location for reporting and analytics. This data could include a small number of data types or a summary of the activity, such as daily statistics.
 
 Several options exist for implementing logs in a central location:
@@ -225,4 +225,4 @@ Several options exist for implementing logs in a central location:
 
 * Learn more about [designing and configuring data access in a workspace](manage-access.md).
 * Get [sample workspace architectures for Microsoft Sentinel](/azure/sentinel/sample-workspace-designs).
-* Here's a video on designing the proper structure for your Log Analytics workspace: [ITOps Talk:Log Analytics workspace design deep dive](/shows/it-ops-talk/ops115-log-analytics-workspace-design-deep-dive)
+* Watch the [ITOps Talk: Log Analytics workspace design deep dive](/shows/it-ops-talk/ops115-log-analytics-workspace-design-deep-dive) for more on structuring your workspace.
