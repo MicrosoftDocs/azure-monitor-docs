@@ -97,15 +97,12 @@ AI coding agents such as GitHub Copilot, Claude Code, Codex, OpenClaw, Gemini CL
 
 ### How coding agent telemetry reaches Azure Monitor
 
-Configure coding agents or IDEs to export OTLP signals by using organization-wide environment variables, project settings, or shared repository configurations. An OpenTelemetry Collector receives the OTLP data and forwards it to Azure Monitor through one of two paths:
-
-* **OpenTelemetry Collector with OTLP/HTTP Exporter** routes data to Azure Monitor OTLP ingestion endpoints. This path uses Entra-authenticated ingestion and stores data with OpenTelemetry semantics. For more information, see [Ingest OTLP data into Azure Monitor](/azure/azure-monitor/containers/opentelemetry-protocol-ingestion).
-* **OpenTelemetry Collector with Azure Monitor Exporter** routes data to Application Insights endpoints. This path uses instrumentation-key-based ingestion with standard Application Insights data storage.
-
-Both paths use community-supported OpenTelemetry Collector components.
+Configure coding agents or IDEs to export OTLP signals by using organization-wide environment variables, project settings, or shared repository configurations.
 
 > [!NOTE]
 > Ensure that your OTLP export configuration matches your organization's privacy and data handling policies. These settings determine whether content and conversation details are captured and exported.
+
+An OpenTelemetry Collector receives the OTLP data and forwards it to Azure Monitor using the OTLP over HTTP exporter.
 
 Once the data is in Azure Monitor, investigate usage and adoption patterns in Application Insights agent views and visualize trends with prebuilt coding agent dashboards.
 
@@ -113,14 +110,9 @@ Once the data is in Azure Monitor, investigate usage and adoption patterns in Ap
 
 Azure Monitor includes ready-to-use Grafana dashboards for coding agent monitoring:
 
-<!-- Work item 580717: The Codex, Gemini CLI, and OpenCode anchors target sections added in azure-docs-pr PR #316431, which isn't merged yet. Confirm those sections are live on learn.microsoft.com before this PR merges. -->
-
 * [GitHub Copilot dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#github-copilot)
 * [Claude Code dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#claude-code)
-* [Codex dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#codex)
 * [OpenClaw dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#openclaw)
-* [Gemini CLI dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#gemini-cli)
-* [OpenCode dashboard](/azure/managed-grafana/grafana-opentelemetry-app-insights#opencode)
 
 :::image type="content" source="media/agents-view/coding-agents-grafana-dashboard.png" lightbox="media/agents-view/coding-agents-grafana-dashboard.png" alt-text="Screenshot of the coding agent Grafana dashboard showing operations, tokens, sessions, and per-model latency.":::
 
