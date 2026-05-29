@@ -695,6 +695,8 @@ items:
         href: logs/tutorial-workspace-transformations-api.md
   - name: Collect OpenTelemetry
     items:
+    - name: OpenTelemetry with Azure Monitor (Preview)
+      href: containers/opentelemetry-options.md
     - name: Collect and analyze OpenTelemetry data (Preview)
       href: containers/collect-use-observability-data.md
     - name: Ingest OTLP signals with OTel Collector (Preview)
