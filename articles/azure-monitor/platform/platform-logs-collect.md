@@ -1,3 +1,11 @@
+---
+title: Collect platform logs using data collection rules (Preview)
+description: Learn how to collect and export Azure platform logs by using data collection rules.
+ms.topic: how-to
+ms.date: 05/28/2026
+ms.custom: ai-assisted
+---
+
 # Create data collection rules for platform telemetry (Preview)
 
 Platform telemetry data collection rules (DCRs) let you export platform resource logs from supported Azure resources to a Log Analytics workspace, storage account, or Event Hubs. This article shows you how to create a platform telemetry DCR, assign permissions, and associate it with resources.
@@ -47,48 +55,11 @@ The output should show `"state": "Registered"` to confirm the feature is enabled
 
 ## Supported resource types and log categories
 
-The following 22 resource types support platform log export using Data Collection Rules. Each resource type exposes one or more log categories identified by a stream specification value that you must use when configuring streams in the DCR.
+Platform telemetry DCRs support specific resource types and category streams.
 
-To collect all categories for a resource type, use `Logs-Group-All`. Example:
+Use `Logs-Group-All` to collect all categories for a resource type, or specify a single category stream (for example, `microsoft.dbformysql/flexibleservers:MySqlAuditLogs`).
 
-```text
-microsoft.app/managedenvironments:Logs-Group-All
-```
-
-To collect one category, use its category name. Example:
-
-```text
-microsoft.dbformysql/flexibleservers:MySqlAuditLogs
-```
-
-| Resource name | Resource provider | Log categories | Log table |
-|---|---|---|---|
-| Container registries | `Microsoft.ContainerRegistry/registries` | `ContainerRegistryLoginEvents`, `ContainerRegistryRepositoryEvents` | `ContainerRegistryLoginEvents`, `ContainerRegistryRepositoryEvents` |
-| Container Apps managed environments | `microsoft.app/managedenvironments` | `AppEnvSessionConsoleLogs`, `AppEnvSessionLifeCycleLogs`, `AppEnvSessionPoolEventLogs`, `ContainerAppConsoleLogs`, `ContainerAppHTTPLogs`, `ContainerAppSystemLogs` | `ContainerAppConsoleLogs`, `ContainerAppSystemLogs` |
-| Azure VMware Solution private clouds | `microsoft.avs/privateclouds` | `vmwaresyslog` | `AVSSyslog` |
-| Azure Sphere catalogs | `microsoft.azuresphere/catalogs` | `AuditLogs`, `DeviceEvents` | `ASCAuditLogs`, `ASCDeviceEvents` |
-| Chaos experiments | `microsoft.chaos/experiments` | `ExperimentOrchestration` | `ChaosStudioExperimentEventLogs` |
-| Confidential Ledger managed CCFs | `microsoft.confidentialledger/managedccfs` | `applicationlogs` | `CCFApplicationLogs` |
-| Azure Managed Grafana | `microsoft.dashboard/grafana` | `GrafanaLoginEvents`, `GrafanaUsageInsightsEvents` | `AGSGrafanaLoginEvents`, `AGSGrafanaUsageInsightsEvents` |
-| Data replication vaults | `microsoft.datareplication/replicationvaults` | `HealthEvents`, `JobEvents`, `ProtectedItems`, `ReplicationExtensions`, `ReplicationPolicies`, `ReplicationVaults` | `ASRv2ProtectedItems`, `ASRv2ReplicationVaults` |
-| Azure Database for MySQL flexible servers | `microsoft.dbformysql/flexibleservers` | `MySqlAuditLogs`, `MySqlSlowLogs` | `AzureDiagnostics` |
-| Azure Database for PostgreSQL flexible servers | `microsoft.dbforpostgresql/flexibleservers` | `PostgreSQLFlexDatabaseXacts`, `PostgreSQLFlexPGBouncer`, `PostgreSQLFlexQueryStoreRuntime`, `PostgreSQLFlexSessions`, `PostgreSQLLogs` | `AzureDiagnostics` |
-| Azure Database for PostgreSQL server groups v2 | `microsoft.dbforpostgresql/servergroupsv2` | `PostgreSQLLogs` | `AzureDiagnostics` |
-| DevOps infrastructure pools | `microsoft.devopsinfrastructure/pools` | `ProvisioningLogs` | `MDPResourceLog` |
-| Azure Load Testing | `microsoft.loadtestservice/loadtests` | `OperationLogs` | `AzureLoadTestingOperation` |
-| Network managers | `microsoft.network/networkmanagers` | `ConnectivityConfigurationChange`, `NetworkGroupMembershipChange`, `RuleCollectionChange` | `AVNMConnectivityConfigurationChange`, `AVNMNetworkGroupMembershipChange`, `AVNMRuleCollectionChange` |
-| Network Cloud cluster managers | `microsoft.networkcloud/clustermanagers` | `ClusterManagerDeployOrUpgradeLogs` | `NCMClusterOperationsLogs` |
-| Network Cloud storage appliances | `microsoft.networkcloud/storageappliances` | `StorageApplianceAlert`, `StorageApplianceAudit`, `StorageApplianceLogs` | `NCSStorageAlerts`, `NCSStorageLogs` |
-| Azure traffic collectors | `microsoft.networkfunction/azuretrafficcollectors` | `ATCMicrosoftPeeringMetadata`, `ATCPrivatePeeringMetadata`, `ExpressRouteCircuitIpfix` | `ATCMicrosoftPeeringMetadata`, `ATCPrivatePeeringMetadata`, `ATCExpressRouteCircuitIpfix` |
-| Service Networking traffic controllers | `microsoft.servicenetworking/trafficcontrollers` | `TrafficControllerAccessLog`, `TrafficControllerFirewallLog` | `AGCAccessLogs`, `AGCFirewallLogs` |
-| Azure Managed Lustre | `microsoft.storagecache/amlfilesystems` | `AmlfsAuditEvent` | N/A |
-| Azure HPC Cache | `microsoft.storagecache/caches` | `AscCacheOperationEvent`, `AscUpgradeEvent`, `AscWarningEvent` | `StorageCacheOperationEvents`, `StorageCacheWarningEvents` |
-| Azure Storage Mover | `microsoft.storagemover/storagemovers` | `CopyLogsFailed`, `JobRunLogs` | `StorageMoverCopyLogsFailed`, `StorageMoverJobRunLogs` |
-| NGINX deployments | `nginx.nginxplus/nginxdeployments` | `NginxLogs`, `NginxSecurityLogs`, `NginxUpstreamUpdateLogs` | `NGXOperationLogs`, `NGXSecurityLogs`, `NginxUpstreamUpdateLogs` |
-
-
-> [!NOTE]
-> For a complete reference of all log categories and their schemas, see Supported log categories by resource type in the Azure Monitor reference documentation.
+For the full list of supported resource types, category streams, and destination tables, see [Platform logs supported resource types and categories](platform-logs-reference.md).
 
 ## Supported regions
 

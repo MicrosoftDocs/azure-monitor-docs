@@ -678,6 +678,14 @@ items:
         href: data-collection/metrics-export-structure.md
       - name: Compare metrics strategies
         href: data-collection/data-plane-versus-metrics-export.md
+    - name: Platform logs export
+      items:
+      - name: Collect platform logs using DCRs (Preview)
+        displayName: data collection rules, platform logs, resource logs
+        href: platform/platform-logs-collect.md
+      - name: Supported resource types and categories (Preview)
+        displayName: data collection rules, platform logs, resource logs, categories
+        href: platform/platform-logs-reference.md
     - name: Monitor DCRs
       displayName: Data collection rules
       href: data-collection/data-collection-monitor.md
