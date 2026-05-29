@@ -814,13 +814,13 @@ AzureDiagnostics
 
 ## Troubleshoot
 
-If you don't see data flowing, use DCR monitoring features in Azure Monitor:
+If you don't see data flowing, use [DCR monitoring features](./data-collection-monitor.md) in Azure Monitor:
 
 - Check **Logs Ingestion Bytes per Min** and **Logs Rows Received per Min** to confirm that data is reaching Azure Monitor.
 - Check **Logs Rows Dropped per Min** and **Logs Transformation Errors per Min** for processing errors.
 - Enable DCR error logs and query the `DCRLogErrors` table for detailed error information.
 
-Common pitfalls to check:
+Common issues to check:
 
 - Preview feature not enabled for the subscription: Verify that `DcrPlatformLogs` is registered.
 - Incorrect API version: Use `api-version=2024-03-11` for DCR and DCRA operations.
