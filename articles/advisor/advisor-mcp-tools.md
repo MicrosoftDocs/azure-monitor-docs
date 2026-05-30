@@ -1,3 +1,10 @@
+---
+title: Advisor MCP Tools
+description: Use Advisor MCP Tools in Azure MCP server
+ms.topic: concept-article
+ms.date: 30/05/2026
+---
+
 # Advisor MCP tools
 
 Azure Advisor MCP (Model Context Protocol) tools give AI agents structured access to Azure Advisor recommendations. You can use these tools inside any MCP-compatible AI client, such as Visual Studio Code with GitHub Copilot, to query Advisor recommendations for your subscriptions and apply best-practice rules directly to your ARM templates and Terraform configurations.
@@ -10,7 +17,7 @@ Azure Advisor MCP (Model Context Protocol) tools give AI agents structured acces
 Before you use the Advisor MCP tools, make sure you have the following:
 
 - An MCP-compatible AI client such as [Visual Studio Code](https://code.visualstudio.com/) with [GitHub Copilot](https://code.visualstudio.com/docs/copilot/setup).
-- The Azure MCP server configured in your client. For setup instructions, see [Get started with the Azure MCP server](https://learn.microsoft.com/en-us/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code).
+- The Azure MCP server configured in your client. For setup instructions, see [Get started with the Azure MCP server](https://learn.microsoft.com/azure/developer/azure-mcp-server/get-started/tools/visual-studio-code).
 - Appropriate Azure RBAC permissions to read Advisor recommendations in your target subscription.
 
 ## Available tools
@@ -52,7 +59,7 @@ The command returns a list of recommendations, where each recommendation include
 
 ## Apply Advisor recommendations to IaC files
 
-The `apply` tool helps analyze your [infrastructure-as-code (IaC)](https://learn.microsoft.com/en-us/devops/deliver/what-is-infrastructure-as-code) files against Azure Advisor best practices for a given Azure resource type. The tool returns a set of **_Advisor Rules_** which can be used by an AI agent to identify configurations that doesn't follow Advisor recommendations. The AI agent then proposes or applies fixes directly to your ARM templates or Terraform configurations.
+The `apply` tool helps analyze your [infrastructure-as-code (IaC)](https://learn.microsoft.com/devops/deliver/what-is-infrastructure-as-code) files against Azure Advisor best practices for a given Azure resource type. The tool returns a set of **_Advisor Rules_** which can be used by an AI agent to identify configurations that doesn't follow Advisor recommendations. The AI agent then proposes or applies fixes directly to your ARM templates or Terraform configurations.
 
 The tool supports the resource types listed in [Supported resource types](#supported-resource-types). Your AI client automatically determines the relevant resource type from your prompt and IaC context.
 
