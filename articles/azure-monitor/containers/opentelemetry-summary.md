@@ -22,6 +22,9 @@ This article describes each ingestion option and when to use it, so you can pick
 > OTLP ingestion in Azure Monitor is currently in preview.
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
+> [!TIP]
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
+
 ## End-to-end onboarding with OpenTelemetry and Azure Monitor
 
 Use this approach when you need a comprehensive view of the available onboarding paths, supported experiences, and data exploration options across Application Insights, Dashboards with Grafana, and Log Analytics. It's the best starting point if you're evaluating OpenTelemetry support in Azure Monitor for the first time and want to understand the full scope of capabilities before you choose a specific ingestion method.
