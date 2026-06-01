@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 05/06/2026
+ms.date: 06/01/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -39,7 +39,7 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 
 ## Linux operating systems
 
-Azure Monitor Agent supports the following Linux distributions, grouped by distribution family.
+Azure Monitor Agent supports the following Linux distributions, grouped by distribution family. Superscript numbers next to the checkmarks indicate additional notes, such as ARM64 support or prerequisite requirements. See the footnotes after the tables for details.
 
 ### Red Hat-based distributions
 
@@ -50,20 +50,20 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
-| Red Hat Enterprise Linux Server 10                          | ✓ |
-| Red Hat Enterprise Linux Server 9+                          | ✓ |
+| Red Hat Enterprise Linux Server 10                          | ✓<sup>2</sup> |
+| Red Hat Enterprise Linux Server 9+                          | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
-| Rocky Linux 9                                               | ✓ |
-| Rocky Linux 8                                               | ✓ |
+| Rocky Linux 9                                               | ✓<sup>2</sup> |
+| Rocky Linux 8                                               | ✓<sup>2</sup> |
 
 ### Debian-based distributions
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
-| Debian 13                                                   | ✓ |
-| Debian 12                                                   | ✓ |
+| Debian 13                                                   | ✓<sup>2</sup> |
+| Debian 12                                                   | ✓<sup>2</sup> |
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |
 | Debian 9                                                    | ✓ |
@@ -94,9 +94,9 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Azure Linux 3.0                                             | ✓<sup>2</sup> |
 | CBL-Mariner 2.0                                             | ✓<sup>2, 3</sup> |
 
-<sup>1</sup> Requires Python (3 or 2) to be installed on the machine. Requires packages _which_ and _initscripts_.<br>
+<sup>1</sup> Requires Python (3 or 2) to be installed on the machine, including on Azure Linux and CBL-Mariner. Requires packages _which_ and _initscripts_.<br>
 <sup>2</sup> Also supported on ARM64-based machines.<br>
-<sup>3</sup> Doesn't include the required minimum 4 GB of disk space by default. See the following note. 
+<sup>3</sup> Doesn't include the required minimum 4 GB of disk space by default. See the following note.
 
 > [!NOTE]
 > - Machines and appliances that run heavily customized or stripped-down versions of the listed distributions and hosted solutions that disallow customization by the user aren't supported. Azure Monitor relies on various packages and other baseline functionality that these kinds of systems often remove. Installations might require some environment modifications that the appliance vendor normally disallows. For example, [GitHub Enterprise Server](https://docs.github.com/en/enterprise-server/admin/overview/about-github-enterprise-server) isn't supported due to heavy customization and because of [documented, license-level disallowance](https://docs.github.com/en/enterprise-server/admin/overview/system-overview#operating-system-software-and-patches) of operating system modification.
