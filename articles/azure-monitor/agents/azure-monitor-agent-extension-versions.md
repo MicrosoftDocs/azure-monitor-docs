@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 05/29/2026
+ms.date: 06/01/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
 ai-usage: ai-assisted
@@ -45,7 +45,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
-| [May 2026](#may-2026) | 1.43 | — | — | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
+| [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
 | [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
 | [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation |
