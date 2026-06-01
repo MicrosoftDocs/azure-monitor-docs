@@ -157,7 +157,7 @@ Validation checks are grouped by areas such as:
 Fix detected issues in numerical order, then select **Run validation checks** to update the status. Use the **List** and **Diagram** views to switch between validation result layouts.
 
 > [!NOTE]
-> Passing all current validations doesn't necessarily mean there's nothing wrong with the data flow's end-to-end configuration. Additional validations will be added in the future.
+> Passing all current validations doesn't necessarily mean there's nothing wrong with the data flow's end-to-end configuration.
 
 :::image type="content" source="./media/monitoring-coverage/resource-data-flow.png" lightbox="./media/monitoring-coverage/resource-data-flow.png" alt-text="Screenshot of resource data flow status with validation checks, recommended action, and last checked time.":::
 
