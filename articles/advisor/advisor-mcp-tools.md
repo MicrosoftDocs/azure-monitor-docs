@@ -10,7 +10,7 @@ ms.date: 05/30/2026
 Azure Advisor MCP (Model Context Protocol) tools give AI agents structured access to Azure Advisor recommendations. You can use these tools inside any MCP-compatible AI client, such as Visual Studio Code with GitHub Copilot, to query Advisor recommendations for your subscriptions and apply best-practice rules directly to your ARM templates and Terraform configurations.
 
 >[!NOTE]
->Bicep is currently not supported and would be available in future release.
+>Bicep is currently not supported.
 
 ## Prerequisites
 
