@@ -2,7 +2,7 @@
 title: Create a Log Analytics Workspace
 description: Learn how to create a Log Analytics workspace in Azure Monitor to collect log data from Azure, on-premises, and multicloud environments.
 ms.topic: how-to
-ms.date: 05/29/2026
+ms.date: 06/01/2026
 ms.reviewer: yossiy
 
 # Customer intent: As a DevOps engineer or IT expert, I want to set up a workspace to collect logs from multiple data sources from Azure, on-premises, and third-party cloud deployments.
@@ -10,7 +10,7 @@ ms.reviewer: yossiy
 
 # Create a Log Analytics workspace
 
-A Log Analytics workspace is a data store for collecting log data from Azure and non-Azure resources and applications. Send all log data to one Log Analytics workspace unless specific business needs require multiple workspaces, as described in [Design a Log Analytics workspace architecture](./workspace-design.md).
+A Log Analytics workspace is a data store for collecting any type of log data from all your Azure and non-Azure resources and applications. Send all log data to one Log Analytics workspace unless specific business needs require multiple workspaces, as described in [Design a Log Analytics workspace architecture](./workspace-design.md).
 
 ## Prerequisites
 
