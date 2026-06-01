@@ -30,20 +30,8 @@ Platform telemetry DCRs provide several benefits over diagnostic settings:
 
 Before you create a platform telemetry DCR, make sure that you have the following:
 
-- Azure account with an active subscription.
-- Preview feature is enabled for your subscription (`DcrPlatformLogs`).
 - One or more [supported Azure resources](./platform-logs-reference.md#supported-resource-types) in [supported regions](./platform-logs-reference.md#supported-regions).
 - One or more [destination resources](#export-destinations).
-
-To verify preview feature registration with Azure CLI:
-
-```azurecli
-az account set --subscription "<subscription-id>"
-az feature list --namespace Microsoft.Insights | grep DcrPlatformLogs
-```
-
-The output should show `"state": "Registered"`.
-
 
 ### Tool-specific prerequisites
 
@@ -67,7 +55,7 @@ A platform telemetry DCR supports one destination type. To send data to multiple
 | Event Hubs | DCR, Event Hubs namespace, and monitored resources must be in the same region. | Required (`Azure Event Hubs Data Sender`) | Data is streamed as JSON events. |
 
 > [!NOTE]
-> Export latency is typically about three minutes. Allow up to 15 minutes after initial setup for logs to appear in the destination, and up to 30 minutes after initial provisioning for the first data to arrive.
+> It may take up to 30 minutes for logs to show up in the destination after the initial setup, and for the data to appear in the destination.
 
 ## Create a data collection rule
 
@@ -884,7 +872,7 @@ Common issues to check:
 ## Limitations
 
 - Only one destination type can be specified per DCR. To send data to multiple destination types, create separate DCRs.
-- A maximum of five DCRs can be associated with a single Azure resource.
+- A maximum of five platform telemetry DCRs can be associated with a single Azure resource.
 - While you can use DCRs and diagnostic settings simultaneously, disable diagnostic settings for logs when you use DCRs to avoid duplicate data collection.
 - The DCR and destination resource (workspace, storage account, or event hub namespace) must be in the same Azure region. Create a separate DCR per region and destination as needed.
 - For storage account and Event Hubs destinations, monitored resources must also be in the same region as the DCR and destination.

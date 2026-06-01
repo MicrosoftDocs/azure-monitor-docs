@@ -20,13 +20,12 @@ To collect all log categories for a resource type, use Logs-Group-All. For examp
 `microsoft.app/managedenvironments:Logs-Group-All`
 
 To collect a specific log category, use the category name:
-`microsoft.dbformysql/flexibleservers:MySqlAuditLogs
-`
+`microsoft.dbformysql/flexibleservers:Logs-<category>`
 
 Examples:
 
 `microsoft.app/managedenvironments:Logs-Group-All'
-'microsoft.dbformysql/flexibleservers:MySqlAuditLogs'
+'microsoft.dbformysql/flexibleservers:Logs-MySqlAuditLogs'
 
 
 | Resource name | Resource provider | Log categories | Log table |
