@@ -136,6 +136,8 @@
     href: /cli/azure/advisor
   - name: PowerShell
     href: /powershell/module/az.advisor/
+  - name: Advisor MCP Tools
+    href: ./advisor-mcp-tools.md
 - name: Resources
   items:
   - name: Azure Roadmap
