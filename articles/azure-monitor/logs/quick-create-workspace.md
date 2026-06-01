@@ -64,7 +64,7 @@ New-AzOperationalInsightsWorkspace -Location $Location -Name $WorkspaceName -Res
 > [!NOTE]
 > Log Analytics was previously called Operational Insights. The PowerShell cmdlets use Operational Insights in Log Analytics commands.
   
-After you've created a workspace, [configure a Log Analytics workspace in Azure Monitor by using PowerShell](./powershell-workspace-configuration.md).
+After you create a workspace, [configure a Log Analytics workspace in Azure Monitor by using PowerShell](./powershell-workspace-configuration.md).
 
 ## [Azure CLI](#tab/azure-cli)
 
@@ -137,7 +137,7 @@ resource workspaceName_Heartbeat 'Microsoft.OperationalInsights/workspaces/table
 ```
 
 > [!NOTE]
-> If you specify a pricing tier of **Free**, then remove the **retentionInDays** element.
+> If you specify a pricing tier of **Free**, remove the **retentionInDays** element.
 
 ### Parameter file
 
@@ -245,7 +245,7 @@ For more information about Azure Resource Manager templates, see [Azure Resource
 ```
 
 > [!NOTE]
-> If you specify a pricing tier of **Free**, then remove the **retentionInDays** element.
+> If you specify a pricing tier of **Free**, remove the **retentionInDays** element.
 
 ### Parameter file
 
@@ -277,10 +277,10 @@ For more information about Azure Resource Manager templates, see [Azure Resource
 
 ## Troubleshooting
 
-When you create a workspace that was deleted in the last 14 days and in [soft-delete state](../logs/delete-workspace.md#delete-a-workspace-into-a-soft-delete-state), the operation could have a different outcome depending on your workspace configuration:
+When you create a workspace that you deleted in the last 14 days and it's in [soft-delete state](../logs/delete-workspace.md#delete-a-workspace-into-a-soft-delete-state), the operation can have different outcomes depending on your workspace configuration:
 
-1. If you provide the same workspace name, resource group, subscription, and region as in the deleted workspace, your workspace will be recovered including its data, configuration, and connected agents.
-1. Workspace names must be unique for a resource group. If you use a workspace name that already exists, or is soft deleted, an error is returned. To permanently delete your soft-deleted name and create a new workspace with the same name, follow these steps:
+1. If you create a workspace and the parameters you provide are the same workspace name, resource group, subscription, and region as a deleted workspace, you recover your deleted workspace including its data, configuration, and connected agents.
+1. Workspace names must be unique for a resource group. If you use a workspace name that already exists, or is soft deleted, you get an error. To permanently delete your soft-deleted name and create a new workspace with the same name, follow these steps:
 
    1. [Recover](../logs/delete-workspace.md#recover-a-workspace-in-a-soft-delete-state) your workspace.
    1. [Permanently delete](../logs/delete-workspace.md#delete-a-workspace-permanently) your workspace.
