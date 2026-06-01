@@ -69,38 +69,22 @@ Use one of the following methods to create a platform telemetry DCR to collect p
 ### Create a data collection rule using the Azure portal
 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
-1. 
 1. Select the link on the top of the page to use the new DCR creation experience.
-   
-    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
-
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
-
 1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send logs to a Storage Account or Event Hubs.
-
-    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
-
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
 1. On the **Resources** page, select **Add resources** to add the resources you want to collect logs from.
-
 1. Select **Next** to move to the **Collect and deliver** tab.
-
-    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
-
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-resources.png" alt-text="A screenshot showing the resources tab of the create data collection rule page.":::
 1. Select **Add new datasource**.
-
 1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect logs from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the logs collected for it. By default, all available logs for the resource are collected.
-
-    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
-
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
 1. Select **Next Destinations** to move to the **Destinations** tab.
-
 1. Select **Add destination** and then the **Destination type** that you want to add. The required fields change based on the destination type you select.
-
   > [!NOTE]
   > To send logs to a Storage Account or Event Hubs, the resource generating the logs, the DCR, and the Storage Account or Event Hub must all be in the same region. To send logs to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the logs can be in any region.
-
-    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
-
+  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
 1. Select **Save** , then select **Review + create**.
 
 # [Azure CLI](#tab/azure-cli)
