@@ -4,6 +4,7 @@ description: Reference for resource types and regions supported for metrics expo
 ms.topic: reference
 ms.date: 05/29/2026
 ms.custom: ai-assisted
+ms.custom: references_regions
 ---
 
 # Metrics export supported resources and regions (Preview)

@@ -4,6 +4,7 @@ description: Reference for resource types, category streams, destination tables,
 ms.topic: reference
 ms.date: 05/28/2026
 ms.custom: ai-assisted
+ms.custom: references_regions
 ---
 
 # Platform logs supported resource types and regions (Preview)

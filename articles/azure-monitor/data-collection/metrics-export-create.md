@@ -733,8 +733,6 @@ The following example shows a metric exported to Event Hubs.
 }
 ```
 
-## Troubleshoot
-
 [!INCLUDE [data-collection-rule-troubleshoot](includes/data-collection-rule-troubleshoot.md)]
 
 ## Next steps
