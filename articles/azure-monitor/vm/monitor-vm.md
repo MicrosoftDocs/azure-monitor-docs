@@ -41,6 +41,8 @@ For step-by-step guidance on enabling enhanced monitoring, start with [Tutorial:
 ## Enable at scale
 You can enable VM monitoring at scale by using Azure CLI, PowerShell, Azure Policy, ARM templates, Bicep, and other infrastructure as code (IaC) tools. For implementation guidance, see [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.md).
 
+Enable monitoring and other management features at scale for virtual machines using [Essential machine management](/azure/operations/configuration-enrollment?toc=/azure/virtual-machines/toc.json).
+
 ## Collect logs
 Azure Monitor collects several types of log data from your virtual machines that provide detailed information about events, operations, and system behavior.
 
