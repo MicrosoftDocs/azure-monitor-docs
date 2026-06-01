@@ -197,9 +197,9 @@ Data collection rules (DCRs) define what data to collect from the Azure Monitor 
 
 DCRs are structured in JSON. When you create DCRs using the Azure portal, you don't require any knowledge of the DCR structure. You may need to understand the DCR structure though to create DCRs from scratch or to add advanced functionality to existing DCRs such as adding a transformation.
 
-When onboarding from the Azure portal, the default behavior is to create new DCRs for the selected monitoring configuration. You can select existing DCRs if needed. If your configuration sends data to both an Azure Monitor workspace and a Log Analytics workspace in the same region, onboarding tries to use a single DCR for both destinations.
+When onboarding from the Azure portal, the default behavior is to create new DCRs for the selected monitoring configuration. Or you can select an existing DCR to to simplify your monitoring configuration. If your configuration sends data to both an Azure Monitor workspace and a Log Analytics workspace in the same region, onboarding tries to use a single DCR for both destinations.
 
-Enhanced onboarding can also include OpenTelemetry per-process metrics, recommended alerts, and dashboards with Grafana. For details on this portal workflow, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
+Onboarding from the Azure portal can also include OpenTelemetry per-process metrics, recommended alerts, and dashboards with Grafana. For details on this portal workflow, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 
 The following table describes the most common DCR types used for VM monitoring. For a complete list of DCR types and their structures, see [Data collection rule structure](../data-collection/data-collection-rule-structure.md). For details on creating DCRs, see [Data collection rules: Create and edit](../data-collection/data-collection-rule-create-edit.md).
 

@@ -46,12 +46,12 @@ Select **Customize infrastructure monitoring** to open the customization options
 
 ## Select workspaces
 
-Depending on your metrics selection, a default Azure Monitor workspace (OpenTelemetry metrics) and Log Analytics workspace (log-base metrics) are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. You can select an existing workspace if you prefer or select **Create new** to create a new one with a different name as the default.
+Depending on your metrics selection, a default Azure Monitor workspace (OpenTelemetry metrics) and Log Analytics workspace (log-based metrics) are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. You can select an existing workspace if you prefer or select **Create new** to create a new one with a different name as the default.
 
 :::image type="content" source="media/tutorial-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-enable-monitoring/configure-monitor.png":::
 
 ## Select performance counters
-For OpenTelemetry metrics, a standard set of performance counters are collected at no cost. These are listed in the **Performance counters** section. Optionally, enable **OpenTelemetry per process metrics**, which do incur additional cost. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor).
+For OpenTelemetry metrics, a standard set of performance counters are collected at no cost. These are listed in the **Performance counters** section. Optionally, leave **OpenTelemetry per process metrics** enabled to gather a more detailed recommended set of metrics which do incur additional cost. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor).
 
 You can't customize the performance counters collected by log-based metrics.
 
