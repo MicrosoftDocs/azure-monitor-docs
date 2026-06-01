@@ -848,7 +848,7 @@ Use the Event Hubs monitoring features in the Azure portal to verify incoming me
 }
 ```
 
-In the Azure portal, go to Event Hub > Monitoring > Metrics, add the Incoming Messages and Incoming Bytes metrics, and confirm non-zero values after onboarding.
+In the Azure portal, go to Event Hub > Monitoring > Metrics, add the Incoming Messages and Incoming Bytes metrics, and confirm nonzero values after onboarding.
 
 ---
 
@@ -865,8 +865,8 @@ Common issues to check:
 
 - Preview feature not enabled for the subscription: Verify that `DcrPlatformLogs` is registered.
 - Incorrect API version: Use `api-version=2024-03-11` for DCR and DCRA operations.
-- Streams mismatch with resource type — confirm that the stream specification matches a supported resource type and log category.
-- Region mismatch — ensure the DCR, destination resource, and monitored resources are all in the same region (except for Log Analytics workspace destinations).
+- Streams mismatch with resource type. Confirm that the stream specification matches a supported resource type and log category.
+- Region mismatch. Ensure the DCR, destination resource, and monitored resources are all in the same region (except for Log Analytics workspace destinations).
 - Missing managed identity role assignment: For storage account and Event Hubs destinations, verify that `Storage Blob Data Contributor` or `Azure Event Hubs Data Sender` is assigned.
 
 ## Limitations
