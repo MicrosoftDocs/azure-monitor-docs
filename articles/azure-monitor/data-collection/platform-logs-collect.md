@@ -82,9 +82,9 @@ Use one of the following methods to create a platform telemetry DCR to collect p
    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
 1. Select **Next Destinations** to move to the **Destinations** tab.
 1. Select **Add destination** and then the **Destination type** that you want to add. The required fields change based on the destination type you select.
-  > [!NOTE]
-  > To send logs to a Storage Account or Event Hubs, the resource generating the logs, the DCR, and the Storage Account or Event Hub must all be in the same region. To send logs to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the logs can be in any region.
-  :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
+   > [!NOTE]
+   > To send logs to a Storage Account or Event Hubs, the resource generating the logs, the DCR, and the Storage Account or Event Hub must all be in the same region. To send logs to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the logs can be in any region.
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
 1. Select **Save** , then select **Review + create**.
 
 # [Azure CLI](#tab/azure-cli)
