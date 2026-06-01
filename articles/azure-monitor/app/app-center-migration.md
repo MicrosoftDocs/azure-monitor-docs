@@ -65,7 +65,7 @@ Use these resources to become familiar with Azure Monitor concepts and terminolo
 #### Create and configure the destination resources
 
 > [!IMPORTANT]
-> If you plan to ingest OpenTelemetry Protocol (OTLP) signals by using Azure Monitor native OTLP ingestion endpoints (Limited Preview), follow the setup requirements in [Ingest OpenTelemetry Protocol signals into Azure Monitor (Limited Preview)](/azure/azure-monitor/fundamentals/opentelemetry-protocol-ingestion). This setup can differ from the workspace-based Application Insights and connection string approach, and can include OTLP endpoint URLs and a Data Collection Rule (DCR), along with the related endpoint URL patterns and authentication requirements.
+> If you plan to ingest OpenTelemetry Protocol (OTLP) signals by using Azure Monitor native OTLP ingestion endpoints, follow the setup requirements in [Ingest OTLP data into Azure Monitor by using OTel Collector](/azure/azure-monitor/containers/opentelemetry-protocol-ingestion). This setup can differ from the workspace-based Application Insights and connection string approach, and can include OTLP endpoint URLs and a Data Collection Rule (DCR), along with the related endpoint URL patterns and authentication requirements.
 
 Use this checklist to set up the Azure Monitor side of the migration:
 
