@@ -186,4 +186,4 @@ The apply tool works with the following IaC formats:
 - **ARM templates**
 - **Terraform** (using the `azurerm` provider)
 >[!NOTE]
->Bicep is currently not supported and would be available in future release.
+>Bicep is currently not supported.
