@@ -47,6 +47,10 @@ Enabling full monitoring by collecting data from the guest operating system and 
 
 
 > [!NOTE]
+> Use the following options to enable monitoring for your virtual machines at scale:
+>
+> Monitoring is included in Essential machine management which automatically enables multiple management features for your virtual machines. See [Essential machine management](/azure/operations/configuration-enrollment?toc=/azure/virtual-machines/toc.json).
+>
 > To enable monitoring at scale using Azure Policy, see [Enable VM insights using Azure Policy](vminsights-enable-policy.md).
 
 
