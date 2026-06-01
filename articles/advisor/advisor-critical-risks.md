@@ -2,7 +2,7 @@
 title: Use Critical Risks in Azure Advisor
 description: Use Azure Advisor to view your Critical Risks for your most critical resources.
 ms.topic: how-to
-ms.date: 11/05/2025
+ms.date: 06/01/2026
 
 ---
 
