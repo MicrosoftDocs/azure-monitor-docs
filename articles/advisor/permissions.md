@@ -56,8 +56,6 @@ Review the following section to learn more about each role and the associated ac
 
 To learn more about built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles "Azure built-in roles | Azure RBAC | Microsoft Learn"). To learn more about Azure role-based access control (Azure RBAC), see [What is Azure role-based access control (Azure RBAC)?](/azure/role-based-access-control/overview "What is Azure role-based access control (Azure RBAC)? | Azure RBAC | Microsoft Learn").
 
-[!INCLUDE [View and manage assessments](./includes/advisor-permissions-review-recommendations.md)]
-
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-waf-assessments.md)]
 
 ## Available actions to build custom roles
