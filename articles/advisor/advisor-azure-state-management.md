@@ -44,7 +44,7 @@ Each Azure Advisor recommendation can have one of four supported states:
 - **Dismissed**: Permanently removes an item from view until you choose to reactivate it.
 
 
-- **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies.
+- **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies. Azure Advisor automatically checks every 24 hours whether a recommendation has been addressed (the exact cadence depends on the recommendation type).
 
 :::image alt-text="Screenshot of recommendation state in Azure Advisor." lightbox="./media/state-management-6.png" source="./media/state-management-6.png" type="content":::
 
