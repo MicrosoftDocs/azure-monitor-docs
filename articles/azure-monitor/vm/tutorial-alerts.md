@@ -10,6 +10,9 @@ ms.reviewer: Xema Pathak
 # Tutorial: Enable recommended alerts for an Azure virtual machine
 Once you have enabled enhanced monitoring for a virtual machine, you should enable alerts to get notified when the virtual machine experiences issues or performance degradation. Azure Monitor provides a set of recommended alert rules based on common performance scenarios that you can quickly enable for your virtual machines.
 
+> [!IMPORTANT]
+> This tutorial enables recommended alert rules using host metrics for a virtual machine. Don't enable these alerts if you enable OpenTelemetry recommended alerts described in the [Enable enhanced monitoring](tutorial-enable-monitoring.md) tutorial. If you enable both, you may receive duplicate notifications.
+
 > [!NOTE]
 > For virtual machine scale sets, see [Enable recommended alerts for an Azure virtual machine scale set](tutorial-scale-set-alerts.md).
 

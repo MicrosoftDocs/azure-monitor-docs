@@ -3,7 +3,7 @@ title: Enable enhanced monitoring for an Azure virtual machine
 description: Enable enhanced monitoring in Azure Monitor for an Azure virtual machine.
 ms.topic: tutorial
 ms.custom: subject-monitoring
-ms.date: 03/09/2026
+ms.date: 05/26/2026
 ms.reviewer: Xema Pathak
 ---
 
@@ -18,11 +18,15 @@ In this tutorial, you learn how to:
 
 > [!div class="checklist"]
 > * Enable enhanced monitoring for a virtual machine, which installs Azure Monitor Agent and begins data collection.
-> * Choose between metrics-based (preview) and logs-based (classic) experiences.
+> * Choose between metrics-based (recommended) and logs-based (classic) experiences.
+> * Enable recommended alerts for the virtual machine.
 > * Inspect graphs analyzing performance data collected from the virtual machine.
 
 ## Prerequisites
-To complete this tutorial, you need an Azure virtual machine to monitor.
+To complete this tutorial, you need the following:
+
+- Azure virtual machine to monitor
+- Managed identity with  Monitoring Reader role (or a custom role with equivalent permissions) on the VM or the Azure Monitor workspace if you enable recommended alerts with OpenTelemetry metrics enabled.
 
 > [!NOTE]
 > As part of the Azure Monitor Agent installation process, Azure assigns a [system-assigned managed identity](/azure/app-service/overview-managed-identity?tabs=portal%2chttp#add-a-system-assigned-identity) to the machine if such an identity doesn't already exist.
@@ -32,21 +36,44 @@ Select **Monitor** from your virtual machine's menu in the Azure portal. This sh
 
 :::image type="content" source="media/tutorial-enable-monitoring/enable-monitoring.png" alt-text="Screenshot showing the Monitor page for a virtual machine with the option to enable monitoring." lightbox="media/tutorial-enable-monitoring/enable-monitoring.png":::
 
-Leave **[Preview] OpenTelemetry metrics** selected since this experience is available at no cost. You can choose to also select the logs-based option so you can compare the different experience between the two. For a complete description of the differences between these two experiences, see [Compare metrics-based and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
+### Enable metrics to collect
 
-A default Azure Monitor workspace and Log Analytics workspace are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. If you already have existing workspaces that you want to use, then select **Customize infrastructure monitoring** and select the workspaces you want to use.
+Leave **OpenTelemetry metrics** selected since this experience is available at no cost. You can choose to also select the logs-based option so you can compare the different experience between the two. For a complete description of the differences between these two experiences, see [Compare metrics-based and logs-based experiences](./metrics-opentelemetry-guest.md#compare-experiences).
+
+### Customize monitoring configuration
+
+Select **Customize infrastructure monitoring** to open the customization options for the current machine.
+
+## Select workspaces
+
+Depending on your metrics selection, a default Azure Monitor workspace (OpenTelemetry metrics) and Log Analytics workspace (log-based metrics) are selected for you. If they don't already exist, then they'll be created for you in the same region as the virtual machine. You can select an existing workspace if you prefer or select **Create new** to create a new one with a different name as the default.
 
 :::image type="content" source="media/tutorial-enable-monitoring/configure-monitor.png" alt-text="Screenshot showing the customize configuration screen for a virtual machine." lightbox="media/tutorial-enable-monitoring/configure-monitor.png":::
 
-> [!NOTE]
-> Metrics collected for metrics-based experience (preview) are listed in the **Customize configuration** page for information purposes only. This list can't be modified from this screen.
+## Select performance counters
+For OpenTelemetry metrics, a standard set of performance counters are collected at no cost. These are listed in the **Performance counters** section. Optionally, leave **OpenTelemetry per process metrics** enabled to gather a more detailed recommended set of metrics which do incur additional cost. See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor).
 
+You can't customize the performance counters collected by log-based metrics.
+
+## Select data collection rule
+Monitoring configurations are stored in [data collection rules (DCR)](../data-collection/data-collection-rule-overview.md). A single DCR is created by default for the current virtual machine for both OpenTelemetry metrics and logs-based metrics. Alternatively, you can select an existing DCR. This allows you to reuse existing configurations for multiple machines to reduce the complexity of your monitoring environment. Have a new DCR created for your first virtual machine and then use that DCR for any additional machines that you enable.
+
+## Enable recommended alerts
+Leave **Enable recommended alerts** checked to automatically create [alert rules](../alerts/alerts-overview.md) based on the monitoring configuration. If OpenTelemetry metrics are enabled, the alert rules will be based on those metrics even if log-based metrics are also enabled. If only log-based metrics are enabled, the alert rules will be based on VM host metrics.
+
+An [action group](../alerts/action-groups.md) is also created that includes the email address of the user who enabled the monitoring.
+
+> [!IMPORTANT]
+> If OpenTelemetry metrics are used for the alert rules, then you must select a managed identity as specified in [Prerequisites](#prerequisites).
+
+
+## Save
 Select **Review + Enable** and then **Enable** After a few minutes, the Azure Monitor agent is installed on the virtual machine, and data will start being collected.
 
 ## View performance data
 It will take a few minutes after the agent is installed for enough data to be collected to populate the portal. When both experiences are enabled for a VM, you get a selector at the top to choose the experience you want to view. Select each experience to compare the different charts and insights that are available.
 
-The metrics-based (preview) experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
+The metrics-based experience provides a set of charts focused on key performance indicators for the virtual machine. It also incorporates status from [Service Health](../../service-health/overview.md) and [Resource Health](../../service-health/resource-health-overview.md) to give you a quick view of the machine's overall health.
 
 :::image type="content" source="media/tutorial-enable-monitoring/metrics-experience.png" alt-text="Screenshot of metrics experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/metrics-experience.png":::
 
@@ -54,16 +81,8 @@ The logs-based experience uses summarized performance data collected in the Log 
 
 :::image type="content" source="media/tutorial-enable-monitoring/logs-experience.png" alt-text="Screenshot of logs experience for VM monitoring." lightbox="media/tutorial-enable-monitoring/logs-experience.png":::
 
-> [!NOTE]
-> The **Maps** feature is displayed in both experiences but has been deprecated as described in [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md).
-
-## View multi-VM performance data
-The logs-based experience also provides the ability to view performance data across multiple virtual machines in a single chart. This allows you to compare the performance of different machines and identify any that might be under heavy load or experiencing performance issues. 
-
-
-When the deployment is finished, you see views on the **Performance** tab in VM insights with performance data for the machine. This data shows you the values of key guest metrics over time.
-
-:::image type="content" source="media/tutorial-enable-monitoring/multiple-machine-view.png" lightbox="media/tutorial-enable-monitoring/multiple-machine-view.png" alt-text="Screenshot that shows the VM insights Performance view.":::
+## View Grafana dashboards
+Azure Monitor dashboards with Grafana delivers Grafana dashboards directly in the Azure portal. It's automatically available at no cost and with no configuration requirements. Use [Dashboards with Grafana for Azure Virtual Machines](../visualize/grafana-azure-virtual-machines.md) to view collected data for multiple machines.
 
 ## Next steps
 Now that you have enabled enhanced monitoring for your virtual machine, collect guest logs such as Windows event logs or Syslog from the virtual machine.
