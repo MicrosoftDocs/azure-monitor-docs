@@ -1,8 +1,8 @@
 ---
 title: Overview of migration from Azure Monitor SCOM Managed Instance
 description: A guidance overview on migration from Azure Monitor SCOM Managed Instance to System Center Operations Manager or Azure Monitor.
-author: Jeronika-MS
-ms.author: v-gajeronika
+author: aakashbsrj
+ms.author: aakashb
 ms.service: azure-monitor
 ms.subservice: operations-manager-managed-instance
 ms.topic: overview
