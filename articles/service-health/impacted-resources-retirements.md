@@ -2,7 +2,7 @@
 title: Impacted Resources from Azure Retirements
 description: This article details where to find information from Azure Service Health impacted resources from retirements.
 ms.topic: concept-article
-ms.date: 05/29/2026
+ms.date: 06/02/2026
 
 ---
 
@@ -280,7 +280,7 @@ servicehealthresources
 | extend region = tostring(properties.targetRegion)
 | extend resourceGroup = tostring(properties.resourceGroup)
 | project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`;
-
+```
 
 ### Frequently Asked Questions
 
