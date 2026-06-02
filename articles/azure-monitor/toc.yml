@@ -728,6 +728,8 @@ items:
         href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Collect OpenTelemetry
     items:
+    - name: OpenTelemetry with Azure Monitor
+      href: containers/opentelemetry-options.md
     - name: Collect and analyze OpenTelemetry data
       href: containers/collect-use-observability-data.md
     - name: Ingest OTLP signals with OTel Collector
