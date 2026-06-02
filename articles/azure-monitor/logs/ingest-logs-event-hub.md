@@ -389,7 +389,7 @@ To create a data collection rule association in the Azure portal:
         "eventHubResourceID": {
           "type": "string",
           "metadata": {
-            "description": "Specifies the Azure resource ID of the event hub to use."
+            "description": "Specifies the Azure resource ID of the event hub instance to use."
           }
         },
         "associationName": {
