@@ -21,7 +21,6 @@ By using Azure Advisor recommendation state management, you can track and manage
 >Azure Advisor recommendation state management is currently in preview. Preview features are provided for evaluation purposes and might change before general availability.
 
 > [!NOTE]
-> By using Azure Advisor recommendation state management, you can track and manage new and existing recommendations through their state lifecycle.
 > Full state management is not supported for security recommendations. Only the Active state is supported for this category. Other states such as Completed, Postponed, and
 > Dismissed are not applicable to security recommendations. 
 
