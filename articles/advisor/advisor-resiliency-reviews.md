@@ -5,7 +5,7 @@ ms.service: azure
 ms.topic: how-to
 author: tiffanywangmicrosoft
 ms.author: tiffanywang
-ms.date: 05/27/2026
+ms.date: 04/22/2025
 
 ---
 
@@ -51,6 +51,9 @@ Customers with Unified or Premier Support contracts can access resiliency review
 
 
 Your Microsoft account team works with you to collect information about the workload. They need to know which subscriptions are used for the workload, and which subscriptions they should use to publish the review and recommendations. You need to work with the owner of the subscription to configure permissions for your team.
+
+[!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-review-recommendations.md)]
+
 
 ### Open the Azure Advisor Dashboard
 
