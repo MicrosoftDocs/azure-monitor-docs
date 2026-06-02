@@ -42,7 +42,7 @@ Each Azure Advisor recommendation can have one of four supported states:
 
 - **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies.
 
-:::image alt-text="Screenshot of recommendation state in Azure Advisor." lightbox="./media/learn6.png" source="./media/learn6.png" type="content":::
+:::image alt-text="Screenshot of recommendation state in Azure Advisor." lightbox="./media/state-management-6.png" source="./media/state-management-6.png" type="content":::
 
 These states show the status of each recommendation. Use them to manage your recommendations as they transition through their lifecycle.
 
