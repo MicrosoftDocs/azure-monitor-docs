@@ -2,7 +2,7 @@
 title: Roles and permissions 
 description: Learn about Advisor permissions, how to manage access to Advisor recommendations and reviews.
 ms.topic: concept-article
-ms.date: 08/22/2024
+ms.date: 06/01/2026
 ---
 
 # Roles and permissions
@@ -55,8 +55,6 @@ Review the following section to learn more about each role and the associated ac
 > You must have access to the resource associated with the recommendation to view a recommendation.
 
 To learn more about built-in roles, see [Azure built-in roles](/azure/role-based-access-control/built-in-roles "Azure built-in roles | Azure RBAC | Microsoft Learn"). To learn more about Azure role-based access control (Azure RBAC), see [What is Azure role-based access control (Azure RBAC)?](/azure/role-based-access-control/overview "What is Azure role-based access control (Azure RBAC)? | Azure RBAC | Microsoft Learn").
-
-[!INCLUDE [View and manage assessments](./includes/advisor-permissions-review-recommendations.md)]
 
 [!INCLUDE [Reviews and personalized recommendations](./includes/advisor-permissions-waf-assessments.md)]
 
