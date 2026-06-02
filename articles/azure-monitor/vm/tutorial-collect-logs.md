@@ -4,7 +4,7 @@ description: Create a data collection rule to collect guest logs from an Azure v
 ai-usage: ai-assisted
 ms.topic: tutorial
 ms.custom: subject-monitoring
-ms.date: 03/09/2026
+ms.date: 05/28/2026
 ms.reviewer: Xema Pathak
 ---
 
@@ -22,7 +22,7 @@ In this tutorial, you learn how to:
 ## Prerequisites
 To complete this tutorial, you need either:
 
-- Virtual machine with monitoring enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md)
+- A virtual machine with monitoring enabled by following [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
 - Virtual machine scale set with monitoring enabled by following [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 
@@ -107,8 +107,6 @@ To verify that data is being collected, check for records in the **Syslog** tabl
 
 For a tutorial on using Log Analytics to analyze log data, see [Log Analytics tutorial](../logs/log-analytics-tutorial.md). For a tutorial on creating alert rules from log data, see [Tutorial: Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md).
 
-## Next steps
-[Recommended alerts](./tutorial-alerts.md) provide alerting from the virtual machine host, but they don't have visibility into the guest operating system and its workloads. Now that you're collecting guest logs, you can analyze them in Log Analytics and create alerts based on the events they contain.
 
 > [!div class="nextstepaction"]
 > [Create a log search alert for an Azure resource](../alerts/tutorial-log-alert.md)

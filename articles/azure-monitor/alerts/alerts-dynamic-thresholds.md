@@ -29,7 +29,7 @@ You can use dynamic thresholds on:
 - Most Azure Monitor platform and custom metrics.
 - Common application and infrastructure metrics.
 - Noisy metrics, like that from Virtual machine CPU or memory or metrics with low dispersion, such as availability and error rate.
-- Log query results (Preview).
+- Log query results.
 
 You can configure dynamic thresholds by using:
 
@@ -171,7 +171,7 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Storage/storageAccounts/fileServices | FileShareProvisionedIOPS |
 
 
-## Create a Log search alert rule with dynamic threshold (Preview)
+## Create a Log search alert rule with dynamic threshold
 
 To configure dynamic thresholds, follow the [procedure for creating an alert rule](./alerts-create-log-alert-rule.md). Use these settings on the Condition tab:
 

@@ -3,13 +3,13 @@ title: Migrate from logs-based to OpenTelemetry metrics for Azure virtual machin
 description: Learn how to migrate your Azure virtual machines from the classic logs-based monitoring experience to the OpenTelemetry-based metrics experience in Azure Monitor.
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 03/12/2026
+ms.date: 05/28/2026
 ms.reviewer: xpathak
 ---
 
 # Migrate from logs-based to OpenTelemetry metrics for Azure virtual machines
 
-The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your default monitoring option for virtual machines in Azure Monitor because it's available at no cost. If you already have the older logs-based experience enabled, the next decision is whether you need to keep it enabled and when you can retire it. Because the logs-based experience includes data ingestion and retention charges, you should retire it as soon as possible to optimize costs. This article helps you make that decision and walks through the migration process when you can retire the logs-based experience.
+The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your default monitoring option for virtual machines in Azure Monitor. If you already have the older logs-based experience enabled, the next decision is whether you need to keep it enabled and when you can retire it. Because the logs-based experience includes data ingestion and retention charges, you should retire it as soon as possible to optimize costs. This article helps you make that decision and walks through the migration process when you can retire the logs-based experience.
 
 > [!NOTE]
 > The metrics-based experience is currently in public preview.
@@ -21,16 +21,19 @@ The [metrics-based experience](./metrics-opentelemetry-guest.md) should be your 
 - **Azure Monitor agent**: You don't need to reinstall or update the Azure Monitor agent. The same agent handles both logs-based and OpenTelemetry metrics collection using different DCRs.
 - **Run both experiences temporarily if needed**: Keep both experiences enabled only long enough to validate replacement queries and dashboards.
 
+
 ## When to keep the logs-based experience
 
 Keep the logs-based experience enabled if any of the following are still true:
 
 - You need to monitor VM Scale Sets.
+- You need the VM to connect to Azure Monitor with private link.
 - You rely on the built-in multi-VM dashboards and workbooks in VM insights.
 - You need to correlate metrics and logs in a single KQL query.
 - You still use queries, alerts, dashboards, or workbooks that depend on the `InsightsMetrics` table.
 
 If none of these apply, you can retire the logs-based experience and keep the metrics-based experience enabled.
+
 
 ## Before you retire the logs-based experience
 
@@ -38,6 +41,7 @@ Before you retire the logs-based experience, confirm the following:
 
 - Metrics-based monitoring is already enabled for each VM.
 - The metrics-based experience shows the performance data that you need.
+- If you require per-process charts, confirm per-process metrics are enabled in the OpenTelemetry DCR.
 - You don't need the built-in multi-VM experience.
 - Any KQL queries, alerts, dashboards, or workbooks that use `InsightsMetrics` have been updated, retired, or replaced.
 

@@ -232,7 +232,7 @@ items:
       href: vm/monitor-vm.md
     - name: Best practices
       href: vm/best-practices-vm.md
-    - name: Getting started
+    - name: Get started
       items:
       - name: Virtual machines
         items:
@@ -251,6 +251,7 @@ items:
           displayName: virtual machine scale set, VMSS
           href: vm/tutorial-scale-set-alerts.md
       - name: Collect guest logs
+        displayName: virtual machine, VM 
         href: vm/tutorial-collect-logs.md
     - name: Enable monitoring
       items:
@@ -386,9 +387,10 @@ items:
     - name: Deployment guidance
       displayName: containers
       href: containers/monitor-kubernetes.md
-    - name: Getting started
+    - name: Get started
       items:
-      - name: Enable monitoring for a cluster
+      - name: Enable monitoring
+        displayName: kubernetes, cluster
         href: containers/kubernetes-monitoring-tutorial.md
     - name: Best practices
       displayName: containers, kubernetes
@@ -401,9 +403,9 @@ items:
         href: containers/kubernetes-monitoring-enable-arc.md
       - name: Disable monitoring
         href: containers/kubernetes-monitoring-disable.md
-      - name: OpenTelemetry Protocol ingestion overview (Preview)
+      - name: OpenTelemetry Protocol ingestion overview
         href: containers/opentelemetry-summary.md
-      - name: Monitor AKS applications with OpenTelemetry Protocol (Preview)
+      - name: Monitor AKS applications with OpenTelemetry Protocol
         href: containers/kubernetes-open-protocol.md
       - name: Autoinstrumentation for AKS
         href: containers/kubernetes-codeless.md
@@ -668,16 +670,6 @@ items:
       - name: Best practices and samples
         displayName: Transformations
         href: data-collection/data-collection-transformations-samples.md
-    - name: Metrics export
-      items:
-      - name: Metrics export using DCRs
-        displayName: data collection rules, metrics
-        href: data-collection/metrics-export-create.md
-      - name: Metrics export DCR structure
-        displayName: metrics export
-        href: data-collection/metrics-export-structure.md
-      - name: Compare metrics strategies
-        href: data-collection/data-plane-versus-metrics-export.md
     - name: Monitor DCRs
       displayName: Data collection rules
       href: data-collection/data-collection-monitor.md
@@ -693,34 +685,55 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
+  - name: Platform logs and metrics
+    items:
+    - name: Metrics
+      items:
+      - name: Metrics export using DCRs
+        displayName: data collection rules, metrics
+        href: data-collection/metrics-export-create.md
+      - name: Supported resources and regions
+        displayName: metrics export, supported resources, supported regions
+        href: data-collection/metrics-export-reference.md
+      - name: Metrics export DCR structure
+        displayName: metrics export
+        href: data-collection/metrics-export-structure.md
+      - name: Compare metrics strategies
+        href: data-collection/data-plane-versus-metrics-export.md
+    - name: Logs
+      items:
+      - name: Collect logs using DCRs
+        displayName: data collection rules, platform logs, resource logs
+        href: data-collection/platform-logs-collect.md
+      - name: Supported resources and regions
+        displayName: data collection rules, platform logs, resource logs, categories, regions
+        href: data-collection/platform-logs-reference.md
+    - name: Diagnostic settings
+      items:
+      - name: Create or edit
+        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+        href: platform/diagnostic-settings.md
+      - name: Frequently asked questions
+        href: platform/diagnostic-settings-faq.md
+      - name: Create with Azure Policy
+        items:
+        - name: Use built-in policy or initiative
+          displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+          href: platform/diagnostic-settings-policy-built-in.md
+        - name: Create custom policy
+          displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+          href: platform/diagnostic-settings-policy.md
+      - name: Migrate storage retention
+        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+        href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Collect OpenTelemetry
     items:
-    - name: OpenTelemetry with Azure Monitor (Preview)
-      href: containers/opentelemetry-options.md
-    - name: Collect and analyze OpenTelemetry data (Preview)
+    - name: Collect and analyze OpenTelemetry data
       href: containers/collect-use-observability-data.md
-    - name: Ingest OTLP signals with OTel Collector (Preview)
+    - name: Ingest OTLP signals with OTel Collector
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
-  - name: Diagnostic Settings
-    items:
-    - name: Create or edit
-      displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-      href: platform/diagnostic-settings.md
-    - name: Frequently asked questions
-      href: platform/diagnostic-settings-faq.md
-    - name: Create with Azure Policy
-      items:
-      - name: Use built-in policy or initiative
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy-built-in.md
-      - name: Create custom policy
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy.md
-    - name: Migrate storage retention
-      displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-      href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Azure Monitor Agent
     items:
     - name: Overview
@@ -1271,54 +1284,6 @@ items:
       href: visualize/grafana-azure-virtual-machines.md
     - name: Kubernetes clusters
       href: visualize/grafana-kubernetes.md
-    - name: Azure Data Explorer
-      href: visualize/grafana-azure-data-explorer.md
-    - name: Resource-scoped queries
-      href: visualize/grafana-resource-scoped-queries.md
-    - name: Copy Azure Monitor dashboard
-      href: visualize/visualize-copy-to-managed-grafana.md
-    - name: Call Grafana APIs programmatically
-      href: visualize/visualize-call-grafana-api.md
-  - name: Power BI
-    href: logs/log-powerbi.md
-- name: Analyze
-  items:
-  - name: Metrics explorer
-    items:
-    - name: Analyze metrics
-      href: metrics/analyze-metrics.md
-    - name: Metrics explorer with PromQL
-      displayName: Prometheus, metrics explorer
-      href: metrics/metrics-explorer.md
-    - name: Understanding metrics aggregation
-      href: metrics/metrics-aggregation-explained.md
-    - name: Examples of metric charts
-      href: metrics/metric-chart-samples.md
-    - name: Troubleshooting metric charts
-      href: metrics/metrics-troubleshoot.md
-  - name: REST API for metrics
-    items:
-    - name: Metrics REST API Walkthrough
-      displayName: metrics, analyze
-      href: platform/rest-api-walkthrough.md
-    - name: Migrate to the metrics getBatch API
-      href: metrics/migrate-to-batch-api.md
-  - name: Log Analytics
-    items:
-    - name: Overview
-      href: logs/log-analytics-overview.md
-    - name: Simple mode
-      href: logs/log-analytics-simple-mode.md
-    - name: Query scope
-      href: logs/scope.md
-    - name: Saving queries
-      href: logs/save-query.md
-    - name: Using queries
-      href: logs/queries.md
-    - name: Summary rules
-      href: logs/summary-rules.md
-    - name: Query packs
-      href: logs/query-packs.md
     - name: Tutorial
       displayName: Log Analytics workspace, log query, log queries, query, queries
       href: logs/log-analytics-tutorial.md
