@@ -4,7 +4,7 @@
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
 title: Azure Advisor recommendation state management
-description: This article describes azure advisor recommendation state management and provides you with methods for use.
+description: This article describes Azure advisor recommendation state management and provides you with methods for use.
 author:      zucatihal # GitHub alias
 ms.author:   v-zucatihal # Microsoft alias
 ms.service: azure-advisor
