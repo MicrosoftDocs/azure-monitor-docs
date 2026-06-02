@@ -23,8 +23,6 @@ By using Azure Advisor recommendation state management, you can track and manage
 > [!NOTE]
 > Full state management is not supported for security recommendations. Only the Active state is supported for this category. Other states such as Completed, Postponed, and
 > Dismissed are not applicable to security recommendations. 
-
-> [!NOTE]
 > Completed state may appear for security recommendations in the Advisor table in Azure Resource Graph. This value may not reflect the actual status and should not be relied
 > upon.
 
