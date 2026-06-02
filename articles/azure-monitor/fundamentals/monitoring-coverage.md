@@ -161,10 +161,10 @@ Fix detected issues in numerical order, then select **Run validation checks** to
 
 :::image type="content" source="./media/monitoring-coverage/resource-data-flow.png" lightbox="./media/monitoring-coverage/resource-data-flow.png" alt-text="Screenshot of resource data flow status with validation checks, recommended action, and last checked time.":::
 
-## Important notes
-
-- Monitoring coverage is in preview. Feature availability, supported recommendations, and enablement flows can change before general availability.
-- Enablement operations include up to 100 resources at a time.
-- Enhanced monitoring, data collection, workspace ingestion, and alert rules might incur additional costs.
-- Some enablement actions require sufficient permissions on the selected subscription or resources. Subscription-level VM alerting requires a user-assigned managed identity and the **Monitoring Contributor** role.
-- Data flow status reflects the latest validation check. Rerun validation checks after making changes to verify that issues are resolved.
+> [!IMPORTANT]
+> 
+> - Monitoring coverage is in preview. Feature availability, supported recommendations, and enablement flows can change before general availability.
+> - Enablement operations include up to 100 resources at a time.
+> - Enhanced monitoring, data collection, workspace ingestion, and alert rules might incur additional costs.
+> - Some enablement actions require sufficient permissions on the selected subscription or resources. Subscription-level VM alerting requires a user-assigned managed identity and the **Monitoring Contributor** role.
+> - Data flow status reflects the latest validation check. Rerun validation checks after making changes to verify that issues are resolved.
