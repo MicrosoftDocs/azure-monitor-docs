@@ -668,16 +668,6 @@ items:
       - name: Best practices and samples
         displayName: Transformations
         href: data-collection/data-collection-transformations-samples.md
-    - name: Metrics export
-      items:
-      - name: Metrics export using DCRs
-        displayName: data collection rules, metrics
-        href: data-collection/metrics-export-create.md
-      - name: Metrics export DCR structure
-        displayName: metrics export
-        href: data-collection/metrics-export-structure.md
-      - name: Compare metrics strategies
-        href: data-collection/data-plane-versus-metrics-export.md
     - name: Monitor DCRs
       displayName: Data collection rules
       href: data-collection/data-collection-monitor.md
@@ -693,6 +683,47 @@ items:
       - name: Workspace transformation with ARM templates
         displayName: Workspace transformations
         href: logs/tutorial-workspace-transformations-api.md
+  - name: Platform logs and metrics
+    items:
+    - name: Metrics
+      items:
+      - name: Metrics export using DCRs
+        displayName: data collection rules, metrics
+        href: data-collection/metrics-export-create.md
+      - name: Supported resources and regions
+        displayName: metrics export, supported resources, supported regions
+        href: data-collection/metrics-export-reference.md
+      - name: Metrics export DCR structure
+        displayName: metrics export
+        href: data-collection/metrics-export-structure.md
+      - name: Compare metrics strategies
+        href: data-collection/data-plane-versus-metrics-export.md
+    - name: Logs
+      items:
+      - name: Collect logs using DCRs
+        displayName: data collection rules, platform logs, resource logs
+        href: data-collection/platform-logs-collect.md
+      - name: Supported resources and regions
+        displayName: data collection rules, platform logs, resource logs, categories, regions
+        href: data-collection/platform-logs-reference.md
+    - name: Diagnostic settings
+      items:
+      - name: Create or edit
+        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+        href: platform/diagnostic-settings.md
+      - name: Frequently asked questions
+        href: platform/diagnostic-settings-faq.md
+      - name: Create with Azure Policy
+        items:
+        - name: Use built-in policy or initiative
+          displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+          href: platform/diagnostic-settings-policy-built-in.md
+        - name: Create custom policy
+          displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+          href: platform/diagnostic-settings-policy.md
+      - name: Migrate storage retention
+        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
+        href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Collect OpenTelemetry
     items:
     - name: OpenTelemetry with Azure Monitor (Preview)
@@ -703,24 +734,6 @@ items:
       href: containers/opentelemetry-protocol-ingestion.md
     - name: Ingest OTLP signals with AMA (Preview)
       href: containers/opentelemetry-ingest-agent.md
-  - name: Diagnostic Settings
-    items:
-    - name: Create or edit
-      displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-      href: platform/diagnostic-settings.md
-    - name: Frequently asked questions
-      href: platform/diagnostic-settings-faq.md
-    - name: Create with Azure Policy
-      items:
-      - name: Use built-in policy or initiative
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy-built-in.md
-      - name: Create custom policy
-        displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-        href: platform/diagnostic-settings-policy.md
-    - name: Migrate storage retention
-      displayName: Diagnostic Settings, Platform logs, Resource logs, Activity log
-      href: platform/migrate-to-azure-storage-lifecycle-policy.md
   - name: Azure Monitor Agent
     items:
     - name: Overview
