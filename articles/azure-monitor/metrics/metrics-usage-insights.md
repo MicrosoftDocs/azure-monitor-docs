@@ -186,7 +186,7 @@ param am_workspace_name = '<azure-monitor-workspace-name>'
 
 ---
 
-### Enable for an existing workspac
+### Enable for an existing workspace
 
 ### [Portal](#tab/portal)
 
