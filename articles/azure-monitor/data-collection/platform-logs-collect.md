@@ -376,6 +376,8 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
 
 
 
+
+
 Create the DCR:
 
 ```azurepowershell
@@ -539,6 +541,7 @@ Content-Type: application/json
 }
 ```
 </details>
+
 
 
 Copy the `id` and `identity.principalId` values from the response for use in role assignments and rule associations.
@@ -845,7 +848,6 @@ If you don't see data flowing, use [DCR monitoring features](./data-collection-m
 
 Common issues to check:
 
-- Preview feature not enabled for the subscription: Verify that `DcrPlatformLogs` is registered.
 - Incorrect API version: Use `api-version=2024-03-11` for DCR and DCRA operations.
 - Streams mismatch with resource type. Confirm that the stream specification matches a supported resource type and log category.
 - Region mismatch. Ensure the DCR, destination resource, and monitored resources are all in the same region (except for Log Analytics workspace destinations).
