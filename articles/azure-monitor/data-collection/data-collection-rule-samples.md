@@ -10,7 +10,7 @@ ms.reviewer: jeffwo
 
 # Data collection rule (DCR) samples in Azure Monitor
 
-This article includes sample [data collection rules (DCR)](data-collection-rule-overview.md) definitions for common data collection scenarios in Azure Monitor. You can modify these DCR definitions as required for your environment and create the DCR using the guidance in [Create or edit a data collection rule](data-collection-rule-create-edit.md). You can also use and combine the basic strategies in these samples to create DCRs for other scenarios.
+This article includes sample [data collection rules (DCR)](data-collection-rule-overview.md) definitions for common data collection scenarios in Azure Monitor. Modify these DCR definitions as required for your environment and create the DCR using the guidance in [Create or edit a data collection rule](data-collection-rule-create-edit.md). Combine the basic strategies in these samples to create DCRs for other scenarios.
 
 These samples require knowledge of the DCR structure as described in [Structure of a data collection rule in Azure Monitor](data-collection-rule-structure.md). Several may be configured using the Azure portal without any detailed knowledge of the DCR structure. Use these samples as a starting point if you want to manage the DCRs using methods outside of the Azure portal such as ARM, CLI, and PowerShell. You may need to use these methods to edit existing DCRs to implement advanced features such as [transformations](data-collection-transformations.md).
 
