@@ -2,7 +2,7 @@
 title: Use Event Level to Prioritize Notifications and Communications
 description: Learn how to use a new metadata field to filter event notifications in Azure Service Health.
 ms.topic: overview
-ms.date: 03/04/2026
+ms.date: 05/29/2026
 ---
 
 # Filter notifications using event levels in Azure Service Health

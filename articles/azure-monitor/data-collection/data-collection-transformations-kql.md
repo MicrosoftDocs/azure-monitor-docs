@@ -1,9 +1,10 @@
 ---
 title: Supported KQL features in Azure Monitor transformations
-description: Supported KQL features in Azure Monitor transformations
+description: Reference list of KQL operators, functions, and statements supported in Azure Monitor data collection transformations.
 ms.topic: reference
-ms.date: 01/20/2026
+ms.date: 05/15/2026
 ms.reviewer: nikeist
+ai-usage: ai-assisted
 
 ---
 
@@ -13,15 +14,18 @@ ms.reviewer: nikeist
 
 Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records.
 
-Only the operators listed in this article are supported in transformations. Any other operators that may be used in other log queries are not supported in transformations.
+Only the operators listed in this article are supported in transformations.
+
+> [!NOTE]
+> For [multi-stage transformations (preview)](data-collection-transformations.md#multi-stage-transformations-preview), the KQL features described in this article apply to the `transform.KQL` processor and to the `transformKql` property in data flows. Other processor types such as `filter.Basic`, `parse.JsonPath`, and `aggregate.Basic` use declarative JSON configuration rather than KQL. See [DCR structure - Processor types](data-collection-rule-structure.md#processor-types) for details.
 
 ## Special considerations
 
-### Parse command
+### Parse operator
 
-The [parse](/kusto/query/parse-operator) command in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
+The [parse](/kusto/query/parse-operator) operator in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
 
-### Handling dynamic data
+### Handle dynamic data
 
 Consider the following input with [dynamic data](/azure/data-explorer/kusto/query/scalar-data-types/dynamic):
 
@@ -70,21 +74,21 @@ Use the [`parse_json` function](/azure/data-explorer/kusto/query/parsejsonfuncti
 
 For example, the following queries provide the same functionality:
 
-```kql
+```kusto
 print d=dynamic({"a":123, "b":"hello", "c":[1,2,3], "d":{}})
 ```
 
-```kql
+```kusto
 print d=parse_json('{"a":123, "b":"hello", "c":[1,2,3], "d":{}}')
 ```
 
 ## Special functions
 
-The following functions are only available in transformations. They cannot be used in other log queries.
+The following functions are only available in transformations. They can't be used in other log queries.
 
 ### `parse_cef_dictionary`
 
-Given a string containing a CEF message, `parse_cef_dictionary` parses the Extension property of the message into a dynamic key/value object. Semicolon is a reserved character that should be replaced prior to passing the raw message into the method, as shown in the example.
+The `parse_cef_dictionary` function parses the Extension property of a CEF message into a dynamic key/value object. Semicolon is a reserved character that should be replaced before passing the raw message into the method, as shown in the example.
 
 ```kusto
 | extend cefMessage=iff(cefMessage contains_cs ";", replace(";", " ", cefMessage), cefMessage) 
@@ -93,11 +97,11 @@ Given a string containing a CEF message, `parse_cef_dictionary` parses the Exten
 | project TimeGenerated, cefMessage, parsecefDictionaryExtension
 ```
 
-:::image type="content" source="media/data-collection-transformations-structure/parse-cef-dictionary.png" lightbox="media/data-collection-transformations-structure/parse-cef-dictionary.png" alt-text="Sample output of parse_cef_dictionary function.":::
+:::image type="content" source="media/data-collection-transformations-structure/parse-cef-dictionary.png" lightbox="media/data-collection-transformations-structure/parse-cef-dictionary.png" alt-text="Table showing parsed CEF dictionary output with TimeGenerated, cefMessage, and parsed extension columns.":::
 
 ### `geo_location`
 
-Given a string containing IP address (IPv4 and IPv6 are supported), `geo_location` function returns approximate geographical location, including the following attributes:
+The `geo_location` function returns approximate geographical location for an IP address (IPv4 and IPv6 are supported), including the following attributes:
 * Country
 * Region
 * State
@@ -109,20 +113,20 @@ Given a string containing IP address (IPv4 and IPv6 are supported), `geo_locatio
 | extend GeoLocation = geo_location("1.0.0.5")
 ```
 
-:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" lightbox="media/data-collection-transformations-structure/geo-location.png" alt-text="Screenshot of sample output of geo_location function.":::
+:::image type="content" source="media/data-collection-transformations-structure/geo-location.png" lightbox="media/data-collection-transformations-structure/geo-location.png" alt-text="Table showing geo_location output with country, region, state, city, latitude, and longitude columns.":::
 
 > [!IMPORTANT]
-> Due to nature of IP geolocation service utilized by this function, it may introduce data ingestion latency if used excessively. Exercise caution when using this function more than several times per transformation.
+> This function calls an external IP geolocation service, which might add data ingestion latency. Use it sparingly—no more than a few times per transformation.
 
 ## Supported statements
 
-###	Let statement
+###                   Let statement
 
 The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
 ### Tabular expression statements
 
-The only supported data sources for the KQL statement in a transformation are as follows:
+The only supported data sources for the KQL statement in a transformation are:
 
 * **source**, which represents the source data. For example:
 
@@ -305,6 +309,6 @@ The only supported data sources for the KQL statement in a transformation are as
 
 Use [Identifier quoting](/azure/data-explorer/kusto/query/schema-entities/entity-names?q=identifier#identifier-quoting) as required.
 
-## Next steps
+## Related content
 
-* [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.
+- [Create a data collection rule](../vm/data-collection.md) and an association to it from a virtual machine using the Azure Monitor agent.

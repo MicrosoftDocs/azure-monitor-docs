@@ -2,13 +2,14 @@
 title: Sample transformations in Azure Monitor
 description: Sample transformations for common scenarios in Azure Monitor.
 ms.topic: how-to
-ms.date: 01/20/2026
-ms.reviwer: nikeist
+ms.date: 05/15/2026
+ms.reviewer: nikeist
+ai-usage: ai-assisted
 ---
 
 # Sample transformations in Azure Monitor
 
-[Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides  sample queries for common scenarios that you can use to get started creating your own transformations. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for details on testing these transformations and adding them to a data collection rule (DCR).
+[Transformations in Azure Monitor](data-collection-transformations.md) allow you to filter or modify incoming data before it's sent to a Log Analytics workspace. This article provides sample queries for common scenarios that you can use to get started creating your own transformations. See [Create a transformation in Azure Monitor](data-collection-transformations-create.md) for details on testing these transformations and adding them to a data collection rule (DCR).
 
 ## Reduce data costs
 
@@ -32,7 +33,7 @@ source | project-away RawData
 
 ## Parse important data from a column
 
-You may have a column with important data buried in excessive text. Keep only the valuable data and remove the text that isn't needed. Use [string functions](data-collection-transformations-kql.md#scalar-functions) such as `substring` and `extract` to parse the data you want. You can also parse the data using `parse` or `split` to break a single column in to multiple values and select the one you want. Then use `extend` to create a new column with the parsed data and `project-away` to remove the original column.
+You might have a column with important data buried in excessive text. Keep only the valuable data and remove the text that isn't needed. Use [string functions](data-collection-transformations-kql.md#scalar-functions) such as `substring` and `extract` to parse the data you want. You can also parse the data using `parse` or `split` to break a single column into multiple values and select the one you want. Then use `extend` to create a new column with the parsed data and `project-away` to remove the original column.
 
 > [!WARNING]
 > See [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) for tips on using complex parse commands.
@@ -53,7 +54,7 @@ Send rows in your data that require basic query capabilities to basic logs table
 
 ## Remove sensitive data
 
-You might have a data source that sends information you don't want stored for privacy or compliancy reasons.
+You might have a data source that sends information you don't want stored for privacy or compliance reasons.
 
 ### Filter sensitive information
 
@@ -108,7 +109,7 @@ source | extend TimeGenerated = now()
 
 ### Parse data
 
-Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table.
+Use the `split` or `parse` operator to parse data into multiple columns in the destination table. In the following example, the incoming data has a comma-delimited column named `RawData` that's split into individual columns for the destination table. [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) to reduce processing time.
 
 ```kusto
 source 
@@ -116,10 +117,265 @@ source
 | project TimeGenerated=todatetime(d[0]), Code=toint(d[1]), Severity=tostring(d[2]), Module=tostring(d[3]), Message=tostring(d[4])
 ```
 
-> [!WARNING]
-> See [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands) for tips on using complex parse commands.
+## Multi-stage transformation samples (preview)
 
-## Next steps
+> [!IMPORTANT]
+> Multi-stage transformations are currently in public preview. See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-* [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
-* [Create a workspace transformation DCRs that applies to data not collected using a DCR](data-collection-transformations.md#workspace-transformation-dcr).
+The following samples demonstrate processor-based multi-stage transformations. Each sample shows the `transformations` section of a DCR definition. For the complete DCR structure and how to reference these transformations from data sources and data flows, see [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+
+### Filter syslog by facility on the client
+
+Filter syslog records on the client side to keep only `auth` and `authpriv` events before sending them over the network.
+
+```json
+{
+    "name": "client_filter_auth",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "filter.Basic",
+            "configuration": {
+                "any": [
+                    {
+                        "all": [
+                            {
+                                "columnName": "Facility",
+                                "operator": "==",
+                                "value": "auth"
+                            }
+                        ]
+                    },
+                    {
+                        "all": [
+                            {
+                                "columnName": "Facility",
+                                "operator": "==",
+                                "value": "authpriv"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+### Parse JSON fields from Windows Events
+
+Extract structured fields from a JSON payload in the `EventData` column of Windows Events.
+
+```json
+{
+    "name": "client_parse_windows_events",
+    "headerProcessor": {
+        "processor": "header.WindowsEvents",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.XmlPath",
+            "configuration": {
+                "columnName": "RawXml",
+                "all": [
+                    {
+                        "path": "/Event/System/EventID",
+                        "nameAs": "EventID",
+                        "typeAs": "int"
+                    },
+                    {
+                        "path": "/Event/EventData/Data[@Name='SubjectUserName']",
+                        "nameAs": "SubjectUserName",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "processor": "map.Drop",
+            "configuration": {
+                "columnNames": ["RawXml", "RenderingInfo"]
+            }
+        }
+    ]
+}
+```
+
+### Aggregate performance counters
+
+Aggregate performance counter data on the client side to reduce data volume by summarizing values over a 5-minute window.
+
+```json
+{
+    "name": "client_aggregate_perf",
+    "headerProcessor": {
+        "processor": "header.WindowsPerformanceCounters",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "aggregate.Basic",
+            "configuration": {
+                "batchingSettings": {
+                    "timeWindow": "5m",
+                    "maxBatchRows": 1000
+                },
+                "aggregates": [
+                    {
+                        "columnName": "CounterValue",
+                        "operator": "avg",
+                        "nameAs": "AvgValue"
+                    },
+                    {
+                        "columnName": "CounterValue",
+                        "operator": "max",
+                        "nameAs": "MaxValue"
+                    },
+                    {
+                        "operator": "count",
+                        "nameAs": "SampleCount"
+                    }
+                ],
+                "dimensionColumns": ["CounterName", "Instance"]
+            }
+        }
+    ]
+}
+```
+
+> [!IMPORTANT]
+> Aggregation changes the output schema entirely. Route aggregated data to a separate custom table.
+
+### Extract CEF attributes from syslog
+
+Extract CEF (Common Event Format) attributes from syslog messages, often used for security device data.
+
+```json
+{
+    "name": "client_parse_cef",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.CEFAttribute",
+            "configuration": {
+                "columnName": "Message",
+                "all": [
+                    {
+                        "path": "deviceAction",
+                        "nameAs": "DeviceAction",
+                        "typeAs": "string"
+                    },
+                    {
+                        "path": "sourceAddress",
+                        "nameAs": "SourceIP",
+                        "typeAs": "string"
+                    },
+                    {
+                        "path": "destinationAddress",
+                        "nameAs": "DestinationIP",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "processor": "enrich.DNSLookup",
+            "configuration": {
+                "columnName": "SourceIP",
+                "nameAs": "SourceDNSName"
+            }
+        }
+    ]
+}
+```
+
+### Ingestion-time KQL transformation
+
+Apply a KQL expression to a standard stream at ingestion time. This provides a migration path from the legacy `transformKql` property.
+
+```json
+{
+    "name": "ingestion_kql_syslog",
+    "headerProcessor": {
+        "processor": "header.StandardStream",
+        "configuration": {
+            "streamId": "Microsoft-Syslog"
+        }
+    },
+    "processors": [
+        {
+            "processor": "transform.KQL",
+            "configuration": {
+                "expression": "source | where SeverityLevel != 'info' | extend EnrichedMsg = strcat(HostName, ': ', SyslogMessage)"
+            }
+        }
+    ]
+}
+```
+
+### Syslog to CommonSecurityLog two-stage approach
+
+Transform syslog data and ingest it as CommonSecurityLog using a two-stage approach. The client-side transformation parses CEF attributes, and the ingestion-side transformation maps the data to the CommonSecurityLog table schema.
+
+**Client-side transformation:**
+
+```json
+{
+    "name": "client_cef_extract",
+    "headerProcessor": {
+        "processor": "header.Syslog",
+        "configuration": {}
+    },
+    "processors": [
+        {
+            "processor": "parse.CEFAttribute",
+            "configuration": {
+                "columnName": "Message",
+                "all": [
+                    {
+                        "path": "deviceAction",
+                        "nameAs": "DeviceAction",
+                        "typeAs": "string"
+                    }
+                ]
+            }
+        }
+    ]
+}
+```
+
+**Ingestion-time transformation:**
+
+```json
+{
+    "name": "ingestion_map_to_csl",
+    "headerProcessor": {
+        "processor": "header.StandardStream",
+        "configuration": {
+            "streamId": "Microsoft-CommonSecurityLog"
+        }
+    },
+    "processors": [
+        {
+            "processor": "transform.KQL",
+            "configuration": {
+                "expression": "source | extend DeviceAction = DeviceAction"
+            }
+        }
+    ]
+}
+```
+
+## Related content
+
+- [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
+- [Multi-stage transformations in Azure Monitor](data-collection-transformations.md#multi-stage-transformations-preview).
+- [Create a multi-stage transformation](data-collection-transformations-create.md#create-a-multi-stage-transformation-preview).
+- [DCR structure - Transformations](data-collection-rule-structure.md#transformations) for the complete processor reference.
