@@ -1289,6 +1289,47 @@ items:
     - name: Tutorial
       displayName: Log Analytics workspace, log query, log queries, query, queries
       href: logs/log-analytics-tutorial.md
+- name: Analyze
+  items:
+  - name: Metrics explorer
+    items:
+    - name: Analyze metrics
+      href: metrics/analyze-metrics.md
+    - name: Metrics explorer with PromQL
+      displayName: Prometheus, metrics explorer
+      href: metrics/metrics-explorer.md
+    - name: Understanding metrics aggregation
+      href: metrics/metrics-aggregation-explained.md
+    - name: Examples of metric charts
+      href: metrics/metric-chart-samples.md
+    - name: Troubleshooting metric charts
+      href: metrics/metrics-troubleshoot.md
+  - name: REST API for metrics
+    items:
+    - name: Metrics REST API Walkthrough
+      displayName: metrics, analyze
+      href: platform/rest-api-walkthrough.md
+    - name: Migrate to the metrics getBatch API
+      href: metrics/migrate-to-batch-api.md
+  - name: Log Analytics
+    items:
+    - name: Overview
+      href: logs/log-analytics-overview.md
+    - name: Simple mode
+      href: logs/log-analytics-simple-mode.md
+    - name: Query scope
+      href: logs/scope.md
+    - name: Saving queries
+      href: logs/save-query.md
+    - name: Using queries
+      href: logs/queries.md
+    - name: Summary rules
+      href: logs/summary-rules.md
+    - name: Query packs
+      href: logs/query-packs.md
+    - name: Tutorial
+      displayName: Log Analytics workspace, log query, log queries, query, queries
+      href: logs/log-analytics-tutorial.md
   - name: Log queries
     items:
     - name: Overview
@@ -1328,32 +1369,38 @@ items:
       - name: Query data in Azure Data Explorer or Resource Graph
         displayName: arg(), adx()
         href: logs/azure-monitor-data-explorer-proxy.md
-    - name: Logs query API
+    - name: API
       items:
       - name: Overview
         href: logs/api/overview.md
-      - name: API access, authentication and authorization
-        href: logs/api/access-api.md
-      - name: Register an app for API access
-        href: logs/api/register-app-for-token.md
-      - name: Request format
-        href: logs/api/request-format.md
-      - name: Response format
-        href: logs/api/response-format.md
-      - name: Batch queries
-        href: logs/api/batch-queries.md
-      - name: Cross-resource queries
-        href: logs/api/cross-workspace-queries.md
-      - name: Azure resource queries
-        href: logs/api/azure-resource-queries.md
-      - name: Response caching
-        href: logs/api/cache.md
-      - name: Server timeouts and errors
-        href: logs/api/timeouts.md
-      - name: Prefer headers
-        href: logs/api/prefer-options.md
-      - name: Migrate from using batch and beta query APIs
-        href: logs/api/migrate-batch-and-beta.md
+      - name: Using the API
+        items:
+        - name: API access, authentication and authorization
+          href: logs/api/access-api.md
+        - name: Register an app for API access
+          href: logs/api/register-app-for-token.md
+        - name: Request format
+          href: logs/api/request-format.md
+        - name: Response format
+          href: logs/api/response-format.md
+        - name: Batch queries
+          href: logs/api/batch-queries.md
+        - name: Cross-resource queries
+          href: logs/api/cross-workspace-queries.md
+        - name: Azure resource queries
+          href: logs/api/azure-resource-queries.md
+        - name: Response caching
+          href: logs/api/cache.md
+        - name: Server timeouts
+          href: logs/api/timeouts.md
+        - name: Prefer headers
+          href: logs/api/prefer-options.md
+        - name: Errors
+          href: logs/api/errors.md
+        - name: Migrate from using batch and beta query APIs
+          href: logs/api/migrate-batch-and-beta.md
+  - name: Get the Activity log using the REST API
+    href: platform/rest-activity-log.md
 - name: Respond
   items:
   - name: Alerts
