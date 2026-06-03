@@ -1300,6 +1300,8 @@ items:
         href: visualize/grafana-azure-data-explorer.md
     - name: Call Grafana APIs programmatically
       href: visualize/visualize-call-grafana-api.md
+  - name: Power BI
+    href: logs/log-powerbi.md
 - name: Analyze
   items:
   - name: Metrics explorer
