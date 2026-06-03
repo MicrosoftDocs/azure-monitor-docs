@@ -1280,18 +1280,24 @@ items:
     items:
     - name: Grafana overview
       href: visualize/visualize-grafana-overview.md
-    - name: Use Grafana dashboards
-      href: visualize/visualize-use-grafana-dashboards.md
-    - name: Azure Virtual Machines
-      href: visualize/grafana-azure-virtual-machines.md
-    - name: Kubernetes clusters
-      href: visualize/grafana-kubernetes.md
-    - name: Azure Data Explorer
-      href: visualize/grafana-azure-data-explorer.md
-    - name: Resource-scoped queries
-      href: visualize/grafana-resource-scoped-queries.md
-    - name: Copy Azure Monitor dashboard
-      href: visualize/visualize-copy-to-managed-grafana.md
+    - name: Use Grafana
+      items:
+      - name: Azure Monitor dashboards with Grafana
+        href: visualize/visualize-use-grafana-dashboards.md
+      - name: Azure Managed Grafana
+        href: visualize/visualize-use-managed-grafana-how-to.md
+      - name: Resource-scoped queries
+        href: visualize/grafana-resource-scoped-queries.md
+      - name: Copy Azure Monitor dashboard
+        href: visualize/visualize-copy-to-managed-grafana.md
+    - name: Dashboards for Azure services
+      items:
+      - name: Azure Virtual Machines
+        href: visualize/grafana-azure-virtual-machines.md
+      - name: Kubernetes clusters
+        href: visualize/grafana-kubernetes.md
+      - name: Azure Data Explorer
+        href: visualize/grafana-azure-data-explorer.md
     - name: Call Grafana APIs programmatically
       href: visualize/visualize-call-grafana-api.md
 - name: Analyze
