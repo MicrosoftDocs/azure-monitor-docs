@@ -4,12 +4,12 @@
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
 title: Azure Advisor recommendation state management
-description: This article describes azure advisor recommendation state management and provides you with methods for use.
+description: This article describes Azure advisor recommendation state management and provides you with methods for use.
 author:      zucatihal # GitHub alias
 ms.author:   v-zucatihal # Microsoft alias
 ms.service: azure-advisor
 ms.topic: how-to
-ms.date:     05/19/2026
+ms.date:     06/01/2026
 ms.reviewer: tiffanywang, adaga
 ---
 
@@ -20,10 +20,12 @@ By using Azure Advisor recommendation state management, you can track and manage
 > [!NOTE]
 >Azure Advisor recommendation state management is currently in preview. Preview features are provided for evaluation purposes and might change before general availability.
 
-By using Azure Advisor recommendation state management, you can track and manage new and existing recommendations through their state lifecycle. 
-Full state management is not supported for security recommendations. Only the Active state is supported for this category. Other states such as Completed, Postponed, and Dismissed are not applicable to security recommendations. 
+> [!NOTE]
+> Full state management is not supported for security recommendations. Only the Active state is supported for this category. Other states such as Completed, Postponed, and
+> Dismissed are not applicable to security recommendations. 
+> Completed state may appear for security recommendations in the Advisor table in Azure Resource Graph. This value may not reflect the actual status and should not be relied
+> upon.
 
-Please note that Completed state may appear for security recommendations in the Advisor table in Azure Resource Graph. This value may not reflect the actual status and should not be relied upon.
 For the accurate state of a security recommendation, refer to its status in Microsoft Defender for Cloud: [Microsoft Defender for Cloud documentation](https://learn.microsoft.com/azure/defender-for-cloud/)
 
 
@@ -40,7 +42,9 @@ Each Azure Advisor recommendation can have one of four supported states:
 - **Dismissed**: Permanently removes an item from view until you choose to reactivate it.
 
 
-- **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies.
+- **Completed**: The recommended action is successfully applied to the resource, or the recommendation no longer applies. You can mark a recommendation as completed manually, or Azure Advisor can automatically mark it as completed if it verifies that the recommendation no longer applies. Azure Advisor automatically checks every 24 hours whether a recommendation has been addressed (the exact cadence depends on the recommendation type).
+
+:::image alt-text="Screenshot of recommendation state in Azure Advisor." lightbox="./media/state-management-6.png" source="./media/state-management-6.png" type="content":::
 
 These states show the status of each recommendation. Use them to manage your recommendations as they transition through their lifecycle.
 
