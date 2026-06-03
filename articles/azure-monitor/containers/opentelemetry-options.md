@@ -1,5 +1,5 @@
 ---
-title: OpenTelemetry with Azure Monitor (Preview)
+title: OpenTelemetry with Azure Monitor
 description: Centralized guide to OpenTelemetry in Azure Monitor - native OTLP ingestion, the Microsoft OpenTelemetry Distro, and end-to-end observability experiences.
 ms.topic: concept-article
 ms.reviewer: kaprince
@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 ---
 
-# OpenTelemetry with Azure Monitor (Preview)
+# OpenTelemetry with Azure Monitor
 
 Azure Monitor supports OpenTelemetry in two complementary approaches.
 

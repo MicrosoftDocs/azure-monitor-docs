@@ -172,7 +172,7 @@ Prometheus alerts are used to monitor metrics stored in [Azure Monitor managed s
 
 ## Activity log alerts
 
-An activity log alert monitors a resource by checking the activity logs for a new activity log event that matches the defined conditions.
+An activity log alert monitors a resource by checking the activity logs for a new activity log event that matches the defined conditions. Activity log alerts are [stateless](./alerts-overview.md#alerts-and-state).
 
 You might want to use activity log alerts for these types of scenarios:
 

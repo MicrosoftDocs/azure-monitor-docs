@@ -281,7 +281,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Agents|[Collect logs from a JSON file with Azure Monitor Agent](../agents/data-collection-log-json.md)|Update for new JSON data source UI.|
-|Application-Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md)|We unified our resource documentation to provide comprehensive guidance for both portal and at-scale deployment scenarios, significantly increasing accessibility for our largest customers. At-scale support now includes all modalities—Azure CLI, PowerShell, REST API, Bicep, and ARM.|
+|Application-Insights|[Create and configure Application Insights resources](../app/create-workspace-resource.md)|We unified our resource documentation to provide comprehensive guidance for both portal and at-scale deployment scenarios, significantly increasing accessibility for our largest customers. At-scale support now includes all modalities - Azure CLI, PowerShell, REST API, Bicep, and ARM.|
 |Application-Insights|[Autoinstrumentation for Azure Kubernetes Service (Preview)](../containers/kubernetes-codeless.md)|Public Preview of Autoinstrumentation for Azure Kubernetes Service (AKS) is now live. This solution enables seamless application telemetry collection across entire clusters.|
 |Essentials|[Create a transformation in Azure Monitor](../data-collection/data-collection-transformations-create.md)|Added sample for normalization in Sentinel.|
 |Logs|[Analyze data using Log Analytics Simple mode](../logs/log-analytics-simple-mode.md)|Log Analytics simple mode is now generally available.|
@@ -425,7 +425,7 @@ This article lists significant changes to Azure Monitor documentation.
 |Containers|[Enable private link for Kubernetes monitoring in Azure Monitor](../containers/container-insights-private-link.md)|New article to consolidate private link guidance for Container insights.|
 |Containers|[High scale logs collection in Container Insights (Preview)](../containers/container-insights-high-scale.md)|New feature.|
 |Containers|[Monitor your Kubernetes cluster performance with Container insights](../containers/container-insights-analyze.md)|Added explanation of "Other processes" column.|
-|Essentials |[Manage data collection rules (DCRs) and associations in Azure Monitor](../data-collection/data-collection-rule-overview.md#viewing-dcrs)|Added guidance for new UI feature to manage DCR associations.|
+|Essentials |[Manage data collection rules (DCRs) and associations in Azure Monitor](../data-collection/data-collection-rule-overview.md#view-dcrs)|Added guidance for new UI feature to manage DCR associations.|
 |Essentials|[Use Azure Policy to install and manage the Azure Monitor agent](../agents/azure-monitor-agent-policy.md)|Added information on new UI feature to create associations.|
 |Essentials|[Create and edit data collection rules (DCRs) and associations in Azure Monitor](../data-collection/data-collection-rule-create-edit.md)|Removed duplicate information.|
 |Essentials|[Data collection rules (DCRs) in Azure Monitor](../data-collection/data-collection-rule-overview.md)|Added diagram.|
