@@ -1286,9 +1286,14 @@ items:
       href: visualize/grafana-azure-virtual-machines.md
     - name: Kubernetes clusters
       href: visualize/grafana-kubernetes.md
-    - name: Tutorial
-      displayName: Log Analytics workspace, log query, log queries, query, queries
-      href: logs/log-analytics-tutorial.md
+    - name: Azure Data Explorer
+      href: visualize/grafana-azure-data-explorer.md
+    - name: Resource-scoped queries
+      href: visualize/grafana-resource-scoped-queries.md
+    - name: Copy Azure Monitor dashboard
+      href: visualize/visualize-copy-to-managed-grafana.md
+    - name: Call Grafana APIs programmatically
+      href: visualize/visualize-call-grafana-api.md
 - name: Analyze
   items:
   - name: Metrics explorer
