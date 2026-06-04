@@ -2,7 +2,7 @@
 title: Health history overview
 description: Overview of the features and information found on the Health history pane.
 ms.topic: concept-article
-ms.date: 0//2026
+ms.date: 06/04/2026
 ---
 
 # Health history
