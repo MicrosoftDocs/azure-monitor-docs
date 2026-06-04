@@ -128,6 +128,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Linux
 
+- **Breaking Change**: Updates were made to improve standards compliance and parsing consistency for CEF data. The generic Syslog parser **no longer** extracts the CEF token from the message field and formats the message into standard RFC. **Action** review and update Syslog KQL transformation to include this filter “| where SyslogMessage !contains "CEF:0”. If not filtered customers may see malformed CEF events in the syslog table.
 - Added FTD and FMC messages to CEF syslog stream.
 - Fixed msgpack handling of nested JSON.
 - Added syslog structured data handling for rsyslog configuration.
