@@ -2,17 +2,17 @@
 ms.service: azure-service-health
 ms.custom: devx-track-azurepowershell
 ms.topic: include
-ms.date: 10/01/2025
+ms.date: 06/04/2026
 ---
 
 #### Active Service Health events by subscription 
 
-This query shows all active Service Health events—such as service issues, planned maintenance, health advisories, and security advisories, grouped by event type and includes a count of the impacted services.
+This query shows all active Service Health events such as service issues, planned maintenance, health advisories, and security advisories, grouped by event type and includes a count of the impacted services.
 
-An example would show each event type including a count showing how many subscriptions affected by it.
+An example would show each event type, and a count showing how many subscriptions are affected by it.
 
 >[!NOTE]
->Emerging issues aren't tied to subscription IDs and as a result can't be queried via ARG, which is subscription ID based. For more information, open [this page](/rest/api/resourcehealth/emerging-issues).
+>Emerging issues aren't tied to subscription IDs and as a result can't be queried via ARG, which is subscription ID based. For more information, read [Resource Health emerging issues](/rest/api/resourcehealth/emerging-issues).
 
 
 ```kusto
@@ -46,6 +46,11 @@ Search-AzGraph -Query "ServiceHealthResources | where type =~ 'Microsoft.Resourc
 #### All active health advisory events
 
 This query lists all active health advisory events from Service Health across every subscription you have access to.
+
+>[!NOTE]
+>For Health Advisories, the `Mitigation Time` simply shows the advisory’s end time. Health Advisories don't have a separate mitigation time, so this field isn’t applicable. For more information, see [Events-List by subscription id](/rest/api/resourcehealth/events/list-by-subscription-id?view=rest-resourcehealth-2025-05-01&tabs=HTTP).
+
+All upcoming service retirement events are part of all active health advisory events.
 
 ```kusto
 ServiceHealthResources
