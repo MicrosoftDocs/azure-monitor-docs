@@ -70,7 +70,7 @@ Use one of the following methods to create a platform telemetry DCR to collect p
 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
 1. Select the link on the top of the page to use the new DCR creation experience.
-   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs.png" alt-text="A screenshot showing the create data collection rule page.":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send logs to a Storage Account or Event Hubs.
    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
