@@ -2,7 +2,7 @@
 title: Create service level indicators in Azure Monitor
 description: Learn how to create service level indicators in Azure Monitor, configure signals and baselines, and review SLI status for a service group.
 ms.topic: how-to
-ms.date: 04/10/2026
+ms.date: 06/04/2026
 ai-usage: ai-assisted
 ---
 
