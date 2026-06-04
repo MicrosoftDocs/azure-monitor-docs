@@ -56,6 +56,8 @@ Your Microsoft account team works with you to collect information about the work
 
 To view reviews, open the Azure Advisor Dashboard.
 
+[!INCLUDE [Open Azure Advisor Dashboard](./includes/advisor-open-dashboard.md)]
+
 ### Access reviews
 
 1.  Find resiliency reviews created by your Microsoft account team.
