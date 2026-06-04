@@ -70,7 +70,7 @@ Use one of the following methods to create a platform telemetry DCR to collect p
 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
 1. Select the link on the top of the page to use the new DCR creation experience.
-   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-metrics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
+   :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs.png" alt-text="A screenshot showing the create data collection rule page.":::
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send logs to a Storage Account or Event Hubs.
    :::image type="content" source="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" lightbox="media/platform-logs-collect/create-data-collection-rule-logs-basics.png" alt-text="A screenshot showing the basics tab of the create data collection rule page.":::
@@ -376,6 +376,8 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
 
 
 
+
+
 Create the DCR:
 
 ```azurepowershell
@@ -539,6 +541,7 @@ Content-Type: application/json
 }
 ```
 </details>
+
 
 
 Copy the `id` and `identity.principalId` values from the response for use in role assignments and rule associations.
@@ -845,7 +848,6 @@ If you don't see data flowing, use [DCR monitoring features](./data-collection-m
 
 Common issues to check:
 
-- Preview feature not enabled for the subscription: Verify that `DcrPlatformLogs` is registered.
 - Incorrect API version: Use `api-version=2024-03-11` for DCR and DCRA operations.
 - Streams mismatch with resource type. Confirm that the stream specification matches a supported resource type and log category.
 - Region mismatch. Ensure the DCR, destination resource, and monitored resources are all in the same region (except for Log Analytics workspace destinations).

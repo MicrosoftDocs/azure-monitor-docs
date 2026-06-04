@@ -1,12 +1,12 @@
 ---
-title: Metrics export supported resources and regions (Preview)
+title: Metrics export supported resources and regions
 description: Reference for resource types and regions supported for metrics export by using data collection rules.
 ms.topic: reference
 ms.date: 05/29/2026
 ms.custom: ai-assisted, references_regions
 ---
 
-# Metrics export supported resources and regions (Preview)
+# Metrics export supported resources and regions
 
 This article lists the resources and regions currently supported for metrics export by using data collection rules (DCRs).
 
@@ -29,18 +29,51 @@ This article lists the resources and regions currently supported for metrics exp
 
 You can create a DCR for metrics export in any region, but the resources that you want to export metrics from must be in one of the following regions:
 
-- Australia East
-- Central US
-- Central US EUAP
-- South Central US
-- East US
-- East US 2
-- East US 2 EUAP
-- West US
-- West US 2
-- North Europe
-- West Europe
-- UK South
+- australiaeast
+- australiacentral
+- australiasoutheast
+- austriaeast
+- belgiumcentral
+- canadacentral
+- canadaeast
+- centralindia
+- centralus
+- centraluseuap
+- chilecentral
+- denmarkeast
+- eastasia
+- eastus
+- eastus2
+- eastus2euap
+- indonesiacentral
+- italynorth
+- japaneast
+- japanwest
+- jioindiawest
+- koreacentral
+- koreasouth
+- malaysiawest
+- mexicocentral
+- newzealandnorth
+- northcentralus
+- northeurope
+- norwayeast
+- polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
+- swedencentral
+- switzerlandnorth
+- taiwannorth
+- uaenorth
+- uksouth
+- ukwest
+- westcentralus
+- westeurope
+- westus
+- westus2
+- westus3
+
 
 ## Related content
 

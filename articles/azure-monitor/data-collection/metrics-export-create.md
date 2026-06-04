@@ -1,17 +1,14 @@
 ---
-title: Metrics export using data collection rules (Preview)
+title: Metrics export using data collection rules
 description: Learn how to create data collection rules for metrics.
 ms.topic: how-to
 ms.date: 05/29/2026
 ms.custom: ai-assisted
 ---
 
-# Metrics export using data collection rules (Preview)
+# Metrics export using data collection rules
 
 Platform metrics measure the performance of different aspects of your Azure resources. Platform telemetry [data collection rules (DCRs)](./data-collection-rule-overview.md) let you collect and export platform metrics from supported Azure resources. This article shows you how to create a DCR for metrics export.
-
-> [!IMPORTANT]
-> This feature is currently in preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 > [!NOTE]
 > While you can use DCRs and diagnostic settings at the same time, you should disable any diagnostic settings for metrics when using DCRs to avoid duplicate data collection.
