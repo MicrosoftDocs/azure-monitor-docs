@@ -18,6 +18,11 @@ The following ConfigMap is used to configure scrape configuration and other sett
 |:---|:---|
 | [`ama-metrics-settings-configmap`](https://aka.ms/azureprometheus-addon-settings-configmap) | Includes the following basic settings.<br>- Cluster alias. Changes the value of the `cluster` label in every metric ingested from the cluster.<br>- Enable/disable default scrape targets. <br>- Enable pod annotation based scraping per namespace.<br>- Metric keep lists. Controls which metrics are allowed from each default target.<br>- Scrape intervals for predefined targets.<br>- Separate controls for cluster-metrics targets and controlplane-metrics targets.<br>- Debug mode to identify missing metric issues. See [troubleshooting](prometheus-metrics-troubleshoot.md#debug-mode). |
 
+> - > [!IMPORTANT]
+> Starting on AKS 1.36, new **AKS Automatic clusters** will by default enable managed system node pools. To learn about details and key benefits of this feature, see [AKS Automatic clusters with managed system node pools](/azure/aks/automatic/aks-automatic-managed-system-node-pools-about).
+> AKS Automatic clusters with managed system node pools enabled **does not support** configuration of Prometheus metrics collection and custom scrape jobs.
+
+
 Modify the settings in the ConfigMap based on the guidance below and then apply it using the following command. AMA-Metrics pods will pick them up and restart in 2-3 minutes to apply the configuration settings specified. 
 
 > [!NOTE]
@@ -25,6 +30,7 @@ Modify the settings in the ConfigMap based on the guidance below and then apply 
 > - Modify the key name from 'default-scrape-settings-enabled' to 'default-targets-scrape-enabled'
 > - For targets within controlplane-metrics section, drop the "controlplane-" prefix
 > - Modify minimalingestionprofile = true in the keep-list to minimal-ingestion-profile: |- / enabled = true as its own section
+
 
 ```bash
 kubectl apply -f .\ama-metrics-settings-configmap.yaml
