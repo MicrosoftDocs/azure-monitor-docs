@@ -14,7 +14,11 @@ Kubernetes clusters generate a large amount of data that's collected by Azure Mo
 > Before implementing any of the filtering options described in this article, ensure that you select a [log collection profile](./kubernetes-monitoring-enable.md) that matches your requirements. Use the information in this article to further refine the data collection settings for your cluster.
 
 ## Prerequisites 
-- The minimum agent version supported to collect stdout, stderr, and environmental variables from container workloads is **ciprod06142019** or later. 
+- The minimum agent version supported to collect stdout, stderr, and environmental variables from container workloads is **ciprod06142019** or later.
+
+> [!IMPORTANT]
+> Starting on AKS 1.36, new **AKS Automatic clusters** will by default enable managed system node pools. To learn about details and key benefits of this feature, see [AKS Automatic clusters with managed system node pools](/azure/aks/automatic/aks-automatic-managed-system-node-pools-about).
+> AKS Automatic clusters with managed system node pools enabled **does not support** configuration of container log collection with ConfigMap.
 
 ## Configure and deploy ConfigMap
 
