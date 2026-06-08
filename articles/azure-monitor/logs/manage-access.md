@@ -318,7 +318,7 @@ Every Log Analytics table has a `protectionLevel` property with two possible val
 | Protection level | Behavior |
 |---|---|
 | `General` (default) | Standard access. Users with Reader, Monitoring Reader, or other read roles can query this table. |
-| `Protected` | Restricted access. Standard roles cannot access the data. Users need explicit access granted through ABAC conditions on the `protectionLevel` attribute. |
+| `Protected` | Restricted access. Non-privileged standard roles cannot access the data. Only roles using the supported DataActions with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
 
 Once you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
 
@@ -338,7 +338,7 @@ Protected table access uses different DataActions and ABAC attributes depending 
 
 | Component | Value |
 |---|---|
-| DataAction | `Microsoft.OperationalInsights/workspaces/query/*/read` |
+| DataAction | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
 | ABAC attribute | `Microsoft.OperationalInsights/workspaces/tables:protectionLevel` |
 
 **Resource-centric access:**
@@ -350,7 +350,7 @@ Protected table access uses different DataActions and ABAC attributes depending 
 
 ### DataAction-only mode
 
-You can enable DataAction-only mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader no longer grant implicit data access. Only DataActions provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
+Enable DataAction-only mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only DataActions provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
 
 For configuration steps, see [Enable DataAction-only mode](protected-tables-configure.md#enable-dataaction-only-mode).
 
@@ -360,9 +360,9 @@ Keep the following behavior details in mind when working with protected tables:
 
 - **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query does not return a 400 or 403 error.
 - **Schema remains visible.** Table metadata, including column names and types, is accessible regardless of the protection level. Only data rows are restricted.
-- **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has the required ABAC-granted access.
+- **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has full access to the relevant tables.
 - **Alert rules require managed identity.** Only alert rules configured with a managed identity (MSI/MI) are supported for queries on protected tables.
-- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables, but the role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute. Without this condition, the assignment does not grant access to protected data.
+- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if any of the supported DataActions are configured. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
 
 ### Limitations (preview)
 
@@ -370,10 +370,8 @@ The following limitations apply during the preview:
 
 | Limitation | Details |
 |---|---|
-| Per-workspace granularity only | The protection level is set per table within a workspace. To isolate data per application, use separate workspaces. |
+| Per-workspace granularity only | The protection level is set per table within a workspace. To isolate data per resource that has data in multiple workspaces, set the table as protected in each workspace. |
 | Cross-workspace queries not supported | The `app()` and `workspace()` functions for cross-workspace queries do not yet support protected tables. |
-| No audit logging for protected table queries | Audit entries for queries that access protected tables are not yet available. |
-| Row-level and column-level RBAC | Planned for future releases. Not available during preview. |
 
 ### Related content
 
