@@ -186,9 +186,9 @@ Provide the bare minimum permissions needed to run queries and see metadata with
 
 | Type | Permission | Description |
 |------|------------|-------------|
-| Action | `Microsoft.OperationalInsights/workspaces/query/read` | Run queries over the data in a workspace |
-| Action | `Microsoft.OperationalInsights/workspaces/read` | Read existing workspaces |
-| DataActions | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Read data access to workspaces, or more fine-grained data entities, such as specific tables or rows when used with granular RBAC |
+| `Actions` | `Microsoft.OperationalInsights/workspaces/query/read` | Run queries over the data in a workspace |
+| `Actions` | `Microsoft.OperationalInsights/workspaces/read` | Read existing workspaces |
+| `DataActions` | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Read data access to workspaces, or more fine-grained data entities, such as specific tables or rows when used with granular RBAC |
 
 
 #### Log Analytics Reader
@@ -318,7 +318,7 @@ Every Log Analytics table has a `protectionLevel` property with two possible val
 | Protection level | Behavior |
 |---|---|
 | `General` (default) | Standard access. Users with Reader, Monitoring Reader, or other read roles can query this table. |
-| `Protected` | Restricted access. Non-privileged standard roles cannot access the data. Only roles using the supported DataActions with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
+| `Protected` | Restricted access. Non-privileged standard roles cannot access the data. Only roles using the supported `DataActions` with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
 
 Once you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
 
@@ -332,27 +332,27 @@ For more targeted access, create custom roles with ABAC conditions that combine 
 
 ### Access methods
 
-Protected table access uses different DataActions and ABAC attributes depending on whether the query runs in workspace context or resource context.
+Protected table access uses different `DataActions` and ABAC attributes depending on whether the query runs in workspace context or resource context.
 
 **Workspace-centric access:**
 
 | Component | Value |
 |---|---|
-| DataAction | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
+| `DataActions` | `Microsoft.OperationalInsights/workspaces/tables/data/read` |
 | ABAC attribute | `Microsoft.OperationalInsights/workspaces/tables:protectionLevel` |
 
 **Resource-centric access:**
 
 | Component | Value |
 |---|---|
-| DataAction | `Microsoft.Insights/logs/data/read` |
+| `DataActions` | `Microsoft.Insights/logs/data/read` |
 | ABAC attributes | `Microsoft.Insights/logs/tables:name` and `Microsoft.Insights/logs/tables:protectionLevel` |
 
-### DataAction-only mode
+### DataActionsOnly mode
 
-Enable DataAction-only mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only DataActions provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
+Enable `DataActionsOnly` mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only `DataActions` provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
 
-For configuration steps, see [Enable DataAction-only mode](protected-tables-configure.md#enable-dataaction-only-mode).
+For configuration steps, see [Enable DataActionsOnly mode](protected-tables-configure.md#enable-dataaction-only-mode).
 
 ### Behavior
 
@@ -362,7 +362,7 @@ Keep the following behavior details in mind when working with protected tables:
 - **Schema remains visible.** Table metadata, including column names and types, is accessible regardless of the protection level. Only data rows are restricted.
 - **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has full access to the relevant tables.
 - **Alert rules require managed identity.** Only alert rules configured with a managed identity (MSI/MI) are supported for queries on protected tables.
-- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if any of the supported DataActions are configured. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
+- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if any of the supported `DataActions` are configured. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
 
 ### Limitations (preview)
 

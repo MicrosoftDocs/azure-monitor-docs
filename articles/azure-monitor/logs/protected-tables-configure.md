@@ -11,7 +11,7 @@ ms.subservice: logs
 
 # Configure protected tables in Azure Monitor Logs (preview)
 
-This article walks you through setting a table's protection level, granting access to authorized users, and verifying that your configuration works as expected. Protected tables use a "deny by default" model so that standard read roles cannot access sensitive data until you explicitly grant permission through ABAC conditions.
+This article walks you through setting a table's protection level, granting access to authorized users, and verifying that your configuration works as expected. Protected tables use a "deny by default" model so that non-privileged standard and custom read roles can't access sensitive data until you explicitly grant permission through ABAC conditions.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ This article walks you through setting a table's protection level, granting acce
 
 ## Set a table's protection level
 
-Setting a table's protection level to `Protected` immediately prevents standard read roles from accessing the data in that table. Complete these steps for each table that contains sensitive telemetry.
+Setting a table's protection level to `Protected` immediately prevents non-privileged standard read and custom roles from accessing the data in that table. Complete these steps for each table that contains sensitive telemetry.
 
 ### [Azure portal](#tab/portal-1)
 
@@ -96,7 +96,7 @@ A successful response returns the table definition with `protectionLevel` set to
 
 ## Grant access to protected tables
 
-After you protect a table, you must explicitly grant access to users who need the data. You can use the built-in Privileged Monitoring Data Reader role for broad access, or create custom ABAC conditions for more targeted grants.
+After you protect a table, you must explicitly grant access to users who need the data. Use the built-in **Privileged Monitoring Data Reader** role for broad access, or create custom roles with `protectionLevel` ABAC conditions for more targeted access.
 
 ### Assign the Privileged Monitoring Data Reader role
 
@@ -104,7 +104,7 @@ The **Privileged Monitoring Data Reader** built-in role grants read access to al
 
 #### [Azure portal](#tab/portal-2)
 
-1. In the Azure portal, go to the scope where you want to assign the role (subscription, resource group, or workspace).
+1. In the Azure portal, go to the scope where you want to assign the role (subscription, resource group, workspace, or any supported Azure resource).
 1. Select **Access control (IAM)** > **Add** > **Add role assignment**.
 1. On the **Role** tab, search for **Privileged Monitoring Data Reader** and select it.
 1. On the **Members** tab, select the user, group, or managed identity.
@@ -143,11 +143,9 @@ az role assignment create \
 
 For scenarios where you need to limit access to individual protected tables rather than all of them, create a custom role assignment with ABAC conditions that filter on both table name and protection level.
 
-1. Create or select a custom role with the following DataAction:
-
-    ```
-    Microsoft.OperationalInsights/workspaces/tables/data/read
-    ```
+1. Create or select a custom role based on the [access method](manage-access.md#access-methods) you want to use. 
+  - `DataActions` for workspace-centric access: `Microsoft.OperationalInsights/workspaces/tables/data/read`
+  - `DataActions` for resource-centric access: `Microsoft.Insights/logs/data/read`
 
 1. When creating the role assignment, add a condition with two expressions joined by **AND**:
 
@@ -184,13 +182,13 @@ Use [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/
 
 This pattern works well for incident response and support scenarios where engineers need temporary access to sensitive logs.
 
-## Enable DataAction-only mode
+## Enable DataActionsOnly mode
 
-By default, some control-plane roles (such as Reader and Monitoring Reader) provide implicit read access to log data. DataAction-only mode closes this path so that only DataActions govern data access.
+By default, some roles based on control plane actions (such as **Reader** and **Monitoring Reader**) provide implicit read access to log data. `DataActionsOnly` mode closes this path so that only `DataActions` govern data access.
 
 ### [Azure CLI](#tab/azure-cli-3)
 
-Use the following command to enable DataAction-only mode by using the CLI.
+Use the following command to enable `DataActionsOnly` mode by using the CLI.
 
 ```azurecli
 # User input
@@ -210,7 +208,7 @@ az rest --method patch --url "$url" \
 
 ### [REST API](#tab/rest-3)
 
-To enable DataAction-only mode, use this `PATCH` request for the [Workspaces - Update](/rest/api/loganalytics/workspaces/update) operation. Use the latest `apiVersion` documented there.
+To enable `DataActionsOnly` mode, use this `PATCH` request for the [Workspaces - Update](/rest/api/loganalytics/workspaces/update) operation. Use the latest `apiVersion` documented there.
 
 ```REST
 PATCH https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}?api-version={apiVersion}
@@ -234,7 +232,7 @@ Content-Type: application/json
 | `{resourceGroupName}` | The resource group that contains your workspace. |
 | `{workspaceName}` | Your Log Analytics workspace name. |
 
-After you enable DataAction-only mode, verify that users who previously relied on control-plane roles for log access now receive appropriate DataAction-based role assignments.
+After you enable `DataActionsOnly` mode, verify that users who previously relied on control plane roles for log access now receive appropriate role assignments based on `DataActions`.
 
 ## Verify your configuration
 
