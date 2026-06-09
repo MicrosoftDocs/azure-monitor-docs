@@ -122,11 +122,11 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 - Update Metrics Extension (ME) to 2.2026.312.1653.
 
 ### Linux Breaking Change ###
-- **Who:** Customers doing Syslog parsing
+- **Who:** Customers doing Syslog parsing using the [CEF Syslog AMA connector](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview)
 - **What:** Customers may see malformed CEF events in the Log Analytics Syslog table.
 - **When:** If you use Sentinel Syslog connectors to split as single stream of CEF and Syslog events into the Sentinel SecurityEvent and Log Analytics Syslog tables and you collect noncompliant Syslog from vendors who have the CEF indicator in the SyslogMessage column.
 - **Why:** Updates were made to improve standards of compliance and parsing consistency for CEF data. The generic Syslog parser **no longer** extracts the CEF token from the SyslogMessage column and changes the  format to comply with the RFC 5424 standard. This addresses our principle of not modifying customer data without customers explicit knowledge.
-- **How:** To resolve the breaking change review and update your [KQL transformation](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?utm_source=copilot.com&tabs=single#data-ingestion-duplication-avoidance) for the Log Analytics Syslog table to include this filter “| where SyslogMessage !contains "CEF”. 
+- **How:** To resolve the breaking change review and update your [KQL transformation](https://learn.microsoft.com/en-us/azure/sentinel/cef-syslog-ama-overview?&tabs=single#data-ingestion-duplication-avoidance) for the Log Analytics Syslog table to include this filter “| where SyslogMessage !contains "CEF”. 
 
 ### Linux ###
 - Added FTD and FMC messages to CEF syslog stream.
