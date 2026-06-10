@@ -10,9 +10,12 @@ ms.custom: template-concept, devx-track-arm-template
 
 # Permissions and security in Azure Chaos Studio
 
+> [!NOTE]
+> If you're using [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the Workspace's managed identity executes fault actions on your behalf. Workspaces can assign required roles automatically during setup when you enable automatic role assignment. For details, see [Permissions and identity in Workspaces](chaos-studio-workspace-permissions.md). The information on this page applies when you create experiments directly.
+
 Azure Chaos Studio enables you to improve service resilience by systematically injecting faults into your Azure resources. Fault injection is a powerful way to improve service resilience, but it can also be dangerous. Causing failures in your application can have more impact than originally intended and open opportunities for malicious actors to infiltrate your applications.
 
-Chaos Studio has a robust permission model that prevents faults from being run unintentionally or by a bad actor. In this article, you learn how you can secure resources that are targeted for fault injection by using Chaos Studio.
+Chaos Studio has a layered permission model that prevents faults from being run unintentionally or by a bad actor. In this article, you learn how you can secure resources that are targeted for fault injection by using Chaos Studio.
 
 ## How can I restrict the ability to inject faults with Chaos Studio?
 

@@ -1,52 +1,42 @@
 ---
-title: Chaos Agent Overview
-description: Introduction to the Chaos Agent, its purpose, and how it enables agent-based chaos experiments in Azure Chaos Studio.
+title: Chaos Studio agent overview
+description: Learn about the Chaos Studio agent, which runs inside virtual machines to inject faults like CPU pressure, memory pressure, and network disruptions.
 services: chaos-studio
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 03/02/2025
+ms.date: 06/10/2026
 ms.reviewer: nikhilkaul
-ms.custom: 
+ai-usage: ai-assisted
 ---
 
-# Chaos Agent Overview
+# Chaos Studio agent overview
 
-## Introduction
+The Chaos Studio agent is a component that runs inside your virtual machines (VMs) to inject faults that can't be achieved through the Azure control plane alone. Faults like CPU pressure, memory pressure, and network latency require in-guest access to the operating system — the agent provides that access.
 
-The **Chaos Agent** is a key component of [Azure Chaos Studio](https://azure.microsoft.com/services/chaos-studio/). It enables agent-based fault injection by running directly inside your target virtual machines (VMs). This approach allows you to simulate failure conditions that cannot be achieved through Azure's control plane alone.
+The agent is delivered as a VM extension and supports both Windows and Linux. After deployment, it uses a user-assigned managed identity attached to the VM to authenticate with Azure Chaos Studio and execute fault actions. For identity setup details, see [Agent concepts](chaos-agent-concepts.md).
 
-## Purpose
+[![Diagram that shows how the Chaos Studio agent is packaged and hosted on a virtual machine and communicates with the Chaos Studio managed service.](images/chaos-agent-overview-architecture.png)](images/chaos-agent-overview-architecture.png#lightbox)
 
-The purpose of the Chaos Agent is to introduce agent-based fault injection into your chaos experiments. Key benefits include:
+## What the agent enables
 
-- **Enhanced Fault Injection**: By operating inside the VM, the agent enables faults that mimic real-world scenarios more accurately.
-- **Beyond Control Plane Limitations**: Some faults, such as deep system resource exhaustion, can only be induced from within the operating system.
-- **Comprehensive Testing**: Test your applications against conditions like CPU and memory pressure, and network disruptions.
+The agent supports fault types that operate at the OS level:
 
-## How It Works
+- **CPU pressure** — Drives CPU utilization to a specified level to test how your application handles compute contention.
+- **Memory pressure** — Consumes memory to simulate leaks or high utilization.
+- **Network faults** — Introduces latency, packet loss, or network disruptions on specific endpoints or ports.
 
-The Chaos Agent is shipped via VM extension and supports both Windows and Linux operating systems. Once deployed, it uses a managed identity to execute fault injection tasks directly on the target VM, allowing for:
+For the full list of agent-based faults and their parameters, see the [Fault and action library](chaos-studio-fault-library.md).
 
-- **Agent-Based Fault Injection**: Running inside the VM to trigger faults that cannot be simulated externally.
-- **VM Extension Delivery**: Simplifies deployment across various environments.
-- **Targeted Fault Scenarios**: Offers precise control over the induced faults, ensuring your systems are rigorously tested.
+## How the agent differs from service-direct faults
 
-<br>[![Diagram showing how the Chaos Studio agent core components are packaged and hosted on a customer's virtual machine and how they communicate with the Azure managed service for Chaos Studio.](images/chaos-agent-overview-architecture.png)](images/chaos-agent-overview-architecture.png#lightbox)<br>
+Chaos Studio supports two fault types. **Service-direct faults** call Azure management APIs to act on resources externally — for example, shutting down a VM or failing over a database. **Agent-based faults** run inside the VM to inject conditions that management APIs can't replicate, like sustained memory pressure or targeted network latency to a specific endpoint.
 
-## Key Scenarios Enabled
+You can combine both fault types in a single Scenario or experiment. For example, you might use a service-direct fault to fail over a database while simultaneously using an agent-based fault to add network latency on the application tier.
 
-The agent facilitates several critical fault injection scenarios, including:
+## Next steps
 
-- **CPU Pressure**: Simulate high CPU load conditions.
-- **Memory Pressure**: Induce scenarios such as memory leaks or high memory utilization.
-- **Network Faults**: Introduce network latency, packet loss, or disruptions.
-- **Additional Faults**: Explore further fault scenarios to challenge system resiliency. [See our full fault library](chaos-studio-fault-library.md)
-
-## Next Steps
-
-This overview sets the stage for detailed documentation on configuring and using the Chaos Agent within your chaos experiments. For more in-depth guidance on setup, advanced configurations, and additional scenarios, refer to the subsequent sections of our documentation series.
-
----
-
-For additional information, visit the [Azure Chaos Studio Documentation](index.yml).
+- [Agent concepts](chaos-agent-concepts.md)
+- [Install the agent (portal)](chaos-studio-tutorial-agent-based-portal.md)
+- [Supported operating systems](chaos-agent-os-support.md)
+- [Fault and action library](chaos-studio-fault-library.md)
 

@@ -1,39 +1,34 @@
 ---
-title: Understand chaos engineering and resilience with Chaos Studio
-description: Understand the concepts of chaos engineering and resilience.
+title: Chaos engineering and resilience
+description: Understand the concepts of chaos engineering and fault injection that underpin Azure Chaos Studio.
 services: chaos-studio
 author: prasha-microsoft
 ms.topic: concept-article
-ms.date: 10/14/2024
+ms.date: 06/10/2026
 ms.reviewer: prashabora
+ai-usage: ai-assisted
 ---
 
-# Understand chaos engineering and resilience
+# Chaos engineering and resilience
 
-Before you start using Azure Chaos Studio, it's useful to understand the core site reliability engineering concepts being applied.
+Chaos engineering is the practice of injecting controlled failures into a system to validate that it handles disruptions gracefully. Fault injection — introducing errors like network latency, resource unavailability, or sudden load — is the mechanism that makes this possible.
 
-## What is resilience?
+Azure Chaos Studio applies these principles as a managed service. You can run preconfigured [Scenarios](chaos-studio-scenarios.md) through a [Workspace](chaos-studio-workspaces-overview.md), or build custom [experiments](chaos-studio-chaos-experiments.md) with fine-grained control over faults, targets, and sequencing.
 
-It's never been easier to create large-scale, distributed applications. Infrastructure is hosted in the cloud, and programming language support is diverse. There are also many open-source and hosted components and services to build on.
+## Why resilience testing matters
 
-Unfortunately, there's no reliability guarantee for these underlying components and dependencies, or for systems built on them. Infrastructure can go offline, and service disruptions or outages can occur at any time. Minor disruptions in one area can be magnified and have longstanding side effects in another.
+Distributed cloud applications depend on infrastructure, services, and networks that can fail independently. A disruption in one component — a database failover, a DNS outage, an availability zone going offline — can cascade into a system-wide incident if the application wasn't designed to tolerate it.
 
-Applications and services must plan for and accommodate issues like:
+Resilience is a property of the whole system, not individual components. The only way to know whether your application survives a specific failure pattern is to test it under that condition. Chaos engineering provides a structured way to do this in preproduction and production environments.
 
-- Service outages.
-- Disruptions to known and unknown dependencies.
-- Sudden unexpected load.
-- Latencies throughout the system.
+## How Chaos Studio applies chaos engineering
 
-Applications and services must be designed to handle failure and be hardened against disruptions.
+Chaos Studio injects faults against Azure resources in a controlled, time-bounded manner. An experiment defines which faults to run, against which resources, in what order. Faults can run in parallel or sequentially. Many continuous faults are time-bounded and remove their temporary changes when the experiment ends — for example, removing NSG rules or restarting stopped resources. Verify the cleanup behavior for each fault you use by checking the [Fault and action library](chaos-studio-fault-library.md).
 
-Applications and services that deal with stresses and issues gracefully are *resilient*. Individual component reliability is good, but *resilience is a property of the entire system*. End-to-end system resilience must be validated in an integrated, production-like environment with the conditions and load that's faced in production.
+For a deeper look at experiment structure, see [Chaos experiments in Azure Chaos Studio](chaos-studio-chaos-experiments.md). For the list of available faults, see the [Fault and action library](chaos-studio-fault-library.md).
 
-## What are chaos engineering and fault injection?
+## Next steps
 
-- **Chaos engineering**: The practice of subjecting applications and services to real-world stresses and failures. The goal is to build and validate resilience to unreliable conditions and missing dependencies.
-- **Fault injection**: The act of introducing an error to a system. You can use different faults, such as network latency or loss of access to storage, to target system components. You can create scenarios that an application or service must be able to handle or recover from.
-
-A chaos experiment is the application of faults individually, in parallel, or sequentially against one or more subscription resources or dependencies. The goal is to monitor system behavior and health so that you can act on any issues that arise.
-
-An experiment can represent a real-world scenario, such as a datacenter power outage or network latency to a DNS server. It can also be used to simulate edge conditions that occur. Examples are Black Friday shopping sprees or when concert tickets go on sale for a popular band.
+- [What is Azure Chaos Studio?](chaos-studio-overview.md)
+- [Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
+- [Faults and actions in Azure Chaos Studio](chaos-studio-faults-actions.md)
