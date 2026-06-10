@@ -24,15 +24,15 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. In the Azure portal, search for **Chaos Studio** and select it.
 
-   :::image type="content" source="images/search-chaos-studio.png" alt-text="Screenshot that shows searching for Chaos Studio in the Azure portal.":::
+   :::image type="content" source="images/search-chaos-studio.png" alt-text="Screenshot that shows searching for Chaos Studio in the Azure portal." lightbox="images/search-chaos-studio.png":::
 
 1. Select **Create new workspace**.
 
-   :::image type="content" source="images/create-a-workspace-home-page.png" alt-text="Screenshot that shows the Create new workspace button on the Chaos Studio home page.":::
+   :::image type="content" source="images/create-a-workspace-home-page.png" alt-text="Screenshot that shows the Create new workspace button on the Chaos Studio home page." lightbox="images/create-a-workspace-home-page.png":::
 
 1. On the **Basics** tab, fill in your **Subscription**, **Resource group**, **Workspace name**, and **Region**. The Workspace can operate on resources in any region, so choose any supported region. Select **Next: Scope**.
 
-   :::image type="content" source="images/fill-in-required-inputs.png" alt-text="Screenshot that shows the Basics tab of the Create a Workspace form.":::
+   :::image type="content" source="images/fill-in-required-inputs.png" alt-text="Screenshot that shows the Basics tab of the Create a Workspace form." lightbox="images/fill-in-required-inputs.png":::
 
 ## Configure scope
 
@@ -40,7 +40,7 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Select your subscription and resource group, then select **Apply**.
 
-   :::image type="content" source="images/select-scope-type-and-apply.png" alt-text="Screenshot that shows the Scope configuration page with a resource group selected.":::
+   :::image type="content" source="images/select-scope-type-and-apply.png" alt-text="Screenshot that shows the Scope configuration page with a resource group selected." lightbox="images/select-scope-type-and-apply.png":::
 
 ## Configure permissions
 
@@ -50,7 +50,7 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Select **Add** to assign the identity.
 
-   :::image type="content" source="images/configure-permissions.png" alt-text="Screenshot that shows the managed identity and required permissions configuration.":::
+   :::image type="content" source="images/configure-permissions.png" alt-text="Screenshot that shows the managed identity and required permissions configuration." lightbox="images/configure-permissions.png":::
 
 ## Review and create
 
@@ -58,7 +58,7 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Review your configuration, then select **Create**.
 
-   :::image type="content" source="images/review-and-create-workspace.png" alt-text="Screenshot that shows the Review + Create page for a new Workspace.":::
+   :::image type="content" source="images/review-and-create-workspace.png" alt-text="Screenshot that shows the Review + Create page for a new Workspace." lightbox="images/review-and-create-workspace.png":::
 
 ## Verify the Workspace
 
@@ -66,7 +66,7 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Confirm the **Scope** shows your resource group and the **Managed identity** is assigned.
 
-   :::image type="content" source="images/verify-workspace-scope.png" alt-text="Screenshot that shows the Workspace Overview page with scope and identity verified.":::
+   :::image type="content" source="images/verify-workspace-scope.png" alt-text="Screenshot that shows the Workspace Overview page with scope and identity verified." lightbox="images/verify-workspace-scope.png":::
 
 ## Browse and configure a Scenario
 
@@ -74,11 +74,11 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Find the **Compute Zone Down + PostgreSQL Failover** Scenario and select **Configure**.
 
-   :::image type="content" source="images/scenarios-page-compute-zone-down-failovers.png" alt-text="Screenshot that shows the Scenarios page with the PostgreSQL zone-down failover Scenario.":::
+   :::image type="content" source="images/scenarios-page-compute-zone-down-failovers.png" alt-text="Screenshot that shows the Scenarios page with the PostgreSQL zone-down failover Scenario." lightbox="images/scenarios-page-compute-zone-down-failovers.png":::
 
 1. Enter a **Name** and **Duration** for the failover test, then select **Save Configuration**.
 
-   :::image type="content" source="images/save-configuration.png" alt-text="Screenshot that shows the Scenario configuration form with name and duration fields.":::
+   :::image type="content" source="images/save-configuration.png" alt-text="Screenshot that shows the Scenario configuration form with name and duration fields." lightbox="images/save-configuration.png":::
 
 ## Run the Scenario
 
@@ -86,24 +86,24 @@ In this tutorial, you create a Chaos Studio Workspace, configure it to target yo
 
 1. Select **Run** on the PostgreSQL failover Scenario.
 
-   :::image type="content" source="images/my-library-and-run-scenario.png" alt-text="Screenshot that shows the My Library page with the Run button for the Scenario.":::
+   :::image type="content" source="images/my-library-and-run-scenario.png" alt-text="Screenshot that shows the My Library page with the Run button for the Scenario." lightbox="images/my-library-and-run-scenario.png":::
 
    > [!IMPORTANT]
    > After you select **Run**, wait for the Scenario run page to appear. You might need to refresh the portal. Don't select **Run** again — the Scenario is already queued and a duplicate run could affect your resources.
 
 1. Monitor the run progress on the Scenario run page.
 
-   :::image type="content" source="images/running-scenario.png" alt-text="Screenshot that shows the Scenario in a running state.":::
+   :::image type="content" source="images/running-scenario.png" alt-text="Screenshot that shows the Scenario in a running state." lightbox="images/running-scenario.png":::
 
 ## Review the Scenario report
 
 1. When the Scenario status shows **Succeeded**, select **Generate report**.
 
-   :::image type="content" source="images/scenario-in-succeeded-status.png" alt-text="Screenshot that shows the Scenario in a succeeded state.":::
+   :::image type="content" source="images/scenario-in-succeeded-status.png" alt-text="Screenshot that shows the Scenario in a succeeded state." lightbox="images/scenario-in-succeeded-status.png":::
 
 1. Review the report to see which actions ran, their durations, and whether each action succeeded.
 
-   :::image type="content" source="images/chaos-run-report.png" alt-text="Screenshot that shows the Scenario report with action details.":::
+   :::image type="content" source="images/chaos-run-report.png" alt-text="Screenshot that shows the Scenario report with action details." lightbox="images/chaos-run-report.png":::
 
    For more information about what each section of the report means, see [Scenario reports](chaos-studio-scenario-reports.md).
 
