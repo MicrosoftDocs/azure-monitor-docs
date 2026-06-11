@@ -21,7 +21,6 @@ Platform telemetry DCRs provide several benefits over diagnostic settings:
 - DCRs are more flexible and scalable than diagnostic settings. Use a single DCR with multiple resources, while a separate diagnostic setting is required for each resource.
 - Use consistent ARM, Bicep, and Terraform deployment patterns across resource types.
 - Use managed identity for keyless authentication to storage accounts and Event Hubs.
-- Reduce typical end-to-end latency to about three minutes, compared to 6-10 minutes with diagnostic settings.
 
 > [!IMPORTANT]
 > This feature is currently in preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -378,6 +377,10 @@ Create a JSON file named `dcr-definition.json` with the full DCR specification, 
 
 
 
+
+
+
+
 Create the DCR:
 
 ```azurepowershell
@@ -541,6 +544,8 @@ Content-Type: application/json
 }
 ```
 </details>
+
+
 
 
 
