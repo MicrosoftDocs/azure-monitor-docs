@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 
 [Transformations in Azure Monitor](data-collection-transformations.md) allow you to run a KQL query against incoming Azure Monitor data to filter or modify incoming data before it's stored in a Log Analytics workspace. This article details KQL considerations and supported features in transformation queries in addition to special operators that are only available in transformations.
 
-Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/azure/data-explorer/kusto/query/summarizeoperator) isn't supported since it summarizes multiple records.
+Since transformations are applied to each record individually, they can't use any KQL operators that act on multiple records. Only operators that take a single row as input and return no more than one row are supported. For example, [summarize](/kusto/query/summarize-operator?view=azure-monitor&preserve-view=true) isn't supported since it summarizes multiple records.
 
 Only the operators listed in this article are supported in transformations.
 
@@ -23,11 +23,11 @@ Only the operators listed in this article are supported in transformations.
 
 ### Parse operator
 
-The [parse](/kusto/query/parse-operator) operator in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
+The [parse](/kusto/query/parse-operator?view=azure-monitor&preserve-view=true) operator in a transformation is limited to 10 columns per statement for performance reasons. If your transformation requires parsing more than 10 columns, split it into multiple statements as described in [Break up large parse commands](../logs/query-optimization.md#break-up-large-parse-commands).
 
 ### Handle dynamic data
 
-Consider the following input with [dynamic data](/azure/data-explorer/kusto/query/scalar-data-types/dynamic):
+Consider the following input with [dynamic data](/kusto/query/scalar-data-types/dynamic?view=azure-monitor&preserve-view=true):
 
 ```json
 {
@@ -70,7 +70,7 @@ source
 
 ## Dynamic literals
 
-Use the [`parse_json` function](/azure/data-explorer/kusto/query/parsejsonfunction) to handle [dynamic literals](/azure/data-explorer/kusto/query/scalar-data-types/dynamic#dynamic-literals).
+Use the [`parse_json` function](/kusto/query/parse-json-function?view=azure-monitor&preserve-view=true) to handle [dynamic literals](/kusto/query/scalar-data-types/dynamic?view=azure-monitor&preserve-view=true#dynamic-literals).
 
 For example, the following queries provide the same functionality:
 
@@ -122,7 +122,7 @@ The `geo_location` function returns approximate geographical location for an IP 
 
 ###                   Let statement
 
-The right-hand side of [`let`](/azure/data-explorer/kusto/query/letstatement) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
+The right-hand side of [`let`](/kusto/query/let-statement?view=azure-monitor&preserve-view=true) can be a scalar expression, a tabular expression, or a user-defined function. Only user-defined functions with scalar arguments are supported.
 
 ### Tabular expression statements
 
@@ -136,7 +136,7 @@ The only supported data sources for the KQL statement in a transformation are:
     | project PreciseTimeStamp, Message
     ```
 
-* [`print`](/azure/data-explorer/kusto/query/printoperator) operator, which always produces a single row. For example:
+* [`print`](/kusto/query/print-operator?view=azure-monitor&preserve-view=true) operator, which always produces a single row. For example:
 
     ```kusto
     print x = 2 + 2, y = 5 | extend z = exp2(x) + exp2(y)
@@ -144,23 +144,23 @@ The only supported data sources for the KQL statement in a transformation are:
 
 ## Supported tabular operators
 
-* [`extend`](/azure/data-explorer/kusto/query/extendoperator)
-* [`project`](/azure/data-explorer/kusto/query/projectoperator)
-* [`print`](/azure/data-explorer/kusto/query/printoperator)
-* [`where`](/azure/data-explorer/kusto/query/whereoperator)
-* [`parse`](/azure/data-explorer/kusto/query/parseoperator)
-* [`project-away`](/azure/data-explorer/kusto/query/projectawayoperator)
-* [`project-rename`](/azure/data-explorer/kusto/query/projectrenameoperator)
-* [`datatable`](/azure/data-explorer/kusto/query/datatableoperator?pivots=azuremonitor)
-* [`columnifexists`](/azure/data-explorer/kusto/query/columnifexists) (use columnifexists instead of column_ifexists)
+* [`extend`](/kusto/query/extend-operator?view=azure-monitor&preserve-view=true)
+* [`project`](/kusto/query/project-operator?view=azure-monitor&preserve-view=true)
+* [`print`](/kusto/query/print-operator?view=azure-monitor&preserve-view=true)
+* [`where`](/kusto/query/where-operator?view=azure-monitor&preserve-view=true)
+* [`parse`](/kusto/query/parse-operator?view=azure-monitor&preserve-view=true)
+* [`project-away`](/kusto/query/project-away-operator?view=azure-monitor&preserve-view=true)
+* [`project-rename`](/kusto/query/project-rename-operator?view=azure-monitor&preserve-view=true)
+* [`datatable`](/kusto/query/datatable-operator?view=azure-monitor&preserve-view=true)
+* [`columnifexists`](/kusto/query/column-ifexists-function?view=azure-monitor&preserve-view=true) (use `columnifexists` instead of `column_ifexists`)
 
 ## Supported scalar operators
 
-* All [Numerical operators](/azure/data-explorer/kusto/query/numoperators) are supported.
+* All [Numerical operators](/kusto/query/numerical-operators?view=azure-monitor&preserve-view=true) are supported.
 
-* All [Datetime and Timespan arithmetic operators](/azure/data-explorer/kusto/query/datetime-timespan-arithmetic) are supported.
+* All [Datetime and Timespan arithmetic operators](/kusto/query/datetime-timespan-arithmetic?view=azure-monitor&preserve-view=true) are supported.
 
-* The following [String operators](/azure/data-explorer/kusto/query/datatypes-string-operators) are supported.
+* The following [String operators](/kusto/query/datatypes-string-operators?view=azure-monitor&preserve-view=true) are supported.
 
     * `==`
     * `!=`
@@ -186,7 +186,7 @@ The only supported data sources for the KQL statement in a transformation are:
     * `in`
     * `!in`
 
-* The following [Bitwise operators](/azure/data-explorer/kusto/query/binoperators) are supported.
+* The following [Bitwise operators](/kusto/query/bin-operators?view=azure-monitor&preserve-view=true) are supported.
 
     * `binary_and()`
     * `binary_or()`
@@ -199,115 +199,116 @@ The only supported data sources for the KQL statement in a transformation are:
 
 * Bitwise functions
 
-    * [`binary_and`](/azure/data-explorer/kusto/query/binary-andfunction)
-    * [`binary_or`](/azure/data-explorer/kusto/query/binary-orfunction)
-    * [`binary_not`](/azure/data-explorer/kusto/query/binary-notfunction)
-    * [`binary_shift_left`](/azure/data-explorer/kusto/query/binary-shift-leftfunction)
-    * [`binary_shift_right`](/azure/data-explorer/kusto/query/binary-shift-rightfunction)
-    * [`binary_xor`](/azure/data-explorer/kusto/query/binary-xorfunction)
+    * [`binary_and`](/kusto/query/binary-and-function?view=azure-monitor&preserve-view=true)
+    * [`binary_or`](/kusto/query/binary-or-function?view=azure-monitor&preserve-view=true)
+    * [`binary_not`](/kusto/query/binary-not-function?view=azure-monitor&preserve-view=true)
+    * [`binary_shift_left`](/kusto/query/binary-shift-left-function?view=azure-monitor&preserve-view=true)
+    * [`binary_shift_right`](/kusto/query/binary-shift-right-function?view=azure-monitor&preserve-view=true)
+    * [`binary_xor`](/kusto/query/binary-xor-function?view=azure-monitor&preserve-view=true)
 
 * Conversion functions
 
-    * [`tobool`](/azure/data-explorer/kusto/query/toboolfunction)
-    * [`todatetime`](/azure/data-explorer/kusto/query/todatetimefunction)
-    * [`todouble`/toreal](/azure/data-explorer/kusto/query/todoublefunction)
-    * [`toguid`](/azure/data-explorer/kusto/query/toguidfunction)
-    * [`toint`](/azure/data-explorer/kusto/query/tointfunction)
-    * [`tolong`](/azure/data-explorer/kusto/query/tolongfunction)
-    * [`tostring`](/azure/data-explorer/kusto/query/tostringfunction)
-    * [`totimespan`](/azure/data-explorer/kusto/query/totimespanfunction)
+    * [`tobool`](/kusto/query/tobool-function?view=azure-monitor&preserve-view=true)
+    * [`todatetime`](/kusto/query/todatetime-function?view=azure-monitor&preserve-view=true)
+    * [`todouble`/ `toreal`](/kusto/query/toreal-function?view=azure-monitor&preserve-view=true)
+    * [`toguid`](/kusto/query/toguid-function?view=azure-monitor&preserve-view=true)
+    * [`toint`](/kusto/query/toint-function?view=azure-monitor&preserve-view=true)
+    * [`tolong`](/kusto/query/tolong-function?view=azure-monitor&preserve-view=true)
+    * [`tostring`](/kusto/query/tostring-function?view=azure-monitor&preserve-view=true)
+    * [`totimespan`](/kusto/query/totimespan-function?view=azure-monitor&preserve-view=true)
 
 * DateTime and TimeSpan functions
 
-    * [`ago`](/azure/data-explorer/kusto/query/agofunction)
-    * [`datetime_add`](/azure/data-explorer/kusto/query/datetime-addfunction)
-    * [`datetime_diff`](/azure/data-explorer/kusto/query/datetime-difffunction)
-    * [`datetime_part`](/azure/data-explorer/kusto/query/datetime-partfunction)
-    * [`dayofmonth`](/azure/data-explorer/kusto/query/dayofmonthfunction)
-    * [`dayofweek`](/azure/data-explorer/kusto/query/dayofweekfunction)
-    * [`dayofyear`](/azure/data-explorer/kusto/query/dayofyearfunction)
-    * [`endofday`](/azure/data-explorer/kusto/query/endofdayfunction)
-    * [`endofmonth`](/azure/data-explorer/kusto/query/endofmonthfunction)
-    * [`endofweek`](/azure/data-explorer/kusto/query/endofweekfunction)
-    * [`endofyear`](/azure/data-explorer/kusto/query/endofyearfunction)
-    * [`getmonth`](/azure/data-explorer/kusto/query/getmonthfunction)
-    * [`getyear`](/azure/data-explorer/kusto/query/getyearfunction)
-    * [`hourofday`](/azure/data-explorer/kusto/query/hourofdayfunction)
-    * [`make_datetime`](/azure/data-explorer/kusto/query/make-datetimefunction)
-    * [`make_timespan`](/azure/data-explorer/kusto/query/make-timespanfunction)
-    * [`now`](/azure/data-explorer/kusto/query/nowfunction)
-    * [`startofday`](/azure/data-explorer/kusto/query/startofdayfunction)
-    * [`startofmonth`](/azure/data-explorer/kusto/query/startofmonthfunction)
-    * [`startofweek`](/azure/data-explorer/kusto/query/startofweekfunction)
-    * [`startofyear`](/azure/data-explorer/kusto/query/startofyearfunction)
-    * [`todatetime`](/azure/data-explorer/kusto/query/todatetimefunction)
-    * [`totimespan`](/azure/data-explorer/kusto/query/totimespanfunction)
-    * [`weekofyear`](/azure/data-explorer/kusto/query/weekofyearfunction)
+    * [`ago`](/kusto/query/ago-function?view=azure-monitor&preserve-view=true)
+    * [`datetime_add`](/kusto/query/datetime-add-function?view=azure-monitor&preserve-view=true)
+    * [`datetime_diff`](/kusto/query/datetime-diff-function?view=azure-monitor&preserve-view=true)
+    * [`datetime_part`](/kusto/query/datetime-part-function?view=azure-monitor&preserve-view=true)
+    * [`dayofmonth`](/kusto/query/day-of-month-function?view=azure-monitor&preserve-view=true)
+    * [`dayofweek`](/kusto/query/day-of-week-function?view=azure-monitor&preserve-view=true)
+    * [`dayofyear`](/kusto/query/day-of-year-function?view=azure-monitor&preserve-view=true)
+    * [`endofday`](/kusto/query/endofday-function?view=azure-monitor&preserve-view=true)
+    * [`endofmonth`](/kusto/query/endofmonth-function?view=azure-monitor&preserve-view=true)
+    * [`endofweek`](/kusto/query/endofweek-function?view=azure-monitor&preserve-view=true)
+    * [`endofyear`](/kusto/query/endofyear-function?view=azure-monitor&preserve-view=true)
+    * [`getmonth` / `monthofyear`](/kusto/query/monthofyear-function?view=azure-monitor&preserve-view=true)
+    * [`getyear`](/kusto/query/getyear-function?view=azure-monitor&preserve-view=true)
+    * [`hourofday`](/kusto/query/hour-of-day-function?view=azure-monitor&preserve-view=true)
+    * [`make_datetime`](/kusto/query/make-datetime-function?view=azure-monitor&preserve-view=true)
+    * [`make_timespan`](/kusto/query/make-timespan-function?view=azure-monitor&preserve-view=true)
+    * [`now`](/kusto/query/now-function?view=azure-monitor&preserve-view=true)
+    * [`startofday`](/kusto/query/startofday-function?view=azure-monitor&preserve-view=true)
+    * [`startofmonth`](/kusto/query/startofmonth-function?view=azure-monitor&preserve-view=true)
+    * [`startofweek`](/kusto/query/startofweek-function?view=azure-monitor&preserve-view=true)
+    * [`startofyear`](/kusto/query/startofyear-function?view=azure-monitor&preserve-view=true)
+    * [`todatetime`](/kusto/query/todatetime-function?view=azure-monitor&preserve-view=true)
+    * [`totimespan`](/kusto/query/totimespan-function?view=azure-monitor&preserve-view=true)
+    * [`weekofyear`](/kusto/query/week-of-year-function?view=azure-monitor&preserve-view=true)
 
 * Dynamic and array functions
 
-    * [`array_concat`](/azure/data-explorer/kusto/query/arrayconcatfunction)
-    * [`array_length`](/azure/data-explorer/kusto/query/arraylengthfunction)
-    * [`pack_array`](/azure/data-explorer/kusto/query/packarrayfunction)
-    * [`pack`](/azure/data-explorer/kusto/query/packfunction)
-    * [`parse_json`](/azure/data-explorer/kusto/query/parsejsonfunction)
-    * [`parse_xml`](/azure/data-explorer/kusto/query/parse-xmlfunction)
-    * [`zip`](/azure/data-explorer/kusto/query/zipfunction)
+    * [`array_concat`](/kusto/query/array-concat-function?view=azure-monitor&preserve-view=true)
+    * [`array_length`](/kusto/query/array-length-function?view=azure-monitor&preserve-view=true)
+    * [`pack`](/kusto/query/pack-function?view=azure-monitor&preserve-view=true)
+    * [`pack_array`](/kusto/query/pack-array-function?view=azure-monitor&preserve-view=true)
+    * [`parse_json`](/kusto/query/parse-json-function?view=azure-monitor&preserve-view=true)
+    * [`parse_xml`](/kusto/query/parse-xml-function?view=azure-monitor&preserve-view=true)
+    * [`zip`](/kusto/query/zip-function?view=azure-monitor&preserve-view=true)
 
 * Mathematical functions
 
-    * [`abs`](/azure/data-explorer/kusto/query/abs-function)
-    * [`bin`/`floor`](/azure/data-explorer/kusto/query/binfunction)
-    * [`ceiling`](/azure/data-explorer/kusto/query/ceilingfunction)
-    * [`exp`](/azure/data-explorer/kusto/query/exp-function)
-    * [`exp10`](/azure/data-explorer/kusto/query/exp10-function)
-    * [`exp2`](/azure/data-explorer/kusto/query/exp2-function)
-    * [`isfinite`](/azure/data-explorer/kusto/query/isfinitefunction)
-    * [`isinf`](/azure/data-explorer/kusto/query/isinffunction)
-    * [`isnan`](/azure/data-explorer/kusto/query/isnanfunction)
-    * [`log`](/azure/data-explorer/kusto/query/log-function)
-    * [`log10`](/azure/data-explorer/kusto/query/log10-function)
-    * [`log2`](/azure/data-explorer/kusto/query/log2-function)
-    * [`pow`](/azure/data-explorer/kusto/query/powfunction)
-    * [`round`](/azure/data-explorer/kusto/query/roundfunction)
-    * [`sign`](/azure/data-explorer/kusto/query/signfunction)
+    * [`abs`](/kusto/query/abs-function?view=azure-monitor&preserve-view=true)
+    * [`bin`/`floor`](/kusto/query/bin-function?view=azure-monitor&preserve-view=true)
+    * [`ceiling`](/kusto/query/ceiling-function?view=azure-monitor&preserve-view=true)
+    * [`exp`](/kusto/query/exp-function?view=azure-monitor&preserve-view=true)
+    * [`exp10`](/kusto/query/exp10-function?view=azure-monitor&preserve-view=true)
+    * [`exp2`](/kusto/query/exp2-function?view=azure-monitor&preserve-view=true)
+    * [`isfinite`](/kusto/query/isfinite-function?view=azure-monitor&preserve-view=true)
+    * [`isinf`](/kusto/query/isinf-function?view=azure-monitor&preserve-view=true)
+    * [`isnan`](/kusto/query/isnan-function?view=azure-monitor&preserve-view=true)
+    * [`log`](/kusto/query/log-function?view=azure-monitor&preserve-view=true)
+    * [`log10`](/kusto/query/log10-function?view=azure-monitor&preserve-view=true)
+    * [`log2`](/kusto/query/log2-function?view=azure-monitor&preserve-view=true)
+    * [`pow`](/kusto/query/pow-function?view=azure-monitor&preserve-view=true)
+    * [`round`](/kusto/query/round-function?view=azure-monitor&preserve-view=true)
+    * [`sign`](/kusto/query/sign-function?view=azure-monitor&preserve-view=true)
 
 * Conditional functions
 
-    * [`case`](/azure/data-explorer/kusto/query/casefunction)
-    * [`iif`](/azure/data-explorer/kusto/query/iiffunction)
-    * [`max_of`](/azure/data-explorer/kusto/query/max-offunction)
-    * [`min_of`](/azure/data-explorer/kusto/query/min-offunction)
+    * [`case`](/kusto/query/case-function?view=azure-monitor&preserve-view=true)
+    * [`iif`](/kusto/query/iff-function?view=azure-monitor&preserve-view=true)
+    * [`max_of`](/kusto/query/max-of-function?view=azure-monitor&preserve-view=true)
+    * [`min_of`](/kusto/query/min-of-function?view=azure-monitor&preserve-view=true)
 
 * String functions
 
-    * [`base64_encodestring`](/azure/data-explorer/kusto/query/base64_encode_tostringfunction) (use base64_encodestring instead of base64_encode_tostring)
-    * [`base64_decodestring`](/azure/data-explorer/kusto/query/base64_decode_tostringfunction) (use base64_decodestring instead of base64_decode_tostring)
-    * [`countof`](/azure/data-explorer/kusto/query/countoffunction)
-    * [`extract`](/azure/data-explorer/kusto/query/extractfunction)
-    * [`extract_all`](/azure/data-explorer/kusto/query/extractallfunction)
-    * [`indexof`](/azure/data-explorer/kusto/query/indexoffunction)
-    * [`isempty`](/azure/data-explorer/kusto/query/isemptyfunction)
-    * [`isnotempty`](/azure/data-explorer/kusto/query/isnotemptyfunction)
-    * [`parse_json`](/azure/data-explorer/kusto/query/parsejsonfunction)
-    * [`split`](/azure/data-explorer/kusto/query/splitfunction)
-    * [`strcat`](/azure/data-explorer/kusto/query/strcatfunction)
-    * [`strcat_delim`](/azure/data-explorer/kusto/query/strcat-delimfunction)
-    * [`strlen`](/azure/data-explorer/kusto/query/strlenfunction)
-    * [`substring`](/azure/data-explorer/kusto/query/substringfunction)
-    * [`tolower`](/azure/data-explorer/kusto/query/tolowerfunction)
-    * [`toupper`](/azure/data-explorer/kusto/query/toupperfunction)
-    * [`hash_sha256`](/azure/data-explorer/kusto/query/sha256hashfunction)
+    * [`base64_encodestring`](/kusto/query/base64-encode-tostring-function?view=azure-monitor&preserve-view=true) (use `base64_encodestring` instead of `base64_encode_tostring`)
+    * [`base64_decodestring`](/kusto/query/base64-decode-tostring-function?view=azure-monitor&preserve-view=true) (use `base64_decodestring` instead of `base64_decode_tostring`)
+    * [`countof`](/kusto/query/countof-function?view=azure-monitor&preserve-view=true)
+    * [`extract`](/kusto/query/extract-function?view=azure-monitor&preserve-view=true)
+    * [`extract_all`](/kusto/query/extract-all-function?view=azure-monitor&preserve-view=true)
+    * [`indexof`](/kusto/query/indexof-function?view=azure-monitor&preserve-view=true)
+    * [`isempty`](/kusto/query/isempty-function?view=azure-monitor&preserve-view=true)
+    * [`isnotempty`](/kusto/query/isnotempty-function?view=azure-monitor&preserve-view=true)
+    * [`parse_json`](/kusto/query/parse-json-function?view=azure-monitor&preserve-view=true)
+    * [`replace`](/kusto/query/replace-string-function?view=azure-monitor&preserve-view=true) (use `replace` instead of `replace_string`)
+    * [`split`](/kusto/query/split-function?view=azure-monitor&preserve-view=true)
+    * [`strcat`](/kusto/query/strcat-function?view=azure-monitor&preserve-view=true)
+    * [`strcat_delim`](/kusto/query/strcat-delim-function?view=azure-monitor&preserve-view=true)
+    * [`strlen`](/kusto/query/strlen-function?view=azure-monitor&preserve-view=true)
+    * [`substring`](/kusto/query/substring-function?view=azure-monitor&preserve-view=true)
+    * [`tolower`](/kusto/query/tolower-function?view=azure-monitor&preserve-view=true)
+    * [`toupper`](/kusto/query/toupper-function?view=azure-monitor&preserve-view=true)
+    * [`hash_sha256`](/kusto/query/hash-sha256-function?view=azure-monitor&preserve-view=true)
 
 * Type functions
 
-    * [`gettype`](/azure/data-explorer/kusto/query/gettypefunction)
-    * [`isnotnull`](/azure/data-explorer/kusto/query/isnotnullfunction)
-    * [`isnull`](/azure/data-explorer/kusto/query/isnullfunction)
+    * [`gettype`](/kusto/query/gettype-function?view=azure-monitor&preserve-view=true)
+    * [`isnotnull`](/kusto/query/isnotnull-function?view=azure-monitor&preserve-view=true)
+    * [`isnull`](/kusto/query/isnull-function?view=azure-monitor&preserve-view=true)
 
 ## Identifier quoting
 
-Use [Identifier quoting](/azure/data-explorer/kusto/query/schema-entities/entity-names?q=identifier#identifier-quoting) as required.
+Use [Identifier quoting](/kusto/query/schema-entities/entity-names?view=azure-monitor&preserve-view=true) as required.
 
 ## Related content
 
