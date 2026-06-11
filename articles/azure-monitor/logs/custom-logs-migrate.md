@@ -1,12 +1,11 @@
 ---
-title: Migrate from the HTTP Data Collector API to the Logs Ingestion API
+title: Migrate From the HTTP Data Collector API to the Logs Ingestion API
 description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
-ms.reviewer: ivankh
 ms.topic: how-to
 ms.date: 05/22/2026
 ai-usage: ai-assisted
-#customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API deprecation.
 
+#customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API deprecation.
 ---
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
@@ -22,7 +21,7 @@ Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API end
 The Logs ingestion API provides the following advantages over the Data Collector API:
 
 * Supports [transformations](../data-collection/data-collection-transformations.md), which enable you to modify the data before you ingest it into the destination table, including filtering and data manipulation.
-* Lets you send data to multiple destinations.  
+* Lets you send data to multiple destinations.
 * Lets you manage the destination table schema, including column names, and whether to add new columns to the destination table when the source data schema changes.
 * Supports role-based access control (RBAC) to restrict data ingestion by data collection rule and identity.
 
@@ -48,19 +47,19 @@ The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for 
 
 ## Create new resources required for the Logs ingestion API
 
-The Logs ingestion API requires you to create two new types of resources, which the HTTP Data Collector API doesn't require: 
+The Logs ingestion API requires you to create two new types of resources, which the HTTP Data Collector API doesn't require:
 
 * [Data collection endpoints](../data-collection/data-collection-endpoint-overview.md), which ingest the data you collect into the pipeline for processing. Optionally use the [DCR ingestion endpoint](../data-collection/data-collection-endpoint-overview.md#create-a-data-collection-endpoint) for direct ingestion without needing to create a separate DCE.
 * [Data collection rules](../data-collection/data-collection-rule-overview.md), which define [data transformations](../data-collection/data-collection-transformations.md) and the destination table that receives your ingested data.
 
 ## Migrate existing custom tables or create new tables
 
-If you have an existing custom table to which you currently send data by using the Data Collector API, your options are: 
+If you have an existing custom table to which you currently send data by using the Data Collector API, your options are:
 
-* Migrate the table and switch to the Logs ingestion API. 
+* Migrate the table and switch to the Logs ingestion API.
 * Maintain the existing table and data and set up a new table into which you ingest data by using the Logs ingestion API. Delete the old table when you're ready.
 * (Not recommended) Migrate the table but still use the legacy Data Collector API. Changes to existing data types and multiple schema changes to existing Data Collector API custom tables might lead to errors.
-  
+
 ### Identify classic custom tables
 
 You have a few ways to find tables that use the Data Collector API:
@@ -92,7 +91,7 @@ Suffix conventions for columns created by the legacy API:
 
 ### Migration considerations
 
-[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) to Codeless Connector Framework (CCF) connectors available via Content Hub. These CCF connectors use DCRs with the Logs ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API. Migration might introduce new or updated table names and schemas. Old Azure Functions–based connectors that use the legacy HTTP Data Collector API and new CCF connectors might temporarily coexist during the transition period. 
+[Microsoft Sentinel connectors are transitioning](https://techcommunity.microsoft.com/blog/microsoft-security-blog/action-required-transition-from-http-data-collector-api-in-microsoft-sentinel/4499777) to Codeless Connector Framework (CCF) connectors available via Content Hub. These CCF connectors use DCRs with the Logs ingestion API. This approach provides DCR-governed schema control, applies transformations for normalization, and improves reliability and scalability compared to the legacy Data Collector API. Migration might introduce new or updated table names and schemas. Old Azure Functions–based connectors that use the legacy HTTP Data Collector API and new CCF connectors might temporarily coexist during the transition period.
 
 When migrating Sentinel connectors, you must update dependent artifacts (analytics rules, hunting queries, workbooks, playbooks, parsers) to reference any new CCF-backed tables or changed schemas. Verify and update KQL queries, alerts, and content packs to prevent ingestion or detection gaps post-migration.
 
@@ -109,49 +108,73 @@ This table summarizes considerations for each option:
 
 ### Convert a table from V1 to V2
 
-To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), run the migrate operation against the table. This call is idempotent, so it has no effect if the table is already converted.
+To convert a table that uses the Data Collector API (V1) to data collection rules and the Logs ingestion API (V2), run the migrate operation against the table. If the table is already converted, this operation has no effect.
 
-# [Azure CLI](#tab/azure-cli)
+# [Azure CLI](#tab/cli)
 
-Use the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command:
+The following Azure CLI example uses the [az monitor log-analytics workspace table migrate](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-migrate) command.
 
-```azurecli
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName="<TableName_CL>"
+
+# Migrate the table from V1 to V2
 az monitor log-analytics workspace table migrate \
-  --resource-group "myResourceGroup" \
-  --workspace-name "myWorkspace" \
-  --table-name "myTable_CL"
+  --resource-group "$resourceGroupName" \
+  --workspace-name "$workspaceName" \
+  --table-name "$tableName"
 ```
 
-# [PowerShell](#tab/powershell)
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-Use the [Invoke-AzOperationalInsightsMigrateTable](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet:
+# [Azure PowerShell](#tab/powershell)
 
-```azurepowershell
-$migrateTableParams = @{
-    ResourceGroupName = 'myResourceGroup'
-    WorkspaceName     = 'myWorkspace'
-    TableName         = 'myTable_CL'
+The following Azure PowerShell example uses the [Invoke-AzOperationalInsightsMigrateTable](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsmigratetable) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName = "<TableName_CL>"
+
+# Define parameters for Invoke-AzOperationalInsightsMigrateTable
+$invokeAzOperationalInsightsMigrateTableParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+    TableName         = $tableName
 }
 
-Invoke-AzOperationalInsightsMigrateTable @migrateTableParams
+# Migrate the table from V1 to V2
+Invoke-AzOperationalInsightsMigrateTable @invokeAzOperationalInsightsMigrateTableParams
 ```
 
-# [REST API](#tab/rest-api)
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
 
-For more information about this API and the latest version, see the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management) section and select the Tables API for the `migrate` operation group in the REST API docs.
+# [REST](#tab/rest)
+
+The following REST example uses the [Tables - Migrate](/rest/api/loganalytics/tables/migrate) REST API operation.
 
 ```REST
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName}/migrate?api-version=2025-02-01
-Authorization: Bearer {accessToken}
-Content-Type: application/json
+POST https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName_CL}/migrate?api-version=2025-07-01
+Authorization: Bearer {AccessToken}
 ```
 
 ---
-
+<!--
+| Variable | Example value | Purpose |
+|----------|---------------|---------|
+| subscriptionId | \<SubscriptionId\> | User input |
+| resourceGroupName | \<ResourceGroupName\> | User input |
+| workspaceName | \<WorkspaceName\> | User input |
+| tableName | \<TableName_CL\> | User input |
+| apiVersion | 2025-07-01 | [Reference](/rest/api/loganalytics/tables/migrate) |
+-->
 The `migrate` operation enables all DCR-based custom logs features on the table. If the Data Collector API continues to ingest data into existing columns, it doesn't create any new columns. Any previously defined [custom fields](../logs/custom-fields.md) stop getting new data. Don't change the schema to create new columns or the Data Collector API stops ingesting for the entire table. Apply a [workspace transformation](../logs/tutorial-workspace-transformations-portal.md) to migrate a table to DCRs to delay switching to the Logs ingestion API.
 
 > [!IMPORTANT]
-> - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`). 
+> - Column names must start with a letter and can consist of up to 45 alphanumeric characters and underscores (`_`).
 > - `_ResourceId`, `id`, `_SubscriptionId`, `TenantId`, `Type`, `UniqueId`, and `Title` are reserved column names.
 > - Custom columns you add to an Azure table must have the suffix `_CF`.
 > - If you update the table schema in your Log Analytics workspace, you must also update the input stream definition in the data collection rule to ingest data into new or modified columns.
@@ -168,7 +191,7 @@ GUIDs are stored as strings in Azure Monitor Logs. The Tables API accepts `guid`
 
 ## Handle source data schema changes
 
-The Data Collector API automatically adjusts a destination legacy table's schema when the source data object schema changes, but the Logs ingestion API doesn't. The Logs ingestion API ensures you don't collect new data into columns that you don't intend to create.  
+The Data Collector API automatically adjusts a destination legacy table's schema when the source data object schema changes, but the Logs ingestion API doesn't. The Logs ingestion API ensures you don't collect new data into columns that you don't intend to create.
 
 Options when the source data schema changes:
 
@@ -177,7 +200,7 @@ Options when the source data schema changes:
 * Leave the destination table and data collection rule unchanged. In this case, you don't ingest the new data.
 
 > [!NOTE]
-> You can't reuse a column name with a data type that differs from the column's original data type. 
+> You can't reuse a column name with a data type that differs from the column's original data type.
 
 ## Related content
 
