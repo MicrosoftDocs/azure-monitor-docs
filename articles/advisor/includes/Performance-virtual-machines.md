@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 11/25/2025
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: Performance Virtual Machines
@@ -32,7 +32,7 @@ Recommendation ID: 3a3c1a2a-8597-4d3a-981a-0a24a0ee9de4
 
 <!--06c03895-e210-4153-a4a0-a5e5c8e8eb83_begin-->
 
-#### Upgrade the size of your most active virtual machines to prevent resource exhaustion and improve performance  
+#### Upgrade size of most active virtual machines to prevent resource exhaustion and improve performance  
   
 We analyzed data for the past 7 days and identified virtual machines (VMs) with high utilization across different metrics, for example, CPU, Memory, and VM I/O. The VMs may experience performance issues since they are nearing or at the SKU limits. Consider upgrading their SKU to improve performance.  
   
@@ -47,6 +47,7 @@ Recommendation ID: 06c03895-e210-4153-a4a0-a5e5c8e8eb83
 
 
 <!--06c03895-e210-4153-a4a0-a5e5c8e8eb83_end-->
+
 
 <!--36c3633b-daac-4e01-af95-11b8c2f4fe20_begin-->
 
