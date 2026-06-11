@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -411,12 +411,13 @@ Vaulted backup helps in achieving cyber resiliency goals and long-term retention
 
 **Impact:** Medium
   
-For more information, see [Azure Backup Documentation - Azure Backup](https://aka.ms/AzureBackupforCosmosDBPublicDoc)  
+For more information, see [About Azure Cosmos DB backup - Azure Backup](https://aka.ms/AzureBackupforCosmosDBPublicDoc)  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200  
 Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
+
 
 <!--articleBody-->

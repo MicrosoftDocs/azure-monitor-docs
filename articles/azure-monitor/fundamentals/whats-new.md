@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 05/12/2026
+ms.date: 06/08/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,12 @@ ms.date: 05/12/2026
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
+
+### June 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Data Collection|[Transformations in Azure Monitor](../data-collection/data-collection-transformations.md#multi-stage-transformations-preview)|Multi-stage transformations for data collection rules are in public preview. Filter, parse, aggregate, and enrich logs at the agent or during ingestion using a pipeline of declarative processors. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/azureobservabilityblog/is-94-of-your-syslog-just-noise-now-you-can-filter-it-out-before-ingestion-/4524600) for more details.|
 
 ### May 2026
 

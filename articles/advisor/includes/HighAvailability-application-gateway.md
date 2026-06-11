@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -744,12 +744,13 @@ Deploy a zone-redundant StandardV2 NAT Gateway configuration
 
 **Impact:** High
   
-  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
 
 ResourceType: microsoft.network/natgateways  
 Recommendation ID: 374b21de-e7ec-409a-9961-93e789e27536  
 Subcategory: undefined
 
 <!--374b21de-e7ec-409a-9961-93e789e27536_end-->
+
 
 <!--articleBody-->

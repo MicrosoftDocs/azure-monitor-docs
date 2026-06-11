@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure SQL Database
@@ -203,5 +203,23 @@ Recommendation ID: 4c400f75-46b6-42a5-9c18-b80602a44531
 Subcategory: undefined
 
 <!--4c400f75-46b6-42a5-9c18-b80602a44531_end-->
+
+<!--46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9_begin-->
+
+#### Enable zone redundancy for Azure SQL Elastic Pools  
+  
+Enabling zone redundancy for Azure SQL Elastic Pools improves database availability by distributing pool compute across availability zones and minimizing the impact of zone-level failures.  
+  
+**Potential benefits**: Improved availability  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.sql/servers/elasticpools  
+Recommendation ID: 46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9  
+Subcategory: undefined
+
+<!--46cc1fcd-f1eb-4558-a7fb-22ba33f9e8e9_end-->
 
 <!--articleBody-->
