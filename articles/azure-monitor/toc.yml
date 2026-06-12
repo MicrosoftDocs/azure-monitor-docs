@@ -13,6 +13,8 @@ items:
     href: fundamentals/whats-new.md
 - name: Getting started
   items:
+  - name: Azure Monitor overview page
+    href: fundamentals/overview-page.md
   - name: Monitor an Azure resource
     href: platform/monitor-azure-resource.md
   - name: Analyze metric data
