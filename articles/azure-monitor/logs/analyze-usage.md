@@ -385,7 +385,7 @@ The following queries return the count of computers with billed data per hour. T
 
 ```kusto
 find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(now()) project Computer, _IsBillable, Type, TimeGenerated
-| where Type !in ("SecurityAlert", "SecurityBaseline", "SecurityBaselineSummary", "SecurityDetection", "SecurityEvent", "WindowsFirewall", "MaliciousIPCommunication", "LinuxAuditLog", "SysmonEvent", "ProtectionStatus", "WindowsEvent")
+| where Type !in ("SecurityAlert", "SecurityBaseline", "SecurityBaselineSummary", "SecurityDetection", "SecurityEvent", "WindowsFirewall", "LinuxAuditLog", "ProtectionStatus", "WindowsEvent", "MDCFileIntegrityMonitoringEvents")
 | extend computerName = tolower(tostring(split(Computer, '.')[0]))
 | where computerName != ""
 | where _IsBillable == true
