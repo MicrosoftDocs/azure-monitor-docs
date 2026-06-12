@@ -318,7 +318,7 @@ Every Log Analytics table has a `protectionLevel` property with two possible val
 | Protection level | Behavior |
 |---|---|
 | `General` (default) | Standard access. Users with Reader, Monitoring Reader, or other read roles can query this table. |
-| `Protected` | Restricted access. Non-privileged standard roles cannot access the data. Only roles using the supported `DataActions` with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
+| `Protected` | Restricted access. Non-privileged standard roles can't access the data. Only roles using the supported `DataActions` with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
 
 Once you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
 
@@ -350,7 +350,7 @@ Protected table access uses different `DataActions` and ABAC attributes dependin
 
 ### DataActionsOnly mode
 
-Enable `DataActionsOnly` mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control-plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only `DataActions` provide access to log data. This setting strengthens protected tables by closing the path where control-plane permissions could bypass data-plane restrictions.
+Enable `DataActionsOnly` mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only `DataActions` provide access to log data. This setting strengthens protected tables by closing the path where control plane permissions could bypass data plane restrictions.
 
 For configuration steps, see [Enable DataActionsOnly mode](protected-tables-configure.md#enable-dataaction-only-mode).
 
