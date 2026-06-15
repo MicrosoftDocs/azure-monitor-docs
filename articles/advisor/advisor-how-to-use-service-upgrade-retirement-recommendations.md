@@ -14,7 +14,7 @@ Learn how to use Service Upgrade and Retirement recommendations.
 
 Azure services periodically undergo a retirement and upgrade journey, necessitating you to upgrade to the most current versions to ensure security, functionality, and support. Now, Azure Advisor includes integrated service upgrade and retirement recommendations, providing you with critical guidance on upcoming service updates.
 
-## Access recommendations
+## Access recommendations through multiple channels
 
 The **Service Upgrade and Retirement** subcategory of recommendations under **Reliability** category, includes both upgrade and retirement recommendations. The upgrade and retirement recommendations are a superset of the [retirement updates provided using customer communication](https://azure.microsoft.com/updates "Azure Updates | Microsoft Azure"). The recommendations intended for upgrades but not associated with any retirements have **Retirement Date** and **Retiring Feature** values marked as `N/A` or null.
 
@@ -139,7 +139,7 @@ To open the Service Retirement workbook, complete the following actions.
 
 1.  Under **Azure Advisor**, select **Service Retirement**.
 
-You can also directly access the Service Retirement workbook using [this link](https://portal.azure.com/#blade/AppInsightsExtension/UsageNotebookBlade/ComponentId/Azure%20Advisor/ConfigurationId/community-Workbooks%2FAzure%20Advisor%2FAzureServiceRetirement/WorkbookTemplateName/Service%20Retirement).
+You can also directly access the Service Retirement workbook using [this link](https://aka.ms/ServicesRetirementWorkbook).
 
 The workbook shows a list and a map view of service retirements that impact your resources or services. Each service has a planned retirement date, the number of impacted resources, and migration guidance.
 
@@ -156,12 +156,12 @@ Azure Service Health is a suite of experiences that provides  alerts and guidanc
 Azure Service Health is also a source through which you can stay informed about upcoming service retirements. Health advisories in Azure Service Health include information about services and features that are scheduled for retirement, helping you plan migrations in advance.
 Azure Service Health is one of the ways you can proactively get information on upcoming Azure service retirements alongside Azure Advisor recommendations, workbooks, and APIs.
 
-> For more information, see [What is Azure Service Health?](/azure/service-health/overview "What is Azure Service Health? | Microsoft Learn").
+> For more information, see [What is Azure Service Health?](/azure/service-health/service-health-advisories#impacted-services-tab).
 
 ---
 
 > [!NOTE]
-> All channels support retirement recommendations only for public clouds. For retirement recommendations on sovereign clouds, you can leverage https://github.com/microsoft/azure-retirement-impact-analyzer.
+> All channels support retirement recommendations only for Azure public cloud. For retirement recommendations on sovereign or national partner clouds, you can leverage https://github.com/microsoft/azure-retirement-impact-analyzer.
 
 ## Coverage of services
 
