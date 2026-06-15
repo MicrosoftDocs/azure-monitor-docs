@@ -3,7 +3,7 @@ title: Use customer-managed storage accounts in Azure Monitor Logs
 description: Use your own Azure Storage account to ingest logs into Azure Monitor Logs.
 ms.topic: how-to
 ms.reviewer: noakuper
-ms.date: 05/07/2026
+ms.date: 06/01/2026
 ---
 
 # Use customer-managed storage accounts in Azure Monitor Logs
@@ -19,8 +19,7 @@ Custom log content uploaded to customer-managed storage accounts might change in
 
 ## Prerequisites
 
-> [!WARNING]
-> Starting June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts will no longer be available. Existing storage accounts will be unlinked by November 1, 2025. We strongly recommend migrating to an Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
+As of June 30, 2025, creating or updating **Custom logs and IIS logs** linked storage accounts is no longer available, and existing storage accounts were unlinked November 1, 2025. Migrate to Azure Monitor Agent to avoid losing data. For more information, see [Azure Monitor Agent overview](../agents/azure-monitor-agent-overview.md).
 
 > [!WARNING]
 > Starting August 31, 2026, Log Analytics Workspaces must have a managed identity (MSI) assigned to them to add or update linked storage accounts for saved queries and saved log alert queries. For more information, see [Link storage accounts to your Log Analytics workspace](#link-storage-accounts-to-your-log-analytics-workspace).
@@ -47,8 +46,7 @@ When you connect to Azure Monitor over a private link, Azure Monitor Agent can o
 For more information on the AMPLS configuration procedure, see [Use Azure Private Link to securely connect networks to Azure Monitor](../fundamentals/private-link-security.md).
 
 ### Storage account requirements for private link
-When you connect to Azure Monitor over a private link, the storage account must be accessible over a private link. This requirement means you should:
-For the storage account to connect to your private link, it must:
+When you connect to Azure Monitor over a private link, the storage account must be accessible over a private link. The storage account must:
 
 * Be located on your virtual network or a peered network and connected to your virtual network over a private link.
 * Allow Azure Monitor to access the storage account. To allow only specific networks to access your storage account, select the exception **Allow trusted Microsoft services to access this storage account**.
@@ -60,7 +58,7 @@ If your workspace handles traffic from other networks, configure the storage acc
 Coordinate the TLS version between the agents and the storage account. We recommend that you send data to Azure Monitor Logs by using TLS 1.2 or higher. If necessary, [configure your agents to use TLS](../agents/agent-windows.md#configure-agent-to-use-tls-12). If that's not possible, configure the storage account to accept TLS 1.2.
 
 ## Customer-managed key data encryption
-Azure Storage encrypts all data at rest in a storage account. By default, it uses Microsoft-managed keys (MMKs) to encrypt the data. However, Azure Storage also allows you to use customer-managed keys (CMKs) from Azure Key Vault to encrypt your storage data. Either import your own keys into Key Vault or use the Key Vault APIs to generate keys.
+Azure Storage encrypts all data at rest in a storage account. By default, it uses Microsoft-managed keys (MMKs) to encrypt the data. Azure Storage also supports customer-managed keys (CMKs) from Azure Key Vault to encrypt your storage data. Either import your own keys into Key Vault or use the Key Vault APIs to generate keys.
 
 A customer-managed storage account is required for:
 
@@ -72,16 +70,16 @@ Configure your storage account to use CMKs with Key Vault. For more information,
 ### Considerations for customer-managed storage with CMK
 
 > [!WARNING]
-> When you link a storage account for queries, all queries and functions are permanently removed from the workspace and stored in a table in the storage account. Before starting this operation, click Export template under Automation in your workspace to save your queries and functions.
+> When you link a storage account for queries, all queries and functions are permanently removed from the workspace and stored in a table in the storage account. Before starting this operation, select **Export template** under **Automation** in your workspace to save your queries and functions.
 
 The storage account and the key vault must be in the same region. They don't need to be from the same subscription though. For more information, see [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption).
 
 | Special case | Remediation |
 |---|---|
-| When a storage account is linked for queries, existing saved queries and functions in the workspace are deleted permanently for privacy and moved to a table in storage account. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). You can unlink the storage account for queries, to move saved queries and functions back to your workspace. Refresh the browser if you don't saved queries or functions don’t show up in the Azure portal after the operation. |
+| When a storage account is linked for queries, existing saved queries and functions in the workspace are deleted permanently for privacy and moved to a table in storage account. | Copy existing saved queries before configuring the storage link. Here's an [example using PowerShell](/powershell/module/az.operationalinsights/get-azoperationalinsightssavedsearch). Unlink the storage account for queries to move saved queries and functions back to your workspace. Refresh the browser if your saved queries or functions don't show up in the Azure portal after the operation. |
 | Queries saved in [query packs](./query-packs.md) aren't encrypted with CMK. | Select **Save as Legacy query** when saving queries instead, to protect them with CMK. |
 | Saved queries and log search alerts aren't encrypted in customer-managed storage by default. | Encrypt your storage account with CMK at storage account creation even though CMK is configurable after. |
-| A single StorageV2 storage account can be used for all purposes - queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.|
+| A single StorageV2 storage account can be used for all purposes: queries, alerts, custom logs, and IIS logs. | Linking storage for custom logs and IIS logs might require more storage accounts (up to 5 per workspace) for scale, depending on the ingestion rate and storage limits. All customer-managed storage for custom logs and IIS logs was unlinked November 1, 2025. |
 
 ## Link storage accounts to your Log Analytics workspace
 
@@ -98,7 +96,7 @@ Get ready for the upcoming enforcement change by configuring your workspace with
 
 :::image type="content" source="./media/private-storage/identity-setting.png" alt-text="Screenshot showing the workspace identity setting in the Azure portal.":::
 
-Until that enforcement, the workspace doesn't use the managed identity for authentication to private storage. Don't remove your existing authentication method until the announcement is made that managed identities are enabled for authentication to private storage.
+Until enforcement begins, the workspace doesn't use the managed identity for authentication to private storage. Don't remove your existing authentication method until Microsoft announces that managed identities are enabled for authentication to private storage.
 
 Create or update your workspace with a managed identity using one of these methods:
 
@@ -129,7 +127,7 @@ For more information, see [Configure linked storage account with Azure CLI](/cli
 
 The applicable `dataSourceType` values are:
 
-* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.
+* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. All customer-managed storage for custom logs and IIS logs was unlinked November 1, 2025.
 * `Query`: To use the storage account to store saved queries (required for CMK encryption).
 * `Alerts`: To use the storage account to store log-based alerts (required for CMK encryption).
 
@@ -139,7 +137,7 @@ For more information, see [Configure linked storage account with REST API](/rest
 
 The applicable `dataSourceType` values are:
 
-* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. Keep in mind all customer-managed storage for custom logs and IIS logs will be unlinked November 1, 2025.
+* `CustomLogs`: To use the storage account for custom logs and IIS logs ingestion. All customer-managed storage for custom logs and IIS logs was unlinked November 1, 2025.
 * `Query`: To use the storage account to store saved queries (required for CMK encryption).
 * `Alerts`: To use the storage account to store log-based alerts (required for CMK encryption).
 
@@ -151,7 +149,7 @@ Follow this guidance to manage your linked storage accounts.
 
 ### Create or modify a link
 
-When you link a storage account to a workspace, Azure Monitor Logs starts using it instead of the storage account owned by the service. You can:
+When you link a storage account to a workspace, Azure Monitor Logs starts using it instead of the service-owned storage account.
 
 * Register multiple storage accounts to spread the load of logs between them.
 * Reuse the same storage account for multiple workspaces.
