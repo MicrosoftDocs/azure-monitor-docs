@@ -159,6 +159,7 @@ API endpoint is `management.azure.com`.
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
 | [Saved Searches](/rest/api/loganalytics/saved-searches) | Create or update saved searches. |
 | [Storage Insights](/rest/api/loganalytics/storage-insights) | Create or update storage insights. |
+| [Summary rules](/rest/api/loganalytics/summary-logs) | Create, update, start, stop, delete, and retry summary rules that aggregate log data in a Log Analytics workspace. |
 | [Tables](/rest/api/loganalytics/tables) | Manage Log Analytics workspace tables. |
 | [Workspace purge](/rest/api/loganalytics/workspace-purge) | Retrieve the status of an ongoing purge operation or purge the data in a Log Analytics workspace. |
 | [Workspace schema](/rest/api/loganalytics/schema) | Retrieves the schema for a Log Analytics workspace. |

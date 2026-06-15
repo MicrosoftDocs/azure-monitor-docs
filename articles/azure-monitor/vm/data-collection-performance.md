@@ -33,7 +33,7 @@ Select **Custom** to specify an [XPath](https://www.w3schools.com/xml/xpath_synt
 > This behavior can be avoided by not collecting performance counters in DCRs that don't specify a [platform type](./data-collection.md#create-data-collection-rule-dcr). Ensure that Windows counters are only included in DCRs associated with Windows machines, and Linux counters are only included in DCRs associated with Linux machines.
 
 > [!NOTE]
-> Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API ([Metric Namespaces - List](/rest/api/monitor/metric-namespaces/list), [Metric Definitions - List](/rest/api/monitor/metric-definitions/list), and [Metrics - List](/rest/api/monitor/metrics/list) pointing to **azure.vm.windows.guestmetrics** as Namespace.
+> Microsoft.HybridCompute ([Azure Arc-enabled servers](/azure/azure-arc/servers/overview)) resources can't currently be viewed in [Metrics Explorer](../essentials/metrics-getting-started.md), but their metric data can be acquired via the Metrics REST API ([Metric Namespaces - List](/rest/api/monitor/metric-namespaces/list), [Metric Definitions - List](/rest/api/monitor/metric-definitions/list), and [Metrics - List](/rest/api/monitor/metrics/list) pointing to **azure.vm.windows.guestmetrics** or **azure.vm.linux.guestmetrics** as Namespace.
 
 ## Add destination
 
@@ -47,7 +47,7 @@ To verify performance counters are being collected in the Log Analytics workspac
 
 :::image type="content" source="media/data-collection-performance/verify-performance-counter.png" lightbox="media/data-collection-performance/verify-performance-counter.png" alt-text="Screenshot that shows records returned from Perf table." :::
 
-To verify performance counters are being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows) or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
+To verify performance counters are being collected in Azure Monitor Metrics, select **Metrics** from the virtual machine in the Azure portal. Select **Virtual Machine Guest** (Windows)  or **azure.vm.linux.guestmetrics** for the namespace and then select a metric to add to the view.
 
 :::image type="content" source="media/data-collection-performance/verify-metrics.png" lightbox="media/data-collection-performance/verify-metrics.png" alt-text="Screenshot that shows guest metrics in Metrics explorer." :::
 
