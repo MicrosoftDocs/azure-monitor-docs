@@ -156,7 +156,7 @@ Azure Service Health is a suite of experiences that provides  alerts and guidanc
 Azure Service Health is also a source through which you can stay informed about upcoming service retirements. Health advisories in Azure Service Health include information about services and features that are scheduled for retirement, helping you plan migrations in advance.
 Azure Service Health is one of the ways you can proactively get information on upcoming Azure service retirements alongside Azure Advisor recommendations, workbooks, and APIs.
 
-> For more information, see [What is Azure Service Health?](https://learn.microsoft.com/en-us/azure/service-health/service-health-advisories#impacted-services-tab).
+> For more information, see [What is Azure Service Health?](/azure/service-health/service-health-advisories#impacted-services-tab).
 
 ---
 
