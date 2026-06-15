@@ -58,7 +58,16 @@ Data export is optimized to move large data volumes to your destinations. In the
 For more information about destination limits and recommended alerts, see [Create or update a data export rule](#create-or-update-a-data-export-rule).
 
 ## Pricing model
-Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). Data export size calculations can't be done with a workspace query since the size calculation doesn't include the JSON formatting overhead. Use the method in this sample PowerShell script to [calculate the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
+Data export charges are based on the number of bytes exported to destinations in JSON formatted data, and measured in GB (10^9 bytes). The table size reported in Azure Monitor Logs is smaller than the data size that lands in the export destination. This discrepancy is due to the following factors:
+
+- Azure Monitor Logs excludes certain fields from the billable size calculation.
+- Data exported to storage is uncompressed.
+- Exported data includes property names with each record to ensure each record is valid JSON.
+- When actual log records are small, the metadata is significant overhead, making the relative size increase more pronounced.
+
+Data export size calculations can't be done with a workspace query since the size calculation doesn't include the JSON formatting overhead. When comparing the size reported in Azure Monitor Logs to what appears in the storage account, expect substantial differences. In Azure Monitor Logs, small events omit metadata such as property names, while the storage blob includes both the metadata and uncompressed JSON, making the records considerably larger.
+
+For an accurate estimate, run a representative export to a test blob container and measure the result using this sample PowerShell script that [calculates the total billing size of a blob container](/azure/storage/scripts/storage-blobs-container-calculate-billing-size-powershell). There's currently no charge for export to sovereign clouds. A notification will be sent before enablement.
 
 For more information, including the data export billing timeline, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/). Billing for Data Export was enabled in early October 2023. 
 
