@@ -1,16 +1,17 @@
 ---
-title: Query data in a Basic and Auxiliary table in Azure Monitor Logs 
+title: Query Data in a Basic and Auxiliary Table in Azure Monitor Logs
 description: This article explains how to query data from Basic and Auxiliary logs tables.
-ms.reviewer: adi.biran
 ms.topic: how-to
+ms.reviewer: adi.biran
 ms.date: 07/21/2025
+ai-usage: ai-assisted
 ---
 
 # Query data in a Basic and Auxiliary table in Azure Monitor Logs
 
-Basic and Auxiliary logs tables reduce the cost of ingesting high-volume verbose logs and let you query the data they store with some limitations. This article explains how to query data from Basic and Auxiliary logs tables. 
+Basic and Auxiliary logs tables reduce the cost of ingesting high-volume verbose logs and let you query the data they store with some limitations. This article explains how to query data from Basic and Auxiliary logs tables.
 
-For more information about Basic and Auxiliary table plans, see [Azure Monitor Logs Overview: Table plans](data-platform-logs.md#table-plans). 
+For more information about Basic and Auxiliary table plans, see [Azure Monitor Logs Overview: Table plans](data-platform-logs.md#table-plans).
 
 > [!NOTE]
 > Other tools that use the Azure API for querying - for example, Power BI - cannot access data in Basic and Auxiliary tables.
@@ -56,19 +57,19 @@ Queries of data in Auxiliary tables are unoptimized and might take longer to ret
 
 You can't [purge personal data](personal-data-mgmt.md#export-delete-or-purge-personal-data) from Basic and Auxiliary tables.
 
-### Visualizations 
+### Visualizations
 
-Basic and Auxiliary table plans currently support Workbooks and Grafana, while Azure Monitor Dashboards are not supported. 
+Basic and Auxiliary table plans currently support Workbooks and Grafana, while Azure Monitor Dashboards are not supported.
 
 ## Run a query on a Basic or Auxiliary table
 
 Running a query on Basic or Auxiliary tables follows the same steps as querying any other table in Log Analytics. For more information, see [Log Analytics tutorial](./log-analytics-tutorial.md).
 
-### [Portal](#tab/portal-1)
+# [Portal](#tab/portal)
 
 In the Azure portal, select **Monitor** > **Logs** > **Tables**.
 
-In the list of tables, you can identify Basic and Auxiliary tables by their unique icon: 
+In the list of tables, you can identify Basic and Auxiliary tables by their unique icon:
 
 :::image type="content" source="./media/basic-logs-query/table-icon.png" lightbox="./media/basic-logs-query/table-icon.png" alt-text="Screenshot of the Basic Logs table icon in the table list." border="false":::
 
@@ -76,28 +77,64 @@ You can also hover over a table name for the table information view, which speci
 
 :::image type="content" source="./media/basic-logs-query/table-info.png" lightbox="./media/basic-logs-query/table-info.png" alt-text="Screenshot of the Basic Logs table indicator in the table details." border="false":::
 
-When you add a table to the query, Log Analytics identifies a Basic or Auxiliary table and aligns the authoring experience accordingly. 
+When you add a table to the query, Log Analytics identifies a Basic or Auxiliary table and aligns the authoring experience accordingly.
 
 :::image type="content" source="./media/basic-logs-query/query-validator.png" lightbox="./media/basic-logs-query/query-validator.png" alt-text="Screenshot of query on Basic Logs limitations.":::
 
-### [API](#tab/api-1)
+# [Azure CLI](#tab/cli)
+
+The following Azure CLI example uses the [az monitor log-analytics query](/cli/azure/monitor/log-analytics#az-monitor-log-analytics-query) command.
+
+```bash
+# Set variables
+workspaceId="<WorkspaceId>"
+query='ContainerLogV2 | where Computer == "some value"'
+timespan="P1D"
+
+# Run the Log Analytics query
+az monitor log-analytics query \
+  --workspace "$workspaceId" \
+  --analytics-query "$query" \
+  --timespan "$timespan"
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet.
+
+```powershell
+# Set variables
+$workspaceId = "<WorkspaceId>"
+$query = 'ContainerLogV2 | where Computer == "some value"'
+$timespan = New-TimeSpan -Days 1
+
+# Define parameters for Invoke-AzOperationalInsightsQuery
+$invokeAzOperationalInsightsQueryParams = @{
+    WorkspaceId = $workspaceId
+    Query       = $query
+    Timespan    = $timespan
+}
+
+# Run the Log Analytics query
+Invoke-AzOperationalInsightsQuery @invokeAzOperationalInsightsQueryParams
+```
+
+# [REST](#tab/rest)
 
 Use **/search** from the [Log Analytics API](api/overview.md) to query data in a Basic or Auxiliary table using a REST API. This is similar to the [/query](api/request-format.md) API with the following differences:
 
 * The query is subject to the language limitations described in [KQL language limitations](#kusto-query-language-kql-language-limitations).
-* The time span must be specified in the header of the request and not in the query statement.
+* The time span must be specified as a query parameter (`timespan`) instead of in the request body.
 
-**Sample Request**
+**Sample Request:**
 
-```http
-https://api.loganalytics.io/v1/workspaces/{workspaceId}/search?timespan=P1D
-```
+```REST
+POST https://api.loganalytics.io/v1/workspaces/{WorkspaceId}/search?timespan=P1D
+Authorization: Bearer {AccessToken}
+Content-Type: application/json
 
-**Request body**
-
-```json
 {
-    "query": "ContainerLogV2 | where Computer == \"some value\"\n",
+  "query": "ContainerLogV2 | where Computer == 'some value'"
 }
 ```
 

@@ -175,9 +175,10 @@ See [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 > [!IMPORTANT]
 > If Microsoft Sentinel is enabled for the Log Analytics workspace, there's no cost for transformation to Analytics tables regardless of how much data the transformation filters.
 
-## Next steps
+## Related content
 
 - [Read more about data collection rules (DCRs)](data-collection-rule-overview.md).
 - [Create a transformation in Azure Monitor](data-collection-transformations-create.md), including multi-stage transformations.
 - [Structure of a data collection rule (DCR)](data-collection-rule-structure.md) for the complete JSON schema, including the multi-stage `transformations` section.
 - [Create a workspace transformation DCR](data-collection-transformations-create.md#create-workspace-transformation-dcr) for data not collected using a DCR.
+- [Multi-stage transformations announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/azureobservabilityblog/is-94-of-your-syslog-just-noise-now-you-can-filter-it-out-before-ingestion-/4524600) for background on the public preview.
