@@ -27,7 +27,7 @@ State-based monitoring provides the following benefits over exclusively alert-ba
 - Track availability of the workload and its components over time and compare to service level objectives.
 
 ## Track health
-Entities in the health model represent Azure resources, and each has a set of signals that together determine its overall health state. Signals can be based on metrics or log queries, and you can define your own signals or use a set of recommended signals for common Azure resources. The health of each entity rolls up to any entities that depend on it, giving you an overall health state for the entire workload.
+Entities in the health model represent Azure resources and logical components such as code components, user and system flows, and business teams. Each has a set of signals that together determine its overall health state. Signals can be based on metrics or log queries, and you can define your own signals or use a set of recommended signals for common Azure resources. The health of each entity rolls up to any entities that depend on it, giving you an overall health state for the entire workload.
 
 Track the health of your workload using multiple views. The Graph view shown above gives you a graphical representation of the current health of the workload, while the Timeline view provides its health over time. Drill in on any entity in the model for a detailed view of its health state and the signals that contribute to it.
 
