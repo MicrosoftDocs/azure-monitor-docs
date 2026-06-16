@@ -67,7 +67,7 @@ The following example illustrates health propagation in a sample health model. S
 :::image type="content" source="media/concepts/health-signals-rollup.png" lightbox="media/concepts/health-signals-rollup.png" alt-text="Screenshot of an example entity showing the health state from a child entity." border="false":::
 
 ## Health propagation settings
-The default health propagation behavior can be modified on both the parent and child entity using the *impact* and *dependencies* settings as described in the following sections. This allows you to tune health propagation to fit the specific needs of your workload and to accurately represent the health of your application.
+You can modify the default health propagation behavior on both the parent and child entity by using the *impact* and *dependencies* settings as described in the following sections. Use these settings to tune health propagation to fit the specific needs of your workload and to accurately represent the health of your application. For step-by-step instructions, see [Configure health rollup in an Azure Monitor health model](rollup.md).
 
 ### Impact (child)
 The *impact* setting of a child entity determines how its health state is propagated to its parent(s). The following table describes the different impact settings. Select the setting for each entity in the [entity editor](#entities).
@@ -129,4 +129,5 @@ The health objective for an entity is the target percentage of time this entity 
 - [Create a new health model](./create.md).
 - [Configure a health model using the designer](./designer.md).
 - [Configure signals in health models](./signals.md).
+- [Configure health rollup in health models](rollup.md).
 - [Configure alerts in health models](./alerts.md).
