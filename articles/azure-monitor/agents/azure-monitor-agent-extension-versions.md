@@ -126,7 +126,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 - **What:** You might see malformed CEF events in the Log Analytics Syslog table.
 - **When:** If you use Sentinel Syslog connectors to split a single stream of CEF and Syslog events into the Sentinel SecurityEvent and Log Analytics Syslog tables and you collect noncompliant Syslog from vendors who include the CEF indicator in the SyslogMessage column.
 - **Why:** Updates improve standards of compliance and parsing consistency for CEF data. The generic Syslog parser **no longer** extracts the CEF token from the SyslogMessage column and changes the format to comply with the RFC 5424 standard. This change addresses the principle of not modifying customer data without the customer's explicit knowledge.
-- **How:** To resolve the breaking change review and update your KQL transformation in the [CEF Syslog AMA connector](https://learn.microsoft.com/azure/sentinel/cef-syslog-ama-overview) for the Log Analytics Syslog table to include this filter “| where SyslogMessage !contains "CEF”. 
+- **How:** To resolve the breaking change, review and update your KQL transformation in the [CEF Syslog AMA connector](https://learn.microsoft.com/azure/sentinel/cef-syslog-ama-overview) for the Log Analytics Syslog table to include this filter: `| where SyslogMessage !contains "CEF"`. 
 
 ### Linux ###
 - Added FTD and FMC messages to CEF syslog stream.
