@@ -579,6 +579,11 @@ items:
     - name: Overview
       displayName: health models
       href: health-models/overview.md
+    - name: Tutorials
+      items:
+      - name: Configure health rollup
+        displayName: health models
+        href: health-models/rollup.md
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
