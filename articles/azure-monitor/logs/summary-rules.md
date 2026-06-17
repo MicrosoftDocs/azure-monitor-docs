@@ -870,8 +870,9 @@ Summary rules are designed for scale and include a retry mechanism to overcome t
 1. Select the **ellipsis (...)** at the far right of the summary rule you want to retry.
 1. Select **View runs** from the menu.
 1. Change the filter to show **Failed** runs.
-1. Find the **Run time** you want to retry and select the **ellipsis (...)** at the end of the row.
-1. Select **Rerun this bin**.
+1. Find the **Run time** you want to retry and select the **ellipsis (...)** at the end of the row. Select **Rerun this bin**.
+
+:::image type="content" source="media/summary-rules/summary-rules-rerun-bin.png" alt-text="Screenshot that shows a failed summary rule run selected in the Azure portal, with the menu option to rerun the bin." lightbox="media/summary-rules/summary-rules-rerun-bin.png":::
 
 # [Azure CLI](#tab/azure-cli-1)
 
