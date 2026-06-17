@@ -138,7 +138,7 @@ Scoping also depends on the resource type. Each Log Analytics workspace keeps it
 
 ##### Clear query history
 
-Clearing query history applies to an entire scope. Individual queries can't be removed, so clearing history removes every query for that scope at once. For resource types that share history, clearing history affects all resources of that type in the same region.
+Clearing query history applies to an entire scope, so clearing history removes every query for that scope at once. For resource types that share history, clearing history affects all resources of that type in the same region.
 
 ##### Unsupported scenarios
 
