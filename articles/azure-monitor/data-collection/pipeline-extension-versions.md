@@ -16,6 +16,27 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ## Version details
 
+### Version 1.3.0 - May 27, 2026
+
+- **Clearer error messages** for unsupported pipeline components, making issues faster to diagnose.
+- **Improved Tanzu support** with a deployment reliability fix.
+- **ARM64 and multi-architecture support** added to the pipeline image.
+- **Security:** Updated the Go runtime to the latest patched version.
+
+*Note: An internal telemetry library update in this release has no impact on customer-facing metrics.*
+
+---
+
+### Version 1.2.0 - May 13, 2026
+
+- **ARM64 production support** via multi-architecture packaging.
+- **Reduced log noise** from Azure Monitor exporter heartbeat failures.
+- **More detailed error messages** — rate-limit and server errors now include the response body.
+- **Lower network usage** during deployments by reusing already-present container images.
+- **Improved performance** in the durable buffering layer.
+- **KQL alignment:** `substring` now matches the documented specification.
+- **Bug fixes:** Reliable multi-architecture image publishing and consistent build versioning.
+
 ### Version v1.1.1 - April 2026 (General Availability)
 - Added pipeline self-monitoring with metrics (CPU utilization, memory usage, process uptime, exported logs, failed log exports) enabled by default, and resource logs available when diagnostic settings are configured. See [Monitor pipeline health and performance](./pipeline-troubleshoot.md#monitor-pipeline-health-and-performance).
 - Added ARM64 (aarch64) support, enabling deployment on a wider range of infrastructure environments.
