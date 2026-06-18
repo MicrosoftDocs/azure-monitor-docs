@@ -45,6 +45,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Frequency of Routes change**<br><br>Frequency of Routes change in ExpressRoute Gateway |`ExpressRouteGatewayFrequencyOfRoutesChanged` |Count |Total (Sum) |`roleInstance`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Max Flows Created Per Second**<br><br>Maximum Number of Flows Created Per Second on ExpressRoute Gateway |`ExpressRouteGatewayMaxFlowsCreationRate` |CountPerSecond |Maximum |`roleInstance`, `direction`|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
 |**Number of VMs in the Virtual Network**<br><br>Number of VMs in the Virtual Network |`ExpressRouteGatewayNumberOfVmInVnet` |Count |Maximum |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |No|
+|**scale unit (only apply for ErGwScale)**<br><br>scale unit |`ExpressRouteGatewayNumberOfVmInVnet` |Count |Total (Sum) |scale unit| PT30M, PT1H, PT6H, PT12H, P1D |No|
 
 ### Category: Traffic
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
