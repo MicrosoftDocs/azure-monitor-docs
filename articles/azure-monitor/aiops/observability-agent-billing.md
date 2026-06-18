@@ -20,7 +20,7 @@ The Observability Agent uses a **consumption-based** pricing model. You pay only
 Simple questions, such as "what was the maximum latency in this app yesterday?", typically use few tokens. A deep investigation though will consume many more tokens, and therefore incur higher cost.
 
 > [!NOTE]
-> Deep investigation operations include multiple agent and tool calls. A single deep investigation operation is capped at 300 AACs.
+> Deep investigation operations include multiple agent and tool calls. A single deep investigation operation is capped at 500 AACs.
 
 
 ## Related content
