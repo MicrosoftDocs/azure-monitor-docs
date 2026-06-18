@@ -2,7 +2,7 @@
 title: Query Based Metric Alerts Overview (Preview)
 description: "This article provides an overview of query-based metric alerts in Azure Monitor, focusing on how to use PromQL to create alert rules on Prometheus or custom (OTel) metrics stored in an Azure Monitor Workspace."
 ms.topic: how-to
-ms.date: 10/11/2025
+ms.date: 05/06/2026
 ms.reviewer: eliotgra
 ms.custom: references_regions
 ---
@@ -28,6 +28,8 @@ PromQL is an open-source-based metrics query language with:
 - **Resource centric and Workspace centric rule scopes**. 
     - Resource-centric rules apply queries to metrics from specific Azure resources like Azure Kubernetes Services (AKS) or VMs, with RBAC granularity by requiring access only to the monitored resource.
     - Workspace-centric rules allow authorized users to query any metric emitted to the Workspace by any resource, including cross-resource queries.
+- **Dynamic thresholds.** Alert rules that use [dynamic thresholds](/azure/azure-monitor/alerts/alerts-dynamic-thresholds) can detect and alert on an __anomalous behavior__ of a PromQL expression value. The alert rule leverages advanced machine learning (ML) capabilities to analyze the historical behavior of the expression and automatically calculates the most appropriate thresholds at a given time, to determine if an alert should fire or not.
+
 - **Managed Identity-based authorization**. You can authorize access to Workspaces using [Azure Managed Identity](/entra/identity/managed-identities-azure-resources/overview). Managed Identity provides secure, Azure-managed access to resources, enhancing RBAC granularity by separating user and rule access rights. Metric alerts support both User-assigned and System-assigned identities.
 - **Fired alert customization**. You can customize query-based metric alerts to include more contextual, scenario-specific information.
     - Custom email subject: [Configure alert notification email subjects](alerts-customize-email-subject-how-to.md) with scenario-specific information. Use the [common alert schema](alerts-common-schema.md) to identify fields in the payload.
@@ -43,6 +45,8 @@ Advantages of using query-based metric alerts:
 
 - Alert rules are configured and managed as individual Azure resources. You don’t need to create and manage rule groups on top of the individual rules.
 - Support for resource-centric queries and RBAC - your users don’t need access rights to your Workspace.
+- Support for dynamic thresholds in the alert rule criteria.
+
 - Support for authentication and authorization using Azure Managed Identity.
 - Support of email subject customization.
 
@@ -79,7 +83,9 @@ The following table provides an explanation of the schema and properties for a q
 | properties.evaluationFrequency | True | string | Rule evaluation interval | Equivalent to Prometheus Interval. |
 | properties.criteria.allOf[].name | True | string | Condition name |  |
 | properties.criteria.allOf[].query | True | string | The alert rule query | PromQL query, equivalent to Prometheus alert rule expression |
-| properties.criteria.allOf[].criterionType | False | string | Condition type | Default is StaticThresholdCriterion (dynamic threshold not supported in the preview) |
+| properties.criteria.allOf[].criterionType | False | string | Condition type | StaticThresholdCriterion (default) or DynamicThresholdCriterion |
+| properties.criteria.allOf[].operator | False | string | Condition type | GreaterThan (default), LessThan, GreaterOrLessThan | 
+| properties.criteria.allOf[].alertSensitivity | False | string | Condition type | Medium (default), High, Low |
 | properties.criteria.failingPeriods.for | False | string | Duration for condition to remain true before firing alert | Equivalent to Prometheus alert rule ‘for’. Values - ‘PT1M’, ‘PT5M’ etc. Default is 0 (fire immediately) |
 | properties.resolveConfigurations.autoResolved | False | boolean | Alert auto resolution enabled | Default = true |
 | properties.resolveConfigurations.timeToResolve | False | string | Alert auto resolution timeout | Default = “PT5M” |
