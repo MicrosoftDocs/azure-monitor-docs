@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts/blobServices
 description: Reference for Microsoft.Storage/storageAccounts/blobServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 05/29/2026
+ms.date: 06/19/2026
 ms.custom: Microsoft.Storage/storageAccounts/blobServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -50,7 +50,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Storage/
 |**Ingress**<br><br>The amount of ingress data, in bytes. This number includes ingress from an external client into Azure Storage as well as ingress within Azure. |`Ingress` |Bytes |Total (Sum), Average, Minimum, Maximum |`GeoType`, `ApiName`, `Authentication`, `Tier`|PT1M |Yes|
 |**Success E2E Latency**<br><br>The average end-to-end latency of successful requests made to a storage service or the specified API operation, in milliseconds. This value includes the required processing time within Azure Storage to read the request, send the response, and receive acknowledgment of the response. |`SuccessE2ELatency` |MilliSeconds |Average, Minimum, Maximum |`GeoType`, `ApiName`, `Authentication`, `Tier`|PT1M |Yes|
 |**Success Server Latency**<br><br>The average time used to process a successful request by Azure Storage. This value does not include the network latency specified in SuccessE2ELatency. |`SuccessServerLatency` |MilliSeconds |Average, Minimum, Maximum |`GeoType`, `ApiName`, `Authentication`, `Tier`|PT1M |Yes|
-|**Transactions**<br><br>The number of requests made to a storage service or the specified API operation. This number includes successful and failed requests, as well as requests which produced errors. Use ResponseType dimension for the number of different type of response. |`Transactions` |Count |Total (Sum) |`ResponseType`, `GeoType`, `ApiName`, `Authentication`, `TransactionType`, `Tier`|PT1M |Yes|
+|**Transactions**<br><br>The number of requests made to a storage service or the specified API operation. This number includes successful and failed requests, as well as requests which produced errors. Use ResponseType dimension for the number of different types of response. |`Transactions` |Count |Total (Sum) |`ResponseType`, `GeoType`, `ApiName`, `Authentication`, `TransactionType`, `Tier`|PT1M |Yes|
 
 ## Next steps
 

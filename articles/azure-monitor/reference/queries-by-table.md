@@ -952,7 +952,7 @@ ms.date: 06/19/2026
 - [List callers and their associated action in last 48 hours](./queries/AzureActivity.md#list-callers-and-their-associated-action-in-last-48-hours)
 - [All Azure Activity](./queries/AzureActivity.md#all-azure-activity)
 - [Azure Activity for user](./queries/AzureActivity.md#azure-activity-for-user)
-- [Successful key enumaration](./queries/AzureActivity.md#successful-key-enumaration)
+- [Successful key enumeration](./queries/AzureActivity.md#successful-key-enumeration)
 - [Network Access JIT initiation](./queries/AzureActivity.md#network-access-jit-initiation)
 - [Azure Activity operation statistics](./queries/AzureActivity.md#azure-activity-operation-statistics)
 
@@ -1025,7 +1025,7 @@ ms.date: 06/19/2026
 - [Execution count trends](./queries/AzureDiagnostics.md#execution-count-trends)
 - [Top wait events](./queries/AzureDiagnostics.md#top-wait-events)
 - [Wait event trends](./queries/AzureDiagnostics.md#wait-event-trends)
-- [Connectvity errors](./queries/AzureDiagnostics.md#connectvity-errors)
+- [Connectivity errors](./queries/AzureDiagnostics.md#connectivity-errors)
 - [Devices with most throttling errors](./queries/AzureDiagnostics.md#devices-with-most-throttling-errors)
 - [Dead endpoints](./queries/AzureDiagnostics.md#dead-endpoints)
 - [Error summary](./queries/AzureDiagnostics.md#error-summary)
@@ -1098,7 +1098,7 @@ ms.date: 06/19/2026
 - [AutoDeleted entities](./queries/AzureDiagnostics.md#autodeleted-entities)
 - [Keyvault performed operational](./queries/AzureDiagnostics.md#keyvault-performed-operational)
 - [Storage on managed instances above 90%](./queries/AzureDiagnostics.md#storage-on-managed-instances-above-90)
-- [CPU utilization treshold above 95% on managed instances](./queries/AzureDiagnostics.md#cpu-utilization-treshold-above-95-on-managed-instances)
+- [CPU utilization threshold above 95% on managed instances](./queries/AzureDiagnostics.md#cpu-utilization-threshold-above-95-on-managed-instances)
 - [Display all active intelligent insights](./queries/AzureDiagnostics.md#display-all-active-intelligent-insights)
 - [Wait stats](./queries/AzureDiagnostics.md#wait-stats)
 - [List all input data errors](./queries/AzureDiagnostics.md#list-all-input-data-errors)
@@ -1532,8 +1532,8 @@ ms.date: 06/19/2026
 - [Warning events](./queries/Event.md#warning-events)
 - [Count of warning events](./queries/Event.md#count-of-warning-events)
 - [Events in OM between 2000 to 3000](./queries/Event.md#events-in-om-between-2000-to-3000)
-- [Windows Fireawall policy settings](./queries/Event.md#windows-fireawall-policy-settings)
-- [Windows Fireawall policy settings changed by machines](./queries/Event.md#windows-fireawall-policy-settings-changed-by-machines)
+- [Windows Firewall policy settings](./queries/Event.md#windows-firewall-policy-settings)
+- [Windows Firewall policy settings changed by machines](./queries/Event.md#windows-firewall-policy-settings-changed-by-machines)
 
 ## [FailedIngestion](./queries/FailedIngestion.md)
 
@@ -1760,7 +1760,7 @@ ms.date: 06/19/2026
 
 ## [OEPAirFlowTask](./queries/OEPAirFlowTask.md)
 
-- [DAG type vs DAG runs summary statitics](./queries/OEPAirFlowTask.md#dag-type-vs-dag-runs-summary-statitics)
+- [DAG type vs DAG runs summary statistics](./queries/OEPAirFlowTask.md#dag-type-vs-dag-runs-summary-statistics)
 - [Correlation IDs of all DAG runs](./queries/OEPAirFlowTask.md#correlation-ids-of-all-dag-runs)
 - [Logs of a DAG run](./queries/OEPAirFlowTask.md#logs-of-a-dag-run)
 - [Error logs of a DAG run](./queries/OEPAirFlowTask.md#error-logs-of-a-dag-run)
@@ -1948,7 +1948,7 @@ ms.date: 06/19/2026
 ## [ResourceManagementPublicAccessLogs](./queries/ResourceManagementPublicAccessLogs.md)
 
 - [Group number of requests based on the IP address](./queries/ResourceManagementPublicAccessLogs.md#group-number-of-requests-based-on-the-ip-address)
-- [Number of opertions triggered](./queries/ResourceManagementPublicAccessLogs.md#number-of-opertions-triggered)
+- [Number of operations triggered](./queries/ResourceManagementPublicAccessLogs.md#number-of-operations-triggered)
 - [Calls based on the target URI](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-the-target-uri)
 - [Calls based on operation name](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-operation-name)
 - [Calls based on user](./queries/ResourceManagementPublicAccessLogs.md#calls-based-on-user)

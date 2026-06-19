@@ -41,9 +41,9 @@ Audit logs for queries executed in Log Analytics Workspaces.
 | IsWorkspaceInFailover | bool | Indicates whether the queried workspace was in failover mode. |
 | QueryText | string | The full body of the query as submitted by the user. |
 | QueryThumbprint | string | A hash representing the query structure, useful for identifying similar queries. |
-| QueryTimeRangeEnd | datetime | The end time (UTC) of the time range across which the query was was requested by the caller to be executed. |
-| QueryTimeRangeStart | datetime | The starting time (UTC) of the time range across which the query was was requested by the caller to be executed. |
-| RecordKind | string | The record kind. Classifies whether the record is backfilled for missed statistics retrieval . If it is not backfilled, the value is empty. |
+| QueryTimeRangeEnd | datetime | The end time (UTC) of the time range across which the query was requested by the caller to be executed. |
+| QueryTimeRangeStart | datetime | The starting time (UTC) of the time range across which the query was requested by the caller to be executed. |
+| RecordKind | string | The record kind. Classifies whether the record is backfilled for missed statistics retrieval. If it is not backfilled, the value is empty. |
 | RequestClientApp | string | ClientApp string in the request header (x-ms-app). |
 | RequestContext | dynamic | ResourceId of all referenced workspaces, applications, and resources across which the query was requested by the caller to be executed. |
 | RequestContextFilters | dynamic | Filters applied to the request context. |
