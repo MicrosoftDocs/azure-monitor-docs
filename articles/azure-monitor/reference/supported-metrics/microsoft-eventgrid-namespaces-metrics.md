@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.EventGrid/namespaces
 description: Reference for Microsoft.EventGrid/namespaces metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.EventGrid/namespaces, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -60,6 +60,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.EventGri
 |**MQTT: Succesful Webhook Authentication Requests**<br><br>The number of successful authentication requests to the webhook |`Mqtt.SuccessfulWebhookAuthenticationRequests` |Count |Total (Sum) |`Decision`|PT1M |No|
 |**MQTT: Throttling Enforcements**<br><br>The number of times Event Grid throttled a request because it exceeded the limit. |`Mqtt.ThrottlingEnforcements` |Count |Total (Sum) |`ThrottleType`|PT1M |Yes|
 |**MQTT: Throughput**<br><br>The number of bytes published to or delivered by the namespace. |`Mqtt.Throughput` |Bytes |Total (Sum) |`Direction`|PT1M |Yes|
+|**Namespace Throughput Units**<br><br>The current throughput units allocated to the namespace. |`NamespaceThroughputUnits` |Count |Maximum |\<none\>|PT1M |Yes|
 |**Publish Operations Latency**<br><br>The observed latency in milliseconds for publish events operation. |`PublishLatencyInMilliseconds` |MilliSeconds |Average |`Topic`|PT1M |No|
 |**Receive Operations Latency**<br><br>The observed latency in milliseconds for receive events operation. |`ReceiveLatencyInMilliseconds` |MilliSeconds |Average |`Topic`, `EventSubscriptionName`|PT1M |No|
 |**Reject Operations Latency**<br><br>The observed latency in milliseconds for reject events operation. |`RejectLatencyInMilliseconds` |MilliSeconds |Average |`Topic`, `EventSubscriptionName`|PT1M |No|

@@ -361,6 +361,8 @@ items:
   href: ConfigurationChange.md
 - name: ConfigurationData
   href: ConfigurationData.md
+- name: ContainerAppHTTPLogs
+  href: ContainerAppHTTPLogs.md
 - name: ContainerImageInventory
   href: ContainerImageInventory.md
 - name: ContainerInventory
@@ -385,6 +387,8 @@ items:
   href: CoreAzureBackup.md
 - name: CrowdStrikeAlerts
   href: CrowdStrikeAlerts.md
+- name: CrowdStrikeAuditEvents
+  href: CrowdStrikeAuditEvents.md
 - name: CrowdStrikeCases
   href: CrowdStrikeCases.md
 - name: CrowdStrikeDetections
@@ -653,8 +657,8 @@ items:
   href: StorageCacheWarningEvents.md
 - name: StorageMalwareScanningResults
   href: StorageMalwareScanningResults.md
-- name: StorageMoverCopyLogsTransferred
-  href: StorageMoverCopyLogsTransferred.md
+- name: StorageMoverCopyLogsFailed
+  href: StorageMoverCopyLogsFailed.md
 - name: SucceededIngestion
   href: SucceededIngestion.md
 - name: SynapseLinkEvent

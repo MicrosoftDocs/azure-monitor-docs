@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.CognitiveServices/accounts
 description: Reference for Microsoft.CognitiveServices/accounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.CognitiveServices/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -30,12 +30,6 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 For a list of supported logs, see [Supported log categories - Microsoft.CognitiveServices/accounts](../supported-logs/microsoft-cognitiveservices-accounts-logs.md)
 
-
-### Category: Actions
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Action Occurences**<br><br>Number of times each action appears. |`ActionIdOccurrences` |Count |Total (Sum) |`ActionId`, `Mode`, `RunId`|PT1M |Yes|
-|**Actions Per Event**<br><br>Number of actions per event. |`ActionsPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
 
 ### Category: Azure OpenAI - HTTP Requests
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -100,7 +94,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 ### Category: ContentSafety - Risks&Safety
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Potentially Abusive User Count**<br><br>Number of potentially abusive user that detected over a period of time. You can add a filter or apply splitting by the following dimension: ModelDeploymentName. |`RAIAbusiveUsersCount` |Count |Total (Sum) |`Region`, `ModelDeploymentName`|PT1M |Yes|
 |**Harmful Volume Detected**<br><br>Number of calls made to Azure OpenAI API and detected as harmful(both block model and annotate mode) by content filter applied over a period of time. You can add a filter or apply splitting by the following dimensions: ModelDeploymentName, ModelName and TextType. |`RAIHarmfulRequests` |Count |Total (Sum) |`Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `ApiName`, `TextType`, `Category`, `Severity`|PT1M |Yes|
 |**Blocked Volume**<br><br>Number of calls made to Azure OpenAI API and rejected by content filter applied over a period of time. You can add a filter or apply splitting by the following dimensions: ModelDeploymentName, ModelName and TextType. |`RAIRejectedRequests` |Count |Total (Sum) |`Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `ApiName`, `TextType`, `Category`|PT1M |Yes|
 |**Safety System Event**<br><br>System event for risks & safety monitoring. You can add a filter or apply splitting by the following dimension: EventType. |`RAISystemEvent` |Count |Average |`Region`, `EventType`|PT1M |Yes|
@@ -111,37 +104,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |---|---|---|---|---|---|---|
 |**Call Count for Image Moderation**<br><br>Number of calls for image moderation. |`ContentSafetyImageAnalyzeRequestCount` |Count |Total (Sum) |`ApiVersion`|PT1M |Yes|
 |**Call Count for Text Moderation**<br><br>Number of calls for text moderation. |`ContentSafetyTextAnalyzeRequestCount` |Count |Total (Sum) |`ApiVersion`|PT1M |Yes|
-
-### Category: Estimations
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Baseline Random Event count**<br><br>Estimation for baseline random event count. |`BaselineRandomEventCount` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-|**Baseline Random Reward**<br><br>Estimation for baseline random reward. |`BaselineRandomReward` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-|**Online Event Count**<br><br>Estimation for online event count. |`OnlineEventCount` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-|**Online Reward**<br><br>Estimation for online reward. |`OnlineReward` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-|**User Baseline Event Count**<br><br>Estimation for user defined baseline event count. |`UserBaselineEventCount` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-|**User Baseline Reward**<br><br>Estimation for user defined baseline reward. |`UserBaselineReward` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
-
-### Category: Feature Occurences
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Action Feature Occurrences**<br><br>Number of times each action feature appears. |`ActionFeatureIdOccurrences` |Count |Total (Sum) |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-|**Context Feature Occurrences**<br><br>Number of times each context feature appears. |`ContextFeatureIdOccurrences` |Count |Total (Sum) |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-|**Slot Feature Occurrences**<br><br>Number of times each slot feature appears. |`SlotFeatureIdOccurrences` |Count |Total (Sum) |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-
-### Category: FeatureCardinality
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Feature Cardinality by Action**<br><br>Feature Cardinality based on Action. |`FeatureCardinality_Action` |Count |Average |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-|**Feature Cardinality by Context**<br><br>Feature Cardinality based on Context. |`FeatureCardinality_Context` |Count |Average |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-|**Feature Cardinality by Slot**<br><br>Feature Cardinality based on Slot. |`FeatureCardinality_Slot` |Count |Average |`FeatureId`, `Mode`, `RunId`|PT1M |Yes|
-
-### Category: Features Per Event
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Action Features Per Event**<br><br>Average number of action features per event. |`ActionFeaturesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Context Features Per Event**<br><br>Number of context features per event. |`ContextFeaturesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Slot Features Per Event**<br><br>Average number of slot features per event. |`SlotFeaturesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
 
 ### Category: Language - Jobs
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
@@ -179,31 +141,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Total Pages**<br><br>Total number of pages processed. Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |`TotalPages` |Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`|PT1M |Yes|
 |**Total Tokens**<br><br>Number of inference tokens processed on a model. Calculated as prompt tokens (input) plus generated tokens (output). Applies to PTU, PTU-Managed and Pay-as-you-go deployments. |`TotalTokens` |Count |Total (Sum) |`ApiName`, `Region`, `ModelDeploymentName`, `ModelName`, `ModelVersion`|PT1M |Yes|
 
-### Category: Namespaces Per Event
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Action Namespaces Per Event**<br><br>Average number of action namespaces per event. |`ActionNamespacesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Context Namespaces Per Event**<br><br>Number of context namespaces per event. |`ContextNamespacesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Slot Namespaces Per Event**<br><br>Average number of slot namespaces per event. |`SlotNamespacesPerEvent` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-
-### Category: Rewards
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Average Reward Per Event**<br><br>Average reward per event. |`Reward` |Count |Average |`BaselineAction`, `ChosenActionId`, `MatchesBaseline`, `NonDefaultReward`, `Mode`, `RunId`|PT1M |Yes|
-|**Slot Reward**<br><br>Reward per slot. |`SlotReward` |Count |Average |`BaselineActionId`, `ChosenActionId`, `MatchesBaseline`, `NonDefaultReward`, `SlotId`, `SlotIndex`, `Mode`, `RunId`|PT1M |Yes|
-
-### Category: Slots
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Baseline Estimator Overall Reward**<br><br>Baseline Estimator Overall Reward. |`BaselineEstimatorOverallReward` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Baseline Estimator Slot Reward**<br><br>Baseline Estimator Reward by slot. |`BaselineEstimatorSlotReward` |Count |Average |`SlotId`, `SlotIndex`, `Mode`, `RunId`|PT1M |Yes|
-|**Baseline Random Estimator Overall Reward**<br><br>Baseline Random Estimator Overall Reward. |`BaselineRandomEstimatorOverallReward` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Baseline Random Estimator Slot Reward**<br><br>Baseline Random Estimator Reward by slot. |`BaselineRandomEstimatorSlotReward` |Count |Average |`SlotId`, `SlotIndex`, `Mode`, `RunId`|PT1M |Yes|
-|**Slots**<br><br>Number of slots per event. |`NumberOfSlots` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Online Estimator Overall Reward**<br><br>Online Estimator Overall Reward. |`OnlineEstimatorOverallReward` |Count |Average |`Mode`, `RunId`|PT1M |Yes|
-|**Online Estimator Slot Reward**<br><br>Online Estimator Reward by slot. |`OnlineEstimatorSlotReward` |Count |Average |`SlotId`, `SlotIndex`, `Mode`, `RunId`|PT1M |Yes|
-|**Slot Occurrences**<br><br>Number of times each slot appears. |`SlotIdOccurrences` |Count |Total (Sum) |`SlotId`, `SlotIndex`, `Mode`, `RunId`|PT1M |Yes|
-
 ### Category: SpeechServices - Usage
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
@@ -215,8 +152,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Audio Seconds Translated**<br><br>Number of seconds translated |`AudioSecondsTranslated` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Avatar Model Hosting Seconds**<br><br>Number of Seconds. |`AvatarModelHostingSeconds` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Avatar Model Training Seconds**<br><br>Number of Seconds. |`AvatarModelTrainingSeconds` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
-|**Number of Speaker Profiles**<br><br>Number of speaker profiles enrolled. Prorated hourly. |`NumberofSpeakerProfiles` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
-|**Speaker Recognition Transactions**<br><br>Number of speaker recognition transactions |`SpeakerRecognitionTransactions` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Speech Model Hosting Hours**<br><br>Number of speech model hosting hours |`SpeechModelHostingHours` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Synthesized Characters**<br><br>Number of Characters. |`SynthesizedCharacters` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Video Seconds Synthesized**<br><br>Number of seconds synthesized |`VideoSecondsSynthesized` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
@@ -232,8 +167,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 ### Category: Translator Services - Usage
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Characters Trained (Deprecated)**<br><br>Total number of characters trained. |`CharactersTrained` |Count |Total (Sum) |`ApiName`, `OperationName`, `Region`|PT1M |Yes|
-|**Characters Translated (Deprecated)**<br><br>Total number of characters in incoming text request. |`CharactersTranslated` |Count |Total (Sum) |`ApiName`, `OperationName`, `Region`|PT1M |Yes|
 |**Document Characters Translated**<br><br>Number of characters in document translation request. |`DocumentCharactersTranslated` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Document Custom Characters Translated**<br><br>Number of characters in custom document translation request. |`DocumentCustomCharactersTranslated` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Document Sync Characters Translated**<br><br>Number of characters in document translation (synchronous) request. |`OneDocumentCharactersTranslated` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
@@ -246,7 +179,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 ### Category: Usage
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Inference Count**<br><br>Inference Count of Carnegie Frontdoor Service |`CarnegieInferenceCount` |Count |Total (Sum) |`Region`, `Modality`, `Category`, `Language`, `SeverityLevel`, `UseCustomList`|PT1M |Yes|
 |**Computer Vision Transactions**<br><br>Number of Computer Vision Transactions |`ComputerVisionTransactions` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Custom Vision Training Time**<br><br>Custom Vision training time |`CustomVisionTrainingTime` |Seconds |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Custom Vision Transactions**<br><br>Number of Custom Vision prediction transactions |`CustomVisionTransactions` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
@@ -266,7 +198,6 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cognitiv
 |**Processed Pages**<br><br>Number of pages processed |`ProcessedPages` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**Processed Text Records**<br><br>Count of Text Records. |`ProcessedTextRecords` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
 |**QA Text Records**<br><br>Number of text records processed |`QuestionAnsweringTextRecords` |Count |Total (Sum) |`ApiName`, `FeatureName`, `UsageChannel`, `Region`|PT1M |Yes|
-|**Speech Session Duration (Deprecated)**<br><br>Total duration of speech session in seconds. |`SpeechSessionDuration` |Seconds |Total (Sum) |`ApiName`, `OperationName`, `Region`|PT1M |Yes|
 |**Total Events**<br><br>Number of events. |`TotalEvents` |Count |Total (Sum) |`Mode`, `RunId`|PT1M |Yes|
 |**Total Transactions (Deprecated)**<br><br>Total number of transactions. |`TotalTransactions` |Count |Total (Sum) |\<none\>|PT1M |Yes|
 
