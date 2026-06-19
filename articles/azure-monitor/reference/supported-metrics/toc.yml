@@ -22,6 +22,8 @@
   href: microsoft-automation-automationaccounts-metrics.md
 - name: microsoft.avs/privateClouds
   href: microsoft-avs-privateclouds-metrics.md
+- name: Microsoft.AzureDataTransfer/connections/flows
+  href: microsoft-azuredatatransfer-connections-flows-metrics.md
 - name: microsoft.azuresphere/catalogs
   href: microsoft-azuresphere-catalogs-metrics.md
 - name: Microsoft.azurestackhci/clusters

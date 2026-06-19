@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts
 description: Reference for Microsoft.Storage/storageAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 05/29/2026
+ms.date: 06/19/2026
 ms.custom: Microsoft.Storage/storageAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -32,8 +32,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Capacity
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Container Blob Count (Private Preview)**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` |Count |Average, Total (Sum) |`ContainerName`, `BlobType`, `Tier`|PT1H |No|
-|**Container Blob Capacity (Private Preview)**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` |Bytes |Average, Total (Sum) |`ContainerName`, `Tier`, `BlobType`|PT1H |No|
+|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` |Count |Average, Total (Sum) |`ContainerName`, `BlobType`, `Tier`|PT1H |No|
+|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` |Bytes |Average, Total (Sum) |`ContainerName`, `Tier`, `BlobType`|PT1H |No|
 |**Used capacity**<br><br>The amount of storage used by the storage account. For standard storage accounts, it's the sum of capacity used by blob, table, file, and queue. For premium storage accounts and Blob storage accounts, it is the same as BlobCapacity or FileCapacity. |`UsedCapacity` |Bytes |Average |\<none\>|PT1H |No|
 
 ### Category: Transaction
