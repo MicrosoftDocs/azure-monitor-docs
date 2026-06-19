@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 05/29/2026
+ms.date: 06/19/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -88,9 +88,10 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**IntegratedCacheQueryExpirationCount**<br><br>Number of queries evicted from the integrated cache due to TTL expiration |`IntegratedCacheQueryExpirationCount` |Count |Average |`Region`, `CacheEntryType`|PT5M |No|
 |**IntegratedCacheQueryHitRate**<br><br>Number of queries that used the integrated cache divided by number of queries routed through the dedicated gateway with eventual consistency |`IntegratedCacheQueryHitRate` |Percent |Average |`Region`, `CacheEntryType`|PT5M |No|
 |**Materialized View Catchup Gap In Minutes**<br><br>Maximum time difference in minutes between data in source container and data propagated to materialized view |`MaterializedViewCatchupGapInMinutes` |Count |Maximum |`Region`, `TargetContainerName`, `BuildType`|PT1M |No|
-|**Materialized Views Builder Average CPU Usage**<br><br>Average CPU usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderAverageCPUUsage` |Percent |Average |`Region`, `MetricType`|PT5M |No|
-|**Materialized Views Builder Average Memory Usage**<br><br>Average memory usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderAverageMemoryUsage` |Bytes |Average |`Region`|PT5M |No|
-|**Materialized Views Builder Maximum CPU Usage**<br><br>Average Maximum CPU usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderMaximumCPUUsage` |Percent |Average, Maximum |`Region`, `MetricType`|PT5M |No|
+|**(deprecated) Materialized Views Builder Average CPU Usage**<br><br>Average CPU usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderAverageCPUUsage` |Percent |Average |`Region`, `MetricType`|PT5M |No|
+|**Materialized Views Builder Average Memory Usage**<br><br>Average memory usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderAverageMemoryUsage` |Bytes |Average |`Region`, `InstanceId`, `ApplicationType`|PT5M |No|
+|**Materialized Views Builder CPU Usage**<br><br>CPU usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderCPUUsage` |Percent |Average, Maximum |`Region`, `InstanceId`, `ApplicationType`|PT5M |No|
+|**(deprecated) Materialized Views Builder Maximum CPU Usage**<br><br>Average Maximum CPU usage across materialized view builder instances, which are used for populating data in materialized views |`MaterializedViewsBuilderMaximumCPUUsage` |Percent |Average, Maximum |`Region`, `MetricType`|PT5M |No|
 |**Metadata Requests**<br><br>Count of metadata requests. Cosmos DB maintains system metadata collection for each account, that allows you to enumerate collections, databases, etc, and their configurations, free of charge. |`MetadataRequests` |Count |Count |`DatabaseName`, `CollectionName`, `Region`, `StatusCode`, `Role`|PT1M |No|
 |**Mongo Collection Created**<br><br>Mongo Collection Created |`MongoCollectionCreate` |Count |Count |`ResourceName`, `ChildResourceName`, `ApiKind`, `ApiKindResourceType`, `IsThroughputRequest`, `OperationType`|PT5M |No|
 |**Mongo Collection Deleted**<br><br>Mongo Collection Deleted |`MongoCollectionDelete` |Count |Count |`ResourceName`, `ChildResourceName`, `ApiKind`, `ApiKindResourceType`, `OperationType`|PT5M |No|

@@ -644,6 +644,8 @@
   href: ../copilotactivity.md
 - name: CrowdStrikeAlerts
   href: ../crowdstrikealerts.md
+- name: CrowdStrikeAuditEvents
+  href: ../crowdstrikeauditevents.md
 - name: CrowdStrikeCases
   href: ../crowdstrikecases.md
 - name: CrowdStrikeDetections
