@@ -10,9 +10,12 @@ ms.custom: template-concept, devx-track-arm-template
 
 # Permissions and security in Azure Chaos Studio
 
+> [!NOTE]
+> If you're using [Chaos Studio Workspaces](chaos-studio-workspaces-overview.md), the Workspace's managed identity executes fault actions on your behalf. Workspaces can assign required roles automatically during setup when you enable automatic role assignment. For details, see [Permissions and identity in Workspaces](chaos-studio-workspace-permissions.md). The information on this page applies when you create experiments directly.
+
 Azure Chaos Studio enables you to improve service resilience by systematically injecting faults into your Azure resources. Fault injection is a powerful way to improve service resilience, but it can also be dangerous. Causing failures in your application can have more impact than originally intended and open opportunities for malicious actors to infiltrate your applications.
 
-Chaos Studio has a robust permission model that prevents faults from being run unintentionally or by a bad actor. In this article, you learn how you can secure resources that are targeted for fault injection by using Chaos Studio.
+Chaos Studio has a layered permission model that prevents faults from running unintentionally or by a bad actor. In this article, you learn how you can secure resources that are targeted for fault injection by using Chaos Studio.
 
 ## How can I restrict the ability to inject faults with Chaos Studio?
 
@@ -24,7 +27,7 @@ Chaos Studio has three levels of security to help you control how and when fault
 
    When you attempt to control the ability to inject faults against a resource, the most important operation to restrict is `Microsoft.Chaos/experiments/start/action`. This operation starts a chaos experiment that injects faults.
 
-* Second, a chaos experiment has a [system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) or a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that executes faults on a resource. If you choose to use a system-assigned managed identity for your experiment, the identity is created at experiment creation time in your Microsoft Entra tenant. User-assigned managed identites may be used across any number of experiments.
+* Second, a chaos experiment has a [system-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) or a [user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) that executes faults on a resource. If you choose to use a system-assigned managed identity for your experiment, the identity is created at experiment creation time in your Microsoft Entra tenant. User-assigned managed identities may be used across any number of experiments.
 
    When creating a chaos experiment in the Azure portal, you can choose to enable [automatic role assignment using Azure built-in roles or a custom role](chaos-studio-assign-experiment-permissions.md) on either your system-assigned or user-assigned managed identity selection. Enabling this functionality allows Chaos Studio to create and assign Azure built-in roles or a custom role containing any necessary experiment action capabilities to your experiment's identity (that do not already exist in your identity selection). If a chaos experiment is using a user-assigned managed identity, any custom roles assigned to the experiment identity by Chaos Studio will persist after experiment deletion.
   
