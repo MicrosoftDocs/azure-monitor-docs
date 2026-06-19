@@ -13,5 +13,5 @@ ms.date: 06/19/2026
 
 | Table | Categories | Solutions|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)| Queries|
 |---|---|---|---|---|
-| [MPCIngestionLogs](/azure/azure-monitor/reference/tables/MPCIngestionLogs)<p>Ingestion logs for Microsoft Planetary Computer Pro. | audit | LogManagement | Yes| -|
+| [MPCIngestionLogs](mpcingestionlogs.md)<p>Ingestion logs for Microsoft Planetary Computer Pro. | audit | LogManagement | Yes| -|
 

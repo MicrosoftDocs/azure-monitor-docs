@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.DevCenter/devcenters
 description: Reference for Microsoft.DevCenter/devcenters in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.DevCenter/devcenters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -22,7 +22,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.DevCenter/de
 |`ConnectionEvent` |Connections |[DevCenterConnectionLogs](/azure/azure-monitor/reference/tables/devcenterconnectionlogs)<p>Connection events which include information around when a dev box was connected to, if the connection was successful and what client was used in connecting.|Yes|Yes||Yes |
 |`DataplaneAuditEvent` |Dataplane audit logs |[DevCenterDiagnosticLogs](/azure/azure-monitor/reference/tables/devcenterdiagnosticlogs)<p>Data plane audit logs related to your dev center resources. Will display information concerning stop/start/deletes on dev boxes and environments.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/devcenterdiagnosticlogs)|Yes |
 |`ResourceOperation` |Resource Operations |[DevCenterResourceOperationLogs](/azure/azure-monitor/reference/tables/devcenterresourceoperationlogs)<p>Operation logs pertaining to DevCenter resources, including information around resource health status changes.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/devcenterresourceoperationlogs)|Yes |
-|`Usage` |Billing events |[DevCenterBillingEventLogs](/azure/azure-monitor/reference/tables/devcenterbillingeventlogs)<p>Billing event related to DevCenter resources. Logs contains information about the quantity and unit charged per meter.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/devcenterbillingeventlogs)|Yes |
+|`Usage` |Billing events |[DevCenterBillingEventLogs](/azure/azure-monitor/reference/tables/devcenterbillingeventlogs)<p>Billing event related to DevCenter resources. Logs contain information about the quantity and unit charged per meter.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/devcenterbillingeventlogs)|Yes |
 
 ## Next Steps
 
