@@ -13,6 +13,6 @@ ms.date: 06/19/2026
 
 | Table | Categories | Solutions|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)| Queries|
 |---|---|---|---|---|
-| [AzureActivity](/azure/azure-monitor/reference/tables/AzureActivity)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
-| [DiscoverySupercomputerAuditLogs](/azure/azure-monitor/reference/tables/DiscoverySupercomputerAuditLogs)<p>Audit logs for Microsoft Discovery supercomputer operations including compute provisioning, scaling, and management actions. Used to track user actions and changes to supercomputer resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoverysupercomputerauditlogs)|
+| [AzureActivity](azureactivity.md)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
+| [DiscoverySupercomputerAuditLogs](discoverysupercomputerauditlogs.md)<p>Audit logs for Microsoft Discovery supercomputer operations including compute provisioning, scaling, and management actions. Used to track user actions and changes to supercomputer resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoverysupercomputerauditlogs)|
 

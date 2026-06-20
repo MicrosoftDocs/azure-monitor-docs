@@ -13,6 +13,6 @@ ms.date: 06/19/2026
 
 | Table | Categories | Solutions|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)| Queries|
 |---|---|---|---|---|
-| [AzureActivity](/azure/azure-monitor/reference/tables/AzureActivity)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
-| [DiscoveryWorkspaceAuditLogs](/azure/azure-monitor/reference/tables/DiscoveryWorkspaceAuditLogs)<p>Audit logs for Microsoft Discovery workspace operations including investigation management, task execution, and conversation activities. Used to track user actions and changes to workspace resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoveryworkspaceauditlogs)|
+| [AzureActivity](azureactivity.md)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
+| [DiscoveryWorkspaceAuditLogs](discoveryworkspaceauditlogs.md)<p>Audit logs for Microsoft Discovery workspace operations including investigation management, task execution, and conversation activities. Used to track user actions and changes to workspace resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoveryworkspaceauditlogs)|
 

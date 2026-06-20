@@ -13,6 +13,6 @@ ms.date: 06/19/2026
 
 | Table | Categories | Solutions|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)| Queries|
 |---|---|---|---|---|
-| [AzureActivity](/azure/azure-monitor/reference/tables/AzureActivity)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
-| [DiscoveryBookshelfAuditLogs](/azure/azure-monitor/reference/tables/DiscoveryBookshelfAuditLogs)<p>Audit logs for Microsoft Discovery bookshelf operations including knowledge base creation, updates, and deletions. Used to track user actions and changes to bookshelf resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoverybookshelfauditlogs)|
+| [AzureActivity](azureactivity.md)<p>Entries from the Azure Activity log that provides insight into any subscription-level or management group level events that have occurred in Azure. | resources, audit, security | LogManagement | No| [Yes](/azure/azure-monitor/reference/queries/azureactivity)|
+| [DiscoveryBookshelfAuditLogs](discoverybookshelfauditlogs.md)<p>Audit logs for Microsoft Discovery bookshelf operations including knowledge base creation, updates, and deletions. Used to track user actions and changes to bookshelf resources. | audit | LogManagement | Yes| [Yes](/azure/azure-monitor/reference/queries/discoverybookshelfauditlogs)|
 
