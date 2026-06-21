@@ -1,5 +1,5 @@
 ---
-title: Service Retirement workbook
+title: Service Retirement Workbook
 description: Use Azure Advisor to plan the migration of the workloads impacted by service retirements.
 ms.topic: how-to
 ms.date: 3/10/2026
@@ -101,7 +101,7 @@ The view named **All Services** provides details for all of the services that ar
 
 ### Is an API available to automate the pull of the workbook data rather than running and exporting the workbook results?
 
-Yes, Advisor APIs provide a way to set up a pull of the retirements data rather than running and exporting results from the Workbook. Data is also available via Azure Resource Graph as an alternative way to query that same data. A guide on utilizing those can be found here: [Service Upgrade and Retirement recommendations](https://learn.microsoft.com/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023)
+Yes, Azure Advisor APIs provide a way to set up a pull of the retirements data rather than running and exporting results from the workbook. You can also use Azure Resource Graph as an alternative way to query that same data. For a guide on utilizing these options, see [Service Upgrade and Retirement recommendations](/azure/advisor/advisor-how-to-use-service-upgrade-retirement-recommendations?tabs=recommendations-list-api%2Cservice-retire-2023).
 
 ### How do you modify the workbook template to build a personalized view?
 
@@ -112,9 +112,7 @@ The view named **All Service** shows all retirements and indicates if a retireme
 ## Related articles
 For more information, see the following articles.
 *   [3-Year Notification Subset](/lifecycle/policies/3-year-subset "3-Year Notification Subset")
-*   [What is Azure Service Health?](/azure/service-health/overview "What is Azure Service Health?")
-*   The Azure Podcast
-    *   [Episode 491 - Azure Service Retirement Workbook](https://azpodcast.azurewebsites.net/post/Episode-491-Azure-Retirement-Workbook "Episode 491 - Azure Service Retirement Workbook | The Azure Podcast")
+*   [What is Azure Service Health?](/azure/service-health/overview "What is Azure Service Health?") 
 *   Microsoft Community Hub
     *   [Announcing the public preview of Service Retirement Workbook in Azure Advisor](https://techcommunity.microsoft.com/t5/azure-governance-and-management/announcing-the-public-preview-of-service-retirement-workbook-in/ba-p/3848168 "Announcing the public preview of Service Retirement Workbook in Azure Advisor | Microsoft Community Hub")
     *   [How to visualize Service retirements in Azure Advisor](https://techcommunity.microsoft.com/t5/azure-architecture-blog/how-to-visualize-service-retirements-in-azure-advisor/ba-p/3885345 "How to visualize Service retirements in Azure Advisor | Microsoft Community Hub")
