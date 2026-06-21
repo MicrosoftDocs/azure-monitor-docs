@@ -170,8 +170,8 @@
         "articles/azure-monitor/snapshot-debugger/**/*": "hhunter-ms",
         "articles/azure-monitor/visualize/**/*": "bwren",
         "articles/azure-monitor/vm/**/*": "bwren",
-        "articles/chaos-studio/**/*": "nikhilkaul-msft",
-        "articles/service-health/**/*": "jocalland",
+        "articles/chaos-studio/**/*": "nikhilkaul",
+        "articles/service-health/**/*": "austinmc",
         "articles/operations/**/*": "bwren"
       },
       "featureFlags": {
@@ -226,7 +226,7 @@
         "articles/azure-monitor/visualize/**/*": "bwren",
         "articles/azure-monitor/vm/**/*": "bwren",
         "articles/chaos-studio/**/*": "nikhilkaul",
-        "articles/service-health/**/*": "v-jocalland",
+        "articles/service-health/**/*": "austinmc",
         "articles/operations/**/*": "bwren"
       },
       "ms.service": {
