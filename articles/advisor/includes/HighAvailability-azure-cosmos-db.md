@@ -261,7 +261,7 @@ Many clusters with consistent workloads do not have high availability (HA) enabl
 
 **Impact:** High
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](https://aka.ms/enableHAformongovcore).
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/reliability/reliability-cosmos-db).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  

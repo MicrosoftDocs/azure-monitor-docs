@@ -5,7 +5,7 @@ services: chaos-studio
 author: rsgel
 ms.topic: how-to
 ms.date: 2/5/2025
-ms.author: carlsonr
+ms.author: nikhilkaul
 ---
 
 # Use Microsoft Entra authentication with Chaos Studio AKS faults
