@@ -50,7 +50,16 @@ If you're monitoring containers, you ingest a large volume of verbose logs into 
 You might use this query in your summary rule to aggregate unique records within 60 minutes, only promoting the data that's useful for analysis to the destination table:
 
 ```kusto
-ContainerLogV2 | summarize Count = count() by  Computer, ContainerName, PodName, PodNamespace, LogSource, LogLevel, Message = tostring(LogMessage.Message)
+ContainerLogV2 
+| summarize Count = count() 
+  by
+  Computer, 
+  ContainerName,
+  PodName, 
+  PodNamespace, 
+  LogSource, 
+  LogLevel, 
+  Message = tostring(LogMessage.Message)
 ```
 
 Here's the raw data in the `ContainerLogV2` table:
@@ -128,8 +137,9 @@ To create or update a summary rule:
 
 # [Azure portal](#tab/portal-1)
 
-1. In the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
-1. In the left menu under **Settings**, select **Summary rules**.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
 
    :::image type="content" source="media/summary-rules/summary-rules-overview.png" alt-text="Screenshot that shows the overview of the summary rule experience in the Azure portal." lightbox="media/summary-rules/summary-rules-overview.png":::
 
@@ -479,15 +489,17 @@ In this example, the summary rule is created on 2023-06-07 at 14:44, and the rul
 
 ## View all summary rules
 
-View or enumerate all the summary rules in your workspace. The `displayName` property of the summary rule visible in the Azure portal is different than the `name` property used in API calls, especially if it was created through the portal. The `name` property is the unique identifier for the rule and is used in API calls to manage the rule, while the `displayName` is a user-friendly name shown in the Azure portal for easier identification.
+View or enumerate all the summary rules in your workspace. 
+
+The `displayName` property of the summary rule visible in the Azure portal is different from the `name` property used in API calls, especially if you created the rule through the portal. The `name` property is the unique identifier for the rule and is used in API calls to manage the rule. The `displayName` is a user-friendly name shown in the Azure portal for easier identification.
 
 # [Azure portal](#tab/portal-2)
 
-1. In the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
-1. In the left menu under **Settings** > **Summary rules**.
-1. **Add Filter** to adjust the summary rules displayed.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
 
-   :::image type="content" source="media/summary-rules/view-filtered-summary-rules.png" alt-text="Screenshot that shows the Summary rules pane with all summary rules in the Azure portal." lightbox="media/summary-rules/view-filtered-summary-rules.png":::
+:::image type="content" source="media/summary-rules/view-all-summary-rules.png" alt-text="Screenshot that shows the Summary rules pane with all summary rules in the Azure portal." lightbox="media/summary-rules/view-all-summary-rules.png":::
 
 # [Azure CLI](#tab/azure-cli-2)
 
@@ -549,9 +561,9 @@ View or update the configuration for a specific summary rule.
 
 # [Azure portal](#tab/portal-2)
 
-In the Azure portal, to view the details of a specific summary rule, you need to select **Edit**.
-
-1. In the left menu under **Settings**, select **Summary rules**.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
 1. Select the **ellipsis (...)** next to the summary rule you want to view from the list.
 1. Select **Edit** to view the summary rule configuration.
 
@@ -624,9 +636,12 @@ To stop a rule:
 
 # [Azure portal](#tab/portal-2)
 
-1. In the left menu under **Settings**, select **Summary rules**.
-1. Select the **ellipsis (...)** next to the summary rule you want to view from the list.
-1. Select **Stop** and confirm the status changes to *Inactive*.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
+1. Select the *Active* **Status** toggle button and confirm the status changes to *Inactive*.
+
+:::image type="content" source="media/summary-rules/stop-summary-rule.png" alt-text="Screenshot that shows the selected summary rule in the Azure portal with the status toggle button set to inactive." lightbox="media/summary-rules/stop-summary-rule.png":::
 
 # [Azure CLI](#tab/azure-cli-2)
 
@@ -692,9 +707,12 @@ To start a rule:
 
 # [Azure portal](#tab/portal-2)
 
-1. In the left menu under **Settings**, select **Summary rules**.
-1. Select the **ellipsis (...)** next to the summary rule you want to view from the list.
-1. Select **Start** and confirm the status changes to *Active*.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
+1. Select the *Inactive* **Status** toggle button and confirm the status changes to *Active*.
+
+:::image type="content" source="media/summary-rules/start-summary-rule.png" alt-text="Screenshot that shows the selected summary rule in the Azure portal with the status toggle button set to active." lightbox="media/summary-rules/start-summary-rule.png":::
 
 # [Azure CLI](#tab/azure-cli-2)
 
@@ -760,7 +778,9 @@ To delete a rule:
 
 # [Azure portal](#tab/portal-2)
 
-1. In the left menu under **Settings**, select **Summary rules**.
+1. From the [Azure portal](https://portal.azure.com), go to your Log Analytics workspace.
+1. In the left menu under **Settings**, select **Rules**.
+1. Select the **Summary rules** tab.
 1. Select the **ellipsis (...)** next to the summary rule you want to view from the list.
 1. Select **Delete**.
 
@@ -870,7 +890,8 @@ Summary rules are designed for scale and include a retry mechanism to overcome t
 1. Select the **ellipsis (...)** at the far right of the summary rule you want to retry.
 1. Select **View runs** from the menu.
 1. Change the filter to show **Failed** runs.
-1. Find the **Run time** you want to retry and select the **ellipsis (...)** at the end of the row. Select **Rerun this bin**.
+1. Find the **Run time** you want to retry and select the **ellipsis (...)** at the end of the row.
+1. Select **Rerun this bin** from the menu.
 
 :::image type="content" source="media/summary-rules/summary-rules-rerun-bin.png" alt-text="Screenshot that shows a failed summary rule run selected in the Azure portal, with the menu option to rerun the bin." lightbox="media/summary-rules/summary-rules-rerun-bin.png":::
 
