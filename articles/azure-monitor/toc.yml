@@ -1103,6 +1103,8 @@ items:
       items:
       - name: Roles permissions and security
         href: fundamentals/roles-permissions-security.md
+      - name: Configure protected tables
+        href: logs/protected-tables-configure.md
       - name: Granular RBAC
         href: logs/granular-rbac-log-analytics.md
       - name: Configure granular RBAC
