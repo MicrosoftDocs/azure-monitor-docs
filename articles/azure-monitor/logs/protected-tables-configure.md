@@ -34,7 +34,7 @@ Setting a table's protection level to `Protected` immediately prevents non-privi
 1. Under **Protection level**, select **Protected**.
 1. Select **Save**.
 
-<!-- Placeholder: screenshot of protection level setting in the Tables blade -->
+:::image type="content" source="media/protected-tables-configure/portal-protect-table.png" alt-text="Screenshot of the Azure portal showing the Manage table pane with Protection level set to Protected.":::
 
 ### [Azure CLI](#tab/azure-cli-1)
 
