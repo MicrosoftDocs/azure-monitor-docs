@@ -180,6 +180,18 @@ Create assignments at the resource level (workspace) to assure accurate access c
 > [!NOTE]
 > To add and remove users to a user role, you must have `Microsoft.Authorization/*/Delete` and `Microsoft.Authorization/*/Write` permission.
 
+#### Privileged Monitoring Data Reader
+
+Provide access to [protected tables](#protected-tables-preview). It's ideal for granting access to protected tables without providing broader access to the workspace or other data. For more information on protected tables, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
+
+| Type | Permission | Description |
+|------|------------|-------------|
+| `Actions` | `Microsoft.OperationalInsights/workspaces/query/read` | Run queries over the data in a workspace |
+| `Actions` | `Microsoft.OperationalInsights/workspaces/read` | Read existing workspaces |
+| `DataActions` | `Microsoft.OperationalInsights/workspaces/tables/data/read` | Read data access to workspaces, or more fine-grained data entities, such as specific tables or rows when used with granular RBAC. Required to access protected tables. |
+
+A condition is included in the role assignment that allows access to all tables with a `protectionLevel` of `Protected` and `General`.
+
 #### Log Analytics Data Reader
 
 Provide the bare minimum permissions needed to run queries and see metadata with the Log Analytics Data Reader role. It's an ideal role for granular RBAC which uses role assignment conditions to further control access to data at the **table** and **row** level. For more information, see [granular RBAC](granular-rbac-log-analytics.md#role-selection).
@@ -320,7 +332,7 @@ Every Log Analytics table has a `protectionLevel` property with two possible val
 | `General` (default) | Standard access. Users with Reader, Monitoring Reader, or other read roles can query this table. |
 | `Protected` | Restricted access. Non-privileged standard roles can't access the data. Only roles using the supported `DataActions` with explicit access granted through ABAC conditions on the `protectionLevel` attribute gain access. |
 
-Once you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
+When you set a table to `Protected`, users who previously had access through workspace-level or resource-level read roles no longer see data from that table unless they receive an explicit grant.
 
 ### How protected table access works
 
@@ -346,7 +358,7 @@ Protected table access uses different `DataActions` and ABAC attributes dependin
 | Component | Value |
 |---|---|
 | `DataActions` | `Microsoft.Insights/logs/data/read` |
-| ABAC attributes | `Microsoft.Insights/logs/tables:name` and `Microsoft.Insights/logs/tables:protectionLevel` |
+- **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query doesn't return a 400 or 403 error.
 
 ### DataActionsOnly mode
 
@@ -358,11 +370,11 @@ For configuration steps, see [Enable DataActionsOnly mode](protected-tables-conf
 
 Keep the following behavior details in mind when working with protected tables:
 
-- **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query does not return a 400 or 403 error.
+- **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query doesn't return a 400 or 403 error.
 - **Schema remains visible.** Table metadata, including column names and types, is accessible regardless of the protection level. Only data rows are restricted.
 - **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has full access to the relevant tables.
 - **Alert rules require managed identity for protected table access.** Resource-centric and Application Insights-centric alert rules continue to run but lose access to protected tables and to any workspace with the authorization model set to DataAction-only. Workspace-centric alerts aren't affected. To query protected tables from alert rules, configure the alert rule with a managed identity and grant that identity the appropriate role with ABAC conditions.
-- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if any of the supported `DataActions` are configured. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
+- **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if they include any of the supported `DataActions`. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
 
 ### Limitations (preview)
 
@@ -370,8 +382,8 @@ The following limitations apply during the preview:
 
 | Limitation | Details |
 |---|---|
-| Per-workspace granularity only | The protection level is set per table within a workspace. To isolate data per resource that has data in multiple workspaces, set the table as protected in each workspace. |
-| Cross-workspace queries not supported | The `app()` and `workspace()` functions for cross-workspace queries do not yet support protected tables. |
+| Per-workspace granularity only | Configure protection level per table within a workspace. To isolate data per resource that has data in multiple workspaces, set the table as protected in each workspace. |
+| Cross-workspace queries not supported | The `app()` and `workspace()` functions for cross-workspace queries don't yet support protected tables. |
 
 ### Related content
 
