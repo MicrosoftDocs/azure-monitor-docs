@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Cache/redis
 description: Reference for Microsoft.Cache/redis metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/22/2026
 ms.custom: Microsoft.Cache/redis, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -111,7 +111,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Cache/re
 |**Connected Clients (Shard 8)**<br><br>The number of client connections to the cache. For more details, see https://aka.ms/redis/metrics. |`connectedclients8` |Count |Maximum |\<none\>|PT1M |Yes|
 |**Connected Clients (Shard 9)**<br><br>The number of client connections to the cache. For more details, see https://aka.ms/redis/metrics. |`connectedclients9` |Count |Maximum |\<none\>|PT1M |Yes|
 |**Connected Clients using Microsoft Entra Token (Instance Based)**<br><br>The number of client connections to the cache using Microsoft Entra Token. For more details, see https://aka.ms/redis/metrics. |`ConnectedClientsUsingAADToken` |Count |Maximum |`ShardId`, `Port`, `Primary`|PT1M |Yes|
-|**Errors**<br><br>The number errors that occured on the cache. For more details, see https://aka.ms/redis/metrics. |`errors` |Count |Maximum |`ShardId`, `ErrorType`|PT1M |Yes|
+|**Errors**<br><br>The number of errors that occurred on the cache. For more details, see https://aka.ms/redis/metrics. |`errors` |Count |Maximum |`ShardId`, `ErrorType`|PT1M |Yes|
 |**Evicted Keys**<br><br>The number of items evicted from the cache. For more details, see https://aka.ms/redis/metrics. |`evictedkeys` |Count |Total (Sum) |`ShardId`|PT1M |Yes|
 |**Evicted Keys (Shard 0)**<br><br>The number of items evicted from the cache. For more details, see https://aka.ms/redis/metrics. |`evictedkeys0` |Count |Total (Sum) |\<none\>|PT1M |Yes|
 |**Evicted Keys (Shard 1)**<br><br>The number of items evicted from the cache. For more details, see https://aka.ms/redis/metrics. |`evictedkeys1` |Count |Total (Sum) |\<none\>|PT1M |Yes|
