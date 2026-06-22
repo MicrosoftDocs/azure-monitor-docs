@@ -326,7 +326,7 @@ Once you set a table to `Protected`, users who previously had access through wor
 
 Access to protected tables uses the same ABAC condition framework as [granular RBAC](granular-rbac-log-analytics.md), with conditions targeting the `protectionLevel` attribute. Azure Monitor provides a built-in role designed for this scenario:
 
-**Privileged Monitoring Data Reader** grants access to all protected tables. You can assign this role at any scope (subscription, resource group, workspace, or resource). It works with [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure) for time-bound and just-in-time access.
+**Privileged Monitoring Data Reader** grants access to all protected tables. Assign this role at any scope (subscription, resource group, workspace, or resource). It works with [Microsoft Entra Privileged Identity Management (PIM)](/entra/id-governance/privileged-identity-management/pim-configure) for time-bound and just-in-time access. The Azure portal doesn't support adding ABAC conditions to this role because it already has built-in conditions. To add custom conditions, use ARM templates, the REST API, or other programmatic methods.
 
 For more targeted access, create custom roles with ABAC conditions that combine table name and protection level filters. For configuration steps, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
 
@@ -361,7 +361,7 @@ Keep the following behavior details in mind when working with protected tables:
 - **No hard errors for unauthorized queries.** Queries against protected tables succeed but return no data when the caller lacks access. The query does not return a 400 or 403 error.
 - **Schema remains visible.** Table metadata, including column names and types, is accessible regardless of the protection level. Only data rows are restricted.
 - **Data-movement operations are blocked.** Export, sharing, search jobs, and other operations that move data from protected tables fail unless the caller has full access to the relevant tables.
-- **Alert rules require managed identity.** Only alert rules configured with a managed identity (MSI/MI) are supported for queries on protected tables.
+- **Alert rules require managed identity for protected table access.** Resource-centric and Application Insights-centric alert rules continue to run but lose access to protected tables and to any workspace with the authorization model set to DataAction-only. Workspace-centric alerts aren't affected. To query protected tables from alert rules, configure the alert rule with a managed identity and grant that identity the appropriate role with ABAC conditions.
 - **Custom roles need explicit ABAC conditions.** Custom roles can grant access to protected tables if any of the supported `DataActions` are configured. The role assignment must include an ABAC condition that explicitly references the `protectionLevel` attribute with the desired access defined. Without this condition, the assignment might grant access to protected data.
 
 ### Limitations (preview)

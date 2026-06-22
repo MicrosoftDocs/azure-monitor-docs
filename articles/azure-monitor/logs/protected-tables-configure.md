@@ -102,6 +102,8 @@ After you protect a table, you must explicitly grant access to users who need th
 
 The **Privileged Monitoring Data Reader** built-in role grants read access to all protected tables at the assigned scope.
 
+The Azure portal doesn't support adding ABAC conditions to built-in roles. This is a UX safeguard to prevent user errors. To add custom conditions to this role, use ARM templates, the REST API, or other programmatic methods.
+
 #### [Azure portal](#tab/portal-2)
 
 1. In the Azure portal, go to the scope where you want to assign the role (subscription, resource group, workspace, or any supported Azure resource).
