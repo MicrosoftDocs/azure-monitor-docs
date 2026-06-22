@@ -3,7 +3,7 @@ title: "Configure Protected Tables in Azure Monitor Logs"
 description: "Learn how to set up protected tables in Azure Monitor Logs to isolate sensitive data and control access using RBAC, ABAC conditions, and the Privileged Monitoring Data Reader role."
 author: austinmccollum
 ms.author: austinmc
-ms.date: 05/26/2026
+ms.date: 06/22/2026
 ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: logs
@@ -87,13 +87,6 @@ A successful response returns the table definition with `protectionLevel` set to
 
 ---
 
-| Placeholder | Value |
-|---|---|
-| `{subscriptionId}` | Your Azure subscription ID. |
-| `{resourceGroupName}` | The resource group that contains your workspace. |
-| `{workspaceName}` | Your Log Analytics workspace name. |
-| `{tableName}` | The table to protect (for example, `SecurityEvent`). |
-
 ## Grant access to protected tables
 
 After you protect a table, you must explicitly grant access to users who need the data. Use the built-in **Privileged Monitoring Data Reader** role for broad access, or create custom roles with `protectionLevel` ABAC conditions for more targeted access.
@@ -133,13 +126,6 @@ az role assignment create \
 ```
 
 ---
-
-| Placeholder | Value |
-|---|---|
-| `assigneeObjectId` | The Microsoft Entra object ID of the user or group. |
-| `subscriptionId` | Your Azure subscription ID. |
-| `resourceGroupName` | The resource group that contains your workspace. |
-| `workspaceName` | Your Log Analytics workspace name. |
 
 ### Grant access to specific protected tables only
 
@@ -188,6 +174,14 @@ This pattern works well for incident response and support scenarios where engine
 
 By default, some roles based on control plane actions (such as **Reader** and **Monitoring Reader**) provide implicit read access to log data. `DataActionsOnly` mode closes this path so that only `DataActions` govern data access.
 
+### [Azure portal](#tab/portal-3)
+
+1. In the Azure portal, go to **Log Analytics workspaces** and select your workspace.
+1. Under **Settings**, select **Properties**.
+1. Under **Data authorization mode**, select **Data actions only**.
+
+:::image type="content" source="media/protected-tables-configure/portal-data-actions-only.png" alt-text="Screenshot of the Azure portal showing the Properties pane with Data authorization mode set to Data actions only.":::
+
 ### [Azure CLI](#tab/azure-cli-3)
 
 Use the following command to enable `DataActionsOnly` mode by using the CLI.
@@ -227,12 +221,6 @@ Content-Type: application/json
 ```
 
 ---
-
-| Placeholder | Value |
-|---|---|
-| `{subscriptionId}` | Your Azure subscription ID. |
-| `{resourceGroupName}` | The resource group that contains your workspace. |
-| `{workspaceName}` | Your Log Analytics workspace name. |
 
 After you enable `DataActionsOnly` mode, verify that users who previously relied on control plane roles for log access now receive appropriate role assignments based on `DataActions`.
 
