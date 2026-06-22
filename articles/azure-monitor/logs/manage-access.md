@@ -352,7 +352,7 @@ Protected table access uses different `DataActions` and ABAC attributes dependin
 
 Enable `DataActionsOnly` mode on a workspace by setting the `dataAuthorizationMode` property. When enabled, control plane roles such as Reader and Monitoring Reader (and any custom role using control plane actions to grant access) no longer grant implicit data access. Only `DataActions` provide access to log data. This setting strengthens protected tables by closing the path where control plane permissions could bypass data plane restrictions.
 
-For configuration steps, see [Enable DataActionsOnly mode](protected-tables-configure.md#enable-dataaction-only-mode).
+For configuration steps, see [Enable DataActionsOnly mode](protected-tables-configure.md#enable-dataactionsonly-mode).
 
 ### Behavior
 
