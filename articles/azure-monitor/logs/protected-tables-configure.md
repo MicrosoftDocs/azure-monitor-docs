@@ -172,7 +172,7 @@ This pattern works well for incident response and support scenarios where engine
 
 ## Enable DataActionsOnly mode
 
-By default, some roles based on control plane actions such as **Reader** and **Monitoring Reader**, provide implicit read access to log data. `DataActionsOnly` mode closes this path so that only `DataActions` govern data access.
+By default, some roles that are based on control plane actions, such as **Reader** and **Monitoring Reader**, provide implicit read access to log data. `DataActionsOnly` mode removes this access path so that only `DataActions` govern data access.
 
 ### [Azure portal](#tab/portal-3)
 
@@ -230,9 +230,9 @@ Run these checks to confirm that protection and access grants are working correc
 
 ### Confirm that non-privileged users see no data
 
-1. Sign in as a user who has the Log Analytics Reader role but does not have the Privileged Monitoring Data Reader role or a custom role with a `protectionLevel` condition.
+1. Sign in as a user who has the Log Analytics Reader role but doesn't have the Privileged Monitoring Data Reader role or a custom role with a `protectionLevel` condition.
 1. Open the workspace in the Azure portal and go to **Logs**.
-1. Run a query against the protected table:
+1. Run a query against the protected table.
 
     ```kusto
     ProtectedTableName

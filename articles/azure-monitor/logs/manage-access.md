@@ -182,7 +182,7 @@ Create assignments at the resource level (workspace) to assure accurate access c
 
 #### Privileged Monitoring Data Reader
 
-Provide access to [protected tables](#protected-tables-preview). It's ideal for granting access to protected tables without providing broader access to the workspace or other data. For more information on protected tables, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
+Provides access to [protected tables](#protected-tables-preview). It's ideal for granting access to protected tables without providing broader access to the workspace or other data. For more information on protected tables, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
 
 | Type | Permission | Description |
 |------|------------|-------------|
