@@ -11,7 +11,7 @@ ms.subservice: logs
 
 # Configure protected tables in Azure Monitor Logs (preview)
 
-This article walks you through setting a table's protection level, granting access to authorized users, and verifying that your configuration works as expected. Protected tables use a "deny by default" model so that non-privileged standard and custom read roles can't access sensitive data until you explicitly grant permission through ABAC conditions.
+This article shows you how to set a table's protection level, grant access to authorized users, and verify that your configuration works as expected. Protected tables use a "deny by default" model so that non-privileged standard and custom read roles can't access sensitive data until you explicitly grant permission through ABAC conditions.
 
 ## Prerequisites
 
@@ -129,11 +129,11 @@ az role assignment create \
 
 ### Grant access to specific protected tables only
 
-For scenarios where you need to limit access to individual protected tables rather than all of them, create a custom role assignment with ABAC conditions that filter on both table name and protection level.
+If you need to limit access to individual protected tables rather than all of them, create a custom role assignment with ABAC conditions that filter on both table name and protection level.
 
 1. Create or select a custom role based on the [access method](manage-access.md#access-methods) you want to use. 
-  - `DataActions` for workspace-centric access: `Microsoft.OperationalInsights/workspaces/tables/data/read`
-  - `DataActions` for resource-centric access: `Microsoft.Insights/logs/data/read`
+  - The `DataActions` required for workspace-centric access: `Microsoft.OperationalInsights/workspaces/tables/data/read`
+  - The `DataActions` required for resource-centric access: `Microsoft.Insights/logs/data/read`
 
 1. When creating the role assignment, add a condition with two expressions joined by **AND**:
 
@@ -172,7 +172,7 @@ This pattern works well for incident response and support scenarios where engine
 
 ## Enable DataActionsOnly mode
 
-By default, some roles based on control plane actions (such as **Reader** and **Monitoring Reader**) provide implicit read access to log data. `DataActionsOnly` mode closes this path so that only `DataActions` govern data access.
+By default, some roles based on control plane actions such as **Reader** and **Monitoring Reader**, provide implicit read access to log data. `DataActionsOnly` mode closes this path so that only `DataActions` govern data access.
 
 ### [Azure portal](#tab/portal-3)
 
@@ -180,7 +180,7 @@ By default, some roles based on control plane actions (such as **Reader** and *
 1. Under **Settings**, select **Properties**.
 1. Under **Data authorization mode**, select **Data actions only**.
 
-:::image type="content" source="media/protected-tables-configure/portal-data-actions-only.png" alt-text="Screenshot of the Azure portal showing the Properties pane with Data authorization mode set to Data actions only.":::
+:::image type="content" source="media/protected-tables-configure/portal-data-actions-only.png" alt-text="Screenshot of the Azure portal showing the Properties pane with Data authorization mode set to Data actions only." lightbox="media/protected-tables-configure/portal-data-actions-only.png":::
 
 ### [Azure CLI](#tab/azure-cli-3)
 
