@@ -1,21 +1,19 @@
 ---
-title: Best practices - Azure Copilot observability agent (preview)
-description: Learn how to configure Application Insights and Azure Monitor OpenTelemetry telemetry so observability agent investigations are accurate, correctly scoped, and actionable.
+title: Best practices - Azure Copilot Observability Agent
+description: Learn how to configure Application Insights and Azure Monitor OpenTelemetry telemetry so Observability Agent investigations are accurate, correctly scoped, and actionable.
 ms.topic: best-practice
 ms.service: azure-monitor
 ms.collection: ce-skilling-ai-copilot
 ms.reviewer: enauerman, ronitauber
 ms.date: 02/24/2026
-# Customer intent: As an Azure Monitor user, I want to follow best practices for configuring Application Insights and OpenTelemetry so that observability agent investigations are accurate, correctly scoped, and actionable.
+# Customer intent: As an Azure Monitor user, I want to follow best practices for configuring Application Insights and OpenTelemetry so that Observability Agent investigations are accurate, correctly scoped, and actionable.
 ---
 
-# Best practices: Azure Copilot observability agent (preview)
+# Best practices: Azure Copilot Observability Agent
 
-Azure Monitor issues and investigations use the [Azure Copilot observability agent](observability-agent-overview.md) to analyze Application Insights telemetry and identify potential causes of issues across applications and infrastructure.
+Azure Monitor issues and investigations use the [Azure Copilot Observability Agent](observability-agent-overview.md) to analyze Application Insights telemetry and identify potential causes of issues across applications and infrastructure. The accuracy of the investigation depends on whether your application emits complete telemetry, preserves correlation fields, and includes sufficient service and resource context.
 
-The accuracy of the investigation depends on whether your application emits complete telemetry, preserves correlation fields, and includes sufficient service and resource context.
-
-This article describes best practices to help you configure Application Insights and Azure Monitor OpenTelemetry telemetry. By following these best practices, the Azure Copilot observability agent can help ensure investigations are accurate, correctly scoped, and actionable.
+This article describes best practices to help you configure Application Insights and Azure Monitor OpenTelemetry telemetry. By following these best practices, the Azure Copilot Observability Agent can help ensure investigations are accurate, correctly scoped, and actionable.
 
 ## How to use this guide
 
@@ -29,12 +27,18 @@ Apply the practices in this order:
 Later practices depend on earlier ones. Skipping prerequisites reduces investigation coverage and accuracy.
 
 ## Phase 1: Collect required telemetry signals
+The Observability Agent relies on comprehensive telemetry data to perform effective investigations. Start by enabling data collection for the application and all supporting components.
 
-These practices are required for investigations to function correctly.
+### Enable resource logs on all resources
+
+Resource logs capture events emitted by Azure resources as they operate. They complement metrics and application telemetry by showing service-specific activity, platform events, configuration changes, and failure details that help the Observability Agent understand what happened across the infrastructure and Azure platform layers. The agent doesn't collect resource logs by default though, so you need to enable them for each resource supporting your application.
+
+See [Diagnostic settings in Azure Monitor](../essentials/diagnostic-settings.md).
 
 ### Capture requests, dependencies, and exceptions
 
-Ensure the following telemetry types are collected and visible in Application Insights:
+Ensure Application Insights collects and displays these telemetry types. The Observability Agent analyzes top failure events across requests, dependencies, and exceptions. If you miss any of these telemetry types, your investigation findings might be incomplete.
+
 
 - **Requests** – Most Application Insights SDKs, like ASP.NET and ASP.NET Core, automatically collect incoming HTTP requests. Request telemetry includes duration, response code, success or failure, and operation context, which is the main entry point for investigations.
 
@@ -42,32 +46,20 @@ Ensure the following telemetry types are collected and visible in Application In
 
 - **Exceptions** – Most configurations automatically collect unhandled exceptions. If your application catches exceptions, log them explicitly by calling the exception-tracking API (for example, `TrackException`) or rethrow them after logging.
 
-The observability agent analyzes top failure events across requests, dependencies, and exceptions. If you miss any of these telemetry types, your investigation findings might be incomplete.
-
-### Enable diagnostic logs on all resources
-
-The observability agent supports resource logs investigation for any resource. However, it doesn't collect resource logs by default. For comprehensive visibility, enable diagnostic logs on all resources. This visibility includes:
-
-- Control plane operations
-- Data-plane requests
-- Errors, throttling, and other troubleshooting signals
-
-For more information, see [Diagnostic settings in Azure Monitor](../essentials/diagnostic-settings.md).
 
 ### Allow unhandled exceptions to propagate
 
-Don't suppress exceptions without logging them.
+Don't suppress exceptions without logging them. If you don't record exceptions, the Observability Agent can't observe them and they aren't included in investigations. If you use global or centralized error handling, ensure you log exceptions before handling them.
 
 Exceptions must either:
 
 - Propagate to the Application Insights SDK or OpenTelemetry pipeline, or
 - Be explicitly tracked by calling the exception-tracking API
 
-Exceptions that aren't recorded don't get observed by the observability agent and aren't included in investigations. If you use global or centralized error handling, ensure exceptions are logged before handling.
 
 ### Use the latest Application Insights SDK or OpenTelemetry distro
 
-Use the latest supported [Application Insights SDK](../app/asp-net.md) or [Azure Monitor OpenTelemetry distribution](../app/opentelemetry-enable.md).
+Use the latest supported [Application Insights SDK](../app/asp-net.md) or [Azure Monitor OpenTelemetry distribution](../app/opentelemetry-enable.md). For new applications, use OpenTelemetry-based instrumentation. Older SDK versions might send telemetry by using outdated models or inefficient collection methods.
 
 Newer versions provide:
 
@@ -75,11 +67,23 @@ Newer versions provide:
 - Improved automatic dependency and context collection
 - Performance and correctness fixes
 
-For new applications, use OpenTelemetry-based instrumentation. Older SDK versions might emit telemetry by using outdated models or inefficient collection methods.
+### Enable infrastructure monitoring
+Monitoring the application alone often isn't enough. The Observability Agent can provide better investigations when it also has infrastructure-level signals from the virtual machines or Kubernetes clusters that host your workload.
+
+#### Virtual machines
+For workloads that run on virtual machines, enable monitoring so the agent can correlate application symptoms with host-level conditions such as CPU pressure, memory pressure, disk bottlenecks, extension failures, and guest OS events.
+
+- Enable monitoring to install the Azure Monitor agent and collect guest metrics. See [Enable enhanced monitoring for an Azure virtual machine](../vm/tutorial-enable-monitoring.md).
+- Collect guest logs for applications, services, and operating system components on the virtual machine. See [Collect guest log data from virtual machines with Azure Monitor](../vm/data-collection.md).
+
+### Kubernetes clusters
+For workloads that run on Azure Kubernetes Service (AKS), enable cluster monitoring so the agent can connect application failures to pod, node, namespace, and cluster-level conditions.
+
+- Enable monitoring to install the Azure Monitor agent and collect metrics and logs from the cluster. See [Enable monitoring for a Kubernetes cluster in Azure Monitor](../containers/kubernetes-monitoring-tutorial.md).
 
 ## Phase 2: Add service and resource context
 
-Service and resource context allows the observability agent to determine where issues originate and automatically scope related components.
+Service and resource context allows the Observability Agent to determine where issues originate and automatically scope related components.
 
 ### Set a cloud role name for each service
 
@@ -93,7 +97,7 @@ Include identifiers for Azure and external resources that your application inter
 
 Dependency telemetry typically captures target endpoints automatically, such as database names or service URLs. Ensure Application Insights dependency tracking is enabled so this data is available.
 
-For custom telemetry, include resource identifiers explicitly. Resource context enables the observability agent to automatically expand investigations to related services, databases, or infrastructure components.
+For custom telemetry, include resource identifiers explicitly. Resource context enables the Observability Agent to automatically expand investigations to related services, databases, or infrastructure components.
 
 OpenTelemetry doesn't populate resource context by default. Configure [resource detectors](https://pypi.org/project/opentelemetry-resource-detector-azure/) to emit standard semantic attributes such as:
 
@@ -150,7 +154,7 @@ Use:
 - **Custom events** (`TrackEvent`) to record significant business or functional milestones.
 - **Custom operations** (`StartOperation` / `StopOperation`) to track long-running or asynchronous workflows such as queue processing, batch jobs, or scheduled tasks.
 
-Custom operations appear in Azure Monitor with duration, success or failure, correlated dependencies, and exceptions. The observability agent analyzes these operations in the same way as request telemetry. For more information about instrumenting custom operations, see [Track custom operations with Application Insights](../app/custom-operations-tracking.md).
+Custom operations appear in Azure Monitor with duration, success or failure, correlated dependencies, and exceptions. The Observability Agent analyzes these operations in the same way as request telemetry. For more information about instrumenting custom operations, see [Track custom operations with Application Insights](../app/custom-operations-tracking.md).
 
 ### Enable release annotations
 
@@ -174,7 +178,7 @@ Use Standard availability tests to proactively ping endpoints, validate response
 
 ## Related content
 
-- [Azure Copilot observability agent overview](observability-agent-overview.md)
-- [Azure Monitor issues (preview)](aiops-issue-and-investigation-overview.md)
-- [Use Azure Monitor issues and investigations](aiops-issue-and-investigation-how-to.md)
-- [Azure Copilot observability agent responsible use](observability-agent-responsible-use.md)
+- [Azure Copilot Observability Agent overview](observability-agent-overview.md)
+- [Azure Monitor issues (preview)](issues-overview.md)
+- [Use Azure Monitor issues and investigations](issues-how-to.md)
+- [Transparency FAQ for Azure Copilot Observability Agent](observability-agent-transparency.md)

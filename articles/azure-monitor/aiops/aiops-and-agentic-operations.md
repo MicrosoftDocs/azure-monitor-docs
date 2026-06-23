@@ -1,6 +1,6 @@
 ---
-title: AIOps and machine learning in Azure Monitor
-description: Use machine learning to improve your ability to predict IT needs and identify and respond to anomalous patterns in log data.
+title: AIOps and agentic operations in Azure Monitor
+description: Learn how Azure Monitor uses AIOps, machine learning, and agentic operations to detect issues, explore data, explain behavior, and guide operational action.
 ms.reviewer: ilanawaitser
 ms.topic: concept-article
 ms.service: azure-monitor
@@ -8,32 +8,53 @@ ms.date: 09/02/2025
 ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
 
-# Customer intent: As a DevOps manager or data scientist, I want to understand which AIOps features Azure Monitor offers and how to implement a machine learning pipeline on data in Azure Monitor Logs so that I can use artificial intelligence to improve service quality and reliability of my IT environment.
+# Customer intent: As an Azure Monitor user, I want to understand which AIOps, machine learning, and agentic operation capabilities Azure Monitor offers so that I can choose the right approach for detection, investigation, explanation, and advanced analysis.
 
 ---
-# Detect and mitigate potential issues using AIOps and machine learning in Azure Monitor 
-Artificial Intelligence for IT Operations (AIOps) offers powerful ways to improve service quality and reliability by using machine learning to process and automatically act on data you collect from applications, services, and IT resources into Azure Monitor.
+# AIOps and agentic operations in Azure Monitor
 
-Azure Monitor's built-in AIOps capabilities provide insights and help you troubleshoot issues and automate data-driven tasks, such as predicting capacity usage and autoscaling, identifying and analyzing application performance issues, and detecting anomalous behaviors in virtual machines, containers, and other resources. These features boost your IT monitoring and operations, without requiring machine learning knowledge and further investment.    
+Azure Monitor uses AIOps, machine learning, and agentic operations to help you detect problems earlier, explore data more naturally, understand changes that might affect operations, and take action on detected problems with better context. The current direction increasingly emphasizes agentic operations as the layer that connects detection, analytics, investigation, explanation, and guided follow-up.
 
-Azure Monitor also provides tools that let you create your own machine learning pipeline to introduce new analysis and response capabilities and act on data in Azure Monitor Logs.    
+These capabilities span three broad approaches:
 
-This article describes Azure Monitor's built-in AIOps capabilities and explains how you can create and run customized machine learning models and build an automated machine learning pipeline on data in Azure Monitor Logs. 
+- **Agentic operations** through the [Observability Agent](observability-agent-overview.md), which helps you explore data, investigate issues, explain what changed, and follow up across Azure Monitor signals.
+- **Built-in AIOps and machine learning features** that detect anomalies, forecast trends, and automate selected operational decisions.
+- **Custom machine learning on Azure Monitor Logs** for advanced scenarios where you want to build and run your own analysis pipeline.
 
-## Built-in Azure Monitor AIOps and machine learning capabilities 
+This article introduces the agentic and built-in AIOps capabilities in Azure Monitor. Then, it explains how to build custom machine learning pipelines on Azure Monitor Logs when you need more specialized analysis.
+
+## Agentic operations in Azure Monitor
+
+Agentic operations in Azure Monitor help you work across multiple stages of the observability workflow:
+
+- **Explore and analyze data** by using natural language to work with logs, metrics, and related telemetry.
+- **Investigate issues** by correlating signals across Azure Monitor data sources and related resource context.
+- **Preserve and share findings** through [Azure Monitor issues](issues-overview.md), which act as operational artifacts for ongoing investigation and collaboration.
+- **Support proactive and autonomous workflows** as the platform evolves toward more system-driven investigation and follow-up for supported scenarios.
+
+Agentic operations complement traditional anomaly detection and forecasting features. Instead of only identifying that something unusual happened, they also help explain what changed, what evidence supports the conclusion, and what to do next.
+
+## Built-in capabilities
+
+Azure Monitor's built-in capabilities help you detect, investigate, and respond to issues without requiring you to build custom machine learning models.
+
+Agentic operations focus on investigation, explanation, and guided follow-up. Traditional machine learning features focus on pattern detection, forecasting, and anomaly identification. Together, they provide a broader operational model than either approach alone.
 
 |Monitoring scenario|Capability|Description| 
 |-|-|-|
 |Log monitoring|[Log Analytics Workspace Insights](../logs/log-analytics-workspace-insights-overview.md) | Provides a unified view of your Log Analytics workspaces and uses machine learning to detect ingestion anomalies. |
 ||[Kusto Query Language (KQL) time series analysis and machine learning functions](../logs/kql-machine-learning-azure-monitor.md)| Easy-to-use tools for generating time series data, detecting anomalies, forecasting, and performing root cause analysis directly in Azure Monitor Logs without requiring in-depth knowledge of data science and programming languages. |
 ||[Microsoft Copilot in Azure](/azure/copilot/get-monitoring-information)| Helps you use Log Analytics to analyze data and troubleshoot issues. Generates example KQL queries based on prompts, such as "Are there any errors in container logs?". |
+||[Observability Agent](observability-agent-overview.md)| Helps you explore logs, metrics, and related telemetry by using natural language and iterative follow-up questions in the current product surface. |
 |Application performance monitoring|[Application Map Intelligent view](../app/app-map.md)| Maps dependencies between services and helps you spot performance bottlenecks or failure hotspots across all components of your distributed application.|
 ||[Smart detection](../alerts/proactive-diagnostics.md)|Analyzes the telemetry your application sends to Application Insights, alerts on performance problems and failure anomalies, and identifies potential root causes of application performance issues.|
 |Metric alerts|[Dynamic thresholds for metric alerting](../alerts/alerts-dynamic-thresholds.md)| Learns metrics patterns, automatically sets alert thresholds based on historical data, and identifies anomalies that might indicate service issues.|
 |Virtual machine scale sets|[Predictive autoscale](../autoscale/autoscale-predictive.md)|Forecasts the overall CPU requirements of a virtual machine scale set, based on historical CPU usage patterns, and automatically scales out to meet these needs.|
-|Issue investigation|[Observability agent](observability-agent-overview.md)|Uses machine learning to automatically investigate issues and correlate findings across Azure Monitor data sources, providing consolidated insights within the Issues and Investigations experience.|
+|Investigate and diagnose|[Observability Agent](observability-agent-overview.md)|Uses Azure Monitor signals and operational reasoning to investigate issues, correlate findings, and explain what happened across logs, metrics, traces, alerts, and related resource context.|
+||[Azure Monitor issues](issues-overview.md)|Preserves investigation results as operational artifacts so teams can review findings, continue analysis, and collaborate over time.|
+|Proactive and autonomous operations|Observability Agent proactive behaviors|Extends the agentic model toward more system-driven investigation and issue handling for supported scenarios as these capabilities become available.|
 
-## Machine learning in Azure Monitor Logs
+## Custom machine learning on Azure Monitor Logs
 
 Use the Kusto Query Language's [built-in time series analysis and machine learning functions, operators, and plug-ins](/azure/data-explorer/kusto/query/machine-learning-clustering) to gain insights about service health, usage, capacity and other trends, and to generate forecasts and detect anomalies in [Azure Monitor Logs](../logs/data-platform-logs.md). 
 
@@ -43,16 +64,16 @@ This table compares the advantages and limitations of using KQL's built-in machi
 
 ||Built-in KQL machine learning capabilities |Create your own machine learning pipeline|
 |-|-|-|
-|**Scenario**| :white_check_mark: Anomaly detection, root cause, and time series analysis <br> | :white_check_mark: Anomaly detection, root cause, and time series analysis <br> :white_check_mark: [Advanced analysis and AIOPs scenarios](#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs)  |
+|**Scenario**| :white_check_mark: Anomaly detection, root cause, and time series analysis <br> | :white_check_mark: Anomaly detection, root cause, and time series analysis <br> :white_check_mark: [Build a custom machine learning pipeline](#build-a-custom-machine-learning-pipeline)  |
 |**Advantages**|🔹Gets you started very quickly.<br>🔹No data science knowledge and programming skills required.<br>🔹 Optimal performance and cost savings. |🔹Supports larger scales.<br>🔹Enables advanced, more complex scenarios.<br>🔹Flexibility in choosing libraries, models, parameters.|
-|**Service limits and data volumes** |[Azure portal](../service-limits.md#azure-portal) or [Query API log query limits](../service-limits.md#la-query-api) depending on whether you're working in the portal or using the API, for example, from a notebook.|🔹[Query API log query limits](../service-limits.md#la-query-api) if you query data in Azure Monitor Logs as part of your [machine learning pipeline](#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs). Otherwise, no Azure service limits.<br>🔹Can support larger data volumes.|
+|**Service limits and data volumes** |[Azure portal](../service-limits.md#azure-portal) or [Query API log query limits](../service-limits.md#la-query-api) depending on whether you're working in the portal or using the API, for example, from a notebook.|🔹[Query API log query limits](../service-limits.md#la-query-api) if you query data in Azure Monitor Logs as part of your [machine learning pipeline](#build-a-custom-machine-learning-pipeline). Otherwise, no Azure service limits.<br>🔹Can support larger data volumes.|
 |**Integration**|None required. Run using [Log Analytics](../logs/log-analytics-tutorial.md) in the Azure portal or from an [integrated Jupyter Notebook](../logs/notebooks-azure-monitor-logs.md).|Requires integration with a tool, such as [Jupyter Notebook](../logs/notebooks-azure-monitor-logs.md). Typically, you'd also integrate with other Azure services, like [Azure Synapse Analytics](/azure/synapse-analytics/overview-what-is).|
-|**Performance**|Optimal performance, using the Azure Data Explorer platform, running at high scales in a distributed manner. |Introduces a small amount of latency when querying or exporting data, depending on how you [implement your machine learning pipeline](#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs). |
+|**Performance**|Optimal performance, using the Azure Data Explorer platform, running at high scales in a distributed manner. |Introduces a small amount of latency when querying or exporting data, depending on how you [implement your machine learning pipeline](#build-a-custom-machine-learning-pipeline). |
 |**Model type** |Linear regression model and other models supported by KQL time series functions with a set of configurable parameters.|Completely customizable machine learning model or anomaly detection method.  |
-|**Cost**|No extra cost.| Depending on how you [implement your machine learning pipeline](#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs), you might incur charges for [exporting data](../logs/logs-data-export.md#pricing-model), ingesting scored data into Azure Monitor Logs, and the use of other Azure services.|
+|**Cost**|No extra cost.| Depending on how you [implement your machine learning pipeline](#build-a-custom-machine-learning-pipeline), you might incur charges for [exporting data](../logs/logs-data-export.md#pricing-model), ingesting scored data into Azure Monitor Logs, and the use of other Azure services.|
 |**Tutorial**|[Detect and analyze anomalies using KQL machine learning capabilities in Azure Monitor](../logs/kql-machine-learning-azure-monitor.md)|[Analyze data in Azure Monitor Logs using a notebook](../logs/notebooks-azure-monitor-logs.md)|
 
-## Create your own machine learning pipeline on data in Azure Monitor Logs
+## Build a custom machine learning pipeline
 
 Build your own machine learning pipeline on data in Azure Monitor Logs to introduce new AIOps capabilities and support advanced scenarios, such as: 
 
@@ -69,7 +90,7 @@ There are two approaches to making data in Azure Monitor Logs available to your 
     > [!NOTE]
     > You might need to convert data formats as part of your pipeline. For example, to use libraries built on top of Apache Spark, like [SynapseML](https://microsoft.github.io/SynapseML/), you might need to [convert Pandas to PySpark DataFrame](https://sparkbyexamples.com/pyspark/convert-pandas-to-pyspark-dataframe/). 
 
-- **Export data out of Azure Monitor Logs** - [Export data out of your Log Analytics workspace](../logs/logs-data-export.md), usually to a blob storage account, and [implement your machine learning pipeline using a machine learning library](#implement-the-steps-of-the-machine-learning-lifecycle-in-azure-monitor-logs). 
+- **Export data out of Azure Monitor Logs** - [Export data out of your Log Analytics workspace](../logs/logs-data-export.md), usually to a blob storage account, and [implement your machine learning pipeline using a machine learning library](#implement-the-machine-learning-lifecycle). 
 
 
 This table compares the advantages and limitations of the approaches to retrieving data for your machine learning pipeline:
@@ -86,13 +107,14 @@ This table compares the advantages and limitations of the approaches to retrievi
 
 > [!TIP]
 > To benefit from the best of both implementation approaches, create a hybrid pipeline. A common hybrid approach is to export data for model training, which involves large volumes of data, and to use the *query data in Azure Monitor Logs* approach to explore data and score new data to reduce latency and costs.
-## Implement the steps of the machine learning lifecycle in Azure Monitor Logs
+
+## Implement the machine learning lifecycle
 
 Setting up a machine learning pipeline typically involves all or some of the steps described below.
 
 There are various Azure and open source machine learning libraries you can use to implement your machine learning pipeline, including [Scikit Learn](https://scikit-learn.org/), [PyTorch](https://pytorch.org/), [Tensorflow](https://www.tensorflow.org/), [Spark MLlib](https://spark.apache.org/docs/latest/ml-guide.html), and [SynapseML](https://github.com/microsoft/SynapseML).
 
-This table describes each step and provides high-level guidance and some examples of how to implement these steps based on the implementation approaches described in [Create your own machine learning pipeline on data in Azure Monitor Logs](#create-your-own-machine-learning-pipeline-on-data-in-azure-monitor-logs): 
+This table describes each step and provides high-level guidance and some examples of how to implement these steps based on the implementation approaches described in [Create your own machine learning pipeline on data in Azure Monitor Logs](#build-a-custom-machine-learning-pipeline): 
 
 |Step|Description|Query data in Azure Monitor Logs|Export data|
 |-|-|-|-|
@@ -106,5 +128,7 @@ Ingesting scored results to a Log Analytics workspace lets you use the data to g
 
 Learn more about:
 
+- [Observability Agent](observability-agent-overview.md).
+- [Azure Monitor issues](issues-overview.md).
 - [Azure Monitor Logs](../logs/data-platform-logs.md).
 - [Azure Monitor Insights and curated visualizations](../insights/insights-overview.md).

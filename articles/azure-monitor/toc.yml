@@ -8,7 +8,7 @@ items:
   - name: Insights and curated visualizations
     href: visualize/insights-overview.md
   - name: AIOps and machine learning
-    href: aiops/aiops-machine-learning.md
+    href: aiops/aiops-and-agentic-operations.md
   - name: What's new?
     href: fundamentals/whats-new.md
 - name: Getting started
@@ -33,6 +33,70 @@ items:
     href: fundamentals/best-practices-operation.md
   - name: Performance efficiency
     href: fundamentals/best-practices-performance.md
+- name: Observability Agent
+  items:
+  - name: Overview
+    displayName: Azure Copilot Observability Agent
+    href: aiops/observability-agent-overview.md
+  - name: Use the Observability Agent
+    items:
+    - name: Chat with your data
+      displayName: Azure Copilot Observability Agent chat logs metrics
+      href: aiops/observability-agent-chat.md
+    - name: Deep investigations
+      displayName: Azure Copilot Observability Agent deep investigation root cause analysis AKS virtual machine
+      href: aiops/observability-agent-deep-investigations.md
+    - name: Deep investigation examples
+      displayName: Azure Copilot Observability Agent deep investigation examples Foundry GenAI SQL saturation
+      href: aiops/observability-agent-deep-investigation-examples.md
+    - name: Operational context and memory
+      displayName: Observability Agent context memory
+      href: aiops/observability-agent-context-memory.md
+  - name: Issues
+    items:
+    - name: Overview
+      displayName: Azure Copilot Observability Agent issues
+      href: aiops/issues-overview.md
+    - name: Use issues
+      href: aiops/issues-how-to.md
+  - name: Autonomous operations
+    items:
+    - name: Overview
+      displayName: Observability Agent autonomous operation
+      href: aiops/observability-agent-autonomous-operations.md
+    - name: Observability Agent resource
+      displayName: Azure Copilot Observability Agent resource managed identity scope custom instructions
+      href: aiops/observability-agent-resource.md
+    - name: Create Observability Agent resource
+      items:
+      - name: Azure portal
+        displayName: Azure Copilot Observability Agent create resource managed identity scope
+        href: aiops/observability-agent-resource-create-portal.md
+      - name: Templates
+        displayName: Azure Copilot Observability Agent ARM Bicep Resource Manager template samples
+        href: aiops/observability-agent-resource-create-template.md
+    - name: Custom instructions
+      displayName: Observability Agent custom instructions
+      href: aiops/observability-agent-custom-instructions.md
+  - name: Operate and manage
+    items:
+    - name: Best practices
+      displayName: Azure Copilot Observability Agent
+      href: aiops/observability-agent-best-practices.md
+    - name: Billing and cost management
+      displayName: Azure Copilot Observability Agent
+      href: aiops/observability-agent-billing.md
+    - name: Troubleshooting
+      displayName: Azure Copilot Observability Agent
+      href: aiops/observability-agent-troubleshooting.md
+  - name: FAQs
+    items:
+    - name: Transparency FAQ
+      displayName: Azure Copilot Observability Agent
+      href: aiops/observability-agent-transparency.md
+    - name: Data, privacy, and governance FAQ
+      displayName: Azure Copilot Observability Agent
+      href: aiops/observability-agent-governance-faq.md
 - name: Monitoring scenarios
   items:
   - name: Monitor applications with Application Insights
@@ -1556,32 +1620,6 @@ items:
         href: alerts/alerts-log-api-switch.md
       - name: Edit log search alerts created in previous versions
         href: alerts/alerts-manage-alerts-previous-version.md
-  - name: Azure Copilot observability agent
-    items:
-    - name: Overview
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-overview.md
-    - name: Best practices
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-best-practices.md
-    - name: Billing and cost management
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-billing.md
-    - name: Troubleshooting
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-troubleshooting.md
-    - name: Responsible use
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-responsible-use.md
-    - name: Governance FAQ
-      displayName: Azure Copilot observability agent
-      href: aiops/observability-agent-governance-faq.md
-  - name: Issues and investigations
-    items:
-    - name: Issues overview
-      href: aiops/aiops-issue-and-investigation-overview.md
-    - name: Use issues
-      href: aiops/aiops-issue-and-investigation-how-to.md
   - name: AutoScale
     items:
     - name: Overview

@@ -82,6 +82,8 @@ You can save up to 10 views of the alerts timeline. The **default** view is the 
 
 The **Alert details** page provides more information about the selected alert:
 
+Where supported, the alert details experience can also be the handoff point into investigation workflows, including the [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md) and [Azure Monitor issues](../aiops/issues-overview.md).
+
 * To change the user response to the alert, select the pencil near **User response**. The User response can be **New**, **Acknowledged**, or **Closed**.
 * To see the details of the alert, expand the **Additional details** section.
 * To see all closed alerts, select the **History** tab.
