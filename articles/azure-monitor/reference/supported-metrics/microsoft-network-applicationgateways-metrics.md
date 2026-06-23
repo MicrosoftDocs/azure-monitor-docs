@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Network/applicationgateways
 description: Reference for Microsoft.Network/applicationgateways metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.Network/applicationgateways, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -51,7 +51,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Network/
 |**Bytes Received**<br><br>The total number of bytes received by the Application Gateway from the clients |`BytesReceived` |Bytes |Total (Sum) |`Listener`|PT1M |Yes|
 |**Bytes Sent**<br><br>The total number of bytes sent by the Application Gateway to the clients |`BytesSent` |Bytes |Total (Sum) |`Listener`|PT1M |Yes|
 |**Current Capacity Units**<br><br>Capacity Units consumed |`CapacityUnits` |Count |Average |\<none\>|PT1M |No|
-|**Client RTT**<br><br>Round trip time between clients and Application Gateway. This metric indicates how long it takes to establish connections and return acknowledgements |`ClientRtt` |MilliSeconds |Average, Maximum |`Listener`|PT1M |No|
+|**Client RTT**<br><br>Round trip time between clients and Application Gateway. This metric indicates how long it takes to establish connections and return acknowledgments |`ClientRtt` |MilliSeconds |Average, Maximum |`Listener`|PT1M |No|
 |**Current Compute Units**<br><br>Compute Units consumed |`ComputeUnits` |Count |Average |\<none\>|PT1M |No|
 |**CPU Utilization**<br><br>Current CPU utilization of the Application Gateway |`CpuUtilization` |Percent |Average |\<none\>|PT1M |No|
 |**Current Connections**<br><br>Count of current connections established with Application Gateway |`CurrentConnections` |Count |Total (Sum) |\<none\>|PT1M |Yes|

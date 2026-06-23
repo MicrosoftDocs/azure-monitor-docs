@@ -16,7 +16,7 @@ This article describes the overall setup process for [Azure Monitor pipeline](./
 Complete deployment of an Azure Monitor pipeline includes the following steps:
 
 1. Verify the [prerequisites](#prerequisites).
-1. [Install cert-manager](#install-cert-manager-for-arc-enabled-kubernetes) on your Arc-enabled Kubernetes cluster.
+1. [Install cert-manager](/azure/azure-arc/kubernetes/cert-manager-overview) on your Arc-enabled Kubernetes cluster.
 1. Complete deployment of the pipeline by using either of the following methods:
    - [Configure Azure Monitor pipeline using the Azure portal](./pipeline-configure-portal.md)
    - [Configure Azure Monitor pipeline using CLI or ARM templates](./pipeline-configure-cli.md)
@@ -43,53 +43,6 @@ Complete deployment of an Azure Monitor pipeline includes the following steps:
 - Log Analytics workspace to receive logs from the pipeline. To create a workspace, see [Create a Log Analytics workspace in the Azure portal](../logs/quick-create-workspace.md).
   - (Optional) A custom table in the Log Analytics workspace if you don't want to use the default `Syslog` or `CommonSecurityLog` tables for Syslog data. To create a custom table, see [Create a custom log table in Azure Monitor](../logs/create-custom-table.md). The workspace must be onboarded to Microsoft Sentinel for the `CommonSecurityLog` table to be available.
 
-## Install cert-manager for Arc-enabled Kubernetes
-
-This section describes how to install cert-manager as an Azure Arc extension. You need to install cert-manager for the Azure Monitor pipeline. When you install cert-manager as a cluster managed extension (CME), it registers the `cert-manager` and `trust-manager` services on your cluster.
-
-For the currently supported Kubernetes distributions and regions, see [Supported configurations](./pipeline-overview.md#supported-configurations).
-
-
-### Remove existing cert-manager and trust-manager instances
-
-> [!WARNING]
-> Between uninstalling the open source version and installing the Arc extension, certificate rotation doesn't occur, and trust bundles aren't distributed to the new namespaces. Ensure this period is as short as possible to minimize potential security risks. Uninstalling the open source cert-manager and trust-manager doesn't remove any existing certificates or related resources you created. These resources remain usable once the Azure cert-manager is installed.
-
-Remove any existing instances of `cert-manager` and `trust-manager` from the cluster. You must remove any open source versions before installing the Microsoft version. The specific steps for removal depend on your installation method. For detailed guidance, see [Uninstalling cert-manager](https://cert-manager.io/docs/installation/uninstall/) and [Uninstalling trust-manager](https://cert-manager.io/docs/trust/trust-manager/installation/#uninstalling). If you used Helm for installation, use the following command to check which namespaces cert-manager and trust-manager use.
-
-`helm list -A | grep -E 'trust-manager|cert-manager'`
-
-If you have an existing cert-manager extension installed, uninstall it by using the following commands:
-
-```azurecli
-export RESOURCE_GROUP="<resource-group-name>"
-export CLUSTER_NAME="<arc-enabled-cluster-name>"
-export LOCATION="<arc-enabled-cluster-location>"
-
-NAME_OF_OLD_EXTENSION=$(az k8s-extension list --resource-group ${RESOURCE_GROUP} --cluster-name ${CLUSTER_NAME})
-az k8s-extension delete --name ${NAME_OF_OLD_EXTENSION} --cluster-name ${CLUSTER_NAME} \
-  --resource-group ${RESOURCE_GROUP} --cluster-type connectedClusters
-```
-### Install cert-manager extension
-
-Use the following command to connect your cluster to Azure Arc if it isn't already connected.
-
-```azurecli
-az connectedk8s connect --name ${CLUSTER_NAME} --resource-group ${RESOURCE_GROUP} --location ${LOCATION}
-```
-
-Install the cert-manager extension by using the following command:
-
-```azurecli
-az k8s-extension create \
-  --resource-group ${RESOURCE_GROUP} \
-  --cluster-name ${CLUSTER_NAME} \
-  --cluster-type connectedClusters \
-  --name "azure-cert-management" \
-  --extension-type "microsoft.certmanagement" \
-  --release-train stable \
-  --config subcharts.zdtrcontroller.enabled=true
-```
 
 ## Choose a configuration method
 
@@ -191,7 +144,7 @@ panic: failed to apply resource: the server could not find the requested resourc
 
 **Cause:** The pipeline operator depends on the Azure Arc Certificate Manager extension, which provides the certificate infrastructure (`ClusterIssuer` resources). The operator can't start without it.
 
-**Solution:** Install the Certificate Manager extension first to start the pipeline operator successfully. For installation instructions, see [Install cert-manager for Arc-enabled Kubernetes](./pipeline-configure.md#install-cert-manager-for-arc-enabled-kubernetes).
+**Solution:** Install the Certificate Manager extension first to start the pipeline operator successfully. For installation instructions, see [Install cert-manager for Arc-enabled Kubernetes](https://learn.microsoft.com/azure/azure-arc/kubernetes/cert-manager-overview).
 
 Verify the Certificate Manager extension is installed:
 

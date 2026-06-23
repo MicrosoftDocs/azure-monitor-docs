@@ -87,6 +87,19 @@ Usage
 | render columnchart
 ```
 
+### Billable data volume by table plan over the past month
+
+View the amount of data ingested into each table plan (Analytics Logs, Basic Logs or Auxiliary Logs). This `Plan` column was added to the Usage table in mid-May 2026. Data ingested earlier than that will not have this column populated. 
+
+```kusto
+Usage 
+| where TimeGenerated > ago(32d)
+| where StartTime >= startofday(ago(31d)) and EndTime < startofday(now())
+| where IsBillable == true
+| summarize BillableDataGB = sum(Quantity) / 1000. by bin(StartTime, 1d), Plan
+| render columnchart
+```
+
 ### Billable data volume by solution and type over the past month
 
 ```kusto
@@ -372,7 +385,7 @@ The following queries return the count of computers with billed data per hour. T
 
 ```kusto
 find where TimeGenerated >= startofday(ago(7d)) and TimeGenerated < startofday(now()) project Computer, _IsBillable, Type, TimeGenerated
-| where Type !in ("SecurityAlert", "SecurityBaseline", "SecurityBaselineSummary", "SecurityDetection", "SecurityEvent", "WindowsFirewall", "MaliciousIPCommunication", "LinuxAuditLog", "SysmonEvent", "ProtectionStatus", "WindowsEvent")
+| where Type !in ("SecurityAlert", "SecurityBaseline", "SecurityBaselineSummary", "SecurityDetection", "SecurityEvent", "WindowsFirewall", "LinuxAuditLog", "ProtectionStatus", "WindowsEvent", "MDCFileIntegrityMonitoringEvents")
 | extend computerName = tolower(tostring(split(Computer, '.')[0]))
 | where computerName != ""
 | where _IsBillable == true

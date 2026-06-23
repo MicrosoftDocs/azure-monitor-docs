@@ -2,7 +2,7 @@
 title: Resource-scoped queries for Azure Monitor workspace
 description: Learn how to query Azure Monitor workspace metrics using resource-scoped queries with PromQL, including setup, authentication, and error handling.
 ms.topic: how-to
-ms.date: 11/26/2025
+ms.date: 05/08/2026
 author: tylerkight
 ms.author: tylerkight
 ---
@@ -143,26 +143,6 @@ With header:
 x-ms-azure-scoping: /subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e
 ```
 
-### Using with Grafana
-
-1. Create a new Prometheus data source in Grafana.
-2. Set the Prometheus server URL to `https://query.eastus.prometheus.monitor.azure.com` (or your region).
-3. Configure authentication:
-   - For Azure Managed Prometheus data source: Use Azure authentication.
-   - For OSS Prometheus data source: Use Managed Identity with Monitoring Reader role.
-4. Add a custom HTTP header:
-   - Key: `x-ms-azure-scoping`
-   - Value: Resource ID, resource group ID, or subscription ID
-
-**Example with Grafana variables:**
-
-Create a variable for dynamic scoping:
-- Name: `ResourceScope`
-- Type: `Custom`
-- Values: List of resource IDs or subscription IDs
-
-Use `${ResourceScope}` as the header value to switch between resources without duplicating dashboards.
-
 ## Permissions required
 
 ### Resource-scoped queries
@@ -185,6 +165,30 @@ Resource-scoped query behavior depends on the workspace [access control mode](az
 
 > [!TIP]
 > Configure your workspaces with **Use resource or workspace permissions** mode to enable true resource-scoped access without workspace permissions. This is enabled by default on all newly created AMWs after October 2025.
+
+## Use with Azure Managed Grafana
+Resource-scoped queries are automatically supported when using Azure Monitor dashboards with Grafana in the Azure portal. There are no user configuration or additional steps required to use.
+
+For Azure Managed Grafana or self-hosted Grafana, you need to create new data sources with the **x-m-azure scoping** header as described in the following steps:
+
+1.  Create a new Prometheus data source in Grafana.
+2.  Set the Prometheus server URL to https://query.\<region\>.prometheus.monitor.azure.com where region is the location of the AMW(s) where your resources’ metrics are stored.For example, https://query.eastus.prometheus.monitor.azure.com 
+3.  Configure authentication:
+    - Set authentication method to *Azure Auth*.
+    - Set Azure authentication to the Managed Identity, App Registration or Current-user where the selected principal has at least Monitoring Reader role on the resource, resource group, or subscription that will be used as the resource scope.
+4.  Add a custom HTTP header:
+    - Key: `x-ms-azure-scoping`
+    - Value: resource ID, resource group ID, or subscription ID
+
+**Example with Grafana variables:**
+
+Create a variable for dynamic scoping using Prometheus data sources:
+
+- Variable Type: Data Source
+- Type: Prometheus
+- Optional – Instance name filter to filter by RegEx
+  - Use a naming convention like `rs-<datasource-name>` in your resource scoped data sources limit the set of data sources returned.
+- The list of Prom data sources matching Instance name filter will be returned.
 
 ## Supported scenarios
 
@@ -375,21 +379,37 @@ She can query all metrics for her resources without workspace access.
 
 ### Kubernetes namespace isolation
 
-**Scenario**: Tim has access to a specific AKS namespace but not the entire cluster.
+**Scenario**: Tim is responsible for a specific namespace in an AKS cluster.
 
-**Solution**: Tim queries using the namespace resource ID:
+**Solution**: Tim queries the cluster resource ID and filters by namespace label in PromQL. Resource-scoped queries don't currently support nested namespace resource IDs.
+
 ```
-x-ms-azure-scoping: /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.ContainerService/managedClusters/{cluster}/namespaces/{namespace}
+x-ms-azure-scoping: /subscriptions/{sub-id}/resourceGroups/{rg}/providers/Microsoft.ContainerService/managedClusters/{cluster}
+```
+
+Example query:
+
+```promql
+sum(rate(container_cpu_usage_seconds_total{namespace="kube-system"}[5m])) by ("microsoft.resourceid")
 ```
 
 He can create alerts and dashboards for his namespace without accessing cluster-wide metrics.
 
 ## Limitations
 
-- **Comma-separated scopes**: Querying multiple unrelated resources in a single request (comma-separated resource IDs) is not currently supported.
-- **Non-Azure resources**: Resource-scoped queries require Azure Resource IDs. Arc-enabled resources are supported.
-- **Dimension stamping**: Only metrics ingested via Azure Monitor Agent (since September 2025) have `Microsoft.*` dimensions automatically stamped.
-- **Cross-workspace queries**: Implicit cross-workspace queries within a resource scope are supported, but only up to 10 Azure Monitor Workspaces can be queried simultaneously.
+- **Network**
+    - Endpoint is currently only available through public-internet. Private Link (AMPLS) isn't currently supported.
+- **Resources**
+    - Resource-scoped queries require Azure Resource IDs. Arc-enabled resources are supported.
+    - Child resource types such as AKS managed namespaces, storage containers, Cosmos DB database are not currently supported.
+    - Scoping queries to multiple individual resources in a single request (comma-separated resource IDs) isn't currently supported. Multiple resources can be queried as part of the same resource group or subscription.
+- **Cloud availability**
+    - Public Azure commercial only. Government, 21Vianet, and air-gapped aren't currently supported.
+- **Data requirements**
+    - Only metrics ingested from Azure Monitor Agent since October 2025 have `Microsoft.*` dimensions automatically stamped.
+- **Query scale**
+    - Implicit cross-workspace queries within a resource scope are supported, but only up to ten Azure Monitor Workspaces can be queried simultaneously.
+
 
 ## Related content
 

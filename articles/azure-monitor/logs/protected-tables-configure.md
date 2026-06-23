@@ -132,8 +132,8 @@ az role assignment create \
 If you need to limit access to individual protected tables rather than all of them, create a custom role assignment with ABAC conditions that filter on both table name and protection level.
 
 1. Create or select a custom role based on the [access method](manage-access.md#access-methods) you want to use. 
-  - The `DataActions` required for workspace-centric access: `Microsoft.OperationalInsights/workspaces/tables/data/read`
-  - The `DataActions` required for resource-centric access: `Microsoft.Insights/logs/data/read`
+   - The `DataActions` required for workspace-centric access: `Microsoft.OperationalInsights/workspaces/tables/data/read`
+   - The `DataActions` required for resource-centric access: `Microsoft.Insights/logs/data/read`
 
 1. When creating the role assignment, add a condition with two expressions joined by **AND**:
 

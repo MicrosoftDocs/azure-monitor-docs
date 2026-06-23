@@ -3,17 +3,19 @@ title: Metrics experience for virtual machines in Azure Monitor
 description: Learn about OpenTelemetry System Metrics (Guest OS Performance Counters) in Azure Monitor and how they're modeled.
 ai-usage: ai-assisted
 ms.topic: concept-article
-ms.date: 09/27/2025
+ms.date: 05/28/2026
 ms.reviewer: tylerkight
 ---
 
 # Metrics experience for virtual machines in Azure Monitor
-When you enable enhanced monitoring for Azure virtual machines or Arc-enabled servers in Azure Monitor, you choose between two experiences for collecting and visualizing performance data from the guest operating system: metrics-based monitoring (preview) and logs-based monitoring (classic). This article describes the differences between these experiences and provides guidance on which to select.
+When you enable enhanced monitoring for Azure virtual machines or Arc-enabled servers in Azure Monitor, you choose between two experiences for collecting and visualizing performance data from the guest operating system: OpenTelemetry metrics-based monitoring (recommended for new deployments) and logs-based monitoring (classic). This article describes the differences between these experiences and provides guidance on which to select.
+
+In the portal onboarding workflow, OpenTelemetry metrics are enabled by default. The same workflow can also include logs-based metrics, OpenTelemetry per-process metrics, recommended alerts, and dashboards with Grafana depending on your monitoring selections.
 
 ## Compare experiences
 The following table compares the OpenTelemetry-based and logs-based monitoring experiences for Azure virtual machines in Azure Monitor.
 
-| Feature | Metrics-based (preview) | Logs-based (classic) |
+| Feature | Metrics-based | Logs-based (classic) |
 |:---|:---|:---|
 | **Data storage** | Azure Monitor workspace | Log Analytics workspace |
 | **Applies to** | Azure VMs<br>Arc-enabled servers | Azure VMs<br>Arc-enabled servers<br>VM Scale Sets |
@@ -60,7 +62,10 @@ Enhanced monitoring with OpenTelemetry uses a subset of the available system met
 ## Limitations of metrics-based collection
 
 - Metrics-based collection is currently only available for individual VMs and Arc-enabled servers. Logs-based collection can also be used for VM Scale Sets.
+- Metrics-based collection doesn't currently support [private link](../fundamentals/private-link-security.md).
 - You can't perform a single query across data in a Log Analytics workspace and Azure Monitor workspace. With logs-based collection, logs and metrics for your VMs are stored together, allowing you to correlate between them in a single KQL query. With metrics-based collection, metrics are stored in an Azure Monitor workspace and logs are stored in a Log Analytics workspace, requiring separate queries for each.
+- You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
+and logs are stored in a Log Analytics workspace, requiring separate queries for each.
 - You can create your own workbooks and dashboards to view multi-VM charts using OpenTelemetry metrics, but there isn't a built-in experience in the Azure portal like the one available for logs-based collection.
 
 > [!TIP]

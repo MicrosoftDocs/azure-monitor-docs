@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DevOpsInfrastructure/pools
 description: Reference for Microsoft.DevOpsInfrastructure/pools metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.DevOpsInfrastructure/pools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,11 +35,13 @@ For a list of supported logs, see [Supported log categories - Microsoft.DevOpsIn
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
 |**AllocationDurationMs**<br><br>Average time to allocate requests (ms) |`AllocationDurationMs` |Milliseconds |Average |`PoolId`, `Type`, `ResourceRequestType`, `Image`|PT1M |Yes|
+|**TimeSpentInPreviousStateMs**<br><br>Time spent in previous state before transitioning to current state (ms) |`TimeSpentInPreviousStateMs` |Milliseconds |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `PremountConfigurations`, `DataDiskType`, `VmPriority`, `PreviousState`, `NewState`|PT1M |Yes|
 
 ### Category: Saturation
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
 |**Allocated**<br><br>Resources that are allocated |`Allocated` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
+|**Demand**<br><br>Total active demand on the pool |`Demand` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
 |**NotReady**<br><br>Resources that are not ready to be used |`NotReady` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
 |**PendingReimage**<br><br>Resources that are pending reimage |`PendingReimage` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
 |**PendingReturn**<br><br>Resources that are pending return |`PendingReturn` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
@@ -48,10 +50,22 @@ For a list of supported logs, see [Supported log categories - Microsoft.DevOpsIn
 |**Starting**<br><br>Resources that are starting |`Starting` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
 |**Total**<br><br>Total Number of Resources |`Total` |Count |Average, Maximum, Minimum |`PoolId`, `SKU`, `Images`, `ProviderName`|PT1M |Yes|
 
+### Category: SaturationByCapability
+|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|
+|**Allocated**<br><br>Resources that are allocated by capability |`AllocatedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**Demand**<br><br>Total active demand on the pool by capability |`DemandByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**NotReady**<br><br>Resources that are not ready to be used by capability |`NotReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**PendingReimage**<br><br>Resources that are pending reimage by capability |`PendingReimageByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**PendingReturn**<br><br>Resources that are pending return by capability |`PendingReturnByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**Provisioned**<br><br>Resources that are provisioned by capability |`ProvisionedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**Ready**<br><br>Resources that are ready to be used by capability |`ReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**Starting**<br><br>Resources that are starting by capability |`StartingByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+
 ### Category: Traffic
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Count**<br><br>Number of requests in last dump |`Count` |Count |Count |`RequestType`, `Status`, `PoolId`, `Type`, `ErrorCode`, `FailureStage`|PT1M |Yes|
+|**Count**<br><br>Number of requests in last dump |`Count` |Count |Count |`RequestType`, `Status`, `PoolId`, `Type`, `ErrorCode`, `FailureStage`, `Image`|PT1M |Yes|
 
 ## Next steps
 

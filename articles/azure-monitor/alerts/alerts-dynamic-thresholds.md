@@ -3,7 +3,7 @@ title: Create a Log Search alert rule with dynamic threshold
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 ms.reviewer: harelbr
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 05/06/2026
 ---
 
 # Alert rules with dynamic thresholds overview
@@ -29,7 +29,7 @@ You can use dynamic thresholds on:
 - Most Azure Monitor platform and custom metrics.
 - Common application and infrastructure metrics.
 - Noisy metrics, like that from Virtual machine CPU or memory or metrics with low dispersion, such as availability and error rate.
-- Log query results (Preview).
+- Log query results.
 
 You can configure dynamic thresholds by using:
 
@@ -37,7 +37,6 @@ You can configure dynamic thresholds by using:
 - [Metric alert templates](./alerts-metric-create-templates.md).
 - PowerShell, CLI, or Azure Resource Manager templates for [Metric alert rules](./alerts-create-rule-cli-powershell-arm.md).
 - Azure Resource Manager templates for [Log search alert rules](./resource-manager-alerts-log.md). PowerShell and CLI are not yet supported.
-
 
 ## Alert threshold calculation and preview
 
@@ -75,7 +74,7 @@ To configure dynamic thresholds, follow the [procedure for creating an alert rul
 
 The following chart shows a metric, its dynamic threshold limits, and some alerts that fired when the value was outside the allowed thresholds.
 
-:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot of a chart that shows a metric, its dynamic threshold limits, and some alerts that fired.":::
+:::image type="content" source="media/alerts-dynamic-thresholds/threshold-picture-8bit.png" alt-text="Screenshot that shows a metric alert preview chart with dynamic threshold." lightbox="media/alerts-dynamic-thresholds/threshold-picture-8bit.png":::
 
 Use the following information to interpret the chart:
 
@@ -170,8 +169,31 @@ Dynamic thresholds support most metrics, but the following metrics can't use dyn
 | Microsoft.Storage/storageAccounts/fileServices | FileShareCapacityQuota |
 | Microsoft.Storage/storageAccounts/fileServices | FileShareProvisionedIOPS |
 
+## Create a query-based metric alert rule with dynamic thresholds (preview)
 
-## Create a Log search alert rule with dynamic threshold (Preview)
+Use dynamic thresholds in Azure Monitor [query-based metric alert rules](/azure/azure-monitor/alerts/alerts-query-based-metric-alerts-overview) to detect and alert on an __anomalous behavior__ **of a PromQL expression,** monitoring [Azure Monitor managed service for Prometheus metrics](/azure/azure-monitor/metrics/prometheus-metrics-overview) and [OTel metrics](/azure/azure-monitor/vm/metrics-opentelemetry-guest-modify) in your [Azure Monitor Workspace](/azure/azure-monitor/metrics/azure-monitor-workspace-overview).
+
+> [!IMPORTANT]
+> Dynamic thresholds work best with PromQL expressions that result in  **numeric values** instead of Boolean expressions. For example, use an expression that calculates CPU usage, not a Boolean comparison like CPU > 0.8.
+
+To configure dynamic thresholds for a query-based metric alert rule, follow the [procedure for creating a query-based metric alert rule](/azure/azure-monitor/alerts/alerts-create-query-based-metric-alerts). Use these settings on the **Condition** tab:
+
+- For **Threshold type**, select **Dynamic**.
+- Select the desired **Operator** condition.
+
+- Configure the rule **PromQL** **expression** that is suitable for dynamic threshold. The condition is met when the expression value passes the dynamically calculated threshold.
+
+- For **Threshold sensitivity**, select **Medium** or **Low** to reduce alert noise.
+
+:::image type="content" source="media/alerts-dynamic-thresholds/query-based-metric-alert-dynamic-thresholds-setup.png" alt-text="Screenshot that shows the configuration of query-based metric alert rule condition with dynamic thresholds." lightbox="media/alerts-dynamic-thresholds/query-based-metric-alert-dynamic-thresholds-setup.png":::
+
+### Dynamic threshold preview chart
+
+The following chart shows the value of a query-based metric alert rule expression, its dynamic threshold limits, threshold violations, and alerts that fired when the value was outside the allowed thresholds. 
+
+:::image type="content" source="media/alerts-dynamic-thresholds/query-based-metric-alerts-dynamic-thresholds-preview.png" alt-text="Screenshot of dynamic threshold preview chart for a query-based metric alert rule.":::
+
+## Create a Log search alert rule with dynamic threshold
 
 To configure dynamic thresholds, follow the [procedure for creating an alert rule](./alerts-create-log-alert-rule.md). Use these settings on the Condition tab:
 
@@ -198,7 +220,6 @@ The following chart shows the value of a log alert rule query result, its dynami
 
 > [!NOTE]
 > To ensure the preview chart performance, we enforce a limitation on the number of data points returned and, consequently, the allowed time range displayed, depending on alert rule frequency. A 5-minute frequency supports 6 hours. A 10–15-minute frequency supports 6 and 12 hours. A 30-minute frequency supports 6 and 12 hours and 1 day. Frequency of 1 hour or more supports 6 and 12 hours as well as 1 and 2 days.
-
 
 ## Known issues with dynamic threshold sensitivity
 

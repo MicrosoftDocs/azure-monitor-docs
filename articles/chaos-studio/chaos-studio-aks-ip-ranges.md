@@ -5,7 +5,7 @@ services: chaos-studio
 author: rsgel
 ms.topic: how-to
 ms.date: 12/4/2024
-ms.author: carlsonr
+ms.author: nikhilkaul
 ---
 
 # Add Chaos Studio IPs as Authorized IPs on AKS

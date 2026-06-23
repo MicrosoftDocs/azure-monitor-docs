@@ -1,18 +1,17 @@
 ---
-title: Ingest OTLP Data into Azure Monitor with OTel Collector (Preview)
+title: Ingest OTLP Data into Azure Monitor with OTel Collector
 description: Learn how to send OpenTelemetry Protocol (OTLP) telemetry data directly to Azure Monitor cloud ingestion endpoints using the OpenTelemetry Collector.
 ms.topic: how-to
-ms.date: 04/08/2026
+ms.date: 05/27/2026
 ai-usage: ai-assisted
 ---
 
-# Ingest OTLP data into Azure Monitor by using OTel Collector (Preview)
+# Ingest OTLP data into Azure Monitor by using OTel Collector
 
 Azure Monitor now supports native ingestion of OpenTelemetry Protocol (OTLP) signals. You can send telemetry data directly from OpenTelemetry-instrumented applications to Azure Monitor.
 
-> [!IMPORTANT]
-> * This feature is in **preview**. Preview features are provided without a service-level agreement and aren't recommended for production workloads.
-> * For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+> [!TIP]
+> For a conceptual overview of OpenTelemetry options in Azure Monitor — native OTLP ingestion, the Microsoft OpenTelemetry distro, and end-to-end observability experiences — see [OpenTelemetry with Azure Monitor](opentelemetry-options.md).
 
 ## Overview
 
@@ -39,20 +38,11 @@ You can configure OTLP data ingestion in Azure Monitor by using one of two appro
 
 This method automatically provisions all required Azure resources and configures their relationships. You can use Application Insights for application performance monitoring, distributed tracing, and failure analysis.
 
-1. Register the Application Insights OTLP preview features and provider.
-
-    ```bash
-    az feature register --name OtlpApplicationInsights --namespace Microsoft.Insights
-    az feature list -o table --query "[?contains(name, 'Microsoft.Insights/OtlpApplicationInsights')].{Name:name,State:properties.state}"
-    
-    az provider register -n Microsoft.Insights
-    ```
-
 1. In the Azure portal, create a new Application Insights resource.
 
-1. On the **Basics** tab, select the **Enable OTLP support** checkbox.
+1. On the **Basics** tab, set **OTLP support** to **On**.
 
-    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with Enable OTLP support option selected.":::
+    :::image type="content" source="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" lightbox="./media/opentelemetry-protocol-ingestion/create-app-insights-resource.png" alt-text="Screenshot showing the Create Application Insights page with OTLP support set to On.":::
 
 1. Complete the resource creation process.
 
@@ -85,7 +75,7 @@ Record the resource IDs of both workspaces for later use.
 To enable Application Insights troubleshooting experiences with your OTLP data:
 
 1. Create an Application Insights resource in the same region as your workspaces.
-1. Clear the **Enable OTLP support** checkbox to avoid creating duplicate resources.
+1. Leave **OTLP support** set to **Off** to avoid creating duplicate resources.
 1. Copy the Application Insights resource ID.
 
 > [!NOTE]
@@ -97,7 +87,9 @@ To enable Application Insights troubleshooting experiences with your OTLP data:
 1. Select **Build your own template in the editor**.
 1. Copy the template content from the [Azure Monitor Community repository](https://github.com/microsoft/AzureMonitorCommunity/blob/master/Azure%20Services/Azure%20Monitor/OpenTelemetry/OTLP_DCE_DCR_ARM_Template.txt).
 1. Paste the template into the editor and update the parameters with your workspace resource IDs and (optionally) Application Insights resource ID.
-1. In this example, the stream name from the community DCR template is used to create the URL. You can optionally change the stream name in the DCR definition and match it when creating the DCE name. The stream name should start with `Custom-Metrics-` followed by a letter and then any combination of alphanumeric characters, `-`, and `_`.
+
+   - In this example, the stream name from the community DCR template is used to create the endpoint URL used below. For metrics, you can optionally change the stream name in the DCR definition and match it when creating the DCE name. The stream name should start with `Custom-Metrics-` followed by a letter and then any combination of alphanumeric characters, `-`, and `_`.
+
 1. Set the location to match your workspace region.
 1. Review and create the deployment.
 1. After deployment completes, navigate to the created DCR and copy its resource ID from the **Overview** page.
@@ -117,22 +109,24 @@ The OpenTelemetry Collector requires Microsoft Entra authentication to send data
 
 1. Enable system-assigned managed identity on your compute resource.
 1. Assign the **Monitoring Metrics Publisher** role to the managed identity.
-1. To use the system-assigned identity, leave the `managed_identity` section blank in your collector configuration.
+1. To use the system-assigned identity, leave the `managed_identity` section empty in your collector configuration:
+
+   ```yaml
+   extensions:
+     azure_auth:
+       managed_identity: {}
+       scopes:
+         - https://monitor.azure.com/.default
+   ```
+
+   > [!NOTE]
+   > This example requires OpenTelemetry Collector version **0.148.0 or later**. The `azure_auth` syntax isn't backward compatible with earlier versions.
 
 **For non-Azure environments:**
 
-Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity:
+Configure the Azure Authentication extension in your collector with an appropriate Microsoft Entra identity. Follow the examples in the [Azure Authentication Extension README](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/extension/azureauthextension#readme).
 
-```yaml
-extensions:
-  azureauth/monitor:
-    managed_identity:
-      client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"  # Your identity client ID
-    scopes:
-      - https://monitor.azure.com/.default
-```
-
-For workload identities, service principals, or other Microsoft Entra identities, provide the `client_id` of the identity that needs to authenticate.
+For workload identities, service principals, or other Microsoft Entra identities, provide the required identity details to authenticate.
 
 ### Grant permissions to the Data Collection Rule
 
@@ -162,8 +156,6 @@ The identity your collector uses needs permission to write data to your DCR:
 
 If you created your resources by using the Application Insights method, you already have the endpoint URLs from the OTLP Connection Info section. Skip to [Update collector configuration](#update-collector-configuration).
 
-You can optionally change the stream name in the Data Collection Rule (DCR) definition, but the stream name used in the DCR must exactly match the stream name used when constructing the Data Collection Endpoint (DCE) URL, and this match is case-sensitive. The stream name must start with `Custom-Metrics-`, followed by a letter, and then any combination of alphanumeric characters, hyphens (`-`), or underscores (`_`). If you change the stream name, you must update all references to the stream name in the DCR template and ensure the DCE URL uses the same value.
-
 For manually orchestrated resources, construct the endpoint URLs:
 
 1. Go to your Data Collection Endpoint in the Azure portal.
@@ -187,9 +179,11 @@ For manually orchestrated resources, construct the endpoint URLs:
 
     **Metrics endpoint:**
     ```
-    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-OTEL/otlp/v1/metrics
+    https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Custom-Metrics-Otel/otlp/v1/metrics
     ```
-    
+
+    - For metrics, you can optionally change the stream name in the Data Collection Rule (DCR) definition, but the stream name used in the DCR must exactly match the stream name used when constructing the Data Collection Endpoint (DCE) URL, and this match is case-sensitive. The stream name must start with `Custom-Metrics-`, followed by a letter, and then any combination of alphanumeric characters, hyphens (`-`), or underscores (`_`). If you change the stream name, you must update all references to the stream name in the DCR template and ensure the DCE URL uses the same value.
+
     **Logs endpoint:**
     ```
     https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/Microsoft-OTLP-Logs/otlp/v1/logs
@@ -220,7 +214,7 @@ processors:
   batch:
 
 extensions:
-  azureauth/monitor:
+  azure_auth:
     use_default: true
     scopes:
       - https://monitor.azure.com/.default
@@ -231,11 +225,11 @@ exporters:
     logs_endpoint: "https://<logs-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/<strong>Microsoft-OTLP-Logs</strong>/otlp/v1/logs"
     metrics_endpoint: "https://<metrics-dce-domain>/datacollectionRules/<dcr-immutable-id>/streams/microsoft-otelmetrics/otlp/v1/metrics"
     auth:
-      authenticator: azureauth/monitor
+      authenticator: azure_auth
 
 service:
   extensions:
-    - azureauth/monitor
+    - azure_auth
   pipelines:
     traces:
       receivers: [otlp]

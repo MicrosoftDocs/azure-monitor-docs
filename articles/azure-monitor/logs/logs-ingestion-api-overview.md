@@ -138,7 +138,7 @@ For example:
 https://my-dce-5kyl.eastus-1.ingest.monitor.azure.com/dataCollectionRules/dcr-000a00a000a00000a000000aa000a0aa/streams/Custom-MyTable?api-version=2023-01-01
 ```
 
-The `DCR Immutable ID` is generated for the DCR when it's created. You can retrieve it from the [Overview page for the DCR in the Azure portal](../data-collection/data-collection-rule-overview.md#viewing-dcrs). 
+The `DCR Immutable ID` is generated for the DCR when it's created. You can retrieve it from the [Overview page for the DCR in the Azure portal](../data-collection/data-collection-rule-overview.md#view-dcrs). 
 
 :::image type="content" source="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" lightbox="media/logs-ingestion-api-overview/data-collection-rule-immutable-id.png" alt-text="Screenshot of a data collection rule showing the immutable ID.":::
 

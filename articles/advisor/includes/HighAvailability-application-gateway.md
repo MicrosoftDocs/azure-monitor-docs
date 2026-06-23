@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -733,5 +733,42 @@ Recommendation ID: 6012b4f4-b19a-4d6e-ae25-4289c228428e
 Subcategory: undefined
 
 <!--6012b4f4-b19a-4d6e-ae25-4289c228428e_end-->
+
+<!--374b21de-e7ec-409a-9961-93e789e27536_begin-->
+
+#### Use Zone-Redundant NAT Gateway configuration to reduce outages  
+  
+Deploy a zone-redundant StandardV2 NAT Gateway configuration  
+  
+**Potential benefits**: Outbound traffic remains operational even if one zone fails  
+
+**Impact:** High
+  
+For more information, see [Enable Zone Resiliency for Azure Workloads](/azure/reliability/availability-zones-enable-zone-resiliency)  
+
+ResourceType: microsoft.network/natgateways  
+Recommendation ID: 374b21de-e7ec-409a-9961-93e789e27536  
+Subcategory: undefined
+
+<!--374b21de-e7ec-409a-9961-93e789e27536_end-->
+
+
+<!--1e97d137-7812-474d-af09-6d5b3e2a1508_begin-->
+
+#### Migrate Inbound NAT Pools to Inbound NAT rules v2 on Load Balancer  
+  
+Inbound NAT Pools on Azure Load Balancer are retiring on September 30, 2027. Migrate to Inbound NAT Rules v2 to ensure continued port forwarding functionality, simplified management, and seamless scaling for virtual machine scale sets.  
+  
+**Potential benefits**: Avoid service disruption from NAT Pool retirement  
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Inbound NAT rules version 1 to version 2](/azure/load-balancer/load-balancer-nat-pool-migration?tabs=azure-cli)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508  
+Subcategory: undefined
+
+<!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
 
 <!--articleBody-->

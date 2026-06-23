@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 12/22/2025
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability API Management
@@ -94,13 +94,14 @@ Azure API Management supports multi-region deployment, which enables API publish
 
 **Impact:** High
   
-For more information, see [Deploy Azure API Management instance to multiple Azure regions - Azure API Management ](/azure/api-management/api-management-howto-deploy-multi-region)  
+For more information, see [Deploy an Azure API Management Instance to Multiple Azure Regions - Azure API Management](/azure/api-management/api-management-howto-deploy-multi-region)  
 
 ResourceType: microsoft.apimanagement/service  
 Recommendation ID: 2e4d65a3-1e77-4759-bcaa-13009484a97e  
-Subcategory: HighAvailability
+Subcategory: undefined
 
 <!--2e4d65a3-1e77-4759-bcaa-13009484a97e_end-->
+
 
 <!--f4c48f42-74f2-41bf-bf99-14e2f9ea9ac9_begin-->
 

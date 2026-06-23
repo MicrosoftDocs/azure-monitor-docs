@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 04/28/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Storage
@@ -196,5 +196,23 @@ Recommendation ID: 7be41487-135c-4bee-901f-b4e8cd5e9180
 Subcategory: undefined
 
 <!--7be41487-135c-4bee-901f-b4e8cd5e9180_end-->
+
+<!--6015a8e7-c899-4724-b39d-4281ddcc2551_begin-->
+
+#### Upgrade to AES-256 to avoid losing Azure Files access.  
+  
+RC4 encryption in Azure Files Storage Accounts and Active Directory Objects is being retired  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Troubleshoot Encryption Changes Affecting Azure Files - Azure](/troubleshoot/azure/azure-storage/files/security/files-troubleshoot-encryption)  
+
+ResourceType: microsoft.storage/storageaccounts  
+Recommendation ID: 6015a8e7-c899-4724-b39d-4281ddcc2551  
+Subcategory: undefined
+
+<!--6015a8e7-c899-4724-b39d-4281ddcc2551_end-->
 
 <!--articleBody-->

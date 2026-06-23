@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.RecoveryServices/Vaults
 description: Reference for Microsoft.RecoveryServices/Vaults metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.RecoveryServices/Vaults, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -34,8 +34,8 @@ For a list of supported logs, see [Supported log categories - Microsoft.Recovery
 ### Category: Health
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Backup Health Events (preview)**<br><br>The count of health events pertaining to backup job health |`BackupHealthEvent` |Count |Count |`dataSourceURL`, `backupInstanceUrl`, `dataSourceType`, `healthStatus`, `backupInstanceName`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |Yes|
-|**Restore Health Events (preview)**<br><br>The count of health events pertaining to restore job health |`RestoreHealthEvent` |Count |Count |`dataSourceURL`, `backupInstanceUrl`, `dataSourceType`, `healthStatus`, `backupInstanceName`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |Yes|
+|**Backup Health Events**<br><br>The count of health events pertaining to backup job health |`BackupHealthEvent` |Count |Count |`dataSourceURL`, `backupInstanceUrl`, `dataSourceType`, `healthStatus`, `backupInstanceName`, `isResourceMetricReady`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |No|
+|**Restore Health Events**<br><br>The count of health events pertaining to restore job health |`RestoreHealthEvent` |Count |Count |`dataSourceURL`, `backupInstanceUrl`, `dataSourceType`, `healthStatus`, `backupInstanceName`, `isResourceMetricReady`|PT1M, PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, PT24H |No|
 
 ## Next steps
 

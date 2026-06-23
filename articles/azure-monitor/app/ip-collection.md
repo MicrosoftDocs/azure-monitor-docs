@@ -1,11 +1,12 @@
 ---
-title: Application Insights IP address collection | Microsoft Docs
+title: Application Insights Geolocation and IP Address Handling
 description: Understand how Application Insights handles IP addresses and geolocation.
 ms.topic: how-to
 ms.date: 03/15/2026
+ai-usage: ai-assisted
 ---
 
-# Geolocation and IP address handling
+# Application Insights geolocation and IP address handling
 
 This article explains how geolocation lookup and IP address handling work in [Application Insights](app-insights-overview.md).
 
@@ -43,7 +44,7 @@ If you use OpenTelemetry, you can also populate the request IP used for geolocat
 > [!TIP]
 > If you need to modify the behavior for only a single Application Insights resource, use the Azure portal.
 
-### [Portal](#tab/portal)
+# [Portal](#tab/portal)
 
 1. Go to your Application Insights resource, and then select **Automation** > **Export template**.
 
@@ -70,105 +71,191 @@ If you use OpenTelemetry, you can also populate the request IP used for geolocat
 1. After the deployment is complete, new telemetry data will be recorded.
 
     If you select and edit the template again, only the default template without the newly added property is shown. If you aren't seeing IP address data and want to confirm that `"DisableIpMasking": true` is set, run the following PowerShell commands:
-    
+
     ```powershell
-    # Replace <application-insights-resource-name> and <resource-group-name> with the appropriate resource and resource group name.
+    # Set variables
+    $resourceGroupName = "<ResourceGroupName>"
+    $resourceName = "<ResourceName>"
 
-    # If you aren't using Azure Cloud Shell, you need to connect to your Azure account
-    # Connect-AzAccount
+    # Define parameters for Get-AzResource
+    $getAzResourceParams = @{
+        Name              = $resourceName
+        ResourceType      = "Microsoft.Insights/components"
+        ResourceGroupName = $resourceGroupName
+    }
 
-    $AppInsights = Get-AzResource -Name '<application-insights-resource-name>' -ResourceType 'microsoft.insights/components' -ResourceGroupName '<resource-group-name>'
-    $AppInsights.Properties
+    # Retrieve the Application Insights resource and display its properties
+    $appInsights = Get-AzResource @getAzResourceParams
+    $appInsights.Properties
     ```
-    
+
     A list of properties is returned as a result. One of the properties should read `DisableIpMasking: true`. If you run the PowerShell commands before you deploy the new property with Azure Resource Manager, the property doesn't exist.
 
-### [Azure CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-> [!NOTE]
-> Azure CLI doesn't currently expose a dedicated `az monitor app-insights` parameter for `DisableIpMasking`, but you can still update the resource by using [`az rest`](/cli/azure/use-azure-cli-rest-command).
+[!INCLUDE [Azure CLI using REST](../includes/cli-using-rest.md)]
 
-To disable IP masking using Azure CLI, run the following commands and replace the placeholders with your specific values:
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+resourceName="<ResourceName>"
+apiVersion="2020-02-02"
 
-```azurecli
-body='{ "location": "<azure-region-name>", "kind": "web", "properties": { "Application_Type": "web", "DisableIpMasking": true } }'
+# Get the subscription ID from the current Azure CLI context
+subscriptionId=$(az account show --query id --output tsv)
 
-az rest --method patch \
-  --url "https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview" \
-  --headers "Content-Type=application/json" \
-  --body "$body"
+# Build the full resource ID for the Application Insights component
+resourceId="/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Insights/components/$resourceName"
+
+# Disable IP masking on the Application Insights resource
+az rest \
+  --method put \
+  --uri "$resourceId?api-version=$apiVersion" \
+  --body @./components.json
 ```
 
-### [PowerShell](#tab/powershell)
-
-To disable IP masking using [Azure PowerShell](/powershell/azure/what-is-azure-powershell), use the following command and replace the placeholders `<application-insights-resource-name>` and `<resource-group-name>` with your specific values:
-
-```powershell
-Update-AzApplicationInsights -Name "<application-insights-resource-name>" -ResourceGroupName "<resource-group-name>" -DisableIPMasking:$true
-```
-
-For more information about the `Update-AzApplicationInsights` cmdlet, see the [Azure PowerShell documentation](/powershell/module/az.applicationinsights/update-azapplicationinsights).
-
-### [REST API](#tab/rest)
-
-To disable IP masking using the [REST API](/rest/api/azure/), use the following request and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, `<access-token>`, and `<azure-region-name>` with your specific values:
+**Payload file components.json:**
 
 ```json
-PATCH https://management.azure.com/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>?api-version=2018-05-01-preview HTTP/1.1
-Host: management.azure.com
-Authorization: Bearer <access-token>
+{
+  "location": "<AzureRegion>",
+  "kind": "web",
+  "properties": {
+    "Application_Type": "web",
+    "DisableIpMasking": true,
+    "WorkspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
+  }
+}
+```
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [Update-AzApplicationInsights](/powershell/module/az.applicationinsights/update-azapplicationinsights) cmdlet.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$resourceName = "<ResourceName>"
+
+# Define parameters for Update-AzApplicationInsights
+$updateAzApplicationInsightsParams = @{
+    ResourceGroupName = $resourceGroupName
+    Name              = $resourceName
+    DisableIPMasking  = $true
+}
+
+# Disable IP masking on the Application Insights resource
+Update-AzApplicationInsights @updateAzApplicationInsightsParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [Components - Create Or Update](/rest/api/application-insights/components/create-or-update) REST API operation.
+
+```REST
+PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Insights/components/{ResourceName}?api-version=2020-02-02
+Authorization: Bearer {AccessToken}
 Content-Type: application/json
 
 {
-    "location": "<azure-region-name>",
-    "kind": "web",
-    "properties": {
-        "Application_Type": "web",
-        "DisableIpMasking": true
-    }
+  "location": "<AzureRegion>",
+  "kind": "web",
+  "properties": {
+    "Application_Type": "web",
+    "DisableIpMasking": true,
+    "WorkspaceResourceId": "/subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>"
+  }
 }
 ```
 
-For more information about configuring Application Insights resources using the REST API, see the [REST API documentation](/rest/api/application-insights/components/create-or-update).
+# [Bicep](#tab/bicep)
 
-### [Bicep](#tab/bicep)
-
-To disable IP masking using [Bicep](/azure/azure-resource-manager/bicep/overview), use the following template and replace the placeholders `<application-insights-resource-name>` and `<azure-region-name>` with your specific values:
+The following Bicep example uses the [Microsoft.Insights/components](/azure/templates/microsoft.insights/components?pivots=deployment-language-bicep) resource type.
 
 ```bicep
-resource appInsights 'microsoft.insights/components@2020-02-02' = {
-    name: '<application-insights-resource-name>'
-    location: '<azure-region-name>'
+param subscriptionId string = '<SubscriptionId>'
+param resourceGroupName string = '<ResourceGroupName>'
+param resourceName string = '<ResourceName>'
+param azureRegion string = '<AzureRegion>'
+param workspaceName string = '<WorkspaceName>'
 
-    kind: 'web'
-    properties: {
-        Application_Type: 'web'
-        DisableIpMasking: true
-    }
+var workspaceResourceId = '/subscriptions/${subscriptionId}/resourceGroups/${resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/${workspaceName}'
+
+resource applicationInsightsComponent 'Microsoft.Insights/components@2020-02-02' = {
+  name: resourceName
+  location: azureRegion
+  kind: 'web'
+  properties: {
+    Application_Type: 'web'
+    DisableIpMasking: true
+    WorkspaceResourceId: workspaceResourceId
+  }
 }
 ```
 
-### [ARM (JSON)](#tab/arm)
+# [ARM (JSON)](#tab/arm)
 
-To disable IP masking using [ARM (JSON)](/azure/azure-resource-manager/templates/overview), use the following template and replace the placeholders `<subscription-id>`, `<resource-group-name>`, `<application-insights-resource-name>`, and `<azure-region-name>` with your specific values:
+The following ARM (JSON) example uses the [Microsoft.Insights/components](/azure/templates/microsoft.insights/components?pivots=deployment-language-arm-template) resource type.
 
 ```json
 {
-    "id": "/subscriptions/<subscription-id>/resourceGroups/<resource-group-name>/providers/microsoft.insights/components/<application-insights-resource-name>",
-    "name": "<application-insights-resource-name>",
-    "type": "microsoft.insights/components",
-    "location": "<azure-region-name>",
-
-    "kind": "web",
-    "properties": {
-        "Application_Type": "web",
-        "DisableIpMasking": true
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "subscriptionId": {
+      "type": "string",
+      "defaultValue": "<SubscriptionId>"
+    },
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "<ResourceGroupName>"
+    },
+    "resourceName": {
+      "type": "string",
+      "defaultValue": "<ResourceName>"
+    },
+    "azureRegion": {
+      "type": "string",
+      "defaultValue": "<AzureRegion>"
+    },
+    "workspaceName": {
+      "type": "string",
+      "defaultValue": "<WorkspaceName>"
     }
+  },
+  "variables": {
+    "workspaceResourceId": "[format('/subscriptions/{0}/resourceGroups/{1}/providers/Microsoft.OperationalInsights/workspaces/{2}', parameters('subscriptionId'), parameters('resourceGroupName'), parameters('workspaceName'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Insights/components",
+      "apiVersion": "2020-02-02",
+      "name": "[parameters('resourceName')]",
+      "location": "[parameters('azureRegion')]",
+      "kind": "web",
+      "properties": {
+        "Application_Type": "web",
+        "DisableIpMasking": true,
+        "WorkspaceResourceId": "[variables('workspaceResourceId')]"
+      }
+    }
+  ]
 }
 ```
 
 ---
-
+<!--
+| Variable | Placeholder | Purpose |
+|----------|-------------|---------|
+| subscriptionId | \<SubscriptionId\> | • Retrieved (CLI)<br>• User input (REST, Bicep & ARM) |
+| resourceGroupName | \<ResourceGroupName\> | User input |
+| resourceName | \<ResourceName\> | User input |
+| azureRegion | \<AzureRegion\> | User input |
+| workspaceName | \<WorkspaceName\> | User input |
+| apiVersion | 2020-02-02 | [Reference](../fundamentals/azure-monitor-rest-api-index.md) |
+-->
 ## Next steps
 
 * Learn more about [personal data collection](../logs/personal-data-mgmt.md) in Azure Monitor.

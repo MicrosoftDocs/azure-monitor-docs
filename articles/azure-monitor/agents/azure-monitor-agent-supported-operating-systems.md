@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 05/06/2026
+ms.date: 06/05/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -26,11 +26,11 @@ This article lists the operating systems that the [Azure Monitor Agent](./azure-
 | Windows Server 2019 Core                                 | ✓ |
 | Windows Server 2016                                      | ✓ |
 | Windows Server 2016 Core                                 | ✓ |
-| Windows Server 2012 R2 with an ESU agreement             | ✓ |
 | Windows 11 Client and Pro                                | ✓<sup>1, 2</sup> |
 | Windows 11 Enterprise<br>(including multi-session)       | ✓ |
 | Windows 10 1803 (RS4) and later                          | ✓<sup>1</sup> |
 | Windows 10 Enterprise<br>(including multi-session) and Pro<br>(server scenarios only)  | ✓ |
+| Windows 365 Cloud PCs                                    | ✓<sup>1</sup> |
 | Azure Local                                              | ✓ |
 | Windows IoT Enterprise                                   | ✓ |
 

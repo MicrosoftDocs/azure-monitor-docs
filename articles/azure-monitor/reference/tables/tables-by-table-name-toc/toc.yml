@@ -128,6 +128,8 @@
   href: ../adfssispackageexecutioncomponentphases.md
 - name: ADFSSISPackageExecutionDataStatistics
   href: ../adfssispackageexecutiondatastatistics.md
+- name: ADGSyslogEvent
+  href: ../adgsyslogevent.md
 - name: ADTDataHistoryOperation
   href: ../adtdatahistoryoperation.md
 - name: ADTDigitalTwinsOperation
@@ -620,6 +622,8 @@
   href: ../confidentialwatchlist.md
 - name: ContainerAppConsoleLogs
   href: ../containerappconsolelogs.md
+- name: ContainerAppHTTPLogs
+  href: ../containerapphttplogs.md
 - name: ContainerAppSystemLogs
   href: ../containerappsystemlogs.md
 - name: ContainerEvent
@@ -640,6 +644,8 @@
   href: ../copilotactivity.md
 - name: CrowdStrikeAlerts
   href: ../crowdstrikealerts.md
+- name: CrowdStrikeAuditEvents
+  href: ../crowdstrikeauditevents.md
 - name: CrowdStrikeCases
   href: ../crowdstrikecases.md
 - name: CrowdStrikeDetections
@@ -792,6 +798,8 @@
   href: ../devicecustomnetworkevents.md
 - name: DeviceCustomProcessEvents
   href: ../devicecustomprocessevents.md
+- name: DeviceCustomRegistryEvents
+  href: ../devicecustomregistryevents.md
 - name: DeviceCustomScriptEvents
   href: ../devicecustomscriptevents.md
 - name: DeviceEvents
@@ -824,6 +832,12 @@
   href: ../devicetvmsoftwarevulnerabilities.md
 - name: DeviceTvmSoftwareVulnerabilitiesKB
   href: ../devicetvmsoftwarevulnerabilitieskb.md
+- name: DiscoveryBookshelfAuditLogs
+  href: ../discoverybookshelfauditlogs.md
+- name: DiscoverySupercomputerAuditLogs
+  href: ../discoverysupercomputerauditlogs.md
+- name: DiscoveryWorkspaceAuditLogs
+  href: ../discoveryworkspaceauditlogs.md
 - name: DisruptionAndResponseEvents
   href: ../disruptionandresponseevents.md
 - name: DnsAuditEvents
@@ -926,6 +940,8 @@
   href: ../googlecloudscc.md
 - name: GoogleWorkspaceReports
   href: ../googleworkspacereports.md
+- name: GraphNotificationsActivityLogs
+  href: ../graphnotificationsactivitylogs.md
 - name: HDInsightAmbariClusterAlerts
   href: ../hdinsightambariclusteralerts.md
 - name: HDInsightAmbariSystemMetrics
@@ -1494,5 +1510,7 @@
   href: ../wvdmultilinkadd.md
 - name: WVDSessionHostManagement
   href: ../wvdsessionhostmanagement.md
+- name: ZTSJobStatus
+  href: ../ztsjobstatus.md
 - name: ZTSRequest
   href: ../ztsrequest.md

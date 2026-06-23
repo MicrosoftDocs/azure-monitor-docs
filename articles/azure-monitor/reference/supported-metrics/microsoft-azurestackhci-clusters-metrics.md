@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.azurestackhci/clusters
 description: Reference for Microsoft.azurestackhci/clusters metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 05/29/2026
 ms.custom: Microsoft.azurestackhci/clusters, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -68,6 +68,9 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |---|---|---|---|---|---|---|
 |**Percentage CPU Guest**<br><br>Percentage of processor time used for guest (virtual machine) demand. |`Clusternode CPU Usage Guest` |Percent |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`|PT1M |Yes|
 |**Percentage Memory**<br><br>The allocated (not available) memory of the node. |`ClusterNode Memory Usage` |Percent |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`|PT1M |Yes|
+|**Percentage GPU Memory**<br><br>The percentage of GPU memory in use. |`GpuMemoryConsumption` |Percent |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `GpuIndex`, `GpuName`, `GpuPciAddress`, `GpuUuid`|PT1M |Yes|
+|**GPU Temperature**<br><br>The current temperature of the GPU in degrees Celsius. |`GpuTemperature` |Count |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `GpuIndex`, `GpuName`, `GpuPciAddress`, `GpuUuid`|PT1M |Yes|
+|**Percentage GPU**<br><br>The percentage of time the GPU was busy processing. |`GpuUsage` |Percent |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `GpuIndex`, `GpuName`, `GpuPciAddress`, `GpuUuid`|PT1M |Yes|
 |**Percentage CPU**<br><br>The percentage of processor time that is not idle. |`Hyper-V Hypervisor Logical Processor\% Total Run Time` |Percent |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`|PT1M |Yes|
 |**Percentage CPU Host**<br><br>Percentage of processor time used for host demand. |`Hyper-V Hypervisor Root Virtual Processor\% Guest Run Time` |Percent |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`|PT1M |Yes|
 |**Percentage Memory Guest**<br><br>The memory allocated to guest (virtual machine) demand. |`Percentage Memory Guest` |Percent |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`|PT1M |Yes|
@@ -87,6 +90,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Csvcache Read Hit**<br><br>Cache hit PerSecond for read operations. |`Clusternode CsvCache Read Hit` |CountPerSecond |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`, `LUN`|PT1M |Yes|
 |**Csvcache Read Hitrate**<br><br>Cache hit rate for read operations. |`Clusternode Csvcache Read Hitrate` |Percent |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`, `LUN`|PT1M |Yes|
 |**Csvcache Read Miss**<br><br>Cache missPerSecond for read operations. |`Clusternode Csvcache Read Miss` |CountPerSecond |Minimum, Maximum, Total (Sum), Count, Average |`ClusterName`, `ClusterNodeName`, `LUN`|PT1M |Yes|
+|**GPU Graphics Clock Speed**<br><br>The current graphics clock speed of the GPU in MHz. |`GpuGraphicsClockSpeed` |CountPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `GpuIndex`, `GpuName`, `GpuPciAddress`, `GpuUuid`|PT1M |Yes|
+|**GPU Memory Clock Speed**<br><br>The current memory clock speed of the GPU in MHz. |`GpuMemoryClockSpeed` |CountPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `GpuIndex`, `GpuName`, `GpuPciAddress`, `GpuUuid`|PT1M |Yes|
 |**Vmnetworkadapter Network In/Sec**<br><br>Rate of data received by the virtual machine across all its virtual network adapters. |`Hyper-V Virtual Network Adapter\Bytes Received/sec` |BitsPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |Yes|
 |**Vmnetworkadapter Network Out/Sec**<br><br>Rate of data sent by the virtual machine across all its virtual network adapters. |`Hyper-V Virtual Network Adapter\Bytes Sent/sec` |BitsPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |Yes|
 |**Vmnetworkadapter Network In and Out/Sec**<br><br>Total rate of data received or sent by the virtual machine across all its virtual network adapters. |`Hyper-V Virtual Network Adapter\Bytes/sec` |BitsPerSecond |Minimum, Maximum, Average, Total (Sum), Count |`ClusterName`, `ClusterNodeName`, `Instance`|PT1M |Yes|

@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -220,13 +220,14 @@ The combined bandwidth used by all the Free SKU Static Web Apps in this subscrip
 
 **Impact:** High
   
-For more information, see [Pricing – Static Web Apps ](https://azure.microsoft.com/pricing/details/app-service/static/)  
+For more information, see [Pricing – Static Web Apps](https://azure.microsoft.com/pricing/details/app-service/static/)  
 
 ResourceType: microsoft.web/staticsites  
 Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
+
 
 <!--dc298556-8232-4aa8-bfe0-5204c5017be0_begin-->
 
@@ -579,5 +580,59 @@ Recommendation ID: 7d26ab34-5f6a-495e-91e3-781a1c578c3f
 Subcategory: undefined
 
 <!--7d26ab34-5f6a-495e-91e3-781a1c578c3f_end-->
+
+<!--55a560ff-1039-4a49-b6da-6f272dc52db6_begin-->
+
+#### Migrate apps to .NET 10 (LTS)  
+  
+Support for .NET 8 (LTS) is ending. Apps that are hosted on App Service will continue to run, but security updates will no longer be available. To avoid potential security vulnerabilities and minimize risk for App Service apps, upgrade apps to .NET 10 (LTS).  
+  
+**Potential benefits**: Avoid service disruption  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=558033)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 55a560ff-1039-4a49-b6da-6f272dc52db6  
+Subcategory: undefined
+
+<!--55a560ff-1039-4a49-b6da-6f272dc52db6_end-->
+
+<!--1e5918be-a282-454f-8744-bb266a2f3987_begin-->
+
+#### The Docker Compose public preview feature is being retired  
+  
+After the retirement date, unless migrated to sidecar containers, Docker Compose applications face disruptions resulting in errors for HTTP status code of 5xx.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates/?id=485167)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 1e5918be-a282-454f-8744-bb266a2f3987  
+Subcategory: ServiceUpgradeAndRetirement
+
+<!--1e5918be-a282-454f-8744-bb266a2f3987_end-->
+
+<!--18745007-438b-4c68-bfa3-b6576d85a831_begin-->
+
+#### Upgrade PHP 8.2 app to newer version  
+  
+Extended support for PHP 8.2 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for PHP 8.2.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=php-82-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 18745007-438b-4c68-bfa3-b6576d85a831  
+Subcategory: undefined
+
+<!--18745007-438b-4c68-bfa3-b6576d85a831_end-->
 
 <!--articleBody-->

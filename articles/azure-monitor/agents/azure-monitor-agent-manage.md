@@ -2,7 +2,7 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 05/18/2026
+ms.date: 05/26/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: jeffwo
 
@@ -251,6 +251,15 @@ The following table lists the accounts that the Azure Monitor Agent creates.
 
 > [!IMPORTANT]
 > Don't delete or modify these accounts. Removing them can prevent the agent from functioning correctly.
+
+These accounts are created as non-interactive system users (`useradd --system --no-create-home --shell /usr/sbin/nologin`). Each account has the following security characteristics:
+
+- **No interactive login**: The login shell is set to `/usr/sbin/nologin`, which prevents interactive use.
+- **Locked password**: The password is locked by default. No `sudo` access is granted.
+- **No home directory on disk**: The home directory path listed in `/etc/passwd` (for example, `/home/azuremetricsext`) is metadata only. The directory is intentionally not created on disk.
+
+> [!TIP]
+> Security scanning tools that flag "user has no home directory" can safely allowlist these accounts. The missing home directory is by design and doesn't indicate a configuration problem.
 
 ### Azure Arc user accounts
 

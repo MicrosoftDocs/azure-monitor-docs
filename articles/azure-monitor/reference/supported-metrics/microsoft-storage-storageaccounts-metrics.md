@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Storage/storageAccounts
 description: Reference for Microsoft.Storage/storageAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 06/19/2026
 ms.custom: Microsoft.Storage/storageAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -32,6 +32,8 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 ### Category: Capacity
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
+|**Container Blob Count**<br><br>The number of blob objects stored in the storage account at the container level. |`ContainerBlobCount` |Count |Average, Total (Sum) |`ContainerName`, `BlobType`, `Tier`|PT1H |No|
+|**Container Blob Capacity**<br><br>The amount of storage used by the storage account's Blob service in bytes at the container level. |`ContainerUsedSize` |Bytes |Average, Total (Sum) |`ContainerName`, `Tier`, `BlobType`|PT1H |No|
 |**Used capacity**<br><br>The amount of storage used by the storage account. For standard storage accounts, it's the sum of capacity used by blob, table, file, and queue. For premium storage accounts and Blob storage accounts, it is the same as BlobCapacity or FileCapacity. |`UsedCapacity` |Bytes |Average |\<none\>|PT1H |No|
 
 ### Category: Transaction
@@ -43,7 +45,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 |**Blob Geo-Replication Lag**<br><br>The amount of Geo-replication lag for Blob data in seconds. Geo-replication lag is the time it takes for data stored in the primary region of the storage account to replicate to the secondary region. Since the data written to geo-redundant accounts replicates asynchronously, any data written to the primary region will not be instantly available in the secondary region. |`ReplicationLagSeconds` |Seconds |Average, Minimum, Maximum |\<none\>|PT1M |Yes|
 |**Success E2E Latency**<br><br>The average end-to-end latency of successful requests made to a storage service or the specified API operation, in milliseconds. This value includes the required processing time within Azure Storage to read the request, send the response, and receive acknowledgment of the response. |`SuccessE2ELatency` |MilliSeconds |Average, Minimum, Maximum |`GeoType`, `ApiName`, `Authentication`|PT1M |Yes|
 |**Success Server Latency**<br><br>The average time used to process a successful request by Azure Storage. This value does not include the network latency specified in SuccessE2ELatency. |`SuccessServerLatency` |MilliSeconds |Average, Minimum, Maximum |`GeoType`, `ApiName`, `Authentication`|PT1M |Yes|
-|**Transactions**<br><br>The number of requests made to a storage service or the specified API operation. This number includes successful and failed requests, as well as requests which produced errors. Use ResponseType dimension for the number of different type of response. |`Transactions` |Count |Total (Sum) |`ResponseType`, `GeoType`, `ApiName`, `Authentication`, `TransactionType`|PT1M |Yes|
+|**Transactions**<br><br>The number of requests made to a storage service or the specified API operation. This number includes successful and failed requests, as well as requests which produced errors. Use ResponseType dimension for the number of different types of response. |`Transactions` |Count |Total (Sum) |`ResponseType`, `GeoType`, `ApiName`, `Authentication`, `TransactionType`|PT1M |Yes|
 
 ## Next steps
 

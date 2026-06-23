@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 08/12/2025
+ms.date: 05/26/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: OperationalExcellence Azure NetApp Files
@@ -101,5 +101,23 @@ Recommendation ID: 95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd
 
 
 <!--95c1a2fb-ee2f-40bf-b3b4-ee8fc3fd94dd_end-->
+
+<!--36851155-3579-47fc-afc6-8334fe9eb26a_begin-->
+
+#### Azure NetApp Files SDK Upgrade Recommendation  
+  
+Upgrade to the latest Azure NetApp Files SDK version to begin using new capabilities and improvements.  
+  
+**Potential benefits**: Compatibility with latest API  
+
+**Impact:** Medium
+  
+For more information, see [What's new in Azure NetApp Files](/azure/azure-netapp-files/whats-new)  
+
+ResourceType: microsoft.netapp/netappaccounts/capacitypools/volumes  
+Recommendation ID: 36851155-3579-47fc-afc6-8334fe9eb26a  
+
+
+<!--36851155-3579-47fc-afc6-8334fe9eb26a_end-->
 
 <!--articleBody-->

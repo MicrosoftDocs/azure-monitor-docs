@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/12/2026
+ms.date: 06/09/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -261,7 +261,7 @@ Many clusters with consistent workloads do not have high availability (HA) enabl
 
 **Impact:** High
   
-For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](https://aka.ms/enableHAformongovcore).
+For more information, see [Scale or configure a cluster - Azure Cosmos DB for MongoDB vCore](/azure/reliability/reliability-cosmos-db).
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 64fbcac1-f652-4b6f-8170-2f97ffeb5631  
@@ -380,23 +380,7 @@ Subcategory: undefined
 
 <!--687f83d3-db01-4ab1-a77b-b31e99f16d33_end-->
 
-<!--b0394e14-2aac-435d-b53a-73005272870d_begin-->
 
-#### Boost Resilience with Per‑Partition Automatic Failover  
-  
-PPAF is a new Azure Cosmos DB preview feature that boosts availability for single‑write region accounts by failing over at the partition level instead of the entire account, reducing downtime and enabling faster recovery during regional outages.  
-  
-**Potential benefits**: Enhances single‑region availability  
-
-**Impact:** Medium
-  
-For more information, see [Configure and Use Per Partition Automatic Failover - Azure Cosmos DB](/azure/cosmos-db/how-to-configure-per-partition-automatic-failover)  
-
-ResourceType: microsoft.documentdb/databaseaccounts  
-Recommendation ID: b0394e14-2aac-435d-b53a-73005272870d  
-Subcategory: undefined
-
-<!--b0394e14-2aac-435d-b53a-73005272870d_end-->
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_begin-->
 
@@ -408,12 +392,32 @@ PPAF is a new Azure Cosmos DB preview feature that boosts availability for singl
 
 **Impact:** Medium
   
-For more information, see [Elevating Azure Cosmos DB Resilience with Per Partition Automatic Failover - Azure Cosmos DB Blog](https://aka.ms/cosmosdb-ppaf-blog)  
+  
 
 ResourceType: microsoft.documentdb/databaseaccounts  
 Recommendation ID: 36b07167-9b19-4725-81bc-54e8e0510a0c  
 Subcategory: undefined
 
 <!--36b07167-9b19-4725-81bc-54e8e0510a0c_end-->
+
+
+<!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_begin-->
+
+#### Configure protection for Cosmos DB  
+  
+Vaulted backup helps in achieving cyber resiliency goals and long-term retention of backups helps in meeting compliance needs. The platform recommends configuring protection for Cosmos DB.  
+  
+**Potential benefits**: Achieve cyber resiliency goals and meet compliance needs  
+
+**Impact:** Medium
+  
+For more information, see [About Azure Cosmos DB backup - Azure Backup](https://aka.ms/AzureBackupforCosmosDBPublicDoc)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 649fd0b8-0bf0-43fe-bfa1-c408f6d33200  
+Subcategory: undefined
+
+<!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
+
 
 <!--articleBody-->

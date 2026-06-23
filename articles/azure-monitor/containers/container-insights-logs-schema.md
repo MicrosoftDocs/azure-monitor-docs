@@ -29,7 +29,7 @@ The following table highlights the key differences between using ContainerLogV2 
 
 <sup>1</sup> If `LogMessage` is valid JSON and has a key named `level`, its value will be used. Otherwise, regex based keyword matching is used to infer `LogLevel` from `LogMessage`. This inference may result in some misclassifications. `LogLevel` is a string field with a health value such as `CRITICAL`, `ERROR`, `WARNING`, `INFO`, `DEBUG`, `TRACE`, or `UNKNOWN`.
 
-<sup>2</sup> `KubernetesMetadata` is an optional column that is enabled with [Kubernetes metadata](). The value of this field is JSON with the fields `podLabels`, `podAnnotations`, `podUid`, `Image`, `ImageTag`, and `Image repo`.
+<sup>2</sup> `KubernetesMetadata` is an optional column that is enabled with [Kubernetes metadata](#kubernetes-metadata-and-logs-filtering). The value of this field is JSON with the fields `podLabels`, `podAnnotations`, `podUid`, `Image`, `ImageTag`, and `Image repo`.
 
 <sup>3</sup> DCR configuration requires [managed identity authentication](./container-insights-authentication.md).
 
