@@ -35,6 +35,7 @@ Managed workspaces have the following limitations:
 
   - Delete the Application Insights resource. Azure deletes the managed resource group and the managed workspace automatically.
   - Keep the Application Insights resource by connecting it to a different Log Analytics workspace, then delete the managed resource group that contains the managed workspace.
+- The managed resource group's deny assignment blocks configuration of [protected tables](../logs/protected-tables-configure.md) on the managed workspace. To protect sensitive Application Insights data, such as the `AppGenAIContent` table, set up protected tables on a workspace you own rather than a managed workspace.
 
 ## Identify managed workspaces
 

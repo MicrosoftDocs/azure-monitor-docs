@@ -12,6 +12,8 @@ The **Agent details** view in Application Insights provides a unified experience
 
 This feature consolidates telemetry and diagnostics, enabling you to track agent performance, analyze token usage and costs, troubleshoot errors, and optimize your agent's behavior.
 
+Agent telemetry can include sensitive prompt and response content stored in the `AppGenAIContent` table. To restrict access to this data, set the table as protected. Protected tables block standard and custom read roles by default until you grant explicit access. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
+
 > [!NOTE]
 > Azure Monitor Agent Observability is based on [OpenTelemetry Generative AI Semantics](https://opentelemetry.io/docs/specs/semconv/gen-ai/).
 
