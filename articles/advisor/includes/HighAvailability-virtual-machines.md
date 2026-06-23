@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 05/26/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Virtual Machines
@@ -730,13 +730,14 @@ Dependency Agent and VM Insights Map is retiring. We recommend considering a rep
 
 **Impact:** Medium
   
-  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=491629)  
 
 ResourceType: microsoft.compute/virtualmachines  
 Recommendation ID: f49d7356-7251-4e15-a577-a3398527f3fd  
 Subcategory: undefined
 
 <!--f49d7356-7251-4e15-a577-a3398527f3fd_end-->
+
 
 
 <!--69e994b4-9b84-4581-930b-edcf9cc81582_begin-->
@@ -939,5 +940,23 @@ Recommendation ID: dcca165d-ffec-43e4-a21d-bc41b7812e09
 Subcategory: undefined
 
 <!--dcca165d-ffec-43e4-a21d-bc41b7812e09_end-->
+
+<!--5d4bb790-d34a-4b45-81d7-4dd060e59853_begin-->
+
+#### Migrate from Dependency Agent and VM Insights Map  
+  
+Dependency Agent and VM Insights Map is retiring. We recommend considering a replacement solution from the Azure Marketplace to continue collecting data about processes running on virtual machines and external process dependencies.  
+  
+**Potential benefits**: Avoid Service Disruption  
+
+**Impact:** Medium
+  
+For more information, see [VM Insights Map and Dependency Agent retirement guidance - Azure Monitor](https://aka.ms/DependencyAgentRetirement)  
+
+ResourceType: microsoft.compute/virtualmachinescalesets  
+Recommendation ID: 5d4bb790-d34a-4b45-81d7-4dd060e59853  
+Subcategory: undefined
+
+<!--5d4bb790-d34a-4b45-81d7-4dd060e59853_end-->
 
 <!--articleBody-->

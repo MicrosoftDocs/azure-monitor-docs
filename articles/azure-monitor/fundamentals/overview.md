@@ -2,7 +2,7 @@
 title: Azure Monitor overview
 description: Overview of Microsoft services and functionalities that contribute to a complete monitoring strategy for your Azure services and applications.
 ms.topic: overview
-ms.date: 02/19/2026
+ms.date: 06/14/2026
 ai-usage: ai-assisted
 ---
 
@@ -33,6 +33,11 @@ Azure Monitor's Application Insights provides a unified experience for monitorin
 
 See [Monitor AI agents](../app/agents-view.md) and [Observability in generative AI](/azure/ai-foundry/concepts/observability).
 
+## Agentic workflows
+Azure Monitor combines a broad telemetry platform with AI-assisted workflows for exploration, investigation, and response. You can use the Azure Copilot Observability Agent to ask questions in natural language, investigate issues across application and infrastructure signals, and preserve findings in Azure Monitor issues. The Observability Agent helps turn raw telemetry and alert noise into explained findings with supporting evidence and recommended next steps. Run the agent on-demand when you start a chat or investigation, or have it run autonomously to act on Azure Monitor alerts. Humans remain in control of decisions and any changes to your environment.
+
+See [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md).
+
 ## Azure Monitor data platform
 Azure Monitor has a centralized data platform to support collection of telemetry from a variety of sources and the different features for analysis and troubleshooting. The platform uses two workspace types, each optimized for different data:
 
@@ -49,14 +54,16 @@ Azure Monitor provides multiple options to visualize your monitoring data and pe
 See [Visualize data](../visualize/best-practices-visualize.md), [metrics explorer](../metrics/metrics-explorer.md), [Log Analytics](../logs/log-analytics-overview.md).
 
 ## Troubleshooting and diagnostics
-Azure Monitor provides interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. For an agentic troubleshooting experience, use the Azure Copilot observability agent to help analyze telemetry, detect anomalies, and correlate signals across data sources.
+Azure Monitor provides interactive analysis tools such as metrics explorer and Log Analytics to investigate failures, correlate events, and identify performance bottlenecks across applications and resources. 
 
-See [Azure Copilot observability agent](../aiops/observability-agent-overview.md).
+See [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md).
 
 ## Respond to issues
 Alerts in Azure Monitor proactively notify you when issues are identified in collected data so that you can respond to them before they affect your customers. Azure Monitor includes AIOps capabilities that use machine learning to reduce alert noise. Features include dynamic thresholds that adapt to metric patterns and smart detection that identifies application anomalies.
 
-See [Azure Monitor alerts](../alerts/alerts-overview.md), [Smart detection](../alerts/proactive-diagnostics.md).
+The Azure Copilot Observability Agent can also act on alerts through autonomous operations. When enabled, the agent analyzes alerts in the background, correlates related alerts when they likely represent the same incident, creates Azure Monitor issues automatically, and runs deep investigations on agent-created issues. This automatic triage reduces alert noise by turning streams of individual alerts into higher-signal issues with context, findings, and recommended next steps for your on-call team to review. Teams can then act on issues through Azure Monitor action groups, including no-code workflows with Logic Apps and low-code runbooks with Azure Automation.
+
+For more information, see [Azure Monitor alerts](../alerts/alerts-overview.md), [Smart detection](../alerts/proactive-diagnostics.md), [Azure Monitor issues](../aiops/issues-overview.md), and [Autonomous operations in the Azure Copilot Observability Agent](../aiops/observability-agent-autonomous-operations.md).
 
 ## Autoscale
 Autoscale is an Azure Monitor feature that automatically adds and removes resources according to the load on your application. You can configure autoscale rules based on metrics, schedules, or a combination of both.
@@ -80,3 +87,4 @@ See [Data sources and data collection methods](./data-sources.md) and [Resource 
 * [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor)
 * [Cost optimization in Azure Monitor](./best-practices-cost.md)
 * [Data collection in Azure Monitor](../essentials/data-collection.md)
+* [Azure Copilot Observability Agent](../aiops/observability-agent-overview.md)

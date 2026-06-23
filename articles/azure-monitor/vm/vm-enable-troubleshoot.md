@@ -10,6 +10,8 @@ ms.custom: references_regions
 
 This article provides troubleshooting information to help you with problems that you might experience when you try to enable monitoring of virtual machines in Azure Monitor.
 
+If monitoring is already configured and you're investigating an active VM incident rather than an onboarding problem, you can also use [Deep investigations in the Azure Copilot Observability Agent](../aiops/observability-agent-deep-investigations.md) for supported investigation scenarios.
+
 ## Agent installation
 
 ### Verify that the virtual machine is running

@@ -1,6 +1,11 @@
 {
   "redirections": [
     {
+      "source_path": "articles/azure-monitor/aiops/observability-agent-responsible-use.md",
+      "redirect_url": "/azure/azure-monitor/aiops/observability-agent-transparency",
+      "redirect_document_id": false
+    },
+    {
       "source_path": "articles/advisor/advisor-dismiss-postpone.md",
       "redirect_url": "/previous-versions/azure/advisor/advisor-dismiss-postpone",
       "redirect_document_id": false
