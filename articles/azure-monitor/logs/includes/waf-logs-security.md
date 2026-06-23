@@ -5,6 +5,7 @@ ms.date: 02/06/2026
 
 #### Grant access to data in the workspace based on need
 
+1. Configure [protected tables](../manage-access.md#protected-tables-preview) to restrict access to sensitive data in specific tables. Protected tables use a deny-by-default model, which blocks standard and custom read roles from accessing that table's data until you grant explicit access. <br>**Instructions**: [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md)
 1. Set the workspace access control mode to *Use resource or workspace permissions* to allow resource owners to use [resource-context](../manage-access.md#access-mode) to access their data without being granted explicit access to the workspace. This simplifies your workspace configuration and helps to ensure users only have access to the data they need. <br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#access-mode) 
 1. Assign the appropriate built-in role to grant workspace permissions to administrators at the subscription, resource group, or workspace level depending on their scope of responsibilities. <br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#azure-rbac)
 1. Apply table-level RBAC for users who require access to a set of tables across multiple resources. Users with table permissions have access to all the data in the table regardless of their resource permissions.<br>**Instructions**: [Manage access to Log Analytics workspaces](../manage-access.md#set-table-level-read-access)

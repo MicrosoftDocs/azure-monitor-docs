@@ -15,8 +15,6 @@ This article provides instructions for deploying Azure Monitor securely and expl
 
 [!INCLUDE [waf-logs-security](../logs/includes/waf-logs-security.md)]
 
-To restrict access to tables that hold sensitive data, such as generative AI prompts and responses, set those tables as protected. Protected tables use a deny-by-default model that blocks standard and custom read roles until you grant explicit access. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
-
 ### Application Insights TLS ingestion
 
 [!INCLUDE [application-insights-tls-requirements](../app/includes/application-insights-tls-requirements.md)]

@@ -14,7 +14,7 @@ ms.custom: devx-track-azurepowershell
 
 # Manage table-level access in a Log Analytics workspace
 
-There are four ways to manage table-level access in a Log Analytics workspace using role-based access control (RBAC). This article references all the methods, even though only 2 options are recommended: protected tables or granular RBAC.
+Manage table-level accessin a Log Analytics workspace using role-based access control (RBAC). This article references all the methods, even though only two options are recommended: protected tables or granular RBAC.
 
 - [Protected tables (Recommended)](#configure-protected-tables)
 - [Granular RBAC (Recommended)](#configure-granular-rbac-for-table-level-access)
@@ -27,9 +27,9 @@ Granular RBAC lets you finely tune access at the table or row level. Users with 
 
 ## Configure protected tables
 
-Protected tables use a deny-by-default model. Setting a table's protection level to **Protected** immediately blocks standard and custom read roles from accessing that table's data. Grant access to authorized users through ABAC conditions or the built-in **Privileged Monitoring Data Reader** role.
+Protected tables use a deny-by-default model. Setting a table's protection level to **Protected** immediately blocks non-privileged standard read and custom roles from accessing that table's data. Grant access to authorized users through ABAC conditions or the built-in **Privileged Monitoring Data Reader** role.
 
-For full setup steps, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
+For full configuration steps, see [Configure protected tables in Azure Monitor Logs](protected-tables-configure.md).
 
 ## Configure granular RBAC for table-level access
 
