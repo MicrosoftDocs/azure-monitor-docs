@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/09/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability App Service
@@ -220,13 +220,14 @@ The combined bandwidth used by all the Free SKU Static Web Apps in this subscrip
 
 **Impact:** High
   
-For more information, see [Pricing – Static Web Apps ](https://azure.microsoft.com/pricing/details/app-service/static/)  
+For more information, see [Pricing – Static Web Apps](https://azure.microsoft.com/pricing/details/app-service/static/)  
 
 ResourceType: microsoft.web/staticsites  
 Recommendation ID: dc3edeee-f0ab-44ae-b612-605a0a739612  
-Subcategory: Scalability
+Subcategory: undefined
 
 <!--dc3edeee-f0ab-44ae-b612-605a0a739612_end-->
+
 
 <!--dc298556-8232-4aa8-bfe0-5204c5017be0_begin-->
 
@@ -615,5 +616,23 @@ Recommendation ID: 1e5918be-a282-454f-8744-bb266a2f3987
 Subcategory: ServiceUpgradeAndRetirement
 
 <!--1e5918be-a282-454f-8744-bb266a2f3987_end-->
+
+<!--18745007-438b-4c68-bfa3-b6576d85a831_begin-->
+
+#### Upgrade PHP 8.2 app to newer version  
+  
+Extended support for PHP 8.2 is ending. Apps hosted on App Service continue to run. Future security updates are no longer available. The platform no longer provides customer service for PHP 8.2.  
+  
+**Potential benefits**: Avoid potential disruptions  
+
+**Impact:** Medium
+  
+For more information, see [Azure updates](https://azure.microsoft.com/updates?id=php-82-app-svc)  
+
+ResourceType: microsoft.web/sites  
+Recommendation ID: 18745007-438b-4c68-bfa3-b6576d85a831  
+Subcategory: undefined
+
+<!--18745007-438b-4c68-bfa3-b6576d85a831_end-->
 
 <!--articleBody-->
