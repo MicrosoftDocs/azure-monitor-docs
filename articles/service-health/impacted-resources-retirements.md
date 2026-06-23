@@ -1,79 +1,96 @@
 ---
-title: Impacted Resources from Azure Retirements
-description: This article details where to find information from Azure Service Health impacted resources from retirements.
+title: Impacted Resources from Azure Health Advisories
+description: This article details where to find information from Azure Service Health impacted resources from Health Advisory events.
 ms.topic: concept-article
-ms.date: 06/02/2026
+ms.date: 06/23/2026
 
 ---
 
-# Impacted resources from Azure Retirements
+# Impacted resources from Azure Health Advisories
 
-To support of the experience of viewing Impacted Resources, Service Health has features to:
+To support the experience of viewing impacted resources, Service Health provides features that:
 
-- Display resources that are impacted due to a Retirement.
-- Provide impacted resources information for retirements through the Service Health Portal. 
+- Display resources impacted by Health Advisory events.
+- Through the Service Health portal, provide information about impacted resources for Health Advisory events.
 
-This article details what communication is available to users, and where they can view information about their impacted resources.
+This article explains what communication is available to users, and where they can view information about their impacted resources.
 
 >[!NOTE]
->The Impacted Resources tab for retirements displays information for a subset of services and features currently in the retirement lifecycle.
+>The Impacted Resources tab for Health Advisory events displays information for a subset of active services and features.
 
-## Viewing impacted resources for Retirements in the Service Health portal
+## View impacted resources for Health Advisory events in the Service Health portal
 
-In the Azure portal, the **Impacted Resources** tab located in the **Health advisories** panel displays the resources affected by a retirement event. The example here illustrates how the tab highlights a retirement scenario with impacted resources.
+In the Azure portal, the **Impacted Resources** tab in the **Health advisories** panel shows the resources affected by a Health Advisory event. The following example shows how the tab highlights a Health Advisory scenario with impacted resources.
 
-:::image type="content"source="./media/impacted-retirements/impacted-retirements-health-advisory.png"alt-text="Screenshot of Health advisories panel."Lightbox="./media/impacted-retirements/impacted-retirements-health-advisory.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-migrate-data.png" alt-text="Screenshot of Health advisories panel." Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
 
-They're shown in the Impacted Resources tab.
+The **Impacted Resources** tab displays the affected resources.
 
-:::image type="content"source="./media/impacted-retirements/impacted-retirements-migrate-data.png"alt-text="Screenshot of Impacted Resources tab."Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-filter.png" alt-text="Screenshot of Impacted Resources tab." Lightbox="./media/impacted-retirements/impacted-retirements-migrate-data.png":::
 
-Service Health provides the following information on resources impacted by a Retirement.
+Service Health provides the following information on resources impacted by a Health Advisory event.
 
 | Field                | Description                                                            |
 | ---------------------|------------------------------------------------------------------------|
+| **Resource Name**    | The name of the resource impacted by the event.                        |
+| **Resource Type**    | The type of resource impacted by the event.                            |
 | **Resource Name**    | The name of the resource impacted by the planned maintenance event.    |
 | **Resource Type**    | The type of resource impacted by the planned maintenance event.        |
-| **Resource Group**   | The Resource group that contains the impacted resource.                |
+| **Resource Group**   | The resource group that contains the impacted resource.                |
 | **Region**           | The region where the impacted resource is located.                     |
-| **Subscription ID**  | The Unique ID for the subscription that contains the impacted resource.|
+| **Subscription ID**  | The unique ID for the subscription that contains the impacted resource.|
 | **Subscription name**| The name of the subscription that contains the impacted resource.      |
 
 ### Filter the results
 
-
-You can filter the results through:
+Filter the results by:
 - **Region**
 - **Subscription ID**
 - **Resource Type**
 
-:::image type="content"source="./media/impacted-retirements/impacted-retirements-filter.png"alt-text="Screenshot of filters."Lightbox="./media/impacted-retirements/impacted-retirements-filter.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-filter.png" alt-text="Screenshot of filters." Lightbox="./media/impacted-retirements/impacted-retirements-filter.png":::
 
 ### Export to a CSV file
 
-Select the **Export to CSV** to export the list of impacted resources to an Excel file.
+Select **Export to CSV** to export the list of impacted resources to an Excel file.
 
-:::image type="content"source="./media/impacted-retirements/impacted-retirements-csv.png"alt-text="Screenshot of exported CSV file."Lightbox="./media/impacted-retirements/impacted-retirements-csv.png":::
+:::image type="content" source="./media/impacted-retirements/impacted-retirements-csv.png" alt-text="Screenshot of exported CSV file." Lightbox="./media/impacted-retirements/impacted-retirements-csv.png":::
 
 The CSV file contains the following fields:
 
 
 |Column property    |Description                                                          |
 |-------------------|---------------------------------------------------------------------|
-|**ResourceGroup**  | The name of the Resource group.                                     |
+|**ResourceGroup**  | The name of the resource group.                                     |
 |**ResourceName**   | The name of the impacted resource.                                  |
 |**ResourceType**   | The type of resource impacted.                                      |
-|**Subscription**   | Any `SubscriptionId`'s that are in the scope of the published event.|
+|**Subscription**   | The `SubscriptionId`s that are in the scope of the published event. |
 |**Region**         | The location where the affected resources are located.              |
 
 ### Access impacted resources programmatically
 
-Follow these steps to get information about retirement-impacted resources.
+Follow these steps to get information about resources impacted by Health Advisory events.
 
-**Step 1. Use API Query**
+**Step 1. Query impacted resources**
 
-Get the ID for the event using the Recommendation Metadata API.
-For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
+For all Health Advisory events such as *retirements*, *action required*, and *informational*, use this sample query.
+
+```dotnetcli
+servicehealthresources
+| where type =~ "microsoft.resourcehealth/events/impactedresources"
+| where id contains "{0}"
+| extend resourceId = tolower(tostring(properties.targetResourceId))
+| extend resourceName = tostring(properties.resourceName)
+| extend resourceType = tostring(properties.targetResourceType)
+| extend region = tostring(properties.targetRegion)
+| extend resourceGroup = tostring(properties.resourceGroup)
+| project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`
+```
+For tenant-scoped events, use the [Impacted Resources - List By Tenant Id And Event Id](/rest/api/resourcehealth/impacted-resources/list-by-tenant-id-and-event-id) REST API instead.
+
+**Step 2. Use API + ARG Query (retirement events only)**
+
+If Step 1 returns no data and the event type is *retirement*, use the event's tracking ID to retrieve the `ID` from the Recommendation Metadata API, then use it to query `advisorresources`. For more information, see [Recommendation Metadata - List - REST API](/rest/api/advisor/recommendation-metadata/list).
 
 ```http
 | GET https://management.azure.com/providers/Microsoft.Advisor/metadata?api-version=2025-01-01&$filter={$filter}
@@ -83,7 +100,7 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
 
 | Name            | In    | Required | Type   | Description                                                                       |
 | ----------------| ----- | -------- | ------ | --------------------------------------------------------------------------------- |
-| **api-version** | query | True     | string | The version of the API to be used with the client request.<br>Example: 2025-05-01 |
+| **api-version** | query | True     | string | The version of the API to use with the client request.<br>Example: 2025-05-01     |
 | **$filter**     | query |          | string | Example:<br>`- $filter= trackingIds/any`(t: t eq ' TEST-123')                     |
 
 **Sample response**
@@ -251,9 +268,8 @@ For more information, see [Recommendation Metadata - List - REST API](/rest/api/
     ]
 }
 ```
-**Step 2. Use ARG Query**
 
-Use the ID to fetch impacted resources from Azure Resource Graph (ARG).
+Use the `ID` to fetch impacted resources from Azure Resource Graph (ARG).
 
 ```dotnetcli
 advisorresources
@@ -268,25 +284,13 @@ advisorresources
 | project region = location, resourceId = tolower(id), resourceName = name, resourceGroup = resourceGroup, subscriptionId, resourceType = type 
 ```
 
-For all Health Advisory events such as *retirements*, *action required*, and *informational* use this sample query.
-
-```dotnetcli
-servicehealthresources
-| where type =~ "microsoft.resourcehealth/events/impactedresources"
-| where id contains "{0}"
-| extend resourceId = tolower(tostring(properties.targetResourceId))
-| extend resourceName = tostring(properties.resourceName)
-| extend resourceType = tostring(properties.targetResourceType)
-| extend region = tostring(properties.targetRegion)
-| extend resourceGroup = tostring(properties.resourceGroup)
-| project resourceId, resourceName, resourceType, region, resourceGroup, subscriptionId`;
-```
 
 ### Frequently Asked Questions
 
 |Question|Answer|
 |--------|------|
-|Are the Impacted resources only available for 'Active' retirement events?|Yes, the Azure portal supports impacted resources only for Active Retirements and support for other advisories will be available in the future.|
+| Are the impacted resources only available for active Health Advisory events? | Yes, the Azure portal supports impacted resources for active Health Advisory events, including *retirements*, *action required*, and *informational* events. |
+| When do impacted resources appear after an event is published? | Impacted resources might take up to two weeks to appear after a Health Advisory event is published. The list of affected resources can also change as new information becomes available. |
 
 
 ## For more information
