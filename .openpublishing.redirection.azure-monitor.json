@@ -9320,11 +9320,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/logs/aiops-machine-learning.md",
-   "redirect_url": "/azure/azure-monitor/aiops/aiops-machine-learning",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/reference/tables/microsoftdynamicstelemetryperformancelogs.md",
    "redirect_url": "/azure/azure-monitor/reference",
    "redirect_document_id": false
@@ -9933,6 +9928,26 @@
    "source_path": "articles/azure-monitor/logs/api/errors.md",
    "redirect_url": "/azure/azure-monitor/logs/api/timeouts#common-api-errors",
    "redirect_document_id": false
-   }
+  },
+  {
+   "source_path": "articles/azure-monitor/logs/aiops-machine-learning.md",
+   "redirect_url": "/azure/azure-monitor/aiops/aiops-and-agentic-operations",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-machine-learning.md",
+   "redirect_url": "/azure/azure-monitor/aiops/aiops-and-agentic-operations",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-overview.md",
+   "redirect_url": "/azure/azure-monitor/aiops/issues-overview",
+   "redirect_document_id": false
+  },
+  {
+   "source_path": "articles/azure-monitor/aiops/aiops-issue-and-investigation-how-to.md",
+   "redirect_url": "/azure/azure-monitor/aiops/issues-how-to",
+   "redirect_document_id": false
+  }
  ]
 }

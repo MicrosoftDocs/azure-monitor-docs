@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/09/2026
+ms.date: 06/23/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Application Gateway
@@ -752,5 +752,23 @@ Subcategory: undefined
 
 <!--374b21de-e7ec-409a-9961-93e789e27536_end-->
 
+
+<!--1e97d137-7812-474d-af09-6d5b3e2a1508_begin-->
+
+#### Migrate Inbound NAT Pools to Inbound NAT rules v2 on Load Balancer  
+  
+Inbound NAT Pools on Azure Load Balancer are retiring on September 30, 2027. Migrate to Inbound NAT Rules v2 to ensure continued port forwarding functionality, simplified management, and seamless scaling for virtual machine scale sets.  
+  
+**Potential benefits**: Avoid service disruption from NAT Pool retirement  
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Inbound NAT rules version 1 to version 2](/azure/load-balancer/load-balancer-nat-pool-migration?tabs=azure-cli)  
+
+ResourceType: microsoft.network/loadbalancers  
+Recommendation ID: 1e97d137-7812-474d-af09-6d5b3e2a1508  
+Subcategory: undefined
+
+<!--1e97d137-7812-474d-af09-6d5b3e2a1508_end-->
 
 <!--articleBody-->

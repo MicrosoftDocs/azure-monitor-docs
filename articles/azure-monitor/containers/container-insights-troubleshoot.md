@@ -9,7 +9,9 @@ ms.reviewer: aul
 
 # Troubleshoot collection of container logs in Azure Monitor
 
-Use this article to troubleshoot common issues when you use Container insights to monitor your Kubernetes cluster.
+Use this article to troubleshoot common issues when you use Azure Monitor to monitor your Kubernetes cluster.
+
+If monitoring is already configured and you're investigating an active AKS incident rather than a data-collection problem, you can also use [Deep investigations in the Azure Copilot Observability Agent](../aiops/observability-agent-deep-investigations.md) for supported investigation scenarios.
 
 ## Duplicate alerts are being created
 You might have enabled Prometheus alert rules without disabling Container insights recommended alerts. See [Migrate from Container insights recommended alerts to Prometheus recommended alert rules (preview)](container-insights-metric-alerts.md#migrate-from-metric-rules-to-prometheus-rules-preview).
