@@ -100,7 +100,7 @@ Metrics aren't affected.
 
 Yes.
 
-Diagnostic Settings enables you to selectively turn on or off individual platform log categories to help manage cost and data volume. 
+By using Diagnostic Settings, you can selectively turn on or off individual platform log categories to help manage cost and data volume. 
 
 ---
 
