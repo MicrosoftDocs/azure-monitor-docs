@@ -54,12 +54,12 @@ Review the **"Costs to export"** column in the [Azure Monitor resource logs docu
 
 ### Is there a single list of freely exportable log categories?
 
-No. The set of free log categories is large, changes as services add categories, and depends on the destination. To check whether a specific log category incurs an export charge:
+No. Free log categories vary by resource provider, change as services add categories, and depend on the destination. To check whether a specific log category incurs an export charge:
 
 1. Open the [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) reference and find the resource provider.
 1. On the linked per-category page, review the **Costs to export** column.
 
-Activity logs and tenant-level logs (for example, Microsoft Entra ID sign-in logs and Microsoft Intune logs) aren't listed in the resource-specific tables. These logs aren't billable for export.
+Activity logs aren't billable for export. Tenant-level logs collected through a tenant-scoped diagnostic setting (for example, Microsoft Entra ID sign-in logs and Microsoft Intune logs) also aren't currently billable for export. Neither appears in the resource-specific tables on the logs-index reference page.
 
 ---
 
