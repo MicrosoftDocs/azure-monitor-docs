@@ -35,9 +35,9 @@ Audit logs can be used to monitor how and when your key vaults are accessed, and
 | _BilledSize | real | The record size in bytes |
 | CallerIpAddress | string | IP address of the client that made the request |
 | CertificateIssuerProperties | dynamic | Information about certificate issuer properties including provider, id |
-| CertificatePolicyProperties | dynamic | Information about certificate policy properties including keyproperties, secretproperties, issuerproperties |
+| CertificatePolicyProperties | dynamic | Information about certificate policy properties including `keyproperties`, `secretproperties`, `issuerproperties` |
 | CertificateProperties | dynamic | Information about certificate audit properties including attributes, subject, hashing algorithm |
-| CertificateRequestProperties | dynamic | Boolean value indicating if certificate request operation was cancelled |
+| CertificateRequestProperties | dynamic | Boolean value indicating if certificate request operation was canceled |
 | ClientInfo | string | User agent information |
 | CorrelationId | string | An optional GUID that the client can pass to correlate client-side logs with service-side (Key Vault) logs. |
 | DurationMs | int | Time it took to service the REST API request, in milliseconds. This does not include the network latency, so the time you measure on the client side might not match this time |
@@ -70,8 +70,8 @@ Audit logs can be used to monitor how and when your key vaults are accessed, and
 | Sku | dynamic | Information about vault including family, name, and capacity |
 | SoftDeleteRetentionInDays | int | Specifies soft delete retention in days |
 | SourceSystem | string | The type of agent the event was collected by. For example, `OpsManager` for Windows agent, either direct connect or Operations Manager, `Linux` for all Linux agents, or `Azure` for Azure Diagnostics |
-| StorageAccountProperties | dynamic | Information about storage account properties including activekeyname, resourceid |
-| StorageSasDefinitionProperties | dynamic | Information about storage sas definition properties including sastype, validityperiod |
+| StorageAccountProperties | dynamic | Information about storage account properties including `activekeyname`, `resourceid` |
+| StorageSasDefinitionProperties | dynamic | Information about storage sas definition properties including `sastype`, `validityperiod` |
 | SubnetId | string | Id of subnet if request comes from a known subnet |
 | _SubscriptionId | string | A unique identifier for the subscription that the record is associated with |
 | TenantId | string | The Log Analytics workspace ID |
@@ -79,4 +79,4 @@ Audit logs can be used to monitor how and when your key vaults are accessed, and
 | Tlsversion | string | Network crypto protocol |
 | TrustedService | string | Specifies whether the principal access the service is a trusted Service. If this field is null, principal is not a trusted service |
 | Type | string | The name of the table |
-| VaultProperties | dynamic | Detailed vault properties containing accesspolicy, iprule, virtualnetwork etc |
+| VaultProperties | dynamic | Detailed vault properties containing `accesspolicy`, `iprule`, `virtualnetwork` etc. |
