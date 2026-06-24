@@ -1,10 +1,12 @@
 ---
-title: Run search jobs in Azure Monitor
+title: Run Search Jobs in Azure Monitor
 description: Search jobs are asynchronous log queries in Azure Monitor that make results available as a table for further analytics.
 ms.topic: how-to
-ms.date: 12/16/2025
-ms.custom: references_regions
 ms.reviewer: adi.biran
+ms.date: 12/16/2025
+ms.aisupport: ai-assisted
+ms.custom: references_regions
+
 # Customer intent: As a data scientist or workspace administrator, I want an efficient way to search through large volumes of data in a table, including data in long-term retention.
 ---
 
@@ -13,7 +15,7 @@ ms.reviewer: adi.biran
 A search job is an asynchronous query you run on any data in your Log Analytics - in both [analytics and long-term retention](data-retention-configure.md) - that makes the query results available for interactive queries in a new search table within your workspace. The search job uses parallel processing and can run for hours across large datasets. This article describes how to create a search job and how to query its resulting data.
 
 This video explains when and how to use search jobs:
- 
+
 > [!VIDEO https://www.youtube.com/embed/5iShgXRu1sU?cc_load_policy=1&cc_lang_pref=auto]
 
 ## Permissions required
@@ -27,10 +29,10 @@ This video explains when and how to use search jobs:
 
 ## When to use search jobs
 
-Use search jobs to: 
+Use search jobs to:
 
-- Retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities. 
-- Scan through large volumes of data, if the log query time-out of 10 minutes isn't sufficient.
+* Retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities.
+* Scan through large volumes of data, if the log query time-out of 10 minutes isn't sufficient.
 
 ## What does a search job do?
 
@@ -55,34 +57,34 @@ Queries on the results table appear in [log query auditing](query-audit.md) but 
 
 Run a search job to fetch records from large datasets into a new search results table in your workspace.
 
-> [!TIP] 
+> [!TIP]
 > You incur charges for running a search job. Write and optimize your query in interactive query mode before running the search job. Use the cost estimation preview to understand the potential costs.
 
-### [Portal](#tab/portal-1)
+# [Portal](#tab/portal)
 
 To run a search job, in the Azure portal:
 
 1. From the **Log Analytics workspace** menu, select **Logs**.
 
-1. Type a search job query or just select the table you want. 
+1. Type a search job query or select the table you want.
 
-1. Select the ellipsis menu on the right-hand side of the screen and select **Search job**. 
+1. Select the ellipsis menu on the right side of the screen and select **Search job**.
 
-    :::image type="content" source="media/search-job/search-job-ellipses-menu.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses-menu.png"::: 
+    :::image type="content" source="media/search-job/search-job-ellipses-menu.png" alt-text="Screenshot of the Logs screen with the Search job menu item highlighted." lightbox="media/search-job/search-job-ellipses-menu.png":::
 
 1. Or use the **Run** pull-down menu and select **Run as Search job**.
 
-   :::image type="content" source="media/search-job/search-job-run-menu.png" alt-text="Screenshot of the Logs screen with the Run as Search job menu item highlighted." lightbox="media/search-job/search-job-run-menu.png":::
+    :::image type="content" source="media/search-job/search-job-run-menu.png" alt-text="Screenshot of the Logs screen with the Run as Search job menu item highlighted." lightbox="media/search-job/search-job-run-menu.png":::
 
 1. Specify the search job date range using the time picker. Choose any period within the total retention period.
 
     If your Kusto query also specifies a time range, the union of the time ranges is used for the search job.
-    
+
     :::image type="content" source="media/search-job/search-job-time-selector.png" alt-text="Screenshot that shows the search job interface prompting for time range and the search job results table." lightbox="media/search-job/search-job-time-selector.png":::
 
 1. Enter a name for the search job result table and select **Run a search job**.
 
-    Azure Monitor Logs runs the search job and creates a new table in your workspace for your search job results. 
+    Azure Monitor Logs runs the search job and creates a new table in your workspace for your search job results.
 
 1. When the new table is ready, select **View '*\<searchtablename\>*_SRCH'** to view the table in Log Analytics.
 
@@ -92,15 +94,67 @@ To run a search job, in the Azure portal:
 
     Azure Monitor Logs shows a **Search job is done** message when it's completed. When you see that message or the progress shows 100%, the results table is now ready with all the records that match the search query.
 
-### [API](#tab/api-1)
+# [Azure CLI](#tab/cli)
 
-To run a search job, use the `Create` operation of the [Tables](/rest/api/loganalytics/tables) API. The call includes the name of the results table to be created. The name of the results table must end with *_SRCH*.
- 
-```http
-PUT https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tablename_SRCH}?api-version={api-version}
+The following Azure CLI example uses the [az monitor log-analytics workspace table search-job create](/cli/azure/monitor/log-analytics/workspace/table/search-job#az-monitor-log-analytics-workspace-table-search-job-create) command. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set using the `--name` parameter, must end with `_SRCH`.
+
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName="<TableName>_SRCH"
+searchQuery='Heartbeat | where ComputerIP has "198.51.100.101"'
+limit=1500
+startSearchTime="2026-01-01T00:00:00.000Z"
+endSearchTime="2026-01-08T00:00:00.000Z"
+
+# Create the Log Analytics workspace search results table
+az monitor log-analytics workspace table search-job create \
+  --resource-group "$resourceGroupName" \
+  --workspace-name "$workspaceName" \
+  --name "$tableName" \
+  --search-query "$searchQuery" \
+  --limit "$limit" \
+  --start-search-time "$startSearchTime" \
+  --end-search-time "$endSearchTime" \
+  --no-wait
 ```
 
-**Request body**
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
+
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [New-AzOperationalInsightsSearchTable](/powershell/module/az.operationalinsights/new-azoperationalinsightssearchtable) cmdlet. It creates a Log Analytics workspace search results table by running a search job. The name of the results table, which you set using the `-TableName` parameter, must end with `_SRCH`.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName = "<TableName>_SRCH"
+$searchQuery = 'Heartbeat | where ComputerIP has "198.51.100.101"'
+$limit = 1500
+$startSearchTime = "2026-01-01T00:00:00.000Z"
+$endSearchTime = "2026-01-08T00:00:00.000Z"
+
+# Create the Log Analytics workspace search results table
+$newAzOperationalInsightsSearchTableParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+    TableName         = $tableName
+    SearchQuery       = $searchQuery
+    Limit             = $limit
+    StartSearchTime   = $startSearchTime
+    EndSearchTime     = $endSearchTime
+}
+
+New-AzOperationalInsightsSearchTable @newAzOperationalInsightsSearchTableParams
+```
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [Tables - Create Or Update](/rest/api/loganalytics/tables/create-or-update) REST API operation. The call includes the name of the results table to create. The name of the results table must end with `_SRCH`.
 
 Include the following values in the body of the request:
 
@@ -111,80 +165,94 @@ Include the following values in the body of the request:
 | properties.searchResults.startSearchTime | string  | Start of the time range to search.                                                 |
 | properties.searchResults.endSearchTime   | string  | End of the time range to search.                                                   |
 
-**Sample request**
+**Sample request:**
 
-This example creates a table called *Syslog_suspected_SRCH* with the results of a query that searches for particular records in the *Syslog* table.
+This example creates a search results table by running a search job that searches the *Heartbeat* table for records with a specific computer IP.
 
-**Request**
+```REST
+PUT https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName}_SRCH?api-version=2025-07-01
+Authorization: Bearer {AccessToken}
+Content-Type: application/json
 
-```http
-PUT https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_suspected_SRCH?api-version={api-version}
-```
-
-**Request body**
-
-```json
 {
-    "properties": { 
-        "searchResults": {
-                "query": "Syslog | where * has 'suspected.exe'",
-                "limit": 1000,
-                "startSearchTime": "2025-01-01T00:00:00Z",
-                "endSearchTime": "2025-11-30T00:00:00Z"
-            }
+  "properties": {
+    "searchResults": {
+      "query": "Heartbeat | where ComputerIP has \"198.51.100.101\"",
+      "limit": 1500,
+      "startSearchTime": "2026-01-01T00:00:00.000Z",
+      "endSearchTime": "2026-01-08T00:00:00.000Z"
     }
+  }
 }
 ```
 
-**Response**
+**Response:**
 
-Status code: 202 accepted.
-
-### [CLI](#tab/cli-1)
-
-To run a search job, run the [az monitor log-analytics workspace table search-job create](/cli/azure/monitor/log-analytics/workspace/table/search-job#az-monitor-log-analytics-workspace-table-search-job-create) command. The name of the results table, which you set using the `--name` parameter, must end with *_SRCH*.
-
-**Example**
-
-```azurecli
-az monitor log-analytics workspace table search-job create --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --search-query 'Heartbeat | where ComputerIP has "198.51.100.101"' --limit 1500 --start-search-time "2022-01-01T00:00:00.000Z" --end-search-time "2022-01-08T00:00:00.000Z" --no-wait
-```
-
-### [PowerShell](#tab/powershell-1)
-
-To run a search job, run the [New-AzOperationalInsightsSearchTable](/powershell/module/az.operationalinsights/new-azoperationalinsightssearchtable) command. The name of the results table, which you set using the `TableName` parameter, must end with *_SRCH*.
-
-**Example**
-
-```powershell
-New-AzOperationalInsightsSearchTable -ResourceGroupName ContosoResourceGroup -WorkspaceName ContosoWorkspace -TableName HeartbeatByIp_SRCH -SearchQuery "Heartbeat" -StartSearchTime "01-01-2022 00:00:00" -EndSearchTime "01-01-2022 00:00:00"
-```
+Status code: 202 Accepted.
 
 ---
 
 ## Get search job status and details
 
-### [Portal](#tab/portal-2)
+# [Portal](#tab/portal)
 
 1. From the **Log Analytics workspace** menu, select **Logs**.
 
-1. From **Tables** > **Search results**, hover over your search results table to view the progress. 
+1. From **Tables** > **Search results**, hover over your search results table to view the progress.
 
-    The icon on the search job results table displays an update indicator icon until the search job is completed.  
-    
+    The icon on the search job results table displays an update indicator icon until the search job is completed.
+
     :::image type="content" source="media/search-job/search-job-status-results.png" alt-text="Screenshot shows the status of the search table results." lightbox="media/search-job/search-job-status-results.png":::
 
-### [API](#tab/api-2)
+# [Azure CLI](#tab/cli)
 
-Use the `Get` operation of the [Tables](/rest/api/loganalytics/tables) API to check the status and details of a search job.
+The following Azure CLI example uses the [az monitor log-analytics workspace table show](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-show) command. It retrieves the status and details of a search job table.
 
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}/tables/{tableName_SRCH}?api-version={api-version}
+```bash
+# Set variables
+resourceGroupName="<ResourceGroupName>"
+workspaceName="<WorkspaceName>"
+tableName="<TableName>_SRCH"
+
+# Get the status and details of the search job table
+az monitor log-analytics workspace table show \
+  --resource-group "$resourceGroupName" \
+  --workspace-name "$workspaceName" \
+  --name "$tableName" \
+  --output table
 ```
 
-**Table status**
+[!INCLUDE [Azure CLI default endpoint](../includes/cli-default-endpoint.md)]
 
-Each search job table has a property called *provisioningState*, which can have one of the following values:
+# [Azure PowerShell](#tab/powershell)
+
+The following Azure PowerShell example uses the [Get-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) cmdlet. It retrieves the status and details of a search job table.
+
+```powershell
+# Set variables
+$resourceGroupName = "<ResourceGroupName>"
+$workspaceName = "<WorkspaceName>"
+$tableName = "<TableName>_SRCH"
+
+# Get the status and details of the search job table
+$getAzOperationalInsightsTableParams = @{
+    ResourceGroupName = $resourceGroupName
+    WorkspaceName     = $workspaceName
+    TableName         = $tableName
+}
+
+Get-AzOperationalInsightsTable @getAzOperationalInsightsTableParams
+```
+
+When you don't provide `-TableName`, the cmdlet lists all tables associated with a workspace.
+
+[!INCLUDE [Azure PowerShell default endpoint](../includes/powershell-default-endpoint.md)]
+
+# [REST](#tab/rest)
+
+The following REST example uses the [Tables - Get](/rest/api/loganalytics/tables/get) REST API operation. It retrieves the status and details of a search job table.
+
+Each search job table has a property called `provisioningState`, which can have one of the following values:
 
 | Status     | Description                           |
 |:-----------|:--------------------------------------|
@@ -193,78 +261,55 @@ Each search job table has a property called *provisioningState*, which can have 
 | Succeeded  | Search job completed.                 |
 | Deleting   | Deleting the search job table.        |
 
-**Sample request**
+**Sample request:**
 
 This example retrieves the table status for the search job in the previous example.
 
-**Request**
-
-```http
-GET https://management.azure.com/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH?api-version={api-version}
+```REST
+GET https://management.azure.com/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{WorkspaceName}/tables/{TableName}_SRCH?api-version=2025-07-01
+Authorization: Bearer {AccessToken}
+Content-Type: application/json
 ```
 
-**Response**
+**Response:**
 
 ```json
 {
-        "properties": {
-        "retentionInDays": 30,
-        "totalRetentionInDays": 30,
-        "archiveRetentionInDays": 0,
-        "plan": "Analytics",
-        "lastPlanModifiedDate": "Mon, 01 Nov 2021 16:38:01 GMT",
-        "schema": {
-            "name": "Syslog_SRCH",
-            "tableType": "SearchResults",
-            "description": "This table was created using a Search Job with the following query: 'Syslog | where * has 'suspected.exe'.'",
-            "columns": [...],
-            "standardColumns": [...],
-            "solutions": [
-                "LogManagement"
-            ],
-            "searchResults": {
-                "query": "Syslog | where * has 'suspected.exe'",
-                "limit": 1000,
-                "startSearchTime": "Wed, 01 Jan 2020 00:00:00 GMT",
-                "endSearchTime": "Fri, 31 Jan 2020 00:00:00 GMT",
-                "sourceTable": "Syslog"
-            }
-        },
-        "provisioningState": "Succeeded"
+  "properties": {
+    "retentionInDays": 30,
+    "totalRetentionInDays": 30,
+    "archiveRetentionInDays": 0,
+    "plan": "Analytics",
+    "lastPlanModifiedDate": "Mon, 01 Nov 2021 16:38:01 GMT",
+    "schema": {
+      "name": "<TableName>_SRCH",
+      "tableType": "SearchResults",
+      "description": "This table was created using a Search Job with the following query: 'Heartbeat | where ComputerIP has \"198.51.100.101\"'.",
+      "columns": [],
+      "standardColumns": [],
+      "solutions": [
+        "LogManagement"
+      ],
+      "searchResults": {
+        "query": "Heartbeat | where ComputerIP has \"198.51.100.101\"",
+        "limit": 1500,
+        "startSearchTime": "Thu, 01 Jan 2026 00:00:00 GMT",
+        "endSearchTime": "Thu, 08 Jan 2026 00:00:00 GMT",
+        "sourceTable": "Heartbeat"
+      }
     },
-    "id": "subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/ContosoResourceGroup/providers/Microsoft.OperationalInsights/workspaces/ContosoWorkspace/tables/Syslog_SRCH",
-    "name": "Syslog_SRCH"
+    "provisioningState": "Succeeded"
+  },
+  "id": "subscriptions/<SubscriptionId>/resourceGroups/<ResourceGroupName>/providers/Microsoft.OperationalInsights/workspaces/<WorkspaceName>/tables/<TableName>_SRCH",
+  "name": "<TableName>_SRCH"
 }
 ```
-
-### [CLI](#tab/cli-2)
-
-To check the status and details of a search job table, run the [az monitor log-analytics workspace table show](/cli/azure/monitor/log-analytics/workspace/table#az-monitor-log-analytics-workspace-table-show) command.
-
-**Example**
-
-```azurecli
-az monitor log-analytics workspace table show --subscription aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e --resource-group ContosoResourceGroup --workspace-name ContosoWorkspace --name HeartbeatByIp_SRCH --output table \
-```
-
-### [PowerShell](#tab/powershell-2)
-
-To check the status and details of a search job table, run the [Get-AzOperationalInsightsTable](/powershell/module/az.operationalinsights/get-azoperationalinsightstable) command.
-
-**Example**
-
-```powershell
-Get-AzOperationalInsightsTable -ResourceGroupName "ContosoResourceGroup" -WorkspaceName "ContosoWorkspace" -tableName "HeartbeatByIp_SRCH"
-```
-
-> [!NOTE]
-> When "-TableName" isn't provided, the command lists all tables associated with a workspace.
 
 ---
 
 ## Delete a search job table
 
-We recommend you [delete the search job table](../logs/create-custom-table.md#delete-a-table) when you're done querying the table. This best practice reduces workspace clutter and extra charges for data retention. 
+[Delete the search job table](../logs/create-custom-table.md#delete-a-table) when you're done querying the table. This best practice reduces workspace clutter and extra charges for data retention.
 
 ## Considerations
 
@@ -279,16 +324,16 @@ Search jobs are subject to the following considerations:
 * Limited to 200 search job executions per day per workspace
 * Cross-tenant search jobs aren't supported
 * Azure Lighthouse delegated access isn't supported for search jobs even if the delegation contains the proper searchJobs/write permission - fails with error message:
-   :::row:::
-   :::column span="3":::
-   *User* \<managing-tenant-userId\> *does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope* 
-   <delegated-workspace-resourceID\>.
-   :::column-end:::
-   :::row-end:::
+    :::row:::
+    :::column span="3":::
+    *User* \<managing-tenant-userId\> *does not maintain access to action Microsoft.OperationalInsights/workspaces/searchJobs/write at scope*
+    <delegated-workspace-resourceID\>.
+    :::column-end:::
+    :::row-end:::
 
 ### KQL query considerations
 
-Search jobs are intended to scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution using distribution and segmentation, the query supports a subset of KQL, including these tabular operators: 
+Search jobs scan large volumes of data in a specific table, so search job queries must always start with a table name. To enable asynchronous execution through distribution and segmentation, the query supports a subset of KQL, including these tabular operators:
 
 * [`where`](/azure/data-explorer/kusto/query/whereoperator)
 * [`extend`](/azure/data-explorer/kusto/query/extendoperator)
@@ -304,18 +349,17 @@ All functions and binary operators within these operators are usable.
 
 The [`contains`](/azure/data-explorer/kusto/query/contains-operator) string operator is blocked from use in search jobs since advanced text matches have significant impact on performance. Instead, use the [`has`](/azure/data-explorer/kusto/query/has-operator) string operator. For more information on performance considerations, see [Optimize log queries in Azure Monitor](../logs/query-optimization.md#use-effective-aggregation-commands-and-dimensions-in-summarize-and-join).
 
-
 ## Pricing model
 
 The search job charge is based on:
 
-* Search job execution: 
+* Search job execution:
 
-  - **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in analytics retention in Analytics tables.
-  - **Basic or Auxiliary plans** - All data the search job scans in long-term retention. 
-    
+    * **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in analytics retention in Analytics tables.
+    * **Basic or Auxiliary plans** - All data the search job scans in long-term retention.
+
     The data scanned is defined as the volume of data in the table that you run the search job on, within the time range you specified. For more information about analytics and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
-  
+
 * Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
 
 For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table.
@@ -324,5 +368,5 @@ For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pr
 
 ## Related content
 
-- [Learn more about managing data retention in a Log Analytics workspace.](data-retention-configure.md)
-- [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)
+* [Learn more about managing data retention in a Log Analytics workspace.](data-retention-configure.md)
+* [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)
