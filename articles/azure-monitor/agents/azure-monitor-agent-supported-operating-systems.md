@@ -2,7 +2,7 @@
 title: Azure Monitor Agent Supported Operating Systems
 description: Learn the operating systems that are supported by the Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 06/05/2026
+ms.date: 06/24/2026
 ms.custom: references_regions
 ms.reviewer: jeffwo
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
@@ -50,20 +50,20 @@ Azure Monitor Agent supports the following Linux distributions, grouped by distr
 | Oracle Linux 9                                              | ✓ |
 | Oracle Linux 8                                              | ✓ |
 | Oracle Linux 7                                              | ✓ |
-| Red Hat Enterprise Linux Server 10                          | ✓ |
-| Red Hat Enterprise Linux Server 9+                          | ✓ |
+| Red Hat Enterprise Linux Server 10                          | ✓<sup>2</sup> |
+| Red Hat Enterprise Linux Server 9+                          | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.6+                        | ✓<sup>2</sup> |
 | Red Hat Enterprise Linux Server 8.0-8.5                     | ✓ |
 | Red Hat Enterprise Linux Server 7.9                         | ✓ |
-| Rocky Linux 9                                               | ✓ |
-| Rocky Linux 8                                               | ✓ |
+| Rocky Linux 9                                               | ✓<sup>2</sup> |
+| Rocky Linux 8                                               | ✓<sup>2</sup> |
 
 ### Debian-based distributions
 
 | Operating system | Support <sup>1</sup> |
 |:---|:---:|
-| Debian 13                                                   | ✓ |
-| Debian 12                                                   | ✓ |
+| Debian 13                                                   | ✓<sup>2</sup> |
+| Debian 12                                                   | ✓<sup>2</sup> |
 | Debian 11                                                   | ✓<sup>2</sup> |
 | Debian 10                                                   | ✓ |
 | Debian 9                                                    | ✓ |
