@@ -10,9 +10,13 @@ ms.reviewer: tylerkight
 
 ## Performance counters 
 
-The following performance counters are collected by the Azure Monitor Agent for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but this frequency can be changed when creating or updating the data collection rule.
+Azure Monitor Agent collects the following performance counters for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but you can change this frequency when you create or update the data collection rule.
 
 ### [OpenTelemetry](#tab/OpenTelemetry)
+
+The following sections list the OpenTelemetry counters collected by Azure Monitor Agent, grouped by category.
+
+#### CPU
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -24,6 +28,11 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | system.cpu.load_average.1m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 1 minute. |
 | system.cpu.load_average.15m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 15 minutes. |
 | system.cpu.frequency | Gauge | Hz | N/A | FALSE | *(none)* | Current frequency of the CPU core in Hz. |
+
+#### Process
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | process.uptime | Gauge | s | N/A | FALSE | *(none)* | Time the process has been running. |
 | process.threads | Sum | {threads} | Cumulative | FALSE | *(none)* | Process threads count. |
 | process.signals_pending | Sum | {signals} | Cumulative | FALSE | *(none)* | Number of pending signals for the process (Linux only). |
@@ -32,6 +41,17 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | process.memory.virtual | Sum | By | Cumulative | FALSE | *(none)* | Virtual memory size. |
 | process.memory.utilization | Gauge | 1 | N/A | FALSE | *(none)* | Percentage of total physical memory used by the process. |
 | process.memory.usage | Sum | By | Cumulative | FALSE | *(none)* | Amount of physical memory in use. |
+| process.handles | Sum | {count} | Cumulative | FALSE | *(none)* | Number of open handles (Windows only). |
+| process.disk.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk operations performed by the process. |
+| process.disk.io | Sum | By | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
+| process.cpu.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of CPU usage (values: system, user, wait) | Percentage of total CPU time used by the process since last scrape (0–1). |
+| process.cpu.time | Sum | s | Cumulative | TRUE | **state**: Breakdown of CPU usage (values: system, user, wait) | Total CPU seconds broken down by states. |
+| process.context_switches | Sum | {count} | Cumulative | TRUE | **type**: Type of context switch (values: Any Str) | Number of times the process has been context switched (Linux only). |
+
+#### Disk
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.disk.weighted_io_time | Sum | s | Cumulative | FALSE | **device**: Name of the disk (values: Any Str) | Time disk spent activated multiplied by queue length. |
 | system.disk.pending_operations | Sum | {operations} | Cumulative | FALSE | **device**: Name of the disk (values: Any Str) | Queue size of pending I/O operations. |
 | system.disk.operations | Sum | {operations} | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk operations count. |
@@ -39,18 +59,22 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | system.disk.merged | Sum | {operations} | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk reads/writes merged into single physical operations. |
 | system.disk.io_time | Sum | s | Cumulative | TRUE | **device**: Name of the disk (values: Any Str) | Time disk spent activated. |
 | system.disk.io | Sum | By | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
-| process.handles | Sum | {count} | Cumulative | FALSE | *(none)* | Number of open handles (Windows only). |
-| process.disk.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk operations performed by the process. |
-| process.disk.io | Sum | By | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
-| process.cpu.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of CPU usage (values: system, user, wait) | Percentage of total CPU time used by the process since last scrape (0–1). |
-| process.cpu.time | Sum | s | Cumulative | TRUE | **state**: Breakdown of CPU usage (values: system, user, wait) | Total CPU seconds broken down by states. |
-| process.context_switches | Sum | {count} | Cumulative | TRUE | **type**: Type of context switch (values: Any Str) | Number of times the process has been context switched (Linux only). |
+
+#### Memory
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.memory.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of memory usage (values: buffered, cached, inactive, free, slab_reclaimable, slab_unreclaimable, used) | Percentage of memory bytes in use. |
 | system.memory.usage | Sum | By | Cumulative | FALSE | **state**: Breakdown of memory usage (values: buffered, cached, inactive, free, slab_reclaimable, slab_unreclaimable, used) | Bytes of memory in use. |
 | system.memory.page_size | Gauge | By | N/A | FALSE | *(none)* | System's configured page size. |
 | system.memory.limit | Sum | By | Cumulative | FALSE | *(none)* | Total bytes of memory available. |
 | system.linux.memory.dirty | Sum | By | Cumulative | FALSE | *(none)* | Amount of dirty memory (/proc/meminfo). |
 | system.linux.memory.available | Sum | By | Cumulative | FALSE | *(none)* | Estimate of available memory (Linux only). |
+
+#### Network
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.network.packets | Sum | {packets} | Cumulative | TRUE | **device**: Network interface name (values: Any Str)<br>**direction**: Direction of flow (values: receive, transmit) | Number of packets transferred. |
 | system.network.io | Sum | By | Cumulative | TRUE | *(none)* | Bytes transmitted and received. |
 | system.network.errors | Sum | {errors} | Cumulative | FALSE | **device**: Network interface name (values: Any Str)<br>**direction**: Direction of flow (values: receive, transmit) | Number of errors encountered. |
@@ -58,13 +82,28 @@ The following performance counters are collected by the Azure Monitor Agent for 
 | system.network.conntrack.max | Sum | {entries} | Cumulative | FALSE | *(none)* | Limit for entries in conntrack table. |
 | system.network.conntrack.count | Sum | {entries} | Cumulative | FALSE | *(none)* | Count of entries in conntrack table. |
 | system.network.connections | Sum | {connections} | Cumulative | FALSE | **protocol**: Network protocol (values: tcp)<br>**state**: Connection state (values: Any Str) | Number of connections. |
+
+#### System
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.uptime | Gauge | s | N/A | FALSE | *(none)* | Time the system has been running. |
 | system.processes.created | Sum | {processes} | Cumulative | TRUE | *(none)* | Total number of created processes. |
 | system.processes.count | Sum | {processes} | Cumulative | FALSE | **status**: Process status (values: blocked, daemon, detached, idle, locked, orphan, paging, running, sleeping, stopped, system, unknown, zombies) | Total number of processes in each state. |
+
+#### Paging
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.paging.utilization | Gauge | 1 | N/A | FALSE | **device**: Page file name (values: Any Str)<br>**state**: Paging usage type (values: cached, free, used) | Swap (Unix) or pagefile (Windows) utilization. |
 | system.paging.usage | Sum | By | Cumulative | FALSE | **device**: Page file name (values: Any Str)<br>**state**: Paging usage type (values: cached, free, used) | Swap (Unix) or pagefile (Windows) usage. |
 | system.paging.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Page flow (values: page_in, page_out)<br>**type**: Fault type (values: major, minor) | Paging operations. |
 | system.paging.faults | Sum | {faults} | *(none)* | TRUE | **type**: Fault type (values: major, minor) | Number of page faults. |
+
+#### Filesystem
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | system.filesystem.utilization | Gauge | 1 | N/A | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode (values: ro, rw)<br>**mountpoint**: Path<br>**type**: Filesystem type (values: ext4, tmpfs, etc.) | Fraction of filesystem bytes used. |
 | system.filesystem.usage | Sum | By | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem bytes used. |
 | system.filesystem.inodes.usage | Sum | {inodes} | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem inodes used. |
