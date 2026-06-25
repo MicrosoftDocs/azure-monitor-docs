@@ -78,6 +78,9 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
     > - Ensure that the alerting configuration doesn't exceed this limit to maintain proper functionality.
     >
 
+    > [!IMPORTANT]
+    > When a log search alert rule is scoped to an Azure Data Explorer cluster or database, you must use the `adx()` cross-service function to reference Azure Data Explorer tables, even when the rule is scoped to the Azure Data Explorer resource itself.
+
     [Sample log search alert queries](./alerts-log-alert-query-samples.md) are available for Azure Data Explorer and Resource Graph.
 
     Cross-service queries aren't supported in government clouds. For more information about limitations, see [Cross-service query limitations](../logs/azure-monitor-data-explorer-proxy.md#implementation-considerations) and [Combine Azure Resource Graph tables with a Log Analytics workspace](../logs/azure-monitor-data-explorer-proxy.md#combine-azure-resource-graph-tables-with-a-log-analytics-workspace).
