@@ -188,7 +188,7 @@ You can create an activity log alert on:
 
 Activity log alert rules are Azure resources, so they can be created by using an Azure Resource Manager template. They also can be created, updated, or deleted in the Azure portal.
 
-By default, an activity log alert monitors events in the subscription in which the alert is created. You can also create activity log alert rules at the tenant level or management group level by setting the `tenantScope` property in the alert rule. For more information, see the [microsoft.insights/activityLogAlerts](/azure/templates/microsoft.insights/activitylogalerts) ARM template reference.
+By default, an activity log alert monitors events in the subscription in which you create the alert. You can also create activity log alert rules at the tenant level or management group level by setting the `tenantScope` property in the alert rule. For more information, see the [microsoft.insights/activityLogAlerts](/azure/templates/microsoft.insights/activitylogalerts) ARM template reference.
 
 ### Service Health alerts
 
