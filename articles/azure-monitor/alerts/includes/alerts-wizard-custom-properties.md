@@ -12,7 +12,7 @@ The format for extracting a dynamic value from the alert payload is: `${<path to
 Use the format of the [common alert schema](../alerts-common-schema.md) to specify the field in the payload, whether or not the action groups configured for the alert rule use the common schema.
 
 > [!NOTE]
-> Custom properties are added to the JSON payload that's sent to webhook, Logic Apps, Azure Functions, and Automation runbook actions. They aren't included in email, SMS, or push notifications, and they don't appear in the alert details page in the Azure portal.
+> Add custom properties to the JSON payload that's sent to webhook, Logic Apps, Azure Functions, and Automation runbook actions. They aren't included in email, SMS, or push notifications, and they don't appear in the alert details page in the Azure portal.
 
 :::image type="content" source="../media/alerts-create-new-alert-rule/alerts-rule-custom-props.png" alt-text="Screenshot that shows custom properties for creating a new alert rule.":::
 
