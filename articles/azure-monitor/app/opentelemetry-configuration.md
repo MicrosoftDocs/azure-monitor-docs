@@ -15,7 +15,7 @@ ms.custom:
 
 # Configure Azure Monitor OpenTelemetry
 
-This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md) using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, allowing for more reliable monitoring and diagnostics.
+This guide explains how to configure OpenTelemetry (OTel) in [Azure Monitor Application Insights](app-insights-overview.md) by using the Azure Monitor OpenTelemetry distro. Proper configuration ensures consistent telemetry data collection across .NET, Java, Node.js, and Python applications, so you get more reliable monitoring and diagnostics.
 
 > [!NOTE]
 > [!INCLUDE [application-insights-functions-link](./includes/application-insights-functions-link.md)]
@@ -151,10 +151,10 @@ Use one of the following three ways to configure the connection string:
     ```
 
 > [!NOTE]
-> If you set the connection string in more than one place, we adhere to the following precedence:
+> If you set the connection string in more than one place, the following precedence order applies:
 > 1. System property
-> 2. Environment Variable
-> 3. Configuration File
+> 1. Environment variable
+> 1. Configuration file
 
 If you deploy multiple applications in the same Java Virtual Machine (JVM) and want them to send telemetry to different connection strings, see [Connection string overrides (preview)](java-standalone-config.md#connection-string-overrides-preview).
 
@@ -348,8 +348,8 @@ Use one of the following three ways to configure the cloud role name and cloud r
 > [!NOTE]
 > If you set the cloud role name and cloud role instance in more than one place, the following precedence order applies:
 > 1. System property
-> 2. Environment Variable
-> 3. Configuration File
+> 1. Environment variable
+> 1. Configuration file
 
 If you deploy multiple applications in the same JVM and want them to send telemetry to different cloud role names, see [Cloud role name overrides (preview)](java-standalone-config.md#cloud-role-name-overrides-preview).
 
@@ -575,7 +575,7 @@ export OTEL_TRACES_SAMPLER_ARG=1.5
 ### Configure sampling in code
 
 > [!NOTE]
-> When both code-level options and environment variables are configured, **environment variables take precedence**. Default sampler behavior can differ by language.
+> When you configure both code-level options and environment variables, **environment variables take precedence**. Default sampler behavior can differ by language.
 
 # [ASP.NET Core](#tab/aspnetcore)
 
@@ -641,7 +641,7 @@ For Quarkus native applications, configure sampling using the [Quarkus OpenTelem
 
 # [Node.js](#tab/nodejs)
 
-Starting from 1.16.0, **rateâ€‘limited sampling is the default**.
+Starting from 1.16.0, **rate-limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -674,7 +674,7 @@ const monitor = useAzureMonitor({
 
 # [Python](#tab/python)
 
-Starting from 1.8.6, **rateâ€‘limited sampling is the default**.
+Starting from version 1.8.6, **rate-limited sampling is the default**.
 
 #### Fixed percentage sampling
 
@@ -769,7 +769,7 @@ Java native doesn't support configuring sampling in a configuration file. To con
 
 # [Node.js](#tab/nodejs)
 
-Starting from 1.16.0, **rateâ€‘limited sampling is the default**.
+Starting from 1.16.0, **rate-limited sampling is the default**.
 
 Set the sampling configuration in the *applicationinsights.json* file. This file is located under the root folder of the @azure/monitor-opentelemetry package installation folder, such as *node_modules/@azure/monitor-opentelemetry*. All `AzureMonitorOpenTelemetryClient` instances use these configuration values.
 
@@ -901,7 +901,7 @@ Live Metrics isn't available for GraalVM native applications.
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-Users can enable/disable Live Metrics when configuring the Distro using the `enableLiveMetrics` property.
+Users can enable or disable Live Metrics when configuring the Distro by using the `enableLiveMetrics` property.
 
 ```typescript
 export class LiveMetricsSample {
@@ -924,7 +924,7 @@ export class LiveMetricsSample {
 
 TODO:
 
-This feature is/isn't enabled by default.
+This feature is enabled or disabled by default.
 
 Functionality and customization are covered in the following configuration sample.
 
@@ -940,12 +940,12 @@ Configuration sample
 > [!IMPORTANT]
 > See the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) for legal terms that apply to Azure features that are in beta, preview, or otherwise not yet released into general availability.
 
-You can enable live metrics using the Azure monitor OpenTelemetry Distro for Python as follows:
+Live Metrics is enabled by default. You can disable Live Metrics when you configure the Distro.
 
 ```python
 ...
 configure_azure_monitor(
-	enable_live_metrics=True
+	enable_live_metrics=False  # To disable live metrics
 )
 ...
 ```
@@ -1003,7 +1003,7 @@ The Distro package includes the AzureMonitorExporter, which by default uses one 
     * /var/tmp/Microsoft/AzureMonitor
     * /tmp/Microsoft/AzureMonitor
 
-To override the default directory, you should set `AzureMonitorOptions.StorageDirectory`.
+To override the default directory, set `AzureMonitorOptions.StorageDirectory`.
 
 ```csharp
 // Create a new ASP.NET Core web application builder.
@@ -1041,7 +1041,7 @@ By default, the AzureMonitorExporter uses one of the following locations for off
     * /var/tmp/Microsoft/AzureMonitor
     * /tmp/Microsoft/AzureMonitor
 
-To override the default directory, you should set `AzureMonitorExporterOptions.StorageDirectory`.
+To override the default directory, set `AzureMonitorExporterOptions.StorageDirectory`.
 
 ```csharp
 // Create a new OpenTelemetry tracer provider and set the storage directory.
@@ -1142,7 +1142,7 @@ By default, Azure Monitor exporters use the following path:
 
 The `<unique-identifier>` is a hash created from user environment attributes like instrumentation key, process name, username, and application directory. This identifier solves a common multi-user system problem: when the first user creates the storage directory, their file permissions (umask settings) might block other users from accessing the same path. A unique directory for each user context ensures every user gets their own storage location with proper access permissions.
 
-To override the default directory, you should set `storage_directory` to the directory you want.
+To override the default directory, set `storage_directory` to the directory you want.
 
 For example:
 
@@ -1158,7 +1158,7 @@ configure_azure_monitor(
 ...
 ```
 
-To disable this feature, you should set `disable_offline_storage` to `True`. Defaults to `False`.
+To disable this feature, set `disable_offline_storage` to `True`. Defaults to `False`.
 
 For example:
 ```python
@@ -1499,7 +1499,7 @@ The OpenTelemetry community is actively working on supporting redaction.
 
 ## Metric export interval
 
-You can configure the metric export interval using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
+You can configure the metric export interval by using the `OTEL_METRIC_EXPORT_INTERVAL` environment variable.
 
 ```shell
 OTEL_METRIC_EXPORT_INTERVAL=60000

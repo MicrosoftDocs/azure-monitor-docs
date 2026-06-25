@@ -7,11 +7,11 @@ ms.date: 11/06/2025
 
 # Metrics in Application Insights
 
-Application Insights supports three different types of metrics: standard (preaggregated), log-based, and custom metrics. Each one brings a unique value in monitoring application health, diagnostics, and analytics. Developers who are instrumenting applications can decide which type of metric is best suited to a particular scenario. Decisions are based on the size of the application, expected volume of telemetry, and business requirements for metrics precision and alerting. This article explains the difference between all supported metrics types.
+Application Insights supports three different types of metrics: standard (preaggregated), log-based, and custom metrics. Each type brings unique value in monitoring application health, diagnostics, and analytics. Developers who instrument applications can decide which type of metric best suits a particular scenario. Make decisions based on the size of the application, expected volume of telemetry, and business requirements for metrics precision and alerting. This article explains the differences between all supported metric types.
 
 #### Standard metrics
 
-Application Insights collects and monitors standard metrics automatically. These predefined metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. You don't need to configure anything to start using them. During collection, the service preaggregates standard metrics and stores them as a time series in a specialized repository with only key dimensions. This design improves query performance. Because of their speed and structure, standard metrics work best for near real-time alerting and responsive [dashboards](overview-dashboard.md).
+Application Insights automatically collects and monitors standard metrics. These predefined metrics cover a wide range of performance and usage indicators, such as CPU usage, memory consumption, request rates, and response times. You don't need to configure anything to start using them. During collection, the service preaggregates standard metrics and stores them as a time series in a specialized repository with only key dimensions. This design improves query performance. Because of their speed and structure, standard metrics work best for near real-time alerting and responsive [dashboards](overview-dashboard.md).
 
 #### Log-based metrics
 
@@ -23,7 +23,7 @@ However, telemetry volume reduction techniques affect log-based metrics. Techniq
 
 #### Custom metrics (preview)
 
-Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. These metrics can be created by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
+Custom metrics in Application Insights allow you to define and track specific measurements that are unique to your application. Create these metrics by instrumenting your code to send custom telemetry data to Application Insights. Custom metrics provide the flexibility to monitor any aspect of your application that isn't covered by standard metrics, enabling you to gain deeper insights into your application's behavior and performance.
 
 For more information, see [Custom metrics in Azure Monitor (preview)](../metrics/metrics-custom-overview.md).
 
@@ -50,9 +50,9 @@ For more information, see [Custom metrics in Azure Monitor (preview)](../metrics
 
 OpenTelemetry SDKs preaggregate metrics during collection to reduce the volume of data sent from the SDK to the telemetry channel endpoint. This process applies to standard metrics sent by default, so the accuracy isn't affected by sampling or filtering. It also applies to custom metrics sent using the [OpenTelemetry API](opentelemetry-add-modify.md#add-custom-metrics), which results in less data ingestion and lower cost.
 
-The Application Insights JavaScript SDK (browser-based) doesn't implement preaggregation. Instead, the back end creates the new metrics by aggregating the events received through the telemetry channel. This doesn't reduce the volume of data sent from the browser. However, you can still use the preaggregated metrics the back end produces. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection. The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
+The Application Insights JavaScript SDK (browser-based) doesn't implement preaggregation. Instead, the back end creates the new metrics by aggregating the events received through the telemetry channel. This process doesn't reduce the volume of data sent from the browser. However, you can still use the preaggregated metrics the back end produces. This setup gives you better performance and supports near real-time dimensional alerting, even without preaggregation during collection. The telemetry channel endpoint preaggregates events before ingestion sampling. For this reason, ingestion sampling never affects the accuracy of preaggregated metrics, regardless of the SDK version you use with your application.
 
-The following tables list where preaggregation are preaggregated.
+The following tables list where preaggregation occurs.
 
 ### Metrics preaggregation with Azure Monitor OpenTelemetry Distro
 
@@ -67,7 +67,7 @@ The following tables list where preaggregation are preaggregated.
 
 ### Metrics preaggregation with autoinstrumentation
 
-With autoinstrumentation, the SDK is automatically added to your application code and can't be customized. For custom metrics, manual instrumentation is required.
+When you use autoinstrumentation, the SDK is automatically added to your application code and you can't customize it. For custom metrics, you need to use manual instrumentation.
 
 | Current production SDK | Standard metrics preaggregation | Custom metrics preaggregation |
 |------------------------|---------------------------------|-------------------------------|
@@ -84,7 +84,7 @@ With autoinstrumentation, the SDK is automatically added to your application cod
 
 ### Custom metrics dimensions and preaggregation
 
-All metrics that you send using [OpenTelemetry](opentelemetry-add-modify.md) are automatically stored in both the metrics store and logs. These metrics can be found in the customMetrics table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called *azure.applicationinsights*. Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a Preview feature that can be turned on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
+When you send metrics by using [OpenTelemetry](opentelemetry-add-modify.md), the system automatically stores these metrics in both the metrics store and logs. You can find these metrics in the `customMetrics` table in Application Insights and in Metrics Explorer under the Custom Metric Namespace called *azure.applicationinsights*. Although the log-based version of your custom metric always retains all dimensions, the preaggregated version of the metric is stored by default with no dimensions. Retaining dimensions of custom metrics is a preview feature that you can turn on from the [Usage and estimated cost](./../cost-usage.md#usage-and-estimated-costs) tab by selecting **With dimensions** under **Send custom metrics to Azure Metric Store**.
 
 :::image type="content" source="media/metrics-overview/usage-and-costs.png" lightbox="media/metrics-overview/usage-and-costs.png" alt-text="Screenshot that shows usage and estimated costs.":::
 
@@ -118,7 +118,7 @@ Selecting the [Enable alerting on custom metric dimensions](#custom-metrics-dime
 The following sections list metrics with supported aggregations and dimensions. The details about log-based metrics include the underlying Kusto query statements.
 
 > [!IMPORTANT]
-> * **Time Series Limit:** Each metric can only have up to **5,000** time series within *24 hours*. Once this limit is reached, all dimension values of that metric point are replaced with the constant `Maximum values reached`.
+> * **Time Series Limit:** Each metric can only have up to **5,000** time series within *24 hours*. Once this limit is reached, Azure Monitor replaces all dimension values of that metric point with the constant `Maximum values reached`.
 >
 > * **Cardinality limit:** Each dimension supports a limited number of unique values within a seven-day period. When the limit is reached, Azure Monitor replaces all new values with the constant `Other values`. The following tables list the cardinality limit for each dimension.
 
@@ -152,7 +152,7 @@ Metrics in the Availability category enable you to see the health of your web ap
 
 #### Availability (availabilityResults/availabilityPercentage)
 
-The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
+The *Availability* metric shows the percentage of the web test runs that didn't detect any problems. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -230,7 +230,7 @@ The *Availability test duration* metric shows how much time it took for the web 
 
 #### Availability tests (availabilityResults/count)
 
-The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
+The *Availability tests* metric shows the count of the web test runs by Azure Monitor.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -274,7 +274,7 @@ The *Availability tests* metric reflects the count of the web tests runs by Azur
 
 #### Availability (availabilityResults/availabilityPercentage)
 
-The *Availability* metric shows the percentage of the web test runs that didn't detect any issues. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
+The *Availability* metric shows the percentage of the web test runs that didn't detect any problems. The lowest possible value is 0, which indicates that all of the web test runs failed. The value of 100 means that all of the web test runs passed the validation criteria.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -288,7 +288,7 @@ availabilityResults
 
 #### Availability test results count (availabilityResults/count)
 
-The *Availability tests* metric reflects the count of the web tests runs by Azure Monitor.
+The *Availability tests* metric reflects the count of the web test runs by Azure Monitor.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -323,7 +323,7 @@ availabilityResults
 The Application Insights JavaScript SDK collects browser metrics from real end-user browsers. These metrics give you valuable insights into your users' experience with your web app. The SDK typically doesn't sample browser metrics, so they offer higher precision in usage numbers. In contrast, server-side metrics often use sampling, which can skew results.
 
 > [!NOTE]
-> To collect browser metrics, your application must be instrumented with the [Application Insights JavaScript SDK](javascript-sdk.md).
+> To collect browser metrics, instrument your application with the [Application Insights JavaScript SDK](javascript-sdk.md).
 
 ### [Standard](#tab/standard)
 
@@ -361,7 +361,7 @@ The Application Insights JavaScript SDK collects browser metrics from real end-u
 
 #### Browser page load time (browserTimings/totalDuration)
 
-Time from user request until DOM, stylesheets, scripts, and images are loaded.
+Time from user request until the DOM, stylesheets, scripts, and images are loaded.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -459,7 +459,7 @@ The metrics in **Failures** show problems with processing requests, dependency c
 
 #### Browser exceptions (exceptions/browser)
 
-This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions reported by your instrumentation are included in the metric.
+This metric shows the number of thrown exceptions from your application code running in the browser. It includes only exceptions that your instrumentation reports.
 
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -533,7 +533,7 @@ The number of failed dependency calls.
 
 #### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, exception telemetry is recorded by your instrumentation. The Exceptions metric shows the number of logged exceptions.
+Each time you log an exception to Application Insights, your instrumentation records exception telemetry. The Exceptions metric shows the number of logged exceptions.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -575,7 +575,7 @@ Each time when you log an exception to Application Insights, exception telemetry
 
 #### Failed requests (requests/failed)
 
-The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx (except for 401) as a failed request. For OpenTelemetry-based applications, you can customize this logic by [overriding request error status for HTTP 4xx responses](opentelemetry-add-modify.md#override-request-error-status-for-http-4xx-responses). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#request-telemetry).
+The count of tracked server requests that are marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returns an HTTP response code 5xx or 4xx (except for 401) as a failed request. For OpenTelemetry-based applications, you can customize this logic by [overriding request error status for HTTP 4xx responses](opentelemetry-add-modify.md#override-request-error-status-for-http-4xx-responses). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#request-telemetry).
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -667,10 +667,10 @@ This metric shows the number of server exceptions.
 
 #### Browser exceptions (exceptions/browser)
 
-This metric reflects the number of thrown exceptions from your application code running in browser. Only exceptions reported by your instrumentation are included in the metric.
+This metric shows the number of thrown exceptions from your application code running in the browser. It includes only exceptions that your instrumentation reports.
 
 > [!NOTE]
-> When you're sampling, the itemCount indicates how many telemetry items a single log record represents. For example, with 25% sampling, each log record kept represents four items (1 kept + 3 sampled out). Log-based queries sum up all itemCount values to ensure the metric reflects the total number of actual events, not just the number of stored log records.
+> When you sample data, the `itemCount` shows how many telemetry items a single log record represents. For example, with 25% sampling, each log record kept represents four items (one kept and three sampled out). Log-based queries sum up all `itemCount` values to ensure the metric reflects the total number of actual events, not just the number of stored log records.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -700,7 +700,7 @@ dependencies
 
 #### Exceptions (exceptions/count)
 
-Each time when you log an exception to Application Insights, exception telemetry is recorded by your instrumentation. The Exceptions metric shows the number of logged exceptions.
+Each time you log an exception to Application Insights, your instrumentation records exception telemetry. The Exceptions metric shows the number of logged exceptions.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -714,7 +714,7 @@ exceptions
 
 #### Failed requests (requests/failed)
 
-The count of tracked server requests that were marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returned HTTP response code 5xx or 4xx as a failed request. For OpenTelemetry-based applications, you can customize this logic by [overriding request error status for HTTP 4xx responses](opentelemetry-add-modify.md#override-request-error-status-for-http-4xx-responses).
+The count of tracked server requests that are marked as *failed*. By default, the Application Insights SDK automatically marks each server request that returns an HTTP response code 5xx or 4xx (except for 401) as a failed request. For OpenTelemetry-based applications, you can customize this logic by [overriding request error status for HTTP 4xx responses](opentelemetry-add-modify.md#override-request-error-status-for-http-4xx-responses). For more information about various response codes, see [Application Insights telemetry data model](data-model-complete.md#request-telemetry).
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -746,7 +746,7 @@ exceptions
 
 ### Performance counters
 
-[Application Insights](app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance issues and support built-in experiences.
+[Application Insights](app-insights-overview.md) uses system and process metrics, called performance counters, to help diagnose performance problems and support built-in experiences.
 
 The [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md) exports these counters as custom metrics to the `performanceCounters` table, each identified by a unique metric name.
 
@@ -781,7 +781,7 @@ For a complete list of available performance counters, which varies depending on
 1. Under **Monitoring**, select **Logs**.
 1. From **Select a table** menu, choose `performanceCounters` and then **Run**.
 
-Alternately run the following query.
+Alternatively, run the following query.
 
 ```kusto
 // List distinct performance counter names with category and counter.
@@ -797,7 +797,7 @@ performanceCounters
 
 #### Dependency calls (dependencies/count)
 
-This metric is in relation to the number of dependency calls.
+This metric relates to the number of dependency calls.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -869,7 +869,7 @@ This metric is in relation to the number of dependency calls.
 
 #### Dependency duration (dependencies/duration)
 
-This metric refers to duration of dependency calls.
+This metric refers to the duration of dependency calls.
 <!--
 | Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
@@ -1121,7 +1121,7 @@ This metric reflects the time it took for the servers to process incoming reques
 
 #### Dependency calls (dependencies/count)
 
-This metric is in relation to the number of dependency calls.
+This metric relates to the number of dependency calls.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1135,7 +1135,7 @@ dependencies
 
 #### Dependency duration (dependencies/duration)
 
-This metric refers to duration of dependency calls.
+This metric refers to the duration of dependency calls.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1193,7 +1193,7 @@ requests
 
 #### Page view load time (pageViews/duration)
 
-This metric refers to the amount of time it took for PageView events to load.
+This metric refers to the amount of time it takes for PageView events to load.
 <!--
 | Unit of measure | Aggregations  | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|---------------|--------------------------------------|-----------------------------------|------------------:|
@@ -1229,7 +1229,7 @@ This metric refers to the amount of time it took for PageView events to load.
 
 #### Page views (pageViews/count)
 
-The count of PageView events logged with the TrackPageView() Application Insights API.
+The count of PageView events logged by using the TrackPageView() Application Insights API.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
@@ -1347,7 +1347,7 @@ customEvents
 
 #### Page view load time (pageViews/duration)
 
-This metric refers to the amount of time it took for PageView events to load.
+This metric refers to the amount of time it takes for PageView events to load.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1366,7 +1366,7 @@ pageViews
 
 #### Page views (pageViews/count)
 
-The count of PageView events logged with the TrackPageView() Application Insights API.
+The count of PageView events logged by using the TrackPageView() Application Insights API.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1409,7 +1409,7 @@ traces
 
 #### Users (users/count)
 
-The number of distinct users who accessed your application. The accuracy of this metric could be impacted by using telemetry sampling and filtering.
+The number of distinct users who accessed your application. Telemetry sampling and filtering can affect the accuracy of this metric.
 
 | Unit of measure | Supported aggregations | Supported dimensions |
 |-----------------|------------------------|----------------------|
@@ -1443,11 +1443,11 @@ union traces, requests, pageViews, dependencies, customEvents, availabilityResul
 
 ### [Standard](#tab/standard)
 
-Not applicable to standard metrics.
+This section doesn't apply to standard metrics.
 
 ### [Log-based](#tab/log-based)
 
-Custom metrics are stored in both the metrics store and logs, making it possible to retrieve them using Kusto queries.
+Custom metrics are stored in both the metrics store and logs, so you can retrieve them by using Kusto queries.
 
 For example, if your application emits a custom metric named *Sales Amount*, you can use the following Kusto queries for each available aggregation.
 
@@ -1523,7 +1523,7 @@ The Application Insights REST API enables programmatic retrieval of log-based me
 To access your data directly, pass the parameter `ai.include-query-payload` to the Application Insights API in a query using KQL.
 
 > [!NOTE]
-> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** have to be replaced. If you just want to retrieve the KQL statement and not the time series data of your own application, you can copy and paste it directly into your browser search bar.
+> To retrieve the underlying logs query, `DEMO_APP` and `DEMO_KEY` ***don't*** need to be replaced. If you just want to retrieve the KQL statement and not the time series data of your own application, you can copy and paste it directly into your browser search bar.
 
 ```Kusto
 api.applicationinsights.io/v1/apps/DEMO_APP/metrics/users/authenticated?api_key=DEMO_KEY&prefer=ai.include-query-payload
