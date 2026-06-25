@@ -10,7 +10,7 @@ ms.topic: how-to
 
 This article shows you how to create a new metric alert rule or edit an existing metric alert rule. To learn more about alerts, see the [alerts overview](alerts-overview.md).
 
-You create an alert rule by combining the resources to be monitored, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
+You create an alert rule by combining the resources to monitor, the monitoring data from the resource, and the conditions that you want to trigger the alert. You can then define [action groups](./action-groups.md) and [alert processing rules](alerts-action-rules.md) to determine what happens when an alert is triggered.
 
 You can define what payload is included in alerts triggered by these alert rules. They can contain a payload that uses the [common alert schema](alerts-common-schema.md), or less-recommended [individualized schemas per alert type](alerts-non-common-schema-definitions.md).
 
@@ -20,18 +20,18 @@ Before creating a metric alert rule, ensure you have the following permissions:
 
 * Read permission (such as *Reader*) on the target resource of the alert rule.
 * Read permission on any action group associated to the alert rule, if applicable.
-* Write permission (such as *Contributor*) on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
+* Write permission (such as *Contributor*) on the resource group in which you create the alert rule. If you're creating the alert rule from the Azure portal, you create the alert rule by default in the same resource group in which the target resource resides.
 
-These permissions are managed through [Azure Role-Based Access Control (RBAC)](/azure/role-based-access-control/overview). For more information, see [Roles, permissions, and security in Azure Monitor](../fundamentals/roles-permissions-security.md) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+Manage these permissions through [Azure Role-Based Access Control (RBAC)](/azure/role-based-access-control/overview). For more information, see [Roles, permissions, and security in Azure Monitor](../fundamentals/roles-permissions-security.md) and [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
 
 > [!NOTE]
-> It may take 10 to 15 minutes after the resource is created for a metric to be available.
+> It can take 10 to 15 minutes after you create the resource for a metric to be available.
 
 ## Create or edit an alert rule from the portal home page
 
 Follow these steps:
 
-1. In the [portal](https://portal.azure.com/), select **Monitor** > **Alerts**.
+1. In the [Azure portal](https://portal.azure.com/), select **Monitor** > **Alerts**.
 
 1. Open the **+ Create** menu, and select **Alert rule**.
 
@@ -41,7 +41,7 @@ Follow these steps:
 
 Follow these steps:
 
-1. In the [portal](https://portal.azure.com/), navigate to the resource.
+1. In the [Azure portal](https://portal.azure.com/), go to the resource.
 
 1. Select **Alerts** from the left pane, and then select **+ Create** > **Alert rule**.
 
@@ -53,7 +53,7 @@ Follow these steps:
 
 Follow these steps:
 
-1. In the [portal](https://portal.azure.com/), either from the home page or from a specific resource, select **Alerts** from the left pane.
+1. In the [Azure portal](https://portal.azure.com/), select **Alerts** from the left pane, either from the home page or from a specific resource.
 
 1. Select **Alert rules**.
 
@@ -67,7 +67,7 @@ Follow these steps:
 
 Follow these steps:
 
-1. On the **Select a resource** pane, set the scope for your alert rule. You can filter by **subscription**, **resource type**, or **resource location**.
+1. On **Select a resource**, set the scope for your alert rule. Filter by **subscription**, **resource type**, or **resource location**.
 
 1. Select **Apply**.
 
@@ -77,11 +77,11 @@ Follow these steps:
 
 Follow these steps:
 
-1. On the **Condition** tab, when you select the **Signal name** field, the most commonly used signals are displayed in the drop-down list. Select one of these popular signals, or select **See all signals** if you want to choose a different signal for the condition.
+1. On the **Condition** tab, when you select the **Signal name** field, the most commonly used signals appear in the drop-down list. Select one of these popular signals, or select **See all signals** if you want to choose a different signal for the condition.
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-popular-signals.png" alt-text="Screenshot that shows popular signals when creating an alert rule.":::
 
-1. (Optional) If you chose to **See all signals** in the previous step, use the **Select a signal** pane to search for the signal name or filter the list of signals. Filter by:
+1. (Optional) If you chose **See all signals** in the previous step, use the **Select a signal** pane to search for the signal name or filter the list of signals. Filter by:
 
     * **Signal type**: The [type of alert rule](alerts-overview.md#types-of-alerts) you're creating.
     * **Signal source**: The service sending the signal.
@@ -135,7 +135,7 @@ Follow these steps:
     | Check every | Select how often the alert rule checks if the condition is met. |
     | Lookback period | Select how far back to look each time the data is checked. For example, every 1 minute, look back 5 minutes. |
 
-1. (Optional) If you're using dynamic thresholds, in the **Advanced options** section, you can specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
+1. (Optional) If you're using dynamic thresholds, in the **Advanced options** section, specify how many failures within a specific time period trigger an alert. For example, you can specify that you only want to trigger an alert if there were three failures in the last hour. Your application business policy should determine this setting. 
 
     Select values for these fields:
 
@@ -143,9 +143,9 @@ Follow these steps:
     |-------|-------------|
     | Number of violations | The number of violations within the configured time frame that trigger the alert. |
     | Evaluation period | The time period in which the number of violations occurs. |
-    | Ignore data before | Use this setting to select the date from which to start using the metric historical data for calculating the dynamic thresholds. For example, if a resource was running in testing mode and is moved to production, you may want to disregard the metric behavior while the resource was in testing. |
+    | Ignore data before | Use this setting to select the date from which to start using the metric historical data for calculating the dynamic thresholds. For example, if a resource was running in testing mode and is moved to production, you might want to disregard the metric behavior while the resource was in testing. |
 
-1. Select **Done**. Once you configured the alert rule conditions, you can configure the alert rule details to complete creation of the alert, or optionally, you can also add actions and tags to the alert rule.
+1. Select **Done**. After you configure the alert rule conditions, you can configure the alert rule details to complete creation of the alert. Optionally, you can also add actions and tags to the alert rule.
 
 ## Configure the alert rule actions
 
@@ -181,7 +181,7 @@ Follow these steps:
     * Sweden Central
     * Germany West Central
  
-1. (Optional) In the **Advanced options** section, you can set several options.
+1. (Optional) In the **Advanced options** section, set several options.
 
     | Field | Description |
     |-------|-------------|
@@ -190,7 +190,7 @@ Follow these steps:
 
 1. [!INCLUDE [alerts-wizard-custom=properties](includes/alerts-wizard-custom-properties.md)]
 
-1. Once the scope, conditions, and details are configured, you can select the **Review + create** button at any time.
+1. When you finish configuring the scope, conditions, and details, select **Review + create**.
 
 ## Configure alert rule tags
 
@@ -206,9 +206,9 @@ Follow these steps:
 
 Follow these steps:
 
-1. On the **Review + create** tab, the rule is validated, and lets you know about any issues.
+1. On the **Review + create** tab, the rule is validated, and you see any problems.
 
-1. When validation passes and you reviewed the settings, select the **Create** button.
+1. When validation passes and you review the settings, select **Create**.
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-rule-review-create.png" alt-text="Screenshot that shows the Review and create tab when creating a new alert rule.":::
 
@@ -216,28 +216,28 @@ Follow these steps:
 
 Consider the following restrictions for metric alert rule names:
 
-* Metric alert rule names can't be changed (renamed) after they're created.
+* You can't change (rename) metric alert rule names after you create them.
 * Metric alert rule names must be unique within a resource group.
 * Metric alert rule names can't contain the following characters: * # & + : < > ? @ % { } \ /
 * Metric alert rule names can't end with a space or a period.
 * The combined resource group name and alert rule name can't exceed 252 characters.
 
 > [!NOTE]
-> If the alert rule name contains characters that aren't alphabetic or numeric, these characters might be URL-encoded when retrieved by certain clients. Examples include spaces, punctuation marks, and symbols.
+> If the alert rule name contains characters that aren't alphabetic or numeric, certain clients might URL-encode these characters when retrieving the name. Examples include spaces, punctuation marks, and symbols.
 
 ## Restrictions when you use dimensions in a metric alert rule with multiple conditions
 
-Metric alerts support alerting on multi-dimensional metrics and support defining multiple conditions, up to five conditions per alert rule.
+Metric alerts support alerting on multidimensional metrics and support defining multiple conditions, up to five conditions per alert rule.
 
 Consider the following constraints when you use dimensions in an alert rule that contains multiple conditions:
 
 * You can only select one value per dimension within each condition.
 
-* You can't use the option to **Select all current and future values**. Select the asterisk (\*).
+* You can't use the **Select all current and future values** option (the asterisk \*). You must specify each dimension value explicitly.
 
 * You can't use dynamic thresholds in alert rules that monitor multiple conditions.
 
-* When metrics that are configured in different conditions support the same dimension, a configured dimension value must be explicitly set in the same way for all those metrics in the relevant conditions.
+* When metrics that are configured in different conditions support the same dimension, you must explicitly set a configured dimension value in the same way for all those metrics in the relevant conditions.
 
     For example:
 
@@ -249,12 +249,6 @@ Consider the following constraints when you use dimensions in an alert rule that
     * You want to update the first condition and only monitor transactions where the **ApiName** dimension equals `"GetBlob"`.
 
     * Because both the **Transactions** and **SuccessE2ELatency** metrics support an **ApiName** dimension, you need to update both conditions, and have them specify the **ApiName** dimension with a `"GetBlob"` value.
-
-## Considerations when creating an alert rule that contains multiple criteria
-
-* You can only select one value per dimension within each criterion.
-* You can't use an asterisk (\*) as a dimension value.
-* When metrics that are configured in different criteria support the same dimension, a configured dimension value must be explicitly set in the same way for all those metrics. For a Resource Manager template example, see [Create a metric alert with a Resource Manager template](./alerts-metric-create-templates.md#template-for-a-static-threshold-metric-alert-that-monitors-multiple-criteria).
 
 ## Next steps
 
