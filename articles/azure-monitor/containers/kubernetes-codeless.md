@@ -3,14 +3,15 @@ title: Set up codeless monitoring for AKS with Application Insights
 description: Enable codeless application monitoring on AKS by using Azure Monitor Application Insights autoinstrumentation for Java and Node.js workloads.
 ms.topic: how-to
 ms.custom: devx-track-extended-java
-ms.date: 05/05/2026
+ms.date: 06/23/2026
+ai-usage: ai-assisted
 ---
 
 # Autoinstrument AKS apps with Azure Monitor Application Insights
 
 This guide shows how to enable Azure Monitor Application Insights for Azure Kubernetes Service (AKS) workloads without modifying source code.
 
-It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), and [restarting deployments](#restart-deployment). These steps autoinstrument the application pods by injecting the Azure Monitor OpenTelemetry Distro to generate telemetry. For more information about autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md)
+It covers [preparing a cluster](#prepare-a-cluster), [onboarding deployments](#onboard-deployments), [restarting deployments](#restart-deployment), and [viewing application performance metrics](#view-application-performance-metrics-in-aks). These steps autoinstrument the application pods by injecting the Azure Monitor OpenTelemetry Distro to generate telemetry. For more information about autoinstrumentation and its benefits, see [What is autoinstrumentation for Azure Monitor Application Insights?](../app/codeless-overview.md)
 
 > [!NOTE]
 > To participate in the limited public preview of Autoinstrumentation for .NET or Python, see [Enable AKS autoinstrumentation for Python and .NET (limited preview)](kubernetes-codeless-python-net.md).
@@ -181,6 +182,50 @@ kubectl rollout restart deployment <deployment-name> -n mynamespace1
 ```
 
 This command causes autoinstrumentation to take effect, enabling Application Insights. You can verify Application Insights is enabled by generating traffic and navigating to your resource. Your app is represented as a cloud role in Application Insights experiences. You can use all Application Insights experiences except Live Metrics and Code Analysis. To learn more about the available Application Insights experiences, see [Application Insights experiences](../app/app-insights-overview.md#application-insights-experiences).
+
+## View application performance metrics in AKS
+
+When you autoinstrument workloads, application performance metrics appear directly inside the AKS resource blades. You can see how the application is performing without leaving the cluster. These views surface a small set of high-signal metrics for triage. Use Application Insights for full Application Performance Monitoring (APM).
+
+Each scope shows three metrics:
+
+- **Server response time**: Latency and responsiveness of incoming requests.
+- **Server requests**: Application load and traffic volume.
+- **Failures**: Errors and failed requests.
+
+These metrics appear at three scopes:
+
+- **Namespace**: The **Application performance metrics** tile on the namespace overview aggregates per workload, with top average server response time, top server requests, and top failed requests.
+- **Workload (Deployment)**: The deployment overview shows time series across all pods in the workload, with a **View in Application Insights** deep link for full APM.
+- **Pod**: The pod overview shows the same time series charts scoped to a single pod.
+
+### View metrics at the namespace scope
+
+1. From your AKS cluster, select **Kubernetes resources** > **Namespaces** in the left navigation.
+1. Select the namespace that contains your instrumented workloads.
+1. Locate the **Application performance metrics** tile on the namespace overview.
+
+  :::image type="content" source="media/kubernetes-codeless/namespace-application-performance-metrics.png" alt-text="Screenshot of the AKS namespace overview showing the Application performance metrics tile with top average server response time, top server requests, and top failed requests." lightbox="media/kubernetes-codeless/namespace-application-performance-metrics.png":::
+
+### View metrics at the workload scope
+
+1. From your AKS cluster, select **Workloads** > **Deployments** in the left navigation.
+1. Select an instrumented deployment.
+1. Review the time series charts on the deployment overview: Average server response time, Server requests, and Failed requests.
+1. Select **View in Application Insights** to open the workload in the full Application Insights experience.
+
+  :::image type="content" source="media/kubernetes-codeless/deployment-application-performance-metrics.png" alt-text="Screenshot of the AKS deployment overview showing the Average server response time, Server requests, and Failed requests charts with the View in Application Insights link." lightbox="media/kubernetes-codeless/deployment-application-performance-metrics.png":::
+
+### View metrics at the pod scope
+
+1. From the deployment overview, scroll to the **Workloads** section and select the **Pods** tab.
+1. Select a pod name to open the pod overview.
+1. Review the time series charts on the pod overview, scoped to just that pod: Average server response time, Server requests, and Failed requests.
+1. Select **View in Application Insights** on any chart to open the pod in the full Application Insights experience.
+
+  :::image type="content" source="media/kubernetes-codeless/pod-application-performance-metrics.png" alt-text="Screenshot of the AKS pod overview showing the Application performance metrics section with Average server response time, Server requests, and Failed requests charts scoped to a single pod." lightbox="media/kubernetes-codeless/pod-application-performance-metrics.png":::
+
+For full APM analysis, including distributed traces, end-to-end transactions, and the Failures and Performance blades, use the [Application Insights overview](../app/app-insights-overview.md).
 
 ## Remove autoinstrumentation for AKS
 
