@@ -111,15 +111,15 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Windows
 
-- OpenSSL used by AMA and ME updated to 3.6.1.
+- Updated OpenSSL used by AMA and ME to 3.6.1.
 - Extension uninstall now correctly removes the data directory and associated registry entries.
-- Add support for `parse.XmlPath` multistage transform to parse Windows Event XML data by using XPath queries.
+- Added support for `parse.XmlPath` multistage transform to parse Windows Event XML data by using XPath queries.
 - Significant performance enhancements for local filter event processing, including preallocated buffers, field name caching, faster UTC-to-string conversion, improved batch packing, and better pipe connectivity error handling.
-- Fluent Bit regression fix for DHCP Log Collection (workaround for regression in 1.41).
-- Fix issue where local filter processing lost the complete event schema (field types and sizes) by capturing and reapplying original field metadata.
-- Fix DSMS certificate selection to pick the certificate with the latest NotBefore timestamp instead of using the first valid match.
-- Remove verbose checksum mismatch logging to reduce log noise in the agent manager.
-- Update Metrics Extension (ME) to 2.2026.312.1653.
+- Fixed Fluent Bit regression for DHCP Log Collection (workaround for regression in 1.41).
+- Fixed issue where local filter processing lost the complete event schema (field types and sizes) by capturing and reapplying original field metadata.
+- Fixed DSMS certificate selection to pick the certificate with the latest NotBefore timestamp instead of using the first valid match.
+- Removed verbose checksum mismatch logging to reduce log noise in the agent manager.
+- Updated Metrics Extension (ME) to 2.2026.312.1653.
 
 ### Linux breaking change ###
 - **Who:** Customers parsing Syslog by using the [CEF Syslog AMA connector](https://learn.microsoft.com/azure/sentinel/cef-syslog-ama-overview).
@@ -151,7 +151,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 - Fixed memory and handle leak that caused AzLocal virtual machines degraded performance on Azlocal cluster.
 - Enabled the association of a Data Collection Rule (DCR) to an Azure Batch pool. No remaining scenarios block AMA migration from the legacy agent (MMA). Uses resource tags (`AzBatchPoolResourceId0`, `AzBatchPoolResourceId1`) from IMDS metadata.
-- Added new feature set entering preview. Features require special configuration unavailable and won't impact existing functionality.
+- Added new feature set entering preview. These features require special configuration that isn't available and don't affect existing functionality.
 - Upgraded OpenSSL from version 3.5.2.1 to 3.6.0.
 
 ### Linux
@@ -176,7 +176,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Linux
 
-- Added new feature set entering preview. Features require special configuration unavailable and won't impact existing functionality.
+- Added new feature set entering preview. These features require special configuration that isn't available and don't affect existing functionality.
 
 ### Metrics
 
@@ -194,19 +194,19 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 - Enabled OpenTelemetry support.
 - Fixed timestamp issue in Windows Firewall Logs affecting log accuracy.
 - Fixed custom log query issues.
-- Properly reset AMA token refresh interval if there was failure to prevent authentication issues.
+- Properly reset AMA token refresh interval if there's failure to prevent authentication issues.
 - Removed hardcoded package paths in National cloud projects.
 
 ### Linux
 
-- Add support for AMA upload to Azure Data Explorer (ADX).
-- Add DiskQuota enforcement to ensure disk usage is constrained.
-- Add support for FIPS 140-3.
-- Add support for Red Hat 10 and Red Hat 9 aarch64.
-- Improve AMA version removal by cleaning up all files.
-- Fix lock on files that didn't exit with an error.
-- Add DNS check for cloud ingestion endpoint and delay retry on failure to prevent unacceptable number of DNS queries when Custom Logs DCE not configured.
-- Improve DCR Parsing and Troubleshooter.
+- Added support for AMA upload to Azure Data Explorer (ADX).
+- Added DiskQuota enforcement to ensure disk usage is constrained.
+- Added support for FIPS 140-3.
+- Added support for Red Hat 10 and Red Hat 9 aarch64.
+- Improved AMA version removal by cleaning up all files.
+- Fixed lock on files that didn't exit with an error.
+- Added DNS check for cloud ingestion endpoint and delay retry on failure to prevent unacceptable number of DNS queries when Custom Logs DCE not configured.
+- Improved DCR Parsing and Troubleshooter.
 
 ## September 2025
 
@@ -223,17 +223,17 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Linux
 
-- Third-party OTLP logs support.
-- Add Metrics Troubleshooter.
-- Skip long or malformed rows while uploading data.
-- Fix multibyte Unicode character in data uploads.
-- Fix crash when calling control plane when resource group name contains Unicode characters.
-- Fix AMA third-party endpoints for new bleu regions.
-- Fix Python warning reported on SELinux systems.
-- Fix VM extension uninstall when multiple versions of Azure Monitor agent are found to gracefully uninstall them all.
-- Improve error logging in VM extension install when multiple versions of Azure Monitor agent packages are found.
-- Fix bug that causes the agent to prematurely exit when creating a new client connection.
-- Fix infrequent bug that can cause a crash when uploading data.
+- Added support for third-party OTLP logs.
+- Added Metrics Troubleshooter.
+- Skipped long or malformed rows while uploading data.
+- Fixed multibyte Unicode character in data uploads.
+- Fixed crash when calling control plane when resource group name contains Unicode characters.
+- Fixed AMA third-party endpoints for new bleu regions.
+- Fixed Python warning reported on SELinux systems.
+- Fixed VM extension uninstall when multiple versions of Azure Monitor agent are found to gracefully uninstall them all.
+- Improved error logging in VM extension install when multiple versions of Azure Monitor agent packages are found.
+- Fixed bug that causes the agent to prematurely exit when creating a new client connection.
+- Fixed infrequent bug that can cause a crash when uploading data.
 
 ## August 2025
 
@@ -257,7 +257,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Windows
 
-- SID to Username Resolution for Event Logs Agent Settings Refactoring including improved agent settings cache handling for better performance.
+- SID to Username Resolution for Event Logs Agent Settings Refactoring, including improved agent settings cache handling for better performance.
 - Microsoft Connection Service Logging Improvements.
 - MetricsExtension Priority Management.
 - Updated MetricsExtension Integration: Update version and startup parameters.
@@ -276,12 +276,12 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 ### Windows
 
-- NEW Launch Metrics Agent (ME) with lower priority.
-- JSON logs collection issue when object field is named `log`. Fixes an issue when a JSON object has a field called `log`, which wasn't processed correctly.
-- Multiline behavior was broken for timestamp where the "M/D/YYYY HH:MM:SS AM/PM" timestamp. The timestamp is now parsed correctly.
+- Launch Metrics Agent (ME) with lower priority.
+- Fix JSON logs collection issue when an object field is named `log`.
+- Fix multiline behavior for timestamp where the "M/D/YYYY HH:MM:SS AM/PM" timestamp. The timestamp is now parsed correctly.
 - Upgrade that ensures all processes are terminated before shut down. It mitigates data loss during shutdown and boot.
 - Add support for disconnected environment (ArcA).
-- Fix missing dll issue in Windows 2012.
+- Fix missing DLL issue in Windows 2012.
 - Enable Azure Monitor Custom Metric version 2.
 
 ### Linux
@@ -698,7 +698,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 **Versions:** Windows 1.13.1, Linux 1.25.2
 
 > [!NOTE]
-> **Hotfix available:** Linux version 1.25.2 is a hotfix. This version resolves potential data loss due to "Bad file descriptor" errors seen in the mdsd error log with previous version. Upgrade to hotfix version.
+> Linux version 1.25.2 was originally released as a hotfix for 1.25.1 to resolve potential data loss caused by "Bad file descriptor" errors in the mdsd error log. **It was later found to have its own issues and is listed in [Important notes](#important-notes) as a version to avoid.** Upgrade to a later supported Linux version instead.
 
 ### Windows
 
