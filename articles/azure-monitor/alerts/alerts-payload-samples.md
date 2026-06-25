@@ -15,12 +15,9 @@ A standardized schema can help you minimize the number of integrations, which si
 The common schema includes information about the affected resource and the cause of the alert in these sections:
 - **Essentials**: Standardized fields, used by all alert types that describe the resource affected by the alert and common alert metadata, such as severity or description.
 
-    If you want to route alert instances to specific teams based on criteria such as a resource group, you can use the fields in the **Essentials** section to provide routing logic for all alert types. The teams that receive the alert notification can then use the context fields for their investigation.
-- **Alert context**: Fields that vary depending on the type of the alert. The alert context fields describe the cause of the alert. For example, a metric alert would have fields like the metric name and metric value in the alert context. An activity log alert would have information about the event that generated the alert.
-- **Custom properties**: You can add more information to the alert payload by adding custom properties if you've configured action groups for a metric alert rule. 
-
-    > [!NOTE]
-    > Custom properties are currently only supported by metric alerts. For all other alert types, the **custom properties** field is null.
+    If you want to route alert instances to specific teams based on criteria such as a resource group, use the fields in the **Essentials** section to provide routing logic for all alert types. The teams that receive the alert notification can then use the context fields for their investigation.
+- **Alert context**: Fields that vary depending on the type of the alert. The alert context fields describe the cause of the alert. For example, a metric alert has fields like the metric name and metric value in the alert context. An activity log alert has information about the event that generated the alert.
+- **Custom properties**: You can add more information to the alert payload by adding custom properties to any alert rule that uses an action group. If you don't configure custom properties on the alert rule, the **custom properties** field is null.
 
 ## Sample alert payload
 
@@ -174,9 +171,9 @@ The following are sample metric alert payloads.
 ## Sample log search alerts
 
 > [!NOTE]
-> When you enable the common schema, the fields in the payload are reset to the common schema fields. Therefore, log search alerts have these limitations regarding the common schema:
-> - The common schema is not supported for log search alerts using webhooks with a custom email subject and/or JSON payload, since the common schema overwrites the custom configurations.
-> - Alerts using the common schema have an upper size limit of 256 KB per alert. If the log search alerts payload includes search results that cause the alert to exceed the maximum size, the search results aren't embedded in the log search alerts payload. You can check if the payload includes the search results with the `IncludedSearchResults` flag. Use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to access query results with the [Log Analytics API](/rest/api/loganalytics/dataaccess/query/get) if the search results are not included.
+> When you enable the common schema, the fields in the payload reset to the common schema fields. Therefore, log search alerts have these limitations regarding the common schema:
+> - Log search alerts that use webhooks with a custom email subject or JSON payload don't support the common schema, since the common schema overwrites the custom configurations.
+> - Alerts that use the common schema have an upper size limit of 256 KB per alert. If the log search alerts payload includes search results that cause the alert to exceed the maximum size, the search results aren't embedded in the log search alerts payload. You can check if the payload includes the search results by using the `IncludedSearchResults` flag. Use `LinkToFilteredSearchResultsAPI` or `LinkToSearchResultsAPI` to access query results by using the [Log Analytics API](/rest/api/loganalytics/dataaccess/query/get) if the search results aren't included.
 
 ### Log search alert with monitoringService = Platform
 
@@ -587,14 +584,14 @@ The following are sample metric alert payloads.
 
 :::image type="content" source="media/alerts-payload-samples/test-action-group-alert-types.png" alt-text="Screenshot showing available alert types when testing an Azure Action Group.":::
 
-When configuring an **Azure Action Group** to route alert notifications (e.g., via webhook, Logic App, Azure Function, or Event Hub), it's important to verify that the receiving endpoint can handle the **Common Alert Schema** payload structure.
+When you configure an **Azure Action Group** to route alert notifications (for example, through webhook, Logic App, Azure Function, or Event Hub), verify that the receiving endpoint can handle the **Common Alert Schema** payload structure.
 
-Azure provides a **"Test Action"** feature to simulate an alert and send a sample payload to the configured endpoints. This helps validate the integration without needing to trigger an actual resource condition.
+Azure provides a **Test Action** feature to simulate an alert and send a sample payload to the configured endpoints. This feature helps you validate the integration without needing to trigger an actual resource condition.
 
-This section describes the structure and content of the test payload sent when using the **"Test Action Group"** feature with the **Common Alert Schema** enabled.
+This section describes the structure and content of the test payload sent when using the **Test Action Group** feature with the **Common Alert Schema** enabled.
 
 > [!NOTE]
-> The test payload mimics a real alert but contains **mocked metadata** and does not represent any specific resource or condition.
+> The test payload mimics a real alert but contains **mocked metadata** and doesn't represent any specific resource or condition.
 
 ### Sample test action `Activity log alert`
 
@@ -836,16 +833,16 @@ This section describes the structure and content of the test payload sent when u
 }
 ```
 
-### Legacy **Log alerts V1** in Action Group Testing
+### Legacy **Log alerts V1** in action group testing
 
-Azure still supports **Log Alerts V1** in certain scenarios, including when using the **"Test Action Group"** feature. Log Alerts V1 represent an earlier generation of alerting on log data in Azure Monitor, preceding the unified **Scheduled Query Rules API (v2)** and broader adoption of the **Common Alert Schema**.
+Azure still supports **Log Alerts V1** in certain scenarios, including when you use the **Test Action Group** feature. Log Alerts V1 represent an earlier generation of alerting on log data in Azure Monitor, preceding the unified **Scheduled Query Rules API (v2)** and broader adoption of the **Common Alert Schema**.
 
-When selecting **Log Alerts V1** as the alert type during a test, the payload structure and schema differ significantly from modern Common Alert Schema formats. This test is primarily relevant for legacy systems that were originally integrated using Log Alerts V1 notifications.
+When you select **Log Alerts V1** as the alert type during a test, the payload structure and schema differ significantly from modern Common Alert Schema formats. This test is primarily relevant for legacy systems that were originally integrated by using Log Alerts V1 notifications.
 
 > [!NOTE]
 > Microsoft recommends migrating to **Log alerts V2** to take advantage of improved schema consistency.
 
-You should only test **Log alerts V1** payloads if your receiving endpoint or automation is explicitly built for the older schema.
+Test **Log alerts V1** payloads only if your receiving endpoint or automation is explicitly built for the older schema.
 
 #### Sample test action `Log alert V1 - Metric measurement`
 
