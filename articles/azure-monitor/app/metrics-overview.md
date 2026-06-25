@@ -230,7 +230,7 @@ The *Availability test duration* metric shows how much time it took for the web 
 
 #### Availability tests (availabilityResults/count)
 
-The *Availability tests* metric reflects the count of the web test runs by Azure Monitor.
+The *Availability tests* metric shows the count of the web test runs by Azure Monitor.
 <!--
 | Unit of measure | Aggregations | Dimension name<br>(Metrics Explorer) | Dimension name<br>(Log Analytics) | Cardinality limit |
 |-----------------|--------------|--------------------------------------|-----------------------------------|------------------:|
