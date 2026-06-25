@@ -12,12 +12,12 @@ ms.reviewer: jeffwo
 
 # Azure Monitor Agent overview
 
-The Azure Monitor Agent collects monitoring data from the guest operating system of Azure and hybrid virtual machines (VMs). It delivers the data to Azure Monitor for use by features, insights, and other services, such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction). This article gives you an overview of the capabilities and supported use cases for the Azure Monitor Agent.
+The Azure Monitor Agent collects monitoring data from the guest operating system of Azure and hybrid virtual machines (VMs). It delivers the data to Azure Monitor for use by features, insights, and other services, such as [Microsoft Sentinel](/azure/sentinel/overview) and [Microsoft Defender for Cloud](/azure/defender-for-cloud/defender-for-cloud-introduction). This article provides an overview of the capabilities and supported use cases for the Azure Monitor Agent.
 
 For a short introduction to the Azure Monitor Agent, including a demo of how to deploy the agent in the Azure portal, see the video [ITOps Talk: Azure Monitor Agent](https://www.youtube.com/watch?v=f8bIrFU8tCs).
 
 > [!NOTE]
-> The Azure Monitor Agent is the supported agent for collecting guest OS data in Azure Monitor. If you’re currently using the [legacy Log Analytics agent](./log-analytics-agent.md), see [Migrate to the Azure Monitor Agent](./azure-monitor-agent-migration.md) for guidance.
+> The Azure Monitor Agent is the supported agent for collecting guest OS data in Azure Monitor. If you're currently using the [legacy Log Analytics agent](./log-analytics-agent.md), see [Migrate to the Azure Monitor Agent](./azure-monitor-agent-migration.md) for guidance.
 
 ## Installation
 
@@ -43,11 +43,11 @@ There's no cost to use the Azure Monitor Agent, but you might incur charges for 
 
 ## Supported regions
 
-The Azure Monitor Agent is available for general availability features in all global Azure regions, Azure Government, and Azure operated by 21Vianet. It isn't supported in air-gapped clouds. For more information, see [Product availability by region](https://azure.microsoft.com/global-infrastructure/services/?products=monitor&rar=true&regions=all).
+The Azure Monitor Agent is available for general availability features in all global Azure regions, Azure Government, and Azure operated by 21Vianet. The VM extension isn't supported in air-gapped clouds. However, the [Windows MSI client installer](./azure-monitor-agent-windows-client.md) supports air-gapped clouds. For more information, see [Product availability by region](https://azure.microsoft.com/global-infrastructure/services/?products=monitor&rar=true&regions=all).
 
 ## Supported services and features
 
-The following tables identify the different environments and features that the Azure Monitor Agent and the legacy agent currently supported. This information can help you determine whether the Azure Monitor Agent supports your current requirements. For guidance about migrating specific features, see [Migrate to the Azure Monitor Agent from the Log Analytics agent](../agents/azure-monitor-agent-migration.md).
+The following tables identify the different environments and features that the Azure Monitor Agent and the legacy agent currently support. This information can help you determine whether the Azure Monitor Agent supports your current requirements. For guidance about migrating specific features, see [Migrate to the Azure Monitor Agent from the Log Analytics agent](../agents/azure-monitor-agent-migration.md).
 
 ### Windows agents
 
@@ -129,7 +129,7 @@ The following tables compare Azure Monitor Agent and legacy agent capabilities o
 
 ## Supported data sources
 
-For a list of data sources the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
+For a list of data sources that the Azure Monitor Agent can collect and to learn how to configure them, see [Collect data with the Azure Monitor Agent](../vm/data-collection.md).
 
 ## Related content
 
