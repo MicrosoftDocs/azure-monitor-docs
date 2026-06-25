@@ -10,7 +10,7 @@ ms.custom: sfi-ropc-nochange
 
 # Microsoft Entra authentication for Application Insights
 
-Application Insights now supports [Microsoft Entra authentication](/azure/active-directory/authentication/overview). By using Microsoft Entra ID, you can ensure that only authenticated telemetry is ingested in your Application Insights resources.
+Application Insights now supports [Microsoft Entra authentication](/entra/identity/authentication/overview-authentication). By using Microsoft Entra ID, you can ensure that only authenticated telemetry is ingested in your Application Insights resources.
 
 Using various authentication systems can be cumbersome and risky because it's difficult to manage credentials at scale. You can now choose to [opt out of local authentication](#disable-local-authentication) to ensure only telemetry exclusively authenticated by using [managed identities](/azure/active-directory/managed-identities-azure-resources/overview) and [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) is ingested in your resource.
 
