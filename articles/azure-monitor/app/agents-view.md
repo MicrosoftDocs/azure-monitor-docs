@@ -102,9 +102,9 @@ Configure coding agents or IDEs to export OTLP signals by using organization-wid
 > [!NOTE]
 > Ensure that your OTLP export configuration matches your organization's privacy and data handling policies. These settings determine whether content and conversation details are captured and exported.
 
-An OpenTelemetry Collector receives the OTLP data and forwards it to Azure Monitor using the OTLP over HTTP exporter.
+An OpenTelemetry Collector receives the OTLP data and forwards it to Azure Monitor by using the [Azure Monitor exporter](https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter/azuremonitorexporter). For end-to-end setup, see [Monitor AI coding agents with Grafana](/azure/managed-grafana/grafana-opentelemetry-app-insights).
 
-Once the data is in Azure Monitor, investigate usage and adoption patterns in Application Insights agent views and visualize trends with prebuilt coding agent dashboards.
+When the data is in Azure Monitor, you can investigate usage and adoption patterns in Application Insights agent views and visualize trends with prebuilt coding agent dashboards.
 
 ### Prebuilt Grafana dashboards for coding agents
 
@@ -116,7 +116,7 @@ Azure Monitor includes ready-to-use Grafana dashboards for coding agent monitori
 
 :::image type="content" source="media/agents-view/coding-agents-grafana-dashboard.png" lightbox="media/agents-view/coding-agents-grafana-dashboard.png" alt-text="Screenshot of the coding agent Grafana dashboard showing operations, tokens, sessions, and per-model latency.":::
 
-These dashboards are available in [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and in [Azure Managed Grafana](/azure/managed-grafana/overview).
+You can find these dashboards in [Dashboards with Grafana in Application Insights](grafana-dashboards.md) and in [Azure Managed Grafana](/azure/managed-grafana/overview).
 
 ### Related resources
 
