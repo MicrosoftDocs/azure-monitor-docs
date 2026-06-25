@@ -6,7 +6,7 @@ ms.date: 03/04/2025
 
 ---
 
-# Advisor score
+# Advisor score 
 
 Learn how to use Azure Advisor score to measure optimization progress.
 
