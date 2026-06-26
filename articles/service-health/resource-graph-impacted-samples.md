@@ -1,7 +1,7 @@
 ---
 title: Sample queries for Azure Service Health Impacted resources
 description: Azure Resource Graph sample queries for Impacted resources showing the use of resource types and tables to access Azure Service Health related Impacted resources.
-ms.date: 08/07/2025
+ms.date: 06/26/2026
 ms.topic: sample
 ms.custom: subject-resourcegraph-sample, devx-track-azurepowershell, devx-track-azurecli
 ---
@@ -18,6 +18,8 @@ This page helps you monitor and understand the health of your Azure services and
 It includes sample queries specifically for Azure Service Health.
 
 ## Impacted resource sample queries
+
+[!INCLUDE [planned-maintenance-samples](includes/planned-maintenance-samples.md)]
 
 [!INCLUDE [azure-service-health-impacted-resources](includes/azure-service-health-impacted-resources.md)]
 
