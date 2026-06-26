@@ -21,7 +21,7 @@ ms.date: 12/10/2025
 
 Sampling is essential for applications generating large amounts of telemetry. Without sampling, excessive data ingestion can increase storage and processing costs, and cause Application Insights to throttle telemetry. Effective sampling keeps enough data for meaningful diagnostics while controlling cost.
 
-Sampling is **not enabled by default** in Application Insights OpenTelemetry distros. You must explicitly enable and configure sampling to manage your telemetry volume.
+The Application Insights OpenTelemetry distros include a default sampler. The specific sampler and its rate depend on the language and distro version. For per-language defaults and how to configure sampling, see [Enable sampling](opentelemetry-configuration.md#enable-sampling).
 
 > [!NOTE]
 > If you're seeing unexpected charges or high costs in Application Insights, this guide can help. It covers common causes like high telemetry volume, data ingestion spikes, and misconfigured sampling. It's especially useful if you're troubleshooting issues related to cost spikes, telemetry volume, sampling not working, data caps, high ingestion, or unexpected billing. To get started, see [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).
@@ -45,7 +45,7 @@ Application Insights supports two sampling strategies:
 
     Example: `0.5` ≈ one trace every two seconds; `5.0` = five traces per second.
 
-An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. This feature is on by default if sampling is enabled.
+An optional [trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) feature is available for supported languages, which drops logs tied to unsampled traces. The default depends on the language and distro version. For per-language defaults and configuration, see [Configure trace-based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs).
 
 To configure sampling, refer to [Enable Sampling in Application Insights with OpenTelemetry](./opentelemetry-configuration.md#enable-sampling).
 
@@ -62,13 +62,13 @@ Use the following general guidance if you're unsure where to start.
 
 - **Metrics:** [Metrics](metrics-overview.md) aren't sampled. Use them to reliably [alert](../alerts/alerts-overview.md) on key signals for your services and dependencies.
 
-- **Logs:** Configure app logging to export only `ERROR` logs. Add `WARN` only when actionable. [Trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) is on by default and drops logs tied to unsampled traces.
+- **Logs:** Configure app logging to export only `ERROR` logs. Add `WARN` only when actionable. [Trace‑based sampling for logs](opentelemetry-configuration.md#configure-trace-based-sampling-for-logs) drops logs tied to unsampled traces (default varies by language).
 
 - **Traces:** Sample traces as shown in our [default samples](opentelemetry-configuration.md#enable-sampling). If [Failures and Performance experiences](failures-performance-transactions.md) look incomplete, increase the rate.
 
 ## Ingestion sampling (not recommended)
 
-Ingestion sampling is a fallback when source-level control isn't possible. It drops data at the Azure Monitor ingestion point and offers no control over which traces and spans are retained. This increases the likelihood of encountering broken traces.
+Ingestion sampling is a fallback when source-level control isn't possible. It drops data at the Azure Monitor ingestion point and offers no control over which traces and spans are retained. This condition increases the likelihood of encountering broken traces.
 
 Scenarios where it's the only viable or most practical option include:
 
@@ -104,8 +104,8 @@ To configure the cap, see [Set a daily cap for Azure Monitor](../logs/daily-cap.
 
 ## Next steps
 
-* To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling)
+* To review frequently asked questions (FAQ), see [OpenTelemetry sampling FAQ](application-insights-faq.yml#opentelemetry-sampling).
 * [OpenTelemetry Sampling Concepts](https://opentelemetry.io/docs/concepts/sampling/).
-* [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling)
-* [Application Insights Overview](./app-insights-overview.md)
-* [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion)
+* [Enable Sampling in Application Insights](./opentelemetry-configuration.md#enable-sampling).
+* [Application Insights Overview](./app-insights-overview.md).
+* [Troubleshoot high data ingestion in Application Insights](/troubleshoot/azure/azure-monitor/app-insights/telemetry/troubleshoot-high-data-ingestion).

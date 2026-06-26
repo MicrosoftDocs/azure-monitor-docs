@@ -103,7 +103,7 @@ The following table summarizes the packages and install commands for each suppor
 #### [Python](#tab/python)
 
 > [!div class="checklist"]
-> * Python Application using Python 3.8+
+> * Python Application using Python 3.10+
 
 > [!Tip]
 > If you're migrating from OpenCensus, see our [migration documentation](./migrate-to-opentelemetry.md).
