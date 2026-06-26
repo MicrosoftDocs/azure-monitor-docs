@@ -2,7 +2,7 @@
 title: Data Collection Rules in Azure Monitor
 description: Overview of data collection rules (DCRs) in Azure Monitor including their contents and structure and how you can create and work with them.
 ms.topic: concept-article
-ms.date: 01/20/2026
+ms.date: 06/26/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
 ---
@@ -55,7 +55,7 @@ Create data collection rule associations (DCRAs) between the resource and the DC
 
 
 ## Using a DCR
-Once a DCR is created, there are different methods to use it based on the data collection scenario. The following table lists the common scenarios and the method used to collect data in each case. Further details on each are provided below.
+After you create a DCR, use different methods to use it based on the data collection scenario. The following table lists common scenarios and the method used to collect data in each case. The following sections provide more details on each method.
 
 | Scenario | Method |
 |:---|:---|
@@ -63,10 +63,10 @@ Once a DCR is created, there are different methods to use it based on the data c
 | [Event hubs](#event-hubs-preview) | Data collection rule association (DCRA) |
 | [Platform metrics (preview)](#platform-metrics-preview) | Data collection rule association (DCRA) |
 | [Direct ingestion](#direct-ingestion) | DCR specified in the API call that sends the data to Azure Monitor. |
-| [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) | DCR is active for the workspace as soon as it's created. |
+| [Workspace transformation DCR](./data-collection-transformations.md#workspace-transformation-dcr) | DCR is applied directly to the workspace. |
 
 ## Scenarios
-The following sections describe common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used to specify which DCR to use for that particular scenario. 
+The following sections describe common scenarios for using DCRs to collect data in Azure Monitor. They describe the details included in the DCR and the method used to specify which DCR to use for that scenario. 
 
 ### Azure Monitor agent (AMA)
 Use [Azure Monitor agent (AMA)](../agents/azure-monitor-agent-overview.md) to collect data from virtual machines and Kubernetes clusters. The following diagram shows how AMA collects data when running on a virtual machine. When you install the agent, it connects to Azure Monitor to retrieve any DCRs that are associated with it. In this scenario, the DCRs specify events and performance data to collect. For a Kubernetes cluster, this collection also includes Prometheus metrics. The agent uses that information to determine what data to collect from the machine and optionally apply a client-side transformation ([Preview](#transformations)) to filter and transform the data before sending it to Azure Monitor. Once the data is sent, any ingestion-time [transformations](#transformations) specified in the DCR run to filter and modify the data further. Then Azure Monitor delivers the data to the specified destination.
@@ -99,7 +99,7 @@ For more information, see [Logs ingestion API](../logs/logs-ingestion-api-overvi
 :::image type="content" source="media/data-collection-rule-overview/data-collection-direct-ingestion.png" lightbox="media/data-collection-rule-overview/data-collection-direct-ingestion.png" alt-text="Diagram that shows basic operation for DCR using Logs ingestion API." border="false":::
 
 ### Workspace transformation DCR
-Workspace transformation DCRs provide transformations for data collection that don't use a DCR. They're applied directly to the Log Analytics workspace and are automatically activated when they're created.
+Workspace transformation DCRs provide transformations for data collection that don't use a DCR. They're applied directly to the Log Analytics workspace. After you create or update the DCR, allow some time for transformations to take effect on incoming data.
 
 For more information, see [Workspace transformation DCR](../data-collection/data-collection-transformations.md).
 
