@@ -674,6 +674,8 @@ items:
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md
+    - name: Monitor a health model
+      href: health-models/monitoring.md
     - name: FAQ
       displayName: health models, frequently asked questions
       href: health-models/health-models-faq.yml
