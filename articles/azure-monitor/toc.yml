@@ -645,6 +645,9 @@ items:
       href: health-models/overview.md
     - name: Tutorials
       items:
+      - name: Configure signals
+        displayName: health models
+        href: health-models/tutorial-signals.md
       - name: Configure health rollup
         displayName: health models
         href: health-models/rollup.md

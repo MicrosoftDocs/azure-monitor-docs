@@ -36,11 +36,8 @@ Dependencies settings define how a parent entity evaluates the health of its chi
 A cluster of virtual machines can keep running normally as long as most nodes stay healthy. In this scenario, you can configure the parent entity so it becomes unhealthy only when more than 60% of its child nodes are unhealthy.
 
 1. Select **Designer** from your health model's menu in the Azure portal.
-
 1. Select **Edit** on the parent entity you want to configure.
-
 1. Select the **Signals** tab and then **Configuration**. The **Dependencies** configuration pane opens.
-
 1. Select **Minimum healthy** as the **Aggregation type**, set the **Unhealthy threshold** to **60**, and select **Percentage** as the **Data unit**.
 
    > [!NOTE]
@@ -59,13 +56,9 @@ A cluster of virtual machines can keep running normally as long as most nodes st
 An application with built-in reliability and tolerances across regions might stay healthy if at least two regions continue serving traffic. In this scenario, you can configure the parent entity to become unhealthy only when three or more child regions are unhealthy.
 
 1. Select **Designer** from your health model's menu in the Azure portal.
-
 1. Select **Edit** on the parent entity you want to configure.
-
 1. Select the **Signals** tab and then **Configuration**. The **Dependencies** configuration pane opens.
-
 1. Select **Maximum not healthy** as the **Aggregation type**, set the **Unhealthy threshold** to **3**, and select **Absolute** as the **Data unit**.
-
 1. Select **Save**.
 
    :::image type="content" source="media/rollup/count-aggregation-config.png" lightbox="media/rollup/count-aggregation-config.png" alt-text="Screenshot of the Dependencies configuration pane with Maximum not healthy aggregation type, Absolute data unit, and an unhealthy threshold of 3.":::
@@ -85,9 +78,7 @@ Use impact settings when a child entity shouldn't influence its parent in the sa
 Use **Suppressed** impact when a dependency is optional and its health shouldn't affect the overall workload health. For example, a newsletter sign-up component might become degraded or unhealthy without affecting the core user journey of the application. In this scenario, suppress the entity so its health state doesn't contribute to the parent entity's health rollup. Similarly, a reporting server that provides background analytics but isn't required to serve user requests could be configured as **Suppressed** so the workload remains healthy when that component fails.
 
 1. Select **Designer** from your health model's menu in the Azure portal.
-
 1. Select **Edit** on the entity you want to configure.
-
 1. In the entity editor, find the **Impact** setting, select **Suppressed**, and then select **Save**.
 
    :::image type="content" source="media/rollup/impact-suppressed-config.png" lightbox="media/rollup/impact-suppressed-config.png" alt-text="Screenshot of the entity editor with the Suppressed impact setting selected.":::
@@ -101,9 +92,7 @@ Use **Suppressed** impact when a dependency is optional and its health shouldn't
 Use **Limited** impact when a dependency is important but the workload can continue operating without it at a reduced level of service. For example, an application might use a cache to improve performance, but if the cache becomes unhealthy, requests can fall back to the database. In this scenario, configure the cache entity as **Limited** so the application becomes degraded instead of unhealthy when the cache fails.
 
 1. Select **Designer** from your health model's menu in the Azure portal.
-
 1. Select **Edit** on the entity you want to configure.
-
 1. Select **Limited** and then select **Save**.
 
    :::image type="content" source="media/rollup/impact-limited-config.png" lightbox="media/rollup/impact-limited-config.png" alt-text="Screenshot of the entity editor with the Limited impact setting selected.":::
