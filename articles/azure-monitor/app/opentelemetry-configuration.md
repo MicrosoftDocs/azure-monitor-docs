@@ -802,7 +802,7 @@ When you enable this feature, the system drops log records that belong to **unsa
 * A log record is part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the feature **drops** the log record.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **enabled by default**.
+* The default depends on the language and distro version. See the per-language settings that follow.
 
 Use the following settings to configure trace-based log sampling:
 
