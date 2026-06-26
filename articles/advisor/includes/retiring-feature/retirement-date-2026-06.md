@@ -20,4 +20,4 @@ ms.date: 11/11/2025
 > | SQL server | Microsoft.SQL 2014-04-01 stable APIs | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Virtual machine | DCsv2-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Workspace | Azure Machine Learning - SDK V1 - Dependent Libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Workspace | V1 SDK | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Storage Account | RC4 encryption in Azure Files Storage Accounts and Active Directory Objects | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

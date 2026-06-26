@@ -62,9 +62,9 @@ ms.date: 11/11/2025
 > | Kubernetes service | Legacy authentication for Container Insights - Azure Monitor | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Activity log alert rule | Alerts - GetAlertSummary API | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Azure Monitor workspace | Azure Monitor - ContainerLog table | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure Monitor workspace | Azure Monitor Remote-write sidecar container | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Application Insights | API keys for querying | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Service bus namespace | Legacy Service Bus SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Service bus namespace | Outdated Azure SDK libraries | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Data collection rule | Azure Monitor Remote-write sidecar container | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Service bus namespace | WindowsAzure.ServiceBus, Microsoft.Azure.ServiceBus and com.microsoft.azure.servicebus | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | SQL managed instance | Azure Monitor SCOM Managed Instance | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Storage Account | Azure Blob Storage - BlobFuse v1 | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |

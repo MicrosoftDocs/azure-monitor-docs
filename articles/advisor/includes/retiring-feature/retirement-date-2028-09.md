@@ -26,6 +26,7 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | Managed HSM Service | Support for HSM Platform 1 keys | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine scale set | Virtual Machine and Virtual Machine Scale Set - Azure Disk Encryption | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Batch account | Azure Disk Encryption for Azure Virtual Machines and Virtual Machine Scale Sets | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### September 25, 2028
 

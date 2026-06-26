@@ -35,7 +35,7 @@ Application Insights .NET SDK 3.x provides these NuGet packages:
 - `Microsoft.ApplicationInsights.Web` for ASP.NET apps on .NET Framework
 - `Microsoft.ApplicationInsights.NLogTarget` for NLog integration (beta)
 
-Use the repository documentation for code examples and detailed migration guidance:
+For code examples and detailed migration guidance, see the repository documentation:
 
 - [ApplicationInsights-dotnet README](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/Readme.md)
 - [SDK concepts](https://github.com/microsoft/ApplicationInsights-dotnet/blob/main/docs/concepts.md)
@@ -45,7 +45,7 @@ Use the repository documentation for code examples and detailed migration guidan
 
 ### Step 1: Remove references to incompatible packages
 
-Remove these packages because they aren't compatible with SDK 3.x:
+Remove these packages because they're not compatible with SDK 3.x:
 
 - `Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel`
 - `Microsoft.ApplicationInsights.DependencyCollector`
@@ -170,7 +170,7 @@ The rest of this document describes limitations and changes that you can encount
 
 ## TelemetryInitializers
 
-2.x SDK TelemetryInitializers don't run when using the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attributes-preview).
+TelemetryInitializers from the 2.x SDK don't run when you use the 3.x agent. Many of the use cases that previously required writing a `TelemetryInitializer` can be solved in Application Insights Java 3.x by configuring [custom dimensions](./java-standalone-config.md#custom-dimensions) or using [inherited attributes](./java-standalone-config.md#inherited-attributes-preview).
 
 ## TelemetryProcessors
 
@@ -178,20 +178,20 @@ TelemetryProcessors from the 2.x SDK don't run when you use the 3.x agent. Many 
 
 ## Multiple applications in a single JVM
 
-This use case is supported in Application Insights Java 3.x using [Cloud role name overrides (preview)](./java-standalone-config.md#cloud-role-name-overrides-preview) and/or [Connection string overrides (preview)](./java-standalone-config.md#connection-string-overrides-preview).
+You can support this use case in Application Insights Java 3.x by using [Cloud role name overrides (preview)](./java-standalone-config.md#cloud-role-name-overrides-preview) and [Connection string overrides (preview)](./java-standalone-config.md#connection-string-overrides-preview).
 
 ## Operation names
 
-In the Application Insights Java 2.x SDK, in some cases, the operation names contained the full path, for example:
+In the Application Insights Java 2.x SDK, operation names sometimes include the full path. For example:
 
 :::image type="content" source="media/java-ipa/upgrade-from-2x/operation-names-with-full-path.png" alt-text="Screenshot showing operation names with full path":::
 
-Operation names in Application Insights Java 3.x changed to generally provide a better aggregated view
-in the Application Insights Portal U/X, for example:
+Operation names in Application Insights Java 3.x generally provide a better aggregated view
+in the Application Insights portal U/X. For example:
 
 :::image type="content" source="media/java-ipa/upgrade-from-2x/operation-names-parameterized.png" alt-text="Screenshot showing operation names parameterized":::
 
-However, for some applications, you might still prefer the aggregated view in the U/X that was provided by the previous operation names. In this case, you can use the [telemetry processors](./java-standalone-telemetry-processors.md)  (preview) feature in 3.x to replicate the previous behavior.
+However, for some applications, you might still prefer the aggregated view in the U/X that the previous operation names provided. In this case, use the [telemetry processors](./java-standalone-telemetry-processors.md) (preview) feature in 3.x to replicate the previous behavior.
 
 The following snippet configures three telemetry processors that combine to replicate the previous behavior.
 The telemetry processors perform the following actions (in order):
@@ -200,7 +200,7 @@ The telemetry processors perform the following actions (in order):
 
     It matches any telemetry that has attributes named `http.request.method` and `url.path`.
     
-    Then it extracts `url.path` attribute into a new attribute named `tempName`.
+    Then it extracts the `url.path` attribute into a new attribute named `tempName`.
 
 1. The second telemetry processor is a span processor (has type `span`), which means it applies to `requests` and `dependencies`.
 
@@ -212,7 +212,7 @@ The telemetry processors perform the following actions (in order):
 
     It matches any telemetry that has an attribute named `tempPath`.
     
-    Then it deletes the attribute named `tempPath`, and the attribute appears as a custom dimension.
+    Then it deletes the attribute named `tempPath`. The attribute appears as a custom dimension.
 
 ```json
 {
@@ -267,7 +267,7 @@ The telemetry processors perform the following actions (in order):
 
 ## Sampling and missing logs
 
-Rate-limited sampling is enabled by default starting in the 3.4 agent, which can cause unexpected missing logs.
+Starting with version 3.4, the agent enables rate-limited sampling by default. This sampling can cause unexpected missing logs.
 
 ## Project example
 
@@ -310,7 +310,7 @@ This guide provides two options to upgrade from the Application Insights Node.js
 
 1. Enable Application Insights with the Azure Monitor OpenTelemetry Distro.
     > [!IMPORTANT] 
-    > *Before* you import anything else, `useAzureMonitor` must be called. There might be telemetry loss if other libraries are imported first.
+    > *Before* you import anything else, call `useAzureMonitor`. If you import other libraries first, you might lose telemetry.
     Follow [getting started](opentelemetry-enable.md?tabs=nodejs) to onboard to the Azure Monitor OpenTelemetry Distro.
 
 #### Azure Monitor OpenTelemetry Distro changes and limitations
@@ -340,21 +340,21 @@ The following changes and limitations apply to both upgrade paths.
 
 ##### Node.js version support
 
-The Application Insights 3.x SDK supports a Node.js version when both the Azure SDK for JavaScript and OpenTelemetry support that Node.js version. For current OpenTelemetry runtime support, go to [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes).
+The Application Insights 3.x SDK supports a Node.js version when both the Azure SDK for JavaScript and OpenTelemetry support that Node.js version. For current OpenTelemetry runtime support, see [OpenTelemetry supported runtimes](https://github.com/open-telemetry/opentelemetry-js#supported-runtimes).
 
-If you use an older Node.js version such as Node 8, OpenTelemetry solutions can run but can produce unexpected behavior or breaking changes. The Application Insights SDK relies on the Azure SDK for JavaScript, and the Azure SDK for JavaScript support policy doesn't guarantee support for Node.js versions that reached end of life. For details, go to [Azure SDK for JS support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md).
+If you use an older Node.js version such as Node 8, OpenTelemetry solutions can run but can produce unexpected behavior or breaking changes. The Application Insights SDK relies on the Azure SDK for JavaScript, and the Azure SDK for JavaScript support policy doesn't guarantee support for Node.js versions that reached end of life. For details, see [Azure SDK for JS support policy](https://github.com/Azure/azure-sdk-for-js/blob/main/SUPPORT.md).
 
 ##### Configuration options
 
-The Application Insights SDK version 2.X offers configuration options that aren't available in the Azure Monitor OpenTelemetry Distro or in the major version upgrade to Application Insights SDK 3.X. To find these changes, along with the options we still support, see [SDK configuration documentation](https://github.com/microsoft/ApplicationInsights-node.js/tree/beta?tab=readme-ov-file#applicationinsights-shim-unsupported-properties).
+The Application Insights SDK version 2.X offers configuration options that aren't available in the Azure Monitor OpenTelemetry Distro or in the major version upgrade to Application Insights SDK 3.X. To find these changes, along with the options the SDK still supports, see [SDK configuration documentation](https://github.com/microsoft/ApplicationInsights-node.js/tree/beta?tab=readme-ov-file#applicationinsights-shim-unsupported-properties).
 
 ##### Extended metrics
 
-Extended metrics are supported in the Application Insights SDK 2.X; however, support for these metrics ends in both version 3.X of the ApplicationInsights SDK and the Azure Monitor OpenTelemetry Distro.
+The Application Insights SDK 2.X supports extended metrics. However, support for these metrics ends in both version 3.X of the ApplicationInsights SDK and the Azure Monitor OpenTelemetry Distro.
 
-##### Telemetry Processors
+##### Telemetry processors
 
-While the Azure Monitor OpenTelemetry Distro and Application Insights SDK 3.X don't support TelemetryProcessors, they do allow you to pass span and log record processors. For more information on how, see [Azure Monitor OpenTelemetry Distro project](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry#modify-telemetry).
+While the Azure Monitor OpenTelemetry Distro and Application Insights SDK 3.X don't support telemetry processors, they do allow you to pass span and log record processors. For more information, see [Azure Monitor OpenTelemetry Distro project](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/monitor/monitor-opentelemetry#modify-telemetry).
 
 This example shows the equivalent of creating and applying a telemetry processor that attaches a custom property in the Application Insights SDK 2.X.
 
@@ -415,11 +415,11 @@ Follow these steps to migrate Python applications to the [Azure Monitor OpenTele
 > [!WARNING]
 > * The [OpenCensus "How to Migrate to OpenTelemetry" blog](https://opentelemetry.io/blog/2023/sunsetting-opencensus/#how-to-migrate-to-opentelemetry) isn't applicable to Azure Monitor users.
 > * Microsoft doesn't recommend or support the [OpenTelemetry OpenCensus shim](https://pypi.org/project/opentelemetry-opencensus-shim/).
-> * The following outlines the only migration plan for Azure Monitor customers.
+> * The following outline is the only migration plan for Azure Monitor customers.
 
 ## Step 1: Uninstall OpenCensus libraries
 
-Uninstall all libraries related to OpenCensus, including all Pypi packages that start with `opencensus-*`.
+Uninstall all libraries related to OpenCensus, including all PyPI packages that start with `opencensus-*`.
 
 ```
 pip freeze | grep opencensus | xargs pip uninstall -y
@@ -429,9 +429,9 @@ pip freeze | grep opencensus | xargs pip uninstall -y
 
 Remove all instances of the OpenCensus SDK and the Azure Monitor OpenCensus exporter from your code.
 
-Check for import statements starting with `opencensus` to find all integrations, exporters, and instances of OpenCensus API/SDK that must be removed.
+Check for import statements starting with `opencensus` to find all integrations, exporters, and instances of OpenCensus API/SDK that you must remove.
 
-The following are examples of import statements that must be removed.
+The following examples show import statements that you must remove.
 
 ```python
 from opencensus.ext.azure import metrics_exporter
@@ -445,9 +445,9 @@ from opencensus.trace.tracer import Tracer
 from opencensus.ext.azure.log_exporter import AzureLogHandler
 ```
 
-## Step 3: Familiarize yourself with OpenTelemetry Python APIs/SDKs
+## Step 3: Familiarize yourself with OpenTelemetry Python APIs and SDKs
 
-The following documentation provides prerequisite knowledge of the OpenTelemetry Python APIs/SDKs.
+The following documentation provides prerequisite knowledge of the OpenTelemetry Python APIs and SDKs:
 
 * OpenTelemetry Python [documentation](https://opentelemetry-python.readthedocs.io/en/stable/)
 * Azure Monitor Distro documentation on [configuration](./opentelemetry-configuration.md?tabs=python) and [telemetry](./opentelemetry-add-modify.md?tabs=python)
@@ -458,17 +458,17 @@ The following documentation provides prerequisite knowledge of the OpenTelemetry
 ## Step 4: Set up the Azure Monitor OpenTelemetry Distro
 
 Follow the [getting started](./opentelemetry-enable.md?tabs=python#enable-opentelemetry-with-application-insights)
-page to onboard onto the Azure Monitor OpenTelemetry Distro.
+article to onboard to the Azure Monitor OpenTelemetry Distro.
 
 ## Changes and limitations
 
-The following changes and limitations could be encountered when migrating from OpenCensus to OpenTelemetry.
+The following changes and limitations can occur when migrating from OpenCensus to OpenTelemetry.
 
-### Python versions earlier than 3.7
+### Python versions earlier than 3.10
 
-OpenTelemetry-based monitoring for Python supports Python 3.7 and later. OpenTelemetry doesn't support Python 2.7, 3.4, 3.5, or 3.6.
+The Azure Monitor OpenTelemetry Distro for Python requires Python 3.10 or later. For prerequisites and supported versions, see the [Azure Monitor Opentelemetry Distro client library for Python](/python/api/overview/azure/monitor-opentelemetry-readme).
 
-Python 2.7, 3.4, 3.5, and 3.6 are end of life. For version status, go to [Python version support](https://devguide.python.org/versions/).
+For Python version status and end-of-life dates, go to [Python version support](https://devguide.python.org/versions/).
 
 If you stay on Python 2.7, 3.4, 3.5, or 3.6, OpenTelemetry solutions can run but can produce unexpected behavior or breaking changes that Microsoft doesn't support.
 
@@ -476,15 +476,15 @@ For OpenCensus, the last released version of [opencensus-ext-azure](https://pypi
 
 ### Configurations
 
-OpenCensus Python provided some [configuration](https://github.com/census-instrumentation/opencensus-python#customization) options related to the collection and exporting of telemetry. You achieve the same configurations, and more, by using the [OpenTelemetry Python](https://opentelemetry-python.readthedocs.io/en/stable/) APIs and SDK. The OpenTelemetry Azure monitor Python Distro is more of a one-stop-shop for the most common monitoring needs for your Python applications. Since the Distro encapsulates the OpenTelemetry APIs/SDk, some configuration for more uncommon use cases might not currently be supported for the Distro. Instead, you can opt to onboard onto the [Azure monitor OpenTelemetry exporter](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry-exporter), which, with the OpenTelemetry APIs/SDKs, should be able to fit your monitoring needs. Some of these configurations include:
+OpenCensus Python provides [configuration](https://github.com/census-instrumentation/opencensus-python#customization) options related to the collection and exporting of telemetry. You can achieve the same configurations, and more, by using the [OpenTelemetry Python](https://opentelemetry-python.readthedocs.io/en/stable/) APIs and SDK. The OpenTelemetry Azure monitor Python Distro is a one-stop shop for the most common monitoring needs for your Python applications. Since the Distro encapsulates the OpenTelemetry APIs and SDK, some configuration for more uncommon use cases might not currently be supported. Instead, you can opt to onboard onto the [Azure monitor OpenTelemetry exporter](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/monitor/azure-monitor-opentelemetry-exporter), which, by using the OpenTelemetry APIs and SDKs, should be able to fit your monitoring needs. Some of these configurations include:
 
 * Custom propagators
 * Custom samplers
-* Adding extra span/log processors/metrics readers
+* Adding extra span, log processors, and metrics readers
 
 ### Cohesion with Azure Functions
 
-In order to provide distributed tracing capabilities for Python applications that call other Python applications within an Azure function, the package [opencensus-extension-azure-functions](https://pypi.org/project/opencensus-extension-azure-functions/) was provided to allow for a connected distributed graph.
+To provide distributed tracing capabilities for Python applications that call other Python applications within an Azure function, the package [opencensus-extension-azure-functions](https://pypi.org/project/opencensus-extension-azure-functions/) creates a connected distributed graph.
 
 Currently, the OpenTelemetry solutions for Azure Monitor don't support this scenario. As a workaround, you can manually propagate the trace context in your Azure functions application as shown in the following example.
 
@@ -518,17 +518,17 @@ OpenTelemetry Python instrumentations and exporters cover the OpenCensus set and
 
 The Azure Monitor OpenTelemetry Distro includes several popular OpenTelemetry Python [instrumentations](.\opentelemetry-collect-detect.md?tabs=python#included-instrumentation-libraries). Use these instrumentations without adding code. Microsoft supports these instrumentations.
 
-As for the other OpenTelemetry Python [instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation) that aren't included in this list, users can still manually instrument with them. However, it's important to note that stability and behavior aren't guaranteed or supported in those cases. Therefore, use them at your own discretion.
+As for the other OpenTelemetry Python [instrumentations](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation) that aren't included in this list, you can still manually instrument with them. However, stability and behavior aren't guaranteed or supported in those cases. Therefore, use them at your own discretion.
 
-If you would like to suggest a community instrumentation library us to include in our distro, post or up-vote an idea in our [feedback community](https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0). For exporters, the Azure Monitor OpenTelemetry distro comes bundled with the [Azure Monitor OpenTelemetry exporter](https://pypi.org/project/azure-monitor-opentelemetry-exporter/). If you would like to use other exporters as well, you can use them with the distro, like in this [example](./opentelemetry-configuration.md?tabs=python#enable-the-otlp-exporter).
+If you want to suggest a community instrumentation library for inclusion in the distro, post or up-vote an idea in the [feedback community](https://feedback.azure.com/d365community/forum/3887dc70-2025-ec11-b6e6-000d3a4f09d0). For exporters, the Azure Monitor OpenTelemetry distro comes bundled with the [Azure Monitor OpenTelemetry exporter](https://pypi.org/project/azure-monitor-opentelemetry-exporter/). If you want to use other exporters as well, you can use them with the distro, like in this [example](./opentelemetry-configuration.md?tabs=python#enable-the-otlp-exporter).
 
-### TelemetryProcessors
+### Telemetry processors
 
-There's no concept of TelemetryProcessors in the OpenTelemetry world, but there are APIs and classes that you can use to replicate the same behavior.
+The OpenTelemetry world doesn't have telemetry processors, but it does have APIs and classes that you can use to replicate the same behavior.
 
-#### Setting Cloud Role Name and Cloud Role Instance
+#### Setting cloud role name and cloud role instance
 
-Follow the instructions [here](./opentelemetry-configuration.md?tabs=python#set-the-cloud-role-name-and-the-cloud-role-instance) for how to set cloud role name and cloud role instance for your telemetry. The OpenTelemetry Azure Monitor Distro automatically fetches the values from the environment variables and fills the respective fields.
+To set the cloud role name and cloud role instance for your telemetry, see [OpenTelemetry configuration](./opentelemetry-configuration.md?tabs=python#set-the-cloud-role-name-and-the-cloud-role-instance). The OpenTelemetry Azure Monitor Distro automatically fetches the values from the environment variables and fills the respective fields.
 
 #### Modifying spans with SpanProcessors
 
@@ -538,9 +538,9 @@ Coming soon.
 
 Coming soon.
 
-### Performance Counters
+### Performance counters
 
-The OpenCensus Python Azure Monitor exporter automatically collected system and performance related metrics called [performance counters](https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure#performance-counters). These metrics appear in `performanceCounters` in your Application Insights instance. In OpenTelemetry, we no longer send these metrics explicitly to `performanceCounters`. Metrics related to incoming/outgoing requests can be found under [standard metrics](./standard-metrics.md). If you would like OpenTelemetry to autocollect system related metrics, you can use the experimental system metrics [instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-system-metrics), contributed by the OpenTelemetry Python community. This package is experimental and not officially supported by Microsoft.
+The OpenCensus Python Azure Monitor exporter automatically collects system and performance related metrics called [performance counters](https://github.com/census-instrumentation/opencensus-python/tree/master/contrib/opencensus-ext-azure#performance-counters). These metrics appear in `performanceCounters` in your Application Insights instance. In OpenTelemetry, you no longer send these metrics explicitly to `performanceCounters`. Metrics related to incoming and outgoing requests can be found under [standard metrics](./standard-metrics.md). If you want OpenTelemetry to autocollect system related metrics, you can use the experimental system metrics [instrumentation](https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/instrumentation/opentelemetry-instrumentation-system-metrics), contributed by the OpenTelemetry Python community. This package is experimental and isn't officially supported by Microsoft.
 
 ## Support
 
@@ -548,7 +548,7 @@ To review troubleshooting steps, support options, or to provide OpenTelemetry fe
 
 ---
 
-## OpenTelemetry Terminology
+## OpenTelemetry terminology
 
 For terminology, see the [glossary](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/glossary.md) in the OpenTelemetry specifications.
 

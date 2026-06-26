@@ -11,3 +11,10 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | HDInsight cluster | Outdated HDInsight images | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+
+##### February 29, 2024
+
+> [!div class="mx-tdCol3BreakAll"]
+> | Service name | Retiring feature | Impacted Resources available? |
+> |:--- |:--- |:--- |
+> | Application Insights | Classic | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

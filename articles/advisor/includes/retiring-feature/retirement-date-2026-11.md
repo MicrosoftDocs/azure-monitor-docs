@@ -11,6 +11,7 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | App service | In-process model | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | App service | .NET 8 (LTS) on App Service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
 ##### November 30, 2026
 

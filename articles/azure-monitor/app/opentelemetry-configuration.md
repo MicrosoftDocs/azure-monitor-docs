@@ -452,22 +452,22 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 # [ASP.NET Core](#tab/aspnetcore)
 
-* **`OTEL_TRACES_SAMPLER`** â€” sampler type
-    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
-    * `microsoft.rate_limited` â€” cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
 
-* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 # [.NET](#tab/net)
 
-* **`OTEL_TRACES_SAMPLER`** â€” sampler type
-    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
-    * `microsoft.rate_limited` â€” cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
 
-* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
 
 # [Java](#tab/java)
@@ -479,19 +479,19 @@ Use standard OpenTelemetry environment variables to select the sampler and provi
 
 **Fixed-percentage sampling**
 
-* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`** â€” sampling percentage
+* **`APPLICATIONINSIGHTS_SAMPLING_PERCENTAGE`** — sampling percentage
     * Value is a percentage (for example, `33.333` = ~33.333%).
 
 **Rate-limited sampling**
 
-* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** â€” maximum requests per second
+* **`APPLICATIONINSIGHTS_SAMPLING_REQUESTS_PER_SECOND`** — maximum requests per second
     * For example, `1.5`.
 
 For configuration options and examples, see [Configure sampling overrides](java-standalone-config.md#configure-sampling-overrides).
 
 # [Java native](#tab/java-native)
 
-* **`OTEL_TRACES_SAMPLER`** â€” sampler type
+* **`OTEL_TRACES_SAMPLER`** — sampler type
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -499,19 +499,19 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 # [Node](#tab/nodejs)
 
-* **`OTEL_TRACES_SAMPLER`** â€” sampler type
-    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
-    * `microsoft.rate_limited` â€” cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -519,21 +519,21 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 # [Python](#tab/python)
 
-* **`OTEL_TRACES_SAMPLER`** â€” sampler type
-    * `microsoft.fixed_percentage` â€” sample a fraction of traces.
-    * `microsoft.rate_limited` â€” cap traces per second.
+* **`OTEL_TRACES_SAMPLER`** — sampler type
+    * `microsoft.fixed_percentage` — sample a fraction of traces.
+    * `microsoft.rate_limited` — cap traces per second.
     * `always_on`: AlwaysOnSampler
     * `always_off`: AlwaysOffSampler
     * `trace_id_ratio`: TraceIdRatioBased
@@ -541,15 +541,15 @@ For configuration options and examples, see [Configure sampling overrides](java-
     * `parentbased_always_off`: ParentBased(root=AlwaysOffSampler)
     * `parentbased_trace_id_ratio`: ParentBased(root=TraceIdRatioBased)
 
-* **`OTEL_TRACES_SAMPLER_ARG`** â€” sampler argument
-    * For `microsoft.fixed_percentage`: value in **0.0â€“1.0** (for example, `0.1` = ~10%).
+* **`OTEL_TRACES_SAMPLER_ARG`** — sampler argument
+    * For `microsoft.fixed_percentage`: value in **0.0–1.0** (for example, `0.1` = ~10%).
     * For `microsoft.rate_limited`: **maximum traces per second** (for example, `1.5`).
     * For `always_on`: the default value is **1.0**. No need to set the argument.
     * For `always_off`: the default value is **0.0**. No need to set the argument.
-    * For `trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
+    * For `trace_id_ratio`: a value in **0.0–1.0** (for example, 0.25 = ~25%). Default is 1.0 if unset.
     * For `parentbased_always_on`: the default value is **1.0**. No need to set the argument.
     * For `parentbased_always_off`: the default value is **0.0**. No need to set the argument.
-    * For `parentbased_trace_id_ratio`: a value in **0.0â€“1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
+    * For `parentbased_trace_id_ratio`: a value in **0.0–1.0** (for example, 0.45 = ~45%). Default is 1.0 if unset.
 
 ---
 
@@ -802,7 +802,7 @@ When you enable this feature, the system drops log records that belong to **unsa
 * A log record is part of a trace when it has a valid `SpanId`.
 * If the associated trace's `TraceFlags` indicate **not sampled**, the feature **drops** the log record.
 * Log records **without** any trace context **aren't** affected.
-* The feature is **enabled by default**.
+* The default depends on the language and distro version. See the per-language settings that follow.
 
 Use the following settings to configure trace-based log sampling:
 

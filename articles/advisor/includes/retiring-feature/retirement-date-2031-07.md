@@ -10,4 +10,4 @@ ms.date: 11/11/2025
 > [!div class="mx-tdCol3BreakAll"]
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
-> | Subscription | Azure Sphere | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Azure Sphere Catalog | Azure Sphere | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |

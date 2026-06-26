@@ -34,7 +34,7 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Microsoft.SentinelPlatformServices sentinel platform service | Alert-trigger playbooks | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | Azure Database Migration Service (classic) | SQL Server scenarios | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
+> | Subscription | SQL Server scenarios | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 
 ##### March 16, 2026
 
