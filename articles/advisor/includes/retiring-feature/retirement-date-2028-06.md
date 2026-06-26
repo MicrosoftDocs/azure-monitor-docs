@@ -12,4 +12,5 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | AVS Private cloud | Azure VMware Solution AV36 Node | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | Dependency Agent and VM Insights Map | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Virtual machine scale set | Dependency Agent and VM Insights Map | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 

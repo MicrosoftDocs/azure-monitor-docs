@@ -12,13 +12,6 @@ ms.date: 11/11/2025
 > |:--- |:--- |:--- |
 > | Static Web App | Azure Static Web Apps database connection | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 
-##### November 9, 2025
-
-> [!div class="mx-tdCol3BreakAll"]
-> | Service name | Retiring feature | Impacted Resources available? |
-> |:--- |:--- |:--- |
-> | Azure Database for PostgreSQL flexible server | FlexibleServers- Version 11 | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-
 ##### November 30, 2025
 
 > [!div class="mx-tdCol3BreakAll"]

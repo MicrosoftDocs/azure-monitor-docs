@@ -168,12 +168,6 @@ Azure Service Health is one of the ways you can proactively get information on u
 Although the current coverage of services for retirement recommendations in Advisor isn't comprehensive, it serves as a solid starting point. At the current time, the platform doesn't have information about the **Impacted Resources** for a subset of recommendations.
 Based on your need, use any of the listed ways to get the required information.
 
-### [Retiring in 2023](#tab/service-retire-2023)
-
-#### Retiring November 2023
-
-[!INCLUDE [Table for retiring November 2023](./includes/retiring-feature/retirement-date-2023-11.md)]
-
 ### [Retiring in 2024](#tab/service-retire-2024)
 
 #### Retiring February 2024
@@ -201,10 +195,6 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring April 2025
 
 [!INCLUDE [Table for retiring April 2025](./includes/retiring-feature/retirement-date-2025-04.md)]
-
-#### Retiring May 2025
-
-[!INCLUDE [Table for retiring May 2025](./includes/retiring-feature/retirement-date-2025-05.md)]
 
 #### Retiring June 2025
 
@@ -281,6 +271,10 @@ Based on your need, use any of the listed ways to get the required information.
 #### Retiring January 2027
 
 [!INCLUDE [Table for retiring January 2027](./includes/retiring-feature/retirement-date-2027-01.md)]
+
+#### Retiring February 2027
+
+[!INCLUDE [Table for retiring February 2027](./includes/retiring-feature/retirement-date-2027-02.md)]
 
 #### Retiring March 2027
 

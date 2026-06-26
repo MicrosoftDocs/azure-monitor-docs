@@ -33,11 +33,11 @@ ms.date: 11/11/2025
 > | Service name | Retiring feature | Impacted Resources available? |
 > |:--- |:--- |:--- |
 > | Api Management | Built-in Analytics | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
-> | App service | Docker Compose | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | App service | Docker Compose in App Service | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Application gateway | WAF v2 Config | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Azure Managed Redis | Redis Enterprise | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Cloud Service | Extended Support | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
-> | Cognitive Service | Some Azure AI Language features | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Microsoft Entra Domain Service | Azure Managed Grafana Essential SKU | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Data factory | Memory Optimized Data Flows | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | Front Door Web Application Firewall policy | Classic | [!INCLUDE [Not available](../../includes/inline-reusable-text/not-available-option.md)] |
 > | SQL server | Elastic query - Shard map manager mode | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
