@@ -674,6 +674,9 @@ items:
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md
+    - name: FAQ
+      displayName: health models, frequently asked questions
+      href: health-models/health-models-faq.yml
   - name: Migrate from SCOM Managed Instance
     items:
     - name: Overview
