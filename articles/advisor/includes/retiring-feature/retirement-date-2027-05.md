@@ -16,3 +16,5 @@ ms.date: 04/30/2026
 > | Virtual machine | HBv2-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | HCv1-Series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
 > | Virtual machine | NP-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Batch account | HCv1 series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
+> | Batch account | HBv2-series | [!INCLUDE [Available](../../includes/inline-reusable-text/available-option.md)] |
