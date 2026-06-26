@@ -61,7 +61,7 @@ The preceding query returns 10 results from the `SecurityEvent` table, in no spe
 
 * The query starts with the table name `SecurityEvent`, which defines the scope of the query.
 * The pipe (|) character separates commands, so the output of the first command is the input of the next. You can add any number of piped elements.
-* Following the pipe is the `take` operator. We could run the query even without adding `| take 10`. The command would still be valid, but it could return up to 500,000 results.
+* Following the pipe is the `take` operator. You can run the query even without adding `| take 10`. The command would still be valid, but it could return up to 500,000 results.
 
 ### Search queries
 
