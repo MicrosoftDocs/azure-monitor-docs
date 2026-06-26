@@ -440,7 +440,7 @@ Sampling reduces telemetry ingestion volume and cost. Azure Monitor's OpenTeleme
 
 > [!IMPORTANT]
 > * Sampling decisions apply to **traces** (spans).
-> * **Logs** that belong to unsampled traces can be dropped automatically. The default depends on the language and distro version. See [Configure trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
+> * **Logs** that belong to unsampled traces are dropped by default, but you can opt out of [trace-based sampling for logs](#configure-trace-based-sampling-for-logs).
 > * **Metrics** are never sampled.
 
 > [!NOTE]
