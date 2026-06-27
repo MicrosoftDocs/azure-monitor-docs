@@ -1,0 +1,88 @@
+### YamlMime:FAQ
+metadata:
+  title: Azure Monitor Health Models FAQ
+  description: Frequently asked questions about Azure Monitor health models, including discovery, topology, alerts, integrations, and deployment options.
+  ms.service: azure-monitor
+  ms.topic: faq
+  author: bwren
+  ms.author: bwren
+  ms.date: 06/16/2026
+  ai-usage: ai-assisted
+
+title: Azure Monitor Health Models FAQ
+summary: Learn answers to common questions about discovery, design, alerts, integrations, and deployment for Azure Monitor health models.
+
+sections:
+  - name: Discovery and model design
+    questions:
+      - question: Is discovery dynamic?
+        answer: |
+          Yes. Discoveries automatically run every 5 minutes, and this interval can't be changed. You can use multiple discovery rules in the same model and combine discovery with manual entity design in the designer. See [Auto discover entities for Azure Monitor health models](./discoveries.md).
+
+      - question: Can I combine the designer and discovery in the same model?
+        answer: |
+          Yes. You can combine manual design in the **Designer** with automatic discovery in the same model. Be careful of overlap though. If a discovery rule discovers an entity that is already manually designed, you may end up with duplicate entities. See [Configure an Azure Monitor health model using the designer](./designer.md), and [Auto discover entities for Azure Monitor health models](./discoveries.md).
+
+      - question: Can impact setting be used for maintenance mode?
+        answer: |
+          Maintenance mode is a feature in a monitoring tool that allows you to temporarily suppress monitoring for a specific time period when an application or resource may be undergoing scheduled maintenance. Health models does not currently have a maintenance mode feature.
+
+          The **Suppressed** impact setting prevents a child entity from affecting its parent health state. While this will suppress any alerts defined for the parent entity if the child entity is offline, this setting is intended as a modeling setting, not a maintenance mode feature. See [Impact (child)](./concepts.md#impact-child).
+
+      - question: Can I take application input as a health signal?
+        answer: |
+          Yes, through supported data sources. Health models evaluate signals from Azure resource metrics, Log Analytics queries, and Azure Monitor workspace queries. To use application telemetry, first route the telemetry to Azure Monitor, then evaluate it with query-based signals. See [Create and configure signals in Azure Monitor health models](./signals.md).
+
+      - question: Can the same entity be in different health models?
+        answer: |
+          Yes. The same Azure resource can be represented in multiple health models. Each model evaluates signals independently and has its own health state for that resource representation. See [Entities](./concepts.md#entities).
+
+      - question: Is there an out-of-box health model?
+        answer: |
+          Not currently. Health models don't include a fully prebuilt template. You build a model and populate it manually, through discovery, or by combining both approaches. To accelerate setup, use recommended signals for supported resource types. See [Create a new Azure Monitor health model](create.md) and [Auto discover entities for Azure Monitor health models](./discoveries.md).
+
+      - question: Are there best practices or examples for workload versus domain models, such as landing zones?
+        answer: |
+          Yes. Current guidance recommends patterns such as one model per application or subsystem, then rolling up to a higher-level model for end-to-end or portfolio health. You can also use generic entities to aggregate by business unit, region, or other domains, and tune dependency and impact settings based on tolerance. See [Azure Monitor health model concepts](concepts.md) and [Tutorial: Configure health rollup in an Azure Monitor health model](./rollup.md).
+
+      - question: Is topology helpful for downstream flow investigation?
+        answer: |
+          Yes. Topology and relationships help you understand dependency flow and investigate how degraded or unhealthy states propagate through the model. Use Graph, Timeline, and entity details views for investigation. See [Auto discover entities for Azure Monitor health models](discoveries.md) and [Analyze health state of Azure Monitor health models](./analyze-health.md).
+
+      - question: Can I import entities from static reports?
+        answer: |
+          No. Health models don't currently support importing entities from static files or reports. Add entities manually in the designer or use discovery methods. See [Auto discover entities for Azure Monitor health models](discoveries.md) and [Configure an Azure Monitor health model using the designer](./designer.md).
+
+  - name: Embedded health models
+    questions:
+      - question: Is it possible to nest models?
+        answer: |
+          Yes. You can add one health model as an Azure resource entity in another health model. This creates an embedded model pattern. The parent model uses the embedded model's root entity health state for rollup. See [Embedded health models](./concepts.md#embedded-health-models).
+
+      - question: Can I reference any node from an embedded model?
+        answer: |
+          No. Embedded model rollup is based on the embedded model's root entity state, not internal nodes. See [Embedded health models](./concepts.md#embedded-health-models).
+
+  - name: Alerts and integrations
+    questions:
+      - question: Is there a dedicated health alert type?
+        answer: |
+          Health model alerts are entity-state alerts that fire when an entity changes to **Degraded** or **Unhealthy**. They use the standard Azure Monitor alerting experience and action groups rather than a separate alerting system. See [Enable alerts in Azure Monitor health models](./alerts.md).
+
+      - question: How can I view health alerts and integrate with ITSM?
+        answer: |
+          You can view alerts in entity details in the health model experience and in Azure Monitor alerts. For integration, use action groups to route notifications and automation to your ITSM workflow endpoints. See [Enable alerts in Azure Monitor health models](alerts.md), [Analyze health state of Azure Monitor health models](./analyze-health.md), and [Create and manage action groups in the Azure portal](../alerts/action-groups.md).
+
+      - question: How do I integrate health models with Grafana dashboards?
+        answer: |
+          Health models don't currently provide a direct health-model visualization integration for Grafana. You can still build Grafana dashboards from underlying Azure Monitor metrics, logs, and alerts used by the model.
+
+  - name: Deployment and signals
+    questions:
+      - question: Is a health model deployable with infrastructure as code (IaC)?
+        answer: |
+          Yes. Health model resources can be deployed through ARM templates and Bicep. Most health model articles use the portal experience for examples. For IaC, use Azure template reference documentation to confirm the latest resource schema and API version before deployment.
+
+      - question: Is a signal definition available by resource type?
+        answer: |
+          Yes. For Azure resource signals, only metric definitions supported by that resource type are available. Discovery can also apply recommended signals for discovered resources. You can also create reusable signal definitions and apply them across entities. See [Create and configure signals in Azure Monitor health models](./signals.md) and [Auto discover entities for Azure Monitor health models](./discoveries.md).
