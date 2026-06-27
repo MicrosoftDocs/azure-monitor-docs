@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 06/01/2026
+ms.date: 06/26/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
 ai-usage: ai-assisted
@@ -45,6 +45,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
 | [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
@@ -93,6 +94,21 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
 | [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
 | [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
+
+## June 2026
+
+**Versions:** Linux 1.42
+
+### Linux
+
+- Improved performance in the agent-side filter and transformation path, including queue-depth-based backpressure, faster output dispatch, and a direct in-process failover path that avoids an extra msgpack/socket round-trip.
+- Now checks the current service state before invoking `systemctl start` or `systemctl enable`, which avoids unnecessary calls during installation and upgrade.
+- Added SUSE 16 compatibility. The `which` package dependency is relaxed from required to recommended so installation now succeeds on SUSE 16 systems.
+- Updated Metrics Extension to 2.20260504.84237.
+- Updated Azure OpenTelemetry Collector component to 1.20260401.153114.
+- Addressed relevant security vulnerabilities (CVEs).
+- Now honors `proxy.mode=none` when `https_proxy` is set in the environment.
+- Fixed a memory leak in the cpprestsdk `zero_memory_deleter` path.
 
 ## May 2026
 
