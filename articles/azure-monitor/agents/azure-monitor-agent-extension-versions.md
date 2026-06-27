@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 06/01/2026
+ms.date: 06/26/2026
 ms.custom: references_region
 ms.reviewer: jeffwo
 ai-usage: ai-assisted
@@ -45,6 +45,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 | Date | Windows | Linux | Metrics | Highlights |
 |---|---|---|---|---|
+| [June 2026](#june-2026) | — | 1.42 | — | Agent health telemetry, read-only tenant mode, performance improvements |
 | [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
 | [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
 | [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
@@ -93,6 +94,33 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 | [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
 | [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
 | [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
+
+## June 2026
+
+**Versions:** Linux 1.42
+
+### Linux
+
+- Added agent health telemetry to the `AMAHealth` table for non-Microsoft Azure Monitor customers, including rows sent and dropped on upload paths and disk-usage metrics, with 1-minute and 5-minute aggregations.
+- Added a tenant directory read-only mode that skips Azure Resource Manager-based tenants and syslog configuration.
+- Added Linux network snapshot events `LinuxAsmNwIBSnapshot` and `LinuxAsmNwOBSnapshot`.
+- Added `SupportedArchitectures` to the Linux AMA manifest.
+- Added Quality of Service (QoS) telemetry for the agent-side data filter and transformation interfaces.
+- Improved local filter performance in in-memory and persistence modes with queue-depth limits and backpressure tuning to reduce event latency.
+- Improved agent-side transformation throughput and latency, including a failover path that avoids an extra msgpack/socket round-trip and uses a dedicated failover socket.
+- Added a service-state check before invoking `systemctl start` or `systemctl enable` to avoid unnecessary calls.
+- Changed the `which` package dependency from required to recommended for SUSE 16 compatibility.
+- Honored `proxy.mode=none` when `https_proxy` is set.
+- Fixed duplicate port conflicts when AMA Core Agent launches in multitenant mode.
+- Fixed a potential data race in the hostname task by serializing hostname access.
+- Fixed a memory leak in the cpprestsdk `zero_memory_deleter` path.
+- Fixed tenant config parsing to handle `export`-prefixed lines, log a message, and skip the line instead of failing.
+- Fixed socket management that could cause intermittent connection failures and data delivery issues when the AST extension reconnects.
+- Fixed `StartAMACoreAgentDirect` to pass the `--amacalog` argument so AMA Core Agent logs are written to the expected location.
+- Updated AMACA version to 3.0.82.
+- Updated MetricsExtension version to 2.20260504.84237.
+- Updated AST extension version to 2.0.5.
+- Updated AzureOtelCollector version to 1.20260401.153114.
 
 ## May 2026
 
