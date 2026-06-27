@@ -103,7 +103,7 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 
 - Improved performance in the agent-side filter and transformation path, including queue-depth-based backpressure, faster output dispatch, and a direct in-process failover path that avoids an extra msgpack/socket round-trip.
 - Azure Monitor Agent now checks the current service state before invoking `systemctl start` or `systemctl enable`, which avoids unnecessary calls during installation and upgrade.
-- Relaxed the `which` package dependency from required to recommended so installation succeeds on SUSE 16 systems.
+- Added SUSE 16 compatibility. The `which` package dependency is relaxed from required to recommended so installation now succeeds on SUSE 16 systems.
 - Updated Metrics Extension to 2.20260504.84237.
 - Updated Azure OpenTelemetry Collector component to 1.20260401.153114.
 - Addressed relevant security vulnerabilities (CVEs).
