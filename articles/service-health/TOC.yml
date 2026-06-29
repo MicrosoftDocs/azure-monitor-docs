@@ -24,6 +24,8 @@
       href: service-health-event-properties.md
     - name: Service Health data transitions
       href: service-health-notification-transitions.md
+    - name: Service Health guidance for alerting retirements
+      href: service-retirement-alerting-guidance.md
     - name: Service issues
       items:
        - name: Service issues overview
