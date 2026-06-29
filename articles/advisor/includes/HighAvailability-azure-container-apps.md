@@ -142,7 +142,7 @@ Subcategory: ServiceUpgradeAndRetirement
 
 #### Transition to Azure managed services or open-source quick starts  
   
-The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (e.g., Azure Managed Redis, Azure Database for PostgreSQL) or use open source quickstarts for dev/test purposes.  
+The public preview add-ons feature in Azure Container Apps is retiring. Move to Azure managed services (for example, Azure Managed Redis, Azure Database for PostgreSQL) or use open-source quickstarts for dev/test purposes.  
   
 **Potential benefits**: Avoid service disruption  
 
