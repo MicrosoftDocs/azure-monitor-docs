@@ -92,6 +92,8 @@
   items:
     - name: How to report an impact
       href: report-issue.md
+    - name: How to identify impacted resources for service retirements with ARG
+      href: service-retirement-unified-impact-queries.md
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
