@@ -24,6 +24,8 @@
       href: service-health-event-properties.md
     - name: Service Health data transitions
       href: service-health-notification-transitions.md
+    - name: Service Health guidance for alerting retirements
+      href: service-retirement-alerting-guidance.md
     - name: Service issues
       items:
        - name: Service issues overview
@@ -90,6 +92,8 @@
   items:
     - name: How to report an impact
       href: report-issue.md
+    - name: How to identify impacted resources for service retirements with ARG
+      href: service-retirement-unified-impact-queries.md
     - name: How to create and send Service health alerts
       items:
         - name: How to create Service health alerts
