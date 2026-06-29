@@ -108,10 +108,10 @@ New-AzDiagnosticSetting -Name 'KeyVault-Diagnostics' -ResourceId $KV.ResourceId 
 
 ### [CLI](#tab/cli)
 
-Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a diagnostic setting via the [Azure CLI](/cli/azure/monitor). For descriptions of parameters, see the documentation for this command.
+Use the [az monitor diagnostic-settings create](/cli/azure/monitor/diagnostic-settings#az-monitor-diagnostic-settings-create) command to create a resource-scope diagnostic setting via the [Azure CLI](/cli/azure/monitor). For descriptions of parameters, see the documentation for this command.
 
 > [!IMPORTANT]
-> You can't use this method for an activity log. Instead, create an [Azure Resource Manager template](resource-manager-diagnostic-settings.md) and deploy it by using the Azure CLI.
+> To export the activity log by using Azure CLI, create or update a subscription-scope diagnostic setting with [az monitor diagnostic-settings subscription create](/cli/azure/monitor/diagnostic-settings/subscription#az-monitor-diagnostic-settings-subscription-create) or [az monitor diagnostic-settings subscription update](/cli/azure/monitor/diagnostic-settings/subscription#az-monitor-diagnostic-settings-subscription-update).
 
 The following example script creates a diagnostic setting that sends data to all three destinations. To specify [resource-specific mode](resource-logs.md#resource-specific) if the service supports it, add the `export-to-resource-specific` parameter with a value of `true`.
 
