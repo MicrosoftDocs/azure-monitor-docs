@@ -14,7 +14,7 @@ ms.custom: devx-track-azurepowershell
 
 # Manage table-level access in a Log Analytics workspace
 
-Manage table-level accessin a Log Analytics workspace using role-based access control (RBAC). This article references all the methods, even though only two options are recommended: protected tables or granular RBAC.
+Manage table-level access in a Log Analytics workspace by using role-based access control (RBAC). This article references all the methods, even though only two options are recommended: protected tables or granular RBAC.
 
 - [Protected tables (Recommended)](#configure-protected-tables)
 - [Granular RBAC (Recommended)](#configure-granular-rbac-for-table-level-access)
