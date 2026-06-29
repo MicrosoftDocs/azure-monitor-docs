@@ -4,7 +4,7 @@ description: Learn how to change Azure Monitor Agent configuration settings, inc
 ms.topic: install-set-up-deploy
 ms.date: 04/07/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 
 ---
 

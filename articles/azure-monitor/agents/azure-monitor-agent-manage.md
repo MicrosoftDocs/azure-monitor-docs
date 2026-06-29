@@ -4,7 +4,7 @@ description: Learn options for installing and managing the Azure Monitor Agent o
 ms.topic: install-set-up-deploy
 ms.date: 05/26/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 
 ---
 
