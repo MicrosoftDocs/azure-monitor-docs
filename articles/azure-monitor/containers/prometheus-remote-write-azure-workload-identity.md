@@ -170,6 +170,9 @@ az ad app federated-credential create --id ${APPLICATION_OBJECT_ID} --parameters
 
 ### Deploy a sidecar container to set up remote write
 
+> [!NOTE]
+> Effective March 31, 2027, Azure Monitor won't support the sidecar-based remote-write solution for sending Prometheus metrics to Azure Monitor Workspace. Configure self-hosted Prometheus or Prometheus Operator to remote-write directly to Azure Monitor Workspace without using a sidecar. For guidance, see [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md).
+
 > [!IMPORTANT]
 >
 >The Prometheus pod must have the following label: `azure.workload.identity/use: "true"`

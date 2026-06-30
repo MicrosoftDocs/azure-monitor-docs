@@ -4,7 +4,6 @@ description: Configuration schema reference for Windows diagnostics extension (W
 ms.topic: reference
 ms.date: 04/07/2026
 ms.reviewer: shseth, nmangum
-ms.custom: sfi-guid-flagged
 ---
 
 # Windows diagnostics extension schema
@@ -391,7 +390,7 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
                     {
                         "scheduledTransferPeriod": "PT2M",
                         "scheduledTransferLogLevelFilter": "Information",
-                        "provider": "5974b00b-84c2-44bc-9e58-3a2451b4e3ad",
+                        "provider": "00000000-0000-0000-0000-000000000000",
                         "Event": [
                             {
                                 "id": 0
@@ -574,7 +573,7 @@ The *PublicConfig* and *PrivateConfig* are separated because in most JSON usage 
             <Event id="1" eventDestination="errorTable"/>
             <DefaultEvents />
           </EtwEventSourceProviderConfiguration>
-          <EtwManifestProviderConfiguration provider="5974b00b-84c2-44bc-9e58-3a2451b4e3ad" scheduledTransferLogLevelFilter="Information" scheduledTransferPeriod="PT2M">
+          <EtwManifestProviderConfiguration provider="00000000-0000-0000-0000-000000000000" scheduledTransferLogLevelFilter="Information" scheduledTransferPeriod="PT2M">
             <Event id="0"/>
             <DefaultEvents eventDestination="defaultTable"/>
           </EtwManifestProviderConfiguration>
