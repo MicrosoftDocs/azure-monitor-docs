@@ -4,7 +4,7 @@ description: Guidance for troubleshooting issues on Windows Arc-enabled server w
 ms.topic: troubleshooting-general
 ms.date: 04/09/2026
 ms.custom: references_region
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 ---
 
 # Troubleshooting guidance for the Azure Monitor agent on Windows Arc-enabled server

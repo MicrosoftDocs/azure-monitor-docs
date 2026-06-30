@@ -4,7 +4,7 @@ description: Guidance for troubleshooting issues on Linux virtual machines, scal
 ms.topic: troubleshooting-general
 ms.date: 04/09/2026
 ms.custom: references_region, linux-related-content
-ms.reviewer: shseth
+ms.reviewer: shseth, nmangum
 ---
 
 # Troubleshooting guidance for the Azure Monitor agent on Linux virtual machines and scale sets

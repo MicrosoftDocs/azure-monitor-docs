@@ -4,7 +4,7 @@ description: Describe the symptoms, causes, and resolution for the most common i
 ms.topic: troubleshooting-general
 ms.custom: devx-track-azurecli
 ms.date: 12/16/2025
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 ---
 
 # Troubleshoot issues with the Log Analytics agent for Windows

@@ -5,7 +5,7 @@ ms.topic: install-set-up-deploy
 ms.date: 02/24/2026
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
-ms.reviewer: luki
+ms.reviewer: shseth, nmangum
 ---
 # Install and configure the Azure Diagnostics extension for Windows (WAD)
 
