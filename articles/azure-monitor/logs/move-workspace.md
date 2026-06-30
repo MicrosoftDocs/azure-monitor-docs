@@ -54,7 +54,7 @@ This article explains how to move a Log Analytics workspace to another resource 
 > - **Microsoft Sentinel**: The workspace is offboarded from Microsoft Sentinel immediately. To restore Sentinel, [re-onboard the workspace to Microsoft Sentinel](/azure/sentinel/quickstart-onboard) within 90 days to preserve your existing Microsoft Sentinel data.
 > - **SIEM in Microsoft Defender**: SIEM workspaces in Microsoft Defender are disconnected immediately. [Reconnect Microsoft Sentinel to the Microsoft Defender portal](/unified-secops/microsoft-sentinel-onboard) after the move.
 >
-> If you've already moved the workspace and rules aren't firing, disable all active rules under **Analytics** and reenable them after five minutes.
+> If you already moved the workspace and rules aren't firing, disable all active rules under **Analytics** and reenable them after five minutes.
 
 ## Verify the Microsoft Entra tenant
 The workspace source and destination subscriptions must exist within the same Microsoft tenant. Use Azure PowerShell to verify that both subscriptions have the same Entra tenant ID.
