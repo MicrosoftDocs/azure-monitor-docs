@@ -2,7 +2,7 @@
 title: Create Azure Monitor log search alert rules
 description: This article explains how to create a new Azure Monitor log search alert rule or edit an existing rule.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 06/30/2026
 ms.reviewer: 
 
 #customer intent: As a customer, I want to create a new log search alert rule or edit an existing rule so that I can monitor my resources and receive alerts when certain conditions are met.
@@ -102,6 +102,8 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 1. <a name="dimensions"></a>(Optional) In the **Split by dimensions** section, you can use dimensions to help provide context for the triggered alert.
 
     Dimensions are columns from your query results that contain additional data. When you use dimensions, the alert rule groups the query results by the dimension values and evaluates the results of each group separately. If the condition is met, the rule fires an alert for that group. The alert payload includes the combination that triggered the alert.
+
+    Avoid using changing metric values, timestamps, GUIDs, or other high-cardinality/volatile values as split-by dimensions. Each unique dimension combination is evaluated as a separate alert. If a dimension value changes on every evaluation, Azure Monitor treats each result as a new alert instance, and features such as mute actions won’t suppress notifications across those instances.
 
     You can apply up to six dimensions per alert rule. Dimensions can be only string or numeric columns. If you want to use a column that isn't a number or string type as a dimension, you must convert it to a string or numeric value in your query. If you select more than one dimension value, each time series that results from the combination triggers its own alert and is charged separately.
 
