@@ -1,7 +1,7 @@
 ---
 title: Collect Windows scale set metrics in Azure Monitor with template
 description: Send guest OS metrics to the Azure Monitor metric store by using an Azure Resource Manager template for a Windows virtual machine scale set.
-ms.reviewer: shijain
+ms.reviewer: shseth, nmangum
 ms.topic: how-to
 ms.custom: devx-track-arm-template, sfi-guid-flagged
 ms.date: 02/24/2026

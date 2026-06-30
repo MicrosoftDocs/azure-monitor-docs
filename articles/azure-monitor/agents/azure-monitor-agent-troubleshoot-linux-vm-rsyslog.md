@@ -4,7 +4,7 @@ description: Guidance for troubleshooting rsyslog issues on Linux virtual machin
 ms.topic: troubleshooting-general
 ms.date: 04/09/2026
 ms.custom: references_region, linux-related-content
-ms.reviewer: shseth
+ms.reviewer: shseth, nmangum
 
 #customer intent: As a Linux VM administrator, I want to troubleshoot syslog data collection issues with Azure Monitor Agent so that I can identify and resolve why events aren't reaching my Log Analytics workspace.
 ---

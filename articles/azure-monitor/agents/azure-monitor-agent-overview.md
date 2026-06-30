@@ -4,7 +4,7 @@ description: Get an overview of the Azure Monitor Agent. Learn how you can use t
 ms.topic: concept-article
 ms.date: 04/09/2026
 ms.custom: references_regions
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 
 # Customer intent: As an IT manager, I want to understand the capabilities of the Azure Monitor Agent to determine whether I can use the agent to collect the data I need from the operating systems of my virtual machines.
 

@@ -3,7 +3,7 @@ title: Send Azure Diagnostics data to Application Insights
 description: Update the Azure Diagnostics public configuration to send data to Application Insights.
 ms.topic: how-to
 ms.date: 02/24/2026
-ms.reviewer: JeffWo
+ms.reviewer: shseth, nmangum
 ---
 
 # Send Cloud Service, Virtual Machine, or Service Fabric diagnostic data to Application Insights
