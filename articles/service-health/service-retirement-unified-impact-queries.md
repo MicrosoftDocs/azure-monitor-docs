@@ -16,7 +16,9 @@ This article explains what to do when your workflow starts from a Service Health
 | Join   | Azure Resource Graph | Correlates the signal with remediation data          |
 | Action | Azure Advisor        | Identifies impacted resources and guidance           |
 
-Azure Resource Graph serves as the supported integration point between service lifecycle awareness and execution.
+Azure Resource Graph serves as the supported integration point between service lifecycle awareness and execution. 
+
+For more information about Resource Graph queries refer to [Resource Graph Overview](azure-resource-graph-overview.md). 
 
 ## When to use ARG vs. Advisor API
 - Use **ARG** when your workflow starts from a Service Health retirement tracking ID and you need to correlate that signal to impacted resources across subscriptions.
