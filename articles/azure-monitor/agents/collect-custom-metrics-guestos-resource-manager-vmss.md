@@ -164,6 +164,7 @@ The following code from the MSI extension also adds the diagnostics extension an
                   ],
                   "EtwManifestProviderConfiguration": [
                     {
+                       // Microsoft-ServiceFabric ETW provider GUID (public, defined in the Service Fabric runtime)
                        "provider": "cbd93bc2-71e5-4566-b3a7-595d8eeca6e8",
                        "scheduledTransferLogLevelFilter": "Information",
                        "scheduledTransferKeywordFilter": "4611686018427387904",
