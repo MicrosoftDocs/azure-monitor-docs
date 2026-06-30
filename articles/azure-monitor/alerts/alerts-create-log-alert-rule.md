@@ -103,7 +103,7 @@ Alerts triggered by these alert rules contain a payload that uses the [common al
 
     Dimensions are columns from your query results that contain additional data. When you use dimensions, the alert rule groups the query results by the dimension values and evaluates the results of each group separately. If the condition is met, the rule fires an alert for that group. The alert payload includes the combination that triggered the alert.
 
-    Avoid using changing metric values, timestamps, GUIDs, or other high-cardinality/volatile values as split-by dimensions. Each unique dimension combination is evaluated as a separate alert. If a dimension value changes on every evaluation, Azure Monitor treats each result as a new alert instance, and features such as mute actions won’t suppress notifications across those instances.
+Avoid using changing metric values, timestamps, GUIDs, or other high-cardinality or volatile values as split-by dimensions. Azure Monitor evaluates each unique dimension combination as a separate alert. If a dimension value changes on every evaluation, Azure Monitor treats each result as a new alert instance, and features such as mute actions don't suppress notifications across those instances.
 
     You can apply up to six dimensions per alert rule. Dimensions can be only string or numeric columns. If you want to use a column that isn't a number or string type as a dimension, you must convert it to a string or numeric value in your query. If you select more than one dimension value, each time series that results from the combination triggers its own alert and is charged separately.
 
