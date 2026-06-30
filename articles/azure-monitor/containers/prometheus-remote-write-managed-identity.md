@@ -115,7 +115,7 @@ This step isn't required if you're using an AKS identity. An AKS identity alread
 ### Deploy a sidecar container to set up remote write
 
 > [!NOTE]
-> Effective March 31, 2027, Azure Monitor will not support the sidecar-based remote-write solution for sending Prometheus metrics to Azure Monitor Workspace. Configure self-hosted Prometheus or Prometheus Operator to remote-write directly to Azure Monitor Workspace without using a sidecar. For guidance, see [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md).
+> Effective March 31, 2027, Azure Monitor won't support the sidecar-based remote-write solution for sending Prometheus metrics to Azure Monitor Workspace. Configure self-hosted Prometheus or Prometheus Operator to remote-write directly to Azure Monitor Workspace without using a sidecar. For guidance, see [Connect self-managed Prometheus to Azure Monitor managed service for Prometheus](../metrics/prometheus-remote-write.md).
 
 1. Copy the following YAML and save it to a file. The YAML uses port 8081 as the listening port. If you use a different port, modify the port in the YAML.
 
