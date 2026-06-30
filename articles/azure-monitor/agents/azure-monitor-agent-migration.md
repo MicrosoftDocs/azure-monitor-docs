@@ -3,6 +3,7 @@ title: Log Analytics Agent Migration
 description: Learn how to migrate from the Log Analytics agent (MMA/OMS) to Azure Monitor Agent (AMA), including prerequisites, migration tools, and validation steps.
 ms.topic: upgrade-and-migration-article
 ms.date: 05/08/2026
+ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
 
 # Customer intent: As an Azure administrator, I want to migrate from the Log Analytics agent to Azure Monitor Agent so that I can continue collecting monitoring data using a supported agent.

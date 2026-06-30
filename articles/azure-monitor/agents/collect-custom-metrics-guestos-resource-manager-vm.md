@@ -1,7 +1,7 @@
 ---
 title: Send Windows VM guest OS metrics with an ARM template
 description: Send guest OS metrics to the Azure Monitor metric database store by using a Resource Manager template for a Windows virtual machine.
-ms.reviewer: shijain
+ms.reviewer: shseth, nmangum
 ms.topic: how-to
 ms.custom: devx-track-arm-template
 ms.date: 02/24/2026

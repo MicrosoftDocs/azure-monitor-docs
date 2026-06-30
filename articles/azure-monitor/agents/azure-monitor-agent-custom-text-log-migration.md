@@ -3,6 +3,7 @@ title: Migrate from Log Analytics Agent Custom Log Table to Azure Monitor Agent 
 description: Learn the steps to migrate from Log Analytics agent custom log table to Azure Monitor Agent DCR-based custom log table.
 ms.topic: upgrade-and-migration-article
 ms.date: 04/07/2026
+ms.reviewer: shseth, nmangum
 ms.custom: ai-assisted
 ---
 

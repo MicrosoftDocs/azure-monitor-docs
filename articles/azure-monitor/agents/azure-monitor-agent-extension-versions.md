@@ -4,7 +4,7 @@ description: Release notes and version history for the Azure Monitor Agent virtu
 ms.topic: release-notes
 ms.date: 06/26/2026
 ms.custom: references_region
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
 # customer intent: As a cloud administrator, I want to know the version history of the Azure Monitor Agent extension so that I can manage updates and compatibility.
 ---

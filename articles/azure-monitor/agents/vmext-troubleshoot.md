@@ -4,6 +4,7 @@ description: Describe the symptoms, causes, and resolution for the most common i
 ms.topic: troubleshooting-general
 ms.custom: linux-related-content
 ms.date: 04/09/2026
+ms.reviewer: shseth, nmangum
 ---
 
 # Troubleshoot the Log Analytics VM extension in Azure Monitor

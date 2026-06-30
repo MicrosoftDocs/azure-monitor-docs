@@ -4,7 +4,7 @@ description: Learn how to define network settings and enable network isolation f
 ms.topic: how-to
 ms.date: 05/11/2026
 ms.custom: references_regions
-ms.reviewer: shseth
+ms.reviewer: shseth, nmangum
 
 ---
 # Azure Monitor Agent network configuration

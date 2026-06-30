@@ -3,7 +3,7 @@ title: Windows diagnostics extension schema
 description: Configuration schema reference for Windows diagnostics extension (WAD) in Azure Monitor.
 ms.topic: reference
 ms.date: 04/07/2026
-ms.reviewer: luki
+ms.reviewer: shseth, nmangum
 ms.custom: sfi-guid-flagged
 ---
 

@@ -4,7 +4,7 @@ description: Detailed instructions on using the Linux agent troubleshooter tool 
 ms.topic: troubleshooting-general
 ms.date: 04/09/2026
 ms.custom: references_regions, linux-related-content
-ms.reviewer: jeffwo
+ms.reviewer: shseth, nmangum
 # Customer intent: When AMA is experiencing issues, I want to investigate the issues and determine if I can resolve the issue on my own.
 ---
 
