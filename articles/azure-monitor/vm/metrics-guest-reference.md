@@ -252,7 +252,7 @@ Linux performance counters collected by Azure Monitor Agent, grouped by category
 
 The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. The Azure Monitor team is actively engaging with the open-source community to improve and standardize this naming convention for a variety of scenarios. Share your feedback to help continuously improve your experience.
 
-In general, when you collect OpenTelemetry metrics by using Azure Monitor Agent and Data Collection Rules and send them to Azure Monitor workspaces, the solution automatically adds the following cloud resource attributes as dimensions to support resource-scoped querying:
+When you collect OpenTelemetry metrics by using Azure Monitor Agent and Data Collection Rules and send them to Azure Monitor workspaces, the solution automatically adds the following cloud resource attributes as dimensions to support resource-scoped querying:
 * Microsoft.resourceid
  * Microsoft.subscriptionid
  * Microsoft.resourcegroupname
