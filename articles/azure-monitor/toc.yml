@@ -396,7 +396,17 @@ items:
       - name: Reference
         displayName: OpenTelemetry, metrics, performance counters
         href: vm/metrics-guest-reference.md
-    - name: Map feature (deprecated)
+  - name: Map feature (deprecated)
+    items:
+    - name: Overview
+      href: vm/vminsights-maps.md
+    - name: Retirement guidance
+      displayName: processes and dependencies, map, vminsights, dependency agent
+      href: vm/vminsights-maps-retirement.md
+    - name: Migrate policy assignments
+      displayName: dependency agent, policy, initiative, retirement
+      href: vm/dependency-agent-migrate-policy.md
+    - name: Dependency agent
       items:
       - name: Overview
         href: vm/vminsights-maps.md
