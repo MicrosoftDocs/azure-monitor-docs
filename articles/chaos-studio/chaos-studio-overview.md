@@ -31,7 +31,7 @@ To create your first Workspace and run a Scenario, see [Quickstart: Create a Wor
 
 Experiments are the classic Chaos Studio model. An experiment gives you direct control over steps, branches, actions, targets, and selectors. Any experiments you already have remain fully supported and run exactly as before.
 
-For new resilience testing, we recommend starting with Workspaces and Scenarios. When a supported Scenario template doesn't match the outage pattern you need, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario) to customize a Scenario — you don't need to build an experiment from scratch.
+For new resilience testing, start with Workspaces and Scenarios. When a supported Scenario template doesn't match the outage pattern you need, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario) to customize a Scenario. You don't need to build an experiment from scratch.
 
 Chaos Studio supports two types of faults:
 
