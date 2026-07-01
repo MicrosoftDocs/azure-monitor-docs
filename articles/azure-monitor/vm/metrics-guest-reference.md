@@ -2,21 +2,26 @@
 title: OpenTelemetry Guest OS Metrics reference (preview)
 description: List of OpenTelemetry metrics collected by default from Windows and Linux virtual machines by Azure Monitor Agent.
 ms.topic: concept-article
-ms.date: 03/12/2026
+ms.date: 07/01/2026
 ms.reviewer: tylerkight
 ---
 
 # OpenTelemetry Guest OS Metrics reference (preview)
 
-## Performance counters 
+This article lists the performance counters that Azure Monitor Agent collects from Windows and Linux virtual machines, along with the OpenTelemetry resource attributes that are automatically added to those metrics. Use it as a reference when you configure a data collection rule (DCR) or explore metrics in Azure Monitor Metrics Explorer.
 
-Azure Monitor Agent collects the following performance counters for Windows and Linux virtual machines. The default sampling frequency is 60 seconds, but you can change this frequency when you create or update the data collection rule.
+## Performance counters
 
-### [OpenTelemetry](#tab/OpenTelemetry)
+Azure Monitor Agent collects performance counters for Windows and Linux virtual machines through two paths:
 
-The following sections list the OpenTelemetry counters collected by Azure Monitor Agent, grouped by category.
+* **OpenTelemetry counters** (recommended for new deployments). Grouped below by namespace: CPU, process, disk, memory, network, system, paging, and filesystem.
+* **Legacy Windows and Linux performance counters** (for VM Insights or DCR configurations that use the classic counter model). Grouped by operating system at the end of this section.
 
-#### CPU
+The default sampling frequency is 60 seconds. You can change this frequency when you create or update the data collection rule.
+
+### OpenTelemetry CPU counters
+
+CPU counters cover `system.cpu.utilization` and `system.cpu.time` (broken down by CPU state and logical CPU), the physical and logical CPU counts (`system.cpu.physical.count`, `system.cpu.logical.count`), the 1-minute, 5-minute, and 15-minute load averages (`system.cpu.load_average.1m`, `system.cpu.load_average.5m`, `system.cpu.load_average.15m`), and the current CPU frequency (`system.cpu.frequency`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -29,7 +34,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.cpu.load_average.15m | Gauge | {thread} | N/A | FALSE | *(none)* | Average CPU Load over 15 minutes. |
 | system.cpu.frequency | Gauge | Hz | N/A | FALSE | *(none)* | Current frequency of the CPU core in Hz. |
 
-#### Process
+### OpenTelemetry process counters — runtime, threads, and faults
+
+Runtime and lifecycle metrics for individual processes: uptime (`process.uptime`), thread count (`process.threads`), pending signal count (`process.signals_pending`, Linux only), paging fault count (`process.paging.faults`, Linux only), open file descriptor count (`process.open_file_descriptors`), open handle count (`process.handles`, Windows only), and context switch count (`process.context_switches`, Linux only).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -38,17 +45,26 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | process.signals_pending | Sum | {signals} | Cumulative | FALSE | *(none)* | Number of pending signals for the process (Linux only). |
 | process.paging.faults | Sum | {faults} | Cumulative | TRUE | **type**: Type of fault (values: major, minor) | Number of page faults the process has made (Linux only). |
 | process.open_file_descriptors | Sum | {count} | Cumulative | FALSE | *(none)* | Number of file descriptors in use by the process. |
+| process.handles | Sum | {count} | Cumulative | FALSE | *(none)* | Number of open handles (Windows only). |
+| process.context_switches | Sum | {count} | Cumulative | TRUE | **type**: Type of context switch (values: Any Str) | Number of times the process has been context switched (Linux only). |
+
+### OpenTelemetry process counters — CPU, memory, and I/O
+
+Resource-usage metrics for individual processes: virtual memory size (`process.memory.virtual`), percentage of physical memory used (`process.memory.utilization`), physical memory in use (`process.memory.usage`), disk operation count and byte throughput (`process.disk.operations`, `process.disk.io`), percentage of CPU time (`process.cpu.utilization`), and total CPU seconds broken down by state (`process.cpu.time`).
+
+| Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
+|--------------------------|------|-------------|-----------|------|------------|-------|
 | process.memory.virtual | Sum | By | Cumulative | FALSE | *(none)* | Virtual memory size. |
 | process.memory.utilization | Gauge | 1 | N/A | FALSE | *(none)* | Percentage of total physical memory used by the process. |
 | process.memory.usage | Sum | By | Cumulative | FALSE | *(none)* | Amount of physical memory in use. |
-| process.handles | Sum | {count} | Cumulative | FALSE | *(none)* | Number of open handles (Windows only). |
 | process.disk.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk operations performed by the process. |
 | process.disk.io | Sum | By | Cumulative | TRUE | **direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
 | process.cpu.utilization | Gauge | 1 | N/A | FALSE | **state**: Breakdown of CPU usage (values: system, user, wait) | Percentage of total CPU time used by the process since last scrape (0–1). |
 | process.cpu.time | Sum | s | Cumulative | TRUE | **state**: Breakdown of CPU usage (values: system, user, wait) | Total CPU seconds broken down by states. |
-| process.context_switches | Sum | {count} | Cumulative | TRUE | **type**: Type of context switch (values: Any Str) | Number of times the process has been context switched (Linux only). |
 
-#### Disk
+### OpenTelemetry disk counters
+
+Disk activity metrics per device: total bytes transferred (`system.disk.io`), operation count and elapsed time (`system.disk.operations`, `system.disk.operation_time`), pending queue depth (`system.disk.pending_operations`), merged operation count (`system.disk.merged`), total activation time (`system.disk.io_time`), and queue-length-weighted activation time (`system.disk.weighted_io_time`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -60,7 +76,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.disk.io_time | Sum | s | Cumulative | TRUE | **device**: Name of the disk (values: Any Str) | Time disk spent activated. |
 | system.disk.io | Sum | By | Cumulative | TRUE | **device**: Name of the disk (values: Any Str)<br>**direction**: Direction of flow (values: read, write) | Disk bytes transferred. |
 
-#### Memory
+### OpenTelemetry memory counters
+
+Memory usage and configuration metrics: byte and percentage utilization broken down by memory state (`system.memory.usage`, `system.memory.utilization`), configured page size (`system.memory.page_size`), total available memory (`system.memory.limit`), and Linux-specific dirty and available memory estimates (`system.linux.memory.dirty`, `system.linux.memory.available`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -71,7 +89,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.linux.memory.dirty | Sum | By | Cumulative | FALSE | *(none)* | Amount of dirty memory (/proc/meminfo). |
 | system.linux.memory.available | Sum | By | Cumulative | FALSE | *(none)* | Estimate of available memory (Linux only). |
 
-#### Network
+### OpenTelemetry network counters
+
+Network activity metrics per interface: packet count (`system.network.packets`), byte throughput (`system.network.io`), error count (`system.network.errors`), dropped packet count (`system.network.dropped`), conntrack table entry count and limit (`system.network.conntrack.count`, `system.network.conntrack.max`), and open connection count broken down by protocol and state (`system.network.connections`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -83,7 +103,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.network.conntrack.count | Sum | {entries} | Cumulative | FALSE | *(none)* | Count of entries in conntrack table. |
 | system.network.connections | Sum | {connections} | Cumulative | FALSE | **protocol**: Network protocol (values: tcp)<br>**state**: Connection state (values: Any Str) | Number of connections. |
 
-#### System
+### OpenTelemetry system counters
+
+System-wide metrics: total uptime (`system.uptime`), total processes created (`system.processes.created`), and current process counts broken down by state (`system.processes.count`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -91,7 +113,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.processes.created | Sum | {processes} | Cumulative | TRUE | *(none)* | Total number of created processes. |
 | system.processes.count | Sum | {processes} | Cumulative | FALSE | **status**: Process status (values: blocked, daemon, detached, idle, locked, orphan, paging, running, sleeping, stopped, system, unknown, zombies) | Total number of processes in each state. |
 
-#### Paging
+### OpenTelemetry paging counters
+
+Swap (Unix) or pagefile (Windows) metrics include byte usage and percentage utilization (`system.paging.usage`, `system.paging.utilization`), paging operation count broken down by direction and fault type (`system.paging.operations`), and total page fault count (`system.paging.faults`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -100,7 +124,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.paging.operations | Sum | {operations} | Cumulative | TRUE | **direction**: Page flow (values: page_in, page_out)<br>**type**: Fault type (values: major, minor) | Paging operations. |
 | system.paging.faults | Sum | {faults} | *(none)* | TRUE | **type**: Fault type (values: major, minor) | Number of page faults. |
 
-#### Filesystem
+### OpenTelemetry filesystem counters
+
+Filesystem usage per mounted device includes the fraction of bytes used (`system.filesystem.utilization`), total bytes used broken down by usage state (`system.filesystem.usage`), and inode count broken down by usage state (`system.filesystem.inodes.usage`).
 
 | Performance Counter | Type | Unit | Aggregation | Monotonic | Dimensions | Description |
 |--------------------------|------|-------------|-----------|------|------------|-------|
@@ -108,9 +134,13 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | system.filesystem.usage | Sum | By | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem bytes used. |
 | system.filesystem.inodes.usage | Sum | {inodes} | Cumulative | FALSE | **device**: Filesystem identifier<br>**mode**: Mount mode<br>**mountpoint**: Path<br>**type**: Filesystem type<br>**state**: Usage type (values: free, reserved, used) | Filesystem inodes used. |
 
+### Legacy Windows and Linux performance counters
+
+For VM Insights or DCR configurations that use the classic Windows and Linux performance counter model instead of OpenTelemetry, select the operating system tab.
+
 ### [Windows](#tab/windows)
 
-###   Windows performance counters
+Windows performance counters collected by Azure Monitor Agent, grouped by category.
 
 | Performance Counter | Category |
 |---------|----------|
@@ -161,10 +191,9 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 | \\Network Interface(*) \\Packets Outbound Errors  | Network  |
 | \\Network Interface(*) \\Packets Received Errors  | Network  |
 
-
 ### [Linux](#tab/linux)
 
-### Linux performance counters
+Linux performance counters collected by Azure Monitor Agent, grouped by category.
 
 | Performance counter | Category |
 |---------------------|----------|
@@ -219,32 +248,31 @@ The following sections list the OpenTelemetry counters collected by Azure Monito
 
 ---
 
+## Resource attributes
 
-## Resource Attributes
+The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. The Azure Monitor team is actively engaging with the open-source community to improve and standardize this naming convention for a variety of scenarios. Share your feedback to help continuously improve your experience.
 
-The OpenTelemetry [Resource semantic convention](https://opentelemetry.io/docs/specs/semconv/resource/) is still in development. We are actively engaging with the OSS community to improve and standardize this naming convention for a variety of scenarios - please share your feedback to help us continuously improve your experience.
-
-In general, OpenTelemetry metrics collected via Azure Monitor Agent + Data Collection Rules and sent to Azure Monitor workspaces have the following cloud resource attributes automatically added as dimensions to support resource-scoped querying:
+In general, when you collect OpenTelemetry metrics by using Azure Monitor Agent and Data Collection Rules and send them to Azure Monitor workspaces, the solution automatically adds the following cloud resource attributes as dimensions to support resource-scoped querying:
 * Microsoft.resourceid
  * Microsoft.subscriptionid
  * Microsoft.resourcegroupname
  * Microsoft.resourcetype
  * Microsoft.amwresourceid
 
-OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#process) have their own special set of [Resource Attributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#resource-attributes). The table shows those resource attributes that the Azure Monitor Agent automatically promotes as dimensions.
+OpenTelemetry [**per-process** metrics](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#process) have their own special set of [Resource Attributes](https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/receiver/hostmetricsreceiver/internal/scraper/processscraper/documentation.md#resource-attributes). The following table shows those resource attributes that the Azure Monitor Agent automatically promotes as dimensions.
 
 | Name | Description | Values | Enabled | 
 |------|-------------|--------|---------|
-| process.command | The command used to launch the process (i.e., the command name). On Linux-based systems, can be set to the zeroth string in `proc/[pid]/cmdline`. On Windows, can be set to the first parameter extracted from `GetCommandLineW`. | Any Str | true |
- process.executable.name  | The name of the process executable. On Linux-based systems, can be set to the `Name` in `proc/[pid]/status`. On Windows, can be set to the base name of `GetProcessImageFileNameW`. | Any Str | true |
+| process.command | The command used to launch the process (that is, the command name). On Linux-based systems, set to the zeroth string in `proc/[pid]/cmdline`. On Windows, set to the first parameter extracted from `GetCommandLineW`. | Any Str | true |
+ | process.executable.name  | The name of the process executable. On Linux-based systems, set to the `Name` in `proc/[pid]/status`. On Windows, set to the base name of `GetProcessImageFileNameW`. | Any Str | true |
 | process.owner            | The username of the user that owns the process. | Any Str | true |
 | process.pid              | Process identifier (PID). | Any Int | true |
 | process.cgroup           | cgroup associated with the process (Linux only). | Any Str | false |
-| process.command_line     | The full command used to launch the process as a single string representing the full command. On Windows, can be set to the result of `GetCommandLineW`. Do not set this if you have to assemble it just for monitoring; use `process.command_args` instead. | Any Str | false |
-| process.executable.path  | The full path to the process executable. On Linux-based systems, can be set to the target of `proc/[pid]/exe`. On Windows, can be set to the result of `GetProcessImageFileNameW`. | Any Str | false |
+| process.command_line     | The full command used to launch the process as a single string representing the full command. On Windows, set to the result of `GetCommandLineW`. Don't set this attribute if you have to assemble it just for monitoring. Use `process.command_args` instead. | Any Str | false |
+| process.executable.path  | The full path to the process executable. On Linux-based systems, set to the target of `proc/[pid]/exe`. On Windows, set to the result of `GetProcessImageFileNameW`. | Any Str | false |
 | process.parent_pid | Parent Process Identifier (PPID). | Any Int | false |
 
-The process.command_line attribute can contain extremely long strings with thousands of characters, making it unsuitable as a normal metric dimension. We might find a different way to surface this attribute based on customer user scenarios submitted as feedback to the product team.
+The `process.command_line` attribute can contain extremely long strings with thousands of characters, making it unsuitable as a normal metric dimension. The product team might find a different way to surface this attribute based on customer user scenarios submitted as feedback.
 
 
 ## Next steps

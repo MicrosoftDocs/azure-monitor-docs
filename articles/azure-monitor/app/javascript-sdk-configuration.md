@@ -2,7 +2,7 @@
 title: Microsoft Azure Monitor Application Insights JavaScript SDK configuration
 description: Microsoft Azure Monitor Application Insights JavaScript SDK configuration.
 ms.topic: how-to
-ms.date: 06/24/2026
+ms.date: 07/01/2026
 ms.devlang: javascript
 ms.custom:
   - devx-track-js
@@ -27,10 +27,10 @@ For instructions on how to add SDK configuration, see [Add SDK configuration](./
 
 ### Cookies and session storage
 
-Fields that control cookie usage, naming, and the cookie or local-storage names used for sessions.
+Use `disableCookiesUsage` to disable cookies entirely, `cookieCfg` for full instance-based cookie configuration, `cookieDomain` and `cookiePath` to scope cookies across subdomains or application gateways, and `namePrefix`, `sessionCookiePostfix`, and `userCookiePostfix` to customize cookie and localStorage names.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | cookieCfg<br><br>Defaults to cookie usage enabled see [ICookieCfgConfig](#cookie-management) settings for full defaults. | [ICookieCfgConfig](#cookie-management)<br>[Optional]<br>(Since 2.6.0) | undefined |
 | cookieDomain<br><br>Custom cookie domain. It's helpful if you want to share Application Insights cookies across subdomains.<br>(Since v2.6.0) If `cookieCfg.domain` is defined it takes precedence over this value. | alias for [`cookieCfg.domain`](#cookie-management)<br>[Optional] | null |
 | cookiePath<br><br>Custom cookie path. It's helpful if you want to share Application Insights cookies behind an application gateway.<br>If `cookieCfg.path` is defined, it takes precedence. | alias for [`cookieCfg.path`](#cookie-management)<br>[Optional]<br>(Since 2.6.0) | null |
@@ -41,34 +41,66 @@ Fields that control cookie usage, naming, and the cookie or local-storage names 
 
 ### Ajax and Fetch tracking
 
-Fields that control automatic collection of Ajax and Fetch requests, request and response headers, and browser performance timings.
+Ajax and Fetch auto-collection is grouped into five capability areas: on/off toggles (`disableAjaxTracking`, `disableFetchTracking`, `disableXhr`), request and response header capture (`enableRequestHeaderTracking`, `enableResponseHeaderTracking`, `ignoreHeaders`, `customHeaders`), URL-based filtering (`excludeRequestFromAutoTrackingPatterns`), extra `window.performance` lookups (`enableAjaxPerfTracking`, `ajaxPerfLookupDelay`, `maxAjaxPerfLookupAttempts`, `enableAjaxErrorStatusText`), and per-page volume control and per-call enrichment (`maxAjaxCallsPerView`, `addRequestContext`).
 
-| Name | Type | Default |
-|------|------|---------|
-| addRequestContext<br><br>Provide a way to enrich dependencies logs with context at the beginning of an API call. Default is undefined. You need to check if `xhr` exists if you configure `xhr` related context. You need to check if `fetch request` and `fetch response` exist if you configure `fetch` related context. Otherwise you may not get the data you need. | (requestContext: IRequestionContext) => {[key: string]: any} | undefined |
-| ajaxPerfLookupDelay<br><br>Defaults to 25 ms. The amount of time to wait before reattempting to find the windows.performance timings for an Ajax request, time is in milliseconds and is passed directly to setTimeout(). | numeric | 25 |
-| customHeaders<br><br>The ability for the user to provide extra headers when using a custom endpoint. customHeaders aren't added on browser shutdown moment when beacon sender is used. And adding custom headers isn't supported on IE9 or earlier. | `[{header: string, value: string}]` | undefined |
+#### Auto-collection toggles
+
+Use these fields to enable or disable automatic collection of Ajax and Fetch requests and to choose the transport (XHR, Fetch, or Beacon).
+
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | disableAjaxTracking<br><br>If true, Ajax calls aren't autocollected. Default is false. | boolean | false |
 | disableFetchTracking<br><br>The default setting for `disableFetchTracking` is `false`, meaning it's enabled. However, in versions prior to 2.8.10, it was disabled by default. When set to `true`, Fetch requests aren't automatically collected. The default setting changed from `true` to `false` in version 2.8.0. | boolean | false |
 | disableXhr<br><br>Don't use XMLHttpRequest or XDomainRequest (for Internet Explorer < version 9) by default instead attempt to use fetch() or sendBeacon. If no other transport is available, it uses XMLHttpRequest | boolean | false |
-| enableAjaxErrorStatusText<br><br>Default false. If true, include response error data text boolean in dependency event on failed AJAX requests. | boolean | false |
-| enableAjaxPerfTracking<br><br>Default false. Flag to enable looking up and including extra browser window.performance timings in the reported Ajax (XHR and fetch) reported metrics. | boolean | false |
-| enableRequestHeaderTracking<br><br>If true, AJAX & Fetch request headers is tracked, default is false. If ignoreHeaders isn't configured, Authorization and X-API-Key headers aren't logged. | boolean | false |
-| enableResponseHeaderTracking<br><br>If true, AJAX & Fetch request's response headers is tracked, default is false. If ignoreHeaders isn't configured, WWW-Authenticate header isn't logged. | boolean | false |
-| excludeRequestFromAutoTrackingPatterns<br><br>Provide a way to exclude specific route from automatic tracking for XMLHttpRequest or Fetch request. If defined, for an Ajax / fetch request that the request url matches with the regex patterns, auto tracking is turned off. Default is undefined. | string[] \| RegExp[] | undefined |
-| ignoreHeaders<br><br>AJAX & Fetch request and response headers to be ignored in log data. To override or discard the default, add an array with all headers to be excluded or an empty array to the configuration. | string[] | ["Authorization", "X-API-Key", "WWW-Authenticate"] |
 | isBeaconApiDisabled<br><br>If false, the SDK sends all telemetry using the [Beacon API](https://www.w3.org/TR/beacon) | boolean | true |
-| maxAjaxCallsPerView<br><br>Default 500 - controls how many Ajax calls are monitored per page view. Set to -1 to monitor all (unlimited) Ajax calls on the page. | numeric | 500 |
-| maxAjaxPerfLookupAttempts<br><br>Defaults to 3. The maximum number of times to look for the window.performance timings (if available) is required. Not all browsers populate the window.performance before reporting the end of the XHR request. For fetch requests, it's added after it's complete. | numeric | 3 |
 | onunloadDisableBeacon<br><br>Default false. when tab is closed, the SDK sends all remaining telemetry using the [Beacon API](https://www.w3.org/TR/beacon) | boolean | false |
 | onunloadDisableFetch<br><br>If fetch keepalive is supported don't use it for sending events during unload, it may still fall back to fetch() without keepalive | boolean | false |
 
+#### Header tracking
+
+Use these fields to include AJAX and Fetch request or response headers in dependency telemetry, provide extra headers on custom endpoints, or filter sensitive headers out of the log.
+
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
+| enableRequestHeaderTracking<br><br>If true, AJAX & Fetch request headers is tracked, default is false. If ignoreHeaders isn't configured, Authorization and X-API-Key headers aren't logged. | boolean | false |
+| enableResponseHeaderTracking<br><br>If true, AJAX & Fetch request's response headers is tracked, default is false. If ignoreHeaders isn't configured, WWW-Authenticate header isn't logged. | boolean | false |
+| ignoreHeaders<br><br>AJAX & Fetch request and response headers to be ignored in log data. To override or discard the default, add an array with all headers to be excluded or an empty array to the configuration. | string[] | ["Authorization", "X-API-Key", "WWW-Authenticate"] |
+| customHeaders<br><br>The ability for the user to provide extra headers when using a custom endpoint. customHeaders aren't added on browser shutdown moment when beacon sender is used. And adding custom headers isn't supported on IE9 or earlier. | `[{header: string, value: string}]` | undefined |
+
+#### URL filtering
+
+Use this field to exclude specific request URLs from automatic Ajax and Fetch tracking.
+
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
+| excludeRequestFromAutoTrackingPatterns<br><br>Provide a way to exclude specific route from automatic tracking for XMLHttpRequest or Fetch request. If defined, for an Ajax / fetch request that the request url matches with the regex patterns, auto tracking is turned off. Default is undefined. | string[] \| RegExp[] | undefined |
+
+#### Performance lookups
+
+Use these fields to include extra `window.performance` timings on Ajax dependency telemetry, tune the lookup delay and retry count, and include response error text on failed AJAX requests.
+
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
+| enableAjaxPerfTracking<br><br>Default false. Flag to enable looking up and including extra browser window.performance timings in the reported Ajax (XHR and fetch) reported metrics. | boolean | false |
+| ajaxPerfLookupDelay<br><br>Defaults to 25 ms. The amount of time to wait before reattempting to find the windows.performance timings for an Ajax request, time is in milliseconds and is passed directly to setTimeout(). | numeric | 25 |
+| maxAjaxPerfLookupAttempts<br><br>Defaults to 3. The maximum number of times to look for the window.performance timings (if available) is required. Not all browsers populate the window.performance before reporting the end of the XHR request. For fetch requests, it's added after it's complete. | numeric | 3 |
+| enableAjaxErrorStatusText<br><br>Default false. If true, include response error data text boolean in dependency event on failed AJAX requests. | boolean | false |
+
+#### Volume control and enrichment
+
+Use `maxAjaxCallsPerView` to cap per-page-view Ajax collection, and `addRequestContext` to enrich dependency telemetry with a callback at the start of each API call.
+
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
+| maxAjaxCallsPerView<br><br>Default 500 - controls how many Ajax calls are monitored per page view. Set to -1 to monitor all (unlimited) Ajax calls on the page. | numeric | 500 |
+| addRequestContext<br><br>Provide a way to enrich dependencies logs with context at the beginning of an API call. Default is undefined. You need to check if `xhr` exists if you configure `xhr` related context. You need to check if `fetch request` and `fetch response` exist if you configure `fetch` related context. Otherwise you may not get the data you need. | (requestContext: IRequestionContext) => {[key: string]: any} | undefined |
+
 ### Distributed tracing and correlation
 
-Fields that control distributed tracing mode and correlation header injection across server and CORS boundaries.
+Use `distributedTracingMode` to select W3C, AI, or AI_AND_W3C header format. Use `disableCorrelationHeaders` to turn correlation off entirely. Use `enableCorsCorrelation` to inject correlation headers on cross-origin requests. Use `appId` to set a fixed correlation identity. Use `correlationHeaderDomains`, `correlationHeaderExcludedDomains`, and `correlationHeaderExcludePatterns` to allow-list or block-list specific target domains or URL patterns.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | appId<br><br>AppId is used for the correlation between AJAX dependencies happening on the client-side with the server-side requests. When Beacon API is enabled, it can't be used automatically, but can be set manually in the configuration. Default is null | string | null |
 | correlationHeaderDomains<br><br>Enable correlation headers for specific domains | string[] | undefined |
 | correlationHeaderExcludedDomains<br><br>Disable correlation headers for specific domains | string[] | undefined |
@@ -79,10 +111,10 @@ Fields that control distributed tracing mode and correlation header injection ac
 
 ### Page views and route tracking
 
-Fields that control page view tracking and single-page application route changes.
+Use `enableAutoRouteTracking` to track SPA route changes. Use `autoTrackPageVisitTime` to record time-on-page for the previous view. Use `isBrowserLinkTrackingEnabled` to track Browser Link requests. Use `overridePageViewDuration` to compute page view duration from `trackPageView` calls instead of the navigation timing API.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | autoTrackPageVisitTime<br><br>If true, on a pageview, the _previous_ instrumented page's view time is tracked and sent as telemetry and a new timer is started for the current pageview. It's sent as a custom metric named `PageVisitTime` in `milliseconds` and is calculated via the Date [now()](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/now) function (if available) and falls back to (new Date()).[getTime()](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime) if now() is unavailable (IE8 or less). Default is false. | boolean | false |
 | enableAutoRouteTracking<br><br>Automatically track route changes in Single Page Applications (SPA). If true, each route change sends a new Pageview to Application Insights. Hash route changes (`example.com/foo#bar`) are also recorded as new page views.<br>***Note***: If you enable this field, don't enable the `history` object for [React router configuration](./javascript-framework-extensions.md?tabs=react#track-router-history) because you get multiple page view events. | boolean | false |
 | isBrowserLinkTrackingEnabled<br><br>Default is false. If true, the SDK tracks all [Browser Link](/aspnet/core/client-side/using-browserlink) requests. | boolean | false |
@@ -90,19 +122,19 @@ Fields that control page view tracking and single-page application route changes
 
 ### Exception tracking
 
-Fields that control automatic exception collection and unhandled promise rejection reporting.
+Use `disableExceptionTracking` to opt out of automatic exception collection, and `enableUnhandledPromiseRejectionTracking` to include unhandled promise rejections as JavaScript errors.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | disableExceptionTracking<br><br>If true, the SDK doesn't autocollect exceptions. Default is false. | boolean | false |
 | enableUnhandledPromiseRejectionTracking<br><br>If true, the SDK autocollects unhandled promise rejections as a JavaScript error. When disableExceptionTracking is true (don't track exceptions), the config value is ignored and unhandled promise rejections aren't reported. | boolean | false |
 
 ### Sampling, batching, and storage
 
-Fields that control sampling rate, batching behavior, retry, and how unsent telemetry is buffered.
+Use `samplingPercentage` to set the fixed sampling rate, `maxBatchInterval` and `maxBatchSizeInBytes` to tune batch send behavior, `enableSessionStorageBuffer` and `isStorageUseDisabled` to control whether the SDK persists unsent telemetry in session or local storage, `eventsLimitInMem` to cap the in-memory buffer, `isRetryDisabled` to disable retries on transient failures, `disableFlushOnBeforeUnload` to skip the flush on page unload, and `disableTelemetry` as a global off switch.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | disableFlushOnBeforeUnload<br><br>Default false. If true, the flush method isn't called when the onBeforeUnload event triggers. | boolean | false |
 | disableTelemetry<br><br>If true, the SDK doesn't collect or send telemetry. Default is false. | boolean | false |
 | enableSessionStorageBuffer<br><br>Default true. If true, the buffer with all unsent telemetry is stored in session storage. The buffer is restored on page load. | boolean | true |
@@ -115,10 +147,10 @@ Fields that control sampling rate, batching behavior, retry, and how unsent tele
 
 ### Logging and debugging
 
-Fields that control internal SDK logging, debug throws, and diagnostic polling.
+Use `loggingLevelConsole` and `loggingLevelTelemetry` to route internal SDK errors to the console or to telemetry. Use `enableDebug` to throw internal errors as exceptions during development. Use `diagnosticLogInterval` to tune the internal log poller. Use `disableDataLossAnalysis` to skip startup buffer checks. Use `disableIkeyDeprecationMessage` to suppress the instrumentation key deprecation notice.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | diagnosticLogInterval<br><br>(internal) Polling interval (in ms) for internal logging queue | numeric | 10000 |
 | disableDataLossAnalysis<br><br>If false, internal telemetry sender buffers are checked at startup for items not yet sent. | boolean | true |
 | disableIkeyDeprecationMessage<br><br>Disable instrumentation Key deprecation error message. If true, error messages are NOT sent. | boolean | true |
@@ -128,20 +160,20 @@ Fields that control internal SDK logging, debug throws, and diagnostic polling.
 
 ### Performance manager
 
-Fields that control collection of internal performance events (`perfEvents`) inside the SDK.
+Use `enablePerfMgr` to emit local `perfEvents` from instrumented code paths. Use `createPerfMgr` to supply a custom `IPerfManager` factory. Use `perfEvtsSendAll` to control whether every `perfEvent` fires or only parent events.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | createPerfMgr<br><br>Callback function that's called to create an IPerfManager instance when required and ```enablePerfMgr``` is enabled, it enables you to override the default creation of a PerfManager() without needing to ```setPerfMgr()``` after initialization. | (core: IAppInsightsCore, notificationManager: INotificationManager) => IPerfManager | undefined |
 | enablePerfMgr<br><br>When enabled (true) it creates local perfEvents for code that has been instrumented to emit perfEvents (via the doPerf() helper). It can be used to identify performance issues within the SDK based on your usage or optionally within your own instrumented code. | boolean | false |
 | perfEvtsSendAll<br><br>When _enablePerfMgr_ is enabled and the [IPerfManager](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/IPerfManager.ts) fires a [INotificationManager](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/INotificationManager.ts).perfEvent() this flag determines whether an event is fired (and sent to all listeners) for all events (true) or only for 'parent' events (false &lt;default&gt;).<br />A parent [IPerfEvent](https://github.com/microsoft/ApplicationInsights-JS/blob/master/shared/AppInsightsCore/src/JavaScriptSDK.Interfaces/IPerfEvent.ts) is an event where no other IPerfEvent is still running at the point of the event being created and its _parent_ property isn't null or undefined. Since v2.5.7 | boolean | false |
 
 ### Identifiers and session lifetime
 
-Fields that control session IDs, user IDs, and session expiration timing.
+Use `accountId` to group users into accounts, `idLength` to set the generated random ID length, `sessionExpirationMs` for maximum session duration, and `sessionRenewalMs` for the inactivity timeout that ends a session.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | accountId<br><br>An optional account ID, if your app groups users into accounts. No spaces, commas, semicolons, equals, or vertical bars | string | null |
 | idLength<br><br>Identifies the default length used to generate new random session and user IDs. Defaults to 22, previous default value was 5 (v2.5.8 or less), if you need to keep the previous maximum length set the value to 5. | numeric | 22 |
 | sessionExpirationMs<br><br>A session is logged if it continues for this amount of time in milliseconds. Default is 24 hours | numeric | 86400000 |
@@ -149,10 +181,10 @@ Fields that control session IDs, user IDs, and session expiration timing.
 
 ### Other settings
 
-Feature opt-in, throttling, instrumentation key validation, telemetry conversion, and SDK extension metadata.
+Use `featureOptIn` to opt into preview features, `throttleMgrCfg` to configure throttling, `disableInstrumentationKeyValidation` to bypass ingestion key checks, `convertUndefined` to substitute a default value for undefined fields, and `sdkExtension` to prefix the `ai.internal.sdkVersion` tag for downstream SDK extensions.
 
-| Name | Type | Default |
-|------|------|---------|
+| Configuration field | Value type | Default value |
+|---------------------|------------|---------------|
 | convertUndefined<br><br>Provide user an option to convert undefined field to user defined value. | `any` | undefined |
 | disableInstrumentationKeyValidation<br><br>If true, instrumentation key validation check is bypassed. Default value is false. | boolean | false |
 | featureOptIn<br><br>Set Feature opt in details.<br><br>This configuration field is only available in version 3.0.3 and later. | IFeatureOptIn | undefined |
