@@ -1,6 +1,6 @@
 ---
 title: What is Azure Chaos Studio?
-description: Azure Chaos Studio is a managed resilience testing service. Use Workspaces and Scenarios to simulate real outage patterns, or build custom experiments for targeted resilience testing.
+description: Azure Chaos Studio is a managed resilience testing service. Use Workspaces and Scenarios to simulate real outage patterns against your Azure applications.
 services: chaos-studio
 author: prasha-microsoft
 ms.author: nikhilkaul
@@ -29,7 +29,9 @@ To create your first Workspace and run a Scenario, see [Quickstart: Create a Wor
 
 ## Experiments (classic)
 
-For custom fault compositions that the Scenario catalog doesn't cover, create experiments directly. Experiments give you full control over steps, branches, actions, targets, and selectors. This is the original Chaos Studio model, and existing experiments continue to work as before.
+Experiments are the classic Chaos Studio model. An experiment gives you direct control over steps, branches, actions, targets, and selectors, and any experiments you already have remain fully supported and run exactly as before.
+
+For new resilience testing, we recommend starting with Workspaces and Scenarios. When a supported Scenario template doesn't match the outage pattern you need, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario) to customize a Scenario — you don't need to build an experiment from scratch.
 
 Chaos Studio supports two types of faults:
 

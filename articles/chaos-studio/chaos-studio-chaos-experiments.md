@@ -12,6 +12,9 @@ ms.custom: template-concept
 
 In Azure Chaos Studio, you create and run chaos experiments. A chaos experiment is an Azure resource that describes the faults that should be run and the resources those faults should be run against.
 
+> [!NOTE]
+> Experiments are the classic Chaos Studio model and remain fully supported. For new resilience testing, we recommend [Workspaces and Scenarios](chaos-studio-workspaces-overview.md), which discover your resources and run preconfigured outage Scenarios. To customize a test, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario).
+
 An experiment is divided into two sections:
 
 - **Selectors**: Selectors are groups of target resources that have faults or other actions run against them. A selector allows you to logically group resources for reuse across multiple actions.

@@ -83,9 +83,9 @@ For a detailed walkthrough of Scenario reports, see [Scenario reports in Azure C
 
 ## Relationship to experiments (classic)
 
-Workspaces and experiments are separate models. Workspaces use Scenarios and Actions; the classic model uses experiments, targets, and capabilities. If you have existing experiments, they continue to work exactly as before. You can also create new experiments directly when you need custom fault compositions that aren't covered by the Scenario catalog.
+Workspaces and experiments are separate models. Workspaces use Scenarios and Actions; the classic model uses experiments, targets, and capabilities. Experiments remain fully supported, and any experiments you already have continue to work exactly as before.
 
-Starting from a Workspace is the fastest way to get resilience coverage for the most common failure modes.
+For new resilience testing, start with a Workspace. It's the fastest way to get coverage for the most common failure modes, and when a supported Scenario template doesn't fit, the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario) lets you customize your own Scenario without leaving the Workspaces model.
 
 ## Next steps
 
