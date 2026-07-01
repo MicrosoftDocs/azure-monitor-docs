@@ -3,15 +3,15 @@ title: Analyze the health and status of your virtual machine with Azure Monitor
 description: This article discusses the VM insights Performance feature that discovers application components on Windows and Linux systems and maps the communication between services.
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 03/10/2026
+ms.date: 07/01/2026
 ---
 
 # Analyze the health and status of your virtual machine with Azure Monitor
 
-VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. You can use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
+VM insights includes a set of performance charts that target several key performance indicators to help you determine how well a virtual machine is performing. The charts show resource utilization over a period of time. Use them to identify bottlenecks and anomalies. You can also switch to a perspective that lists each machine to view resource utilization based on the metric selected.
 
 > [!NOTE]
-> This article describes the logs-based experience for monitoring virtual machines in Azure Monitor. This experience is not available for machines configured only for the metrics-based experience using OpenTelemetry metrics which is currently in preview. For more information, see [Monitor Azure virtual machines with OpenTelemetry metrics (preview)](vminsights-opentelemetry.md).
+> This article describes the logs-based experience for monitoring virtual machines in Azure Monitor. This experience isn't available for machines configured only for the metrics-based experience using OpenTelemetry metrics, which is currently in preview. For more information, see [Monitor Azure virtual machines with OpenTelemetry metrics (preview)](vminsights-opentelemetry.md).
 
 VM insights monitors key operating system performance indicators related to processor, memory, network adapter, and disk utilization. Performance helps to:
 
@@ -20,7 +20,7 @@ VM insights monitors key operating system performance indicators related to proc
 * Support capacity planning.
 
 > [!NOTE]
-> The network chart on the Performance tab looks different from the network chart on the Azure VM overview page because the overview page displays charts based on the host's measurement of activity in the guest VM. The network chart on the Azure VM overview only displays network traffic that will be billed. Inter-virtual network traffic isn't included. The data and charts shown for VM insights are based on data from the guest VM. The network chart displays all TCP/IP traffic that's inbound and outbound to that VM, including inter-virtual network traffic.
+> The network chart on the Performance tab looks different from the network chart on the Azure VM overview page because the overview page displays charts based on the host's measurement of activity in the guest VM. The network chart on the Azure VM overview only displays network traffic that gets billed. Inter-virtual network traffic isn't included. The data and charts shown for VM insights are based on data from the guest VM. The network chart displays all TCP/IP traffic that's inbound and outbound to that VM, including inter-virtual network traffic.
 
 ## Limitations
 
@@ -28,11 +28,11 @@ Limitations in performance collection with VM insights:
 
 * Available memory isn't available in all Linux versions, including Red Hat Enterprise Linux (RHEL) 6. It's available in Linux versions that use [kernel version 3.14](http://www.man7.org/linux/man-pages/man1/free.1.html) or higher. It might be available in some kernel versions between 3.0 and 3.14.
 * Metrics are only available for data disks on Linux virtual machines that use XFS filesystem or EXT filesystem family (EXT2, EXT3, EXT4).
-* Collecting performance metrics from network shared drives is unsupported.
+* Collecting performance metrics from network shared drives isn't supported.
 
 ## Permissions required
 
-You must have the Monitoring reader permissions on the virtual machine(s) and on the VM Insights Data Collection Rule (DCR).
+You must have the Monitoring reader permissions on the virtual machines and on the VM Insights Data Collection Rule (DCR).
 
 ## Multi-VM perspective from Azure Monitor
 
@@ -102,10 +102,10 @@ Selecting a virtual machine from the list opens the **Properties** pane on the r
 
 ## View performance directly from an Azure VM
 
-To access directly from a virtual machine:
+To access performance data directly from a virtual machine:
 
 1. In the [Azure portal](https://portal.azure.com), open **Virtual machines** and select the VM that you want to run diagnostics on.
-1. In the left-hand navigation menu, expand the **Monitoring** section, then select **Insights**.
+1. In the left-hand navigation menu, expand the **Monitoring** section, and then select **Insights**.
 1. Switch to the **Performance** tab.
 
 This page shows [Performance insights](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics?tabs=insights#view-performance-diagnostics-insights) and performance utilization charts. It also shows a table for each logical disk discovered with its capacity, utilization, and total average by each measure.
@@ -127,25 +127,19 @@ Selecting the pushpin icon in the upper-right corner of a chart pins it to the l
 
 :::image type="content" source="./media/vminsights-performance/vminsights-performance-direct-vm.png" lightbox="./media/vminsights-performance/vminsights-performance-direct-vm.png" alt-text="Screenshot that shows VM insights Performance directly from the VM view.":::
 
-## Troubleshoot VM performance issues with Performance Diagnostics
+## Troubleshoot VM performance problems with Performance Diagnostics
 
-[The Performance Diagnostics tool](/troubleshoot/azure/virtual-machines/performance-diagnostics?toc=/azure/azure-monitor/toc.json) helps troubleshoot performance issues on Windows or Linux virtual machines by quickly diagnosing and providing insights on issues it currently finds on your machines. It supports two different modes:
-
-* **Continuous diagnostics (preview)** collects data at five-second intervals and reports actionable insights about high resource usage every five minutes.
-
-* **On-demand diagnostics** helps you troubleshoot an ongoing performance issue with more in-depth data, insights, and recommendations based on data collected at a single point in time.
-
-For more information, go to [Troubleshoot performance issues on Azure virtual machines using Performance Diagnostics](/troubleshoot/azure/virtual-machines/windows/performance-diagnostics).
+[Performance Diagnostics](performance-diagnostics.md) helps you troubleshoot performance problems on Windows or Linux virtual machines by quickly diagnosing issues and providing insights on problems it finds on your machines. It supports two modes: **Continuous diagnostics** and **On-demand diagnostics**. For details on each mode, see [Performance diagnostics modes](performance-diagnostics.md#performance-diagnostics-modes).
 
 ## View performance directly from an Azure virtual machine scale set
 
-To access directly from an Azure virtual machine scale set:
+To access performance data directly from an Azure virtual machine scale set:
 
 1. In the Azure portal, select **Virtual machine scale sets**.
 1. From the list, select a VM.
 1. In the **Monitoring** section, select **Insights** to view the **Performance** tab.
 
-This page loads the Azure Monitor performance view scoped to the selected scale set. This view enables you to see the Top N instances in the scale set across the set of monitored metrics. You can also view the aggregate performance across the scale set. And you can see the trends for selected metrics across the individual instances in the scale set. Selecting an instance from the list view lets you load its map or move into a detailed performance view for that instance.
+This page loads the Azure Monitor performance view scoped to the selected scale set. This view enables you to see the top instances in the scale set across the set of monitored metrics. You can also view the aggregate performance across the scale set. You can see the trends for selected metrics across the individual instances in the scale set. Selecting an instance from the list view lets you load its map or move into a detailed performance view for that instance.
 
 Selecting the pushpin icon in the upper-right corner of a chart pins it to the last Azure dashboard you viewed. From the dashboard, you can resize and reposition the chart. Selecting the chart from the dashboard redirects you to VM insights and loads the performance detail view for the VM.
 

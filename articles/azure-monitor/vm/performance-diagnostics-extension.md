@@ -2,7 +2,7 @@
 title: Azure Performance Diagnostics (PerfInsights) VM Extension for Windows
 description: Introduces Azure Performance Diagnostics VM Extension for Windows.
 ms.topic: troubleshooting
-ms.date: 04/03/2026
+ms.date: 07/01/2026
 ---
 # Azure Performance Diagnostics (PerfInsights) VM extension for Windows
 
@@ -16,9 +16,9 @@ ms.date: 04/03/2026
 
 ## Extension schema
 
-The following JSON shows the schema for Azure Performance Diagnostics VM Extension. The extension requires the name for a storage account to store the diagnostics output and report. The storage account key should be stored inside a protected setting configuration. Azure VM extension protected setting data is encrypted, and it is only decrypted on the target virtual machine. Note that **storageAccountName** and **storageAccountKey** are case-sensitive. Other required parameters are listed in the following section.
+The following JSON shows the schema for Azure Performance Diagnostics VM Extension. The extension requires the name for a storage account to store the diagnostics output and report. If you use the `storagekeys` authentication type, the storage account key should be stored inside a protected setting configuration. Azure VM extension protected setting data is encrypted, and it's only decrypted on the target virtual machine. Note that **storageAccountName** and **storageAccountKey** are case-sensitive. Other required parameters are listed in the following section.
 
-Specify the authentication type in the JSON file. If no authentication type is specified, the default authentication type is system-assigned managed identity, and you need to pass a storage account key.
+Specify the authentication type in the JSON file. If you don't specify an authentication type, the default is system-assigned managed identity. When you use system-assigned or user-assigned managed identity, performance diagnostics adds the **Storage Table Data Contributor** and **Storage Blob Data Contributor** roles to the identity for the storage account. A storage account key isn't required for managed-identity authentication.
 
 ```JSON
 {
@@ -83,7 +83,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 
 ### Property values
 
-| Name | Value / Example | Description |
+| Name | Value or example | Description |
 |--|--|--|
 | apiVersion | 2015-06-15 | The version of the API. |
 | publisher | Microsoft.Azure.Performance.Diagnostics | The publisher namespace for the extension. |
@@ -109,7 +109,7 @@ Specify the authentication type in the JSON file. If no authentication type is s
 ## Remove the extension
 
 > [!NOTE]
-> We recommend uninstalling the extension through the performance diagnostics blade, as described in [Uninstall performance diagnostics](performance-diagnostics-run.md#uninstall-performance-diagnostics).
+> To uninstall the extension, use the performance diagnostics blade as described in [Uninstall performance diagnostics](performance-diagnostics-run.md#uninstall-performance-diagnostics).
 
 To remove the extension from a virtual machine, follow these steps:
 
@@ -120,7 +120,7 @@ To remove the extension from a virtual machine, follow these steps:
 
 ## Template deployment
 
-Azure virtual machine extensions can be deployed with Azure Resource Manager templates, such as the following example.
+You can deploy Azure virtual machine extensions by using Azure Resource Manager templates, such as the following example.
 
 ```json
 {
@@ -220,7 +220,7 @@ Azure virtual machine extensions can be deployed with Azure Resource Manager tem
 
 ## PowerShell deployment
 
-Use the `Set-AzVMExtension` command to deploy Azure Performance Diagnostics VM Extension to an existing virtual machine:
+Use the `Set-AzVMExtension` command to deploy Azure Performance Diagnostics VM Extension to an existing virtual machine with:
 
 - System-assigned managed identity
 
