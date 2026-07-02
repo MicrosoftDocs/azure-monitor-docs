@@ -31,7 +31,7 @@ This video explains when and how to use search jobs:
 
 Use search jobs to:
 
-* Retrieve records from [long-term retention](data-retention-configure.md) and [tables with the Basic and Auxiliary plans](data-platform-logs.md#table-plans) into a new Analytics table where you can take advantage of Azure Monitor Log's full analytics capabilities.
+* Retrieve records from [long-term retention](data-retention-configure.md) and from tables with [Basic Logs or Auxiliary Logs](data-platform-logs.md#table-plans) into a new Analytics Logs table where you can take advantage of Azure Monitor Logs' full analytics capabilities.
 * Scan through large volumes of data, if the log query time-out of 10 minutes isn't sufficient.
 
 ## What does a search job do?
@@ -40,7 +40,7 @@ A search job scans data and sends its results to a new table in the same workspa
 
 :::image type="content" source="media/search-job/cost-estimation-preview.png" alt-text="Screenshot showing cost estimation preview.":::
 
-The search job results table is an [Analytics table](../logs/logs-table-plans.md) that is available for log queries and other Azure Monitor features that use tables in a workspace. The table uses the [retention value](data-retention-configure.md) set for the workspace, but you can modify this value after the table is created.
+The search job results table is an [Analytics Logs table](../logs/logs-table-plans.md) that you can use for log queries and other Azure Monitor features that use tables in a workspace. The table uses the [retention value](data-retention-configure.md) set for the workspace, but you can modify this value after the table is created.
 
 The search results table schema is based on the source table schema and the specified query. The following other columns help you track the source records:
 
@@ -159,11 +159,11 @@ The following REST example uses the [Tables - Create Or Update](/rest/api/logana
 Include the following values in the body of the request:
 
 | Name | Type | Description |
-| ---- | ---- | ------------------------------------------------------------------------------------------------------------------------- |
-| properties.searchResults.query           | string  | Log query written in KQL to retrieve data.                                         |
-| properties.searchResults.limit           | integer | Maximum number of records in the result set, up to 100 million records. (Optional) |
-| properties.searchResults.startSearchTime | string  | Start of the time range to search.                                                 |
-| properties.searchResults.endSearchTime   | string  | End of the time range to search.                                                   |
+|------|------|-------------|
+| properties.searchResults.query | string | Log query written in KQL to retrieve data. |
+| properties.searchResults.limit | integer | Maximum number of records in the result set, up to 100 million records. (Optional) |
+| properties.searchResults.startSearchTime | string | Start of the time range to search. |
+| properties.searchResults.endSearchTime | string | End of the time range to search. |
 
 **Sample request:**
 
@@ -353,20 +353,28 @@ The [`contains`](/azure/data-explorer/kusto/query/contains-operator) string oper
 
 The search job charge is based on:
 
-* Search job execution:
+* **Search job execution**
 
-    * **Analytics plan** - The amount of data the search job scans that's in long-term retention. There's no charge for scanning data that's in analytics retention in Analytics tables.
-    * **Basic or Auxiliary plans** - All data the search job scans in long-term retention.
+    * **Analytics Logs** - The amount of data the search job scans that's in long-term retention.
+
+        > [!NOTE]
+        > For Analytics Logs, there's no charge for scanning data that's in analytics retention.
+
+    * **Basic or Auxiliary plans** - All data the search job scans within the queried time range.
 
     The data scanned is defined as the volume of data in the table that you run the search job on, within the time range you specified. For more information about analytics and long-term retention, see [Manage data retention in a Log Analytics workspace](data-retention-configure.md).
 
-* Search job results - The amount of data the search job finds and is ingested into the results table, based on the data ingestion rate for Analytics tables.
+* **Search job results** - The amount of data the search job finds and ingests into the results table, based on the data ingestion rate for Analytics Logs.
 
-For example, if a search on a Basic table spans 30 days and the table holds 500 GB of data per day, you're charged for 15,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table.
+### Pricing examples
+
+If a search on a table that contains Analytics Logs spans 60 days and the table ingests 500 GB of data per day, but the table's analytics retention period is set to 30 days, you're charged for 15,000 GB of scanned data - only the 30 days of data in long-term retention. There's no charge for scanning the 30 days of data in analytics retention. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table.
+
+If a search on a table that contains Basic or Auxiliary Logs spans 60 days and the table ingests 500 GB of data per day, you're charged for 30,000 GB of scanned data. If the search job returns 1,000 records, you're charged for ingesting these 1,000 records into the results table.
 
 For more information, see [Azure Monitor pricing](https://azure.microsoft.com/pricing/details/monitor/).
 
 ## Related content
 
 * [Learn more about managing data retention in a Log Analytics workspace.](data-retention-configure.md)
-* [Learn about directly querying Basic and Auxiliary tables.](basic-logs-query.md)
+* [Learn about directly querying tables that contain Basic Logs or Auxiliary Logs.](basic-logs-query.md)

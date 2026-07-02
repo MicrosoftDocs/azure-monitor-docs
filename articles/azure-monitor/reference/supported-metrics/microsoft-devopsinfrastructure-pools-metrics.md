@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DevOpsInfrastructure/pools
 description: Reference for Microsoft.DevOpsInfrastructure/pools metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 06/19/2026
+ms.date: 07/02/2026
 ms.custom: Microsoft.DevOpsInfrastructure/pools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -53,14 +53,14 @@ For a list of supported logs, see [Supported log categories - Microsoft.DevOpsIn
 ### Category: SaturationByCapability
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
-|**Allocated**<br><br>Resources that are allocated by capability |`AllocatedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**Demand**<br><br>Total active demand on the pool by capability |`DemandByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**NotReady**<br><br>Resources that are not ready to be used by capability |`NotReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**PendingReimage**<br><br>Resources that are pending reimage by capability |`PendingReimageByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**PendingReturn**<br><br>Resources that are pending return by capability |`PendingReturnByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**Provisioned**<br><br>Resources that are provisioned by capability |`ProvisionedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**Ready**<br><br>Resources that are ready to be used by capability |`ReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
-|**Starting**<br><br>Resources that are starting by capability |`StartingByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `VMPriority`, `PremountConfigurations`|PT1M |Yes|
+|**Allocated**<br><br>Resources that are allocated by capability |`AllocatedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**Demand**<br><br>Total active demand on the pool by capability |`DemandByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**NotReady**<br><br>Resources that are not ready to be used by capability |`NotReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**PendingReimage**<br><br>Resources that are pending reimage by capability |`PendingReimageByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**PendingReturn**<br><br>Resources that are pending return by capability |`PendingReturnByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**Provisioned**<br><br>Resources that are provisioned by capability |`ProvisionedByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**Ready**<br><br>Resources that are ready to be used by capability |`ReadyByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
+|**Starting**<br><br>Resources that are starting by capability |`StartingByCapability` |Count |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`|PT1M |Yes|
 
 ### Category: Traffic
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
