@@ -4,18 +4,18 @@ description: Learn how to enable monitoring for virtual machines and virtual mac
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
-ms.date: 05/28/2026
+ms.date: 07/01/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
 
 ---
 
 # Enable VM monitoring in Azure Monitor
 
-This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale using command line tools that allow you to use infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
+This article describes how to enable monitoring for virtual machines, virtual machine scale sets, and Arc-enabled servers at scale by using command line tools. By using these tools, you can use infrastructure as code (IaC) tools and automation methods. These methods allow you to consistently deploy monitoring across your VM fleet and integrate monitoring configuration into your DevOps pipelines.
 
 > [!NOTE]
-> - To enable monitoring for a single virtual machine using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
-> - To enable monitoring for a virtual machine scale set using the Azure portal, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
+> - To enable monitoring for a single virtual machine by using the Azure portal, see [Tutorial: Enable enhanced monitoring for an Azure virtual machine](./tutorial-enable-monitoring.md).
+> - To enable monitoring for a virtual machine scale set by using the Azure portal, see [Tutorial: Enable monitoring for an Azure virtual machine scale set](./tutorial-scale-set-enable-monitoring.md).
 
 ## Supported machines
 
@@ -28,7 +28,7 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 
 ## Prerequisites
 
-- **Azure Monitor workspace** if you enable OpenTelemetry metrics (recommended experience for all deployments). See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
+- **Azure Monitor workspace** if you enable OpenTelemetry metrics (recommended experience for new deployments on Azure VMs and Arc-enabled servers). See [Create an Azure Monitor workspace](../metrics/azure-monitor-workspace-manage.md#create-an-azure-monitor-workspace).
 - **Log Analytics workspace** if you enable logs-based metrics or collect logs. Logs-based metrics are the classic experience and are typically used for compatibility with existing implementations. See [Create a Log Analytics workspace](../logs/quick-create-workspace.md).
 - **Permissions** to create data collection rules (DCRs) and associate them with VMs. See [Data collection rule permissions](../data-collection/data-collection-rule-create-edit.md#permissions).
 - **Managed identity for query-based metric alerts** if you create alert rules on OpenTelemetry metrics in Azure Monitor workspace. Use a user-assigned managed identity and grant required permissions as described in [Query-based metric alerts overview (preview)](../alerts/alerts-query-based-metric-alerts-overview.md).
@@ -37,11 +37,11 @@ For a list of supported operating systems, see [Azure Monitor agent supported op
 
 ## Overview
 
-Enabling full monitoring by collecting data from the guest operating system and workloads of a virtual machine by Azure Monitor involves three steps as shown in the following table. When you [enable enhanced monitoring](./tutorial-enable-monitoring.md) or [create a DCR](./data-collection.md) in the Azure portal, each of these steps is completed for you automatically.
+To enable full monitoring by collecting data from the guest operating system and workloads of a virtual machine by Azure Monitor, complete the three steps shown in the following table. When you [enable enhanced monitoring](./tutorial-enable-monitoring.md) or [create a DCR](./data-collection.md) in the Azure portal, the portal automatically completes each of these steps for you.
 
 | Step | Description |
 |:---|:---|
-| [Install the Azure Monitor agent](#install-azure-monitor-agent) | The agent needs to be installed on each virtual machine to be monitored. This only needs to be completed once since the agent can use any number of DCRs that each collect different data. |
+| [Install the Azure Monitor agent](#install-azure-monitor-agent) | Install the agent on each virtual machine to monitor. You only need to install the agent once because it can use any number of DCRs that each collect different data. |
 | [Create data collection rules (DCRs)](#create-data-collection-rules) | Each DCR specifies data to collect and where to send it. You can create your own DCRs or use existing ones depending on your requirements. You need to understand the different types of DCRs and their purposes to determine which ones to use. |
 | [Associate DCRs with VMs](#associate-dcrs-with-vms) | When you create an association between a VM and a DCR, the agent downloads that DCR and begins data collection. Create associations with multiple DCRs for the agent to collect different types of data. Remove associations to stop data collection. |
 
@@ -197,7 +197,7 @@ Add-AzVmssExtension `
 
 ## Create data collection rules
 
-Data collection rules (DCRs) define what data to collect from the Azure Monitor agent and where to send it. You can create different types of DCRs depending on what you want to monitor. Some DCRs will enable features in the Azure portal such as the enhanced monitoring experience for VMs, while others will collect specific types of logs or metrics that you can use for analysis or alerting.
+Data collection rules (DCRs) define what data to collect from the Azure Monitor agent and where to send it. You can create different types of DCRs depending on what you want to monitor. Some DCRs enable features in the Azure portal, such as the enhanced monitoring experience for VMs, while others collect specific types of logs or metrics that you can use for analysis or alerting.
 
 DCRs are structured in JSON. When you create DCRs using the Azure portal, you don't require any knowledge of the DCR structure. You may need to understand the DCR structure though to create DCRs from scratch or to add advanced functionality to existing DCRs such as adding a transformation.
 
@@ -209,9 +209,9 @@ The following table describes the most common DCR types used for VM monitoring. 
 
 | DCR Type | Description |
 |:---|:---|
-| **OpenTelemetry metrics** | Collects system-level performance counters using OpenTelemetry standards. This is the recommended metrics path for new VM monitoring deployments in the Azure portal. Use the DCR definition below. Modify the `counterSpecifiers` section to add metrics to be collected. See [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md). |
-| **Log based metrics** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. Use the DCR definition below. This DCR shouldn't be modified. |
-| **Logs** | Collect different types of logs from the VM, including Windows events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor, but they can be analyzed with Log Analytics and used for alerting. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
+| **OpenTelemetry metrics** | Collects system-level performance counters by using OpenTelemetry standards. This option is the recommended metrics path for new VM monitoring deployments in the Azure portal. Use the DCR definition in the following section. Modify the `counterSpecifiers` section to add metrics to collect. See [Customize OpenTelemetry metrics for Azure virtual machines](./metrics-opentelemetry-guest-modify.md). |
+| **Log based metrics** | Collects predefined performance counters in a Log Analytics workspace. Enables the classic logs-based experience in the Azure portal. Use the DCR definition in the following section. Don't modify this DCR. |
+| **Logs** | Collect different types of logs from the VM, including Windows events and Syslog. These DCRs don't enable any additional experiences in Azure Monitor, but you can analyze them by using Log Analytics and use them for alerting. See [Collect guest log data from virtual machines with Azure Monitor](./data-collection.md) for a description of the different data sources available. See [Data collection rule (DCR) samples in Azure Monitor](../data-collection/data-collection-rule-samples.md#collect-vm-client-data) for sample DCR definitions for log collection. |
 
 Use the following DCR definitions to enable enhanced monitoring for a virtual machine. The only modification needed is to update the location and destination workspace in each definition to point to your Azure Monitor workspace for OpenTelemetry metrics or your Log Analytics workspace for logs-based metrics. 
 <br><br>
@@ -314,7 +314,7 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
 
 </details>
 
-Save the DCR definition to a JSON file and use it to create a DCR with the following commands.
+Save the DCR definition to a JSON file and use it to create a DCR by using the following commands.
 
 ## [CLI](#tab/cli)
 
@@ -342,7 +342,7 @@ New-AzDataCollectionRule `
 
 ## Associate DCRs with VMs
 
-The final step is to create associations between your DCRs and your VMs. This activates the DCRs and tells the Azure Monitor agent to begin collecting data based on the rules defined in the DCR. You can create multiple associations for a VM if you want to collect different types of data. You can also remove associations to stop data collection from specific DCRs without affecting other associations or the agent itself.
+The final step is to create associations between your DCRs and your VMs. This step activates the DCRs and tells the Azure Monitor agent to begin collecting data based on the rules defined in the DCR. You can create multiple associations for a VM if you want to collect different types of data. You can also remove associations to stop data collection from specific DCRs without affecting other associations or the agent itself.
 
 ## [Azure CLI](#tab/cli)
 
@@ -406,11 +406,11 @@ New-AzDataCollectionRuleAssociation `
 
 ## Enable network isolation
 
-There are two methods for network isolation that VM insights supports as described in the following table.
+VM insights supports two methods for network isolation, as described in the following table.
 
 | Method | Description |
 |:---|:---|
-| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). This method is not currently supported for [metrics-based collection](./metrics-opentelemetry-guest.md). |
+| Private link | See [Enable network isolation for Azure Monitor Agent by using Private Link](../fundamentals/private-link-vm-kubernetes.md). This method isn't currently supported for [metrics-based collection](./metrics-opentelemetry-guest.md). |
 | Network security perimeter | See [Configure Azure Monitor with Network Security Perimeter](../fundamentals/network-security-perimeter.md). |
 
 

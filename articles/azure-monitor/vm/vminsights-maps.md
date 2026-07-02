@@ -4,13 +4,13 @@ description: This article shows how to use the VM insights Map feature. It disco
 ms.topic: how-to
 ms.custom: linux-related-content
 ms.update-cycle: 1095-days
-ms.date: 03/11/2026
+ms.date: 07/01/2026
 ---
 
 # Use the Map feature of VM insights to understand application components
 
 > [!IMPORTANT]
->  The Dependency Agent and the Map experience in VM Insights has been deprecated and will be retired on 30 June 2028. See [our retirement guidance](https://aka.ms/DependencyAgentRetirement) for more details. 
+> The Dependency Agent and the Map experience in VM Insights are deprecated. They retire on 30 June 2028. Don't enable this feature for new deployments. As of 30 September 2025, you can't onboard new VMs from the Azure portal. For migration guidance and key dates, see [VM Insights Map and Dependency Agent retirement guidance](./vminsights-maps-retirement.md).
 
 In VM insights, you can view discovered application components on Windows and Linux virtual machines (VMs) that run in Azure or your environment. You can observe the VMs in two ways. You can view a map directly from a VM. You can also view a map from Azure Monitor to see the components across groups of VMs. This article helps you to understand these two viewing methods and how to use the Map feature.
 
@@ -38,7 +38,7 @@ For more information, see [Enable VM insights on unmonitored machine](vminsights
 
 
 ## Introduction to the Map experience
-Before diving into the Map experience, you should understand how it presents and visualizes information.
+Before diving into the Map experience, understand how it presents and visualizes information.
 
 Whether you select the Map feature directly from a VM or from Azure Monitor, the Map feature presents a consistent experience. The only difference is that from Azure Monitor, one map shows all the members of a multiple-tier application or cluster.
 
@@ -54,7 +54,7 @@ When you select the VM, the **Properties** pane shows the VM's properties. Prope
 <!-- convertborder later -->
 :::image type="content" source="./media/vminsights-maps/properties-pane-01.png" lightbox="./media/vminsights-maps/properties-pane-01.png" alt-text="Screenshot that shows the Properties pane." border="false":::
 
-On the right side of the pane, select **Log Events** to show a list of data that the VM has sent to Azure Monitor. This data is available for querying. Select any record type to open the **Logs** page, where you see the results for that record type. You also see a preconfigured query that's filtered against the VM.
+On the right side of the pane, select **Log Events** to show a list of data that the VM sends to Azure Monitor. You can query this data. Select any record type to open the **Logs** page, where you see the results for that record type. You also see a preconfigured query that's filtered against the VM.
 <!-- convertborder later -->
 :::image type="content" source="./media/vminsights-maps/properties-pane-logs-01.png" lightbox="./media/vminsights-maps/properties-pane-logs-01.png" alt-text="Screenshot that shows the Log Events pane." border="false":::
 
