@@ -2,7 +2,7 @@
 title: Create And Configure Application Insights Resources
 description: Learn how to create and configure Application Insights resources programmatically and in the Azure portal
 ms.topic: how-to
-ms.date: 05/28/2026
+ms.date: 07/06/2026
 ms.aisupport: ai-assisted
 ms.custom:
   - devx-track-azurepowershell, devx-track-azurecli
@@ -75,6 +75,9 @@ You can deploy ARM templates via the Azure CLI, Azure PowerShell, and in the Azu
 
 > [!NOTE]
 > If you don't connect to an existing Log Analytics workspace during resource creation, a new Log Analytics resource is created automatically along with your Application Insights resource.
+
+> [!NOTE]
+> When you create or update a workspace-based Application Insights resource and link it to a Log Analytics workspace in a different subscription, the identity that performs the operation must have permission on the target workspace for `Microsoft.OperationalInsights/workspaces/sharedkeys/action`. This requirement applies even when both subscriptions are in the same Microsoft Entra tenant. If the identity doesn't have this permission, the operation can fail with a `403` or authorization error. Grant the least-privilege role that includes this action on the target workspace, or use a workspace in the same subscription as the Application Insights resource.
 
 # [Portal](#tab/portal)
 
