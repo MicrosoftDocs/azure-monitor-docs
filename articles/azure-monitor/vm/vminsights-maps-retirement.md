@@ -3,7 +3,7 @@ title: VM Insights Map and Dependency Agent retirement guidance
 description: This article provides guidance to customers about the retirement of the Virtual Machine (VM) Insights Map feature and the associated Dependency Agent. 
 ms.topic: concept-article
 ms.custom: linux-related-content
-ms.date: 05/05/2025
+ms.date: 07/02/2026
 ---
 
 # VM Insights Map and Dependency Agent retirement guidance
@@ -67,7 +67,7 @@ To run the query, use the [Resource Graph Explorer](https://portal.azure.com/#vi
 
 ### Removing Dependency Agent from a single VM 
 
-See the article on [Uninstall Dependency Agent](vminsights-dependency-agent.md#uninstall-dependency-agent) for steps to uninstall. 
+For steps to uninstall, see [Uninstall the Dependency Agent](vminsights-dependency-agent-uninstall.md).
 
 ## Key dates 
 
