@@ -2,7 +2,7 @@
 title: Overview of Log Analytics in Azure Monitor
 description: This overview describes Log Analytics, which is a tool in the Azure portal used to edit and run log queries for analyzing data in Azure Monitor logs.
 ms.topic: concept-article
-ms.date: 04/29/2026
+ms.date: 06/17/2026
 ---
 
 # Overview of Log Analytics in Azure Monitor
@@ -106,7 +106,7 @@ Pin the left pane to keep it open while you work, or maximize your query window 
 | **Tables** | Lists the tables that are part of the selected scope. Hover over a table name to view the table's description and a link to its documentation. Expand a table to view its columns. Select a table to run a preview on it. |
 | **Queries** | Lists example and saved queries. This is the same list that's in the Queries hub. Open the context menu [...] next to the search bar and select **Group by** to change the grouping of the queries. Hover over a query to view the query's description. Select a query to run it. |
 | **Functions** | Lists [functions](../logs/functions.md), which allow you to reuse predefined query logic in your log queries. |
-| **Query history** | Lists your query history. Select a query to rerun it. |
+| **Query history** | Lists your [query history](#query-history). Select a query to rerun it. |
 
 > [!NOTE]
 > The **Tables** view doesn't show empty tables by default.
@@ -114,6 +114,40 @@ Pin the left pane to keep it open while you work, or maximize your query window 
 > * To change that for the *current session*, open the context menu `...` next to the search bar, then select **Show tables with no data**.
 >
 > * To show or hide empty tables *permanently*, open the context menu `...` [above the top action bar](#more-tools), select **Log Analytics settings**, toggle **Show tables with no data**, and **Save** your changes.
+
+#### Query history
+
+Query history records the queries you run against a resource and makes them available to rerun later. The following sections describe where query history is stored, how long it's kept, and which scenarios it doesn't support.
+
+##### Regional storage and resource scoping
+
+Query history is resource-centric and region-scoped. Log Analytics stores history in the same region as the resource you query, which supports data-residency and compliance requirements. As a result, the history you see depends on both the resource and its region:
+
+* **Regional resources**, such as Log Analytics workspaces, Application Insights resources, and virtual machines, store history in the resource's own region. Two resources in different regions don't share history.
+* **Global resources** that have no region route to a fixed default region for the cloud. In the public Azure cloud, the default region is West Europe.
+
+Scoping also depends on the resource type. Each Log Analytics workspace keeps its own independent history, so the history for Workspace A differs from the history for Workspace B. For some other resource types, resources of the same type within the same region share a common history.
+
+##### Retention and limits
+
+| Behavior | Detail |
+|:---------|:-------|
+| Retention | History is kept for 30 days. |
+| Per-user limit | Up to 300 queries per user, per resource. |
+| Query text size | Each stored query can be up to 40 KB. Larger queries aren't saved to history. |
+
+##### Clear query history
+
+Clearing query history applies to an entire scope, so clearing history removes every query for that scope at once. For resource types that share history, clearing history affects all resources of that type in the same region.
+
+##### Unsupported scenarios
+
+Query history isn't available in the following cases:
+
+* **Customer-managed storage**: Query history isn't supported when the workspace uses a [customer-managed storage account](./private-storage.md).
+* **Resource move operations**: Query history is keyed to the original resource ID and isn't carried over when you move a workspace to a different resource group or subscription. The history stored before the move isn't accessible from the moved resource.
+
+Query history stores the full text of each query. This text isn't written to telemetry and isn't accessible to Microsoft operators.
 
 ### Query window
 
