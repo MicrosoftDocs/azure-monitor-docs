@@ -2,7 +2,7 @@
 title: Azure Monitor Agent extension versions
 description: Release notes and version history for the Azure Monitor Agent virtual machine extension, including Windows, Linux, and metrics updates.
 ms.topic: release-notes
-ms.date: 06/26/2026
+ms.date: 07/06/2026
 ms.custom: references_region
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
@@ -43,57 +43,57 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 > [!IMPORTANT]
 > Every release contains security, quality, and reliability updates in addition to the changes listed here.
 
-| Date | Windows | Linux | Metrics | Highlights |
-|---|---|---|---|---|
-| [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes |
-| [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates |
-| [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements |
-| [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes |
-| [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation |
-| [October 2025](#october-2025) | 1.39.0 | 1.38.0–1.38.1 | — | OpenTelemetry support, FIPS 140-3 |
-| [September 2025](#september-2025) | 1.38.1 | 1.37.x | — | Third-party OTLP logs, Metrics Troubleshooter |
-| [August 2025](#august-2025) | 1.37.0 | 1.36.1 | — | SELinux uninstall fix, aarch64 support |
-| [June 2025](#june-2025) | 1.36 | 1.35.8–1.35.9 | — | SID to Username Resolution, Arc proxy |
-| [May 2025](#may-2025) | 1.35.1 | 1.35.1–1.35.7 | — | Metrics Agent launch, JSON parsing |
-| [March 2025](#march-2025) | 1.34.0 | 1.34.5 | — | Agent Settings refactoring, race condition fixes |
-| [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning |
-| [November 2024](#november-2024) | 1.31.0 | — | — | Proxy selection, Sentinel enhancements |
-| [October 2024](#october-2024) | 1.30.0 | — | — | Custom Logs timestamp delimiter |
-| [September 2024](#september-2024) | — | 1.33.1 | — | Azure Linux 3, Ubuntu 24.04 LTS, Arm64 |
-| [August 2024](#august-2024) | 1.29 | 1.32.6 | — | SecurityEvent columns, OpenSSL dynamic linking |
-| [June 2024](#june-2024) | 1.28.2 | — | — | Resource ID encoding, GovSG endpoint |
-| [May 2024](#may-2024) | 1.27.0 | — | — | Fluent-bit security fix, proxy improvements |
-| [April 2024](#april-2024) | 1.26.0 | 1.31.1 | — | Firewall Logs profile filter, Arc proxy |
-| [March 2024](#march-2024) | 1.25.0 | 1.31.0 | — | JSON auto-parsing (breaking change) |
-| [February 2024](#february-2024) | 1.24.0 | 1.30.3–1.30.2 | — | IIS memory leak fix, TLS 1.3 |
-| [January 2024](#january-2024) | 1.23.0 | 1.29.5–1.29.6 | — | TLS 1.3 support |
-| [December 2023](#december-2023) | 1.22.0 | 1.29.4 | — | CPU spikes fix, Fluent Bit binary |
-| [October 2023](#october-2023) | 1.21.0 | 1.28.11 | — | CPU optimization, multiple IIS subscriptions |
-| [September 2023](#september-2023) | 1.20.0 | — | — | Event Log subscription reset fix |
-| [August 2023](#august-2023) | 1.19.0 | — | — | Tag name prefixes |
-| [July 2023](#july-2023) | 1.18.0 | — | — | Event Log callback error fix |
-| [June 2023](#june-2023) | 1.17.0 | 1.27.4 | — | FilePath column, OpenSSL dynamic linking |
-| [May 2023](#may-2023) | 1.16.0.0 | 1.26.2–1.26.5 | — | Large Event support, CIS/SELinux hardening |
-| [April 2023](#april-2023) | 1.15.0 | — | — | Large Event region support, Fluent Bit 2.0.9 |
-| [March 2023](#march-2023) | 1.14.0.0 | — | — | Text file collection improvements |
-| [February 2023](#february-2023) | 1.13.1 | 1.25.2 | — | Data loss fix, Fluent Bit buffering |
-| [January 2023](#january-2023) | 1.12.0 | 1.25.1 | — | RHEL 9 support, EventLevel fix |
-| [November–December 2022](#novemberdecember-2022) | 1.11.0 | — | — | Air-gapped cloud support |
-| [October 2022](#october-2022) | 1.10.0.0 | 1.24.2 | — | Proxy environment variables |
-| [September 2022](#september-2022) | 1.9.0 | — | — | Reliability improvements |
-| [August 2022](#august-2022) | 1.8.0 | 1.22.2 | — | Lookback time extended to 72 hours |
-| [July 2022](#july-2022) | 1.7.0 | — | — | Sentinel timestamp fix |
-| [June 2022](#june-2022) | 1.6.0 | — | — | User assigned identity fixes |
-| [May 2022](#may-2022) | 1.5.0.0 | 1.21.0 | — | Debian 11 support |
-| [April 2022](#april-2022) | 1.4.1 | 1.19.3 | — | Private IP in Heartbeat |
-| [March 2022](#march-2022) | 1.3.0 | 1.17.5.0 | — | XML format and timestamp fixes |
-| [February 2022](#february-2022) | 1.2.0 | 1.15.3 | — | AMA Client installer fixes |
-| [January 2022](#january-2022) | 1.1.5.1 | 1.15.2.0 | — | Syslog RFC compliance |
-| [December 2021](#december-2021) | 1.1.4 | 1.14.7.0 | — | Arc-enabled server fixes |
-| [September 2021](#september-2021) | 1.1.3.2 | 1.12.2.0 | — | Data loss fix |
-| [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support |
-| [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway |
-| [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability |
+| Date | Windows | Linux | Metrics | Highlights | Breaking change |
+|---|---|---|---|---|---|
+| [June 2026](#june-2026) | — | 1.42 | — | Performance improvements, SUSE 16 support, CVE and memory leak fixes | — |
+| [May 2026](#may-2026) | 1.43 | — | 2.2026.424.2329 | Installer crash fix, OpenSSL 3.6.2, security dependency updates | — |
+| [April 2026](#april-2026) | 1.42 | 1.41 | — | OpenSSL 3.6.1, XPath parsing, performance enhancements | [Yes](#linux-breaking-change) |
+| [February 2026](#february-2026) | 1.41.0 | 1.40.0 | — | Azure Batch support, memory leak fixes | — |
+| [January 2026](#january-2026) | — | 1.39.0 | 2.2025.905.1550 | OpenTelemetry process counters, dimension truncation | — |
+| [October 2025](#october-2025) | 1.39.0 | 1.38.0–1.38.1 | — | OpenTelemetry support, FIPS 140-3 | — |
+| [September 2025](#september-2025) | 1.38.1 | 1.37.x | — | Third-party OTLP logs, Metrics Troubleshooter | — |
+| [August 2025](#august-2025) | 1.37.0 | 1.36.1 | — | SELinux uninstall fix, aarch64 support | — |
+| [June 2025](#june-2025) | 1.36 | 1.35.8–1.35.9 | — | SID to Username Resolution, Arc proxy | — |
+| [May 2025](#may-2025) | 1.35.1 | 1.35.1–1.35.7 | — | Metrics Agent launch, JSON parsing | — |
+| [March 2025](#march-2025) | 1.34.0 | 1.34.5 | — | Agent Settings refactoring, race condition fixes | — |
+| [January 2025](#january-2025) | 1.32.0 | 1.33.4 | — | Disk quota tuning | — |
+| [November 2024](#november-2024) | 1.31.0 | — | — | Proxy selection, Sentinel enhancements | — |
+| [October 2024](#october-2024) | 1.30.0 | — | — | Custom Logs timestamp delimiter | — |
+| [September 2024](#september-2024) | — | 1.33.1 | — | Azure Linux 3, Ubuntu 24.04 LTS, Arm64 | — |
+| [August 2024](#august-2024) | 1.29 | 1.32.6 | — | SecurityEvent columns, OpenSSL dynamic linking | — |
+| [June 2024](#june-2024) | 1.28.2 | — | — | Resource ID encoding, GovSG endpoint | — |
+| [May 2024](#may-2024) | 1.27.0 | — | — | Fluent-bit security fix, proxy improvements | — |
+| [April 2024](#april-2024) | 1.26.0 | 1.31.1 | — | Firewall Logs profile filter, Arc proxy | — |
+| [March 2024](#march-2024) | 1.25.0 | 1.31.0 | — | JSON auto-parsing | [Yes](#march-2024) |
+| [February 2024](#february-2024) | 1.24.0 | 1.30.3–1.30.2 | — | IIS memory leak fix, TLS 1.3 | — |
+| [January 2024](#january-2024) | 1.23.0 | 1.29.5–1.29.6 | — | TLS 1.3 support | — |
+| [December 2023](#december-2023) | 1.22.0 | 1.29.4 | — | CPU spikes fix, Fluent Bit binary | — |
+| [October 2023](#october-2023) | 1.21.0 | 1.28.11 | — | CPU optimization, multiple IIS subscriptions | — |
+| [September 2023](#september-2023) | 1.20.0 | — | — | Event Log subscription reset fix | — |
+| [August 2023](#august-2023) | 1.19.0 | — | — | Tag name prefixes | — |
+| [July 2023](#july-2023) | 1.18.0 | — | — | Event Log callback error fix | — |
+| [June 2023](#june-2023) | 1.17.0 | 1.27.4 | — | FilePath column, OpenSSL dynamic linking | — |
+| [May 2023](#may-2023) | 1.16.0.0 | 1.26.2–1.26.5 | — | Large Event support, CIS/SELinux hardening | — |
+| [April 2023](#april-2023) | 1.15.0 | — | — | Large Event region support, Fluent Bit 2.0.9 | — |
+| [March 2023](#march-2023) | 1.14.0.0 | — | — | Text file collection improvements | — |
+| [February 2023](#february-2023) | 1.13.1 | 1.25.2 | — | Data loss fix, Fluent Bit buffering | — |
+| [January 2023](#january-2023) | 1.12.0 | 1.25.1 | — | RHEL 9 support, EventLevel fix | — |
+| [November–December 2022](#novemberdecember-2022) | 1.11.0 | — | — | Air-gapped cloud support | — |
+| [October 2022](#october-2022) | 1.10.0.0 | 1.24.2 | — | Proxy environment variables | — |
+| [September 2022](#september-2022) | 1.9.0 | — | — | Reliability improvements | — |
+| [August 2022](#august-2022) | 1.8.0 | 1.22.2 | — | Lookback time extended to 72 hours | — |
+| [July 2022](#july-2022) | 1.7.0 | — | — | Sentinel timestamp fix | — |
+| [June 2022](#june-2022) | 1.6.0 | — | — | User assigned identity fixes | — |
+| [May 2022](#may-2022) | 1.5.0.0 | 1.21.0 | — | Debian 11 support | — |
+| [April 2022](#april-2022) | 1.4.1 | 1.19.3 | — | Private IP in Heartbeat | — |
+| [March 2022](#march-2022) | 1.3.0 | 1.17.5.0 | — | XML format and timestamp fixes | — |
+| [February 2022](#february-2022) | 1.2.0 | 1.15.3 | — | AMA Client installer fixes | — |
+| [January 2022](#january-2022) | 1.1.5.1 | 1.15.2.0 | — | Syslog RFC compliance | — |
+| [December 2021](#december-2021) | 1.1.4 | 1.14.7.0 | — | Arc-enabled server fixes | — |
+| [September 2021](#september-2021) | 1.1.3.2 | 1.12.2.0 | — | Data loss fix | — |
+| [August 2021](#august-2021) | 1.1.2.0 | 1.10.9.0 | — | Metrics-only destination support | — |
+| [July 2021](#july-2021) | 1.1.1 | 1.10.5.0 | — | Direct proxies and Log Analytics gateway | — |
+| [June 2021](#june-2021) | 1.0.12 | 1.9.1.0 | — | General availability | — |
 
 ## June 2026
 
@@ -137,12 +137,29 @@ For most scenarios, [enable automatic extension updates](/azure/virtual-machines
 - Removed verbose checksum mismatch logging to reduce log noise in the agent manager.
 - Updated Metrics Extension (ME) to 2.2026.312.1653.
 
-### Linux breaking change ###
-- **Who:** Customers parsing Syslog by using the [CEF Syslog AMA connector](/azure/sentinel/cef-syslog-ama-overview).
-- **What:** You might see malformed CEF events in the Log Analytics Syslog table.
-- **When:** If you use Sentinel Syslog connectors to split a single stream of CEF and Syslog events into the CommonSecurityLog and Syslog tables and you collect noncompliant Syslog from vendors who include the CEF indicator in the SyslogMessage column.
-- **Why:** Updates improve standards of compliance and parsing consistency for CEF data. The generic Syslog parser **no longer** extracts the CEF token from the SyslogMessage column and changes the format to comply with the RFC 5424 standard. This change addresses the principle of not modifying customer data without the customer's explicit knowledge.
-- **How:** To resolve the breaking change, review and update your KQL transformation in the [CEF Syslog AMA connector](/azure/sentinel/cef-syslog-ama-overview) for the Log Analytics Syslog table to include this filter: `| where SyslogMessage !contains "CEF"`. 
+### Linux breaking change
+
+Beginning with Linux version 1.41, the generic Syslog parser no longer modifies the message body of Common Event Format (CEF)-over-syslog events that are routed to the **Syslog** table. If you collect CEF-over-syslog data on Linux, review the following details so that you can update your Log Analytics or Microsoft Sentinel queries accordingly.
+
+- **Who:** Customers who ingest CEF-over-syslog events into the **Syslog** table on Linux. This most commonly affects customers who use the [CEF Syslog AMA connector](/azure/sentinel/cef-syslog-ama-overview) to split a single stream into the `CommonSecurityLog` and `Syslog` tables and who collect from appliances that place the `CEF:` indicator in the message body rather than in the syslog tag.
+- **What:** For events stored in the **Syslog** table, the `SyslogMessage` column now preserves the message exactly as it arrived on the wire, including the leading `CEF:` token. In version 1.40, the agent removed the leading `CEF:` token before storing the message. Data collected into the **`CommonSecurityLog`** table isn't affected, because CEF parsing still runs for that stream in both versions.
+- **When:** You notice this change after you upgrade to Linux version 1.41, if an appliance sends CEF inside the syslog message body (rather than in the syslog tag or `APP-NAME`) and those events are written to the Syslog table.
+- **Why:** In version 1.40, the generic Syslog parser scanned every syslog message for a `CEF:` token and rewrote the message body, regardless of the destination table. Version 1.41 removes this behavior from the generic parser and applies CEF-specific handling only when the destination is the CEF (`CommonSecurityLog`) stream. This change aligns with the syslog standards (RFC 3164 and RFC 5424), which treat the message body as free-form content that shouldn't be altered in transit. It also avoids modifying customer data unless CEF is the explicitly chosen destination.
+- **How:** If you rely on the version 1.40 behavior to filter CEF events out of the Syslog table, update your KQL transformation to also match the `CEF:` token in the message body, not just the process name. For example: `| where ProcessName != "CEF" and SyslogMessage !contains "CEF:"`.
+
+The following example shows a CEF-over-syslog event as it arrives on the wire:
+
+`<134>1 2026-01-15T10:00:00.000Z host01 Vendor Product 1001 - CEF:0|Vendor|Product|1.0|100|Login|3|src=10.0.0.1`
+
+The resulting value in the `SyslogMessage` column of the Syslog table depends on the agent version:
+
+- **Version 1.40:** `0|Vendor|Product|1.0|100|Login|3|src=10.0.0.1` — the leading `CEF:` token is removed.
+- **Version 1.41:** `CEF:0|Vendor|Product|1.0|100|Login|3|src=10.0.0.1` — the message is preserved as received.
+
+The `CommonSecurityLog` table is unaffected in both versions.
+
+> [!NOTE]
+> If an appliance sends a syslog header that isn't valid under RFC 3164 or RFC 5424 (for example, a malformed timestamp), version 1.41 might be unable to parse the header and stores the entire remainder as an opaque `SyslogMessage` value. This behavior is expected: the agent preserves the message as received rather than reshaping a noncompliant message.
 
 ### Linux ###
 - Added FTD and FMC messages to CEF syslog stream.
