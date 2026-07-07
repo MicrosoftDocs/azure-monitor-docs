@@ -13,6 +13,7 @@ This article describes a method to use [Azure Logic Apps](/azure/logic-apps/) to
 ## Other export methods
 The method discussed in this article describes a scheduled export from a log query by using a logic app. Other options to export data for particular scenarios include:
 
+- To export historical records from a single table by query and time range to Azure Blob Storage, run an [export job (Preview)](export-job.md). An export job is the recommended native option for on-demand historical exports at scale and isn't subject to the log query and connector limits described later in this article.
 - To export data from your Log Analytics workspace to a storage account or Azure Event Hubs, use the Log Analytics workspace data export feature of Azure Monitor Logs. See [Log Analytics workspace data export in Azure Monitor](logs-data-export.md).
 - One-time export by using a logic app. See [Azure Monitor Logs connector for Logic Apps](/azure/connectors/connectors-azure-monitor-logs).
 - One-time export to a local machine by using a PowerShell script. See [Invoke-AzOperationalInsightsQueryExport](https://www.powershellgallery.com/packages/Invoke-AzOperationalInsightsQueryExport).

@@ -2,7 +2,7 @@
 title: Diagnostic settings FAQ
 description: Frequently Asked Questions about billing enablement with diagnostic settings.
 ms.topic: how-to
-ms.date: 06/10/2026
+ms.date: 06/24/2026
 ms.author: msundaram
 author: msundaram
 ai-usage: ai-assisted
@@ -52,6 +52,17 @@ Review the **"Costs to export"** column in the [Azure Monitor resource logs docu
 
 ---
 
+### Is there a single list of freely exportable log categories?
+
+No. Free log categories vary by resource provider, change as services add categories, and depend on the destination. To check whether a specific log category incurs an export charge:
+
+1. Open the [Supported Resource log categories for Azure Monitor](/azure/azure-monitor/reference/logs-index) reference and find the resource provider.
+1. On the linked per-category page, review the **Costs to export** column.
+
+Activity logs aren't billable for export. Tenant-level logs collected through a tenant-scoped diagnostic setting (for example, Microsoft Entra ID sign-in logs and Microsoft Intune logs) also aren't currently billable for export. Neither appears in the resource-specific tables on the logs-index reference page.
+
+---
+
 ### What determines whether export charges apply? Does this change introduce new charges for logs I'm already exporting today?
 
 Starting June 15, 2026, you might incur export charges for certain platform log categories that were previously exported at no charge for some Azure resource types.
@@ -89,7 +100,7 @@ Metrics aren't affected.
 
 Yes.
 
-Diagnostic Settings enables you to selectively turn on or off individual platform log categories to help manage cost and data volume. 
+By using Diagnostic Settings, you can selectively turn on or off individual platform log categories to help manage cost and data volume. 
 
 ---
 
