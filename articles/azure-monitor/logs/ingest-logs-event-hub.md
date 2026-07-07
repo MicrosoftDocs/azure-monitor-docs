@@ -35,6 +35,9 @@ To send events from Azure Event Hubs to Azure Monitor Logs, you need these resou
 * [Event Hubs namespace](/azure/event-hubs/event-hubs-features#namespace) that permits public network access. If public network access is disabled, ensure that "Allow trusted Microsoft services to bypass this firewall" is set to "Yes."
 * [Event hub](/azure/event-hubs/event-hubs-create) with events. You can send events to your event hub by following the steps in [Send and receive events in Azure Event Hubs tutorials](/azure/event-hubs/event-hubs-create#next-steps) or by [configuring the diagnostic settings of Azure resources](../platform/diagnostic-settings.md#create-a-diagnostic-setting).
 
+> [!NOTE]
+> Availability of this feature depends on capacity in the target region. Even in supported regions, Azure capacity constraints can prevent data flow from starting after configuration is completed. If you encounter this issue, see  [Alternative solutions](#alternative-solutions). This limitation affects only the initial setup. Once data flow has started successfully, ingestion continues normally.
+
 ## Supported regions
 
 Azure Monitor currently supports ingestion from Event Hubs in these regions:
@@ -465,6 +468,27 @@ To stop ingesting data from the event hub, [delete all data collection rule asso
 
 * If you transfer a subscription between Microsoft Entra directories, you need to follow the steps described in [Known issues with managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/known-issues#transferring-a-subscription-between-azure-ad-directories) to continue ingesting data.
 * You can ingest messages of up to 64 KB from Event Hubs to Azure Monitor Logs.
+*  Availability of this feature depends on capacity in the target region. Even in supported regions, Azure capacity constraints can prevent data flow from starting after configuration is completed. If you encounter this issue, see  [Alternative solutions](#alternative-solutions). This limitation affects only the initial setup. Once data flow has started successfully, ingestion continues normally.
+
+## Alternative solutions
+
+If you're unable to use Event Hubs ingestion due to capacity constraints in the target region, consider one of the following alternatives:
+
+1. Deploy in a different Azure region where capacity is available, if your architecture and compliance requirements allow it.
+
+2. Use alternative Azure Monitor ingestion methods where applicable:
+
+   - [Azure Monitor Agent](https://learn.microsoft.com/azure/azure-monitor/agents/agents-overview) – to collect telemetry from the guest operating system of Azure and hybrid virtual machines (VMs)
+
+   - [Azure Monitor pipeline](https://learn.microsoft.com/en-us/azure/azure-monitor/data-collection/pipeline-overview) – to collect telemetry from on-premises, edge, and multicloud environments
+
+    - [Logs Ingestion API](https://learn.microsoft.com/azure/azure-monitor/logs/logs-ingestion-api-overview) – data can be sent from any application that can make a REST API call
+
+3. [Use Azure Logic Apps to pull events from Event Hubs](https://learn.microsoft.com/azure/connectors/connectors-create-api-azure-event-hubs) and stream to Log Analytics Workspace with [Logs Ingestion API](https://learn.microsoft.com/en-us/azure/azure-monitor/logs/logs-ingestion-api-overview)
+
+4. [Stream events from Event hub to Log Analytics Workspace with Logstash output plugin](https://learn.microsoft.com/azure/sentinel/connect-logstash-data-connection-rules)
+
+
 
 ## Next steps
 
