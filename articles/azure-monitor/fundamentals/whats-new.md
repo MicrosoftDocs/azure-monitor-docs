@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 06/08/2026
+ms.date: 07/07/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -10,6 +10,12 @@ ms.date: 06/08/2026
 This article lists significant changes to Azure Monitor documentation.
 
 ## 2026
+
+### July 2026
+
+|Subservice | Article | Description |
+|---|---|---|
+|Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format with the new export job feature in public preview, an on-demand alternative to continuous data export rules for backup, analysis, and compliance scenarios. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425) for more details.|
 
 ### June 2026
 
