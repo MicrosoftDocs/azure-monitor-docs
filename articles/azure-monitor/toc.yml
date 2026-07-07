@@ -1205,8 +1205,10 @@ items:
         href: /azure/connectors/connectors-azure-application-insights
     - name: Data export
       items:
-      - name: Workspace data export
+      - name: Data export rules
         href: logs/logs-data-export.md
+      - name: Export job
+        href: logs/export-job.md
       - name: Export with Logic Apps
         href: logs/logs-export-logic-app.md
       - name: Send to Excel
