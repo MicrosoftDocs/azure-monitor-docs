@@ -175,7 +175,7 @@ When you add a metric to a chart, metrics explorer applies a default aggregation
 
 Before you use different aggregations on a chart, you should understand how metrics explorer handles them. Metrics are a series of measurements (or "metric values") that are captured over a time period. When you plot a chart, the values of the selected metric are separately aggregated over the *time granularity*.
 
-You select the size of the time grain by using the time picker in metrics explorer. If you don't explicitly select the time grain, metrics explorer uses **Automatic**, which selects the best time grain based on the time range. After metrics explorer determines the time grain, the metric values that it captures during each time grain are aggregated on the chart, one data point per time grain.
+You select the size of the time grain by using the time picker in metrics explorer. If you don't explicitly select the time grain, metrics explorer uses **Automatic**, which selects the best time grain based on the time range. After metrics explorer determines the time grain, it aggregates the metric values it captures during each time grain on the chart, one data point per time grain.
 
 Suppose a chart shows the *Server response time* metric. It uses the average aggregation over the time span of the last 24 hours. 
 
@@ -367,7 +367,7 @@ This section provides answers to common questions.
 
 ### Why are metrics from the guest OS of my Azure virtual machine not showing up in metrics explorer?
 
-[Platform metrics](../platform/monitor-azure-resource.md#metrics) are collected automatically for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/virtual-machine-guest-metrics.md).
+[Platform metrics](../platform/monitor-azure-resource.md#metrics) are automatically collected for Azure resources. To collect metrics from the guest OS of a virtual machine, install the [Azure Monitor Agent](../agents/azure-monitor-agent-overview.md) and configure a data collection rule for guest OS performance counters. The Azure Monitor Agent replaces the Azure Diagnostics extension (WAD) and Log Analytics agent, which were previously used for guest OS metric routing. For a list of guest OS metrics available through the Azure Monitor Agent, see [Virtual machine guest performance counters](../vm/virtual-machine-guest-metrics.md).
 
 [!INCLUDE [prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer](includes/prometheus-faq-can-i-view-prometheus-metrics-in-metrics-explorer.md)]
 
