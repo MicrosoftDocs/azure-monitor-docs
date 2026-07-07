@@ -15,13 +15,20 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format with the new export job feature in public preview, an on-demand alternative to continuous data export rules for backup, analysis, and compliance scenarios. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425) for more details.|
+|Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format with the new export job feature in public preview, an on-demand alternative to data export rules for backup, analysis, and compliance scenarios. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425) for more details.|
 
 ### June 2026
 
 |Subservice | Article | Description |
 |---|---|---|
+|Agents|[Azure Copilot Observability Agent](../aiops/observability-agent-overview.md)|Expanded Observability Agent documentation with 12 new articles covering [autonomous operations](../aiops/observability-agent-autonomous-operations.md), [deep investigations](../aiops/observability-agent-deep-investigations.md), [context memory](../aiops/observability-agent-context-memory.md), custom instructions, resource provisioning, and transparency. Also renamed the AIOps overview to [AIOps and agentic operations](../aiops/aiops-and-agentic-operations.md).|
 |Data Collection|[Transformations in Azure Monitor](../data-collection/data-collection-transformations.md#multi-stage-transformations-preview)|Multi-stage transformations for data collection rules are in public preview. Filter, parse, aggregate, and enrich logs at the agent or during ingestion using a pipeline of declarative processors. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/azureobservabilityblog/is-94-of-your-syslog-just-noise-now-you-can-filter-it-out-before-ingestion-/4524600) for more details.|
+|Data Collection|[Create a metrics export rule](../data-collection/metrics-export-create.md)|Metrics export for Log Analytics workspaces reached general availability. Updated the create and [reference](../data-collection/metrics-export-reference.md) articles with expanded configuration details.|
+|Fundamentals|[Azure Monitor overview page](../fundamentals/overview-page.md)|New article introducing the Azure Monitor overview page, which surfaces health status, key signals, and recommended actions across monitored resources.|
+|Fundamentals|[Service Level Indicators](../fundamentals/service-level-indicators-create.md)|Service Level Indicators reached general availability.|
+|Health Models|[Configure health rollup](../health-models/rollup.md)|New how-to article for configuring health rollup in Azure Monitor health models, covering count, percentage, and impact-based aggregation strategies.|
+|Logs|[Protect tables in a Log Analytics workspace (preview)](../logs/protected-tables-configure.md)|New article for configuring protected tables, a preview feature that restricts write and delete access on sensitive tables at the table level. Also updated [Manage access to Log Analytics workspace](../logs/manage-access.md) with protected tables guidance.|
+|Platform|[Diagnostic settings FAQ](../platform/diagnostic-settings-faq.md)|Expanded the diagnostic settings FAQ with detailed platform logs billing guidance, including pricing calculator steps and billing meter descriptions for each destination type.|
 
 ### May 2026
 
