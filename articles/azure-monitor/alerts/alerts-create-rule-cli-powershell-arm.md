@@ -9,7 +9,7 @@ ms.reviewer: harelbr
 
 # Create a new alert rule using the CLI, PowerShell, or an ARM template
 
-You can create a new alert rule using [the CLI](#azure-cli-procedure), [PowerShell](#powershell-procedure), or an [Azure Resource Manager template](#arm-template-procedure).
+You can create a new alert rule by using [the CLI](#azure-cli-procedure), [PowerShell](#powershell-procedure), or an [Azure Resource Manager template](#arm-template-procedure).
 
 ## Prerequisites
 

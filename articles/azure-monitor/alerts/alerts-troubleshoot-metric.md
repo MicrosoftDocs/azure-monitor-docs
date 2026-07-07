@@ -221,7 +221,7 @@ This error indicates an issue with the alert rule scope. This can happen when ed
 
 The allowed number of metric alert rules per subscription is subject to [service limits](../service-limits.md).
 
-See [Check the number of metric alert rules in use](alerts-manage-alert-rules.md#metric-alert-rule-quota) to see how many metric alert rules are currently in use.
+To see how many metric alert rules are currently in use, see [Check the number of metric alert rules in use](alerts-manage-alert-rules.md#metric-alert-rule-quota).
 
 If you've reached the service limit, the following steps might help resolve the issue:
 

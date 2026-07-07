@@ -154,7 +154,7 @@ The table below describes the parameters used in the `New-AzAutoscaleProfileObje
 |`FixedDateStart` |The start time for the profile in ISO 8601 format.
 | `Rule` |A collection of rules that provide the triggers and parameters for the scaling action when this profile is active. A maximum of 10, comma separated rules can be specified.
 |`RecurrenceFrequency` | How often the scheduled profile takes effect. This value must be `week`. 
-|`ScheduleDay`| A collection of days that the profile takes effect on when specifying a recurring schedule. Possible values are Sunday through Saturday. For more information on recurring schedules, see [Add a recurring profile using CLI](./autoscale-multiprofile.md?tabs=powershell#powershell-recurring-profile)
+|`ScheduleDay`| A collection of days that the profile takes effect on when specifying a recurring schedule. Possible values are Sunday through Saturday. For more information on recurring schedules, see [Add a recurring profile using CLI](./autoscale-multiprofile.md?tabs=powershell#powershell-recurring-profile).
 |`ScheduleHour`| A collection of hours that the profile takes effect on. Values supported are 0 to 23.
 |`ScheduleMinute`| A collection of minutes at which the profile takes effect.
 |`ScheduleTimeZone` |The timezone for the hours of the profile.
