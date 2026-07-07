@@ -59,7 +59,7 @@ See the autoscale section of the [ARM template resource definition](/azure/templ
 
 There's no specification in the template for end time. A profile will remain active until the next profile's start time.  
 
-## Add a recurring profile using ARM templates
+## ARM template recurring profile
 
 The following example shows how to create two recurring profiles. One profile for weekends from 00:01 on Saturday morning and a second Weekday profile starting on Mondays at 04:00. That means that the weekend profile starts on Saturday morning at one minute passed midnight and end on Monday morning at 04:00. The Weekday profile will start at 4am on Monday and end just after midnight on Saturday morning.
 
@@ -307,7 +307,7 @@ The following steps show how to create a recurring autoscale profile using the C
 1. Create a scale out rule using `az monitor autoscale rule create` using `--scale out`
 1. Create a scale in rule using `az monitor autoscale rule create` using `--scale in`
 
-## Add a recurring profile using CLI
+## Azure CLI recurring profile
 
 The following example shows how to add a recurring autoscale profile, recurring on Thursdays between 06:00 and 22:50.
 
@@ -358,7 +358,7 @@ az monitor autoscale profile list \
 > * A new default profile is created for each recurring profile.  
 > * If the end time is not specified in the CLI command, the end time will be defaulted to 23:59.
 
-## Updating the default profile when you have recurring profiles
+## Azure CLI update to the default profile
 
 After you add recurring profiles, your default profile is renamed. If you have multiple recurring profiles and want to update your default profile, the update must be made to each default profile corresponding to a recurring profile.
 
@@ -382,7 +382,7 @@ The following steps show how to create an autoscale profile using PowerShell.
 1. Create profiles using `New-AzAutoscaleProfile` using the rules from the previous step.
 1. Use `Add-AzAutoscaleSetting` to apply the profiles to your autoscale setting.
 
-## Add a recurring profile using PowerShell
+## PowerShell recurring profile
 
 The following example shows how to create default profile and a recurring autoscale profile, recurring on Wednesdays and Fridays between 09:00 and 23:00.
 The default profile uses the  `CpuIn` and `CpuOut` Rules. The recurring profile uses the `BandwidthIn` and `BandwidthOut` rules.
@@ -503,7 +503,7 @@ Update-AzAutoscaleSetting  `
 > [!NOTE] 
 > You can't specify an end date for recurring profiles in PowerShell. To end a recurring profile, create a copy of default profile with the same recurrence parameters as the recurring profile. Set the start time to be the time you want the recurring profile to end. Each recurring profile requires its own copy of the default profile to specify an end time. 
 
-## Updating the default profile when you have recurring profiles
+## PowerShell update to the default profile
 
 If you have multiple recurring profiles and want to change your default profile, the change must be made to each default profile corresponding to a recurring profile.
 

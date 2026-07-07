@@ -19,7 +19,7 @@ To create or edit an alert rule, you must have the following permissions:
 * Write permission on the resource group in which the alert rule is created. If you're creating the alert rule from the Azure portal, the alert rule is created by default in the same resource group in which the target resource resides.
 * Read permission on any action group associated to the alert rule, if applicable.
 
-## Create a new alert rule using the CLI
+## Azure CLI procedure
 
 You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-with-azure-cli). The following code examples use [Azure Cloud Shell](/azure/cloud-shell/overview). You can see the full list of the [Azure CLI commands for Azure Monitor](/cli/azure/azure-cli-reference-for-monitor#azure-monitor-references).
 
@@ -34,7 +34,7 @@ You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-wit
      az monitor metrics alert create -n {nameofthealert} -g {ResourceGroup} --scopes {VirtualMachineResourceID} --condition "avg Percentage CPU > 90" --description {descriptionofthealert}
     ```
 
-## Create a new alert rule using PowerShell
+## PowerShell procedure
 
 * To create a metric alert rule using PowerShell, use the [Add-AzMetricAlertRuleV2](/powershell/module/az.monitor/add-azmetricalertrulev2) cmdlet.
 
@@ -45,7 +45,7 @@ You can create a new alert rule using the [Azure CLI](/cli/azure/get-started-wit
 
 * To create an activity log alert rule using PowerShell, use the [New-AzActivityLogAlert](/powershell/module/az.monitor/new-azactivitylogalert) cmdlet.
 
-## Create a new alert rule using an ARM template
+## ARM template procedure
 
 You can use an [Azure Resource Manager template (ARM template)](/azure/azure-resource-manager/templates/syntax) to configure alert rules consistently in all of your environments.
 

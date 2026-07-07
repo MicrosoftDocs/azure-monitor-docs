@@ -36,7 +36,7 @@ In the Azure portal you received the error "The log search alert rule creation f
 
 This could happen if the combined size of all data in the log search alert rule properties exceeds 64 KB (or 32 K string characters). Check if the alert rule is using a large query, has many dimensions, action group, or a long description, whose combined size could be greater than 64 KB.
 
-## I didn't receive the expected email
+## Missing email notification
 
 If you can see a fired alert in the Azure portal, but didn't receive the email that you configured, follow these steps:
 
@@ -105,7 +105,7 @@ If you can see a fired alert in the Azure portal, but didn't receive the email t
 
     None of these actions are rate limited.
 
-## I didn't receive the expected SMS, voice call, or push notification
+## Missing SMS, voice, or push notification
 
 If you can see a fired alert in the portal, but didn't receive the SMS, voice call or push notification that you configured, follow these steps: 
 
@@ -188,7 +188,7 @@ If you can see a fired alert in the portal, but its configured action didn't tri
 
         * The retry logic assumes that the call can be retried. The status codes: 408, 429, 503, 504, or `HttpRequestException`, `WebException`, or `TaskCancellationException` allow for the call to be retried.
 
-## The action or notification happened more than once 
+## Duplicate action or notification 
 
 If you received a notification for an alert (such as an email or an SMS) more than once, or the alert's action (such as webhook or Azure function) was triggered multiple times, follow these steps: 
 
@@ -206,7 +206,7 @@ If you received a notification for an alert (such as an email or an SMS) more th
     <!-- convertborder later -->
     :::image type="content" source="media/alerts-troubleshoot/action-repeated-multi-action-groups.png" lightbox="media/alerts-troubleshoot/action-repeated-multi-action-groups.png" alt-text="Screenshot of multiple action groups in an alert." border="false":::
 
-## The action or notification has unexpected content
+## Unexpected content in action or notification
 
 1. **Was there an outage that triggered the use of the fallback email provider?**
 
@@ -295,7 +295,7 @@ If you can see a fired alert in the portal, but a related alert processing rule 
 
     In summary, the target resource is the individual resource being monitored, while the scope defines the broader set of resources that the alert rule applies to.
 
-## Problems creating, updating, or deleting any type of alert rules
+## Alert rule create, update, or delete errors
 
 If you receive an error while trying to create, update, or delete alert rules, verify that the required platform components are available and enabled in your tenant.
 
@@ -314,7 +314,7 @@ To resolve this issue:
 
 If the application is missing or disabled, restoring or re-enabling it will allow alert rule operations to function correctly.
 
-## Problems creating, updating, or deleting alert processing rules in the Azure portal
+## Alert processing rule create, update, or delete errors
 
 If you received an error while trying to create, update or delete an [alert processing rule](./alerts-processing-rules.md), follow these steps: 
 

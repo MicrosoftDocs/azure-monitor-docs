@@ -49,7 +49,7 @@ The components of Azure Monitor that are supported with network security perimet
 | Action groups <sup>1</sup> <sup>2</sup> | Microsoft.Insights/actionGroups            | 2023-05-01         |
 | Diagnostic settings                     | Microsoft.Insights/diagnosticSettings      | 2021-05-01-preview |
 
-<sup>1</sup> Network security perimeters only operate with [regional action groups](../alerts/action-groups.md#create-an-action-group-in-the-azure-portal). Global action groups default to public network access.
+<sup>1</sup> Network security perimeters only operate with [regional action groups](../alerts/action-groups.md#create-in-the-azure-portal). Global action groups default to public network access.
 
 <sup>2</sup> Event Hub is currently the only supported action type for network security perimeters. All other actions default to public network access.
 
