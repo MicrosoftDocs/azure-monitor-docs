@@ -27,7 +27,7 @@ Manage these permissions through [Azure Role-Based Access Control (RBAC)](/azure
 > [!NOTE]
 > It can take 10 to 15 minutes after you create the resource for a metric to be available.
 
-## Create or edit an alert rule from the portal home page
+## From the portal home page
 
 Follow these steps:
 
@@ -37,7 +37,7 @@ Follow these steps:
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-new-alert-rule.png" alt-text="Screenshot that shows steps to create a new alert rule.":::
 
-## Create or edit an alert rule from a specific resource
+## From a specific resource
 
 Follow these steps:
 
@@ -73,7 +73,7 @@ Follow these steps:
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-select-resource.png" alt-text="Screenshot that shows the select resource pane for creating a new alert rule.":::
 
-## Configure the alert rule conditions
+## Configure conditions
 
 Follow these steps:
 
@@ -147,7 +147,7 @@ Follow these steps:
 
 1. Select **Done**. After you configure the alert rule conditions, you can configure the alert rule details to complete creation of the alert. Optionally, you can also add actions and tags to the alert rule.
 
-## Configure the alert rule actions
+## Configure actions
 
 (Optional) Follow these steps to add actions to your alert rule:
 
@@ -157,7 +157,7 @@ Follow these steps:
 
     :::image type="content" source="media/alerts-create-new-alert-rule/alerts-rule-actions-tab.png" alt-text="Screenshot that shows the Actions tab when creating a new alert rule.":::
 
-## Configure the alert rule details
+## Configure alert rule details
 
 Follow these steps:
 

@@ -1569,11 +1569,11 @@ To learn how to create a metric alert in the Azure portal, see [Tutorial: Create
 
 # [Azure CLI](#tab/cli)
 
-To learn how to add a metric alert using the Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-the-cli).
+To learn how to add a metric alert by using the Azure CLI, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#azure-cli-procedure).
 
 # [Azure PowerShell](#tab/powershell)
 
-To learn how to add a metric alert using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-powershell).
+To learn how to add a metric alert by using PowerShell, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#powershell-procedure).
 
 # [REST](#tab/rest)
 
@@ -1581,11 +1581,11 @@ For a list of various REST API call examples to create a metric alert, see the [
 
 # [Bicep](#tab/bicep)
 
-To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+To learn how to add a metric alert by using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#arm-template-procedure).
 
 # [ARM (JSON)](#tab/arm)
 
-To learn how to add a metric alert using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#create-a-new-alert-rule-using-an-arm-template).
+To learn how to add a metric alert by using an ARM template, see [Create a new alert rule using the CLI, PowerShell, or an ARM template](./../alerts/alerts-create-rule-cli-powershell-arm.md#arm-template-procedure).
 
 ---
 
