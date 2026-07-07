@@ -85,12 +85,12 @@ Use the following steps to enable Azure Authentication:
 Use the following steps to configure Prometheus as a data source:
 
 1. Open Grafana in your browser and select **Connections** > **Data sources**.
-2. Select **Add data source**.
-3. Search for and select the Prometheus data source. On Grafana 13 and later, select **Azure Monitor Managed Service for Prometheus**. On Grafana 11 and 12, select **Prometheus**.
-4. Paste the query endpoint from your Azure Monitor workspace into the **Prometheus server URL** field.
-5. Under **Authentication**, select **Azure Auth**.
-6. Under **Azure Authentication**, select **Managed Identity** from the **Authentication** dropdown list.
-7. Scroll to the bottom of the page and select **Save & test**.
+1. Select **Add data source**.
+1. Search for and select the Prometheus data source. On Grafana 13 and later, select **Azure Monitor Managed Service for Prometheus**. On Grafana 11 and 12, select **Prometheus**.
+1. Paste the query endpoint from your Azure Monitor workspace into the **Prometheus server URL** field.
+1. Under **Authentication**, select **Azure Auth**.
+1. Under **Azure Authentication**, select **Managed Identity** from the **Authentication** dropdown list.
+1. Scroll to the bottom of the page and select **Save & test**.
 
     :::image type="content" source="media/prometheus-grafana/prometheus-data-source.png" lightbox="media/prometheus-grafana/prometheus-data-source.png" alt-text="Screenshot that shows configuration for Prometheus data source.":::
 
