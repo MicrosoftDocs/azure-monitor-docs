@@ -16,11 +16,13 @@ This article lists significant changes to Azure Monitor documentation.
 |Subservice | Article | Description |
 |---|---|---|
 |Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format with the new export job feature in public preview, an on-demand alternative to data export rules for backup, analysis, and compliance scenarios. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425) for more details.|
+|Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
 
 ### June 2026
 
 |Subservice | Article | Description |
 |---|---|---|
+|Virtual Machines|[Tutorial: Alert on virtual machine issues](../vm/tutorial-alerts.md)|New tutorial for configuring Azure Monitor alerts on virtual machine issues, covering metric, log, and activity log alert rule creation and management.|
 |Agents|[Azure Copilot Observability Agent](../aiops/observability-agent-overview.md)|Expanded Observability Agent documentation with 12 new articles covering [autonomous operations](../aiops/observability-agent-autonomous-operations.md), [deep investigations](../aiops/observability-agent-deep-investigations.md), [context memory](../aiops/observability-agent-context-memory.md), custom instructions, resource provisioning, and transparency. Also renamed the AIOps overview to [AIOps and agentic operations](../aiops/aiops-and-agentic-operations.md).|
 |Data Collection|[Transformations in Azure Monitor](../data-collection/data-collection-transformations.md#multi-stage-transformations-preview)|Multi-stage transformations for data collection rules are in public preview. Filter, parse, aggregate, and enrich logs at the agent or during ingestion using a pipeline of declarative processors. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/azureobservabilityblog/is-94-of-your-syslog-just-noise-now-you-can-filter-it-out-before-ingestion-/4524600) for more details.|
 |Data Collection|[Create a metrics export rule](../data-collection/metrics-export-create.md)|Metrics export for Log Analytics workspaces reached general availability. Updated the create and [reference](../data-collection/metrics-export-reference.md) articles with expanded configuration details.|
@@ -34,6 +36,11 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
+|Agents|[Observability Agent governance FAQ](../aiops/observability-agent-governance-faq.md)|New FAQ covering data handling architecture, access controls, and compliance considerations for the Azure Copilot Observability Agent.|
+|Agents|[Observability Agent billing](../aiops/observability-agent-billing.md)|New article covering billing details and cost estimation for the Azure Copilot Observability Agent.|
+|Containers|[Azure Monitor OpenTelemetry options](../containers/opentelemetry-options.md)|New article summarizing the available Azure Monitor OpenTelemetry integration options for containerized workloads, helping customers choose the right approach for their scenario.|
+|Data Collection|[Collect resource logs with a data collection rule](../data-collection/platform-logs-collect.md)|New article covering how to collect Azure resource logs using a data collection rule, an alternative to diagnostic settings that supports filtering and transformations before data reaches the destination.|
+|Logs|[Log Analytics tables overview](../logs/logs-table-overview.md)|New conceptual article introducing Log Analytics table types, retention plans, and per-table feature support, split from the table management guidance for better discoverability.|
 |Logs|[Workspace replication](../logs/workspace-replication.md)|Workspace replication now supports private links during failover, removing a previous limitation that blocked customers using private endpoints in BCDR scenarios.|
 
 ### April 2026
