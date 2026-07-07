@@ -180,7 +180,7 @@ To mitigate this, you can either add the column to the previous project clause o
 ## Alert rule service limit was reached
 
 For details about the number of log search alert rules per subscription and maximum limits of resources, see [Azure Monitor service limits](../service-limits.md).
-See [Check the total number of log alert rules in use](alerts-manage-alert-rules.md#check-the-number-of-log-alert-rules-in-use) to see how many metric alert rules are currently in use.
+See [Check the total number of log alert rules in use](alerts-manage-alert-rules.md#log-alert-rule-quota) to see how many metric alert rules are currently in use.
 If you've reached the quota limit, the following steps might help resolve the issue.
 
 1. Delete or disable log search alert rules that aren't used anymore.
