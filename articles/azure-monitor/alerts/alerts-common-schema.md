@@ -125,7 +125,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 | signalType | Identifies the signal on which the alert rule was defined. Possible values are Metric, Log, or Activity Log. |
 
 
-## Alert context fields for metric alerts 
+## Metric alerts context fields 
 
 | Field | Description |
 |-------|-------------|
@@ -245,7 +245,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 }
 ```
 
-## Alert context fields for log search alerts
+## Log search alerts context fields
 
 > [!NOTE]
 > When you enable the common schema, the fields in the payload are reset to the common schema fields. Therefore, log search alerts have these limitations regarding the common schema:
@@ -535,7 +535,7 @@ For sample alerts that use the common schema, see [Sample alert payloads](alerts
 }
 ```
 
-## Alert context fields for activity log alerts
+## Activity log alerts context fields
 
 See [Azure activity log event schema](../essentials/activity-log-schema.md) for detailed information about the fields in activity log alerts.
 
@@ -729,7 +729,7 @@ See [Azure activity log event schema](../essentials/activity-log-schema.md) for 
 }
 ```
 
-## Alert context fields for Prometheus alerts
+## Prometheus alerts context fields
 
 See [Azure Monitor managed service for Prometheus rule groups](../essentials/prometheus-rule-groups.md) for detailed information about the fields in Prometheus alerts.
 
@@ -760,7 +760,7 @@ If the alert rule that generated your alert contains action groups, custom prope
 
 If custom properties aren't set in the alert rule, the field is null.
 
-## Enable the common alert schema
+## Enable the schema on action groups
 
 Use action groups in the Azure portal or use the REST API to enable the common alert schema. Schemas are defined at the action level. For example, you must separately enable the schema for an email action and a webhook action.
 
