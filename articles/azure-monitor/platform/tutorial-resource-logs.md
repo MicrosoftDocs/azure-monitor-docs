@@ -2,7 +2,7 @@
 title: Collect resource logs from an Azure resource
 description: Learn how to configure diagnostic settings to send resource logs from an Azure resource to a Log Analytics workspace where they can be analyzed with a log query.
 ms.topic: tutorial
-ms.date: 05/21/2025
+ms.date: 07/07/2026
 ms.reviewer: lualderm
 ---
 
@@ -41,7 +41,7 @@ Select **Create** to create a new workspace.
 
 :::image type="content" source="media/tutorial-resource-logs/create-workspace.png" lightbox="media/tutorial-resource-logs/create-workspace.png" alt-text="Screenshot that shows the Create button.":::
 
-On the **Basics** tab, select a subscription, resource group, and region for the workspace. These values don't need to be the same as the resource being monitored. Provide a name that must be globally unique across all Azure Monitor subscriptions.
+On the **Basics** tab, select a subscription, resource group, and region for the workspace. These values don't need to be the same as the resource being monitored. Provide a name that's unique within the resource group.
 
 :::image type="content" source="media/tutorial-resource-logs/workspace-basics.png" lightbox="media/tutorial-resource-logs/workspace-basics.png" alt-text=" Screenshot that shows the workspace Basics tab.":::
 

@@ -2,7 +2,7 @@
 title: Overview of Azure Monitor with Prometheus
 description: Get an overview of Azure Monitor with Prometheus, which provides Prometheus-compatible interfaces called Azure Monitor workspaces for storing and retrieving metric data.
 ms.topic: concept-article
-ms.date: 09/06/2025
+ms.date: 07/07/2026
 ---
 
 # Azure Monitor and Prometheus
@@ -44,7 +44,7 @@ Azure Monitor managed service for Prometheus currently collects data directly fr
 See [Enable monitoring for Kubernetes clusters](../containers/kubernetes-monitoring-enable.md) for details on enabling Managed Prometheus on your cluster. To enable managed Prometheus for Microsoft Azure air-gapped clouds, contact support.
 
 ## Data storage
-The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](./prometheus-metrics-overview.md) which provides the storage for Prometheus metrics. Add Azure Monitor workspaces to separate data for different regions, environments, or teams. Onboarding for monitoring resources such as Azure Kubernetes Service (AKS) clusters guide you through the process of creating a new Azure Monitor workspace or connecting to an existing one. Data is stored for 18 months at no additional cost.
+The only requirement to enable Azure Monitor managed service for Prometheus is to create an [Azure Monitor workspace](./azure-monitor-workspace-overview.md) which provides the storage for Prometheus metrics. Add Azure Monitor workspaces to separate data for different regions, environments, or teams. Onboarding for monitoring resources such as Azure Kubernetes Service (AKS) clusters guide you through the process of creating a new Azure Monitor workspace or connecting to an existing one. Data is stored for 18 months at no additional cost.
 
 ## Integrate with self-managed Prometheus
 Azure Monitor managed service for Prometheus is intended to be a replacement for self managed Prometheus so you don't need to manage a Prometheus server in your Kubernetes clusters. There may be scenarios though where you want to continue to use self-managed Prometheus in your Kubernetes clusters while also sending data to Managed Prometheus for long term data retention and to create a centralized view across your clusters. This may be a temporary solution while you migrate to Managed Prometheus or a long term solution if you have specific requirements to maintain your existing environment.

@@ -1,20 +1,20 @@
 ---
 title: Migrate From the HTTP Data Collector API to the Logs Ingestion API
-description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
+description: Learn how to migrate Azure Monitor custom log ingestion from the retired HTTP Data Collector API to the Logs ingestion API.
 ms.topic: how-to
-ms.date: 05/22/2026
+ms.date: 07/07/2026
 ai-usage: ai-assisted
 
-#customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API deprecation.
+#customer intent: As a developer, I want to migrate from the HTTP Data Collector API to the Logs ingestion API so that I can continue ingesting custom logs after the Data Collector API retirement.
 ---
 
 # Migrate from the HTTP Data Collector API to the Logs ingestion API
 
-The [HTTP Data Collector API](../logs/data-collector-api.md) is on a deprecation path. Support for the legacy Data Collector API ends **September 14, 2026**. Existing ingestion continues to work, but the API only receives critical security fixes. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
+The [HTTP Data Collector API](../logs/data-collector-api.md) is scheduled for retirement. Support for the legacy Data Collector API ends **September 14, 2026**. Existing ingestion continues to work, but the API only receives critical security fixes. Migrate to the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) which provides more processing power and flexibility in ingesting logs and [managing tables](../logs/manage-logs-tables.md).
 
 This article describes the differences between the two APIs and how to migrate to the Logs ingestion API.
 
-Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions; clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API is deprecated but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
+Two dates affect Data Collector API ingestion. On **March 1, 2026**, the API endpoint stopped accepting legacy TLS versions. Clients that don't negotiate TLS 1.2 or later can't ingest data. On **September 14, 2026**, the API retires but ingestion continues for TLS compliant clients. Verify your client's TLS configuration before assuming ingestion is healthy, regardless of your migration timeline.
 
 ## Advantages of the Logs ingestion API
 
@@ -35,7 +35,7 @@ To complete this migration, you need:
 
 ## Permissions required
 
-The Logs ingestion API uses OAuth-based authentication via Microsoft Entra (for app registrations or managed identities) and data collection rule (DCR) scoped RBAC. Assign the app permissions to the DCR and use a data collection endpoint (DCE) or the DCR logs ingestion endpoint for ingestion requests.
+The Logs ingestion API uses OAuth-based authentication through Microsoft Entra (for app registrations or managed identities) and data collection rule (DCR) scoped RBAC. Assign the app permissions to the DCR and use a data collection endpoint (DCE) or the DCR logs ingestion endpoint for ingestion requests.
 
 | Action | Permissions required |
 |:-------|:---------------------|
@@ -62,11 +62,11 @@ If you have an existing custom table to which you currently send data by using t
 
 ### Identify classic custom tables
 
-You have a few ways to find tables that use the Data Collector API:
+To find tables that use the Data Collector API, use the following methods:
 
 * **Table properties (portal):** [View table properties](../logs/manage-logs-tables.md#view-table-properties). Tables that use the Data Collector API or ingest data through the legacy Log Analytics agent (MMA) display **Custom table (classic)** as the **Type** property.
 
-* **Table properties (API):** `tableSubType` is `Classic` when viewing table properties with the `Table` operation of the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management). Here's an example Azure CLI command that quickly finds all tables with this criteria:
+* **Table properties (API):** `tableSubType` is `Classic` when viewing table properties by using the `Table` operation of the [Logs management API](../fundamentals/azure-monitor-rest-api-index.md#logs-management). Here's an example Azure CLI command that quickly finds all tables with this criteria:
 
 ```azurecli
 az monitor log-analytics workspace table list \
@@ -74,7 +74,7 @@ az monitor log-analytics workspace table list \
   --query "[?schema.tableSubType=='Classic'].{Name:name, SubType:schema.tableSubType}" -o table
 ```
 
-* **Query heuristics:** Clues from individual records can help further investigate legacy API usage. Records with the `SourceSystem` value of `RestAPI` indicate the record was created by the HTTP Data Collector API, so the table was legacy when the record was created.  Also, certain column name suffixes indicate the column was created by the legacy API.
+* **Query heuristics:** Clues from individual records can help you further investigate legacy API usage. Records with the `SourceSystem` value of `RestAPI` indicate the record was created by the HTTP Data Collector API, so the table was legacy when the record was created. Also, certain column name suffixes indicate the column was created by the legacy API.
 
 To list tables in a workspace that contain rows ingested through the Data Collector API, run this query:
 
@@ -181,19 +181,19 @@ The `migrate` operation enables all DCR-based custom logs features on the table.
 
 ## Reduce data size per call
 
-The Logs ingestion API lets you send up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, you can send multiple calls in parallel. This limit differs from the Data Collector API, which lets you send up to 32 MB of data per call.
+The Logs ingestion API accepts up to 1 MB of compressed or uncompressed data per call. If you need to send more than 1 MB of data, send multiple calls in parallel. This limit differs from the Data Collector API, which accepts up to 30 MB of data per call.
 
 To call the Logs ingestion API, see [Logs ingestion REST API call](../logs/logs-ingestion-api-overview.md#rest-api-call).
 
 ## Handle GUID data type differences
 
-GUIDs are stored as strings in Azure Monitor Logs. The Tables API accepts `guid` as a column type, but that data type is viewed and written as `string` type by the Logs query and Logs ingestion APIs respectively. Declare data source GUIDs as `string` in your [DCR](../data-collection/data-collection-rule-structure.md#data-types) `streamDeclarations`. This behavior is the same for both ingestion APIs, so migrating from the Data Collector API doesn't change how existing GUID values are stored or queried. For more information, see [Table column data types](logs-table-overview.md#column-data-types).
+Azure Monitor Logs stores GUIDs as strings. The Tables API accepts `guid` as a column type, but the Logs query and Logs ingestion APIs view and write that data type as `string`. Declare data source GUIDs as `string` in your [DCR](../data-collection/data-collection-rule-structure.md#data-types) `streamDeclarations`. This behavior is the same for both ingestion APIs, so migrating from the Data Collector API doesn't change how existing GUID values are stored or queried. For more information, see [Table column data types](logs-table-overview.md#column-data-types).
 
 ## Handle source data schema changes
 
 The Data Collector API automatically adjusts a destination legacy table's schema when the source data object schema changes, but the Logs ingestion API doesn't. The Logs ingestion API ensures you don't collect new data into columns that you don't intend to create.
 
-Options when the source data schema changes:
+When the source data schema changes, you can:
 
 * [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../data-collection/data-collection-rule-create-edit.md) to align with source data schema changes.
 * [Define a transformation](../data-collection/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table.

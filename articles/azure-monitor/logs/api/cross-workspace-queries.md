@@ -1,18 +1,18 @@
 ---
 title: Cross workspace queries
 description: The API supports the ability to query across multiple workspaces.
-ms.date: 07/21/2024
+ms.date: 07/07/2026
 ms.topic: how-to
 ---
 # Cross workspace queries
 
-The API allows you to query across multiple workspaces. There are two ways to execute these queries: implicit and explicit. The implicit method performs an automatic union over data in the requested workspace, while the explicit method allows more precision and control over how to access data from each workspace.
+The API supports querying across multiple workspaces. You can execute these queries in two ways: implicit and explicit. The implicit method automatically unions data from the requested workspace. The explicit method gives you more precision and control over how you access data from each workspace.
 
-The maximum number of resources in any cross-resource query is limited to 10.
+You can include up to 100 Log Analytics workspaces or classic Application Insights resources in a single cross-resource query. For more information, see [Cross-resource query considerations](../cross-workspace-query.md#considerations).
 
 ## Resource identifiers
 
-For either implicit or explicit cross-workspace queries, you need to specify the resources you will be accessing. There are four types of identifiers:
+For both implicit and explicit cross-workspace queries, specify the resources you want to access. Use one of these four types of identifiers:
 
  - Name - human-readable string \<workspaceName\> of the Log Analytics workspace
  - Qualified Name - string with format \<subscriptionName\>/\<resourceGroup\>/\<workspaceName\>
@@ -20,7 +20,7 @@ For either implicit or explicit cross-workspace queries, you need to specify the
  - Azure Resource ID - string with format /subscriptions/\<subscriptionId\>/resourceGroups/\<resourceGroup\>/providers/  microsoft.operationalinsights/workspaces/\<workspaceName\>
 
 > [!NOTE]
-> We strongly recommend identifying a workspace by its unique Workspace ID or Azure Resource ID because they remove ambiguity and are more performant.
+> To remove ambiguity and improve performance, identify a workspace by its unique Workspace ID or Azure Resource ID.
 
 ## Implicit cross workspace queries
 
@@ -50,13 +50,13 @@ The same request as a GET (line breaks for readability of query parameters):
     Content-Type: application/json
 ```
 
-This query would run over AIFabrikamDemo1, AIFabrikamDemo2, and the workspace represented by the GUID 00000000-0000-0000-0000-000000000000, returning the union of the results. In the GET version, the workspaces query parameters is a comma-separated list of resources to query.
+This query runs over AIFabrikamDemo1, AIFabrikamDemo2, and the workspace represented by the GUID 00000000-0000-0000-0000-000000000000, and returns the union of the results. In the GET version, the workspaces query parameter is a comma-separated list of resources to query.
 
 ## Explicit cross workspace queries
 
 In some cases, you might want the query to operate over a more targeted subset of the data in the workspaces of interest, combining data from multiple workspaces. In these cases, explicitly mention a workspace and table in the query, similar to making cross-cluster or cross-database queries or joins between tables.
 
-The syntax to reference another application is: workspace('identifier').table.
+The syntax to reference another application is: `workspace('identifier').table`.
 
 Example:
 
@@ -70,8 +70,8 @@ Example:
     }
 ```
 
-You can also URL encode this query and make it a GET request. In this case, there is no query parameter for other workspaces since the workspaces will get referenced from inside the query.
+You can also URL encode this query and make it a GET request. In this case, there's no query parameter for other workspaces since the workspaces get referenced from inside the query.
 
 ## Throttling
 
-For the purposes of rate limiting, one cross-resource query counts as one API query, regardless of the number of resources in the query.
+For rate limiting, one cross-resource query counts as one API query, regardless of the number of resources in the query.
