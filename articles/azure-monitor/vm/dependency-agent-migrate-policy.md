@@ -1,13 +1,11 @@
 ---
 title: Migrate Dependency Agent policy and initiative assignments
 description: Learn how to find Azure Policy and initiative assignments that use Dependency Agent, replace unsupported initiatives, disable Dependency Agent parameters in supported initiatives, and remove standalone assignments.
-author: bwren
-ms.author: bwren
 ms.service: azure-monitor
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.custom: doc-kit-assisted
-ms.date: 07/02/2026
+ms.date: 07/07/2026
 ms.subservice: virtual-machines
 ---
 
@@ -363,7 +361,24 @@ policyresources
     '/providers/Microsoft.Authorization/policySetDefinitions/abf84fac-f817-a70c-14b5-47eec767458a',
     '/providers/Microsoft.Authorization/policySetDefinitions/d0d5578d-cc08-2b22-31e3-f525374f235a',
     '/providers/Microsoft.Authorization/policySetDefinitions/32ff9e30-4725-4ca7-ba3a-904a7721ee87',
-    '/providers/Microsoft.Authorization/policySetDefinitions/3e0c67fc-8c7c-406c-89bd-6b6bdc986a22'
+    '/providers/Microsoft.Authorization/policySetDefinitions/3e0c67fc-8c7c-406c-89bd-6b6bdc986a22',
+    '/providers/Microsoft.Authorization/policySetDefinitions/89c6cddc-1c73-4ac1-b19c-54d1a15a42f2',
+    '/providers/Microsoft.Authorization/policySetDefinitions/046796ef-e8a7-4398-bbe9-cce970b1a3ae',
+    '/providers/Microsoft.Authorization/policySetDefinitions/e0d47b75-5d99-442a-9d60-07f2595ab095',
+    '/providers/Microsoft.Authorization/policySetDefinitions/e0782c37-30da-4a78-9f92-50bfe7aa2553',
+    '/providers/Microsoft.Authorization/policySetDefinitions/d8b2ffbe-c6a8-4622-965d-4ade11d1d2ee',
+    '/providers/Microsoft.Authorization/policySetDefinitions/a06d5deb-24aa-4991-9d58-fa7563154e31',
+    '/providers/Microsoft.Authorization/policySetDefinitions/175daf90-21e1-4fec-b745-7b4c909aa94c',
+    '/providers/Microsoft.Authorization/policySetDefinitions/7499005e-df5a-45d9-810f-041cf346678c',
+    '/providers/Microsoft.Authorization/policySetDefinitions/8d792a84-723c-4d92-a3c3-e4ed16a2d133',
+    '/providers/Microsoft.Authorization/policySetDefinitions/f9a961fa-3241-4b20-adc4-bbf8ad9d7197',
+    '/providers/Microsoft.Authorization/policySetDefinitions/d5264498-16f4-418a-b659-fa7ef418175f',
+    '/providers/Microsoft.Authorization/policySetDefinitions/e95f5a9f-57ad-4d03-bb0b-b1d16db93693',
+    '/providers/Microsoft.Authorization/policySetDefinitions/cf25b9c1-bd23-4eb6-bd2c-f4f3ac644a5f',
+    '/providers/Microsoft.Authorization/policySetDefinitions/179d1daa-458f-4e47-8086-2a68d0d6c38f',
+    '/providers/Microsoft.Authorization/policySetDefinitions/f9c0485f-da8e-43b5-961e-58ebd54b907c',
+    '/providers/Microsoft.Authorization/policySetDefinitions/a169a624-5599-4385-a696-c8d643089fab',
+    '/providers/Microsoft.Authorization/policySetDefinitions/e3ec7e09-768c-4b64-882c-fcada3772047'
 )
 | join kind=inner (
     policyresources
@@ -375,14 +390,18 @@ policyresources
     effectVm = isnotempty(properties.parameters['effect-11ac78e3-31bc-4f0c-8434-37ab963cea07']),
     effectVmss = isnotempty(properties.parameters['effect-e2dd799a-a932-4e9d-ac17-d473bc3c6c10']),
     ASCDependencyAgentAuditWindowsEffect = isnotempty(properties.parameters['ASCDependencyAgentAuditWindowsEffect']),
-    ASCDependencyAgentAuditLinuxEffect = isnotempty(properties.parameters['ASCDependencyAgentAuditLinuxEffect'])
+    ASCDependencyAgentAuditLinuxEffect = isnotempty(properties.parameters['ASCDependencyAgentAuditLinuxEffect']),
+    effectAscWindows = isnotempty(properties.parameters['effect-2f2ee1de-44aa-4762-b6bd-0893fc3f306d']),
+    effectAscLinux = isnotempty(properties.parameters['effect-04c4380f-3fae-46e8-96c9-30193528f602'])
 | extend
     NoParams = not(
         enableProcessAndDependencies or
         effectVm or
         effectVmss or
         ASCDependencyAgentAuditWindowsEffect or
-        ASCDependencyAgentAuditLinuxEffect
+        ASCDependencyAgentAuditLinuxEffect or
+        effectAscWindows or
+        effectAscLinux
     ),
     enableProcessAndDependencies = (
         enableProcessAndDependencies and
@@ -411,8 +430,20 @@ policyresources
             isempty(properties1.parameters['ASCDependencyAgentAuditLinuxEffect']) or
             tostring(properties1.parameters['ASCDependencyAgentAuditLinuxEffect'].value) == "AuditIfNotExists"
         )
+    ),
+    effectAscWindows = (
+        effectAscWindows and (
+            isempty(properties1.parameters['effect-2f2ee1de-44aa-4762-b6bd-0893fc3f306d']) or
+            tostring(properties1.parameters['effect-2f2ee1de-44aa-4762-b6bd-0893fc3f306d'].value) == "AuditIfNotExists"
+        )
+    ),
+    effectAscLinux = (
+        effectAscLinux and (
+            isempty(properties1.parameters['effect-04c4380f-3fae-46e8-96c9-30193528f602']) or
+            tostring(properties1.parameters['effect-04c4380f-3fae-46e8-96c9-30193528f602'].value) == "AuditIfNotExists"
+        )
     )
-| where enableProcessAndDependencies or effectVm or effectVmss or ASCDependencyAgentAuditWindowsEffect or ASCDependencyAgentAuditLinuxEffect or NoParams
+| where enableProcessAndDependencies or effectVm or effectVmss or ASCDependencyAgentAuditWindowsEffect or ASCDependencyAgentAuditLinuxEffect or effectAscWindows or effectAscLinux or NoParams
 | extend Scope = tostring(properties1.scope)
 | extend
     ResourceContainerId = iff(isnotempty(subscriptionId1), strcat("/subscriptions/", tolower(subscriptionId1)), tolower(Scope))
@@ -432,7 +463,9 @@ policyresources
         "3", effectVmss,
         "4", ASCDependencyAgentAuditWindowsEffect,
         "5", ASCDependencyAgentAuditLinuxEffect,
-        "6", NoParams
+        "6", effectAscWindows,
+        "7", effectAscLinux,
+        "8", NoParams
     )
 | mv-expand kind=array Parameter = Parameters
 | where tobool(Parameter[1])
@@ -500,10 +533,12 @@ The query returns an `Action` value for each assignment. Use that value to deter
 | `3` | Effect for policy: Dependency agent should be enabled in virtual machine scale sets for listed virtual machine images | `effect-e2dd799a-a932-4e9d-ac17-d473bc3c6c10` | `Disabled` |
 | `4` | Audit Dependency Agent for Windows VMs monitoring | `ASCDependencyAgentAuditWindowsEffect` | `Disabled` |
 | `5` | Audit Dependency Agent for Linux VMs monitoring | `ASCDependencyAgentAuditLinuxEffect` | `Disabled` |
-| `6` | Initiative has no parameter to disable Dependency Agent policies | Not applicable | Not applicable |
+| `6` | Effect for policy: Network traffic data collection agent should be installed on Windows virtual machines | `effect-2f2ee1de-44aa-4762-b6bd-0893fc3f306d` | `Disabled` |
+| `7` | Effect for policy: Network traffic data collection agent should be installed on Linux virtual machines | `effect-04c4380f-3fae-46e8-96c9-30193528f602` | `Disabled` |
+| `8` | Initiative has no parameter to disable Dependency Agent policies | Not applicable | Not applicable |
 
 > [!NOTE]
-> If the query returns action `6`, the assignment uses an initiative that includes Dependency Agent policies but doesn't expose parameters to disable them. To offboard from Dependency Agent under this initiative, remove the assignment. If you still need the other policies in the initiative, create a custom initiative that excludes the Dependency Agent policies and assign that instead.
+> If the query returns action `8`, the assignment uses an initiative that includes Dependency Agent policies but doesn't expose parameters to disable them. To offboard from Dependency Agent under this initiative, remove the assignment. If you still need the other policies in the initiative, create a custom initiative that excludes the Dependency Agent policies and assign that instead.
 
 ### Update the assignment
 
