@@ -6,9 +6,9 @@ ms.topic: how-to
 ---
 # Cross workspace queries
 
-The API supports querying across multiple workspaces. You can execute these queries in two ways: implicit and explicit. The implicit method automatically unions data from the requested workspace. The explicit method gives you more precision and control over how you access data from each workspace.
+The API supports querying across multiple workspaces by using one of two methods: implicit or explicit. The implicit method automatically unions data from the requested workspace. The explicit method gives you more precision and control over how you access data from each workspace.
 
-You can include up to 100 Log Analytics workspaces or classic Application Insights resources in a single cross-resource query. For more information, see [Cross-resource query considerations](../cross-workspace-query.md#considerations).
+A single cross-resource query can include up to 100 Log Analytics workspaces or classic Application Insights resources. For more information, see [Cross-resource query considerations](../cross-workspace-query.md#considerations).
 
 ## Resource identifiers
 
@@ -70,7 +70,7 @@ Example:
     }
 ```
 
-You can also URL encode this query and make it a GET request. In this case, there's no query parameter for other workspaces since the workspaces get referenced from inside the query.
+Alternatively, URL encode this query and make it a GET request. In this case, there's no query parameter for other workspaces since the workspaces get referenced from inside the query.
 
 ## Throttling
 

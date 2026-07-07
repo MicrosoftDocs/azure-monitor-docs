@@ -1,6 +1,6 @@
 ---
 title: Migrate From the HTTP Data Collector API to the Logs Ingestion API
-description: Learn how to migrate Azure Monitor custom log ingestion from the retired HTTP Data Collector API to the Logs ingestion API.
+description: Learn how to migrate Azure Monitor custom log ingestion from the deprecated HTTP Data Collector API to the Logs ingestion API.
 ms.topic: how-to
 ms.date: 07/07/2026
 ai-usage: ai-assisted
@@ -193,7 +193,7 @@ Azure Monitor Logs stores GUIDs as strings. The Tables API accepts `guid` as a c
 
 The Data Collector API automatically adjusts a destination legacy table's schema when the source data object schema changes, but the Logs ingestion API doesn't. The Logs ingestion API ensures you don't collect new data into columns that you don't intend to create.
 
-When the source data schema changes, you can:
+When the source data schema changes, choose one of these options:
 
 * [Modify destination table schemas](../logs/create-custom-table.md) and [data collection rules](../data-collection/data-collection-rule-create-edit.md) to align with source data schema changes.
 * [Define a transformation](../data-collection/data-collection-transformations.md) in the data collection rule to send the new data into existing columns in the destination table.
