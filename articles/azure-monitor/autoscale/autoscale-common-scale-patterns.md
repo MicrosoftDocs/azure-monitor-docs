@@ -55,7 +55,7 @@ In this example:
 - The default profile is irrelevant because there's no time that isn't covered by the other profiles.
 
 >[!Note]
-> Creating a recurring profile with no end time is only supported via the Azure portal and Azure Resource Manager templates (ARM templates). For more information on how to create recurring profiles with ARM templates, see [Add a recurring profile by using ARM templates](./autoscale-multiprofile.md?tabs=templates#add-a-recurring-profile-using-arm-templates).
+> Creating a recurring profile with no end time is only supported via the Azure portal and Azure Resource Manager templates (ARM templates). For more information on how to create recurring profiles with ARM templates, see [Add a recurring profile by using ARM templates](./autoscale-multiprofile.md?tabs=templates#arm-template-recurring-profile).
 >
 > If the end time isn't included in the CLI command, a default end time of 23:59 will be implemented by creating a copy of the default profile with the naming convention `"name": {\"name\": \"Auto created default scale condition\", \"for\": \"<non-default profile name>\"}`.
 

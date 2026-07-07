@@ -76,7 +76,7 @@ An action group can contain one or more automated actions. The following table d
 | Secure webhook | When you use a secure webhook action, you must use Microsoft Entra ID to secure the connection between your action group and your endpoint, which is a protected web API. See [Configure authentication for Secure webhook](#configure-authentication-for-secure-webhook). Secure webhook doesn't support basic authentication. If you're using basic authentication, use the Webhook action. |
 | Webhook | If you use the webhook action, your target webhook endpoint must be able to process the various JSON payloads that different alert sources emit.<br><br>You can't pass security certificates through a webhook action. To use basic authentication, you must pass your credentials through the URI.<br>If the webhook endpoint expects a specific schema, for example, the Microsoft Teams schema, use the **Logic Apps** action type to manipulate the alert schema to meet the target webhook's expectations.<br><br>For information about the rules used for retrying webhook actions, see [Webhook](#webhook). |
 
-## Create an action group in the Azure portal
+## Create in the Azure portal
 
 1. Go to the [Azure portal](https://portal.azure.com/).
 
@@ -130,7 +130,7 @@ An action group can contain one or more automated actions. The following table d
 
 When you create or update an action group in the Azure portal, you can test the action group.
 
-1. [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal). 
+1. [Create an action group in the Azure portal](#create-in-the-azure-portal). 
 
     > [!NOTE]
     > The action group must be created and saved before testing. If you're editing an existing action group, save the changes to the action group before testing.
@@ -228,7 +228,7 @@ The following table describes the role membership requirements that are needed f
 >     * To find common schema samples for all sample types, see [Common alert schema definitions for Test Action Group](./alerts-common-schema-test-action-definitions.md).
 >     * To find noncommon schema alert definitions, see [Noncommon alert schema definitions for Test Action Group](./alerts-non-common-schema-definitions.md).
 
-## Create an action group with a Resource Manager template
+## Create with a Resource Manager template
 
 You can use an [Azure Resource Manager template](/azure/azure-resource-manager/templates/syntax) to configure action groups. Using templates, you can automatically set up action groups that can be reused in certain types of alerts. These action groups ensure that all the correct parties are notified when an alert is triggered.
 
@@ -416,7 +416,7 @@ This template describes how to create a template that takes the webhook configur
 ```
 </details>
 
-## Manage action groups
+## Edit or delete an existing group
 
 After you create an action group, you can view it in the portal:
 
@@ -477,7 +477,7 @@ SMS notifications in Azure Monitor action groups support bi-directional communic
 You might have a limited number of SMS actions per action group.
 
 * For information about rate limits, see [Azure Monitor service limits](../service-limits.md).
-* For more details about SMS notification configuration, see [Create an action group in the Azure portal](#create-an-action-group-in-the-azure-portal).
+* For more details about SMS notification configuration, see [Create an action group in the Azure portal](#create-in-the-azure-portal).
 
 > [!NOTE]
 > If you can't select your country/region code in the Azure portal, SMS isn't supported for your country/region. If your country/region code isn't available, you can vote to have your country/region added at [Share your ideas](https://feedback.azure.com/d365community/idea/e527eaa6-2025-ec11-b6e6-000d3a4f09d0). In the meantime, as a workaround, configure your action group to call a webhook to a third-party SMS provider that offers support in your country/region.

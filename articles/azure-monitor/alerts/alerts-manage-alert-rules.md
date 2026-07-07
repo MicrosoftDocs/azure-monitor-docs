@@ -101,7 +101,7 @@ To see the history of an alert rule, you must have a role with read permissions 
     :::image type="content" source="media/alerts-manage-alert-rules/alert-rule-history.png" alt-text="Screenshot that shows the history button from the alerts rule page." lightbox="media/alerts-manage-alert-rules/alert-rule-history.png":::
 
 
-## Manage metric alert rules with the Azure CLI
+## Azure CLI for metric alert rules
 
 This section describes how to manage metric alert rules using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
@@ -118,7 +118,7 @@ This section describes how to manage metric alert rules using the cross-platform
     |Delete a metric alert rule|`az monitor metrics alert delete -g {ResourceGroup} -n {AlertRuleName}`|
     |Learn more about the command|`az monitor metrics alert --help`|
 
-## Manage metric alert rules with PowerShell
+## PowerShell for metric alert rules
 
 Metric alert rules have these dedicated PowerShell cmdlets:
 
@@ -126,7 +126,7 @@ Metric alert rules have these dedicated PowerShell cmdlets:
 - [Get-AzMetricAlertRuleV2](/powershell/module/az.monitor/get-azmetricalertrulev2): Get one or more metric alert rules.
 - [Remove-AzMetricAlertRuleV2](/powershell/module/az.monitor/remove-azmetricalertrulev2): Delete a metric alert rule.
 
-## Manage metric alert rules with REST API
+## REST API for metric alert rules
 
 - [Create Or Update](/rest/api/monitor/metricalerts/createorupdate): Create a new metric alert rule or update an existing one.
 - [Get](/rest/api/monitor/metricalerts/get): Get a specific metric alert rule.
@@ -144,7 +144,7 @@ When you delete an Azure resource, associated metric alert rules aren't deleted 
 1. Filter the list by Type == **microsoft.insights/metricalerts**.
 1. Select the relevant alert rules and select **Delete**.
 
-## Check the number of metric alert rules in use
+## Metric alert rule quota
 
 To check the current number of metric alert rules in use, follow the next steps.
 ### From the Azure portal
@@ -162,7 +162,7 @@ To check the current number of metric alert rules in use, follow the next steps.
    - **REST API**: [List by subscription](/rest/api/monitor/metricalerts/listbysubscription)
    - **Azure CLI**: [az monitor metrics alert list](/cli/azure/monitor/metrics/alert#az-monitor-metrics-alert-list)
 
-## Manage log search alert rules using the CLI
+## Azure CLI for log search alert rules
 
 This section describes how to manage log search alerts using the cross-platform [Azure CLI](/cli/azure/get-started-with-azure-cli). The following examples use [Azure Cloud Shell](/azure/cloud-shell/overview). 
 
@@ -194,12 +194,12 @@ az deployment group create \
 
 A 201 response is returned on successful creation. 200 is returned on successful updates.
 
-## Manage log search alert rules with PowerShell
+## PowerShell for log search alert rules
 
 Log search alert rules have this dedicated PowerShell cmdlet:
 - [New-AzScheduledQueryRule](/powershell/module/az.monitor/new-azscheduledqueryrule): Creates a new log search alert rule or updates an existing log search alert rule.
 
-## Check the number of log alert rules in use
+## Log alert rule quota
 
 ### In the Azure portal
 1. On the Alerts screen in Azure Monitor, select **Alert rules**.
