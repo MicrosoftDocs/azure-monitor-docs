@@ -15,7 +15,7 @@ This article lists significant changes to Azure Monitor documentation.
 
 |Subservice | Article | Description |
 |---|---|---|
-|Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format with the new export job feature in public preview, an on-demand alternative to data export rules for backup, analysis, and compliance scenarios. Read the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425) for more details.|
+|Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format by using the new export job feature in public preview. This on-demand feature is an alternative to data export rules for backup, analysis, and compliance scenarios. For more information, see the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425).|
 |Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
 
 ### June 2026
