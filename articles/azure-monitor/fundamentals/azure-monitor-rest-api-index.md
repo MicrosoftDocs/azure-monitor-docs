@@ -137,7 +137,7 @@ API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
 
 ### Logs management
 
-These Azure Monitor Logs APIs are part of the Azure Resource Manager (ARM) control plane and allow you to create, update, delete, and retrieve Log Analytics workspaces and related resources such as clusters, data exports, and linked services.
+These Azure Monitor Logs APIs are part of the Azure Resource Manager (ARM) control plane and allow you to create, update, delete, and retrieve Log Analytics workspaces and related resources such as clusters, data export rules, and linked services.
 
 API endpoint is `management.azure.com`.
 
@@ -145,7 +145,7 @@ API endpoint is `management.azure.com`.
 |------------------|-------------|
 | [Available service tiers](/rest/api/loganalytics/available-service-tiers) | Retrieve the available service tiers for a Log Analytics workspace. |
 | [Clusters](/rest/api/loganalytics/clusters) | Manage Log Analytics clusters. |
-| [Data exports](/rest/api/loganalytics/data-exports) | Manage a data export for a Log Analytics workspace or retrieve the data export instances within a Log Analytics workspace. |
+| [Data export rules](/rest/api/loganalytics/data-exports) | Manage data export rules that continuously send data from selected tables in a Log Analytics workspace to an Azure Storage account or Event Hubs. |
 | [Data Sources](/rest/api/loganalytics/data-sources) | Create or update data sources. |
 | [Deleted workspaces](/rest/api/loganalytics/deleted-workspaces) | Retrieve the recently deleted workspaces within a subscription or resource group. |
 | [Gateways](/rest/api/loganalytics/gateways) | Delete a Log Analytics gateway. |
