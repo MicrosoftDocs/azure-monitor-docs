@@ -2,9 +2,10 @@
 title: Install and Manage the Azure Monitor Agent
 description: Learn options for installing and managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 05/26/2026
+ms.date: 07/08/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: shseth, nmangum
+ai-usage: ai-assisted
 
 ---
 
@@ -573,138 +574,7 @@ Not applicable.
 
 ## Configure agent settings (preview)
 
-[Data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) manage the Azure Monitor Agent on your machine. Use the AgentSettings DCR to configure certain Azure Monitor Agent parameters to match your specific monitoring needs.
-
-> [!NOTE]
-> Important considerations when you work with the AgentSettings DCR:
->
-> * Currently, you can configure the AgentSettings DCR only by using an Azure Resource Manager template.
-> * AgentSettings must be a single DCR with no other settings.
-> * The virtual machine and the AgentSettings DCR must be in the same region.
-
-### Supported parameters
-
-The AgentSettings DCR currently supports setting the following parameters:
-
-| Parameter | Description | Valid values |
-| --------- | ----------- | ----------- |
-| `MaxDiskQuotaInMB` | To provide resiliency, the agent collects data in a local cache when the agent can't send data. The agent sends the data in the cache after the connection is restored. This parameter is the amount of disk space used (in MB) by the Azure Monitor Agent log files and cache. | Linux: `4,000` to `1,000,000` default: `10,000`<br>Windows: `4,000` to `1,000,000`|
-| `UseTimeReceivedForForwardedEvents` | Changes the **WEF** column in the Microsoft Sentinel Windows Event Forwarding (WEF) table to use `TimeReceived` instead of `TimeGenerated` data | `0` or `1` |
-
-### Set up the AgentSettings DCR
-
-#### [Azure portal](#tab/azure-portal)
-
-Currently not supported.
-
-#### [Azure PowerShell](#tab/azure-powershell)
-
-Currently not supported.
-
-#### [Azure CLI](#tab/azure-cli)
-
-Currently not supported.
-
-#### [Resource Manager template](#tab/azure-resource-manager)
-
-1. Prepare the environment by [installing the Azure Monitor Agent](#installation-options) on your VM.
-
-1. Create a DCR.
-
-    This example sets the maximum amount of disk space used by the Azure Monitor Agent cache to 5,000 MB.
-
-    ```json
-    {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-    "contentVersion": "1.0.0.0",
-    "parameters": {},
-    "resources": [
-        {
-        "type": "Microsoft.Insights/dataCollectionRules",
-        "name": "dcr-contoso-01",
-        "apiVersion": "2023-03-11",
-        "properties": 
-            {
-            "description": "A simple agent settings",
-            "agentSettings": 
-                {
-                "logs": [
-                    {
-                    "name": "MaxDiskQuotaInMB",
-                    "value": "5000"
-                    }
-                ]
-                }
-            },
-        "kind": "AgentSettings",
-        "location": "eastus"
-        }
-    ]
-    }
-    ```
-
-1. Associate the DCR with your machine. Use the following Resource Manager files.
-
-   Template file:
-
-    ```json
-    {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "vmName": {
-          "type": "string",
-          "metadata": {
-            "description": "The name of the virtual machine."
-          }
-        },
-        "dataCollectionRuleId": {
-          "type": "string",
-          "metadata": {
-            "description": "The resource ID of the data collection rule."
-          }
-        }
-      },
-      "resources": [
-        {
-          "type": "Microsoft.Insights/dataCollectionRuleAssociations",
-          "apiVersion": "2021-09-01-preview",
-          "scope": "[format('Microsoft.Compute/virtualMachines/{0}', parameters('vmName'))]",
-          "name": "agentSettings",
-          "properties": {
-            "description": "Association of data collection rule. Deleting this association will break the data collection for this virtual machine.",
-            "dataCollectionRuleId": "[parameters('dataCollectionRuleId')]"
-          }
-        }
-      ]
-    }
-    ```
-
-    > [!NOTE]
-    > If you're associating the DCR with an **Azure Arc-enabled machine**, you must modify the `scope` property and `parameters` name.
-    >
-    > "scope": "[format('Microsoft.HybridCompute/machines/{0}', parameters('name'))]"
-
-    Parameter file:
-
-    ```json
-    {
-      "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
-      "contentVersion": "1.0.0.0",
-      "parameters": {
-        "vmName": {
-          "value": "my-azure-vm"
-        },
-        "dataCollectionRuleId": {
-          "value": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/my-resource-group/providers/microsoft.insights/datacollectionrules/my-dcr"
-        }
-       }
-    }
-    ```
-
-1. To apply the changes, restart the Azure Monitor Agent.
-
----
+Use the AgentSettings data collection rule (DCR) to configure Azure Monitor Agent parameters, such as the local cache disk quota, to match your monitoring needs. For the supported parameters and the steps to create and associate an AgentSettings DCR, see [Configure agents with Azure Monitor Agent settings](agent-settings.md).
 
 ## Related content
 

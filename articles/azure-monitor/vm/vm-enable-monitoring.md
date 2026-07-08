@@ -4,7 +4,7 @@ description: Learn how to enable monitoring for virtual machines and virtual mac
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.reviewer: xpathak
-ms.date: 07/01/2026
+ms.date: 07/08/2026
 ms.custom: references_regions, devx-track-azurecli, devx-track-azurepowershell, devx-track-arm-template, devx-track-bicep
 
 ---
@@ -56,11 +56,7 @@ To enable full monitoring by collecting data from the guest operating system and
 
 ## Install Azure Monitor agent
 
-The first step is to install the Azure Monitor agent extension on your virtual machines and Arc-enabled servers. 
-
-## [Azure CLI](#tab/cli)
-
-**Azure virtual machine**
+The first step is to install the Azure Monitor Agent extension on your virtual machines and Arc-enabled servers. The following example installs the agent on an Azure VM by using the Azure CLI:
 
 ```azurecli
 # Windows
@@ -69,130 +65,9 @@ az vm extension set \
   --publisher Microsoft.Azure.Monitor \
   --vm-name <vm-name> \
   --resource-group <resource-group>
-
-#  Linux
-az vm extension set \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --vm-name <vm-name> \
-  --resource-group <resource-group>
 ```
 
-**Arc-enabled server**
-
-```azurecli
-# Windows
-az connectedmachine extension create \
-  --name AzureMonitorWindowsAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --type AzureMonitorWindowsAgent \
-  --machine-name <arc-server-name> \
-  --resource-group <resource-group> \
-  --location <location>
-
-# Linux
-az connectedmachine extension create \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --type AzureMonitorLinuxAgent \
-  --machine-name <arc-server-name> \
-  --resource-group <resource-group> \
-  --location <location>
-```
-
-
-**Virtual machine scale set**
-
-```azurecli
-# Windows
-az vmss extension set \
-  --name AzureMonitorWindowsAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --vmss-name <vmss-name> \
-  --resource-group <resource-group>
-
-# Linux
-az vmss extension set \
-  --name AzureMonitorLinuxAgent \
-  --publisher Microsoft.Azure.Monitor \
-  --vmss-name <vmss-name> \
-  --resource-group <resource-group>
-```
-
-
-## [PowerShell](#tab/powershell)
-
-
-**Virtual machine**
-
-```powershell-interactive
-# Windows
-Set-AzVMExtension `
-  -Name AzureMonitorWindowsAgent `
-  -ExtensionType AzureMonitorWindowsAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -VMName <vm-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-
-# Linux
-Set-AzVMExtension `
-  -Name AzureMonitorLinuxAgent `
-  -ExtensionType AzureMonitorLinuxAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -VMName <vm-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-```
-
-**Arc-enabled server**
-
-```powershell-interactive
-# Windows
-New-AzConnectedMachineExtension `
-  -Name AzureMonitorWindowsAgent `
-  -ExtensionType AzureMonitorWindowsAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -MachineName <arc-server-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-
-# Linux
-New-AzConnectedMachineExtension `
-  -Name AzureMonitorLinuxAgent `
-  -ExtensionType AzureMonitorLinuxAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -ResourceGroupName <resource-group> `
-  -MachineName <arc-server-name> `
-  -Location <location> `
-  -TypeHandlerVersion 1.0
-```
-**Virtual machine scale set**
-
-```powershell-interactive
-# Windows
-Add-AzVmssExtension `
-  -VirtualMachineScaleSet (Get-AzVmss -ResourceGroupName <resource-group> -VMScaleSetName <vmss-name>) `
-  -Name AzureMonitorWindowsAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -Type AzureMonitorWindowsAgent `
-  -TypeHandlerVersion 1.0
-
-# Linux
-Add-AzVmssExtension `
-  -VirtualMachineScaleSet (Get-AzVmss -ResourceGroupName <resource-group> -VMScaleSetName <vmss-name>) `
-  -Name AzureMonitorWindowsAgent `
-  -Publisher Microsoft.Azure.Monitor `
-  -Type AzureMonitorWindowsAgent `
-  -TypeHandlerVersion 1.0
-
-```
-
-
----
+For the full set of installation options, including Linux, Virtual Machine Scale Sets, Arc-enabled servers, PowerShell, the Azure portal, Azure Resource Manager templates, and automatic upgrade, see [Install and manage the Azure Monitor Agent](../agents/azure-monitor-agent-manage.md).
 
 
 ## Create data collection rules
@@ -314,30 +189,7 @@ Use the following DCR definitions to enable enhanced monitoring for a virtual ma
 
 </details>
 
-Save the DCR definition to a JSON file and use it to create a DCR by using the following commands.
-
-## [CLI](#tab/cli)
-
-
-```azurecli
-az monitor data-collection rule create \
-  --name <dcr-name> \
-  --resource-group <resource-group> \
-  --location <location> \
-  --rule-file <path-to-json-file>
-```
-
-
-
-## [PowerShell](#tab/powershell)
-
-```powershell-interactive
-New-AzDataCollectionRule `
-  -Name <dcr-name> `
-  -ResourceGroupName <resource-group> `
-  -JsonFilePath <path-to-json-file>
-```
----
+Save the DCR definition to a JSON file. For the CLI, PowerShell, API, and portal commands to create a DCR from a JSON file, see [Create data collection rules (DCRs) using JSON](../data-collection/data-collection-rule-create-edit.md).
 
 
 ## Associate DCRs with VMs
