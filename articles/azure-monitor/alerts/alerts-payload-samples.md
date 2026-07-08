@@ -2,22 +2,16 @@
 title: Samples of Azure Monitor alert payloads
 description: See examples of payloads for Azure monitor alerts.
 ms.topic: reference
-ms.date: 01/23/2023
+ms.date: 07/08/2026
 ms.reviewer: ofmanor
+ai-usage: ai-assisted
 ---
 
 # Sample alert payloads
 
-The common alert schema standardizes the consumption experience for alert notifications in Azure. Historically, activity log, metric, and log search alerts each had their own email templates and webhook schemas. The common alert schema provides one standardized schema for all alert notifications. 
+This article provides sample payloads for Azure Monitor alerts that use the [common alert schema](alerts-common-schema.md). The schema standardizes alert notifications into three sections: **Essentials**, **Alert context**, and **Custom properties**. For the full field-by-field description of each section, see [Common alert schema](alerts-common-schema.md).
 
-A standardized schema can help you minimize the number of integrations, which simplifies the process of managing and maintaining your integrations.
-
-The common schema includes information about the affected resource and the cause of the alert in these sections:
-- **Essentials**: Standardized fields, used by all alert types that describe the resource affected by the alert and common alert metadata, such as severity or description.
-
-    If you want to route alert instances to specific teams based on criteria such as a resource group, use the fields in the **Essentials** section to provide routing logic for all alert types. The teams that receive the alert notification can then use the context fields for their investigation.
-- **Alert context**: Fields that vary depending on the type of the alert. The alert context fields describe the cause of the alert. For example, a metric alert has fields like the metric name and metric value in the alert context. An activity log alert has information about the event that generated the alert.
-- **Custom properties**: You can add more information to the alert payload by adding custom properties to any alert rule that uses an action group. If you don't configure custom properties on the alert rule, the **custom properties** field is null.
+Use these samples to understand the payload structure for different alert types and to build or test your integrations.
 
 ## Sample alert payload
 

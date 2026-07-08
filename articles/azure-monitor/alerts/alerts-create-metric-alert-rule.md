@@ -2,8 +2,9 @@
 title: Create Azure Monitor metric alert rules
 description: This article shows you how to create a new metric alert rule.
 ms.reviewer: harelbr
-ms.date: 11/18/2025
+ms.date: 07/08/2026
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
 # Create or edit a metric alert rule
@@ -27,27 +28,7 @@ Manage these permissions through [Azure Role-Based Access Control (RBAC)](/azure
 > [!NOTE]
 > It can take 10 to 15 minutes after you create the resource for a metric to be available.
 
-## From the portal home page
-
-Follow these steps:
-
-1. In the [Azure portal](https://portal.azure.com/), select **Monitor** > **Alerts**.
-
-1. Open the **+ Create** menu, and select **Alert rule**.
-
-    :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-new-alert-rule.png" alt-text="Screenshot that shows steps to create a new alert rule.":::
-
-## From a specific resource
-
-Follow these steps:
-
-1. In the [Azure portal](https://portal.azure.com/), go to the resource.
-
-1. Select **Alerts** from the left pane, and then select **+ Create** > **Alert rule**.
-
-1. The scope of the alert rule is set to the resource you selected. Continue with setting the conditions for the alert rule.
-
-    :::image type="content" source="media/alerts-create-new-alert-rule/alerts-create-new-alert-rule-2.png" alt-text="Screenshot that shows steps to create a new alert rule from a selected resource.":::
+[!INCLUDE [alerts-wizard-access](includes/alerts-wizard-access.md)]
 
 ## Edit an existing alert rule
 
@@ -63,15 +44,7 @@ Follow these steps:
 
 1. Select any of the tabs for the alert rule to edit the settings.
 
-## Configure the scope of the alert rule
-
-Follow these steps:
-
-1. On **Select a resource**, set the scope for your alert rule. Filter by **subscription**, **resource type**, or **resource location**.
-
-1. Select **Apply**.
-
-    :::image type="content" source="media/alerts-create-new-alert-rule/alerts-select-resource.png" alt-text="Screenshot that shows the select resource pane for creating a new alert rule.":::
+[!INCLUDE [alerts-wizard-scope](includes/alerts-wizard-scope.md)]
 
 ## Configure conditions
 
@@ -147,15 +120,7 @@ Follow these steps:
 
 1. Select **Done**. After you configure the alert rule conditions, you can configure the alert rule details to complete creation of the alert. Optionally, you can also add actions and tags to the alert rule.
 
-## Configure actions
-
-(Optional) Follow these steps to add actions to your alert rule:
-
-1. Select the **Actions** tab.
-
-1. Select or create the required [action groups](../alerts/action-groups.md).
-
-    :::image type="content" source="media/alerts-create-new-alert-rule/alerts-rule-actions-tab.png" alt-text="Screenshot that shows the Actions tab when creating a new alert rule.":::
+[!INCLUDE [alerts-wizard-actions](includes/alerts-wizard-actions.md)]
 
 ## Configure alert rule details
 
