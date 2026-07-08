@@ -3,7 +3,8 @@ title: Create a Log Search alert rule with dynamic threshold
 description: Get information about creating metric alerts with dynamic thresholds that are based on machine learning.
 ms.reviewer: harelbr
 ms.topic: concept-article
-ms.date: 05/06/2026
+ms.date: 07/08/2026
+ai-usage: ai-assisted
 ---
 
 # Alert rules with dynamic thresholds overview
@@ -223,27 +224,7 @@ The following chart shows the value of a log alert rule query result, its dynami
 
 ## Known issues with dynamic threshold sensitivity
 
-- If an alert rule that uses dynamic thresholds is too noisy or fires too much, you might need to reduce its sensitivity. Use one of the following options:
-
-  - **Threshold sensitivity**: Set the sensitivity to **Low** to be more tolerant of deviations.
-  - **Lookback period** (for Metric alert rules) or **Aggregation granularity** (for Log search alert rules) - Increasing the data window makes the rule less susceptible to transient deviations.
-  - **Number of violations** (under **Advanced settings**): Configure the alert rule to trigger only if several deviations occur within a certain period of time. This setting makes the rule less susceptible to transient deviations.
-
-- You might find that an alert rule that uses dynamic thresholds doesn't fire or isn't sensitive enough, even though the rule is configured with high sensitivity. This scenario can happen when the metric or query result’s distribution is highly irregular. Consider one of the following solutions:
-
-  - Move to monitoring a complementary metric or log query that's suitable for your scenario, if applicable. For example, check for changes in success rate rather than failure rate.
-  - Try selecting a different value for **Aggregation granularity (Period)**.
-  - Check if a drastic change happened in the data behavior in the last 10 days, such as an outage. An abrupt change can affect the upper and lower thresholds calculated for the data and make them broader. Wait a few days until the outage is no longer included in the threshold calculation. If you use Metric alert rules, you can also edit the alert rule to use the **Ignore data before** option in **Advanced settings**.
-  - If your data has weekly seasonality, but not enough history is available, the calculated thresholds can result in broad upper and lower bounds. For example, the calculation can treat weekdays and weekends in the same way and build wide borders that don't always fit the data. This issue should resolve itself after enough results from metric or log query history is available. Then, the Azure Monitor detects the correct seasonality and updates the calculated thresholds accordingly.
-
-- When data exhibits large fluctuations, dynamic thresholds might build a wide model around the data values, which can result in a lower or higher boundary than expected. This scenario can happen when:
-
-  - The sensitivity is set to low.
-  - The metric or query result exhibits an irregular behavior with high variance, which appears as spikes or dips in the data.
-
-  Consider making the model less sensitive by choosing a higher sensitivity or selecting a larger **Lookback period** value. 
-
-  In Metric alert rules, you can also use the **Ignore data before** option to exclude a recent irregularity from the historical data that's used to build the model.
+To tune dynamic-threshold alert rules that are too noisy, don't fire often enough, or show unexpected threshold values, see [Troubleshoot Azure Monitor metric alerts](alerts-troubleshoot-metric.md).
 
 ## Related content
 

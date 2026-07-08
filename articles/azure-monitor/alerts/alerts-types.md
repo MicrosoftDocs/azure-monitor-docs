@@ -2,7 +2,8 @@
 title: Types of Azure Monitor alerts
 description: This article explains the different types of Azure Monitor alerts and when to use each type.
 ms.topic: concept-article
-ms.date: 11/18/2025
+ms.date: 07/08/2026
+ai-usage: ai-assisted
 ---
 
 # Choose the right type of alert rule
@@ -231,22 +232,10 @@ Smart detection works for web apps hosted in the cloud or on your own servers th
 
 
 ## Dynamic thresholds
-[Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds use advanced machine learning to:
 
-- Learn the historical behavior of log query results.
-- Analyze data over time and identify patterns such as hourly, daily, or weekly patterns.
-- Recognize anomalies that indicate possible issues.
-- Calculate the most appropriate thresholds. 
+[Metric alerts](#metric-alerts) and [log search alerts](#log-alerts) can use dynamic thresholds. Dynamic thresholds apply machine learning to a signal's historical behavior to calculate appropriate thresholds automatically. They scale to hundreds of time series with a single rule, remove the need to preset a threshold for each series, and adapt over time to reduce noisy or overly wide thresholds.
 
-Machine learning continuously uses new data to learn more and make the threshold more accurate. Because the system adapts to the log query results behavior over time, and alerts based on deviations from its pattern, you don't have to know the "right" threshold for each rule.
-
-Dynamic thresholds help you:
-
-- Create scalable alert rules for hundreds of time series with one alert rule. If you have fewer alert rules, you spend less time creating and managing them. Scalable alert rules are especially useful for multiple dimensions or for multiple resources, such as all resources in a subscription.
-- Create rules without having to know what threshold to configure.
-- Prevent noisy (low precision) or wide (low recall) thresholds that don't have an expected pattern.
-
-See [dynamic thresholds](./alerts-dynamic-thresholds.md) for detailed instructions on using dynamic thresholds in alert rules.
+For how dynamic thresholds work and how to configure them, see [Alert rules with dynamic thresholds overview](./alerts-dynamic-thresholds.md).
 
 
 

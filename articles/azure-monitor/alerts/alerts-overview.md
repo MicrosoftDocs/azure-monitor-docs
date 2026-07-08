@@ -2,8 +2,9 @@
 title: Overview of Azure Monitor alerts
 description: Learn about Azure Monitor alerts, alert rules, action processing rules, and action groups, and how they work together to monitor your system.
 ms.topic: overview 
-ms.date: 04/24/2026
+ms.date: 07/08/2026
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 # What are Azure Monitor alerts?
@@ -135,13 +136,7 @@ If you use metric data at scale in the Log Analytics workspace, pricing will cha
 
 ### Simple log search alerts
 
-Simple log search alerts are designed to provide a simpler and faster alternative to traditional log search alerts. Unlike traditional log search alerts that aggregate rows over a defined period, simple log alerts evaluate each row individually. Search based alerts support the analytics and basic logs.  
-
-Simple log search alerts use the Kusto Query Language (KQL) but the feature is designed to simplify the query process, making it easier for you to create alerts without extensive KQL knowledge. 
-
-Simple search alerts provide faster alerting compared to traditional log search alerts By evaluating each row individually. Alerts are triggered almost in real-time, allowing for quicker incident response.
-
-[Create a simple log search alert](alerts-create-simple-alert.md).
+[Simple log search alerts](alerts-types.md#simple-log-search-alerts) evaluate each row individually for faster, near real-time alerting at scale. To set one up, see [Create a simple log search alert](alerts-create-simple-alert.md).
 
 ### Using Azure policies for alerting at scale
 
