@@ -184,6 +184,9 @@ The following metrics are collected by default from each default target. All oth
 - `kube_pod_owner`
 - `kube_pod_container_resource_requests`
 - `kube_pod_status_phase`
+- `kube_pod_status_ready`
+- `kube_pod_status_scheduled`
+- `kube_node_spec_unschedulable`
 - `kube_pod_container_resource_limits`
 - `kube_replicaset_owner`
 - `kube_resourcequota`
@@ -194,8 +197,10 @@ The following metrics are collected by default from each default target. All oth
 - `kube_deployment_spec_replicas`
 - `kube_deployment_status_replicas_available`
 - `kube_deployment_status_replicas_updated`
-- `kube_statefulset_status_replicas_ready`
+- `kube_statefulset_metadata_generation`
+- `kube_statefulset_status_observed_generation`
 - `kube_statefulset_status_replicas`
+- `kube_statefulset_status_replicas_ready`
 - `kube_statefulset_status_replicas_updated`
 - `kube_job_status_start_time`
 - `kube_job_status_active`
