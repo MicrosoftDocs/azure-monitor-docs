@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.NetApp/netAppAccounts/capacityPools/volumes
 description: Reference for Microsoft.NetApp/netAppAccounts/capacityPools/volumes metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/09/2026
 ms.custom: Microsoft.NetApp/netAppAccounts/capacityPools/volumes, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -31,6 +31,7 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
+|**Average other latency**<br><br>Average other latency (that is not read or write) in milliseconds per operation |`AverageOtherLatency` |MilliSeconds |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**Average read latency**<br><br>Average read latency in milliseconds per operation |`AverageReadLatency` |MilliSeconds |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**Average write latency**<br><br>Average write latency in milliseconds per operation |`AverageWriteLatency` |MilliSeconds |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|
 |**Is Volume Backup suspended**<br><br>Is the backup policy suspended for the volume? 0 if yes, 1 if no. |`CbsVolumeBackupActive` |Count |Average |\<none\>|PT5M, PT15M, PT30M, PT1H, PT6H, PT12H, P1D |Yes|

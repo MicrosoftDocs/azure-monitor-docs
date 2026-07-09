@@ -2,7 +2,7 @@
 title: Supported log categories - MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
 description: Reference for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 05/14/2026
+ms.date: 07/09/2026
 ms.custom: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -12,6 +12,8 @@ ms.custom: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES, naam
 # Supported logs for MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
 
 The following table lists the types of logs available for the MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES resource type.
+
+For a list of supported metrics, see [Supported metrics - MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES](../supported-metrics/microsoft-openenergyplatform-energyservices-metrics.md)
 
 
 |Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
