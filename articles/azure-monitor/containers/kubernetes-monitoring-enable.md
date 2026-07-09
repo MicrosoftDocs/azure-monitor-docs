@@ -5,7 +5,8 @@ ms.service: azure-monitor
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
-ms.date: 08/25/2025
+ms.date: 07/08/2026
+ai-usage: ai-assisted
 ---
 
 # Enable monitoring for Azure Kubernetes Service (AKS) clusters
@@ -890,134 +891,11 @@ See [Create diagnostic settings at scale using built-in Azure Policies](../platf
 
 ## Enable Windows metrics (Preview)
 
-Windows metric collection is enabled for AKS clusters as of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
-
-> [!NOTE]
-> There's no CPU/Memory limit in `windows-exporter-daemonset.yaml` so it might overprovision the Windows nodes. For details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
->
-> As you deploy workloads, set resource memory and CPU limits on containers. This also subtracts from NodeAllocatable and helps the cluster-wide scheduler in determining which pods to place on which nodes.
-> Scheduling pods without limits might overprovision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
-
-### Install Windows exporter
-
-Manually install windows-exporter on AKS nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
-
-- `[defaults]`
-  - `container`
-  - `memory`
-  - `process`
-  - `cpu_info`
-
-Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
-
-```bash
-kubectl apply -f windows-exporter-daemonset.yaml
-```
-
-### Enable Windows metrics
-
-Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metrics settings ConfigMap and apply it to the cluster. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
-
-### Enable recording rules
-
-Enable the recording rules that are required for the out-of-the-box dashboards:
-
-- If onboarding using CLI, include the option `--enable-windows-recording-rules`.
-- If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
-- If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
+[!INCLUDE [prometheus-windows-metrics-setup](includes/prometheus-windows-metrics-setup.md)]
 
 ## Verify deployment
 
-Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.
-
-### Managed Prometheus
-
-**Verify that the DaemonSet was deployed properly on the Linux node pools**
-
-```bash
-kubectl get ds ama-metrics-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-node   1         1         1       1            1           <none>          10h
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```bash
-kubectl get ds ama-metrics-win-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-win-node   3         3         3       3            3           <none>          10h
-```
-
-**Verify that the two ReplicaSets were deployed for Prometheus**
-
-```bash
-kubectl get rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$kubectl get rs --namespace=kube-system
-NAME                            DESIRED   CURRENT   READY   AGE
-ama-metrics-5c974985b8          1         1         1       11h
-ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
-```
-
-### Container insights and logging
-
-**Verify that the DaemonSets were deployed properly on the Linux node pools**
-
-```bash
-kubectl get ds ama-logs --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs --namespace=kube-system
-NAME       DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-logs   2         2         2         2            2           <none>          1d
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```bash
-kubectl get ds ama-logs-windows --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs-windows --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR     AGE
-ama-logs-windows           2         2         2         2            2       <none>            1d
-```
-
-**Verify deployment of the container logging solution**
-
-```bash
-kubectl get deployment ama-logs-rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get deployment ama-logs-rs --namespace=kube-system
-NAME          READY   UP-TO-DATE   AVAILABLE   AGE
-ama-logs-rs   1/1     1            1           24d
-```
+[!INCLUDE [kubernetes-monitoring-verify-deployment](includes/kubernetes-monitoring-verify-deployment.md)]
 
 **View configuration with CLI**
 

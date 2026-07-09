@@ -2,9 +2,10 @@
 title: Data Collection Rules in Azure Monitor
 description: Overview of data collection rules (DCRs) in Azure Monitor including their contents and structure and how you can create and work with them.
 ms.topic: concept-article
-ms.date: 06/26/2026
+ms.date: 07/08/2026
 ms.reviewer: nikeist
 ms.custom: references_regions
+ai-usage: ai-assisted
 ---
 
 # Data collection rules (DCRs) in Azure Monitor
@@ -22,11 +23,7 @@ Specific advantages of DCR-based data collection include:
 
 ## View DCRs
 
-Data collection rules (DCRs) are stored in Azure so you can centrally deploy and manage them like any other Azure resource. They provide a consistent and centralized way to define and customize different data collection scenarios.
-
-View all of the DCRs in your subscription from the **Data Collection Rules** option of the **Monitor** menu in the Azure portal. Regardless of the method used to create the DCR and the details of the DCR itself, this screen lists all DCRs in the subscription.
-
-:::image type="content" source="media/data-collection-rule-overview/data-collection-rules.png" lightbox="media/data-collection-rule-overview/data-collection-rules.png" alt-text="Screenshot that shows DCRs in the Azure portal.":::
+Data collection rules (DCRs) are stored in Azure and are centrally deployed and managed like any other Azure resource. They provide a consistent, centralized way to define and customize different data collection scenarios. To view all the DCRs in your subscription and inspect a DCR definition, see [View data collection rules](data-collection-rule-view.md).
 
 ## Replace legacy data collection methods
 

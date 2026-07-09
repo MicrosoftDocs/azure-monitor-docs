@@ -2,8 +2,9 @@
 title: 'Monitor virtual machines with Azure Monitor: Collect data'
 description: Learn how to configure data collection for virtual machines for monitoring in Azure Monitor. Monitor virtual machines and their workloads with an Azure Monitor guide.
 ms.topic: how-to
-ms.date: 05/21/2025
+ms.date: 07/08/2026
 ms.reviewer: Xema Pathak
+ai-usage: ai-assisted
 ---
 
 # Monitor virtual machines with Azure Monitor: Collect data
@@ -254,64 +255,17 @@ Port monitoring verifies that a machine is listening on a particular port. Two p
 
 ### Dependency agent tables
 
-If you're using VM insights with **Processes and dependencies collection** enabled, you can use [VMConnection](/azure/azure-monitor/reference/tables/vmconnection) and [VMBoundPort](/azure/azure-monitor/reference/tables/vmboundport) to analyze connections and ports on the machine. The `VMBoundPort` table is updated every minute with each process running on the computer and the port it's listening on. You can create a log search alert similar to the missing heartbeat alert to find processes that have stopped or to alert when the machine isn't listening on a particular port.
+If you use VM insights with **Processes and dependencies collection** enabled, use the [VMConnection](/azure/azure-monitor/reference/tables/vmconnection) and [VMBoundPort](/azure/azure-monitor/reference/tables/vmboundport) tables to analyze connections and ports on the machine. The `VMBoundPort` table is updated every minute with each process running on the computer and the port it's listening on. For example, review the count of open ports on your VMs to assess configuration and security vulnerabilities:
 
-* **Review the count of ports open on your VMs to assess which VMs have configuration and security vulnerabilities.**
+```kusto
+VMBoundPort
+| where Ip != "127.0.0.1"
+| summarize by Computer, Machine, Port, Protocol
+| summarize OpenPorts=count() by Computer, Machine
+| order by OpenPorts desc
+```
 
-    ```kusto
-    VMBoundPort
-    | where Ip != "127.0.0.1"
-    | summarize by Computer, Machine, Port, Protocol
-    | summarize OpenPorts=count() by Computer, Machine
-    | order by OpenPorts desc
-    ```
-
-* **List the bound ports on your VMs to assess which VMs have configuration and security vulnerabilities.**
-
-    ```kusto
-    VMBoundPort
-    | distinct Computer, Port, ProcessName
-    ```
-
-* **Analyze network activity by port to determine how your application or service is configured.**
-
-    ```kusto
-    VMBoundPort
-    | where Ip != "127.0.0.1"
-    | summarize BytesSent=sum(BytesSent), BytesReceived=sum(BytesReceived), LinksEstablished=sum(LinksEstablished), LinksTerminated=sum(LinksTerminated), arg_max(TimeGenerated, LinksLive) by Machine, Computer, ProcessName, Ip, Port, IsWildcardBind
-    | project-away TimeGenerated
-    | order by Machine, Computer, Port, Ip, ProcessName
-    ```
-
-* **Review bytes sent and received trends for your VMs.**
-
-    ```kusto
-    VMConnection
-    | summarize sum(BytesSent), sum(BytesReceived) by bin(TimeGenerated,1hr), Computer
-    | order by Computer desc
-    | render timechart
-    ```
-
-* **Use connection failures over time to determine if the failure rate is stable or changing.**
-
-    ```kusto
-    VMConnection
-    | where Computer == <replace this with a computer name, e.g. 'acme-demo'>
-    | extend bythehour = datetime_part("hour", TimeGenerated)
-    | project bythehour, LinksFailed
-    | summarize failCount = count() by bythehour
-    | sort by bythehour asc
-    | render timechart
-    ```
-
-* **Link status trends to analyze the behavior and connection status of a machine.**
-
-    ```kusto
-    VMConnection
-    | where Computer == <replace this with a computer name, e.g. 'acme-demo'>
-    | summarize dcount(LinksEstablished), dcount(LinksLive), dcount(LinksFailed), dcount(LinksTerminated) by bin(TimeGenerated, 1h)
-    | render timechart
-    ```
+For more sample queries against this map data, including bound ports, network activity by port, bytes sent and received trends, connection failures, and link status trends, see [Query map data from VM Insights](vminsights-log-query.md).
 
 ### Connection Manager
 
