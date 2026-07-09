@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.Search/searchServices
 description: Reference for Microsoft.Search/searchServices metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 05/29/2026
+ms.date: 07/09/2026
 ms.custom: Microsoft.Search/searchServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -33,6 +33,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Search/s
 
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
+|**Indexer Processed Files (bytes)**<br><br>Total bytes of source data processed by indexers from file-based datasource (e.g. Blob, ADLS Gen2, File, SharePoint, OneLake) |`DocumentsProcessedBytes` |Bytes |Total (Sum), Average |`DataSourceName`, `IndexerName`, `IndexName`|PT1M |Yes|
 |**Document processed count**<br><br>Number of documents processed |`DocumentsProcessedCount` |Count |Total (Sum), Count |`DataSourceName`, `Failed`, `IndexerName`, `IndexName`, `SkillsetName`|PT1M |Yes|
 |**Storage usage**<br><br>Storage usage (text + vector) for the search service by index |`IndexStorageUsage` |Bytes |Average, Maximum, Minimum |`IndexName`|PT1M |Yes|
 |**Vector Storage usage**<br><br>Vector storage usage for the search service by index |`IndexVectorUsage` |Bytes |Average, Maximum, Minimum |`IndexName`|PT1M |Yes|

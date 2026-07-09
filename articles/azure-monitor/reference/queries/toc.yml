@@ -235,6 +235,8 @@ items:
   href: AegDeliveryFailureLogs.md
 - name: AegPublishFailureLogs
   href: AegPublishFailureLogs.md
+- name: AgentsInfo
+  href: AgentsInfo.md
 - name: AggregatedSecurityAlert
   href: AggregatedSecurityAlert.md
 - name: AgriFoodApplicationAuditLogs
@@ -719,5 +721,7 @@ items:
   href: WireData.md
 - name: WorkloadDiagnosticLogs
   href: WorkloadDiagnosticLogs.md
+- name: ZTSJobStatus
+  href: ZTSJobStatus.md
 - name: ZTSRequest
   href: ZTSRequest.md

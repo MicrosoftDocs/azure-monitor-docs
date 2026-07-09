@@ -85,7 +85,7 @@ items:
   displayName: Sign Transactions
 - name: Microsoft.CognitiveServices/accounts
   href: microsoft-cognitiveservices-accounts-logs.md
-  displayName: Audit Logs,Azure OpenAI Request Usage,Request and Response Logs,Trace Logs
+  displayName: Audit Logs,Azure OpenAI Request Usage,Managed Network Events,Request and Response Logs,Trace Logs
 - name: Microsoft.CognitiveServices/accounts/projects
   href: microsoft-cognitiveservices-accounts-projects-logs.md
   displayName: Audit Logs,Trace Logs
@@ -313,7 +313,7 @@ items:
   displayName: Registry Asset Read Event,Registry Asset Write Event
 - name: Microsoft.MachineLearningServices/workspaces
   href: microsoft-machinelearningservices-workspaces-logs.md
-  displayName: AmlComputeClusterEvent,AmlComputeClusterNodeEvent,AmlComputeCpuGpuUtilization,AmlComputeJobEvent,AmlRunStatusChangedEvent,ComputeInstanceEvent,DataLabelChangeEvent,DataLabelReadEvent,DataSetChangeEvent,DataSetReadEvent,DataStoreChangeEvent,DataStoreReadEvent,DeploymentEventACI,DeploymentEventAKS,DeploymentReadEvent,EnvironmentChangeEvent,EnvironmentReadEvent,InferencingOperationACI,InferencingOperationAKS,ModelsActionEvent,ModelsChangeEvent,ModelsReadEvent,PipelineChangeEvent,PipelineReadEvent,RunEvent,RunReadEvent
+  displayName: AmlComputeClusterEvent,AmlComputeClusterNodeEvent,AmlComputeCpuGpuUtilization,AmlComputeJobEvent,AmlRunStatusChangedEvent,ComputeInstanceEvent,DataLabelChangeEvent,DataLabelReadEvent,DataSetChangeEvent,DataSetReadEvent,DataStoreChangeEvent,DataStoreReadEvent,DeploymentEventACI,DeploymentEventAKS,DeploymentReadEvent,EnvironmentChangeEvent,EnvironmentReadEvent,InferencingOperationACI,InferencingOperationAKS,Managed Network Events,ModelsActionEvent,ModelsChangeEvent,ModelsReadEvent,PipelineChangeEvent,PipelineReadEvent,RunEvent,RunReadEvent
 - name: Microsoft.MachineLearningServices/workspaces/onlineEndpoints
   href: microsoft-machinelearningservices-workspaces-onlineendpoints-logs.md
   displayName: AmlOnlineEndpointConsoleLog,AmlOnlineEndpointEventLog,AmlOnlineEndpointTrafficLog
@@ -460,7 +460,7 @@ items:
   displayName: DataSensitivity,PurviewAccountAuditEvents,ScanStatus
 - name: Microsoft.Quantum/providerAccounts
   href: microsoft-quantum-provideraccounts-logs.md
-  displayName: Audit Logs
+  displayName: Audit Logs,Operational Logs
 - name: Microsoft.Quantum/workspaces
   href: microsoft-quantum-workspaces-logs.md
   displayName: Audit Logs
@@ -608,3 +608,6 @@ items:
 - name: Oracle.Database/dbSystems
   href: oracle-database-dbsystems-logs.md
   displayName: Creation Events,Database Backup Events,Database Critical Events,Database Information Events,Database Restore Events,Delete and Terminate Events,System Health Events,Update Events
+- name: Oracle.Database/exadbVmClusters
+  href: oracle-database-exadbvmclusters-logs.md
+  displayName: Add Virtual Machine events,Creation Events,Critical Events,Delete Events,Information Events,Maintenance Events,Terminate Virtual Machine Events,Update Events
