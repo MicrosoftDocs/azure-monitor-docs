@@ -14,7 +14,7 @@ As described in [Enable VM monitoring in Azure Monitor](./vm-enable-monitoring.m
 
 ### [Azure portal](#tab/portal)
 
-See [View and modify associations for a DCR in the Azure portal](../data-collection/data-collection-rule-associations.md#view-and-modify-associations-for-a-dcr-in-the-azure-portal) for details on how to remove a DCR association with the Azure portal. Use the preview DCR experience to list the DCR associations for the VM and remove the association for any DCRs that you want to disable for the VM.
+For details about how to remove a DCR association by using the Azure portal, see [View and modify associations for a DCR in the Azure portal](../data-collection/data-collection-rule-associations.md#view-and-modify-associations-for-a-dcr-in-the-azure-portal). Use the DCR browse experience to list the DCR associations for the VM and remove the association for any DCRs that you want to disable for the VM.
 
 ### [CLI](#tab/cli)
 

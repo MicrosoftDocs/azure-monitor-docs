@@ -15,7 +15,7 @@ You can use [Azure Policy](/azure/governance/policy/overview) to automatically i
 Use the following policies and policy initiatives to automatically install the agent and associate it with a DCR each time you create a virtual machine, virtual machine scale set, or Azure Arc-enabled server.
 
 > [!NOTE]
-> Azure Monitor has a preview [DCR](../essentials/data-collection-rule-overview.md) experience that simplifies creating assignments for policies and initiatives that use DCRs. The experience includes initiatives that install the Azure Monitor Agent. You can choose to use that experience to create assignments for the initiatives described in this article. For more information, see [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md#preview-dcr-experience).
+> Azure Monitor has a [DCR](../essentials/data-collection-rule-overview.md) browse experience that simplifies creating assignments for policies and initiatives that use DCRs. The experience includes initiatives that install the Azure Monitor Agent. You can choose to use that experience to create assignments for the initiatives described in this article. For more information, see [Manage data collection rule associations in Azure Monitor](../data-collection/data-collection-rule-associations.md#dcr-browse-experience).
 
 ## Prerequisites
 
