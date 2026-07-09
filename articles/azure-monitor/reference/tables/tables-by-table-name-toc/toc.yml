@@ -178,6 +178,8 @@
   href: ../agcaccesslogs.md
 - name: AGCFirewallLogs
   href: ../agcfirewalllogs.md
+- name: AgentsInfo
+  href: ../agentsinfo.md
 - name: AggregatedSecurityAlert
   href: ../aggregatedsecurityalert.md
 - name: AgriFoodApplicationAuditLogs
@@ -606,6 +608,8 @@
   href: ../cloudauditevents.md
 - name: CloudDnsEvents
   href: ../clouddnsevents.md
+- name: CloudHsmHardwareOperationAuditLogs
+  href: ../cloudhsmhardwareoperationauditlogs.md
 - name: CloudHsmServiceOperationAuditLogs
   href: ../cloudhsmserviceoperationauditlogs.md
 - name: CloudProcessEvents
@@ -1102,6 +1106,8 @@
   href: ../mnfsystemsessionhistoryupdates.md
 - name: MNFSystemStateMessageUpdates
   href: ../mnfsystemstatemessageupdates.md
+- name: MPCAuditLogs
+  href: ../mpcauditlogs.md
 - name: MPCIngestionLogs
   href: ../mpcingestionlogs.md
 - name: MySqlAuditLogs
@@ -1194,8 +1200,6 @@
   href: ../oewexperimentscorecards.md
 - name: OfficeActivity
   href: ../officeactivity.md
-- name: OGOAuditLogs
-  href: ../ogoauditlogs.md
 - name: OktaSystemLogs
   href: ../oktasystemlogs.md
 - name: OLPSupplyChainEntityOperations
@@ -1258,6 +1262,8 @@
   href: ../powerplatformconnectoractivity.md
 - name: PowerPlatformDlpActivity
   href: ../powerplatformdlpactivity.md
+- name: PreAuthenticationDiscoveryLogs
+  href: ../preauthenticationdiscoverylogs.md
 - name: ProjectActivity
   href: ../projectactivity.md
 - name: PurviewDataSensitivityLogs
@@ -1510,7 +1516,11 @@
   href: ../wvdmultilinkadd.md
 - name: WVDSessionHostManagement
   href: ../wvdsessionhostmanagement.md
+- name: ZTSGraph
+  href: ../ztsgraph.md
 - name: ZTSJobStatus
   href: ../ztsjobstatus.md
+- name: ZTSMetadata
+  href: ../ztsmetadata.md
 - name: ZTSRequest
   href: ../ztsrequest.md

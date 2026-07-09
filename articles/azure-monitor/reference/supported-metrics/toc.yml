@@ -348,6 +348,8 @@
   href: microsoft-networkfunction-azuretrafficcollectors-metrics.md
 - name: Microsoft.NotificationHubs/namespaces/notificationHubs
   href: microsoft-notificationhubs-namespaces-notificationhubs-metrics.md
+- name: MICROSOFT.OPENENERGYPLATFORM/ENERGYSERVICES
+  href: microsoft-openenergyplatform-energyservices-metrics.md
 - name: Microsoft.OperationalInsights/workspaces
   href: microsoft-operationalinsights-workspaces-metrics.md
 - name: Microsoft.Orbital/contactProfiles
@@ -480,6 +482,8 @@
   href: oracle-database-cloudvmclusters-metrics.md
 - name: Oracle.Database/dbSystems
   href: oracle-database-dbsystems-metrics.md
+- name: Oracle.Database/exadbVmClusters
+  href: oracle-database-exadbvmclusters-metrics.md
 - name: Private.MessagingConnectors/connectors
   href: private-messagingconnectors-connectors-metrics.md
 - name: Wandisco.Fusion/migrators

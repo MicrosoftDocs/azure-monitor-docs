@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DevOpsInfrastructure/pools
 description: Reference for Microsoft.DevOpsInfrastructure/pools metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 07/02/2026
+ms.date: 07/09/2026
 ms.custom: Microsoft.DevOpsInfrastructure/pools, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -35,7 +35,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.DevOpsIn
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|
 |**AllocationDurationMs**<br><br>Average time to allocate requests (ms) |`AllocationDurationMs` |Milliseconds |Average |`PoolId`, `Type`, `ResourceRequestType`, `Image`|PT1M |Yes|
-|**TimeSpentInPreviousStateMs**<br><br>Time spent in previous state before transitioning to current state (ms) |`TimeSpentInPreviousStateMs` |Milliseconds |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `PremountConfigurations`, `DataDiskType`, `VmPriority`, `PreviousState`, `NewState`|PT1M |Yes|
+|**TimeSpentInPreviousStateMs**<br><br>Time spent in previous state before transitioning to current state (ms) |`TimeSpentInPreviousStateMs` |Milliseconds |Average, Maximum, Minimum |`PoolId`, `Image`, `ImageVersion`, `DataDiskType`, `PreviousState`, `NewState`|PT1M |Yes|
 
 ### Category: Saturation
 |Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|

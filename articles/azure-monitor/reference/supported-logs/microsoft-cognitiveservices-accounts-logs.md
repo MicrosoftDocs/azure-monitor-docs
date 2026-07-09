@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.CognitiveServices/accounts
 description: Reference for Microsoft.CognitiveServices/accounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/09/2026
 ms.custom: Microsoft.CognitiveServices/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -20,6 +20,7 @@ For a list of supported metrics, see [Supported metrics - Microsoft.CognitiveSer
 |---|---|---|---|---|---|---|
 |`Audit` |Audit Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 |`AzureOpenAIRequestUsage` |Azure OpenAI Request Usage |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
+|`ManagedNetworkEvent` |Managed Network Events |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||Yes |
 |`RequestResponse` |Request and Response Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 |`Trace` |Trace Logs |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No||No |
 

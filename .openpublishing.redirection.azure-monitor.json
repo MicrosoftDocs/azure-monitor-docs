@@ -9555,11 +9555,6 @@
    "redirect_document_id": false
   },
   {
-   "source_path": "articles/azure-monitor/reference/supported-metrics/oracle-database-exadbvmclusters-metrics.md",
-   "redirect_url": "/azure/azure-monitor/reference",
-   "redirect_document_id": false
-  },
-  {
    "source_path": "articles/azure-monitor/app/custom-operations-tracking.md",
    "redirect_url": "/azure/azure-monitor/app/dotnet",
    "redirect_document_id": false

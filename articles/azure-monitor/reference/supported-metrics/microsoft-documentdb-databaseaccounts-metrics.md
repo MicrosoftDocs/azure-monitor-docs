@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.DocumentDB/DatabaseAccounts
 description: Reference for Microsoft.DocumentDB/DatabaseAccounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 06/19/2026
+ms.date: 07/09/2026
 ms.custom: Microsoft.DocumentDB/DatabaseAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -106,6 +106,7 @@ For a list of supported logs, see [Supported log categories - Microsoft.Document
 |**Normalized RU Consumption**<br><br>Max RU consumption percentage per minute |`NormalizedRUConsumption` |Percent |Maximum, Average |`CollectionName`, `DatabaseName`, `Region`, `PartitionKeyRangeId`, `CollectionRid`, `PhysicalPartitionId`, `OfferOwnerRid`|PT1M, PT5M, PT1H, P1D |No|
 |**Region Offlined**<br><br>Region Offlined |`OfflineRegion` |Count |Count |`Region`, `StatusCode`|PT1M |No|
 |**Region Onlined**<br><br>Region Onlined |`OnlineRegion` |Count |Count |`Region`, `StatusCode`|PT1M |No|
+|**Partition Global Write Status**<br><br>Global Write Status of Each Partition |`PartitionGlobalWriteStatus` |Count |Total (Sum) |`WriteStatus`, `Region`|PT1M |No|
 |**Physical Partition Count**<br><br>Physical Partition Count |`PhysicalPartitionCount` |Count |Maximum |`CollectionName`, `DatabaseName`, `IsSharedThroughputOffer`, `OfferOwnerRid`, `Region`|PT5M |No|
 |**Physical Partition Size**<br><br>Physical Partition Size in bytes |`PhysicalPartitionSizeInfo` |Bytes |Maximum, Average |`CollectionName`, `DatabaseName`, `PhysicalPartitionId`, `OfferOwnerRid`, `Region`|PT1M, PT5M, PT1H, P1D |No|
 |**Physical Partition Throughput**<br><br>Physical Partition Throughput |`PhysicalPartitionThroughputInfo` |Count |Maximum |`CollectionName`, `DatabaseName`, `PhysicalPartitionId`, `OfferOwnerRid`, `Region`|PT5M, PT1H, P1D |No|
