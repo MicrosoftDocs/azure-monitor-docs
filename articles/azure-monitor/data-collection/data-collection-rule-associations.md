@@ -2,8 +2,9 @@
 title: Manage data collection rule associations in Azure Monitor
 description: Describes different options for viewing data collection rules (DCRs) and data collection rule associations (DCRA) in Azure Monitor.
 ms.topic: how-to
-ms.date: 01/20/2026
+ms.date: 07/07/2026
 ms.reviewer: nikeist
+ai-usage: ai-assisted
 ---
 
 # Manage data collection rule associations in Azure Monitor
@@ -26,31 +27,29 @@ Click the **Resources** tab to view the resources associated with the selected D
 > [!NOTE]
 > Although this view shows all DCRs in the specified subscriptions, selecting the **Create** button creates a data collection for Azure Monitor Agent. Similarly, this page only allows you to modify DCRs for Azure Monitor Agent. For guidance on how to create and update DCRs for other workflows, see [Create and edit data collection rules (DCRs) in Azure Monitor](data-collection-rule-create-edit.md).
 
-## Preview DCR experience
+## DCR browse experience
 
-A preview of the new Azure portal experience for DCRs ties together DCRs and the resources they're associated with. You can either view the list by **Data collection rule**, which shows the number of resources associated with each DCR, or by **Resources**, which shows the count of DCRs associated with each resource.
+The Azure portal browse experience for DCRs ties together DCRs and the resources they're associated with. You can either view the list by **Data collection rule**, which shows the number of resources associated with each DCR, or by **Resources**, which shows the count of DCRs associated with each resource.
 
-Select the option on the displayed banner to enable this experience.
-
-:::image type="content" source="media/data-collection-rule-view/preview-experience.png" alt-text="Screenshot of title bar to enable the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/preview-experience.png":::
+This experience is the default when you open **Data Collection Rules** in the Azure portal. To return to the previous list, select **Switch to the classic experience** on the banner at the top of the page.
 
 ### Data collection rule view
 
 In the **Data collection rule** view, the **Resource count** represents the number of resources that have a [data collection rule association](data-collection-rule-overview.md#data-collection-rule-associations-dcras) with the DCR. Click this value to open the **Resources** view for that DCR.
 
-:::image type="content" source="media/data-collection-rule-view/data-collection-rules-view.png" alt-text="Screenshot of data collection rules view in the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/data-collection-rules-view.png":::
+:::image type="content" source="media/data-collection-rule-view/data-collection-rules-view.png" alt-text="Screenshot of the data collection rules view for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/data-collection-rules-view.png":::
 
 ### Resources view
 
 The **Resources** view lists all Azure resources that match the selected filter, whether they have a DCR association or not. Tiles at the top of the view list the count of total resources listed, the number of resources not associated with a DCR, and the total number of DCRs matching the selected filter.
 
-:::image type="content" source="media/data-collection-rule-view/resources-view.png" alt-text="Screenshot of resources view in the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view.png":::
+:::image type="content" source="media/data-collection-rule-view/resources-view.png" alt-text="Screenshot of the resources view for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view.png":::
 
 **View DCRs for a resource**
 
 The **Data collection rules** column represents the number of DCRs that are associated with each resource. Click this value to open a new pane listing the DCRs associated with the resource. 
 
-:::image type="content" source="media/data-collection-rule-view/resources-view-associations.png" alt-text="Screenshot of the DCR associations for a resource in the resources view in the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associations.png":::
+:::image type="content" source="media/data-collection-rule-view/resources-view-associations.png" alt-text="Screenshot of the DCR associations for a resource in the resources view for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associations.png":::
 
 > [!IMPORTANT]
 > Not all DCRs are associated with resources. For example, DCRs used with the [Logs ingestion API](../logs/logs-ingestion-api-overview.md) are specified in the API call and don't use associations. These DCRs still appear in the view, but have a **Resource Count** of 0.
@@ -64,11 +63,11 @@ Using the **Resources** view, you can create a new DCR for the selected resource
 | Create a data collection rule | Launch the process to create a new DCR for the Azure Monitor agent. The selected resources are automatically added as resources for the new DCR. See [Collect data with Azure Monitor Agent](../vm/data-collection.md) for details on this process. |
 | Associate with existing data collection rule | Associate the selected resources with one or more existing DCRs. This opens a list of DCRs that can be associated with the current resource. This list only includes DCRs that are valid for the particular resource. For example, if the resource is a VM with the Azure Monitor agent (AMA) installed, only DCRs that process AMA data are listed. |
 
-:::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view in the preview experience for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::
+:::image type="content" source="media/data-collection-rule-view/resources-view-associate.png" alt-text="Screenshot of the create association button in the resources view for DCRs in the Azure portal." lightbox="media/data-collection-rule-view/resources-view-associate.png":::
 
 ## Create new association
 
-In addition to the preview Azure portal experience, you can create a new association using any of the following methods. The DCRA object that's created is a child of the target object and uses the resource ID of the DCR.
+In addition to the Azure portal browse experience, you can create a new association by using any of the following methods. The DCRA object you create is a child of the target object and uses the resource ID of the DCR.
 
 > [!NOTE]
 > To associate DCRs with a virtual machine scale set with flexible orchestration, use a policy to deploy the agent and associate the DCR with each VM. The policy will install the agent and associate the DCR with VMs as during scale out.
@@ -291,7 +290,7 @@ Using [Azure Policy](/azure/governance/policy/overview), you can associate a DCR
 > 
 > An **initiative** is a collection of policies that are grouped together to achieve a specific goal or purpose. For example, there's an initiative called **Configure Windows machines to run Azure Monitor Agent and associate them to a Data Collection Rule** that includes multiple policies to install and configure the Azure Monitor agent.
 
-From the DCR in the Azure portal, select **Policies (Preview)**. This opens a page that lists any assignments with the current DCR and the compliance state of included resources. Tiles across the top provide compliance metrics for all resources and assignments.
+From the DCR in the Azure portal, select **Policies**. This action opens a page that lists any assignments with the current DCR and the compliance state of included resources. Tiles across the top provide compliance metrics for all resources and assignments.
 
 :::image type="content" source="media/data-collection-rule-view/data-collection-rule-policies.png" alt-text="Screenshot of DCR policies view." lightbox="media/data-collection-rule-view/data-collection-rule-policies.png":::
 

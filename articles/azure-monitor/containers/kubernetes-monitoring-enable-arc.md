@@ -4,7 +4,8 @@ description: Learn how to enable monitoring for Arc-enabled Kubernetes clusters 
 ms.topic: how-to
 ms.custom: devx-track-azurecli, linux-related-content
 ms.reviewer: aul
-ms.date: 08/25/2025
+ms.date: 07/08/2026
+ai-usage: ai-assisted
 ---
 
 # Enable monitoring for Arc-enabled Kubernetes clusters
@@ -203,7 +204,7 @@ Each of the settings in the configuration is described in the following table.
 | Name | Description |
 |:---|:---|
 | `interval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals If the value is outside the allowed range, then it defaults to *1 m*.<br><br>Default: 1m.  |
-| `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.<br><br>Default: Off |
+| `namespaceFilteringMode` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collects data on all namespaces.<br><br>Default: Off |
 | `namespaces` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored.<br><br>None. |
 |  `enableContainerLogV2` | Boolean flag to enable ContainerLogV2 schema. If set to true, the stdout/stderr Logs are ingested to [ContainerLogV2](container-insights-logs-schema.md) table. If not, the container logs are ingested to **ContainerLog** table, unless otherwise specified in the ConfigMap. When specifying the individual streams, you must include the corresponding table for ContainerLog or ContainerLogV2.<br><br>Default: True |
 | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>Default: Microsoft-ContainerInsights-Group-Default |
@@ -244,7 +245,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 }
 ```
 
-#### Download and edit template and parameter file
+#### Download and edit template and parameter files
 
 1. Download the required files.
 
@@ -310,7 +311,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
 
 #### Download and install template
 
-1. Download and edit template and parameter file.
+1. Download and edit the template and parameter files.
 
     - Template file: [https://aka.ms/arc-k8s-azmon-extension-msi-arm-template](https://aka.ms/arc-k8s-azmon-extension-msi-arm-template)
     - Parameter file: [https://aka.ms/arc-k8s-azmon-extension-msi-arm-template-params](https://aka.ms/arc-k8s-azmon-extension-msi-arm-template-params)
@@ -332,7 +333,7 @@ If the Azure Managed Grafana instance is already linked to an Azure Monitor work
     | `enableSyslog` | Specifies whether Syslog collection should be enabled. |
     | `syslogLevels` | If Syslog collection is enabled, specifies the log levels to collect. |
     | `dataCollectionInterval` | Determines how often the agent collects data.  Valid values are 1m - 30m in 1m intervals The default value is 1m. If the value is outside the allowed range, then it defaults to *1 m*. |
-    | `namespaceFilteringModeForDataCollection` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collect data on all namespaces.
+    | `namespaceFilteringModeForDataCollection` | *Include*: Collects only data from the values in the *namespaces* field.<br>*Exclude*: Collects data from all namespaces except for the values in the *namespaces* field.<br>*Off*: Ignores any *namespace* selections and collects data on all namespaces.
     | `namespacesForDataCollection` | Array of comma separated Kubernetes namespaces to collect inventory and perf data based on the _namespaceFilteringMode_.<br>For example, *namespaces = ["kube-system", "default"]* with an _Include_ setting collects only these two namespaces. With an _Exclude_ setting, the agent collects data from all other namespaces except for _kube-system_ and _default_. With an _Off_ setting, the agent collects data from all namespaces including _kube-system_ and _default_. Invalid and unrecognized namespaces are ignored. |
     | `streams` | An array of table streams. See [Stream values](#stream-values) for a list of the valid streams and their corresponding tables.<br><br>To enable [high scale mode](./container-insights-high-scale.md) for container logs, use `Microsoft-ContainerLogV2-HighScale`.  |
     | `useAzureMonitorPrivateLinkScope` | Specifies whether to use private link for the cluster connection to Azure Monitor. |
@@ -610,41 +611,8 @@ Within a few minutes after enabling monitoring, you should be able to use the fo
 ---
 
 ## Enable Windows metrics (Preview)
-Windows metric collection is enabled for Arc-enabled clusters as of version 6.4.0-main-02-22-2023-3ee44b9e of the Managed Prometheus addon container. Onboarding to the Azure Monitor Metrics add-on enables the Windows DaemonSet pods to start running on your node pools. Both Windows Server 2019 and Windows Server 2022 are supported. Follow these steps to enable the pods to collect metrics from your Windows node pools.
 
-> [!NOTE]
-> There's no CPU/Memory limit in `windows-exporter-daemonset.yaml` so it may over-provision the Windows nodes. For details see [Resource reservation](https://kubernetes.io/docs/concepts/configuration/windows-resource-management/#resource-reservation)
->   
-> As you deploy workloads, set resource memory and CPU limits on containers. This also subtracts from NodeAllocatable and helps the cluster-wide scheduler in determining which pods to place on which nodes.
-> Scheduling pods without limits may over-provision the Windows nodes and in extreme cases can cause the nodes to become unhealthy.
-
-### Install Windows exporter
-
-Manually install windows-exporter on nodes to access Windows metrics by deploying the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. Enable the following collectors. For more collectors, see [Prometheus exporter for Windows metrics](https://github.com/prometheus-community/windows_exporter#windows_exporter).
-
-   * `[defaults]`
-   * `container`
-   * `memory`
-   * `process`
-   * `cpu_info`
-   
- 
-Deploy the [windows-exporter-daemonset YAML](https://github.com/prometheus-community/windows_exporter/blob/master/kubernetes/windows-exporter-daemonset.yaml) file. If there are any taints applied in the node, you need to apply the appropriate tolerations.
-
-  ```bash
-kubectl apply -f windows-exporter-daemonset.yaml
-```
-
-### Enable Windows metrics
-Set the `windowsexporter` and `windowskubeproxy` Booleans to `true` in your metrics settings ConfigMap and apply it to the cluster. See [Customize collection of Prometheus metrics from your Kubernetes cluster using ConfigMap](./prometheus-metrics-scrape-configuration.md).
-
-### Enable recording rules
-
-Enable the recording rules that are required for the out-of-the-box dashboards:
-
- * If onboarding using CLI, include the option `--enable-windows-recording-rules`.
- * If onboarding using an ARM template, Bicep, or Azure Policy, set `enableWindowsRecordingRules` to `true` in the parameters file.
- * If the cluster is already onboarded, use [this ARM template](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRules.json) and [this parameter file](https://github.com/Azure/prometheus-collector/blob/main/AddonArmTemplate/WindowsRecordingRuleGroupTemplate/WindowsRecordingRulesParameters.json) to create the rule groups. This adds the required recording rules and isn't an ARM operation on the cluster and doesn't impact current monitoring state of the cluster.
+[!INCLUDE [prometheus-windows-metrics-setup](includes/prometheus-windows-metrics-setup.md)]
 
 ## Add scrape job 
 
@@ -679,98 +647,8 @@ Configure Managed Prometheus running on a Linux node in the cluster to scrape me
 ```
 
 ## Verify deployment
-Use the [kubectl command line tool](/azure/aks/learn/quick-kubernetes-deploy-cli#connect-to-the-cluster) to verify that the agent is deployed properly.
 
-### Managed Prometheus
-
-**Verify that the DaemonSet was deployed properly on the Linux node pools**
-
-```AzureCLI
-kubectl get ds ama-metrics-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME               DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-node   1         1         1       1            1           <none>          10h
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```AzureCLI
-kubectl get ds ama-metrics-win-node --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-metrics-node --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-metrics-win-node   3         3         3       3            3           <none>          10h
-```
-
-**Verify that the two ReplicaSets were deployed for Prometheus**
-
-```AzureCLI
-kubectl get rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$kubectl get rs --namespace=kube-system
-NAME                            DESIRED   CURRENT   READY   AGE
-ama-metrics-5c974985b8          1         1         1       11h
-ama-metrics-ksm-5fcf8dffcd      1         1         1       11h
-```
-
-
-### Container logging
-
-**Verify that the DaemonSets were deployed properly on the Linux node pools**
-
-```AzureCLI
-kubectl get ds ama-logs --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Linux nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs --namespace=kube-system
-NAME       DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE
-ama-logs   2         2         2         2            2           <none>          1d
-```
-
-**Verify that Windows nodes were deployed properly**
-
-```
-kubectl get ds ama-logs-windows --namespace=kube-system
-```
-
-The number of pods should be equal to the number of Windows nodes on the cluster. The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get ds ama-logs-windows --namespace=kube-system
-NAME                   DESIRED   CURRENT   READY     UP-TO-DATE   AVAILABLE   NODE SELECTOR     AGE
-ama-logs-windows           2         2         2         2            2       <none>            1d
-```
-
-
-**Verify deployment of the container logging solution**
-
-```
-kubectl get deployment ama-logs-rs --namespace=kube-system
-```
-
-The output should resemble the following example:
-
-```output
-User@aksuser:~$ kubectl get deployment ama-logs-rs --namespace=kube-system
-NAME          READY   UP-TO-DATE   AVAILABLE   AGE
-ama-logs-rs   1/1     1            1           24d
-```
+[!INCLUDE [kubernetes-monitoring-verify-deployment](includes/kubernetes-monitoring-verify-deployment.md)]
 
 **View configuration with CLI**
 
