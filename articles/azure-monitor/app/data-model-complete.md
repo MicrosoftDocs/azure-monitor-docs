@@ -33,6 +33,7 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Dependency](#dependency-telemetry) | `dependencies` | `AppDependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
 | [Event](#event-telemetry) | `customEvents` | `AppEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
 | [Exception](#exception-telemetry) | `exceptions` | `AppExceptions` | Captures error information crucial for troubleshooting and understanding failures. |
+| [Generative AI content](#generative-ai-content-telemetry) | `genAIContent` | `AppGenAIContent` | Captures generative AI content from OpenTelemetry sources, including input and output messages, system instructions, and tool interactions. |
 | [Metric](#metric-telemetry) | `performanceCounters`<br><br>`customMetrics` | `AppPerformanceCounters`<br><br>`AppMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
 | [Page view](#page-view-telemetry) | `pageViews` | `AppPageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
 | [Request](#request-telemetry) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
@@ -144,6 +145,14 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | `details` | `Details` | Contains exception information such as the exception message and the call stack. |
 
 For a list of all available fields, see [AppExceptions](../reference/tables/appexceptions.md).
+
+## Generative AI content telemetry
+
+Generative AI content telemetry captures content from OpenTelemetry sources for generative AI applications and agents. It includes input and output messages, system instructions, tool definitions, tool call arguments, and tool call results.
+
+Application Insights uses this telemetry in the [Agents (Preview)](agents-view.md) view to help monitor agent behavior, token usage, tool calls, and related traces.
+
+For the complete Log Analytics schema, see [AppGenAIContent](../reference/tables/appgenaicontent.md).
 
 ## Metric telemetry
 
