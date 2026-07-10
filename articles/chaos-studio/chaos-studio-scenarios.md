@@ -54,9 +54,19 @@ Simulates a full availability zone failure by shutting down virtual machines and
 | Target resources | Virtual Machines, Virtual Machine Scale Sets |
 | Outage category | Zone / Datacenter |
 
-### Database failover Scenarios
+#### Zone Down
 
-In Azure Chaos Studio, database failover is delivered as part of the Compute Zone Down Scenarios rather than as standalone failover Scenarios. These variants combine a zone-level compute failure with a database failover to test whether your application recovers within its recovery time objective (RTO), including connection retry, pool exhaustion, and data consistency after failover.
+Shuts down all discovered Azure Virtual Machine Scale Sets instances in the target availability zone and forces a failover of discovered Azure Cache for Redis instances to simulate a backend zonal outage. You can optionally invoke your own Azure Automation runbooks as part of the run. Use the `filters.zones` configuration filter to choose which zone to take down.
+
+| Property | Value |
+|---|---|
+| Actions | Virtual Machine Scale Set Shutdown (zone filter), Azure Cache for Redis force failover (reboot primary node), optional Azure Automation runbooks |
+| Target resources | Virtual Machine Scale Sets, Azure Cache for Redis |
+| Outage category | Zone / Datacenter |
+
+### Database Scenarios
+
+Database Scenarios test how your application handles data-tier disruption. Some combine a zone-level compute failure with a database failover (the Compute Zone Down variants) to validate cross-zone and data-tier resilience together; others drive a standalone database failover or restart while the application is under active load. Each tests whether your application recovers within its recovery time objective (RTO), including connection retry, pool exhaustion, and data consistency after the disruption.
 
 #### Compute Zone Down + PostgreSQL Failover
 
@@ -68,6 +78,16 @@ Extends the Compute Zone Down Scenario with an Azure Database for PostgreSQL fle
 | Target resources | Virtual Machines, Virtual Machine Scale Sets, Azure Database for PostgreSQL flexible server |
 | Outage category | Zone / Datacenter + Data |
 
+#### Compute Zone Down + SQL DB Failover
+
+Extends the Compute Zone Down Scenario with an Azure SQL Database geo-replication failover.
+
+| Property | Value |
+|---|---|
+| Actions | Virtual Machine Scale Set Shutdown (zone filter), VM Shutdown (zone filter), Azure SQL Database geo-failover |
+| Target resources | Virtual Machine Scale Sets, Virtual Machines, Azure SQL Database |
+| Outage category | Zone / Datacenter + Data |
+
 #### Compute Zone Down + SQL Managed Instance Failover
 
 Extends the Compute Zone Down Scenario with an Azure SQL Managed Instance failover.
@@ -77,6 +97,26 @@ Extends the Compute Zone Down Scenario with an Azure SQL Managed Instance failov
 | Actions | VM Shutdown (zone filter), Virtual Machine Scale Set Shutdown (zone filter), SQL Managed Instance Failover |
 | Target resources | Virtual Machines, Virtual Machine Scale Sets, Azure SQL Managed Instance |
 | Outage category | Zone / Datacenter + Data |
+
+#### DB Failover Under Load
+
+Triggers an Azure Database for MySQL flexible server forced failover while an Azure Load Testing run drives traffic against your application, so you can validate data-tier resilience under realistic load. The MySQL server is restored to its original state when the run ends.
+
+| Property | Value |
+|---|---|
+| Actions | Azure Load Testing Start, MySQL Flexible Server forced failover |
+| Target resources | Azure Database for MySQL flexible server, Azure Load Testing |
+| Outage category | Data / Load |
+
+#### DB Restart Under Load
+
+Restarts an Azure Database for MySQL flexible server while an Azure Load Testing run drives traffic against your application, testing how your application handles an abrupt database restart under load.
+
+| Property | Value |
+|---|---|
+| Actions | Azure Load Testing Start, MySQL Flexible Server Restart |
+| Target resources | Azure Database for MySQL flexible server, Azure Load Testing |
+| Outage category | Data / Load |
 
 ### Cache resilience Scenarios
 
@@ -119,6 +159,56 @@ Disables Service Bus queues and Event Hubs entities to test how your event-drive
 
 When the run ends, Chaos Studio re-enables the affected Service Bus queues and Event Hubs entities automatically.
 
+#### Dependency Blackout
+
+Simulates a correlated outage of upstream dependencies across identity, messaging, and eventing at the same time: it blocks access to Azure Key Vault with a network security group (NSG) rule, and disables Service Bus queues and Event Hubs entities. Use it to validate resilience to simultaneous dependency failures. All disruptions are reverted automatically when the run ends: the messaging and eventing state changes are self-healing, and the NSG block rule is removed.
+
+| Property | Value |
+|---|---|
+| Actions | NSG ApplyNSGRule (block Azure Key Vault), Service Bus ChangeQueueState (disable), Event Hubs ChangeEventHubState (disable) |
+| Target resources | Network Security Group, Service Bus Namespace, Event Hubs Namespace |
+| Outage category | Dependency (Identity, Messaging, Eventing) |
+
+### Compute and resource-pressure Scenarios
+
+These Scenarios simulate the loss of compute capacity or resource exhaustion on virtual machines.
+
+#### VM Hibernate
+
+Hibernates standalone virtual machines to simulate sudden compute loss, then restores them automatically when the run ends or is canceled. Use it to test how your application tolerates VMs disappearing and returning.
+
+| Property | Value |
+|---|---|
+| Actions | Virtual Machine Hibernate |
+| Target resources | Virtual Machines |
+| Outage category | Compute |
+
+#### CPU Pressure
+
+Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
+
+> [!NOTE]
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
+
+| Property | Value |
+|---|---|
+| Actions | CPU Pressure (agent-based) |
+| Target resources | Virtual Machines |
+| Outage category | Resource pressure |
+
+#### Physical Memory Pressure
+
+Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
+
+> [!NOTE]
+> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
+
+| Property | Value |
+|---|---|
+| Actions | Physical Memory Pressure (agent-based) |
+| Target resources | Virtual Machines |
+| Outage category | Resource pressure |
+
 ## Create a custom Scenario
 
 When the supported templates don't match what you need, customize your own Scenario with the Chaos Studio **Scenario designer** in the Azure portal. You start from a template, adjust its Actions and parameters, and save named configurations that you can run or edit later. To author a Scenario programmatically instead, define it as a `Microsoft.Chaos/workspaces/scenarios` resource (see [How a custom Scenario is structured](#how-a-custom-scenario-is-structured)).
@@ -145,7 +235,7 @@ When the supported templates don't match what you need, customize your own Scena
 
 A Scenario is a `Microsoft.Chaos/workspaces/scenarios` resource. Each Scenario has:
 
-- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by ID and version (for example, `microsoft-compute-shutdown/1.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
+- **Actions**: One or more Actions that define the Scenario's orchestration. Each Action references an action type by its URN (for example, `urn:csci:microsoft:compute:shutdown/1.0.0`), runs for an ISO 8601 **duration** (such as `PT30M` for 30 minutes), and takes action-specific **parameters**.
 - **Parameters**: Scenario-level parameters that callers supply at run time, such as which availability zone to target. Each parameter has a name, a type (`string`, `number`, `boolean`, `array`, or `object`), an optional default, and a `required` flag. Reference a parameter inside an Action with the macro syntax `%%{parameters.<name>}%%`.
 - **Dependencies**: Use an Action's `runAfter` property to control sequencing. You specify the Actions to wait for, the lifecycle state that triggers the next Action (`Start`, `Running`, `Success`, `Failure`, `Skipped`, or `AnyTerminal`), and how multiple dependencies are evaluated (`All`, `Any`, or `AtLeastOne`). You can also set `waitBefore` to delay an Action and `timeout` to cap its execution time.
 
@@ -172,7 +262,7 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
     actions: [
       {
         name: 'shutdown-zone'
-        actionId: 'microsoft-compute-shutdown/1.0'
+        actionId: 'urn:csci:microsoft:compute:shutdown/1.0.0'
         description: 'Shut down VMs in the target zone.'
         duration: 'PT10M'
         parameters: [
@@ -184,7 +274,7 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
       }
       {
         name: 'db-failover'
-        actionId: 'microsoft-azurePostgreSql-failover/1.0'
+        actionId: 'urn:csci:microsoft:azurePostgreSql:Failover/1.0.0'
         description: 'Fail over the PostgreSQL flexible server.'
         duration: 'PT5M'
         runAfter: {
@@ -203,7 +293,7 @@ resource customScenario 'Microsoft.Chaos/workspaces/scenarios@2026-05-01-preview
 }
 ```
 
-Action IDs follow the format `{publisher}-{service}-{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). For the list of Actions you can compose, see the [Fault and action library](chaos-studio-fault-library.md).
+Action IDs are URNs of the form `urn:csci:microsoft:{service}:{action}/{version}`. For the full resource schema, including every Action and parameter property, see the [Microsoft.Chaos/workspaces/scenarios template reference](/azure/templates/microsoft.chaos/workspaces/scenarios). For the list of Actions you can compose, see the [Fault and action library](chaos-studio-fault-library.md).
 
 ## What determines which Scenarios appear in your Workspace
 
