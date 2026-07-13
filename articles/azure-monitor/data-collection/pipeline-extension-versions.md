@@ -18,7 +18,7 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ### Version 1.4.0 - June 24, 2026
 
-- **Per-processor pipeline metrics** — `processor_incoming_items` and `processor_outgoing_items` now report the item throughput and processing time of every processor in each pipeline, giving you finer-grained visibility into pipeline performance. `processor_duration` is now reported in milliseconds.
+- **Per-processor pipeline metrics** — `processor_incoming_items` and `processor_outgoing_items` now report the item throughput of every processor in each pipeline, giving you finer-grained visibility into pipeline performance.
 - **Requests identify the originating pipeline** — API header now includes information identifying the pipeline extension, version, and platform, making outgoing requests easier to trace.
 - **Improved overflow handling** — when the on-disk buffer is full, the pipeline now drops the oldest persisted data (first-in, first-out) instead of applying backpressure to incoming data.
 
