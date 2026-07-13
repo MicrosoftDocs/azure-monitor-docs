@@ -2,8 +2,9 @@
 title: Collect resource logs from an Azure resource
 description: Learn how to configure diagnostic settings to send resource logs from an Azure resource to a Log Analytics workspace where they can be analyzed with a log query.
 ms.topic: tutorial
-ms.date: 07/07/2026
+ms.date: 07/13/2026
 ms.reviewer: lualderm
+ai-usage: ai-assisted
 ---
 
 # Collect and analyze resource logs from an Azure resource in Azure Monitor
@@ -49,7 +50,7 @@ Select **Review + Create** to create the workspace.
 
 ## Create a diagnostic setting
 
-[Diagnostic settings](../essentials/diagnostic-settings.md) define where to send resource logs for a particular resource. A single diagnostic setting can have multiple [destinations](../essentials/diagnostic-settings.md#destinations), but we only use a Log Analytics workspace in this tutorial.
+[Diagnostic settings](../essentials/diagnostic-settings.md) specify where to send resource logs for a particular resource. A single diagnostic setting can have multiple [destinations](../essentials/diagnostic-settings.md#destinations), but this tutorial uses only a Log Analytics workspace. For the full anatomy of a diagnostic setting, including all supported categories and destinations, see [Diagnostic settings in Azure Monitor](../essentials/diagnostic-settings.md).
 
 Under the **Monitoring** section of your resource's menu, select **Diagnostic settings**. Then select **Add diagnostic setting**.
 
@@ -57,12 +58,6 @@ Under the **Monitoring** section of your resource's menu, select **Diagnostic se
 > Some resources might require other selections. For example, a storage account requires you to select a resource before the **Add diagnostic setting** option is displayed. You might also notice a **Preview** label for some resources because their diagnostic settings are currently in preview.
 
 :::image type="content" source="media/tutorial-resource-logs/diagnostic-settings.png" lightbox="media/tutorial-resource-logs/diagnostic-settings.png"alt-text="Screenshot that shows Diagnostic settings.":::
-
-Each diagnostic setting has three basic parts:
-
-* **Name**: The name has no significant effect and should be descriptive to you.
-* **Categories**: Categories of logs to send to each of the destinations. The set of categories varies for each Azure service.
-* **Destinations**: One or more destinations to send the logs. All Azure services share the same set of possible destinations. Each diagnostic setting can define one or more destinations but no more than one destination of a particular type.
 
 Enter a name for the diagnostic setting and select the categories that you want to collect. See the documentation for each service for a definition of its available categories. **AllMetrics** sends the same [platform metrics](./tutorial-metrics.md) for the resource to the workspace. This allows you to analyze this data with log queries along with other monitoring data. Select **Send to Log Analytics workspace** and then select the workspace that you created.
 

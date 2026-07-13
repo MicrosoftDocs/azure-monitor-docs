@@ -11,12 +11,9 @@ ai-usage: ai-assisted
 
 The Observability Agent in Azure Monitor uses generative AI to investigate, diagnose, and explain issues across your monitored resources. Because the agent calls large language models (LLMs), usage incurs costs. This article explains how the Observability Agent is billed, what is billable today, and how to control spend in Azure Cost Management.
 
-> [!IMPORTANT]
-> Billing for the Observability Agent starts on **July 1, 2026**.
-
 ## How the Observability Agent is billed
 
-The Observability Agent uses a **consumption-based** pricing model. You pay only for the AI work the agent performs. Agent consumption is measured in **Azure Agent Credit (AAC)**. AAC pricing is uniform across models, so you don't need to track per-model rates. AAC list prices are available on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). Charges are scoped to the **Azure subscription** of the monitored resource.
+The Observability Agent uses a **consumption-based** pricing model. You pay only for the AI work the agent performs. Agent consumption is measured in **Azure Agent Credit (AAC)**. AAC pricing is uniform across models, so you don't need to track per-model rates. AAC list prices are available on the [Azure Monitor pricing page](https://azure.microsoft.com/pricing/details/monitor/). Charges are scoped to the **Azure subscription** of the monitored resource. Billing for the Observability Agent went into effect July 1, 2026.
 
 Simple questions, such as "what was the maximum latency in this app yesterday?", typically use fewer tokens. A deep investigation consumes more agent and tool work, and therefore typically incurs higher cost.
 
