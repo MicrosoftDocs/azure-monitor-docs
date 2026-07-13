@@ -49,35 +49,35 @@ Azure Resource Graph serves as the supported integration point between service l
 ### Advisor recommended metadata sample payload
 ```json
 {
-  "id": "/providers/Microsoft.Advisor/metadata/dc85da5531e554e0af38b9f06d26dac01a3c75c4c91a60b08778c83acfaad336",
-  "name": "dc85da5531e554e0af38b9f06d26dac01a3c75c4c91a60b08778c83acfaad336",
+  "id": "/providers/Microsoft.Advisor/metadata/e877d6d4-e952-4f8a-a4c4-5f90e5ac1da9",
+  "name": "e877d6d4-e952-4f8a-a4c4-5f90e5ac1da9",
   "type": "microsoft.advisor/metadata",
   "properties": {
     "recommendationTypeId": "e877d6d4-e952-4f8a-a4c4-5f90e5ac1da9",
     "recommendationSubCategory": "ServiceUpgradeAndRetirement",
     "resourceMetadata": {
-      "action": {
-        "recommendedActionButtonText": "",
-        "actionApplicabilityScope": "",
-        "isRecommendedAction": false,
-        "description": null,
-        "actionType": "Blade",
-        "extensionName": "HubsExtension",
-        "actionId": "051cfb90-f2d9-4efa-a2ac-fe7a6ead9d4e",
-        "caption": null,
-        "bladeName": "ResourceMenuBlade",
-        "metadata": {
-          "id": "{resourceId}"
-        }
-      },
-      "singular": "Availability test",
-      "plural": "Availability tests"
+        "action": {
+            "recommendedActionButtonText": "",
+            "actionApplicabilityScope": "",
+            "isRecommendedAction": false,
+            "description": null,
+            "actionType": "Blade",
+            "extensionName": "HubsExtension",
+            "actionId": "051cfb90-f2d9-4efa-a2ac-fe7a6ead9d4e",
+            "caption": null,
+            "bladeName": "ResourceMenuBlade",
+            "metadata": {
+                "id": "{resourceId}"
+            }
+        },
+        "singular": "Availability test",
+        "plural": "Availability tests"
     },
     "exposedMetadataProperties": {
-      "SupportedSDKLanguages": null,
-      "AdditionalColumns": null,
-      "CostSavingInfo": null,
-      "Tip": null
+        "SupportedSDKLanguages": null,
+        "AdditionalColumns": null,
+        "CostSavingInfo": null,
+        "Tip": null
     },
     "recommendationCategory": "HighAvailability",
     "supportedResourceType": "microsoft.insights/webtests",
@@ -86,41 +86,41 @@ Azure Resource Graph serves as the supported integration point between service l
     "recommendationScope": "Public",
     "potentialBenefits": "Avoid potential disruptions and use new capabilities",
     "recommendationDataSourceQuery": "resources | where type == 'microsoft.insights/webtests' and properties.Kind == 'ping' | project subscriptionId, id",
-    "learnMoreLink": "https://azure.microsoft.com/updates?id=transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september%22,
+    "learnMoreLink": "https://azure.microsoft.com/updates?id=transition-to-using-standard-tests-for-singlestep-availability-testing-in-azure-monitor-application-insights-by-30-september",
     "displayName": "The URL ping test capability of the application insights feature for Azure Monitor is being retired.",
     "priorityScore": 0.94,
     "lastRefreshed": "2026-06-23T10:57:47.3066458Z",
     "language": "en",
     "actions": [
-    {
-        "recommendedActionButtonText": "",
-        "actionApplicabilityScope": "",
-        "isRecommendedAction": false,
-        "description": "Transition to using standard tests",
-        "actionType": "Document",
-        "actionId": "654f0880-edd0-4eea-9265-d2153628e197",
-        "caption": "Transition to using standard tests",
-        "isPostfixRequired": false,
-        "documentLink": "https://learn.microsoft.com/azure/azure-monitor/app/availability?tabs=standard"
-      }
+        {
+            "recommendedActionButtonText": "",
+            "actionApplicabilityScope": "",
+            "isRecommendedAction": false,
+            "description": "Transition to using standard tests",
+            "actionType": "Document",
+            "actionId": "654f0880-edd0-4eea-9265-d2153628e197",
+            "caption": "Transition to using standard tests",
+            "isPostfixRequired": false,
+            "documentLink": "https://learn.microsoft.com/azure/azure-monitor/app/availability?tabs=standard"
+        }
     ],
     "recommendationIngestionType": "Automated",
     "label": "The URL ping test capability of the application insights feature for Azure Monitor is being retired.",
     "sourceProperties": {
-      "serviceRetirement": {
-        "retirementFeatureName": "Single URL Ping Test",
-        "retirementDate": "2026-09-30T00:00:00Z",
-        "serviceHealth": {
-          "trackingIds": [
-            "3KYM-7_G"
-          ],
-          "ashUrls": [
-            "https://app.azure.com/h/3KYM-7_G/"
-          ]
+        "serviceRetirement": {
+            "retirementFeatureName": "Single URL Ping Test",
+            "retirementDate": "2026-09-30T00:00:00Z",
+            "serviceHealth": {
+                "trackingIds": [
+                    "3KYM-7_G"
+                ],
+                "ashUrls": [
+                    "https://app.azure.com/h/3KYM-7_G/"
+                ]
+            }
         }
-      }
     }
-  }
+}
 }
 ```
 
@@ -131,7 +131,7 @@ Azure Resource Graph serves as the supported integration point between service l
 advisorresources
 | where type == "microsoft.advisor/metadata"
 | extend props = parse_json(properties)
-| where props.recommendationSubCategory ==  "ServiceUpgradeAndRetirement"
+| where props.recommendationCategory == "HighAvailability" and props.recommendationSubCategory ==  "ServiceUpgradeAndRetirement"
 | where isnotempty(props.sourceProperties.serviceRetirement.serviceHealth.trackingIds)
 | mv-expand trackingId = props.sourceProperties.serviceRetirement.serviceHealth.trackingIds
 | extend trackingId = tostring(trackingId)
@@ -159,9 +159,9 @@ advisorresources
     | extend title = tostring(props.Title)
     | extend status = tostring(props.Status)
     | extend retirementDate = todatetime(props.ImpactMitigationTime)
-    | distinct trackingId, title, status, retirementDate, subscriptionId
+    | distinct trackingId, ['title'], status, retirementDate, subscriptionId
 ) on trackingId
-| distinct resourceId, [title], retirementDate, status, trackingId
+| distinct resourceId, ['title'], retirementDate, status, trackingId
 ```
 
 ### Query sample payload
