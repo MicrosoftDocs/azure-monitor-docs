@@ -3,7 +3,8 @@ title: Application Insights telemetry data model
 description: This article describes the Application Insights telemetry data model and its different telemetry types.
 ms.tgt_pltfrm: ibiza
 ms.topic: how-to
-ms.date: 03/15/2026
+ms.date: 07/13/2026
+ai-usage: ai-assisted
 ---
 
 # Application Insights telemetry data model
@@ -33,6 +34,7 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Dependency](#dependency-telemetry) | `dependencies` | `AppDependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
 | [Event](#event-telemetry) | `customEvents` | `AppEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
 | [Exception](#exception-telemetry) | `exceptions` | `AppExceptions` | Captures error information crucial for troubleshooting and understanding failures. |
+| [Generative AI](#generative-ai-telemetry) | `GenAIContent` | `AppGenAIContent` | Captures the content of generative AI interactions, such as prompts, model responses, and tool calls, in a dedicated table. |
 | [Metric](#metric-telemetry) | `performanceCounters`<br><br>`customMetrics` | `AppPerformanceCounters`<br><br>`AppMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
 | [Page view](#page-view-telemetry) | `pageViews` | `AppPageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
 | [Request](#request-telemetry) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
@@ -144,6 +146,54 @@ An exception telemetry item represents a handled or unhandled exception that occ
 | `details` | `Details` | Contains exception information such as the exception message and the call stack. |
 
 For a list of all available fields, see [AppExceptions](../reference/tables/appexceptions.md).
+
+## Generative AI telemetry
+
+Generative AI telemetry captures the content of large language model (LLM) interactions, including prompts, model responses, system instructions, and tool calls. Application Insights stores this content in a dedicated `GenAIContent` table, which appears in Log Analytics as `AppGenAIContent`. A dedicated table is important for generative AI content, which often contains sensitive data such as personally identifiable information (PII) or protected health information (PHI). To restrict access to this content, set the table as protected. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
+
+Application Insights routes the following OpenTelemetry generative AI attributes to `AppGenAIContent`:
+
+| Attribute | Description |
+|-----------|-------------|
+| `gen_ai.input.messages` | Prompt and input messages sent to the model. |
+| `gen_ai.output.messages` | Model responses and output messages. |
+| `gen_ai.system_instructions` | System instructions provided to the model. |
+| `gen_ai.tool.definitions` | Definitions of tools available to the model. |
+| `gen_ai.tool.call.arguments` | Arguments passed to a tool call. |
+| `gen_ai.tool.call.result` | Result returned from a tool call. |
+| `gen_ai.evaluation.explanation` | Explanation produced during model evaluation. |
+
+For a list of all available fields, see [AppGenAIContent](../reference/tables/appgenaicontent.md).
+
+### Migration to the dedicated GenAIContent table
+
+Before September 30, 2026, Application Insights routes these seven attributes to both the existing telemetry tables (`AppDependencies`, `AppTraces`, and `AppEvents`) and `AppGenAIContent`. Starting September 30, 2026, Application Insights stops routing the attribute values to the existing tables for newly ingested data. The attribute keys remain in the existing tables, but their values are replaced with a short pointer to `AppGenAIContent`. Read the values from `AppGenAIContent` instead.
+
+This change only affects data ingested on or after September 30, 2026. Data ingested before that date remains in its existing tables and stays queryable as before. Built-in Application Insights and Azure AI Foundry experiences continue to work automatically. Update any custom queries, alert rules, dashboards, workbooks, or reports that read the affected attribute values from `AppDependencies`, `AppTraces`, or `AppEvents`.
+
+### Control routing with preview feature flags
+
+Two Azure preview feature flags control when generative AI content stops flowing to the existing telemetry tables. Register and unregister these flags on your subscription by using the standard preview feature process. For the portal, Azure CLI, and Azure PowerShell steps, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features#register-preview-feature). Registering a preview feature requires the `Microsoft.Features/*` actions, which the Contributor and Owner built-in roles grant.
+
+To enable the dedicated table behavior before the September 30, 2026 migration date, register the `protectGenAISensitiveData` feature flag. Early enablement routes sensitive content only to the `AppGenAIContent` table and improves your security posture ahead of the deadline when coupled with its configuration as a protected table.
+
+```azurecli
+az feature register --namespace Microsoft.Insights --name protectGenAISensitiveData
+```
+
+If you need more time to update custom queries and related assets after the migration date, register the `optOutProtectGenAISensitiveData` feature flag to temporarily maintain the current routing behavior.
+
+```azurecli
+az feature register --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
+```
+
+This opt-out is temporary and is discontinued on September 30, 2027. After that date, Application Insights routes generative AI content only to `AppGenAIContent`, regardless of the flag. To return to the dedicated table behavior sooner, unregister the flag.
+
+```azurecli
+az feature unregister --namespace Microsoft.Insights --name optOutProtectGenAISensitiveData
+```
+
+For more information on how to configure feature flags in Azure, see [Set up preview features in Azure Subscription](/azure/azure-resource-manager/management/preview-features).
 
 ## Metric telemetry
 
