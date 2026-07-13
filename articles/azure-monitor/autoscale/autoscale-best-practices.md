@@ -2,21 +2,16 @@
 title: Best practices for autoscale
 description: Autoscale patterns in the Web Apps feature of Azure App Service, Azure Virtual Machine Scale Sets, and Azure Cloud Services.
 ms.topic: best-practice
-ms.date: 06/26/2026
+ms.date: 07/13/2026
 ms.reviewer: akkumari
+ai-usage: ai-assisted
 ---
 # Best practices for autoscale
 Azure Monitor autoscale applies only to [Azure Virtual Machine Scale Sets](https://azure.microsoft.com/services/virtual-machine-scale-sets/), [Azure Cloud Services](https://azure.microsoft.com/services/cloud-services/), the [Web Apps feature of Azure App Service](https://azure.microsoft.com/services/app-service/web/), and [Azure API Management](/azure/api-management/api-management-key-concepts).
 
 ## Autoscale concepts
-* A resource can have only *one* autoscale setting.
-* An autoscale setting can have one or more profiles, and each profile can have one or more autoscale rules.
-* An autoscale setting scales instances horizontally, which is *out* by increasing the instances and *in* by decreasing the number of instances.
-* An autoscale setting has a maximum, minimum, and default value of instances.
-* An autoscale job always reads the associated metric to scale by, checking if it has crossed the configured threshold for scale-out or scale-in. You can view a list of metrics that autoscale can scale by at [Azure Monitor autoscaling common metrics](autoscale-common-metrics.md).
-* All thresholds are calculated at an instance level. An example is "scale out by one instance when average CPU > 80% when instance count is 2." It means scale-out when the average CPU across all instances is greater than 80%.
-* All autoscale failures are logged to the activity log. You can then configure an [activity log alert](../alerts/activity-log-alerts.md) so that you can be notified via email, SMS, or webhooks whenever there's an autoscale failure.
-* Similarly, all successful scale actions are posted to the activity log. You can then configure an activity log alert so that you can be notified via email, SMS, or webhooks whenever there's a successful autoscale action. You can also configure email or webhook notifications to get notified for successful scale actions via the notifications tab on the autoscale setting.
+
+Before you apply these best practices, review the core autoscale building blocks. A resource has a single autoscale setting, which is composed of profiles and rules and defines the minimum, maximum, and default instance counts. Thresholds are calculated at the instance level, and every scale action is written to the activity log. For the full model, see [Understand autoscale settings](autoscale-understanding-settings.md#autoscale-setting-schema). For the metrics you can scale by, see [Azure Monitor autoscaling common metrics](autoscale-common-metrics.md).
 
 ## Autoscale best practices
 Use the following best practices as you use autoscale.
@@ -59,24 +54,7 @@ Consider the following sequence:
 
 ### Considerations for scaling when you configure multiple rules in a profile
 
-You might need to set multiple rules in a profile. When you set multiple rules, the autoscale engine uses the following rules:
-
-- On *scale-out*, autoscale runs if any rule is met.
-- On *scale-in*, autoscale requires all rules to be met.
-
-To illustrate, assume that you have four autoscale rules:
-
-* If CPU < 30%, scale in by 1
-* If Memory < 50%, scale in by 1
-* If CPU > 75%, scale out by 1
-* If Memory > 75%, scale out by 1
-
-Then the following action occurs:
-
-* If CPU is 76% and Memory is 50%, autoscale scales out.
-* If CPU is 50% and Memory is 76%, autoscale scales out.
-
-On the other hand, if CPU is 25% and Memory is 51%, autoscale *doesn't* scale in. To scale in, CPU must be 29% and Memory 49%.
+When a profile has multiple rules, autoscale scales out if *any* scale-out rule is met but scales in only when *all* scale-in rules are met. Design your rule sets with this asymmetry in mind so that a single busy metric doesn't keep the resource from scaling in. For a worked example of how autoscale evaluates multiple rules, see [Autoscale evaluation](autoscale-understanding-settings.md#how-does-autoscale-evaluate-multiple-rules).
 
 ### Always select a safe default instance count
 
@@ -97,14 +75,6 @@ Autoscale writes to the activity log if any of the following conditions occur:
 Use an activity log alert to monitor the health of the autoscale engine. One example shows how to [create an activity log alert to monitor all autoscale engine operations on your subscription](https://github.com/Azure/azure-quickstart-templates/tree/master/demos/monitor-autoscale-alert). Another example shows how to [create an activity log alert to monitor all failed autoscale scale-in/scale-out operations on your subscription](https://github.com/Azure/azure-quickstart-templates/tree/master/demos/monitor-autoscale-failed-alert).
 
 In addition to using activity log alerts, you can also configure email or webhook notifications to get notified for scale actions via the notifications tab on the autoscale setting.
-
-## Send data securely by using TLS 1.2
-
-To ensure the security of data in transit to Azure Monitor, configure the agent to use at least Transport Layer Security (TLS) 1.2. Older versions of TLS/Secure Sockets Layer (SSL) are vulnerable. Although they still currently work to allow backwards compatibility, don't use them. The industry is quickly moving to abandon support for these older protocols.
-
-The [PCI Security Standards Council](https://www.pcisecuritystandards.org/) set a deadline of [June 30, 2018](https://www.pcisecuritystandards.org/pdfs/PCI_SSC_Migrating_from_SSL_and_Early_TLS_Resource_Guide.pdf), to disable older versions of TLS/SSL and upgrade to more secure protocols. After Azure drops legacy support, if your agents can't communicate over at least TLS 1.2, you can't send data to Azure Monitor Logs.
-
-Don't explicitly set your agent to only use TLS 1.2 unless necessary. Allowing the agent to automatically detect, negotiate, and take advantage of future security standards is preferable. Otherwise, you might miss the added security of the newer standards and possibly experience problems if TLS 1.2 is ever deprecated in favor of those newer standards.
 
 ## Next steps
 - [Autoscale flapping](./autoscale-flapping.md)
