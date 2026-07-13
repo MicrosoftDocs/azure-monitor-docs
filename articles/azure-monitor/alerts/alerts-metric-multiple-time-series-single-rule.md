@@ -3,7 +3,7 @@ title: Monitor multiple time series in a single metric alert rule
 description: Alert at scale by using a single alert rule for multiple time series.
 ms.topic: how-to
 ms.reviewer: harelbr
-ms.date: 04/24/2026
+ms.date: 07/13/2026
 ms.custom: references_regions
 ---
 
@@ -175,7 +175,7 @@ For example, an alert rule can show a high price estimation if it uses the multi
 
 ## Number of time series monitored by a single alert rule
 
-To prevent excess costs, each alert rule can monitor up to 5,000 time series by default. To lift this limit from your subscription, open a support ticket.
+To prevent excess costs, each alert rule can monitor up to 10,000 time series by default. To remove this limit from your subscription, open a support ticket.
 
 ## Next steps
 

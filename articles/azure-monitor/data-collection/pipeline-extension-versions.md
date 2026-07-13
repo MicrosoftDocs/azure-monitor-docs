@@ -16,6 +16,11 @@ This article describes the version details for the Azure Monitor pipeline Arc-en
 
 ## Version details
 
+### Version 1.4.0 - June 24, 2026
+
+- **Requests identify the originating pipeline** — API header now includes information identifying the pipeline extension, version, and platform, making outgoing requests easier to trace.
+- **Improved overflow handling** — when the on-disk buffer is full, the pipeline now drops the oldest persisted data (first-in, first-out) instead of applying backpressure to incoming data.
+
 ### Version 1.3.0 - May 27, 2026
 
 - **Clearer error messages** for unsupported pipeline components, making issues faster to diagnose.

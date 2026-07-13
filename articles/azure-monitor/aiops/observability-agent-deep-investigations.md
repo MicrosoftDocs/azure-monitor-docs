@@ -184,7 +184,7 @@ Deep investigations are available in the same Azure regions as the Observability
 
 ## What's next: autonomous operations
 
-In addition to the user-initiated deep investigations described in this article, the Observability Agent can run deep investigations automatically against agent-created issues, without a user prompt. Autonomous operations is in **public preview** at launch, is **on by default with opt-out**, and **billing for autonomous deep investigations starts July 1, 2026**.
+In addition to the user-initiated deep investigations described in this article, the Observability Agent can run deep investigations automatically against agent-created issues, without a user prompt. Autonomous operations is in **public preview** at launch, is **on by default with opt-out**, and **billing for autonomous deep investigations started July 1, 2026**.
 
 For setup, opt-out, custom instructions, role-based access control, and the billing details specific to autonomous operations, see [Autonomous operations in the Azure Copilot Observability Agent](observability-agent-autonomous-operations.md).
 
