@@ -173,7 +173,7 @@ This change only affects data ingested on or after September 30, 2026. Data inge
 
 ### Control routing with preview feature flags
 
-Two Azure preview feature flags control when generative AI content stops flowing to the existing telemetry tables. Register and unregister these flags on your subscription with the standard preview feature process. For the portal, Azure CLI, and Azure PowerShell steps, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features#register-preview-feature). Registering a preview feature requires the `Microsoft.Features/*` actions, which the Contributor and Owner built-in roles grant.
+Two Azure preview feature flags control when generative AI content stops flowing to the existing telemetry tables. Register and unregister these flags on your subscription by using the standard preview feature process. For the portal, Azure CLI, and Azure PowerShell steps, see [Set up preview features in Azure subscription](/azure/azure-resource-manager/management/preview-features#register-preview-feature). Registering a preview feature requires the `Microsoft.Features/*` actions, which the Contributor and Owner built-in roles grant.
 
 To enable the dedicated table behavior before the September 30, 2026 migration date, register the `protectGenAISensitiveData` feature flag. Early enablement routes sensitive content only to the `AppGenAIContent` table and improves your security posture ahead of the deadline when coupled with its configuration as a protected table.
 
