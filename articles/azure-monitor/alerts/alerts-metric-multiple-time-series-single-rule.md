@@ -175,7 +175,7 @@ For example, an alert rule can show a high price estimation if it uses the multi
 
 ## Number of time series monitored by a single alert rule
 
-To prevent excess costs, each alert rule can monitor up to 10,000 time series by default. To lift this limit from your subscription, open a support ticket.
+To prevent excess costs, each alert rule can monitor up to 10,000 time series by default. To remove this limit from your subscription, open a support ticket.
 
 ## Next steps
 
