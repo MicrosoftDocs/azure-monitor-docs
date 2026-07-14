@@ -131,11 +131,11 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 - You keep your existing Log Analytics workspace and previously collected monitoring data.
 
-- Container Insights continues to collect and send monitoring data after migration is complete.
+- Container Insights keeps collecting and sending monitoring data after migration.
 
 - Existing dashboards, workbooks, alerts, and queries that use Container Insights data keep working as long as data is collected successfully after migration.
 
-- No changes are required to your application code or workloads.
+- You don't need to change your application code or workloads.
 
 **What changes**
 
@@ -143,17 +143,17 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 - Your cluster monitoring configuration is updated to use the supported authentication model required for future Container Insights functionality and support.
 
-**Migration** **impact**
+**Migration impact**
 
-During migration, data collection may be temporarily interrupted while the monitoring configuration is updated. After migration completes, verify that monitoring data is flowing to your workspace and that your expected monitoring experiences are functioning correctly.
+During migration, data collection might be temporarily interrupted while the monitoring configuration is updated. After migration, verify that monitoring data is flowing to your workspace and that your expected monitoring experiences are functioning correctly.
 
-**Recommended** **validation after migration**
+**Recommended validation after migration**
 
 After migrating, validate that:
 
-- Container Insights is reporting health and telemetry successfully.
+- Container Insights reports health and telemetry successfully.
 
-- New logs and metrics are arriving in your Log Analytics workspace.
+- New logs and metrics arrive in your Log Analytics workspace.
 
 - Any custom monitoring configurations, such as Data Collection Rules (DCRs), syslog collection, or high-scale monitoring configurations, continue to function as expected.
 
@@ -163,19 +163,19 @@ After migrating, validate that:
 
 If your cluster uses high scale mode, Syslog collection, or custom Data Collection Rule (DCR) configurations, review your monitoring configuration after migrating to managed identity authentication.
 
-Migration to managed identity authentication updates the authentication method used by Container Insights but does not automatically modify or recreate any existing monitoring configuration. After migration, verify that:
+Migration to managed identity authentication updates the authentication method used by Container Insights but doesn't automatically modify or recreate any existing monitoring configuration. After migration, verify that:
 
 - Logs and metrics continue to be ingested successfully.
 
-- Syslog data is continuing to flow to the destination workspace as expected.
+- Syslog data continues to flow to the destination workspace as expected.
 
-- Custom Data Collection Rules (DCRs) remain associated with the cluster and are collecting the intended data.
+- Custom Data Collection Rules (DCRs) remain associated with the cluster and collect the intended data.
 
 - High scale mode configurations continue to operate as expected.
 
 - Any custom monitoring, alerts, dashboards, or queries that depend on collected data continue to receive data.
 
-We recommend validating your monitoring configuration immediately after migration to ensure that all required data sources and collection settings remain operational.
+Validate your monitoring configuration immediately after migration to ensure that all required data sources and collection settings remain operational.
 
 > [!NOTE]
 > If you use custom monitoring configurations such as Syslog collection, high scale mode, or custom DCRs, verify their configuration after migration before proceeding with large-scale deployments across additional clusters.
