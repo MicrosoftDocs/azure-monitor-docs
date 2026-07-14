@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.keyvault/managedhsms
 description: Reference for microsoft.keyvault/managedhsms in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: microsoft.keyvault/managedhsms, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,9 +16,9 @@ The following table lists the types of logs available for the microsoft.keyvault
 For a list of supported metrics, see [Supported metrics - microsoft.keyvault/managedhsms](../supported-metrics/microsoft-keyvault-managedhsms-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`AuditEvent` |Audit Event |[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftkeyvault)|No |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Audit Event|No|[AzureDiagnostics](/azure/azure-monitor/reference/tables/azurediagnostics)<p>Logs from multiple Azure resources.|No|No|[Queries](/azure/azure-monitor/reference/queries/azurediagnostics#queries-for-microsoftkeyvault)|
 
 ## Next Steps
 

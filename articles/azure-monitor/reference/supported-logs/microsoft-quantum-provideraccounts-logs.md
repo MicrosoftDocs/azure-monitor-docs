@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Quantum/providerAccounts
 description: Reference for Microsoft.Quantum/providerAccounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 07/09/2026
+ms.date: 07/14/2026
 ms.custom: Microsoft.Quantum/providerAccounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,10 +16,10 @@ The following table lists the types of logs available for the Microsoft.Quantum/
 For a list of supported metrics, see [Supported metrics - Microsoft.Quantum/providerAccounts](../supported-metrics/microsoft-quantum-provideraccounts-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`AuditEvent` |Audit Logs |[QuantumProviderAccountJobAuditLogs](/azure/azure-monitor/reference/tables/quantumprovideraccountjobauditlogs)<p>Audit logs for job-related operations performed on Azure Quantum Provider Account resources, including job cancellations and priority updates. Used to track who performed which job operation and when.|Yes|No||Yes |
-|`Operational` |Operational Logs ||No|No||Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Audit Logs|Yes|[QuantumProviderAccountJobAuditLogs](/azure/azure-monitor/reference/tables/quantumprovideraccountjobauditlogs)<p>Audit logs for job-related operations performed on Azure Quantum Provider Account resources, including job cancellations and priority updates. Used to track who performed which job operation and when.|Yes|No||
+|Operational Logs|Yes||No|No||
 
 ## Next Steps
 
