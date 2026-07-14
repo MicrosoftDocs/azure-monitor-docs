@@ -137,7 +137,7 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 - No changes are required to your application code or workloads.
 
-**What** **changes**
+**What changes**
 
 - Container Insights stops using legacy authentication and begins using managed identity authentication.
 
