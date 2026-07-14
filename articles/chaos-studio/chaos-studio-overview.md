@@ -1,6 +1,6 @@
 ---
 title: What is Azure Chaos Studio?
-description: Azure Chaos Studio is a managed resilience testing service. Use Workspaces and Scenarios to simulate real outage patterns against your Azure applications.
+description: Azure Chaos Studio is a managed resilience testing service. Use Workspaces and Scenarios to simulate real outage patterns, or build custom experiments for targeted resilience testing.
 services: chaos-studio
 author: prasha-microsoft
 ms.author: nikhilkaul
@@ -29,9 +29,7 @@ To create your first Workspace and run a Scenario, see [Quickstart: Create a Wor
 
 ## Experiments (classic)
 
-Experiments are the classic Chaos Studio model. An experiment gives you direct control over steps, branches, actions, targets, and selectors. Any experiments you already have remain fully supported and run exactly as before.
-
-For new resilience testing, start with Workspaces and Scenarios. When a supported Scenario template doesn't match the outage pattern you need, use the [Scenario designer](chaos-studio-scenarios.md#create-a-custom-scenario) to customize a Scenario. You don't need to build an experiment from scratch.
+For custom fault compositions that the Scenario catalog doesn't cover, create experiments directly. Experiments give you full control over steps, branches, actions, targets, and selectors. This model is the original Chaos Studio model, and existing experiments continue to work as before.
 
 Chaos Studio supports two types of faults:
 
@@ -50,7 +48,7 @@ The Chaos Studio AI plugin (`startchaos`) lets you create Workspaces, configure 
 
 After a Scenario run completes, the plugin's impact analysis tool correlates Azure Monitor metrics, logs, and activity log events with the targeted resources, so you can see which signals moved during the test without building dashboards manually.
 
-For setup instructions and the full tool reference, see the [Chaos Studio plugin repository](https://github.com/microsoft/chaos-studio-plugin).
+For setup instructions and the full tool reference, see the [Chaos Studio plugin repository](https://github.com/microsoft/chaos-studio).
 
 ## When to use Chaos Studio
 
@@ -65,6 +63,8 @@ Chaos Studio fits into several points in your development and operations lifecyc
 The following video provides more background about Chaos Studio:
 
 > [!VIDEO https://aka.ms/docs/player?id=29017ee4-bdfa-491e-acfe-8876e93c505b]
+
+[!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]
 
 ## Next steps
 

@@ -12,6 +12,8 @@
       href: chaos-studio-workspaces-overview.md
     - name: "Quickstart: Create a Workspace and run a Scenario"
       href: quickstart-create-workspace.md
+    - name: Manage Workspaces and Scenarios with the Azure CLI
+      href: chaos-studio-manage-cli.md
     - name: Scenarios
       href: chaos-studio-scenarios.md
     - name: Scenario reports
@@ -21,7 +23,7 @@
     - name: "Tutorial: PostgreSQL zone-down failover"
       href: chaos-studio-tutorial-postgresql-failover.md
     - name: Chaos Studio AI plugin
-      href: https://github.com/microsoft/chaos-studio-plugin
+      href: https://github.com/microsoft/chaos-studio
 - name: Experiments (classic)
   items:
     - name: Concepts
@@ -172,5 +174,5 @@
       href: https://azure.microsoft.com/pricing/details/chaos-studio/
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
-    - name: Feedback
-      href: https://aka.ms/ChaosStudioFeedback
+    - name: Report issues and request features
+      href: https://github.com/microsoft/chaos-studio/issues

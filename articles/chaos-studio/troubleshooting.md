@@ -154,7 +154,7 @@ There are several common errors you may encounter when using AKS Chaos Mesh faul
 | --- | --- |
 | Getting static credential is not allowed because this cluster is set to disable local accounts. | The AKS Chaos Mesh faults can use either Kubernetes local accounts or Microsoft Entra authentication as of version 2.2. Learn how to migrate your experiments here: [Using Microsoft Entra authentication with Chaos Studio AKS faults](chaos-studio-aks-authentication.md). |
 | The Chaos Mesh experiment could not be started because the provided configuration was invalid | Ensure the `jsonSpec` contains all the required fields. |
-| Chaos Mesh version 'x.x.x' is not currently supported by Chaos Studio | Verify the installed version against the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page and submit a [feature request](https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101) if the desired version isn't listed. |
+| Chaos Mesh version 'x.x.x' is not currently supported by Chaos Studio | Verify the installed version against the [Azure Chaos Studio version compatibility](chaos-studio-versions.md) page and submit a [feature request](https://github.com/microsoft/chaos-studio/issues) if the desired version isn't listed. |
 
 ### When I run an experiment with VNet injection, I get the error "InvalidResourceReference" 
 
@@ -183,3 +183,5 @@ When the "Custom role permissions" checkbox is selected for an experiment, Chaos
 * Each Microsoft Entra tenant has a limit of 5000 role definitions (or 2000 role definitions for Azure in China).
 
 When one of these limits has been reached, this error will occur. To work around this, grant permissions to the experiment identity manually instead.
+
+[!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]
