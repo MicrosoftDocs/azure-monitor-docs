@@ -12,7 +12,7 @@ ms.reviewer: aul
 Container Insights defaults to managed identity authentication, which has a monitoring agent that uses the [cluster's managed identity](/azure/aks/use-managed-identity) to send data to Azure Monitor. It replaced the legacy certificate-based local authentication and removed the requirement of adding a Monitoring Metrics Publisher role to the cluster.
 
 > [!IMPORTANT]
-> Legacy authentication for Container Insights has been retired. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication).
+> Legacy authentication for Container Insights has been retired. [Migrate to managed identity authentication](#migrate-to-managed-identity-authentication). After September 30, 2026, clusters still using legacy authentication will no longer be supported and data ingestion will stop unless migrated to managed identity authentication.
 
 This article describes how to migrate to managed identity authentication if you enabled Container insights using legacy authentication method, and also how to enable legacy authentication if you have that requirement.
 
@@ -97,8 +97,8 @@ AKS clusters must first disable monitoring and then upgrade to managed identity.
 
 ### Arc-enabled Kubernetes
 
->[!NOTE]
-> Managed identity authentication is not supported for Arc-enabled Kubernetes clusters with **ARO**.
+> [!NOTE]
+> Arc-enabled Azure Red Hat OpenShift (ARO) clusters support managed identity authentication. Customers using Arc-enabled ARO clusters can migrate from legacy authentication to managed identity authentication.
 
 1. Retrieve the Log Analytics workspace configured for Container insights extension.
 
@@ -122,6 +122,63 @@ This shell script is the recommended migration method for bulk migration of mult
 
 ---
 
+
+### What happens when I migrate to managed identity authentication?
+
+Migrating to managed identity authentication changes how Container Insights authenticates with Azure Monitor. The migration does not modify your applications, workloads, or Kubernetes resources beyond the Container Insights monitoring configuration.
+
+**What stays the same**
+
+- Your existing Log Analytics workspace and previously collected monitoring data are preserved.
+
+- Container Insights continues to collect and send monitoring data after migration is complete.
+
+- Existing dashboards, workbooks, alerts, and queries that use Container Insights data continue to work as long as data is being collected successfully after migration.
+
+- No changes are required to your application code or workloads.
+
+**What** **changes**
+
+- Container Insights stops using legacy authentication and begins using managed identity authentication.
+
+- Your cluster monitoring configuration is updated to use the supported authentication model required for future Container Insights functionality and support.
+
+**Migration** **impact**
+
+During migration, data collection may be temporarily interrupted while the monitoring configuration is updated. After migration completes, verify that monitoring data is flowing to your workspace and that your expected monitoring experiences are functioning correctly.
+
+**Recommended** **validation after migration**
+
+After migrating, validate that:
+
+- Container Insights is reporting health and telemetry successfully.
+
+- New logs and metrics are arriving in your Log Analytics workspace.
+
+- Any custom monitoring configurations, such as Data Collection Rules (DCRs), syslog collection, or high-scale monitoring configurations, continue to function as expected.
+
+- Existing alerts, dashboards, and operational workflows continue to receive data.
+
+## Additional considerations for advanced configurations
+
+If your cluster uses high scale mode, Syslog collection, or custom Data Collection Rule (DCR) configurations, review your monitoring configuration after migrating to managed identity authentication.
+
+Migration to managed identity authentication updates the authentication method used by Container Insights but does not automatically modify or recreate any existing monitoring configuration. After migration, verify that:
+
+- Logs and metrics continue to be ingested successfully.
+
+- Syslog data is continuing to flow to the destination workspace as expected.
+
+- Custom Data Collection Rules (DCRs) remain associated with the cluster and are collecting the intended data.
+
+- High scale mode configurations continue to operate as expected.
+
+- Any custom monitoring, alerts, dashboards, or queries that depend on collected data continue to receive data.
+
+We recommend validating your monitoring configuration immediately after migration to ensure that all required data sources and collection settings remain operational.
+
+> [!NOTE]
+> If you use custom monitoring configurations such as Syslog collection, high scale mode, or custom DCRs, verify their configuration after migration before proceeding with large-scale deployments across additional clusters.
 
 ## Enable legacy authentication
 If you require legacy authentication, see [Enable Container insights](kubernetes-monitoring-enable.md), which has examples of different options for enabling Container insights.
