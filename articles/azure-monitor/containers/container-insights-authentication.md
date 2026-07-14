@@ -129,7 +129,7 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 **What stays the same**
 
-- Your existing Log Analytics workspace and previously collected monitoring data are preserved.
+- You keep your existing Log Analytics workspace and previously collected monitoring data.
 
 - Container Insights continues to collect and send monitoring data after migration is complete.
 
