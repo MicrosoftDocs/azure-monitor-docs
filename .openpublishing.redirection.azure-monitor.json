@@ -2677,7 +2677,7 @@
   },
   {
    "source_path_from_root": "/articles/azure-monitor/platform/activity-log-export.md",
-   "redirect_url": "/azure/azure-monitor/platform/activity-log#legacy-collection-methods",
+   "redirect_url": "/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods",
    "redirect_document_id": false
   },
   {
