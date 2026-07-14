@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.DigitalTwins/digitalTwinsInstances
 description: Reference for Microsoft.DigitalTwins/digitalTwinsInstances in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: Microsoft.DigitalTwins/digitalTwinsInstances, arm
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,14 +16,14 @@ The following table lists the types of logs available for the Microsoft.DigitalT
 For a list of supported metrics, see [Supported metrics - Microsoft.DigitalTwins/digitalTwinsInstances](../supported-metrics/microsoft-digitaltwins-digitaltwinsinstances-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`DataHistoryOperation` |DataHistoryOperation |[ADTDataHistoryOperation](/azure/azure-monitor/reference/tables/adtdatahistoryoperation)<p>This table tracks all data history events being published to time series database connections.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtdatahistoryoperation)|Yes |
-|`DigitalTwinsOperation` |DigitalTwinsOperation |[ADTDigitalTwinsOperation](/azure/azure-monitor/reference/tables/adtdigitaltwinsoperation)<p>Schema for Azure Digital Twins' Digital Twin operations. The Digital Twins Operation category tracks all customer requests to manage a digital twin, including CRUD on Twins and Relationships.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtdigitaltwinsoperation)|No |
-|`EventRoutesOperation` |EventRoutesOperation |[ADTEventRoutesOperation](/azure/azure-monitor/reference/tables/adteventroutesoperation)<p>Schema for Azure Digital Twins' Event Routes operations. The Event Routes Operation category tracks all events being published to endpoints, which are other Azure services.|No|No|[Queries](/azure/azure-monitor/reference/queries/adteventroutesoperation)|No |
-|`ModelsOperation` |ModelsOperation |[ADTModelsOperation](/azure/azure-monitor/reference/tables/adtmodelsoperation)<p>Schema for Azure Digital Twins' Models operations. The Models Operation category tracks all customer requests to manage models in a digital twins instance.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtmodelsoperation)|No |
-|`QueryOperation` |QueryOperation |[ADTQueryOperation](/azure/azure-monitor/reference/tables/adtqueryoperation)<p>Schema for Azure Digital Twins' Query operations. The Query Operation category tracks all customer requests to query their digital twins instance.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtqueryoperation)|No |
-|`ResourceProviderOperation` |ResourceProviderOperation ||No|No||Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|DataHistoryOperation|Yes|[ADTDataHistoryOperation](/azure/azure-monitor/reference/tables/adtdatahistoryoperation)<p>This table tracks all data history events being published to time series database connections.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtdatahistoryoperation)|
+|DigitalTwinsOperation|No|[ADTDigitalTwinsOperation](/azure/azure-monitor/reference/tables/adtdigitaltwinsoperation)<p>Schema for Azure Digital Twins' Digital Twin operations. The Digital Twins Operation category tracks all customer requests to manage a digital twin, including CRUD on Twins and Relationships.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtdigitaltwinsoperation)|
+|EventRoutesOperation|No|[ADTEventRoutesOperation](/azure/azure-monitor/reference/tables/adteventroutesoperation)<p>Schema for Azure Digital Twins' Event Routes operations. The Event Routes Operation category tracks all events being published to endpoints, which are other Azure services.|No|No|[Queries](/azure/azure-monitor/reference/queries/adteventroutesoperation)|
+|ModelsOperation|No|[ADTModelsOperation](/azure/azure-monitor/reference/tables/adtmodelsoperation)<p>Schema for Azure Digital Twins' Models operations. The Models Operation category tracks all customer requests to manage models in a digital twins instance.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtmodelsoperation)|
+|QueryOperation|No|[ADTQueryOperation](/azure/azure-monitor/reference/tables/adtqueryoperation)<p>Schema for Azure Digital Twins' Query operations. The Query Operation category tracks all customer requests to query their digital twins instance.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/adtqueryoperation)|
+|ResourceProviderOperation|Yes||No|No||
 
 ## Next Steps
 

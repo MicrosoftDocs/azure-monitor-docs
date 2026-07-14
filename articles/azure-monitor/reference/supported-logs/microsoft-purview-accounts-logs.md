@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.purview/accounts
 description: Reference for microsoft.purview/accounts in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: microsoft.purview/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,11 +16,11 @@ The following table lists the types of logs available for the microsoft.purview/
 For a list of supported metrics, see [Supported metrics - microsoft.purview/accounts](../supported-metrics/microsoft-purview-accounts-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`DataSensitivityLogEvent` |DataSensitivity |[PurviewDataSensitivityLogs](/azure/azure-monitor/reference/tables/purviewdatasensitivitylogs)<p>Data Sensitivity information for assets scanned using Purview.|No|Yes||Yes |
-|`ScanStatusLogEvent` |ScanStatus |[PurviewScanStatusLogs](/azure/azure-monitor/reference/tables/purviewscanstatuslogs)<p>Status of the scan on the data sources.|No|Yes||No |
-|`Security` |PurviewAccountAuditEvents |[PurviewSecurityLogs](/azure/azure-monitor/reference/tables/purviewsecuritylogs)<p>Table containing audit events for the Purview account, such as role assignments to a collection or creation or deletion of a collection.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/purviewsecuritylogs)|Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|DataSensitivity|Yes|[PurviewDataSensitivityLogs](/azure/azure-monitor/reference/tables/purviewdatasensitivitylogs)<p>Data Sensitivity information for assets scanned using Purview.|No|Yes||
+|ScanStatus|No|[PurviewScanStatusLogs](/azure/azure-monitor/reference/tables/purviewscanstatuslogs)<p>Status of the scan on the data sources.|No|Yes||
+|PurviewAccountAuditEvents|Yes|[PurviewSecurityLogs](/azure/azure-monitor/reference/tables/purviewsecuritylogs)<p>Table containing audit events for the Purview account, such as role assignments to a collection or creation or deletion of a collection.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/purviewsecuritylogs)|
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.MachineLearningServices/registries
 description: Reference for Microsoft.MachineLearningServices/registries in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: Microsoft.MachineLearningServices/registries, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -14,10 +14,10 @@ ms.custom: Microsoft.MachineLearningServices/registries, naam
 The following table lists the types of logs available for the Microsoft.MachineLearningServices/registries resource type.
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`RegistryAssetReadEvent` |Registry Asset Read Event |[AmlRegistryReadEventsLog](/azure/azure-monitor/reference/tables/amlregistryreadeventslog)<p>Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes||Yes |
-|`RegistryAssetWriteEvent` |Registry Asset Write Event |[AmlRegistryWriteEventsLog](/azure/azure-monitor/reference/tables/amlregistrywriteeventslog)<p>Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Registry Asset Read Event|Yes|[AmlRegistryReadEventsLog](/azure/azure-monitor/reference/tables/amlregistryreadeventslog)<p>Azure ML Registry Read events log. It keeps records of Read operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes||
+|Registry Asset Write Event|Yes|[AmlRegistryWriteEventsLog](/azure/azure-monitor/reference/tables/amlregistrywriteeventslog)<p>Azure ML Registry Write events log. It keeps records of Write operations with registries data access (data plane), including user identity, asset name and version for each access event.|No|Yes|[Queries](/azure/azure-monitor/reference/queries/amlregistrywriteeventslog)|
 
 ## Next Steps
 

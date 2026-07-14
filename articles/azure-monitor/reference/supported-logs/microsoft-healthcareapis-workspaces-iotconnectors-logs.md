@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.HealthcareApis/workspaces/iotconnectors
 description: Reference for Microsoft.HealthcareApis/workspaces/iotconnectors in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: Microsoft.HealthcareApis/workspaces/iotconnectors, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,9 +16,9 @@ The following table lists the types of logs available for the Microsoft.Healthca
 For a list of supported metrics, see [Supported metrics - Microsoft.HealthcareApis/workspaces/iotconnectors](../supported-metrics/microsoft-healthcareapis-workspaces-iotconnectors-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`DiagnosticLogs` |Diagnostic logs |[AHDSMedTechDiagnosticLogs](/azure/azure-monitor/reference/tables/ahdsmedtechdiagnosticlogs)<p>Actionable logs generated from your MedTech application.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/ahdsmedtechdiagnosticlogs)|Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Diagnostic logs|Yes|[AHDSMedTechDiagnosticLogs](/azure/azure-monitor/reference/tables/ahdsmedtechdiagnosticlogs)<p>Actionable logs generated from your MedTech application.|Yes|Yes|[Queries](/azure/azure-monitor/reference/queries/ahdsmedtechdiagnosticlogs)|
 
 ## Next Steps
 
