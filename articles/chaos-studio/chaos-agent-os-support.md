@@ -75,4 +75,4 @@ The agent isn't currently tested against custom Linux distributions or hardened 
 If an operating system isn't currently listed, you may still attempt to install, use, and troubleshoot the virtual machine extension, agent, and agent-based capabilities, but Chaos Studio can't guarantee behavior or support for an unlisted operating system.
 
 ---
-To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://aka.ms/ChaosStudioFeedback).
+To request validation and support on more operating systems or versions, use the [Chaos Studio Feedback Community](https://github.com/microsoft/chaos-studio/issues).

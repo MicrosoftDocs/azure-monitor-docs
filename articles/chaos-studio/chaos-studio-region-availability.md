@@ -4,8 +4,9 @@ description: Understand how Azure Chaos Studio makes chaos experiments and chaos
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 4/27/2025
+ms.date: 07/13/2026
 ms.custom: template-concept, references_regions
+ai-usage: ai-assisted
 ---
 
 # Regional availability of Azure Chaos Studio
@@ -63,6 +64,22 @@ The list of regions where resource targeting is available is a superset of the r
 * **Action execution**. When an experiment runs a fault, the fault itself (for example, shutting down a VM) happens within the target region.
 
 Any target or capability metadata is deleted when a target is deleted.
+
+## Regional availability of Chaos Studio Workspaces
+
+[Chaos Studio Workspaces](chaos-studio-workspaces-overview.md) and Scenarios are in public preview. A Workspace is a logical resource: it can discover and run Scenarios against resources in any Azure region, regardless of where the Workspace itself is deployed. You don't need to create the Workspace in the same region as your target resources.
+
+During public preview, you can create Chaos Studio Workspaces in the following regions:
+
+- East US 2
+- West US 2
+- West Central US
+- North Europe
+- Sweden Central
+- UK South
+- Japan East
+
+No feature flag is required in these regions. Register the `Microsoft.Chaos` resource provider and create a Workspace. Because Workspaces target resources across regions, your target resources don't need to be in one of these regions.
 
 ## High availability with Chaos Studio
 
