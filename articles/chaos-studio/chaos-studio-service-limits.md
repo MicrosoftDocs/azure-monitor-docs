@@ -52,7 +52,7 @@ Chaos Studio applies limits to all Azure Resource Manager operations. Requests m
 | Microsoft.Chaos/locations/targetTypes/capabilityTypes/read | 50 |
 
 ## Recommended actions
-If you have feedback on the current quotas and limits, submit a feedback request in [Community Feedback](https://feedback.azure.com/d365community/forum/18f8dc01-dc37-ec11-b6e6-000d3a9c7101). 
+If you have feedback on the current quotas and limits, submit a feedback request in [Community Feedback](https://github.com/microsoft/chaos-studio/issues). 
 
 Currently, you can't request increases to Chaos Studio quotas, but a request process is in development.
 

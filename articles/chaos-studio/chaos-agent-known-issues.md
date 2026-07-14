@@ -72,3 +72,5 @@ The Chaos Agent is officially tested on a specific set of operating systems. Run
 •	If the OS isn't supported, consider using a tested version or manually installing the ```stress-ng``` dependency.
 
 •	Make sure your package manager is up to date and you are using a [supported VM extension operating system](/azure/virtual-machines/extensions/agent-linux).
+
+[!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]

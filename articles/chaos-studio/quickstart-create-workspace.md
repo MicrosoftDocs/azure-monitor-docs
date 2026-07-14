@@ -118,6 +118,8 @@ If you created resources specifically for this quickstart, delete them to avoid 
 
 1. Delete any test resources (VMs, databases) you created for this exercise.
 
+[!INCLUDE [chaos-studio-feedback](includes/chaos-studio-feedback.md)]
+
 ## Next steps
 
 - [Workspaces in Azure Chaos Studio](chaos-studio-workspaces-overview.md)
