@@ -125,7 +125,7 @@ This shell script is the recommended migration method for bulk migration of mult
 
 ### What happens when I migrate to managed identity authentication?
 
-Migrating to managed identity authentication changes how Container Insights authenticates with Azure Monitor. The migration does not modify your applications, workloads, or Kubernetes resources beyond the Container Insights monitoring configuration.
+When you migrate to managed identity authentication, Container Insights changes how it authenticates with Azure Monitor. This migration doesn't change your applications, workloads, or Kubernetes resources beyond the Container Insights monitoring configuration.
 
 **What stays the same**
 
