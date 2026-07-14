@@ -133,7 +133,7 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 - Container Insights continues to collect and send monitoring data after migration is complete.
 
-- Existing dashboards, workbooks, alerts, and queries that use Container Insights data continue to work as long as data is being collected successfully after migration.
+- Existing dashboards, workbooks, alerts, and queries that use Container Insights data keep working as long as data is collected successfully after migration.
 
 - No changes are required to your application code or workloads.
 
