@@ -139,7 +139,7 @@ When you migrate to managed identity authentication, Container Insights changes 
 
 **What changes**
 
-- Container Insights stops using legacy authentication and begins using managed identity authentication.
+- Container Insights stops using legacy authentication and starts using managed identity authentication.
 
 - Your cluster monitoring configuration is updated to use the supported authentication model required for future Container Insights functionality and support.
 
