@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.HealthDataAIServices/deidServices
 description: Reference for Microsoft.HealthDataAIServices/deidServices in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 06/22/2026
+ms.date: 07/14/2026
 ms.custom: Microsoft.HealthDataAIServices/deidServices, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -14,9 +14,9 @@ ms.custom: Microsoft.HealthDataAIServices/deidServices, naam
 The following table lists the types of logs available for the Microsoft.HealthDataAIServices/deidServices resource type.
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`AuditLogs` |Audit Logs |[AHDSDeidAuditLogs](/azure/azure-monitor/reference/tables/ahdsdeidauditlogs)<p>Data plane audit logs of privileged actions made against Azure Health Data Services de-identification service, such as initiating a de-identification job.|Yes|Yes||Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Audit Logs|Yes|[AHDSDeidAuditLogs](/azure/azure-monitor/reference/tables/ahdsdeidauditlogs)<p>Data plane audit logs of privileged actions made against Azure Health Data Services de-identification service, such as initiating a de-identification job.|Yes|Yes||
 
 ## Next Steps
 

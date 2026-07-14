@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.community/communityTrainings
 description: Reference for microsoft.community/communityTrainings in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: microsoft.community/communityTrainings, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -14,10 +14,10 @@ ms.custom: microsoft.community/communityTrainings, naam
 The following table lists the types of logs available for the microsoft.community/communityTrainings resource type.
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`DataPlaneException` |Application Data Plane Exceptions and Errors ||No|No||Yes |
-|`DataPlaneLog` |Application Data Plane Logs ||No|No||Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Application Data Plane Exceptions and Errors|Yes||No|No||
+|Application Data Plane Logs|Yes||No|No||
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
 title: Supported log categories - Oracle.Database/cloudExadataInfrastructures
 description: Reference for Oracle.Database/cloudExadataInfrastructures in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 08/28/2025
+ms.date: 07/14/2026
 ms.custom: Oracle.Database/cloudExadataInfrastructures, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -14,14 +14,14 @@ ms.custom: Oracle.Database/cloudExadataInfrastructures, naam
 The following table lists the types of logs available for the Oracle.Database/cloudExadataInfrastructures resource type.
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`Creation` |Creation Events ||No|No||Yes |
-|`Critical` |Critical events ||No|No||Yes |
-|`Delete` |Delete Events |[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||Yes |
-|`Information` |Information Events ||No|No||Yes |
-|`Maintenance` |Maintenance Events |[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||Yes |
-|`Update` |Update Events |[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Creation Events|Yes||No|No||
+|Critical events|Yes||No|No||
+|Delete Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Information Events|Yes||No|No||
+|Maintenance Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
+|Update Events|Yes|[OracleCloudDatabase](/azure/azure-monitor/reference/tables/oracleclouddatabase)<p>Oracle Cloud Event logs.|Yes|No||
 
 ## Next Steps
 

@@ -2,7 +2,7 @@
 title: Supported log categories - microsoft.insights/autoscalesettings
 description: Reference for microsoft.insights/autoscalesettings in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/14/2026
 ms.custom: microsoft.insights/autoscalesettings, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,10 +16,10 @@ The following table lists the types of logs available for the microsoft.insights
 For a list of supported metrics, see [Supported metrics - microsoft.insights/autoscalesettings](../supported-metrics/microsoft-insights-autoscalesettings-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`AutoscaleEvaluations` |Autoscale Evaluations |[AutoscaleEvaluationsLog](/azure/azure-monitor/reference/tables/autoscaleevaluationslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscaleevaluationslog)|No |
-|`AutoscaleScaleActions` |Autoscale Scale Actions |[AutoscaleScaleActionsLog](/azure/azure-monitor/reference/tables/autoscalescaleactionslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscalescaleactionslog)|No |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Autoscale Evaluations|No|[AutoscaleEvaluationsLog](/azure/azure-monitor/reference/tables/autoscaleevaluationslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscaleevaluationslog)|
+|Autoscale Scale Actions|No|[AutoscaleScaleActionsLog](/azure/azure-monitor/reference/tables/autoscalescaleactionslog)|No|Yes|[Queries](/azure/azure-monitor/reference/queries/autoscalescaleactionslog)|
 
 ## Next Steps
 

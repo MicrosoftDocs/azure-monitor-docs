@@ -2,7 +2,7 @@
 title: Supported log categories - Microsoft.Monitor/pipelineGroups
 description: Reference for Microsoft.Monitor/pipelineGroups in Azure Monitor Logs.
 ms.topic: generated-reference
-ms.date: 04/28/2026
+ms.date: 07/14/2026
 ms.custom: Microsoft.Monitor/pipelineGroups, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -16,9 +16,9 @@ The following table lists the types of logs available for the Microsoft.Monitor/
 For a list of supported metrics, see [Supported metrics - Microsoft.Monitor/pipelineGroups](../supported-metrics/microsoft-monitor-pipelinegroups-metrics.md)
 
 
-|Category|Category display name| Log table| [Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)| Example queries |Costs to export|
-|---|---|---|---|---|---|---|
-|`LogErrors` |Log Errors |[AzureMonitorPipelineLogErrors](/azure/azure-monitor/reference/tables/azuremonitorpipelinelogerrors)<p>Errors occurred during Azure Monitor pipeline data collection, transformation, and export.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/azuremonitorpipelinelogerrors)|Yes |
+|Category|Costs to export|Log table|[Supports basic log plan](/azure/azure-monitor/logs/basic-logs-configure?tabs=portal-1#compare-the-basic-and-analytics-log-data-plans)|[Supports ingestion-time transformation](/azure/azure-monitor/essentials/data-collection-transformations)|Example queries|
+|---|---|---|---|---|---|
+|Log Errors|Yes|[AzureMonitorPipelineLogErrors](/azure/azure-monitor/reference/tables/azuremonitorpipelinelogerrors)<p>Errors occurred during Azure Monitor pipeline data collection, transformation, and export.|Yes|No|[Queries](/azure/azure-monitor/reference/queries/azuremonitorpipelinelogerrors)|
 
 ## Next Steps
 
