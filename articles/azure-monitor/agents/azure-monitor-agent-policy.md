@@ -2,7 +2,7 @@
 title: Use Azure Policy to Install the Azure Monitor Agent Windows or Linux
 description: Learn about options for managing the Azure Monitor Agent on Azure virtual machines and Azure Arc-enabled servers.
 ms.topic: install-set-up-deploy
-ms.date: 04/07/2026
+ms.date: 07/10/2026
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.reviewer: shseth, nmangum
 
@@ -30,7 +30,7 @@ Before you begin, review [prerequisites for agent installation](azure-monitor-ag
 
 You can choose to use the individual policies from the policy initiatives described in the next section to perform a single action at scale. For example, if you want to automatically install only the agent, use the second agent installation policy in the initiative.
 
-:::image type="content" source="media/azure-monitor-agent-install/built-in-ama-dcr-policy.png" lightbox="media/azure-monitor-agent-install/built-in-ama-dcr-policy.png" alt-text="Screenshot of the Azure Policy Definitions page that shows policies contained within the initiative for configuring Azure Monitor Agent.":::
+:::image type="content" source="media/azure-monitor-agent-install/built-in-ama-dcr-policy.png" lightbox="media/azure-monitor-agent-install/built-in-ama-dcr-policy.png" alt-text="Screenshot of a built-in Azure Policy definition for configuring the Azure Monitor Agent.":::
 
 ## Built-in policy initiatives
 
@@ -63,7 +63,7 @@ These initiatives contain individual policies that:
 
   - **Data Collection Rule Resource Id**: The Azure Resource Manager **resourceId** value of the rule you want to associate via this policy to all machines the policy is applied to.
 
-    :::image type="content" source="media/azure-monitor-agent-install/built-in-ama-dcr-initiatives.png" lightbox="media/azure-monitor-agent-install/built-in-ama-dcr-initiatives.png" alt-text="Screenshot that shows the Azure Policy Definitions page with two built-in policy initiatives for configuring the Azure Monitor Agent.":::
+    :::image type="content" source="media/azure-monitor-agent-install/built-in-ama-dcr-initiatives.png" lightbox="media/azure-monitor-agent-install/built-in-ama-dcr-initiatives.png" alt-text="Screenshot of a built-in Azure Policy initiative definition that lists the individual policies it contains for configuring the Azure Monitor Agent.":::
 
 ## Known issues
 

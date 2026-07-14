@@ -1,7 +1,7 @@
 ---
 ms.service: azure
 ms.topic: include
-ms.date: 06/09/2026
+ms.date: 07/14/2026
 author: kanika1894
 ms.author: kapasrij
 ms.custom: HighAvailability Azure Cosmos DB
@@ -419,5 +419,23 @@ Subcategory: undefined
 
 <!--649fd0b8-0bf0-43fe-bfa1-c408f6d33200_end-->
 
+
+<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_begin-->
+
+#### Migrate Cosmos DB Synapse Link (NoSQL) to Fabric Mirroring  
+  
+Azure Synapse Link for Azure Cosmos DB NoSQL will be retired on 31 March 2029. Customers using this feature should migrate analytical workloads to Cosmos DB Mirroring in Microsoft Fabric, the recommended replacement solution, before the retirement date to avoid service disruption and potential loss.  
+  
+**Potential benefits**: Prevent disruption to Cosmos DB analytics workloads  
+
+**Impact:** Medium
+  
+For more information, see [Migrate from Azure Synapse Link to Azure Cosmos DB mirroring in Microsoft Fabric - Microsoft Fabric](https://aka.ms/CosmosMirrorSynapseMigration)  
+
+ResourceType: microsoft.documentdb/databaseaccounts  
+Recommendation ID: 0082c3b0-5b9c-4157-bb43-29307b6f882e  
+Subcategory: undefined
+
+<!--0082c3b0-5b9c-4157-bb43-29307b6f882e_end-->
 
 <!--articleBody-->
