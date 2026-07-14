@@ -26,7 +26,7 @@ People assigned the Monitoring Reader role can view all monitoring data in a sub
 * Query Azure Monitor Metrics by using the [Azure Monitor REST API](/rest/api/monitor/metrics), [PowerShell cmdlets](/powershell/module/az.monitor), or [cross-platform CLI](/cli/azure/service-page/monitor).
 * Query the Activity log by using the portal, Azure Monitor REST API, PowerShell cmdlets, or cross-platform CLI.
 * View the [diagnostic settings](../essentials/diagnostic-settings.md) for a resource.
-* View the [log profile](../essentials/activity-log.md#legacy-collection-methods) for a subscription.
+* View the [log profile](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods) for a subscription.
 * View autoscale settings.
 * View alert activity and settings.
 * Search Log Analytics workspace data, including usage data for the workspace.

@@ -2,7 +2,7 @@
 title: Set Up the Azure Monitor Agent on Windows Client Devices
 description: This article describes the instructions to install the agent on Windows 11 and 10 client OS devices, configure data collection, manage, and troubleshoot the agent.
 ms.topic: install-set-up-deploy
-ms.date: 04/09/2026
+ms.date: 07/11/2026
 ms.reviewer: shseth, nmangum
 ai-usage: ai-assisted
 ms.custom:
@@ -84,10 +84,6 @@ Here's a comparison between using the client installer and using the virtual mac
 ## Install the agent
 
 1. Download the [agent Windows MSI installer](https://go.microsoft.com/fwlink/?linkid=2192409).
-
-    You can also download it in the Azure portal. In the portal menu, go to **Monitor** > **Data Collection Rules** > **Create** as shown in the following screenshot:
-
-    :::image type="content" source="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" lightbox="media/azure-monitor-agent-windows-client/azure-monitor-agent-client-installer-portal.png" alt-text="Screenshot that shows the download agent link in the Azure portal.":::
 
 1. Open an elevated admin Command Prompt window and change directory to the location where you downloaded the installer.
 
