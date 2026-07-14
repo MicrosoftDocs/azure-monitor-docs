@@ -4,7 +4,7 @@ description: Instructions on how to deploy the InfluxData Telegraf agent on a Li
 ms.reviewer: shseth, nmangum
 ms.topic: how-to
 ms.custom: linux-related-content
-ms.date: 04/09/2026
+ms.date: 07/11/2026
 ---
 
 # Collect custom metrics for a Linux virtual machine with the InfluxData Telegraf agent

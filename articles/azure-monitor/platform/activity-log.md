@@ -44,7 +44,7 @@ The following sections present common scenarios showing different ways to access
 
 * Azure CLI samples highlight the specific commands available through the [az monitor activity-log list](/cli/azure/monitor/activity-log#az-monitor-activity-log-list) command.
 
-* Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) commandlet.
+* Azure PowerShell samples highlight the specific cmdlets available through the [Get-AzActivityLog](/powershell/module/az.monitor/get-azactivitylog) cmdlet.
 
 * REST API samples show how to retrieve events by using the required `$filter` parameter with the [Activity Log REST API](../fundamentals/azure-monitor-rest-api-index.md#activity-log).
 
@@ -477,6 +477,9 @@ In the Azure portal, select **Activity log** on the **Azure Monitor** menu and t
 
 
 The following sections provide details on each configurable destination for resource logs.
+
+<a name="legacy-collection-methods"></a>
+<a name="managing-legacy-log-profiles"></a>
 
 > [!NOTE]
 > The legacy method of exporting the activity log is log profiles. See [Legacy collection methods](/previous-versions/azure/azure-monitor/essentials/legacy-collection-methods).
