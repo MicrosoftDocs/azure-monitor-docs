@@ -1345,7 +1345,6 @@ You can access the following OpenTelemetry configurations through environment va
 | `APPLICATIONINSIGHTS_CONNECTION_STRING` | Set this variable to the connection string for your Application Insights resource. |
 | `APPLICATIONINSIGHTS_STATSBEAT_DISABLED` | Set this variable to `true` to opt out of internal metrics collection. |
 | `OTEL_RESOURCE_ATTRIBUTES` | Key-value pairs to use as resource attributes. For more information about resource attributes, see the [Resource SDK specification](https://github.com/open-telemetry/opentelemetry-specification/blob/v1.5.0/specification/resource/sdk.md#specifying-resource-information-via-an-environment-variable). |
-
 | `OTEL_SERVICE_NAME` | Sets the value of the `service.name` resource attribute. If `service.name` is also provided in `OTEL_RESOURCE_ATTRIBUTES`, `OTEL_SERVICE_NAME` takes precedence. |
 
 
