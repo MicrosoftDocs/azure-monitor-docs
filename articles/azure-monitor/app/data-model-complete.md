@@ -34,7 +34,7 @@ The following types of telemetry are used to monitor the execution of your appli
 | [Dependency](#dependency-telemetry) | `dependencies` | `AppDependencies` | Tracks calls from your application to an external service or storage, such as a REST API or SQL database, and measures the duration and success of these calls. |
 | [Event](#event-telemetry) | `customEvents` | `AppEvents` | Typically used to capture user interactions and other significant occurrences within your application, such as button clicks or order checkouts, to analyze usage patterns. |
 | [Exception](#exception-telemetry) | `exceptions` | `AppExceptions` | Captures error information crucial for troubleshooting and understanding failures. |
-| [Generative AI](#generative-ai-telemetry) | `GenAIContent` | `AppGenAIContent` | Captures the content of generative AI interactions, such as prompts, model responses, and tool calls, in a dedicated table. |
+| [Generative AI](#generative-ai-telemetry) | `genAIContent` | `AppGenAIContent` | Captures the content of generative AI interactions, such as prompts, model responses, and tool calls, in a dedicated table. |
 | [Metric](#metric-telemetry) | `performanceCounters`<br><br>`customMetrics` | `AppPerformanceCounters`<br><br>`AppMetrics` | Performance counters provide numerical data about various aspects of application and system performance, such as CPU usage and memory consumption.<br><br>Additionally, custom metrics allow you to define and track specific measurements unique to your application, providing flexibility to monitor custom performance indicators. |
 | [Page view](#page-view-telemetry) | `pageViews` | `AppPageViews` | Tracks the pages viewed by users, providing insights into user navigation and engagement within your application. |
 | [Request](#request-telemetry) | `requests` | `AppRequests` | Logs requests received by your application, providing details such as operation ID, duration, and success or failure status. |
@@ -149,7 +149,7 @@ For a list of all available fields, see [AppExceptions](../reference/tables/appe
 
 ## Generative AI telemetry
 
-Generative AI telemetry captures the content of large language model (LLM) interactions, including prompts, model responses, system instructions, and tool calls. Application Insights stores this content in a dedicated `GenAIContent` table, which appears in Log Analytics as `AppGenAIContent`. A dedicated table is important for generative AI content, which often contains sensitive data such as personally identifiable information (PII) or protected health information (PHI). To restrict access to this content, set the table as protected. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
+Generative AI telemetry captures the content of large language model (LLM) interactions, including prompts, model responses, system instructions, and tool calls. Application Insights stores this content in a dedicated `genAIContent` table, which appears in Log Analytics as `AppGenAIContent`. A dedicated table is important for generative AI content, which often contains sensitive data such as personally identifiable information (PII) or protected health information (PHI). To restrict access to this content, set the table as protected. For more information, see [Configure protected tables in Azure Monitor Logs](../logs/protected-tables-configure.md).
 
 Application Insights routes the following OpenTelemetry generative AI attributes to `AppGenAIContent`:
 
@@ -165,7 +165,7 @@ Application Insights routes the following OpenTelemetry generative AI attributes
 
 For a list of all available fields, see [AppGenAIContent](../reference/tables/appgenaicontent.md).
 
-### Migration to the dedicated GenAIContent table
+### Migration to the dedicated genAIContent table
 
 Before September 30, 2026, Application Insights routes these seven attributes to both the existing telemetry tables (`AppDependencies`, `AppTraces`, and `AppEvents`) and `AppGenAIContent`. Starting September 30, 2026, Application Insights stops routing the attribute values to the existing tables for newly ingested data. The attribute keys remain in the existing tables, but their values are replaced with a short pointer to `AppGenAIContent`. Read the values from `AppGenAIContent` instead.
 
