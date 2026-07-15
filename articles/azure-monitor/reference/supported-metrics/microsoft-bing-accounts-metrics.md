@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.bing/accounts
 description: Reference for microsoft.bing/accounts metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/13/2026
 ms.custom: microsoft.bing/accounts, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -15,13 +15,14 @@ The following table lists the metrics available for the microsoft.bing/accounts 
 
 **Table headings**
 
-**Metric** - The metric display name as it appears in the Azure portal.
-**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
-**Unit** - Unit of measure.
-**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
-**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
-**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **Metric** - The metric display name as it appears in the Azure portal.
+- **Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+- **Advanced platform metrics** - A premium, [paid tier of platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform) in Azure Monitor that provide more granular observability for Azure resources.
+- **Unit** - Unit of measure.
+- **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+- **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+- **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -30,25 +31,25 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 
 
 ### Category: Errors
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Client Errors**<br><br>Number of calls with any client error (HTTP status code 4xx) |`ClientErrors` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Server Errors**<br><br>Number of calls with any server error (HTTP status code 5xx) |`ServerErrors` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Total Errors**<br><br>Number of calls with any error (HTTP status code 4xx or 5xx) |`TotalErrors` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Client Errors**<br><br>Number of calls with any client error (HTTP status code 4xx) |`ClientErrors` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Server Errors**<br><br>Number of calls with any server error (HTTP status code 5xx) |`ServerErrors` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Total Errors**<br><br>Number of calls with any error (HTTP status code 4xx or 5xx) |`TotalErrors` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
 
 ### Category: Latency
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Latency**<br><br>Latency in milliseconds |`Latency` |Milliseconds |Average, Minimum, Maximum |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Latency**<br><br>Latency in milliseconds |`Latency` | No | Milliseconds |Average, Minimum, Maximum |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
 
 ### Category: Traffic
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Blocked Calls**<br><br>Number of calls that exceeded the rate or quota limit |`BlockedCalls` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Data In**<br><br>Incoming request Content-Length in bytes |`DataIn` |Bytes |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Data Out**<br><br>Outgoing response Content-Length in bytes |`DataOut` |Bytes |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Successful Calls**<br><br>Number of successful calls (HTTP status code 2xx) |`SuccessfulCalls` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
-|**Total Calls**<br><br>Total number of calls |`TotalCalls` |Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Blocked Calls**<br><br>Number of calls that exceeded the rate or quota limit |`BlockedCalls` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Data In**<br><br>Incoming request Content-Length in bytes |`DataIn` | No | Bytes |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Data Out**<br><br>Outgoing response Content-Length in bytes |`DataOut` | No | Bytes |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Successful Calls**<br><br>Number of successful calls (HTTP status code 2xx) |`SuccessfulCalls` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
+|**Total Calls**<br><br>Total number of calls |`TotalCalls` | No | Count |Total (Sum) |`ApiName`, `ServingRegion`, `StatusCode`|PT1M |Yes|
 
 ## Next steps
 

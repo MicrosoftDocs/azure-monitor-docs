@@ -2,7 +2,7 @@
 title: Supported metrics - Microsoft.HealthcareApis/workspaces/iotconnectors
 description: Reference for Microsoft.HealthcareApis/workspaces/iotconnectors metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/13/2026
 ms.custom: Microsoft.HealthcareApis/workspaces/iotconnectors, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -15,13 +15,14 @@ The following table lists the metrics available for the Microsoft.HealthcareApis
 
 **Table headings**
 
-**Metric** - The metric display name as it appears in the Azure portal.
-**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
-**Unit** - Unit of measure.
-**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
-**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
-**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **Metric** - The metric display name as it appears in the Azure portal.
+- **Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+- **Advanced platform metrics** - A premium, [paid tier of platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform) in Azure Monitor that provide more granular observability for Azure resources.
+- **Unit** - Unit of measure.
+- **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+- **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+- **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -32,30 +33,30 @@ For a list of supported logs, see [Supported log categories - Microsoft.Healthca
 
 
 ### Category: Availability
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**MedTech Service Health Status**<br><br>Health checks which indicate the overall health of the MedTech service |`IotConnectorStatus` |Percent |Average |`Operation`, `ResourceName`, `HealthCheckName`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**MedTech Service Health Status**<br><br>Health checks which indicate the overall health of the MedTech service |`IotConnectorStatus` | No | Percent |Average |`Operation`, `ResourceName`, `HealthCheckName`|PT1M |Yes|
 
 ### Category: Errors
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Total Error Count**<br><br>The total number of errors logged by the MedTech service |`TotalErrors` |Count |Total (Sum) |`Name`, `Operation`, `ErrorType`, `ErrorSeverity`, `ResourceName`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Total Error Count**<br><br>The total number of errors logged by the MedTech service |`TotalErrors` | No | Count |Total (Sum) |`Name`, `Operation`, `ErrorType`, `ErrorSeverity`, `ResourceName`|PT1M |Yes|
 
 ### Category: Latency
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Average Normalize Stage Latency**<br><br>The average time between an event's ingestion time and the time the event is processed for normalization. |`DeviceEventProcessingLatencyMs` |MilliSeconds |Average |`Operation`, `ResourceName`|PT1M |Yes|
-|**Average Group Stage Latency**<br><br>The time period between when the MedTech service received the device data and when the data is processed by the FHIR conversion stage. |`MeasurementIngestionLatencyMs` |MilliSeconds |Average |`Operation`, `ResourceName`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Average Normalize Stage Latency**<br><br>The average time between an event's ingestion time and the time the event is processed for normalization. |`DeviceEventProcessingLatencyMs` | No | MilliSeconds |Average |`Operation`, `ResourceName`|PT1M |Yes|
+|**Average Group Stage Latency**<br><br>The time period between when the MedTech service received the device data and when the data is processed by the FHIR conversion stage. |`MeasurementIngestionLatencyMs` | No | MilliSeconds |Average |`Operation`, `ResourceName`|PT1M |Yes|
 
 ### Category: Traffic
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Number of Incoming Messages**<br><br>The total number of messages received by the MedTech service prior to any normalization |`DeviceEvent` |Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
-|**Number of Dropped Events**<br><br>The number of input device events with no normalized events |`DroppedEvent` |Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
-|**Number of FHIR resources saved**<br><br>The total number of FHIR resources saved by the MedTech service |`FhirResourceSaved` |Count |Total (Sum) |`Operation`, `ResourceName`, `Name`|PT1M |Yes|
-|**Number of Measurements**<br><br>The number of normalized value readings received by the FHIR conversion stage of the MedTech service |`Measurement` |Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
-|**Number of Message Groups**<br><br>The total number of unique groupings of measurements across type, device, patient, and configured time period generated by the FHIR conversion stage. |`MeasurementGroup` |Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
-|**Number of Normalized Messages**<br><br>The total number of mapped normalized values outputted from the normalization stage of the MedTech service |`NormalizedEvent` |Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Number of Incoming Messages**<br><br>The total number of messages received by the MedTech service prior to any normalization |`DeviceEvent` | No | Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
+|**Number of Dropped Events**<br><br>The number of input device events with no normalized events |`DroppedEvent` | No | Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
+|**Number of FHIR resources saved**<br><br>The total number of FHIR resources saved by the MedTech service |`FhirResourceSaved` | No | Count |Total (Sum) |`Operation`, `ResourceName`, `Name`|PT1M |Yes|
+|**Number of Measurements**<br><br>The number of normalized value readings received by the FHIR conversion stage of the MedTech service |`Measurement` | No | Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
+|**Number of Message Groups**<br><br>The total number of unique groupings of measurements across type, device, patient, and configured time period generated by the FHIR conversion stage. |`MeasurementGroup` | No | Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
+|**Number of Normalized Messages**<br><br>The total number of mapped normalized values outputted from the normalization stage of the MedTech service |`NormalizedEvent` | No | Count |Total (Sum) |`Operation`, `ResourceName`|PT1M |Yes|
 
 ## Next steps
 

@@ -2,7 +2,7 @@
 title: Supported metrics - microsoft.keyvault/managedhsms
 description: Reference for microsoft.keyvault/managedhsms metrics in Azure Monitor.
 ms.topic: generated-reference
-ms.date: 04/16/2025
+ms.date: 07/13/2026
 ms.custom: microsoft.keyvault/managedhsms, naam
 
 # NOTE:  This content is automatically generated using API calls to Azure. Any edits made on these files will be overwritten in the next run of the script.
@@ -15,13 +15,14 @@ The following table lists the metrics available for the microsoft.keyvault/manag
 
 **Table headings**
 
-**Metric** - The metric display name as it appears in the Azure portal.
-**Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
-**Unit** - Unit of measure.
-**Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
-**Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
-**Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
-**DS Export**- Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
+- **Metric** - The metric display name as it appears in the Azure portal.
+- **Name in Rest API** - Metric name as referred to in the [REST API](/azure/azure-monitor/essentials/rest-api-walkthrough).
+- **Advanced platform metrics** - A premium, [paid tier of platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform) in Azure Monitor that provide more granular observability for Azure resources.
+- **Unit** - Unit of measure.
+- **Aggregation** - The default [aggregation](/azure/azure-monitor/essentials/metrics-aggregation-explained) type. Valid values: Average, Minimum, Maximum, Total, Count.
+- **Dimensions** - [Dimensions](/azure/azure-monitor/essentials/metrics-aggregation-explained#dimensions-splitting-and-filtering) available for the metric.
+- **Time Grains** - [Intervals at which the metric is sampled](/azure/azure-monitor/essentials/metrics-aggregation-explained#granularity). For example, `PT1M` indicates that the metric is sampled every minute, `PT30M` every 30 minutes, `PT1H` every hour, and so on.
+- **DS Export** -S Whether the metric is exportable to Azure Monitor Logs via Diagnostic Settings.
 
 For information on exporting metrics, see - [Metrics export using data collection rules](/azure/azure-monitor/essentials/data-collection-metrics) and [Create diagnostic settings in Azure Monitor](/azure/azure-monitor/essentials/create-diagnostic-settings?tabs=portal).
 
@@ -31,11 +32,11 @@ For information on metric retention, see [Azure Monitor Metrics overview](/azure
 For a list of supported logs, see [Supported log categories - microsoft.keyvault/managedhsms](../supported-logs/microsoft-keyvault-managedhsms-logs.md)
 
 
-|Metric|Name in REST API|Unit|Aggregation|Dimensions|Time Grains|DS Export|
-|---|---|---|---|---|---|---|
-|**Overall Service Availability**<br><br>Service requests availability |`Availability` |Percent |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
-|**Total Service Api Hits**<br><br>Number of total service api hits |`ServiceApiHit` |Count |Count |`ActivityType`, `ActivityName`|PT1M |Yes|
-|**Overall Service Api Latency**<br><br>Overall latency of service api requests |`ServiceApiLatency` |Milliseconds |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
+|Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
+|---|---|---|---|---|---|---|---|
+|**Overall Service Availability**<br><br>Service requests availability |`Availability` | No | Percent |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
+|**Total Service Api Hits**<br><br>Number of total service api hits |`ServiceApiHit` | No | Count |Count |`ActivityType`, `ActivityName`|PT1M |Yes|
+|**Overall Service Api Latency**<br><br>Overall latency of service api requests |`ServiceApiLatency` | No | Milliseconds |Average |`ActivityType`, `ActivityName`, `StatusCode`, `StatusCodeClass`|PT1M |No|
 
 ## Next steps
 
