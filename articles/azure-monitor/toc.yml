@@ -1093,6 +1093,8 @@ items:
       - name: PromQL using Prometheus HTTP APIs
         displayName: Prometheus
         href: metrics/prometheus-api-promql.md
+    - name: Advanced platform metrics
+      href: metrics/metrics-advanced-platform.md
   - name: Logs
     items:
     - name: Overview
