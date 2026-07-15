@@ -3,8 +3,6 @@ title: Advanced platform metrics (preview)
 description: Learn about advanced platform metrics in Azure Monitor, a premium tier of platform metrics that provides deeper observability for Azure resource providers.
 ms.topic: concept-article
 ms.date: 05/29/2026
-ms.author: austinmc
-author: austinmccollum
 ms.reviewer: alyssaschimm
 ---
 
