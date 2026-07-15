@@ -12,6 +12,9 @@ ms.custom: template-troubleshooting
 
 As you use Azure Chaos Studio, you might occasionally encounter some problems. This article explains common problems and troubleshooting steps.
 
+> [!TIP]
+> For issues with Workspaces and Scenarios (preview), see [Troubleshoot Workspaces and Scenarios in Azure Chaos Studio](troubleshoot-workspaces-scenarios.md).
+
 ## General troubleshooting tips
 
 The following sources are useful when you troubleshoot problems with Chaos Studio:
