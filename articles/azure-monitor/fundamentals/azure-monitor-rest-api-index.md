@@ -132,7 +132,8 @@ API endpoint is `api.loganalytics.io` or `api.loganalytics.azure.com`.
 
 | Operation groups | Description |
 |------------------|-------------|
-| [Query](/rest/api/logsquery/query) | Query Log Analytics data using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
+| [Query](/rest/api/logsquery/query) | Query Analytics table logs using the REST API. For more information, see the [Logs query API overview](../logs/api/overview.md). |
+| [Search](../logs/basic-logs-query.md?tabs=rest#run-a-query-on-a-basic-or-auxiliary-table) | Query Auxiliary / Lake or Basic table logs using the REST API. For more information, see [Run a query on a Basic or Auxiliary table](../logs/basic-logs-query.md?tabs=rest#run-a-query-on-a-basic-or-auxiliary-table) |
 | [Metadata](/rest/api/logsquery/metadata) | Retrieve metadata information for a Log Analytics workspace, including table schemas and functions. |
 
 ### Logs management
@@ -158,6 +159,7 @@ API endpoint is `management.azure.com`.
 | [Query pack queries](/rest/api/monitor/query-pack-queries) | Manage a query defined within a Log Analytics QueryPack and retrieve or search the list of queries defined within a Log Analytics QueryPack. |
 | [Query packs](/rest/api/monitor/query-packs) | Manage a Log Analytics QueryPack including updating its tags and retrieve a list of all Log Analytics QueryPacks within a subscription or resource group. |
 | [Saved Searches](/rest/api/loganalytics/saved-searches) | Create or update saved searches. |
+| [Search job](/rest/api/loganalytics/tables) | A search job creates a special search table with a query. For more information, see [Run Search Jobs](../logs/search-jobs.md?tabs=rest#run-a-search-job). |
 | [Storage Insights](/rest/api/loganalytics/storage-insights) | Create or update storage insights. |
 | [Summary rules](/rest/api/loganalytics/summary-logs) | Create, update, start, stop, delete, and retry summary rules that aggregate log data in a Log Analytics workspace. |
 | [Tables](/rest/api/loganalytics/tables) | Manage Log Analytics workspace tables. |
