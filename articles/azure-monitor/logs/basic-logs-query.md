@@ -81,44 +81,6 @@ When you add a table to the query, Log Analytics identifies a Basic or Auxiliary
 
 :::image type="content" source="./media/basic-logs-query/query-validator.png" lightbox="./media/basic-logs-query/query-validator.png" alt-text="Screenshot of query on Basic Logs limitations.":::
 
-# [Azure CLI](#tab/cli)
-
-The following Azure CLI example uses the [az monitor log-analytics query](/cli/azure/monitor/log-analytics#az-monitor-log-analytics-query) command.
-
-```bash
-# Set variables
-workspaceId="<WorkspaceId>"
-query='ContainerLogV2 | where Computer == "some value"'
-timespan="P1D"
-
-# Run the Log Analytics query
-az monitor log-analytics query \
-  --workspace "$workspaceId" \
-  --analytics-query "$query" \
-  --timespan "$timespan"
-```
-
-# [Azure PowerShell](#tab/powershell)
-
-The following Azure PowerShell example uses the [Invoke-AzOperationalInsightsQuery](/powershell/module/az.operationalinsights/invoke-azoperationalinsightsquery) cmdlet.
-
-```powershell
-# Set variables
-$workspaceId = "<WorkspaceId>"
-$query = 'ContainerLogV2 | where Computer == "some value"'
-$timespan = New-TimeSpan -Days 1
-
-# Define parameters for Invoke-AzOperationalInsightsQuery
-$invokeAzOperationalInsightsQueryParams = @{
-    WorkspaceId = $workspaceId
-    Query       = $query
-    Timespan    = $timespan
-}
-
-# Run the Log Analytics query
-Invoke-AzOperationalInsightsQuery @invokeAzOperationalInsightsQueryParams
-```
-
 # [REST](#tab/rest)
 
 Use **/search** from the [Log Analytics API](api/overview.md) to query data in a Basic or Auxiliary table using a REST API. This is similar to the [/query](api/request-format.md) API with the following differences:
