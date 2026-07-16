@@ -20,6 +20,7 @@ There are multiple types of metrics supported by Azure Monitor Metrics:
 * Native metrics use tools in Azure Monitor for analysis and alerting.
 
     * Platform metrics are collected from Azure resources. They require no configuration and have no cost.
+    * [Advanced platform metrics](metrics-advanced-platform.md) extend platform metrics with deeper, more granular data for supported resource providers. You explicitly opt in to these metrics at the resource level, and they're a paid feature. Advanced platform metrics are currently in preview.
     * Custom metrics are collected from different sources that you configure including applications and agents running on virtual machines.
 
 * Prometheus metrics are collected from Kubernetes clusters including Azure Kubernetes service (AKS) and use industry standard tools for analyzing and alerting such as PromQL and Grafana.
