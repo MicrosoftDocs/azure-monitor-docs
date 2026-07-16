@@ -3,7 +3,7 @@ title: Troubleshoot Workspaces and Scenarios in Azure Chaos Studio
 description: Resolve common problems with Azure Chaos Studio Workspaces and Scenarios, including empty resource discovery, role assignment failures, and Scenario runs that fail or skip Actions.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 07/14/2026
+ms.date: 07/15/2026
 ai-usage: ai-assisted
 ---
 
@@ -22,7 +22,7 @@ Your workspace shows no discovered resources, or the resource list is empty when
 
 Discovery requires the workspace's managed identity to read the resources in the scope. If the identity doesn't yet have the Reader role at the scope, discovery finds nothing.
 
-1. Open the workspace in the Azure portal. If the identity is missing permissions, the portal shows a banner with an option to assign the Reader role. Select it to fix the assignment automatically. <!-- TODO(PM): verify exact portal banner and button label -->
+1. Open the workspace in the Azure portal. If the identity is missing permissions, the portal shows a banner: "The managed identity for this Workspace does not have read permissions on the Workspace scope. Without read access to the scope, Workspace operations may fail." Select **Assign the Reader role over the Workspace Scope** to fix the assignment automatically.
 1. If you can't use automatic assignment, manually grant the workspace's managed identity the Reader role at the scope (subscription, resource group, or service group). See [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md).
 1. Role assignments take a few minutes to propagate. Wait, then refresh the resource view.
 
@@ -33,7 +33,7 @@ Discovery only surfaces resource types that Chaos Studio Scenarios support. If y
 1. Compare the resources in your scope against the resource types listed for each scenario in [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md).
 1. If needed, change the workspace scope to include a subscription or resource group that contains supported resources. You can change the scope without recreating the workspace.
 
-A common instance of this problem: an Azure Kubernetes Service (AKS) cluster's virtual machine scale set nodes live in a separate managed infrastructure resource group, so a scope that contains only the cluster resource might yield no actionable compute targets. See [Test AKS resilience with Chaos Studio Workspaces](chaos-studio-aks-guidance.md).
+A common instance of this problem: an Azure Kubernetes Service (AKS) cluster's virtual machine scale set nodes live in a separate managed infrastructure resource group, so a scope that contains only the cluster resource might yield no actionable compute targets. See [Test workload resiliency on AKS with Chaos Studio](chaos-studio-aks-guidance.md).
 
 ### Cause 3: Discovery is still in progress or stale
 
@@ -67,11 +67,11 @@ This symptom means the Scenario's Actions didn't find matching targets. Each Act
 
 1. Open the Scenario report's Action summary and note which resource types each skipped Action targets. See [Scenario reports in Azure Chaos Studio](chaos-studio-scenario-reports.md).
 1. Confirm that the Workspace scope contains resources of those types, and that the Scenario's configuration parameters (such as `zones`) match resources that actually exist.
-1. If the resources you expected live in a different resource group than the scope covers, adjust the scope. The most common instance is AKS, where node virtual machine scale sets live in a separate infrastructure resource group. See [Test AKS resilience with Chaos Studio Workspaces](chaos-studio-aks-guidance.md).
+1. If the resources you expected live in a different resource group than the scope covers, adjust the scope. The most common instance is AKS, where node virtual machine scale sets live in a separate infrastructure resource group. See [Test workload resiliency on AKS with Chaos Studio](chaos-studio-aks-guidance.md).
 
 ## "Region is not available" when creating a Workspace
 
-Workspaces are logical resources that can act on resources in any Azure region. The Workspace's own region doesn't need to match the region of your target resources. If Workspace creation fails for the region you selected, choose a different region from the [Workspace regional availability list](chaos-studio-region-availability.md#regional-availability-of-workspaces-preview) and create the Workspace there. Your Scenarios can still target resources in the original region.
+Workspaces are logical resources that can act on resources in any Azure region. The Workspace's own region doesn't need to match the region of your target resources. If Workspace creation fails for the region you selected, choose a different region from the [Workspace regional availability list](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces) and create the Workspace there. Your Scenarios can still target resources in the original region.
 
 ## The portal behaves unexpectedly in the Scenario designer or My scenarios
 
