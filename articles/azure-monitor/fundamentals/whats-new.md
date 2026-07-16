@@ -2,7 +2,7 @@
 title: "What's new in Azure Monitor documentation"
 description: "What's new in Azure Monitor documentation"
 ms.topic: whats-new
-ms.date: 07/07/2026
+ms.date: 07/15/2026
 ---
 
 # What's new in Azure Monitor documentation
@@ -17,6 +17,7 @@ This article lists significant changes to Azure Monitor documentation.
 |---|---|---|
 |Logs|[Export job (preview)](../logs/export-job.md)|Export historical records from a Log Analytics workspace to Azure Blob Storage in Parquet format by using the new export job feature in preview. This on-demand feature is an alternative to data export rules for backup, analysis, and compliance scenarios. For more information, see the [announcement on the Azure Observability Blog](https://techcommunity.microsoft.com/blog/AzureObservabilityBlog/export-historical-data-from-log-analytics-workspace-with-export-job-preview/4532425).|
 |Logs|[Log Analytics overview](../logs/log-analytics-overview.md#left-sidebar)|Expanded the Log Analytics overview with query history documentation, covering how to access, rerun, and manage recent queries in the Log Analytics workspace query editor.|
+|Metrics|[Advanced platform metrics (preview)](../metrics/metrics-advanced-platform.md)|Advanced platform metrics are now in preview. Enable this paid tier of platform metrics on supported Azure resources to collect more granular metrics and analyze them with the same Azure Monitor tools and APIs used for standard platform metrics.|
 
 ### June 2026
 

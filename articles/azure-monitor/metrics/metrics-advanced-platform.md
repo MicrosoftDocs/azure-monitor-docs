@@ -3,8 +3,7 @@ title: Advanced platform metrics (preview)
 description: Learn about advanced platform metrics in Azure Monitor, a premium tier of platform metrics that provides deeper observability for Azure resource providers.
 ms.topic: concept-article
 ms.date: 05/29/2026
-ms.author: alyssaschimm
-author: alyssaschimm
+ms.reviewer: alyssaschimm
 ---
 
 # Advanced platform metrics (preview)
@@ -56,7 +55,7 @@ Advanced platform metrics are available for select Azure resource providers. The
 
 | Resource provider | Description | Enablement instructions |
 |---|---|---|
-| Azure Storage | Advanced metrics for storage accounts, including container blob capacity and container blob count. | [Enable Azure Storage advanced platform metrics](https://learn.microsoft.com/azure/storage/blobs/blob-storage-advanced-platform-metrics) |
+| Azure Storage | Advanced metrics for storage accounts, including container blob capacity and container blob count. | [Enable Azure Storage advanced platform metrics](/azure/storage/blobs/blob-storage-advanced-platform-metrics) |
 
 > [!NOTE]
 > More resource providers are planned to support advanced platform metrics in future releases. Check back for updates.
