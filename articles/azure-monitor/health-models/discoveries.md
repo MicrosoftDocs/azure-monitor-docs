@@ -1,14 +1,12 @@
 ---
-title: Discover entities for Azure Monitor health models (preview)
+title: Create discovery rules for Azure Monitor health models (preview)
 description: Learn discovery concepts and configuration for Azure Monitor health models, including discovery kinds, recommended configuration, and parent entity assignment.
 ms.topic: how-to
-author: bwren
-ms.author: bwren
-ms.date: 05/25/2026
+ms.date: 07/15/2026
 ai-usage: ai-assisted
 ---
 
-# Auto discover entities for Azure Monitor health models (preview)
+# Create discovery rules for Azure Monitor health models (preview)
 Discoveries automatically add Azure resource entities to your [Azure Monitor health model](./overview.md). They allow you to quickly create a new model without manually adding each resource and to keep your models up to date as your environment grows. This article explains the different types of discoveries and how to create and configure them.
 
 ## Create a discovery rule
@@ -56,7 +54,7 @@ Select **Refresh preview** to see the results of your query and verify that it r
 
 # [Service group](#tab/service-group)
 
-When you create a **Service group** discovery rule, you select a service group in your tenant. This creates a Resource graph query that retrieves the members of the service group as entities in the health model. You can accept this query or modify it as you would a Resource graph query discovery.
+When you create a **Service group** discovery rule, you select a service group in your tenant. This selection creates a Resource Graph query that retrieves the members of the service group as entities in the health model. You can accept this query or modify it as you would a Resource Graph query discovery. Health models can recursively discover nested service groups.
 
 Select **Refresh preview** to see the results of your query and verify that it returns the expected resources before you create the discovery rule.
 
