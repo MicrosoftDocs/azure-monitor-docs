@@ -55,7 +55,7 @@ Advanced platform metrics are available for select Azure resource providers. The
 
 | Resource provider | Description | Enablement instructions |
 |---|---|---|
-| Azure Storage | Advanced metrics for storage accounts, including container blob capacity and container blob count. | [Enable Azure Storage advanced platform metrics](https://learn.microsoft.com/azure/storage/blobs/blob-storage-advanced-platform-metrics) |
+| Azure Storage | Advanced metrics for storage accounts, including container blob capacity and container blob count. | [Enable Azure Storage advanced platform metrics](/azure/storage/blobs/blob-storage-advanced-platform-metrics) |
 
 > [!NOTE]
 > More resource providers are planned to support advanced platform metrics in future releases. Check back for updates.
