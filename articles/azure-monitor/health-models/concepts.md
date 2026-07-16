@@ -2,14 +2,12 @@
 title: Azure Monitor health model concepts
 description: Description of the core concepts required for building and using health models in Azure Monitor.
 ms.topic: concept-article
-author: bwren
-ms.author: bwren
-ms.date: 05/25/2026
+ms.date: 07/15/2026
 ai-usage: ai-assisted
 ---
 
 # Azure Monitor health model concepts (preview)
-This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This includes the components that make up a model, how those components are related, and how the health of each component is determined. See [Using the Designer in Azure Monitor](./designer.md) for details on creating and configuring these components.
+This article describes the concepts that you must understand to create and use [Azure Monitor health models](./overview.md). This article includes the components that make up a model, how those components are related, and how the health of each component is determined. For details on creating and configuring these components, see [Designer in Azure Monitor health models](./designer.md).
 
 
 ## Entities
@@ -32,20 +30,20 @@ A relationship represents the dependency of one entity on another, or it may rep
 In most health models, all entities will connect directly or indirectly to the root entity. This allows you to roll up the health of all entities in the model to the root entity. This is useful for tracking the overall health of your workload and for alerting on the health of the entire workload.
 
 ## Health states
-The *health state* of an entity represents its ability to perform its required tasks. It may be fully functional and performing within an expected range, or it may have limited functionality or degraded performance, or it may not be functional at all. The health state of an entity is determined by one or more [signals](./signals.md). A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
+The *health state* of an entity represents its ability to perform its required tasks. The entity might be fully functional and performing within an expected range, or it might have limited functionality or degraded performance. It might not be functional at all. One or more [signals](./signals.md) and any child dependencies determine the health state of an entity. A signal is a value from a metric or query that's periodically compared to threshold values for each health state. One or more signals determine the health state of an entity.
 
 Azure Monitor health models use the health states in the following table to represent the health of each entity in the model. There's no objective definition of the thresholds that determine each of these health states, but you'll specify each according to the requirements of your particular workload and business. 
 
 | Icon | State | Description |
 |:---|:---|:---|
-| :::image type="content" source="media/concepts/healthy.png" alt-text="Healthy icon." border="false"::: | Healthy | The entity is working as expected. |
-| :::image type="content" source="media/concepts/degraded.png" alt-text="Degraded icon." border="false"::: | Degraded | The entity is working but with diminished functionality or performance.<br>Does not count as downtime for [health objective](#health-objective). |
-| :::image type="content" source="media/concepts/unhealthy.png" alt-text="Unhealthy icon." border="false"::: | Unhealthy | The entity is not working or is working with unacceptable performance.<br>Counts as downtime for [health objective](#health-objective). |
-| :::image type="content" source="media/concepts/unknown.png" alt-text="Unknown icon." border="false"::: | Unknown | The health state of the entity can't be determined due to insufficient data or a lack of signals. |
+| :::image type="content" source="media/concepts/healthy.svg" alt-text="Healthy icon." border="false"::: | Healthy | The entity is working as expected. |
+| :::image type="content" source="media/concepts/degraded.svg" alt-text="Degraded icon." border="false"::: | Degraded | The entity is working but with diminished functionality or performance.<br>Doesn't count as downtime for [health objective](#health-objective). |
+| :::image type="content" source="media/concepts/unhealthy.svg" alt-text="Unhealthy icon." border="false"::: | Unhealthy | The entity isn't working or is working with unacceptable performance.<br>Counts as downtime for [health objective](#health-objective). |
+| :::image type="content" source="media/concepts/unknown.svg" alt-text="Unknown icon." border="false"::: | Unknown | Insufficient data or a lack of signals prevents determining the health state of the entity. |
 
 
 ## Signals
-A signal is a value from a metric or query that's periodically compared to threshold values for each health state. Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources. 
+A signal is a value from a metric or query that's periodically compared to threshold values for each health state. Health models don't collect source telemetry for signals. Instead, a signal samples or queries data that Azure Monitor already collects for the represented resources, as well as health information from other supported sources, such as Azure Resource Health. Users can also send external health reports to entities by using the health report ingestion API.
 
 The signals applied to each Azure resource entity are evaluated from the metrics or logs that are associated with the resource. The collection of this data is defined for the resource itself and not in the health model. The health model instead focuses on how to interpret that data in the context of the role of the resource in the workload.
 
@@ -88,17 +86,27 @@ The *dependencies* setting of a parent entity determines how its health state is
 | Option | Description |
 |:-------|:------------|
 | Worst of | Propagates the worst health state among all dependencies. This is the default setting and the most common. |
-| Minimum healthy  | Entity becomes degraded or unhealthy when the number of healthy children entities falls to or below a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
-| Maximum not healthy | Entity becomes degraded or unhealthy when the number of non-healthy children entities reaches or exceeds a specific threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
+| Healthy limit  | The entity becomes degraded or unhealthy when the number of healthy dependencies drops to the specified threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
+| Not-healthy limit | The entity becomes degraded or unhealthy when the number of not-healthy dependencies reaches the specified threshold. Specify a separate threshold, either absolute value or percentage, for each health state. |
 
-For example, consider the following application that relies on four virtual machines, but the application is healthy if one of the machines is offline. For this functionality, a generic entity is used to aggregate the health of the virtual machines. The *Minimum healthy* dependency setting is used on the generic entity with an unhealthy threshold of 3. Alternatively, the *Maximum not healthy* dependency setting can be used with a threshold of 2.
+For example, consider the following application that relies on four virtual machines, but the application is still considered healthy if one of the machines is offline. For this functionality, use a generic entity to aggregate the health of the virtual machines. Use the *Healthy limit* dependency configuration on the generic entity with an unhealthy threshold of 3. Alternatively, you can use the *Not-healthy limit* dependency configuration with a threshold of 1.
 
-:::image type="content" source="media/concepts/child-dependencies.png" lightbox="media/concepts/child-dependencies.png" alt-text="Screenshot showing different dependency settings." border="false":::
+The following screenshot shows the *Worst of* dependency setting where the parent entity propagates the worst health state from its children. If any single dependency is unhealthy, the parent is unhealthy.
 
-## Embedded health models
+:::image type="content" source="media/concepts/dependency-worst-of.png" lightbox="media/concepts/dependency-worst-of.png" alt-text="Screenshot of the Azure portal showing the Worst of dependency configuration for a backend instance fleet entity." border="true":::
+
+The following screenshot shows the *Healthy limit* dependency setting with an unhealthy threshold of 3. The parent remains healthy as long as at least three dependencies are healthy.
+
+:::image type="content" source="media/concepts/dependency-healthy-limit.png" lightbox="media/concepts/dependency-healthy-limit.png" alt-text="Screenshot of the Azure portal showing the Healthy limit dependency configuration with an unhealthy threshold of 3." border="true":::
+
+The following screenshot shows the *Not-healthy limit* dependency setting with a threshold of 1. The parent becomes unhealthy only when more than one dependency is not healthy.
+
+:::image type="content" source="media/concepts/dependency-not-healthy-limit.png" lightbox="media/concepts/dependency-not-healthy-limit.png" alt-text="Screenshot of the Azure portal showing the Not-healthy limit dependency configuration with a threshold of 1." border="true":::
+
+## Nested health models
 A health model can be added to another health model just as any other Azure resource, which allows you to create a health model that includes other health models as child components. This pattern lets you build separate health models for different applications, domains, or complex subsystems, and then combine them into a single all-up view.
 
-When you add a health model to another health model, the embedded model state is the health state of its root entity. The parent model then rolls up that state with other entities by using the same relationship, impact, and dependency settings described earlier in this article.
+When you add a health model to another health model, the nested model state is the health state of its root entity. The parent model then rolls up that state with other entities by using the same relationship, impact, and dependency settings described earlier in this article.
 
 This approach is useful for enterprise-level monitoring scenarios, such as:
 
@@ -109,7 +117,7 @@ You can also set a [health objective](#health-objective) on the top-level root e
 
 
 ## Alerts
-Alerts fire when the health state of an entity changes to degraded or unhealthy. Along with action groups, they allow you to be proactively notified when critical issues occur in the workload represented by the health model.
+Alerts trigger when the health state of an entity changes to degraded or unhealthy, but only when you configure an alert on that entity. Along with action groups, they allow you to be proactively notified when critical issues occur in the workload represented by the health model.
 
 While health models generate the same alerts as [resource-specific alert rules](../alerts/alerts-overview.md) in Azure Monitor and use the same [action groups](../alerts/action-groups.md) for notifications and automation, they provide significant advantages:
 

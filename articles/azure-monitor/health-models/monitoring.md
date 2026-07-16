@@ -1,20 +1,18 @@
 ---
-title: Monitoring a health model in Azure Monitor (preview)
-description: Learn how to monitor an Azure Monitor health model by using model-level Metrics and Alerts in the Azure portal.
+title: Monitor a health model in Azure Monitor (preview)
+description: Learn how to monitor an Azure Monitor health model by using model-level metrics and alerts in the Azure portal.
 ms.topic: how-to
-author: bwren
-ms.author: bwren
-ms.date: 06/26/2026
+ms.date: 07/15/2026
 ai-usage: ai-assisted
 ---
 
-# Monitoring a health model in Azure Monitor (preview)
+# Monitor a health model in Azure Monitor (preview)
 
-After you create and configure a health model, you can monitor the health model resource itself in the Azure portal. This monitoring is separate from entity-level monitoring inside the model.
+After you create and configure a health model, monitor the health model resource itself in the Azure portal. Resource-level monitoring is separate from entity-level monitoring inside the model.
 
-Use the following options:
+Use the following monitoring options:
 
-- **Metrics** to track model-level telemetry, such as how many entities and relationships are in the model, or discovery execution performance.
+- **Metrics** to track model-level telemetry, such as the number of entities and relationships in the model or discovery execution performance.
 - **Alerts** to create alert rules on health model platform metrics and events.
 
 ## View health model metrics

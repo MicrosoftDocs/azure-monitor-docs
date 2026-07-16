@@ -653,14 +653,6 @@ items:
     - name: Overview
       displayName: health models
       href: health-models/overview.md
-    - name: Tutorials
-      items:
-      - name: Configure signals
-        displayName: health models
-        href: health-models/tutorial-signals.md
-      - name: Configure health rollup
-        displayName: health models
-        href: health-models/rollup.md
     - name: Concepts
       displayName: health models
       href: health-models/concepts.md
@@ -678,9 +670,17 @@ items:
       - name: Configure alerts
         displayName: health models
         href: health-models/alerts.md
-      - name: Create discoveries
+      - name: Create discovery rules
         displayName: health models
         href: health-models/discoveries.md
+    - name: Tutorials
+      items:
+      - name: Configure signals
+        displayName: health models
+        href: health-models/tutorial-signals.md
+      - name: Configure health rollup
+        displayName: health models
+        href: health-models/rollup.md
     - name: Analyze
       displayName: health models
       href: health-models/analyze-health.md
