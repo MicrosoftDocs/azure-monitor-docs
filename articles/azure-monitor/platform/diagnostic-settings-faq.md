@@ -2,7 +2,7 @@
 title: Diagnostic settings FAQ
 description: Frequently Asked Questions about billing enablement with diagnostic settings.
 ms.topic: how-to
-ms.date: 06/24/2026
+ms.date: 07/02/2026
 ms.author: msundaram
 author: msundaram
 ai-usage: ai-assisted
@@ -37,8 +37,9 @@ Incur export charges.
 
 ### When does this change take effect?
 
-Billing for streaming platform logs started on **February 1, 2022** for select resource types. On **June 15, 2026**, it expands to all remaining Azure resource types (excluding logs eligible for free export).
+Billing for streaming platform logs started on **February 1, 2022** for select resource types. For example, billing for exports of **Azure Storage Accounts** platform logs started February 1, 2022. 
 
+On **June 15, 2026**, it expands to all remaining Azure resource types (excluding logs eligible for free export).
 ---
 
 ### How can I determine if a platform log category is billable?

@@ -2,9 +2,7 @@
 title: Analyze health state of Azure Monitor health models (Preview)
 description: Describes the different views available to view the health state of your Azure Monitor health models and their included entities.
 ms.topic: concept-article
-author: bwren
-ms.author: bwren
-ms.date: 05/25/2026
+ms.date: 07/15/2026
 ---
 
 # Analyze health state of Azure Monitor health models (preview)
@@ -30,7 +28,7 @@ The timeline view is useful for tracking the health of your workload or applicat
 
 Click on a particular time slice to view details. From this view, you can select to either zoom the timeline view to that time range or open the [graph view](#graph-view) snapshot for the model at that time.
 
-:::image type="content" source="./media/analyze-health/timeline-view.png" lightbox="./media/analyze-health/timeline-view.png" alt-text="Screenshot of a health model resource in the Azure portal with the Table view pane selected.":::
+:::image type="content" source="./media/analyze-health/timeline-view.png" lightbox="./media/analyze-health/timeline-view.png" alt-text="Screenshot of a health model resource in the Azure portal with the Timeline view pane selected.":::
 
 
 ## Entity details
