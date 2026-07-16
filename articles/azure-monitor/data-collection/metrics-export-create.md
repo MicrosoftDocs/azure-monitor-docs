@@ -65,10 +65,6 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 1. On the Monitor menu in the Azure portal, select **Data Collection Rules** and then **Create**.
 
-1. Select the link on the top of the page to use the new DCR creation experience.
-
-    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics.png" alt-text="A screenshot showing the create data collection rule page.":::
-
 1. On the **Create Data Collection Rule** page, enter a rule name, select a **Subscription**, **Resource group**, and **Region** for the DCR.
 
 1. Select *PlatformTelemetry* for the **Type of telemetry** and **Enable Managed Identity** if you want to send metrics to a Storage Account or Event Hubs.
@@ -85,7 +81,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
 
 1. The resource type of the resource specified in the previous step is automatically selected. Add more resource types if you want to use this rule to collect metrics from multiple resource types in the future. Select the **Actions** for a resource type if you want to remove some of the metrics collected for it. By default, all available metrics for the resource are collected.
 
-    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the collect and deliver tab of the create data collection rule page.":::
+    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-source.png" alt-text="A screenshot showing the Data source tab of the Add new data source pane for a data collection rule.":::
 
 1. Select **Next Destinations** to move to the **Destinations** tab.
 
@@ -94,7 +90,7 @@ This article describes how to create a [data collection rule (DCR)](data-collect
     > [!NOTE]
     > To send metrics to a Storage Account or Event Hubs, the resource generating the metrics, the DCR, and the Storage Account or Event Hub, must all be in the same region. To send metrics to a Log Analytics workspace, the DCR must be in the same region as the Log Analytics workspace. The resource generating the metrics can be in any region.
 
-    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the destination tab of collect and deliver page.":::
+    :::image type="content" source="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" lightbox="media/metrics-export-create/create-data-collection-rule-metrics-data-destination.png" alt-text="A screenshot showing the Destination tab of the Add new data source pane for a data collection rule.":::
 
 1. Select **Save** , then select **Review + create**.
 
