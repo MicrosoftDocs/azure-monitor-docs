@@ -22,6 +22,10 @@ For both implicit and explicit cross-workspace queries, specify the resources yo
 > [!NOTE]
 > To remove ambiguity and improve performance, identify a workspace by its unique Workspace ID or Azure Resource ID.
 
+> [!IMPORTANT]
+> For Azure Lighthouse, MSSP, and other delegated-access scenarios, organizations should be aware that cross-workspace queries executed against a customer's Log Analytics workspace may generate query audit records when query auditing is enabled. These records can provide visibility into query activity, including details such as query text, caller identity, and referenced workspaces or resources. Service providers should consider query auditability when designing cross-workspace investigations, automation workflows, and shared query functions.
+
+
 ## Implicit cross workspace queries
 
 For implicit syntax, specify the workspaces that you want to include in your query scope. The API performs a single query over each application provided in your list. The syntax for a cross-workspace POST is:
