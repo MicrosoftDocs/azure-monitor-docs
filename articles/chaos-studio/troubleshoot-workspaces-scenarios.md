@@ -3,7 +3,7 @@ title: Troubleshoot Workspaces and Scenarios in Azure Chaos Studio
 description: Resolve common problems with Azure Chaos Studio Workspaces and Scenarios, including empty resource discovery, role assignment failures, and Scenario runs that fail or skip Actions.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-general
-ms.date: 07/15/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 
 This article explains common problems you might encounter when you use [workspaces](chaos-studio-workspaces-overview.md) and [scenarios](chaos-studio-scenarios.md) in Azure Chaos Studio. The problems are organized by the symptom you see. For problems with the classic experiments model (experiments, targets, and capabilities), see [Troubleshoot issues with Azure Chaos Studio](troubleshooting.md).
 
-> [!NOTE]
-> Azure Chaos Studio workspaces and scenarios are in public preview.
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## "No resources found" when selecting a scope or viewing resources
 

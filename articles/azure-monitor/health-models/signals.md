@@ -2,8 +2,6 @@
 title: Signals in Azure Monitor health models (preview)
 description: Learn signal concepts and configuration for Azure Monitor health models, including signal types, data sources, definitions, and thresholds.
 ms.topic: how-to
-author: bwren
-ms.author: bwren
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---

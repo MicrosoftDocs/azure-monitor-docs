@@ -3,7 +3,7 @@ title: Cost optimization in Azure Monitor
 description: Recommendations for reducing costs in Azure Monitor.
 ms.topic: best-practice
 ms.date: 05/21/2025
-ms.reviewer: bwren
+ms.reviewer:
 ---
 
 # Cost optimization in Azure Monitor

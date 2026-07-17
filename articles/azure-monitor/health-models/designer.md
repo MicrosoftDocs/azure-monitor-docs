@@ -2,8 +2,6 @@
 title: Configure an Azure Monitor health model using the designer (Preview)
 description: Learn how to use the designer to configure an Azure Monitor health model.
 ms.topic: how-to
-author: bwren
-ms.author: bwren
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---

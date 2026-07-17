@@ -3,13 +3,15 @@ title: "Quickstart: Create a Workspace and run your first Scenario"
 description: Get started with Azure Chaos Studio Workspaces by creating a Workspace, discovering your resources, and running a Scenario.
 author: nikhilkaul-msft
 ms.topic: quickstart
-ms.date: 06/17/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
 # Quickstart: Create a Workspace and run your first Scenario
 
 In this quickstart, you create a Chaos Studio Workspace, configure its scope so it discovers your Azure resources, and run a Scenario that simulates a real outage pattern. By the end, you'll have a Scenario report showing exactly what happened during the run.
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Prerequisites
 

@@ -239,7 +239,7 @@ resource cluster 'Microsoft.OperationalInsights/clusters@2021-06-01' = {
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
@@ -329,7 +329,7 @@ The following sample creates a new empty Log Analytics cluster with a commitment
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
@@ -696,7 +696,7 @@ resource cluster 'Microsoft.OperationalInsights/clusters@2021-06-01' = {
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {
@@ -784,7 +784,7 @@ The following sample updates a Log Analytics cluster to use a customer-managed k
 
 ```json
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentParameters.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "clusterName": {

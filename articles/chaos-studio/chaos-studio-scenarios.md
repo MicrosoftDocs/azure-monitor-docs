@@ -3,7 +3,7 @@ title: Scenarios in Azure Chaos Studio
 description: Reference for all available Scenarios in Azure Chaos Studio Workspaces. Each Scenario simulates a real outage pattern using composed Actions.
 author: nikhilkaul-msft
 ms.topic: reference
-ms.date: 07/13/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -13,8 +13,7 @@ A Scenario is a preconfigured resilience test that simulates a specific outage p
 
 This page lists the Scenarios available in Azure Chaos Studio Workspaces. Chaos Studio ships a set of supported Scenario templates that cover the most common outage patterns. You can run these templates as-is, or use the [Scenario designer](#create-a-custom-scenario) to customize your own.
 
-> [!NOTE]
-> Azure Chaos Studio Workspaces and Scenarios are in public preview.
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Supported Scenario templates
 
