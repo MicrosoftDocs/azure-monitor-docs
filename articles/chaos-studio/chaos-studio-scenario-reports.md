@@ -3,13 +3,15 @@ title: Scenario reports in Azure Chaos Studio
 description: Understand the Scenario report generated after each Scenario run in Azure Chaos Studio Workspaces. Learn what each section contains and how to use reports for compliance and retrospectives.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
 # Scenario reports in Azure Chaos Studio
 
 Every time a Scenario runs in a [Workspace](chaos-studio-workspaces-overview.md), Azure Chaos Studio generates a Scenario report. The report is a structured record of exactly what happened during the run: which Actions executed, which were skipped, how long each took, and whether the overall run succeeded. You can view reports in the Azure portal, download them, and share them with stakeholders.
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 Scenario reports serve three purposes:
 
