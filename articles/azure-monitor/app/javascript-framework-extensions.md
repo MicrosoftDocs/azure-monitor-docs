@@ -34,7 +34,7 @@ These plugins provide extra functionality and integration with the specific fram
 ### [Angular](#tab/angular)
 
 > [!div class="checklist"]
-> * The Angular plugin is NOT ECMAScript 3 (ES3) compatible.
+> * The Angular plugin doesn't support ES3-only (pre-ES5) JavaScript engines, so avoid it if your app must run on legacy browsers that lack ES5 support. For the current compatibility statement, see the [Angular plugin readme](https://github.com/microsoft/applicationinsights-angularplugin-js#readme).
 > * When we add support for a new Angular version, our npm package becomes incompatible with down-level Angular versions. Continue to use older npm packages until you're ready to upgrade your Angular version.
 
 ---
