@@ -3,7 +3,7 @@ title: Multicloud monitoring with Azure Monitor
 description: Guidance and recommendations for using Azure Monitor to monitor resources and applications in other clouds.
 ms.topic: best-practice
 ms.date: 05/21/2025
-ms.reviewer: bwren
+ms.reviewer:
 
 ---
 

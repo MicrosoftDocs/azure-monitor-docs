@@ -3,7 +3,7 @@ title: Best practices for monitoring Kubernetes with Azure Monitor
 description: Explore Azure Monitor best practices for Kubernetes clusters, including AKS and Azure Arc. Get guidance on reliability, security, cost, and performance.
 ms.topic: best-practice
 ms.date: 03/29/2023
-ms.reviewer: bwren
+ms.reviewer:
 ai-usage: ai-assisted
 
 #customer intent: As a Kubernetes administrator, I want to understand best practices for monitoring my clusters with Azure Monitor so that I can ensure reliability, security, cost efficiency, and performance.
