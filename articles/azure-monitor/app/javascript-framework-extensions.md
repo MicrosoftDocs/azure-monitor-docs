@@ -34,7 +34,7 @@ These plugins provide extra functionality and integration with the specific fram
 ### [Angular](#tab/angular)
 
 > [!div class="checklist"]
-> * The Angular plugin doesn't support ES3-only (pre-ES5) JavaScript engines, so avoid it if your app must run on legacy browsers that lack ES5 support. For the current compatibility statement, see the [Angular plugin readme](https://github.com/microsoft/applicationinsights-angularplugin-js#readme).
+> * Make sure the version of the Angular plugin that you want to install is compatible with your version of Application Insights. For more information, see [Compatibility Matrix for the Angular plugin](https://github.com/microsoft/applicationinsights-angularplugin-js#compatibility-matrix).
 > * When we add support for a new Angular version, our npm package becomes incompatible with down-level Angular versions. Continue to use older npm packages until you're ready to upgrade your Angular version.
 
 ---
