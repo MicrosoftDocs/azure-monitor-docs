@@ -3,7 +3,7 @@ title: What are Workspaces in Azure Chaos Studio?
 description: Learn about Workspaces, the resource that organizes resilience testing in Azure Chaos Studio. Workspaces discover your resources, recommend Scenarios, and generate reports.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 07/17/2026
 ms.custom: references_regions
 ai-usage: ai-assisted
 ---
@@ -11,6 +11,8 @@ ai-usage: ai-assisted
 # Workspaces in Azure Chaos Studio
 
 A Workspace is the top-level resource for resilience testing in Azure Chaos Studio. It connects to your Azure environment through a scope, discovers the resources you have deployed, and recommends Scenarios that simulate real outage patterns against those resources.
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 Instead of assembling individual Actions and selecting resources manually, you start from a named Scenario that already contains the right Actions, resource discovery, and sequencing for a specific failure pattern. This approach gives you a faster path from "I need to test Zone Down resilience" to an actual test execution.
 

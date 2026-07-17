@@ -3,13 +3,15 @@ title: Permissions and identity in Chaos Studio Workspaces
 description: Learn how managed identity, scope, and role assignments work in Azure Chaos Studio Workspaces.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
 # Permissions and identity in Chaos Studio Workspaces
 
 A Workspace uses a managed identity to execute Scenarios against the Azure resources in its scope. The identity is the core safety mechanism: it ensures that only an authorized principal with explicit RBAC role assignments can run Actions against specific resources. This page explains how identity, scope, and role-based access control (RBAC) work together to control what a Workspace can do and who can use it.
+
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## How Workspace identity works
 
