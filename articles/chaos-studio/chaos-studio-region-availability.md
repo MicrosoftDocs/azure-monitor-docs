@@ -4,7 +4,7 @@ description: Understand how Azure Chaos Studio makes chaos experiments and chaos
 author: prasha-microsoft 
 ms.reviewer: prashabora
 ms.topic: concept-article
-ms.date: 07/14/2026
+ms.date: 07/15/2026
 ms.custom: template-concept, references_regions
 ai-usage: ai-assisted
 ---
@@ -44,23 +44,6 @@ A chaos experiment can target a resource in a different region than the experime
 | Australia East | Available  | Available |
  
 You can also view the list of regions where Chaos Studio is available, see [Products available by region](https://azure.microsoft.com/global-infrastructure/services/?products=chaos-studio).
-
-## Regional availability of Workspaces (preview)
-
-During the public preview, you can create Chaos Studio [Workspaces](chaos-studio-workspaces-overview.md) in the following regions:
-
-<!-- TODO(PM): confirm this region list is exact before marking ready -->
-
-- East US
-- East US 2
-- West US
-- West Central US
-- North Europe
-- Sweden Central
-- UK South
-- Japan East
-
-Workspaces are logical resources that can act on resources in any Azure region: the Workspace's own region doesn't need to match the region of your target resources.
 
 ## Regional availability of chaos experiments
 A [chaos experiment](chaos-studio-chaos-experiments.md) is an Azure resource that describes the faults that should be run and the resources those faults should be run against. An experiment is deployed to a single region. The following information and operations stay in that region:
