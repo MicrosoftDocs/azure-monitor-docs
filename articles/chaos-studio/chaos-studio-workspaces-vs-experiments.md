@@ -3,16 +3,15 @@ title: Compare workspaces and experiments in Azure Chaos Studio
 description: Understand the differences between Chaos Studio workspaces and the classic experiment model, the main advantages of workspaces, and when to choose each model.
 author: nikhilkaul-msft
 ms.topic: concept-article
-ms.date: 07/16/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
 # Compare workspaces and experiments in Azure Chaos Studio
 
-Azure Chaos Studio offers two models for running resilience tests: [workspaces](chaos-studio-workspaces-overview.md), which run scenarios against automatically discovered resources, and the classic model, which runs [experiments](chaos-studio-chaos-experiments.md) against targets you enable individually. This article compares the two models, explains the main advantages of workspaces, and helps you decide which model fits your situation.
+Azure Chaos Studio offers two models for running resilience tests: [workspaces](chaos-studio-workspaces-overview.md), which run scenarios against automatically discovered resources, and the classic model, which runs [experiments](chaos-studio-chaos-experiments.md) against targets you enable individually. This article compares the two models, explains the main advantages of workspaces, and helps you decide which model fits your situation. The classic experiment model is generally available; workspaces are in public preview.
 
-> [!NOTE]
-> Azure Chaos Studio workspaces and scenarios are in public preview. The classic experiment model is generally available.
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## How the two models differ
 

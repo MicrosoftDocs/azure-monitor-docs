@@ -30,7 +30,7 @@ To create the work item itself, you need sufficient permission in the target sys
 
 1. Open your [Application Insights](app-insights-overview.md) resource. Under **Configure**, open **Work Items**, and then select **Create a new template**.
 1. Or, start from [**End-to-end transaction details**](failures-performance-transactions.md#transaction-diagnostics-experience) when no template exists. Select an event, select **Create a work item**, and then select **Start with a workbook template**.
-1. After you select **Create a new template**, choose your tracking system, name the workbook, link to your tracking system, and choose a region for template storage. Enter the default repository URL, such as `https://github.com/myusername/reponame` or `https://dev.azure.com/{org}/{project}`. The selected region is the Azure location of the saved workbook resource. It doesn't change where Application Insights data is stored or queried.
+1. After you select **Create a new template**, choose your tracking system, name the workbook, link to your tracking system, and choose a region for template storage. Enter the default repository URL, such as `https://github.com/{owner}/{repo}` or `https://dev.azure.com/{org}/{project}`. The selected region is the Azure location of the saved workbook resource. It doesn't change where Application Insights data is stored or queried.
 1. Set default work item properties in the template. Properties include assignee, iteration path, and projects. Available properties depend on your tracking system.
 
 > [!NOTE]

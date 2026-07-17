@@ -3,7 +3,7 @@ title: Test workload resiliency on AKS with Chaos Studio (preview)
 description: Learn how to test the resiliency of workloads running on Azure Kubernetes Service (AKS) by using Azure Chaos Studio workspaces to simulate an availability zone failure.
 author: nikhilkaul-msft
 ms.topic: how-to
-ms.date: 07/15/2026
+ms.date: 07/17/2026
 ai-usage: ai-assisted
 ---
 
@@ -11,8 +11,7 @@ ai-usage: ai-assisted
 
 This article explains how to use Azure Chaos Studio [workspaces](chaos-studio-workspaces-overview.md) to test the resiliency of workloads running on Azure Kubernetes Service (AKS). You simulate a compute failure that shuts down the cluster's node virtual machines in one availability zone, then observe how the cluster and your workloads respond.
 
-> [!IMPORTANT]
-> Azure Chaos Studio workspaces and scenarios are currently in public preview. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+[!INCLUDE [chaos-studio-workspaces-preview](includes/chaos-studio-workspaces-preview.md)]
 
 ## Limitations
 
