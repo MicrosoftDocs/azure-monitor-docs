@@ -263,7 +263,7 @@ Use the following steps if you can't view status information or no results are r
 
 ### Performance charts don't show CPU or memory for nodes and containers on a non-Azure cluster
 
-Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` or  `cAdvisor unsecure port: 10255` to be opened on all nodes in the cluster to collect performance metrics. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites).
+Container insights agent pods use the `cAdvisor` endpoint on the node agent to gather performance metrics. Verify the containerized agent on the node is configured to allow `cAdvisor secure port: 10250` to be opened on all nodes in the cluster to collect performance metrics. The Kubelet's unauthenticated read-only port (`10255`) is deprecated and disabled by default in current Kubernetes versions, so don't rely on it. See [prerequisites for hybrid Kubernetes clusters](./container-insights-hybrid-setup.md#prerequisites) and the [kubelet configuration reference](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) (`readOnlyPort`).
 
 ### Image and Name values not populated in the ContainerLog table
 

@@ -47,7 +47,7 @@ Before you start, make sure that you meet the following prerequisites:
     |`*.oms.opinsights.azure.com` |Port 443 |
     |`*.dc.services.visualstudio.com` |Port 443 |
 
-- The containerized agent requires the Kubelet `cAdvisor secure port: 10250` or `unsecure port :10255` to be opened on all nodes in the cluster to collect performance metrics. We recommend that you configure `secure port: 10250` on the Kubelet cAdvisor if it isn't configured already.
+- The containerized agent requires the Kubelet `cAdvisor secure port: 10250` to be opened on all nodes in the cluster to collect performance metrics. The Kubelet's unauthenticated read-only port (`10255`) is deprecated and disabled by default in current Kubernetes versions, so don't rely on it. Configure `secure port: 10250` on the Kubelet cAdvisor if it isn't configured already. For more information, see the [kubelet configuration reference](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) (`readOnlyPort`).
 - The containerized agent requires the following environmental variables to be specified on the container to communicate with the Kubernetes API service within the cluster to collect inventory data: `KUBERNETES_SERVICE_HOST` and `KUBERNETES_PORT_443_TCP_PORT`.
 
 >[!IMPORTANT]
@@ -348,7 +348,7 @@ If you encounter an error while you attempt to enable monitoring for your hybrid
 - The Azure Monitor Agent Health service is running.
 - The Log Analytics workspace ID and key configured on the containerized agent match with the workspace that the insight is configured with.
 - Validate that all the Linux worker nodes have the `kubernetes.io/role=agent` label to the schedulers pod. If it doesn't exist, add it.
-- Identify conditions that may indicate `cAdvisor secure port:10250` or `unsecure port: 10255` is not opened on all nodes in the cluster.
+- Identify conditions that may indicate `cAdvisor secure port: 10250` is not opened on all nodes in the cluster. Don't rely on the unauthenticated read-only port (`10255`) — it's deprecated and disabled by default in current Kubernetes versions. See the [kubelet configuration reference](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) (`readOnlyPort`).
 
 To execute with Azure PowerShell, use the following commands in the folder that contains the script:
 
