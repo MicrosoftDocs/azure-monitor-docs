@@ -301,7 +301,7 @@ If you're using username, password, or credentials as plaintext in the scrape co
    bearer_token_file: /etc/prometheus/certs/password1
    ```
 
-See [Prometheus scrape_config documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config) for more information on these settings.
+For more information about these settings, see [Prometheus scrape_config documentation](https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config).
    
 
 
