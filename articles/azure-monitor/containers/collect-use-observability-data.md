@@ -49,7 +49,7 @@ For more information, see [Monitor AKS applications with OpenTelemetry Protocol 
 ### Use the Azure Monitor Agent to send OTLP signals from compute resources outside AKS into Azure Monitor
 
 - **Use Application Insights to orchestrate ingestion into Azure Monitor.** Create an Application Insights resource to automatically create the required workspaces (**AMW** and **LAW**), and capture the **Data Collection Rule (DCR)** link and **OTLP endpoint URLs** for **traces**, **metrics**, and **logs** from the **Overview** page. Alternatively, orchestrate ingestion manually by creating all required resources.
-- Configure the OTLP exporter to use gRPC on port 4317 for metrics and port 4319 for traces and logs, using Delta temporality and Exponential histogram aggregation for metrics.
+- Configure the OTLP exporter to use gRPC on port 4317 for metrics and port 4319 for traces and logs, using Delta temporality and Exponential histogram aggregation for metrics. Port 4319 is an Azure Monitor Agent-specific port and not one of the canonical OTLP ports (4317 gRPC, 4318 HTTP) defined in the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md).
 
 For more information, see [Ingest OpenTelemetry Protocol signals into Azure Monitor with the Azure Monitor Agent (Preview)](opentelemetry-protocol-ingestion.md).
 
@@ -114,7 +114,7 @@ When you use OpenTelemetry with Azure Monitor, be aware of the following limitat
 
 - AMA path: Application-to-agent communication over **gRPC** on local ports.
 - **4317** (gRPC) for metrics.
-- **4319** (gRPC) for logs and traces.
+- **4319** (gRPC) for logs and traces. This port is chosen by Azure Monitor Agent, not an OTLP/IANA-standard port; see the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) for the canonical OTLP ports (4317 gRPC, 4318 HTTP).
 - **Host:** `localhost`.
 
 ### Limitations for OpenTelemetry collector ingestion

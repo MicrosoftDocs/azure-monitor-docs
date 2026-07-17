@@ -135,6 +135,8 @@ Set the following configuration in your application environment:
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
 
+Port 4319 is a Microsoft-picked port for the Azure Monitor Agent path, not a canonical OTLP port; the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
+
 You might need to alter your OTLP exporter to separate metrics versus logs and traces data across these ports.
 
 > [!IMPORTANT]
@@ -152,6 +154,8 @@ export OTEL_RESOURCE_ATTRIBUTES="microsoft.applicationId=<your-application-id>"
 export OTEL_EXPORTER_OTLP_METRICS_TEMPORALITY_PREFERENCE=delta
 export OTEL_EXPORTER_OTLP_METRICS_DEFAULT_HISTOGRAM_AGGREGATION=base2_exponential_bucket_histogram
 ```
+
+Port 4319, used above for traces and logs, is specific to the Azure Monitor Agent local endpoint and isn't part of the OTLP protocol specification's canonical port assignments (4317 gRPC, 4318 HTTP).
 
 > [!NOTE]
 > The Azure Monitor Agent running on the VM handles authentication and routing to Azure Monitor endpoints.
