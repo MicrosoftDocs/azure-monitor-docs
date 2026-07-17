@@ -4,7 +4,7 @@ description: Lists Azure Policy built-in policy definitions for Azure Monitor. T
 ms.date: 05/21/2025
 ms.topic: reference
 ms.custom: subject-policy-reference
-ms.reviewer: bwren
+ms.reviewer:
 ---
 
 # Azure Policy built-in definitions for Azure Monitor
