@@ -10,6 +10,8 @@
   items:
     - name: What are Workspaces?
       href: chaos-studio-workspaces-overview.md
+    - name: Compare workspaces and experiments
+      href: chaos-studio-workspaces-vs-experiments.md
     - name: "Quickstart: Create a Workspace and run a Scenario"
       href: quickstart-create-workspace.md
     - name: Manage Workspaces and Scenarios with the Azure CLI
@@ -22,8 +24,10 @@
       href: chaos-studio-workspace-permissions.md
     - name: "Tutorial: PostgreSQL zone-down failover"
       href: chaos-studio-tutorial-postgresql-failover.md
-    - name: Test AKS resilience (preview)
+    - name: Test workload resiliency on AKS (preview)
       href: chaos-studio-aks-guidance.md
+    - name: Chaos Studio Workspaces (Azure portal)
+      href: https://portal.azure.com/#view/Microsoft_Azure_Chaos/ChaosStudio.MenuView/~/workspaces
     - name: Chaos Studio AI plugin
       href: https://github.com/microsoft/chaos-studio
 - name: Experiments (classic)
