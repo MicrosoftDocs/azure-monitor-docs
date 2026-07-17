@@ -335,7 +335,7 @@ This section covers configuration settings for the framework extensions for Appl
 
 | Name | Type | Required? | Default | Description |
 |------|------|-----------|---------|-------------|
-| history | object | Optional | null | Track router history. For more information, see the [React router package documentation](https://reactrouter.com/home).<br><br>To track router history, most users can use the `enableAutoRouteTracking` field in the [JavaScript SDK configuration](./javascript-sdk-configuration.md#sdk-configuration). This field collects the same data for page views as the `history` object.<br><br>Use the `history` object when you're using a router implementation that doesn't update the browser URL, which is what the configuration listens to. You shouldn't enable both the `enableAutoRouteTracking` field and `history` object, because you'll get multiple page view events. |
+| history | object | Optional | null | Track router history. For more information, see the [React router package documentation](https://reactrouter.com/home).<br><br>To track router history, most users can use the `enableAutoRouteTracking` field in the [JavaScript SDK configuration](./javascript-sdk-configuration.md#sdk-configuration). This field collects the same data for page views as the `history` object.<br><br>Use the `history` object when you're using a router implementation that doesn't update the browser URL, which is what the configuration listens to. Don't enable both the `enableAutoRouteTracking` field and `history` object, because you get multiple page view events. |
 
 The following code example shows how to enable the `enableAutoRouteTracking` field.
 
