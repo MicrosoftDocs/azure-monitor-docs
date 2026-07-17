@@ -348,7 +348,7 @@ If you encounter an error while you attempt to enable monitoring for your hybrid
 - The Azure Monitor Agent Health service is running.
 - The Log Analytics workspace ID and key configured on the containerized agent match with the workspace that the insight is configured with.
 - Validate that all the Linux worker nodes have the `kubernetes.io/role=agent` label to the schedulers pod. If it doesn't exist, add it.
-- Identify conditions that may indicate `cAdvisor secure port: 10250` is not opened on all nodes in the cluster. Don't rely on the unauthenticated read-only port (`10255`) — it's deprecated and disabled by default in current Kubernetes versions. See the [kubelet configuration reference](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) (`readOnlyPort`).
+- Conditions that indicate `cAdvisor secure port: 10250` isn't opened on all nodes in the cluster. Don't rely on the unauthenticated read-only port (`10255`) — it's deprecated and disabled by default in current Kubernetes versions. See the [kubelet configuration reference](https://kubernetes.io/docs/reference/config-api/kubelet-config.v1beta1/#kubelet-config-k8s-io-v1beta1-KubeletConfiguration) (`readOnlyPort`).
 
 To execute with Azure PowerShell, use the following commands in the folder that contains the script:
 
