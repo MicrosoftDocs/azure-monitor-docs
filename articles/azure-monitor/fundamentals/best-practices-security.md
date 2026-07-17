@@ -4,7 +4,7 @@ description: This article provides instructions for deploying Azure Monitor secu
 ms.topic: best-practice
 ms.date: 03/19/2025
 ms.custom: horz-security
-ms.reviewer: bwren
+ms.reviewer:
 ---
 
 # Secure your Azure Monitor deployment 

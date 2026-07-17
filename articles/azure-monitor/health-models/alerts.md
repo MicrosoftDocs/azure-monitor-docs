@@ -2,8 +2,6 @@
 title: Alerts in Azure Monitor health models (preview)
 description: Learn alert concepts and configuration for Azure Monitor health models, including alert strategy, severity, and action groups.
 ms.topic: how-to
-author: bwren
-ms.author: bwren
 ms.date: 05/25/2026
 ai-usage: ai-assisted
 ---
