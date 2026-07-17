@@ -225,7 +225,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
 
     ```json
     {
-        "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
         "contentVersion": "1.0.0.0",
         "parameters": {
             "dataCollectionRuleName": {
@@ -324,7 +324,7 @@ The [DCR](../data-collection/data-collection-rule-overview.md) defines how the d
 
     ```json
     {
-        "$schema": "https://schema.management.azure.com/schemas/2019-08-01/deploymentTemplate.json#",
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
         "contentVersion": "1.0.0.0",
         "parameters": {
             "dataCollectionRuleName": {
