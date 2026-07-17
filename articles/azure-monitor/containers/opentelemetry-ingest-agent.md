@@ -135,7 +135,7 @@ Set the following configuration in your application environment:
     * **Metrics**: Port 4317 (gRPC)
     * **Logs and Traces**: Port 4319 (gRPC)
 
-Port 4319 is a Microsoft-picked port for the Azure Monitor Agent path, not a canonical OTLP port; the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
+Port 4319 is a Microsoft-picked port for the Azure Monitor Agent path, not a canonical OTLP port. The [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) defines 4317 (gRPC) and 4318 (HTTP) as the standard ports.
 
 You might need to alter your OTLP exporter to separate metrics versus logs and traces data across these ports.
 

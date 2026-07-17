@@ -114,7 +114,7 @@ When you use OpenTelemetry with Azure Monitor, be aware of the following limitat
 
 - AMA path: Application-to-agent communication over **gRPC** on local ports.
 - **4317** (gRPC) for metrics.
-- **4319** (gRPC) for logs and traces. This port is chosen by Azure Monitor Agent, not an OTLP/IANA-standard port; see the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) for the canonical OTLP ports (4317 gRPC, 4318 HTTP).
+- **4319** (gRPC) for logs and traces. Azure Monitor Agent chooses this port, not an OTLP/IANA-standard port. For the canonical OTLP ports, see the [OTLP protocol specification](https://github.com/open-telemetry/opentelemetry-specification/blob/main/specification/protocol/README.md) (4317 gRPC, 4318 HTTP).
 - **Host:** `localhost`.
 
 ### Limitations for OpenTelemetry collector ingestion
