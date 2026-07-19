@@ -187,25 +187,12 @@ Hibernates standalone virtual machines to simulate sudden compute loss, then res
 Applies sustained CPU stress inside target virtual machines to validate application behavior under CPU contention. You set the pressure level (percentage) and duration.
 
 > [!NOTE]
-> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
+> CPU Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. It supports standalone virtual machines only; virtual machine scale sets aren't supported. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
 
 | Property | Value |
 |---|---|
 | Actions | CPU Pressure (agent-based) |
-| Target resources | Virtual Machines |
-| Outage category | Resource pressure |
-
-#### Physical Memory Pressure
-
-Consumes physical memory inside target virtual machines to validate application behavior under memory contention. You set the pressure level (percentage) and duration.
-
-> [!NOTE]
-> Physical Memory Pressure is an agent-based Scenario: the fault runs inside the VM through the Chaos Studio agent. Each target VM must be a Windows or Linux VM with a managed identity. Chaos Studio installs the agent extension automatically during the run and removes it afterward.
-
-| Property | Value |
-|---|---|
-| Actions | Physical Memory Pressure (agent-based) |
-| Target resources | Virtual Machines |
+| Target resources | Virtual Machines (standalone only) |
 | Outage category | Resource pressure |
 
 ## Create a custom Scenario

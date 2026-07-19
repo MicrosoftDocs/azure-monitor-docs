@@ -21,6 +21,8 @@ AKS-specific scenario support in workspaces is limited during the public preview
 - To test AKS node resilience, you must deliberately scope the workspace to the cluster's *infrastructure* resource group (named beginning with `MC_` by default), not the resource group that contains the cluster resource. For background, see [Why a workspace scoped to your AKS cluster finds no compute targets](#why-a-workspace-scoped-to-your-aks-cluster-finds-no-compute-targets).
 - This approach targets the node pools' virtual machine scale sets. It doesn't apply to node pools created by node autoprovisioning (NAP).
 
+For the full list of preview limitations, see [Limitations and known issues in Chaos Studio workspaces](chaos-studio-workspaces-limitations.md).
+
 ## Before you start: verify your cluster topology
 
 This test simulates a zone failure, so it's only meaningful against a cluster that's built to survive one. In the Azure portal, open your AKS cluster and select **Settings** > **Node pools**, then verify:

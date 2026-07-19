@@ -69,5 +69,6 @@ Workspaces and experiments are separate models, and they coexist. Existing exper
 ## Next steps
 
 - [What are workspaces in Azure Chaos Studio?](chaos-studio-workspaces-overview.md)
+- [Limitations and known issues in Chaos Studio workspaces](chaos-studio-workspaces-limitations.md)
 - [Quickstart: Create a workspace and run your first scenario](quickstart-create-workspace.md)
 - [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
