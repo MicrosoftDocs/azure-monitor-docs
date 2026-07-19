@@ -2,7 +2,7 @@
 title: Recommended alert rules for Kubernetes clusters
 description: Describes how to enable recommended metric alerts rules for a Kubernetes cluster in Azure Monitor.
 ms.topic: how-to
-ms.date: 08/25/2025
+ms.date: 07/21/2026
 ms.reviewer: vdiec
 ---
 
@@ -30,7 +30,7 @@ Using the Azure portal, the Prometheus rule group will be created in the same re
 
     :::image type="content" source="media/kubernetes-metric-alerts/recommended-alert-rules-enable-platform.png" lightbox="media/kubernetes-metric-alerts/recommended-alert-rules-enable-platform.png" alt-text="Screenshot of enabling platform metric alert rule.":::
 
-4. Either select one or more notification methods to create a new action group, or select an existing action group with the notification details for this set of alert rules.
+4. Either select one or more notification methods to create a new action group, or select an existing action group with the notification details for this set of alert rules. In addition to email, SMS, and voice, you can send alert notifications to a Microsoft Teams channel. For steps, see [Post a Teams message](../alerts/alerts-logic-apps.md?tabs=send-teams-message#set-up-an-action) in [Customize alert notifications by using Logic Apps](../alerts/alerts-logic-apps.md).
 5.	Click **Save** to save the rule group.
 
 
@@ -238,4 +238,6 @@ The following table maps each of the legacy Container insights custom metrics to
 
 - Read about the [different alert rule types in Azure Monitor](../alerts/alerts-types.md).
 - Read about [alerting rule groups in Azure Monitor managed service for Prometheus](../essentials/prometheus-rule-groups.md).
+- Configure [action groups](../alerts/action-groups.md) to control who gets notified and how, including email, SMS, and voice.
+- [Customize alert notifications by using Logic Apps](../alerts/alerts-logic-apps.md) to post Kubernetes cluster alert notifications to a Microsoft Teams channel.
 
