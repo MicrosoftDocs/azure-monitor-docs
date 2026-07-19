@@ -93,6 +93,7 @@ Starting from a workspace is the fastest way to get resilience coverage for the 
 
 ## Next steps
 
+- [Limitations and known issues in Chaos Studio workspaces](chaos-studio-workspaces-limitations.md)
 - [Quickstart: Create a Workspace and run your first Scenario](quickstart-create-workspace.md)
 - [Scenarios in Azure Chaos Studio](chaos-studio-scenarios.md)
 - [Permissions and identity in Chaos Studio Workspaces](chaos-studio-workspace-permissions.md)
