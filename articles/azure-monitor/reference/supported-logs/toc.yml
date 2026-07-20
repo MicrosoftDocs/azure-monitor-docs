@@ -371,9 +371,6 @@ items:
 - name: Microsoft.Network/networkSecurityPerimeters/profiles
   href: microsoft-network-networksecurityperimeters-profiles-logs.md
   displayName: NSP Inbound Access Allowed.,NSP Inbound Access Denied.,NSP Outbound Access Allowed.,NSP Outbound Access Denied.
-- name: Microsoft.Network/NetworkVirtualAppliances
-  href: microsoft-network-networkvirtualappliances-logs.md
-  displayName: ADG Syslog Event
 - name: microsoft.network/p2svpngateways
   href: microsoft-network-p2svpngateways-logs.md
   displayName: Gateway Diagnostic Logs,IKE Diagnostic Logs,P2S Diagnostic Logs

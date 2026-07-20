@@ -29,9 +29,6 @@ For information on exporting metrics, see - [Metrics export using data collectio
 For information on metric retention, see [Azure Monitor Metrics overview](/azure/azure-monitor/essentials/data-platform-metrics#retention-of-metrics).
 
 
-For a list of supported logs, see [Supported log categories - Microsoft.Network/NetworkVirtualAppliances](../supported-logs/microsoft-network-networkvirtualappliances-logs.md)
-
-
 ### Category: Availability
 |Metric|Name in REST API|[Advanced platform metrics](/azure/azure-monitor/metrics/metrics-advanced-platform)|Unit|Aggregation|Dimensions|Time Grains|DS Export|
 |---|---|---|---|---|---|---|---|
