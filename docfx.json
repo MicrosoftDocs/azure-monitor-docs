@@ -172,7 +172,7 @@
         "articles/azure-monitor/visualize/**/*": "bandersmsft",
         "articles/azure-monitor/vm/**/*": "austinmccollum",
         "articles/chaos-studio/**/*": "nikhilkaul",
-        "articles/service-health/**/*": "austinmc",
+        "articles/service-health/**/*": "austinmccollum",
         "articles/operations/**/*": "bandersmsft"
       },
       "featureFlags": {

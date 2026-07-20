@@ -2,7 +2,7 @@
 title: Overview of Log Analytics in Azure Monitor
 description: This overview describes Log Analytics, which is a tool in the Azure portal used to edit and run log queries for analyzing data in Azure Monitor logs.
 ms.topic: concept-article
-ms.date: 06/17/2026
+ms.date: 07/19/2026
 ---
 
 # Overview of Log Analytics in Azure Monitor
@@ -130,6 +130,8 @@ Scoping also depends on the resource type. Each Log Analytics workspace keeps it
 
 ##### Retention and limits
 
+Tabs represent the query history of your current session. In simple mode, you are allowed one query per tab.
+
 | Behavior | Detail |
 |:---------|:-------|
 | Retention | History is kept for 30 days. |
@@ -193,25 +195,42 @@ The chart view displays the results as one of multiple available chart types. Yo
 
 ### More tools
 
-This section describes more tools available above the query area of the screen, as shown in this screenshot, from left to right.
+This section describes more tools available above the query results area of the screen, as shown in the following screenshot. The screenshot is numbered 1-8.
 
 :::image type="content" source="media/log-analytics-overview/logs-more-tools.png" lightbox="media/log-analytics-overview/logs-more-tools.png" alt-text="Screenshot that shows the More tools window in Log Analytics.":::
 
-> [!NOTE]
-> Tabs represent the query history of your current session. In simple mode, you can only use one query per tab.
+| # | Option | Description |
+|:-------|:-------|:------------|
+| 1 | **Tab context menu** | From the ellipsis of a query tab, [change query scope](scope.md) or rename, duplicate, or close the tab. |
+| 2 | **Observability Agent** | [Chat with your data](../aiops/observability-agent-overview.md#chat-with-your-data) by using natural language to explore logs, find common errors, analyze anomalies, and surface insights without writing KQL. |
+| 3 | **Save** | [Save a query to a query pack](../logs/save-query.md) or as a [function](functions.md), or pin your query to a [workbook](../visualize/workbooks-overview.md), an [Azure dashboard](../visualize/tutorial-logs-dashboards.md), or [Grafana dashboard](../visualize/visualize-use-managed-grafana-how-to.md). |
+| 4 | **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
+| 5 | **Tools context menu** | From the ellipsis of the query area:<br><br>**New alert rule** - [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal) from the current query. <br>**Search job** - [Run a search job](../logs/search-jobs.md) by using the current query. <br>**Log Analytics settings** - Define default [Log Analytics **Settings**](#log-analytics-settings), including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data. |
+| 6 | **Queries hub** | Open the example queries dialog that appears when you first open Log Analytics. |
+| 7 | **Autosave** | [Log Analytics autosave](#autosave) automatically saves your current session state to your browser's local storage. If the browser crashes, the page refreshes, or you navigate away and return, your work is restored when you reopen Logs for the same resource in the same browser. |
+| 8 | **Columns** | Reorder, hide, or show columns in the results table. Activate **Pivot mode** to display the table by one or more columns. |
 
-| Option | Description |
-|:-------|:------------|
-| **Tab context menu** | [Change query scope](scope.md) or rename, duplicate, or close tab. |
-| **Save** | [Save a query to a query pack](../logs/save-query.md) or as a [function](functions.md), or pin your query to a [workbook](../visualize/workbooks-overview.md), an [Azure dashboard](../visualize/tutorial-logs-dashboards.md), or [Grafana dashboard](../visualize/visualize-use-managed-grafana-how-to.md). |
-| **Share** | Copy a link to your query, the query text, or query results, or [export data to Excel](../logs/log-excel.md), CSV, or [Power BI](../logs/log-powerbi.md). |
-| **New alert rule** | [Create a new alert rule](../alerts/alerts-create-new-alert-rule.md#create-or-edit-an-alert-rule-in-the-azure-portal). |
-| **Search job mode** | [Run a search job](../logs/search-jobs.md). |
-| **Observability Agent** | [Chat with your data](../aiops/observability-agent-overview.md#chat-with-your-data) using natural language to explore logs, find common errors, analyze anomalies, and surface insights without writing KQL. |
-| **Log Analytics settings** | Define default Log Analytics settings, including time zone, whether Log Analytics opens in Simple or KQL mode, and whether to display tables with no data.<br><br>*See screenshot below.* |
-| **Queries hub** | Open the example queries dialog that appears when you first open Log Analytics. |
+#### Log Analytics settings
+
+This screenshot shows the Log Analytics settings dialog.
 
 :::image type="content" source="media/log-analytics-overview/logs-settings.png" lightbox="media/log-analytics-overview/logs-settings-zoom.png" alt-text="Screenshot that shows the Logs settings window in Log Analytics.":::
+
+#### Autosave
+Log Analytics automatically saves your current session state to your browser's local storage. If the browser crashes, the page refreshes, or you navigate away and return, your work is restored when you reopen Logs for the same resource in the same browser.
+
+Autosave preserves the following state:
+
+- Tab names and all query tabs (KQL and Simple)
+- Work mode (Simple or KQL)
+- Query scope
+- Time range
+- Show pill settings
+
+##### Autosave scope and retention
+
+Scope - State is saved per browser and device and per specific resource.
+Retention - Saved state is retained for 30 days. After 30 days of inactivity for a resource, the saved state is automatically deleted.
 
 ## Relationship to Azure Data Explorer
 
@@ -219,7 +238,7 @@ If you've worked with the Azure Data Explorer web UI, Log Analytics should look 
 
 Log Analytics adds features specific to Azure Monitor, such as filtering by time range and the ability to create an alert rule from a query. Both tools include an explorer that lets you scan through the structure of available tables. The Azure Data Explorer web UI primarily works with tables in Azure Data Explorer databases. Log Analytics works with tables in a Log Analytics workspace.
 
-## Next steps
+## Related content
 
 * Walk through a [tutorial on using Log Analytics in the Azure portal](./log-analytics-tutorial.md).
 * Walk through a [tutorial on writing queries](./get-started-queries.md).
