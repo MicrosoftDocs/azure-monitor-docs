@@ -40,7 +40,6 @@ Links are provided to more information for each supported scenario.
 - ¹: Application Insights is on by default and enabled automatically.
 - ²: This feature is in public preview. See [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 - ³: Autoinstrumentation only supports single-container applications. For multi-container applications or sidecar containers, manual instrumentation is required using the [Azure Monitor OpenTelemetry Distro](opentelemetry-enable.md).
-- ⁴: AKS autoinstrumentation for .NET and Python is available in [limited preview](../containers/kubernetes-codeless-python-net.md).
 
 > [!TIP]
 > Switch to code-based instrumentation with the [OpenTelemetry Distro](opentelemetry-enable.md) if you want more configuration and extensibility options.
