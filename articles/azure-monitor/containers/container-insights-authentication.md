@@ -60,7 +60,7 @@ KubernetesConfigurationResources
 
 ## Migrate to managed identity authentication
 
-If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters. Managed identity authentication is more secure, performant and gives you access to newer Azure Monitor Container Insights features, such as syslog collection and high scale logs mode.
+If you enabled Container insights before managed identity authentication was available, you can use the following methods to migrate your clusters. Managed identity authentication is more secure and performant. It gives you access to newer Azure Monitor Container Insights features, such as syslog collection and high scale logs mode.
 
 ## [Azure CLI](#tab/cli)
 
