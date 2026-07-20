@@ -1036,6 +1036,11 @@
    "redirect_document_id": false
   },
   {
+   "source_path": "articles/azure-monitor/reference/supported-logs/microsoft-network-networkvirtualappliances-logs.md",
+   "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
+   "redirect_document_id": false
+  },
+  {
    "source_path": "articles/azure-monitor/reference/supported-metrics/includes/microsoft-cloudtest-hostedpools-metrics-include.md",
    "redirect_url": "/azure/azure-monitor/reference/supported-logs/logs-index#supported-log-categories-per-resource-type",
    "redirect_document_id": false
