@@ -3,7 +3,7 @@ title: Limitations and known issues in Chaos Studio workspaces (preview)
 description: Understand the current limitations and known issues in the Azure Chaos Studio workspaces and scenarios public preview, and which capabilities require the classic experiments model.
 author: nikhilkaul-msft
 ms.topic: troubleshooting-known-issue
-ms.date: 07/17/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ---
 
@@ -17,11 +17,11 @@ This article lists the current limitations of the Azure Chaos Studio [workspaces
 
 - **Curated scenario catalog.** Workspaces run [scenario templates](chaos-studio-scenarios.md) and custom scenarios built from them in the designer. The full classic [fault library](chaos-studio-fault-library.md), [dynamic targeting](chaos-studio-tutorial-dynamic-target-portal.md), and [scheduled runs](tutorial-schedule.md) aren't available in workspaces. The classic experiments model remains available for these capabilities. For a full comparison, see [Compare workspaces and experiments](chaos-studio-workspaces-vs-experiments.md).
 
-- **Limited agent-based fault injection.** The [CPU Pressure scenario](chaos-studio-scenarios.md#cpu-pressure) is the only agent-based capability in the workspaces preview, and it supports standalone virtual machines only, not virtual machine scale sets. All other in-guest faults, such as memory pressure, network faults, and disk pressure, aren't available in workspaces. For those faults, use [classic experiments with the agent](chaos-agent-overview.md).
+- **Limited agent-based fault injection.** CPU Pressure and Physical Memory Pressure are the only agent-based scenarios in the workspaces preview. They support standalone Windows and Linux virtual machines with a managed identity; virtual machine scale sets and VM sizes that use Arm-based processors aren't supported yet, and the target VM needs public outbound connectivity to the Chaos Studio service. In the Azure portal, these scenarios appear under **My scenarios** rather than in the recommended scenarios list. For details, see [Agent-based Scenario requirements](chaos-studio-scenarios.md#agent-based-scenario-requirements). All other in-guest faults, such as network faults and disk pressure, aren't available in workspaces; for those faults, use [classic experiments with the agent](chaos-agent-overview.md).
 
 - **No AKS-specific fault injection.** Workspaces don't yet include Azure Kubernetes Service (AKS) fault injection, such as in-cluster pod faults. You can test the zone resilience of AKS node pools today by scoping a workspace to the cluster's infrastructure resource group. To learn more, see [Test workload resiliency on AKS with Chaos Studio](chaos-studio-aks-guidance.md). For in-cluster fault injection today, use [AKS Chaos Mesh faults in the classic model](chaos-studio-tutorial-aks-portal.md).
 
-- **Private networking.** Scenarios in the current preview execute service-direct actions through the Azure Resource Manager control plane, so they don't require a Private Link configuration and work with target resources that use private networking. The [private networking configurations for the classic model](chaos-studio-private-networking.md) (agent-based experiments and AKS Chaos Mesh faults) apply to classic experiments only.
+- **Private networking.** Service-direct scenarios execute their actions through the Azure Resource Manager control plane, so they don't require a Private Link configuration and work with target resources that use private networking. Agent-based scenarios are the exception: the target VM must be able to reach the Chaos Studio service over public outbound connectivity, and VMs restricted to private networking aren't supported. The [private networking configurations for the classic model](chaos-studio-private-networking.md) (agent-based experiments and AKS Chaos Mesh faults) apply to classic experiments only.
 
 - **Workspace creation regions.** You can create workspaces only in the [supported workspace regions](chaos-studio-region-availability.md#regional-availability-of-chaos-studio-workspaces). A workspace can still act on target resources in any Azure region.
 
