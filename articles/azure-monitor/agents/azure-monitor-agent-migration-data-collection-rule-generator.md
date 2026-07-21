@@ -26,10 +26,10 @@ The script retrieves the configuration of the legacy agent configurations from t
 
 For multiple workspaces with configured data collections, you must run the script for each workspace. Internet Information Services (IIS) logs the script also creates another data collection role as part of that configuration.
 
-When the script completes, it prompts you to test deploying the template in your environment. Choose to either let it deploy the template for you, or store the template specified output folder
+When the script finishes, it prompts you to test deploying the template in your environment. You can choose to either let it deploy the template for you, or store the template in the specified output folder.
 
 > [!NOTE]
-> The script doesn't associate the DCRs with the workspace. You must create your own data collection rule associations (DCRAs), to associate the DCRs with the relevant servers. It allows you to control deploying the DCRs to the servers and test the DCRs on a sample of servers before deploying at scale.
+> The script doesn't associate the DCRs with the workspace. You must create your own data collection rule associations (DCRAs) to associate the DCRs with the relevant servers. This approach gives you control over deploying the DCRs to the servers and lets you test the DCRs on a sample of servers before deploying at scale.
 
 
 To run script, copy the following command and replace the parameters with your values:

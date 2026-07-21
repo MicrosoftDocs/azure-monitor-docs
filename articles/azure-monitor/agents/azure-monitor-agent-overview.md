@@ -21,7 +21,7 @@ For a short introduction to the Azure Monitor Agent, including a demo of deployi
 
 ## Installation
 
-The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). It's installed on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you would have no access to the client operating system and running processes.
+The Azure Monitor Agent is one method of [data collection for Azure Monitor](../data-sources.md). You install it on VMs running in Azure, in other clouds, or on-premises, where it has access to local logs and performance data. Without the agent, you can collect data only from the host machine because you have no access to the client operating system and running processes.
 
 You can install the agent on a single machine or at scale using various methods, including a VM extension, Azure Policy, or enabling features like VM insights. For detailed installation options and instructions, see [Install and manage the Azure Monitor Agent](./azure-monitor-agent-manage.md).
 
@@ -31,7 +31,7 @@ On Linux, the agent creates local user accounts to run its services. For the ful
 
 The Azure Monitor Agent collects data according to [data collection rules (DCRs)](../essentials/data-collection-rule-overview.md) associated with the agent. DCRs define what data is collected, how it gets processed, and where it gets sent.
 
-When the agent is installed, it retrieves and applies any associated DCRs and periodically checks for updates. It enables centralized and consistent configuration of data collection across multiple agents and environments.
+When you install the agent, it retrieves and applies any associated DCRs and periodically checks for updates. It enables centralized and consistent configuration of data collection across multiple agents and environments.
 
 For a full conceptual and architectural description of data collection rules, associations, transformations, and destinations, see [Data collection rules (DCRs) in Azure Monitor](../essentials/data-collection-rule-overview.md). For guidance on organizing DCRs across environments and scenarios, see [Best practices for DCR creation and management in Azure Monitor](../essentials/data-collection-rule-best-practices.md).
 
@@ -39,7 +39,7 @@ For a full conceptual and architectural description of data collection rules, as
 
 ## Cost
 
-There's no cost to use the Azure Monitor Agent, but you might incur charges for data ingested and stored. For information on Log Analytics data collection and retention and for customer metrics, see [Azure Monitor logs cost calculations and options](../logs/cost-logs.md) and [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).
+There's no cost to use the Azure Monitor Agent, but you might incur charges for data ingestion and storage. For information on Log Analytics data collection and retention and for customer metrics, see [Azure Monitor logs cost calculations and options](../logs/cost-logs.md) and [Analyze usage in a Log Analytics workspace](../logs/analyze-usage.md).
 
 ## Supported regions
 

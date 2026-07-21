@@ -9,7 +9,7 @@ ms.custom: ai-assisted
 
 # Migrate from Log Analytics agent custom log table to Azure Monitor Agent DCR-based custom log table
 
-This article explains how to migrate a custom text log table from the legacy Log Analytics agent (MMA) so it can be used as the destination for custom text logs collected by Azure Monitor Agent (AMA) through a data collection rule (DCR).
+This article explains how to migrate a custom text log table from the legacy Log Analytics agent (MMA) so you can use it as the destination for custom text logs that Azure Monitor Agent (AMA) collects through a data collection rule (DCR).
 
 ## Background
 

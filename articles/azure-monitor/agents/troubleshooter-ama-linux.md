@@ -11,7 +11,7 @@ ms.reviewer: shseth, nmangum
 # How to use the Linux operating system (OS) Azure Monitor Agent Troubleshooter
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+> This article references CentOS, a Linux distribution that reached end of life (EOL). Consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
 The Azure Monitor Agent (AMA) Troubleshooter helps identify agent issues and performs general health assessments. It checks that the agent is installed and connected properly, and gathers AMA-related logs from the diagnosed machine.
 

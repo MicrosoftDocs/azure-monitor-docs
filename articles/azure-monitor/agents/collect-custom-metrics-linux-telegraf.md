@@ -16,7 +16,7 @@ This article explains how to deploy and configure the [InfluxData](https://www.i
 
 ## InfluxData Telegraf agent
 
-[Telegraf](https://docs.influxdata.com/telegraf/) is a plug-in-driven agent that collects metrics from over 150 sources. Depending on what workloads run on your Linux virtual machine (VM), you can configure the agent to use specialized input plug-ins to collect metrics. Examples are MySQL, NGINX, and Apache. By using output plug-ins, the agent can then write to destinations that you choose. The Telegraf agent integrates directly with the Azure Monitor custom metrics REST API. It supports an Azure Monitor output plug-in. When you use this plug-in, the agent can collect workload-specific metrics on your Linux VM and submit them as custom metrics to Azure Monitor.
+[Telegraf](https://docs.influxdata.com/telegraf/) is a plug-in-driven agent that collects metrics from more than 150 sources. Depending on what workloads run on your Linux virtual machine (VM), you can configure the agent to use specialized input plug-ins to collect metrics. Examples of these workloads are MySQL, NGINX, and Apache. By using output plug-ins, the agent can then write to destinations that you choose. The Telegraf agent integrates directly with the Azure Monitor custom metrics REST API. It supports an Azure Monitor output plug-in. When you use this plug-in, the agent can collect workload-specific metrics on your Linux VM and submit them as custom metrics to Azure Monitor.
 
 :::image type="content" source="media/collect-custom-metrics-linux-telegraf/telegraf-agent-overview.png" lightbox="media/collect-custom-metrics-linux-telegraf/telegraf-agent-overview.png" alt-text="A diagram showing the Telegraph agent overview.":::
 
@@ -26,7 +26,7 @@ Create an SSH connection to the VM where you want to install Telegraf. Select th
 
 :::image source="media/collect-custom-metrics-linux-telegraf/connect-to-virtual-machine.png" lightbox="media/collect-custom-metrics-linux-telegraf/connect-to-virtual-machine.png" alt-text="A screenshot of the Virtual machine overview page with the connect button highlighted.":::
 
-In the **Connect to virtual machine** page, keep the default options to connect by domain name system (DNS) name over port 22. In **Login using VM local account**, a connection command is shown. To copy the command, select the button. The following example shows the SSH connection command:
+In **Connect to virtual machine**, keep the default options to connect by domain name system (DNS) name over port 22. In **Login using VM local account**, a connection command is shown. To copy the command, select the button. The following example shows the SSH connection command:
 
 ```cmd
 ssh azureuser@XXXX.XX.XXX

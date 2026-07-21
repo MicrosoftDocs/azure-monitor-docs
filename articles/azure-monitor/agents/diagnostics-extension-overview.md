@@ -10,7 +10,7 @@ ai-usage: ai-assisted
 
 # Azure Diagnostics extension overview
 
-Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources including virtual machines. This article describes Azure Diagnostics extension's supported functionality and options for installation and configuration.
+Azure Diagnostics extension is an [agent in Azure Monitor](../agents/agents-overview.md) that collects monitoring data from the guest operating system of Azure compute resources, including virtual machines. This article describes Azure Diagnostics extension's supported functionality and options for installation and configuration.
 
 > [!IMPORTANT]
 > ### Migrate from Azure Diagnostic extension
@@ -49,8 +49,8 @@ The Azure Diagnostics extension was deprecated on March 31, 2026. To ensure cont
 
 Use the Azure Diagnostics extension if you need to:
 
-* Send data to Azure Storage for archiving or analysis using tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
-* Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze using [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
+* Send data to Azure Storage for archiving or analysis by using tools such as [Azure Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer).
+* Send data to [Azure Monitor Metrics](../essentials/data-platform-metrics.md) to analyze by using [metrics explorer](../essentials/metrics-getting-started.md) and to take advantage of features such as near-real-time [metric alerts](../alerts/alerts-metric-overview.md) and [autoscale](../autoscale/autoscale-overview.md) (Windows only).
 * Send data to third-party tools by using [Azure Event Hubs](./diagnostics-extension-stream-event-hubs.md).
 * Collect [boot diagnostics](/troubleshoot/azure/virtual-machines/boot-diagnostics) to investigate VM boot problems. Boot diagnostics is a native VM feature and doesn't require the Azure Diagnostics extension. Use Microsoft-managed storage for boot diagnostics to avoid dependencies on customer-managed storage accounts and SAS tokens.
 
@@ -66,7 +66,7 @@ There's no cost for Azure Diagnostics extension, but you might incur charges for
 
 ## Data collected
 
-The following tables list the data collected by the Windows and Linux diagnostics extension.
+The following tables list the data collected by the Windows and Linux diagnostics extensions.
 
 ### Windows diagnostics extension (WAD)
 
