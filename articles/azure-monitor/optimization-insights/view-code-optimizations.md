@@ -4,10 +4,10 @@ description: Learn how to access the results provided by Azure Monitor's Code Op
 ms.topic: how-to
 ms.service: azure-monitor
 ms.subservice: optimization-insights
-author: hhunter-ms
-ms.author: hannahhunter
+author: austinmccollum
+ms.author: austinmc
 ms.date: 03/16/2026
-ms.reviewer: jan.kalis
+ms.reviewer: hannahhunter
 #customer intent: As an application developer, I need to see the results provided by Code Optimizations in order to continuously improve my apps.
 ---
 
