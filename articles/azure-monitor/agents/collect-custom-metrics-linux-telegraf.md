@@ -16,17 +16,17 @@ This article explains how to deploy and configure the [InfluxData](https://www.i
 
 ## InfluxData Telegraf agent
 
-[Telegraf](https://docs.influxdata.com/telegraf/) is a plug-in-driven agent that enables the collection of metrics from over 150 different sources. Depending on what workloads run on your Linux virtual machine (VM), you can configure the agent to use specialized input plug-ins to collect metrics. Examples are MySQL, NGINX, and Apache. By using output plug-ins, the agent can then write to destinations that you choose. The Telegraf agent integrates directly with the Azure Monitor custom metrics REST API. It supports an Azure Monitor output plug-in. When you use this plug-in, the agent can collect workload-specific metrics on your Linux VM and submit them as custom metrics to Azure Monitor.
+[Telegraf](https://docs.influxdata.com/telegraf/) is a plug-in-driven agent that collects metrics from over 150 sources. Depending on what workloads run on your Linux virtual machine (VM), you can configure the agent to use specialized input plug-ins to collect metrics. Examples are MySQL, NGINX, and Apache. By using output plug-ins, the agent can then write to destinations that you choose. The Telegraf agent integrates directly with the Azure Monitor custom metrics REST API. It supports an Azure Monitor output plug-in. When you use this plug-in, the agent can collect workload-specific metrics on your Linux VM and submit them as custom metrics to Azure Monitor.
 
 :::image type="content" source="media/collect-custom-metrics-linux-telegraf/telegraf-agent-overview.png" lightbox="media/collect-custom-metrics-linux-telegraf/telegraf-agent-overview.png" alt-text="A diagram showing the Telegraph agent overview.":::
 
 ## Connect to the VM
 
-Create an SSH connection to the VM where you want to install Telegraf. Select the **Connect** button on the overview page for your virtual machine.
+Create an SSH connection to the VM where you want to install Telegraf. Select the **Connect** button on the overview page for your VM.
 
 :::image source="media/collect-custom-metrics-linux-telegraf/connect-to-virtual-machine.png" lightbox="media/collect-custom-metrics-linux-telegraf/connect-to-virtual-machine.png" alt-text="A screenshot of the Virtual machine overview page with the connect button highlighted.":::
 
-In the **Connect to virtual machine** page, keep the default options to connect by domain name system (DNS) name over port 22. In **Login using VM local account**, a connection command is shown. To copy the command, select the button. The following example shows what the SSH connection command looks like:
+In the **Connect to virtual machine** page, keep the default options to connect by domain name system (DNS) name over port 22. In **Login using VM local account**, a connection command is shown. To copy the command, select the button. The following example shows the SSH connection command:
 
 ```cmd
 ssh azureuser@XXXX.XX.XXX
@@ -118,13 +118,13 @@ Now the agent collects metrics from each of the input plug-ins specified and emi
 
 ## Other configurations
 
-The preceding walkthrough provides information on how to configure the Telegraf agent to collect metrics from a few basic input plug-ins. The Telegraf agent has support for over 150 input plug-ins, with some supporting other configuration options. InfluxData published a [list of supported plugins](https://docs.influxdata.com/telegraf/v1.15/plugins/inputs/) and instructions on [how to configure them](https://docs.influxdata.com/telegraf/v1.15/administration/configuration/).
+The preceding walkthrough shows how to configure the Telegraf agent to collect metrics from a few basic input plug-ins. The Telegraf agent supports over 150 input plug-ins, with some supporting other configuration options. InfluxData published a [list of supported plugins](https://docs.influxdata.com/telegraf/v1.15/plugins/inputs/) and instructions on [how to configure them](https://docs.influxdata.com/telegraf/v1.15/administration/configuration/).
 
-Also, in this walkthrough, you used the Telegraf agent to emit metrics about the VM the agent is deployed on. The Telegraf agent can also be used as a collector and forwarder of metrics for other resources. To learn how to configure the agent to emit metrics for other Azure resources, see [Azure Monitor Custom Metric Output for Telegraf](https://github.com/influxdata/telegraf/blob/4b2e2c5263bb8bd030d2ae101438810c1af61945/plugins/outputs/azure_monitor/README.md).
+Also, in this walkthrough, you used the Telegraf agent to emit metrics about the VM the agent is deployed on. The Telegraf agent can also collect and forward metrics for other resources. To learn how to configure the agent to emit metrics for other Azure resources, see [Azure Monitor Custom Metric Output for Telegraf](https://github.com/influxdata/telegraf/blob/4b2e2c5263bb8bd030d2ae101438810c1af61945/plugins/outputs/azure_monitor/README.md).
 
 ## Clean up resources
 
-When they're no longer needed, you can delete the resource group, virtual machine, and all related resources. To do so, select the resource group for the virtual machine and select **Delete**. Then confirm the name of the resource group to delete.
+When they're no longer needed, you can delete the resource group, VM, and all related resources. To do so, select the resource group for the VM and select **Delete**. Then confirm the name of the resource group to delete.
 
 ## Next steps
 

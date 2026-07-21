@@ -16,14 +16,14 @@ Use the client installer to install the Azure Monitor Agent on Windows client de
 
 Both the [Azure Monitor Agent extension](azure-monitor-agent-requirements.md#virtual-machine-extension-details) and the installer install the *same underlying agent* and use data collection rules (DCRs) to configure data collection.
 
-This article explains how to install the Azure Monitor Agent on Windows client devices by using the client installer, and how to associate DCRs to your Windows client devices.
+This article explains how to install the Azure Monitor Agent on Windows client devices by using the client installer, and how to associate DCRs to them.
 
 > [!NOTE]
 > This article provides specific guidance for installing the Azure Monitor Agent on Windows client devices, subject to [limitations](#limitations). For standard installation and management guidance for the agent, see the [agent extension management guidance](azure-monitor-agent-manage.md).
 
 ## Comparison with the virtual machine extension
 
-Here's a comparison between using the client installer and using the virtual machine (VM) extension for the Azure Monitor Agent:
+Here's a comparison between the client installer and the virtual machine (VM) extension for the Azure Monitor Agent:
 
 | Functional component | Method for VMs or servers via the extension | Method for clients via the installer |
 |:---------------------|:--------------------------------------------|:-------------------------------------|
@@ -59,7 +59,7 @@ Here's a comparison between using the client installer and using the virtual mac
 >
 > * The machine must be domain-joined to a Microsoft Entra tenant (joined or hybrid joined machines). When the machine is domain-joined, the agent can fetch Microsoft Entra device tokens to authenticate and fetch DCRs from Azure.
 >
-> * Check to see if you need tenant admin permissions on the Microsoft Entra tenant.
+> * Check whether you need tenant admin permissions on the Microsoft Entra tenant.
 >
 > * The device must have access to the following HTTPS endpoints:
 >

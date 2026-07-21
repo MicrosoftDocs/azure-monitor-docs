@@ -10,7 +10,7 @@ ms.reviewer: shseth, nmangum
 
 # Configure agents with Azure Monitor Agent settings
 
-This article describes how to configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure Virtual Machines (VM), Virtual Machine Scale Sets, and Azure Arc-enabled servers. Many of your applications and services log telemetry by using the Azure Monitor Agent. You can configure Azure Monitor Agents by using the central control plane and creating the Agent Settings Data Collection Rule (DCR).
+This article describes how to configure the [Azure Monitor Agent](azure-monitor-agent-overview.md) on Azure Virtual Machines (VM), Virtual Machine Scale Sets, and Azure Arc-enabled servers. Many of your applications and services log telemetry using the Azure Monitor Agent. You can configure Azure Monitor Agents using the central control plane and creating the Agent Settings Data Collection Rule (DCR).
 
 ## Prerequisites
 
@@ -63,7 +63,7 @@ The following example steps set the maximum amount of disk space used by the Azu
 
 :::image type="content" source="./media/agent-settings/azure-monitor-agent-data-collection-rule-edit-template-portal.png" lightbox="./media/agent-settings/azure-monitor-agent-data-collection-rule-edit-template-portal.png" alt-text="Screenshot that shows how to open the template editor in the Azure portal.":::
  
- **Step 3** – Delete the existing JSON in the template editor and copy the JSON code into the editor. Make sure that you modify the parameters in the JSON in the editor to meet your needs.
+ **Step 3** – Delete the existing JSON in the template editor and copy the JSON code into the editor. Make sure you modify the parameters in the JSON in the editor to meet your needs.
 
 :::image type="content" source="./media/agent-settings/azure-monitor-agent-data-collection-rule-paste-template-portal.png" lightbox="./media/agent-settings/azure-monitor-agent-data-collection-rule-paste-template-portal.png" alt-text="Screenshot that shows how to open the custom template editor in the Azure portal.":::
 
@@ -152,7 +152,7 @@ Validate and deploy the template. Make sure that you don't get any errors.
 }
 ```
 
-Validate and deploy the template. Make sure that you don't get any errors.
+Validate and deploy the template. Make sure you don't get any errors.
 
 **Step 5** – Apply the changes and restart AMA on the VM.
 

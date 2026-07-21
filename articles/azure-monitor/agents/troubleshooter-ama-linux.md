@@ -11,12 +11,12 @@ ms.reviewer: shseth, nmangum
 # How to use the Linux operating system (OS) Azure Monitor Agent Troubleshooter
 
 > [!CAUTION]
-> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Please consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
+> This article references CentOS, a Linux distribution that is End Of Life (EOL) status. Consider your use and planning accordingly. For more information, see the [CentOS End Of Life guidance](/azure/virtual-machines/workloads/centos/centos-end-of-life).
 
-The Azure Monitor Agent (AMA) Troubleshooter is designed to help identify issues with the agent and perform general health assessments. It can perform various checks to ensure that the agent is properly installed and connected, and can also gather AMA-related logs from the machine being diagnosed.
+The Azure Monitor Agent (AMA) Troubleshooter helps identify agent issues and performs general health assessments. It checks that the agent is installed and connected properly, and gathers AMA-related logs from the diagnosed machine.
 
 > [!Note]
-> The AMA Troubleshooter is an executable that is shipped with the agent for all versions newer than **1.25.1** for Linux.
+> The AMA Troubleshooter is an executable shipped with the agent for all versions newer than **1.25.1** for Linux.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ The Azure Monitor Agent (AMA) Troubleshooter is designed to help identify issues
 
 The Linux AMA Troubleshooter requires access to the following public endpoint to function correctly: `https://docs.microsoft.com/en-us/azure/azure-monitor/agents/azure-monitor-agent-extension-versions`
 
-This URL is used by the tool to retrieve the latest Azure Monitor Agent (AMA) version information. Ensure that outbound connectivity to this endpoint is allowed from the environment where the tool is being executed. Lack of access may result in timeouts or failures during troubleshooting.
+The tool uses this URL to retrieve the latest Azure Monitor Agent (AMA) version information. Ensure that outbound connectivity to this endpoint is allowed from the environment where the tool runs. Lack of access may cause timeouts or failures during troubleshooting.
 
 ### Python requirement
 The Linux AMA Troubleshooter requires **Python 2.6+** or any **Python 3** version installed on the machine.
@@ -143,7 +143,7 @@ It runs a series of scenarios and displays the results.
 ## Frequently Asked Questions
 
 ### Can I copy the Troubleshooter from a newer agent to an older agent and run it on the older agent to diagnose issues with the older agent?
-It isn't possible to use the Troubleshooter to diagnose an older version of the agent by copying it. You must have an up-to-date version of the agent for the Troubleshooter to work properly.
+You can't use the Troubleshooter to diagnose an older agent version by copying it. The agent must be up to date for the Troubleshooter to work properly.
 
 ## Next Steps
 - [Troubleshooting guidance for the Azure Monitor agent](../agents/azure-monitor-agent-troubleshoot-linux-vm.md) on Linux virtual machines and scale sets
