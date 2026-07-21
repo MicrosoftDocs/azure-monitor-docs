@@ -2,7 +2,8 @@
 title: Analyze health state of Azure Monitor health models (Preview)
 description: Describes the different views available to view the health state of your Azure Monitor health models and their included entities.
 ms.topic: concept-article
-ms.date: 07/15/2026
+ms.date: 07/20/2026
+ai-usage: ai-assisted
 ---
 
 # Analyze health state of Azure Monitor health models (preview)
@@ -29,6 +30,16 @@ The timeline view is useful for tracking the health of your workload or applicat
 Click on a particular time slice to view details. From this view, you can select to either zoom the timeline view to that time range or open the [graph view](#graph-view) snapshot for the model at that time.
 
 :::image type="content" source="./media/analyze-health/timeline-view.png" lightbox="./media/analyze-health/timeline-view.png" alt-text="Screenshot of a health model resource in the Azure portal with the Timeline view pane selected.":::
+
+### Data annotations
+Data annotations let you add contextual notes to the health timeline, so important events appear alongside entity and signal health history. Use annotations to capture deployments, incidents, configuration changes, or other events that might explain a change in health state. Annotations make it easier to see whether a health change was caused by expected activity or by an issue that needs investigation. You view annotations as markers on the timeline, or open the [entity details](#entity-details) pane for the full annotation data.
+
+:::image type="content" source="./media/analyze-health/data-annotations.png" lightbox="./media/analyze-health/data-annotations.png" alt-text="Screenshot of the health model timeline with a data annotation marker selected, showing a popup with the annotation's start time, details, and description.":::
+
+> [!NOTE]
+> Currently, you can't add data annotations in the Azure portal. Add them programmatically instead.
+
+To add a data annotation, use the [`az monitor health-models entity add-data-annotation`](/cli/azure/monitor/health-models/entity#az-monitor-health-models-entity-add-data-annotation) command.
 
 
 ## Entity details

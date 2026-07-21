@@ -2,7 +2,7 @@
 title: Azure Monitor health model concepts
 description: Description of the core concepts required for building and using health models in Azure Monitor.
 ms.topic: concept-article
-ms.date: 07/15/2026
+ms.date: 07/20/2026
 ai-usage: ai-assisted
 ---
 
@@ -53,6 +53,16 @@ The following example illustrates an Azure resource entity with multiple metric 
 In the following example, the entity is set to a degraded state since one of its signals is in a degraded state and the other two are healthy. If any of the signals were unhealthy, then the entity would be set to an unhealthy state.
 
 :::image type="content" source="media/concepts/health-signals.png" lightbox="media/concepts/health-signals.png" alt-text="Screenshot of an example entity showing the health state from different signals." border="false":::
+
+## Dynamic thresholds
+By default, a signal compares each value against fixed *static* thresholds that you set for the degraded and unhealthy states. For metrics with regular fluctuations or seasonal variance, use *dynamic thresholds* instead. They let the signal adapt to the metric's normal patterns rather than a fixed value.
+
+Dynamic thresholds use machine learning to compute a baseline from the metric's historical behavior. Two settings control how they work:
+
+- **Lookback window** defines how much historical data is used to learn normal behavior.
+- **Sensitivity** controls how easily the signal reacts to deviations from the machine learning-computed baseline.
+
+During warm-up periods, or when data is missing, the signal falls back to in-place statistical evaluation of the available data until enough history is collected. You configure dynamic thresholds on an Azure resource signal in the designer. For steps, see [Create and configure signals](./signals.md#signal-details).
 
 ## Health propagation
 
