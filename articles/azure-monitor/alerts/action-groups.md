@@ -11,7 +11,7 @@ ms.custom: references_regions, devx-track-arm-template, has-azure-ad-ps-ref, azu
 
 When Azure Monitor data indicates a potential issue in your infrastructure or application, it triggers an alert. To ensure timely response, you can attach action groups to these alerts, which are collections of notification preferences and automated actions.
 
-Action groups define who gets notified and what actions are taken when an alert fires. Notification types include voice call, SMS, push notifications, and email. Automated actions can trigger a webhook, an [Azure Function](/azure/azure-functions/functions-overview), or a Logic Apps workflow that posts a message to **Microsoft Teams**. Action groups are used across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
+Action groups define who gets notified and what actions are taken when an alert fires. Notification types include voice call, SMS, push notifications, and email. Automated actions can trigger a webhook, an [Azure Function](/azure/azure-functions/functions-overview), or a Logic Apps workflow that posts a message to **Microsoft Teams**. Use action groups across services like Azure Monitor, [Azure Service Health](/azure/service-health/overview), and [Azure Advisor](/azure/advisor/advisor-overview).
 
 Each action is made up of:
 
